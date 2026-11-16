@@ -33,10 +33,10 @@ class ManimML3DScene(ThreeDScene):
         Forwarded to :class:`~manim.scene.three_d_scene.ThreeDScene`.
     """
 
-    def __init__(self, *args: object, **kwargs: Any):
+    def __init__(self, *args: object, **kwargs: object):
         super().__init__(*args, **kwargs)
 
-    def play(self, *args: object, **kwargs: Any):
+    def play(self, *args: object, **kwargs: object):
         """Override :meth:`~manim.scene.scene.Scene.play` for ML scenes.
 
         Parameters

@@ -59,6 +59,12 @@ This script checks that public functions, methods, and classes in
    section header. A prose description left at the header's indent is
    not parsed as the return description by napoleon and renders as a
    loose paragraph under the section.
+6f. A docstring must start with a summary sentence, not a numpydoc section
+   header. The summary must describe behaviour instead of merely repeating
+   the function or class name (``paint.``, ``GaussianSurfaceScene.``).
+6g. Placeholder bodies such as ``The computed result.`` or ``To be
+   implemented in every bond subclass.`` are rejected; they document the
+   template rather than the member.
 7. Every public class docstring must carry an ``Examples`` section.
    Mobject subclasses must also include a ``.. manim::`` block in that
    section.
@@ -703,6 +709,79 @@ def check_summary_period(doc, qualname, lineno, violations):
     )
 
 
+def check_summary_quality(doc, qualname, lineno, violations):
+    """Require a real summary sentence before any numpydoc section.
+
+    A docstring that opens directly with ``Parameters`` or ``Returns``
+    renders an empty summary in the API index, and a summary that merely
+    repeats the member name (``GaussianSurfaceScene.``, ``paint.``) adds no
+    information. Both are treated as missing documentation rather than as
+    an acceptable short form.
+    """
+    if qualname.startswith("<"):
+        return
+    lines = doc.splitlines()
+    first = next((line.strip() for line in lines if line.strip()), "")
+    if not first:
+        return
+    if first in SECTION_NAMES or first in (
+        "Other Parameters",
+        "Receives",
+        "Warns",
+        "References",
+        "Notes",
+        "See Also",
+    ):
+        violations.append(
+            {
+                "line": lineno,
+                "qualname": qualname,
+                "type": "DOCSTRING_SECTION_FIRST",
+                "message": "docstring starts with a section header; add a "
+                "summary sentence before it",
+            }
+        )
+        return
+    leaf = qualname.rsplit(".", 1)[-1]
+    if leaf.startswith("__") and leaf.endswith("__"):
+        return
+    normalized_summary = re.sub(r"[^a-z0-9]", "", first.lower().replace("()", ""))
+    normalized_name = re.sub(r"[^a-z0-9]", "", leaf.lower())
+    if normalized_summary in (normalized_name, normalized_name + "module"):
+        violations.append(
+            {
+                "line": lineno,
+                "qualname": qualname,
+                "type": "DOCSTRING_SUMMARY_REPEATS_NAME",
+                "message": f"summary '{first[:50]}' only repeats the member "
+                f"name; describe what it does instead",
+            }
+        )
+
+
+PLACEHOLDER_DOC_PHRASES = (
+    "The computed result.",
+    "The value produced by this method.",
+    "To be implemented in every bond subclass.",
+)
+
+
+def check_placeholder_docstrings(doc, qualname, lineno, violations):
+    """Reject boilerplate bodies that describe the template, not the member."""
+    for phrase in PLACEHOLDER_DOC_PHRASES:
+        if phrase in doc:
+            violations.append(
+                {
+                    "line": lineno,
+                    "qualname": qualname,
+                    "type": "DOCSTRING_PLACEHOLDER",
+                    "message": f"placeholder sentence '{phrase}' does not "
+                    "describe this member's behaviour",
+                }
+            )
+            return
+
+
 def check_terminal_punctuation(doc, qualname, lineno, violations):
     """The docstring's last content line ends with terminal punctuation."""
     lines = doc.splitlines()
@@ -1298,6 +1377,8 @@ def check_file(filepath: Path) -> list:
         check_description_indent(doc, qualname, node.lineno, violations)
         check_return_body_indent(doc, qualname, node.lineno, violations)
         check_summary_period(doc, qualname, node.lineno, violations)
+        check_summary_quality(doc, qualname, node.lineno, violations)
+        check_placeholder_docstrings(doc, qualname, node.lineno, violations)
         check_terminal_punctuation(doc, qualname, node.lineno, violations)
         check_section_spacing(doc, qualname, node.lineno, violations)
         check_no_manual_types(doc, qualname, node.lineno, violations)
@@ -1468,6 +1549,8 @@ def check_file(filepath: Path) -> list:
         check_description_indent(doc, qualname, node.lineno, violations)
         check_return_body_indent(doc, qualname, node.lineno, violations)
         check_summary_period(doc, qualname, node.lineno, violations)
+        check_summary_quality(doc, qualname, node.lineno, violations)
+        check_placeholder_docstrings(doc, qualname, node.lineno, violations)
         check_terminal_punctuation(doc, qualname, node.lineno, violations)
         check_section_spacing(doc, qualname, node.lineno, violations)
         check_no_manual_types(doc, qualname, node.lineno, violations)

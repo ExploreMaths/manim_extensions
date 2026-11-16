@@ -2,11 +2,12 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""utils module."""
+"""Small vector and construction helpers shared by the CAD drawing utilities.
+"""
 
 from __future__ import annotations
-from typing import Any
 import numpy as np
+from manim.typing import Vector3D
 from manim import (
     Circle,
     Line,
@@ -19,7 +20,7 @@ from manim import (
 __all__ = ["angle_between_vectors_signed", "BezierHandlebars"]
 
 
-def angle_between_vectors_signed(v1: Any, v2: Any) -> Any:
+def angle_between_vectors_signed(v1: Vector3D, v2: Vector3D) -> float:
     """Return the signed angle between two vectors.
 
     Parameters
@@ -58,7 +59,7 @@ class BezierHandlebars(VDict):
         self.generate_circles(0.03)
         self.generate_lines()
 
-    def generate_circles(self, r: Any) -> Any:
+    def generate_circles(self, r: float) -> None:
         """Create a dot at every control point.
 
         Parameters
@@ -85,7 +86,7 @@ class BezierHandlebars(VDict):
         )
         self["dots"] = DotGroup
 
-    def move_circles(self) -> Any:
+    def move_circles(self) -> None:
         """Move the dots onto the current control points.
 
         Returns
@@ -95,7 +96,7 @@ class BezierHandlebars(VDict):
         for zipthing in zip(self["dots"], self.target.points):
             zipthing[0].move_to(zipthing[1])
 
-    def generate_lines(self) -> Any:
+    def generate_lines(self) -> None:
         """Draw the two Bezier handles for every curve.
 
         Returns
@@ -121,7 +122,7 @@ class BezierHandlebars(VDict):
         )
         self["lines"] = LineGroup
 
-    def move_lines(self) -> Any:
+    def move_lines(self) -> None:
         """Update the handle lines to match the current control points.
 
         Returns

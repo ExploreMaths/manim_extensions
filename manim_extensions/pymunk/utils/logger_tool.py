@@ -43,7 +43,7 @@ class SingletonLogger:
         return cls._instance
 
     def _inherited_init(self):
-        """Configure your logging logic here."""
+        """Configure the singleton logger format, level and stream handler."""
         self.logger = logging.getLogger("MySingletonLogger")
         self.logger.setLevel(logging.DEBUG)
         self.logger.propagate = False
@@ -68,7 +68,7 @@ class SingletonLogger:
 
         Returns
         -------
-            The computed result."""
+            The singleton Python logging.Logger instance configured."""
         return self.logger
 
 

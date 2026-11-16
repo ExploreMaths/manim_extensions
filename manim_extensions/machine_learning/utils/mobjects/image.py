@@ -103,7 +103,7 @@ class GrayscaleImageMobject(Group):
         return FadeIn(self)
 
     def scale(  # intentionally returns None instead of the group
-        self, scale_factor: float, **kwargs: Any
+        self, scale_factor: float, **kwargs: object
     ):
         """Scales the image mobject.
 
@@ -134,7 +134,10 @@ class GrayscaleImageMobject(Group):
 
 
 class LabeledColorImage(Group):
-    """Labeled Color Image.
+    """An image with a colored frame and a text label above it.
+
+    The frame and label are grouped with the image so the whole card can be
+    positioned, scaled or animated as one mobject.
 
     Parameters
     ----------

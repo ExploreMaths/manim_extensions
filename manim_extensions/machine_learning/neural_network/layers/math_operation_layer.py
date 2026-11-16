@@ -138,7 +138,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         super().construct_layer(input_layer, output_layer, **kwargs)
 
     def construct_activation_function(self):
-        """Construct the activation function."""
+        """Build the activation-function plot for this math-operation layer."""
         # Add the activation function
         if not self.activation_function is None:
             # Check if it is a string
@@ -196,7 +196,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-            The computed result."""
+            The center point of the surrounding shape."""
         return self.surrounding_circle.get_center()
 
     def get_left(self) -> Point3D:
@@ -204,7 +204,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-            The computed result."""
+            The leftmost point of the surrounding shape."""
         return self.surrounding_circle.get_left()
 
     def get_right(self) -> Point3D:
@@ -212,7 +212,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-            The computed result."""
+            The rightmost point of the surrounding shape."""
         return self.surrounding_circle.get_right()
 
     def move_to(self, mobject_or_point: Mobject):

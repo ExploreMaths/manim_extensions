@@ -81,7 +81,7 @@ class TypeWriter(Animation):
                self.wait()
     """
 
-    def __init__(self, mobject: Text, interval: float = 0.1, **kwargs: Any):
+    def __init__(self, mobject: Text, interval: float = 0.1, **kwargs: object):
         assert isinstance(mobject, Text), "TypeWriter only supports Text mobjects."
         self.interval = interval
         self.char_count = len(mobject.submobjects)
@@ -376,7 +376,7 @@ class WriteRandom(LaggedStart):
                self.wait()
     """
 
-    def __init__(self, mobject: VMobject, lag_ratio: float = 0.1, **kwargs: Any):
+    def __init__(self, mobject: VMobject, lag_ratio: float = 0.1, **kwargs: object):
         submobjects = mobject.submobjects
         indices = list(range(len(submobjects)))
         random.shuffle(indices)
@@ -420,7 +420,7 @@ class ReversedWrite(LaggedStart):
                self.wait()
     """
 
-    def __init__(self, mobject: VMobject, lag_ratio: float = 0.1, **kwargs: Any):
+    def __init__(self, mobject: VMobject, lag_ratio: float = 0.1, **kwargs: object):
         submobjects = mobject.submobjects
         indices = list(range(len(submobjects) - 1, -1, -1))
         super().__init__(
@@ -462,7 +462,7 @@ class FadeInRandom(LaggedStart):
                self.wait()
     """
 
-    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any):
+    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: object):
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
         super().__init__(
@@ -504,7 +504,7 @@ class FadeOutRandom(LaggedStart):
                self.play(FadeOutRandom(mob))
     """
 
-    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any):
+    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: object):
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
         super().__init__(
@@ -548,7 +548,7 @@ class GrowRandom(LaggedStart):
                self.wait()
     """
 
-    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any):
+    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: object):
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
         super().__init__(
@@ -604,7 +604,7 @@ class PassingRectangle(Animation):
         color: ManimColor = RED,
         buff: float = 0.05,
         fill_opacity: float = 0.6,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         self.mob_left = mobject.get_left() + buff * LEFT
         self.mob_right = mobject.get_right() + buff * RIGHT
@@ -684,7 +684,7 @@ class LaggedCreation(Animation):
         mobject: Mobject,
         lag_ratio: float = 1.0,
         start_ratio: float = 1 / 6,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         self.lag_ratio = lag_ratio
         self.start_ratio = start_ratio
@@ -783,7 +783,7 @@ class HighLightWithLines(AnimationGroup):
         color: ManimColor = RED,
         buff: float = 0.05,
         rec_opacity: float = 0.5,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         line_up = Line(color=color, stroke_width=2)
         line_up.width = config.frame_width
@@ -861,7 +861,7 @@ class UnHighLightWithLines(AnimationGroup):
         color: ManimColor = RED,
         buff: float = 0.05,
         rec_opacity: float = 0.5,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         parts = getattr(mobject, "_highlight_with_lines_parts", None)
         if parts is not None:

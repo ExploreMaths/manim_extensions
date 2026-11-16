@@ -64,7 +64,7 @@ class Cell(VGroup):
         font_size: int = 20,
         is_header: bool = False,
         show_border: bool = True,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         super().__init__(**kwargs)
 

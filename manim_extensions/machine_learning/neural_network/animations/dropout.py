@@ -276,7 +276,7 @@ def make_forward_pass_with_dropout_animation(
 
     Returns
     -------
-        The computed result.
+        The forward pass animation with dropout.
     """
     layer_args = {}
     # Go through the network and get the FeedForwardLayer instances

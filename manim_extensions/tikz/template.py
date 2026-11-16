@@ -77,7 +77,7 @@ class TikzTemplate(TexTemplate):
         tikzset: List[str] | None = None,
         preamble: str | None = None,
         use_pdf: bool = False,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         default_preamble = self._DEFAULT_PREAMBLE
         merged_preamble = (

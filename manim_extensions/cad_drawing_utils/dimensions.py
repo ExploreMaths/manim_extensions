@@ -2,10 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""dimensions module."""
+"""CAD dimension mobjects: linear and angular dimensions with arrows and labels.
+"""
 
 from __future__ import annotations
-from typing import Any
+from manim.typing import Point3D, Vector3D
 from manim import (
     Arc,
     DEFAULT_ARROW_TIP_LENGTH,
@@ -51,10 +52,10 @@ class PointerLabelFree(VDict):
 
     def __init__(
         self,
-        point: Any,
-        text: str,
-        offset_vector: Any = (RIGHT + DOWN),
-        pointer_offset: Any = 0,
+        point: Point3D,
+        text: str | Mobject,
+        offset_vector: Vector3D = RIGHT + DOWN,
+        pointer_offset: float = 0,
         **kwargs,
     ) -> None:
         text_buff = 0.1
@@ -102,7 +103,7 @@ class PointerLabelFree(VDict):
             aligned_edge=LEFT * np.sign(offset_vector[0]),
         )
 
-    def update_point(self, point: Any, offset_vector: Any = (RIGHT + DOWN)) -> Any:
+    def update_point(self, point: Point3D, offset_vector: Vector3D = RIGHT + DOWN) -> None:
         """Move the pointer to a new anchor point.
 
         Parameters
@@ -155,10 +156,10 @@ class PointerToMob(PointerLabelFree):
     def __init__(
         self,
         mob: Mobject,
-        proportion: Any,
-        text: str,
-        dist: Any = 1,
-        pointer_offset: Any = 0,
+        proportion: float,
+        text: str | Mobject,
+        dist: float = 1,
+        pointer_offset: float = 0,
         **kwargs,
     ) -> None:
         point = mob.point_from_proportion(proportion)
@@ -179,7 +180,7 @@ class PointerToMob(PointerLabelFree):
             point, text, offset_vector=offset, pointer_offset=pointer_offset, **kwargs
         )
 
-    def update_mob(self, mob: Any, proportion: Any, dist: Any = 1) -> Any:
+    def update_mob(self, mob: Mobject, proportion: float, dist: float = 1) -> None:
         """Follow a point on a mobject and update the pointer.
 
         Parameters
@@ -235,14 +236,14 @@ class LinearDimension(VDict):
 
     def __init__(
         self,
-        start: Any,
-        end: Any,
-        text: Any = None,
-        direction: Any = ORIGIN,
-        outside_arrow: Any = False,
-        offset: Any = 2,
-        ext_line_offset: Any = 0,
-        tip_len: Any = DEFAULT_ARROW_TIP_LENGTH,
+        start: Point3D,
+        end: Point3D,
+        text: str | Mobject | None = None,
+        direction: Vector3D = ORIGIN,
+        outside_arrow: bool = False,
+        offset: float = 2,
+        ext_line_offset: float = 0,
+        tip_len: float = DEFAULT_ARROW_TIP_LENGTH,
         **kwargs,
     ) -> None:
         super().__init__(**kwargs)
@@ -379,14 +380,14 @@ class AngleDimension3Point(VDict):
 
     def __init__(
         self,
-        start: Any,
-        end: Any,
-        arc_center: Any,
-        offset: Any = 2,
-        text: Any = None,
-        outside_arrow: Any = False,
-        ext_line_offset: Any = 0,
-        tip_len: Any = DEFAULT_ARROW_TIP_LENGTH,
+        start: Point3D,
+        end: Point3D,
+        arc_center: Point3D,
+        offset: float = 2,
+        text: str | Mobject | None = None,
+        outside_arrow: bool = False,
+        ext_line_offset: float = 0,
+        tip_len: float = DEFAULT_ARROW_TIP_LENGTH,
         **kwargs,
     ) -> None:
         super().__init__(**kwargs)
@@ -510,7 +511,7 @@ class AngleDimensionMob(AngleDimension3Point):
     """
 
     def __init__(
-        self, Mob: Mobject, start_proportion: Any, end_proportion: Any, **kwargs
+        self, Mob: Mobject, start_proportion: float, end_proportion: float, **kwargs
     ) -> None:
         start = Mob.point_from_proportion(start_proportion)
         end = Mob.point_from_proportion(end_proportion)
@@ -558,9 +559,9 @@ class CADArrowHead(CurveWarp):
     def __init__(
         self,
         target_curve: VMobject,
-        anchor_point: Any = 1,
-        arrow_size: Any = DEFAULT_ARROW_TIP_LENGTH,
-        reversed_arrow: Any = False,
+        anchor_point: float = 1,
+        arrow_size: float = DEFAULT_ARROW_TIP_LENGTH,
+        reversed_arrow: bool = False,
         **kwargs,
     ) -> None:
 
@@ -578,7 +579,7 @@ class CADArrowHead(CurveWarp):
             self.arrowhead, target_curve, anchor_point=anchor_point, **kwargs
         )
 
-    def default_updater(self, mob: Any) -> Any:
+    def default_updater(self, mob: Mobject) -> None:
         """Refresh the arrow geometry after the target curve changes.
 
         Parameters
@@ -593,7 +594,7 @@ class CADArrowHead(CurveWarp):
         self.PM.generate_length_map()
         self.generate_points()
 
-    def get_tip_pos(self) -> Any:
+    def get_tip_pos(self) -> float:
         """Return the x coordinate of the arrow tip.
 
         Returns
@@ -605,7 +606,7 @@ class CADArrowHead(CurveWarp):
         else:
             return self.arrowhead.get_critical_point(RIGHT)[0]
 
-    def set_arrow_size(self, arrow_size: Any) -> Any:
+    def set_arrow_size(self, arrow_size: float) -> None:
         """Resize the arrow head while keeping its tip fixed.
 
         Parameters
@@ -626,7 +627,7 @@ class CADArrowHead(CurveWarp):
             self.arrowhead.points *= arrow_size / act_size
             self.arrowhead.shift(+self.get_tip_pos() * RIGHT)
 
-    def flip_arrow(self) -> Any:
+    def flip_arrow(self) -> None:
         """Flip the arrow head horizontally.
 
         Returns
@@ -636,7 +637,7 @@ class CADArrowHead(CurveWarp):
         self.arrowhead.flip()
 
     @property
-    def reversed_arrow(self) -> Any:
+    def reversed_arrow(self) -> bool:
         """Whether the arrow points backwards.
 
         Returns
@@ -646,7 +647,7 @@ class CADArrowHead(CurveWarp):
         return self.__reversed_arrow
 
     @reversed_arrow.setter
-    def reversed_arrow(self, rev: Any) -> Any:
+    def reversed_arrow(self, rev: bool) -> None:
         """Set whether the arrow points backwards.
 
         Parameters

@@ -368,7 +368,7 @@ def mol_parser(file: str) -> tuple[dict, dict]:
 
     Returns
     -------
-        The computed result.
+        The parsed atoms and bonds from the ``.mol`` file.
     """
     with open(file) as file:
         mol_file = file.readlines()
@@ -409,7 +409,7 @@ def sdf_parser(file: str) -> list[tuple[dict, dict]]:
 
     Returns
     -------
-        The computed result.
+        The list of parsed ``(atoms, bonds)`` pairs from the ``.sdf`` file.
     """
     with open(file) as file:
         sdf_file = file.read()

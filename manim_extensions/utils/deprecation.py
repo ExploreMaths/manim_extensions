@@ -40,7 +40,7 @@ def _strip_rst(text: str) -> str:
     return _RST_MARKUP_RE.sub(lambda m: m.group(1) or m.group(2) or m.group(3), text)
 
 
-def deprecated(msg: str, *args: object, **kwargs: Any) -> Callable[[T], T]:
+def deprecated(msg: str, *args: object, **kwargs: object) -> Callable[[T], T]:
     """Mark ``obj`` as deprecated.
 
     Parameters
@@ -57,7 +57,7 @@ def deprecated(msg: str, *args: object, **kwargs: Any) -> Callable[[T], T]:
 
     Returns
     -------
-        The computed result.
+        The decorated callable.
 
     Examples
     --------

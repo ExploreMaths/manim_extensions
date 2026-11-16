@@ -86,7 +86,7 @@ class GriddedRectangle(VGroup):
         fill_opacity: float = 0.2,
         show_grid_lines: bool = False,
         dotted_lines: bool = False,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         super().__init__()
         # Fields
@@ -231,6 +231,7 @@ class GriddedRectangle(VGroup):
 
     def get_center(self) -> Point3D:
         """
+        Return the center point of the rectangle.
 
         Returns
         -------
@@ -240,6 +241,7 @@ class GriddedRectangle(VGroup):
 
     def get_normal_vector(self) -> Vector3D:
         """
+        Return the out-of-plane normal vector of the rectangle.
 
         Returns
         -------

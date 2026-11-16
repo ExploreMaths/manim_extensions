@@ -14,7 +14,7 @@ from __future__ import annotations
 
 import math
 from dataclasses import replace
-from typing import Any, List, Optional, Sequence, Union
+from typing import TYPE_CHECKING, List, Optional, Protocol, Sequence, Union
 
 import numpy as np
 from manim import (
@@ -29,16 +29,43 @@ from manim import (
     ManimColor,
     Polygon,
     RoundedRectangle,
+    Animation,
+    Mobject,
+    Scene,
     Text,
     VGroup,
     config as manim_config,
 )
 
+from manim.utils.color import ParsableManimColor
 from .config import RadarConfig, get_style
 from .data import RadarData
 from .numbers import RollingNumber
 from .theme import RadarTheme, get_theme
 from .utils import lighten, mix, pick_font
+
+if TYPE_CHECKING:
+    from .camera import CameraRig
+
+class _AnimationBuilder(Protocol):
+    """Minimal interface of Manim's ``self.animate`` animation builder."""
+
+    def set_run_time(self, run_time: float) -> "_AnimationBuilder":
+        """Set the duration of the pending animation.
+
+        Parameters
+        ----------
+        run_time
+            Duration in seconds.
+
+        Returns
+        -------
+            The same builder, allowing calls to be chained.
+        """
+
+
+RadarInput = Union[RadarData, dict, Sequence[float]]
+RadarInputList = Union[RadarInput, Sequence[RadarInput]]
 
 __all__ = ["RadarChart"]
 
@@ -87,7 +114,7 @@ class Series:
         chart: RadarChart,
         index: int,
         data: RadarData,
-        color: Any,
+        color: ParsableManimColor,
         rim: float,
         primary: bool,
     ) -> None:
@@ -581,7 +608,7 @@ class RadarChart(VGroup):
     # ==================================================================
     # dataset plumbing
     # ==================================================================
-    def _coerce_item(self, item: Any) -> RadarData:
+    def _coerce_item(self, item: RadarInput) -> RadarData:
         """Convert one constructor-level dataset into a validated snapshot.
 
         Parameters
@@ -715,7 +742,7 @@ class RadarChart(VGroup):
             self._name_text = self._make_name_text(datasets[0].name)
             self._name_holder.add(self._name_text)
 
-    def _legend_pairs(self, datasets: Any) -> List[tuple]:
+    def _legend_pairs(self, datasets: Sequence[RadarData]) -> List[tuple[ManimColor, str]]:
         """Build legend rows for the supplied snapshots.
 
         Parameters
@@ -880,7 +907,7 @@ class RadarChart(VGroup):
         a: int = 0,
         b: int = 1,
         *,
-        color: Any = None,
+        color: Optional[ParsableManimColor] = None,
         opacity: float = 0.32,
         side: str = "both",
         live: bool = True,
@@ -1094,13 +1121,13 @@ class RadarChart(VGroup):
                     )
                 )
 
-    def set_main_color(self, color: Any) -> RadarChart:
+    def set_main_color(self, color: ParsableManimColor) -> RadarChart:
         """Snap the first dataset's polygon colour without animating.
 
         Parameters
         ----------
         color
-            Any colour accepted by :class:`~manim.utils.color.core.ManimColor`.
+            A colour accepted by :class:`~manim.utils.color.core.ManimColor`.
 
         Returns
         -------
@@ -1181,7 +1208,9 @@ class RadarChart(VGroup):
     # ==================================================================
     # camera helpers (new in 0.1.1)
     # ==================================================================
-    def push_in(self, factor: float = 1.35, run_time: float = 1.0, **kwargs) -> Any:
+    def push_in(
+        self, factor: float = 1.35, run_time: float = 1.0, **kwargs
+    ) -> _AnimationBuilder:
         """Zoom the chart up about its own centre.
 
         This works in any scene because only the chart moves. For a true
@@ -1205,7 +1234,9 @@ class RadarChart(VGroup):
         builder = self.animate.scale(float(factor), about_point=center, **kwargs)
         return builder.set_run_time(run_time) if run_time else builder
 
-    def pull_out(self, factor: float = 1.35, run_time: float = 1.0, **kwargs) -> Any:
+    def pull_out(
+        self, factor: float = 1.35, run_time: float = 1.0, **kwargs
+    ) -> _AnimationBuilder:
         """Scale the chart back down about its own centre.
 
         Parameters
@@ -1226,7 +1257,7 @@ class RadarChart(VGroup):
         builder = self.animate.scale(1.0 / float(factor), about_point=center, **kwargs)
         return builder.set_run_time(run_time) if run_time else builder
 
-    def attach_camera(self, rig: Any) -> RadarChart:
+    def attach_camera(self, rig: CameraRig) -> RadarChart:
         """Attach a camera rig for coupled camera moves.
 
         Once attached, ``transition="burst"`` morphs automatically push the
@@ -1249,13 +1280,13 @@ class RadarChart(VGroup):
     # ==================================================================
     def morph_to(
         self,
-        data: Any,
+        data: RadarInputList,
         *,
         color: Optional[str] = None,
         name: Optional[str] = None,
         max_value: Optional[float] = None,
         **kwargs,
-    ) -> Any:
+    ) -> Animation:
         """Morph this chart into one or more target snapshots.
 
         Parameters
@@ -1293,7 +1324,7 @@ class RadarChart(VGroup):
             ]
         return RadarMorph(self, targets, **kwargs)
 
-    def reveal(self, run_time: float = 0.9, **kwargs) -> Any:
+    def reveal(self, run_time: float = 0.9, **kwargs) -> Animation:
         """Build the intro animation that grows out of the centre.
 
         Parameters
@@ -1312,7 +1343,7 @@ class RadarChart(VGroup):
 
         return RadarReveal(self, run_time=run_time, **kwargs)
 
-    def disappear(self, run_time: float = 0.8, **kwargs) -> Any:
+    def disappear(self, run_time: float = 0.8, **kwargs) -> Animation:
         """Build the outro animation that fades the whole chart out.
 
         Parameters
@@ -1331,7 +1362,7 @@ class RadarChart(VGroup):
 
         return RadarFade(self, 0.0, run_time=run_time, **kwargs)
 
-    def glitch_in(self, run_time: float = 0.75, **kwargs) -> Any:
+    def glitch_in(self, run_time: float = 0.75, **kwargs) -> Animation:
         """Build a glitchy entrance animation.
 
         Parameters
@@ -1350,7 +1381,7 @@ class RadarChart(VGroup):
 
         return GlitchFlash(self, run_time=run_time, **kwargs)
 
-    def shockwave(self, **kwargs) -> Any:
+    def shockwave(self, **kwargs) -> Animation:
         """Build a single shockwave ring centred on the chart.
 
         Parameters
@@ -1409,7 +1440,7 @@ class RadarChart(VGroup):
         a, u, v = self._frame()
         return self._to_world(self._polar_local(ang, r)[None, :], a, u, v)[0]
 
-    def trace_web(self, run_time: Optional[float] = None) -> Any:
+    def trace_web(self, run_time: Optional[float] = None) -> Animation:
         """Trace the rainbow web before revealing the data.
 
         The data layer is hidden when this starts and is restored by
@@ -1432,7 +1463,9 @@ class RadarChart(VGroup):
     # ==================================================================
     # scene helpers
     # ==================================================================
-    def attach_backdrop(self, scene: Any, theme: Any = None, **kwargs) -> Any:
+    def attach_backdrop(
+        self, scene: Scene, theme: Optional[RadarTheme] = None, **kwargs
+    ) -> Mobject:
         """Add a deep-space backdrop behind the chart.
 
         Parameters
@@ -1460,7 +1493,7 @@ class RadarChart(VGroup):
     # ==================================================================
     # internals
     # ==================================================================
-    def _coerce_dataset_list(self, data: Any) -> List[RadarData]:
+    def _coerce_dataset_list(self, data: RadarInputList) -> List[RadarData]:
         """Normalise morph input into validated target snapshots.
 
         Parameters
@@ -1497,7 +1530,7 @@ class RadarChart(VGroup):
                 )
         return out
 
-    def _coerce_data(self, data: Any) -> RadarData:
+    def _coerce_data(self, data: RadarInput) -> RadarData:
         """Convert one morph target into a snapshot.
 
         Parameters
@@ -1731,7 +1764,7 @@ class RadarChart(VGroup):
 
         return self._polygon_local_for(self._series[0], scale)
 
-    def _frame(self) -> Any:
+    def _frame(self) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
         """Return the current local frame basis.
 
         Returns
@@ -1745,7 +1778,9 @@ class RadarChart(VGroup):
         return a, u, v
 
     @staticmethod
-    def _to_world(local: np.ndarray, a: Any, u: Any, v: Any) -> np.ndarray:
+    def _to_world(
+        local: np.ndarray, a: np.ndarray, u: np.ndarray, v: np.ndarray
+    ) -> np.ndarray:
         """Map local points into world space.
 
         Parameters
@@ -1928,8 +1963,8 @@ class RadarChart(VGroup):
                 self._name_old.set_opacity(0)
 
     def _slot_y(
-        self, mob: Any, offset: float, label_top: float, frame_limit: float
-    ) -> Any:
+        self, mob: Mobject, offset: float, label_top: float, frame_limit: float
+    ) -> float:
         """Choose the vertical slot for a label above the chart.
 
         Parameters
@@ -1961,13 +1996,13 @@ class RadarChart(VGroup):
     def _paint_series(
         self,
         s: Series,
-        a: Any,
-        u: Any,
-        v: Any,
-        unit: Any,
-        op: Any,
-        multi: Any,
-        pulse: Any,
+        a: np.ndarray,
+        u: np.ndarray,
+        v: np.ndarray,
+        unit: float,
+        op: float,
+        multi: bool,
+        pulse: float,
     ) -> None:
         """Paint one dataset's polygons, edges, dots and rim.
 
@@ -2176,7 +2211,7 @@ class RadarChart(VGroup):
         return "center"
 
     def _paint_compare_numbers(
-        self, a: Any, u: Any, v: Any, unit: Any, op: Any
+        self, a: np.ndarray, u: np.ndarray, v: np.ndarray, unit: float, op: float
     ) -> None:
         """Place comparison read-outs for the datasets selected by config.
 
@@ -2382,7 +2417,7 @@ class RadarChart(VGroup):
         self._legend_old_dy = 0.0
 
     def _paint_legend(
-        self, a: Any, v: Any, label_top: Any, frame_limit: Any, op: Any, multi: Any
+        self, a: np.ndarray, v: np.ndarray, label_top: float, frame_limit: float, op: float, multi: bool
     ) -> None:
         """Position and tint the current, incoming and outgoing legend.
 
@@ -2409,8 +2444,18 @@ class RadarChart(VGroup):
         y = self._legend_row_y(label_top, frame_limit)
         base = a + v * y
 
-        def paint(content: Any, alpha: Any, dy: Any) -> Any:
-            """paint."""
+        def paint(content: Optional[VGroup], alpha: float, dy: float) -> None:
+            """Place and fade one legend row at the current layout slot.
+
+            Parameters
+            ----------
+            content
+                Legend row group to position.
+            alpha
+                Row opacity multiplier.
+            dy
+                Vertical offset from the row's base slot.
+            """
             if content is None or not len(content):
                 return
             content.move_to(base + v * dy)
@@ -2440,7 +2485,9 @@ class RadarChart(VGroup):
     # ------------------------------------------------------------------
     # difference lobes -------------------------------------------------
     @staticmethod
-    def _seg_intersect(p0: Any, p1: Any, q0: Any, q1: Any) -> Optional[np.ndarray]:
+    def _seg_intersect(
+        p0: np.ndarray, p1: np.ndarray, q0: np.ndarray, q1: np.ndarray
+    ) -> Optional[np.ndarray]:
         """Find the intersection of two line segments.
 
         Parameters
@@ -2468,7 +2515,9 @@ class RadarChart(VGroup):
             return None
         return p0 + d1 * t
 
-    def _paint_gap(self, a: Any, u: Any, v: Any, op: Any) -> None:
+    def _paint_gap(
+        self, a: np.ndarray, u: np.ndarray, v: np.ndarray, op: float
+    ) -> None:
         """Paint the difference lobes between the highlighted datasets.
 
         Parameters
@@ -2660,7 +2709,9 @@ class RadarChart(VGroup):
             s.big_numbers_group.add(num)
         return num
 
-    def _paint_overflow(self, a: Any, u: Any, v: Any, unit: Any, op: Any) -> None:
+    def _paint_overflow(
+        self, a: np.ndarray, u: np.ndarray, v: np.ndarray, unit: float, op: float
+    ) -> None:
         """Paint overflow tracks, breach glows and unclamped read-outs.
 
         Parameters

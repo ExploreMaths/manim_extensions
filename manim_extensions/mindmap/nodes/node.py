@@ -151,6 +151,7 @@ class NodeStyle:
 
     def get_node_style(self, level: int) -> Dict:
         """
+        Return the box style configured for a hierarchy level.
 
         Parameters
         ----------
@@ -576,6 +577,7 @@ class Node:
 
     def get_children(self) -> List[Node]:
         """
+        Return the direct children of this node.
 
         Returns
         -------
@@ -585,6 +587,7 @@ class Node:
 
     def get_descendants(self) -> List[Node]:
         """
+        Return all descendants of this node in depth-first order.
 
         Returns
         -------
@@ -660,6 +663,7 @@ class Node:
 
     def get_root(self) -> Self:
         """
+        Return the root of the tree containing this node.
 
         Returns
         -------

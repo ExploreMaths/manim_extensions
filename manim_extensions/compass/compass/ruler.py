@@ -62,7 +62,7 @@ class Ruler(VGroup):
         ruler_color: ParsableManimColor = WHITE,
         stroke_width: float = 2,
         fill_opacity: float = 0.4,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         super().__init__(**kwargs)
         self.ruler_length = length
@@ -111,6 +111,7 @@ class Ruler(VGroup):
 
     def get_start_and_end(self) -> tuple[Point3D, Point3D]:
         """
+        Return the start and end points of the ruler length axis.
 
         Returns
         -------
@@ -121,6 +122,7 @@ class Ruler(VGroup):
 
     def get_middle_point(self) -> Point3D:
         """
+        Return the midpoint between the ruler start and end points.
 
         Returns
         -------

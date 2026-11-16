@@ -8,7 +8,7 @@ A place for all decorators.
 
 import functools
 import warnings
-from typing import Any, Callable, ParamSpec, TypeVar, cast
+from typing import Callable, ParamSpec, TypeVar, cast
 
 P = ParamSpec("P")
 R = TypeVar("R")
@@ -48,7 +48,7 @@ def dangling_vert_decorator() -> Callable[[Callable[P, R]], Callable[P, R]]:
             **kwargs
                 Keyword arguments forwarded to the wrapped function.
             """
-            mesh = cast(Any, args[0])
+            mesh = cast(object, args[0])
             return_value = func(*args, **kwargs)
             if mesh.test_for_dangling and mesh.dangling_vert_check():
                 warnings.warn(f"Dangling vertices in {func.__name__}")
@@ -93,7 +93,7 @@ def dangling_face_decorator() -> Callable[[Callable[P, R]], Callable[P, R]]:
             **kwargs
                 Keyword arguments forwarded to the wrapped function.
             """
-            mesh = cast(Any, args[0])
+            mesh = cast(object, args[0])
             return_value = func(*args, **kwargs)
             if mesh.test_for_dangling and mesh.dangling_face_check():
                 warnings.warn(f"Dangling faces in {func.__name__}")

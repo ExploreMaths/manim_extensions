@@ -89,7 +89,7 @@ class VoltageSource(Source):
         label: bool = True,
         direction: Vector3DLike = LEFT,
         dependent: bool = True,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         # + and -
         markings = VGroup()
@@ -146,7 +146,7 @@ class CurrentSource(Source):
         label: bool = True,
         direction: Vector3DLike = LEFT,
         dependent: bool = True,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         # Arrow
         markings = Line(DOWN * 0.75, UP * 0.75).add_tip(tip_shape=StealthTip)
@@ -200,7 +200,7 @@ class Inductor(VMobject):
         self,
         label: str | None = None,
         direction: Vector3DLike = DOWN,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         # initialize the vmobject
         super().__init__(**kwargs)
@@ -267,7 +267,7 @@ class Inductor(VMobject):
 
         return self
 
-    def rotate(self, angle: float, *args: object, **kwargs: Any) -> Self:
+    def rotate(self, angle: float, *args: object, **kwargs: object) -> Self:
         """Rotate the inductor about the centre of its main body.
 
         The label is rotated by the opposite angle to keep it upright.
@@ -325,7 +325,7 @@ class Resistor(VMobject):
         self,
         label: str | None = None,
         direction: Vector3DLike = DOWN,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         # initialize the vmobject
         super().__init__(**kwargs)
@@ -400,7 +400,7 @@ class Resistor(VMobject):
 
         return self
 
-    def rotate(self, angle: float, *args: object, **kwargs: Any) -> Self:
+    def rotate(self, angle: float, *args: object, **kwargs: object) -> Self:
         """Rotate the resistor about the centre of its main body.
 
         The label is rotated by the opposite angle to keep it upright.
@@ -463,7 +463,7 @@ class Capacitor(VMobject):
         label: str | None = None,
         direction: Vector3DLike = DOWN,
         polarized: bool = False,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         # initialize the vmobject
         super().__init__(**kwargs)
@@ -531,7 +531,7 @@ class Capacitor(VMobject):
 
         return self
 
-    def rotate(self, angle: float, *args: object, **kwargs: Any) -> Self:
+    def rotate(self, angle: float, *args: object, **kwargs: object) -> Self:
         """Rotate the capacitor about the centre of its main body.
 
         The label is rotated by the opposite angle to keep it upright.
@@ -592,7 +592,7 @@ class Ground(VMobject):
         self,
         ground_type: Literal["ground", "earth"] = "ground",
         label: str | None = None,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         # initialize the vmobject
         super().__init__(**kwargs)
@@ -684,7 +684,7 @@ class Opamp(VMobject):
         self,
         bias_supply: str | None = None,
         label: bool = False,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         # initialize the vmobject
         super().__init__(**kwargs)

@@ -7,7 +7,9 @@
 from __future__ import annotations
 
 import math
-from typing import Any, Optional
+from typing import Optional
+
+from manim.utils.color import ParsableManimColor
 
 import numpy as np
 from manim import DOWN, LEFT, RIGHT, UP, Text, VGroup
@@ -157,7 +159,7 @@ class RollingNumber(VGroup):
         for txt in self._cache.values():
             txt.set_opacity(0)
 
-    def set_live_color(self, color: Any) -> None:
+    def set_live_color(self, color: ParsableManimColor) -> None:
         """Recolour the cached glyphs.
 
         Parameters

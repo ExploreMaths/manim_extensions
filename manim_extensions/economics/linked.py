@@ -226,7 +226,7 @@ class LinkedISLMADAS(VGroup):
 
         Returns
         -------
-            The computed result.
+            The animations that apply the adverse supply shock.
         """
         return self.ad_as.adverse_supply_shock(
             sras_price, long_run=long_run, show_arrows=self._show_arrows
@@ -246,7 +246,7 @@ class LinkedISLMADAS(VGroup):
 
         Returns
         -------
-            The computed result.
+            The animations that apply the positive supply shock.
         """
         return self.ad_as.positive_supply_shock(
             sras_price, long_run=long_run, show_arrows=self._show_arrows

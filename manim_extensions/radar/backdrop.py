@@ -8,12 +8,17 @@ from __future__ import annotations
 
 import math
 import random
-from typing import Any, Sequence, Union
+from typing import TYPE_CHECKING, Sequence, Union
+
+from manim.utils.color import ParsableManimColor
 
 import numpy as np
-from manim import Circle, ManimColor, VGroup, WHITE, config
+from manim import Circle, ManimColor, Scene, VGroup, WHITE, config
 
 from .theme import RadarTheme, get_theme
+
+if TYPE_CHECKING:
+    from .chart import RadarChart
 from .utils import mix
 
 __all__ = ["DeepSpace", "set_scene_background"]
@@ -223,7 +228,7 @@ class DeepSpace(VGroup):
         self.add_updater(self._refresh)
 
     # ------------------------------------------------------------------
-    def link(self, chart: Any) -> DeepSpace:
+    def link(self, chart: "RadarChart") -> DeepSpace:
         """Make the backdrop follow a chart's current colour.
 
         Parameters
@@ -241,7 +246,7 @@ class DeepSpace(VGroup):
         self.set_tint(chart.current_color)
         return self
 
-    def set_tint(self, color: Any) -> DeepSpace:
+    def set_tint(self, color: ParsableManimColor) -> DeepSpace:
         """Recolour the nebula and star halos.
 
         Parameters
@@ -273,7 +278,7 @@ class DeepSpace(VGroup):
         self._fade = float(np.clip(value, 0.0, 1.0))
         return self
 
-    def install(self, scene: Any) -> DeepSpace:
+    def install(self, scene: Scene) -> DeepSpace:
         """Add the backdrop to a scene.
 
         Parameters

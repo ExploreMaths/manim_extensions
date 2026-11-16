@@ -14,9 +14,28 @@ scales the chart instead — same idea, zero setup.
 
 from __future__ import annotations
 
-from typing import Any, Optional
+from typing import Optional, Protocol
 
 import numpy as np
+from manim import Mobject, MovingCameraScene
+from manim.typing import Point3D, Vector3D
+
+class _AnimationBuilder(Protocol):
+    """Minimal interface of Manim's animation builder objects."""
+
+    def set_run_time(self, run_time: float) -> "_AnimationBuilder":
+        """Set the duration of the pending animation.
+
+        Parameters
+        ----------
+        run_time
+            Duration in seconds.
+
+        Returns
+        -------
+            The same builder, allowing calls to be chained.
+        """
+
 
 __all__ = ["CameraRig"]
 
@@ -43,7 +62,7 @@ class CameraRig:
                 self.play(rig.pull_out())
     """
 
-    def __init__(self, scene: Any) -> None:
+    def __init__(self, scene: MovingCameraScene) -> None:
         frame = getattr(getattr(scene, "camera", None), "frame", None)
         if frame is None:
             raise TypeError(
@@ -55,8 +74,8 @@ class CameraRig:
 
     # ------------------------------------------------------------------
     def push_in(
-        self, target: Any = None, factor: float = 1.35, run_time: float = 1.0, **kwargs
-    ) -> Any:
+        self, target: Mobject | Point3D | None = None, factor: float = 1.35, run_time: float = 1.0, **kwargs
+    ) -> _AnimationBuilder:
         """Zoom the camera towards a target.
 
         Parameters
@@ -84,10 +103,10 @@ class CameraRig:
     def pull_out(
         self,
         factor: Optional[float] = None,
-        target: Any = None,
+        target: Mobject | Point3D | None = None,
         run_time: float = 1.0,
         **kwargs,
-    ) -> Any:
+    ) -> _AnimationBuilder:
         """Zoom back out towards the default frame or a target.
 
         Parameters
@@ -121,8 +140,8 @@ class CameraRig:
         return self._timed(anim, run_time)
 
     def focus_point(
-        self, point: Any, factor: float = 1.5, run_time: float = 0.9, **kwargs
-    ) -> Any:
+        self, point: Point3D, factor: float = 1.5, run_time: float = 0.9, **kwargs
+    ) -> _AnimationBuilder:
         """Pan to a point and zoom in during one move.
 
         Parameters
@@ -147,8 +166,8 @@ class CameraRig:
         )
 
     def micro_push(
-        self, direction: Any, amount: float = 0.08, run_time: float = 0.35
-    ) -> Any:
+        self, direction: Vector3D, amount: float = 0.08, run_time: float = 0.35
+    ) -> _AnimationBuilder:
         """Make a quick camera breath towards a direction and back.
 
         Parameters
@@ -178,7 +197,7 @@ class CameraRig:
 
     # ------------------------------------------------------------------
     @staticmethod
-    def _timed(anim: Any, run_time: float) -> Any:
+    def _timed(anim: _AnimationBuilder, run_time: float) -> _AnimationBuilder:
         """Attach a run time to an animation.
 
         Parameters

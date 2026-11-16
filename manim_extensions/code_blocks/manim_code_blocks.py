@@ -19,9 +19,10 @@ from __future__ import annotations
 
 import re as regex
 from abc import ABC as abstract
-from typing import Any, Callable
+from typing import Callable
 
 from manim import (
+    Animation,
     AddTextLetterByLetter,
     BackgroundRectangle,
     DOWN,
@@ -63,7 +64,7 @@ class Theme:
         self.colors = colors
         self.group_matchers = group_matchers
 
-    def color_for(self, token: Any) -> str:
+    def color_for(self, token: object) -> str:
         """Return the theme colour assigned to a token.
 
         Parameters
@@ -140,7 +141,7 @@ class ProgrammingLanguage(abstract):
     The color of the programming language. The color is used when displaying the name in the title card above the code block. by default, the official GitHub language colors are used for supported languages, see https://github.com/ozh/github-colors/blob/master/colors.json.
     """
 
-    language: Any
+    language: object
     """
     The `TokenizableLanguage` of the language, imported on first access.
     """
@@ -154,7 +155,7 @@ class ProgrammingLanguage(abstract):
             print(f"Warning: no color found for {name}")
 
     @property
-    def language(self) -> Any:
+    def language(self) -> object:
         """Return the tokenizer for this language.
 
         Returns
@@ -348,7 +349,7 @@ class CodeBlock(VGroup):
             AddTextLetterByLetter(self.code, **kwargs),
         )
 
-    def uncreate(self, **kwargs) -> Any:
+    def uncreate(self, **kwargs) -> tuple[Animation, ...]:
         """
         Return a tuple of animations for uncreating the code block. Use such as:
         ```

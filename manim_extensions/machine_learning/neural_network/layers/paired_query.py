@@ -27,7 +27,11 @@ from ...utils.mobjects.image import GrayscaleImageMobject, LabeledColorImage
 
 
 class PairedQueryLayer(NeuralNetworkLayer):
-    """Paired Query Layer.
+    """A layer showing a positive and a negative query example side by side.
+
+    The pair is framed and labelled as one input row; spacing, stroke width
+    and font size are configurable so the layer can align with neighbouring
+    network layers.
 
     Parameters
     ----------
@@ -122,10 +126,6 @@ class PairedQueryLayer(NeuralNetworkLayer):
             The layer following this layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
-
-        Returns
-        -------
-            The computed result.
         """
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
@@ -148,7 +148,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
 
         Returns
         -------
-            The computed result.
+            The layer built from the supplied image paths.
         """
         # Load images from path
         if grayscale:

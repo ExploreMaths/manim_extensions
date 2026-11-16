@@ -61,7 +61,7 @@ class NeuralNetworkLayer(ABC, Group):
                self.add(layer)
     """
 
-    def __init__(self, text: str | None = None, *args: object, **kwargs: Any):
+    def __init__(self, text: str | None = None, *args: object, **kwargs: object):
         super(Group, self).__init__()
         self.title_text = kwargs["title"] if "title" in kwargs else " "
         self.title: Text | Group
@@ -79,7 +79,7 @@ class NeuralNetworkLayer(ABC, Group):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         """Constructs the layer at network construction time.
 
@@ -97,7 +97,7 @@ class NeuralNetworkLayer(ABC, Group):
             self.add(SurroundingRectangle(self))
 
     @abstractmethod
-    def make_forward_pass_animation(self, *args: object, **kwargs: Any) -> Animation:
+    def make_forward_pass_animation(self, *args: object, **kwargs: object) -> Animation:
         """Makes the forward pass animation for the layer.
 
         Parameters
@@ -163,12 +163,12 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
                self.add(layer)
     """
 
-    def __init__(self, *args: object, **kwargs: Any):
+    def __init__(self, *args: object, **kwargs: object):
         super().__init__(*args, **kwargs)
         # self.camera = camera
 
     @abstractmethod
-    def make_forward_pass_animation(self, *args: object, **kwargs: Any) -> Animation:
+    def make_forward_pass_animation(self, *args: object, **kwargs: object) -> Animation:
         """Makes the forward pass animation for the layer.
 
         Parameters
@@ -242,7 +242,7 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
         self.input_layer = input_layer
@@ -253,7 +253,7 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
 
     @abstractmethod
     def make_forward_pass_animation(
-        self, run_time: float = 2.0, layer_args: dict = {}, **kwargs: Any
+        self, run_time: float = 2.0, layer_args: dict = {}, **kwargs: object
     ) -> Animation:
         """Makes the forward pass animation between the connected layers.
 
@@ -340,12 +340,12 @@ class BlankConnective(ConnectiveLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         super().__init__(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(
-        self, run_time: float = 1.5, layer_args: dict = {}, **kwargs: Any
+        self, run_time: float = 1.5, layer_args: dict = {}, **kwargs: object
     ) -> Animation:
         """Makes an empty forward pass animation for the blank connection.
 
@@ -369,7 +369,7 @@ class BlankConnective(ConnectiveLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         """Construct nothing: a blank connective has no geometry of its own.
 

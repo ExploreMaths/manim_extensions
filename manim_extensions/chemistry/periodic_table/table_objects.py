@@ -125,7 +125,7 @@ class MElementObject(VGroup):
 
         Returns
         -------
-            The computed result.
+            The scale factor needed to fit the element name inside the frame.
         """
         return frame.width / (1.25 * name_text.width)
 
@@ -139,7 +139,7 @@ class MElementObject(VGroup):
 
         Returns
         -------
-            The computed result.
+            The name text, scaled down when it exceeds the maximum height.
         """
         text_height = name_text.height
         if text_height > 0.3:
@@ -153,7 +153,7 @@ class MElementObject(VGroup):
 
         Returns
         -------
-            The computed result."""
+            The gradient-filled rectangle forming the element tile background."""
         frame_rectangle = (
             Rectangle(
                 height=2.8,

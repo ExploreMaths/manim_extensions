@@ -57,6 +57,6 @@ class SigmoidFunction(ActivationFunction):
 
         Returns
         -------
-            The computed result.
+            The :math:`\frac{1}{1 + e^{-x}}`, the sigmoid of the input value.
         """
         return 1 / (1 + np.exp(-1 * x_val))

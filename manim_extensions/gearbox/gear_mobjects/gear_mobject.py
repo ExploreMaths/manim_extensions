@@ -69,7 +69,7 @@ def involute_func(
 
     Returns
     -------
-        The computed result.
+        The x-y-z values of the involute function.
 
     Examples
     --------
@@ -150,7 +150,7 @@ def involute_deriv_func(
 
     Returns
     -------
-        The computed result.
+        The derivative of the involute function at angle t.
 
     Examples
     --------
@@ -237,7 +237,7 @@ def involute_height_func(k: float | VectorND, r: float, **kwargs) -> float:
 
     Returns
     -------
-        The computed result.
+        The radial height of the involute compared to the base circle.
 
     Examples
     --------
@@ -284,7 +284,7 @@ def involute_point_gen(t: VectorND, r: float, **kwargs) -> Point3D_Array:
 
     Returns
     -------
-        The computed result.
+        The list of points to be for cubic bezier approximation of the involute curve.
 
     Examples
     --------
@@ -451,7 +451,7 @@ class Gear(VMobject):
 
         Returns
         -------
-            The computed result.
+            The center point of the surrounding shape.
         """
         return self.submobjects[0].points[0, :].copy()
 
@@ -460,7 +460,7 @@ class Gear(VMobject):
 
         Returns
         -------
-            The computed result.
+            The internal reference vector used to track rotation.
         """
         return self.submobjects[0].points[1, :] - self.submobjects[0].points[0, :]
 
@@ -469,7 +469,7 @@ class Gear(VMobject):
 
         Returns
         -------
-            The computed result.
+            The current rotation angle of the gear in radians.
         """
         v = self.get_angle_vector()
         return np.arctan2(v[1], v[0])
@@ -1017,7 +1017,7 @@ class Gear(VMobject):
 
         Returns
         -------
-            The computed result.
+            The same mobject after rotation.
         """
         if about_point is None:
             ret = super().rotate(angle, axis, about_point=self.get_center(), **kwargs)
@@ -1138,7 +1138,7 @@ class Rack(VMobject):
 
         Returns
         -------
-            The computed result.
+            The center point of the surrounding shape.
         """
         return self.submobjects[0].points[0, :].copy()
 
@@ -1147,7 +1147,7 @@ class Rack(VMobject):
 
         Returns
         -------
-            The computed result.
+            The internal reference vector used to track orientation.
         """
         return self.submobjects[0].points[1, :] - self.submobjects[0].points[0, :]
 
@@ -1156,7 +1156,7 @@ class Rack(VMobject):
 
         Returns
         -------
-            The computed result.
+            The current orientation angle of the rack in radians.
         """
         v = self.get_angle_vector()
         return np.arctan2(v[1], v[0])
@@ -1184,7 +1184,7 @@ class Rack(VMobject):
 
         Returns
         -------
-            The computed result.
+            The same mobject after rotation.
         """
         if about_point is None:
             ret = super().rotate(angle, axis, about_point=self.get_center(), **kwargs)

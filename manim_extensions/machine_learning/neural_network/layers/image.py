@@ -137,7 +137,7 @@ class ImageLayer(NeuralNetworkLayer):
 
         Returns
         -------
-            The computed result.
+            The layer built from the path.
         """
         # Load images from path
         image = Image.open(image_path)
@@ -194,7 +194,7 @@ class ImageLayer(NeuralNetworkLayer):
 
         Returns
         -------
-            The computed result."""
+            The rightmost point of the surrounding shape."""
         return self.image_mobject.get_right()
 
     def scale(self, scale_factor: float, **kwargs):
@@ -216,7 +216,7 @@ class ImageLayer(NeuralNetworkLayer):
 
         Returns
         -------
-            The computed result."""
+            The width of the image mobject."""
         return self.image_mobject.width
 
     @property
@@ -225,5 +225,5 @@ class ImageLayer(NeuralNetworkLayer):
 
         Returns
         -------
-            The computed result."""
+            The height of the image mobject."""
         return self.image_mobject.height

@@ -76,7 +76,7 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
         amplitude: float = 0.1,
         x_range: tuple[float, float] = (-5, 5),
         y_range: tuple[float, float] = (-5, 5),
-        **kwargs: Any,
+        **kwargs: object,
     ):
         self.wavelength = wavelength
         self.period = period
@@ -188,7 +188,7 @@ class LinearWave(RadialWave):
         amplitude: float = 0.1,
         x_range: tuple[float, float] = (-5, 5),
         y_range: tuple[float, float] = (-5, 5),
-        **kwargs: Any,
+        **kwargs: object,
     ):
         super().__init__(
             ORIGIN,
@@ -265,7 +265,7 @@ class StandingWave(ParametricFunction):
         length: float = 4,
         period: float = 1,
         amplitude: float = 1,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         self.n = n
         self.length = length

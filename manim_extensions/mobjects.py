@@ -244,6 +244,8 @@ class LabelDot(VGroup):
 
     def get_center(self) -> Point3D:
         """
+        Return the center of the underlying dot.
+
         Returns
         -------
             The center of the underlying dot.
@@ -252,6 +254,8 @@ class LabelDot(VGroup):
 
     def get_boundary_point(self, direction: Vector3DLike) -> Point3D:
         """
+        Return a point on the dot boundary in the given direction.
+
         Parameters
         ----------
         direction
@@ -452,7 +456,7 @@ class PerpendicularLine(Line):
         self,
         point: Point3DLike | Mobject,
         line: Line,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         if isinstance(point, Mobject):
             self.point = point.get_center()
@@ -628,7 +632,7 @@ class PerpendicularSign(VGroup):
         line2: Line,
         length: float = 0.25,
         corner_direction: Vector3DLike | None = None,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         super().__init__(**kwargs)
 
@@ -968,7 +972,7 @@ class CropImageMobject(ImageMobject):
         self,
         filename_or_array: str | PixelArray | Image.Image,
         corner_radius: int | float = 0.1,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         if isinstance(filename_or_array, str):
             img = Image.open(filename_or_array)
@@ -1048,7 +1052,7 @@ class VideoMobject(ImageMobject):
     """
 
     def __init__(
-        self, filename: str, loop: bool = False, rate: float = 1.0, **kwargs: Any
+        self, filename: str, loop: bool = False, rate: float = 1.0, **kwargs: object
     ):
         cv2 = require("video", "cv2")
 

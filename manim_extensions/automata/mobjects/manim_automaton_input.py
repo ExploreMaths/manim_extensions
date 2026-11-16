@@ -57,7 +57,7 @@ class ManimAutomataInput(VGroup):
         input_string: str,
         animation_style: dict[str, object],
         font_size: int = 100,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         super().__init__(**kwargs)
 
@@ -133,7 +133,7 @@ class Token(MathTex):
     id_iter = itertools.count()
 
     def __init__(
-        self, token_symbol: str, spacing: int, font_size: int = 100, **kwargs: Any
+        self, token_symbol: str, spacing: int, font_size: int = 100, **kwargs: object
     ):
         super().__init__(token_symbol, font_size=font_size, **kwargs)
 

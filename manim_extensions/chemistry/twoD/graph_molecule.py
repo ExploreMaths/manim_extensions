@@ -123,7 +123,7 @@ class DoubleLine(ArcBetweenPoints):
 
         Returns
         -------
-            The computed result."""
+            The direction vector of the bond."""
         return self._get_unit_vector()
 
     def set_points_by_ends(self, start: Point3D, end: Point3D, *args, **kwargs):
@@ -336,7 +336,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Returns
         -------
-            The computed result.
+            The bond class for a given edge tuple based on its bond type.
         """
         bond_type = self.edges_dict[edge].bond_type
         return self.select_bond_type(bond_type)
@@ -351,7 +351,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Returns
         -------
-            The computed result.
+            The bond mobject class for the given bond order (1=single, 2=double, 3=triple).
 
         Raises
         ------
@@ -377,7 +377,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Returns
         -------
-            The computed result.
+            The layout dict mapping each atom index to its 3D coordinates.
         """
         return {index: vertex.coords for index, vertex in vertices_dict.items()}
 
@@ -444,7 +444,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         Returns
         -------
-            The computed result.
+            The label text mobjects for each atom, either numeric or element symbols.
         """
         if numeric_label:
             return {

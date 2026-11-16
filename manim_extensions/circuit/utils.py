@@ -81,7 +81,7 @@ class Source(VMobject):
         direction: Vector3DLike = LEFT,
         label: bool = True,
         dependent: bool = True,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         # initialize the vmobject
         super().__init__(**kwargs)
@@ -146,7 +146,7 @@ class Source(VMobject):
 
         return self
 
-    def rotate(self, angle: float, *args: object, **kwargs: Any) -> Self:
+    def rotate(self, angle: float, *args: object, **kwargs: object) -> Self:
         """Rotate the source symbol around its center.
 
         Parameters
@@ -218,7 +218,7 @@ class Circuit(VMobject):
                    self.play(node.animate.set_color(color), run_time=0.5)
     """
 
-    def __init__(self, **kwargs: Any):
+    def __init__(self, **kwargs: object):
         super().__init__(**kwargs)
 
         # Get a VGroup() of components
@@ -390,7 +390,7 @@ class Node(VMobject):
                self.add(node)
     """
 
-    def __init__(self, **kwargs: Any):
+    def __init__(self, **kwargs: object):
         super().__init__(**kwargs)
 
         # NOTE In a future update, I want to try to

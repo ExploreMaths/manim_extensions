@@ -3,11 +3,7 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
 
-r"""Pendulums.
-
-:class:`~manim_extensions.physics.rigid_mechanics.pendulum.MultiPendulum` and :class:`~manim_extensions.physics.rigid_mechanics.pendulum.Pendulum` both stem from the
-:py:mod:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics` feature.
-
+r"""Pendulum systems and their motion visualisations.
 """
 
 from __future__ import annotations

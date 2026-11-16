@@ -180,7 +180,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-            The computed result."""
+            A point sampled from the current latent distribution."""
         mean = self.latent_distribution.mean
         cov = self.latent_distribution.cov
         point = np.random.multivariate_normal(mean, cov)
@@ -194,7 +194,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-            The computed result."""
+            The mean location of the latent distribution in the axes frame."""
         return self.axes.coords_to_point(self.latent_distribution.mean)
 
     def construct_gaussian_point_cloud(

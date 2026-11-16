@@ -176,6 +176,7 @@ class ListGroup(Mobject):
 
     def index_of(self, item: Mobject) -> int:
         """
+        Return the index of an item, or ``-1`` when it is absent.
 
         Parameters
         ----------

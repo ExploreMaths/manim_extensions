@@ -114,7 +114,7 @@ class EconDiagram(VGroup):
         y_range: Sequence[float] | None = None,
         x_length: float = 6,
         y_length: float = 4,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         super().__init__(**kwargs)
 

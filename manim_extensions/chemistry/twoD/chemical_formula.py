@@ -302,7 +302,7 @@ class ComplexFormula(MarkupText):
 
         Returns
         -------
-            The computed result.
+            The formula string with HTML subscript tags around trailing numbers.
         """
         pattern = r"([^\d\s]+)(\d+)"
         replacement = r"\1<sub>\2</sub>"
@@ -319,7 +319,7 @@ class ComplexFormula(MarkupText):
 
         Returns
         -------
-            The computed result.
+            The formula string with HTML superscript tags around charge notation.
         """
         pattern = re.compile(r"(\w*?)\^\{([^}]+)\}")
         substitution = r"\1<sup>\2</sup>"
@@ -337,7 +337,7 @@ class ComplexFormula(MarkupText):
 
         Returns
         -------
-            The computed result.
+            The formula string with subscripts and superscripts formatted.
         """
         result = self.add_tags_around_numbers(formula_part)
         result = self.add_tags_around_charges(result)

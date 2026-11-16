@@ -118,7 +118,7 @@ class TripletLayer(NeuralNetworkLayer):
 
         Returns
         -------
-            The computed result.
+            The layer built from the supplied image paths.
         """
         # Load images from path
         if grayscale:

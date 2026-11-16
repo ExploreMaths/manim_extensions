@@ -363,7 +363,7 @@ class TidyTreeLayout(Layout):
 
         Returns
         -------
-            The computed result."""
+            The root node of the completed layout."""
         layer(self.root, self.direction, self.level_spacing)
         self.wt = WrappedTree.from_node(self.root, self.is_horizontal)
         self.first_walk(self.wt)

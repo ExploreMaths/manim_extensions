@@ -91,7 +91,7 @@ class ManimTransition(Transition, VGroup):
         animation_style: dict[str, object],
         font_size: int = 100,
         buffer: int = 1,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         Transition.__init__(self, transition_from, transition_to)
         self.circle = None
@@ -200,6 +200,7 @@ class ManimTransition(Transition, VGroup):
         self, normal_vector_choice: int = 1
     ) -> list[float]:
         """
+        Return the normal direction used to offset the transition label.
 
         Parameters
         ----------
@@ -439,7 +440,7 @@ class ManimPushDownAutomatonTransition(ManimTransition):
         animation_style: dict[str, object],
         font_size: int = 100,
         buffer: int = 1,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         Transition.__init__(self, transition_from, transition_to)
         self.circle = None

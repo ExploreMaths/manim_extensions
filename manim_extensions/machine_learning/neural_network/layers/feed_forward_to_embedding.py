@@ -75,10 +75,6 @@ class FeedForwardToEmbedding(ConnectiveLayer):
             The layer following this connective layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
-
-        Returns
-        -------
-            The computed result.
         """
         return super().construct_layer(input_layer, output_layer, **kwargs)
 

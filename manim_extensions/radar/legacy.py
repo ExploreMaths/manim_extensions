@@ -132,7 +132,7 @@ class RadarV1Scene(Scene):
     title: Optional[str] = None
 
     def construct(self) -> None:
-        """construct."""
+        """Build the 1.0 chart and play its reel without a transition."""
         chart = RadarChart(
             replica_datasets()[0],
             style=self.style,
@@ -160,7 +160,7 @@ class RadarV2Scene(Scene):
     title: Optional[str] = "六维能力 · 雷达图鉴"
 
     def construct(self) -> None:
-        """construct."""
+        """Build the 2.0 chart with its themed backdrop and play the reel."""
         from .backdrop import set_scene_background
 
         set_scene_background(self.theme)

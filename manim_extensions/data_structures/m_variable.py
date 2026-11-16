@@ -80,7 +80,7 @@ class MVariable(MArrayElement):
         mob_value_args: MobProps = {},
         mob_index_args: MobProps = {},
         mob_label_args: MobProps = {},
-        **kwargs: Any,
+        **kwargs: object,
     ):
 
         self.__value: object = value

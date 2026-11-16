@@ -158,7 +158,7 @@ class FeatureMap(VGroup):
 
         Returns
         -------
-            The computed result."""
+            A mapping from corner names to their dots."""
         # Sort points through clockwise rotation of a vector in the xy plane
         return self.exterior_rectangle.get_corners_dict()
 
@@ -321,7 +321,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         super().construct_layer(input_layer, output_layer, **kwargs)
 
     def construct_activation_function(self):
-        """Construct the activation function."""
+        """Build the activation-function plot for this convolutional layer."""
         # Add the activation function
         if not self.activation_function is None:
             # Check if it is a string
@@ -444,7 +444,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-            The computed result."""
+            The center point of the surrounding shape."""
         return self.feature_maps.get_center()
 
     def get_width(self) -> float:
@@ -452,7 +452,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-            The computed result."""
+            The width of the surrounding shape."""
         return self.feature_maps.length_over_dim(0)
 
     def get_height(self) -> float:
@@ -460,7 +460,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-            The computed result."""
+            The height of the surrounding shape."""
         return self.feature_maps.length_over_dim(1)
 
     def move_to(self, mobject_or_point: Mobject):

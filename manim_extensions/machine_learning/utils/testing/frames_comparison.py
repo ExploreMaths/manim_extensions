@@ -65,7 +65,7 @@ def frames_comparison(
 
     Returns
     -------
-        The computed result.
+        The pytest wrapper around the test function.
     """
 
     def decorator_maker(tested_scene_construct: Callable):

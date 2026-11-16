@@ -274,6 +274,7 @@ class ThreeDLine(ThreeDCylinder):
 
     def get_start(self) -> Point3D:
         """
+        Return the starting point of the bond.
 
         Returns
         -------
@@ -283,6 +284,7 @@ class ThreeDLine(ThreeDCylinder):
 
     def get_end(self) -> Point3D:
         """
+        Return the ending point of the bond.
 
         Returns
         -------
@@ -555,7 +557,7 @@ class ThreeDBond(OpenGLGroup):
 
         Returns
         -------
-            The computed result.
+            The unit vector perpendicular to the bond direction in the xy plane.
         """
         direction = point_b - point_a
         if direction[0] == 0 and direction[1] == 0:

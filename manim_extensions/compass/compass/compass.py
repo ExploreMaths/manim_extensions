@@ -87,7 +87,7 @@ class Compass(VGroup):
         leg_length: float = 3.1,
         leg_width: float = 0.12,
         r: float = 0.2,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         super().__init__(stroke_width=stroke_width, **kwargs)
         self.head_color = head_color
@@ -143,6 +143,7 @@ class Compass(VGroup):
 
     def get_niddle_tip(self) -> Point3D:
         """
+        Return the coordinates of the compass needle tip.
 
         Returns
         -------
@@ -152,6 +153,7 @@ class Compass(VGroup):
 
     def get_pen_tip(self) -> Point3D:
         """
+        Return the coordinates of the pen tip.
 
         Returns
         -------
@@ -161,6 +163,7 @@ class Compass(VGroup):
 
     def get_niddle2pen_vec(self) -> Point3D:
         """
+        Return the unit vector from the needle tip to the pen tip.
 
         Returns
         -------

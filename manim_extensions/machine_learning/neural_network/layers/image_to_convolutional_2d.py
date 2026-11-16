@@ -102,10 +102,6 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             The layer following this connective layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
-
-        Returns
-        -------
-            The computed result.
         """
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
@@ -126,7 +122,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-            The computed result.
+            The animation that runs the forward pass.
 
         Raises
         ------
@@ -223,7 +219,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
             Returns
             -------
-                The computed result."""
+                The image mobject scaled to the target feature-map size."""
             max_width_height = max(image_mobject.width, image_mobject.height)
             scale_factor = target_feature_map.untransformed_width / max_width_height
             image_mobject.scale(scale_factor)

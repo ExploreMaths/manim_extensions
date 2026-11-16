@@ -87,7 +87,7 @@ class BohrAtom(VGroup):
 
         Returns
         -------
-            The computed result."""
+            The number of orbital levels needed to hold all electrons."""
         TOTAL_ELECTRONS_PER_LEVEL = {
             # Electrons that fit in total: Level
             2: 1,
@@ -203,7 +203,7 @@ class BohrAtom(VGroup):
 
         Returns
         -------
-            The computed result."""
+            The orbitals VGroup (first child of the atom group)."""
         return self[0]
 
     def get_electrons(self) -> VGroup:
@@ -211,7 +211,7 @@ class BohrAtom(VGroup):
 
         Returns
         -------
-            The computed result."""
+            The electrons VGroup (second child of the atom group)."""
         return self[1]
 
     def get_nuclei(self) -> VGroup:
@@ -219,5 +219,5 @@ class BohrAtom(VGroup):
 
         Returns
         -------
-            The computed result."""
+            The nuclei VGroup (third child of the atom group)."""
         return self[2]

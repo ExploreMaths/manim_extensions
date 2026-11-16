@@ -174,7 +174,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         super().construct_layer(input_layer, output_layer, **kwargs)
 
     def construct_activation_function(self):
-        """Construct the activation function."""
+        """Build the activation-function plot for this feed-forward layer."""
         # Add the activation function
         if not self.activation_function is None:
             # Check if it is a string
@@ -241,7 +241,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-            The computed result.
+            The animation that runs the forward pass.
         """
         # Check if dropout is a thing
         if "dropout_node_indices" in layer_args:
@@ -296,7 +296,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-            The computed result."""
+            The height of the surrounding shape."""
         return self.surrounding_rectangle.height
 
     def get_center(self) -> Point3D:
@@ -304,7 +304,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-            The computed result."""
+            The center point of the surrounding shape."""
         return self.surrounding_rectangle.get_center()
 
     def get_left(self) -> Point3D:
@@ -312,7 +312,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-            The computed result."""
+            The leftmost point of the surrounding shape."""
         return self.surrounding_rectangle.get_left()
 
     def get_right(self) -> Point3D:
@@ -320,7 +320,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-            The computed result."""
+            The rightmost point of the surrounding shape."""
         return self.surrounding_rectangle.get_right()
 
     def move_to(self, mobject_or_point: Mobject):

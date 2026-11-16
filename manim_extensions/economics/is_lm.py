@@ -221,7 +221,7 @@ class ISLMDiagram(EconDiagram):
 
         Returns
         -------
-            The computed result.
+            The animation that shifts the IS curve.
         """
         self._a = a if a is not None else self._a
         self._b = b if b is not None else self._b
@@ -263,7 +263,7 @@ class ISLMDiagram(EconDiagram):
 
         Returns
         -------
-            The computed result.
+            The animation that shifts the LM curve.
         """
         self._ms = ms if ms is not None else self._ms
         self._k = k if k is not None else self._k

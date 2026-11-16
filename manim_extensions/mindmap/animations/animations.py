@@ -728,6 +728,7 @@ class AbstractLayoutAnimation(AnimationGroup):
 
     def get_common_root(self, nodes: List[Node]) -> Node:
         r"""
+        Return the common root shared by the supplied nodes.
 
         Parameters
         ----------

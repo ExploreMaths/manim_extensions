@@ -301,6 +301,7 @@ class Node(VMobject):
 
     def get_fill_color(self) -> ManimColor:
         """
+        Return the fill color of the node box.
 
         Returns
         -------
@@ -310,6 +311,7 @@ class Node(VMobject):
 
     def get_fill_opacity(self) -> ManimFloat:
         """
+        Return the fill opacity of the node box.
 
         Returns
         -------

@@ -195,7 +195,7 @@ class BaseMBondObject(VGroup):
 
         Returns
         -------
-            The computed result.
+            The bond's index when the atom is part of it, otherwise ``None``.
         """
         if self.atom_is_in_bond(atom):
             return self.index
@@ -216,7 +216,7 @@ class BaseMBondObject(VGroup):
 
         Returns
         -------
-            The computed result.
+            The updated list of bond indices.
         """
         index = self.get_bond_index_by_atom(atom)
 
@@ -239,7 +239,7 @@ class BaseMBondObject(VGroup):
 
         Returns
         -------
-            The computed result.
+            The unit vector perpendicular to the bond direction in the xy plane.
         """
         direction = point_b - point_a
         if direction[0] == 0 and direction[1] == 0:
@@ -252,37 +252,49 @@ class BaseMBondObject(VGroup):
 
     def no_subtype(self):
         """
-        To be implemented in every bond subclass.
+        Provide the geometry used when no bond subtype is selected.
+
+        Bond subclasses override this hook and return their concrete mobject.
         """
         pass
 
     def shorter_subtype(self):
         """
-        To be implemented in every bond subclass.
+        Provide the geometry used when the bond is drawn shorter on both ends.
+
+        Bond subclasses override this hook and return their concrete mobject.
         """
         pass
 
     def shorter_from_subtype(self):
         """
-        To be implemented in every bond subclass.
+        Provide the geometry used when the bond is shortened at the from-atom end.
+
+        Bond subclasses override this hook and return their concrete mobject.
         """
         pass
 
     def shorter_to_subtype(self):
         """
-        To be implemented in every bond subclass.
+        Provide the geometry used when the bond is shortened at the to-atom end.
+
+        Bond subclasses override this hook and return their concrete mobject.
         """
         pass
 
     def longer_subtype(self):
         """
-        To be implemented in every bond subclass.
+        Provide the geometry used when the bond is drawn longer.
+
+        Bond subclasses override this hook and return their concrete mobject.
         """
         pass
 
     def create_line(self):
         """
-        To be implemented in every bond subclass.
+        Assemble the bond's line components for the selected subtype.
+
+        Bond subclasses override this hook and return their concrete mobject.
         """
         pass
 
@@ -292,7 +304,7 @@ class BaseMBondObject(VGroup):
 
         Returns
         -------
-            The computed result.
+            The direction vector of the bond.
 
         Raises
         ------
@@ -388,7 +400,7 @@ class SimpleBond(BaseMBondObject):
 
         Returns
         -------
-            The computed result."""
+            The bond line based on the configured subtype."""
         direction = self.from_atom.coords - self.to_atom.coords
 
         if not self.subtype:
@@ -588,7 +600,7 @@ class DoubleBond(BaseMBondObject):
 
         Returns
         -------
-            The computed result.
+            The direction vector of the bond.
 
         Raises
         ------
@@ -639,7 +651,7 @@ class DoubleBond(BaseMBondObject):
 
         Returns
         -------
-            The computed result."""
+            The double bond VGroup based on the configured subtype."""
         from_surroundings, to_surroundings = self.get_surroundings()
         direction = self.from_atom.coords - self.to_atom.coords
 
@@ -833,7 +845,7 @@ class TripleBond(BaseMBondObject):
 
         Returns
         -------
-            The computed result."""
+            The triple bond VGroup based on the configured subtype."""
         direction = self.from_atom.coords - self.to_atom.coords
 
         if not self.subtype:
@@ -854,7 +866,7 @@ class TripleBond(BaseMBondObject):
 
         Returns
         -------
-            The computed result.
+            The direction vector of the bond.
 
         Raises
         ------
@@ -996,7 +1008,7 @@ class PlainCramBond(BaseMBondObject):
 
         Returns
         -------
-            The computed result."""
+            The plain cram bond polygon based on the configured subtype."""
         if not self.subtype:
             return self.no_subtype()
 
@@ -1014,7 +1026,7 @@ class PlainCramBond(BaseMBondObject):
 
         Returns
         -------
-            The computed result.
+            The direction vector of the bond.
 
         Raises
         ------
@@ -1091,7 +1103,8 @@ class DashedCramBond(BaseMBondObject):
 
         Returns
         -------
-            The computed result."""
+            The full-length dashed cram bond between both atoms.
+        """
         direction = self.to_atom.coords - self.from_atom.coords
         if np.linalg.norm(direction) == 0:
             return VGroup()
@@ -1104,7 +1117,8 @@ class DashedCramBond(BaseMBondObject):
 
         Returns
         -------
-            The computed result."""
+            The shortened dashed cram bond with buffer space at both ends.
+        """
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.to_atom.coords, buff=0.2)
         cram_bond = self.add_dashed_cram_bond(base_line=base_line, direction=direction)
@@ -1116,7 +1130,8 @@ class DashedCramBond(BaseMBondObject):
 
         Returns
         -------
-            The computed result."""
+            The dashed cram bond shortened at the from-atom end.
+        """
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.to_atom.coords + direction * 0.2, self.to_atom.coords)
         cram_bond = self.add_dashed_cram_bond(base_line=base_line, direction=direction)
@@ -1128,7 +1143,8 @@ class DashedCramBond(BaseMBondObject):
 
         Returns
         -------
-            The computed result."""
+            The dashed cram bond shortened at the to-atom end.
+        """
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.from_atom.coords + direction * 0.2)
         cram_bond = self.add_dashed_cram_bond(base_line=base_line, direction=direction)
@@ -1140,7 +1156,8 @@ class DashedCramBond(BaseMBondObject):
 
         Returns
         -------
-            The computed result."""
+            The degenerate zero-length dashed cram bond at the from atom.
+        """
         direction = self.to_atom.coords - self.from_atom.coords
         base_line = Line(self.from_atom.coords, self.from_atom.coords)
         cram_bond = self.add_dashed_cram_bond(base_line=base_line, direction=direction)
@@ -1152,7 +1169,7 @@ class DashedCramBond(BaseMBondObject):
 
         Returns
         -------
-            The computed result."""
+            The dashed cram bond VGroup based on the configured subtype."""
         if not self.subtype:
             return self.no_subtype()
 
@@ -1172,7 +1189,7 @@ class DashedCramBond(BaseMBondObject):
 
         Returns
         -------
-            The computed result.
+            The direction vector of the bond.
 
         Raises
         ------

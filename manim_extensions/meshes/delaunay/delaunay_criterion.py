@@ -55,7 +55,7 @@ def get_triangle_circum_circle_params(
 
 
 def get_circum_circle(
-    triangle_mesh: TriangleManim2DMesh, face_idx: int, **kwargs: Any
+    triangle_mesh: TriangleManim2DMesh, face_idx: int, **kwargs: object
 ) -> Circle:
     """Create a Manim circle visualising the circumscribed circle of a face.
 

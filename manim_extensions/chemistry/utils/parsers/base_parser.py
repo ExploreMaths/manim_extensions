@@ -11,14 +11,13 @@ This module provides the :class:`~manim_extensions.chemistry.utils.parsers.base_
 
 from abc import ABC, abstractmethod
 import os
-from typing import Any
 
 #: Path-like value accepted by the parsers: a string, raw bytes or a PathLike.
 FilePath = str | bytes | os.PathLike[str] | os.PathLike[bytes]
 #: Parsed atoms data: ``{atom_index: {property: value}}``.
-AtomsDict = dict[int, dict[str, Any]]
+AtomsDict = dict[int, dict[str, object]]
 #: Parsed bonds data: ``{bond_index: {property: value}}``.
-BondsDict = dict[int, dict[str, Any]]
+BondsDict = dict[int, dict[str, object]]
 #: Parsed data of a single molecule.
 MoleculeData = tuple[AtomsDict, BondsDict]
 #: Parsed data of one or more molecules.

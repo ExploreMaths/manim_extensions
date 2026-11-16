@@ -110,7 +110,7 @@ class PubchemAPIManager:
 
         Returns
         -------
-            The computed result."""
+            The PubChem record fetched by compound ID, as a string."""
         requests = require("chemistry", "requests")
         request_url = f"{PubchemAPIManager.BASE_URL}/cid/{self.cid}/{self.format}"
         if self.three_d:
@@ -124,7 +124,7 @@ class PubchemAPIManager:
 
         Returns
         -------
-            The computed result."""
+            The PubChem record fetched by common name, as a string."""
         requests = require("chemistry", "requests")
         request_url = f"{PubchemAPIManager.BASE_URL}/name/{self.name}/{self.format}"
         if self.three_d:
@@ -138,7 +138,7 @@ class PubchemAPIManager:
 
         Returns
         -------
-            The computed result."""
+            The PubChem record fetched from a SMILES string."""
         requests = require("chemistry", "requests")
         request_url = f"{PubchemAPIManager.BASE_URL}/smiles/{self.smiles}/{self.format}"
         if self.three_d:
@@ -152,7 +152,7 @@ class PubchemAPIManager:
 
         Returns
         -------
-            The computed result.
+            The PubChem record fetched from an InChI or InChIKey.
 
         Raises
         ------

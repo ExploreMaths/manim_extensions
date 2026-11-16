@@ -12,10 +12,12 @@ transitions whose overshoot makes the escape visible.
 
 from __future__ import annotations
 
-from typing import Any, Optional, Sequence, Union
+from typing import Optional, Sequence, Union
+
+from manim import Animation
 
 from .animations import RadarBurstIn
-from .chart import RadarChart
+from .chart import RadarChart, RadarInputList
 from .config import RadarConfig, get_style
 from .data import RadarData
 from .theme import RadarTheme
@@ -155,7 +157,7 @@ class OverflowRadarChart(RadarChart):
         )
 
     # ------------------------------------------------------------------
-    def morph_to(self, data: Any, **kwargs) -> Any:
+    def morph_to(self, data: RadarInputList, **kwargs) -> Animation:
         """Morph with the burst transition unless told otherwise.
 
         Parameters
@@ -174,7 +176,7 @@ class OverflowRadarChart(RadarChart):
         kwargs.setdefault("transition", "burst")
         return super().morph_to(data, **kwargs)
 
-    def burst_in(self, run_time: float = 1.1, **kwargs) -> Any:
+    def burst_in(self, run_time: float = 1.1, **kwargs) -> Animation:
         """Play the overflow entrance.
 
         Parameters

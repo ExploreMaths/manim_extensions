@@ -499,7 +499,7 @@ class ADASDiagram(EconDiagram):
         lr_run_time: float = _LR_RUN_TIME,
         show_arrows: bool = False,
     ) -> list[AnimationGroup]:
-        """Positive supply shock.
+        """Animate an expansionary supply shock by shifting SRAS to a lower price level.
 
         Parameters
         ----------

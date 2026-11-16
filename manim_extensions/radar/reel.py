@@ -13,12 +13,12 @@ keeps its colour across the whole reel.
 from __future__ import annotations
 
 from dataclasses import replace
-from typing import Any, Iterable, List, Optional, Union
+from typing import Iterable, List, Optional, Union
 
 from manim import Scene, UpdateFromAlphaFunc
 
 from .backdrop import DeepSpace
-from .chart import RadarChart
+from .chart import RadarChart, RadarInputList
 from .data import RadarData
 
 __all__ = ["RadarReel"]
@@ -75,7 +75,7 @@ class RadarReel:
     def __init__(
         self,
         chart: RadarChart,
-        datasets: Iterable,
+        datasets: Iterable[RadarInputList],
         *,
         hold: float = 0.6,
         transition: Optional[str] = None,
@@ -113,7 +113,7 @@ class RadarReel:
         self.datasets = [d for step in self.steps for d in step]
 
     # ------------------------------------------------------------------
-    def _normalize_step(self, item: Any) -> List[RadarData]:
+    def _normalize_step(self, item: RadarInputList) -> List[RadarData]:
         """Turn one reel entry into a list of snapshots.
 
         Parameters

@@ -106,7 +106,7 @@ class WeightedLine(Line):
         weight_alpha: float = 0.5,
         bg_config: dict[str, object] | None = None,
         add_bg: bool = True,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         self.weight = weight
         self.alpha = weight_alpha

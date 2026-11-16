@@ -100,7 +100,7 @@ class NetworkConnection(VGroup):
         self.make_mobjects()
 
     def make_mobjects(self):
-        """Makes the submobjects."""
+        """Build the arrow or arc that connects the two mobjects."""
         if self.start_mobject.get_center()[0] < self.end_mobject.get_center()[0]:
             left_mobject = self.start_mobject
             right_mobject = self.end_mobject

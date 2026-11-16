@@ -82,7 +82,22 @@ from manim import (
 from ..mobjects import DEFAULT_CJK_FONT
 import numpy as np
 from dataclasses import dataclass
-from typing import Any, Callable, Optional, Sequence
+from typing import Callable, Optional, Sequence, Union
+
+SurfaceFunction = Callable[[float, float], float]
+ColorRamp = Sequence[tuple[Union[str, ManimColor], float]]
+GeometrySpec = tuple[SurfaceFunction, str, float, float, float]
+ContourSpec = tuple[VGroup, bool]
+FeatureSpec = tuple[float, float, float, str, bool, float]
+SurfaceConfig = Union[
+    "GaussianSurface",
+    "SaddleSurface",
+    "ParaboloidSurface",
+    "EllipsoidSurface",
+    "TorusSurface",
+    "HyperboloidOneSheet",
+]
+GraphSurfaceConfig = Union["GaussianSurface", "SaddleSurface", "ParaboloidSurface"]
 
 __all__ = [
     "GaussianSurface",
@@ -201,7 +216,7 @@ def plan_timeline(duration: float, enabled: set) -> tuple[dict, list]:
         dropped.append(victim[0])
 
 
-def _ramp_color(ramp: Any, t: float) -> Any:
+def _ramp_color(ramp: ColorRamp, t: float) -> ManimColor:
     """Sample a colour ramp at a normalized position.
 
     Parameters
@@ -225,7 +240,9 @@ def _ramp_color(ramp: Any, t: float) -> Any:
     return ManimColor(ramp[-1][0])
 
 
-def _radius_for_level(f: Any, d_max: float, c: float, n: int = 60) -> Optional[float]:
+def _radius_for_level(
+    f: SurfaceFunction, d_max: float, c: float, n: int = 60
+) -> Optional[float]:
     """Find the nearest radius where the surface reaches a level.
 
     Parameters
@@ -298,7 +315,7 @@ class GaussianSurface:
     camera_theta: float = -55.0
     zoom: float = 0.95
 
-    def resolve(self) -> Any:
+    def resolve(self) -> tuple[SurfaceFunction, str]:
         """Resolve the surface function and its displayed formula.
 
         Returns
@@ -462,7 +479,7 @@ class GraphSurfaceScene(ThreeDScene):
     uses_flat = True
 
     # ---- 钩子 ----
-    def _geometry(self, cfg: Any) -> Any:
+    def _geometry(self, cfg: SurfaceConfig) -> GeometrySpec:
         """Return the surface geometry description.
 
         Parameters
@@ -482,7 +499,14 @@ class GraphSurfaceScene(ThreeDScene):
         """
         raise NotImplementedError
 
-    def _contours(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
+    def _contours(
+        self,
+        cfg: SurfaceConfig,
+        axes: ThreeDAxes,
+        f: SurfaceFunction,
+        ramp: ColorRamp,
+        zmin_n: float,
+    ) -> ContourSpec:
         """Build contour lines for the surface.
 
         Parameters
@@ -510,7 +534,9 @@ class GraphSurfaceScene(ThreeDScene):
         """
         raise NotImplementedError
 
-    def _feature(self, cfg: Any, f: Any) -> Any:
+    def _feature(
+        self, cfg: SurfaceConfig, f: SurfaceFunction
+    ) -> FeatureSpec:
         """Describe the annotated feature point.
 
         Parameters
@@ -522,8 +548,8 @@ class GraphSurfaceScene(ThreeDScene):
 
         Returns
         -------
-            The point coordinates, tag formula, HUD flag, and dashed-stem
-            starting height.
+            The ``x``, ``y`` and ``z`` coordinates of the feature, its tag
+            formula, the HUD flag, and the dashed-stem starting height.
 
         Raises
         ------
@@ -532,7 +558,7 @@ class GraphSurfaceScene(ThreeDScene):
         """
         raise NotImplementedError
 
-    def _caption_slots(self) -> Any:
+    def _caption_slots(self) -> list[str]:
         """List the caption slots used by this scene.
 
         Returns
@@ -541,7 +567,7 @@ class GraphSurfaceScene(ThreeDScene):
         """
         return ["title", "axes", "flat", "rings", "orbit", "flip", "outro"]
 
-    def _annotate_camera(self) -> Any:
+    def _annotate_camera(self) -> tuple[float, float, float]:
         """Return the camera angle used for the annotation beat.
 
         Returns
@@ -550,7 +576,9 @@ class GraphSurfaceScene(ThreeDScene):
         """
         return 66.0, -40.0, 0.95
 
-    def _make_axes(self, cfg: Any, ax_z_lo: Any, ax_z_hi: Any) -> Any:
+    def _make_axes(
+        self, cfg: GraphSurfaceConfig, ax_z_lo: float, ax_z_hi: float
+    ) -> ThreeDAxes:
         """Build the default graph-surface axes.
 
         Parameters
@@ -578,7 +606,14 @@ class GraphSurfaceScene(ThreeDScene):
         )
         return axes.set_stroke(opacity=0.55)
 
-    def _make_surface(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
+    def _make_surface(
+        self,
+        cfg: GraphSurfaceConfig,
+        axes: ThreeDAxes,
+        f: SurfaceFunction,
+        ramp: ColorRamp,
+        zmin_n: float,
+    ) -> Surface:
         """Build the default graph surface :math:`z=f(x, y)`.
 
         Parameters
@@ -618,7 +653,7 @@ class GraphSurfaceScene(ThreeDScene):
         return s
 
     # ---- 主流程 ----
-    def construct(self) -> Any:
+    def construct(self) -> None:
         """Build and play the full surface presentation.
 
         Returns
@@ -670,7 +705,22 @@ class GraphSurfaceScene(ThreeDScene):
         cur_cap = None
 
         def make_cap(text: str, tex: Optional[str] = None, live: bool = True) -> VGroup:
-            """make_cap."""
+            """Build one caption line and optionally register it as HUD.
+
+            Parameters
+            ----------
+            text
+                Plain-language caption text.
+            tex
+                Optional formula appended after a middle dot.
+            live
+                When true, add the caption as a fixed-in-frame mobject so it
+                stays screen-aligned during camera motion.
+
+            Returns
+            -------
+                The caption group positioned above the bottom edge.
+            """
             if tex:
                 text = f"{text} ·" if not text.rstrip().endswith("·") else text.rstrip()
             parts = [Text(text, font=DEFAULT_CJK_FONT, font_size=42, color="#e8d9a0")]
@@ -684,7 +734,7 @@ class GraphSurfaceScene(ThreeDScene):
                 )  # 注册即入场,调用方须 self.remove 摘下
             return g
 
-        def swap_caption(text: str, tex: Optional[str] = None) -> Any:
+        def swap_caption(text: str, tex: Optional[str] = None) -> VGroup:
             """Crossfade the caption line without a Transform.
 
             Parameters
@@ -897,9 +947,14 @@ class GraphSurfaceScene(ThreeDScene):
 
 # ---------------- 三个曲面场景 ----------------
 class GaussianSurfaceScene(GraphSurfaceScene):
-    """GaussianSurfaceScene."""
+    """Animated demo of the Gaussian surface :math:`z=e^{-x^2-y^2}`.
 
-    def _geometry(self, cfg: Any) -> Any:
+    The scene raises the bell-shaped sheet from a flat plane, projects
+    contour rings onto the floor, orbits the camera, flips the surface to
+    show its underside, and annotates the peak with a HUD label.
+    """
+
+    def _geometry(self, cfg: SurfaceConfig) -> GeometrySpec:
         """Sample the Gaussian surface and derive its display range.
 
         Parameters
@@ -925,7 +980,14 @@ class GaussianSurfaceScene(GraphSurfaceScene):
         f = lambda x, y: f_raw(x, y) * scale
         return f, tex, zmin * scale, min(0.0, zmin * scale), cfg.height * 1.5
 
-    def _contours(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
+    def _contours(
+        self,
+        cfg: SurfaceConfig,
+        axes: ThreeDAxes,
+        f: SurfaceFunction,
+        ramp: ColorRamp,
+        zmin_n: float,
+    ) -> ContourSpec:
         """Build the floor-projected contour rings.
 
         Parameters
@@ -962,7 +1024,9 @@ class GaussianSurfaceScene(GraphSurfaceScene):
             )
         return g, False  # 地板投影,不随翻面
 
-    def _feature(self, cfg: Any, f: Any) -> Any:
+    def _feature(
+        self, cfg: SurfaceConfig, f: SurfaceFunction
+    ) -> FeatureSpec:
         """Locate the peak of the sampled Gaussian surface.
 
         Parameters
@@ -988,7 +1052,7 @@ class GaussianSurfaceScene(GraphSurfaceScene):
             self._stem_z0,
         )
 
-    def _caption_slots(self) -> Any:
+    def _caption_slots(self) -> list[str]:
         """List the caption slots used by the Gaussian scene.
 
         Returns
@@ -997,7 +1061,7 @@ class GaussianSurfaceScene(GraphSurfaceScene):
         """
         return ["title", "axes", "flat", "orbit", "flip", "outro"]
 
-    def _annotate_camera(self) -> Any:
+    def _annotate_camera(self) -> tuple[float, float, float]:
         """Return the camera angle used for the Gaussian annotation.
 
         Returns
@@ -1008,9 +1072,14 @@ class GaussianSurfaceScene(GraphSurfaceScene):
 
 
 class SaddleSurfaceScene(GraphSurfaceScene):
-    """SaddleSurfaceScene."""
+    """Animated demo of the saddle surface :math:`z=x^2-y^2`.
 
-    def _geometry(self, cfg: Any) -> Any:
+    The scene forms the hyperbolic paraboloid, draws its floor-projected
+    contour family and asymptotes, orbits and flips the surface, and marks
+    the saddle point where the two principal curvatures oppose each other.
+    """
+
+    def _geometry(self, cfg: SurfaceConfig) -> GeometrySpec:
         """Return the fixed saddle geometry and its display range.
 
         Parameters
@@ -1028,7 +1097,14 @@ class SaddleSurfaceScene(GraphSurfaceScene):
         f = lambda x, y: (x * x - y * y) * scale
         return f, r"z = x^{2} - y^{2}", -cfg.height, -cfg.height * 1.3, cfg.height * 1.3
 
-    def _contours(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
+    def _contours(
+        self,
+        cfg: SurfaceConfig,
+        axes: ThreeDAxes,
+        f: SurfaceFunction,
+        ramp: ColorRamp,
+        zmin_n: float,
+    ) -> ContourSpec:
         """Build the saddle contour family and its asymptotes.
 
         Parameters
@@ -1097,7 +1173,9 @@ class SaddleSurfaceScene(GraphSurfaceScene):
                     )
         return g, False  # 地板等高线,不随翻面
 
-    def _feature(self, cfg: Any, f: Any) -> Any:
+    def _feature(
+        self, cfg: SurfaceConfig, f: SurfaceFunction
+    ) -> FeatureSpec:
         """Return the saddle point annotation.
 
         Parameters
@@ -1116,9 +1194,15 @@ class SaddleSurfaceScene(GraphSurfaceScene):
 
 
 class ParaboloidSurfaceScene(GraphSurfaceScene):
-    """ParaboloidSurfaceScene."""
+    """Animated demo of the paraboloid :math:`z=x^2+y^2`.
 
-    def _geometry(self, cfg: Any) -> Any:
+    The scene raises the bowl, paints concentric level rings on the surface,
+    orbits and flips it, and annotates the vertex at the origin. Ring radii
+    are derived from the configured height so the contour spacing remains
+    stable when the presentation is resized.
+    """
+
+    def _geometry(self, cfg: SurfaceConfig) -> GeometrySpec:
         """Return the fixed paraboloid geometry and its display range.
 
         Parameters
@@ -1136,7 +1220,14 @@ class ParaboloidSurfaceScene(GraphSurfaceScene):
         f = lambda x, y: (x * x + y * y) * scale
         return f, r"z = x^{2} + y^{2}", 0.0, -cfg.height * 0.6, cfg.height * 1.3
 
-    def _contours(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
+    def _contours(
+        self,
+        cfg: SurfaceConfig,
+        axes: ThreeDAxes,
+        f: SurfaceFunction,
+        ramp: ColorRamp,
+        zmin_n: float,
+    ) -> ContourSpec:
         """Build the concentric rings painted on the paraboloid.
 
         Parameters
@@ -1178,7 +1269,9 @@ class ParaboloidSurfaceScene(GraphSurfaceScene):
             )
         return g, True  # 贴在曲面上,翻面必须跟着转
 
-    def _feature(self, cfg: Any, f: Any) -> Any:
+    def _feature(
+        self, cfg: SurfaceConfig, f: SurfaceFunction
+    ) -> FeatureSpec:
         """Return the paraboloid vertex annotation.
 
         Parameters
@@ -1201,7 +1294,7 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
 
     uses_flat = False
 
-    def _geometry(self, cfg: Any) -> Any:
+    def _geometry(self, cfg: SurfaceConfig) -> GeometrySpec:
         """Return the ellipsoid formula and display range.
 
         Parameters
@@ -1223,7 +1316,9 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
         )
         return f, tex, -c, -c - 0.5, c + 0.9
 
-    def _make_axes(self, cfg: Any, ax_z_lo: Any, ax_z_hi: Any) -> Any:
+    def _make_axes(
+        self, cfg: GraphSurfaceConfig, ax_z_lo: float, ax_z_hi: float
+    ) -> ThreeDAxes:
         """Scale the axes uniformly so the ellipsoid does not distort.
 
         Parameters
@@ -1251,7 +1346,14 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
         )
         return axes.set_stroke(opacity=0.55)
 
-    def _make_surface(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
+    def _make_surface(
+        self,
+        cfg: GraphSurfaceConfig,
+        axes: ThreeDAxes,
+        f: SurfaceFunction,
+        ramp: ColorRamp,
+        zmin_n: float,
+    ) -> Surface:
         """Build the parametric ellipsoid surface.
 
         Parameters
@@ -1289,7 +1391,14 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
         )
         return s
 
-    def _contours(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
+    def _contours(
+        self,
+        cfg: SurfaceConfig,
+        axes: ThreeDAxes,
+        f: SurfaceFunction,
+        ramp: ColorRamp,
+        zmin_n: float,
+    ) -> ContourSpec:
         """Build the latitude rings painted on the ellipsoid.
 
         Parameters
@@ -1328,7 +1437,9 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
             )
         return g, True  # 贴面环,翻面随转
 
-    def _feature(self, cfg: Any, f: Any) -> Any:
+    def _feature(
+        self, cfg: SurfaceConfig, f: SurfaceFunction
+    ) -> FeatureSpec:
         """Return the ellipsoid apex annotation.
 
         Parameters
@@ -1352,7 +1463,7 @@ class TorusSurfaceScene(GraphSurfaceScene):
 
     uses_flat = False
 
-    def _geometry(self, cfg: Any) -> Any:
+    def _geometry(self, cfg: SurfaceConfig) -> GeometrySpec:
         """Return the torus formula and display range.
 
         Parameters
@@ -1370,7 +1481,9 @@ class TorusSurfaceScene(GraphSurfaceScene):
         tex = rf"(\sqrt{{x^{{2}}+y^{{2}}}} - {_fmt(R)})^{{2}} + z^{{2}} = {_fmt(r * r)}"
         return f, tex, -r, -r - 0.4, r + 0.9
 
-    def _make_axes(self, cfg: Any, ax_z_lo: Any, ax_z_hi: Any) -> Any:
+    def _make_axes(
+        self, cfg: GraphSurfaceConfig, ax_z_lo: float, ax_z_hi: float
+    ) -> ThreeDAxes:
         """Scale the axes uniformly for the torus.
 
         Parameters
@@ -1399,7 +1512,14 @@ class TorusSurfaceScene(GraphSurfaceScene):
         )
         return axes.set_stroke(opacity=0.55)
 
-    def _make_surface(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
+    def _make_surface(
+        self,
+        cfg: GraphSurfaceConfig,
+        axes: ThreeDAxes,
+        f: SurfaceFunction,
+        ramp: ColorRamp,
+        zmin_n: float,
+    ) -> Surface:
         """Build the parametric torus surface.
 
         Parameters
@@ -1439,7 +1559,14 @@ class TorusSurfaceScene(GraphSurfaceScene):
         )
         return s
 
-    def _contours(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
+    def _contours(
+        self,
+        cfg: SurfaceConfig,
+        axes: ThreeDAxes,
+        f: SurfaceFunction,
+        ramp: ColorRamp,
+        zmin_n: float,
+    ) -> ContourSpec:
         """Build the horizontal rings cut from the torus.
 
         Parameters
@@ -1480,7 +1607,9 @@ class TorusSurfaceScene(GraphSurfaceScene):
                 )
         return g, True  # 贴面环,翻面随转
 
-    def _feature(self, cfg: Any, f: Any) -> Any:
+    def _feature(
+        self, cfg: SurfaceConfig, f: SurfaceFunction
+    ) -> FeatureSpec:
         """Return the torus apex annotation.
 
         Parameters
@@ -1504,7 +1633,7 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
 
     uses_flat = False
 
-    def _geometry(self, cfg: Any) -> Any:
+    def _geometry(self, cfg: SurfaceConfig) -> GeometrySpec:
         """Return the hyperboloid formula and display range.
 
         Parameters
@@ -1523,7 +1652,9 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
         tex = rf"x^{{2}} + y^{{2}} - z^{{2}} = {rhs}"
         return f, tex, -h, -h - 0.4, h + 0.4
 
-    def _make_axes(self, cfg: Any, ax_z_lo: Any, ax_z_hi: Any) -> Any:
+    def _make_axes(
+        self, cfg: GraphSurfaceConfig, ax_z_lo: float, ax_z_hi: float
+    ) -> ThreeDAxes:
         """Scale the axes uniformly for the hyperboloid.
 
         Parameters
@@ -1552,7 +1683,14 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
         )
         return axes.set_stroke(opacity=0.55)
 
-    def _make_surface(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
+    def _make_surface(
+        self,
+        cfg: GraphSurfaceConfig,
+        axes: ThreeDAxes,
+        f: SurfaceFunction,
+        ramp: ColorRamp,
+        zmin_n: float,
+    ) -> Surface:
         """Build the parametric one-sheet hyperboloid surface.
 
         Parameters
@@ -1592,7 +1730,14 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
         )
         return s
 
-    def _contours(self, cfg: Any, axes: Any, f: Any, ramp: Any, zmin_n: Any) -> Any:
+    def _contours(
+        self,
+        cfg: SurfaceConfig,
+        axes: ThreeDAxes,
+        f: SurfaceFunction,
+        ramp: ColorRamp,
+        zmin_n: float,
+    ) -> ContourSpec:
         """Build the horizontal circle family of the hyperboloid.
 
         Parameters
@@ -1632,7 +1777,9 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
             )
         return g, True  # 贴面环,翻面随转
 
-    def _feature(self, cfg: Any, f: Any) -> Any:
+    def _feature(
+        self, cfg: SurfaceConfig, f: SurfaceFunction
+    ) -> FeatureSpec:
         """Return the waist point annotation.
 
         Parameters
@@ -1673,7 +1820,11 @@ def _scene_name(base: str) -> str:
     return base if n == 1 else f"{base}{n}"
 
 
-def _make_factory(cfg_cls: Any, scene_cls: Any, base_name: Any) -> Any:
+def _make_factory(
+    cfg_cls: type[SurfaceConfig],
+    scene_cls: type[GraphSurfaceScene],
+    base_name: str,
+) -> Callable[..., type[GraphSurfaceScene]]:
     """Build a public factory that returns a configured scene class.
 
     Parameters
@@ -1691,7 +1842,7 @@ def _make_factory(cfg_cls: Any, scene_cls: Any, base_name: Any) -> Any:
         keyword arguments and returns the new scene class.
     """
 
-    def factory(name: Optional[str] = None, **kw) -> Any:
+    def factory(name: Optional[str] = None, **kw) -> type[GraphSurfaceScene]:
         """Create a scene class for this surface.
 
         Parameters

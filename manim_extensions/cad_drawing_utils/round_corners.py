@@ -2,10 +2,12 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""round_corners module."""
+"""Fit tangent arcs and chamfers between adjoining Bezier curves.
+"""
 
 from __future__ import annotations
-from typing import Any
+from typing import Callable, Sequence
+from manim.typing import Vector3D
 import numpy as np
 from manim import (
     Arc,
@@ -29,7 +31,9 @@ __all__ = [
 ]
 
 
-def round_corner_param(radius: Any, curve_points_1: Any, curve_points_2: Any) -> Any:
+def round_corner_param(
+    radius: float, curve_points_1: np.ndarray, curve_points_2: np.ndarray
+) -> tuple[dict[str, object], np.ndarray]:
     """Fit a tangent arc between two adjoining Bezier curves.
 
     Parameters
@@ -50,13 +54,46 @@ def round_corner_param(radius: Any, curve_points_1: Any, curve_points_2: Any) ->
     bez_func_2 = bezier(curve_points_2)
     diff_func_2 = bezier((curve_points_2[1:, :] - curve_points_2[:-1, :]) / 3)
 
-    def find_crossing(p1: Any, p2: Any, n1: Any, n2: Any) -> Any:
-        """find_crossing."""
+    def find_crossing(
+        p1: Vector3D, p2: Vector3D, n1: Vector3D, n2: Vector3D
+    ) -> tuple[np.ndarray, Vector3D]:
+        """Intersect two offset lines and return their parameters.
+
+        The two lines are ``p1 + t * n1`` and ``p2 + s * n2``. The first two
+        components are solved because the construction is planar.
+
+        Parameters
+        ----------
+        p1
+            Point on the first offset line.
+        p2
+            Point on the second offset line.
+        n1
+            Direction of the first offset line.
+        n2
+            Direction of the second offset line.
+
+        Returns
+        -------
+            ``(t, s)`` and the intersection point.
+        """
         t = fsolve(lambda t: p1[:2] + n1[:2] * t[0] - (p2[:2] + n2[:2] * t[1]), [0, 0])
         return t, p1 + n1 * t[0]
 
-    def rad_cost_func(t: Any) -> Any:
-        """rad_cost_func."""
+    def rad_cost_func(t: np.ndarray) -> tuple[float, float]:
+        """Return the two residuals solved when fitting the tangent arc.
+
+        Parameters
+        ----------
+        t
+            Curve parameters ``(t1, t2)`` of the two candidate tangent
+            points.
+
+        Returns
+        -------
+            The difference between the two normal distances and the gap
+            between their sum and twice the target radius.
+        """
         angle_sign = np.sign(
             angle_between_vectors_signed(diff_func_1(t[0]), diff_func_2(t[1]))
         )
@@ -95,7 +132,7 @@ def round_corner_param(radius: Any, curve_points_1: Any, curve_points_2: Any) ->
     return out_param, k
 
 
-def round_corners(mob: VMobject, radius: Any = 0.2) -> Any:
+def round_corners(mob: VMobject, radius: float = 0.2) -> VMobject:
     """Replace every sharp corner of a mobject with a tangent arc.
 
     Parameters
@@ -139,7 +176,11 @@ def round_corners(mob: VMobject, radius: Any = 0.2) -> Any:
     return mob
 
 
-def chamfer_corner_param(offset: Any, curve_points_1: Any, curve_points_2: Any) -> Any:
+def chamfer_corner_param(
+    offset: float | Sequence[float],
+    curve_points_1: np.ndarray,
+    curve_points_2: np.ndarray,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Compute the cut points for a chamfered corner.
 
     Parameters
@@ -165,8 +206,20 @@ def chamfer_corner_param(offset: Any, curve_points_1: Any, curve_points_2: Any) 
     bez_func_2 = bezier(curve_points_2)
 
     # copied from vectorized mobject length stuff
-    def get_norms_and_refs(curve: Any) -> Any:
-        """get_norms_and_refs."""
+    def get_norms_and_refs(
+        curve: Callable[[float], np.ndarray],
+    ) -> tuple[np.ndarray, np.ndarray]:
+        """Build a cumulative-length table for one Bezier curve.
+
+        Parameters
+        ----------
+        curve
+            Callable that maps a parameter in ``[0, 1]`` to a point.
+
+        Returns
+        -------
+            Cumulative chord lengths and the matching parameter samples.
+        """
         sample_points = 10
         refs = np.linspace(0, 1, sample_points)
         points = np.array([curve(a) for a in np.linspace(0, 1, sample_points)])
@@ -186,7 +239,7 @@ def chamfer_corner_param(offset: Any, curve_points_1: Any, curve_points_2: Any) 
     return param, [a1, a2]
 
 
-def chamfer_corners(mob: VMobject, offset: Any = 0.2) -> Any:
+def chamfer_corners(mob: VMobject, offset: float | Sequence[float] = 0.2) -> VMobject:
     """Replace every sharp corner of a mobject with a straight chamfer.
 
     Parameters

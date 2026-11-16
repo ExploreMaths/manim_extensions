@@ -229,6 +229,7 @@ class AbstractMap(Group):
 
     def get_node(self, ID: str) -> Group:
         """
+        Return the VMobject and surrounding rectangle for a node ID.
 
         Parameters
         ----------
@@ -247,6 +248,7 @@ class AbstractMap(Group):
 
     def get_text(self, ID: str) -> str:
         """
+        Return the narration text for a node ID.
 
         Parameters
         ----------
@@ -265,6 +267,7 @@ class AbstractMap(Group):
 
     def get_connector(self, ID: str) -> Line:
         """
+        Return the connector line for a node ID.
 
         Parameters
         ----------
@@ -411,6 +414,7 @@ class AbstractMap(Group):
 
     def get_descendants(self, ID: str) -> Group:
         """
+        Return all descendants of the node with the given ID.
 
         Parameters
         ----------

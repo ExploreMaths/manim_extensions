@@ -62,7 +62,7 @@ class Row(VGroup):
         is_header: bool = False,
         show_border: bool = True,
         index: int = 0,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         super().__init__(**kwargs)
 

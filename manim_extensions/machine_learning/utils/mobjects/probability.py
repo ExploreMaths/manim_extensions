@@ -67,7 +67,7 @@ class GaussianDistribution(VGroup):
         cov: MatrixMN | None = None,
         dist_theme: str = "gaussian",
         color: ManimColor = ORANGE,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         super(VGroup, self).__init__(**kwargs)
         self.axes = axes
@@ -126,8 +126,22 @@ class GaussianDistribution(VGroup):
             return vals[order], vecs[:, order]
 
         def cov_ellipse(cov: MatrixMN, nstd: float) -> tuple[float, float, float]:
-            """
-            Source: http://stackoverflow.com/a/12321306/1391441
+            """Return the full width, height and rotation of a covariance ellipse.
+
+            Parameters
+            ----------
+            cov
+                Two-dimensional covariance matrix.
+            nstd
+                Number of standard deviations represented by the ellipse.
+
+            Returns
+            -------
+                Width, height and rotation angle in degrees.
+
+            Notes
+            -----
+                Adapted from https://stackoverflow.com/a/12321306/1391441.
             """
 
             vals, vecs = eigsorted(cov)

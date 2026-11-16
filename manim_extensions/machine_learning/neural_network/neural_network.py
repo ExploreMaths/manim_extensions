@@ -348,7 +348,7 @@ class NeuralNetwork(Group):
         return connective_layers, all_layers
 
     def _place_connective_layers(self):
-        """Places the connective layers."""
+        """Center each connective layer between its input and output layers."""
         # Place each of the connective layers halfway between the adjacent layers
         for connective_layer in self.connective_layers:
             layer_midpoint = (

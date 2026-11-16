@@ -227,7 +227,7 @@ def make_dist_image_mobject_from_samples(
 
     Returns
     -------
-        The computed result.
+        The KDE density plot from 2D samples and return it as an :class:`~manim.mobject.types.image_mobject.ImageMobject`.
     """
     matplotlib = require("ml", "matplotlib")
     plt = require("ml", "matplotlib.pyplot")

@@ -599,7 +599,7 @@ class DecisionTreeDiagram(Group):
 
         Returns
         -------
-            The computed result.
+            The animation that creates the tree, or ``None`` when nothing needs animating.
 
         Raises
         ------

@@ -60,12 +60,13 @@ class FileHandler:
 
         Returns
         -------
-            The computed result.
+            The lowercase file extension without the leading dot.
         """
         return os.path.splitext(file_path)[1][1:]
 
     def parsed_atoms_bonds_data(self) -> tuple[Dict, Dict]:
         """
+        Return the parsed atom and bond dictionaries.
 
         Returns
         -------

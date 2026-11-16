@@ -30,7 +30,7 @@ projected onto world up, so they stay readable at any rotation angle.
 """
 
 from __future__ import annotations
-from typing import Any
+from typing import Sequence
 import math
 
 import numpy as np
@@ -42,12 +42,15 @@ from manim import (
     Line,
     ORIGIN,
     Polygon,
+    Scene,
     Text,
     VGroup,
     Y_AXIS,
     Z_AXIS,
 )
 from manim.mobject.three_d.three_dimensions import Dot3D
+from manim.typing import Point3D, Vector3D
+from manim.utils.color import ParsableManimColor
 from manim.utils.space_ops import rotation_matrix
 
 # ============================================================================
@@ -79,7 +82,7 @@ _DODECA_RAW = [
 ]
 
 
-def _unit(v: Any) -> Any:
+def _unit(v: Vector3D) -> Vector3D:
     """Normalize a vector to unit length.
 
     Parameters
@@ -218,17 +221,17 @@ class PolyRadarChart(VGroup):
 
     def __init__(
         self,
-        axes_names: Any,
-        values: Any,
+        axes_names: Sequence[str],
+        values: Sequence[float],
         *,
-        max_value: Any = 10.0,
-        radius: Any = 2.6,
-        skins: Any = (0.4, 0.7, 1.0),
-        spin_rate: Any = 7.0,
-        grow: Any = True,
-        cam_pos: Any = (0.0, 0.0, 20.0),
-        center: Any = (0.0, -0.15, 0.0),
-        sphere_color: Any = DYE_C,
+        max_value: float = 10.0,
+        radius: float = 2.6,
+        skins: Sequence[float] = (0.4, 0.7, 1.0),
+        spin_rate: float = 7.0,
+        grow: bool = True,
+        cam_pos: Point3D = (0.0, 0.0, 20.0),
+        center: Point3D = (0.0, -0.15, 0.0),
+        sphere_color: ParsableManimColor = DYE_C,
         **kwargs,
     ) -> None:
         super().__init__(**kwargs)
@@ -345,7 +348,7 @@ class PolyRadarChart(VGroup):
         self.add_updater(self._tick)
 
     # ------------------------------------------------------------------
-    def _data_triangles(self) -> Any:
+    def _data_triangles(self) -> list[tuple[int, int, int]]:
         """Group the dodecahedron faces around each inner vertex.
 
         Returns
@@ -388,7 +391,7 @@ class PolyRadarChart(VGroup):
         return self.center + Rz @ local
 
     def _rebuild(self) -> None:
-        """_rebuild."""
+        """Recompute sphere, edge, face and label geometry from ``_frac``."""
         pos = [self._world(i) for i in range(12)]
         for i in range(12):
             self.spheres[i].move_to(pos[i])
@@ -454,7 +457,7 @@ class PolyRadarChart(VGroup):
         self.labels.add_updater(upd)
 
     # ------------------------------------------------------------------
-    def grow_in(self, scene: Any, run_time: float = 0.45) -> PolyRadarChart:
+    def grow_in(self, scene: Scene, run_time: float = 0.45) -> PolyRadarChart:
         """Animate the skeleton growing from the inner shell outwards.
 
         Parameters
@@ -484,7 +487,7 @@ class PolyRadarChart(VGroup):
             scene.play(*anims, run_time=run_time)
         return self
 
-    def spin_to(self, axis_index: int, run_time: float = 1.2) -> Any:
+    def spin_to(self, axis_index: int, run_time: float = 1.2) -> Animation:
         """Rotate so one panel faces the camera.
 
         Parameters
@@ -513,17 +516,17 @@ class PolyRadarChart(VGroup):
                 :class:`~manim.animation.animation.Animation`.
             """
 
-            def __init__(self, poly: Any, delta: Any, **kw) -> None:
+            def __init__(self, poly: PolyRadarChart, delta: float, **kw) -> None:
                 self.poly = poly
                 self.delta = delta
                 super().__init__(poly, **kw)
 
             def begin(self) -> None:
-                """begin."""
+                """Record the starting rotation angle."""
                 self.t0 = self.poly.theta
 
             def interpolate_mobject(self, alpha: float) -> None:
-                """interpolate_mobject."""
+                """Rotate the chart from the recorded angle by ``delta * alpha``."""
                 new = self.t0 + self.delta * alpha
                 self.poly.rotate(
                     new - self.poly.theta, axis=Z_AXIS, about_point=self.poly.center
@@ -531,7 +534,7 @@ class PolyRadarChart(VGroup):
                 self.poly.theta = new
 
             def finish(self) -> None:
-                """finish."""
+                """Snap to the final angle and normalize the stored theta."""
                 self.poly.rotate(
                     self.t0 + self.delta - self.poly.theta,
                     axis=Z_AXIS,
@@ -546,7 +549,7 @@ class PolyRadarChart(VGroup):
         delta = (delta + math.pi) % (2 * math.pi) - math.pi
         return Spin(self, delta, run_time=run_time)
 
-    def set_values(self, values: Any) -> None:
+    def set_values(self, values: Sequence[float]) -> None:
         """Replace the data values and rebuild the geometry.
 
         Parameters
@@ -573,13 +576,15 @@ class PolyMorph(Animation):
         :class:`~manim.animation.animation.Animation`.
     """
 
-    def __init__(self, poly: PolyRadarChart, target_values: Any, **kwargs) -> None:
+    def __init__(
+        self, poly: PolyRadarChart, target_values: Sequence[float], **kwargs
+    ) -> None:
         self.poly = poly
         self.target = np.array(target_values, dtype=float) / poly.max_value
         super().__init__(poly, **kwargs)
 
     def begin(self) -> None:
-        """begin."""
+        """Snapshot the current fractions as the morph start state."""
         self.start = self.poly._frac.copy()
 
     def interpolate_mobject(self, alpha: float) -> None:

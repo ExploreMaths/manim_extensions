@@ -57,10 +57,6 @@ class FeedForwardToMathOperation(ConnectiveLayer):
             The layer following this connective layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
-
-        Returns
-        -------
-            The computed result.
         """
         # Draw an arrow from the output of the feed forward layer to the
         # input of the math operation layer

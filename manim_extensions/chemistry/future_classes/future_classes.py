@@ -39,7 +39,7 @@ from manim import (
     np,
     smooth,
 )
-from typing import Any, Callable, Self
+from typing import Callable, Self
 
 from ...utils.deprecation import deprecated
 from manim.typing import Point3D, Vector3D, VectorND
@@ -183,7 +183,7 @@ class Element(VGroup):
 
         Returns
         -------
-            The computed result."""
+            The labeled dot representing the central atom at the element radius."""
         label = Text(self.element_label)
         base_radius = 0.4 + max(label.width, label.height) / 2
 
@@ -242,7 +242,7 @@ class Element(VGroup):
 
         Returns
         -------
-            The computed result."""
+            The group containing the distributed electrons and holes."""
         if len(self.particles) == 0:
             return self.particles
         self.add(self.particles.shift([0, 0, 0]))
@@ -272,7 +272,7 @@ class Element(VGroup):
 
         Returns
         -------
-            The computed result."""
+            The group of subelectron holes."""
         return self.subelectron_holes_group
 
 
@@ -461,7 +461,7 @@ class BatterySchema(VGroup):
 
         Returns
         -------
-            The computed result."""
+            The start and end positions of the schema for the configured layout."""
         options_dict = {
             "horizontal": [self.mob.get_left(), self.mob.get_right()],
             "corner": [self.mob.get_left(), self.mob.get_top()],
@@ -579,7 +579,7 @@ class BatterySchema(VGroup):
 
         Returns
         -------
-            The computed result."""
+            The schema :class:`~manim.mobject.types.vectorized_mobject.VGroup` corresponding to the configured layout type."""
         schema_options = {
             "horizontal": self.horizontal_schema(),
             "corner": self.corner_schema(),
@@ -657,7 +657,7 @@ class MOSFETTransistor(VGroup):
 
         Returns
         -------
-            The computed result."""
+            The main red rectangular board of the MOSFET transistor."""
         return Rectangle(fill_opacity=0.8).set_color(RED).scale(2)
 
     def make_n_region(self, side: Vector3D = LEFT) -> Rectangle:
@@ -671,7 +671,7 @@ class MOSFETTransistor(VGroup):
 
         Returns
         -------
-            The computed result.
+            The blue n-region rectangle on the requested side of the main board.
         """
         region = (
             Rectangle(fill_opacity=1)
@@ -793,7 +793,7 @@ class BatterySide(VMobject):
 
         Returns
         -------
-            The computed result."""
+            The same instance, allowing calls to be chained."""
         terminal_points = self.terminal.get_center()
         anchor_points = self.anchor.get_top() + [0, -0.2, 0]
         intermediate_point = [anchor_points[0], terminal_points[1], 0]
@@ -921,7 +921,7 @@ def randomly_distributed_in_2d(
 
     Returns
     -------
-        The computed result.
+        The group with its members shifted inside the given rectangle.
     """
     n_mobs = len(mobs)
     horizontal = np.random.uniform(-left, right, n_mobs)
@@ -976,7 +976,7 @@ def make_subpaths(group: VMobject) -> VMobject:
 
     Returns
     -------
-        The computed result.
+        The parent mobject with each group member added as a subpath.
     """
     for mob in group:
         group.add_subpath(mob.points)
@@ -997,11 +997,11 @@ def zero(function: Callable) -> Callable[..., float]:
 
     Returns
     -------
-        The computed result.
+        The decorated callable.
     """
 
     @wraps(function)
-    def wrapper(t: VectorND | None, *args, **kwargs) -> Any:
+    def wrapper(t: VectorND | None, *args, **kwargs) -> float:
         """Clamp the curve parameter to the unit interval."""
         if 0 <= t <= 1:
             return function(t, *args, **kwargs)
@@ -1028,7 +1028,7 @@ def inverse_smooth(t: float, inflection: float = 10.0) -> float:
 
     Returns
     -------
-        The computed result.
+        The inverse of the smooth easing function (1 - t smoothed).
     """
     new_t = 1 - t
     return smooth(new_t, inflection)
@@ -1048,7 +1048,7 @@ def inverse_linear(t: float, inflection: float = 10.0) -> float:
 
     Returns
     -------
-        The computed result.
+        The linear inverse value 1 - t.
     """
     return 1 - t
 

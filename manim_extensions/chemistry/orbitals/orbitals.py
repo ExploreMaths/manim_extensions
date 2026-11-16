@@ -103,7 +103,7 @@ class OrbitalBase(OpenGLSurface):
 
         Returns
         -------
-            The computed result.
+            The real part of the spherical harmonic :math:`Y_l^m` at the given angles.
         """
         sphHarm = _sph_harm(m, l, phi, theta)
 
@@ -125,7 +125,7 @@ class OrbitalBase(OpenGLSurface):
 
         Returns
         -------
-            The computed result.
+            The scaled 3D Cartesian coordinates for the given spherical angles.
         """
         x = np.sin(u) * np.cos(v) * abs(psi)
         y = np.sin(u) * np.sin(v) * abs(psi)
@@ -145,7 +145,7 @@ class OrbitalBase(OpenGLSurface):
 
         Returns
         -------
-            The computed result.
+            The orbital surface coordinates for the given spherical angles.
         """
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
 
@@ -169,7 +169,7 @@ class OrbitalPositive(OrbitalBase):
 
         Returns
         -------
-            The computed result.
+            The orbital surface coordinates for the given spherical angles.
         """
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
         if psi < 0:
@@ -195,7 +195,7 @@ class OrbitalNegative(OrbitalBase):
 
         Returns
         -------
-            The computed result.
+            The orbital surface coordinates for the given spherical angles.
         """
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
         if psi > 0:

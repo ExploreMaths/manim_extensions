@@ -8,7 +8,7 @@ custom type hints for all the models.
 """
 
 # python imports
-from typing import List, Dict, Any
+from typing import List, Dict
 
 # third-party imports
 from manim.typing import Point3D, Point3D_Array, VectorND
@@ -38,6 +38,6 @@ Edge = tuple[int, int]
 Edges = List[Edge]
 
 #: Keyword parameters forwarded to the plotting libraries.
-Parameters = Dict[str, Any]
+Parameters = Dict[str, object]
 #: Default parameters, mapping a name to its type and default value.
-DefaultParameters = Dict[str, tuple[type, Any]]
+DefaultParameters = Dict[str, tuple[type, object]]

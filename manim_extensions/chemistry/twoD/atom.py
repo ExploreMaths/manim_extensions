@@ -179,7 +179,7 @@ class MAtomObject(VGroup):
 
         Returns
         -------
-            The computed result."""
+            The created atom label, or ``None`` when the representation has no label."""
         if self.representation != "skeleton":
             return MarkupText(self.element).scale(0.8)
 
@@ -229,7 +229,7 @@ class MAtomObject(VGroup):
 
         Returns
         -------
-            The computed result.
+            The same atom after renaming.
         """
         self.element = new_element
         renamed_atom = self.make_copy()
@@ -251,7 +251,7 @@ class MAtomObject(VGroup):
 
         Returns
         -------
-            The computed result."""
+            The copy of this atom with explicit hydrogens enabled."""
         self.explicit_hydrogens = True
 
         return self.make_copy()

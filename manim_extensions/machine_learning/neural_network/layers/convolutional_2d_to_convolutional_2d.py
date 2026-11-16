@@ -373,7 +373,7 @@ class Filters(VGroup):
 
             Returns
             -------
-                The computed result."""
+                The mobject with its filter rectangles and connective lines added."""
             object.add(self.input_rectangles)
             object.add(self.connective_lines)
             object.add(self.output_rectangles)
@@ -487,10 +487,6 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
             The layer following this connective layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
-
-        Returns
-        -------
-            The computed result.
         """
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
@@ -698,7 +694,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
 
         Returns
         -------
-            The computed result.
+            The animation that runs the forward pass.
         """
         print(f"All filters at once: {all_filters_at_once}")
         # Make filter shifting animations

@@ -12,7 +12,7 @@ manim-radar demo --render          # render the bundled demo reel.
 """
 
 from __future__ import annotations
-from typing import Any
+from typing import Optional, Sequence
 
 import argparse
 import os
@@ -90,7 +90,7 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def main(argv: Any = None) -> int:
+def main(argv: Optional[Sequence[str]] = None) -> int:
     """Run the command-line interface.
 
     Parameters

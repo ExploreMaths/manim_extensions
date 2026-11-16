@@ -79,7 +79,7 @@ class Molecule:
 
         Returns
         -------
-            The computed result.
+            The molecule loaded from the file.
         """
         return self.molecule_class.molecule_from_file(*args, **kwargs)
 
@@ -95,7 +95,7 @@ class Molecule:
 
         Returns
         -------
-            The computed result.
+            The group of molecules loaded from the file.
         """
         return self.molecule_class.multiple_molecules_from_file(*args, **kwargs)
 
@@ -111,7 +111,7 @@ class Molecule:
 
         Returns
         -------
-            The computed result.
+            The molecule parsed from the string.
         """
         return self.molecule_class.molecule_from_string(*args, **kwargs)
 
@@ -127,7 +127,7 @@ class Molecule:
 
         Returns
         -------
-            The computed result.
+            The group of molecules parsed from the string.
         """
         return self.molecule_class.multiple_molecules_from_string(*args, **kwargs)
 
@@ -143,7 +143,7 @@ class Molecule:
 
         Returns
         -------
-            The computed result.
+            The molecule fetched from PubChem.
         """
         return self.molecule_class.molecule_from_pubchem(*args, **kwargs)
 
@@ -159,6 +159,6 @@ class Molecule:
 
         Returns
         -------
-            The computed result.
+            The parsed atoms and bonds.
         """
         return self.molecule_class.mc_molecule_to_atoms_and_bonds(*args, **kwargs)

@@ -98,7 +98,7 @@ def tree_bounds(tree: Mobject, n_features: int | None = None) -> list[AABB]:
 
     Returns
     -------
-        The computed result.
+        The bounding boxes of the tree nodes.
     """
     ctree = require("ml", "sklearn.tree")._tree
 

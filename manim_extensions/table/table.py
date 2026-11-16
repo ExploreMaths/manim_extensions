@@ -181,7 +181,7 @@ class Table(VGroup):
         show_border: bool = True,
         auto_fit: bool = True,
         padding: float = 0.3,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         super().__init__(**kwargs)
 

@@ -80,7 +80,7 @@ class GMAnimationBuilder:
 
         Returns
         -------
-            The computed result.
+            The bond edge connecting the two atom indices.
 
         Raises
         ------
@@ -109,7 +109,7 @@ class GMAnimationBuilder:
 
         Returns
         -------
-            The computed result.
+            The animations rotating the atoms around the bond axis.
         """
         bond = self.bonds_from_atoms(atom_a=atom_a, atom_b=atom_b)
         axis = self.molecule.edges[bond].sheen_direction

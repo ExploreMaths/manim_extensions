@@ -28,7 +28,7 @@ def get_connective_layer(
 
     Returns
     -------
-        The computed result.
+        The connective layer class selected for the pair.
     """
     connective_layer_class = None
     for candidate_class in connective_layers_list:

@@ -72,7 +72,7 @@ class CompassScene(MovingCameraScene):
     """
 
     def setup(self):
-        """:class:`~manim_extensions.compass.scene.compass_scene.CompassScene`.setup example."""
+        """Arrange the compass, ruler and pencil around the canvas edges."""
         self.compass = Compass(span=0.5).to_edge(LEFT)
         self.ruler = Ruler().to_edge(DOWN)
         self.pencil = Pencil().to_corner(UR)
@@ -98,7 +98,7 @@ class CompassScene(MovingCameraScene):
         angle_or_arc: float | Arc,
         arc: Arc | None = None,
         added_anims: list[Animation] | None = None,
-        **kwargs: Any,
+        **kwargs: object,
     ):
         """Rotate the compass about its needle tip.
 

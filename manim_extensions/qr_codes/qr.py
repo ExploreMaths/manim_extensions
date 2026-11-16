@@ -30,7 +30,7 @@ def qr_code(
     circle_kwargs: dict[str, object] | None = None,
     error_correction: Literal["L", "M", "Q", "H"] = "H",
     segno_kwargs: dict[str, object] | None = None,
-    **kwargs: Any,
+    **kwargs: object,
 ) -> VGroup:
     """
     Create a QR code as a :class:`~manim.mobject.types.vectorized_mobject.VGroup` of Manim objects.

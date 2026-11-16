@@ -263,7 +263,7 @@ class StandardLayout(Layout):
 
         Returns
         -------
-            The computed result."""
+            The root node of the completed layout."""
         self._split()
         self.left = TidyTreeLayout(
             self.left, self.direction, self.node_spacing, self.level_spacing

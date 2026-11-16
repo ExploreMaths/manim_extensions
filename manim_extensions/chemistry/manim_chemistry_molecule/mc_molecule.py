@@ -198,7 +198,7 @@ class MCMolecule:
 
         Returns
         -------
-            The computed result.
+            The molecule constructed from the file.
         """
         parsed_data = FileHandler(file_path=filepath).parsed_atoms_bonds_data()
 
@@ -301,7 +301,7 @@ class MCMolecule:
 
         Returns
         -------
-            The computed result.
+            The molecule parsed from the string.
         """
         parsed_data = FileHandler.parse_from_string(string=string, format=format)
 
@@ -364,10 +364,7 @@ class MCMolecule:
 
     def remove_carbon_hydrogens(self) -> None:
         """Remove all hydrogen atoms that are bonded only to carbon atoms.
-
-        Returns
-        -------
-            The computed result."""
+        """
         atoms_to_be_removed = []
         for index, atom in self.atoms_by_index.items():
             if atom.element.atomic_number != 1 or atom.element.symbol != "H":
@@ -385,10 +382,7 @@ class MCMolecule:
 
     def remove_all_hydrogens(self) -> None:
         """Remove every hydrogen atom from the molecule.
-
-        Returns
-        -------
-            The computed result."""
+        """
         atoms_to_be_removed = []
         for index, atom in self.atoms_by_index.items():
             if atom.element.atomic_number != 1:

@@ -198,7 +198,7 @@ class SpaceScene(Scene):
         super().__init__(renderer=renderer, **kwargs)
 
     def setup(self):
-        """Used internally."""
+        """Add the physics space to the scene and advance it every frame."""
         self.add(self.space)
         self.space.add_updater(_step)
 

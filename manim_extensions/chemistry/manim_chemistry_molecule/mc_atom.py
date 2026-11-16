@@ -68,7 +68,7 @@ class MCAtom:
 
         Returns
         -------
-            The computed result.
+            The parent molecule this atom is assigned to.
 
         Raises
         ------
@@ -106,7 +106,7 @@ class MCAtom:
 
         Returns
         -------
-            The computed result.
+            The updated list of bonds attached to this atom.
 
         Raises
         ------
@@ -147,7 +147,7 @@ class MCAtom:
 
         Returns
         -------
-            The computed result.
+            The parent molecule this atom is assigned to.
 
         Raises
         ------
@@ -178,7 +178,7 @@ class MCAtom:
 
         Returns
         -------
-            The computed result.
+            The assigned atom index.
 
         Raises
         ------

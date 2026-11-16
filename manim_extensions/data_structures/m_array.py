@@ -42,7 +42,6 @@ from manim import (
 from manim.mobject.mobject import _AnimationBuilder
 from types import MethodType
 from typing import (
-    Any,
     Callable,
     ClassVar,
     List,
@@ -54,7 +53,7 @@ from typing import (
 from .m_enum import MArrayDirection, MArrayElementComp
 from manim.typing import Point3D, Vector3D
 
-MobProps = dict[str, Any]
+MobProps = dict[str, object]
 """Type alias for a ``dict`` of keyword arguments forwarded to manim mobject constructors."""
 
 
@@ -340,7 +339,7 @@ class MArrayElement(VGroup):
         label_gap: float = 0.5,
         next_to_mob: MArrayElement | None = None,
         next_to_dir: Vector3D = RIGHT,
-        **kwargs: Any,
+        **kwargs: object,
     ):
 
         super().__init__(**kwargs)
@@ -1187,7 +1186,7 @@ class MArray(VGroup):
         mob_square_args: MobProps = {},
         mob_value_args: MobProps = {},
         mob_index_args: MobProps = {},
-        **kwargs: Any,
+        **kwargs: object,
     ):
 
         super().__init__(**kwargs)
@@ -1943,7 +1942,7 @@ class MArrayPointer(VGroup):
         pointer_pos: MArrayDirection = MArrayDirection.DOWN,
         mob_arrow_args: MobProps = {},
         mob_label_args: MobProps = {},
-        **kwargs: Any,
+        **kwargs: object,
     ):
 
         super().__init__(**kwargs)
@@ -2459,7 +2458,7 @@ class MArraySlidingWindow(VGroup):
         label_pos: MArrayDirection = MArrayDirection.DOWN,
         mob_window_args: MobProps = {},
         mob_label_args: MobProps = {},
-        **kwargs: Any,
+        **kwargs: object,
     ):
 
         super().__init__(**kwargs)

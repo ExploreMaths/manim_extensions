@@ -2,10 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""path_mapper module."""
+"""Arc-length, offset, warp and dashed-path helpers for Manim vector paths.
+"""
 
 from __future__ import annotations
-from typing import Any
+from typing import Callable, Sequence
 import numpy as np
 from manim import (
     Circle,
@@ -49,14 +50,14 @@ class PathMapper(VMobject):
     """
 
     def __init__(
-        self, path_source: VMobject, num_of_path_points: Any = 100, **kwargs
+        self, path_source: VMobject, num_of_path_points: int = 100, **kwargs
     ) -> None:
         super().__init__(**kwargs)
         self.num_of_path_points = num_of_path_points
         self.path = path_source
         self.generate_length_map()
 
-    def generate_length_map(self) -> Any:
+    def generate_length_map(self) -> None:
         """Rebuild the cumulative length table for the path.
 
         Returns
@@ -72,7 +73,7 @@ class PathMapper(VMobject):
         self.pathdata_lengths = np.cumsum(norms)
         self.pathdata_alpha = np.linspace(0, 1, self.pathdata_lengths.size)
 
-    def cubic_to_quads(self, cubic_points: Any) -> Any:
+    def cubic_to_quads(self, cubic_points: np.ndarray) -> np.ndarray:
         """Approximate one cubic Bezier segment with two quadratic ones.
 
         Parameters
@@ -99,7 +100,7 @@ class PathMapper(VMobject):
         q_points = np.append(q_points, (q0, q1, q2, q2, q3, q4), axis=0)
         return q_points
 
-    def calc_len_bezier_quad(self, points: Any) -> Any:
+    def calc_len_bezier_quad(self, points: np.ndarray) -> float:
         """Compute the exact arc length of a quadratic Bezier segment.
 
         Parameters
@@ -132,7 +133,7 @@ class PathMapper(VMobject):
         else:
             return np.linalg.norm(a - c)
 
-    def calc_len_with_quads(self) -> Any:
+    def calc_len_with_quads(self) -> float:
         """Estimate the path length from quadratic approximations.
 
         Returns
@@ -148,7 +149,7 @@ class PathMapper(VMobject):
             L += L0 + L1
         return L
 
-    def get_path_length(self) -> Any:
+    def get_path_length(self) -> float:
         """Return the total length of the path.
 
         Returns
@@ -157,7 +158,7 @@ class PathMapper(VMobject):
         """
         return self.pathdata_lengths[-1]
 
-    def alpha_from_length(self, s: Any) -> Any:
+    def alpha_from_length(self, s: float | Sequence[float]) -> float | list[float]:
         """Convert arc length to normalized path proportion.
 
         Parameters
@@ -174,7 +175,7 @@ class PathMapper(VMobject):
         else:
             return np.interp(s, self.pathdata_lengths, self.pathdata_alpha)
 
-    def length_from_alpha(self, a: Any) -> Any:
+    def length_from_alpha(self, a: float | Sequence[float]) -> float | list[float]:
         """Convert normalized path proportion to arc length.
 
         Parameters
@@ -191,7 +192,7 @@ class PathMapper(VMobject):
         else:
             return np.interp(a, self.pathdata_alpha, self.pathdata_lengths)
 
-    def equalize_alpha(self, a: Any) -> Any:
+    def equalize_alpha(self, a: float | Sequence[float]) -> float | list[float]:
         """Invert the alpha behaviour by mapping through path length.
 
         Parameters
@@ -205,7 +206,7 @@ class PathMapper(VMobject):
         """
         return self.alpha_from_length(a * self.get_path_length())
 
-    def equalize_rate_func(self, rate_func: Any) -> Any:
+    def equalize_rate_func(self, rate_func: Callable[[float], float]) -> Callable[[float], float]:
         """Wrap a rate function so motion follows constant arc length.
 
         Parameters
@@ -238,8 +239,18 @@ class PathMapper(VMobject):
                         self.wait()
         """
 
-        def eq_func(t: float) -> Any:
-            """eq_func."""
+        def eq_func(t: float) -> float:
+            """Map a rate-function output through the path length table.
+
+            Parameters
+            ----------
+            t
+                Normalized animation time supplied by Manim.
+
+            Returns
+            -------
+                The path proportion whose arc length matches ``rate_func(t)``.
+            """
             return self.equalize_alpha(rate_func(t))
 
         return eq_func
@@ -283,7 +294,7 @@ class PathMapper(VMobject):
                 remainder = (a * self.path.get_num_curves()) % 1
             return self.path.get_nth_curve_function(index)(remainder)
 
-    def get_length_between_points(self, b: Any, a: Any) -> Any:
+    def get_length_between_points(self, b: float, a: float) -> float:
         """Return the signed arc length between two path positions.
 
         Parameters
@@ -299,7 +310,7 @@ class PathMapper(VMobject):
         """
         return self.length_from_alpha(b) - self.length_from_alpha(a)
 
-    def get_length_between_points_wrapped(self, b: Any, a: Any) -> Any:
+    def get_length_between_points_wrapped(self, b: float, a: float) -> float:
         """Return the shortest wrapped distance between two positions.
 
         Parameters
@@ -318,7 +329,7 @@ class PathMapper(VMobject):
         L = self.get_path_length()
         return (AB % L - L / 2) % L - L / 2
 
-    def get_length_between_points_tuple(self, b: Any, a: Any) -> Any:
+    def get_length_between_points_tuple(self, b: float, a: float) -> tuple[float, float]:
         """Return both absolute lengths between two positions.
 
         Parameters
@@ -340,7 +351,7 @@ class PathMapper(VMobject):
         else:
             return AB, (L - AB)
 
-    def get_bezier_index_from_length(self, s: Any) -> Any:
+    def get_bezier_index_from_length(self, s: float) -> tuple[int, float]:
         """Locate the Bezier curve containing an arc length.
 
         Parameters
@@ -361,7 +372,7 @@ class PathMapper(VMobject):
             bz_a = 1
         return (indx, bz_a)
 
-    def get_tangent_unit_vector(self, s: Any) -> Any:
+    def get_tangent_unit_vector(self, s: float) -> np.ndarray:
         """Return the unit tangent vector at an arc length.
 
         Parameters
@@ -381,7 +392,7 @@ class PathMapper(VMobject):
         point = bzf(bz_a)
         return normalize(point)
 
-    def get_tangent_angle(self, s: Any) -> Any:
+    def get_tangent_angle(self, s: float) -> float:
         """Return the tangent angle at an arc length.
 
         Parameters
@@ -396,7 +407,7 @@ class PathMapper(VMobject):
         tv = self.get_tangent_unit_vector(s)
         return angle_of_vector(tv)
 
-    def get_normal_unit_vector(self, s: Any) -> Any:
+    def get_normal_unit_vector(self, s: float) -> np.ndarray:
         """Return the unit normal vector at an arc length.
 
         Parameters
@@ -411,7 +422,7 @@ class PathMapper(VMobject):
         tv = self.get_tangent_unit_vector(s)
         return rotate_vector(tv, PI / 2)
 
-    def get_curvature_vector(self, s: Any) -> Any:
+    def get_curvature_vector(self, s: float) -> np.ndarray:
         """Return the curvature vector at an arc length.
 
         Parameters
@@ -432,7 +443,7 @@ class PathMapper(VMobject):
         curv = np.cross(deriv, dderiv) / (np.linalg.norm(deriv) ** 3)
         return curv
 
-    def get_curvature(self, s: Any) -> Any:
+    def get_curvature(self, s: float) -> float:
         """Return the scalar curvature at an arc length.
 
         Parameters
@@ -470,9 +481,9 @@ class DashedLineMobject(VDict):
     def __init__(
         self,
         target_mobject: VMobject,
-        num_dashes: Any = 15,
-        dashed_ratio: Any = 0.5,
-        dash_offset: Any = 0.0,
+        num_dashes: int = 15,
+        dashed_ratio: float = 0.5,
+        dash_offset: float = 0.0,
         **kwargs,
     ) -> None:
         super().__init__(**kwargs)
@@ -490,8 +501,8 @@ class DashedLineMobject(VDict):
         self["dashes"].match_style(target_mobject)
 
     def generate_dash_pattern_metric(
-        self, dash_len: Any, space_len: Any, num_dashes: Any, offset: Any = 0
-    ) -> Any:
+        self, dash_len: float, space_len: float, num_dashes: int, offset: float = 0
+    ) -> dict[str, list[float]]:
         """Build a dash pattern in metric curve-length space.
 
         Parameters
@@ -530,8 +541,8 @@ class DashedLineMobject(VDict):
         return {"dash_starts": dash_starts, "dash_ends": dash_ends}
 
     def generate_dash_pattern_dash_distributed(
-        self, num_dashes: Any, dash_ratio: Any = 0.5, offset: Any = 0.0
-    ) -> Any:
+        self, num_dashes: int, dash_ratio: float = 0.5, offset: float = 0.0
+    ) -> dict[str, list[float]]:
         """Distribute dashes evenly along the whole path.
 
         Parameters
@@ -558,8 +569,8 @@ class DashedLineMobject(VDict):
         )
 
     def generate_dash_mobjects(
-        self, dash_starts: Any = [0], dash_ends: Any = [1]
-    ) -> Any:
+        self, dash_starts: Sequence[float] = (0,), dash_ends: Sequence[float] = (1,)
+    ) -> VGroup:
         """Create mobjects for each dash interval.
 
         Parameters
@@ -621,10 +632,10 @@ class DashDotMobject(DashedLineMobject):
     def __init__(
         self,
         target_mobject: VMobject,
-        num_dashes: Any = 15,
-        dashed_ratio: Any = 0.35,
-        dash_offset: Any = 0.0,
-        dot_scale: Any = 1,
+        num_dashes: int = 15,
+        dashed_ratio: float = 0.35,
+        dash_offset: float = 0.0,
+        dot_scale: float = 1.0,
         **kwargs,
     ) -> None:
         super().__init__(
@@ -708,11 +719,11 @@ class PathOffsetMobject(VMobject):
 
     def __init__(
         self,
-        target_mobject: Any,
-        ofs_func: Any,
-        ofs_func_kwargs: Any = {},
-        num_of_samples: Any = 100,
-        discontinuities: Any = [],
+        target_mobject: VMobject,
+        ofs_func: Callable[..., float],
+        ofs_func_kwargs: dict[str, object] = {},
+        num_of_samples: int = 100,
+        discontinuities: Sequence[float] = (),
         **kwargs,
     ) -> None:
         super().__init__(**kwargs)
@@ -737,7 +748,7 @@ class PathOffsetMobject(VMobject):
         self.points = self.generate_offset_paths()
 
     # this can be useful in lambdas for updaters
-    def set_ofs_function_kwargs(self, ofs_func_kwargs: Any) -> Any:
+    def set_ofs_function_kwargs(self, ofs_func_kwargs: dict[str, object]) -> None:
         """Replace the keyword arguments passed to the offset function.
 
         Parameters
@@ -752,8 +763,8 @@ class PathOffsetMobject(VMobject):
         self.ofs_func_kwargs = ofs_func_kwargs
 
     def generate_bezier_points(
-        self, input_func: Any, t_range: Any, Smoothing: Any = True
-    ) -> Any:
+        self, input_func: Callable[[float], np.ndarray], t_range: np.ndarray, Smoothing: bool = True
+    ) -> list[list[np.ndarray]]:
         """Sample a function and build cubic Bezier control points.
 
         Parameters
@@ -789,7 +800,7 @@ class PathOffsetMobject(VMobject):
             out_data.append([p1, p2, p3, p4])
         return out_data
 
-    def generate_ref_curve(self) -> Any:
+    def generate_ref_curve(self) -> None:
         """Build the sampled reference curve from the source path.
 
         Returns
@@ -804,7 +815,7 @@ class PathOffsetMobject(VMobject):
             self.ref_curve.append_points(point)
         self.ref_curve_path = PathMapper(self.ref_curve)
 
-    def generate_offset_func_points(self, Smoothing: Any = True) -> Any:
+    def generate_offset_func_points(self, Smoothing: bool = True) -> list[list[np.ndarray]]:
         """Sample the offset function and build Bezier control points.
 
         Parameters
@@ -823,7 +834,7 @@ class PathOffsetMobject(VMobject):
         )
         return points
 
-    def generate_normal_vectors(self) -> Any:
+    def generate_normal_vectors(self) -> list[list[np.ndarray]]:
         """Build normal vectors at every sampled path position.
 
         Returns
@@ -840,8 +851,8 @@ class PathOffsetMobject(VMobject):
         return out
 
     def generate_offset_paths(
-        self, gen_ofs_point: Any = True, gen_ref_curve: Any = True
-    ) -> Any:
+        self, gen_ofs_point: bool = True, gen_ref_curve: bool = True
+    ) -> np.ndarray:
         """Build the offset path points.
 
         Parameters
@@ -872,8 +883,8 @@ class PathOffsetMobject(VMobject):
         return self.ref_curve.points + ofs_vectors
 
     def default_updater(
-        self, gen_ofs_point: Any = True, gen_ref_curve: Any = True
-    ) -> Any:
+        self, gen_ofs_point: bool = True, gen_ref_curve: bool = True
+    ) -> np.ndarray:
         """Refresh the offset path points for an updater callback.
 
         Parameters
@@ -924,7 +935,7 @@ class CurveWarp(VMobject):
         self,
         warp_source: VMobject,
         warp_curve: VMobject,
-        anchor_point: Any = 0.5,
+        anchor_point: float = 0.5,
         **kwargs,
     ) -> None:
 
@@ -935,7 +946,7 @@ class CurveWarp(VMobject):
         super().__init__(**kwargs)
         self.match_style(warp_source)
 
-    def generate_points(self) -> Any:
+    def generate_points(self) -> None:
         """Map the source path points onto the warp curve.
 
         Returns

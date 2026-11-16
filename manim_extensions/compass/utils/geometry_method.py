@@ -27,7 +27,7 @@ def get_arc(
     pen_pos: Point3D,
     angle: float,
     color: ParsableManimColor = PURE_YELLOW,
-    **kwargs: Any,
+    **kwargs: object,
 ) -> Arc:
     """Construct an arc from its centre and starting point.
 
@@ -103,6 +103,7 @@ def is_counter_clockwise(
     vector_end: Vector3D,
 ) -> bool:
     """
+    Return whether ``vector_end`` is counter-clockwise from ``vector_start``.
 
     Parameters
     ----------
