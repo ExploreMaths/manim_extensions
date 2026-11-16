@@ -1360,6 +1360,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.EllipsoidSurface.html">EllipsoidSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.TorusSurface.html">TorusSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.HyperboloidOneSheet.html">HyperboloidOneSheet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GraphSurfaceScene.html">GraphSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GaussianSurfaceScene.html">GaussianSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.SaddleSurfaceScene.html">SaddleSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.ParaboloidSurfaceScene.html">ParaboloidSurfaceScene</a></li>
@@ -1547,7 +1548,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    A unit-length copy of the vector.</span>
+<span class="sd">        A unit-length copy of the vector.</span>
 <span class="sd">    """</span>
 
     <span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
@@ -1812,7 +1813,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Twenty face-index triples, one per dodecahedron vertex.</span>
+<span class="sd">            Twenty face-index triples, one per dodecahedron vertex.</span>
 <span class="sd">        """</span>
 
         <span class="n">tris</span> <span class="o">=</span> <span class="p">[]</span>
@@ -1836,7 +1837,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The world-space position of the marker.</span>
+<span class="sd">            The world-space position of the marker.</span>
 <span class="sd">        """</span>
 
         <span class="n">local</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">FACE_NORMAL_DIRS</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span>
@@ -1943,7 +1944,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        This chart, allowing calls to be chained.</span>
+<span class="sd">            This chart, allowing calls to be chained.</span>
 <span class="sd">        """</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">grow</span><span class="p">:</span>
@@ -1976,7 +1977,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        An animation that performs the rotation.</span>
+<span class="sd">            An animation that performs the rotation.</span>
 <span class="sd">        """</span>
 
         <span class="k">class</span><span class="w"> </span><span class="nc">Spin</span><span class="p">(</span><span class="n">Animation</span><span class="p">):</span>

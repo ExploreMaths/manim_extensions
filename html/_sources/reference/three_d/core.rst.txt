@@ -19,6 +19,7 @@ Classes
    ~EllipsoidSurface
    ~TorusSurface
    ~HyperboloidOneSheet
+   ~GraphSurfaceScene
    ~GaussianSurfaceScene
    ~SaddleSurfaceScene
    ~ParaboloidSurfaceScene
@@ -54,6 +55,7 @@ Internal API
    core.EllipsoidSurface
    core.TorusSurface
    core.HyperboloidOneSheet
+   core.GraphSurfaceScene
    core.GaussianSurfaceScene
    core.SaddleSurfaceScene
    core.ParaboloidSurfaceScene

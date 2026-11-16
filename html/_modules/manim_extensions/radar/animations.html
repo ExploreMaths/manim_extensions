@@ -1360,6 +1360,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.EllipsoidSurface.html">EllipsoidSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.TorusSurface.html">TorusSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.HyperboloidOneSheet.html">HyperboloidOneSheet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GraphSurfaceScene.html">GraphSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GaussianSurfaceScene.html">GaussianSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.SaddleSurfaceScene.html">SaddleSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.ParaboloidSurfaceScene.html">ParaboloidSurfaceScene</a></li>
@@ -1526,7 +1527,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    Closed polygon points.</span>
+<span class="sd">        Closed polygon points.</span>
 <span class="sd">    """</span>
 
     <span class="n">angles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">segments</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
@@ -1606,7 +1607,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    Either 0.25 or 1.0.</span>
+<span class="sd">        Either 0.25 or 1.0.</span>
 <span class="sd">    """</span>
 
     <span class="k">return</span> <span class="mf">0.25</span> <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">steps</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">1.0</span>
@@ -1931,8 +1932,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Camera target when a rig is attached and a spike overflows,</span>
-<span class="sd">        otherwise ``None``.</span>
+<span class="sd">            Camera target when a rig is attached and a spike overflows,</span>
+<span class="sd">            otherwise ``None``.</span>
 <span class="sd">        """</span>
 
         <span class="n">chart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chart</span>

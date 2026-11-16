@@ -1360,6 +1360,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.EllipsoidSurface.html">EllipsoidSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.TorusSurface.html">TorusSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.HyperboloidOneSheet.html">HyperboloidOneSheet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GraphSurfaceScene.html">GraphSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GaussianSurfaceScene.html">GaussianSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.SaddleSurfaceScene.html">SaddleSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.ParaboloidSurfaceScene.html">ParaboloidSurfaceScene</a></li>
@@ -1491,8 +1492,8 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    The rotation angle that aligns ``v1`` with ``v2``, in the range</span>
-<span class="sd">    minus pi to pi.</span>
+<span class="sd">        The rotation angle that aligns ``v1`` with ``v2``, in the range</span>
+<span class="sd">        minus pi to pi.</span>
 <span class="sd">    """</span>
     <span class="n">cval</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">)</span>
     <span class="n">sval</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">))[</span><span class="mi">2</span><span class="p">]</span>
@@ -1533,7 +1534,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        ``None``; the dots are stored under the ``"dots"`` key.</span>
+<span class="sd">            ``None``; the dots are stored under the ``"dots"`` key.</span>
 <span class="sd">        """</span>
         <span class="n">DotGroup</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
             <span class="o">*</span><span class="p">[</span>
@@ -1558,7 +1559,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        ``None``; the dots are moved in place.</span>
+<span class="sd">            ``None``; the dots are moved in place.</span>
 <span class="sd">        """</span>
         <span class="k">for</span> <span class="n">zipthing</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="s2">"dots"</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">points</span><span class="p">):</span>
             <span class="n">zipthing</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">zipthing</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span></div>
@@ -1571,7 +1572,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        ``None``; the handles are stored under the ``"lines"`` key.</span>
+<span class="sd">            ``None``; the handles are stored under the ``"lines"`` key.</span>
 <span class="sd">        """</span>
         <span class="n">pointlist</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">4</span><span class="p">,</span> <span class="p">:],</span>
@@ -1600,7 +1601,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        ``None``; the lines are repositioned in place.</span>
+<span class="sd">            ``None``; the lines are repositioned in place.</span>
 <span class="sd">        """</span>
         <span class="n">pointlist</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">4</span><span class="p">,</span> <span class="p">:],</span>

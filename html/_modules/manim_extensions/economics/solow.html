@@ -1360,6 +1360,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.EllipsoidSurface.html">EllipsoidSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.TorusSurface.html">TorusSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.HyperboloidOneSheet.html">HyperboloidOneSheet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GraphSurfaceScene.html">GraphSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GaussianSurfaceScene.html">GaussianSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.SaddleSurfaceScene.html">SaddleSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.ParaboloidSurfaceScene.html">ParaboloidSurfaceScene</a></li>
@@ -1618,7 +1619,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A function mapping capital to output.</span>
+<span class="sd">            A function mapping capital to output.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">k</span><span class="o">**</span><span class="n">alpha</span></div>
 
@@ -1638,7 +1639,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A function mapping capital to savings per worker.</span>
+<span class="sd">            A function mapping capital to savings per worker.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">s</span> <span class="o">*</span> <span class="p">(</span><span class="n">k</span><span class="o">**</span><span class="n">alpha</span><span class="p">)</span></div>
 
@@ -1662,7 +1663,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A function mapping capital to break-even investment.</span>
+<span class="sd">            A function mapping capital to break-even investment.</span>
 <span class="sd">        """</span>
         <span class="n">rate</span> <span class="o">=</span> <span class="n">delta</span> <span class="o">+</span> <span class="n">n</span> <span class="o">+</span> <span class="n">g</span>
         <span class="k">return</span> <span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">rate</span> <span class="o">*</span> <span class="n">k</span></div>
@@ -1674,7 +1675,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        ``True`` when the share annotation is present.</span>
+<span class="sd">            ``True`` when the share annotation is present.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"_shares_group"</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shares_group</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
 
@@ -1694,8 +1695,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The curve animation alone, or a group that also replaces the share</span>
-<span class="sd">        annotation.</span>
+<span class="sd">            The curve animation alone, or a group that also replaces the share</span>
+<span class="sd">            annotation.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shares_visible</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">curve_anim</span>
@@ -1895,7 +1896,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The steady-state capital level, or ``None`` without an intersection.</span>
+<span class="sd">            The steady-state capital level, or ``None`` without an intersection.</span>
 <span class="sd">        """</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">find_intersection</span>
 
@@ -1922,7 +1923,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The group with the stem, braces, and share labels.</span>
+<span class="sd">            The group with the stem, braces, and share labels.</span>
 <span class="sd">        """</span>
         <span class="n">prod</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_prod_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_alpha</span><span class="p">)</span>
         <span class="n">sav</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_savings_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_s</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_alpha</span><span class="p">)</span>
@@ -2074,7 +2075,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The golden-rule capital level.</span>
+<span class="sd">            The golden-rule capital level.</span>
 <span class="sd">        """</span>
         <span class="n">rate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_delta</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_g</span>
         <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_alpha</span> <span class="o">/</span> <span class="n">rate</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_alpha</span><span class="p">))</span></div>

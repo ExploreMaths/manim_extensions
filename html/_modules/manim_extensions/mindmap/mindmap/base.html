@@ -1360,6 +1360,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../../reference/three_d/core.EllipsoidSurface.html">EllipsoidSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../reference/three_d/core.TorusSurface.html">TorusSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../reference/three_d/core.HyperboloidOneSheet.html">HyperboloidOneSheet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../reference/three_d/core.GraphSurfaceScene.html">GraphSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../reference/three_d/core.GaussianSurfaceScene.html">GaussianSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../reference/three_d/core.SaddleSurfaceScene.html">SaddleSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../../reference/three_d/core.ParaboloidSurfaceScene.html">ParaboloidSurfaceScene</a></li>
@@ -1843,7 +1844,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The original node with that ID, or ``None`` when it is absent.</span>
+<span class="sd">            The original node with that ID, or ``None`` when it is absent.</span>
 <span class="sd">        """</span>
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">dfs_walker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">ID</span> <span class="o">==</span> <span class="n">ID</span><span class="p">:</span>
@@ -1863,7 +1864,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The connector style dictionary for that level.</span>
+<span class="sd">            The connector style dictionary for that level.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_style</span><span class="o">.</span><span class="n">get_line_style</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span></div>
 

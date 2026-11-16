@@ -1360,6 +1360,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.EllipsoidSurface.html">EllipsoidSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.TorusSurface.html">TorusSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.HyperboloidOneSheet.html">HyperboloidOneSheet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GraphSurfaceScene.html">GraphSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GaussianSurfaceScene.html">GaussianSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.SaddleSurfaceScene.html">SaddleSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.ParaboloidSurfaceScene.html">ParaboloidSurfaceScene</a></li>
@@ -5628,7 +5629,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    The icon as a white SVG mobject.</span>
+<span class="sd">        The icon as a white SVG mobject.</span>
 <span class="sd">    """</span>
     <span class="k">return</span> <span class="n">SVGMobject</span><span class="p">(</span><span class="n">fp</span><span class="p">)</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">WHITE</span><span class="p">)</span></div>
 
@@ -5671,7 +5672,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The requested brand icon.</span>
+<span class="sd">            The requested brand icon.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="n">_get_svg_object</span><span class="p">(</span><span class="n">BrandEnum</span><span class="o">.</span><span class="n">__members__</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
 </div>
@@ -5715,7 +5716,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The requested regular icon.</span>
+<span class="sd">            The requested regular icon.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="n">_get_svg_object</span><span class="p">(</span><span class="n">RegularEnum</span><span class="o">.</span><span class="n">__members__</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
 </div>
@@ -5761,7 +5762,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The requested solid icon.</span>
+<span class="sd">            The requested solid icon.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="n">_get_svg_object</span><span class="p">(</span><span class="n">SolidEnum</span><span class="o">.</span><span class="n">__members__</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span></div>
 </div>

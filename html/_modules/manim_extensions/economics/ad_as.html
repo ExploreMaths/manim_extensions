@@ -1360,6 +1360,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.EllipsoidSurface.html">EllipsoidSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.TorusSurface.html">TorusSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.HyperboloidOneSheet.html">HyperboloidOneSheet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GraphSurfaceScene.html">GraphSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GaussianSurfaceScene.html">GaussianSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.SaddleSurfaceScene.html">SaddleSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.ParaboloidSurfaceScene.html">ParaboloidSurfaceScene</a></li>
@@ -1605,7 +1606,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A function mapping output to the aggregate price level.</span>
+<span class="sd">            A function mapping output to the aggregate price level.</span>
 <span class="sd">        """</span>
         <span class="n">mv</span> <span class="o">=</span> <span class="n">m</span> <span class="o">*</span> <span class="n">v</span>
         <span class="k">return</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">mv</span> <span class="o">/</span> <span class="n">y</span></div>
@@ -1628,7 +1629,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The smallest output level that keeps the curve visible.</span>
+<span class="sd">            The smallest output level that keeps the curve visible.</span>
 <span class="sd">        """</span>
         <span class="c1"># P = MV/Y ≤ y_max  →  Y ≥ MV/y_max</span>
         <span class="k">return</span> <span class="nb">max</span><span class="p">((</span><span class="n">m</span> <span class="o">*</span> <span class="n">v</span><span class="p">)</span> <span class="o">/</span> <span class="n">y_max</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span></div>
@@ -1653,7 +1654,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A function mapping output to the short-run price level.</span>
+<span class="sd">            A function mapping output to the short-run price level.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">slope</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">price</span>
@@ -1672,7 +1673,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The long-run equilibrium expected price level.</span>
+<span class="sd">            The long-run equilibrium expected price level.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_m</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_v</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lras_y</span>
 

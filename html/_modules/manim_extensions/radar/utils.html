@@ -1360,6 +1360,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.EllipsoidSurface.html">EllipsoidSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.TorusSurface.html">TorusSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.HyperboloidOneSheet.html">HyperboloidOneSheet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GraphSurfaceScene.html">GraphSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GaussianSurfaceScene.html">GaussianSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.SaddleSurfaceScene.html">SaddleSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.ParaboloidSurfaceScene.html">ParaboloidSurfaceScene</a></li>
@@ -1495,7 +1496,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    Cosine and sine of the angle, with a zero z component.</span>
+<span class="sd">        Cosine and sine of the angle, with a zero z component.</span>
 <span class="sd">    """</span>
 
     <span class="n">r</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">degrees</span><span class="p">)</span>
@@ -1521,7 +1522,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    One angle in degrees for each axis.</span>
+<span class="sd">        One angle in degrees for each axis.</span>
 <span class="sd">    """</span>
     <span class="n">step</span> <span class="o">=</span> <span class="mf">360.0</span> <span class="o">/</span> <span class="n">count</span>
     <span class="n">sign</span> <span class="o">=</span> <span class="o">-</span><span class="mf">1.0</span> <span class="k">if</span> <span class="n">clockwise</span> <span class="k">else</span> <span class="mf">1.0</span>
@@ -1545,7 +1546,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    The blended colour.</span>
+<span class="sd">        The blended colour.</span>
 <span class="sd">    """</span>
 
     <span class="k">return</span> <span class="n">interpolate_color</span><span class="p">(</span><span class="n">ManimColor</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">ManimColor</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)))</span></div>
@@ -1566,7 +1567,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    The lightened colour.</span>
+<span class="sd">        The lightened colour.</span>
 <span class="sd">    """</span>
 
     <span class="k">return</span> <span class="n">mix</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">WHITE</span><span class="p">,</span> <span class="n">amount</span><span class="p">)</span></div>
@@ -1585,7 +1586,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    Eased progress in the range 0 to 1.</span>
+<span class="sd">        Eased progress in the range 0 to 1.</span>
 <span class="sd">    """</span>
 
     <span class="n">t</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
@@ -1609,7 +1610,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    Eased progress.</span>
+<span class="sd">        Eased progress.</span>
 <span class="sd">    """</span>
 
     <span class="n">t</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
@@ -1636,7 +1637,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    Eased progress, temporarily above 1 near the peak.</span>
+<span class="sd">        Eased progress, temporarily above 1 near the peak.</span>
 <span class="sd">    """</span>
     <span class="n">t</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
     <span class="n">p</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mf">0.9</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="mf">1e-4</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">fraction</span><span class="p">)))</span>
@@ -1676,7 +1677,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    The selected family name, or ``None`` when nothing matches.</span>
+<span class="sd">        The selected family name, or ``None`` when nothing matches.</span>
 <span class="sd">    """</span>
     <span class="n">key</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">candidates</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">default</span><span class="p">,)</span>
     <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">_FONT_CACHE</span><span class="p">:</span>
@@ -1710,7 +1711,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    The polygon with its first point repeated at the end.</span>
+<span class="sd">        The polygon with its first point repeated at the end.</span>
 <span class="sd">    """</span>
 
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">points</span><span class="p">,</span> <span class="n">points</span><span class="p">[:</span><span class="mi">1</span><span class="p">]])</span></div>
@@ -1729,7 +1730,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    A float array with one row per point and a zero z where needed.</span>
+<span class="sd">        A float array with one row per point and a zero z where needed.</span>
 <span class="sd">    """</span>
 
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>

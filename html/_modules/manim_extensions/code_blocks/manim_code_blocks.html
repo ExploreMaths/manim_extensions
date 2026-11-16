@@ -1360,6 +1360,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.EllipsoidSurface.html">EllipsoidSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.TorusSurface.html">TorusSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.HyperboloidOneSheet.html">HyperboloidOneSheet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GraphSurfaceScene.html">GraphSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GaussianSurfaceScene.html">GaussianSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.SaddleSurfaceScene.html">SaddleSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.ParaboloidSurfaceScene.html">ParaboloidSurfaceScene</a></li>
@@ -1535,7 +1536,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The matching hex colour, or white when no rule matches.</span>
+<span class="sd">            The matching hex colour, or white when no rule matches.</span>
 <span class="sd">        """</span>
         <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="k">if</span> <span class="n">token</span><span class="o">.</span><span class="n">type</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
@@ -1625,7 +1626,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The tokenizer object, importing ``tokenize-all-code`` on first use.</span>
+<span class="sd">            The tokenizer object, importing ``tokenize-all-code`` on first use.</span>
 <span class="sd">        """</span>
         <span class="n">tokenize_all</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"code_blocks"</span><span class="p">,</span> <span class="s2">"tokenize_all"</span><span class="p">)</span>
         <span class="n">language</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">tokenize_all</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tokenize_name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
@@ -1803,8 +1804,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A tuple of animations that create the block, including the title</span>
-<span class="sd">        animations when a title is present.</span>
+<span class="sd">            A tuple of animations that create the block, including the title</span>
+<span class="sd">            animations when a title is present.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"title"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"title_background"</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
             <span class="k">return</span> <span class="p">(</span>
@@ -1838,8 +1839,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A tuple of animations that remove the block, including the title</span>
-<span class="sd">        animations when a title is present.</span>
+<span class="sd">            A tuple of animations that remove the block, including the title</span>
+<span class="sd">            animations when a title is present.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"title"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"title_background"</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
             <span class="k">return</span> <span class="p">(</span>

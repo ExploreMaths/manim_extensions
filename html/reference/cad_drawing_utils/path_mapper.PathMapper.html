@@ -1361,6 +1361,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../three_d/core.EllipsoidSurface.html">EllipsoidSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../three_d/core.TorusSurface.html">TorusSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../three_d/core.HyperboloidOneSheet.html">HyperboloidOneSheet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../three_d/core.GraphSurfaceScene.html">GraphSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../three_d/core.GaussianSurfaceScene.html">GaussianSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../three_d/core.SaddleSurfaceScene.html">SaddleSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../three_d/core.ParaboloidSurfaceScene.html">ParaboloidSurfaceScene</a></li>
@@ -1638,35 +1639,25 @@
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><ul>
-<li><p>A callable rate function that compensates for path length.</p></li>
-<li><p><em>Example</em></p></li>
-<li><p><em>.. code-block:: python</em> –</p>
-<dl>
-<dt>class TestPathMapperAnim(Scene):</dt><dd><dl>
-<dt>def construct(self):</dt><dd><dl class="simple">
-<dt>mob1 = round_corners(</dt><dd><p>Triangle(fill_color=TEAL, fill_opacity=0).scale(3), 0.5</p>
-</dd>
-</dl>
-<p>)
-path_mapper = PathMapper(mob1)
-mob2 = mob1.copy()
-mob1.shift(LEFT * 2.5)
-mob2.shift(RIGHT * 2.5)
-self.play(</p>
-<blockquote>
-<div><p>Create(mob1, rate_func=path_mapper.equalize_rate_func(smooth)),
-Create(mob2),
-run_time=5,</p>
-</div></blockquote>
-<p>)
-self.wait()</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</li>
-</ul>
+<dd class="field-odd"><p><p>A callable rate function that compensates for path length.</p>
+<p>Example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">TestPathMapperAnim</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">mob1</span> <span class="o">=</span> <span class="n">round_corners</span><span class="p">(</span>
+            <span class="n">Triangle</span><span class="p">(</span><span class="n">fill_color</span><span class="o">=</span><span class="n">TEAL</span><span class="p">,</span> <span class="n">fill_opacity</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="mf">0.5</span>
+        <span class="p">)</span>
+        <span class="n">path_mapper</span> <span class="o">=</span> <span class="n">PathMapper</span><span class="p">(</span><span class="n">mob1</span><span class="p">)</span>
+        <span class="n">mob2</span> <span class="o">=</span> <span class="n">mob1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">mob1</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mf">2.5</span><span class="p">)</span>
+        <span class="n">mob2</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">RIGHT</span> <span class="o">*</span> <span class="mf">2.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
+            <span class="n">Create</span><span class="p">(</span><span class="n">mob1</span><span class="p">,</span> <span class="n">rate_func</span><span class="o">=</span><span class="n">path_mapper</span><span class="o">.</span><span class="n">equalize_rate_func</span><span class="p">(</span><span class="n">smooth</span><span class="p">)),</span>
+            <span class="n">Create</span><span class="p">(</span><span class="n">mob2</span><span class="p">),</span>
+            <span class="n">run_time</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
 </p>
 </dd>
 </dl>

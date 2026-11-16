@@ -1360,6 +1360,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.EllipsoidSurface.html">EllipsoidSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.TorusSurface.html">TorusSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.HyperboloidOneSheet.html">HyperboloidOneSheet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GraphSurfaceScene.html">GraphSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GaussianSurfaceScene.html">GaussianSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.SaddleSurfaceScene.html">SaddleSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.ParaboloidSurfaceScene.html">ParaboloidSurfaceScene</a></li>
@@ -1555,6 +1556,7 @@
     <span class="s2">"ellipsoid_surface_scene"</span><span class="p">,</span>
     <span class="s2">"torus_surface_scene"</span><span class="p">,</span>
     <span class="s2">"hyperboloid_one_sheet_scene"</span><span class="p">,</span>
+    <span class="s2">"GraphSurfaceScene"</span><span class="p">,</span>
     <span class="s2">"GaussianSurfaceScene"</span><span class="p">,</span>
     <span class="s2">"SaddleSurfaceScene"</span><span class="p">,</span>
     <span class="s2">"ParaboloidSurfaceScene"</span><span class="p">,</span>
@@ -1622,14 +1624,14 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    A mapping from beat name to duration, and the names of dropped beats.</span>
+<span class="sd">        A mapping from beat name to duration, and the names of dropped beats.</span>
 
-<span class="sd">    Durations are scaled proportionally, clamped between each beat's</span>
-<span class="sd">    minimum and reference times the cap multiplier, and iterated until they</span>
-<span class="sd">    converge. If every optional beat can be removed and the budget still</span>
-<span class="sd">    does not fit, optional beats are dropped by priority. If every beat</span>
-<span class="sd">    reaches its maximum before the budget is filled, the shorter result is</span>
-<span class="sd">    accepted.</span>
+<span class="sd">        Durations are scaled proportionally, clamped between each beat's</span>
+<span class="sd">        minimum and reference times the cap multiplier, and iterated until they</span>
+<span class="sd">        converge. If every optional beat can be removed and the budget still</span>
+<span class="sd">        does not fit, optional beats are dropped by priority. If every beat</span>
+<span class="sd">        reaches its maximum before the budget is filled, the shorter result is</span>
+<span class="sd">        accepted.</span>
 <span class="sd">    """</span>
 
     <span class="n">active</span> <span class="o">=</span> <span class="p">[</span><span class="n">b</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">BEATS</span> <span class="k">if</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">enabled</span><span class="p">]</span>
@@ -1675,7 +1677,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    The interpolated colour at that position.</span>
+<span class="sd">        The interpolated colour at that position.</span>
 <span class="sd">    """</span>
 
     <span class="n">t</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">)</span>
@@ -1706,8 +1708,8 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    The radius of the nearest root along the positive x direction, or</span>
-<span class="sd">    ``None`` when the surface never reaches the target.</span>
+<span class="sd">        The radius of the nearest root along the positive x direction, or</span>
+<span class="sd">        ``None`` when the surface never reaches the target.</span>
 <span class="sd">    """</span>
 
     <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">d_max</span>
@@ -1735,8 +1737,8 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    The value rounded to two decimals, with trailing zeros and a trailing</span>
-<span class="sd">    decimal point removed.</span>
+<span class="sd">        The value rounded to two decimals, with trailing zeros and a trailing</span>
+<span class="sd">        decimal point removed.</span>
 <span class="sd">    """</span>
 
     <span class="k">return</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">"0"</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s2">"."</span><span class="p">)</span></div>
@@ -1776,7 +1778,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The height function and the formula string, with defaults filled in.</span>
+<span class="sd">            The height function and the formula string, with defaults filled in.</span>
 <span class="sd">        """</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1915,6 +1917,8 @@
 
 
 <span class="c1"># ---------------- 节拍骨架(图曲面通用) ----------------</span>
+<div class="viewcode-block" id="GraphSurfaceScene">
+<a class="viewcode-back" href="../../../reference/three_d/core.GraphSurfaceScene.html#manim_extensions.three_d.core.GraphSurfaceScene">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">GraphSurfaceScene</span><span class="p">(</span><span class="n">ThreeDScene</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Shared beat skeleton for graph and closed surfaces.</span>
 
@@ -1923,12 +1927,37 @@
 <span class="sd">    surfaces use the flat start beat; closed surfaces set ``uses_flat=False``</span>
 <span class="sd">    so the formation beat inflates the surface with ``GrowFromCenter`` and</span>
 <span class="sd">    the axes scale uniformly to avoid distortion.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Subclass the scene and implement the four hooks:</span>
+
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.three_d import GraphSurfaceScene, SaddleSurface</span>
+
+<span class="sd">        class CustomSurfaceScene(GraphSurfaceScene):</span>
+<span class="sd">            style = SaddleSurface()</span>
+
+<span class="sd">            def _geometry(self, cfg):</span>
+<span class="sd">                ...</span>
+
+<span class="sd">            def _contours(self, cfg, axes, f, ramp, zmin_n):</span>
+<span class="sd">                ...</span>
+
+<span class="sd">            def _feature(self, cfg, f):</span>
+<span class="sd">                ...</span>
+
+<span class="sd">            def _caption_slots(self):</span>
+<span class="sd">                return ["title", "outro"]</span>
 <span class="sd">    """</span>
 
     <span class="n">style</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">uses_flat</span> <span class="o">=</span> <span class="kc">True</span>
 
     <span class="c1"># ---- 钩子 ----</span>
+<div class="viewcode-block" id="GraphSurfaceScene._geometry">
+<a class="viewcode-back" href="../../../reference/three_d/core.GraphSurfaceScene.html#manim_extensions.three_d.core.GraphSurfaceScene._geometry">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the surface geometry description.</span>
 
@@ -1939,16 +1968,19 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A tuple containing the normalized height function, formula string,</span>
-<span class="sd">        normalized minimum height, and low and high axis limits.</span>
+<span class="sd">            A tuple containing the normalized height function, formula string,</span>
+<span class="sd">            normalized minimum height, and low and high axis limits.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
 <span class="sd">        NotImplementedError</span>
 <span class="sd">            Always, because subclasses must implement this hook.</span>
 <span class="sd">        """</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
+
+<div class="viewcode-block" id="GraphSurfaceScene._contours">
+<a class="viewcode-back" href="../../../reference/three_d/core.GraphSurfaceScene.html#manim_extensions.three_d.core.GraphSurfaceScene._contours">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_contours</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">axes</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">f</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">ramp</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">zmin_n</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build contour lines for the surface.</span>
 
@@ -1967,16 +1999,19 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A contour group and a flag telling whether it rotates with the</span>
-<span class="sd">        surface.</span>
+<span class="sd">            A contour group and a flag telling whether it rotates with the</span>
+<span class="sd">            surface.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
 <span class="sd">        NotImplementedError</span>
 <span class="sd">            Always, because subclasses must implement this hook.</span>
 <span class="sd">        """</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
+
+<div class="viewcode-block" id="GraphSurfaceScene._feature">
+<a class="viewcode-back" href="../../../reference/three_d/core.GraphSurfaceScene.html#manim_extensions.three_d.core.GraphSurfaceScene._feature">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">f</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Describe the annotated feature point.</span>
 
@@ -1989,34 +2024,43 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The point coordinates, tag formula, HUD flag, and dashed-stem</span>
-<span class="sd">        starting height.</span>
+<span class="sd">            The point coordinates, tag formula, HUD flag, and dashed-stem</span>
+<span class="sd">            starting height.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
 <span class="sd">        NotImplementedError</span>
 <span class="sd">            Always, because subclasses must implement this hook.</span>
 <span class="sd">        """</span>
-        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
+
+<div class="viewcode-block" id="GraphSurfaceScene._caption_slots">
+<a class="viewcode-back" href="../../../reference/three_d/core.GraphSurfaceScene.html#manim_extensions.three_d.core.GraphSurfaceScene._caption_slots">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_caption_slots</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""List the caption slots used by this scene.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Slot names in beat order.</span>
+<span class="sd">            Slot names in beat order.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="p">[</span><span class="s2">"title"</span><span class="p">,</span> <span class="s2">"axes"</span><span class="p">,</span> <span class="s2">"flat"</span><span class="p">,</span> <span class="s2">"rings"</span><span class="p">,</span> <span class="s2">"orbit"</span><span class="p">,</span> <span class="s2">"flip"</span><span class="p">,</span> <span class="s2">"outro"</span><span class="p">]</span>
+        <span class="k">return</span> <span class="p">[</span><span class="s2">"title"</span><span class="p">,</span> <span class="s2">"axes"</span><span class="p">,</span> <span class="s2">"flat"</span><span class="p">,</span> <span class="s2">"rings"</span><span class="p">,</span> <span class="s2">"orbit"</span><span class="p">,</span> <span class="s2">"flip"</span><span class="p">,</span> <span class="s2">"outro"</span><span class="p">]</span></div>
 
+
+<div class="viewcode-block" id="GraphSurfaceScene._annotate_camera">
+<a class="viewcode-back" href="../../../reference/three_d/core.GraphSurfaceScene.html#manim_extensions.three_d.core.GraphSurfaceScene._annotate_camera">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_annotate_camera</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the camera angle used for the annotation beat.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The ``(phi, theta, zoom)`` triple.</span>
+<span class="sd">            The ``(phi, theta, zoom)`` triple.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="mf">66.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">40.0</span><span class="p">,</span> <span class="mf">0.95</span>
+        <span class="k">return</span> <span class="mf">66.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">40.0</span><span class="p">,</span> <span class="mf">0.95</span></div>
 
+
+<div class="viewcode-block" id="GraphSurfaceScene._make_axes">
+<a class="viewcode-back" href="../../../reference/three_d/core.GraphSurfaceScene.html#manim_extensions.three_d.core.GraphSurfaceScene._make_axes">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_make_axes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">ax_z_lo</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">ax_z_hi</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build the default graph-surface axes.</span>
 
@@ -2031,7 +2075,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The configured axes.</span>
+<span class="sd">            The configured axes.</span>
 <span class="sd">        """</span>
 
         <span class="n">d0</span><span class="p">,</span> <span class="n">d1</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">domain</span>
@@ -2043,8 +2087,11 @@
             <span class="n">y_length</span><span class="o">=</span><span class="mf">7.2</span><span class="p">,</span>
             <span class="n">z_length</span><span class="o">=</span><span class="mf">3.4</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="k">return</span> <span class="n">axes</span><span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span><span class="n">opacity</span><span class="o">=</span><span class="mf">0.55</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">axes</span><span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span><span class="n">opacity</span><span class="o">=</span><span class="mf">0.55</span><span class="p">)</span></div>
 
+
+<div class="viewcode-block" id="GraphSurfaceScene._make_surface">
+<a class="viewcode-back" href="../../../reference/three_d/core.GraphSurfaceScene.html#manim_extensions.three_d.core.GraphSurfaceScene._make_surface">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_make_surface</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">axes</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">f</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">ramp</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">zmin_n</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build the default graph surface :math:`z=f(x, y)`.</span>
 
@@ -2063,7 +2110,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The coloured surface mobject.</span>
+<span class="sd">            The coloured surface mobject.</span>
 <span class="sd">        """</span>
 
         <span class="n">d0</span><span class="p">,</span> <span class="n">d1</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">domain</span>
@@ -2082,15 +2129,18 @@
             <span class="n">colorscale</span><span class="o">=</span><span class="p">[(</span><span class="n">c</span><span class="p">,</span> <span class="n">zmin_n</span> <span class="o">+</span> <span class="n">p</span> <span class="o">*</span> <span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">height</span> <span class="o">-</span> <span class="n">zmin_n</span><span class="p">))</span> <span class="k">for</span> <span class="n">c</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">ramp</span><span class="p">],</span>
             <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="k">return</span> <span class="n">s</span>
+        <span class="k">return</span> <span class="n">s</span></div>
+
 
     <span class="c1"># ---- 主流程 ----</span>
+<div class="viewcode-block" id="GraphSurfaceScene.construct">
+<a class="viewcode-back" href="../../../reference/three_d/core.GraphSurfaceScene.html#manim_extensions.three_d.core.GraphSurfaceScene.construct">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build and play the full surface presentation.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        ``None``; the method plays the scene beats.</span>
+<span class="sd">            ``None``; the method plays the scene beats.</span>
 <span class="sd">        """</span>
 
         <span class="n">cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">style</span>
@@ -2162,7 +2212,8 @@
 <span class="sd">                Optional formula appended to the caption.</span>
 
 <span class="sd">            Returns</span>
-<span class="sd">            ``None`` after playing the fade.</span>
+<span class="sd">            -------</span>
+<span class="sd">                ``None`` after playing the fade.</span>
 <span class="sd">            """</span>
 
             <span class="k">nonlocal</span> <span class="n">cur_cap</span>
@@ -2358,7 +2409,9 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">hold</span> <span class="o">+</span> <span class="n">f2</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">formula</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeOut</span><span class="p">(</span><span class="n">formula</span><span class="p">),</span> <span class="n">run_time</span><span class="o">=</span><span class="n">f2</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeOut</span><span class="p">(</span><span class="n">formula</span><span class="p">),</span> <span class="n">run_time</span><span class="o">=</span><span class="n">f2</span><span class="p">)</span></div>
+</div>
+
 
 
 <span class="c1"># ---------------- 三个曲面场景 ----------------</span>
@@ -2379,8 +2432,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The normalized height function, formula string, normalized minimum</span>
-<span class="sd">        height, and low and high z axis limits.</span>
+<span class="sd">            The normalized height function, formula string, normalized minimum</span>
+<span class="sd">            height, and low and high z axis limits.</span>
 <span class="sd">        """</span>
 
         <span class="n">f_raw</span><span class="p">,</span> <span class="n">tex</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span>
@@ -2416,8 +2469,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The contour group and ``False`` because these rings stay on the</span>
-<span class="sd">        floor and do not rotate with the surface.</span>
+<span class="sd">            The contour group and ``False`` because these rings stay on the</span>
+<span class="sd">            floor and do not rotate with the surface.</span>
 <span class="sd">        """</span>
         <span class="n">g</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.045</span><span class="p">]:</span>
@@ -2450,7 +2503,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The peak coordinates, tag formula, HUD flag, and stem start height.</span>
+<span class="sd">            The peak coordinates, tag formula, HUD flag, and stem start height.</span>
 <span class="sd">        """</span>
         <span class="n">iy</span><span class="p">,</span> <span class="n">ix</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unravel_index</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_zs</span><span class="o">.</span><span class="n">argmax</span><span class="p">()),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_zs</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 
@@ -2472,7 +2525,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Slot names in beat order.</span>
+<span class="sd">            Slot names in beat order.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="p">[</span><span class="s2">"title"</span><span class="p">,</span> <span class="s2">"axes"</span><span class="p">,</span> <span class="s2">"flat"</span><span class="p">,</span> <span class="s2">"orbit"</span><span class="p">,</span> <span class="s2">"flip"</span><span class="p">,</span> <span class="s2">"outro"</span><span class="p">]</span></div>
 
@@ -2484,7 +2537,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The ``(phi, theta, zoom)`` triple.</span>
+<span class="sd">            The ``(phi, theta, zoom)`` triple.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="mf">68.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">40.0</span><span class="p">,</span> <span class="mf">0.95</span></div>
 </div>
@@ -2508,8 +2561,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The height function, formula string, normalized minimum height, and</span>
-<span class="sd">        low and high z axis limits.</span>
+<span class="sd">            The height function, formula string, normalized minimum height, and</span>
+<span class="sd">            low and high z axis limits.</span>
 <span class="sd">        """</span>
         <span class="n">d1</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">scale</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="p">(</span><span class="n">d1</span> <span class="o">*</span> <span class="n">d1</span><span class="p">)</span>
@@ -2537,8 +2590,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The contour group and ``False`` because the contours stay on the</span>
-<span class="sd">        floor.</span>
+<span class="sd">            The contour group and ``False`` because the contours stay on the</span>
+<span class="sd">            floor.</span>
 <span class="sd">        """</span>
 
         <span class="n">d1</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -2603,8 +2656,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The origin coordinates, tag formula, HUD flag, and stem start</span>
-<span class="sd">        height.</span>
+<span class="sd">            The origin coordinates, tag formula, HUD flag, and stem start</span>
+<span class="sd">            height.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="sa">r</span><span class="s2">"(0,\,0,\,0)"</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="o">-</span><span class="n">cfg</span><span class="o">.</span><span class="n">height</span> <span class="o">*</span> <span class="mf">1.3</span>  <span class="c1"># 鞍点:HUD 标签</span></div>
 </div>
@@ -2628,8 +2681,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The height function, formula string, normalized minimum height, and</span>
-<span class="sd">        low and high z axis limits.</span>
+<span class="sd">            The height function, formula string, normalized minimum height, and</span>
+<span class="sd">            low and high z axis limits.</span>
 <span class="sd">        """</span>
         <span class="n">d1</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">scale</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="p">(</span><span class="n">d1</span> <span class="o">*</span> <span class="n">d1</span><span class="p">)</span>
@@ -2657,8 +2710,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The contour group and ``True`` because these rings follow the</span>
-<span class="sd">        surface when it flips.</span>
+<span class="sd">            The contour group and ``True`` because these rings follow the</span>
+<span class="sd">            surface when it flips.</span>
 <span class="sd">        """</span>
 
         <span class="n">d1</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
@@ -2696,8 +2749,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The origin coordinates, tag formula, HUD flag, and stem start</span>
-<span class="sd">        height.</span>
+<span class="sd">            The origin coordinates, tag formula, HUD flag, and stem start</span>
+<span class="sd">            height.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="sa">r</span><span class="s2">"(0,\,0,\,0)"</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="o">-</span><span class="n">cfg</span><span class="o">.</span><span class="n">height</span> <span class="o">*</span> <span class="mf">0.6</span>  <span class="c1"># 顶点:HUD 标签</span></div>
 </div>
@@ -2723,8 +2776,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A placeholder height function, the formula string, normalized</span>
-<span class="sd">        minimum height, and low and high z axis limits.</span>
+<span class="sd">            A placeholder height function, the formula string, normalized</span>
+<span class="sd">            minimum height, and low and high z axis limits.</span>
 <span class="sd">        """</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">semi_axes</span>
         <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">0.0</span>  <span class="c1"># 闭曲面不经图构造,占位</span>
@@ -2752,7 +2805,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The uniformly scaled axes.</span>
+<span class="sd">            The uniformly scaled axes.</span>
 <span class="sd">        """</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">semi_axes</span>
         <span class="n">k</span> <span class="o">=</span> <span class="mf">7.2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="mf">0.4</span><span class="p">))</span>
@@ -2787,7 +2840,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The coloured ellipsoid surface.</span>
+<span class="sd">            The coloured ellipsoid surface.</span>
 <span class="sd">        """</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">semi_axes</span>
         <span class="n">s</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span>
@@ -2828,8 +2881,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The contour group and ``True`` because the rings rotate with the</span>
-<span class="sd">        surface.</span>
+<span class="sd">            The contour group and ``True`` because the rings rotate with the</span>
+<span class="sd">            surface.</span>
 <span class="sd">        """</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">semi_axes</span>
         <span class="n">g</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">()</span>
@@ -2864,7 +2917,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The apex coordinates, tag formula, HUD flag, and stem start height.</span>
+<span class="sd">            The apex coordinates, tag formula, HUD flag, and stem start height.</span>
 <span class="sd">        """</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">semi_axes</span>
         <span class="c1"># 上顶点外露,3D 标签即可;虚线从上方垂下(顶点以下在曲面内部,会被遮挡)</span>
@@ -2892,8 +2945,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A placeholder height function, the formula string, normalized</span>
-<span class="sd">        minimum height, and low and high z axis limits.</span>
+<span class="sd">            A placeholder height function, the formula string, normalized</span>
+<span class="sd">            minimum height, and low and high z axis limits.</span>
 <span class="sd">        """</span>
         <span class="n">R</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">major_radius</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">minor_radius</span>
         <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">0.0</span>  <span class="c1"># 闭曲面不经图构造,占位</span>
@@ -2917,7 +2970,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The uniformly scaled axes.</span>
+<span class="sd">            The uniformly scaled axes.</span>
 <span class="sd">        """</span>
         <span class="n">R</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">major_radius</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">minor_radius</span>
         <span class="n">outer</span> <span class="o">=</span> <span class="n">R</span> <span class="o">+</span> <span class="n">r</span>
@@ -2953,7 +3006,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The coloured torus surface.</span>
+<span class="sd">            The coloured torus surface.</span>
 <span class="sd">        """</span>
         <span class="n">R</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">major_radius</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">minor_radius</span>
         <span class="n">s</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span>
@@ -2996,8 +3049,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The contour group and ``True`` because the rings rotate with the</span>
-<span class="sd">        surface.</span>
+<span class="sd">            The contour group and ``True`` because the rings rotate with the</span>
+<span class="sd">            surface.</span>
 <span class="sd">        """</span>
         <span class="n">R</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">major_radius</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">minor_radius</span>
         <span class="n">g</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">()</span>
@@ -3034,7 +3087,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The apex coordinates, tag formula, HUD flag, and stem start height.</span>
+<span class="sd">            The apex coordinates, tag formula, HUD flag, and stem start height.</span>
 <span class="sd">        """</span>
         <span class="n">R</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">major_radius</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">minor_radius</span>
         <span class="c1"># 最高点外露,3D 标签;天线虚线自上垂下(其余方向在曲面/孔洞里)</span>
@@ -3062,8 +3115,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A placeholder height function, the formula string, normalized</span>
-<span class="sd">        minimum height, and low and high z axis limits.</span>
+<span class="sd">            A placeholder height function, the formula string, normalized</span>
+<span class="sd">            minimum height, and low and high z axis limits.</span>
 <span class="sd">        """</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">waist_radius</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">z_extent</span>
         <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">0.0</span>  <span class="c1"># 闭式管面不经图构造,占位</span>
@@ -3088,7 +3141,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The uniformly scaled axes.</span>
+<span class="sd">            The uniformly scaled axes.</span>
 <span class="sd">        """</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">waist_radius</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">z_extent</span>
         <span class="n">max_r</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">a</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">h</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>  <span class="c1"># 端口半径</span>
@@ -3124,7 +3177,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The coloured hyperboloid surface.</span>
+<span class="sd">            The coloured hyperboloid surface.</span>
 <span class="sd">        """</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">waist_radius</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">z_extent</span>
         <span class="n">s</span> <span class="o">=</span> <span class="n">Surface</span><span class="p">(</span>
@@ -3167,8 +3220,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The contour group and ``True`` because the rings rotate with the</span>
-<span class="sd">        surface.</span>
+<span class="sd">            The contour group and ``True`` because the rings rotate with the</span>
+<span class="sd">            surface.</span>
 <span class="sd">        """</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">waist_radius</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">z_extent</span>
         <span class="n">g</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">()</span>
@@ -3204,8 +3257,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The waist point coordinates, tag formula, HUD flag, and stem start</span>
-<span class="sd">        height.</span>
+<span class="sd">            The waist point coordinates, tag formula, HUD flag, and stem start</span>
+<span class="sd">            height.</span>
 <span class="sd">        """</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">waist_radius</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">z_extent</span>
         <span class="c1"># 腰圆前点(a,0,0):竖直虚线两端都扎进曲面,免虚线,点+HUD 标签</span>
@@ -3229,8 +3282,8 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    The base name on its first use, followed by an increasing suffix</span>
-<span class="sd">    afterwards.</span>
+<span class="sd">        The base name on its first use, followed by an increasing suffix</span>
+<span class="sd">        afterwards.</span>
 <span class="sd">    """</span>
     <span class="n">n</span> <span class="o">=</span> <span class="n">_name_seq</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="n">_name_seq</span><span class="p">[</span><span class="n">base</span><span class="p">]</span> <span class="o">=</span> <span class="n">n</span>
@@ -3254,8 +3307,8 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    A callable that accepts an optional class name and configuration</span>
-<span class="sd">    keyword arguments and returns the new scene class.</span>
+<span class="sd">        A callable that accepts an optional class name and configuration</span>
+<span class="sd">        keyword arguments and returns the new scene class.</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">factory</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
@@ -3269,7 +3322,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A new Scene subclass carrying the supplied configuration.</span>
+<span class="sd">            A new Scene subclass carrying the supplied configuration.</span>
 <span class="sd">        """</span>
         <span class="n">cfg</span> <span class="o">=</span> <span class="n">cfg_cls</span><span class="p">(</span><span class="o">**</span><span class="n">kw</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">type</span><span class="p">(</span><span class="n">name</span> <span class="ow">or</span> <span class="n">_scene_name</span><span class="p">(</span><span class="n">base_name</span><span class="p">),</span> <span class="p">(</span><span class="n">scene_cls</span><span class="p">,),</span> <span class="p">{</span><span class="s2">"style"</span><span class="p">:</span> <span class="n">cfg</span><span class="p">})</span>

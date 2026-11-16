@@ -1,6 +1,6 @@
 <ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://www.w3.org/1999/xlink" width="922pt" height="3095pt" viewBox="0.00 0.00 922.00 3095.00">
 <ns0:g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 3090.95)">
-<ns0:title>inheritance7a0d7fc705</ns0:title>
+<ns0:title>inheritancee8ae153edc</ns0:title>
 
 <ns0:g id="node1" class="node">
 <ns0:title>ABC</ns0:title>
@@ -2044,7 +2044,7 @@
 
 <ns0:g id="node58" class="node">
 <ns0:title>GraphSurfaceScene</ns0:title>
-<ns0:g id="a_node58"><ns0:a ns1:title="Shared beat skeleton for graph and closed surfaces.">
+<ns0:g id="a_node58"><ns0:a ns1:href="../reference/three_d/core.GraphSurfaceScene.html#manim_extensions.three_d.core.GraphSurfaceScene" ns1:title="Shared beat skeleton for graph and closed surfaces." target="_top">
 <ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="281.65,-2807.95 179.2,-2807.95 179.2,-2788 281.65,-2788 281.65,-2807.95" />
 <ns0:text xml:space="preserve" text-anchor="middle" x="230.43" y="-2794.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">GraphSurfaceScene</ns0:text>
 </ns0:a>

@@ -1360,6 +1360,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.EllipsoidSurface.html">EllipsoidSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.TorusSurface.html">TorusSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.HyperboloidOneSheet.html">HyperboloidOneSheet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GraphSurfaceScene.html">GraphSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GaussianSurfaceScene.html">GaussianSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.SaddleSurfaceScene.html">SaddleSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.ParaboloidSurfaceScene.html">ParaboloidSurfaceScene</a></li>
@@ -1576,7 +1577,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        ``None``; the line and text positions are updated in place.</span>
+<span class="sd">            ``None``; the line and text positions are updated in place.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="p">[</span><span class="s2">"line"</span><span class="p">]</span><span class="o">.</span><span class="n">set_points_as_corners</span><span class="p">(</span>
             <span class="p">[</span>
@@ -1661,7 +1662,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        ``None``; the pointer is repositioned in place.</span>
+<span class="sd">            ``None``; the pointer is repositioned in place.</span>
 <span class="sd">        """</span>
         <span class="n">point</span> <span class="o">=</span> <span class="n">mob</span><span class="o">.</span><span class="n">point_from_proportion</span><span class="p">(</span><span class="n">proportion</span><span class="p">)</span>
         <span class="c1"># if the mob center and point happens to be the same, it causes problems</span>
@@ -2071,7 +2072,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        ``None``; the arrow points are regenerated in place.</span>
+<span class="sd">            ``None``; the arrow points are regenerated in place.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">PM</span><span class="o">.</span><span class="n">generate_length_map</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">generate_points</span><span class="p">()</span></div>
@@ -2084,7 +2085,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The horizontal position of the tip along the target curve.</span>
+<span class="sd">            The horizontal position of the tip along the target curve.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">__reversed_arrow</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">arrowhead</span><span class="o">.</span><span class="n">get_critical_point</span><span class="p">(</span><span class="n">LEFT</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
@@ -2104,7 +2105,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        ``None``; the arrow head is scaled in place.</span>
+<span class="sd">            ``None``; the arrow head is scaled in place.</span>
 <span class="sd">        """</span>
         <span class="n">act_size</span> <span class="o">=</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">arrowhead</span><span class="o">.</span><span class="n">get_critical_point</span><span class="p">(</span><span class="n">RIGHT</span><span class="p">)</span>
@@ -2123,7 +2124,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        ``None``; the arrow head is flipped in place.</span>
+<span class="sd">            ``None``; the arrow head is flipped in place.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">arrowhead</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span></div>
 
@@ -2134,7 +2135,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The current reversed state.</span>
+<span class="sd">            The current reversed state.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__reversed_arrow</span>
 
@@ -2149,7 +2150,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        ``None``; the arrow is flipped when the state changes.</span>
+<span class="sd">            ``None``; the arrow is flipped when the state changes.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">rev</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__reversed_arrow</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">flip_arrow</span><span class="p">()</span>

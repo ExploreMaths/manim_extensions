@@ -1360,6 +1360,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../reference/three_d/core.EllipsoidSurface.html">EllipsoidSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../reference/three_d/core.TorusSurface.html">TorusSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../reference/three_d/core.HyperboloidOneSheet.html">HyperboloidOneSheet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/three_d/core.GraphSurfaceScene.html">GraphSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../reference/three_d/core.GaussianSurfaceScene.html">GaussianSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../reference/three_d/core.SaddleSurfaceScene.html">SaddleSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../reference/three_d/core.ParaboloidSurfaceScene.html">ParaboloidSurfaceScene</a></li>
@@ -2200,7 +2201,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The two unit direction vectors toward the line endpoints.</span>
+<span class="sd">            The two unit direction vectors toward the line endpoints.</span>
 <span class="sd">        """</span>
         <span class="n">start</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">get_start</span><span class="p">()</span>
         <span class="n">end</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">get_end</span><span class="p">()</span>
@@ -2245,7 +2246,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The chosen direction from each pair.</span>
+<span class="sd">            The chosen direction from each pair.</span>
 <span class="sd">        """</span>
         <span class="n">candidates</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">d1</span> <span class="ow">in</span> <span class="n">dirs1</span><span class="p">:</span>
@@ -2599,7 +2600,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The video duration in seconds divided by the playback rate.</span>
+<span class="sd">            The video duration in seconds divided by the playback rate.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_duration</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">rate</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">rate</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="mf">0.0</span>
 

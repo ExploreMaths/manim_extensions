@@ -1360,6 +1360,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.EllipsoidSurface.html">EllipsoidSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.TorusSurface.html">TorusSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.HyperboloidOneSheet.html">HyperboloidOneSheet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GraphSurfaceScene.html">GraphSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GaussianSurfaceScene.html">GaussianSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.SaddleSurfaceScene.html">SaddleSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.ParaboloidSurfaceScene.html">ParaboloidSurfaceScene</a></li>
@@ -1503,7 +1504,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    The arc parameters and the two curve parameters where they are cut.</span>
+<span class="sd">        The arc parameters and the two curve parameters where they are cut.</span>
 <span class="sd">    """</span>
     <span class="n">bez_func_1</span> <span class="o">=</span> <span class="n">bezier</span><span class="p">(</span><span class="n">curve_points_1</span><span class="p">)</span>
     <span class="n">diff_func_1</span> <span class="o">=</span> <span class="n">bezier</span><span class="p">((</span><span class="n">curve_points_1</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">curve_points_1</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
@@ -1570,7 +1571,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    The same mobject with rounded corners.</span>
+<span class="sd">        The same mobject with rounded corners.</span>
 <span class="sd">    """</span>
     <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">mob</span><span class="o">.</span><span class="n">get_num_curves</span><span class="p">()</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mf">1e5</span><span class="p">:</span>
@@ -1619,8 +1620,8 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    The chamfer line endpoints and the curve parameters where they are</span>
-<span class="sd">    cut.</span>
+<span class="sd">        The chamfer line endpoints and the curve parameters where they are</span>
+<span class="sd">        cut.</span>
 <span class="sd">    """</span>
     <span class="c1"># this is ugly, I know, don't judge</span>
     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="s2">"iter"</span><span class="p">):</span>
@@ -1667,7 +1668,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">    The same mobject with chamfered corners.</span>
+<span class="sd">        The same mobject with chamfered corners.</span>
 <span class="sd">    """</span>
     <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">mob</span><span class="o">.</span><span class="n">get_num_curves</span><span class="p">()</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mf">1e5</span><span class="p">:</span>

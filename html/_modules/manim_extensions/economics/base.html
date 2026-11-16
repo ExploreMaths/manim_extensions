@@ -1360,6 +1360,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.EllipsoidSurface.html">EllipsoidSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.TorusSurface.html">TorusSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.HyperboloidOneSheet.html">HyperboloidOneSheet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GraphSurfaceScene.html">GraphSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GaussianSurfaceScene.html">GaussianSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.SaddleSurfaceScene.html">SaddleSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.ParaboloidSurfaceScene.html">ParaboloidSurfaceScene</a></li>
@@ -1713,8 +1714,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The unicode subscript character, or the plain number when out of</span>
-<span class="sd">        range.</span>
+<span class="sd">            The unicode subscript character, or the plain number when out of</span>
+<span class="sd">            range.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">9</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_SUBSCRIPTS</span><span class="p">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
@@ -1748,9 +1749,9 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A geometry group with the dot and dashed lines, and a labels group</span>
-<span class="sd">        with the axis text, or ``(None, None)`` when the curves do not</span>
-<span class="sd">        intersect.</span>
+<span class="sd">            A geometry group with the dot and dashed lines, and a labels group</span>
+<span class="sd">            with the axis text, or ``(None, None)`` when the curves do not</span>
+<span class="sd">            intersect.</span>
 <span class="sd">        """</span>
         <span class="n">func_a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_curve_funcs</span><span class="p">[</span><span class="n">curve_a</span><span class="p">]</span>
         <span class="n">func_b</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_curve_funcs</span><span class="p">[</span><span class="n">curve_b</span><span class="p">]</span>
@@ -1815,8 +1816,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The combined marker group, or ``None`` when the curves do not</span>
-<span class="sd">        intersect.</span>
+<span class="sd">            The combined marker group, or ``None`` when the curves do not</span>
+<span class="sd">            intersect.</span>
 <span class="sd">        """</span>
         <span class="n">geom</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_eq_parts</span><span class="p">(</span>
             <span class="n">curve_a</span><span class="p">,</span> <span class="n">curve_b</span><span class="p">,</span> <span class="n">label_x</span><span class="p">,</span> <span class="n">label_y</span><span class="p">,</span> <span class="n">subscript</span>
@@ -1884,8 +1885,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The equilibrium x and y values, or ``None`` when no equilibrium is</span>
-<span class="sd">        stored or the curves do not intersect.</span>
+<span class="sd">            The equilibrium x and y values, or ``None`` when no equilibrium is</span>
+<span class="sd">            stored or the curves do not intersect.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eq_curve_names</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
@@ -1919,7 +1920,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A group containing the shaft and the tip.</span>
+<span class="sd">            A group containing the shaft and the tip.</span>
 <span class="sd">        """</span>
         <span class="n">direction</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
         <span class="n">norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span>
@@ -1962,7 +1963,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A group with up to two arrows, one per moving axis value.</span>
+<span class="sd">            A group with up to two arrows, one per moving axis value.</span>
 <span class="sd">        """</span>
         <span class="n">old_x</span><span class="p">,</span> <span class="n">old_y</span> <span class="o">=</span> <span class="n">old_xy</span>
         <span class="n">new_x</span><span class="p">,</span> <span class="n">new_y</span> <span class="o">=</span> <span class="n">new_xy</span>

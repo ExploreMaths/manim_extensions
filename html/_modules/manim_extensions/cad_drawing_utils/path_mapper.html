@@ -1360,6 +1360,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.EllipsoidSurface.html">EllipsoidSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.TorusSurface.html">TorusSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.HyperboloidOneSheet.html">HyperboloidOneSheet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GraphSurfaceScene.html">GraphSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GaussianSurfaceScene.html">GaussianSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.SaddleSurfaceScene.html">SaddleSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.ParaboloidSurfaceScene.html">ParaboloidSurfaceScene</a></li>
@@ -1523,7 +1524,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        ``None``; the length and alpha tables are stored on the instance.</span>
+<span class="sd">            ``None``; the length and alpha tables are stored on the instance.</span>
 <span class="sd">        """</span>
         <span class="n">norms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">get_num_curves</span><span class="p">()):</span>
@@ -1547,7 +1548,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Six control points forming two consecutive quadratic segments.</span>
+<span class="sd">            Six control points forming two consecutive quadratic segments.</span>
 <span class="sd">        """</span>
         <span class="c1"># based on https://ttnghia.github.io/pdf/QuadraticApproximation.pdf</span>
         <span class="n">q_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
@@ -1577,7 +1578,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The arc length.</span>
+<span class="sd">            The arc length.</span>
 <span class="sd">        """</span>
 
         <span class="n">a</span> <span class="o">=</span> <span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
@@ -1608,7 +1609,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The summed length of all quadratic segments.</span>
+<span class="sd">            The summed length of all quadratic segments.</span>
 <span class="sd">        """</span>
         <span class="n">L</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">get_num_curves</span><span class="p">()):</span>
@@ -1627,7 +1628,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The cumulative length at the final sample.</span>
+<span class="sd">            The cumulative length at the final sample.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathdata_lengths</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
 
@@ -1644,7 +1645,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A proportion, or a list of proportions for iterable input.</span>
+<span class="sd">            A proportion, or a list of proportions for iterable input.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="s2">"__iter__"</span><span class="p">):</span>
             <span class="k">return</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathdata_lengths</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathdata_alpha</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
@@ -1664,7 +1665,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        An arc length, or a list of arc lengths for iterable input.</span>
+<span class="sd">            An arc length, or a list of arc lengths for iterable input.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s2">"__iter__"</span><span class="p">):</span>
             <span class="k">return</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathdata_alpha</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathdata_lengths</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">a</span><span class="p">]</span>
@@ -1684,7 +1685,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The length-based proportion at the same path position.</span>
+<span class="sd">            The length-based proportion at the same path position.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_from_length</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_path_length</span><span class="p">())</span></div>
 
@@ -1701,27 +1702,27 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A callable rate function that compensates for path length.</span>
+<span class="sd">            A callable rate function that compensates for path length.</span>
 
-<span class="sd">        Example:</span>
+<span class="sd">            Example:</span>
 
-<span class="sd">        .. code-block:: python</span>
+<span class="sd">            .. code-block:: python</span>
 
-<span class="sd">            class TestPathMapperAnim(Scene):</span>
-<span class="sd">                def construct(self):</span>
-<span class="sd">                    mob1 = round_corners(</span>
-<span class="sd">                        Triangle(fill_color=TEAL, fill_opacity=0).scale(3), 0.5</span>
-<span class="sd">                    )</span>
-<span class="sd">                    path_mapper = PathMapper(mob1)</span>
-<span class="sd">                    mob2 = mob1.copy()</span>
-<span class="sd">                    mob1.shift(LEFT * 2.5)</span>
-<span class="sd">                    mob2.shift(RIGHT * 2.5)</span>
-<span class="sd">                    self.play(</span>
-<span class="sd">                        Create(mob1, rate_func=path_mapper.equalize_rate_func(smooth)),</span>
-<span class="sd">                        Create(mob2),</span>
-<span class="sd">                        run_time=5,</span>
-<span class="sd">                    )</span>
-<span class="sd">                    self.wait()</span>
+<span class="sd">                class TestPathMapperAnim(Scene):</span>
+<span class="sd">                    def construct(self):</span>
+<span class="sd">                        mob1 = round_corners(</span>
+<span class="sd">                            Triangle(fill_color=TEAL, fill_opacity=0).scale(3), 0.5</span>
+<span class="sd">                        )</span>
+<span class="sd">                        path_mapper = PathMapper(mob1)</span>
+<span class="sd">                        mob2 = mob1.copy()</span>
+<span class="sd">                        mob1.shift(LEFT * 2.5)</span>
+<span class="sd">                        mob2.shift(RIGHT * 2.5)</span>
+<span class="sd">                        self.play(</span>
+<span class="sd">                            Create(mob1, rate_func=path_mapper.equalize_rate_func(smooth)),</span>
+<span class="sd">                            Create(mob2),</span>
+<span class="sd">                            run_time=5,</span>
+<span class="sd">                        )</span>
+<span class="sd">                        self.wait()</span>
 <span class="sd">        """</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">eq_func</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
@@ -1746,8 +1747,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The point coordinates, or a stacked array of points for iterable</span>
-<span class="sd">        input.</span>
+<span class="sd">            The point coordinates, or a stacked array of points for iterable</span>
+<span class="sd">            input.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="s2">"__iter__"</span><span class="p">):</span>
             <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_from_length</span><span class="p">(</span><span class="n">alpha</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_path_length</span><span class="p">())</span>
@@ -1787,7 +1788,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The signed length from ``a`` to ``b``.</span>
+<span class="sd">            The signed length from ``a`` to ``b``.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">length_from_alpha</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">length_from_alpha</span><span class="p">(</span><span class="n">a</span><span class="p">)</span></div>
 
@@ -1806,8 +1807,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The distance wrapped into the range minus half the path length to</span>
-<span class="sd">        plus half the path length.</span>
+<span class="sd">            The distance wrapped into the range minus half the path length to</span>
+<span class="sd">            plus half the path length.</span>
 <span class="sd">        """</span>
         <span class="n">AB</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_length_between_points</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
         <span class="n">L</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_path_length</span><span class="p">()</span>
@@ -1828,7 +1829,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A tuple of the shorter and longer absolute lengths.</span>
+<span class="sd">            A tuple of the shorter and longer absolute lengths.</span>
 <span class="sd">        """</span>
 
         <span class="n">AB</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_length_between_points</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">))</span>
@@ -1851,7 +1852,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The curve index and the local parameter within that curve.</span>
+<span class="sd">            The curve index and the local parameter within that curve.</span>
 <span class="sd">        """</span>
         <span class="n">a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_from_length</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
         <span class="n">nc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">get_num_curves</span><span class="p">()</span>
@@ -1875,7 +1876,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The normalized tangent direction.</span>
+<span class="sd">            The normalized tangent direction.</span>
 <span class="sd">        """</span>
         <span class="c1"># diff_bez_points = 1/3*(self.path.points[1:,:]-self.path.points[:-1,:])</span>
         <span class="n">indx</span><span class="p">,</span> <span class="n">bz_a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_bezier_index_from_length</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
@@ -1898,7 +1899,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The tangent direction as an angle in radians.</span>
+<span class="sd">            The tangent direction as an angle in radians.</span>
 <span class="sd">        """</span>
         <span class="n">tv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_tangent_unit_vector</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">angle_of_vector</span><span class="p">(</span><span class="n">tv</span><span class="p">)</span></div>
@@ -1916,7 +1917,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The tangent rotated ninety degrees counter-clockwise.</span>
+<span class="sd">            The tangent rotated ninety degrees counter-clockwise.</span>
 <span class="sd">        """</span>
         <span class="n">tv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_tangent_unit_vector</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">rotate_vector</span><span class="p">(</span><span class="n">tv</span><span class="p">,</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span></div>
@@ -1934,7 +1935,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The curvature vector from the first and second derivatives.</span>
+<span class="sd">            The curvature vector from the first and second derivatives.</span>
 <span class="sd">        """</span>
         <span class="n">indx</span><span class="p">,</span> <span class="n">bz_a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_bezier_index_from_length</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
         <span class="n">points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">get_nth_curve_points</span><span class="p">(</span><span class="n">indx</span><span class="p">)</span>
@@ -1958,7 +1959,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The magnitude of the curvature vector.</span>
+<span class="sd">            The magnitude of the curvature vector.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_curvature_vector</span><span class="p">(</span><span class="n">s</span><span class="p">))</span></div>
 </div>
@@ -2029,7 +2030,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Start and end lengths of the dashes.</span>
+<span class="sd">            Start and end lengths of the dashes.</span>
 <span class="sd">        """</span>
         <span class="n">period</span> <span class="o">=</span> <span class="n">dash_len</span> <span class="o">+</span> <span class="n">space_len</span>
         <span class="n">n</span> <span class="o">=</span> <span class="n">num_dashes</span>
@@ -2070,7 +2071,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Start and end lengths of the dashes.</span>
+<span class="sd">            Start and end lengths of the dashes.</span>
 <span class="sd">        """</span>
         <span class="n">full_len</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">get_path_length</span><span class="p">()</span>
         <span class="n">period</span> <span class="o">=</span> <span class="n">full_len</span> <span class="o">/</span> <span class="n">num_dashes</span>
@@ -2099,7 +2100,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A group containing one partial path per dash.</span>
+<span class="sd">            A group containing one partial path per dash.</span>
 <span class="sd">        """</span>
         <span class="n">ref_mob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">path</span>
         <span class="n">a_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">alpha_from_length</span><span class="p">(</span><span class="n">dash_starts</span><span class="p">)</span>
@@ -2284,7 +2285,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        ``None``; the arguments are stored on the instance.</span>
+<span class="sd">            ``None``; the arguments are stored on the instance.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ofs_func_kwargs</span> <span class="o">=</span> <span class="n">ofs_func_kwargs</span></div>
 
@@ -2307,7 +2308,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A list of four-point control sets, one per interval.</span>
+<span class="sd">            A list of four-point control sets, one per interval.</span>
 <span class="sd">        """</span>
         <span class="c1"># generate bezier 4-lets with numerical difference</span>
         <span class="n">out_data</span> <span class="o">=</span> <span class="p">[]</span>
@@ -2337,7 +2338,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        ``None``; the curve and its path mapper are stored on the instance.</span>
+<span class="sd">            ``None``; the curve and its path mapper are stored on the instance.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ref_curve</span> <span class="o">=</span> <span class="n">VMobject</span><span class="p">()</span>
         <span class="n">bez_point</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_bezier_points</span><span class="p">(</span>
@@ -2360,7 +2361,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A list of four-point control sets for the offset curve.</span>
+<span class="sd">            A list of four-point control sets for the offset curve.</span>
 <span class="sd">        """</span>
         <span class="n">points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_bezier_points</span><span class="p">(</span>
             <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">ofs_func</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">ofs_func_kwargs</span><span class="p">),</span>
@@ -2377,7 +2378,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A list of four-vector sets, one per sampled Bezier curve.</span>
+<span class="sd">            A list of four-vector sets, one per sampled Bezier curve.</span>
 <span class="sd">        """</span>
         <span class="n">s_range</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">t_range</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">PM</span><span class="o">.</span><span class="n">get_path_length</span><span class="p">()</span>
         <span class="c1"># generate normal vectors from tangent angles and turning them 90°</span>
@@ -2405,7 +2406,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The point array of the offset path.</span>
+<span class="sd">            The point array of the offset path.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">gen_ref_curve</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">generate_ref_curve</span><span class="p">()</span>
@@ -2440,7 +2441,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        ``None``; the points are replaced in place.</span>
+<span class="sd">            ``None``; the points are replaced in place.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_offset_paths</span><span class="p">(</span><span class="n">gen_ofs_point</span><span class="p">,</span> <span class="n">gen_ref_curve</span><span class="p">)</span></div>
 </div>
@@ -2501,7 +2502,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        ``None``; the mapped points are stored on the instance.</span>
+<span class="sd">            ``None``; the mapped points are stored on the instance.</span>
 <span class="sd">        """</span>
         <span class="n">s0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PM</span><span class="o">.</span><span class="n">length_from_alpha</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">anchor_point</span><span class="p">)</span>
         <span class="n">x_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">warp_source</span><span class="o">.</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">s0</span>

@@ -85,6 +85,7 @@ from base Manim in blue.
    manim_extensions.three_d.core.EllipsoidSurface
    manim_extensions.three_d.core.TorusSurface
    manim_extensions.three_d.core.HyperboloidOneSheet
+   manim_extensions.three_d.core.GraphSurfaceScene
    manim_extensions.three_d.core.GaussianSurfaceScene
    manim_extensions.three_d.core.SaddleSurfaceScene
    manim_extensions.three_d.core.ParaboloidSurfaceScene

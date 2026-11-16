@@ -1360,6 +1360,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.EllipsoidSurface.html">EllipsoidSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.TorusSurface.html">TorusSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.HyperboloidOneSheet.html">HyperboloidOneSheet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GraphSurfaceScene.html">GraphSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GaussianSurfaceScene.html">GaussianSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.SaddleSurfaceScene.html">SaddleSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.ParaboloidSurfaceScene.html">ParaboloidSurfaceScene</a></li>
@@ -2054,7 +2055,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Snapshot whose axis layout matches this chart.</span>
+<span class="sd">            Snapshot whose axis layout matches this chart.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2193,7 +2194,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Pairs of resolved colour and display label.</span>
+<span class="sd">            Pairs of resolved colour and display label.</span>
 <span class="sd">        """</span>
         <span class="n">out</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">datasets</span><span class="p">):</span>
@@ -2288,7 +2289,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The same chart, allowing calls to be chained.</span>
+<span class="sd">            The same chart, allowing calls to be chained.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2326,7 +2327,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The same chart, allowing calls to be chained.</span>
+<span class="sd">            The same chart, allowing calls to be chained.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2350,7 +2351,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The same chart, allowing calls to be chained.</span>
+<span class="sd">            The same chart, allowing calls to be chained.</span>
 <span class="sd">        """</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_focus</span> <span class="o">=</span> <span class="kc">None</span>
@@ -2393,7 +2394,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The same chart, allowing calls to be chained.</span>
+<span class="sd">            The same chart, allowing calls to be chained.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2431,7 +2432,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The same chart, allowing calls to be chained.</span>
+<span class="sd">            The same chart, allowing calls to be chained.</span>
 <span class="sd">        """</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_gap_spec</span> <span class="o">=</span> <span class="kc">None</span>
@@ -2451,7 +2452,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Data object backing dataset 0.</span>
+<span class="sd">            Data object backing dataset 0.</span>
 <span class="sd">        """</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_series</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
@@ -2462,7 +2463,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        One snapshot per visible dataset.</span>
+<span class="sd">            One snapshot per visible dataset.</span>
 <span class="sd">        """</span>
 
         <span class="k">return</span> <span class="p">[</span><span class="n">s</span><span class="o">.</span><span class="n">data</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_series</span><span class="p">]</span>
@@ -2473,7 +2474,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        One value per axis for dataset 0.</span>
+<span class="sd">            One value per axis for dataset 0.</span>
 <span class="sd">        """</span>
 
         <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_series</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
@@ -2484,7 +2485,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Value represented by the outermost grid ring.</span>
+<span class="sd">            Value represented by the outermost grid ring.</span>
 <span class="sd">        """</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scale</span>
@@ -2495,7 +2496,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Count of spokes in the radar grid.</span>
+<span class="sd">            Count of spokes in the radar grid.</span>
 <span class="sd">        """</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span>
@@ -2510,7 +2511,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        World-space centre of the radar grid.</span>
+<span class="sd">            World-space centre of the radar grid.</span>
 <span class="sd">        """</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_anchor</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span></div>
@@ -2522,7 +2523,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Current polygon colour of dataset 0.</span>
+<span class="sd">            Current polygon colour of dataset 0.</span>
 <span class="sd">        """</span>
 
         <span class="k">return</span> <span class="n">ManimColor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_series</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">color</span><span class="p">)</span>
@@ -2546,7 +2547,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The same chart, allowing calls to be chained.</span>
+<span class="sd">            The same chart, allowing calls to be chained.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -2608,7 +2609,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The same chart, allowing calls to be chained.</span>
+<span class="sd">            The same chart, allowing calls to be chained.</span>
 <span class="sd">        """</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_series</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">ManimColor</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
@@ -2627,7 +2628,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The same chart, allowing calls to be chained.</span>
+<span class="sd">            The same chart, allowing calls to be chained.</span>
 <span class="sd">        """</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_series</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">rim</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">amount</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
@@ -2646,7 +2647,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The same chart, allowing calls to be chained.</span>
+<span class="sd">            The same chart, allowing calls to be chained.</span>
 <span class="sd">        """</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_glitch</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">amount</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
@@ -2668,7 +2669,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The same chart, allowing calls to be chained.</span>
+<span class="sd">            The same chart, allowing calls to be chained.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_opacity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
         <span class="k">return</span> <span class="bp">self</span></div>
@@ -2686,7 +2687,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The same chart, allowing calls to be chained.</span>
+<span class="sd">            The same chart, allowing calls to be chained.</span>
 <span class="sd">        """</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">config</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">evolved</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">radius</span><span class="p">))</span><span class="o">.</span><span class="n">validated</span><span class="p">()</span>
@@ -2718,7 +2719,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A Manim animation builder for ``self.play``.</span>
+<span class="sd">            A Manim animation builder for ``self.play``.</span>
 <span class="sd">        """</span>
         <span class="n">center</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_anchor</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>
         <span class="n">builder</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">factor</span><span class="p">),</span> <span class="n">about_point</span><span class="o">=</span><span class="n">center</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -2741,7 +2742,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A Manim animation builder for ``self.play``.</span>
+<span class="sd">            A Manim animation builder for ``self.play``.</span>
 <span class="sd">        """</span>
 
         <span class="n">center</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_anchor</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>
@@ -2764,7 +2765,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The same chart, allowing calls to be chained.</span>
+<span class="sd">            The same chart, allowing calls to be chained.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_rig</span> <span class="o">=</span> <span class="n">rig</span>
         <span class="k">return</span> <span class="bp">self</span></div>
@@ -2803,8 +2804,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The :class:`~manim_extensions.radar.animations.RadarMorph`</span>
-<span class="sd">        animation for ``self.play``.</span>
+<span class="sd">            The :class:`~manim_extensions.radar.animations.RadarMorph`</span>
+<span class="sd">            animation for ``self.play``.</span>
 <span class="sd">        """</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">.animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarMorph</span>
 
@@ -2836,7 +2837,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A radar reveal animation for ``self.play``.</span>
+<span class="sd">            A radar reveal animation for ``self.play``.</span>
 <span class="sd">        """</span>
 
         <span class="kn">from</span><span class="w"> </span><span class="nn">.animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarReveal</span>
@@ -2858,7 +2859,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A radar fade animation for ``self.play``.</span>
+<span class="sd">            A radar fade animation for ``self.play``.</span>
 <span class="sd">        """</span>
 
         <span class="kn">from</span><span class="w"> </span><span class="nn">.animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarFade</span>
@@ -2880,7 +2881,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A glitch flash animation for ``self.play``.</span>
+<span class="sd">            A glitch flash animation for ``self.play``.</span>
 <span class="sd">        """</span>
 
         <span class="kn">from</span><span class="w"> </span><span class="nn">.animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">GlitchFlash</span>
@@ -2900,7 +2901,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A shockwave animation for ``self.play``.</span>
+<span class="sd">            A shockwave animation for ``self.play``.</span>
 <span class="sd">        """</span>
 
         <span class="kn">from</span><span class="w"> </span><span class="nn">.animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">Shockwave</span>
@@ -2947,7 +2948,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        World-space corner point.</span>
+<span class="sd">            World-space corner point.</span>
 <span class="sd">        """</span>
 
         <span class="n">ang</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_angles</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">axis_count</span><span class="p">]</span>
@@ -2971,7 +2972,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A :class:`~manim.animation.creation.Create` animation for the web.</span>
+<span class="sd">            A :class:`~manim.animation.creation.Create` animation for the web.</span>
 <span class="sd">        """</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">set_opacity</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>  <span class="c1"># 数据层隐藏，蛛网描好后 reveal 恢复</span>
@@ -2999,7 +3000,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The created backdrop mobject.</span>
+<span class="sd">            The created backdrop mobject.</span>
 <span class="sd">        """</span>
 
         <span class="kn">from</span><span class="w"> </span><span class="nn">.backdrop</span><span class="w"> </span><span class="kn">import</span> <span class="n">DeepSpace</span>
@@ -3025,7 +3026,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Targets that share this chart's axis layout.</span>
+<span class="sd">            Targets that share this chart's axis layout.</span>
 
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
@@ -3065,7 +3066,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Snapshot suitable for the morph animation.</span>
+<span class="sd">            Snapshot suitable for the morph animation.</span>
 <span class="sd">        """</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">RadarData</span><span class="p">):</span>
@@ -3093,7 +3094,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Resolved, optionally brightened, dataset colour.</span>
+<span class="sd">            Resolved, optionally brightened, dataset colour.</span>
 <span class="sd">        """</span>
 
         <span class="n">base</span> <span class="o">=</span> <span class="n">ManimColor</span><span class="p">(</span><span class="n">color</span><span class="p">)</span> <span class="k">if</span> <span class="n">color</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">theme</span><span class="o">.</span><span class="n">dataset_color</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
@@ -3112,7 +3113,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Styled name mobject with the theme gradient.</span>
+<span class="sd">            Styled name mobject with the theme gradient.</span>
 <span class="sd">        """</span>
 
         <span class="n">cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
@@ -3141,7 +3142,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Styled title mobject with the theme gradient.</span>
+<span class="sd">            Styled title mobject with the theme gradient.</span>
 <span class="sd">        """</span>
 
         <span class="n">cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
@@ -3172,7 +3173,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Local-space point with zero z coordinate.</span>
+<span class="sd">            Local-space point with zero z coordinate.</span>
 <span class="sd">        """</span>
 
         <span class="n">r</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span>
@@ -3244,7 +3245,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Closed path in the local frame.</span>
+<span class="sd">            Closed path in the local frame.</span>
 <span class="sd">        """</span>
 
         <span class="n">half</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">angle_deg</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
@@ -3285,7 +3286,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Closed polygon path.</span>
+<span class="sd">            Closed polygon path.</span>
 <span class="sd">        """</span>
 
         <span class="n">R</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">radius</span> <span class="o">*</span> <span class="n">scale</span>
@@ -3311,7 +3312,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Closed polygon path for dataset 0.</span>
+<span class="sd">            Closed polygon path for dataset 0.</span>
 <span class="sd">        """</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_polygon_local_for</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_series</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">scale</span><span class="p">)</span></div>
@@ -3324,7 +3325,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Origin, unit x direction and unit y direction.</span>
+<span class="sd">            Origin, unit x direction and unit y direction.</span>
 <span class="sd">        """</span>
 
         <span class="n">a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_anchor</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>
@@ -3352,7 +3353,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        World-space points.</span>
+<span class="sd">            World-space points.</span>
 <span class="sd">        """</span>
 
         <span class="n">local</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">local</span><span class="p">)</span>
@@ -3542,7 +3543,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Candidate height and whether it fits inside the frame.</span>
+<span class="sd">            Candidate height and whether it fits inside the frame.</span>
 <span class="sd">        """</span>
 
         <span class="n">cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
@@ -3732,7 +3733,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        One rolling number per axis.</span>
+<span class="sd">            One rolling number per axis.</span>
 <span class="sd">        """</span>
 
         <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_series</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
@@ -3771,7 +3772,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        ``"left"``, ``"right"`` or ``"center"``.</span>
+<span class="sd">            ``"left"``, ``"right"`` or ``"center"``.</span>
 <span class="sd">        """</span>
 
         <span class="n">dx</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">direction</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -3850,7 +3851,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Wrapped legend content, empty when legends are disabled.</span>
+<span class="sd">            Wrapped legend content, empty when legends are disabled.</span>
 <span class="sd">        """</span>
 
         <span class="n">cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
@@ -3926,7 +3927,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Clamped legend height.</span>
+<span class="sd">            Clamped legend height.</span>
 <span class="sd">        """</span>
 
         <span class="n">cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
@@ -4089,7 +4090,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Intersection point when the segments cross, otherwise ``None``.</span>
+<span class="sd">            Intersection point when the segments cross, otherwise ``None``.</span>
 <span class="sd">        """</span>
 
         <span class="n">d1</span><span class="p">,</span> <span class="n">d2</span> <span class="o">=</span> <span class="n">p1</span> <span class="o">-</span> <span class="n">p0</span><span class="p">,</span> <span class="n">q1</span> <span class="o">-</span> <span class="n">q0</span>
@@ -4195,7 +4196,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Container in the chart's overflow layer.</span>
+<span class="sd">            Container in the chart's overflow layer.</span>
 <span class="sd">        """</span>
 
         <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">fx_group</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -4218,7 +4219,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Pool of reusable dash segments.</span>
+<span class="sd">            Pool of reusable dash segments.</span>
 <span class="sd">        """</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_series_fx</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
@@ -4247,7 +4248,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Concentric glow circles.</span>
+<span class="sd">            Concentric glow circles.</span>
 <span class="sd">        """</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">_ensure_series_fx</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
@@ -4284,7 +4285,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Read-out that can display values beyond the full scale.</span>
+<span class="sd">            Read-out that can display values beyond the full scale.</span>
 <span class="sd">        """</span>
 
         <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_series</span><span class="p">[</span><span class="n">series_index</span><span class="p">]</span>

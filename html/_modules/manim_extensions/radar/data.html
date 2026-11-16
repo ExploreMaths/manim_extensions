@@ -1360,6 +1360,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.EllipsoidSurface.html">EllipsoidSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.TorusSurface.html">TorusSurface</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.HyperboloidOneSheet.html">HyperboloidOneSheet</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GraphSurfaceScene.html">GraphSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.GaussianSurfaceScene.html">GaussianSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.SaddleSurfaceScene.html">SaddleSurfaceScene</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../reference/three_d/core.ParaboloidSurfaceScene.html">ParaboloidSurfaceScene</a></li>
@@ -1564,7 +1565,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        Number of axis labels.</span>
+<span class="sd">            Number of axis labels.</span>
 <span class="sd">        """</span>
 
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">)</span>
@@ -1575,7 +1576,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        ``"+"`` when a value overflows, otherwise an empty string.</span>
+<span class="sd">            ``"+"`` when a value overflows, otherwise an empty string.</span>
 <span class="sd">        """</span>
 
         <span class="k">return</span> <span class="s2">"+"</span> <span class="k">if</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">full_scale</span> <span class="k">else</span> <span class="s2">""</span>
@@ -1586,8 +1587,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        ``max_value`` when supplied, otherwise the ceiling of the largest</span>
-<span class="sd">        value with a floor of one.</span>
+<span class="sd">            ``max_value`` when supplied, otherwise the ceiling of the largest</span>
+<span class="sd">            value with a floor of one.</span>
 <span class="sd">        """</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -1606,7 +1607,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A scale that labels every ring with an integer.</span>
+<span class="sd">            A scale that labels every ring with an integer.</span>
 <span class="sd">        """</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_value</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -1632,7 +1633,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        One fraction per axis, where 1.0 is the outer ring.</span>
+<span class="sd">            One fraction per axis, where 1.0 is the outer ring.</span>
 <span class="sd">        """</span>
 
         <span class="n">sc</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">scale</span> <span class="k">if</span> <span class="n">scale</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">full_scale</span><span class="p">)</span> <span class="ow">or</span> <span class="mf">1.0</span>
@@ -1655,7 +1656,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        One radius per axis.</span>
+<span class="sd">            One radius per axis.</span>
 <span class="sd">        """</span>
 
         <span class="k">return</span> <span class="p">[</span><span class="n">r</span> <span class="o">*</span> <span class="n">radius</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ratios</span><span class="p">(</span><span class="n">scale</span><span class="p">)]</span></div>
@@ -1673,7 +1674,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        The snapshot colour or the fallback as a Manim colour.</span>
+<span class="sd">            The snapshot colour or the fallback as a Manim colour.</span>
 <span class="sd">        """</span>
 
         <span class="k">return</span> <span class="n">ManimColor</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">)</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="k">else</span> <span class="n">ManimColor</span><span class="p">(</span><span class="n">fallback</span><span class="p">)</span></div>
@@ -1693,7 +1694,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A new validated snapshot.</span>
+<span class="sd">            A new validated snapshot.</span>
 <span class="sd">        """</span>
 
         <span class="k">return</span> <span class="n">replace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">values</span><span class="p">),</span> <span class="o">**</span><span class="n">changes</span><span class="p">)</span></div>
@@ -1711,7 +1712,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A new validated snapshot.</span>
+<span class="sd">            A new validated snapshot.</span>
 <span class="sd">        """</span>
 
         <span class="k">return</span> <span class="n">replace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">)</span></div>
@@ -1724,7 +1725,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">        A short string naming the axis count, optional name and values.</span>
+<span class="sd">            A short string naming the axis count, optional name and values.</span>
 <span class="sd">        """</span>
 
         <span class="n">label</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">" name=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">!r}</span><span class="s2">"</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="k">else</span> <span class="s2">""</span>
