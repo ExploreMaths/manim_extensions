@@ -36,9 +36,9 @@ Validation Checklist
 --------------------
 
 Run these locally before opening a PR. The checker scripts are grouped into
-five CI jobs in ``.github/workflows/validate.yml`` by what they need installed;
-each row below belongs to one of those groups. Run a whole group with
-``python workflow/run_checks.py --group <static|package|layout|lint|audit>``.
+the CI jobs in ``.github/workflows/validate.yml`` by what they need installed;
+each row below names the command it runs. Run a whole group with
+``python workflow/run_checks.py --group <static|text|package|layout|lint|audit>``.
 
 The entry point defaults to this repository's layout.  A repository that
 vendors ``workflow/`` and ``scripts/`` can point it at its own package and
@@ -114,7 +114,9 @@ workflow/run_checks.py --group static`` scans ``manim_extensions/``,
      - ``python workflow/validate_headers.py``
    * - License declarations (REUSE)
      - ``reuse lint``
-   * - Type annotations on all params / no quoted annotations
+   * - Class names PascalCase / functions and methods snake_case, including vendored code
+     - ``python workflow/validate_naming.py``
+   * - Type annotations on all params
      - ``python scripts/check_type_annotations.py``
    * - Return annotations on documented public functions with return values
      - ``python scripts/check_return_annotations.py``
@@ -149,10 +151,10 @@ Four workflows live in ``.github/workflows/``:
      - Black, flake8, REUSE and every checker in the table above
    * - ``Python package``
      - push to ``main``, pull request
-     - builds and tests the package on Python 3.11–3.14
+     - builds and tests the package on Python 3.11–3.15
    * - ``Docs cache``
-     - push to ``main``, release tag
-     - renders the ``.. manim::`` examples and executes the ``.. nbcell::`` cells, then publishes the cache to the ``rtd-cache`` branch
+     - push to ``main``, release tag, daily schedule
+     - renders the ``.. manim::`` examples and executes the ``.. nbcell::`` cells into the ``rtd-cache`` branch, builds the Sphinx HTML on GitHub, and publishes it to ``rtd-html``; Read the Docs copies that output instead of running Sphinx or rendering examples
    * - ``Publish``
      - manual dispatch
      - updates the version and changelog badge, builds the sdist and wheel, uploads to PyPI, tags the release

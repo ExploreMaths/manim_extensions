@@ -50,7 +50,7 @@ For running examples and tests you also need LaTeX, ffmpeg, and an X display:
     # or, for a lighter install:
     pip install -e ".[dev]"             # only the tools + core deps
 
-The package requires **Python >= 3.11** and **manim >= 0.21.0**.
+The package requires **Python >= 3.11** and **manim >= 0.22.1**.
 
 4. Run the tests
 ~~~~~~~~~~~~~~~~
