@@ -1,8 +1,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Manim Constants
-===============
+Manim Documentation Supplement
+==============================
 
 Manim's official documentation lists the ten direction vectors and the
 colour palette, but the Manim intersphinx inventory contains *no*
@@ -13,6 +13,9 @@ constant name has a link target, and you can write the name (``from
 manim import *`` gives you all of them) instead of expanding the value
 by hand, e.g. use SMALL_BUFF instead of ``0.2``.
 
+Constants
+---------
+
 The constants are grouped by category:
 
 - :doc:`constants/directions` – direction vectors.
@@ -22,8 +25,13 @@ The constants are grouped by category:
 - :doc:`constants/axes` – axis constants.
 - :doc:`constants/numeric` – numeric constants.
 - :doc:`constants/messages` – runtime messages.
-- :doc:`constants/animation_builder` – fluent animation builders returned by ``.animate``.
 - :doc:`constants/colors` – colour palette.
+
+Classes
+-------
+
+- :doc:`constants/classes` – Manim classes missing from the official API
+  reference, including the animation builder returned by ``.animate``.
 
 .. toctree::
    :maxdepth: 1
@@ -36,5 +44,5 @@ The constants are grouped by category:
    constants/axes
    constants/numeric
    constants/messages
-   constants/animation_builder
    constants/colors
+   constants/classes

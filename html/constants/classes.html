@@ -3,12 +3,12 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Colours" href="colors.html"><link rel="prev" title="Messages" href="messages.html">
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="AnimationBuilder" href="classes/animation_builder.html"><link rel="prev" title="Colours" href="colors.html">
         <link rel="prefetch" href="../_static/logo.svg" as="image">
         <link rel="prefetch" href="../_static/logo-dark.svg" as="image">
 
     <link rel="shortcut icon" href="../_static/favicon.svg"><!-- Generated with Sphinx 9.1.1 and Furo 2025.12.19 -->
-        <title>AnimationBuilder - Manim Extensions v1.0.7</title>
+        <title>Classes - Manim Extensions v1.0.7</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css?v=4ae1632d" />
@@ -197,7 +197,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
       </label>
     </div>
@@ -1411,7 +1411,7 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="current">
-<li class="toctree-l1 current has-children"><a class="reference internal" href="../constants.html">Manim Constants</a><input aria-label="Toggle navigation of Manim Constants" checked="" class="toctree-checkbox" id="toctree-checkbox-268" name="toctree-checkbox-268" role="switch" type="checkbox"/><label for="toctree-checkbox-268"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="../constants.html">Manim Documentation Supplement</a><input aria-label="Toggle navigation of Manim Documentation Supplement" checked="" class="toctree-checkbox" id="toctree-checkbox-268" name="toctree-checkbox-268" role="switch" type="checkbox"/><label for="toctree-checkbox-268"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="directions.html">Directions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="fonts.html">Fonts</a></li>
 <li class="toctree-l2"><a class="reference internal" href="defaults.html">Defaults</a></li>
@@ -1419,8 +1419,11 @@
 <li class="toctree-l2"><a class="reference internal" href="axes.html">Axes</a></li>
 <li class="toctree-l2"><a class="reference internal" href="numeric.html">Numeric</a></li>
 <li class="toctree-l2"><a class="reference internal" href="messages.html">Messages</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">AnimationBuilder</a></li>
 <li class="toctree-l2"><a class="reference internal" href="colors.html">Colours</a></li>
+<li class="toctree-l2 current has-children current-page"><a class="current reference internal" href="#">Classes</a><input aria-label="Toggle navigation of Classes" checked="" class="toctree-checkbox" id="toctree-checkbox-269" name="toctree-checkbox-269" role="switch" type="checkbox"/><label for="toctree-checkbox-269"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="classes/animation_builder.html">AnimationBuilder</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/ExploreMaths/manim_extensions">GitHub Repository</a></li>
@@ -1446,12 +1449,12 @@
         </a>
         <div class="content-icon-container">
           <div class="view-this-page">
-  <a class="muted-link" href="https://github.com/ExploreMaths/manim_extensions/blob/main/docs/source/constants/animation_builder.rst?plain=true" title="View this page">
+  <a class="muted-link" href="https://github.com/ExploreMaths/manim_extensions/blob/main/docs/source/constants/classes.rst?plain=true" title="View this page">
     <svg><use href="#svg-eye"></use></svg>
     <span class="visually-hidden">View this page</span>
   </a>
 </div><div class="edit-this-page">
-  <a class="muted-link" href="https://github.com/ExploreMaths/manim_extensions/edit/main/docs/source/constants/animation_builder.rst" rel="edit" title="Edit this page">
+  <a class="muted-link" href="https://github.com/ExploreMaths/manim_extensions/edit/main/docs/source/constants/classes.rst" rel="edit" title="Edit this page">
     <svg><use href="#svg-pencil"></use></svg>
     <span class="visually-hidden">Edit this page</span>
   </a>
@@ -1463,37 +1466,26 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
             <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="animationbuilder">
-<h1>AnimationBuilder<a class="headerlink" href="#animationbuilder" title="Link to this heading">¶</a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">mobject.animate</span></code> and <code class="docutils literal notranslate"><span class="pre">camera.frame.animate</span></code> return Manim’s
-<code class="docutils literal notranslate"><span class="pre">_AnimationBuilder</span></code> instead of an <code class="docutils literal notranslate"><span class="pre">Animation</span></code>. The object records fluent
-method calls on the mobject target and materialises the real animation only
-when it is passed to <code class="docutils literal notranslate"><span class="pre">Scene.play</span></code>. Methods such as <code class="docutils literal notranslate"><span class="pre">set_run_time</span></code>,
-<code class="docutils literal notranslate"><span class="pre">scale</span></code>, <code class="docutils literal notranslate"><span class="pre">shift</span></code> or <code class="docutils literal notranslate"><span class="pre">move_to</span></code> are forwarded dynamically to the target
-mobject through <code class="docutils literal notranslate"><span class="pre">__getattr__</span></code>; <code class="docutils literal notranslate"><span class="pre">build</span></code> is the documented entry point that
-turns the recorded calls into an <code class="docutils literal notranslate"><span class="pre">Animation</span></code>.</p>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim.mobject.mobject._AnimationBuilder">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim.mobject.mobject.</span></span><span class="sig-name descname"><span class="pre">_AnimationBuilder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/manim/mobject/mobject.html#_AnimationBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim.mobject.mobject._AnimationBuilder" title="Link to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-</dl>
-<dl class="py method">
-<dt class="sig sig-object py" id="manim.mobject.mobject._AnimationBuilder.build">
-<span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/manim/mobject/mobject.html#_AnimationBuilder.build"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim.mobject.mobject._AnimationBuilder.build" title="Link to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a></span></p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
+          <section id="classes">
+<h1>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h1>
+<p>Manim classes that the official documentation does not expose as linkable
+entries are listed here.</p>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="classes/animation_builder.html#manim.mobject.mobject._AnimationBuilder" title="manim.mobject.mobject._AnimationBuilder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">_AnimationBuilder</span></code></a></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
         </article>
@@ -1501,23 +1493,23 @@ turns the recorded calls into an <code class="docutils literal notranslate"><spa
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="colors.html">
+          <a class="next-page" href="classes/animation_builder.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Colours</div>
+                <div class="title">AnimationBuilder</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="messages.html">
+          <a class="prev-page" href="colors.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Messages</div>
+                <div class="title">Colours</div>
                 
               </div>
             </a>
@@ -1539,30 +1531,8 @@ turns the recorded calls into an <code class="docutils literal notranslate"><spa
         
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            On this page
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">AnimationBuilder</a><ul>
-<li><a class="reference internal" href="#manim.mobject.mobject._AnimationBuilder"><code class="docutils literal notranslate"><span class="pre">_AnimationBuilder</span></code></a><ul>
-<li><a class="reference internal" href="#manim.mobject.mobject._AnimationBuilder.build"><code class="docutils literal notranslate"><span class="pre">_AnimationBuilder.build()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>
