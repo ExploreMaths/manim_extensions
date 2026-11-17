@@ -53,6 +53,13 @@ Modules
 
    ~core
 
+Type Aliases
+------------
+
+.. autoall:: manim_extensions.three_d
+   :recursive:
+   :types: typealias
+
 Constants
 ---------
 

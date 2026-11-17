@@ -11,10 +11,10 @@ contain stale or hand-copied entry lists.
 
 Options
 -------
-:types:      comma list of ``class``, ``function``, ``data``
-              (default: all three). Use one directive per heading when
-              a page documents Classes / Functions / Constants in
-              separate sections.
+:types:      comma list of ``class``, ``function``, ``data``, or
+              ``typealias`` (default: class, function and data). Use one
+              directive per heading when a page documents Classes /
+              Functions / Type Aliases / Constants in separate sections.
 :recursive:  also enumerate every submodule of a package.
 :skip:       space separated names to exclude (decisions recorded in
               the page source).
@@ -57,6 +57,7 @@ Usage::
 
 from __future__ import annotations
 
+import ast
 import html
 import importlib
 import inspect
@@ -213,17 +214,89 @@ def iter_package_modules(module):
             continue
 
 
+def is_type_alias(obj):
+    """Return whether *obj* is a public type alias rather than a constant.
+
+    ``typing.TypeAliasType`` covers PEP 695 aliases. ``types.GenericAlias``
+    covers ``tuple[...]``-style builtins, ``types.UnionType`` covers
+    ``X | Y``, and a non-``None`` :func:`typing.get_origin` covers
+    ``typing.Union[...]``, ``typing.Callable[...]`` and the other
+    subscription-based aliases. Type variables are parameters, not aliases.
+    """
+    type_alias_type = getattr(typing, "TypeAliasType", None)
+    if type_alias_type is not None and isinstance(obj, type_alias_type):
+        return True
+    if isinstance(obj, (typing.TypeVar, typing.ParamSpec, typing.TypeVarTuple)):
+        return False
+    if isinstance(obj, (types.GenericAlias, types.UnionType)):
+        return True
+    return typing.get_origin(obj) is not None
+
+
+def alias_definition(module, name):
+    """Return ``(canonical_source, description)`` for a module-level alias.
+
+    The source expression is taken from the AST so the page shows exactly
+    what the code declares (including quoted forward references) instead of
+    runtime spellings such as ``ForwardRef('GaussianSurface')``. A preceding
+    ``#:`` comment becomes the entry description, matching the convention for
+    module-level constants.
+    """
+    path = getattr(module, "__file__", None)
+    if not path or not str(path).endswith(".py"):
+        return None, ""
+    try:
+        source = open(path, encoding="utf-8").read()
+        tree = ast.parse(source)
+    except (OSError, SyntaxError, UnicodeDecodeError):
+        return None, ""
+
+    node = None
+    for candidate in tree.body:
+        if isinstance(candidate, ast.Assign):
+            if any(
+                isinstance(target, ast.Name) and target.id == name
+                for target in candidate.targets
+            ):
+                node = candidate
+                break
+        elif (
+            isinstance(candidate, ast.AnnAssign)
+            and isinstance(candidate.target, ast.Name)
+            and candidate.target.id == name
+        ):
+            node = candidate
+            break
+    if node is None or node.value is None:
+        return None, ""
+
+    canonical = ast.get_source_segment(source, node.value)
+    if canonical:
+        canonical = " ".join(canonical.split())
+
+    lines = source.splitlines()
+    comments = []
+    index = node.lineno - 2
+    while index >= 0:
+        stripped = lines[index].strip()
+        if not stripped.startswith("#:"):
+            break
+        comments.append(stripped[2:].strip())
+        index -= 1
+    description = " ".join(reversed(comments)).strip()
+    return canonical, description
+
+
 def classify(obj):
     if inspect.isclass(obj):
         return "class"
     if inspect.isroutine(obj):
         return "function"
-    # Type variables (TypeVar / ParamSpec / TypeVarTuple) and type aliases
-    # (GenericAlias) are not data constants; keep them out of Constants pages.
-    if isinstance(
-        obj,
-        (typing.TypeVar, typing.ParamSpec, typing.TypeVarTuple, types.GenericAlias),
-    ):
+    if is_type_alias(obj):
+        return "typealias"
+    # Type variables (TypeVar / ParamSpec / TypeVarTuple) are parameters,
+    # not data constants or aliases.
+    if isinstance(obj, (typing.TypeVar, typing.ParamSpec, typing.TypeVarTuple)):
         return None
     return "data"
 
@@ -370,9 +443,15 @@ class AutoAllDirective(Directive):
         lines = []
         seen = set()
         for mod in modules:
+            defined_names = set(_defined_top_level_names(mod))
             for name, obj in public_names(mod):
                 kind = classify(obj)
                 if kind not in want or name in skip:
+                    continue
+                # A re-exported alias belongs to the module that defines it;
+                # documenting it again here would create a second target and
+                # duplicate entries under a recursive package directive.
+                if kind == "typealias" and name not in defined_names:
                     continue
                 key = defining_dotted(mod, name, obj)
                 if key in seen:
@@ -392,6 +471,19 @@ class AutoAllDirective(Directive):
                     lines.append("")
                 elif kind == "function":
                     lines += [f".. autofunction:: {key}", ""]
+                elif kind == "typealias":
+                    canonical, description = alias_definition(mod, name)
+                    # ``py:type`` prefixes the enclosing module; use the
+                    # short name plus an explicit ``:module:`` so a package
+                    # page renders the alias under its real module instead
+                    # of prefixing the full target twice.
+                    lines.append(f".. py:type:: {name}")
+                    lines.append(f"   :module: {mod.__name__}")
+                    if canonical:
+                        lines.append(f"   :canonical: {canonical}")
+                    if description:
+                        lines += ["", f"   {description}"]
+                    lines.append("")
                 elif "values" in self.options:
                     # Opt-in pages (the colour palette) show the full value
                     # next to the name; every other constants page uses the

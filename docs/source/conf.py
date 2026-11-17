@@ -228,8 +228,53 @@ def _dotted_name(_node):
     return None
 
 
+_ALIAS_DEFINED_NAMES = {}
+
+
+def _module_defined_names(_mod):
+    """Top-level assignment names of *mod*, cached for alias lookup."""
+    _key = _mod.__name__
+    if _key in _ALIAS_DEFINED_NAMES:
+        return _ALIAS_DEFINED_NAMES[_key]
+    _names = set()
+    _path = getattr(_mod, "__file__", None)
+    if _path and str(_path).endswith(".py"):
+        try:
+            _tree = ast.parse(open(_path, encoding="utf-8").read())
+        except (OSError, SyntaxError, UnicodeDecodeError):
+            _tree = None
+        if _tree is not None:
+            for _node in _tree.body:
+                if isinstance(_node, ast.Assign):
+                    _names.update(
+                        _target.id
+                        for _target in _node.targets
+                        if isinstance(_target, ast.Name)
+                    )
+                elif isinstance(_node, ast.AnnAssign) and isinstance(
+                    _node.target, ast.Name
+                ):
+                    _names.add(_node.target.id)
+    _ALIAS_DEFINED_NAMES[_key] = _names
+    return _names
+
+
+def _canonical_alias_dotted(_alias, _fallback):
+    """Find the module that actually defines *alias*, not its import site."""
+    for _name, _mod in list(sys.modules.items()):
+        if not _name.startswith("manim_extensions.") or hasattr(_mod, "__path__"):
+            continue
+        for _attr in _module_defined_names(_mod):
+            if getattr(_mod, _attr, None) is _alias:
+                return f"{_name}.{_attr}"
+    return _fallback
+
+
 def _register_project_alias(_alias, _dotted):
-    _PROJECT_ALIASES[id(_alias)] = (_alias, _dotted)
+    _PROJECT_ALIASES[id(_alias)] = (
+        _alias,
+        _canonical_alias_dotted(_alias, _dotted),
+    )
 
 
 def _alias_from_annotation_string(_src, _obj):
@@ -310,13 +355,12 @@ def _typehints_formatter(annotation, *args):
             continue
         if annotation is _target:
             return f":py:obj:`~{_dotted}`"
-    # Project-local aliases restored by the patch in ``setup()``.  They have
-    # no autodata anchor of their own (the constants pages deliberately skip
-    # type aliases), so render the short name as inline code rather than an
-    # unresolved cross-reference.
+    # Project-local aliases restored by the patch in ``setup()``.  Each one
+    # has a ``py:type`` target on its vendored package page, so link the
+    # annotation to that definition instead of rendering it as plain code.
     for _target, _dotted in _PROJECT_ALIASES.values():
         if annotation is _target:
-            return f"``{_dotted.rsplit('.', 1)[-1]}``"
+            return f":py:type:`~{_dotted}`"
     # Structural match (the typehints plugin rebuilds annotations via
     # ``get_all_type_hints``, so identity is lost for every alias; the
     # rebuilt ``NDArray[numpy.float64]`` is equal to ``Point3D`` and

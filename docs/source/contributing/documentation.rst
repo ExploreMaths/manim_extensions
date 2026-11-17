@@ -244,6 +244,19 @@ Every **public** name (class, function, constant) exported by the package must a
 
 The docs use a custom ``.. autoall::`` directive that automatically expands into autodoc directives for all public names of a module. When adding a new public module or name, make sure it is reachable from an ``autoall`` block (or an explicit ``autoclass`` / ``autofunction`` / ``autodata``).
 
+A public type alias is not a constant.  Document it in the package page's ``Type Aliases`` section with ``:types: typealias``; ``autoall`` emits a ``py:type`` entry whose target signatures can link to:
+
+.. code-block:: rst
+
+    Type Aliases
+    ------------
+
+    .. autoall:: manim_extensions.three_d
+       :recursive:
+       :types: typealias
+
+Only the module that defines the alias should list it; imported re-exports are skipped so the page keeps one canonical target.  A ``#:`` comment immediately above the assignment becomes its description, matching module-level constants.
+
 After adding new public names, refresh the coverage snapshot:
 
 .. code-block:: bash

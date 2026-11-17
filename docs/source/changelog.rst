@@ -46,6 +46,12 @@ Fixed
   installed 3.17.5 release actually calls — and restores aliases parsed from
   the original annotation string, including names nested inside ``list[...]``
   and unions.
+* Every vendored package that defines type aliases now has a ``Type Aliases``
+  section on its reference page.  ``autoall`` gained a ``typealias``
+  classification that renders real ``py:type`` targets with the alias source
+  from the module AST, so signatures such as
+  :type:`~manim_extensions.three_d.core.ContourSpec` link to the definition
+  instead of appearing as plain text.  Re-exported aliases are not duplicated.
 * Deprecation and runtime warnings no longer flood the pytest and CI logs:
   internal calls to the compatibility rate functions use their unwrapped
   implementations, Manim mobject getters use properties (``width``,

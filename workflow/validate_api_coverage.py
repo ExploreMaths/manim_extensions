@@ -246,17 +246,16 @@ def main():
     missing = []
     for module in iter_modules():
         for name, obj in public_names(module):
-            # Type variables and type aliases are not documented data; they
-            # never appear on Constants pages (autodoc_all.classify excludes
-            # them).
-            if isinstance(
-                obj,
-                (
-                    typing.TypeVar,
-                    typing.ParamSpec,
-                    typing.TypeVarTuple,
-                    types.GenericAlias,
-                ),
+            # Type variables and type aliases are not part of the
+            # class/function/constant coverage: aliases have their own
+            # ``Type Aliases`` section (``autodoc_all`` classifies them as
+            # ``typealias``) and are checked by the reference build.
+            if (
+                isinstance(
+                    obj,
+                    (typing.TypeVar, typing.ParamSpec, typing.TypeVarTuple),
+                )
+                or classify(obj) == "typealias"
             ):
                 continue
             total += 1
