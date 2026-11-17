@@ -161,5 +161,5 @@ def pubchem_molecule(
 
 cli.add_command(pubchem_molecule)
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover - CLI entry point
     cli()

@@ -42,7 +42,7 @@ def _resolve_arabic_font(font_name: str | None) -> str:
         available = subprocess.check_output(
             ["fc-list", ":", "family"], text=True, stderr=subprocess.DEVNULL
         )
-    except Exception:
+    except Exception:  # pragma: no cover - fc-list may be unavailable
         available = ""
     for candidate in _FONT_CANDIDATES:
         if candidate in available:

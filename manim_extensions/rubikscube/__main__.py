@@ -16,5 +16,5 @@ def main():
     print("Manim Rubik's Cube v" + __version__ + "\n")
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover - module entry point
     main()

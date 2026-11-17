@@ -22,7 +22,7 @@ logging.basicConfig(
 
 _log = logging.getLogger("rich")
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover - manual logging check
     _log.info("This is an info message")
     _log.warning("This is a warning message")
     _log.error("This is an error message")

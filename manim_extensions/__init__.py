@@ -12,7 +12,7 @@ from importlib.metadata import version, PackageNotFoundError
 
 try:
     __version__ = version(__name__)
-except PackageNotFoundError:
+except PackageNotFoundError:  # pragma: no cover - package not installed
     __version__ = "0.0.0"
 
 from .mobjects import *

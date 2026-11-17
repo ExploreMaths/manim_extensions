@@ -98,5 +98,5 @@ class ManimAutomataCLI:
         return int(input("Choice: "))
 
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # pragma: no cover - CLI entry point
     cli = ManimAutomataCLI()

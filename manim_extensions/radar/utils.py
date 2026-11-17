@@ -206,7 +206,7 @@ def pick_font(
         import manimpango
 
         available = set(manimpango.list_fonts())
-    except Exception:
+    except Exception:  # pragma: no cover - font backend may be unavailable
         available = set()
 
     found = next((name for name in candidates if name in available), None)
