@@ -1676,8 +1676,8 @@
         <span class="n">mid_point</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
             <span class="s2">"Point3D"</span><span class="p">,</span>
             <span class="n">utils</span><span class="o">.</span><span class="n">space_ops</span><span class="o">.</span><span class="n">midpoint</span><span class="p">(</span>
-                <span class="n">cast</span><span class="p">(</span><span class="s2">"Sequence[float]"</span><span class="p">,</span> <span class="n">act_start</span><span class="o">.</span><span class="n">get_center</span><span class="p">()),</span>
-                <span class="n">cast</span><span class="p">(</span><span class="s2">"Sequence[float]"</span><span class="p">,</span> <span class="n">act_end</span><span class="o">.</span><span class="n">get_center</span><span class="p">()),</span>
+                <span class="n">cast</span><span class="p">(</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">act_start</span><span class="o">.</span><span class="n">get_center</span><span class="p">()),</span>
+                <span class="n">cast</span><span class="p">(</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">act_end</span><span class="o">.</span><span class="n">get_center</span><span class="p">()),</span>
             <span class="p">),</span>
         <span class="p">)</span>
         <span class="n">post_move_gift_label</span> <span class="o">=</span> <span class="n">gift</span><span class="o">.</span><span class="n">create_obj_label</span><span class="p">(</span><span class="n">font_size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span>
