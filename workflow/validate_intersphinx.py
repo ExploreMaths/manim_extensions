@@ -232,10 +232,10 @@ def find_xrefs(text: str):
 
 def main() -> int:
     allowed = intersphinx_packages() | PY_STDLIB | {PACKAGE}
-    no_tilde: "OrderedDict[str, list]" = OrderedDict()  # any target w/o ~
-    not_fq: "OrderedDict[str, list]" = OrderedDict()  # bare name w/o module path
-    missing_int: "OrderedDict[str, list]" = OrderedDict()  # unmapped external lib
-    not_registered: "OrderedDict[str, list]" = OrderedDict()  # absent from inventory
+    no_tilde: OrderedDict[str, list] = OrderedDict()  # any target w/o ~
+    not_fq: OrderedDict[str, list] = OrderedDict()  # bare name w/o module path
+    missing_int: OrderedDict[str, list] = OrderedDict()  # unmapped external lib
+    not_registered: OrderedDict[str, list] = OrderedDict()  # absent from inventory
 
     py_files = glob.glob(f"{SRC}/**/*.py", recursive=True)
     rst_files = glob.glob(f"{DOCS}/**/*.rst", recursive=True)
