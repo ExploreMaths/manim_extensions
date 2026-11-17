@@ -203,8 +203,8 @@ class SeqAction(AnimationGroup):
         mid_point = cast(
             "Point3D",
             utils.space_ops.midpoint(
-                cast("Sequence[float]", act_start.get_center()),
-                cast("Sequence[float]", act_end.get_center()),
+                cast(Sequence[float], act_start.get_center()),
+                cast(Sequence[float], act_end.get_center()),
             ),
         )
         post_move_gift_label = gift.create_obj_label(font_size=16).move_to(
