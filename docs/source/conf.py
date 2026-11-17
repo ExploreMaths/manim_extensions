@@ -5,6 +5,7 @@
 
 from manim import Mobject, VMobject
 import importlib
+import inspect
 import os
 import sys
 
@@ -192,6 +193,24 @@ _TYPE_ALIASES = {
     "Vector3DLike": "manim.typing.Vector3DLike",
 }
 
+# Project-local aliases restored from the original annotation strings by the
+# patch below.  Entries are ``{id(alias): (alias, dotted_name)}``; keep the
+# alias object alive in the tuple so the id cannot be reused while Sphinx is
+# rendering.
+_PROJECT_ALIASES = {}
+
+
+def _is_type_alias(_obj):
+    if inspect.isclass(_obj):
+        return False
+    if isinstance(_obj, _typing.TypeVar):
+        return False
+    if isinstance(_obj, (_types.GenericAlias, _types.UnionType)):
+        return True
+    if isinstance(_obj, getattr(_typing, "TypeAliasType", ())):
+        return True
+    return _typing.get_origin(_obj) is not None
+
 
 def _resolve_alias(_dotted):
     _module, _, _attr = _dotted.rpartition(".")
@@ -223,6 +242,13 @@ def _typehints_formatter(annotation, *args):
             continue
         if annotation is _target:
             return f":py:obj:`~{_dotted}`"
+    # Project-local aliases restored by the patch in ``setup()``.  They have
+    # no autodata anchor of their own (the constants pages deliberately skip
+    # type aliases), so render the short name as inline code rather than an
+    # unresolved cross-reference.
+    for _target, _dotted in _PROJECT_ALIASES.values():
+        if annotation is _target:
+            return f"``{_dotted.rsplit('.', 1)[-1]}``"
     # Structural match (the typehints plugin rebuilds annotations via
     # ``get_all_type_hints``, so identity is lost for every alias; the
     # rebuilt ``NDArray[numpy.float64]`` is equal to ``Point3D`` and
@@ -453,7 +479,14 @@ def setup(app):
                     continue
                 _dotted = None
                 if isinstance(_src, str):
-                    _dotted = _LIKE_ALIASES.get(_src.strip())
+                    _src_name = _src.strip()
+                    _dotted = _LIKE_ALIASES.get(_src_name)
+                    if _dotted is None and _src_name.isidentifier():
+                        _mod = sys.modules.get(getattr(_obj, "__module__", ""))
+                        _alias = getattr(_mod, _src_name, None) if _mod else None
+                        if _alias is not None and _is_type_alias(_alias):
+                            _dotted = f"{_mod.__name__}.{_src_name}"
+                            _PROJECT_ALIASES[id(_alias)] = (_alias, _dotted)
                 else:
                     for _n, _d in _LIKE_ALIASES.items():
                         try:
