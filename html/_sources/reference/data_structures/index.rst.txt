@@ -296,6 +296,13 @@ Modules
    ~m_enum
    ~m_variable
 
+Type Aliases
+------------
+
+.. autoall:: manim_extensions.data_structures
+   :recursive:
+   :types: typealias
+
 .. toctree::
    :hidden:
    :maxdepth: 1

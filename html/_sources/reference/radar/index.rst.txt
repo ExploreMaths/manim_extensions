@@ -72,6 +72,13 @@ Modules
    ~theme
    ~utils
 
+Type Aliases
+------------
+
+.. autoall:: manim_extensions.radar
+   :recursive:
+   :types: typealias
+
 Constants
 ---------
 

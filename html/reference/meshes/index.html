@@ -1611,6 +1611,75 @@ for details on the mesh model and more advanced examples.</p>
 </tbody>
 </table>
 </div>
+</section>
+<section id="type-aliases">
+<h2>Type Aliases<a class="headerlink" href="#type-aliases" title="Link to this heading">¶</a></h2>
+<dl class="py type">
+<dt class="sig sig-object py" id="manim_extensions.meshes.types.VarArray">
+<span class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.types.</span></span><span class="sig-name descname"><span class="pre">VarArray</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Point3D_Array</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#manim_extensions.meshes.types.VarArray" title="Link to this definition">¶</a></dt>
+<dd><p>List of possibly differently sized point arrays; a nested numpy array cannot be used because the sizes may differ.</p>
+</dd></dl>
+
+<dl class="py type">
+<dt class="sig sig-object py" id="manim_extensions.meshes.types.Vertex">
+<span class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.types.</span></span><span class="sig-name descname"><span class="pre">Vertex</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Point3D</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#manim_extensions.meshes.types.Vertex" title="Link to this definition">¶</a></dt>
+<dd><p>A vertex given either as a point or as an iterable of coordinates.</p>
+</dd></dl>
+
+<dl class="py type">
+<dt class="sig sig-object py" id="manim_extensions.meshes.types.Vertices">
+<span class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.types.</span></span><span class="sig-name descname"><span class="pre">Vertices</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Point3D_Array</span></span><a class="headerlink" href="#manim_extensions.meshes.types.Vertices" title="Link to this definition">¶</a></dt>
+<dd><p>A two-dimensional point array holding all vertices.</p>
+</dd></dl>
+
+<dl class="py type">
+<dt class="sig sig-object py" id="manim_extensions.meshes.types.Face">
+<span class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.types.</span></span><span class="sig-name descname"><span class="pre">Face</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">VectorND</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#manim_extensions.meshes.types.Face" title="Link to this definition">¶</a></dt>
+<dd><p>A face referencing vertices by id.</p>
+</dd></dl>
+
+<dl class="py type">
+<dt class="sig sig-object py" id="manim_extensions.meshes.types.Faces">
+<span class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.types.</span></span><span class="sig-name descname"><span class="pre">Faces</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#manim_extensions.meshes.types.VarArray" title="manim_extensions.meshes.types.VarArray"><span class="pre">VarArray</span></a></span><a class="headerlink" href="#manim_extensions.meshes.types.Faces" title="Link to this definition">¶</a></dt>
+<dd><p>A list of faces.</p>
+</dd></dl>
+
+<dl class="py type">
+<dt class="sig sig-object py" id="manim_extensions.meshes.types.Part">
+<span class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.types.</span></span><span class="sig-name descname"><span class="pre">Part</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">VectorND</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#manim_extensions.meshes.types.Part" title="Link to this definition">¶</a></dt>
+<dd><p>A part referencing faces by id.</p>
+</dd></dl>
+
+<dl class="py type">
+<dt class="sig sig-object py" id="manim_extensions.meshes.types.Parts">
+<span class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.types.</span></span><span class="sig-name descname"><span class="pre">Parts</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="#manim_extensions.meshes.types.VarArray" title="manim_extensions.meshes.types.VarArray"><span class="pre">VarArray</span></a></span><a class="headerlink" href="#manim_extensions.meshes.types.Parts" title="Link to this definition">¶</a></dt>
+<dd><p>A list of parts.</p>
+</dd></dl>
+
+<dl class="py type">
+<dt class="sig sig-object py" id="manim_extensions.meshes.types.Edge">
+<span class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.types.</span></span><span class="sig-name descname"><span class="pre">Edge</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#manim_extensions.meshes.types.Edge" title="Link to this definition">¶</a></dt>
+<dd><p>An edge given by the ids of its two vertices.</p>
+</dd></dl>
+
+<dl class="py type">
+<dt class="sig sig-object py" id="manim_extensions.meshes.types.Edges">
+<span class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.types.</span></span><span class="sig-name descname"><span class="pre">Edges</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#manim_extensions.meshes.types.Edge" title="manim_extensions.meshes.types.Edge"><span class="pre">Edge</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#manim_extensions.meshes.types.Edges" title="Link to this definition">¶</a></dt>
+<dd><p>A list of edges.</p>
+</dd></dl>
+
+<dl class="py type">
+<dt class="sig sig-object py" id="manim_extensions.meshes.types.Parameters">
+<span class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.types.</span></span><span class="sig-name descname"><span class="pre">Parameters</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><span class="pre">object</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#manim_extensions.meshes.types.Parameters" title="Link to this definition">¶</a></dt>
+<dd><p>Keyword parameters forwarded to the plotting libraries.</p>
+</dd></dl>
+
+<dl class="py type">
+<dt class="sig sig-object py" id="manim_extensions.meshes.types.DefaultParameters">
+<span class="property"><span class="k"><span class="pre">type</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.types.</span></span><span class="sig-name descname"><span class="pre">DefaultParameters</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#type" title="(in Python v3.15)"><span class="pre">type</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><span class="pre">object</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#manim_extensions.meshes.types.DefaultParameters" title="Link to this definition">¶</a></dt>
+<dd><p>Default parameters, mapping a name to its type and default value.</p>
+</dd></dl>
+
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -1678,6 +1747,20 @@ for details on the mesh model and more advanced examples.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#type-aliases">Type Aliases</a><ul>
+<li><a class="reference internal" href="#manim_extensions.meshes.types.VarArray"><code class="docutils literal notranslate"><span class="pre">VarArray</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.types.Vertex"><code class="docutils literal notranslate"><span class="pre">Vertex</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.types.Vertices"><code class="docutils literal notranslate"><span class="pre">Vertices</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.types.Face"><code class="docutils literal notranslate"><span class="pre">Face</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.types.Faces"><code class="docutils literal notranslate"><span class="pre">Faces</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.types.Part"><code class="docutils literal notranslate"><span class="pre">Part</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.types.Parts"><code class="docutils literal notranslate"><span class="pre">Parts</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.types.Edge"><code class="docutils literal notranslate"><span class="pre">Edge</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.types.Edges"><code class="docutils literal notranslate"><span class="pre">Edges</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.types.Parameters"><code class="docutils literal notranslate"><span class="pre">Parameters</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.types.DefaultParameters"><code class="docutils literal notranslate"><span class="pre">DefaultParameters</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

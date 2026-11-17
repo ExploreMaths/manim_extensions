@@ -1475,70 +1475,6 @@
 <span id="types"></span><h1>types<a class="headerlink" href="#module-manim_extensions.meshes.types" title="Link to this heading">¶</a></h1>
 <section id="constants">
 <h2>Constants<a class="headerlink" href="#constants" title="Link to this heading">¶</a></h2>
-<dl class="py data">
-<dt class="sig sig-object py" id="manim_extensions.meshes.types.VarArray">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.types.</span></span><span class="sig-name descname"><span class="pre">VarArray</span></span><a class="headerlink" href="#manim_extensions.meshes.types.VarArray" title="Link to this definition">¶</a></dt>
-<dd><p>List of possibly differently sized point arrays; a nested numpy array cannot
-be used because the sizes may differ.</p>
-<p>alias of <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">NDArray</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float64</span></code>]]</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="manim_extensions.meshes.types.Vertex">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.types.</span></span><span class="sig-name descname"><span class="pre">Vertex</span></span><a class="headerlink" href="#manim_extensions.meshes.types.Vertex" title="Link to this definition">¶</a></dt>
-<dd><p>A vertex given either as a point or as an iterable of coordinates.</p>
-<p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">NDArray</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float64</span></code>] | <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>] | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, …]</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="manim_extensions.meshes.types.Face">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.types.</span></span><span class="sig-name descname"><span class="pre">Face</span></span><a class="headerlink" href="#manim_extensions.meshes.types.Face" title="Link to this definition">¶</a></dt>
-<dd><p>A face referencing vertices by id.</p>
-<p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">NDArray</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float64</span></code>] | <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>] | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, …]</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="manim_extensions.meshes.types.Faces">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.types.</span></span><span class="sig-name descname"><span class="pre">Faces</span></span><a class="headerlink" href="#manim_extensions.meshes.types.Faces" title="Link to this definition">¶</a></dt>
-<dd><p>A list of faces.</p>
-<p>alias of <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">NDArray</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float64</span></code>]]</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="manim_extensions.meshes.types.Part">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.types.</span></span><span class="sig-name descname"><span class="pre">Part</span></span><a class="headerlink" href="#manim_extensions.meshes.types.Part" title="Link to this definition">¶</a></dt>
-<dd><p>A part referencing faces by id.</p>
-<p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">NDArray</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float64</span></code>] | <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>] | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, …]</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="manim_extensions.meshes.types.Parts">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.types.</span></span><span class="sig-name descname"><span class="pre">Parts</span></span><a class="headerlink" href="#manim_extensions.meshes.types.Parts" title="Link to this definition">¶</a></dt>
-<dd><p>A list of parts.</p>
-<p>alias of <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">NDArray</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">float64</span></code>]]</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="manim_extensions.meshes.types.Edges">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.types.</span></span><span class="sig-name descname"><span class="pre">Edges</span></span><a class="headerlink" href="#manim_extensions.meshes.types.Edges" title="Link to this definition">¶</a></dt>
-<dd><p>A list of edges.</p>
-<p>alias of <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="manim_extensions.meshes.types.Parameters">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.types.</span></span><span class="sig-name descname"><span class="pre">Parameters</span></span><a class="headerlink" href="#manim_extensions.meshes.types.Parameters" title="Link to this definition">¶</a></dt>
-<dd><p>Keyword parameters forwarded to the plotting libraries.</p>
-<p>alias of <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>]</p>
-</dd></dl>
-
-<dl class="py data">
-<dt class="sig sig-object py" id="manim_extensions.meshes.types.DefaultParameters">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.types.</span></span><span class="sig-name descname"><span class="pre">DefaultParameters</span></span><a class="headerlink" href="#manim_extensions.meshes.types.DefaultParameters" title="Link to this definition">¶</a></dt>
-<dd><p>Default parameters, mapping a name to its type and default value.</p>
-<p>alias of <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#type" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>]]</p>
-</dd></dl>
-
 </section>
 </section>
 
@@ -1598,18 +1534,7 @@ be used because the sizes may differ.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">types</a><ul>
-<li><a class="reference internal" href="#constants">Constants</a><ul>
-<li><a class="reference internal" href="#manim_extensions.meshes.types.VarArray"><code class="docutils literal notranslate"><span class="pre">VarArray</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.meshes.types.Vertex"><code class="docutils literal notranslate"><span class="pre">Vertex</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.meshes.types.Face"><code class="docutils literal notranslate"><span class="pre">Face</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.meshes.types.Faces"><code class="docutils literal notranslate"><span class="pre">Faces</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.meshes.types.Part"><code class="docutils literal notranslate"><span class="pre">Part</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.meshes.types.Parts"><code class="docutils literal notranslate"><span class="pre">Parts</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.meshes.types.Edges"><code class="docutils literal notranslate"><span class="pre">Edges</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.meshes.types.Parameters"><code class="docutils literal notranslate"><span class="pre">Parameters</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.meshes.types.DefaultParameters"><code class="docutils literal notranslate"><span class="pre">DefaultParameters</span></code></a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#constants">Constants</a></li>
 </ul>
 </li>
 </ul>

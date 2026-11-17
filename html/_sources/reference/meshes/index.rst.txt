@@ -130,6 +130,13 @@ Modules
    ~templates
    ~types
 
+Type Aliases
+------------
+
+.. autoall:: manim_extensions.meshes
+   :recursive:
+   :types: typealias
+
 .. toctree::
    :hidden:
    :maxdepth: 1

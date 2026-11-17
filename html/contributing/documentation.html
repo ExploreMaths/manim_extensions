@@ -1688,6 +1688,16 @@ Arrays of shape (4, 3) hold the control points.
 <h2>API Documentation Coverage<a class="headerlink" href="#api-documentation-coverage" title="Link to this heading">¶</a></h2>
 <p>Every <strong>public</strong> name (class, function, constant) exported by the package must appear in the documentation under <code class="docutils literal notranslate"><span class="pre">docs/source/reference/</span></code>. This is enforced by <code class="docutils literal notranslate"><span class="pre">validate_api_coverage.py</span></code>.</p>
 <p>The docs use a custom <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">autoall::</span></code> directive that automatically expands into autodoc directives for all public names of a module. When adding a new public module or name, make sure it is reachable from an <code class="docutils literal notranslate"><span class="pre">autoall</span></code> block (or an explicit <code class="docutils literal notranslate"><span class="pre">autoclass</span></code> / <code class="docutils literal notranslate"><span class="pre">autofunction</span></code> / <code class="docutils literal notranslate"><span class="pre">autodata</span></code>).</p>
+<p>A public type alias is not a constant.  Document it in the package page’s <code class="docutils literal notranslate"><span class="pre">Type</span> <span class="pre">Aliases</span></code> section with <code class="docutils literal notranslate"><span class="pre">:types:</span> <span class="pre">typealias</span></code>; <code class="docutils literal notranslate"><span class="pre">autoall</span></code> emits a <code class="docutils literal notranslate"><span class="pre">py:type</span></code> entry whose target signatures can link to:</p>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Type Aliases</span>
+<span class="gh">------------</span>
+
+<span class="p">..</span> <span class="ow">autoall</span><span class="p">::</span> manim_extensions.three_d
+   <span class="nc">:recursive:</span>
+   <span class="nc">:types:</span> typealias
+</pre></div>
+</div>
+<p>Only the module that defines the alias should list it; imported re-exports are skipped so the page keeps one canonical target.  A <code class="docutils literal notranslate"><span class="pre">#:</span></code> comment immediately above the assignment becomes its description, matching module-level constants.</p>
 <p>After adding new public names, refresh the coverage snapshot:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>workflow/validate_api_coverage.py<span class="w"> </span>--write-snapshot
 </pre></div>

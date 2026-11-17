@@ -1515,6 +1515,12 @@ The Sphinx hook now patches
 installed 3.17.5 release actually calls — and restores aliases parsed from
 the original annotation string, including names nested inside <code class="docutils literal notranslate"><span class="pre">list[...]</span></code>
 and unions.</p></li>
+<li><p>Every vendored package that defines type aliases now has a <code class="docutils literal notranslate"><span class="pre">Type</span> <span class="pre">Aliases</span></code>
+section on its reference page.  <code class="docutils literal notranslate"><span class="pre">autoall</span></code> gained a <code class="docutils literal notranslate"><span class="pre">typealias</span></code>
+classification that renders real <code class="docutils literal notranslate"><span class="pre">py:type</span></code> targets with the alias source
+from the module AST, so signatures such as
+<a class="reference internal" href="reference/three_d/index.html#manim_extensions.three_d.core.ContourSpec" title="manim_extensions.three_d.core.ContourSpec"><code class="xref py py-type docutils literal notranslate"><span class="pre">ContourSpec</span></code></a> link to the definition
+instead of appearing as plain text.  Re-exported aliases are not duplicated.</p></li>
 <li><p>Deprecation and runtime warnings no longer flood the pytest and CI logs:
 internal calls to the compatibility rate functions use their unwrapped
 implementations, Manim mobject getters use properties (<code class="docutils literal notranslate"><span class="pre">width</span></code>,
