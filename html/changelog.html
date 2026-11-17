@@ -1421,7 +1421,7 @@
 <li class="toctree-l2"><a class="reference internal" href="constants/messages.html">Messages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="constants/colors.html">Colours</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="constants/classes.html">Classes</a><input aria-label="Toggle navigation of Classes" class="toctree-checkbox" id="toctree-checkbox-269" name="toctree-checkbox-269" role="switch" type="checkbox"/><label for="toctree-checkbox-269"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="constants/classes/animation_builder.html">AnimationBuilder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constants/classes/animation_builder.html">_AnimationBuilder</a></li>
 </ul>
 </li>
 </ul>
@@ -1478,6 +1478,13 @@
 <section id="added">
 <h3>Added<a class="headerlink" href="#added" title="Link to this heading">¶</a></h3>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">workflow/validate_english_text.py</span></code> replaces the docstring-only CJK
+check.  It scans every text file in the repository, including tests,
+scripts, workflow files, docs and configuration, and rejects Chinese text
+in Python comments and docstrings as well as the comment syntaxes used by
+RST, Markdown, TOML, YAML, shell, TeX, CSS and JavaScript.  Deliberate
+Chinese content in string literals (for example <a class="reference internal" href="reference/basic/mobjects.ChineseMathTex.html#manim_extensions.mobjects.ChineseMathTex" title="manim_extensions.mobjects.ChineseMathTex"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChineseMathTex</span></code></a>
+examples) remains allowed.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">workflow/validate_naming.py</span></code> and the <code class="docutils literal notranslate"><span class="pre">validate-naming</span></code> CI job enforce
 PascalCase class names without underscores and lowercase <code class="docutils literal notranslate"><span class="pre">snake_case</span></code>
 function and method names across the entire package, including vendored
@@ -1506,6 +1513,16 @@ and a <code class="docutils literal notranslate"><span class="pre">..</span> <sp
 <section id="fixed">
 <h3>Fixed<a class="headerlink" href="#fixed" title="Link to this heading">¶</a></h3>
 <ul class="simple">
+<li><p>Quoted forward references inside type aliases now become links:
+<code class="docutils literal notranslate"><span class="pre">SurfaceConfig</span></code> renders <code class="docutils literal notranslate"><span class="pre">GaussianSurface</span> <span class="pre">|</span> <span class="pre">SaddleSurface</span> <span class="pre">|</span> <span class="pre">...</span></code> with
+each class linked to its reference page instead of showing the literal
+strings <code class="docutils literal notranslate"><span class="pre">'GaussianSurface'</span></code>.  <code class="docutils literal notranslate"><span class="pre">autoall</span></code> strips the quotes only when the
+name resolves to a class in the alias module.</p></li>
+<li><p>The Manim documentation supplement now documents the private animation
+builder returned by <code class="docutils literal notranslate"><span class="pre">.animate</span></code> under its real name, and its page title
+keeps the leading underscore.  A short summary is installed for the class
+when Manim supplies no docstring, so the <code class="docutils literal notranslate"><span class="pre">Classes</span></code> autosummary row is no
+longer empty.</p></li>
 <li><p>Project type aliases render by name again under postponed annotations:
 <code class="docutils literal notranslate"><span class="pre">SurfaceConfig</span></code>, <code class="docutils literal notranslate"><span class="pre">GraphSurfaceConfig</span></code>, <code class="docutils literal notranslate"><span class="pre">GeometrySpec</span></code>, <code class="docutils literal notranslate"><span class="pre">ContourSpec</span></code>,
 <code class="docutils literal notranslate"><span class="pre">ColorRamp</span></code> and <code class="docutils literal notranslate"><span class="pre">SurfaceFunction</span></code> stay aliases in parameter and return

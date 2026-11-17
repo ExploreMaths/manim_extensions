@@ -23,6 +23,17 @@ Formatting and line length
   The hook needs Black on your interpreter (``python3 -m pip install black``); without it the hook warns and lets the commit through, and CI still catches the file. ``git commit --no-verify`` bypasses the hook for one commit.
 * flake8 runs as two CI jobs: ``flake8-unused-imports`` fails on ``F401``, and ``flake8-syntax`` fails on ``E9,F63,F7,F82`` (syntax / undefined names) with ``--max-line-length=127``. A local ``flake8 manim_extensions`` also prints the complexity advisory; complexity is not a CI gate.
 
+Language
+--------
+
+* **Text is English.** The public reference, code comments, docstrings, log
+  messages and documentation prose must not contain Chinese characters.
+  Deliberate Chinese sample data, such as
+  :class:`~manim_extensions.mobjects.ChineseMathTex` examples, is listed in
+  the checker's allowlist.  ``validate-english-text`` scans every text file
+  in the tree, including tests, scripts, workflow files, docs and
+  configuration, and runs as part of the ``static`` check group.
+
 Type annotations
 ----------------
 

@@ -1420,7 +1420,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../constants/messages.html">Messages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../constants/colors.html">Colours</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../../constants/classes.html">Classes</a><input aria-label="Toggle navigation of Classes" class="toctree-checkbox" id="toctree-checkbox-269" name="toctree-checkbox-269" role="switch" type="checkbox"/><label for="toctree-checkbox-269"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../constants/classes/animation_builder.html">AnimationBuilder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../constants/classes/animation_builder.html">_AnimationBuilder</a></li>
 </ul>
 </li>
 </ul>
@@ -1618,11 +1618,11 @@
     <span class="c1">#: how far beyond the vertex the overflow number sits (radius multiple)</span>
     <span class="n">overflow_number_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.17</span>
 
-    <span class="c1"># ---- rainbow web（彩虹蛛网，0.1.2）-----------------------------------</span>
-    <span class="c1">#: 彩虹蛛网：相邻线段不同色（环按角度取相隔色相、辐条用轴色），</span>
-    <span class="c1">#: 加粗提亮，黑底边界清晰；描线用 chart.trace_web()</span>
+    <span class="c1"># ---- rainbow web (0.1.2) -------------------------------------------</span>
+    <span class="c1">#: Rainbow web: adjacent segments use different colours (rings take separated hues by angle, spokes use axis colours),</span>
+    <span class="c1">#: with thicker, brighter strokes and clear boundaries on black; draw with chart.trace_web()</span>
     <span class="n">web_rainbow</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="c1">#: 彩虹蛛网描线时长（秒）；蛛网描好后数据多边形才入场（先网后数据）</span>
+    <span class="c1">#: Rainbow-web draw duration (seconds); the data polygon enters after the web is drawn (web first, data second)</span>
     <span class="n">web_trace_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.32</span>
 
     <span class="c1"># ---- legend &amp; comparisons --------------------------------------------</span>
@@ -1736,9 +1736,9 @@
 <span class="c1"># style presets — "neo" is the 2.0 look, "classic" is the 1.0 look</span>
 <span class="c1"># ---------------------------------------------------------------------------</span>
 <span class="n">STYLES</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">RadarConfig</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="c1"># 2.0：彩虹描边 + 顶点光点 + 刻度 + 扫光 + 双层辉光 + 滚轮数字</span>
+    <span class="c1"># 2.0: rainbow stroke + vertex glow + ticks + sweep + double-layer glow + rolling numbers</span>
     <span class="s2">"neo"</span><span class="p">:</span> <span class="n">RadarConfig</span><span class="p">(),</span>
-    <span class="c1"># 1.0：单层填充 + 亮白描边 + 冷灰网格 + 跳变数字，装饰全部关掉</span>
+    <span class="c1"># 1.0: single fill + bright white stroke + cool-grey grid + snapping numbers; all decoration off</span>
     <span class="s2">"classic"</span><span class="p">:</span> <span class="n">RadarConfig</span><span class="p">(</span>
         <span class="n">radius</span><span class="o">=</span><span class="mf">3.2</span><span class="p">,</span>
         <span class="n">position</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.14</span><span class="p">),</span>
@@ -1769,7 +1769,7 @@
         <span class="n">morph_run_time</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
         <span class="n">show_dataset_name</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
     <span class="p">),</span>
-    <span class="c1"># minimal：干净版，适合浅色主题 / 数据图表</span>
+    <span class="c1"># minimal: clean version for light themes / data charts</span>
     <span class="s2">"minimal"</span><span class="p">:</span> <span class="n">RadarConfig</span><span class="p">(</span>
         <span class="n">radius</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span>
         <span class="n">position</span><span class="o">=</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.10</span><span class="p">),</span>

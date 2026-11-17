@@ -1421,7 +1421,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../constants/messages.html">Messages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../constants/colors.html">Colours</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../constants/classes.html">Classes</a><input aria-label="Toggle navigation of Classes" class="toctree-checkbox" id="toctree-checkbox-269" name="toctree-checkbox-269" role="switch" type="checkbox"/><label for="toctree-checkbox-269"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../constants/classes/animation_builder.html">AnimationBuilder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../constants/classes/animation_builder.html">_AnimationBuilder</a></li>
 </ul>
 </li>
 </ul>
@@ -1908,14 +1908,19 @@ overshoots from burst morphs from popping spurious read-outs</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.config.RadarConfig.web_rainbow">
 <span class="sig-name descname"><span class="pre">web_rainbow</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></span><a class="headerlink" href="#manim_extensions.radar.config.RadarConfig.web_rainbow" title="Link to this definition">¶</a></dt>
-<dd><p>彩虹蛛网：相邻线段不同色（环按角度取相隔色相、辐条用轴色），
-加粗提亮，黑底边界清晰；描线用 chart.trace_web()</p>
+<dd><p>adjacent segments use different colours (rings take separated hues by angle, spokes use axis colours),
+with thicker, brighter strokes and clear boundaries on black; draw with chart.trace_web()</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Rainbow web</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.config.RadarConfig.web_trace_time">
 <span class="sig-name descname"><span class="pre">web_trace_time</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.32</span></span></span><a class="headerlink" href="#manim_extensions.radar.config.RadarConfig.web_trace_time" title="Link to this definition">¶</a></dt>
-<dd><p>彩虹蛛网描线时长（秒）；蛛网描好后数据多边形才入场（先网后数据）</p>
+<dd><p>Rainbow-web draw duration (seconds); the data polygon enters after the web is drawn (web first, data second)</p>
 </dd></dl>
 
 <dl class="py attribute">

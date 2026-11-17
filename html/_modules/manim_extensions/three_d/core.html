@@ -1420,7 +1420,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../constants/messages.html">Messages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../constants/colors.html">Colours</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../../constants/classes.html">Classes</a><input aria-label="Toggle navigation of Classes" class="toctree-checkbox" id="toctree-checkbox-269" name="toctree-checkbox-269" role="switch" type="checkbox"/><label for="toctree-checkbox-269"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../constants/classes/animation_builder.html">AnimationBuilder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../constants/classes/animation_builder.html">_AnimationBuilder</a></li>
 </ul>
 </li>
 </ul>
@@ -1587,7 +1587,7 @@
     <span class="s2">"PACE"</span><span class="p">,</span>
 <span class="p">]</span>
 
-<span class="c1"># ---------------- 配色主题 ----------------</span>
+<span class="c1"># ---------------- Colour themes ----------------</span>
 <span class="n">RAMPS</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">"rainbow"</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">(</span><span class="s2">"#123a6d"</span><span class="p">,</span> <span class="mf">0.00</span><span class="p">),</span>
@@ -1613,8 +1613,8 @@
     <span class="p">],</span>
 <span class="p">}</span>
 
-<span class="c1"># ---------------- 节拍表 ----------------</span>
-<span class="c1"># (名称, 参考时长s, 下限s, 时长上限=参考×倍率, 可砍优先级:1最先砍,None=必留)</span>
+<span class="c1"># ---------------- Beat table ----------------</span>
+<span class="c1"># (name, reference seconds, minimum seconds, maximum = reference x factor, cut priority: 1 first, None = keep)</span>
 <span class="n">BEATS</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">(</span><span class="s2">"title"</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
     <span class="p">(</span><span class="s2">"axes"</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
@@ -1766,26 +1766,28 @@
 
 
 
-<span class="c1"># ---------------- 配置 ----------------</span>
+<span class="c1"># ---------------- Configuration ----------------</span>
 <div class="viewcode-block" id="GaussianSurface">
 <a class="viewcode-back" href="../../../reference/three_d/core.GaussianSurface.html#manim_extensions.three_d.core.GaussianSurface">[docs]</a>
 <span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">GaussianSurface</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Tunable parameters for a Gaussian surface, generalized to :math:`z=f(x, y)`."""</span>
 
-    <span class="n">func</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># z=f(x,y);None=内置高斯</span>
-    <span class="n">func_tex</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># 角落公式;None=自定义函数且不显示公式</span>
-    <span class="n">domain</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">2.6</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">)</span>  <span class="c1"># x/y 定义域</span>
-    <span class="n">resolution</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>  <span class="c1"># 曲面网格密度</span>
-    <span class="n">colors</span><span class="p">:</span> <span class="nb">object</span> <span class="o">=</span> <span class="s2">"rainbow"</span>  <span class="c1"># RAMPS 主题名或 [(hex,0~1)...]</span>
-    <span class="n">height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># 峰值自动归一化到该高度</span>
+    <span class="n">func</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># z=f(x,y); None = built-in Gaussian</span>
+    <span class="n">func_tex</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="kc">None</span>  <span class="c1"># corner formula; None = custom function without a displayed formula</span>
+    <span class="p">)</span>
+    <span class="n">domain</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">2.6</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">)</span>  <span class="c1"># x/y domain</span>
+    <span class="n">resolution</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>  <span class="c1"># surface mesh density</span>
+    <span class="n">colors</span><span class="p">:</span> <span class="nb">object</span> <span class="o">=</span> <span class="s2">"rainbow"</span>  <span class="c1"># RAMPS theme name or [(hex, 0-1), ...]</span>
+    <span class="n">height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># peak auto-normalised to this height</span>
     <span class="n">axes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">rings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># 底面等高线(径向近似)</span>
-    <span class="n">orbit</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># 360° 环绕</span>
-    <span class="n">flip</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># 翻面展示底面</span>
-    <span class="n">annotate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># 峰顶标注</span>
-    <span class="n">captions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># 字幕按槽位对位,不传=无</span>
-    <span class="n">duration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># 内容预算(秒);None=用 pace</span>
+    <span class="n">rings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># floor contours (radial approximation)</span>
+    <span class="n">orbit</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># 360° orbit</span>
+    <span class="n">flip</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># flip to show the underside</span>
+    <span class="n">annotate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># peak label</span>
+    <span class="n">captions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># captions aligned by slot; omit for none</span>
+    <span class="n">duration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># content budget in seconds; None = use pace</span>
     <span class="n">pace</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"full"</span>  <span class="c1"># fast=10 / normal=24 / full=45</span>
     <span class="n">background</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"#050810"</span>
     <span class="n">camera_phi</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">72.0</span>
@@ -1822,12 +1824,12 @@
     <span class="n">domain</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">2.2</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">)</span>
     <span class="n">resolution</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">44</span><span class="p">,</span> <span class="mi">44</span><span class="p">)</span>
     <span class="n">colors</span><span class="p">:</span> <span class="nb">object</span> <span class="o">=</span> <span class="s2">"rainbow"</span>
-    <span class="n">height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.2</span>  <span class="c1"># 归一化:山脊 = +H,低谷 = -H(对称)</span>
+    <span class="n">height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.2</span>  <span class="c1"># normalise: ridge = +H, valley = -H (symmetric)</span>
     <span class="n">axes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">rings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># 双曲线族等高线 + 渐近线(地板)</span>
+    <span class="n">rings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># hyperbola-family contours + asymptotes (floor)</span>
     <span class="n">orbit</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="n">flip</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">annotate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># 鞍点标注(投影 HUD 标签)</span>
+    <span class="n">annotate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># saddle label (projected HUD label)</span>
     <span class="n">captions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">duration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">pace</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"full"</span>
@@ -1847,12 +1849,12 @@
     <span class="n">domain</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">2.2</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">)</span>
     <span class="n">resolution</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">44</span><span class="p">,</span> <span class="mi">44</span><span class="p">)</span>
     <span class="n">colors</span><span class="p">:</span> <span class="nb">object</span> <span class="o">=</span> <span class="s2">"rainbow"</span>
-    <span class="n">height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.2</span>  <span class="c1"># 归一化:碗沿 = H,碗底 = 0</span>
+    <span class="n">height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.2</span>  <span class="c1"># normalise: rim = H, bottom = 0</span>
     <span class="n">axes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">rings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># 贴面同心圆等高线(翻面随曲面转)</span>
+    <span class="n">rings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># surface-attached concentric contours (follow the flip)</span>
     <span class="n">orbit</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="n">flip</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">annotate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># 顶点标注(投影 HUD 标签)</span>
+    <span class="n">annotate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># top label (projected HUD label)</span>
     <span class="n">captions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">duration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">pace</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"full"</span>
@@ -1869,14 +1871,14 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">EllipsoidSurface</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Configuration for an ellipsoid, the first closed parametric surface."""</span>
 
-    <span class="n">semi_axes</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.4</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># (a, b, c) 半轴</span>
-    <span class="n">resolution</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">44</span><span class="p">,</span> <span class="mi">56</span><span class="p">)</span>  <span class="c1"># 经纬网格密度</span>
+    <span class="n">semi_axes</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.4</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># (a, b, c) semi-axes</span>
+    <span class="n">resolution</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">44</span><span class="p">,</span> <span class="mi">56</span><span class="p">)</span>  <span class="c1"># latitude/longitude mesh density</span>
     <span class="n">colors</span><span class="p">:</span> <span class="nb">object</span> <span class="o">=</span> <span class="s2">"rainbow"</span>
     <span class="n">axes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">rings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># 贴面水平椭圆环(翻面随转)</span>
+    <span class="n">rings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># surface-attached horizontal ellipses (follow the flip)</span>
     <span class="n">orbit</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">flip</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># 闭曲面翻转 = 转到背面</span>
-    <span class="n">annotate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># 上顶点标注(3D 标签)</span>
+    <span class="n">flip</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># closed-surface flip = rotate to the back</span>
+    <span class="n">annotate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># top vertex label (3D label)</span>
     <span class="n">captions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">duration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">pace</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"full"</span>
@@ -1893,15 +1895,15 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">TorusSurface</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Configuration for a torus with a 4:1 major-to-minor radius ratio."""</span>
 
-    <span class="n">major_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span>  <span class="c1"># 环半径 R(管中心圆)</span>
-    <span class="n">minor_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># 管半径 r</span>
-    <span class="n">resolution</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">56</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>  <span class="c1"># (大圆 θ, 管 φ) 网格密度</span>
+    <span class="n">major_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span>  <span class="c1"># torus radius R (tube-centre circle)</span>
+    <span class="n">minor_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># tube radius r</span>
+    <span class="n">resolution</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">56</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>  <span class="c1"># (major θ, tube φ) mesh density</span>
     <span class="n">colors</span><span class="p">:</span> <span class="nb">object</span> <span class="o">=</span> <span class="s2">"rainbow"</span>
     <span class="n">axes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">rings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># 贴面水平成对圆环(翻面随转)</span>
+    <span class="n">rings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># surface-attached paired horizontal rings (follow the flip)</span>
     <span class="n">orbit</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="n">flip</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">annotate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># 最高点标注(3D 标签+天线)</span>
+    <span class="n">annotate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># highest-point label (3D label + antenna)</span>
     <span class="n">captions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">duration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">pace</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"full"</span>
@@ -1918,15 +1920,17 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">HyperboloidOneSheet</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Configuration for a one-sheet hyperboloid, recognizable by its waist."""</span>
 
-    <span class="n">waist_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># 腰圆半径 a(=b)</span>
-    <span class="n">z_extent</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span>  <span class="c1"># 上下截断高度 ±h</span>
-    <span class="n">resolution</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">36</span><span class="p">,</span> <span class="mi">48</span><span class="p">)</span>  <span class="c1"># (z 向, 周 向) 网格密度</span>
+    <span class="n">waist_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># waist radius a (= b)</span>
+    <span class="n">z_extent</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span>  <span class="c1"># upper/lower truncation ±h</span>
+    <span class="n">resolution</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">36</span><span class="p">,</span> <span class="mi">48</span><span class="p">)</span>  <span class="c1"># (z, circumferential) mesh density</span>
     <span class="n">colors</span><span class="p">:</span> <span class="nb">object</span> <span class="o">=</span> <span class="s2">"rainbow"</span>
     <span class="n">axes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">rings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># 贴面水平圆族(含腰圆,翻面随转)</span>
+    <span class="n">rings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="kc">True</span>  <span class="c1"># surface-attached horizontal circle family (including the waist; follows the flip)</span>
+    <span class="p">)</span>
     <span class="n">orbit</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="n">flip</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="n">annotate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># 腰圆前点标注(HUD 标签,无虚线)</span>
+    <span class="n">annotate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># waist front label (HUD label, no dashed line)</span>
     <span class="n">captions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">duration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">pace</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"full"</span>
@@ -1937,7 +1941,7 @@
 
 
 
-<span class="c1"># ---------------- 节拍骨架(图曲面通用) ----------------</span>
+<span class="c1"># ---------------- Beat skeleton (shared graph surfaces) ----------------</span>
 <div class="viewcode-block" id="GraphSurfaceScene">
 <a class="viewcode-back" href="../../../reference/three_d/core.GraphSurfaceScene.html#manim_extensions.three_d.core.GraphSurfaceScene">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">GraphSurfaceScene</span><span class="p">(</span><span class="n">ThreeDScene</span><span class="p">):</span>
@@ -1976,7 +1980,7 @@
     <span class="n">style</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">uses_flat</span> <span class="o">=</span> <span class="kc">True</span>
 
-    <span class="c1"># ---- 钩子 ----</span>
+    <span class="c1"># ---- hooks ----</span>
 <div class="viewcode-block" id="GraphSurfaceScene._geometry">
 <a class="viewcode-back" href="../../../reference/three_d/core.GraphSurfaceScene.html#manim_extensions.three_d.core.GraphSurfaceScene._geometry">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">:</span> <span class="n">SurfaceConfig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GeometrySpec</span><span class="p">:</span>
@@ -2169,7 +2173,7 @@
         <span class="k">return</span> <span class="n">s</span></div>
 
 
-    <span class="c1"># ---- 主流程 ----</span>
+    <span class="c1"># ---- main flow ----</span>
 <div class="viewcode-block" id="GraphSurfaceScene.construct">
 <a class="viewcode-back" href="../../../reference/three_d/core.GraphSurfaceScene.html#manim_extensions.three_d.core.GraphSurfaceScene.construct">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -2202,13 +2206,13 @@
         <span class="n">t</span><span class="p">,</span> <span class="n">dropped</span> <span class="o">=</span> <span class="n">plan_timeline</span><span class="p">(</span><span class="n">duration</span><span class="p">,</span> <span class="n">enabled</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">dropped</span><span class="p">:</span>
             <span class="nb">print</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">"[manim_extensions.three_d] </span><span class="si">{</span><span class="n">duration</span><span class="si">}</span><span class="s2">s 预算放不下全部节拍,自动砍掉: </span><span class="si">{</span><span class="s1">' → '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dropped</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+                <span class="sa">f</span><span class="s2">"[manim_extensions.three_d] </span><span class="si">{</span><span class="n">duration</span><span class="si">}</span><span class="s2">s budget cannot fit every beat; dropping: </span><span class="si">{</span><span class="s1">', '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dropped</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
             <span class="p">)</span>
         <span class="n">swap_t</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mf">0.9</span> <span class="o">*</span> <span class="n">duration</span> <span class="o">/</span> <span class="mf">45.0</span><span class="p">,</span> <span class="mf">0.35</span><span class="p">),</span> <span class="mf">1.0</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span>
-            <span class="s2">"[manim_extensions.three_d] 节拍预算:"</span><span class="p">,</span>
+            <span class="s2">"[manim_extensions.three_d] beat budget:"</span><span class="p">,</span>
             <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">v</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">s"</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">items</span><span class="p">()),</span>
-            <span class="sa">f</span><span class="s2">"(字幕换行 </span><span class="si">{</span><span class="n">swap_t</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s/次)"</span><span class="p">,</span>
+            <span class="sa">f</span><span class="s2">"(caption swap </span><span class="si">{</span><span class="n">swap_t</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s each)"</span><span class="p">,</span>
         <span class="p">)</span>
 
         <span class="n">slots</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_caption_slots</span><span class="p">()</span>
@@ -2220,7 +2224,7 @@
             <span class="n">zoom</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">zoom</span><span class="p">,</span>
         <span class="p">)</span>
 
-        <span class="c1"># ---------- 字幕 HUD(文字+公式 VGroup,固定屏幕系) ----------</span>
+        <span class="c1"># ---------- caption HUD (text + formula VGroup, screen-fixed) ----------</span>
         <span class="n">cur_cap</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">make_cap</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">tex</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">live</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
@@ -2250,7 +2254,7 @@
             <span class="k">if</span> <span class="n">live</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">add_fixed_in_frame_mobjects</span><span class="p">(</span>
                     <span class="n">g</span>
-                <span class="p">)</span>  <span class="c1"># 注册即入场,调用方须 self.remove 摘下</span>
+                <span class="p">)</span>  <span class="c1"># registered on entry; caller must self.remove to detach</span>
             <span class="k">return</span> <span class="n">g</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">swap_caption</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">tex</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
@@ -2270,13 +2274,13 @@
 
             <span class="k">nonlocal</span> <span class="n">cur_cap</span>
             <span class="n">new_cap</span> <span class="o">=</span> <span class="n">make_cap</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">tex</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">new_cap</span><span class="p">)</span>  <span class="c1"># 摘下防提前露字,由 FadeIn 加回</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">new_cap</span><span class="p">)</span>  <span class="c1"># detach to avoid early text; FadeIn adds it back</span>
             <span class="k">if</span> <span class="n">cur_cap</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeOut</span><span class="p">(</span><span class="n">cur_cap</span><span class="p">),</span> <span class="n">run_time</span><span class="o">=</span><span class="mf">0.44</span> <span class="o">*</span> <span class="n">swap_t</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">new_cap</span><span class="p">),</span> <span class="n">run_time</span><span class="o">=</span><span class="mf">0.56</span> <span class="o">*</span> <span class="n">swap_t</span><span class="p">)</span>
             <span class="n">cur_cap</span> <span class="o">=</span> <span class="n">new_cap</span>
 
-        <span class="c1"># ---------- 几何 ----------</span>
+        <span class="c1"># ---------- geometry ----------</span>
         <span class="n">axes_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_axes</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">ax_z_lo</span><span class="p">,</span> <span class="n">ax_z_hi</span><span class="p">)</span>
         <span class="n">surface</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_surface</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">axes_obj</span><span class="p">,</span> <span class="n">f_n</span><span class="p">,</span> <span class="n">ramp</span><span class="p">,</span> <span class="n">zmin_n</span><span class="p">)</span>
 
@@ -2305,7 +2309,7 @@
 
         <span class="n">feat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_feature</span><span class="p">(</span><span class="n">cfg</span><span class="p">,</span> <span class="n">f_n</span><span class="p">)</span> <span class="k">if</span> <span class="s2">"annotate"</span> <span class="ow">in</span> <span class="n">t</span> <span class="k">else</span> <span class="kc">None</span>
 
-        <span class="c1"># ---------- 角落公式 ----------</span>
+        <span class="c1"># ---------- corner formula ----------</span>
         <span class="n">formula</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">func_tex</span><span class="p">:</span>
             <span class="n">formula</span> <span class="o">=</span> <span class="n">MathTex</span><span class="p">(</span><span class="n">func_tex</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">112</span><span class="p">)</span>
@@ -2314,7 +2318,9 @@
 
         <span class="c1"># ================= title =================</span>
         <span class="k">if</span> <span class="n">cap_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"title"</span><span class="p">):</span>
-            <span class="n">cur_cap</span> <span class="o">=</span> <span class="n">make_cap</span><span class="p">(</span><span class="n">cap_map</span><span class="p">[</span><span class="s2">"title"</span><span class="p">],</span> <span class="n">tex</span><span class="o">=</span><span class="n">func_tex</span><span class="p">)</span>  <span class="c1"># 片头字幕直接在场</span>
+            <span class="n">cur_cap</span> <span class="o">=</span> <span class="n">make_cap</span><span class="p">(</span>
+                <span class="n">cap_map</span><span class="p">[</span><span class="s2">"title"</span><span class="p">],</span> <span class="n">tex</span><span class="o">=</span><span class="n">func_tex</span>
+            <span class="p">)</span>  <span class="c1"># title card appears directly</span>
         <span class="k">if</span> <span class="s2">"title"</span> <span class="ow">in</span> <span class="n">t</span><span class="p">:</span>
             <span class="n">fade</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.53</span> <span class="o">*</span> <span class="n">t</span><span class="p">[</span><span class="s2">"title"</span><span class="p">])</span>
             <span class="k">if</span> <span class="n">formula</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -2331,7 +2337,7 @@
             <span class="n">anims</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Create</span><span class="p">(</span><span class="n">axes_obj</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="o">*</span><span class="n">anims</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="s2">"axes"</span><span class="p">])</span>
 
-        <span class="c1"># ================= 成型(图曲面:平面隆起 / 闭曲面:充气) =================</span>
+        <span class="c1"># ================= shaping (graph surface: lift plane / closed surface: inflate) =================</span>
         <span class="k">if</span> <span class="s2">"flat"</span> <span class="ow">in</span> <span class="n">t</span> <span class="ow">and</span> <span class="n">flat</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">cap_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"flat"</span><span class="p">):</span>
                 <span class="n">swap_caption</span><span class="p">(</span><span class="n">cap_map</span><span class="p">[</span><span class="s2">"flat"</span><span class="p">])</span>
@@ -2341,9 +2347,11 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
                     <span class="n">Transform</span><span class="p">(</span><span class="n">flat</span><span class="p">,</span> <span class="n">surface</span><span class="p">),</span> <span class="n">run_time</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="s2">"rise"</span><span class="p">],</span> <span class="n">rate_func</span><span class="o">=</span><span class="n">smooth</span>
                 <span class="p">)</span>
-                <span class="n">surface</span> <span class="o">=</span> <span class="n">flat</span>  <span class="c1"># Transform 后它已是目标形状</span>
+                <span class="n">surface</span> <span class="o">=</span> <span class="n">flat</span>  <span class="c1"># after Transform it is already the target shape</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">GrowFromCenter</span><span class="p">(</span><span class="n">surface</span><span class="p">),</span> <span class="n">run_time</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="s2">"rise"</span><span class="p">])</span>  <span class="c1"># 闭曲面充气成型</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
+                    <span class="n">GrowFromCenter</span><span class="p">(</span><span class="n">surface</span><span class="p">),</span> <span class="n">run_time</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="s2">"rise"</span><span class="p">]</span>
+                <span class="p">)</span>  <span class="c1"># inflate the closed surface</span>
 
         <span class="c1"># ================= rings =================</span>
         <span class="k">if</span> <span class="s2">"rings"</span> <span class="ow">in</span> <span class="n">t</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">rings_grp</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -2360,7 +2368,7 @@
                 <span class="n">swap_caption</span><span class="p">(</span><span class="n">cap_map</span><span class="p">[</span><span class="s2">"orbit"</span><span class="p">])</span>
             <span class="n">settle</span> <span class="o">=</span> <span class="mf">0.4</span> <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="s2">"orbit"</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="mf">2.0</span> <span class="k">else</span> <span class="mf">0.0</span>
             <span class="n">spin</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="s2">"orbit"</span><span class="p">]</span> <span class="o">-</span> <span class="n">settle</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">begin_ambient_camera_rotation</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="n">TAU</span> <span class="o">/</span> <span class="n">spin</span><span class="p">)</span>  <span class="c1"># 恰好转满一整圈</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">begin_ambient_camera_rotation</span><span class="p">(</span><span class="n">rate</span><span class="o">=</span><span class="n">TAU</span> <span class="o">/</span> <span class="n">spin</span><span class="p">)</span>  <span class="c1"># exactly one full turn</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">spin</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">stop_ambient_camera_rotation</span><span class="p">()</span>
             <span class="k">if</span> <span class="n">settle</span><span class="p">:</span>
@@ -2403,7 +2411,7 @@
             <span class="p">)</span>
             <span class="n">stem</span> <span class="o">=</span> <span class="kc">None</span>
             <span class="k">if</span> <span class="n">stem_z0</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="nb">abs</span><span class="p">(</span><span class="n">stem_z0</span> <span class="o">-</span> <span class="n">pz</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1e-9</span><span class="p">:</span>
-                <span class="c1"># stem_z0==pz → 免虚线(腰圆类特征点:竖直虚线会扎进曲面内部被吞)</span>
+                <span class="c1"># stem_z0 == pz -&gt; no dashed line (waist-type feature point; a vertical line would enter the surface)</span>
                 <span class="n">stem</span> <span class="o">=</span> <span class="n">DashedLine</span><span class="p">(</span>
                     <span class="n">axes_obj</span><span class="o">.</span><span class="n">c2p</span><span class="p">(</span><span class="n">px</span><span class="p">,</span> <span class="n">py</span><span class="p">,</span> <span class="n">stem_z0</span><span class="p">),</span>
                     <span class="n">axes_obj</span><span class="o">.</span><span class="n">c2p</span><span class="p">(</span><span class="n">px</span><span class="p">,</span> <span class="n">py</span><span class="p">,</span> <span class="n">pz</span><span class="p">),</span>
@@ -2412,8 +2420,8 @@
                 <span class="p">)</span>
                 <span class="n">stem</span><span class="o">.</span><span class="n">set_z_index</span><span class="p">(</span><span class="mi">60</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">use_hud</span><span class="p">:</span>
-                <span class="c1"># 特征点被曲面四壁环绕:相机定格后投影到屏幕坐标,标签固定挂其右上,</span>
-                <span class="c1"># 永不被曲面按深度盖住(红点/虚线仍留在 3D 锚定)。</span>
+                <span class="c1"># feature point is surrounded by the surface: after the camera settles, project to screen coordinates and pin the label above-right,</span>
+                <span class="c1"># never covered by the surface depth (the red dot/dashed line stay anchored in 3D).</span>
                 <span class="n">proj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">project_point</span><span class="p">(</span><span class="n">axes_obj</span><span class="o">.</span><span class="n">c2p</span><span class="p">(</span><span class="n">px</span><span class="p">,</span> <span class="n">py</span><span class="p">,</span> <span class="n">pz</span><span class="p">))</span>
                 <span class="n">tag</span> <span class="o">=</span> <span class="n">MathTex</span><span class="p">(</span><span class="n">tag_tex</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">44</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">WHITE</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span>
                     <span class="n">proj</span> <span class="o">+</span> <span class="n">RIGHT</span> <span class="o">*</span> <span class="mf">1.05</span> <span class="o">+</span> <span class="n">UP</span> <span class="o">*</span> <span class="mf">0.4</span>
@@ -2447,7 +2455,7 @@
         <span class="k">if</span> <span class="n">formula</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">anims</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">formula</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">1.5</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="o">*</span><span class="n">anims</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="n">f1</span><span class="p">)</span>
-        <span class="c1"># 大扫除:强制清掉漏网对象</span>
+        <span class="c1"># cleanup: force-remove any missed objects</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mobjects</span><span class="p">)</span> <span class="k">if</span> <span class="n">m</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">formula</span><span class="p">])</span>
         <span class="k">if</span> <span class="n">cap_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"outro"</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">cfg</span><span class="o">.</span><span class="n">captions</span><span class="p">))</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
             <span class="n">last_cap</span> <span class="o">=</span> <span class="n">make_cap</span><span class="p">(</span><span class="n">cap_map</span><span class="p">[</span><span class="s2">"outro"</span><span class="p">])</span>
@@ -2466,7 +2474,7 @@
 
 
 
-<span class="c1"># ---------------- 三个曲面场景 ----------------</span>
+<span class="c1"># ---------------- three surface scenes ----------------</span>
 <div class="viewcode-block" id="GaussianSurfaceScene">
 <a class="viewcode-back" href="../../../reference/three_d/core.GaussianSurfaceScene.html#manim_extensions.three_d.core.GaussianSurfaceScene">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">GaussianSurfaceScene</span><span class="p">(</span><span class="n">GraphSurfaceScene</span><span class="p">):</span>
@@ -2500,7 +2508,7 @@
         <span class="n">zmax</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">zs</span><span class="o">.</span><span class="n">max</span><span class="p">()),</span> <span class="mf">1e-9</span><span class="p">)</span>
         <span class="n">zmin</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">zs</span><span class="o">.</span><span class="n">min</span><span class="p">()))</span>
         <span class="n">scale</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="n">zmax</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_gx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_zs</span> <span class="o">=</span> <span class="n">gx</span><span class="p">,</span> <span class="n">zs</span>  <span class="c1"># 供峰顶标注</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_gx</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_zs</span> <span class="o">=</span> <span class="n">gx</span><span class="p">,</span> <span class="n">zs</span>  <span class="c1"># for the peak label</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stem_z0</span> <span class="o">=</span> <span class="n">zmin</span> <span class="o">*</span> <span class="n">scale</span>
         <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="n">f_raw</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="o">*</span> <span class="n">scale</span>
         <span class="k">return</span> <span class="n">f</span><span class="p">,</span> <span class="n">tex</span><span class="p">,</span> <span class="n">zmin</span> <span class="o">*</span> <span class="n">scale</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">zmin</span> <span class="o">*</span> <span class="n">scale</span><span class="p">),</span> <span class="n">cfg</span><span class="o">.</span><span class="n">height</span> <span class="o">*</span> <span class="mf">1.5</span></div>
@@ -2550,7 +2558,7 @@
                     <span class="n">stroke_opacity</span><span class="o">=</span><span class="mf">0.65</span><span class="p">,</span>
                 <span class="p">)</span>
             <span class="p">)</span>
-        <span class="k">return</span> <span class="n">g</span><span class="p">,</span> <span class="kc">False</span>  <span class="c1"># 地板投影,不随翻面</span></div>
+        <span class="k">return</span> <span class="n">g</span><span class="p">,</span> <span class="kc">False</span>  <span class="c1"># floor projection, does not follow the flip</span></div>
 
 
 <div class="viewcode-block" id="GaussianSurfaceScene._feature">
@@ -2673,7 +2681,7 @@
         <span class="n">d1</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">H</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">height</span>
         <span class="n">g</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">()</span>
-        <span class="c1"># 渐近线 x=±y(k=0 的退化等高线,鞍面签名)</span>
+        <span class="c1"># asymptote x=±y (k=0 degenerate contour, saddle signature)</span>
         <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="p">(</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
             <span class="n">line</span> <span class="o">=</span> <span class="n">ParametricFunction</span><span class="p">(</span>
                 <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="n">s</span><span class="p">:</span> <span class="n">axes</span><span class="o">.</span><span class="n">c2p</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">s</span> <span class="o">*</span> <span class="n">t</span><span class="p">,</span> <span class="mf">0.003</span><span class="p">),</span>
@@ -2683,9 +2691,9 @@
                 <span class="n">stroke_opacity</span><span class="o">=</span><span class="mf">0.55</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">DashedVMobject</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">num_dashes</span><span class="o">=</span><span class="mi">24</span><span class="p">))</span>
-        <span class="c1"># 双曲线族 x²-y²=k 两支,按水平上色</span>
+        <span class="c1"># hyperbola family x²-y²=k, two branches, coloured by horizontal level</span>
         <span class="k">for</span> <span class="n">z_lv</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.25</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">]:</span>
-            <span class="n">k</span> <span class="o">=</span> <span class="n">z_lv</span> <span class="o">*</span> <span class="n">d1</span> <span class="o">*</span> <span class="n">d1</span> <span class="o">/</span> <span class="n">H</span>  <span class="c1"># 归一化前原始水平</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">z_lv</span> <span class="o">*</span> <span class="n">d1</span> <span class="o">*</span> <span class="n">d1</span> <span class="o">/</span> <span class="n">H</span>  <span class="c1"># original level before normalisation</span>
             <span class="n">col</span> <span class="o">=</span> <span class="n">_ramp_color</span><span class="p">(</span><span class="n">ramp</span><span class="p">,</span> <span class="p">(</span><span class="n">z_lv</span> <span class="o">-</span> <span class="n">zmin_n</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">H</span> <span class="o">-</span> <span class="n">zmin_n</span><span class="p">))</span>
             <span class="k">if</span> <span class="n">k</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># x = ±√(k+y²)</span>
                 <span class="n">ymax</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">d1</span> <span class="o">*</span> <span class="n">d1</span> <span class="o">-</span> <span class="n">k</span><span class="p">)</span>
@@ -2715,7 +2723,7 @@
                             <span class="n">stroke_opacity</span><span class="o">=</span><span class="mf">0.75</span><span class="p">,</span>
                         <span class="p">)</span>
                     <span class="p">)</span>
-        <span class="k">return</span> <span class="n">g</span><span class="p">,</span> <span class="kc">False</span>  <span class="c1"># 地板等高线,不随翻面</span></div>
+        <span class="k">return</span> <span class="n">g</span><span class="p">,</span> <span class="kc">False</span>  <span class="c1"># floor contours, do not follow the flip</span></div>
 
 
 <div class="viewcode-block" id="SaddleSurfaceScene._feature">
@@ -2735,7 +2743,14 @@
 <span class="sd">            The origin coordinates, tag formula, HUD flag, and stem start</span>
 <span class="sd">            height.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="sa">r</span><span class="s2">"(0,\,0,\,0)"</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="o">-</span><span class="n">cfg</span><span class="o">.</span><span class="n">height</span> <span class="o">*</span> <span class="mf">1.3</span>  <span class="c1"># 鞍点:HUD 标签</span></div>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="mf">0.0</span><span class="p">,</span>
+            <span class="mf">0.0</span><span class="p">,</span>
+            <span class="mf">0.0</span><span class="p">,</span>
+            <span class="sa">r</span><span class="s2">"(0,\,0,\,0)"</span><span class="p">,</span>
+            <span class="kc">True</span><span class="p">,</span>
+            <span class="o">-</span><span class="n">cfg</span><span class="o">.</span><span class="n">height</span> <span class="o">*</span> <span class="mf">1.3</span><span class="p">,</span>
+        <span class="p">)</span>  <span class="c1"># saddle point: HUD label</span></div>
 </div>
 
 
@@ -2806,8 +2821,8 @@
         <span class="n">d1</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">domain</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="n">H</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">height</span>
         <span class="n">g</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">()</span>
-        <span class="c1"># 贴面同心圆(海拔环线):碗沿高,地板投影会被近侧碗壁挡住。</span>
-        <span class="c1"># 水平 z_lv 的圆半径 r = D·√(z_lv/H),抬高 0.004 防 z-fighting。</span>
+        <span class="c1"># surface-attached concentric rings (altitude rings): rim high; floor projection is blocked by the near bowl wall.</span>
+        <span class="c1"># radius of the z_lv circle r = D·√(z_lv/H), raised by 0.004 to avoid z-fighting.</span>
         <span class="k">for</span> <span class="n">z_lv</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">]:</span>
             <span class="n">r</span> <span class="o">=</span> <span class="n">d1</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">z_lv</span> <span class="o">/</span> <span class="n">H</span><span class="p">)</span>
             <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
@@ -2821,7 +2836,7 @@
                     <span class="n">stroke_opacity</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span>
                 <span class="p">)</span>
             <span class="p">)</span>
-        <span class="k">return</span> <span class="n">g</span><span class="p">,</span> <span class="kc">True</span>  <span class="c1"># 贴在曲面上,翻面必须跟着转</span></div>
+        <span class="k">return</span> <span class="n">g</span><span class="p">,</span> <span class="kc">True</span>  <span class="c1"># attached to the surface; the flip must rotate with it</span></div>
 
 
 <div class="viewcode-block" id="ParaboloidSurfaceScene._feature">
@@ -2841,7 +2856,14 @@
 <span class="sd">            The origin coordinates, tag formula, HUD flag, and stem start</span>
 <span class="sd">            height.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="sa">r</span><span class="s2">"(0,\,0,\,0)"</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="o">-</span><span class="n">cfg</span><span class="o">.</span><span class="n">height</span> <span class="o">*</span> <span class="mf">0.6</span>  <span class="c1"># 顶点:HUD 标签</span></div>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="mf">0.0</span><span class="p">,</span>
+            <span class="mf">0.0</span><span class="p">,</span>
+            <span class="mf">0.0</span><span class="p">,</span>
+            <span class="sa">r</span><span class="s2">"(0,\,0,\,0)"</span><span class="p">,</span>
+            <span class="kc">True</span><span class="p">,</span>
+            <span class="o">-</span><span class="n">cfg</span><span class="o">.</span><span class="n">height</span> <span class="o">*</span> <span class="mf">0.6</span><span class="p">,</span>
+        <span class="p">)</span>  <span class="c1"># top vertex: HUD label</span></div>
 </div>
 
 
@@ -2869,7 +2891,7 @@
 <span class="sd">            minimum height, and low and high z axis limits.</span>
 <span class="sd">        """</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">semi_axes</span>
-        <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">0.0</span>  <span class="c1"># 闭曲面不经图构造,占位</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">0.0</span>  <span class="c1"># closed surfaces skip graph construction; placeholder</span>
         <span class="n">tex</span> <span class="o">=</span> <span class="p">(</span>
             <span class="sa">rf</span><span class="s2">"\frac</span><span class="se">{{</span><span class="s2">x^</span><span class="se">{{</span><span class="s2">2</span><span class="se">}}}}{{</span><span class="si">{</span><span class="n">_fmt</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="si">}</span><span class="s2">^</span><span class="se">{{</span><span class="s2">2</span><span class="se">}}}}</span><span class="s2"> + "</span>
             <span class="sa">rf</span><span class="s2">"\frac</span><span class="se">{{</span><span class="s2">y^</span><span class="se">{{</span><span class="s2">2</span><span class="se">}}}}{{</span><span class="si">{</span><span class="n">_fmt</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="si">}</span><span class="s2">^</span><span class="se">{{</span><span class="s2">2</span><span class="se">}}}}</span><span class="s2"> + "</span>
@@ -2991,9 +3013,11 @@
 <span class="sd">        """</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">semi_axes</span>
         <span class="n">g</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.66</span><span class="p">,</span> <span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.33</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.66</span><span class="p">]:</span>  <span class="c1"># z/c 高度比例</span>
+        <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.66</span><span class="p">,</span> <span class="mf">0.33</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.33</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.66</span><span class="p">]:</span>  <span class="c1"># z/c height ratio</span>
             <span class="n">z0</span> <span class="o">=</span> <span class="n">c</span> <span class="o">*</span> <span class="n">h</span>
-            <span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">h</span> <span class="o">*</span> <span class="n">h</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span> <span class="o">*</span> <span class="mf">1.005</span>  <span class="c1"># 微胀防 z-fighting</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">h</span> <span class="o">*</span> <span class="n">h</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span> <span class="o">*</span> <span class="mf">1.005</span>
+            <span class="p">)</span>  <span class="c1"># slight offset to avoid z-fighting</span>
             <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
                 <span class="n">ParametricFunction</span><span class="p">(</span>
                     <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="n">s</span><span class="p">,</span> <span class="n">z0</span><span class="o">=</span><span class="n">z0</span><span class="p">:</span> <span class="n">axes</span><span class="o">.</span><span class="n">c2p</span><span class="p">(</span>
@@ -3005,7 +3029,7 @@
                     <span class="n">stroke_opacity</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span>
                 <span class="p">)</span>
             <span class="p">)</span>
-        <span class="k">return</span> <span class="n">g</span><span class="p">,</span> <span class="kc">True</span>  <span class="c1"># 贴面环,翻面随转</span></div>
+        <span class="k">return</span> <span class="n">g</span><span class="p">,</span> <span class="kc">True</span>  <span class="c1"># surface-attached ring, follows the flip</span></div>
 
 
 <div class="viewcode-block" id="EllipsoidSurfaceScene._feature">
@@ -3025,7 +3049,7 @@
 <span class="sd">            The apex coordinates, tag formula, HUD flag, and stem start height.</span>
 <span class="sd">        """</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">semi_axes</span>
-        <span class="c1"># 上顶点外露,3D 标签即可;虚线从上方垂下(顶点以下在曲面内部,会被遮挡)</span>
+        <span class="c1"># top vertex exposed; a 3D label suffices; dashed line from above (below the vertex is inside the surface and occluded)</span>
         <span class="k">return</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="sa">rf</span><span class="s2">"(0,\,0,\,</span><span class="si">{</span><span class="n">_fmt</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="si">}</span><span class="s2">)"</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">c</span> <span class="o">+</span> <span class="mf">0.75</span></div>
 </div>
 
@@ -3054,7 +3078,7 @@
 <span class="sd">            minimum height, and low and high z axis limits.</span>
 <span class="sd">        """</span>
         <span class="n">R</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">major_radius</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">minor_radius</span>
-        <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">0.0</span>  <span class="c1"># 闭曲面不经图构造,占位</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">0.0</span>  <span class="c1"># closed surfaces skip graph construction; placeholder</span>
         <span class="n">tex</span> <span class="o">=</span> <span class="sa">rf</span><span class="s2">"(\sqrt</span><span class="se">{{</span><span class="s2">x^</span><span class="se">{{</span><span class="s2">2</span><span class="se">}}</span><span class="s2">+y^</span><span class="se">{{</span><span class="s2">2</span><span class="se">}}}}</span><span class="s2"> - </span><span class="si">{</span><span class="n">_fmt</span><span class="p">(</span><span class="n">R</span><span class="p">)</span><span class="si">}</span><span class="s2">)^</span><span class="se">{{</span><span class="s2">2</span><span class="se">}}</span><span class="s2"> + z^</span><span class="se">{{</span><span class="s2">2</span><span class="se">}}</span><span class="s2"> = </span><span class="si">{</span><span class="n">_fmt</span><span class="p">(</span><span class="n">r</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">r</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
         <span class="k">return</span> <span class="n">f</span><span class="p">,</span> <span class="n">tex</span><span class="p">,</span> <span class="o">-</span><span class="n">r</span><span class="p">,</span> <span class="o">-</span><span class="n">r</span> <span class="o">-</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">r</span> <span class="o">+</span> <span class="mf">0.9</span></div>
 
@@ -3081,7 +3105,9 @@
 <span class="sd">        """</span>
         <span class="n">R</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">major_radius</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">minor_radius</span>
         <span class="n">outer</span> <span class="o">=</span> <span class="n">R</span> <span class="o">+</span> <span class="n">r</span>
-        <span class="n">k</span> <span class="o">=</span> <span class="mf">7.2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">outer</span> <span class="o">+</span> <span class="mf">0.4</span><span class="p">))</span>  <span class="c1"># x 定标,y/z 同比例防畸变</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="mf">7.2</span> <span class="o">/</span> <span class="p">(</span>
+            <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">outer</span> <span class="o">+</span> <span class="mf">0.4</span><span class="p">)</span>
+        <span class="p">)</span>  <span class="c1"># x scale; y/z use the same ratio to avoid distortion</span>
         <span class="n">axes</span> <span class="o">=</span> <span class="n">ThreeDAxes</span><span class="p">(</span>
             <span class="n">x_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="n">outer</span> <span class="o">-</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">outer</span> <span class="o">+</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
             <span class="n">y_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="n">outer</span> <span class="o">-</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">outer</span> <span class="o">+</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
@@ -3175,11 +3201,11 @@
 <span class="sd">        """</span>
         <span class="n">R</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">major_radius</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">minor_radius</span>
         <span class="n">g</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">z_lv</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6</span><span class="p">]:</span>  <span class="c1"># 管截面高度比例(×r)</span>
+        <span class="k">for</span> <span class="n">z_lv</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6</span><span class="p">]:</span>  <span class="c1"># tube cross-section height ratio (×r)</span>
             <span class="n">z0</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">z_lv</span>
             <span class="n">half</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">r</span> <span class="o">*</span> <span class="n">r</span> <span class="o">-</span> <span class="n">z0</span> <span class="o">*</span> <span class="n">z0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">))</span>
-            <span class="k">for</span> <span class="n">sgn</span> <span class="ow">in</span> <span class="p">(</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>  <span class="c1"># 水平截面切出外/内两支圆</span>
-                <span class="n">rho</span> <span class="o">=</span> <span class="p">(</span><span class="n">R</span> <span class="o">+</span> <span class="n">sgn</span> <span class="o">*</span> <span class="n">half</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.004</span>  <span class="c1"># 微胀防 z-fighting</span>
+            <span class="k">for</span> <span class="n">sgn</span> <span class="ow">in</span> <span class="p">(</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>  <span class="c1"># horizontal section cuts outer/inner branches</span>
+                <span class="n">rho</span> <span class="o">=</span> <span class="p">(</span><span class="n">R</span> <span class="o">+</span> <span class="n">sgn</span> <span class="o">*</span> <span class="n">half</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.004</span>  <span class="c1"># slight offset to avoid z-fighting</span>
                 <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
                     <span class="n">ParametricFunction</span><span class="p">(</span>
                         <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="n">rho</span><span class="p">,</span> <span class="n">z0</span><span class="o">=</span><span class="n">z0</span><span class="p">:</span> <span class="n">axes</span><span class="o">.</span><span class="n">c2p</span><span class="p">(</span>
@@ -3191,7 +3217,7 @@
                         <span class="n">stroke_opacity</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span>
                     <span class="p">)</span>
                 <span class="p">)</span>
-        <span class="k">return</span> <span class="n">g</span><span class="p">,</span> <span class="kc">True</span>  <span class="c1"># 贴面环,翻面随转</span></div>
+        <span class="k">return</span> <span class="n">g</span><span class="p">,</span> <span class="kc">True</span>  <span class="c1"># surface-attached ring, follows the flip</span></div>
 
 
 <div class="viewcode-block" id="TorusSurfaceScene._feature">
@@ -3211,7 +3237,7 @@
 <span class="sd">            The apex coordinates, tag formula, HUD flag, and stem start height.</span>
 <span class="sd">        """</span>
         <span class="n">R</span><span class="p">,</span> <span class="n">r</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">major_radius</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">minor_radius</span>
-        <span class="c1"># 最高点外露,3D 标签;天线虚线自上垂下(其余方向在曲面/孔洞里)</span>
+        <span class="c1"># highest point exposed; 3D label; antenna line hangs from above (other directions are inside the surface/hole)</span>
         <span class="k">return</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="sa">rf</span><span class="s2">"(0,\,0,\,</span><span class="si">{</span><span class="n">_fmt</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="si">}</span><span class="s2">)"</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="n">r</span> <span class="o">+</span> <span class="mf">0.75</span></div>
 </div>
 
@@ -3240,7 +3266,9 @@
 <span class="sd">            minimum height, and low and high z axis limits.</span>
 <span class="sd">        """</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">waist_radius</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">z_extent</span>
-        <span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">0.0</span>  <span class="c1"># 闭式管面不经图构造,占位</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="mf">0.0</span>
+        <span class="p">)</span>  <span class="c1"># closed tube surface skips graph construction; placeholder</span>
         <span class="n">rhs</span> <span class="o">=</span> <span class="s2">"1"</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">a</span> <span class="o">-</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mf">1e-9</span> <span class="k">else</span> <span class="n">_fmt</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">a</span><span class="p">)</span>
         <span class="n">tex</span> <span class="o">=</span> <span class="sa">rf</span><span class="s2">"x^</span><span class="se">{{</span><span class="s2">2</span><span class="se">}}</span><span class="s2"> + y^</span><span class="se">{{</span><span class="s2">2</span><span class="se">}}</span><span class="s2"> - z^</span><span class="se">{{</span><span class="s2">2</span><span class="se">}}</span><span class="s2"> = </span><span class="si">{</span><span class="n">rhs</span><span class="si">}</span><span class="s2">"</span>
         <span class="k">return</span> <span class="n">f</span><span class="p">,</span> <span class="n">tex</span><span class="p">,</span> <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="o">-</span><span class="n">h</span> <span class="o">-</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">h</span> <span class="o">+</span> <span class="mf">0.4</span></div>
@@ -3267,8 +3295,10 @@
 <span class="sd">            The uniformly scaled axes.</span>
 <span class="sd">        """</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">waist_radius</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">z_extent</span>
-        <span class="n">max_r</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">a</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">h</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>  <span class="c1"># 端口半径</span>
-        <span class="n">k</span> <span class="o">=</span> <span class="mf">7.2</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_r</span> <span class="o">+</span> <span class="mf">0.4</span><span class="p">))</span>  <span class="c1"># x 定标,y/z 同比例防畸变</span>
+        <span class="n">max_r</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">a</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">h</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>  <span class="c1"># port radius</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="mf">7.2</span> <span class="o">/</span> <span class="p">(</span>
+            <span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">max_r</span> <span class="o">+</span> <span class="mf">0.4</span><span class="p">)</span>
+        <span class="p">)</span>  <span class="c1"># x scale; y/z use the same ratio to avoid distortion</span>
         <span class="n">axes</span> <span class="o">=</span> <span class="n">ThreeDAxes</span><span class="p">(</span>
             <span class="n">x_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="n">max_r</span> <span class="o">-</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">max_r</span> <span class="o">+</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
             <span class="n">y_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="n">max_r</span> <span class="o">-</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">max_r</span> <span class="o">+</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
@@ -3315,7 +3345,7 @@
                 <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">a</span> <span class="o">+</span> <span class="n">u</span> <span class="o">*</span> <span class="n">u</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">v</span><span class="p">),</span>
                 <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">a</span> <span class="o">+</span> <span class="n">u</span> <span class="o">*</span> <span class="n">u</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">v</span><span class="p">),</span>
                 <span class="n">u</span><span class="p">,</span>
-            <span class="p">),</span>  <span class="c1"># u 即 z</span>
+            <span class="p">),</span>  <span class="c1"># u is z</span>
             <span class="n">u_range</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="p">),</span>
             <span class="n">v_range</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">TAU</span><span class="p">),</span>
             <span class="n">resolution</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">resolution</span><span class="p">,</span>
@@ -3362,10 +3392,12 @@
 <span class="sd">        """</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">waist_radius</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">z_extent</span>
         <span class="n">g</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">()</span>
-        <span class="k">for</span> <span class="n">z_lv</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">]:</span>  <span class="c1"># 水平圆族(0 = 腰圆)</span>
+        <span class="k">for</span> <span class="n">z_lv</span> <span class="ow">in</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0</span><span class="p">]:</span>  <span class="c1"># horizontal circle family (0 = waist)</span>
             <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">z_lv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">h</span> <span class="o">*</span> <span class="mf">0.95</span><span class="p">:</span>
                 <span class="k">continue</span>
-            <span class="n">rho</span> <span class="o">=</span> <span class="p">((</span><span class="n">a</span> <span class="o">*</span> <span class="n">a</span> <span class="o">+</span> <span class="n">z_lv</span> <span class="o">*</span> <span class="n">z_lv</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1.004</span>  <span class="c1"># 微胀防 z-fighting</span>
+            <span class="n">rho</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="n">a</span> <span class="o">+</span> <span class="n">z_lv</span> <span class="o">*</span> <span class="n">z_lv</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+            <span class="p">)</span> <span class="o">*</span> <span class="mf">1.004</span>  <span class="c1"># slight offset to avoid z-fighting</span>
             <span class="n">g</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
                 <span class="n">ParametricFunction</span><span class="p">(</span>
                     <span class="k">lambda</span> <span class="n">t</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="n">rho</span><span class="p">,</span> <span class="n">z_lv</span><span class="o">=</span><span class="n">z_lv</span><span class="p">:</span> <span class="n">axes</span><span class="o">.</span><span class="n">c2p</span><span class="p">(</span>
@@ -3377,7 +3409,7 @@
                     <span class="n">stroke_opacity</span><span class="o">=</span><span class="mf">0.85</span><span class="p">,</span>
                 <span class="p">)</span>
             <span class="p">)</span>
-        <span class="k">return</span> <span class="n">g</span><span class="p">,</span> <span class="kc">True</span>  <span class="c1"># 贴面环,翻面随转</span></div>
+        <span class="k">return</span> <span class="n">g</span><span class="p">,</span> <span class="kc">True</span>  <span class="c1"># surface-attached ring, follows the flip</span></div>
 
 
 <div class="viewcode-block" id="HyperboloidOneSheetScene._feature">
@@ -3398,7 +3430,7 @@
 <span class="sd">            height.</span>
 <span class="sd">        """</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">waist_radius</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">z_extent</span>
-        <span class="c1"># 腰圆前点(a,0,0):竖直虚线两端都扎进曲面,免虚线,点+HUD 标签</span>
+        <span class="c1"># waist front point (a,0,0): both ends of a vertical line enter the surface; no dashed line; point + HUD label</span>
         <span class="k">return</span> <span class="n">a</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="sa">rf</span><span class="s2">"(</span><span class="si">{</span><span class="n">_fmt</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="si">}</span><span class="s2">,\,0,\,0)"</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="mf">0.0</span></div>
 </div>
 

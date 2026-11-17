@@ -1420,7 +1420,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../constants/messages.html">Messages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../constants/colors.html">Colours</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../../constants/classes.html">Classes</a><input aria-label="Toggle navigation of Classes" class="toctree-checkbox" id="toctree-checkbox-269" name="toctree-checkbox-269" role="switch" type="checkbox"/><label for="toctree-checkbox-269"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../constants/classes/animation_builder.html">AnimationBuilder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../constants/classes/animation_builder.html">_AnimationBuilder</a></li>
 </ul>
 </li>
 </ul>
@@ -1517,7 +1517,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.utils.space_ops</span><span class="w"> </span><span class="kn">import</span> <span class="n">rotation_matrix</span>
 
 <span class="c1"># ============================================================================</span>
-<span class="c1"># 十二面体常数表（暴力推导 + 自校验，杜绝手写错误）</span>
+<span class="c1"># Dodecahedron constant table (brute-force derivation + self-check; no hand-written values)</span>
 <span class="c1"># ============================================================================</span>
 <span class="n">PHI</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">5.0</span><span class="p">))</span> <span class="o">/</span> <span class="mf">2.0</span>
 
@@ -1612,16 +1612,16 @@
             <span class="n">FACE_ADJ</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
 
 <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">DODECA_VERTICES</span><span class="p">)</span> <span class="o">==</span> <span class="mi">20</span>
-<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">DODECA_EDGES</span><span class="p">)</span> <span class="o">==</span> <span class="mi">30</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"棱数 </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">DODECA_EDGES</span><span class="p">)</span><span class="si">}</span><span class="s2"> != 30"</span>
-<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">DODECA_FACES</span><span class="p">)</span> <span class="o">==</span> <span class="mi">12</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"面数 </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">DODECA_FACES</span><span class="p">)</span><span class="si">}</span><span class="s2"> != 12"</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">DODECA_EDGES</span><span class="p">)</span> <span class="o">==</span> <span class="mi">30</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"edge count </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">DODECA_EDGES</span><span class="p">)</span><span class="si">}</span><span class="s2"> != 30"</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">DODECA_FACES</span><span class="p">)</span> <span class="o">==</span> <span class="mi">12</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"face count </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">DODECA_FACES</span><span class="p">)</span><span class="si">}</span><span class="s2"> != 12"</span>
 <span class="k">assert</span> <span class="nb">all</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">==</span> <span class="mi">5</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">DODECA_FACES</span><span class="p">)</span>
 <span class="n">_cnt</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">DODECA_FACES</span><span class="p">:</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
         <span class="n">_cnt</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 <span class="k">assert</span> <span class="p">(</span><span class="n">_cnt</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span>
-<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">FACE_ADJ</span><span class="p">)</span> <span class="o">==</span> <span class="mi">30</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"对偶棱数 </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">FACE_ADJ</span><span class="p">)</span><span class="si">}</span><span class="s2"> != 30"</span>
-<span class="k">assert</span> <span class="mf">0.5</span> <span class="o">&lt;</span> <span class="n">INRADIUS</span> <span class="o">&lt;</span> <span class="mf">0.95</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"内切比异常 </span><span class="si">{</span><span class="n">INRADIUS</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span>
+<span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">FACE_ADJ</span><span class="p">)</span> <span class="o">==</span> <span class="mi">30</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"dual edge count </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">FACE_ADJ</span><span class="p">)</span><span class="si">}</span><span class="s2"> != 30"</span>
+<span class="k">assert</span> <span class="mf">0.5</span> <span class="o">&lt;</span> <span class="n">INRADIUS</span> <span class="o">&lt;</span> <span class="mf">0.95</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"inradius ratio out of range: </span><span class="si">{</span><span class="n">INRADIUS</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">"</span>
 
 <span class="c1"># ============================================================================</span>
 <span class="c1"># PolyRadarChart</span>
@@ -1703,21 +1703,23 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">axes_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">axes_names</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axes_names</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">12</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">"PolyRadarChart 需要 12 个轴，收到 </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axes_names</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
+                <span class="sa">f</span><span class="s2">"PolyRadarChart requires 12 axes, got </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axes_names</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span>
             <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">max_value</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">max_value</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">poly_radius</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">inr</span> <span class="o">=</span> <span class="n">INRADIUS</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">poly_radius</span>  <span class="c1"># 满量程时面板中心的世界半径</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>  <span class="c1"># 自转轴（世界坐标）</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inr</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">INRADIUS</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">poly_radius</span>
+        <span class="p">)</span>  <span class="c1"># world radius of the panel centre at full scale</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>  <span class="c1"># rotation axis (world coordinates)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cam_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">cam_pos</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">theta</span> <span class="o">=</span> <span class="mf">0.0</span>  <span class="c1"># 自转角（普通浮点）</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">spin_rate</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">spin_rate</span><span class="p">)</span>  <span class="c1"># 度/秒（默认慢速）</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">theta</span> <span class="o">=</span> <span class="mf">0.0</span>  <span class="c1"># rotation angle (plain float)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">spin_rate</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">spin_rate</span><span class="p">)</span>  <span class="c1"># degrees/second (slow by default)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">grow</span> <span class="o">=</span> <span class="nb">bool</span><span class="p">(</span><span class="n">grow</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_frac</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_value</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_frac</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">12</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"需要 12 个数值，收到 </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_frac</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"requires 12 values, got </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_frac</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
-        <span class="c1"># ---- 骨架：嵌套十二面体壳 ----</span>
+        <span class="c1"># ---- skeleton: nested dodecahedron shells ----</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">skins</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">skin_parts</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">skins</span><span class="p">:</span>
@@ -1768,10 +1770,10 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">skin_parts</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="n">part</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">skins</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">grow</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">skins</span><span class="o">.</span><span class="n">set_opacity</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>  <span class="c1"># grow_in 时逐层显现</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">skins</span><span class="o">.</span><span class="n">set_opacity</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>  <span class="c1"># reveals layer by layer during grow_in</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">skins</span><span class="p">)</span>
 
-        <span class="c1"># ---- 数据层：球 / 棱 / 三角面 / 标签 ----</span>
+        <span class="c1"># ---- data layer: spheres / edges / triangular faces / labels ----</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">spheres</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">12</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">spheres</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
@@ -1897,7 +1899,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">Z_AXIS</span><span class="p">,</span> <span class="n">about_point</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">theta</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">theta</span> <span class="o">+</span> <span class="n">delta</span><span class="p">)</span> <span class="o">%</span> <span class="mf">360.0</span></div>
 
-        <span class="c1"># 标签朝向由 _billboard（become+look-at）负责，见 _attach_billboards</span>
+        <span class="c1"># label orientation is handled by _billboard (become + look-at), see _attach_billboards</span>
 
 <div class="viewcode-block" id="PolyRadarChart._attach_billboards">
 <a class="viewcode-back" href="../../../reference/radar/poly.PolyRadarChart.html#manim_extensions.radar.poly.PolyRadarChart._attach_billboards">[docs]</a>

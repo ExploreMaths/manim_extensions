@@ -8,7 +8,7 @@
         <link rel="prefetch" href="../../_static/logo-dark.svg" as="image">
 
     <link rel="shortcut icon" href="../../_static/favicon.svg"><!-- Generated with Sphinx 9.1.1 and Furo 2025.12.19 -->
-        <title>AnimationBuilder - Manim Extensions v1.0.7</title>
+        <title>_AnimationBuilder - Manim Extensions v1.0.7</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=d111a655" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo.css?v=7bdb33bb" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=4ae1632d" />
@@ -1421,7 +1421,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../messages.html">Messages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../colors.html">Colours</a></li>
 <li class="toctree-l2 current has-children"><a class="reference internal" href="../classes.html">Classes</a><input aria-label="Toggle navigation of Classes" checked="" class="toctree-checkbox" id="toctree-checkbox-269" name="toctree-checkbox-269" role="switch" type="checkbox"/><label for="toctree-checkbox-269"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
-<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">AnimationBuilder</a></li>
+<li class="toctree-l3 current current-page"><a class="current reference internal" href="#">_AnimationBuilder</a></li>
 </ul>
 </li>
 </ul>
@@ -1472,7 +1472,7 @@
         </div>
         <article role="main" id="furo-main-content">
           <section id="animationbuilder">
-<h1>AnimationBuilder<a class="headerlink" href="#animationbuilder" title="Link to this heading">¶</a></h1>
+<h1>_AnimationBuilder<a class="headerlink" href="#animationbuilder" title="Link to this heading">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">mobject.animate</span></code> and <code class="docutils literal notranslate"><span class="pre">camera.frame.animate</span></code> return Manim’s
 <code class="docutils literal notranslate"><span class="pre">_AnimationBuilder</span></code> instead of an <code class="docutils literal notranslate"><span class="pre">Animation</span></code>. The object records fluent
 method calls on the mobject target and materialises the real animation only
@@ -1484,7 +1484,8 @@ turns the recorded calls into an <code class="docutils literal notranslate"><spa
 <dl class="py class">
 <dt class="sig sig-object py" id="manim.mobject.mobject._AnimationBuilder">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim.mobject.mobject.</span></span><span class="sig-name descname"><span class="pre">_AnimationBuilder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim/mobject/mobject.html#_AnimationBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim.mobject.mobject._AnimationBuilder" title="Link to this definition">¶</a></dt>
-<dd><dl class="field-list simple">
+<dd><p>Fluent proxy returned by <code class="docutils literal notranslate"><span class="pre">mobject.animate</span></code>; it records method calls and builds the real animation when passed to <code class="docutils literal notranslate"><span class="pre">play</span></code>.</p>
+<dl class="field-list simple">
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="manim.mobject.mobject._AnimationBuilder.build">
@@ -1547,7 +1548,7 @@ turns the recorded calls into an <code class="docutils literal notranslate"><spa
         <div class="toc-tree-container">
           <div class="toc-tree">
             <ul>
-<li><a class="reference internal" href="#">AnimationBuilder</a><ul>
+<li><a class="reference internal" href="#">_AnimationBuilder</a><ul>
 <li><a class="reference internal" href="#manim.mobject.mobject._AnimationBuilder"><code class="docutils literal notranslate"><span class="pre">_AnimationBuilder</span></code></a><ul>
 <li><a class="reference internal" href="#manim.mobject.mobject._AnimationBuilder.build"><code class="docutils literal notranslate"><span class="pre">_AnimationBuilder.build()</span></code></a></li>
 </ul>

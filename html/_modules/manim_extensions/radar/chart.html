@@ -1420,7 +1420,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../../constants/messages.html">Messages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../constants/colors.html">Colours</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../../constants/classes.html">Classes</a><input aria-label="Toggle navigation of Classes" class="toctree-checkbox" id="toctree-checkbox-269" name="toctree-checkbox-269" role="switch" type="checkbox"/><label for="toctree-checkbox-269"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../constants/classes/animation_builder.html">AnimationBuilder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../constants/classes/animation_builder.html">_AnimationBuilder</a></li>
 </ul>
 </li>
 </ul>
@@ -1934,13 +1934,13 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sweep</span><span class="p">)</span>
 
         <span class="c1"># ---- polygon layers (one group per dataset) + gap lobes -------------</span>
-        <span class="c1"># ---- 彩虹蛛网（web_rainbow）：分段彩线接管内置网格 ----</span>
+        <span class="c1"># ---- rainbow web (web_rainbow): segmented coloured lines replace the built-in grid ----</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_rainbow_web</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">web_rainbow</span><span class="p">:</span>
             <span class="n">web</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">cfg</span><span class="o">.</span><span class="n">levels</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
                 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-                    <span class="n">hue</span> <span class="o">=</span> <span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span> <span class="o">%</span> <span class="mf">1.0</span>  <span class="c1"># 半步偏移避开轴色</span>
+                    <span class="n">hue</span> <span class="o">=</span> <span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span> <span class="o">%</span> <span class="mf">1.0</span>  <span class="c1"># half-step offset avoids axis colours</span>
                     <span class="n">col</span> <span class="o">=</span> <span class="n">ManimColor</span><span class="o">.</span><span class="n">from_hsv</span><span class="p">((</span><span class="n">hue</span><span class="p">,</span> <span class="mf">0.85</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
                     <span class="n">web</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
                         <span class="n">Line</span><span class="p">(</span>
@@ -1961,11 +1961,11 @@
                         <span class="n">stroke_opacity</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
                     <span class="p">)</span>
                 <span class="p">)</span>
-            <span class="n">web</span><span class="o">.</span><span class="n">set_opacity</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>  <span class="c1"># trace_web 时显现</span>
+            <span class="n">web</span><span class="o">.</span><span class="n">set_opacity</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>  <span class="c1"># visible when trace_web runs</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_rainbow_web</span> <span class="o">=</span> <span class="n">web</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">web</span><span class="p">)</span>
             <span class="n">web</span><span class="o">.</span><span class="n">add_updater</span><span class="p">(</span><span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_place_rainbow_web</span><span class="p">())</span>
-            <span class="c1"># 彩虹蛛网加粗提亮后，轴名需外移避让；刻度数字关闭避免杂乱</span>
+            <span class="c1"># after thickening/brightening the rainbow web, axis names need extra spacing; hide tick numbers to avoid clutter</span>
             <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">label_offset</span> <span class="o">==</span> <span class="mf">1.10</span><span class="p">:</span>
                 <span class="n">cfg</span><span class="o">.</span><span class="n">label_offset</span> <span class="o">=</span> <span class="mf">1.24</span>
             <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">show_level_labels</span><span class="p">:</span>
@@ -2997,7 +2997,7 @@
 <span class="sd">            A :class:`~manim.animation.creation.Create` animation for the web.</span>
 <span class="sd">        """</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_opacity</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>  <span class="c1"># 数据层隐藏，蛛网描好后 reveal 恢复</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_opacity</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>  <span class="c1"># hide data layer; reveal it after the web is drawn</span>
         <span class="n">rt</span> <span class="o">=</span> <span class="n">run_time</span> <span class="k">if</span> <span class="n">run_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">web_trace_time</span>
         <span class="k">return</span> <span class="n">Create</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rainbow_web</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="n">rt</span><span class="p">)</span></div>
 

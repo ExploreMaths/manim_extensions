@@ -1421,7 +1421,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../constants/messages.html">Messages</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../constants/colors.html">Colours</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../constants/classes.html">Classes</a><input aria-label="Toggle navigation of Classes" class="toctree-checkbox" id="toctree-checkbox-269" name="toctree-checkbox-269" role="switch" type="checkbox"/><label for="toctree-checkbox-269"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../constants/classes/animation_builder.html">AnimationBuilder</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../constants/classes/animation_builder.html">_AnimationBuilder</a></li>
 </ul>
 </li>
 </ul>
@@ -1488,6 +1488,18 @@ review-only rules are listed at the end of the page.</p>
 <p>The hook needs Black on your interpreter (<code class="docutils literal notranslate"><span class="pre">python3</span> <span class="pre">-m</span> <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">black</span></code>); without it the hook warns and lets the commit through, and CI still catches the file. <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span> <span class="pre">--no-verify</span></code> bypasses the hook for one commit.</p>
 </li>
 <li><p>flake8 runs as two CI jobs: <code class="docutils literal notranslate"><span class="pre">flake8-unused-imports</span></code> fails on <code class="docutils literal notranslate"><span class="pre">F401</span></code>, and <code class="docutils literal notranslate"><span class="pre">flake8-syntax</span></code> fails on <code class="docutils literal notranslate"><span class="pre">E9,F63,F7,F82</span></code> (syntax / undefined names) with <code class="docutils literal notranslate"><span class="pre">--max-line-length=127</span></code>. A local <code class="docutils literal notranslate"><span class="pre">flake8</span> <span class="pre">manim_extensions</span></code> also prints the complexity advisory; complexity is not a CI gate.</p></li>
+</ul>
+</section>
+<section id="language">
+<h2>Language<a class="headerlink" href="#language" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Text is English.</strong> The public reference, code comments, docstrings, log
+messages and documentation prose must not contain Chinese characters.
+Deliberate Chinese sample data, such as
+<a class="reference internal" href="../reference/basic/mobjects.ChineseMathTex.html#manim_extensions.mobjects.ChineseMathTex" title="manim_extensions.mobjects.ChineseMathTex"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChineseMathTex</span></code></a> examples, is listed in
+the checker’s allowlist.  <code class="docutils literal notranslate"><span class="pre">validate-english-text</span></code> scans every text file
+in the tree, including tests, scripts, workflow files, docs and
+configuration, and runs as part of the <code class="docutils literal notranslate"><span class="pre">static</span></code> check group.</p></li>
 </ul>
 </section>
 <section id="type-annotations">
@@ -1797,6 +1809,7 @@ or script that fails on a violation, and the full list of jobs is in
             <ul>
 <li><a class="reference internal" href="#">Code style</a><ul>
 <li><a class="reference internal" href="#formatting-and-line-length">Formatting and line length</a></li>
+<li><a class="reference internal" href="#language">Language</a></li>
 <li><a class="reference internal" href="#type-annotations">Type annotations</a></li>
 <li><a class="reference internal" href="#imports">Imports</a></li>
 <li><a class="reference internal" href="#naming">Naming</a></li>
