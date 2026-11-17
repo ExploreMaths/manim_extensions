@@ -1607,7 +1607,7 @@ same coordinates (allowing cyclic permutations).</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.faces">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">faces</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Parts" title="manim_extensions.meshes.types.Parts"><span class="pre">Parts</span></a></span><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.faces" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">faces</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.VarArray" title="manim_extensions.meshes.types.VarArray"><span class="pre">VarArray</span></a></span><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.faces" title="Link to this definition">¶</a></dt>
 <dd><p>get private property _faces.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -1618,7 +1618,7 @@ same coordinates (allowing cyclic permutations).</p>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.parts">
-<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">parts</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Parts" title="manim_extensions.meshes.types.Parts"><span class="pre">Parts</span></a></span><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.parts" title="Link to this definition">¶</a></dt>
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">parts</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.VarArray" title="manim_extensions.meshes.types.VarArray"><span class="pre">VarArray</span></a></span><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.parts" title="Link to this definition">¶</a></dt>
 <dd><p>get private property _parts.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
@@ -1873,7 +1873,7 @@ supported.</p>
 <dd><p>Append new faces to the mesh.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>new_faces</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Parts" title="manim_extensions.meshes.types.Parts"><code class="xref py py-type docutils literal notranslate"><span class="pre">Parts</span></code></a></span>) – Faces to add.  Each face is an iterable of vertex indices.</p>
+<dd class="field-odd"><p><strong>new_faces</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.VarArray" title="manim_extensions.meshes.types.VarArray"><code class="xref py py-type docutils literal notranslate"><span class="pre">VarArray</span></code></a></span>) – Faces to add.  Each face is an iterable of vertex indices.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">
@@ -1928,7 +1928,7 @@ supported.</p>
 <dd><p>Append new parts to the mesh.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>new_parts</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Parts" title="manim_extensions.meshes.types.Parts"><code class="xref py py-type docutils literal notranslate"><span class="pre">Parts</span></code></a></span>) – Parts to add.  Each part is an iterable of face indices.</p>
+<dd class="field-odd"><p><strong>new_parts</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.VarArray" title="manim_extensions.meshes.types.VarArray"><code class="xref py py-type docutils literal notranslate"><span class="pre">VarArray</span></code></a></span>) – Parts to add.  Each part is an iterable of face indices.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><ul class="simple">

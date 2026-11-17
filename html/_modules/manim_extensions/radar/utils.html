@@ -1695,7 +1695,7 @@
         <span class="kn">import</span><span class="w"> </span><span class="nn">manimpango</span>
 
         <span class="n">available</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">manimpango</span><span class="o">.</span><span class="n">list_fonts</span><span class="p">())</span>
-    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># pragma: no cover - font backend may be unavailable</span>
         <span class="n">available</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
 
     <span class="n">found</span> <span class="o">=</span> <span class="nb">next</span><span class="p">((</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">candidates</span> <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">available</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span>
