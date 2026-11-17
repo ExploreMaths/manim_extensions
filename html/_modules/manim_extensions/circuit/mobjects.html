@@ -1471,7 +1471,7 @@
 
 <span class="sd">"""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Self</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Literal</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
@@ -1733,7 +1733,7 @@
 
 <div class="viewcode-block" id="Inductor.center">
 <a class="viewcode-back" href="../../../reference/circuit/mobjects.Inductor.html#manim_extensions.circuit.mobjects.Inductor.center">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">center</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">center</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Inductor"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Shift the inductor so that its main body is centred at the origin.</span>
 
 <span class="sd">        Returns</span>
@@ -1749,7 +1749,7 @@
 
 <div class="viewcode-block" id="Inductor.rotate">
 <a class="viewcode-back" href="../../../reference/circuit/mobjects.Inductor.html#manim_extensions.circuit.mobjects.Inductor.rotate">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Inductor"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Rotate the inductor about the centre of its main body.</span>
 
 <span class="sd">        The label is rotated by the opposite angle to keep it upright.</span>
@@ -1881,7 +1881,7 @@
 
 <div class="viewcode-block" id="Resistor.center">
 <a class="viewcode-back" href="../../../reference/circuit/mobjects.Resistor.html#manim_extensions.circuit.mobjects.Resistor.center">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">center</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">center</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Resistor"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Shift the resistor so that its main body is centred at the origin.</span>
 
 <span class="sd">        Returns</span>
@@ -1897,7 +1897,7 @@
 
 <div class="viewcode-block" id="Resistor.rotate">
 <a class="viewcode-back" href="../../../reference/circuit/mobjects.Resistor.html#manim_extensions.circuit.mobjects.Resistor.rotate">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Resistor"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Rotate the resistor about the centre of its main body.</span>
 
 <span class="sd">        The label is rotated by the opposite angle to keep it upright.</span>
@@ -2024,7 +2024,7 @@
 
 <div class="viewcode-block" id="Capacitor.center">
 <a class="viewcode-back" href="../../../reference/circuit/mobjects.Capacitor.html#manim_extensions.circuit.mobjects.Capacitor.center">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">center</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">center</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Capacitor"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Shift the capacitor so that its main body is centred at the origin.</span>
 
 <span class="sd">        Returns</span>
@@ -2040,7 +2040,7 @@
 
 <div class="viewcode-block" id="Capacitor.rotate">
 <a class="viewcode-back" href="../../../reference/circuit/mobjects.Capacitor.html#manim_extensions.circuit.mobjects.Capacitor.rotate">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rotate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Capacitor"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Rotate the capacitor about the centre of its main body.</span>
 
 <span class="sd">        The label is rotated by the opposite angle to keep it upright.</span>

@@ -1492,7 +1492,7 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Node"</span><span class="p">,</span> <span class="s2">"NodeState"</span><span class="p">,</span> <span class="s2">"NodeStyle"</span><span class="p">,</span> <span class="s2">"dfs_walker"</span><span class="p">,</span> <span class="s2">"bfs_walker"</span><span class="p">]</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">deque</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Self</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -1812,7 +1812,7 @@
 
 <div class="viewcode-block" id="Node.add_child">
 <a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.add_child">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">:</span> <span class="n">Node</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">:</span> <span class="s2">"Node"</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""Attach a child node to the current node.</span>
 
 <span class="sd">        Parameters</span>
@@ -1829,7 +1829,7 @@
 
 <div class="viewcode-block" id="Node.remove_child">
 <a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.remove_child">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">remove_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">:</span> <span class="n">Node</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">:</span> <span class="s2">"Node"</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""Mark a child node for removal from the current node.</span>
 
 <span class="sd">        Parameters</span>
@@ -2096,7 +2096,7 @@
 
 <div class="viewcode-block" id="Node.get_children">
 <a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.get_children">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_children</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Node</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_children</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"List[Node]"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Return the direct children of this node.</span>
 
@@ -2109,7 +2109,7 @@
 
 <div class="viewcode-block" id="Node.get_descendants">
 <a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.get_descendants">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_descendants</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Node</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_descendants</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"List[Node]"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Return all descendants of this node in depth-first order.</span>
 
@@ -2194,7 +2194,7 @@
 
 <div class="viewcode-block" id="Node.get_root">
 <a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.get_root">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_root</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_root</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Node"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Return the root of the tree containing this node.</span>
 

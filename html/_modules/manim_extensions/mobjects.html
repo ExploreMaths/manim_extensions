@@ -1520,7 +1520,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">Vector3DLike</span><span class="p">,</span> <span class="n">Point3DLike</span><span class="p">,</span> <span class="n">Vector3D</span><span class="p">,</span> <span class="n">PixelArray</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">platform</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Self</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageChops</span><span class="p">,</span> <span class="n">ImageDraw</span>
 
@@ -2614,7 +2614,7 @@
 
 <div class="viewcode-block" id="VideoMobject._video_updater">
 <a class="viewcode-back" href="../../reference/basic/mobjects.VideoMobject.html#manim_extensions.mobjects.VideoMobject._video_updater">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_video_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">VideoMobject</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_video_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="s2">"VideoMobject"</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""Internal updater that advances the video frame on each render step.</span>
 
 <span class="sd">        Parameters</span>
@@ -2653,7 +2653,7 @@
 
 <div class="viewcode-block" id="VideoMobject.__deepcopy__">
 <a class="viewcode-back" href="../../reference/basic/mobjects.VideoMobject.html#manim_extensions.mobjects.VideoMobject.__deepcopy__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"VideoMobject"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Deep-copy the mobject, reopening the video capture for the clone.</span>
 
 <span class="sd">        Parameters</span>
@@ -2686,7 +2686,7 @@
 
 <div class="viewcode-block" id="VideoMobject.play">
 <a class="viewcode-back" href="../../reference/basic/mobjects.VideoMobject.html#manim_extensions.mobjects.VideoMobject.play">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">play</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">play</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"VideoMobject"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Start video playback and optionally block the scene for its duration.</span>
 
 <span class="sd">        Parameters</span>
@@ -2710,7 +2710,7 @@
 
 <div class="viewcode-block" id="VideoMobject.pause">
 <a class="viewcode-back" href="../../reference/basic/mobjects.VideoMobject.html#manim_extensions.mobjects.VideoMobject.pause">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">pause</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">pause</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"VideoMobject"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Pause playback without removing the updater.</span>
 
 <span class="sd">        Returns</span>
@@ -2723,7 +2723,7 @@
 
 <div class="viewcode-block" id="VideoMobject.resume">
 <a class="viewcode-back" href="../../reference/basic/mobjects.VideoMobject.html#manim_extensions.mobjects.VideoMobject.resume">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">resume</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">resume</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"VideoMobject"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Resume paused playback.</span>
 
 <span class="sd">        Returns</span>
@@ -2736,7 +2736,7 @@
 
 <div class="viewcode-block" id="VideoMobject.stop">
 <a class="viewcode-back" href="../../reference/basic/mobjects.VideoMobject.html#manim_extensions.mobjects.VideoMobject.stop">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stop</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"VideoMobject"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Stop playback and remove the updater.</span>
 
 <span class="sd">        Returns</span>
@@ -2751,7 +2751,7 @@
 
 <div class="viewcode-block" id="VideoMobject.reset">
 <a class="viewcode-back" href="../../reference/basic/mobjects.VideoMobject.html#manim_extensions.mobjects.VideoMobject.reset">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reset</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"VideoMobject"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Seek to the first frame and reset all playback state.</span>
 
 <span class="sd">        Returns</span>
@@ -2770,7 +2770,7 @@
 
 <div class="viewcode-block" id="VideoMobject.seek">
 <a class="viewcode-back" href="../../reference/basic/mobjects.VideoMobject.html#manim_extensions.mobjects.VideoMobject.seek">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">seek</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">seek</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"VideoMobject"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Seek to a specific timestamp in seconds.</span>
 
 <span class="sd">        Parameters</span>
@@ -3037,7 +3037,7 @@
 
 <div class="viewcode-block" id="Trail.start_trace">
 <a class="viewcode-back" href="../../reference/basic/mobjects.Trail.html#manim_extensions.mobjects.Trail.start_trace">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">start_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Trail"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Attach the trail updater and return ``self`` for chaining.</span>
 
 <span class="sd">        Returns</span>
@@ -3050,7 +3050,7 @@
 
 <div class="viewcode-block" id="Trail.stop_trace">
 <a class="viewcode-back" href="../../reference/basic/mobjects.Trail.html#manim_extensions.mobjects.Trail.stop_trace">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">stop_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stop_trace</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Trail"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Remove the trail updater.</span>
 
 <span class="sd">        Returns</span>

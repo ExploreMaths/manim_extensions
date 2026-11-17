@@ -1476,7 +1476,7 @@
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"TidyTreeLayout"</span><span class="p">]</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Self</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.layout_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">LayoutDirection</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.layout</span><span class="w"> </span><span class="kn">import</span> <span class="n">Layout</span>
 
@@ -1522,7 +1522,7 @@
     <span class="n">height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
     <span class="n">level</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># node depth</span>
     <span class="c1"># Children</span>
-    <span class="n">children</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">WrappedTree</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">children</span><span class="p">:</span> <span class="s2">"List[WrappedTree]"</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
     <span class="n">child_number</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="c1"># === Core layout attributes ===</span>
@@ -1536,8 +1536,8 @@
     <span class="p">)</span>
 
     <span class="c1"># === Subtree contour tracking for overlap detection ===</span>
-    <span class="n">extreme_left</span><span class="p">:</span> <span class="n">WrappedTree</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># leftmost extreme node</span>
-    <span class="n">extreme_right</span><span class="p">:</span> <span class="n">WrappedTree</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># rightmost extreme node</span>
+    <span class="n">extreme_left</span><span class="p">:</span> <span class="s2">"WrappedTree | None"</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># leftmost extreme node</span>
+    <span class="n">extreme_right</span><span class="p">:</span> <span class="s2">"WrappedTree | None"</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># rightmost extreme node</span>
     <span class="n">mod_sum_extreme_left</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="p">(</span>
         <span class="mf">0.0</span>  <span class="c1"># sum of mod values along the path from leftmost extreme to root</span>
     <span class="p">)</span>
@@ -1547,11 +1547,13 @@
 
     <span class="c1"># Threads for contour traversal: when two subtrees have different heights,</span>
     <span class="c1"># the shorter subtree links to a neighbouring subtree's contour when exhausted</span>
-    <span class="n">thread_left</span><span class="p">:</span> <span class="n">WrappedTree</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">thread_right</span><span class="p">:</span> <span class="n">WrappedTree</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">thread_left</span><span class="p">:</span> <span class="s2">"WrappedTree | None"</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">thread_right</span><span class="p">:</span> <span class="s2">"WrappedTree | None"</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">from_node</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">is_horizontal</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_node</span><span class="p">(</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">is_horizontal</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"WrappedTree"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create a :class:`~manim_extensions.mindmap.algorithms.alg_tidy_tree.WrappedTree` wrapper tree from the original node.</span>
 
 <span class="sd">        Recursively copies dimensions and child references.  When</span>
@@ -1629,7 +1631,7 @@
 
     <span class="n">low</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1"># low end of the subtree's right contour in the orthogonal direction</span>
     <span class="n">index</span><span class="p">:</span> <span class="nb">int</span>  <span class="c1"># index of the subtree among its siblings</span>
-    <span class="n">nxt</span><span class="p">:</span> <span class="n">IYLNode</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">nxt</span><span class="p">:</span> <span class="s2">"IYLNode | None"</span> <span class="o">=</span> <span class="p">(</span>
         <span class="kc">None</span>  <span class="c1"># next node in the list (with a strictly larger low value)</span>
     <span class="p">)</span>
 

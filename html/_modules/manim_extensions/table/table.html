@@ -1477,7 +1477,7 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.row</span><span class="w"> </span><span class="kn">import</span> <span class="n">Row</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.cell</span><span class="w"> </span><span class="kn">import</span> <span class="n">Cell</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">overload</span><span class="p">,</span> <span class="n">Self</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">overload</span>
 
 <span class="c1">#: Animation produced by the mutation methods: either a real Animation</span>
 <span class="c1">#: (Transform/FadeIn/FadeOut) or a builder created via ``mobject.animate``.</span>
@@ -1913,7 +1913,7 @@
 <a class="viewcode-back" href="../../../reference/table/table.Table.html#manim_extensions.table.table.Table.set_column_font_color">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_column_font_color</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">col</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span><span class="p">,</span> <span class="n">include_header</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Table"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Set the font color for all cells in a column.</span>
 
@@ -1945,7 +1945,7 @@
         <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span><span class="p">,</span>
         <span class="n">opacity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
         <span class="n">include_header</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Table"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Set the background color for all cells in a column.</span>
 
@@ -1975,7 +1975,7 @@
 <a class="viewcode-back" href="../../../reference/table/table.Table.html#manim_extensions.table.table.Table.set_column_border_color">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_column_border_color</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">col</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span><span class="p">,</span> <span class="n">include_header</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Table"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Set the border color for all cells in a column.</span>
 
@@ -2003,7 +2003,7 @@
 <a class="viewcode-back" href="../../../reference/table/table.Table.html#manim_extensions.table.table.Table.set_header_background_color">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_header_background_color</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span><span class="p">,</span> <span class="n">opacity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Table"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Set the background color for all header cells.</span>
 
@@ -2025,7 +2025,7 @@
 
 <div class="viewcode-block" id="Table.set_header_font_color">
 <a class="viewcode-back" href="../../../reference/table/table.Table.html#manim_extensions.table.table.Table.set_header_font_color">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_header_font_color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_header_font_color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Table"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Set the font color for all header cells.</span>
 

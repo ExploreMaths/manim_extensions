@@ -1492,7 +1492,7 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">"Compass"</span><span class="p">,</span>
 <span class="p">]</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Self</span>
+
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -1566,7 +1566,7 @@
 
 <div class="viewcode-block" id="Compass._init_compass">
 <a class="viewcode-back" href="../../../../reference/compass/compass/compass.Compass.html#manim_extensions.compass.compass.compass.Compass._init_compass">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_init_compass</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_init_compass</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Compass"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build the compass geometry (head, legs, and tip) from parameters.</span>
 
 <span class="sd">        Returns</span>
@@ -1662,7 +1662,7 @@
 
 <div class="viewcode-block" id="Compass.move_niddle_tip_to">
 <a class="viewcode-back" href="../../../../reference/compass/compass/compass.Compass.html#manim_extensions.compass.compass.compass.Compass.move_niddle_tip_to">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">move_niddle_tip_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">move_niddle_tip_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Compass"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Move the compass as a whole so that the needle tip is at pos.</span>
 
 <span class="sd">        Parameters</span>
@@ -1694,7 +1694,7 @@
 
 <div class="viewcode-block" id="Compass.rotate_about_niddle_tip">
 <a class="viewcode-back" href="../../../../reference/compass/compass/compass.Compass.html#manim_extensions.compass.compass.compass.Compass.rotate_about_niddle_tip">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">rotate_about_niddle_tip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rotate_about_niddle_tip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Compass"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Rotate the compass as a whole around the needle tip by angle.</span>
 
 <span class="sd">        Parameters</span>
@@ -1728,7 +1728,7 @@
 
 <div class="viewcode-block" id="Compass.reverse_tip">
 <a class="viewcode-back" href="../../../../reference/compass/compass/compass.Compass.html#manim_extensions.compass.compass.compass.Compass.reverse_tip">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">reverse_tip</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reverse_tip</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Compass"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Mirror-flip the needle tip and pen tip.</span>
 
 <span class="sd">        Returns</span>
@@ -1758,7 +1758,7 @@
 
 <div class="viewcode-block" id="Compass.split_copass_with_gain_angle">
 <a class="viewcode-back" href="../../../../reference/compass/compass/compass.Compass.html#manim_extensions.compass.compass.compass.Compass.split_copass_with_gain_angle">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">split_copass_with_gain_angle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split_copass_with_gain_angle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Compass"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Open the two compass legs by an additional angle.</span>
 
 <span class="sd">        Parameters</span>
@@ -1797,7 +1797,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">niddle_tip_pos</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Compass"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Keep the needle tip fixed and open the two compass legs by angle.</span>
 
 <span class="sd">        Parameters</span>
@@ -1882,7 +1882,7 @@
         <span class="n">span_angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">rotate_angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">niddle_tip_pos</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Compass"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Set the compass span, rotation angle, and needle tip position.</span>
 
 <span class="sd">        Parameters</span>

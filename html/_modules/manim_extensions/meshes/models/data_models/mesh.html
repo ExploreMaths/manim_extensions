@@ -1478,7 +1478,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">copy</span><span class="w"> </span><span class="kn">import</span> <span class="n">deepcopy</span>
 
 <span class="c1"># third-party imports</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Set</span><span class="p">,</span> <span class="n">Self</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Set</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="c1"># local imports</span>
@@ -1612,7 +1612,7 @@
 
 <div class="viewcode-block" id="Mesh.__add__">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh.__add__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Mesh</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">"Mesh"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Mesh"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Concatenate ``other`` mesh with this mesh (``mesh + other``).</span>
 
 <span class="sd">        A new mesh is returned and ``self`` stays unchanged; use</span>
@@ -1636,7 +1636,7 @@
 
 <div class="viewcode-block" id="Mesh.__iadd__">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh.__iadd__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__iadd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Mesh</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__iadd__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">"Mesh"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Mesh"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Concatenate ``other`` mesh in-place (``mesh += other``).</span>
 
 <span class="sd">        Parameters</span>
@@ -2345,7 +2345,7 @@
 <a class="viewcode-back" href="../../../../../reference/meshes/models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh.add_to_mesh">[docs]</a>
     <span class="nd">@dangling_vert_decorator</span><span class="p">()</span>
     <span class="nd">@dangling_face_decorator</span><span class="p">()</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_to_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Mesh</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_to_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="s2">"Mesh"</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""Merge another mesh into this one by shifting its indices.</span>
 
 <span class="sd">        The vertices, faces and parts of ``other`` are appended with</span>
@@ -2397,7 +2397,7 @@
 
 <div class="viewcode-block" id="Mesh.split_mesh_into_objects">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh.split_mesh_into_objects">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">split_mesh_into_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Mesh</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">split_mesh_into_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"List[Mesh]"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Split the mesh into independent, non-interconnected meshes.</span>
 
 <span class="sd">        Returns</span>

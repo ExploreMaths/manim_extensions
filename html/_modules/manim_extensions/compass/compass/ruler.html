@@ -1471,8 +1471,6 @@
 
 <span class="sd">"""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Self</span>
-
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">LEFT</span><span class="p">,</span> <span class="n">Line</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">Rectangle</span><span class="p">,</span> <span class="n">VGroup</span><span class="p">,</span> <span class="n">WHITE</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">Vector3D</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.utils.color</span><span class="w"> </span><span class="kn">import</span> <span class="n">ParsableManimColor</span>
@@ -1626,7 +1624,7 @@
 
 <div class="viewcode-block" id="Ruler.set_ruler">
 <a class="viewcode-back" href="../../../../reference/compass/compass/ruler.Ruler.html#manim_extensions.compass.compass.ruler.Ruler.set_ruler">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_ruler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="n">LEFT</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="n">RIGHT</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_ruler</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="n">LEFT</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="n">RIGHT</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Ruler"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
 
 <span class="sd">        Place the ruler so that one of its edges aligns with start and end.</span>
@@ -1671,7 +1669,7 @@
 
 <div class="viewcode-block" id="Ruler.put_ruler_flat">
 <a class="viewcode-back" href="../../../../reference/compass/compass/ruler.Ruler.html#manim_extensions.compass.compass.ruler.Ruler.put_ruler_flat">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">put_ruler_flat</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">put_ruler_flat</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Ruler"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Lay the ruler flat.</span>
 
 <span class="sd">        Returns</span>

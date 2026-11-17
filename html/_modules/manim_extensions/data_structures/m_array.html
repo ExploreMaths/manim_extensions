@@ -1509,7 +1509,6 @@
     <span class="n">ClassVar</span><span class="p">,</span>
     <span class="n">List</span><span class="p">,</span>
     <span class="n">Protocol</span><span class="p">,</span>
-    <span class="n">Self</span><span class="p">,</span>
     <span class="n">cast</span><span class="p">,</span>
 <span class="p">)</span>
 
@@ -1720,7 +1719,7 @@
         <span class="n">init_value</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">init_index</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">init_label</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">next_to_mob</span><span class="p">:</span> <span class="n">MArrayElement</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">next_to_mob</span><span class="p">:</span> <span class="s2">"MArrayElement | None"</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">next_to_dir</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">RIGHT</span><span class="p">,</span>
     <span class="p">):</span>
 <span class="w">        </span><span class="sd">"""Initializes the mobjects for the class.</span>
@@ -1770,7 +1769,7 @@
 
 <div class="viewcode-block" id="MArrayElement.__deepcopy__">
 <a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.m_array.MArrayElement.__deepcopy__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">"MArrayElement"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Deep-copy the object while excluding scene references.</span>
 
 <span class="sd">        Parameters</span>
@@ -1805,7 +1804,7 @@
         <span class="n">index_gap</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">,</span>
         <span class="n">label_pos</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="n">LEFT</span><span class="p">,</span>
         <span class="n">label_gap</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
-        <span class="n">next_to_mob</span><span class="p">:</span> <span class="n">MArrayElement</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">next_to_mob</span><span class="p">:</span> <span class="s2">"MArrayElement | None"</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">next_to_dir</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">RIGHT</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
     <span class="p">):</span>
@@ -2655,7 +2654,7 @@
 
 <div class="viewcode-block" id="MArray.__deepcopy__">
 <a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.m_array.MArray.__deepcopy__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">"MArray"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Deep-copy the object while excluding scene references.</span>
 
 <span class="sd">        Parameters</span>
@@ -3461,7 +3460,7 @@
 
 <div class="viewcode-block" id="MArrayPointer.__deepcopy__">
 <a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.m_array.MArrayPointer.__deepcopy__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">"MArrayPointer"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Deep-copy the object while excluding scene references.</span>
 
 <span class="sd">        Parameters</span>
@@ -4008,7 +4007,7 @@
 
 <div class="viewcode-block" id="MArraySlidingWindow.__deepcopy__">
 <a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.m_array.MArraySlidingWindow.__deepcopy__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Self</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">"MArraySlidingWindow"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Deep-copy the object while excluding scene references.</span>
 
 <span class="sd">        Parameters</span>
