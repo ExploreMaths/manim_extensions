@@ -54,3 +54,5 @@ recorded_path.txt
 social_preview.png
 
 docs/source/_extensions/_nbcell_cache.json
+
+_build/

@@ -38,7 +38,7 @@ from manim import (
 )
 
 from manim.utils.color import ParsableManimColor
-from .animation_builder import AnimationBuilder
+from manim.mobject.mobject import _AnimationBuilder
 from .config import RadarConfig, get_style
 from .data import RadarData
 from .numbers import RollingNumber
@@ -1197,7 +1197,7 @@ class RadarChart(VGroup):
     # ==================================================================
     def push_in(
         self, factor: float = 1.35, run_time: float = 1.0, **kwargs
-    ) -> AnimationBuilder:
+    ) -> _AnimationBuilder:
         """Zoom the chart up about its own centre.
 
         This works in any scene because only the chart moves. For a true
@@ -1223,7 +1223,7 @@ class RadarChart(VGroup):
 
     def pull_out(
         self, factor: float = 1.35, run_time: float = 1.0, **kwargs
-    ) -> AnimationBuilder:
+    ) -> _AnimationBuilder:
         """Scale the chart back down about its own centre.
 
         Parameters

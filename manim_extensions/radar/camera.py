@@ -18,9 +18,8 @@ from typing import Optional
 
 import numpy as np
 from manim import Mobject, MovingCameraScene
+from manim.mobject.mobject import _AnimationBuilder
 from manim.typing import Point3D, Vector3D
-
-from .animation_builder import AnimationBuilder
 
 __all__ = ["CameraRig"]
 
@@ -64,7 +63,7 @@ class CameraRig:
         factor: float = 1.35,
         run_time: float = 1.0,
         **kwargs,
-    ) -> AnimationBuilder:
+    ) -> _AnimationBuilder:
         """Zoom the camera towards a target.
 
         Parameters
@@ -95,7 +94,7 @@ class CameraRig:
         target: Mobject | Point3D | None = None,
         run_time: float = 1.0,
         **kwargs,
-    ) -> AnimationBuilder:
+    ) -> _AnimationBuilder:
         """Zoom back out towards the default frame or a target.
 
         Parameters
@@ -130,7 +129,7 @@ class CameraRig:
 
     def focus_point(
         self, point: Point3D, factor: float = 1.5, run_time: float = 0.9, **kwargs
-    ) -> AnimationBuilder:
+    ) -> _AnimationBuilder:
         """Pan to a point and zoom in during one move.
 
         Parameters
@@ -156,7 +155,7 @@ class CameraRig:
 
     def micro_push(
         self, direction: Vector3D, amount: float = 0.08, run_time: float = 0.35
-    ) -> AnimationBuilder:
+    ) -> _AnimationBuilder:
         """Make a quick camera breath towards a direction and back.
 
         Parameters
@@ -186,7 +185,7 @@ class CameraRig:
 
     # ------------------------------------------------------------------
     @staticmethod
-    def _timed(anim: AnimationBuilder, run_time: float) -> AnimationBuilder:
+    def _timed(anim: _AnimationBuilder, run_time: float) -> _AnimationBuilder:
         """Attach a run time to an animation.
 
         Parameters
