@@ -1476,7 +1476,8 @@
 <p><code class="docutils literal notranslate"><span class="pre">mobject.animate</span></code> and <code class="docutils literal notranslate"><span class="pre">camera.frame.animate</span></code> return Manim’s
 <code class="docutils literal notranslate"><span class="pre">_AnimationBuilder</span></code> instead of an <code class="docutils literal notranslate"><span class="pre">Animation</span></code>. The object records fluent
 method calls on the mobject target and materialises the real animation only
-when it is passed to <code class="docutils literal notranslate"><span class="pre">Scene.play</span></code>. Methods such as <code class="docutils literal notranslate"><span class="pre">set_run_time</span></code>,
+when it is passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene.play" title="(in Manim)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">play()</span></code></a>. Methods such as
+<code class="docutils literal notranslate"><span class="pre">set_run_time</span></code>,
 <code class="docutils literal notranslate"><span class="pre">scale</span></code>, <code class="docutils literal notranslate"><span class="pre">shift</span></code> or <code class="docutils literal notranslate"><span class="pre">move_to</span></code> are forwarded dynamically to the target
 mobject through <code class="docutils literal notranslate"><span class="pre">__getattr__</span></code>; <code class="docutils literal notranslate"><span class="pre">build</span></code> is the documented entry point that
 turns the recorded calls into an <code class="docutils literal notranslate"><span class="pre">Animation</span></code>.</p>
