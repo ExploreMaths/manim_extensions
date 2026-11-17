@@ -7,7 +7,8 @@ Changelog
 v1.0.7 :bdg-primary-line:`In Development`
 -----------------------------------------
 
-**Added**
+Added
+~~~~~
 
 * ``workflow/validate_naming.py`` and the ``validate-naming`` CI job enforce
   PascalCase class names without underscores and lowercase ``snake_case``
@@ -33,7 +34,8 @@ v1.0.7 :bdg-primary-line:`In Development`
   CI job reject ``Example``/``DocExample`` suffixes, non-PascalCase names,
   and a ``.. manim::`` name that does not match the class in its block.
 
-**Fixed**
+Fixed
+~~~~~
 
 * Project type aliases render by name again under postponed annotations:
   ``SurfaceConfig``, ``GraphSurfaceConfig``, ``GeometrySpec``, ``ContourSpec``,
@@ -83,7 +85,8 @@ v1.0.7 :bdg-primary-line:`In Development`
   and ``manim-nerdfont-icons`` are vendored as package submodules and need
   no separate installation.
 
-**Changed**
+Changed
+~~~~~~~
 
 * Type annotations keep ``from __future__ import annotations`` and spell
   class self-references as quoted class names (``"Table"``,
@@ -159,7 +162,8 @@ v1.0.7 :bdg-primary-line:`In Development`
 v1.0.6 :bdg-success-line:`Latest`
 -----------------------------------------
 
-**Added**
+Added
+~~~~~
 
 * Added :class:`~manim_extensions.nerdfont.icons.NerdFontIcon` (a class
   replacing the earlier ``nerdfont_icon`` function) for rendering Nerd
@@ -228,7 +232,8 @@ v1.0.6 :bdg-success-line:`Latest`
   alphabetically by local module.
 * Added a ``setup-manim-env@v1`` shared action to the CI workflows.
 
-**Changed**
+Changed
+~~~~~~~
 
 * ``manim-mobject-svg`` is now vendored as
   :mod:`~manim_extensions.mobject_svg` instead of being a runtime
@@ -269,7 +274,8 @@ v1.0.6 :bdg-success-line:`Latest`
 * Moved the vendored :mod:`~manim_extensions.nerdfont` package from utils to the top level
   and updated the remaining path references.
 
-**Fixed**
+Fixed
+~~~~~
 
 * Fixed hydrogen bonds being dropped silently by the 2-D molecule builder:
   :meth:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject.get_bonds`
@@ -315,7 +321,8 @@ v1.0.6 :bdg-success-line:`Latest`
   joints being added to a non-existent ``space`` attribute, so
   ``start_swinging`` no longer fails with ``AttributeError``.
 
-**Documentation and hygiene**
+Documentation and hygiene
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * Reorganised the reference manual package by package: :mod:`~manim_extensions.chemistry`,
   :mod:`~manim_extensions.automata`, :mod:`~manim_extensions.algorithm`, :mod:`~manim_extensions.data_structures`, :mod:`~manim_extensions.economics`,
@@ -376,7 +383,8 @@ v1.0.6 :bdg-success-line:`Latest`
 * Rewrote ``CODE_OF_CONDUCT`` as the project's own code and removed
   duplicate chemistry overview pages plus stray rendered images.
 
-**CI**
+CI
+~~
 
 * Consumed the shared ``ExploreMaths/setup-manim-env@v1`` action across
   workflows.
@@ -418,7 +426,8 @@ v1.0.6 :bdg-success-line:`Latest`
 v1.0.5
 ---------------------------------
 
-**Added**
+Added
+~~~~~
 
 * Added ``workflow/sync_vendored.py`` and a manually triggered
   ``sync-vendored`` workflow that pulls upstream updates for vendored
@@ -467,7 +476,8 @@ v1.0.5
   going forward.
 * Added rounded-corner static cover images to the README.
 
-**Changed**
+Changed
+~~~~~~~
 
 * Changed the default character interval of
   :class:`~manim_extensions.animations.TypeWriter` from ``2`` seconds to
@@ -499,13 +509,15 @@ v1.0.5
 * :class:`~manim_extensions.rubikscube.cube.RubiksCube` doc examples now
   use the default realistic colour scheme instead of an ad-hoc palette.
 
-**Removed**
+Removed
+~~~~~~~
 
 * Removed the ``[tool.flake8]`` section from ``pyproject.toml``. Flake8
   does not read ``pyproject.toml``; the section was dead configuration,
   and CI passes every flake8 option on the command line.
 
-**Fixed**
+Fixed
+~~~~~
 
 * Fixed ``qr_codes/__init__.py`` importing a nonexistent ``QRCode``
   class and the root ``__init__.py`` importing a nonexistent ``ml``
@@ -552,7 +564,8 @@ v1.0.5
 v1.0.4
 ------
 
-**Added**
+Added
+~~~~~
 
 * Added ``ArcInt`` to the Basic geometry module
   and its documentation in ``geometry.rst`` for computing arc-arc intersections.
@@ -567,7 +580,8 @@ v1.0.4
   Manim, Manim Extensions, and Python (auto-detected when third-party
   nodes appear in a diagram).
 
-**Changed**
+Changed
+~~~~~~~
 
 * Replaced all ``YELLOW`` color references with ``PURE_YELLOW`` (#FFFF00)
   across the entire codebase (58 occurrences, 20 files), matching the original
@@ -609,14 +623,16 @@ v1.0.4
   ``kociemba>=1.2``, ``trimesh>=4.0``, ``scipy>=1.9``,
   and ``moderngl>=5.0``.
 
-**Removed**
+Removed
+~~~~~~~
 
 * Deleted :class:`~manim.mobject.text.code_mobject.Code`, ``JavaCode``, ``PythonCode``, and ``CppCode`` classes
   from the :mod:`~manim_extensions.algorithm` module (unused code block classes).
 * Removed the ``index_code_labels`` helper from ``algorithm/utils/debug.py``
   (was only used by the deleted :class:`~manim.mobject.text.code_mobject.Code` class).
 
-**Fixed**
+Fixed
+~~~~~
 
 * Fixed :class:`~manim_extensions.automata.mobjects.manim_transition.ManimTransitionDocExample` displaying a full DFA
   instead of demonstrating a single transition.
@@ -688,38 +704,44 @@ v1.0.4
 v1.0.3
 ------
 
-**Added**
+Added
+~~~~~
 
 * Added bundled subpackages: ``GearBox``, :attr:`~manim_extensions.mindmap.algorithms.layout_config.LayoutType.MindMap`, :class:`~manim_extensions.compass.compass.compass.Compass`, ``Algorithm``,
   ``Automata``, :class:`~manim_extensions.circuit.utils.Circuit`, ``Data Structures``, ``Meshes``, ``Neural Network``,
   ``Physics``, ``Rubik's Cube``, ``Sequence Diagram`` and ``TikZ`` from third-party
   Manim extensions.
 
-**Changed**
+Changed
+~~~~~~~
 
 * Documentation rebuilt with Furo theme, inheritance diagrams and interactive Manim examples matching Manim Community's official docs.
 
-**Fixed**
+Fixed
+~~~~~
 
 * Fixed CJK font fallback for :class:`~manim_extensions.mobjects.ChineseMathTex` on Linux/ReadTheDocs.
 
 v1.0.2
 ------
 
-**Changed**
+Changed
+~~~~~~~
 
 * Documentation theme switched to Furo, matching Manim Community's official documentation style.
 
 v1.0.1
 ------
 
-**Fixed**
+Fixed
+~~~~~
 
 * Fixed :class:`~manim_extensions.mobjects.LabelDot` center point calculation.
 
 v1.0.0
 ------
 
-**Added**
+Added
+~~~~~
 
 * Initial release with :mod:`~manim_extensions.mobjects`, :mod:`~manim_extensions.geometry` and :mod:`~manim_extensions.animations` modules.

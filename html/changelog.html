@@ -1475,7 +1475,8 @@
 <h1>Changelog<a class="headerlink" href="#changelog" title="Link to this heading">¶</a></h1>
 <section id="v1-0-7-in-development">
 <h2>v1.0.7 <span class="sd-sphinx-override sd-badge sd-outline-primary sd-text-primary">In Development</span><a class="headerlink" href="#v1-0-7-in-development" title="Link to this heading">¶</a></h2>
-<p><strong>Added</strong></p>
+<section id="added">
+<h3>Added<a class="headerlink" href="#added" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">workflow/validate_naming.py</span></code> and the <code class="docutils literal notranslate"><span class="pre">validate-naming</span></code> CI job enforce
 PascalCase class names without underscores and lowercase <code class="docutils literal notranslate"><span class="pre">snake_case</span></code>
@@ -1501,7 +1502,9 @@ stay together, exactly one blank line separates them from the scene class,
 CI job reject <code class="docutils literal notranslate"><span class="pre">Example</span></code>/<code class="docutils literal notranslate"><span class="pre">DocExample</span></code> suffixes, non-PascalCase names,
 and a <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">manim::</span></code> name that does not match the class in its block.</p></li>
 </ul>
-<p><strong>Fixed</strong></p>
+</section>
+<section id="fixed">
+<h3>Fixed<a class="headerlink" href="#fixed" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Project type aliases render by name again under postponed annotations:
 <code class="docutils literal notranslate"><span class="pre">SurfaceConfig</span></code>, <code class="docutils literal notranslate"><span class="pre">GraphSurfaceConfig</span></code>, <code class="docutils literal notranslate"><span class="pre">GeometrySpec</span></code>, <code class="docutils literal notranslate"><span class="pre">ContourSpec</span></code>,
@@ -1551,7 +1554,9 @@ four-dimensional meshes are now supported.</p></li>
 and <code class="docutils literal notranslate"><span class="pre">manim-nerdfont-icons</span></code> are vendored as package submodules and need
 no separate installation.</p></li>
 </ul>
-<p><strong>Changed</strong></p>
+</section>
+<section id="changed">
+<h3>Changed<a class="headerlink" href="#changed" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Type annotations keep <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">__future__</span> <span class="pre">import</span> <span class="pre">annotations</span></code> and spell
 class self-references as quoted class names (<code class="docutils literal notranslate"><span class="pre">&quot;Table&quot;</span></code>,
@@ -1625,9 +1630,11 @@ checks against its own package and documentation tree without installing a
 separate distribution.</p></li>
 </ul>
 </section>
+</section>
 <section id="v1-0-6-latest">
 <h2>v1.0.6 <span class="sd-sphinx-override sd-badge sd-outline-success sd-text-success">Latest</span><a class="headerlink" href="#v1-0-6-latest" title="Link to this heading">¶</a></h2>
-<p><strong>Added</strong></p>
+<section id="id1">
+<h3>Added<a class="headerlink" href="#id1" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Added <a class="reference internal" href="reference/nerdfont/icons.NerdFontIcon.html#manim_extensions.nerdfont.icons.NerdFontIcon" title="manim_extensions.nerdfont.icons.NerdFontIcon"><code class="xref py py-class docutils literal notranslate"><span class="pre">NerdFontIcon</span></code></a> (a class
 replacing the earlier <code class="docutils literal notranslate"><span class="pre">nerdfont_icon</span></code> function) for rendering Nerd
@@ -1696,7 +1703,9 @@ values that the official Manim documentation does not list.</p></li>
 alphabetically by local module.</p></li>
 <li><p>Added a <code class="docutils literal notranslate"><span class="pre">setup-manim-env&#64;v1</span></code> shared action to the CI workflows.</p></li>
 </ul>
-<p><strong>Changed</strong></p>
+</section>
+<section id="id2">
+<h3>Changed<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">manim-mobject-svg</span></code> is now vendored as
 <a class="reference internal" href="reference/mobject_svg/index.html#module-manim_extensions.mobject_svg" title="manim_extensions.mobject_svg"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mobject_svg</span></code></a> instead of being a runtime
@@ -1737,7 +1746,9 @@ doc example so the figure fills the frame.</p></li>
 <li><p>Moved the vendored <a class="reference internal" href="reference/nerdfont/index.html#module-manim_extensions.nerdfont" title="manim_extensions.nerdfont"><code class="xref py py-mod docutils literal notranslate"><span class="pre">nerdfont</span></code></a> package from utils to the top level
 and updated the remaining path references.</p></li>
 </ul>
-<p><strong>Fixed</strong></p>
+</section>
+<section id="id3">
+<h3>Fixed<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Fixed hydrogen bonds being dropped silently by the 2-D molecule builder:
 <a class="reference internal" href="reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.get_bonds" title="manim_extensions.chemistry.twoD.molecule.MMoleculeObject.get_bonds"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_bonds()</span></code></a>
@@ -1783,7 +1794,9 @@ instead of popping a key that was never inserted.</p></li>
 joints being added to a non-existent <code class="docutils literal notranslate"><span class="pre">space</span></code> attribute, so
 <code class="docutils literal notranslate"><span class="pre">start_swinging</span></code> no longer fails with <code class="docutils literal notranslate"><span class="pre">AttributeError</span></code>.</p></li>
 </ul>
-<p><strong>Documentation and hygiene</strong></p>
+</section>
+<section id="documentation-and-hygiene">
+<h3>Documentation and hygiene<a class="headerlink" href="#documentation-and-hygiene" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Reorganised the reference manual package by package: <a class="reference internal" href="reference/chemistry/index.html#module-manim_extensions.chemistry" title="manim_extensions.chemistry"><code class="xref py py-mod docutils literal notranslate"><span class="pre">chemistry</span></code></a>,
 <a class="reference internal" href="reference/automata/index.html#module-manim_extensions.automata" title="manim_extensions.automata"><code class="xref py py-mod docutils literal notranslate"><span class="pre">automata</span></code></a>, <a class="reference internal" href="reference/algorithm/index.html#module-manim_extensions.algorithm" title="manim_extensions.algorithm"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algorithm</span></code></a>, <a class="reference internal" href="reference/data_structures/index.html#module-manim_extensions.data_structures" title="manim_extensions.data_structures"><code class="xref py py-mod docutils literal notranslate"><span class="pre">data_structures</span></code></a>, <a class="reference internal" href="reference/economics/index.html#module-manim_extensions.economics" title="manim_extensions.economics"><code class="xref py py-mod docutils literal notranslate"><span class="pre">economics</span></code></a>,
@@ -1844,7 +1857,9 @@ preserved.</p></li>
 <li><p>Rewrote <code class="docutils literal notranslate"><span class="pre">CODE_OF_CONDUCT</span></code> as the project’s own code and removed
 duplicate chemistry overview pages plus stray rendered images.</p></li>
 </ul>
-<p><strong>CI</strong></p>
+</section>
+<section id="ci">
+<h3>CI<a class="headerlink" href="#ci" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Consumed the shared <code class="docutils literal notranslate"><span class="pre">ExploreMaths/setup-manim-env&#64;v1</span></code> action across
 workflows.</p></li>
@@ -1883,9 +1898,11 @@ staged files inside the commit being made, and a <code class="docutils literal n
 the Validate workflow keeps the tree clean.</p></li>
 </ul>
 </section>
+</section>
 <section id="v1-0-5">
 <h2>v1.0.5<a class="headerlink" href="#v1-0-5" title="Link to this heading">¶</a></h2>
-<p><strong>Added</strong></p>
+<section id="id4">
+<h3>Added<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">workflow/sync_vendored.py</span></code> and a manually triggered
 <code class="docutils literal notranslate"><span class="pre">sync-vendored</span></code> workflow that pulls upstream updates for vendored
@@ -1934,7 +1951,9 @@ annotations), plus a <code class="docutils literal notranslate"><span class="pre
 going forward.</p></li>
 <li><p>Added rounded-corner static cover images to the README.</p></li>
 </ul>
-<p><strong>Changed</strong></p>
+</section>
+<section id="id5">
+<h3>Changed<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Changed the default character interval of
 <a class="reference internal" href="reference/basic/animations.TypeWriter.html#manim_extensions.animations.TypeWriter" title="manim_extensions.animations.TypeWriter"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeWriter</span></code></a> from <code class="docutils literal notranslate"><span class="pre">2</span></code> seconds to
@@ -1966,13 +1985,17 @@ changelog gained a sphinx-design <code class="docutils literal notranslate"><spa
 <li><p><a class="reference internal" href="reference/rubikscube/cube.RubiksCube.html#manim_extensions.rubikscube.cube.RubiksCube" title="manim_extensions.rubikscube.cube.RubiksCube"><code class="xref py py-class docutils literal notranslate"><span class="pre">RubiksCube</span></code></a> doc examples now
 use the default realistic colour scheme instead of an ad-hoc palette.</p></li>
 </ul>
-<p><strong>Removed</strong></p>
+</section>
+<section id="removed">
+<h3>Removed<a class="headerlink" href="#removed" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Removed the <code class="docutils literal notranslate"><span class="pre">[tool.flake8]</span></code> section from <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>. Flake8
 does not read <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>; the section was dead configuration,
 and CI passes every flake8 option on the command line.</p></li>
 </ul>
-<p><strong>Fixed</strong></p>
+</section>
+<section id="id6">
+<h3>Fixed<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Fixed <code class="docutils literal notranslate"><span class="pre">qr_codes/__init__.py</span></code> importing a nonexistent <code class="docutils literal notranslate"><span class="pre">QRCode</span></code>
 class and the root <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> importing a nonexistent <code class="docutils literal notranslate"><span class="pre">ml</span></code>
@@ -2017,9 +2040,11 @@ chemistry/manim_chemistry_molecule/mc_atom.py,
 chemistry/twoD/molecule.py, circuit/mobjects.py).</p></li>
 </ul>
 </section>
+</section>
 <section id="v1-0-4">
 <h2>v1.0.4<a class="headerlink" href="#v1-0-4" title="Link to this heading">¶</a></h2>
-<p><strong>Added</strong></p>
+<section id="id7">
+<h3>Added<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Added <code class="docutils literal notranslate"><span class="pre">ArcInt</span></code> to the Basic geometry module
 and its documentation in <code class="docutils literal notranslate"><span class="pre">geometry.rst</span></code> for computing arc-arc intersections.</p></li>
@@ -2034,7 +2059,9 @@ with a dynamic legend auto-generated above each diagram.</p></li>
 Manim, Manim Extensions, and Python (auto-detected when third-party
 nodes appear in a diagram).</p></li>
 </ul>
-<p><strong>Changed</strong></p>
+</section>
+<section id="id8">
+<h3>Changed<a class="headerlink" href="#id8" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Replaced all <code class="docutils literal notranslate"><a class="reference internal" href="constants/colors.html#manim.utils.color.manim_colors.YELLOW"><span class="pre">YELLOW</span></a></code> color references with <code class="docutils literal notranslate"><a class="reference internal" href="constants/colors.html#manim.utils.color.manim_colors.PURE_YELLOW"><span class="pre">PURE_YELLOW</span></a></code> (#FFFF00)
 across the entire codebase (58 occurrences, 20 files), matching the original
@@ -2076,14 +2103,18 @@ plus <code class="docutils literal notranslate"><span class="pre">Pillow&gt;=9.0
 <code class="docutils literal notranslate"><span class="pre">kociemba&gt;=1.2</span></code>, <code class="docutils literal notranslate"><span class="pre">trimesh&gt;=4.0</span></code>, <code class="docutils literal notranslate"><span class="pre">scipy&gt;=1.9</span></code>,
 and <code class="docutils literal notranslate"><span class="pre">moderngl&gt;=5.0</span></code>.</p></li>
 </ul>
-<p><strong>Removed</strong></p>
+</section>
+<section id="id9">
+<h3>Removed<a class="headerlink" href="#id9" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Deleted <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.text.code_mobject.Code.html#manim.mobject.text.code_mobject.Code" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Code</span></code></a>, <code class="docutils literal notranslate"><span class="pre">JavaCode</span></code>, <code class="docutils literal notranslate"><span class="pre">PythonCode</span></code>, and <code class="docutils literal notranslate"><span class="pre">CppCode</span></code> classes
 from the <a class="reference internal" href="reference/algorithm/index.html#module-manim_extensions.algorithm" title="manim_extensions.algorithm"><code class="xref py py-mod docutils literal notranslate"><span class="pre">algorithm</span></code></a> module (unused code block classes).</p></li>
 <li><p>Removed the <code class="docutils literal notranslate"><span class="pre">index_code_labels</span></code> helper from <code class="docutils literal notranslate"><span class="pre">algorithm/utils/debug.py</span></code>
 (was only used by the deleted <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.text.code_mobject.Code.html#manim.mobject.text.code_mobject.Code" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Code</span></code></a> class).</p></li>
 </ul>
-<p><strong>Fixed</strong></p>
+</section>
+<section id="id10">
+<h3>Fixed<a class="headerlink" href="#id10" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Fixed <code class="xref py py-class docutils literal notranslate"><span class="pre">ManimTransitionDocExample</span></code> displaying a full DFA
 instead of demonstrating a single transition.</p></li>
@@ -2153,44 +2184,57 @@ and <a class="reference internal" href="reference/automata/mobjects/manim_non_de
 headings.</p></li>
 </ul>
 </section>
+</section>
 <section id="v1-0-3">
 <h2>v1.0.3<a class="headerlink" href="#v1-0-3" title="Link to this heading">¶</a></h2>
-<p><strong>Added</strong></p>
+<section id="id11">
+<h3>Added<a class="headerlink" href="#id11" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Added bundled subpackages: <code class="docutils literal notranslate"><span class="pre">GearBox</span></code>, <a class="reference internal" href="reference/mindmap/algorithms/layout_config.LayoutType.html#manim_extensions.mindmap.algorithms.layout_config.LayoutType.MindMap" title="manim_extensions.mindmap.algorithms.layout_config.LayoutType.MindMap"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MindMap</span></code></a>, <a class="reference internal" href="reference/compass/compass/compass.Compass.html#manim_extensions.compass.compass.compass.Compass" title="manim_extensions.compass.compass.compass.Compass"><code class="xref py py-class docutils literal notranslate"><span class="pre">Compass</span></code></a>, <code class="docutils literal notranslate"><span class="pre">Algorithm</span></code>,
 <code class="docutils literal notranslate"><span class="pre">Automata</span></code>, <a class="reference internal" href="reference/circuit/utils.Circuit.html#manim_extensions.circuit.utils.Circuit" title="manim_extensions.circuit.utils.Circuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circuit</span></code></a>, <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Structures</span></code>, <code class="docutils literal notranslate"><span class="pre">Meshes</span></code>, <code class="docutils literal notranslate"><span class="pre">Neural</span> <span class="pre">Network</span></code>,
 <code class="docutils literal notranslate"><span class="pre">Physics</span></code>, <code class="docutils literal notranslate"><span class="pre">Rubik's</span> <span class="pre">Cube</span></code>, <code class="docutils literal notranslate"><span class="pre">Sequence</span> <span class="pre">Diagram</span></code> and <code class="docutils literal notranslate"><span class="pre">TikZ</span></code> from third-party
 Manim extensions.</p></li>
 </ul>
-<p><strong>Changed</strong></p>
+</section>
+<section id="id12">
+<h3>Changed<a class="headerlink" href="#id12" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Documentation rebuilt with Furo theme, inheritance diagrams and interactive Manim examples matching Manim Community’s official docs.</p></li>
 </ul>
-<p><strong>Fixed</strong></p>
+</section>
+<section id="id13">
+<h3>Fixed<a class="headerlink" href="#id13" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Fixed CJK font fallback for <a class="reference internal" href="reference/basic/mobjects.ChineseMathTex.html#manim_extensions.mobjects.ChineseMathTex" title="manim_extensions.mobjects.ChineseMathTex"><code class="xref py py-class docutils literal notranslate"><span class="pre">ChineseMathTex</span></code></a> on Linux/ReadTheDocs.</p></li>
 </ul>
 </section>
+</section>
 <section id="v1-0-2">
 <h2>v1.0.2<a class="headerlink" href="#v1-0-2" title="Link to this heading">¶</a></h2>
-<p><strong>Changed</strong></p>
+<section id="id14">
+<h3>Changed<a class="headerlink" href="#id14" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Documentation theme switched to Furo, matching Manim Community’s official documentation style.</p></li>
 </ul>
 </section>
+</section>
 <section id="v1-0-1">
 <h2>v1.0.1<a class="headerlink" href="#v1-0-1" title="Link to this heading">¶</a></h2>
-<p><strong>Fixed</strong></p>
+<section id="id15">
+<h3>Fixed<a class="headerlink" href="#id15" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Fixed <a class="reference internal" href="reference/basic/mobjects.LabelDot.html#manim_extensions.mobjects.LabelDot" title="manim_extensions.mobjects.LabelDot"><code class="xref py py-class docutils literal notranslate"><span class="pre">LabelDot</span></code></a> center point calculation.</p></li>
 </ul>
 </section>
+</section>
 <section id="v1-0-0">
 <h2>v1.0.0<a class="headerlink" href="#v1-0-0" title="Link to this heading">¶</a></h2>
-<p><strong>Added</strong></p>
+<section id="id16">
+<h3>Added<a class="headerlink" href="#id16" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Initial release with <a class="reference internal" href="reference/basic/mobjects.html#module-manim_extensions.mobjects" title="manim_extensions.mobjects"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mobjects</span></code></a>, <a class="reference internal" href="reference/basic/geometry.html#module-manim_extensions.geometry" title="manim_extensions.geometry"><code class="xref py py-mod docutils literal notranslate"><span class="pre">geometry</span></code></a> and <a class="reference internal" href="reference/basic/animations.html#module-manim_extensions.animations" title="manim_extensions.animations"><code class="xref py py-mod docutils literal notranslate"><span class="pre">animations</span></code></a> modules.</p></li>
 </ul>
+</section>
 </section>
 </section>
 
@@ -2250,14 +2294,52 @@ Manim extensions.</p></li>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Changelog</a><ul>
-<li><a class="reference internal" href="#v1-0-7-in-development">v1.0.7 <span class="sd-sphinx-override sd-badge sd-outline-primary sd-text-primary">In Development</span></a></li>
-<li><a class="reference internal" href="#v1-0-6-latest">v1.0.6 <span class="sd-sphinx-override sd-badge sd-outline-success sd-text-success">Latest</span></a></li>
-<li><a class="reference internal" href="#v1-0-5">v1.0.5</a></li>
-<li><a class="reference internal" href="#v1-0-4">v1.0.4</a></li>
-<li><a class="reference internal" href="#v1-0-3">v1.0.3</a></li>
-<li><a class="reference internal" href="#v1-0-2">v1.0.2</a></li>
-<li><a class="reference internal" href="#v1-0-1">v1.0.1</a></li>
-<li><a class="reference internal" href="#v1-0-0">v1.0.0</a></li>
+<li><a class="reference internal" href="#v1-0-7-in-development">v1.0.7 <span class="sd-sphinx-override sd-badge sd-outline-primary sd-text-primary">In Development</span></a><ul>
+<li><a class="reference internal" href="#added">Added</a></li>
+<li><a class="reference internal" href="#fixed">Fixed</a></li>
+<li><a class="reference internal" href="#changed">Changed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#v1-0-6-latest">v1.0.6 <span class="sd-sphinx-override sd-badge sd-outline-success sd-text-success">Latest</span></a><ul>
+<li><a class="reference internal" href="#id1">Added</a></li>
+<li><a class="reference internal" href="#id2">Changed</a></li>
+<li><a class="reference internal" href="#id3">Fixed</a></li>
+<li><a class="reference internal" href="#documentation-and-hygiene">Documentation and hygiene</a></li>
+<li><a class="reference internal" href="#ci">CI</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#v1-0-5">v1.0.5</a><ul>
+<li><a class="reference internal" href="#id4">Added</a></li>
+<li><a class="reference internal" href="#id5">Changed</a></li>
+<li><a class="reference internal" href="#removed">Removed</a></li>
+<li><a class="reference internal" href="#id6">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#v1-0-4">v1.0.4</a><ul>
+<li><a class="reference internal" href="#id7">Added</a></li>
+<li><a class="reference internal" href="#id8">Changed</a></li>
+<li><a class="reference internal" href="#id9">Removed</a></li>
+<li><a class="reference internal" href="#id10">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#v1-0-3">v1.0.3</a><ul>
+<li><a class="reference internal" href="#id11">Added</a></li>
+<li><a class="reference internal" href="#id12">Changed</a></li>
+<li><a class="reference internal" href="#id13">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#v1-0-2">v1.0.2</a><ul>
+<li><a class="reference internal" href="#id14">Changed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#v1-0-1">v1.0.1</a><ul>
+<li><a class="reference internal" href="#id15">Fixed</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#v1-0-0">v1.0.0</a><ul>
+<li><a class="reference internal" href="#id16">Added</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
