@@ -20,7 +20,7 @@ class SingletonLogger:
     _instance_lock = threading.Lock()
     _instance = None
 
-    def __new__(cls, *args, **kwargs) -> SingletonLogger:
+    def __new__(cls, *args, **kwargs) -> "SingletonLogger":
         """Return the process-wide singleton logger instance.
 
         Parameters

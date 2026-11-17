@@ -8,7 +8,7 @@ This module provides circuit component visualizations.
 
 """
 
-from typing import Literal, Self
+from typing import Literal
 
 import numpy as np
 from manim import (
@@ -254,7 +254,7 @@ class Inductor(VMobject):
         elif val == "right":
             return self.main_body.get_end()
 
-    def center(self) -> Self:
+    def center(self) -> "Inductor":
         """Shift the inductor so that its main body is centred at the origin.
 
         Returns
@@ -267,7 +267,7 @@ class Inductor(VMobject):
 
         return self
 
-    def rotate(self, angle: float, *args: object, **kwargs: object) -> Self:
+    def rotate(self, angle: float, *args: object, **kwargs: object) -> "Inductor":
         """Rotate the inductor about the centre of its main body.
 
         The label is rotated by the opposite angle to keep it upright.
@@ -387,7 +387,7 @@ class Resistor(VMobject):
         elif val == "right":
             return self.main_body.get_end()
 
-    def center(self) -> Self:
+    def center(self) -> "Resistor":
         """Shift the resistor so that its main body is centred at the origin.
 
         Returns
@@ -400,7 +400,7 @@ class Resistor(VMobject):
 
         return self
 
-    def rotate(self, angle: float, *args: object, **kwargs: object) -> Self:
+    def rotate(self, angle: float, *args: object, **kwargs: object) -> "Resistor":
         """Rotate the resistor about the centre of its main body.
 
         The label is rotated by the opposite angle to keep it upright.
@@ -518,7 +518,7 @@ class Capacitor(VMobject):
         elif val == "right":
             return self.main_body[1].get_midpoint()
 
-    def center(self) -> Self:
+    def center(self) -> "Capacitor":
         """Shift the capacitor so that its main body is centred at the origin.
 
         Returns
@@ -531,7 +531,7 @@ class Capacitor(VMobject):
 
         return self
 
-    def rotate(self, angle: float, *args: object, **kwargs: object) -> Self:
+    def rotate(self, angle: float, *args: object, **kwargs: object) -> "Capacitor":
         """Rotate the capacitor about the centre of its main body.
 
         The label is rotated by the opposite angle to keep it upright.

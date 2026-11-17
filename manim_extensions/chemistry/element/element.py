@@ -6,7 +6,7 @@
 """Chemical element data structure."""
 
 from dataclasses import dataclass
-from typing import Self
+
 
 from ...utils.deps import require
 
@@ -52,7 +52,7 @@ class Element:
         self.mass = mass
         self.color = color or "#ff00ff"
 
-    def from_csv_file(filename: str, element: str | int) -> Self:
+    def from_csv_file(filename: str, element: str | int) -> "Element":
         """Create an :class:`~manim_extensions.chemistry.element.element.Element` from a CSV file.
 
         Parameters

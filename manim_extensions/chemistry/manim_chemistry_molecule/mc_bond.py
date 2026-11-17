@@ -10,7 +10,7 @@ This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_mol
 
 from __future__ import annotations
 
-from typing import Dict, Self, TYPE_CHECKING
+from typing import Dict, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from .mc_atom import MCAtom
@@ -103,7 +103,7 @@ class MCBond:
     @staticmethod
     def construct_from_bond_dict(
         bond_index: int, bond_data_dict: Dict, molecule: MCMolecule
-    ) -> Self:
+    ) -> "MCBond":
         r"""
         Given a bond data dict from a parser, returns an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`.
 

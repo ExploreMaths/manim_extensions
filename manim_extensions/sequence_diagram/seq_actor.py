@@ -25,7 +25,7 @@ from manim import (
     VGroup,
     WHITE,
 )
-from typing import cast, Self
+from typing import cast
 
 from .constants import HALF_DOWN
 
@@ -58,7 +58,7 @@ class SeqActor(VGroup):
                self.wait()
     """
 
-    all_actors: list[SeqActor] = []
+    all_actors: "list[SeqActor]" = []
 
     def __init__(
         self,
@@ -83,7 +83,7 @@ class SeqActor(VGroup):
         super().__init__(self.actor_ctn, actor_label, self.actor_timedots)
 
     @classmethod
-    def get_deepest_actor(cls) -> Self | None:
+    def get_deepest_actor(cls) -> "SeqActor | None":
         """
         Return the actor with the greatest time depth, or ``None`` when no actor exists.
 

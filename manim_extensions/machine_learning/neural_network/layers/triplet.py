@@ -7,7 +7,6 @@
 
 from __future__ import annotations
 
-from typing import Self
 
 from manim import (
     Animation,
@@ -98,7 +97,7 @@ class TripletLayer(NeuralNetworkLayer):
         grayscale: bool = True,
         font_size: float = 22,
         buff: float = 0.2,
-    ) -> Self:
+    ) -> "TripletLayer":
         """Creates a triplet using the anchor paths.
 
         Parameters

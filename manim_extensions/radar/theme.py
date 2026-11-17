@@ -111,7 +111,7 @@ class RadarTheme:
         cols = list(self.palette)
         return ManimColor(cols[index % len(cols)])
 
-    def evolved(self, **changes) -> RadarTheme:
+    def evolved(self, **changes) -> "RadarTheme":
         """Return a copy of this theme with selected fields replaced.
 
         Parameters

@@ -228,7 +228,7 @@ class DeepSpace(VGroup):
         self.add_updater(self._refresh)
 
     # ------------------------------------------------------------------
-    def link(self, chart: RadarChart) -> DeepSpace:
+    def link(self, chart: RadarChart) -> "DeepSpace":
         """Make the backdrop follow a chart's current colour.
 
         Parameters
@@ -246,7 +246,7 @@ class DeepSpace(VGroup):
         self.set_tint(chart.current_color)
         return self
 
-    def set_tint(self, color: ParsableManimColor) -> DeepSpace:
+    def set_tint(self, color: ParsableManimColor) -> "DeepSpace":
         """Recolour the nebula and star halos.
 
         Parameters
@@ -262,7 +262,7 @@ class DeepSpace(VGroup):
         self._tint = ManimColor(color)
         return self
 
-    def set_fade(self, value: float) -> DeepSpace:
+    def set_fade(self, value: float) -> "DeepSpace":
         """Set the global brightness of the backdrop.
 
         Parameters
@@ -278,7 +278,7 @@ class DeepSpace(VGroup):
         self._fade = float(np.clip(value, 0.0, 1.0))
         return self
 
-    def install(self, scene: Scene) -> DeepSpace:
+    def install(self, scene: Scene) -> "DeepSpace":
         """Add the backdrop to a scene.
 
         Parameters

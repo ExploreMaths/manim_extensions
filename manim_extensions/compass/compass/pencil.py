@@ -8,7 +8,6 @@ This module provides pencil visualization for geometry.
 
 """
 
-from typing import Self
 from pathlib import Path
 
 import numpy as np
@@ -72,7 +71,7 @@ class Pencil(SVGMobject):
         """
         return Line(self.get_nib(), self.submobjects[1].get_center()).get_unit_vector()
 
-    def move_nid_to(self, point: Point3D = ORIGIN) -> Self:
+    def move_nid_to(self, point: Point3D = ORIGIN) -> "Pencil":
         """Translate the pencil so that the nib moves to point.
 
         Parameters

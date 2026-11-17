@@ -23,7 +23,7 @@ from manim import (
     WHITE,
     color_gradient,
 )
-from typing import Self
+
 
 import numpy as np
 
@@ -211,7 +211,9 @@ class MElementObject(VGroup):
 
         return VGroup(frame_rectangle, symbol_text, name_text, atomic_number_text)
 
-    def from_csv_file_data(filename: str, atomic_number: int, **kwargs) -> Self:
+    def from_csv_file_data(
+        filename: str, atomic_number: int, **kwargs
+    ) -> "MElementObject":
         """Load an :class:`~manim_extensions.chemistry.periodic_table.table_objects.MElementObject` from a CSV file by looking up the given atomic number.
 
         Parameters

@@ -13,7 +13,7 @@ from __future__ import annotations
 
 __all__ = ["TidyTreeLayout"]
 from dataclasses import dataclass, field
-from typing import List, Self
+from typing import List
 from .layout_config import LayoutDirection
 from .layout import Layout
 
@@ -59,7 +59,7 @@ class WrappedTree:
     height: float = 0.0
     level: int = 0  # node depth
     # Children
-    children: List[WrappedTree] = field(default_factory=list)
+    children: "List[WrappedTree]" = field(default_factory=list)
     child_number: int = 0
 
     # === Core layout attributes ===
@@ -73,8 +73,8 @@ class WrappedTree:
     )
 
     # === Subtree contour tracking for overlap detection ===
-    extreme_left: WrappedTree | None = None  # leftmost extreme node
-    extreme_right: WrappedTree | None = None  # rightmost extreme node
+    extreme_left: "WrappedTree | None" = None  # leftmost extreme node
+    extreme_right: "WrappedTree | None" = None  # rightmost extreme node
     mod_sum_extreme_left: float = (
         0.0  # sum of mod values along the path from leftmost extreme to root
     )
@@ -84,11 +84,13 @@ class WrappedTree:
 
     # Threads for contour traversal: when two subtrees have different heights,
     # the shorter subtree links to a neighbouring subtree's contour when exhausted
-    thread_left: WrappedTree | None = None
-    thread_right: WrappedTree | None = None
+    thread_left: "WrappedTree | None" = None
+    thread_right: "WrappedTree | None" = None
 
     @classmethod
-    def from_node(cls, node: object, is_horizontal: bool, level: int = 0) -> Self:
+    def from_node(
+        cls, node: object, is_horizontal: bool, level: int = 0
+    ) -> "WrappedTree":
         """Create a :class:`~manim_extensions.mindmap.algorithms.alg_tidy_tree.WrappedTree` wrapper tree from the original node.
 
         Recursively copies dimensions and child references.  When
@@ -166,7 +168,7 @@ class IYLNode:
 
     low: float  # low end of the subtree's right contour in the orthogonal direction
     index: int  # index of the subtree among its siblings
-    nxt: IYLNode | None = (
+    nxt: "IYLNode | None" = (
         None  # next node in the list (with a strictly larger low value)
     )
 

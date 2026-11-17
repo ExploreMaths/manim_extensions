@@ -28,7 +28,7 @@ from manim import (
     VMobject,
     rotate_vector,
 )
-from typing import Self, Sequence
+from typing import Sequence
 from scipy.optimize import fsolve
 from scipy.optimize import least_squares
 import warnings
@@ -778,7 +778,7 @@ class Gear(VMobject):
             Outer_ring = Circle(radius=self.ra * 1.1)
             self.append_points(Outer_ring.points)
 
-    def mesh_to(self, gear2: Gear, offset: float = 0, bias: int = 1):
+    def mesh_to(self, gear2: "Gear", offset: float = 0, bias: int = 1):
         """This will position and rotate the gear (self) next to the input gear2 so that they mesh properly.
 
         Parameters
@@ -1000,7 +1000,7 @@ class Gear(VMobject):
         axis: Vector3D = OUT,
         about_point: Sequence[float] | None = None,
         **kwargs,
-    ) -> Self:
+    ) -> "Gear":
         """Rotate the gear around its centre.
 
         Parameters
@@ -1167,7 +1167,7 @@ class Rack(VMobject):
         axis: Vector3D = OUT,
         about_point: Sequence[float] | None = None,
         **kwargs,
-    ) -> Self:
+    ) -> "Rack":
         """Rotate the rack around its centre.
 
         Parameters

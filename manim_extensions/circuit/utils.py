@@ -7,7 +7,7 @@
 from __future__ import annotations
 
 import math
-from typing import Literal, Self
+from typing import Literal
 
 import numpy as np
 from manim import (
@@ -133,7 +133,7 @@ class Source(VMobject):
         elif val == "negative":
             return self.main_body[0].point_from_proportion(0.75 + proportion_offset)
 
-    def center(self) -> Self:
+    def center(self) -> "Source":
         """Shift the source so that its main body is centred at the origin.
 
         Returns
@@ -146,7 +146,7 @@ class Source(VMobject):
 
         return self
 
-    def rotate(self, angle: float, *args: object, **kwargs: object) -> Self:
+    def rotate(self, angle: float, *args: object, **kwargs: object) -> "Source":
         """Rotate the source symbol around its center.
 
         Parameters
@@ -507,7 +507,7 @@ class Node(VMobject):
 
         self.__update()
 
-    def merge(self, node: Node, wire: list[Point3DLike] | bool = False):
+    def merge(self, node: "Node", wire: list[Point3DLike] | bool = False):
         """Merge this node with another node and optionally attach a wire.
 
         Parameters

@@ -4,8 +4,6 @@
 
 """Image layer visualization for neural networks."""
 
-from typing import Self
-
 from manim import (
     Animation,
     AnimationGroup,
@@ -123,7 +121,9 @@ class ImageLayer(NeuralNetworkLayer):
         super().construct_layer(input_layer, output_layer, **kwargs)
 
     @classmethod
-    def from_path(cls, image_path: str, grayscale: bool = True, **kwargs) -> Self:
+    def from_path(
+        cls, image_path: str, grayscale: bool = True, **kwargs
+    ) -> "ImageLayer":
         """Creates a query using the paths.
 
         Parameters

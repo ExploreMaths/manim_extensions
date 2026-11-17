@@ -8,7 +8,7 @@ This module provides the :class:`~manim_extensions.chemistry.molecule.abstract_m
 """
 
 from manim import DOWN, Tex, Text, VGroup
-from typing import Dict, Literal, Self
+from typing import Dict, Literal
 from manim.mobject.opengl.opengl_mobject import OpenGLGroup
 from abc import abstractmethod
 
@@ -44,7 +44,7 @@ class AbstractMolecule:
         elements_data_dict: dict | None = None,
         *args,
         **kwargs,
-    ) -> Self:
+    ) -> "AbstractMolecule":
         """
         Reads a string and returns a single molecule from the parsed data.
 
@@ -142,7 +142,7 @@ class AbstractMolecule:
         elements_data_dict: dict | None = None,
         *args,
         **kwargs,
-    ) -> Self:
+    ) -> "AbstractMolecule":
         """
         Reads a string and returns a single molecule from the parsed data.
 
@@ -250,7 +250,7 @@ class AbstractMolecule:
         elements_data_dict: dict | None = None,
         *args,
         **kwargs,
-    ) -> Self:
+    ) -> "AbstractMolecule":
         """
         Generates a :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule` from an identifier using PubChem API.
 
@@ -320,7 +320,7 @@ class AbstractMolecule:
         direction: Vector3D = DOWN,
         buff: float = 0.5,
         scale: float = 0.75,
-    ) -> Self:
+    ) -> "AbstractMolecule":
         r"""Adds the name of the molecule.
 
         Parameters

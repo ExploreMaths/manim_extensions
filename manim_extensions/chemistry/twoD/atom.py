@@ -11,7 +11,7 @@ This module provides the :class:`~manim_extensions.chemistry.twoD.atom.MAtomObje
 
 from manim import Dot, LEFT, ManimColor, MarkupText, RIGHT, VGroup, WHITE
 import numpy as np
-from typing import Dict, Literal, Self
+from typing import Dict, Literal
 from manim.typing import Point3D
 
 
@@ -196,7 +196,7 @@ class MAtomObject(VGroup):
 
         return True
 
-    def make_copy(self) -> Self:
+    def make_copy(self) -> "MAtomObject":
         """Create a copy of this atom preserving all properties and coordinates.
 
         Returns
@@ -217,7 +217,7 @@ class MAtomObject(VGroup):
         )
         return copy
 
-    def rename_atom(self, new_element: str, bonds_direction: float) -> Self:
+    def rename_atom(self, new_element: str, bonds_direction: float) -> "MAtomObject":
         """Replace this atom's element with new_element and adjust position by bond direction.
 
         Parameters
@@ -246,7 +246,7 @@ class MAtomObject(VGroup):
 
         return renamed_atom
 
-    def copy_with_explicit_hydrogens(self) -> Self:
+    def copy_with_explicit_hydrogens(self) -> "MAtomObject":
         """Return a copy of this atom with explicit hydrogens enabled.
 
         Returns

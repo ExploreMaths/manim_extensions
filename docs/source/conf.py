@@ -4,6 +4,7 @@
 """Sphinx configuration for manim_extensions documentation."""
 
 from manim import Mobject, VMobject
+import ast
 import importlib
 import inspect
 import os
@@ -217,7 +218,74 @@ def _resolve_alias(_dotted):
     return getattr(importlib.import_module(_module), _attr)
 
 
+def _dotted_name(_node):
+    """Return the dotted name represented by a ``Name``/``Attribute`` node."""
+    if isinstance(_node, ast.Name):
+        return _node.id
+    if isinstance(_node, ast.Attribute):
+        _base = _dotted_name(_node.value)
+        return f"{_base}.{_node.attr}" if _base else None
+    return None
+
+
+def _register_project_alias(_alias, _dotted):
+    _PROJECT_ALIASES[id(_alias)] = (_alias, _dotted)
+
+
+def _alias_from_annotation_string(_src, _obj):
+    """Evaluate a postponed annotation string, preserving project alias objects.
+
+    ``typing.get_type_hints`` resolves ``list[ContourSpec]`` into
+    ``list[tuple[VGroup, bool]]`` and the alias identity is lost.  Parsing the
+    original string lets us evaluate the expression with the module globals and
+    keep the alias object itself (including inside ``list``/``dict``/unions),
+    so the formatter can still render the project name.
+    """
+    try:
+        _node = ast.parse(_src.strip(), mode="eval").body
+    except (SyntaxError, ValueError):
+        return None
+    _module_name = getattr(_obj, "__module__", "")
+    _mod = sys.modules.get(_module_name)
+    if _mod is None:
+        try:
+            _mod = importlib.import_module(_module_name)
+        except Exception:
+            return None
+    _ns = vars(_mod)
+    _found = False
+    for _sub in ast.walk(_node):
+        if not isinstance(_sub, (ast.Name, ast.Attribute)):
+            continue
+        _dotted = _dotted_name(_sub)
+        if not _dotted:
+            continue
+        if isinstance(_sub, ast.Name):
+            _candidate = _ns.get(_sub.id)
+            _dotted_name_value = f"{_mod.__name__}.{_sub.id}"
+        else:
+            try:
+                _candidate = _resolve_alias(_dotted)
+            except Exception:
+                continue
+            _dotted_name_value = _dotted
+        if _candidate is not None and _is_type_alias(_candidate):
+            _register_project_alias(_candidate, _dotted_name_value)
+            _found = True
+    if not _found:
+        return None
+    try:
+        _value = eval(compile(ast.Expression(_node), "<annotation>", "eval"), _ns, {})
+    except Exception:
+        return None
+    if isinstance(_node, (ast.Name, ast.Attribute)) and _is_type_alias(_value):
+        _register_project_alias(_value, f"{_mod.__name__}.{_src.strip()}")
+    return _value
+
+
 def _simple_type_repr(x):
+    if x is getattr(_typing, "Self", object()):
+        return ":py:obj:`Self`"
     if x is _typing.Any:
         return ":py:obj:`~typing.Any`"
     if x is type(None):
@@ -466,46 +534,55 @@ def setup(app):
         "Vector3DLike": "manim.typing.Vector3DLike",
     }
     try:
-        from sphinx_autodoc_typehints._resolve.evaluate import type_hints as _th_mod
+        from sphinx_autodoc_typehints._resolve import hints as _hints_mod
+        from sphinx_autodoc_typehints._resolve.evaluate import (
+            type_hints as _eval_type_hints,
+        )
     except Exception:
-        _th_mod = None
-    if _th_mod is not None and getattr(_th_mod, "get_type_hints", None) is not None:
-        _orig_th = _th_mod.get_type_hints
+        _hints_mod = None
+        _eval_type_hints = None
 
-        def _restore_aliases(_hints, _obj):
-            _ann = getattr(_obj, "__annotations__", None) or {}
-            for _name, _src in _ann.items():
-                if _name not in _hints:
-                    continue
-                _dotted = None
-                if isinstance(_src, str):
-                    _src_name = _src.strip()
-                    _dotted = _LIKE_ALIASES.get(_src_name)
-                    if _dotted is None and _src_name.isidentifier():
-                        _mod = sys.modules.get(getattr(_obj, "__module__", ""))
-                        _alias = getattr(_mod, _src_name, None) if _mod else None
-                        if _alias is not None and _is_type_alias(_alias):
-                            _dotted = f"{_mod.__name__}.{_src_name}"
-                            _PROJECT_ALIASES[id(_alias)] = (_alias, _dotted)
-                else:
-                    for _n, _d in _LIKE_ALIASES.items():
-                        try:
-                            if _src is _resolve_alias(_d):
-                                _dotted = _d
-                                break
-                        except Exception:
-                            continue
-                if _dotted:
+    def _restore_aliases(_hints, _obj):
+        _ann = getattr(_obj, "__annotations__", None) or {}
+        for _name, _src in _ann.items():
+            if _name not in _hints:
+                continue
+            _dotted = None
+            if isinstance(_src, str):
+                _src_name = _src.strip()
+                _dotted = _LIKE_ALIASES.get(_src_name)
+                if _dotted is None:
+                    _value = _alias_from_annotation_string(_src_name, _obj)
+                    if _value is not None:
+                        _hints[_name] = _value
+                        continue
+            else:
+                for _n, _d in _LIKE_ALIASES.items():
                     try:
-                        _hints[_name] = _resolve_alias(_dotted)
+                        if _src is _resolve_alias(_d):
+                            _dotted = _d
+                            break
                     except Exception:
-                        pass
-            return _hints
+                        continue
+            if _dotted:
+                try:
+                    _hints[_name] = _resolve_alias(_dotted)
+                except Exception:
+                    pass
+        return _hints
 
-        def _patched_th(_obj, _globalns=None, _localns=None, **_kw):
-            return _restore_aliases(_orig_th(_obj, _globalns, _localns, **_kw), _obj)
+    def _patched_th(_obj, _globalns=None, _localns=None, **_kw):
+        _hints = _eval_type_hints(_obj, _globalns, _localns)
+        return _restore_aliases(_hints, _obj)
 
-        _th_mod.get_type_hints = _patched_th
+    if _hints_mod is not None:
+        # ``_resolve.hints`` imports ``type_hints`` by name, so patch both the
+        # definition and that module-level binding.
+        _hints_mod.type_hints = _patched_th
+    if _eval_type_hints is not None:
+        import sphinx_autodoc_typehints._resolve.evaluate as _eval_mod
+
+        _eval_mod.type_hints = _patched_th
 
     app.connect(
         "autodoc-process-docstring",

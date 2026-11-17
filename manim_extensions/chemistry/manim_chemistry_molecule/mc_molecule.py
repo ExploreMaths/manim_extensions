@@ -7,7 +7,7 @@ This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_mol
 
 """
 
-from typing import Dict, List, Literal, Self
+from typing import Dict, List, Literal
 
 from .mc_atom import MCAtom
 from .mc_bond import MCBond
@@ -132,7 +132,7 @@ class MCMolecule:
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: dict | None = None,
-    ) -> Self:
+    ) -> "MCMolecule":
         r"""
         Given data with the format provided by a parser, constructs a :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`,
         the corresponding :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`\ s and :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`\ s and stablishes the connections between
@@ -179,7 +179,7 @@ class MCMolecule:
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: dict | None = None,
-    ) -> Self:
+    ) -> "MCMolecule":
         """
         Returns an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule` given a file path.
 
@@ -264,7 +264,7 @@ class MCMolecule:
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: dict | None = None,
-    ) -> Self:
+    ) -> "MCMolecule":
         """
         Reads a string and returns a molecule.
 

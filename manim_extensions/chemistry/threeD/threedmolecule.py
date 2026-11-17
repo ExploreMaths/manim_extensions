@@ -8,7 +8,7 @@ This module provides the :class:`~manim_extensions.chemistry.threeD.threedmolecu
 """
 
 from manim import ORIGIN, RendererType, config
-from typing import Self
+
 from manim.mobject.opengl.opengl_mobject import OpenGLGroup
 from ..element import Element
 from ..utils import mol_parser, mol_parser_string
@@ -238,7 +238,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
 
         return atoms, bonds
 
-    def from_mol_file(filename: str, source_csv: str | None) -> Self:
+    def from_mol_file(filename: str, source_csv: str | None) -> "ThreeDMolecule":
         """Create a :class:`~manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule` by parsing a .mol file.
 
         Parameters
@@ -255,7 +255,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
         atoms, bonds = mol_parser(file=filename)
         return ThreeDMolecule(atoms_dict=atoms, bonds_dict=bonds, source_csv=source_csv)
 
-    def from_mol_string(mol_string: str, source_csv: str | None) -> Self:
+    def from_mol_string(mol_string: str, source_csv: str | None) -> "ThreeDMolecule":
         """Create a :class:`~manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule` by parsing a mol-format string.
 
         Parameters

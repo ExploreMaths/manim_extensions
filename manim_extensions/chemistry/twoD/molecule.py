@@ -24,7 +24,7 @@ from manim import (
     VDict,
     VGroup,
 )
-from typing import Dict, Self
+from typing import Dict
 from ..utils import (
     mol_parser,
     mol_parser_string,
@@ -300,7 +300,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         return bonds
 
-    def add_atom_numbering(self) -> Self:
+    def add_atom_numbering(self) -> "MMoleculeObject":
         """Add numeric index labels next to each atom and return self.
 
         Returns
@@ -328,7 +328,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         return self
 
-    def add_bond_numbering(self) -> Self:
+    def add_bond_numbering(self) -> "MMoleculeObject":
         """Add numeric index labels next to each bond and return self.
 
         Returns
@@ -352,7 +352,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         return self
 
-    def rotate_bond(self, rotate_bonds: int | list[int]) -> Self:
+    def rotate_bond(self, rotate_bonds: int | list[int]) -> "MMoleculeObject":
         """Rotate specified bonds 180 degrees around their own axis and return self.
 
         Parameters
@@ -417,7 +417,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                                 atom.element + "H", bonds_direction
                             )
 
-    def from_mol_file(filename: str, *args, **kwargs) -> Self:
+    def from_mol_file(filename: str, *args, **kwargs) -> "MMoleculeObject":
         """Create an :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject` by parsing a .mol file.
 
         Parameters
@@ -435,7 +435,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         atoms, bonds = mol_parser(filename)
         return MMoleculeObject(atoms, bonds, *args, **kwargs)
 
-    def from_mol_string(mol_string: str, *args, **kwargs) -> Self:
+    def from_mol_string(mol_string: str, *args, **kwargs) -> "MMoleculeObject":
         """Create an :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject` by parsing a mol-format string.
 
         Parameters
@@ -457,7 +457,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         atoms, bonds = mol_parser_string(mol_string)
         return MMoleculeObject(atoms, bonds, *args, **kwargs)
 
-    def from_sdf_file(filename: str, *args, **kwargs) -> list[MMoleculeObject]:
+    def from_sdf_file(filename: str, *args, **kwargs) -> "list[MMoleculeObject]":
         r"""Create a list of :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`\ s by parsing an .sdf file.
 
         Parameters
@@ -479,7 +479,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
             moleculeObjects.append(MMoleculeObject(atoms, bonds, *args, **kwargs))
         return moleculeObjects
 
-    def from_sdf_string(sdf_string: str, *args, **kwargs) -> list[MMoleculeObject]:
+    def from_sdf_string(sdf_string: str, *args, **kwargs) -> "list[MMoleculeObject]":
         r"""Create a list of :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`\ s by parsing an sdf-format string.
 
         Parameters
@@ -852,7 +852,7 @@ class NamedMolecule(VGroup):
         font: str = "",
         *args,
         **kwargs,
-    ) -> Self:
+    ) -> "NamedMolecule":
         """Create a :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule` from a .mol file and a name string.
 
         Parameters
@@ -900,7 +900,7 @@ class NamedMolecule(VGroup):
         font: str = "",
         *args,
         **kwargs,
-    ) -> Self:
+    ) -> "NamedMolecule":
         """Create a :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule` from a mol-format string and a name string.
 
         Parameters
@@ -948,7 +948,7 @@ class NamedMolecule(VGroup):
         font: str = "",
         *args,
         **kwargs,
-    ) -> list[NamedMolecule]:
+    ) -> "list[NamedMolecule]":
         r"""Create a list of :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule`\ s from an .sdf file with a shared base name.
 
         Parameters
@@ -1000,7 +1000,7 @@ class NamedMolecule(VGroup):
         font: str = "",
         *args,
         **kwargs,
-    ) -> list[NamedMolecule]:
+    ) -> "list[NamedMolecule]":
         r"""Create a list of :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule`\ s from an sdf-format string with a shared base name.
 
         Parameters
@@ -1043,7 +1043,7 @@ class NamedMolecule(VGroup):
             )
         return named_molecules
 
-    def rotate_bond(self, bonds: int | list) -> Self:
+    def rotate_bond(self, bonds: int | list) -> "NamedMolecule":
         """Rotate specified bonds on the inner molecule and return self.
 
         Parameters
@@ -1059,7 +1059,7 @@ class NamedMolecule(VGroup):
 
         return self
 
-    def add_bond_numbering(self) -> Self:
+    def add_bond_numbering(self) -> "NamedMolecule":
         """Add bond numbering to the inner molecule and return self.
 
         Returns
@@ -1070,7 +1070,7 @@ class NamedMolecule(VGroup):
 
         return self
 
-    def add_atom_numbering(self) -> Self:
+    def add_atom_numbering(self) -> "NamedMolecule":
         """Add atom numbering to the inner molecule and return self.
 
         Returns

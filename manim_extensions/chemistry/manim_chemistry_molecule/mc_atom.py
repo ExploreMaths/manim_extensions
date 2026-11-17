@@ -9,7 +9,7 @@ This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_mol
 
 from __future__ import annotations
 
-from typing import Dict, Self, TYPE_CHECKING
+from typing import Dict, TYPE_CHECKING
 
 import numpy as np
 
@@ -57,7 +57,7 @@ class MCAtom:
         self.molecule = molecule
         self.molecule_index = molecule_index
 
-    def add_atoms(self, atoms: MCAtom | list[MCAtom]) -> list[MCAtom]:
+    def add_atoms(self, atoms: "MCAtom | list[MCAtom]") -> "list[MCAtom]":
         r"""
         Assigns bonded atoms to :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`.
 
@@ -200,7 +200,7 @@ class MCAtom:
     @staticmethod
     def construct_from_atom_dict(
         atom_index: int, atom_data_dict: Dict, elements_data_dict: Dict
-    ) -> Self:
+    ) -> "MCAtom":
         """
         Given an atom data dict from a parser, returns an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`.
 

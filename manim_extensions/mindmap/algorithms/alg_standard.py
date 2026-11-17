@@ -71,7 +71,7 @@ class TreeNode:
         self.children: List[TreeNode] = []
         self.parent: TreeNode = None
 
-    def add_child(self, child: TreeNode):
+    def add_child(self, child: "TreeNode"):
         """Add a child node and establish the parent-child relationship.
 
         Parameters

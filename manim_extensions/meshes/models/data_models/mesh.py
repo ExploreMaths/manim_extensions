@@ -15,7 +15,7 @@ from __future__ import annotations
 from copy import deepcopy
 
 # third-party imports
-from typing import List, Set, Self
+from typing import List, Set
 import numpy as np
 
 # local imports
@@ -145,7 +145,7 @@ class Mesh:
         self._edges = self.extract_edges()
         self.test_for_dangling = dangling
 
-    def __add__(self, other: Mesh) -> Self:
+    def __add__(self, other: "Mesh") -> "Mesh":
         """Concatenate ``other`` mesh with this mesh (``mesh + other``).
 
         A new mesh is returned and ``self`` stays unchanged; use
@@ -166,7 +166,7 @@ class Mesh:
             return merged
         return NotImplemented
 
-    def __iadd__(self, other: Mesh) -> Self:
+    def __iadd__(self, other: "Mesh") -> "Mesh":
         """Concatenate ``other`` mesh in-place (``mesh += other``).
 
         Parameters
@@ -812,7 +812,7 @@ class Mesh:
 
     @dangling_vert_decorator()
     @dangling_face_decorator()
-    def add_to_mesh(self, other: Mesh):
+    def add_to_mesh(self, other: "Mesh"):
         """Merge another mesh into this one by shifting its indices.
 
         The vertices, faces and parts of ``other`` are appended with
@@ -861,7 +861,7 @@ class Mesh:
         # edges may be changed # Fixme: update only partly
         self._edges = self.extract_edges()
 
-    def split_mesh_into_objects(self) -> List[Mesh]:
+    def split_mesh_into_objects(self) -> "List[Mesh]":
         """Split the mesh into independent, non-interconnected meshes.
 
         Returns

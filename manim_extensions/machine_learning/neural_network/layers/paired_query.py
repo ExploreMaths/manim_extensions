@@ -7,7 +7,6 @@
 
 from __future__ import annotations
 
-from typing import Self
 
 from manim import (
     Animation,
@@ -132,7 +131,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
     @classmethod
     def from_paths(
         cls, positive_path: str, negative_path: str, grayscale: bool = True, **kwargs
-    ) -> Self:
+    ) -> "PairedQueryLayer":
         """Creates a query using the paths.
 
         Parameters

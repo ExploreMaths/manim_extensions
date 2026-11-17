@@ -203,7 +203,7 @@ class RadarConfig:
     text_kwargs: dict = field(default_factory=dict)
 
     # ------------------------------------------------------------------
-    def evolved(self, **changes) -> RadarConfig:
+    def evolved(self, **changes) -> "RadarConfig":
         """Return a copy with selected fields replaced.
 
         Parameters
@@ -229,7 +229,7 @@ class RadarConfig:
             )
         return replace(self, **clean)
 
-    def validated(self) -> RadarConfig:
+    def validated(self) -> "RadarConfig":
         """Check that the numeric fields are usable.
 
         Returns

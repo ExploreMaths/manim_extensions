@@ -76,8 +76,8 @@ class NeuralNetworkLayer(ABC, Group):
     @abstractmethod
     def construct_layer(
         self,
-        input_layer: NeuralNetworkLayer,
-        output_layer: NeuralNetworkLayer,
+        input_layer: "NeuralNetworkLayer",
+        output_layer: "NeuralNetworkLayer",
         **kwargs: object,
     ):
         """Constructs the layer at network construction time.

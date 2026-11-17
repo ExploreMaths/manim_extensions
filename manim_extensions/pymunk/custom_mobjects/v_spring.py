@@ -4,7 +4,6 @@
 
 """Spring Mobject for Pymunk physics simulations."""
 
-from typing import Self
 import numpy as np
 from manim import LEFT, Line, ManimColor, ORIGIN, PI, RIGHT, WHITE, angle_of_vector
 from manim.typing import Point3D
@@ -124,7 +123,7 @@ class VSpring(Line):
         self.rotate(target_angle, about_point=ORIGIN)
         self.shift(start)
 
-    def put_start_and_end_on(self, start: Point3D, end: Point3D) -> Self:
+    def put_start_and_end_on(self, start: Point3D, end: Point3D) -> "VSpring":
         """Regenerate points when positions change (e.g. called by an Updater).
 
         Parameters

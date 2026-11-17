@@ -11,7 +11,7 @@ __all__ = [
 ]
 
 from dataclasses import dataclass, field
-from typing import List, Dict, Callable, Self
+from typing import List, Dict, Callable
 from .layout import Layout
 from .layout_config import LayoutDirection
 
@@ -71,7 +71,7 @@ class TimelineNode:
     node: object | None = None
     width: float = 0.0
     height: float = 0.0
-    children: List[TimelineNode] = field(default_factory=list)
+    children: "List[TimelineNode]" = field(default_factory=list)
     side_dir: LayoutDirection | None = None
 
     # Layout result coordinates
@@ -80,12 +80,12 @@ class TimelineNode:
 
     # Internal runtime attributes (do not set manually)
     _is_root: bool = False
-    _parent: TimelineNode | None = None
+    _parent: "TimelineNode | None" = None
     _layer_index: int = 0  # layer depth (root is 0)
     _index: int = 0  # index among siblings
 
     @classmethod
-    def from_node(cls, node: object) -> Self:
+    def from_node(cls, node: object) -> "TimelineNode":
         """Create a :class:`~manim_extensions.mindmap.algorithms.alg_time_line.TimelineNode` tree wrapper from the original node.
 
         Recursively copies ``width``, ``height``, and ``children`` references

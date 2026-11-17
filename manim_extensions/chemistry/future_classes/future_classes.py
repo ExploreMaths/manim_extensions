@@ -39,7 +39,7 @@ from manim import (
     np,
     smooth,
 )
-from typing import Callable, Self
+from typing import Callable
 
 from ...utils.deprecation import deprecated
 from manim.typing import Point3D, Vector3D, VectorND
@@ -589,7 +589,7 @@ class BatterySchema(VGroup):
         selected_schema = schema_options[self.schema_type]
         return selected_schema
 
-    def invert_terminals(self) -> Self:
+    def invert_terminals(self) -> "BatterySchema":
         """Swap the positive and negative battery terminal positions.
 
         Returns
@@ -789,7 +789,7 @@ class BatterySide(VMobject):
         self.anchor = anchor
         self.make_points()
 
-    def make_points(self) -> Self:
+    def make_points(self) -> "BatterySide":
         """Set the corner path points connecting the terminal to the anchor.
 
         Returns

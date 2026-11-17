@@ -46,7 +46,6 @@ from typing import (
     ClassVar,
     List,
     Protocol,
-    Self,
     cast,
 )
 
@@ -255,7 +254,7 @@ class MArrayElement(VGroup):
         init_value: bool = False,
         init_index: bool = False,
         init_label: bool = False,
-        next_to_mob: MArrayElement | None = None,
+        next_to_mob: "MArrayElement | None" = None,
         next_to_dir: Vector3D = RIGHT,
     ):
         """Initializes the mobjects for the class.
@@ -303,7 +302,7 @@ class MArrayElement(VGroup):
             )
             self.add(self.__mob_label)
 
-    def __deepcopy__(self, memo: dict[int, object]) -> Self:
+    def __deepcopy__(self, memo: dict[int, object]) -> "MArrayElement":
         """Deep-copy the object while excluding scene references.
 
         Parameters
@@ -337,7 +336,7 @@ class MArrayElement(VGroup):
         index_gap: float = 0.25,
         label_pos: Point3D = LEFT,
         label_gap: float = 0.5,
-        next_to_mob: MArrayElement | None = None,
+        next_to_mob: "MArrayElement | None" = None,
         next_to_dir: Vector3D = RIGHT,
         **kwargs: object,
     ):
@@ -1146,7 +1145,7 @@ class MArray(VGroup):
                     )
             self.add(self.__mob_arr_label)
 
-    def __deepcopy__(self, memo: dict[int, object]) -> Self:
+    def __deepcopy__(self, memo: dict[int, object]) -> "MArray":
         """Deep-copy the object while excluding scene references.
 
         Parameters
@@ -1907,7 +1906,7 @@ class MArrayPointer(VGroup):
             self.__arrow_gap,
         )
 
-    def __deepcopy__(self, memo: dict[int, object]) -> Self:
+    def __deepcopy__(self, memo: dict[int, object]) -> "MArrayPointer":
         """Deep-copy the object while excluding scene references.
 
         Parameters
@@ -2424,7 +2423,7 @@ class MArraySlidingWindow(VGroup):
 
         self.__pos_mobs(True, True)
 
-    def __deepcopy__(self, memo: dict[int, object]) -> Self:
+    def __deepcopy__(self, memo: dict[int, object]) -> "MArraySlidingWindow":
         """Deep-copy the object while excluding scene references.
 
         Parameters

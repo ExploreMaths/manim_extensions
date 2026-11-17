@@ -204,7 +204,7 @@ class RadarData:
 
         return ManimColor(self.color) if self.color else ManimColor(fallback)
 
-    def with_values(self, values: Sequence[float], **changes) -> RadarData:
+    def with_values(self, values: Sequence[float], **changes) -> "RadarData":
         """Copy this snapshot with new values and optional other changes.
 
         Parameters
@@ -221,7 +221,7 @@ class RadarData:
 
         return replace(self, values=tuple(float(v) for v in values), **changes)
 
-    def renamed(self, name: Optional[str]) -> RadarData:
+    def renamed(self, name: Optional[str]) -> "RadarData":
         """Copy this snapshot with another dataset name.
 
         Parameters

@@ -113,7 +113,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         self.add_updater(self.__step_updater)
 
     # ================================== updater ==================================
-    def __step_updater(self, vspace: VSpace, dt: float):
+    def __step_updater(self, vspace: "VSpace", dt: float):
         """Executes a single frame update step for the physical simulation.
 
         Divides the frame duration into multiple sub-steps and performs incremental

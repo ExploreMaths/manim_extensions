@@ -14,7 +14,7 @@ from manim.utils.color import ParsableManimColor
 import numpy as np
 from .row import Row
 from .cell import Cell
-from typing import List, overload, Self
+from typing import List, overload
 
 #: Animation produced by the mutation methods: either a real Animation
 #: (Transform/FadeIn/FadeOut) or a builder created via ``mobject.animate``.
@@ -422,7 +422,7 @@ class Table(VGroup):
 
     def set_column_font_color(
         self, col: int, color: ParsableManimColor, include_header: bool = False
-    ) -> Self:
+    ) -> "Table":
         """
         Set the font color for all cells in a column.
 
@@ -451,7 +451,7 @@ class Table(VGroup):
         color: ParsableManimColor,
         opacity: float = 0.5,
         include_header: bool = False,
-    ) -> Self:
+    ) -> "Table":
         """
         Set the background color for all cells in a column.
 
@@ -478,7 +478,7 @@ class Table(VGroup):
 
     def set_column_border_color(
         self, col: int, color: ParsableManimColor, include_header: bool = True
-    ) -> Self:
+    ) -> "Table":
         """
         Set the border color for all cells in a column.
 
@@ -503,7 +503,7 @@ class Table(VGroup):
 
     def set_header_background_color(
         self, color: ParsableManimColor, opacity: float = 0.5
-    ) -> Self:
+    ) -> "Table":
         """
         Set the background color for all header cells.
 
@@ -522,7 +522,7 @@ class Table(VGroup):
             cell.set_background_color(color, opacity)
         return self
 
-    def set_header_font_color(self, color: ParsableManimColor) -> Self:
+    def set_header_font_color(self, color: ParsableManimColor) -> "Table":
         """
         Set the font color for all header cells.
 

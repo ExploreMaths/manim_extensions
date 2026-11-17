@@ -218,7 +218,7 @@ class RadarReel:
         return "\n".join(lines)
 
     # ------------------------------------------------------------------
-    def play_on(self, scene: Scene) -> RadarReel:
+    def play_on(self, scene: Scene) -> "RadarReel":
         """Play the whole sequence on a scene.
 
         Parameters

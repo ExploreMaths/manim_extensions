@@ -457,7 +457,7 @@ class PolyRadarChart(VGroup):
         self.labels.add_updater(upd)
 
     # ------------------------------------------------------------------
-    def grow_in(self, scene: Scene, run_time: float = 0.45) -> PolyRadarChart:
+    def grow_in(self, scene: Scene, run_time: float = 0.45) -> "PolyRadarChart":
         """Animate the skeleton growing from the inner shell outwards.
 
         Parameters

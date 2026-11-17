@@ -811,7 +811,7 @@ class RadarChart(VGroup):
     # ------------------------------------------------------------------
     # comparison API (new in 0.1.1)
     # ------------------------------------------------------------------
-    def compare(self, *datasets) -> RadarChart:
+    def compare(self, *datasets) -> "RadarChart":
         """Show several datasets on this grid at once without animating.
 
         Each positional item may be a
@@ -850,7 +850,7 @@ class RadarChart(VGroup):
 
     set_datasets = compare
 
-    def focus(self, index: int) -> RadarChart:
+    def focus(self, index: int) -> "RadarChart":
         """Highlight one dataset and dim the others.
 
         Parameters
@@ -876,7 +876,7 @@ class RadarChart(VGroup):
             s.opacity_target = 1.0 if i == index else self.config.focus_dim
         return self
 
-    def unfocus(self) -> RadarChart:
+    def unfocus(self) -> "RadarChart":
         """Undo :meth:`~manim_extensions.radar.chart.RadarChart.focus` and restore full strength for every dataset.
 
         Returns
@@ -898,7 +898,7 @@ class RadarChart(VGroup):
         opacity: float = 0.32,
         side: str = "both",
         live: bool = True,
-    ) -> RadarChart:
+    ) -> "RadarChart":
         """Tint the crescent-shaped difference region between two datasets.
 
         Each lobe is coloured after the dataset that wins it unless ``color``
@@ -951,7 +951,7 @@ class RadarChart(VGroup):
         self._paint_gap(*self._frame(), 1.0)
         return self
 
-    def clear_gap(self) -> RadarChart:
+    def clear_gap(self) -> "RadarChart":
         """Remove the difference highlight.
 
         Returns
@@ -1053,7 +1053,7 @@ class RadarChart(VGroup):
     # ==================================================================
     def set_values(
         self, values: Sequence[float], scale: Optional[float] = None
-    ) -> RadarChart:
+    ) -> "RadarChart":
         """Snap the first dataset to new values without animating.
 
         Parameters
@@ -1108,7 +1108,7 @@ class RadarChart(VGroup):
                     )
                 )
 
-    def set_main_color(self, color: ParsableManimColor) -> RadarChart:
+    def set_main_color(self, color: ParsableManimColor) -> "RadarChart":
         """Snap the first dataset's polygon colour without animating.
 
         Parameters
@@ -1124,7 +1124,7 @@ class RadarChart(VGroup):
         self._series[0].color = ManimColor(color)
         return self
 
-    def set_rim(self, amount: float) -> RadarChart:
+    def set_rim(self, amount: float) -> "RadarChart":
         """Set the emphasis rim of the first dataset.
 
         Parameters
@@ -1140,7 +1140,7 @@ class RadarChart(VGroup):
         self._series[0].rim = float(np.clip(amount, 0.0, 1.0))
         return self
 
-    def set_glitch(self, amount: float) -> RadarChart:
+    def set_glitch(self, amount: float) -> "RadarChart":
         """Set the chromatic-split amount used by the glitch transition.
 
         Parameters
@@ -1156,7 +1156,7 @@ class RadarChart(VGroup):
         self._glitch = float(np.clip(amount, 0.0, 1.0))
         return self
 
-    def set_opacity(self, value: float) -> RadarChart:
+    def set_opacity(self, value: float) -> "RadarChart":
         """Set the global opacity of the chart.
 
         This override keeps the per-frame painting compatible with Manim's
@@ -1174,7 +1174,7 @@ class RadarChart(VGroup):
         self._opacity = float(np.clip(value, 0.0, 1.0))
         return self
 
-    def set_radius(self, radius: float) -> RadarChart:
+    def set_radius(self, radius: float) -> "RadarChart":
         """Resize the chart and rebuild its cached local geometry.
 
         Parameters
@@ -1244,7 +1244,7 @@ class RadarChart(VGroup):
         builder = self.animate.scale(1.0 / float(factor), about_point=center, **kwargs)
         return builder.set_run_time(run_time) if run_time else builder
 
-    def attach_camera(self, rig: CameraRig) -> RadarChart:
+    def attach_camera(self, rig: CameraRig) -> "RadarChart":
         """Attach a camera rig for coupled camera moves.
 
         Once attached, ``transition="burst"`` morphs automatically push the

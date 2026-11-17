@@ -13,7 +13,7 @@ out of that compensation.
 """
 
 import functools
-from typing import Callable, Self
+from typing import Callable
 
 from manim import VMobject, config
 from manim.mobject.opengl.opengl_vectorized_mobject import OpenGLVMobject
@@ -180,7 +180,7 @@ class ConstantStrokeWidthScene(MovingCameraScene):
         for member in self.get_mobject_family_members():
             self._scale_stroke_width(member, ratio)
 
-    def add(self, *mobjects: VMobject) -> Self:
+    def add(self, *mobjects: VMobject) -> "ConstantStrokeWidthScene":
         """Add mobjects and scale their strokes to the current zoom level.
 
         Parameters

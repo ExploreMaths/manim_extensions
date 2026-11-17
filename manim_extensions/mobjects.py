@@ -57,7 +57,7 @@ from manim import (
 from manim.typing import Point3D, Vector3DLike, Point3DLike, Vector3D, PixelArray
 import numpy as np
 import platform
-from typing import Callable, Self
+from typing import Callable
 
 from PIL import Image, ImageChops, ImageDraw
 
@@ -1090,7 +1090,7 @@ class VideoMobject(ImageMobject):
         """
         return self._duration / self.rate if self.rate > 0 else 0.0
 
-    def _video_updater(self, mob: VideoMobject, dt: float):
+    def _video_updater(self, mob: "VideoMobject", dt: float):
         """Internal updater that advances the video frame on each render step.
 
         Parameters
@@ -1126,7 +1126,7 @@ class VideoMobject(ImageMobject):
             self._frame_idx += 1
             self.pixel_array = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
 
-    def __deepcopy__(self, memo: dict) -> Self:
+    def __deepcopy__(self, memo: dict) -> "VideoMobject":
         """Deep-copy the mobject, reopening the video capture for the clone.
 
         Parameters
@@ -1156,7 +1156,7 @@ class VideoMobject(ImageMobject):
         result._updater_ref = lambda mob, dt: result._video_updater(mob, dt)
         return result
 
-    def play(self, scene: Scene | None = None) -> Self:
+    def play(self, scene: Scene | None = None) -> "VideoMobject":
         """Start video playback and optionally block the scene for its duration.
 
         Parameters
@@ -1177,7 +1177,7 @@ class VideoMobject(ImageMobject):
             scene.wait(self.duration)
         return self
 
-    def pause(self) -> Self:
+    def pause(self) -> "VideoMobject":
         """Pause playback without removing the updater.
 
         Returns
@@ -1187,7 +1187,7 @@ class VideoMobject(ImageMobject):
         self._playing = False
         return self
 
-    def resume(self) -> Self:
+    def resume(self) -> "VideoMobject":
         """Resume paused playback.
 
         Returns
@@ -1197,7 +1197,7 @@ class VideoMobject(ImageMobject):
         self._playing = True
         return self
 
-    def stop(self) -> Self:
+    def stop(self) -> "VideoMobject":
         """Stop playback and remove the updater.
 
         Returns
@@ -1209,7 +1209,7 @@ class VideoMobject(ImageMobject):
             self.remove_updater(self._updater_ref)
         return self
 
-    def reset(self) -> Self:
+    def reset(self) -> "VideoMobject":
         """Seek to the first frame and reset all playback state.
 
         Returns
@@ -1225,7 +1225,7 @@ class VideoMobject(ImageMobject):
         self._finished = False
         return self
 
-    def seek(self, time: float) -> Self:
+    def seek(self, time: float) -> "VideoMobject":
         """Seek to a specific timestamp in seconds.
 
         Parameters
@@ -1471,7 +1471,7 @@ class Trail(VGroup):
         """
         trail.become(self.create_path())
 
-    def start_trace(self) -> Self:
+    def start_trace(self) -> "Trail":
         """Attach the trail updater and return ``self`` for chaining.
 
         Returns
@@ -1481,7 +1481,7 @@ class Trail(VGroup):
         self.trail.add_updater(self.update_path)
         return self
 
-    def stop_trace(self) -> Self:
+    def stop_trace(self) -> "Trail":
         """Remove the trail updater.
 
         Returns
