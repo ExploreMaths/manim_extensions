@@ -89,15 +89,6 @@ ColorRamp = Sequence[tuple[Union[str, ManimColor], float]]
 GeometrySpec = tuple[SurfaceFunction, str, float, float, float]
 ContourSpec = tuple[VGroup, bool]
 FeatureSpec = tuple[float, float, float, str, bool, float]
-SurfaceConfig = Union[
-    "GaussianSurface",
-    "SaddleSurface",
-    "ParaboloidSurface",
-    "EllipsoidSurface",
-    "TorusSurface",
-    "HyperboloidOneSheet",
-]
-GraphSurfaceConfig = Union["GaussianSurface", "SaddleSurface", "ParaboloidSurface"]
 
 __all__ = [
     "GaussianSurface",
@@ -443,6 +434,19 @@ class HyperboloidOneSheet:
     camera_phi: float = 70.0
     camera_theta: float = -50.0
     zoom: float = 0.95
+
+
+# These aliases must follow the classes they name: assignment expressions are
+# evaluated at import time, unlike annotations postponed by the future import.
+SurfaceConfig = Union[
+    GaussianSurface,
+    SaddleSurface,
+    ParaboloidSurface,
+    EllipsoidSurface,
+    TorusSurface,
+    HyperboloidOneSheet,
+]
+GraphSurfaceConfig = Union[GaussianSurface, SaddleSurface, ParaboloidSurface]
 
 
 # ---------------- Beat skeleton (shared graph surfaces) ----------------

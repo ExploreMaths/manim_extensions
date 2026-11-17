@@ -40,15 +40,19 @@ Added
 * ``workflow/validate_example_names.py`` and its ``validate-example-names``
   CI job reject ``Example``/``DocExample`` suffixes, non-PascalCase names,
   and a ``.. manim::`` name that does not match the class in its block.
+* The Manim documentation supplement now has separate ``Constants`` and
+  ``Classes`` index pages instead of two sibling sections in one document.
+  ``Classes`` keeps its own ``_AnimationBuilder`` entry and hidden toctree.
 
 Fixed
 ~~~~~
 
-* Quoted forward references inside type aliases now become links:
-  ``SurfaceConfig`` renders ``GaussianSurface | SaddleSurface | ...`` with
-  each class linked to its reference page instead of showing the literal
-  strings ``'GaussianSurface'``.  ``autoall`` strips the quotes only when the
-  name resolves to a class in the alias module.
+* Type aliases now refer to the configuration classes directly:
+  ``SurfaceConfig`` and ``GraphSurfaceConfig`` are defined after their
+  classes, so their source no longer needs quoted forward references.  Both
+  render as ``GaussianSurface | SaddleSurface | ...`` with each class linked
+  to its reference page; ``autoall`` still strips quotes from other aliases
+  when the name resolves to a class in the alias module.
 * The Manim documentation supplement now documents the private animation
   builder returned by ``.animate`` under its real name, and its page title
   keeps the leading underscore.  A short summary is installed for the class
