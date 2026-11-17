@@ -9,6 +9,10 @@ v1.0.7 :bdg-primary-line:`In Development`
 
 **Added**
 
+* ``workflow/validate_naming.py`` and the ``validate-naming`` CI job enforce
+  PascalCase class names without underscores and lowercase ``snake_case``
+  function and method names across the entire package, including vendored
+  subpackages.
 * ``.. manim::`` and ``.. nbcell::`` examples declare the files they read
   with ``:files:``: the names resolve inside ``examples/``, are copied into
   the example's working directory, and render as download cards (below the
@@ -31,6 +35,15 @@ v1.0.7 :bdg-primary-line:`In Development`
 
 **Fixed**
 
+* Project type aliases render by name again under postponed annotations:
+  ``SurfaceConfig``, ``GraphSurfaceConfig``, ``GeometrySpec``, ``ContourSpec``,
+  ``ColorRamp`` and ``SurfaceFunction`` stay aliases in parameter and return
+  types instead of expanding to ``Union[...]`` or ``tuple[VGroup, bool]``.
+  The Sphinx hook now patches
+  ``sphinx_autodoc_typehints._resolve.hints.type_hints`` — the binding the
+  installed 3.17.5 release actually calls — and restores aliases parsed from
+  the original annotation string, including names nested inside ``list[...]``
+  and unions.
 * Deprecation and runtime warnings no longer flood the pytest and CI logs:
   internal calls to the compatibility rate functions use their unwrapped
   implementations, Manim mobject getters use properties (``width``,
@@ -72,6 +85,15 @@ v1.0.7 :bdg-primary-line:`In Development`
 
 **Changed**
 
+* Type annotations keep ``from __future__ import annotations`` and spell
+  class self-references as quoted class names (``"Table"``,
+  ``"MCAtom | list[MCAtom]"``); ``typing.Self`` is no longer used.
+  ``scripts/check_type_annotations.py`` now checks only that every parameter
+  has an annotation, instead of rejecting quoted annotations.
+* Documentation builds now run Sphinx on GitHub: the Docs cache workflow
+  publishes rendered examples to ``rtd-cache``, builds the HTML and pushes it
+  to ``rtd-html``, and Read the Docs only copies that output. The contributor
+  guide describes the split and the updated validation jobs.
 * The docs build no longer auto-links inline code just because its text
   exactly matches a project class name. Plain code spans stay plain; an
   explicit ``:class:`` role is required when a link is intended, so names
@@ -101,9 +123,10 @@ v1.0.7 :bdg-primary-line:`In Development`
   a bare file name; the video example's ``3Blue1Brown.mp4`` moved to
   ``examples/videos/`` for the same reason.
 * The contributor guide now matches the jobs in ``validate.yml``: the
-  validation checklist covers every job, the coverage floor reads 90% and the
-  test matrix 3.11-3.15, and naming, ``Literal`` sets and the nbcell rule are
-  marked as review-only rather than implying an automated check.
+  validation checklist covers every job, the coverage floor reads 90%, the
+  test matrix is 3.11-3.15, and naming is documented as enforced by
+  ``validate-naming`` while ``Literal`` sets and the nbcell rule remain
+  review-only.
 * Documentation examples print structured parser and coordinate results with
   ``pprint``, so nested dictionaries and lists wrap onto readable lines
   instead of one long line.

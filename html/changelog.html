@@ -1477,6 +1477,10 @@
 <h2>v1.0.7 <span class="sd-sphinx-override sd-badge sd-outline-primary sd-text-primary">In Development</span><a class="headerlink" href="#v1-0-7-in-development" title="Link to this heading">¶</a></h2>
 <p><strong>Added</strong></p>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">workflow/validate_naming.py</span></code> and the <code class="docutils literal notranslate"><span class="pre">validate-naming</span></code> CI job enforce
+PascalCase class names without underscores and lowercase <code class="docutils literal notranslate"><span class="pre">snake_case</span></code>
+function and method names across the entire package, including vendored
+subpackages.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">manim::</span></code> and <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">nbcell::</span></code> examples declare the files they read
 with <code class="docutils literal notranslate"><span class="pre">:files:</span></code>: the names resolve inside <code class="docutils literal notranslate"><span class="pre">examples/</span></code>, are copied into
 the example’s working directory, and render as download cards (below the
@@ -1499,6 +1503,15 @@ and a <code class="docutils literal notranslate"><span class="pre">..</span> <sp
 </ul>
 <p><strong>Fixed</strong></p>
 <ul class="simple">
+<li><p>Project type aliases render by name again under postponed annotations:
+<code class="docutils literal notranslate"><span class="pre">SurfaceConfig</span></code>, <code class="docutils literal notranslate"><span class="pre">GraphSurfaceConfig</span></code>, <code class="docutils literal notranslate"><span class="pre">GeometrySpec</span></code>, <code class="docutils literal notranslate"><span class="pre">ContourSpec</span></code>,
+<code class="docutils literal notranslate"><span class="pre">ColorRamp</span></code> and <code class="docutils literal notranslate"><span class="pre">SurfaceFunction</span></code> stay aliases in parameter and return
+types instead of expanding to <code class="docutils literal notranslate"><span class="pre">Union[...]</span></code> or <code class="docutils literal notranslate"><span class="pre">tuple[VGroup,</span> <span class="pre">bool]</span></code>.
+The Sphinx hook now patches
+<code class="docutils literal notranslate"><span class="pre">sphinx_autodoc_typehints._resolve.hints.type_hints</span></code> — the binding the
+installed 3.17.5 release actually calls — and restores aliases parsed from
+the original annotation string, including names nested inside <code class="docutils literal notranslate"><span class="pre">list[...]</span></code>
+and unions.</p></li>
 <li><p>Deprecation and runtime warnings no longer flood the pytest and CI logs:
 internal calls to the compatibility rate functions use their unwrapped
 implementations, Manim mobject getters use properties (<code class="docutils literal notranslate"><span class="pre">width</span></code>,
@@ -1540,6 +1553,15 @@ no separate installation.</p></li>
 </ul>
 <p><strong>Changed</strong></p>
 <ul class="simple">
+<li><p>Type annotations keep <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">__future__</span> <span class="pre">import</span> <span class="pre">annotations</span></code> and spell
+class self-references as quoted class names (<code class="docutils literal notranslate"><span class="pre">&quot;Table&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;MCAtom</span> <span class="pre">|</span> <span class="pre">list[MCAtom]&quot;</span></code>); <code class="docutils literal notranslate"><span class="pre">typing.Self</span></code> is no longer used.
+<code class="docutils literal notranslate"><span class="pre">scripts/check_type_annotations.py</span></code> now checks only that every parameter
+has an annotation, instead of rejecting quoted annotations.</p></li>
+<li><p>Documentation builds now run Sphinx on GitHub: the Docs cache workflow
+publishes rendered examples to <code class="docutils literal notranslate"><span class="pre">rtd-cache</span></code>, builds the HTML and pushes it
+to <code class="docutils literal notranslate"><span class="pre">rtd-html</span></code>, and Read the Docs only copies that output. The contributor
+guide describes the split and the updated validation jobs.</p></li>
 <li><p>The docs build no longer auto-links inline code just because its text
 exactly matches a project class name. Plain code spans stay plain; an
 explicit <code class="docutils literal notranslate"><span class="pre">:class:</span></code> role is required when a link is intended, so names
@@ -1569,9 +1591,10 @@ bundled sample <code class="docutils literal notranslate"><span class="pre">.mol
 a bare file name; the video example’s <code class="docutils literal notranslate"><span class="pre">3Blue1Brown.mp4</span></code> moved to
 <code class="docutils literal notranslate"><span class="pre">examples/videos/</span></code> for the same reason.</p></li>
 <li><p>The contributor guide now matches the jobs in <code class="docutils literal notranslate"><span class="pre">validate.yml</span></code>: the
-validation checklist covers every job, the coverage floor reads 90% and the
-test matrix 3.11-3.15, and naming, <code class="docutils literal notranslate"><span class="pre">Literal</span></code> sets and the nbcell rule are
-marked as review-only rather than implying an automated check.</p></li>
+validation checklist covers every job, the coverage floor reads 90%, the
+test matrix is 3.11-3.15, and naming is documented as enforced by
+<code class="docutils literal notranslate"><span class="pre">validate-naming</span></code> while <code class="docutils literal notranslate"><span class="pre">Literal</span></code> sets and the nbcell rule remain
+review-only.</p></li>
 <li><p>Documentation examples print structured parser and coordinate results with
 <code class="docutils literal notranslate"><span class="pre">pprint</span></code>, so nested dictionaries and lists wrap onto readable lines
 instead of one long line.</p></li>

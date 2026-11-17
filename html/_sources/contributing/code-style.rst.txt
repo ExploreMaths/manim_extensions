@@ -6,7 +6,7 @@ Code style
 ==========
 
 The tree is formatted with Black and type-checked convention by convention;
-most rules below name the checker that rejects a departure, and the three
+most rules below name the checker that rejects a departure, and the
 review-only rules are listed at the end of the page.
 
 Formatting and line length
@@ -27,7 +27,9 @@ Type annotations
 ----------------
 
 * **Every function and method parameter must have a type annotation**, except ``self``, ``cls``, ``*args``, and ``**kwargs``.
-* **Never write an annotation as a string literal** (``node: "Node"``, ``-> "Option"``). Import the name instead, or, for a genuine forward reference to a class defined later in the same module, add ``from __future__ import annotations`` at the top of the module. ``scripts/check_type_annotations.py`` rejects quoted annotations; ``Literal["a", "b"]`` payloads are string values, not annotations, and are allowed.
+* **Keep the existing** ``from __future__ import annotations`` **imports.** They are intentional: annotations stay unevaluated at runtime and Sphinx resolves them when it renders the reference pages.
+* **A class that refers to itself writes the whole annotation as a quoted class name.** Use the class name, not ``typing.Self``: ``def clone(self) -> "Table"``, ``def add_atoms(self, atoms: "MCAtom | list[MCAtom]") -> "list[MCAtom]"``, and class attributes such as ``extreme_left: "WrappedTree | None"``. The string may contain the complete annotation expression, including unions, built-in generics such as ``list[MCAtom]``, and ``None``.
+* Quoted annotations are accepted generally: ``scripts/check_type_annotations.py`` only verifies that every parameter has an annotation. It does not reject string annotations and does not check the return annotation. ``Literal["a", "b"]`` payloads are string values, not annotations, and are allowed.
 * **A parameter or return value that only accepts a closed set of string values must be annotated with** ``typing.Literal[...]``, not ``str``. A closed set means the implementation branches on the value (``if x == "up"``, a dispatch dict keyed by it) or the docstring enumerates every accepted spelling. Import ``Literal`` from ``typing`` and keep it inline at the signature when it fits within 88 columns; when it does not, or the same set is repeated across several signatures, define one module-level alias and reuse it. A ``Literal`` set must match the runtime validation exactly — adding an accepted value means updating the annotation, the docstring, and the ``Literal`` in the same commit.
 
   .. code-block:: python
@@ -36,7 +38,7 @@ Type annotations
       def create_decision_tree(self, traversal_order: Literal["bfs", "level", "best"] = "bfs") -> None: ...
 
   Values that are genuinely open-ended stay ``str``: file paths, labels and titles, TeX payloads, colour hex strings, and free-form identifiers. Existing ``str`` annotations for closed sets are technical debt; fix them when you touch that signature rather than rewriting a whole module in one pass.
-* Return annotations are strongly encouraged where practical. A CI check (``scripts/check_return_annotations.py``) runs as a signal for functions that return a value without an annotation — add one when it points you there, and the maintainer will help refine imperfect annotations. **A class method that returns an instance of its own class must annotate it with** ``Self`` (``from typing import Self``), not with a quoted forward reference such as ``-> "ClassName"``. ``Self`` is available since Python 3.11 and is the canonical spelling; a string annotation would either require ``from __future__ import annotations`` to drop or break at runtime.
+* Return annotations are strongly encouraged where practical. A CI check (``scripts/check_return_annotations.py``) runs as a signal for functions that return a value without an annotation — add one when it points you there, and the maintainer will help refine imperfect annotations. **A class method that returns an instance of its own class writes the class name as a quoted annotation** (``-> "Table"``, ``-> "list[MCAtom]"``), not ``Self``. The project does not use ``typing.Self`` in annotations.
 * **Functions with no return value must not write a** ``-> None`` return annotation and must not add a ``Returns`` docstring section. ``sphinx-autodoc-typehints`` renders a redundant ``RETURN TYPE: None`` whenever a signature ends in ``-> None``; omitting the annotation suppresses it.
 * A non-``None`` return annotation requires a ``Returns`` (or ``Yields``) docstring section (see the Docstrings section below).
 * ``mypy --strict`` is configured in ``pyproject.toml`` for local type checking,
@@ -72,11 +74,17 @@ Run ``python workflow/check_relative_imports.py --fix`` to convert automatically
 Naming
 ------
 
-* Modules: ``snake_case``
-* Classes: ``PascalCase``
-* Functions, methods, variables: ``snake_case``
-* Constants: ``UPPER_SNAKE_CASE``
-* Private names start with a single underscore (``_``).
+* Modules: ``snake_case``.
+* Classes: ``PascalCase`` — start with an uppercase letter and contain no
+  underscores (``^[A-Z][A-Za-z0-9]*$``).
+* Functions and methods: lowercase ``snake_case`` (``^_*[a-z][a-z0-9_]*$``).
+  A private name may start with underscores; every other character is
+  lowercase or a digit, with underscores between words.
+* Variables: ``snake_case``; constants: ``UPPER_SNAKE_CASE``.
+* These rules apply to **every** package file, including vendored
+  subpackages. There are no upstream-name exemptions:
+  ``workflow/validate_naming.py`` checks the whole
+  ``manim_extensions`` tree in the ``validate-naming`` CI job.
 
 Docstrings
 ----------
@@ -273,8 +281,9 @@ Any ``.. manim::`` block must appear under a numpydoc ``Examples`` section heade
 Rules reviewed rather than automated
 ------------------------------------
 
-Three conventions above are checked by a human at review time, not by CI:
-the naming table, the ``Literal[...]`` closed-set rule, and the "interactive
-examples use ``.. nbcell::``, not ``>>>``" rule. Every other rule in this
-page names the job or script that fails on a violation, and the full list of
-jobs is in :ref:`validation-checklist`.
+Two conventions above are checked by a human at review time, not by CI:
+the ``Literal[...]`` closed-set rule and the "interactive examples use
+``.. nbcell::``, not ``>>>``" rule. Naming is enforced by
+``workflow/validate_naming.py``. Every other rule in this page names the job
+or script that fails on a violation, and the full list of jobs is in
+:ref:`validation-checklist`.

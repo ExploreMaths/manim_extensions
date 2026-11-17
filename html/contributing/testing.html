@@ -1502,9 +1502,9 @@ inside a virtual display.</p></li>
 <section id="validation-checklist">
 <span id="id1"></span><h2>Validation Checklist<a class="headerlink" href="#validation-checklist" title="Link to this heading">¶</a></h2>
 <p>Run these locally before opening a PR. The checker scripts are grouped into
-five CI jobs in <code class="docutils literal notranslate"><span class="pre">.github/workflows/validate.yml</span></code> by what they need installed;
-each row below belongs to one of those groups. Run a whole group with
-<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">workflow/run_checks.py</span> <span class="pre">--group</span> <span class="pre">&lt;static|package|layout|lint|audit&gt;</span></code>.</p>
+the CI jobs in <code class="docutils literal notranslate"><span class="pre">.github/workflows/validate.yml</span></code> by what they need installed;
+each row below names the command it runs. Run a whole group with
+<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">workflow/run_checks.py</span> <span class="pre">--group</span> <span class="pre">&lt;static|text|package|layout|lint|audit&gt;</span></code>.</p>
 <p>The entry point defaults to this repository’s layout.  A repository that
 vendors <code class="docutils literal notranslate"><span class="pre">workflow/</span></code> and <code class="docutils literal notranslate"><span class="pre">scripts/</span></code> can point it at its own package and
 documentation tree:</p>
@@ -1597,13 +1597,16 @@ flags on every run, the target can declare its layout in <code class="docutils l
 <tr class="row-odd"><td><p>License declarations (REUSE)</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">reuse</span> <span class="pre">lint</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>Type annotations on all params / no quoted annotations</p></td>
+<tr class="row-even"><td><p>Class names PascalCase / functions and methods snake_case, including vendored code</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">workflow/validate_naming.py</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Type annotations on all params</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/check_type_annotations.py</span></code></p></td>
 </tr>
-<tr class="row-odd"><td><p>Return annotations on documented public functions with return values</p></td>
+<tr class="row-even"><td><p>Return annotations on documented public functions with return values</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/check_return_annotations.py</span></code></p></td>
 </tr>
-<tr class="row-even"><td><p>Dependencies audit</p></td>
+<tr class="row-odd"><td><p>Dependencies audit</p></td>
 <td><p><code class="docutils literal notranslate"><span class="pre">pip-audit</span> <span class="pre">--desc</span> <span class="pre">on</span></code></p></td>
 </tr>
 </tbody>
@@ -1637,11 +1640,11 @@ python<span class="w"> </span>workflow/fix_refs.py<span class="w">              
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Python</span> <span class="pre">package</span></code></p></td>
 <td><p>push to <code class="docutils literal notranslate"><span class="pre">main</span></code>, pull request</p></td>
-<td><p>builds and tests the package on Python 3.11–3.14</p></td>
+<td><p>builds and tests the package on Python 3.11–3.15</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Docs</span> <span class="pre">cache</span></code></p></td>
-<td><p>push to <code class="docutils literal notranslate"><span class="pre">main</span></code>, release tag</p></td>
-<td><p>renders the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">manim::</span></code> examples and executes the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">nbcell::</span></code> cells, then publishes the cache to the <code class="docutils literal notranslate"><span class="pre">rtd-cache</span></code> branch</p></td>
+<td><p>push to <code class="docutils literal notranslate"><span class="pre">main</span></code>, release tag, daily schedule</p></td>
+<td><p>renders the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">manim::</span></code> examples and executes the <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">nbcell::</span></code> cells into the <code class="docutils literal notranslate"><span class="pre">rtd-cache</span></code> branch, builds the Sphinx HTML on GitHub, and publishes it to <code class="docutils literal notranslate"><span class="pre">rtd-html</span></code>; Read the Docs copies that output instead of running Sphinx or rendering examples</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Publish</span></code></p></td>
 <td><p>manual dispatch</p></td>

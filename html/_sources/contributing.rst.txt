@@ -19,10 +19,10 @@ There are many ways to help:
 * **Bug reports** — a minimal reproduction, the expected behaviour, and the
   packages' versions.
 
-The pages below are the review checklist for this repository. Every convention
-listed there is checked by an automated script in CI, so running the same
-commands locally is the quickest route to a green pull request. Please also read
-the :doc:`code_of_conduct`.
+The pages below are the review checklist for this repository. Most conventions
+listed there are checked by an automated script in CI; the review-only ones are
+marked on the page. Running the same commands locally is the quickest route to
+a green pull request. Please also read the :doc:`code_of_conduct`.
 
 .. important::
 
