@@ -1,8 +1,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Manim 文档补充
-==============
+Manim Documentation Supplement
+==============================
 
 Manim's official documentation lists the ten direction vectors and the
 colour palette, but the Manim intersphinx inventory contains *no*
