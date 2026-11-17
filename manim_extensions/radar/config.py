@@ -153,11 +153,11 @@ class RadarConfig:
     #: how far beyond the vertex the overflow number sits (radius multiple)
     overflow_number_offset: float = 0.17
 
-    # ---- rainbow web（彩虹蛛网，0.1.2）-----------------------------------
-    #: 彩虹蛛网：相邻线段不同色（环按角度取相隔色相、辐条用轴色），
-    #: 加粗提亮，黑底边界清晰；描线用 chart.trace_web()
+    # ---- rainbow web (0.1.2) -------------------------------------------
+    #: Rainbow web: adjacent segments use different colours (rings take separated hues by angle, spokes use axis colours),
+    #: with thicker, brighter strokes and clear boundaries on black; draw with chart.trace_web()
     web_rainbow: bool = False
-    #: 彩虹蛛网描线时长（秒）；蛛网描好后数据多边形才入场（先网后数据）
+    #: Rainbow-web draw duration (seconds); the data polygon enters after the web is drawn (web first, data second)
     web_trace_time: float = 0.32
 
     # ---- legend & comparisons --------------------------------------------
@@ -264,9 +264,9 @@ class RadarConfig:
 # style presets — "neo" is the 2.0 look, "classic" is the 1.0 look
 # ---------------------------------------------------------------------------
 STYLES: dict[str, RadarConfig] = {
-    # 2.0：彩虹描边 + 顶点光点 + 刻度 + 扫光 + 双层辉光 + 滚轮数字
+    # 2.0: rainbow stroke + vertex glow + ticks + sweep + double-layer glow + rolling numbers
     "neo": RadarConfig(),
-    # 1.0：单层填充 + 亮白描边 + 冷灰网格 + 跳变数字，装饰全部关掉
+    # 1.0: single fill + bright white stroke + cool-grey grid + snapping numbers; all decoration off
     "classic": RadarConfig(
         radius=3.2,
         position=(0.0, -0.14),
@@ -297,7 +297,7 @@ STYLES: dict[str, RadarConfig] = {
         morph_run_time=0.75,
         show_dataset_name=False,
     ),
-    # minimal：干净版，适合浅色主题 / 数据图表
+    # minimal: clean version for light themes / data charts
     "minimal": RadarConfig(
         radius=2.5,
         position=(0.0, -0.10),

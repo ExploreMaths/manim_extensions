@@ -233,6 +233,29 @@ def is_type_alias(obj):
     return typing.get_origin(obj) is not None
 
 
+_QUOTED_NAME_RE = re.compile(
+    r"'([A-Za-z_][A-Za-z0-9_.]*)'|\"([A-Za-z_][A-Za-z0-9_.]*)\""
+)
+
+
+def _link_quoted_forward_refs(source, module):
+    """Turn quoted forward references into resolvable names.
+
+    ``SurfaceConfig`` is written as ``Union["GaussianSurface", ...]``; the
+    ``:canonical:`` field parses Python annotation syntax, so a quoted string
+    renders as a literal.  Replace the quotes only when the name resolves to a
+    class in *module*, which makes Sphinx create a cross-reference to that
+    class while leaving ordinary string literals untouched.
+    """
+
+    def replace(match):
+        name = match.group(1) or match.group(2)
+        target = getattr(module, name, None)
+        return name if inspect.isclass(target) else match.group(0)
+
+    return _QUOTED_NAME_RE.sub(replace, source)
+
+
 def alias_definition(module, name):
     """Return ``(canonical_source, description)`` for a module-level alias.
 
@@ -273,6 +296,7 @@ def alias_definition(module, name):
     canonical = ast.get_source_segment(source, node.value)
     if canonical:
         canonical = " ".join(canonical.split())
+        canonical = _link_quoted_forward_refs(canonical, module)
 
     lines = source.splitlines()
     comments = []

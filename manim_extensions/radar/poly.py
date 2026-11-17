@@ -54,7 +54,7 @@ from manim.utils.color import ParsableManimColor
 from manim.utils.space_ops import rotation_matrix
 
 # ============================================================================
-# 十二面体常数表（暴力推导 + 自校验，杜绝手写错误）
+# Dodecahedron constant table (brute-force derivation + self-check; no hand-written values)
 # ============================================================================
 PHI = (1.0 + math.sqrt(5.0)) / 2.0
 
@@ -149,16 +149,16 @@ for a in range(len(DODECA_FACES)):
             FACE_ADJ.append((a, b))
 
 assert len(DODECA_VERTICES) == 20
-assert len(DODECA_EDGES) == 30, f"棱数 {len(DODECA_EDGES)} != 30"
-assert len(DODECA_FACES) == 12, f"面数 {len(DODECA_FACES)} != 12"
+assert len(DODECA_EDGES) == 30, f"edge count {len(DODECA_EDGES)} != 30"
+assert len(DODECA_FACES) == 12, f"face count {len(DODECA_FACES)} != 12"
 assert all(len(f) == 5 for f in DODECA_FACES)
 _cnt = np.zeros(20, dtype=int)
 for f in DODECA_FACES:
     for i in f:
         _cnt[i] += 1
 assert (_cnt == 3).all()
-assert len(FACE_ADJ) == 30, f"对偶棱数 {len(FACE_ADJ)} != 30"
-assert 0.5 < INRADIUS < 0.95, f"内切比异常 {INRADIUS:.3f}"
+assert len(FACE_ADJ) == 30, f"dual edge count {len(FACE_ADJ)} != 30"
+assert 0.5 < INRADIUS < 0.95, f"inradius ratio out of range: {INRADIUS:.3f}"
 
 # ============================================================================
 # PolyRadarChart
@@ -238,21 +238,23 @@ class PolyRadarChart(VGroup):
         self.axes_names = list(axes_names)
         if len(self.axes_names) != 12:
             raise ValueError(
-                f"PolyRadarChart 需要 12 个轴，收到 {len(self.axes_names)}"
+                f"PolyRadarChart requires 12 axes, got {len(self.axes_names)}"
             )
         self.max_value = float(max_value)
         self.poly_radius = float(radius)
-        self.inr = INRADIUS * self.poly_radius  # 满量程时面板中心的世界半径
-        self.center = np.array(center, dtype=float)  # 自转轴（世界坐标）
+        self.inr = (
+            INRADIUS * self.poly_radius
+        )  # world radius of the panel centre at full scale
+        self.center = np.array(center, dtype=float)  # rotation axis (world coordinates)
         self.cam_pos = np.array(cam_pos, dtype=float)
-        self.theta = 0.0  # 自转角（普通浮点）
-        self.spin_rate = float(spin_rate)  # 度/秒（默认慢速）
+        self.theta = 0.0  # rotation angle (plain float)
+        self.spin_rate = float(spin_rate)  # degrees/second (slow by default)
         self.grow = bool(grow)
         self._frac = np.array(values, dtype=float) / self.max_value
         if len(self._frac) != 12:
-            raise ValueError(f"需要 12 个数值，收到 {len(self._frac)}")
+            raise ValueError(f"requires 12 values, got {len(self._frac)}")
 
-        # ---- 骨架：嵌套十二面体壳 ----
+        # ---- skeleton: nested dodecahedron shells ----
         self.skins = VGroup()
         self.skin_parts = {}
         for s in skins:
@@ -303,10 +305,10 @@ class PolyRadarChart(VGroup):
             self.skin_parts[s] = part
             self.skins.add(g)
         if grow:
-            self.skins.set_opacity(0.0)  # grow_in 时逐层显现
+            self.skins.set_opacity(0.0)  # reveals layer by layer during grow_in
         self.add(self.skins)
 
-        # ---- 数据层：球 / 棱 / 三角面 / 标签 ----
+        # ---- data layer: spheres / edges / triangular faces / labels ----
         self.spheres = VGroup()
         for i in range(12):
             self.spheres.add(
@@ -420,7 +422,7 @@ class PolyRadarChart(VGroup):
             delta = self.spin_rate * dt
             self.rotate(delta, axis=Z_AXIS, about_point=self.center)
             self.theta = (self.theta + delta) % 360.0
-        # 标签朝向由 _billboard（become+look-at）负责，见 _attach_billboards
+        # label orientation is handled by _billboard (become + look-at), see _attach_billboards
 
     def _attach_billboards(self) -> None:
         """Orient each label towards the camera and keep it upright.

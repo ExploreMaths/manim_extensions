@@ -355,8 +355,8 @@ SECTION_ORDER = {
 # directives) or must not be rewritten.
 DESC_SKIP_STARTS = ("``", ":", "(", "[", "-", "*", ".. ")
 ROLE_STARTS = (":class:", ":func:", ":meth:", ":mod:", ":attr:", ":data:")
-ALLOWED_DESC_END = tuple(".?!。,;`\"')]}")
-ALLOWED_DOC_END = tuple(".?!。:`\"')]}>*_–—")
+ALLOWED_DESC_END = tuple(".?!\u3002,;`\"')]}")
+ALLOWED_DOC_END = tuple(".?!\u3002:`\"')]}>*_–—")
 # Google-style inline section headers such as ``Returns:``; numpydoc
 # sections are a bare header line followed by a ``----------`` underline.
 INLINE_SECTION_RE = re.compile(
@@ -655,7 +655,7 @@ def check_description_style(doc, qualname, lineno, violations):
                         f"with a capital letter",
                     }
                 )
-        if last and not last.endswith((".", "?", "!", "。")):
+        if last and not last.endswith((".", "?", "!", "\u3002")):
             if not last.startswith(DESC_SKIP_STARTS + ROLE_STARTS):
                 violations.append(
                     {
@@ -689,7 +689,7 @@ def check_summary_period(doc, qualname, lineno, violations):
     if not para:
         return
     summary = para[-1]
-    if summary.endswith((".", "?", "!", "。")):
+    if summary.endswith((".", "?", "!", "\u3002")):
         return
     if summary.startswith(DESC_SKIP_STARTS + ROLE_STARTS):
         return
@@ -1006,7 +1006,7 @@ def _prose_after_colon(line: str) -> bool:
         (":class:", ":data:", ":obj:", ":func:", ":meth:", ":mod:", ":attr:", ":ref:")
     ):
         return False  # a role-based type is a real entry
-    return "`" in typ or typ.endswith((".", "。", "．"))
+    return "`" in typ or typ.endswith((".", "\u3002", "\uff0e"))
 
 
 def flat_description_lines(doc: str) -> list:

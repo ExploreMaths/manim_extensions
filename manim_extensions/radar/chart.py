@@ -469,13 +469,13 @@ class RadarChart(VGroup):
             self.add(self.sweep)
 
         # ---- polygon layers (one group per dataset) + gap lobes -------------
-        # ---- 彩虹蛛网（web_rainbow）：分段彩线接管内置网格 ----
+        # ---- rainbow web (web_rainbow): segmented coloured lines replace the built-in grid ----
         self._rainbow_web = None
         if cfg.web_rainbow:
             web = VGroup()
             for k in range(1, cfg.levels + 1):
                 for i in range(n):
-                    hue = ((i + 0.5) / n) % 1.0  # 半步偏移避开轴色
+                    hue = ((i + 0.5) / n) % 1.0  # half-step offset avoids axis colours
                     col = ManimColor.from_hsv((hue, 0.85, 1.0))
                     web.add(
                         Line(
@@ -496,11 +496,11 @@ class RadarChart(VGroup):
                         stroke_opacity=0.0,
                     )
                 )
-            web.set_opacity(0.0)  # trace_web 时显现
+            web.set_opacity(0.0)  # visible when trace_web runs
             self._rainbow_web = web
             self.add(web)
             web.add_updater(lambda m: self._place_rainbow_web())
-            # 彩虹蛛网加粗提亮后，轴名需外移避让；刻度数字关闭避免杂乱
+            # after thickening/brightening the rainbow web, axis names need extra spacing; hide tick numbers to avoid clutter
             if cfg.label_offset == 1.10:
                 cfg.label_offset = 1.24
             if cfg.show_level_labels:
@@ -1443,7 +1443,7 @@ class RadarChart(VGroup):
             A :class:`~manim.animation.creation.Create` animation for the web.
         """
 
-        self.set_opacity(0.0)  # 数据层隐藏，蛛网描好后 reveal 恢复
+        self.set_opacity(0.0)  # hide data layer; reveal it after the web is drawn
         rt = run_time if run_time is not None else self.config.web_trace_time
         return Create(self._rainbow_web, run_time=rt)
 

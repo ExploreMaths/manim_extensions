@@ -313,11 +313,11 @@ class TestPerpendicularSign:
     def test_corner_direction_ur(self):
         line1 = Line(LEFT, RIGHT)
         line2 = Line(DOWN, UP)
-        # 指定折角画在右上（第一象限）
+        # draw the specified fold in the upper-right (first quadrant)
         sign = PerpendicularSign(line1, line2, length=0.2, corner_direction=[1, 1, 0])
         assert isinstance(sign, VGroup)
         assert len(sign.submobjects) == 2
-        # 内角顶点应该在第一象限
+        # the inner corner vertex should be in the first quadrant
         inner = sign.submobjects[0].get_end()
         assert inner[0] > 0
         assert inner[1] > 0
@@ -325,11 +325,11 @@ class TestPerpendicularSign:
     def test_corner_direction_dl(self):
         line1 = Line(LEFT, RIGHT)
         line2 = Line(DOWN, UP)
-        # 指定折角画在左下（第三象限）
+        # draw the specified fold in the lower-left (third quadrant)
         sign = PerpendicularSign(line1, line2, length=0.2, corner_direction=[-1, -1, 0])
         assert isinstance(sign, VGroup)
         assert len(sign.submobjects) == 2
-        # 内角顶点应该在第三象限
+        # the inner corner vertex should be in the third quadrant
         inner = sign.submobjects[0].get_end()
         assert inner[0] < 0
         assert inner[1] < 0

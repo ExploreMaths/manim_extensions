@@ -4,8 +4,9 @@
 """CI checker: every public function with a docstring and a non-trivial
 ``return`` statement must declare a return annotation (``-> ...``).
 
-Mirrors the acceptance rule requested by the maintainer: "有 return 的话要
-写返回注解".  Exemptions (kept in sync with check_type_annotations.py):
+Mirrors the acceptance rule requested by the maintainer: "a function with a
+``return`` statement must declare a return annotation".  Exemptions (kept in
+sync with check_type_annotations.py):
 the vendored ``fontawesome`` package, test files, and functions without a
 docstring.  Functions defined in ``__init__.py`` are checked as well,
 since package initialisers may define public helpers (re-exported names

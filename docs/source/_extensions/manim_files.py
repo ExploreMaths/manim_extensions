@@ -159,7 +159,7 @@ def _file_row(asset: ExampleAsset) -> str:
         "      </span>\n"
         '      <span class="manim-file-actions">\n'
         f'        <a class="manim-file-action" href="{asset.raw_url}" '
-        'title="下载该文件" download>'
+        'title="Download this file" download>'
         f"{DOWNLOAD_ICON}</a>\n"
         "      </span>\n"
         "    </div>\n"

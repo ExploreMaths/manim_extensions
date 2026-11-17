@@ -124,7 +124,7 @@ __all__ = [
     "PACE",
 ]
 
-# ---------------- 配色主题 ----------------
+# ---------------- Colour themes ----------------
 RAMPS = {
     "rainbow": [
         ("#123a6d", 0.00),
@@ -150,8 +150,8 @@ RAMPS = {
     ],
 }
 
-# ---------------- 节拍表 ----------------
-# (名称, 参考时长s, 下限s, 时长上限=参考×倍率, 可砍优先级:1最先砍,None=必留)
+# ---------------- Beat table ----------------
+# (name, reference seconds, minimum seconds, maximum = reference x factor, cut priority: 1 first, None = keep)
 BEATS = [
     ("title", 3.0, 1.6, 2.0, None),
     ("axes", 2.4, 1.2, 1.6, None),
@@ -291,24 +291,26 @@ def _fmt(v: float) -> str:
     return f"{v:.2f}".rstrip("0").rstrip(".")
 
 
-# ---------------- 配置 ----------------
+# ---------------- Configuration ----------------
 @dataclass
 class GaussianSurface:
     """Tunable parameters for a Gaussian surface, generalized to :math:`z=f(x, y)`."""
 
-    func: Optional[Callable] = None  # z=f(x,y);None=内置高斯
-    func_tex: Optional[str] = None  # 角落公式;None=自定义函数且不显示公式
-    domain: tuple = (-2.6, 2.6)  # x/y 定义域
-    resolution: tuple = (40, 40)  # 曲面网格密度
-    colors: object = "rainbow"  # RAMPS 主题名或 [(hex,0~1)...]
-    height: float = 1.0  # 峰值自动归一化到该高度
+    func: Optional[Callable] = None  # z=f(x,y); None = built-in Gaussian
+    func_tex: Optional[str] = (
+        None  # corner formula; None = custom function without a displayed formula
+    )
+    domain: tuple = (-2.6, 2.6)  # x/y domain
+    resolution: tuple = (40, 40)  # surface mesh density
+    colors: object = "rainbow"  # RAMPS theme name or [(hex, 0-1), ...]
+    height: float = 1.0  # peak auto-normalised to this height
     axes: bool = True
-    rings: bool = True  # 底面等高线(径向近似)
-    orbit: bool = True  # 360° 环绕
-    flip: bool = True  # 翻面展示底面
-    annotate: bool = True  # 峰顶标注
-    captions: Optional[Sequence] = None  # 字幕按槽位对位,不传=无
-    duration: Optional[float] = None  # 内容预算(秒);None=用 pace
+    rings: bool = True  # floor contours (radial approximation)
+    orbit: bool = True  # 360° orbit
+    flip: bool = True  # flip to show the underside
+    annotate: bool = True  # peak label
+    captions: Optional[Sequence] = None  # captions aligned by slot; omit for none
+    duration: Optional[float] = None  # content budget in seconds; None = use pace
     pace: str = "full"  # fast=10 / normal=24 / full=45
     background: str = "#050810"
     camera_phi: float = 72.0
@@ -339,12 +341,12 @@ class SaddleSurface:
     domain: tuple = (-2.2, 2.2)
     resolution: tuple = (44, 44)
     colors: object = "rainbow"
-    height: float = 1.2  # 归一化:山脊 = +H,低谷 = -H(对称)
+    height: float = 1.2  # normalise: ridge = +H, valley = -H (symmetric)
     axes: bool = True
-    rings: bool = True  # 双曲线族等高线 + 渐近线(地板)
+    rings: bool = True  # hyperbola-family contours + asymptotes (floor)
     orbit: bool = True
     flip: bool = True
-    annotate: bool = True  # 鞍点标注(投影 HUD 标签)
+    annotate: bool = True  # saddle label (projected HUD label)
     captions: Optional[Sequence] = None
     duration: Optional[float] = None
     pace: str = "full"
@@ -361,12 +363,12 @@ class ParaboloidSurface:
     domain: tuple = (-2.2, 2.2)
     resolution: tuple = (44, 44)
     colors: object = "rainbow"
-    height: float = 1.2  # 归一化:碗沿 = H,碗底 = 0
+    height: float = 1.2  # normalise: rim = H, bottom = 0
     axes: bool = True
-    rings: bool = True  # 贴面同心圆等高线(翻面随曲面转)
+    rings: bool = True  # surface-attached concentric contours (follow the flip)
     orbit: bool = True
     flip: bool = True
-    annotate: bool = True  # 顶点标注(投影 HUD 标签)
+    annotate: bool = True  # top label (projected HUD label)
     captions: Optional[Sequence] = None
     duration: Optional[float] = None
     pace: str = "full"
@@ -380,14 +382,14 @@ class ParaboloidSurface:
 class EllipsoidSurface:
     """Configuration for an ellipsoid, the first closed parametric surface."""
 
-    semi_axes: tuple = (2.4, 1.6, 1.2)  # (a, b, c) 半轴
-    resolution: tuple = (44, 56)  # 经纬网格密度
+    semi_axes: tuple = (2.4, 1.6, 1.2)  # (a, b, c) semi-axes
+    resolution: tuple = (44, 56)  # latitude/longitude mesh density
     colors: object = "rainbow"
     axes: bool = True
-    rings: bool = True  # 贴面水平椭圆环(翻面随转)
+    rings: bool = True  # surface-attached horizontal ellipses (follow the flip)
     orbit: bool = True
-    flip: bool = True  # 闭曲面翻转 = 转到背面
-    annotate: bool = True  # 上顶点标注(3D 标签)
+    flip: bool = True  # closed-surface flip = rotate to the back
+    annotate: bool = True  # top vertex label (3D label)
     captions: Optional[Sequence] = None
     duration: Optional[float] = None
     pace: str = "full"
@@ -401,15 +403,15 @@ class EllipsoidSurface:
 class TorusSurface:
     """Configuration for a torus with a 4:1 major-to-minor radius ratio."""
 
-    major_radius: float = 2.0  # 环半径 R(管中心圆)
-    minor_radius: float = 0.5  # 管半径 r
-    resolution: tuple = (56, 24)  # (大圆 θ, 管 φ) 网格密度
+    major_radius: float = 2.0  # torus radius R (tube-centre circle)
+    minor_radius: float = 0.5  # tube radius r
+    resolution: tuple = (56, 24)  # (major θ, tube φ) mesh density
     colors: object = "rainbow"
     axes: bool = True
-    rings: bool = True  # 贴面水平成对圆环(翻面随转)
+    rings: bool = True  # surface-attached paired horizontal rings (follow the flip)
     orbit: bool = True
     flip: bool = True
-    annotate: bool = True  # 最高点标注(3D 标签+天线)
+    annotate: bool = True  # highest-point label (3D label + antenna)
     captions: Optional[Sequence] = None
     duration: Optional[float] = None
     pace: str = "full"
@@ -423,15 +425,17 @@ class TorusSurface:
 class HyperboloidOneSheet:
     """Configuration for a one-sheet hyperboloid, recognizable by its waist."""
 
-    waist_radius: float = 1.0  # 腰圆半径 a(=b)
-    z_extent: float = 1.5  # 上下截断高度 ±h
-    resolution: tuple = (36, 48)  # (z 向, 周 向) 网格密度
+    waist_radius: float = 1.0  # waist radius a (= b)
+    z_extent: float = 1.5  # upper/lower truncation ±h
+    resolution: tuple = (36, 48)  # (z, circumferential) mesh density
     colors: object = "rainbow"
     axes: bool = True
-    rings: bool = True  # 贴面水平圆族(含腰圆,翻面随转)
+    rings: bool = (
+        True  # surface-attached horizontal circle family (including the waist; follows the flip)
+    )
     orbit: bool = True
     flip: bool = True
-    annotate: bool = True  # 腰圆前点标注(HUD 标签,无虚线)
+    annotate: bool = True  # waist front label (HUD label, no dashed line)
     captions: Optional[Sequence] = None
     duration: Optional[float] = None
     pace: str = "full"
@@ -441,7 +445,7 @@ class HyperboloidOneSheet:
     zoom: float = 0.95
 
 
-# ---------------- 节拍骨架(图曲面通用) ----------------
+# ---------------- Beat skeleton (shared graph surfaces) ----------------
 class GraphSurfaceScene(ThreeDScene):
     """Shared beat skeleton for graph and closed surfaces.
 
@@ -478,7 +482,7 @@ class GraphSurfaceScene(ThreeDScene):
     style = None
     uses_flat = True
 
-    # ---- 钩子 ----
+    # ---- hooks ----
     def _geometry(self, cfg: SurfaceConfig) -> GeometrySpec:
         """Return the surface geometry description.
 
@@ -650,7 +654,7 @@ class GraphSurfaceScene(ThreeDScene):
         )
         return s
 
-    # ---- 主流程 ----
+    # ---- main flow ----
     def construct(self) -> None:
         """Build and play the full surface presentation.
 
@@ -681,13 +685,13 @@ class GraphSurfaceScene(ThreeDScene):
         t, dropped = plan_timeline(duration, enabled)
         if dropped:
             print(
-                f"[manim_extensions.three_d] {duration}s 预算放不下全部节拍,自动砍掉: {' → '.join(dropped)}"
+                f"[manim_extensions.three_d] {duration}s budget cannot fit every beat; dropping: {', '.join(dropped)}"
             )
         swap_t = min(max(0.9 * duration / 45.0, 0.35), 1.0)
         print(
-            "[manim_extensions.three_d] 节拍预算:",
+            "[manim_extensions.three_d] beat budget:",
             ", ".join(f"{k}={v:.1f}s" for k, v in t.items()),
-            f"(字幕换行 {swap_t:.2f}s/次)",
+            f"(caption swap {swap_t:.2f}s each)",
         )
 
         slots = self._caption_slots()
@@ -699,7 +703,7 @@ class GraphSurfaceScene(ThreeDScene):
             zoom=cfg.zoom,
         )
 
-        # ---------- 字幕 HUD(文字+公式 VGroup,固定屏幕系) ----------
+        # ---------- caption HUD (text + formula VGroup, screen-fixed) ----------
         cur_cap = None
 
         def make_cap(text: str, tex: Optional[str] = None, live: bool = True) -> VGroup:
@@ -729,7 +733,7 @@ class GraphSurfaceScene(ThreeDScene):
             if live:
                 self.add_fixed_in_frame_mobjects(
                     g
-                )  # 注册即入场,调用方须 self.remove 摘下
+                )  # registered on entry; caller must self.remove to detach
             return g
 
         def swap_caption(text: str, tex: Optional[str] = None) -> VGroup:
@@ -749,13 +753,13 @@ class GraphSurfaceScene(ThreeDScene):
 
             nonlocal cur_cap
             new_cap = make_cap(text, tex)
-            self.remove(new_cap)  # 摘下防提前露字,由 FadeIn 加回
+            self.remove(new_cap)  # detach to avoid early text; FadeIn adds it back
             if cur_cap is not None:
                 self.play(FadeOut(cur_cap), run_time=0.44 * swap_t)
             self.play(FadeIn(new_cap), run_time=0.56 * swap_t)
             cur_cap = new_cap
 
-        # ---------- 几何 ----------
+        # ---------- geometry ----------
         axes_obj = self._make_axes(cfg, ax_z_lo, ax_z_hi)
         surface = self._make_surface(cfg, axes_obj, f_n, ramp, zmin_n)
 
@@ -784,7 +788,7 @@ class GraphSurfaceScene(ThreeDScene):
 
         feat = self._feature(cfg, f_n) if "annotate" in t else None
 
-        # ---------- 角落公式 ----------
+        # ---------- corner formula ----------
         formula = None
         if func_tex:
             formula = MathTex(func_tex, font_size=112)
@@ -793,7 +797,9 @@ class GraphSurfaceScene(ThreeDScene):
 
         # ================= title =================
         if cap_map.get("title"):
-            cur_cap = make_cap(cap_map["title"], tex=func_tex)  # 片头字幕直接在场
+            cur_cap = make_cap(
+                cap_map["title"], tex=func_tex
+            )  # title card appears directly
         if "title" in t:
             fade = max(0.8, 0.53 * t["title"])
             if formula is not None:
@@ -810,7 +816,7 @@ class GraphSurfaceScene(ThreeDScene):
             anims.append(Create(axes_obj))
             self.play(*anims, run_time=t["axes"])
 
-        # ================= 成型(图曲面:平面隆起 / 闭曲面:充气) =================
+        # ================= shaping (graph surface: lift plane / closed surface: inflate) =================
         if "flat" in t and flat is not None:
             if cap_map.get("flat"):
                 swap_caption(cap_map["flat"])
@@ -820,9 +826,11 @@ class GraphSurfaceScene(ThreeDScene):
                 self.play(
                     Transform(flat, surface), run_time=t["rise"], rate_func=smooth
                 )
-                surface = flat  # Transform 后它已是目标形状
+                surface = flat  # after Transform it is already the target shape
             else:
-                self.play(GrowFromCenter(surface), run_time=t["rise"])  # 闭曲面充气成型
+                self.play(
+                    GrowFromCenter(surface), run_time=t["rise"]
+                )  # inflate the closed surface
 
         # ================= rings =================
         if "rings" in t and len(rings_grp) > 0:
@@ -839,7 +847,7 @@ class GraphSurfaceScene(ThreeDScene):
                 swap_caption(cap_map["orbit"])
             settle = 0.4 if t["orbit"] >= 2.0 else 0.0
             spin = t["orbit"] - settle
-            self.begin_ambient_camera_rotation(rate=TAU / spin)  # 恰好转满一整圈
+            self.begin_ambient_camera_rotation(rate=TAU / spin)  # exactly one full turn
             self.wait(spin)
             self.stop_ambient_camera_rotation()
             if settle:
@@ -882,7 +890,7 @@ class GraphSurfaceScene(ThreeDScene):
             )
             stem = None
             if stem_z0 is not None and abs(stem_z0 - pz) > 1e-9:
-                # stem_z0==pz → 免虚线(腰圆类特征点:竖直虚线会扎进曲面内部被吞)
+                # stem_z0 == pz -> no dashed line (waist-type feature point; a vertical line would enter the surface)
                 stem = DashedLine(
                     axes_obj.c2p(px, py, stem_z0),
                     axes_obj.c2p(px, py, pz),
@@ -891,8 +899,8 @@ class GraphSurfaceScene(ThreeDScene):
                 )
                 stem.set_z_index(60)
             if use_hud:
-                # 特征点被曲面四壁环绕:相机定格后投影到屏幕坐标,标签固定挂其右上,
-                # 永不被曲面按深度盖住(红点/虚线仍留在 3D 锚定)。
+                # feature point is surrounded by the surface: after the camera settles, project to screen coordinates and pin the label above-right,
+                # never covered by the surface depth (the red dot/dashed line stay anchored in 3D).
                 proj = self.camera.project_point(axes_obj.c2p(px, py, pz))
                 tag = MathTex(tag_tex, font_size=44, color=WHITE).move_to(
                     proj + RIGHT * 1.05 + UP * 0.4
@@ -926,7 +934,7 @@ class GraphSurfaceScene(ThreeDScene):
         if formula is not None:
             anims.append(formula.animate.move_to(ORIGIN).scale(1.5))
         self.play(*anims, run_time=f1)
-        # 大扫除:强制清掉漏网对象
+        # cleanup: force-remove any missed objects
         self.remove(*[m for m in list(self.mobjects) if m is not formula])
         if cap_map.get("outro") and len(list(cfg.captions)) >= 2:
             last_cap = make_cap(cap_map["outro"])
@@ -943,7 +951,7 @@ class GraphSurfaceScene(ThreeDScene):
                 self.play(FadeOut(formula), run_time=f2)
 
 
-# ---------------- 三个曲面场景 ----------------
+# ---------------- three surface scenes ----------------
 class GaussianSurfaceScene(GraphSurfaceScene):
     """Animated demo of the Gaussian surface :math:`z=e^{-x^2-y^2}`.
 
@@ -973,7 +981,7 @@ class GaussianSurfaceScene(GraphSurfaceScene):
         zmax = max(float(zs.max()), 1e-9)
         zmin = min(0.0, float(zs.min()))
         scale = cfg.height / zmax
-        self._gx, self._zs = gx, zs  # 供峰顶标注
+        self._gx, self._zs = gx, zs  # for the peak label
         self._stem_z0 = zmin * scale
         f = lambda x, y: f_raw(x, y) * scale
         return f, tex, zmin * scale, min(0.0, zmin * scale), cfg.height * 1.5
@@ -1020,7 +1028,7 @@ class GaussianSurfaceScene(GraphSurfaceScene):
                     stroke_opacity=0.65,
                 )
             )
-        return g, False  # 地板投影,不随翻面
+        return g, False  # floor projection, does not follow the flip
 
     def _feature(self, cfg: SurfaceConfig, f: SurfaceFunction) -> FeatureSpec:
         """Locate the peak of the sampled Gaussian surface.
@@ -1125,7 +1133,7 @@ class SaddleSurfaceScene(GraphSurfaceScene):
         d1 = cfg.domain[1]
         H = cfg.height
         g = VGroup()
-        # 渐近线 x=±y(k=0 的退化等高线,鞍面签名)
+        # asymptote x=±y (k=0 degenerate contour, saddle signature)
         for s in (+1, -1):
             line = ParametricFunction(
                 lambda t, s=s: axes.c2p(t, s * t, 0.003),
@@ -1135,9 +1143,9 @@ class SaddleSurfaceScene(GraphSurfaceScene):
                 stroke_opacity=0.55,
             )
             g.add(DashedVMobject(line, num_dashes=24))
-        # 双曲线族 x²-y²=k 两支,按水平上色
+        # hyperbola family x²-y²=k, two branches, coloured by horizontal level
         for z_lv in [1.0, 0.6, 0.25, -0.25, -0.6, -1.0]:
-            k = z_lv * d1 * d1 / H  # 归一化前原始水平
+            k = z_lv * d1 * d1 / H  # original level before normalisation
             col = _ramp_color(ramp, (z_lv - zmin_n) / (H - zmin_n))
             if k > 0:  # x = ±√(k+y²)
                 ymax = np.sqrt(d1 * d1 - k)
@@ -1167,7 +1175,7 @@ class SaddleSurfaceScene(GraphSurfaceScene):
                             stroke_opacity=0.75,
                         )
                     )
-        return g, False  # 地板等高线,不随翻面
+        return g, False  # floor contours, do not follow the flip
 
     def _feature(self, cfg: SurfaceConfig, f: SurfaceFunction) -> FeatureSpec:
         """Return the saddle point annotation.
@@ -1184,7 +1192,14 @@ class SaddleSurfaceScene(GraphSurfaceScene):
             The origin coordinates, tag formula, HUD flag, and stem start
             height.
         """
-        return 0.0, 0.0, 0.0, r"(0,\,0,\,0)", True, -cfg.height * 1.3  # 鞍点:HUD 标签
+        return (
+            0.0,
+            0.0,
+            0.0,
+            r"(0,\,0,\,0)",
+            True,
+            -cfg.height * 1.3,
+        )  # saddle point: HUD label
 
 
 class ParaboloidSurfaceScene(GraphSurfaceScene):
@@ -1246,8 +1261,8 @@ class ParaboloidSurfaceScene(GraphSurfaceScene):
         d1 = cfg.domain[1]
         H = cfg.height
         g = VGroup()
-        # 贴面同心圆(海拔环线):碗沿高,地板投影会被近侧碗壁挡住。
-        # 水平 z_lv 的圆半径 r = D·√(z_lv/H),抬高 0.004 防 z-fighting。
+        # surface-attached concentric rings (altitude rings): rim high; floor projection is blocked by the near bowl wall.
+        # radius of the z_lv circle r = D·√(z_lv/H), raised by 0.004 to avoid z-fighting.
         for z_lv in [1.0, 0.7, 0.45, 0.25]:
             r = d1 * np.sqrt(z_lv / H)
             g.add(
@@ -1261,7 +1276,7 @@ class ParaboloidSurfaceScene(GraphSurfaceScene):
                     stroke_opacity=0.85,
                 )
             )
-        return g, True  # 贴在曲面上,翻面必须跟着转
+        return g, True  # attached to the surface; the flip must rotate with it
 
     def _feature(self, cfg: SurfaceConfig, f: SurfaceFunction) -> FeatureSpec:
         """Return the paraboloid vertex annotation.
@@ -1278,7 +1293,14 @@ class ParaboloidSurfaceScene(GraphSurfaceScene):
             The origin coordinates, tag formula, HUD flag, and stem start
             height.
         """
-        return 0.0, 0.0, 0.0, r"(0,\,0,\,0)", True, -cfg.height * 0.6  # 顶点:HUD 标签
+        return (
+            0.0,
+            0.0,
+            0.0,
+            r"(0,\,0,\,0)",
+            True,
+            -cfg.height * 0.6,
+        )  # top vertex: HUD label
 
 
 class EllipsoidSurfaceScene(GraphSurfaceScene):
@@ -1300,7 +1322,7 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
             minimum height, and low and high z axis limits.
         """
         a, b, c = cfg.semi_axes
-        f = lambda x, y: 0.0  # 闭曲面不经图构造,占位
+        f = lambda x, y: 0.0  # closed surfaces skip graph construction; placeholder
         tex = (
             rf"\frac{{x^{{2}}}}{{{_fmt(a)}^{{2}}}} + "
             rf"\frac{{y^{{2}}}}{{{_fmt(b)}^{{2}}}} + "
@@ -1413,9 +1435,11 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
         """
         a, b, c = cfg.semi_axes
         g = VGroup()
-        for h in [0.66, 0.33, 0.0, -0.33, -0.66]:  # z/c 高度比例
+        for h in [0.66, 0.33, 0.0, -0.33, -0.66]:  # z/c height ratio
             z0 = c * h
-            s = np.sqrt(max(1.0 - h * h, 0.0)) * 1.005  # 微胀防 z-fighting
+            s = (
+                np.sqrt(max(1.0 - h * h, 0.0)) * 1.005
+            )  # slight offset to avoid z-fighting
             g.add(
                 ParametricFunction(
                     lambda t, s=s, z0=z0: axes.c2p(
@@ -1427,7 +1451,7 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
                     stroke_opacity=0.85,
                 )
             )
-        return g, True  # 贴面环,翻面随转
+        return g, True  # surface-attached ring, follows the flip
 
     def _feature(self, cfg: SurfaceConfig, f: SurfaceFunction) -> FeatureSpec:
         """Return the ellipsoid apex annotation.
@@ -1444,7 +1468,7 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
             The apex coordinates, tag formula, HUD flag, and stem start height.
         """
         a, b, c = cfg.semi_axes
-        # 上顶点外露,3D 标签即可;虚线从上方垂下(顶点以下在曲面内部,会被遮挡)
+        # top vertex exposed; a 3D label suffices; dashed line from above (below the vertex is inside the surface and occluded)
         return 0.0, 0.0, c, rf"(0,\,0,\,{_fmt(c)})", False, c + 0.75
 
 
@@ -1467,7 +1491,7 @@ class TorusSurfaceScene(GraphSurfaceScene):
             minimum height, and low and high z axis limits.
         """
         R, r = cfg.major_radius, cfg.minor_radius
-        f = lambda x, y: 0.0  # 闭曲面不经图构造,占位
+        f = lambda x, y: 0.0  # closed surfaces skip graph construction; placeholder
         tex = rf"(\sqrt{{x^{{2}}+y^{{2}}}} - {_fmt(R)})^{{2}} + z^{{2}} = {_fmt(r * r)}"
         return f, tex, -r, -r - 0.4, r + 0.9
 
@@ -1491,7 +1515,9 @@ class TorusSurfaceScene(GraphSurfaceScene):
         """
         R, r = cfg.major_radius, cfg.minor_radius
         outer = R + r
-        k = 7.2 / (2 * (outer + 0.4))  # x 定标,y/z 同比例防畸变
+        k = 7.2 / (
+            2 * (outer + 0.4)
+        )  # x scale; y/z use the same ratio to avoid distortion
         axes = ThreeDAxes(
             x_range=[-outer - 0.4, outer + 0.4, 1],
             y_range=[-outer - 0.4, outer + 0.4, 1],
@@ -1579,11 +1605,11 @@ class TorusSurfaceScene(GraphSurfaceScene):
         """
         R, r = cfg.major_radius, cfg.minor_radius
         g = VGroup()
-        for z_lv in [0.6, 0.0, -0.6]:  # 管截面高度比例(×r)
+        for z_lv in [0.6, 0.0, -0.6]:  # tube cross-section height ratio (×r)
             z0 = r * z_lv
             half = np.sqrt(max(r * r - z0 * z0, 0.0))
-            for sgn in (+1, -1):  # 水平截面切出外/内两支圆
-                rho = (R + sgn * half) * 1.004  # 微胀防 z-fighting
+            for sgn in (+1, -1):  # horizontal section cuts outer/inner branches
+                rho = (R + sgn * half) * 1.004  # slight offset to avoid z-fighting
                 g.add(
                     ParametricFunction(
                         lambda t, rho=rho, z0=z0: axes.c2p(
@@ -1595,7 +1621,7 @@ class TorusSurfaceScene(GraphSurfaceScene):
                         stroke_opacity=0.85,
                     )
                 )
-        return g, True  # 贴面环,翻面随转
+        return g, True  # surface-attached ring, follows the flip
 
     def _feature(self, cfg: SurfaceConfig, f: SurfaceFunction) -> FeatureSpec:
         """Return the torus apex annotation.
@@ -1612,7 +1638,7 @@ class TorusSurfaceScene(GraphSurfaceScene):
             The apex coordinates, tag formula, HUD flag, and stem start height.
         """
         R, r = cfg.major_radius, cfg.minor_radius
-        # 最高点外露,3D 标签;天线虚线自上垂下(其余方向在曲面/孔洞里)
+        # highest point exposed; 3D label; antenna line hangs from above (other directions are inside the surface/hole)
         return 0.0, 0.0, r, rf"(0,\,0,\,{_fmt(r)})", False, r + 0.75
 
 
@@ -1635,7 +1661,9 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
             minimum height, and low and high z axis limits.
         """
         a, h = cfg.waist_radius, cfg.z_extent
-        f = lambda x, y: 0.0  # 闭式管面不经图构造,占位
+        f = (
+            lambda x, y: 0.0
+        )  # closed tube surface skips graph construction; placeholder
         rhs = "1" if abs(a * a - 1.0) < 1e-9 else _fmt(a * a)
         tex = rf"x^{{2}} + y^{{2}} - z^{{2}} = {rhs}"
         return f, tex, -h, -h - 0.4, h + 0.4
@@ -1659,8 +1687,10 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
             The uniformly scaled axes.
         """
         a, h = cfg.waist_radius, cfg.z_extent
-        max_r = (a * a + h * h) ** 0.5  # 端口半径
-        k = 7.2 / (2 * (max_r + 0.4))  # x 定标,y/z 同比例防畸变
+        max_r = (a * a + h * h) ** 0.5  # port radius
+        k = 7.2 / (
+            2 * (max_r + 0.4)
+        )  # x scale; y/z use the same ratio to avoid distortion
         axes = ThreeDAxes(
             x_range=[-max_r - 0.4, max_r + 0.4, 1],
             y_range=[-max_r - 0.4, max_r + 0.4, 1],
@@ -1704,7 +1734,7 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
                 (a * a + u * u) ** 0.5 * np.cos(v),
                 (a * a + u * u) ** 0.5 * np.sin(v),
                 u,
-            ),  # u 即 z
+            ),  # u is z
             u_range=(-h, h),
             v_range=(0, TAU),
             resolution=cfg.resolution,
@@ -1748,10 +1778,12 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
         """
         a, h = cfg.waist_radius, cfg.z_extent
         g = VGroup()
-        for z_lv in [1.0, 0.5, 0.0, -0.5, -1.0]:  # 水平圆族(0 = 腰圆)
+        for z_lv in [1.0, 0.5, 0.0, -0.5, -1.0]:  # horizontal circle family (0 = waist)
             if abs(z_lv) > h * 0.95:
                 continue
-            rho = ((a * a + z_lv * z_lv) ** 0.5) * 1.004  # 微胀防 z-fighting
+            rho = (
+                (a * a + z_lv * z_lv) ** 0.5
+            ) * 1.004  # slight offset to avoid z-fighting
             g.add(
                 ParametricFunction(
                     lambda t, rho=rho, z_lv=z_lv: axes.c2p(
@@ -1763,7 +1795,7 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
                     stroke_opacity=0.85,
                 )
             )
-        return g, True  # 贴面环,翻面随转
+        return g, True  # surface-attached ring, follows the flip
 
     def _feature(self, cfg: SurfaceConfig, f: SurfaceFunction) -> FeatureSpec:
         """Return the waist point annotation.
@@ -1781,7 +1813,7 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
             height.
         """
         a, h = cfg.waist_radius, cfg.z_extent
-        # 腰圆前点(a,0,0):竖直虚线两端都扎进曲面,免虚线,点+HUD 标签
+        # waist front point (a,0,0): both ends of a vertical line enter the surface; no dashed line; point + HUD label
         return a, 0.0, 0.0, rf"({_fmt(a)},\,0,\,0)", True, 0.0
 
 

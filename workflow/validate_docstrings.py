@@ -149,7 +149,7 @@ def check_file(filepath):
 
 
 def has_manim_block(lines):
-    """Check if file has 'manim块' in the docstring at the beginning."""
+    """Check whether the opening docstring contains a ``.. manim::`` block."""
     start = find_docstring_start(lines)
     if start is None:
         return False

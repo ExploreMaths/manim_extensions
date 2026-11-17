@@ -10,6 +10,13 @@ v1.0.7 :bdg-primary-line:`In Development`
 Added
 ~~~~~
 
+* ``workflow/validate_english_text.py`` replaces the docstring-only CJK
+  check.  It scans every text file in the repository, including tests,
+  scripts, workflow files, docs and configuration, and rejects Chinese text
+  in Python comments and docstrings as well as the comment syntaxes used by
+  RST, Markdown, TOML, YAML, shell, TeX, CSS and JavaScript.  Deliberate
+  Chinese content in string literals (for example :class:`~manim_extensions.mobjects.ChineseMathTex`
+  examples) remains allowed.
 * ``workflow/validate_naming.py`` and the ``validate-naming`` CI job enforce
   PascalCase class names without underscores and lowercase ``snake_case``
   function and method names across the entire package, including vendored
@@ -37,6 +44,16 @@ Added
 Fixed
 ~~~~~
 
+* Quoted forward references inside type aliases now become links:
+  ``SurfaceConfig`` renders ``GaussianSurface | SaddleSurface | ...`` with
+  each class linked to its reference page instead of showing the literal
+  strings ``'GaussianSurface'``.  ``autoall`` strips the quotes only when the
+  name resolves to a class in the alias module.
+* The Manim documentation supplement now documents the private animation
+  builder returned by ``.animate`` under its real name, and its page title
+  keeps the leading underscore.  A short summary is installed for the class
+  when Manim supplies no docstring, so the ``Classes`` autosummary row is no
+  longer empty.
 * Project type aliases render by name again under postponed annotations:
   ``SurfaceConfig``, ``GraphSurfaceConfig``, ``GeometrySpec``, ``ContourSpec``,
   ``ColorRamp`` and ``SurfaceFunction`` stay aliases in parameter and return

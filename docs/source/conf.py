@@ -21,6 +21,21 @@ from manim_image_patch import apply_manim_image_patch
 
 apply_manim_image_patch()
 
+# Manim's ``_AnimationBuilder`` has no docstring, so autosummary would list it
+# with an empty summary.  The class is part of the documentation supplement
+# because the official reference does not expose it; add the short summary the
+# builder page and the Classes table need without modifying Manim.
+try:
+    from manim.mobject.mobject import _AnimationBuilder as _ManimAnimationBuilder
+
+    if not _ManimAnimationBuilder.__doc__:
+        _ManimAnimationBuilder.__doc__ = (
+            "Fluent proxy returned by ``mobject.animate``; it records method "
+            "calls and builds the real animation when passed to ``play``."
+        )
+except Exception:
+    pass
+
 # Reuse CI-pre-rendered example media on Read the Docs instead of rendering
 # every example during the build (see .github/workflows/docs-cache.yml and
 # workflow/render_doc_examples.py). Examples missing from the cache still
@@ -80,7 +95,7 @@ mathjax_path = "mathjax/tex-mml-svg.js"
 html_title = f"Manim Extensions v{release}"
 html_short_title = "manim_extensions"
 
-# 将 sphinx.ext.todo 产生的 TODO 注释渲染进文档，而不是丢弃
+# Render TODO comments produced by sphinx.ext.todo into the docs instead of dropping them
 todo_include_todos = True
 
 html_theme_options = {

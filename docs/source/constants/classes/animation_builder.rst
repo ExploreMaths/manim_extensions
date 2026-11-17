@@ -1,8 +1,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-AnimationBuilder
-================
+_AnimationBuilder
+=================
 
 ``mobject.animate`` and ``camera.frame.animate`` return Manim's
 ``_AnimationBuilder`` instead of an ``Animation``. The object records fluent
