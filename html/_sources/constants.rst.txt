@@ -22,6 +22,7 @@ The constants are grouped by category:
 - :doc:`constants/axes` – axis constants.
 - :doc:`constants/numeric` – numeric constants.
 - :doc:`constants/messages` – runtime messages.
+- :doc:`constants/animation_builder` – fluent animation builders returned by ``.animate``.
 - :doc:`constants/colors` – colour palette.
 
 .. toctree::
@@ -35,4 +36,5 @@ The constants are grouped by category:
    constants/axes
    constants/numeric
    constants/messages
+   constants/animation_builder
    constants/colors
