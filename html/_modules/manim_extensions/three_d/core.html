@@ -1411,16 +1411,19 @@
 <p class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../../constants.html">Manim Documentation Supplement</a><input aria-label="Toggle navigation of Manim Documentation Supplement" class="toctree-checkbox" id="toctree-checkbox-268" name="toctree-checkbox-268" role="switch" type="checkbox"/><label for="toctree-checkbox-268"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../../constants/directions.html">Directions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../constants/fonts.html">Fonts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../constants/defaults.html">Defaults</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../constants/buffers.html">Buffers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../constants/axes.html">Axes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../constants/numeric.html">Numeric</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../constants/messages.html">Messages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../constants/colors.html">Colours</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../../../constants/classes.html">Classes</a><input aria-label="Toggle navigation of Classes" class="toctree-checkbox" id="toctree-checkbox-269" name="toctree-checkbox-269" role="switch" type="checkbox"/><label for="toctree-checkbox-269"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../../constants/classes/animation_builder.html">_AnimationBuilder</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../constants/index.html">Constants</a><input aria-label="Toggle navigation of Constants" class="toctree-checkbox" id="toctree-checkbox-269" name="toctree-checkbox-269" role="switch" type="checkbox"/><label for="toctree-checkbox-269"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../constants/directions.html">Directions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../constants/fonts.html">Fonts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../constants/defaults.html">Defaults</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../constants/buffers.html">Buffers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../constants/axes.html">Axes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../constants/numeric.html">Numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../constants/messages.html">Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../constants/colors.html">Colours</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../../../classes/index.html">Classes</a><input aria-label="Toggle navigation of Classes" class="toctree-checkbox" id="toctree-checkbox-270" name="toctree-checkbox-270" role="switch" type="checkbox"/><label for="toctree-checkbox-270"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../classes/animation_builder.html">_AnimationBuilder</a></li>
 </ul>
 </li>
 </ul>
@@ -1552,15 +1555,6 @@
 <span class="n">GeometrySpec</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">SurfaceFunction</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span>
 <span class="n">ContourSpec</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">VGroup</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]</span>
 <span class="n">FeatureSpec</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">bool</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span>
-<span class="n">SurfaceConfig</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span>
-    <span class="s2">"GaussianSurface"</span><span class="p">,</span>
-    <span class="s2">"SaddleSurface"</span><span class="p">,</span>
-    <span class="s2">"ParaboloidSurface"</span><span class="p">,</span>
-    <span class="s2">"EllipsoidSurface"</span><span class="p">,</span>
-    <span class="s2">"TorusSurface"</span><span class="p">,</span>
-    <span class="s2">"HyperboloidOneSheet"</span><span class="p">,</span>
-<span class="p">]</span>
-<span class="n">GraphSurfaceConfig</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="s2">"GaussianSurface"</span><span class="p">,</span> <span class="s2">"SaddleSurface"</span><span class="p">,</span> <span class="s2">"ParaboloidSurface"</span><span class="p">]</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">"GaussianSurface"</span><span class="p">,</span>
@@ -1939,6 +1933,19 @@
     <span class="n">camera_theta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">-</span><span class="mf">50.0</span>
     <span class="n">zoom</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.95</span></div>
 
+
+
+<span class="c1"># These aliases must follow the classes they name: assignment expressions are</span>
+<span class="c1"># evaluated at import time, unlike annotations postponed by the future import.</span>
+<span class="n">SurfaceConfig</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span>
+    <span class="n">GaussianSurface</span><span class="p">,</span>
+    <span class="n">SaddleSurface</span><span class="p">,</span>
+    <span class="n">ParaboloidSurface</span><span class="p">,</span>
+    <span class="n">EllipsoidSurface</span><span class="p">,</span>
+    <span class="n">TorusSurface</span><span class="p">,</span>
+    <span class="n">HyperboloidOneSheet</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">GraphSurfaceConfig</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">GaussianSurface</span><span class="p">,</span> <span class="n">SaddleSurface</span><span class="p">,</span> <span class="n">ParaboloidSurface</span><span class="p">]</span>
 
 
 <span class="c1"># ---------------- Beat skeleton (shared graph surfaces) ----------------</span>

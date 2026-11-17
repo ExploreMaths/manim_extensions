@@ -1412,16 +1412,19 @@
 <p class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul>
 <li class="toctree-l1 has-children"><a class="reference internal" href="constants.html">Manim Documentation Supplement</a><input aria-label="Toggle navigation of Manim Documentation Supplement" class="toctree-checkbox" id="toctree-checkbox-268" name="toctree-checkbox-268" role="switch" type="checkbox"/><label for="toctree-checkbox-268"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="constants/directions.html">Directions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="constants/fonts.html">Fonts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="constants/defaults.html">Defaults</a></li>
-<li class="toctree-l2"><a class="reference internal" href="constants/buffers.html">Buffers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="constants/axes.html">Axes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="constants/numeric.html">Numeric</a></li>
-<li class="toctree-l2"><a class="reference internal" href="constants/messages.html">Messages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="constants/colors.html">Colours</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="constants/classes.html">Classes</a><input aria-label="Toggle navigation of Classes" class="toctree-checkbox" id="toctree-checkbox-269" name="toctree-checkbox-269" role="switch" type="checkbox"/><label for="toctree-checkbox-269"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="constants/classes/animation_builder.html">_AnimationBuilder</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="constants/index.html">Constants</a><input aria-label="Toggle navigation of Constants" class="toctree-checkbox" id="toctree-checkbox-269" name="toctree-checkbox-269" role="switch" type="checkbox"/><label for="toctree-checkbox-269"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="constants/directions.html">Directions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constants/fonts.html">Fonts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constants/defaults.html">Defaults</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constants/buffers.html">Buffers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constants/axes.html">Axes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constants/numeric.html">Numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constants/messages.html">Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constants/colors.html">Colours</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="classes/index.html">Classes</a><input aria-label="Toggle navigation of Classes" class="toctree-checkbox" id="toctree-checkbox-270" name="toctree-checkbox-270" role="switch" type="checkbox"/><label for="toctree-checkbox-270"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="classes/animation_builder.html">_AnimationBuilder</a></li>
 </ul>
 </li>
 </ul>
@@ -1508,16 +1511,20 @@ stay together, exactly one blank line separates them from the scene class,
 <li><p><code class="docutils literal notranslate"><span class="pre">workflow/validate_example_names.py</span></code> and its <code class="docutils literal notranslate"><span class="pre">validate-example-names</span></code>
 CI job reject <code class="docutils literal notranslate"><span class="pre">Example</span></code>/<code class="docutils literal notranslate"><span class="pre">DocExample</span></code> suffixes, non-PascalCase names,
 and a <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">manim::</span></code> name that does not match the class in its block.</p></li>
+<li><p>The Manim documentation supplement now has separate <code class="docutils literal notranslate"><span class="pre">Constants</span></code> and
+<code class="docutils literal notranslate"><span class="pre">Classes</span></code> index pages instead of two sibling sections in one document.
+<code class="docutils literal notranslate"><span class="pre">Classes</span></code> keeps its own <code class="docutils literal notranslate"><span class="pre">_AnimationBuilder</span></code> entry and hidden toctree.</p></li>
 </ul>
 </section>
 <section id="fixed">
 <h3>Fixed<a class="headerlink" href="#fixed" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>Quoted forward references inside type aliases now become links:
-<code class="docutils literal notranslate"><span class="pre">SurfaceConfig</span></code> renders <code class="docutils literal notranslate"><span class="pre">GaussianSurface</span> <span class="pre">|</span> <span class="pre">SaddleSurface</span> <span class="pre">|</span> <span class="pre">...</span></code> with
-each class linked to its reference page instead of showing the literal
-strings <code class="docutils literal notranslate"><span class="pre">'GaussianSurface'</span></code>.  <code class="docutils literal notranslate"><span class="pre">autoall</span></code> strips the quotes only when the
-name resolves to a class in the alias module.</p></li>
+<li><p>Type aliases now refer to the configuration classes directly:
+<code class="docutils literal notranslate"><span class="pre">SurfaceConfig</span></code> and <code class="docutils literal notranslate"><span class="pre">GraphSurfaceConfig</span></code> are defined after their
+classes, so their source no longer needs quoted forward references.  Both
+render as <code class="docutils literal notranslate"><span class="pre">GaussianSurface</span> <span class="pre">|</span> <span class="pre">SaddleSurface</span> <span class="pre">|</span> <span class="pre">...</span></code> with each class linked
+to its reference page; <code class="docutils literal notranslate"><span class="pre">autoall</span></code> still strips quotes from other aliases
+when the name resolves to a class in the alias module.</p></li>
 <li><p>The Manim documentation supplement now documents the private animation
 builder returned by <code class="docutils literal notranslate"><span class="pre">.animate</span></code> under its real name, and its page title
 keeps the leading underscore.  A short summary is installed for the class

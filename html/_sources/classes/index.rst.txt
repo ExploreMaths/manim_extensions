@@ -4,6 +4,8 @@
 Classes
 =======
 
+Part of the Manim documentation supplement.
+
 Manim classes that the official documentation does not expose as linkable
 entries are listed here.
 
@@ -15,4 +17,4 @@ entries are listed here.
 .. toctree::
    :hidden:
 
-   classes/animation_builder
+   animation_builder

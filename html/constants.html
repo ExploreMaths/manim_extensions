@@ -3,7 +3,7 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Directions" href="constants/directions.html"><link rel="prev" title="Code of Conduct" href="code_of_conduct.html">
+<link rel="index" title="Index" href="genindex.html"><link rel="search" title="Search" href="search.html"><link rel="next" title="Constants" href="constants/index.html"><link rel="prev" title="Code of Conduct" href="code_of_conduct.html">
         <link rel="prefetch" href="_static/logo.svg" as="image">
         <link rel="prefetch" href="_static/logo-dark.svg" as="image">
 
@@ -197,7 +197,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
         <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
       </label>
     </div>
@@ -1412,16 +1412,19 @@
 <p class="caption" role="heading"><span class="caption-text">Resources</span></p>
 <ul class="current">
 <li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">Manim Documentation Supplement</a><input aria-label="Toggle navigation of Manim Documentation Supplement" checked="" class="toctree-checkbox" id="toctree-checkbox-268" name="toctree-checkbox-268" role="switch" type="checkbox"/><label for="toctree-checkbox-268"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="constants/directions.html">Directions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="constants/fonts.html">Fonts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="constants/defaults.html">Defaults</a></li>
-<li class="toctree-l2"><a class="reference internal" href="constants/buffers.html">Buffers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="constants/axes.html">Axes</a></li>
-<li class="toctree-l2"><a class="reference internal" href="constants/numeric.html">Numeric</a></li>
-<li class="toctree-l2"><a class="reference internal" href="constants/messages.html">Messages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="constants/colors.html">Colours</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="constants/classes.html">Classes</a><input aria-label="Toggle navigation of Classes" class="toctree-checkbox" id="toctree-checkbox-269" name="toctree-checkbox-269" role="switch" type="checkbox"/><label for="toctree-checkbox-269"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="constants/classes/animation_builder.html">_AnimationBuilder</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="constants/index.html">Constants</a><input aria-label="Toggle navigation of Constants" class="toctree-checkbox" id="toctree-checkbox-269" name="toctree-checkbox-269" role="switch" type="checkbox"/><label for="toctree-checkbox-269"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="constants/directions.html">Directions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constants/fonts.html">Fonts</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constants/defaults.html">Defaults</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constants/buffers.html">Buffers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constants/axes.html">Axes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constants/numeric.html">Numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constants/messages.html">Messages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="constants/colors.html">Colours</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="classes/index.html">Classes</a><input aria-label="Toggle navigation of Classes" class="toctree-checkbox" id="toctree-checkbox-270" name="toctree-checkbox-270" role="switch" type="checkbox"/><label for="toctree-checkbox-270"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="classes/animation_builder.html">_AnimationBuilder</a></li>
 </ul>
 </li>
 </ul>
@@ -1466,44 +1469,22 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
             <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
           </label>
         </div>
         <article role="main" id="furo-main-content">
           <section id="manim-documentation-supplement">
 <h1>Manim Documentation Supplement<a class="headerlink" href="#manim-documentation-supplement" title="Link to this heading">¶</a></h1>
-<p>Manim’s official documentation lists the ten direction vectors and the
-colour palette, but the Manim intersphinx inventory contains <em>no</em>
-constant entries at all — WHITE,
-UP and SMALL_BUFF
-cannot be linked to the official docs.  They are collected here so every
-constant name has a link target, and you can write the name (<code class="docutils literal notranslate"><span class="pre">from</span>
-<span class="pre">manim</span> <span class="pre">import</span> <span class="pre">*</span></code> gives you all of them) instead of expanding the value
-by hand, e.g. use SMALL_BUFF instead of <code class="docutils literal notranslate"><span class="pre">0.2</span></code>.</p>
-<section id="constants">
-<h2>Constants<a class="headerlink" href="#constants" title="Link to this heading">¶</a></h2>
-<p>The constants are grouped by category:</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="constants/directions.html"><span class="doc">Directions</span></a> – direction vectors.</p></li>
-<li><p><a class="reference internal" href="constants/fonts.html"><span class="doc">Fonts</span></a> – font weights and styles.</p></li>
-<li><p><a class="reference internal" href="constants/defaults.html"><span class="doc">Defaults</span></a> – <code class="docutils literal notranslate"><span class="pre">DEFAULT_*</span></code> values.</p></li>
-<li><p><a class="reference internal" href="constants/buffers.html"><span class="doc">Buffers</span></a> – <code class="docutils literal notranslate"><span class="pre">*_BUFF</span></code> spacing values.</p></li>
-<li><p><a class="reference internal" href="constants/axes.html"><span class="doc">Axes</span></a> – axis constants.</p></li>
-<li><p><a class="reference internal" href="constants/numeric.html"><span class="doc">Numeric</span></a> – numeric constants.</p></li>
-<li><p><a class="reference internal" href="constants/messages.html"><span class="doc">Messages</span></a> – runtime messages.</p></li>
-<li><p><a class="reference internal" href="constants/colors.html"><span class="doc">Colours</span></a> – colour palette.</p></li>
-</ul>
-</section>
-<section id="classes">
-<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
-<ul class="simple">
-<li><p><a class="reference internal" href="constants/classes.html"><span class="doc">Classes</span></a> – Manim classes missing from the official API
-reference, including the animation builder returned by <code class="docutils literal notranslate"><span class="pre">.animate</span></code>.</p></li>
-</ul>
+<p>Manim’s official documentation leaves a number of constants and classes
+without linkable entries.  This supplement collects them here so that every
+name used in this project has a stable documentation target.</p>
 <div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="constants/index.html">Constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classes/index.html">Classes</a></li>
+</ul>
 </div>
-</section>
 </section>
 
         </article>
@@ -1511,12 +1492,12 @@ reference, including the animation builder returned by <code class="docutils lit
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="constants/directions.html">
+          <a class="next-page" href="constants/index.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Directions</div>
+                <div class="title">Constants</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
@@ -1549,28 +1530,8 @@ reference, including the animation builder returned by <code class="docutils lit
         
       </footer>
     </div>
-    <aside class="toc-drawer">
+    <aside class="toc-drawer no-toc">
       
-      
-      <div class="toc-sticky toc-scroll">
-        <div class="toc-title-container">
-          <span class="toc-title">
-            On this page
-          </span>
-        </div>
-        <div class="toc-tree-container">
-          <div class="toc-tree">
-            <ul>
-<li><a class="reference internal" href="#">Manim Documentation Supplement</a><ul>
-<li><a class="reference internal" href="#constants">Constants</a></li>
-<li><a class="reference internal" href="#classes">Classes</a></li>
-</ul>
-</li>
-</ul>
-
-          </div>
-        </div>
-      </div>
       
       
     </aside>
