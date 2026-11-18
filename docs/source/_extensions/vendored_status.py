@@ -24,8 +24,11 @@ by the ReadTheDocs ``pre_build`` step; the "Vendored status cache"
 GitHub Actions workflow refreshes it daily via
 ``workflow/update_vendored_status.py`` (using the automatic
 ``GITHUB_TOKEN``), and the Docs cache workflow refreshes it on every
-push before triggering the ReadTheDocs build. For a local docs build,
-run that script once to create the cache file.
+push. The daily scheduled run refreshes the cache, rebuilds the prebuilt
+HTML, publishes it to the ``rtd-html`` branch, and triggers the
+ReadTheDocs build, so the cache date shown on the published pages
+advances every day. For a local docs build, run that script once to
+create the cache file.
 """
 
 from __future__ import annotations

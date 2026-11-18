@@ -10,16 +10,18 @@ name: Docs cache and build
 # Rendering is content-hash based, so unchanged examples are skipped.
 #
 # The rtd-cache branch also carries the vendored-status cache: the `render`
-# job refreshes it on every push and the `vendored-cache` job refreshes it
-# daily between pushes without triggering a Read the Docs build.
+# job refreshes it on every push, and the `vendored-cache` job refreshes it
+# every day. The scheduled run then rebuilds the prebuilt HTML so the
+# vendored-status dates shown on the published pages actually advance.
 
 on:
   push:
     branches: ["main"]
     tags: ["v*"]
   schedule:
-    # Refresh the vendored-status cache daily at ~02:29 UTC.
-    - cron: "29 2 * * *"
+    # Refresh the vendored-status cache and published docs daily at
+    # 02:29 Asia/Shanghai (18:29 UTC on the previous day).
+    - cron: "29 18 * * *"
   workflow_dispatch:
     inputs:
       rtd_only:
@@ -149,8 +151,11 @@ jobs:
           fi
 
   docs:
-    needs: render
-    if: ${{ github.event_name != 'schedule' }}
+    # Push/tag runs wait for the media render; the daily schedule waits for
+    # the vendored-status cache refresh so the rebuilt HTML shows today's
+    # cache date. Either path then publishes rtd-html and triggers RTD.
+    needs: [render, vendored-cache]
+    if: ${{ always() && (needs.render.result == 'success' || github.event_name == 'schedule') && (needs.vendored-cache.result == 'success' || github.event_name == 'push') }}
     runs-on: ubuntu-latest
     timeout-minutes: 60
     concurrency:
@@ -266,8 +271,9 @@ jobs:
             && echo "Read the Docs build triggered."
 
   # Daily refresh of the vendored-status cache between pushes. Kept in this
-  # workflow so the rtd-cache branch has a single writer pipeline; this job
-  # deliberately does NOT trigger a Read the Docs build.
+  # workflow so the rtd-cache branch has a single writer pipeline. The `docs`
+  # job depends on this job on scheduled runs, so the cache refresh is
+  # followed by an HTML rebuild and a Read the Docs build.
   vendored-cache:
     if: ${{ github.event_name == 'schedule' || github.event_name == 'workflow_dispatch' }}
     runs-on: ubuntu-latest
