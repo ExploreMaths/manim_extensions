@@ -1493,18 +1493,18 @@
 <p class="rubric">Examples</p>
 <div id="pathmapperscene" class="admonition admonition-manim-example">
 
-<p class="admonition-title">Example: PathMapperScene <a class="headerlink" href="#pathmapperscene">¶</a></p><img alt="../../_images/PathMapperScene-dd7c08b5.png" class="align-center" src="../../_images/PathMapperScene-dd7c08b5.png" />
+<p class="admonition-title">Example: PathMapperScene <a class="headerlink" href="#pathmapperscene">¶</a></p><img alt="../../_images/PathMapperScene-e84ebeb8.png" class="align-center" src="../../_images/PathMapperScene-e84ebeb8.png" />
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
- <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Scene</span><span class="p">,</span> <span class="n">Circle</span>
- <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.cad_drawing_utils.path_mapper</span><span class="w"> </span><span class="kn">import</span> <span class="n">PathMapper</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Scene</span><span class="p">,</span> <span class="n">Circle</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.cad_drawing_utils.path_mapper</span><span class="w"> </span><span class="kn">import</span> <span class="n">PathMapper</span>
 
- <span class="k">class</span><span class="w"> </span><span class="nc">PathMapperScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-     <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-         <span class="n">path</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-         <span class="n">mapper</span> <span class="o">=</span> <span class="n">PathMapper</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
-         <span class="n">dot</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="n">mapper</span><span class="o">.</span><span class="n">point_from_proportion</span><span class="p">(</span><span class="mf">0.25</span><span class="p">))</span>
-         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">dot</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">PathMapperScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">mapper</span> <span class="o">=</span> <span class="n">PathMapper</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="n">dot</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="n">mapper</span><span class="o">.</span><span class="n">point_from_proportion</span><span class="p">(</span><span class="mf">0.25</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">dot</span><span class="p">)</span>
 </pre></div>
 </div>
 </div><dl class="py method">

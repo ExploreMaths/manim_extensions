@@ -1514,7 +1514,8 @@ changed.</p>
 </section>
 <section id="manim-examples-manim">
 <h2>Manim Examples (<code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">manim::</span></code>)<a class="headerlink" href="#manim-examples-manim" title="Link to this heading">¶</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">manim::</span></code> directive renders a live example in the docs. The <code class="docutils literal notranslate"><span class="pre">validate_manim_directives.py</span></code> checker enforces the <code class="docutils literal notranslate"><span class="pre">:save_last_frame:</span></code> usage rules:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">manim::</span></code> directive renders a live example in the docs. Every example <strong>MUST</strong> start with an explicit <code class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">manim</span> <span class="pre">import</span> <span class="pre">*</span></code>; the directive does not inject imports, and <code class="docutils literal notranslate"><span class="pre">validate_manim_directives.py</span></code> fails the build when the line is missing.</p>
+<p>The same checker enforces the <code class="docutils literal notranslate"><span class="pre">:save_last_frame:</span></code> usage rules:</p>
 <div class="table-wrapper docutils container">
 <table class="docutils align-default">
 <thead>
@@ -1541,7 +1542,9 @@ changed.</p>
 <div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">manim</span><span class="p">::</span> MoleculeScene
    <span class="nc">:files:</span> morphine_2d.mol
 
-   molecule = MMoleculeObject.molecule_from_file("morphine_2d.mol")
+   from manim import *
+
+molecule = MMoleculeObject.molecule_from_file("morphine_2d.mol")
 </pre></div>
 </div>
 <div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="p">..</span> <span class="ow">nbcell</span><span class="p">::</span>

@@ -1550,14 +1550,25 @@ without additional LaTeX packages.</p>
 <section id="building-the-documentation">
 <h2>Building the documentation<a class="headerlink" href="#building-the-documentation" title="Link to this heading">¶</a></h2>
 <p>The documentation uses Sphinx and a custom Manim directive. Build it with:</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+<label aria-controls="sd-tab-item-0-content" class="sd-tab-label" for="sd-tab-item-0">
+Linux / macOS</label><div class="sd-tab-content docutils" id="sd-tab-item-0-content">
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>docs
-make<span class="w"> </span>clean<span class="w">     </span><span class="c1"># Linux/macOS (uses the Makefile)</span>
+make<span class="w"> </span>clean
 make<span class="w"> </span>html
 </pre></div>
 </div>
-<div class="highlight-doscon notranslate"><div class="highlight"><pre><span></span><span class="go">make.bat clean   # Windows</span>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+<label aria-controls="sd-tab-item-1-content" class="sd-tab-label" for="sd-tab-item-1">
+Windows</label><div class="sd-tab-content docutils" id="sd-tab-item-1-content">
+<div class="highlight-doscon notranslate"><div class="highlight"><pre><span></span><span class="go">cd docs</span>
+<span class="go">make.bat clean</span>
 <span class="go">make.bat html</span>
 </pre></div>
+</div>
+</div>
 </div>
 <p>The generated HTML will be in <code class="docutils literal notranslate"><span class="pre">docs/build/html/</span></code>.</p>
 </section>

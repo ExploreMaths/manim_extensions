@@ -48,6 +48,7 @@ Usage
 .. manim:: ArabicGreeting
    :ref_classes: ArabicText
 
+   from manim import *
    from manim import Scene, Write, FadeOut
    from manim_extensions.arabic import ArabicText
 

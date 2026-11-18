@@ -1666,7 +1666,7 @@
                     <span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">anim</span> <span class="o">=</span> <span class="n">MoveAlongPath</span><span class="p">(</span>
-                        <span class="n">dot</span><span class="p">,</span> <span class="n">edge</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="n">run_time</span><span class="p">,</span> <span class="n">rate_function</span><span class="o">=</span><span class="n">sigmoid</span>
+                        <span class="n">dot</span><span class="p">,</span> <span class="n">edge</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="n">run_time</span><span class="p">,</span> <span class="n">rate_func</span><span class="o">=</span><span class="n">sigmoid</span>
                     <span class="p">)</span>
                 <span class="n">path_animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">anim</span><span class="p">)</span>
 
@@ -1744,7 +1744,7 @@
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">widths</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
         <span class="c1"># Note: 1d-arrays are assumed to be in row major order</span>
         <span class="n">widths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">widths</span><span class="p">)</span>
-        <span class="n">widths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">widths</span><span class="p">)</span>
+        <span class="n">widths</span> <span class="o">=</span> <span class="n">widths</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
         <span class="c1"># Check thickness size</span>
         <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">widths</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
         <span class="c1"># Make animation</span>

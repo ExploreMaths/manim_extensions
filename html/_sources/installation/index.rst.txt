@@ -96,15 +96,22 @@ Building the documentation
 
 The documentation uses Sphinx and a custom Manim directive. Build it with:
 
-.. code-block:: bash
+.. tab-set::
 
-   cd docs
-   make clean     # Linux/macOS (uses the Makefile)
-   make html
+   .. tab-item:: Linux / macOS
 
-.. code-block:: doscon
+      .. code-block:: bash
 
-   make.bat clean   # Windows
-   make.bat html
+         cd docs
+         make clean
+         make html
+
+   .. tab-item:: Windows
+
+      .. code-block:: doscon
+
+         cd docs
+         make.bat clean
+         make.bat html
 
 The generated HTML will be in ``docs/build/html/``.

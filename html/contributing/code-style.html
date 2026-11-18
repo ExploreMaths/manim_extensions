@@ -1592,34 +1592,36 @@ subpackages. There are no upstream-name exemptions:
 <h3>numpydoc section format<a class="headerlink" href="#numpydoc-section-format" title="Link to this heading">¶</a></h3>
 <p>Sections use a bare header line followed by a <code class="docutils literal notranslate"><span class="pre">----------</span></code> underline. <strong>Google-style inline headers like</strong> <code class="docutils literal notranslate"><span class="pre">Args:</span></code> or <code class="docutils literal notranslate"><span class="pre">Returns:</span></code> are rejected — use <code class="docutils literal notranslate"><span class="pre">Parameters</span></code> and <code class="docutils literal notranslate"><span class="pre">Returns</span></code> instead.</p>
 <p>Spacing is enforced too: a section header must be <strong>separated from the preceding paragraph by a blank line</strong>, and the entry list must <strong>directly follow the underline</strong> (a blank line between the underline and the first entry is rejected). A header that is flush against the summary is absorbed into the summary paragraph by napoleon, and sphinx-autodoc-typehints then injects <code class="docutils literal notranslate"><span class="pre">:type:</span></code> lines into that paragraph so docutils renders raw reST text in the reference pages. <code class="docutils literal notranslate"><span class="pre">validate_doc_sections.py</span></code> rejects both mistakes (<code class="docutils literal notranslate"><span class="pre">SECTION_MISSING_BLANK_BEFORE</span></code>, <code class="docutils literal notranslate"><span class="pre">SECTION_BLANK_AFTER_UNDERLINE</span></code>).</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">about_point</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Mobject"</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""Scale the mobject by *factor*.</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span> <span class="k">def</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">about_point</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Mobject"</span><span class="p">:</span>
+<span class="w">     </span><span class="sd">"""Scale the mobject by *factor*.</span>
 
-<span class="sd">    Parameters</span>
-<span class="sd">    ----------</span>
-<span class="sd">    factor</span>
-<span class="sd">        The scaling factor.</span>
-<span class="sd">    about_point</span>
-<span class="sd">        The point to scale about. If ``None``, the origin is used.</span>
+<span class="sd">     Parameters</span>
+<span class="sd">     ----------</span>
+<span class="sd">     factor</span>
+<span class="sd">         The scaling factor.</span>
+<span class="sd">     about_point</span>
+<span class="sd">         The point to scale about. If ``None``, the origin is used.</span>
 
-<span class="sd">    Returns</span>
-<span class="sd">    -------</span>
-<span class="sd">        The scaled mobject.</span>
+<span class="sd">     Returns</span>
+<span class="sd">     -------</span>
+<span class="sd">         The scaled mobject.</span>
 
-<span class="sd">    Raises</span>
-<span class="sd">    ------</span>
-<span class="sd">    ValueError</span>
-<span class="sd">        If *factor* is zero.</span>
+<span class="sd">     Raises</span>
+<span class="sd">     ------</span>
+<span class="sd">     ValueError</span>
+<span class="sd">         If *factor* is zero.</span>
 
-<span class="sd">    Examples</span>
-<span class="sd">    --------</span>
-<span class="sd">    .. manim:: Scale</span>
-<span class="sd">        :save_last_frame:</span>
+<span class="sd">     Examples</span>
+<span class="sd">     --------</span>
+<span class="sd">     .. manim:: Scale</span>
+<span class="sd">         :save_last_frame:</span>
 
-<span class="sd">        class Scale(Scene):</span>
-<span class="sd">            def construct(self):</span>
-<span class="sd">                ...</span>
-<span class="sd">    """</span>
+<span class="sd">         from manim import *</span>
+
+<span class="sd">class Scale(Scene):</span>
+<span class="sd">             def construct(self):</span>
+<span class="sd">                 ...</span>
+<span class="sd">     """</span>
 </pre></div>
 </div>
 </section>

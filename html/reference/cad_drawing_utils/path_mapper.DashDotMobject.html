@@ -1496,19 +1496,19 @@
 <p class="rubric">Examples</p>
 <div id="dashdotmobjectscene" class="admonition admonition-manim-example">
 
-<p class="admonition-title">Example: DashDotMobjectScene <a class="headerlink" href="#dashdotmobjectscene">¶</a></p><img alt="../../_images/DashDotMobjectScene-cbcc36ec.png" class="align-center" src="../../_images/DashDotMobjectScene-cbcc36ec.png" />
+<p class="admonition-title">Example: DashDotMobjectScene <a class="headerlink" href="#dashdotmobjectscene">¶</a></p><img alt="../../_images/DashDotMobjectScene-2a32c76a.png" class="align-center" src="../../_images/DashDotMobjectScene-2a32c76a.png" />
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
- <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Scene</span><span class="p">,</span> <span class="n">VMobject</span><span class="p">,</span> <span class="n">LEFT</span><span class="p">,</span> <span class="n">UP</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">,</span> <span class="n">BLUE</span>
- <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.cad_drawing_utils.path_mapper</span><span class="w"> </span><span class="kn">import</span> <span class="n">DashDotMobject</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Scene</span><span class="p">,</span> <span class="n">VMobject</span><span class="p">,</span> <span class="n">LEFT</span><span class="p">,</span> <span class="n">UP</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">,</span> <span class="n">BLUE</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.cad_drawing_utils.path_mapper</span><span class="w"> </span><span class="kn">import</span> <span class="n">DashDotMobject</span>
 
- <span class="k">class</span><span class="w"> </span><span class="nc">DashDotMobjectScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-     <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-         <span class="n">path</span> <span class="o">=</span> <span class="n">VMobject</span><span class="p">()</span><span class="o">.</span><span class="n">set_points_smoothly</span><span class="p">(</span>
-             <span class="p">[</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span> <span class="n">UP</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span> <span class="n">DOWN</span> <span class="o">*</span> <span class="mi">2</span><span class="p">]</span>
-         <span class="p">)</span>
-         <span class="n">path</span><span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span><span class="n">BLUE</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">DashDotMobject</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">num_dashes</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">dashed_ratio</span><span class="o">=</span><span class="mf">0.45</span><span class="p">))</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">DashDotMobjectScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">VMobject</span><span class="p">()</span><span class="o">.</span><span class="n">set_points_smoothly</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span> <span class="n">UP</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span> <span class="n">DOWN</span> <span class="o">*</span> <span class="mi">2</span><span class="p">]</span>
+        <span class="p">)</span>
+        <span class="n">path</span><span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span><span class="n">BLUE</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">DashDotMobject</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">num_dashes</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">dashed_ratio</span><span class="o">=</span><span class="mf">0.45</span><span class="p">))</span>
 </pre></div>
 </div>
 </div></dd></dl>

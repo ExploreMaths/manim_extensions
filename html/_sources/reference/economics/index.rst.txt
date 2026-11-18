@@ -56,6 +56,7 @@ returned by a shock method one animation at a time.
 .. manim:: ADASQuickStart
    :ref_classes: ADASDiagram
 
+   from manim import *
    from manim import Create, Scene
    from manim_extensions.economics import ADASDiagram
 
