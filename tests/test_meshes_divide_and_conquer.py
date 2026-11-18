@@ -60,3 +60,8 @@ def test_triangulate_leq_3_accepts_segments_and_triangles(helper, indices):
 def test_triangulate_leq_3_rejects_larger_sets(helper):
     with pytest.raises(ValueError):
         helper.triangulate_leq_3([0, 1, 2, 3])
+
+
+def test_divide_and_conquer_requires_empty_mesh(helper):
+    with pytest.raises(ValueError, match="must be empty"):
+        helper.divide_and_conquer_recursive()

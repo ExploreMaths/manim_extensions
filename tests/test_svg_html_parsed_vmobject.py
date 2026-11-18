@@ -36,3 +36,26 @@ def test_finish_writes_output_files(exporter, tmp_path):
     exporter.finish()
 
     assert len(list(tmp_path.iterdir())) >= 1
+
+
+def test_updater_emits_moving_camera_viewbox(tmp_path, monkeypatch):
+    from manim import MovingCameraScene
+
+    monkeypatch.chdir(tmp_path)
+    scene = MovingCameraScene()
+    circle = Circle()
+    scene.add(circle)
+    exporter = HTMLParsedVMobject(circle, scene)
+
+    exporter.updater(0.1)
+
+    assert "viewBox" in exporter.js_updates
+
+
+def test_finish_appends_interactive_javascript(exporter, tmp_path):
+    exporter.interactive_js = "// interactive"
+    exporter.finish()
+
+    content = (tmp_path / exporter.js_filename).read_text()
+
+    assert "// interactive" in content

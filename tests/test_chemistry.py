@@ -267,3 +267,31 @@ def test_bond_subtypes_build_lines_and_groups():
     assert len(cram) >= 1
     assert str(simple) is not None
     assert repr(simple) is not None
+
+
+def test_find_atom_position_invalid_index_raises_key_error():
+    molecule = water()
+
+    with pytest.raises(KeyError):
+        molecule.find_atom_position_by_index(999)
+
+
+def test_find_bond_center_invalid_index_raises_key_error():
+    molecule = water()
+
+    with pytest.raises(IndexError):
+        molecule.find_bond_center_by_index(999)
+
+
+def test_find_bond_center_string_index_raises_type_error():
+    molecule = water()
+
+    with pytest.raises(TypeError):
+        molecule.find_bond_center_by_index("999")
+
+
+def test_find_position_along_bond_invalid_index_raises_index_error():
+    molecule = water()
+
+    with pytest.raises(IndexError):
+        molecule.find_position_along_bond_axis(999, 0.5)

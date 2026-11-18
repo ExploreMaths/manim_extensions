@@ -74,3 +74,18 @@ def test_from_mol_file(tmp_path, named_molecule):
 
     assert len(loaded.atoms) >= len(named_molecule.atoms)
     assert len(loaded.bonds) >= len(named_molecule.bonds)
+
+
+def test_named_molecule_reports_invalid_atom_index(named_molecule):
+    with pytest.raises(KeyError):
+        named_molecule.find_atom_position_by_index(999)
+
+
+def test_named_molecule_reports_invalid_bond_index(named_molecule):
+    with pytest.raises((IndexError, TypeError)):
+        named_molecule.find_bond_center_by_index(999)
+
+
+def test_named_molecule_reports_invalid_bond_axis_index(named_molecule):
+    with pytest.raises((IndexError, TypeError)):
+        named_molecule.find_position_along_bond_axis(999, 0.5)

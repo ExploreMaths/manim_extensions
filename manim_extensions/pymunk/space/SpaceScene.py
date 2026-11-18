@@ -387,7 +387,7 @@ class SpaceScene(ZoomedScene):
                 ):
                     sub_mob.body.sleep()
 
-    def draw_debug_img(
+    def draw_debug_img(  # pragma: no cover - requires an interactive TkAgg display
         self, option: int | None = None, xlim: tuple = (-8, 8), ylim: tuple = (-5, 5)
     ):
         """Pops up a Matplotlib window to render a debug view of the physical space.

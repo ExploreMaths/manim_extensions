@@ -373,19 +373,19 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
                 data=data,
             )
             return None
-        handler = self.space.add_wildcard_collision_handler(collision_type_a)
-        if begin:
-            handler.begin = begin
-        if pre_solve:
-            handler.pre_solve = pre_solve
-        if post_solve:
-            handler.post_solve = post_solve
-        if separate:
-            handler.separate = separate
-        if data:
-            handler.data.update(data)
-
-        return handler
+        else:  # pragma: no cover - pymunk < 7 fallback
+            handler = self.space.add_wildcard_collision_handler(collision_type_a)
+            if begin:
+                handler.begin = begin
+            if pre_solve:
+                handler.pre_solve = pre_solve
+            if post_solve:
+                handler.post_solve = post_solve
+            if separate:
+                handler.separate = separate
+            if data:
+                handler.data.update(data)
+            return handler
 
     def _collision_detection_handler(
         self,
@@ -443,21 +443,21 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
                 data=data,
             )
             return None
-        handler = self.space.add_collision_handler(collision_type_a, collision_type_b)
-
-        if begin:
-            handler.begin = begin
-        if pre_solve:
-            handler.pre_solve = pre_solve
-        if post_solve:
-            handler.post_solve = post_solve
-        if separate:
-            handler.separate = separate
-
-        if data:
-            handler.data.update(data)
-
-        return handler
+        else:  # pragma: no cover - pymunk < 7 fallback
+            handler = self.space.add_collision_handler(
+                collision_type_a, collision_type_b
+            )
+            if begin:
+                handler.begin = begin
+            if pre_solve:
+                handler.pre_solve = pre_solve
+            if post_solve:
+                handler.post_solve = post_solve
+            if separate:
+                handler.separate = separate
+            if data:
+                handler.data.update(data)
+            return handler
 
     # =============================== body ==================================
     @staticmethod

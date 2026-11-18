@@ -80,3 +80,17 @@ def test_x_mark_shape():
 
     assert len(mark.submobjects) == 2
     assert len(wide.submobjects) == 2
+
+
+def test_remove_last_layer_has_no_after_connective():
+    network = build_network()
+    animation = RemoveLayer(network.input_layers[-1], network)
+
+    assert len(animation.animations) >= 2
+
+
+def test_remove_layer_not_in_network_raises():
+    network = build_network()
+
+    with pytest.raises(Exception, match="Layer object not found"):
+        RemoveLayer(Circle(), network)
