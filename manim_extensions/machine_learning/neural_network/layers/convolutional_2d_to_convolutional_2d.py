@@ -490,7 +490,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         """
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def animate_filters_all_at_once(self, filters: Mobject) -> Succession:
+    def animate_filters_all_at_once(self, filters: Mobject | None = None) -> Succession:
         """Animates each of the filters all at once.
 
         Parameters
