@@ -141,6 +141,20 @@ def check_file(file_path: Path):
     blocks = extract_manim_blocks(file_path)
     issues = []
     for block in blocks:
+        if "from manim import *" not in {
+            line.strip() for line in block["code"].splitlines()
+        }:
+            issues.append(
+                {
+                    "type": "MISSING_MANIM_IMPORT",
+                    "line": block["start_line"],
+                    "class_name": block["class_name"],
+                    "message": "Manim examples must write `from manim import *` explicitly (the directive does not inject it)",
+                    "code_preview": block["code"][:200],
+                }
+            )
+            continue
+
         animated = has_animation(block["code"])
         wait_used = has_wait(block["code"])
 

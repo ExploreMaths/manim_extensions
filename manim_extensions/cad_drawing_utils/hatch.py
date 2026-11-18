@@ -39,6 +39,8 @@ class HatchLines(VGroup):
     .. manim:: HatchLinesScene
        :save_last_frame:
 
+       from manim import *
+
        from manim import Circle, Scene
        from manim_extensions.cad_drawing_utils import HatchLines
 

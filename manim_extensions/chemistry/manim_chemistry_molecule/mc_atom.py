@@ -185,7 +185,7 @@ class MCAtom:
         Exception
             Raised when ``molecule_index`` is not an int.
         """
-        if isinstance(molecule_index, None):
+        if molecule_index is None:
             pass
 
         if not isinstance(molecule_index, int):

@@ -53,6 +53,8 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
     .. manim:: EmbeddingLayerScene
 
 
+       from manim import *
+
        from manim_extensions.machine_learning.neural_network import (
            EmbeddingLayer,
            FeedForwardLayer,

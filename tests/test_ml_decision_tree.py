@@ -52,3 +52,61 @@ def test_iris_plot_animation():
     animation = IrisDatasetPlot(iris).create_animation()
 
     assert animation is not None
+
+
+def test_node_bounding_boxes_infers_feature_count():
+    from sklearn.tree import DecisionTreeClassifier
+
+    from manim_extensions.machine_learning.decision_tree.decision_tree_surface import (
+        tree_bounds,
+    )
+
+    data = load_iris()
+    tree = (
+        DecisionTreeClassifier(max_depth=2, random_state=0)
+        .fit(data.data, data.target)
+        .tree_
+    )
+
+    boxes = tree_bounds(tree)
+
+    assert len(boxes) == tree.node_count
+
+
+def test_plot_areas_adds_artists():
+    from manim_extensions.machine_learning.decision_tree.decision_tree_surface import (
+        plot_areas,
+    )
+
+    import manim_extensions.machine_learning.decision_tree.decision_tree_surface as module
+
+    class DummyRectangle:
+        def __init__(self, *args, **kwargs):
+            self.args = args
+
+    class DummyAxes:
+        def add_artist(self, artist):
+            self.artist = artist
+
+    class DummyPyplot:
+        def gca(self):
+            return DummyAxes()
+
+    module.Rectangle = DummyRectangle
+    module.require = lambda group, name: DummyPyplot()
+    rectangles = np.array([[0.0, 1.0, 0.0, 1.0, 0.0]])
+    plot_areas(rectangles)
+
+
+def test_surface_override_animations():
+    from manim import Circle
+
+    from manim_extensions.machine_learning.decision_tree.decision_tree_surface import (
+        DecisionTreeSurface,
+    )
+
+    surface = DecisionTreeSurface.__new__(DecisionTreeSurface)
+    surface.surface_rectangles = [Circle(), Circle()]
+
+    assert surface.create_override() is not None
+    assert surface.uncreate_override() is not None

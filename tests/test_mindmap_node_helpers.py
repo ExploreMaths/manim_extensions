@@ -4,7 +4,7 @@
 """Tests for node style lookup and connector switching."""
 
 import pytest
-from manim import Text
+from manim import RIGHT, Text
 
 from manim_extensions.mindmap.algorithms.layout_config import LayoutType
 from manim_extensions.mindmap.nodes import Node, NodeStyle
@@ -65,3 +65,52 @@ def test_change_connector_for_each_layout(tree, change_dir, change_layout, layou
     root.change_connector(change_dir, change_layout, layout_type)
 
     assert root is not None
+
+
+def test_text_style_falls_back_to_last_level():
+    style = NodeStyle(
+        text_style=[{"color": RIGHT_COLOR}] if False else [{"font_size": 12}]
+    )
+
+    assert style.get_text_style(3) == style.text_style[-1]
+
+
+def test_remove_non_child_raises(tree):
+    root, _ = tree
+    stranger = Node(Text("stranger"))
+
+    with pytest.raises(ValueError):
+        root.remove_child(stranger)
+
+
+@pytest.mark.parametrize(
+    "layout_type",
+    [LayoutType.MindMap, LayoutType.TimeLine, LayoutType.Catalog],
+)
+def test_root_connector_without_parent_raises(layout_type):
+    root = Node(Text("root"))
+
+    with pytest.raises(ValueError, match="root node has no parent"):
+        root.get_connector(layout_type, RIGHT)
+
+
+def test_change_connector_rebuilds_updater(tree):
+    root, second = tree
+    root.add_child(second)
+    second.is_flip = False
+    second.set_connector(LayoutType.Standard)
+    second.change_connector(True, False, LayoutType.Standard)
+
+    assert second.connector is not None
+
+
+def test_get_node_and_line_removes_connector(tree):
+    root, second = tree
+    root.add_child(second)
+    second.is_flip = False
+    second.set_connector(LayoutType.Standard)
+
+    group = second.get_node_and_line_without_updater()
+
+    assert not hasattr(second, "connector")
+    assert len(group) == 3

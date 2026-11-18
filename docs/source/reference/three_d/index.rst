@@ -40,10 +40,12 @@ Create a complete Gaussian-surface scene with the fast pace:
    :ref_classes: GaussianSurfaceScene
    :save_last_frame:
 
+   from manim import *
    from manim_extensions.three_d import gaussian_surface_scene
 
    class ThreeDDemo(gaussian_surface_scene(pace="fast")):
-       pass
+       def construct(self):
+           super().construct()
 
 Modules
 -------

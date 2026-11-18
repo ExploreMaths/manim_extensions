@@ -292,11 +292,12 @@ def render_block(task):
             example_config["format"] = "gif"
 
         user_code = normalize_code(code)
-        has_manim_import = any(
-            line.strip() == "from manim import *" for line in user_code
-        )
+        if "from manim import *" not in {line.strip() for line in user_code}:
+            raise ValueError(
+                f"manim example {class_name!r} must write "
+                "`from manim import *` explicitly"
+            )
         exec_code = [
-            *([] if has_manim_import else ["from manim import *"]),
             *user_code,
             f"{class_name}().render()",
         ]

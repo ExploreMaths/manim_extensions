@@ -65,3 +65,55 @@ def test_triangulate_leq_3_rejects_larger_sets(helper):
 def test_divide_and_conquer_requires_empty_mesh(helper):
     with pytest.raises(ValueError, match="must be empty"):
         helper.divide_and_conquer_recursive()
+
+
+def test_right_candidate_removes_conflicting_face(helper, monkeypatch):
+    import manim_extensions.meshes.delaunay.divide_and_conquer as module
+
+    points = np.array(
+        [
+            [0.0, 0.0, 0.0],
+            [1.0, 0.0, 0.0],
+            [0.5, 0.6, 0.0],
+            [0.5, 0.4, 0.0],
+        ]
+    )
+    helper.triangle_mesh = TriangleManim2DMesh(Mesh(points, [[0, 1, 2], [0, 1, 3]]))
+    helper.scene.play = lambda *args, **kwargs: None
+    helper.scene.wait = lambda *args, **kwargs: None
+    monkeypatch.setattr(
+        module,
+        "get_triangle_circum_circle_params",
+        lambda *args: (np.zeros(3), 10.0),
+    )
+
+    rr_edges = [(1, 2), (1, 3)]
+    helper._right_candidate([0, 1], rr_edges)
+
+    assert len(rr_edges) == 1
+
+
+def test_left_candidate_removes_conflicting_face(helper, monkeypatch):
+    import manim_extensions.meshes.delaunay.divide_and_conquer as module
+
+    points = np.array(
+        [
+            [0.0, 0.0, 0.0],
+            [1.0, 0.0, 0.0],
+            [0.5, 0.6, 0.0],
+            [0.5, 0.4, 0.0],
+        ]
+    )
+    helper.triangle_mesh = TriangleManim2DMesh(Mesh(points, [[0, 1, 2], [0, 1, 3]]))
+    helper.scene.play = lambda *args, **kwargs: None
+    helper.scene.wait = lambda *args, **kwargs: None
+    monkeypatch.setattr(
+        module,
+        "get_triangle_circum_circle_params",
+        lambda *args: (np.zeros(3), 10.0),
+    )
+
+    ll_edges = [(0, 2), (0, 3)]
+    helper._left_candidate([0, 1], ll_edges)
+
+    assert len(ll_edges) == 1

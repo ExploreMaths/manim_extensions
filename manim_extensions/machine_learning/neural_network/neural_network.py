@@ -618,7 +618,7 @@ class NeuralNetwork(Group):
         """
         # Setting family=False stops sub-neural networks from inheriting parent z_index
         for layer in self.all_layers:
-            if not isinstance(NeuralNetwork):
+            if not isinstance(layer, NeuralNetwork):
                 layer.set_z_index(z_index_value)
 
     def scale(self, scale_factor: float, **kwargs):

@@ -71,3 +71,33 @@ def test_node_wrappers_round_trip():
     assert TimelineNode.from_node(root) is not None
     assert CatalogNode.from_data(root) is not None
     assert WrappedTree.from_node(root, is_horizontal=True, level=0) is not None
+
+
+@pytest.mark.parametrize(
+    "layout_type",
+    [
+        __import__(
+            "manim_extensions.mindmap.algorithms.layout_config",
+            fromlist=["LayoutType"],
+        ).LayoutType.MindMap,
+        __import__(
+            "manim_extensions.mindmap.algorithms.layout_config",
+            fromlist=["LayoutType"],
+        ).LayoutType.Standard,
+        __import__(
+            "manim_extensions.mindmap.algorithms.layout_config",
+            fromlist=["LayoutType"],
+        ).LayoutType.Catalog,
+        __import__(
+            "manim_extensions.mindmap.algorithms.layout_config",
+            fromlist=["LayoutType"],
+        ).LayoutType.TimeLine,
+    ],
+)
+def test_layout_factory_covers_all_types(layout_type):
+    from manim_extensions.mindmap.algorithms.layout_config import LayoutConfig
+    from manim_extensions.mindmap.algorithms.layout_factory import LayoutFactory
+
+    layout = LayoutFactory.create_layout(layout_type, build_tree(), LayoutConfig())
+
+    assert layout is not None

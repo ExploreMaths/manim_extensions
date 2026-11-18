@@ -94,3 +94,68 @@ def test_remove_layer_not_in_network_raises():
 
     with pytest.raises(Exception, match="Layer object not found"):
         RemoveLayer(Circle(), network)
+
+
+def test_remove_layer_new_connective_closure_runs():
+    network = build_network()
+    animation = RemoveLayer(network.input_layers[0], network)
+    update = animation.make_new_connective_animation()
+    update.update_function(network)
+
+    assert update is not None
+
+
+def test_insert_layer_create_connective_layers(monkeypatch):
+    import manim_extensions.machine_learning.neural_network.animations.neural_network_transformations as module
+
+    monkeypatch.setattr(module, "get_connective_layer", lambda before, after: Circle())
+    network = build_network()
+    animation = InsertLayer(build_constructed_layer(4), 2, network)
+    group = animation.make_create_connective_layers_animation(None, None)
+
+    assert group is not None
+
+
+def test_remove_middle_layer_closure_inserts_connective():
+    network = NeuralNetwork(
+        [FeedForwardLayer(3), FeedForwardLayer(3), FeedForwardLayer(2)]
+    )
+    layer = network.input_layers[1]
+    animation = RemoveLayer(layer, network)
+    update = animation.make_new_connective_animation()
+    update.update_function(network)
+
+    assert update is not None
+
+
+def test_add_connection_with_mobject_instances():
+    network = build_network()
+    network.add_connection(Circle(), Circle())
+
+
+def test_insert_and_remove_layer_wrappers():
+    network = build_network()
+    layer = build_constructed_layer(2)
+    insert = network.insert_layer(layer, 2)
+    remove = network.remove_layer(network.input_layers[0])
+    assert insert is not None
+    assert remove is not None
+
+
+def test_set_z_index_and_invalid_layout_direction():
+    network = build_network()
+    network.set_z_index(2)
+
+    with pytest.raises(Exception, match="Unrecognized layout direction"):
+        NeuralNetwork(
+            [FeedForwardLayer(3), FeedForwardLayer(2)],
+            layout_direction="diagonal",
+        )
+
+
+def test_feed_forward_connection_without_flash_and_widths():
+    network = build_network()
+    connection = network.connective_layers[0]
+    connection.passing_flash = False
+    connection.make_forward_pass_animation(run_time=0.1)
+    connection.modify_edge_stroke_widths([0.5] * len(connection.edges))

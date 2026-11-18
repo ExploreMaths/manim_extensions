@@ -699,7 +699,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         except KeyError as key_error:
             _logger.warning(f"Atom index {atom_index} is not valid for molecule {self}")
-            _logger.warning(f"Valid indices are: {self.atoms.submob_dict.keys()}")
+            _logger.warning(f"Valid indices are: {self.atoms.keys()}")
             raise key_error
 
         except Exception as exception:
@@ -804,7 +804,7 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         except KeyError as key_error:
             _logger.warning(f"Bond index {bond_tuple} is not valid for molecule {self}")
-            _logger.warning(f"Valid indices are: {self.bonds.submob_dict.keys()}")
+            _logger.warning(f"Valid indices are: {self.bonds.keys()}")
             raise key_error
 
         bond_vector = bond.get_vector()

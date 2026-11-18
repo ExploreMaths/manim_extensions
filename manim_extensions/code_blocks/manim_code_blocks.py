@@ -191,6 +191,8 @@ class CodeBlock(VGroup):
     .. manim:: CodeBlockScene
        :save_last_frame:
 
+       from manim import *
+
        from manim import Scene
        from manim_extensions.code_blocks import CodeBlock
 

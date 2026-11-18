@@ -273,9 +273,11 @@ class ManimDirective(Directive):
         while user_code and not user_code[-1].strip():
             user_code.pop()
 
-        has_manim_import = any(
-            line.strip() == "from manim import *" for line in user_code
-        )
+        if not any(line.strip() == "from manim import *" for line in user_code):
+            raise self.error(
+                "manim examples must import Manim themselves with "
+                "`from manim import *`; the directive no longer injects it"
+            )
 
         # patched: ``:files:`` lists bundled sample files the example reads.
         # They are resolved inside the repository's ``examples/`` tree, copied
@@ -299,7 +301,6 @@ class ManimDirective(Directive):
         source_block_in = [
             ".. code-block:: python",
             "",
-            *(["    from manim import *\n"] if not has_manim_import else []),
             *("    " + line for line in self.content),
         ]
         source_block = "\n".join(source_block_in)
@@ -330,7 +331,6 @@ class ManimDirective(Directive):
             example_config["format"] = "gif"
 
         code = [
-            *([] if has_manim_import else ["from manim import *"]),
             *user_code,
             f"{clsname}().render()",
         ]

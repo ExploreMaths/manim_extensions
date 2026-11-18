@@ -97,3 +97,27 @@ def test_rotation_plane_rejects_dependent_axes():
 def test_rotation_plane_requires_two_four_dim_vectors(axis):
     with pytest.raises(InvalidRequestException):
         Mesh._rotation_plane_4d(axis)
+
+
+def test_convert_five_dimensional_mesh_raises():
+    mesh = Mesh(np.zeros((2, 5)), [])
+    with pytest.raises(InvalidRequestException, match="5-D"):
+        mesh.convert_vertices_to_3d()
+
+
+def test_flip_rejects_high_dimensional_mesh():
+    mesh = Mesh(np.zeros((2, 5)), [])
+    with pytest.raises(InvalidRequestException, match="No flip"):
+        mesh.apply_flip()
+
+
+def test_flip_four_dimensional_axis_length_mismatch():
+    mesh = Mesh(np.zeros((2, 4)), [])
+    with pytest.raises(Exception):
+        mesh.apply_flip(axis=np.array([1, 0, 0]))
+
+
+def test_snap_to_grid_threshold_dimension_mismatch():
+    mesh = build_mesh()
+    with pytest.raises(Exception):
+        mesh.snap_to_grid((1, 1, 1), (1, 1))

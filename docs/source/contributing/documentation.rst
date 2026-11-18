@@ -50,7 +50,9 @@ For intentional non-standard layouts (ASCII art, etc.) use either ``:skip-indent
 Manim Examples (``.. manim::``)
 -------------------------------
 
-The ``.. manim::`` directive renders a live example in the docs. The ``validate_manim_directives.py`` checker enforces the ``:save_last_frame:`` usage rules:
+The ``.. manim::`` directive renders a live example in the docs. Every example **MUST** start with an explicit ``from manim import *``; the directive does not inject imports, and ``validate_manim_directives.py`` fails the build when the line is missing.
+
+The same checker enforces the ``:save_last_frame:`` usage rules:
 
 .. list-table::
    :header-rows: 1
@@ -74,7 +76,9 @@ Every executable example that reads a file — both ``.. manim::`` and ``.. nbce
    .. manim:: MoleculeScene
       :files: morphine_2d.mol
 
-      molecule = MMoleculeObject.molecule_from_file("morphine_2d.mol")
+      from manim import *
+
+   molecule = MMoleculeObject.molecule_from_file("morphine_2d.mol")
 
 .. code-block:: rst
 

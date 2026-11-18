@@ -89,3 +89,97 @@ def test_named_molecule_reports_invalid_bond_index(named_molecule):
 def test_named_molecule_reports_invalid_bond_axis_index(named_molecule):
     with pytest.raises((IndexError, TypeError)):
         named_molecule.find_position_along_bond_axis(999, 0.5)
+
+
+class _RaisingMapping:
+    def __init__(self, exc):
+        self.exc = exc
+        self.submob_dict = {"0": object()}
+
+    def __getitem__(self, key):
+        raise self.exc
+
+
+def test_named_lookup_wraps_key_error_for_atoms(named_molecule):
+    named_molecule.atoms = _RaisingMapping(KeyError("atom"))
+
+    with pytest.raises(KeyError):
+        named_molecule.find_atom_position_by_index(9)
+
+
+def test_named_lookup_wraps_key_error_for_bonds(named_molecule):
+    named_molecule.bonds = _RaisingMapping(KeyError("bond"))
+
+    with pytest.raises(KeyError):
+        named_molecule.find_bond_center_by_index(9)
+
+    with pytest.raises(KeyError):
+        named_molecule.find_position_along_bond_axis(9, 0.5)
+
+
+def test_named_lookup_reraises_unexpected_atom_errors(named_molecule):
+    named_molecule.atoms = _RaisingMapping(RuntimeError("unexpected"))
+
+    with pytest.raises(RuntimeError):
+        named_molecule.find_atom_position_by_index(0)
+
+
+def test_base_lookup_wraps_key_error_and_reraises(named_molecule):
+    molecule = named_molecule.molecule
+    molecule.atoms = _RaisingMapping(KeyError("atom"))
+    with pytest.raises(KeyError):
+        molecule.find_atom_position_by_index(9)
+
+    molecule.atoms = _RaisingMapping(RuntimeError("unexpected"))
+    with pytest.raises(RuntimeError):
+        molecule.find_atom_position_by_index(0)
+
+
+def test_named_molecule_accepts_svg_name(tmp_path):
+    from manim import SVGMobject
+
+    svg = tmp_path / "name.svg"
+    svg.write_text(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">'
+        '<circle cx="10" cy="10" r="8" fill="black"/></svg>'
+    )
+    molecule = MMoleculeObject.molecule_from_string(MOL, format="mol")
+
+    named = NamedMolecule(SVGMobject(str(svg)), molecule)
+
+    assert len(named.submobjects) == 2
+
+
+def test_named_molecule_can_build_from_data_dict():
+    molecule = MMoleculeObject.molecule_from_string(MOL, format="mol")
+
+    named = NamedMolecule("Acetone", molecule)
+
+    assert named.molecule is molecule
+
+
+def test_base_lookup_wraps_bond_key_error(named_molecule):
+    molecule = named_molecule.molecule
+    molecule.bonds = _RaisingMapping(KeyError("bond"))
+
+    with pytest.raises(KeyError):
+        molecule.find_bond_center_by_index(9)
+
+    with pytest.raises(KeyError):
+        molecule.find_position_along_bond_axis(9, 0.5)
+
+
+def test_named_molecule_constructs_base_from_dict(monkeypatch):
+    import manim_extensions.chemistry.twoD.molecule as module
+
+    source = MMoleculeObject.molecule_from_string(MOL, format="mol")
+
+    class Dummy:
+        def __new__(cls, *args, **kwargs):
+            return source
+
+    monkeypatch.setattr(module, "MMoleculeObject", Dummy)
+
+    named = NamedMolecule("Acetone", {})
+
+    assert named.molecule is source

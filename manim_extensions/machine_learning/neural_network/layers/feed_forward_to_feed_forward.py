@@ -187,7 +187,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
                     )
                 else:
                     anim = MoveAlongPath(
-                        dot, edge, run_time=run_time, rate_function=sigmoid
+                        dot, edge, run_time=run_time, rate_func=sigmoid
                     )
                 path_animations.append(anim)
 
@@ -259,7 +259,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         assert len(widths) > 0
         # Note: 1d-arrays are assumed to be in row major order
         widths = np.array(widths)
-        widths = np.flatten(widths)
+        widths = widths.flatten()
         # Check thickness size
         assert np.shape(widths)[0] == len(self.edges)
         # Make animation

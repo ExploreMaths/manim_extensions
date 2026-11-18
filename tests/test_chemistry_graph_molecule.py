@@ -3,6 +3,8 @@
 
 """Tests for the graph-based molecule representation."""
 
+import pytest
+
 from manim_extensions.chemistry.twoD.graph_molecule import GraphMolecule
 
 MOL = """acetone
@@ -43,3 +45,25 @@ def test_bond_type_support_table():
         "1" in GraphMolecule.SUPPORTED_BOND_TYPES
         or 1 in GraphMolecule.SUPPORTED_BOND_TYPES
     )
+
+
+def test_labels_and_connected_atoms():
+    molecule = GraphMolecule.molecule_from_string(MOL, format="mol", label=True)
+    connected = molecule.get_connected_atoms(1, 2)
+    assert connected
+
+    plain = GraphMolecule.molecule_from_string(MOL, format="mol")
+    connected = plain.get_connected_atoms(1, 2)
+    assert connected
+
+    with pytest.raises(Exception, match="no bond"):
+        plain.get_connected_atoms(1, 6)
+
+
+def test_invalid_atom_and_bond_indices_raise():
+    molecule = GraphMolecule.molecule_from_string(MOL, format="mol")
+
+    with pytest.raises(KeyError):
+        molecule.find_atom_position_by_index(99)
+    with pytest.raises(KeyError):
+        molecule.find_bond_center_by_index((99, 98))
