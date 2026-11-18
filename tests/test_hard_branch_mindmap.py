@@ -69,7 +69,19 @@ def test_split_integer_odd_and_even():
 def test_flip_direction_round_trips():
     layout = object.__new__(StandardLayout)
 
-    assert layout._flip_direction(LayoutDirection.LeftToRight) is LayoutDirection.RightToLeft
-    assert layout._flip_direction(LayoutDirection.RightToLeft) is LayoutDirection.LeftToRight
-    assert layout._flip_direction(LayoutDirection.TopToBottom) is LayoutDirection.BottomToTop
-    assert layout._flip_direction(LayoutDirection.BottomToTop) is LayoutDirection.TopToBottom
+    assert (
+        layout._flip_direction(LayoutDirection.LeftToRight)
+        is LayoutDirection.RightToLeft
+    )
+    assert (
+        layout._flip_direction(LayoutDirection.RightToLeft)
+        is LayoutDirection.LeftToRight
+    )
+    assert (
+        layout._flip_direction(LayoutDirection.TopToBottom)
+        is LayoutDirection.BottomToTop
+    )
+    assert (
+        layout._flip_direction(LayoutDirection.BottomToTop)
+        is LayoutDirection.TopToBottom
+    )

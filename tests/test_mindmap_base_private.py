@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
 from manim import Group, Text
 
 from manim_extensions.mindmap.mindmap.base import AbstractMap

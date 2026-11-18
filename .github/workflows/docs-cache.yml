@@ -20,8 +20,10 @@ on:
     tags: ["v*"]
   schedule:
     # Refresh the vendored-status cache and published docs daily at
-    # 00:00 Asia/Shanghai (16:00 UTC on the previous day).
-    - cron: "0 16 * * *"
+    # 00:05 Asia/Shanghai (16:05 UTC on the previous day). Avoid the exact
+    # top of the hour: GitHub Actions drops queued schedule runs under the
+    # high load it sees at :00.
+    - cron: "5 16 * * *"
   workflow_dispatch:
     inputs:
       rtd_only:

@@ -55,13 +55,20 @@ def test_xml_parser_read_file(tmp_path):
 
 
 def test_base_parser_atoms_and_bonds_accessors():
-    from manim_extensions.chemistry.utils.utils import mol_parser_string
-
     from manim_extensions.chemistry.utils.parsers.mol_parser import MolParser
 
-    from tests.test_chemistry_parsers import MOL_BLOCK
+    mol_block = """acetone
+     RDKit          2D
 
-    parser = MolParser.parse_from_string(MOL_BLOCK)
+  3  2  0  0  0  0  0  0  0  0999 V2000
+    0.0000    0.0000    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+    1.2990    0.7500    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0
+   -1.2990    0.7500    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0
+  1  2  2  0
+  1  3  1  0
+M  END
+"""
+    parser = MolParser.parse_from_string(mol_block)
     atoms, bonds = parser
 
     class Dummy:
@@ -96,7 +103,11 @@ def test_pubchem_json_decode_falls_back_to_content(monkeypatch):
 
     response = _FakeResponse({}, decode=True)
     manager = PubchemAPIManager(cid=2244)
-    monkeypatch.setattr(importlib.import_module("manim_extensions.chemistry.utils.pubchem_api").time, "sleep", lambda _: None)
+    monkeypatch.setattr(
+        importlib.import_module("manim_extensions.chemistry.utils.pubchem_api").time,
+        "sleep",
+        lambda _: None,
+    )
 
     body = manager.handle_request(response, 2244)
 
@@ -114,7 +125,11 @@ def test_pubchem_three_d_urls_for_every_identifier(monkeypatch):
         return _FakeResponse({"ok": True})
 
     monkeypatch.setattr(requests, "get", fake_get)
-    monkeypatch.setattr(importlib.import_module("manim_extensions.chemistry.utils.pubchem_api").time, "sleep", lambda _: None)
+    monkeypatch.setattr(
+        importlib.import_module("manim_extensions.chemistry.utils.pubchem_api").time,
+        "sleep",
+        lambda _: None,
+    )
 
     PubchemAPIManager(cid=1, three_d=True).from_cid()
     PubchemAPIManager(name="water", three_d=True).from_name()
@@ -135,7 +150,11 @@ def test_pubchem_404_and_500_errors(monkeypatch):
         return _FakeResponse({}, status_code=500)
 
     monkeypatch.setattr(requests, "get", fake_get)
-    monkeypatch.setattr(importlib.import_module("manim_extensions.chemistry.utils.pubchem_api").time, "sleep", lambda _: None)
+    monkeypatch.setattr(
+        importlib.import_module("manim_extensions.chemistry.utils.pubchem_api").time,
+        "sleep",
+        lambda _: None,
+    )
 
     with pytest.raises(Exception, match="Compound missing not found"):
         PubchemAPIManager(cid="missing").from_cid()

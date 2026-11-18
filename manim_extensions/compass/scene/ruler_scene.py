@@ -33,7 +33,6 @@ class SingleRulerScene(MovingCameraScene):
        :save_last_frame:
 
        from manim import *
-
        from manim_extensions.compass import SingleRulerScene
 
        class SingleRulerSceneUsage(SingleRulerScene):

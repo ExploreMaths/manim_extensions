@@ -69,9 +69,7 @@ def test_morph_prepare_camera_with_overflow(monkeypatch):
     chart = _chart()
     rig = CameraRig(SimpleNamespace(camera=SimpleNamespace(frame=Square())))
     chart.attach_camera(rig)
-    morph = RadarMorph(
-        chart, [9, 9, 9, 9, 9, 9], transition="burst", run_time=0.5
-    )
+    morph = RadarMorph(chart, [9, 9, 9, 9, 9, 9], transition="burst", run_time=0.5)
     morph.begin()
     morph.end_scale = 0.0
 
@@ -86,9 +84,7 @@ def test_morph_prepare_camera_returns_none_for_zero_direction(monkeypatch):
     chart = _chart()
     rig = CameraRig(SimpleNamespace(camera=SimpleNamespace(frame=Square())))
     chart.attach_camera(rig)
-    morph = RadarMorph(
-        chart, [9, 9, 9, 9, 9, 9], transition="burst", run_time=0.5
-    )
+    morph = RadarMorph(chart, [9, 9, 9, 9, 9, 9], transition="burst", run_time=0.5)
     morph.begin()
     morph.end_scale = 0.0
     monkeypatch.setattr(

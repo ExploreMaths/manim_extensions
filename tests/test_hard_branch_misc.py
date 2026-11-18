@@ -39,9 +39,7 @@ def test_bohr_atom_uses_explicit_level():
 
 def test_element_rejects_invalid_reference(tmp_path):
     path = tmp_path / "elements.csv"
-    path.write_text(
-        "Symbol,Name,AtomicNumber,AtomicMass\nH,Hydrogen,1,1.008\n"
-    )
+    path.write_text("Symbol,Name,AtomicNumber,AtomicMass\nH,Hydrogen,1,1.008\n")
 
     with pytest.raises(Exception, match="NOT a valid reference"):
         Element.from_csv_file(str(path), 200)

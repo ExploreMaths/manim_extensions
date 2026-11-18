@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
 from manim_extensions.pymunk.utils.tools_func import (
     get_moment_for_box,
     get_moment_for_circle,

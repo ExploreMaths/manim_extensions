@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
 from manim_extensions.circuit.mobjects import Capacitor, Inductor, Opamp, Resistor
 
 

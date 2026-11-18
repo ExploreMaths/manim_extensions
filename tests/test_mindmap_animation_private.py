@@ -1,3 +1,6 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
 import pytest
 from manim import ImageMobject, MathTex, RIGHT, Text
 

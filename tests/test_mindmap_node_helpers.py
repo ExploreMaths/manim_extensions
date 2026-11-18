@@ -68,9 +68,7 @@ def test_change_connector_for_each_layout(tree, change_dir, change_layout, layou
 
 
 def test_text_style_falls_back_to_last_level():
-    style = NodeStyle(
-        text_style=[{"color": RIGHT_COLOR}] if False else [{"font_size": 12}]
-    )
+    style = NodeStyle(text_style=[{"font_size": 12}])
 
     assert style.get_text_style(3) == style.text_style[-1]
 

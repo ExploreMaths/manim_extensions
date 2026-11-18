@@ -38,7 +38,6 @@ class PathMapper(VMobject):
        :save_last_frame:
 
         from manim import *
-
         from manim import Scene, Circle
         from manim_extensions.cad_drawing_utils.path_mapper import PathMapper
 
@@ -623,7 +622,6 @@ class DashDotMobject(DashedLineMobject):
        :save_last_frame:
 
         from manim import *
-
         from manim import Scene, VMobject, LEFT, UP, RIGHT, DOWN, BLUE
         from manim_extensions.cad_drawing_utils.path_mapper import DashDotMobject
 
@@ -715,7 +713,6 @@ class PathOffsetMobject(VMobject):
        :save_last_frame:
 
         from manim import *
-
         from manim import Scene, Circle
         from manim_extensions.cad_drawing_utils.path_mapper import PathOffsetMobject
 
@@ -935,7 +932,6 @@ class CurveWarp(VMobject):
        :save_last_frame:
 
         from manim import *
-
         from manim import Scene, Circle, Line
         from manim_extensions.cad_drawing_utils.path_mapper import CurveWarp
 
