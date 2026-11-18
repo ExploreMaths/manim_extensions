@@ -1483,10 +1483,10 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – <a class="reference internal" href="layout.Layout.html#manim_extensions.mindmap.algorithms.layout.Layout" title="manim_extensions.mindmap.algorithms.layout.Layout"><code class="xref py py-class docutils literal notranslate"><span class="pre">Layout</span></code></a> direction.</p></li>
+<li><p><strong>direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span>) – <a class="reference internal" href="layout.Layout.html#manim_extensions.mindmap.algorithms.layout.Layout" title="manim_extensions.mindmap.algorithms.layout.Layout"><code class="xref py py-class docutils literal notranslate"><span class="pre">Layout</span></code></a> direction.</p></li>
 <li><p><strong>node_spacing</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Spacing between nodes.</p></li>
 <li><p><strong>level_spacing</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Spacing between layers.</p></li>
-<li><p><strong>sides</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a>, <a class="reference internal" href="../../meshes/index.html#manim_extensions.meshes.types.VarArray" title="manim_extensions.meshes.types.VarArray"><code class="xref py py-type docutils literal notranslate"><span class="pre">VarArray</span></code></a>]</span>) – Sides used for alternating timeline layouts; a single value means single-sided.</p></li>
+<li><p><strong>sides</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>]]</span>) – Sides used for alternating timeline layouts; a single value means single-sided.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
@@ -1530,7 +1530,7 @@
 <dd><p>Convert a direction vector to a <a class="reference internal" href="layout_config.LayoutDirection.html#manim_extensions.mindmap.algorithms.layout_config.LayoutDirection" title="manim_extensions.mindmap.algorithms.layout_config.LayoutDirection"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutDirection</span></code></a> enum.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – The direction of the operation.</p>
+<dd class="field-odd"><p><strong>direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span>) – The direction of the operation.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="layout_config.LayoutDirection.html#manim_extensions.mindmap.algorithms.layout_config.LayoutDirection" title="manim_extensions.mindmap.algorithms.layout_config.LayoutDirection"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutDirection</span></code></a></span></p>
@@ -1550,7 +1550,7 @@
 <dd class="field-odd"><p>A dictionary of the results.</p>
 </dd>
 <dt class="field-even">Setter accepts<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-type docutils literal notranslate"><span class="pre">Dict</span></code></span></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1564,7 +1564,7 @@
 <dd class="field-odd"><p>A dictionary of the results.</p>
 </dd>
 <dt class="field-even">Setter accepts<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-type docutils literal notranslate"><span class="pre">Dict</span></code></span></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1578,7 +1578,7 @@
 <dd class="field-odd"><p>A dictionary of the results.</p>
 </dd>
 <dt class="field-even">Setter accepts<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-type docutils literal notranslate"><span class="pre">Dict</span></code></span></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dict</span></code></a></span></p>
 </dd>
 </dl>
 </dd></dl>

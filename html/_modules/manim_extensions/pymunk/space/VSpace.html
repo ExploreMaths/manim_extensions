@@ -1858,19 +1858,19 @@
                 <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="k">return</span> <span class="kc">None</span>
-        <span class="n">handler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">add_wildcard_collision_handler</span><span class="p">(</span><span class="n">collision_type_a</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">begin</span><span class="p">:</span>
-            <span class="n">handler</span><span class="o">.</span><span class="n">begin</span> <span class="o">=</span> <span class="n">begin</span>
-        <span class="k">if</span> <span class="n">pre_solve</span><span class="p">:</span>
-            <span class="n">handler</span><span class="o">.</span><span class="n">pre_solve</span> <span class="o">=</span> <span class="n">pre_solve</span>
-        <span class="k">if</span> <span class="n">post_solve</span><span class="p">:</span>
-            <span class="n">handler</span><span class="o">.</span><span class="n">post_solve</span> <span class="o">=</span> <span class="n">post_solve</span>
-        <span class="k">if</span> <span class="n">separate</span><span class="p">:</span>
-            <span class="n">handler</span><span class="o">.</span><span class="n">separate</span> <span class="o">=</span> <span class="n">separate</span>
-        <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
-            <span class="n">handler</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">handler</span></div>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># pragma: no cover - pymunk &lt; 7 fallback</span>
+            <span class="n">handler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">add_wildcard_collision_handler</span><span class="p">(</span><span class="n">collision_type_a</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">begin</span><span class="p">:</span>
+                <span class="n">handler</span><span class="o">.</span><span class="n">begin</span> <span class="o">=</span> <span class="n">begin</span>
+            <span class="k">if</span> <span class="n">pre_solve</span><span class="p">:</span>
+                <span class="n">handler</span><span class="o">.</span><span class="n">pre_solve</span> <span class="o">=</span> <span class="n">pre_solve</span>
+            <span class="k">if</span> <span class="n">post_solve</span><span class="p">:</span>
+                <span class="n">handler</span><span class="o">.</span><span class="n">post_solve</span> <span class="o">=</span> <span class="n">post_solve</span>
+            <span class="k">if</span> <span class="n">separate</span><span class="p">:</span>
+                <span class="n">handler</span><span class="o">.</span><span class="n">separate</span> <span class="o">=</span> <span class="n">separate</span>
+            <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
+                <span class="n">handler</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">handler</span></div>
 
 
 <div class="viewcode-block" id="VSpace._collision_detection_handler">
@@ -1931,21 +1931,21 @@
                 <span class="n">data</span><span class="o">=</span><span class="n">data</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="k">return</span> <span class="kc">None</span>
-        <span class="n">handler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">add_collision_handler</span><span class="p">(</span><span class="n">collision_type_a</span><span class="p">,</span> <span class="n">collision_type_b</span><span class="p">)</span>
-
-        <span class="k">if</span> <span class="n">begin</span><span class="p">:</span>
-            <span class="n">handler</span><span class="o">.</span><span class="n">begin</span> <span class="o">=</span> <span class="n">begin</span>
-        <span class="k">if</span> <span class="n">pre_solve</span><span class="p">:</span>
-            <span class="n">handler</span><span class="o">.</span><span class="n">pre_solve</span> <span class="o">=</span> <span class="n">pre_solve</span>
-        <span class="k">if</span> <span class="n">post_solve</span><span class="p">:</span>
-            <span class="n">handler</span><span class="o">.</span><span class="n">post_solve</span> <span class="o">=</span> <span class="n">post_solve</span>
-        <span class="k">if</span> <span class="n">separate</span><span class="p">:</span>
-            <span class="n">handler</span><span class="o">.</span><span class="n">separate</span> <span class="o">=</span> <span class="n">separate</span>
-
-        <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
-            <span class="n">handler</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">handler</span></div>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># pragma: no cover - pymunk &lt; 7 fallback</span>
+            <span class="n">handler</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">add_collision_handler</span><span class="p">(</span>
+                <span class="n">collision_type_a</span><span class="p">,</span> <span class="n">collision_type_b</span>
+            <span class="p">)</span>
+            <span class="k">if</span> <span class="n">begin</span><span class="p">:</span>
+                <span class="n">handler</span><span class="o">.</span><span class="n">begin</span> <span class="o">=</span> <span class="n">begin</span>
+            <span class="k">if</span> <span class="n">pre_solve</span><span class="p">:</span>
+                <span class="n">handler</span><span class="o">.</span><span class="n">pre_solve</span> <span class="o">=</span> <span class="n">pre_solve</span>
+            <span class="k">if</span> <span class="n">post_solve</span><span class="p">:</span>
+                <span class="n">handler</span><span class="o">.</span><span class="n">post_solve</span> <span class="o">=</span> <span class="n">post_solve</span>
+            <span class="k">if</span> <span class="n">separate</span><span class="p">:</span>
+                <span class="n">handler</span><span class="o">.</span><span class="n">separate</span> <span class="o">=</span> <span class="n">separate</span>
+            <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
+                <span class="n">handler</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">handler</span></div>
 
 
     <span class="c1"># =============================== body ==================================</span>

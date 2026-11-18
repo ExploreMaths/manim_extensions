@@ -1607,7 +1607,7 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>face</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-type docutils literal notranslate"><span class="pre">VectorND</span></code></span>) – Array of vertex indices defining the face to add.</p></li>
+<li><p><strong>face</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Array of vertex indices defining the face to add.</p></li>
 <li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Optional colour for the new face.</p></li>
 </ul>
 </dd>
@@ -1780,7 +1780,7 @@ If edges are displayed every edge touching this vertex is re-rendered.</p>
 the final translation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>vectors</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – One or more displacement vectors to apply.</p>
+<dd class="field-odd"><p><strong>vectors</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span>) – One or more displacement vectors to apply.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1862,7 +1862,7 @@ origin.</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>scene</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a></span>) – The scene in which the animation is played.</p></li>
 <li><p><strong>vertex_idx</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the vertex to move.</p></li>
-<li><p><strong>shift</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Displacement vector (same dimensionality as <code class="docutils literal notranslate"><span class="pre">mesh.dim</span></code>).</p></li>
+<li><p><strong>shift</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span>) – Displacement vector (same dimensionality as <code class="docutils literal notranslate"><span class="pre">mesh.dim</span></code>).</p></li>
 <li><p><strong>**kwargs</strong> – May include <code class="docutils literal notranslate"><span class="pre">shift_vertex_runtime</span></code> (animation duration in seconds).</p></li>
 </ul>
 </dd>
@@ -1877,7 +1877,7 @@ origin.</p></li>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>scene</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a></span>) – The scene in which the animation is played.</p></li>
-<li><p><strong>shift</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Array of displacement vectors, one per vertex (same length as
+<li><p><strong>shift</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span>) – Array of displacement vectors, one per vertex (same length as
 <code class="docutils literal notranslate"><span class="pre">self.mesh.vertices</span></code>).</p></li>
 <li><p><strong>**kwargs</strong> – May include <code class="docutils literal notranslate"><span class="pre">shift_vertices_runtime</span></code> (animation duration in seconds).</p></li>
 </ul>
