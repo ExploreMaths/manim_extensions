@@ -110,6 +110,14 @@ jobs:
         if: steps.needed.outputs.needed == 'true'
         run: pip install ".[all]"
 
+      - name: Verify Arabic font
+        if: steps.needed.outputs.needed == 'true'
+        run: |
+          if ! fc-list : family | grep -Eqi 'Amiri|Scheherazade|Noto Naskh Arabic'; then
+            echo "No Arabic-capable font is installed; Arabic examples would render blank." >&2
+            exit 1
+          fi
+
       - name: Render all doc examples
         if: steps.needed.outputs.needed == 'true'
         run: python workflow/render_doc_examples.py --out media_cache --workers 6 --quality high
@@ -175,6 +183,13 @@ jobs:
           sudo apt-get install -y \
             ffmpeg fonts-jetbrains-mono fonts-noto-cjk fonts-hosny-amiri \
             graphviz libcairo2-dev libpango1.0-dev libffi-dev pkg-config
+
+      - name: Verify Arabic font
+        run: |
+          if ! fc-list : family | grep -Eqi 'Amiri|Scheherazade|Noto Naskh Arabic'; then
+            echo "No Arabic-capable font is installed; Arabic examples would render blank." >&2
+            exit 1
+          fi
 
       - name: Fetch the complete media cache
         env:

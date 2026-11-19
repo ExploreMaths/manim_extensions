@@ -95,8 +95,12 @@ QUALITY_MAP = {
 #                            # top-level move; the previous helper looked in
 #                            # <package>/utils/nerdfont, so cache entries
 #                            # marked with 2 can contain tofu glyphs
+#   fontconfig_arabic = 1   # xelatex needs an installed Arabic font; entries
+#                            # rendered without one can be blank even though
+#                            # the source compiled without an error
 ENV_TAGS = {
     "fontconfig_nerdfont": 3,
+    "fontconfig_arabic": 1,
     "jetbrains_mono": 1,
 }
 
@@ -111,6 +115,8 @@ def tags_for_block(block: dict) -> set[str]:
     # merely use `icon` as a local variable name.
     if any(s in code for s in ("nerdfont", "NerdFont", 'icon="', "icon='")):
         tags.add("fontconfig_nerdfont")
+    if any(s in code for s in ("Arabic", "arabic")):
+        tags.add("fontconfig_arabic")
     if any(
         s in code for s in ("FileTree", "DEFAULT_MONO_FONT", "JetBrains Mono", "Code(")
     ):
