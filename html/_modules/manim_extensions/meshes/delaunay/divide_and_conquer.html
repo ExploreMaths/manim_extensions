@@ -1685,8 +1685,14 @@
                 <span class="n">vert_indices</span> <span class="o">=</span> <span class="n">vert_indices</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
                 <span class="n">vert_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vert_indices</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
             <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">triangle_mesh</span><span class="o">.</span><span class="n">add_face</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vert_indices</span><span class="p">))</span>
-            <span class="c1"># update hack</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">update_frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_refresh_renderer</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="DivideAndConquer._refresh_renderer">
+<a class="viewcode-back" href="../../../../reference/meshes/delaunay/divide_and_conquer.DivideAndConquer.html#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._refresh_renderer">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_refresh_renderer</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Commit a mesh mutation to the renderer before the next animation."""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">update_frame</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="DivideAndConquer._right_candidate">

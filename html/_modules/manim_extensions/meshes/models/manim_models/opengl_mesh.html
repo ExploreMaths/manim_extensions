@@ -1490,8 +1490,15 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">FastManimMesh</span><span class="p">(</span><span class="n">OpenGLMobject</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""More efficient mesh implementation.</span>
 <span class="sd">    Uses custom shaders and stores vertices and faces in a single VAO.</span>
-<span class="sd">    Useful to render meshes with many vertices / faces. Currently only supports displaying the mesh,</span>
-<span class="sd">    no mesh manipulations.</span>
+<span class="sd">    Useful for rendering meshes with many vertices / faces. The underlying</span>
+<span class="sd">    :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh` can be</span>
+<span class="sd">    updated through</span>
+<span class="sd">    :meth:`~manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.set_mesh`,</span>
+<span class="sd">    :meth:`~manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.add_face`,</span>
+<span class="sd">    :meth:`~manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.remove_face`</span>
+<span class="sd">    and</span>
+<span class="sd">    :meth:`~manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.update_vertex`;</span>
+<span class="sd">    every update rebuilds the shader arrays.</span>
 
 <span class="sd">    .. warning::</span>
 
@@ -1528,10 +1535,9 @@
         <span class="c1"># imported here because OGLM requires the optional moderngl dependency</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">...params</span><span class="w"> </span><span class="kn">import</span> <span class="n">OGLM</span>
 
-        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">face</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">face</span> <span class="ow">in</span> <span class="n">mesh</span><span class="o">.</span><span class="n">faces</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"mesh must only consist of triangles!"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_validate_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span> <span class="o">=</span> <span class="n">mesh</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">triangle_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">faces</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">triangle_indices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_flatten_triangles</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">shader_folder</span><span class="o">=</span><span class="n">shader_folder</span> <span class="k">if</span> <span class="n">shader_folder</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">"mesh"</span><span class="p">,</span>
             <span class="c1"># default params</span>
@@ -1540,11 +1546,125 @@
             <span class="o">**</span><span class="n">remove_keys_from_dict</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">OGLM</span><span class="o">.</span><span class="n">keys</span><span class="p">())),</span>
         <span class="p">)</span>
 
+<div class="viewcode-block" id="FastManimMesh._validate_mesh">
+<a class="viewcode-back" href="../../../../../reference/meshes/models/manim_models/opengl_mesh.FastManimMesh.html#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh._validate_mesh">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_validate_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">:</span> <span class="n">Mesh</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Raise when the mesh is not composed exclusively of triangles.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        mesh</span>
+<span class="sd">            The mesh data model to validate.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If any face does not have exactly three vertices.</span>
+<span class="sd">        """</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">face</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span> <span class="k">for</span> <span class="n">face</span> <span class="ow">in</span> <span class="n">mesh</span><span class="o">.</span><span class="n">faces</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"mesh must only consist of triangles!"</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FastManimMesh._flatten_triangles">
+<a class="viewcode-back" href="../../../../../reference/meshes/models/manim_models/opengl_mesh.FastManimMesh.html#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh._flatten_triangles">[docs]</a>
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_flatten_triangles</span><span class="p">(</span><span class="n">mesh</span><span class="p">:</span> <span class="n">Mesh</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VectorND</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Return the flat triangle index array for the shader.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        mesh</span>
+<span class="sd">            Triangle mesh whose faces are concatenated.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            A one-dimensional array of vertex indices, empty for no faces.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">mesh</span><span class="o">.</span><span class="n">faces</span><span class="p">)</span> <span class="k">if</span> <span class="n">mesh</span><span class="o">.</span><span class="n">faces</span> <span class="k">else</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span></div>
+
+
 <div class="viewcode-block" id="FastManimMesh.init_points">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/manim_models/opengl_mesh.FastManimMesh.html#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.init_points">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">init_points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""Set the mesh vertices as the mobject's points."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_points</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">vertices</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="FastManimMesh.refresh_from_mesh">
+<a class="viewcode-back" href="../../../../../reference/meshes/models/manim_models/opengl_mesh.FastManimMesh.html#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.refresh_from_mesh">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">refresh_from_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Rebuild points and triangle indices after changing ``mesh`` in place."""</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_validate_mesh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">triangle_indices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_flatten_triangles</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_points</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="FastManimMesh.set_mesh">
+<a class="viewcode-back" href="../../../../../reference/meshes/models/manim_models/opengl_mesh.FastManimMesh.html#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.set_mesh">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_mesh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mesh</span><span class="p">:</span> <span class="n">Mesh</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Replace the displayed mesh and rebuild the shader arrays.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        mesh</span>
+<span class="sd">            Triangle-only mesh to display.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_validate_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span> <span class="o">=</span> <span class="n">mesh</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refresh_from_mesh</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="FastManimMesh.add_face">
+<a class="viewcode-back" href="../../../../../reference/meshes/models/manim_models/opengl_mesh.FastManimMesh.html#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.add_face">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_face</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">face</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Append a triangular face and refresh the displayed geometry.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        face</span>
+<span class="sd">            Three vertex indices forming the new face.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If ``face`` does not contain exactly three indices.</span>
+<span class="sd">        """</span>
+        <span class="n">face_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">face</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">face_array</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">3</span><span class="p">,):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"face must contain exactly three vertex indices"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">add_faces</span><span class="p">([</span><span class="n">face_array</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refresh_from_mesh</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="FastManimMesh.remove_face">
+<a class="viewcode-back" href="../../../../../reference/meshes/models/manim_models/opengl_mesh.FastManimMesh.html#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.remove_face">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_face</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Remove a triangular face by index and refresh the geometry.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        idx</span>
+<span class="sd">            Index of the face to remove.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">remove_faces</span><span class="p">([</span><span class="n">idx</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">refresh_from_mesh</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="FastManimMesh.update_vertex">
+<a class="viewcode-back" href="../../../../../reference/meshes/models/manim_models/opengl_mesh.FastManimMesh.html#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.update_vertex">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_vertex</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">vertex</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Update one vertex and refresh the displayed geometry.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        idx</span>
+<span class="sd">            Index of the vertex to update.</span>
+<span class="sd">        vertex</span>
+<span class="sd">            New vertex coordinates.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">update_vertex</span><span class="p">(</span><span class="n">idx</span><span class="p">,</span> <span class="n">vertex</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">init_points</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="FastManimMesh.get_triangle_indices">
