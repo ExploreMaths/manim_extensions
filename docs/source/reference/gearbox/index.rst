@@ -2,7 +2,7 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-GearBox
+gearbox
 =======
 
 .. module:: manim_extensions.gearbox

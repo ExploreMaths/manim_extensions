@@ -1,7 +1,7 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Weighted Line
+weighted_line
 =============
 
 .. module:: manim_extensions.weighted_line

@@ -2,7 +2,7 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Sequence diagram
+sequence_diagram
 ================
 
 .. module:: manim_extensions.sequence_diagram

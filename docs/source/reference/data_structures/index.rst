@@ -2,7 +2,7 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Data Structures
+data_structures
 ===============
 
 .. module:: manim_extensions.data_structures

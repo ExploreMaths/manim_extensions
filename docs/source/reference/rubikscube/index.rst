@@ -2,8 +2,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Rubik's Cube
-============
+rubikscube
+==========
 
 .. module:: manim_extensions.rubikscube
 

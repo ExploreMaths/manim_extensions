@@ -1,7 +1,7 @@
 .. SPDX-FileCopyrightText: 2025 dcolinmorgan
 .. SPDX-License-Identifier: MIT
 
-Scene
+scene
 =====
 
 .. module:: manim_extensions.machine_learning.scene
