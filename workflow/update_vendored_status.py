@@ -29,6 +29,7 @@ import sys
 import urllib.error
 import urllib.request
 from datetime import date, datetime, timezone
+from zoneinfo import ZoneInfo
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -206,7 +207,7 @@ def main() -> int:
             if slug not in repos:
                 repos[slug] = info  # keep an (empty) placeholder
 
-    today = datetime.now(timezone.utc).date().isoformat()
+    today = datetime.now(ZoneInfo("Asia/Shanghai")).date().isoformat()
     data = {"generated": today, "repos": repos}
     CACHE.parent.mkdir(parents=True, exist_ok=True)
     CACHE.write_text(
