@@ -96,6 +96,7 @@ jobs:
             echo "needed=true" >> "$GITHUB_OUTPUT"
           fi
 
+      - uses: ./.github/actions/configure-apt
       - uses: ExploreMaths/setup-manim-env@v1
         if: steps.needed.outputs.needed == 'true'
         with:
@@ -167,6 +168,7 @@ jobs:
       - uses: actions/checkout@v4
 
       # Mirrors the system packages that .readthedocs.yaml used to install.
+      - uses: ./.github/actions/configure-apt
       - name: Install RTD system packages
         run: |
           sudo apt-get update
@@ -185,6 +187,7 @@ jobs:
           python workflow/render_doc_examples.py --out /tmp/rtd-cache --quality high --check
           python workflow/execute_nbcell_examples.py --check --cache /tmp/rtd-cache/_nbcell_cache.json
 
+      - uses: ./.github/actions/configure-apt
       - uses: ExploreMaths/setup-manim-env@v1
         with:
           python-version: "3.12"

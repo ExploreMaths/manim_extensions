@@ -1,0 +1,17 @@
+# SPDX-FileCopyrightText: 2026 ExploreMaths
+# SPDX-License-Identifier: MIT
+
+name: "Configure apt retries"
+description: "Make apt retry transient mirror and connection failures"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Configure apt retry policy
+      shell: bash
+      run: |
+        sudo tee /etc/apt/apt.conf.d/99-manim-retries >/dev/null <<'APT'
+        Acquire::Retries "10";
+        Acquire::http::Timeout "30";
+        Acquire::https::Timeout "30";
+        APT

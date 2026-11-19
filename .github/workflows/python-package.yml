@@ -44,6 +44,7 @@ jobs:
             pip-${{ matrix.python-version }}-
             pip-
 
+      - uses: ./.github/actions/configure-apt
       - uses: ExploreMaths/setup-manim-env@v1
         with:
           python-version: ${{ matrix.python-version }}
@@ -109,6 +110,7 @@ jobs:
             pip-3.13-
             pip-
 
+      - uses: ./.github/actions/configure-apt
       - uses: ExploreMaths/setup-manim-env@v1
         with:
           python-version: "3.13"
