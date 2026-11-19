@@ -591,7 +591,7 @@ def _generic_alias_annotation(annotation):
     """
     dotted = _alias_dotted_name(annotation)
     if dotted is not None:
-        return f":py:type:`~{dotted}`"
+        return f":py:obj:`~{dotted}`"
     origin = getattr(annotation, "__origin__", None)
     args = getattr(annotation, "__args__", ())
     if origin is not type or len(args) != 1:
@@ -599,21 +599,86 @@ def _generic_alias_annotation(annotation):
     dotted = _alias_dotted_name(args[0])
     if dotted is None:
         return None
-    return f":py:obj:`type`\\ \\[:py:type:`~{dotted}`]"
+    return f":py:obj:`type`\\ \\[:py:obj:`~{dotted}`]"
+
+
+_PROJECT_ROOT = Path(__file__).resolve().parents[3]
+
+
+def _looks_like_alias(node):
+    """Return whether an assignment value is a typing expression."""
+    if isinstance(node, ast.Subscript):
+        return True
+    if isinstance(node, ast.BinOp) and isinstance(node.op, ast.BitOr):
+        return True
+    if isinstance(node, ast.Call):
+        func = node.func
+        return isinstance(func, ast.Name) and func.id in {"TypeAlias", "TypeAliasType"}
+    return isinstance(node, (ast.Name, ast.Attribute))
+
+
+def _discover_project_type_aliases():
+    """Map public project alias names to their defining modules.
+
+    Sphinx expands aliases after evaluating postponed annotations, so the
+    annotation object no longer carries the original name.  ``autodoc_type_aliases``
+    is the supported place to tell Sphinx which names are aliases; build that
+    mapping from source instead of listing one alias per fix.
+    """
+    definitions = {}
+    package = _PROJECT_ROOT / "manim_extensions"
+    if not package.is_dir():
+        return {}
+    for path in sorted(package.rglob("*.py")):
+        relative = path.relative_to(_PROJECT_ROOT).with_suffix("")
+        module = ".".join(relative.parts)
+        if module.endswith(".__init__"):
+            module = module[: -len(".__init__")]
+        try:
+            tree = ast.parse(path.read_text(encoding="utf-8"))
+        except (OSError, SyntaxError):
+            continue
+        for node in tree.body:
+            if isinstance(node, ast.Assign):
+                targets = [target for target in node.targets if isinstance(target, ast.Name)]
+                value = node.value
+            elif isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
+                targets = [node.target]
+                value = node.value
+            else:
+                continue
+            if value is None or not _looks_like_alias(value):
+                continue
+            for target in targets:
+                name = target.id
+                if name.startswith("_") or not name[:1].isupper():
+                    continue
+                definitions.setdefault(name, []).append(f"{module}.{name}")
+    # Prefer the shortest qualified path when two modules define the same
+    # public alias name; the alias is normally written unqualified in code.
+    return {name: f"~{min(paths, key=len)}" for name, paths in definitions.items()}
 
 
 def _wrap_typehints_formatter(app):
-    previous = getattr(app.config, "typehints_formatter", None)
+    def on_config_inited(app, config):
+        aliases = dict(getattr(config, "autodoc_type_aliases", None) or {})
+        for name, dotted in _discover_project_type_aliases().items():
+            aliases.setdefault(name, dotted)
+        config.autodoc_type_aliases = aliases
 
-    def formatter(annotation, *args):
-        rendered = _generic_alias_annotation(annotation)
-        if rendered is not None:
-            return rendered
-        if previous is None:
-            return None
-        return previous(annotation, *args)
+        previous = getattr(config, "typehints_formatter", None)
 
-    app.config.typehints_formatter = formatter
+        def formatter(annotation, *args):
+            rendered = _generic_alias_annotation(annotation)
+            if rendered is not None:
+                return rendered
+            if previous is None:
+                return None
+            return previous(annotation, *args)
+
+        config.typehints_formatter = formatter
+
+    app.connect("config-inited", on_config_inited)
 
 
 def setup(app):
