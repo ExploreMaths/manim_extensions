@@ -80,13 +80,34 @@ class FastManimMesh(OpenGLMobject):
 
     @staticmethod
     def _validate_mesh(mesh: Mesh) -> None:
-        """Raise when the mesh is not composed exclusively of triangles."""
+        """Raise when the mesh is not composed exclusively of triangles.
+
+        Parameters
+        ----------
+        mesh
+            Mesh to validate.
+
+        Raises
+        ------
+        ValueError
+            If any face does not have exactly three vertices.
+        """
         if any(len(face) != 3 for face in mesh.faces):
             raise ValueError("mesh must only consist of triangles!")
 
     @staticmethod
     def _flatten_triangles(mesh: Mesh) -> VectorND:
-        """Return the flat triangle index array for the shader."""
+        """Return the flat triangle index array for the shader.
+
+        Parameters
+        ----------
+        mesh
+            Triangle mesh whose faces are concatenated.
+
+        Returns
+        -------
+            A one-dimensional array of vertex indices, empty for no faces.
+        """
         return np.hstack(mesh.faces) if mesh.faces else np.array([], dtype=int)
 
     def init_points(self):
@@ -118,6 +139,11 @@ class FastManimMesh(OpenGLMobject):
         ----------
         face
             Three vertex indices forming the new face.
+
+        Raises
+        ------
+        ValueError
+            If ``face`` does not contain exactly three indices.
         """
         face_array = np.asarray(face, dtype=int)
         if face_array.shape != (3,):

@@ -1462,7 +1462,17 @@ class Mesh:
 
     @staticmethod
     def _face_edges(face: Face) -> List[Edge]:
-        """Return the unique sorted edges of one face."""
+        """Return the unique sorted edges of one face.
+
+        Parameters
+        ----------
+        face
+            Face whose consecutive vertex pairs are converted to edges.
+
+        Returns
+        -------
+            The unique edges of the face, each sorted low-to-high.
+        """
         edges: List[Edge] = []
         last_vertex = int(face[-1])
         for vertex_idx in face:
@@ -1474,12 +1484,24 @@ class Mesh:
         return edges
 
     def _register_face_edges(self, face: Face) -> None:
-        """Increment the reference count of every edge in a face."""
+        """Increment the reference count of every edge in a face.
+
+        Parameters
+        ----------
+        face
+            Face whose edges are added to the cache.
+        """
         for edge in self._face_edges(face):
             self._edge_face_counts[edge] = self._edge_face_counts.get(edge, 0) + 1
 
     def _unregister_face_edges(self, face: Face) -> None:
-        """Decrement the reference count of every edge in a face."""
+        """Decrement the reference count of every edge in a face.
+
+        Parameters
+        ----------
+        face
+            Face whose edges are removed from the cache.
+        """
         for edge in self._face_edges(face):
             count = self._edge_face_counts.get(edge, 0) - 1
             if count > 0:
