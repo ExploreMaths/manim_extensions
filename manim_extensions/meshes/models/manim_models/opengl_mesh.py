@@ -85,7 +85,7 @@ class FastManimMesh(OpenGLMobject):
         Parameters
         ----------
         mesh
-            Mesh to validate.
+            The mesh data model to validate.
 
         Raises
         ------
