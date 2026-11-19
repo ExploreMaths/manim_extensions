@@ -22,8 +22,15 @@ from manim.typing import VectorND
 class FastManimMesh(OpenGLMobject):
     """More efficient mesh implementation.
     Uses custom shaders and stores vertices and faces in a single VAO.
-    Useful to render meshes with many vertices / faces. Currently only supports displaying the mesh,
-    no mesh manipulations.
+    Useful for rendering meshes with many vertices / faces. The underlying
+    :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh` can be
+    updated through
+    :meth:`~manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.set_mesh`,
+    :meth:`~manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.add_face`,
+    :meth:`~manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.remove_face`
+    and
+    :meth:`~manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.update_vertex`;
+    every update rebuilds the shader arrays.
 
     .. warning::
 
@@ -60,10 +67,9 @@ class FastManimMesh(OpenGLMobject):
         # imported here because OGLM requires the optional moderngl dependency
         from ...params import OGLM
 
-        if any(len(face) != 3 for face in mesh.faces):
-            raise ValueError("mesh must only consist of triangles!")
+        self._validate_mesh(mesh)
         self.mesh = mesh
-        self.triangle_indices = np.hstack(mesh.faces)
+        self.triangle_indices = self._flatten_triangles(mesh)
         super().__init__(
             shader_folder=shader_folder if shader_folder is not None else "mesh",
             # default params
@@ -72,9 +78,76 @@ class FastManimMesh(OpenGLMobject):
             **remove_keys_from_dict(kwargs, list(OGLM.keys())),
         )
 
+    @staticmethod
+    def _validate_mesh(mesh: Mesh) -> None:
+        """Raise when the mesh is not composed exclusively of triangles."""
+        if any(len(face) != 3 for face in mesh.faces):
+            raise ValueError("mesh must only consist of triangles!")
+
+    @staticmethod
+    def _flatten_triangles(mesh: Mesh) -> VectorND:
+        """Return the flat triangle index array for the shader."""
+        return np.hstack(mesh.faces) if mesh.faces else np.array([], dtype=int)
+
     def init_points(self):
         """Set the mesh vertices as the mobject's points."""
         self.set_points(self.mesh.vertices)
+
+    def refresh_from_mesh(self) -> None:
+        """Rebuild points and triangle indices after changing ``mesh`` in place."""
+        self._validate_mesh(self.mesh)
+        self.triangle_indices = self._flatten_triangles(self.mesh)
+        self.init_points()
+
+    def set_mesh(self, mesh: Mesh) -> None:
+        """Replace the displayed mesh and rebuild the shader arrays.
+
+        Parameters
+        ----------
+        mesh
+            Triangle-only mesh to display.
+        """
+        self._validate_mesh(mesh)
+        self.mesh = mesh
+        self.refresh_from_mesh()
+
+    def add_face(self, face: VectorND) -> None:
+        """Append a triangular face and refresh the displayed geometry.
+
+        Parameters
+        ----------
+        face
+            Three vertex indices forming the new face.
+        """
+        face_array = np.asarray(face, dtype=int)
+        if face_array.shape != (3,):
+            raise ValueError("face must contain exactly three vertex indices")
+        self.mesh.add_faces([face_array])
+        self.refresh_from_mesh()
+
+    def remove_face(self, idx: int) -> None:
+        """Remove a triangular face by index and refresh the geometry.
+
+        Parameters
+        ----------
+        idx
+            Index of the face to remove.
+        """
+        self.mesh.remove_faces([idx])
+        self.refresh_from_mesh()
+
+    def update_vertex(self, idx: int, vertex: VectorND) -> None:
+        """Update one vertex and refresh the displayed geometry.
+
+        Parameters
+        ----------
+        idx
+            Index of the vertex to update.
+        vertex
+            New vertex coordinates.
+        """
+        self.mesh.update_vertex(idx, vertex)
+        self.init_points()
 
     def get_triangle_indices(self) -> VectorND:
         """Return the flat array of triangle indices.

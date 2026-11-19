@@ -206,8 +206,11 @@ class DivideAndConquer:
                 vert_indices = vert_indices.copy()
                 vert_indices.append(vert_indices[0])
             _, _ = self.triangle_mesh.add_face(np.array(vert_indices))
-            # update hack
-            self.scene.renderer.update_frame(self.scene)
+            self._refresh_renderer()
+
+    def _refresh_renderer(self) -> None:
+        """Commit a mesh mutation to the renderer before the next animation."""
+        self.scene.renderer.update_frame(self.scene)
 
     def _right_candidate(self, base_lr: list, rr_edges: Mobject, speed: float = 1.0):
         """Find the best right-side candidate vertex for the merge step.

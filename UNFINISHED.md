@@ -5,11 +5,11 @@ SPDX-License-Identifier: MIT
 
 # Unfinished work in unmaintained upstream packages
 
-Only packages whose upstream is no longer maintained are listed here.  The
-vendored copy is already at the last upstream commit, so these gaps cannot be
-fixed by a future vendor sync; they need a local change.
+Only packages whose upstream is no longer maintained are listed here. The
+vendored copy is already at the last upstream commit, so any functional gap
+cannot be fixed by a future vendor sync; it needs a local change.
 
-Last checked: 2026-11-18.
+Last checked: 2026-11-19.
 
 ## `manim_extensions/meshes`
 
@@ -17,19 +17,20 @@ Last checked: 2026-11-18.
 - **Last upstream commit:** 2023-10-24 (`9d6cb83`), synced in this repository.
 - **Why local-only:** upstream has had no commits for more than three years.
 
-Unfinished:
+Status: all previously listed gaps are now implemented locally.
 
-- `models/data_models/mesh.py`: vertex/face/part updates only refresh part of
-  the edge cache (`# Fixme: update only partly`, eight sites around lines 586,
-  664, 691, 722, 861, 1397 and 1420).  Edges can become stale after a mesh
+- Edge caches are maintained incrementally with per-edge face reference
+  counts for face addition, removal and updates; topology-wide operations
+  rebuild the cache once. Edges therefore stay consistent after every mesh
   mutation.
-- `models/data_models/mesh.py`: face-equality question at line 536 — whether
-  two faces remain equal when their vertices are randomly sorted and not
-  clockwise.
-- `models/manim_models/opengl_mesh.py`: `FastManimMesh` only displays an
-  existing mesh; it does not implement mesh manipulation (line 25).
-- `delaunay/divide_and_conquer.py`: incremental Delaunay update is marked
-  `# update hack` (line 209).
+- Part lookup and duplicate-part removal compare face-index sets
+  independently of face order, so reordered or non-clockwise parts are
+  treated as equal.
+- `FastManimMesh` supports `set_mesh`, `add_face`, `remove_face` and
+  `update_vertex`; each mutation rebuilds its point and triangle-index
+  shader arrays.
+- Delaunay base-case face insertion now goes through the documented
+  `_refresh_renderer` helper instead of an ad-hoc renderer call.
 
 ## `manim_extensions/machine_learning`
 
@@ -38,8 +39,8 @@ Unfinished:
 - **Why local-only:** `VENDORED.md` records the upstream as archived; in
   practice it has had no commits for about three years.
 
-The local vendored copy already implements the upstream stubs that were
-missing (see the `machine_learning` entry in `VENDORED.md`), including
-`DecisionTreeEmbedding`, tree/surface unfolding, `NeuralNetwork.replace_layer`,
-and the variational-autoencoder forward passes.  No known unfinished feature
-remains; any future functional work has to be done locally.
+Status: no known unfinished feature remains. The local vendored copy already
+implements the upstream stubs that were missing (see the `machine_learning`
+entry in `VENDORED.md`), including `DecisionTreeEmbedding`, tree/surface
+unfolding, `NeuralNetwork.replace_layer`, and the variational-autoencoder
+forward passes.

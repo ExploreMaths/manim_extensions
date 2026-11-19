@@ -142,7 +142,8 @@ class Mesh:
         self._parts: Parts = (
             [np.array(p, dtype=int) for p in parts] if parts is not None else []
         )
-        self._edges = self.extract_edges()
+        self._edge_face_counts: dict[Edge, int] = {}
+        self._rebuild_edge_cache()
         self.test_for_dangling = dangling
 
     def __add__(self, other: "Mesh") -> "Mesh":
@@ -533,9 +534,12 @@ class Mesh:
         -------
             Matching part indices.
         """
-        # Fixme: are two parts equal even if the faces are randomly sorted, not clockwise?
-        #  [1,2,3] ?=? [1,3,2] or is it "rolling" like faces?
-        return find_in_vararray(array=self._parts, item=part, start=start)
+        target = np.sort(np.asarray(part))
+        return [
+            idx
+            for idx, current in enumerate(self._parts[start:], start=start)
+            if np.array_equal(target, np.sort(np.asarray(current)))
+        ]
 
     @dangling_vert_decorator()
     def add_vertices(self, new_vertices: Vertices):
@@ -583,8 +587,8 @@ class Mesh:
         self._vertices = np.delete(self._vertices, indices, axis=0)
         # remove faces and possibly parts
         fix_references(self._parts, faces_to_remove)
-        # edges may be changed # Fixme: update only partly
-        self._edges = self.extract_edges()
+        # Topology changed: rebuild the edge cache once for all removed faces.
+        self._rebuild_edge_cache()
 
     def update_vertex(self, idx: int, new_vert: Vertex):
         """Update the coordinates of a single vertex.
@@ -661,8 +665,9 @@ class Mesh:
                 self._faces.append(val)
         else:
             raise InvalidTypeException(f"unknown type for new_face {type(new_faces)}")
-        # edges may be changed # Fixme: update only partly
-        self._edges = self.extract_edges()
+        for new_face in new_faces:
+            self._register_face_edges(new_face)
+        self._edges = sorted(self._edge_face_counts)
 
     @dangling_vert_decorator()
     @dangling_face_decorator()
@@ -683,13 +688,15 @@ class Mesh:
         if any(len(self._faces) <= idx or idx < 0 for idx in indices):
             raise MeshIndexException("Face index out of range")
 
+        indices = sorted(set(indices), reverse=True)
         # use indices to update self._parts
         fix_references(self._parts, indices)
-        # remove faces at all the indices
-        for index in sorted(indices, reverse=True):
+        # remove faces and their edges at all the indices
+        for index in indices:
+            self._unregister_face_edges(self._faces[index])
+        for index in indices:
             del self._faces[index]
-        # edges may be changed # Fixme: update only partly
-        self._edges = self.extract_edges()
+        self._edges = sorted(self._edge_face_counts)
 
     @dangling_vert_decorator()
     def update_face(self, idx: int, new_face: Face):
@@ -717,10 +724,11 @@ class Mesh:
             )
         if any(0 > v_idx or v_idx >= len(self._vertices) for v_idx in new_face):
             raise MeshIndexException("Vertex index out of range.")
-        # update face
+        # update face and its edge references
+        self._unregister_face_edges(self._faces[idx])
         self._faces[idx] = np.array(new_face)
-        # edges may be changed # Fixme: update only partly
-        self._edges = self.extract_edges()
+        self._register_face_edges(self._faces[idx])
+        self._edges = sorted(self._edge_face_counts)
 
     @dangling_face_decorator()
     def add_parts(self, new_parts: Parts):
@@ -858,8 +866,9 @@ class Mesh:
             raise MeshIndexException("A part index is out of bounds.")
         self._parts += shifted_parts
 
-        # edges may be changed # Fixme: update only partly
-        self._edges = self.extract_edges()
+        for face in shifted_faces:
+            self._register_face_edges(face)
+        self._edges = sorted(self._edge_face_counts)
 
     def split_mesh_into_objects(self) -> "List[Mesh]":
         """Split the mesh into independent, non-interconnected meshes.
@@ -1394,8 +1403,7 @@ class Mesh:
                 for f_i, face in enumerate(self._faces):
                     np.place(self._faces[f_i], face == old_idx, new_idx)
         # current faces are fixed now
-        # edges may be changed # Fixme: update only partly
-        self._edges = self.extract_edges()
+        self._rebuild_edge_cache()
 
     def remove_duplicate_faces(self):
         """Remove duplicate faces and update part references.
@@ -1417,8 +1425,7 @@ class Mesh:
         # delete all duplicates from faces
         for del_f_idx in sorted(list(set(to_delete)), reverse=True):
             del self._faces[del_f_idx]
-        # edges may be changed # Fixme: update only partly
-        self._edges = self.extract_edges()
+        self._rebuild_edge_cache()
 
     def remove_duplicate_parts(self):
         """Remove duplicate parts from the mesh.
@@ -1450,6 +1457,40 @@ class Mesh:
         self.remove_duplicate_vertices(precision=precision)
         self.remove_duplicate_faces()
         self.remove_duplicate_parts()
+
+    @staticmethod
+    def _face_edges(face: Face) -> List[Edge]:
+        """Return the unique sorted edges of one face."""
+        edges: List[Edge] = []
+        last_vertex = int(face[-1])
+        for vertex_idx in face:
+            current = int(vertex_idx)
+            edge = (min(last_vertex, current), max(last_vertex, current))
+            if edge not in edges:
+                edges.append(edge)
+            last_vertex = current
+        return edges
+
+    def _register_face_edges(self, face: Face) -> None:
+        """Increment the reference count of every edge in a face."""
+        for edge in self._face_edges(face):
+            self._edge_face_counts[edge] = self._edge_face_counts.get(edge, 0) + 1
+
+    def _unregister_face_edges(self, face: Face) -> None:
+        """Decrement the reference count of every edge in a face."""
+        for edge in self._face_edges(face):
+            count = self._edge_face_counts.get(edge, 0) - 1
+            if count > 0:
+                self._edge_face_counts[edge] = count
+            else:
+                self._edge_face_counts.pop(edge, None)
+
+    def _rebuild_edge_cache(self) -> None:
+        """Rebuild the edge reference counts from all current faces."""
+        self._edge_face_counts = {}
+        for face in self._faces:
+            self._register_face_edges(face)
+        self._edges = sorted(self._edge_face_counts)
 
     def extract_edges(self) -> Edges:
         """returns all edges of the mesh as List of sorted 2-tuples of vertex indices, e.g. [(1,2), (2,3)].
