@@ -2,8 +2,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-radar
-=====
+Radar Charts
+============
 
 .. module:: manim_extensions.radar
 

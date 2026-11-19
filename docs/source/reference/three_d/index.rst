@@ -2,8 +2,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-three_d
-=======
+Three-Dimensional Surface Scenes
+================================
 
 .. module:: manim_extensions.three_d
 

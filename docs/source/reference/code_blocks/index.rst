@@ -2,7 +2,7 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-code_blocks
+Code Blocks
 ===========
 
 .. module:: manim_extensions.code_blocks

@@ -2,8 +2,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-cad_drawing_utils
-=================
+CAD Drawing Utilities
+=====================
 
 .. module:: manim_extensions.cad_drawing_utils
 

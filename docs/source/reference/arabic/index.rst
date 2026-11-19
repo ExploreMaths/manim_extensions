@@ -1,7 +1,7 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-arabic
+Arabic
 ======
 
 .. module:: manim_extensions.arabic

@@ -1,8 +1,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-cli
-===
+Command-line interface
+======================
 
 .. module:: manim_extensions.chemistry.cli
 

@@ -2,7 +2,7 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-mobjects
+Mobjects
 ========
 
 .. module:: manim_extensions.circuit.mobjects

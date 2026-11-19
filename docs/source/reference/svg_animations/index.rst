@@ -1,7 +1,7 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-svg_animations
+SVG Animations
 ==============
 
 .. module:: manim_extensions.svg_animations
