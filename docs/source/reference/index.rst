@@ -6,6 +6,8 @@ Reference Manual
 
 The reference manual contains the complete API for ``manim_extensions``.
 
+.. vendored-status-date::
+
 Inheritance Graphs
 ------------------
 

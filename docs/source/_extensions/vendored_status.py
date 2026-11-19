@@ -197,7 +197,7 @@ class VendoredStatusDirective(SphinxDirective):
             )
 
         if cached_entry is not None and cache_date:
-            items.append([T(f"Upstream data cached on {cache_date}.")])
+            items.append([T(f"Upstream data cached on {cache_date} (UTC+8).")])
 
         release = info.get("release")
         if release:
@@ -333,6 +333,51 @@ class VendoredStatusDirective(SphinxDirective):
         return [admonition]
 
 
+class VendoredStatusDateDirective(SphinxDirective):
+    """Render a note with the date of the vendored-status cache."""
+
+    has_content = False
+
+    def run(self) -> list[nodes.Node]:
+        app = self.state.document.settings.env.app
+        confdir = Path(app.confdir)
+        base_cache = (confdir / app.config.vendored_status_cache).resolve()
+        cache_file = base_cache
+        release = getattr(app.config, "release", None)
+        if release:
+            frozen = base_cache.with_name(f"_vendored_status_cache.{release}.json")
+            if frozen.exists():
+                cache_file = frozen
+
+        cache_date = None
+        if cache_file.exists():
+            try:
+                cache_date = json.loads(cache_file.read_text(encoding="utf-8")).get(
+                    "generated"
+                )
+            except (ValueError, OSError):
+                cache_date = None
+            self.state.document.settings.env.note_dependency(str(cache_file))
+
+        admonition = nodes.admonition()
+        admonition["classes"].append("note")
+        title = nodes.title()
+        title += nodes.Text("Vendored status data")
+        admonition += title
+        paragraph = nodes.paragraph()
+        if cache_date:
+            paragraph += nodes.Text(
+                f"Upstream data last updated on {cache_date} (UTC+8)."
+            )
+        else:
+            paragraph += nodes.Text(
+                "Upstream data has not been cached yet; run "
+                "workflow/update_vendored_status.py to refresh it."
+            )
+        admonition += paragraph
+        return [admonition]
+
+
 def setup(app) -> dict:
     app.add_config_value(
         "vendored_registry_path", "../../VENDORED.md", rebuild="env", types=[str]
@@ -344,6 +389,7 @@ def setup(app) -> dict:
         types=[str],
     )
     app.add_directive("vendored-status", VendoredStatusDirective)
+    app.add_directive("vendored-status-date", VendoredStatusDateDirective)
     return {
         "version": "1.0",
         "parallel_read_safe": True,

@@ -207,8 +207,10 @@ def main() -> int:
             if slug not in repos:
                 repos[slug] = info  # keep an (empty) placeholder
 
-    today = datetime.now(ZoneInfo("Asia/Shanghai")).date().isoformat()
-    data = {"generated": today, "repos": repos}
+    now = datetime.now(ZoneInfo("Asia/Shanghai"))
+    generated = now.strftime("%Y-%m-%d %H:%M")
+    today = now.date().isoformat()
+    data = {"generated": generated, "repos": repos}
     CACHE.parent.mkdir(parents=True, exist_ok=True)
     CACHE.write_text(
         json.dumps(data, indent=2, sort_keys=True) + "\n", encoding="utf-8"
