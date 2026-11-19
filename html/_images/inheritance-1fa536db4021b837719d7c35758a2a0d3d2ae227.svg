@@ -136,7 +136,7 @@
 
 <ns0:g id="node6" class="node">
 <ns0:title>AbstractLayoutAnimation</ns0:title>
-<ns0:g id="a_node6"><ns0:a ns1:title="Abstract base class for layout animations: collect node states and generate the full layout animation.">
+<ns0:g id="a_node6"><ns0:a ns1:href="../reference/mindmap/animations/animations.html#manim_extensions.mindmap.animations.animations.AbstractLayoutAnimation" ns1:title="Abstract base class for layout animations: collect node states and generate the full layout animation." target="_top">
 <ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="295.9,-2234.95 164.95,-2234.95 164.95,-2215 295.9,-2215 295.9,-2234.95" />
 <ns0:text xml:space="preserve" text-anchor="middle" x="230.43" y="-2221.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">AbstractLayoutAnimation</ns0:text>
 </ns0:a>
@@ -1708,7 +1708,7 @@
 
 <ns0:g id="node28" class="node">
 <ns0:title>BrandEnum</ns0:title>
-<ns0:g id="a_node28"><ns0:a ns1:title="Bundled brand-style icon paths.">
+<ns0:g id="a_node28"><ns0:a ns1:href="../reference/fontawesome/manim_fontawesome/index.html#manim_extensions.fontawesome.manim_fontawesome.BrandEnum" ns1:title="Bundled brand-style icon paths." target="_top">
 <ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="262.15,-2730.95 198.7,-2730.95 198.7,-2711 262.15,-2711 262.15,-2730.95" />
 <ns0:text xml:space="preserve" text-anchor="middle" x="230.43" y="-2717.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">BrandEnum</ns0:text>
 </ns0:a>
@@ -1747,7 +1747,7 @@
 
 <ns0:g id="node151" class="node">
 <ns0:title>RegularEnum</ns0:title>
-<ns0:g id="a_node151"><ns0:a ns1:title="Bundled regular-style icon paths.">
+<ns0:g id="a_node151"><ns0:a ns1:href="../reference/fontawesome/manim_fontawesome/index.html#manim_extensions.fontawesome.manim_fontawesome.RegularEnum" ns1:title="Bundled regular-style icon paths." target="_top">
 <ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="266.65,-2668.95 194.2,-2668.95 194.2,-2649 266.65,-2649 266.65,-2668.95" />
 <ns0:text xml:space="preserve" text-anchor="middle" x="230.43" y="-2655.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">RegularEnum</ns0:text>
 </ns0:a>
@@ -1762,7 +1762,7 @@
 
 <ns0:g id="node167" class="node">
 <ns0:title>SolidEnum</ns0:title>
-<ns0:g id="a_node167"><ns0:a ns1:title="Bundled solid-style icon paths.">
+<ns0:g id="a_node167"><ns0:a ns1:href="../reference/fontawesome/manim_fontawesome/index.html#manim_extensions.fontawesome.manim_fontawesome.SolidEnum" ns1:title="Bundled solid-style icon paths." target="_top">
 <ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="259.9,-2637.95 200.95,-2637.95 200.95,-2618 259.9,-2618 259.9,-2637.95" />
 <ns0:text xml:space="preserve" text-anchor="middle" x="230.43" y="-2624.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">SolidEnum</ns0:text>
 </ns0:a>

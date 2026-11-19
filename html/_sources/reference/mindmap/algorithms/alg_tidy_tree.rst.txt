@@ -15,14 +15,22 @@ Classes
 
    ~TidyTreeLayout
 
-Internal API
-------------
-
-.. autoall:: manim_extensions.mindmap.algorithms.alg_tidy_tree
-   :missing-only:
-
 .. toctree::
    :hidden:
    :maxdepth: 1
 
    alg_tidy_tree.TidyTreeLayout
+
+.. autoclass:: manim_extensions.mindmap.algorithms.alg_tidy_tree.IYLNode
+   :show-inheritance:
+.. autoclass:: manim_extensions.mindmap.algorithms.alg_tidy_tree.WrappedTree
+   :show-inheritance:
+
+Functions
+=========
+
+.. autofunction:: manim_extensions.mindmap.algorithms.alg_tidy_tree.convert_back
+.. autofunction:: manim_extensions.mindmap.algorithms.alg_tidy_tree.get_min
+.. autofunction:: manim_extensions.mindmap.algorithms.alg_tidy_tree.layer
+.. autofunction:: manim_extensions.mindmap.algorithms.alg_tidy_tree.move_right
+.. autofunction:: manim_extensions.mindmap.algorithms.alg_tidy_tree.normalize

@@ -14,12 +14,6 @@ Classes
 
    ~NerdFontIcon
 
-Internal API
-------------
-
-.. autoall:: manim_extensions.nerdfont.icons
-   :missing-only:
-
 .. toctree::
    :hidden:
    :maxdepth: 1

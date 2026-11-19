@@ -39,12 +39,6 @@ Constants
 .. autoall:: manim_extensions.three_d.core
    :types: data
 
-Internal API
-------------
-
-.. autoall:: manim_extensions.three_d.core
-   :missing-only:
-
 .. toctree::
    :hidden:
    :maxdepth: 1

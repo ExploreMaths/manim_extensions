@@ -18,12 +18,6 @@ Constants
 .. autoall:: manim_extensions.fontawesome.manim_fontawesome
    :types: data
 
-Internal API
-------------
-
-.. autoall:: manim_extensions.fontawesome.manim_fontawesome
-   :missing-only:
-
 .. toctree::
    :hidden:
    :maxdepth: 1
@@ -31,3 +25,13 @@ Internal API
    Brand
    Regular
    Solid
+
+Classes
+========
+
+.. autoclass:: manim_extensions.fontawesome.manim_fontawesome.BrandEnum
+   :show-inheritance:
+.. autoclass:: manim_extensions.fontawesome.manim_fontawesome.RegularEnum
+   :show-inheritance:
+.. autoclass:: manim_extensions.fontawesome.manim_fontawesome.SolidEnum
+   :show-inheritance:

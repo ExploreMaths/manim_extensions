@@ -10,8 +10,8 @@ svg
 .. autoall:: manim_extensions.mobject_svg.svg
    :types: function
 
-Internal API
-------------
 
-.. autoall:: manim_extensions.mobject_svg.svg
-   :missing-only:
+Constants
+=========
+
+.. autodata:: manim_extensions.mobject_svg.svg.CAIRO_LINE_WIDTH_MULTIPLE

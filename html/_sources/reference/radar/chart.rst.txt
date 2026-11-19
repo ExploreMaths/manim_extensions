@@ -15,14 +15,16 @@ Classes
 
    ~RadarChart
 
-Internal API
-------------
-
-.. autoall:: manim_extensions.radar.chart
-   :missing-only:
-
 .. toctree::
    :hidden:
    :maxdepth: 1
 
    chart.RadarChart
+
+.. autoclass:: manim_extensions.radar.chart.Series
+   :show-inheritance:
+
+Constants
+=========
+
+.. autodata:: manim_extensions.radar.chart.TAU
