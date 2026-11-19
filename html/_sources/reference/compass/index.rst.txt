@@ -2,7 +2,7 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-compass
+Compass
 =======
 
 .. module:: manim_extensions.compass

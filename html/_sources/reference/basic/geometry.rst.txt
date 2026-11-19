@@ -2,7 +2,7 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-geometry
+Geometry
 ========
 
 .. module:: manim_extensions.geometry

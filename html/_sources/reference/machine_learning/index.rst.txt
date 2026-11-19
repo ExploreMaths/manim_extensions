@@ -1,7 +1,7 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-machine_learning
+Machine Learning
 ================
 
 .. module:: manim_extensions.machine_learning

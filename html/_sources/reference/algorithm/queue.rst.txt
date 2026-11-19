@@ -2,8 +2,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-queue
-=====
+Queues
+======
 
 .. module:: manim_extensions.algorithm.queue
 

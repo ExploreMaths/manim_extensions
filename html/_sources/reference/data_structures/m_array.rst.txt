@@ -2,8 +2,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-m_array
-=======
+Arrays
+======
 
 .. module:: manim_extensions.data_structures.m_array
 

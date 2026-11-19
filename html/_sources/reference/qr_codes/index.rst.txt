@@ -1,7 +1,7 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-qr_codes
+QR Codes
 ========
 
 .. module:: manim_extensions.qr_codes

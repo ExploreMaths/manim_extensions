@@ -2,8 +2,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-manim_cli
-=========
+Command-line interface
+======================
 
 .. module:: manim_extensions.automata.mobjects.manim_cli
 
