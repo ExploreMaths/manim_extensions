@@ -582,13 +582,16 @@ def _alias_dotted_name(obj):
 
 
 def _generic_alias_annotation(annotation):
-    """Render ``type[ProjectAlias]`` without expanding the alias.
+    """Render a project type alias without expanding its definition.
 
-    Only generic wrappers whose single argument is a project-defined type
-    alias are handled; every other annotation falls through to the existing
-    formatter.  Keeping this in the extension means all aliases benefit, not
-    just the one that prompted the change.
+    Direct aliases such as ``ColorRamp`` are matched first.  Generic
+    wrappers whose single argument is a project alias, such as
+    ``type[SurfaceConfig]``, keep the wrapper and link the alias.  Any other
+    annotation falls through to the existing formatter.
     """
+    dotted = _alias_dotted_name(annotation)
+    if dotted is not None:
+        return f":py:type:`~{dotted}`"
     origin = getattr(annotation, "__origin__", None)
     args = getattr(annotation, "__args__", ())
     if origin is not type or len(args) != 1:
