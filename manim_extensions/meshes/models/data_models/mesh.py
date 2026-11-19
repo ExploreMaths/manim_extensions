@@ -521,7 +521,10 @@ class Mesh:
         return find_in_vararray(array=self._faces, item=face, start=start)
 
     def find_part(self, part: VectorND, start: int = 0) -> List[int]:
-        """Return all part indices that match the given part.
+        """Return all part indices whose faces match the given part.
+
+        Parts are compared as sets of face indices, so the order in which
+        the faces are listed does not matter.
 
         Parameters
         ----------
@@ -1430,9 +1433,8 @@ class Mesh:
     def remove_duplicate_parts(self):
         """Remove duplicate parts from the mesh.
 
-        Parts are considered equal when their face indices match
-        up to a cyclic permutation (rolling order), not necessarily
-        at the exact same positions.
+        Parts are considered equal when they contain the same face indices
+        regardless of their order.
         """
         to_delete = []
         for i_part, part in enumerate(self._parts):
