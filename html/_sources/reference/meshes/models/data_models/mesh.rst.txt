@@ -2,8 +2,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Data model
-==========
+mesh
+====
 
 .. module:: manim_extensions.meshes.models.data_models.mesh
 
