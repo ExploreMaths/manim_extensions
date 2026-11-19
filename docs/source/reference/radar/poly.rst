@@ -22,12 +22,6 @@ Constants
 .. autoall:: manim_extensions.radar.poly
    :types: data
 
-Internal API
-------------
-
-.. autoall:: manim_extensions.radar.poly
-   :missing-only:
-
 .. toctree::
    :hidden:
    :maxdepth: 1

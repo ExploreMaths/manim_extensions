@@ -15,14 +15,11 @@ Classes
 
    ~CatalogLayout
 
-Internal API
-------------
-
-.. autoall:: manim_extensions.mindmap.algorithms.alg_catalog
-   :missing-only:
-
 .. toctree::
    :hidden:
    :maxdepth: 1
 
    alg_catalog.CatalogLayout
+
+.. autoclass:: manim_extensions.mindmap.algorithms.alg_catalog.CatalogNode
+   :show-inheritance:

@@ -38,13 +38,13 @@ Create a complete Gaussian-surface scene with the fast pace:
 
 .. manim:: ThreeDDemo
    :ref_classes: GaussianSurfaceScene
-   :save_last_frame:
 
    from manim import *
-   from manim_extensions.three_d import gaussian_surface_scene
+   from manim_extensions.three_d import GaussianSurfaceScene
 
-   class ThreeDDemo(gaussian_surface_scene(pace="fast")):
+   class ThreeDDemo(GaussianSurfaceScene, pace="fast"):
        def construct(self):
+           # The inherited presentation runs every enabled beat.
            super().construct()
 
 Modules

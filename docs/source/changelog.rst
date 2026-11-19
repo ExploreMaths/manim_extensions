@@ -115,6 +115,17 @@ Fixed
 Changed
 ~~~~~~~
 
+* The six three-dimensional surface factories
+  (``gaussian_surface_scene`` and the other ``*_surface_scene`` helpers)
+  are removed.  Each surface scene is now configured directly:
+  ``GaussianSurfaceScene(pace="fast")`` for an instance, or
+  ``class Demo(GaussianSurfaceScene, pace="fast")`` when subclassing.
+  The configuration dataclasses remain available for the ``config``
+  argument and for ``style``.
+* Reference pages no longer contain empty ``Internal API`` sections.  Public
+  helpers that previously appeared there are documented beside their normal
+  ``Classes``, ``Functions`` and ``Constants`` sections; private
+  implementation names are no longer part of the public API coverage score.
 * Type annotations keep ``from __future__ import annotations`` and spell
   class self-references as quoted class names (``"Table"``,
   ``"MCAtom | list[MCAtom]"``); ``typing.Self`` is no longer used.

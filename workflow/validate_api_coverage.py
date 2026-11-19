@@ -1,13 +1,12 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Verify every constant, function, and class is API-documented,
-including private module-level names, and maintain the snapshot that
-``autodoc_all``'s ``:missing-only:`` mode filters against.
+"""Verify every public constant, function, and class is API-documented and
+maintain the snapshot that ``autodoc_all``'s ``:missing-only:`` mode
+filters against.
 
 Scans the whole ``manim_extensions`` package for every name bound at a
-module's top level (plus ``__all__`` entries), including private names,
-then resolves every ``autoclass`` / ``autofunction`` / ``autodata`` /
+module's top level (plus ``__all__`` entries), then resolves every ``autoclass`` / ``autofunction`` / ``autodata`` /
 ``autoall`` directive in ``docs/source`` and matches by canonical
 defining-module dotted name.
 
@@ -256,6 +255,7 @@ def main():
                     (typing.TypeVar, typing.ParamSpec, typing.TypeVarTuple),
                 )
                 or classify(obj) == "typealias"
+                or name.startswith("_")
             ):
                 continue
             total += 1

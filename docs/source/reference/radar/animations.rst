@@ -20,17 +20,14 @@ Classes
    ~RadarFade
    ~GlitchFlash
 
+.. autoclass:: manim_extensions.radar.animations.Ring
+   :show-inheritance:
+
 Constants
 ---------
 
 .. autoall:: manim_extensions.radar.animations
    :types: data
-
-Internal API
-------------
-
-.. autoall:: manim_extensions.radar.animations
-   :missing-only:
 
 .. toctree::
    :hidden:

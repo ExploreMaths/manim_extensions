@@ -16,19 +16,23 @@ essential beat; optional beats are dropped by priority when time runs out.
 Typical use::
 
     from manim_extensions.three_d import (
-        gaussian_surface_scene,
-        saddle_surface_scene,
-        paraboloid_surface_scene,
+        GaussianSurface,
+        GaussianSurfaceScene,
+        SaddleSurface,
+        SaddleSurfaceScene,
     )
 
-    class GaussianSurface(gaussian_surface_scene(captions=(...), duration=12)):
-        pass
+    class MyGaussian(GaussianSurfaceScene):
+        style = GaussianSurface(captions=(...), duration=12)
 
-    class SaddleSurface(saddle_surface_scene(captions=(...))):
-        pass
+        def construct(self):
+            super().construct()
 
-    class ParaboloidSurface(paraboloid_surface_scene(pace="fast", name="ParaboloidFast")):
-        pass
+    class MySaddle(SaddleSurfaceScene):
+        style = SaddleSurface(captions=(...))
+
+        def construct(self):
+            super().construct()
 
 Conventions: ``duration`` is the content budget excluding caption swaps,
 each of which adds roughly 0.9 seconds scaled by the pace. Beat durations
@@ -97,12 +101,6 @@ __all__ = [
     "EllipsoidSurface",
     "TorusSurface",
     "HyperboloidOneSheet",
-    "gaussian_surface_scene",
-    "saddle_surface_scene",
-    "paraboloid_surface_scene",
-    "ellipsoid_surface_scene",
-    "torus_surface_scene",
-    "hyperboloid_one_sheet_scene",
     "GraphSurfaceScene",
     "GaussianSurfaceScene",
     "SaddleSurfaceScene",
@@ -459,6 +457,23 @@ class GraphSurfaceScene(ThreeDScene):
     so the formation beat inflates the surface with ``GrowFromCenter`` and
     the axes scale uniformly to avoid distortion.
 
+    Parameters
+    ----------
+    config
+        A configuration dataclass instance or a mapping of its fields.
+        When omitted, remaining keyword arguments are passed to
+        ``config_cls``; a subclass-level ``style`` is kept as-is.
+    **kwargs
+        Scene constructor arguments (``renderer``, ``camera_class`` ...) or
+        configuration fields such as ``pace``, ``duration`` and
+        ``captions``.
+
+    Raises
+    ------
+    TypeError
+        If a mapping config or configuration keyword is given to a scene
+        without ``config_cls``.
+
     Examples
     --------
     Subclass the scene and implement the four hooks:
@@ -484,7 +499,66 @@ class GraphSurfaceScene(ThreeDScene):
     """
 
     style = None
+    config_cls = None
     uses_flat = True
+
+    def __init__(
+        self,
+        config: SurfaceConfig | dict | None = None,
+        **kwargs: object,
+    ) -> None:
+        scene_keys = {
+            "renderer",
+            "camera_class",
+            "always_update_mobjects",
+            "random_seed",
+            "skip_animations",
+        }
+        scene_kwargs = {k: v for k, v in kwargs.items() if k in scene_keys}
+        style_kwargs = {k: v for k, v in kwargs.items() if k not in scene_keys}
+        super().__init__(**scene_kwargs)
+        if config is not None:
+            if isinstance(config, dict):
+                if self.config_cls is None:
+                    raise TypeError("a mapping config requires a scene with config_cls")
+                config = self.config_cls(**config)
+            self.style = config
+        elif style_kwargs:
+            if self.config_cls is None:
+                raise TypeError(
+                    "configuration keywords require a scene with config_cls"
+                )
+            self.style = self.config_cls(**style_kwargs)
+        elif self.style is None and self.config_cls is not None:
+            self.style = self.config_cls()
+
+    def __init_subclass__(cls, **config_kwargs: object) -> None:
+        """Apply configuration keywords written in the class statement.
+
+        ``class Demo(GaussianSurfaceScene, pace="fast")`` passes ``pace``
+        here; the resulting class keeps a normal class base and receives a
+        configured ``style``.  A plain subclass without keywords keeps the
+        inherited ``style`` or builds ``config_cls`` with its defaults.
+
+        Parameters
+        ----------
+        **config_kwargs
+            Configuration fields for ``config_cls``, such as ``pace``,
+            ``duration`` or ``captions``.
+
+        Raises
+        ------
+        TypeError
+            If configuration keywords are given to a scene without a
+            ``config_cls``.
+        """
+        super().__init_subclass__()
+        if config_kwargs:
+            if cls.config_cls is None:
+                raise TypeError(
+                    "configuration keywords require a scene with config_cls"
+                )
+            cls.style = cls.config_cls(**config_kwargs)
 
     # ---- hooks ----
     def _geometry(self, cfg: SurfaceConfig) -> GeometrySpec:
@@ -964,6 +1038,8 @@ class GaussianSurfaceScene(GraphSurfaceScene):
     show its underside, and annotates the peak with a HUD label.
     """
 
+    config_cls = GaussianSurface
+
     def _geometry(self, cfg: SurfaceConfig) -> GeometrySpec:
         """Sample the Gaussian surface and derive its display range.
 
@@ -1086,6 +1162,8 @@ class SaddleSurfaceScene(GraphSurfaceScene):
     contour family and asymptotes, orbits and flips the surface, and marks
     the saddle point where the two principal curvatures oppose each other.
     """
+
+    config_cls = SaddleSurface
 
     def _geometry(self, cfg: SurfaceConfig) -> GeometrySpec:
         """Return the fixed saddle geometry and its display range.
@@ -1215,6 +1293,8 @@ class ParaboloidSurfaceScene(GraphSurfaceScene):
     stable when the presentation is resized.
     """
 
+    config_cls = ParaboloidSurface
+
     def _geometry(self, cfg: SurfaceConfig) -> GeometrySpec:
         """Return the fixed paraboloid geometry and its display range.
 
@@ -1311,6 +1391,8 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
     """Ellipsoid scene with an inflated formation and uniformly scaled axes."""
 
     uses_flat = False
+
+    config_cls = EllipsoidSurface
 
     def _geometry(self, cfg: SurfaceConfig) -> GeometrySpec:
         """Return the ellipsoid formula and display range.
@@ -1480,6 +1562,8 @@ class TorusSurfaceScene(GraphSurfaceScene):
     """Torus scene with an inflated formation and uniformly scaled axes."""
 
     uses_flat = False
+
+    config_cls = TorusSurface
 
     def _geometry(self, cfg: SurfaceConfig) -> GeometrySpec:
         """Return the torus formula and display range.
@@ -1651,6 +1735,8 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
 
     uses_flat = False
 
+    config_cls = HyperboloidOneSheet
+
     def _geometry(self, cfg: SurfaceConfig) -> GeometrySpec:
         """Return the hyperboloid formula and display range.
 
@@ -1819,82 +1905,3 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
         a, h = cfg.waist_radius, cfg.z_extent
         # waist front point (a,0,0): both ends of a vertical line enter the surface; no dashed line; point + HUD label
         return a, 0.0, 0.0, rf"({_fmt(a)},\,0,\,0)", True, 0.0
-
-
-_name_seq: dict = {}
-
-
-def _scene_name(base: str) -> str:
-    """Generate a unique scene class name.
-
-    Parameters
-    ----------
-    base
-        Base class name.
-
-    Returns
-    -------
-        The base name on its first use, followed by an increasing suffix
-        afterwards.
-    """
-    n = _name_seq.get(base, 0) + 1
-    _name_seq[base] = n
-    return base if n == 1 else f"{base}{n}"
-
-
-def _make_factory(
-    cfg_cls: type[SurfaceConfig],
-    scene_cls: type[GraphSurfaceScene],
-    base_name: str,
-) -> Callable[..., type[GraphSurfaceScene]]:
-    """Build a public factory that returns a configured scene class.
-
-    Parameters
-    ----------
-    cfg_cls
-        Configuration dataclass.
-    scene_cls
-        Scene class to subclass.
-    base_name
-        Default scene class name.
-
-    Returns
-    -------
-        A callable that accepts an optional class name and configuration
-        keyword arguments and returns the new scene class.
-    """
-
-    def factory(name: Optional[str] = None, **kw) -> type[GraphSurfaceScene]:
-        """Create a scene class for this surface.
-
-        Parameters
-        ----------
-        name
-            Optional class name; a unique default is generated when
-            omitted.
-
-        Returns
-        -------
-            A new Scene subclass carrying the supplied configuration.
-        """
-        cfg = cfg_cls(**kw)
-        return type(name or _scene_name(base_name), (scene_cls,), {"style": cfg})
-
-    factory.__doc__ = f"Factory returning a configured {base_name} Scene class."
-    return factory
-
-
-gaussian_surface_scene = _make_factory(
-    GaussianSurface, GaussianSurfaceScene, "GaussianSurface"
-)
-saddle_surface_scene = _make_factory(SaddleSurface, SaddleSurfaceScene, "SaddleSurface")
-paraboloid_surface_scene = _make_factory(
-    ParaboloidSurface, ParaboloidSurfaceScene, "ParaboloidSurface"
-)
-ellipsoid_surface_scene = _make_factory(
-    EllipsoidSurface, EllipsoidSurfaceScene, "EllipsoidSurface"
-)
-torus_surface_scene = _make_factory(TorusSurface, TorusSurfaceScene, "TorusSurface")
-hyperboloid_one_sheet_scene = _make_factory(
-    HyperboloidOneSheet, HyperboloidOneSheetScene, "HyperboloidOneSheet"
-)

@@ -64,6 +64,7 @@ import inspect
 import json
 import re
 import pkgutil
+import sys
 import types
 import typing
 from pathlib import Path
@@ -550,6 +551,68 @@ def confdir_of(env):
     return env.app.confdir
 
 
+def _defined_names(module):
+    return set(_defined_top_level_names(module))
+
+
+def _alias_dotted_name(obj):
+    """Find the project module-level name that *obj* was assigned to.
+
+    Works for any alias shape (``typing.Union``, ``X | Y``, ``TypeAliasType``
+    and builtin generics) by comparing identity against top-level assignments
+    in loaded ``manim_extensions`` modules.  The runtime alias object is the
+    only identity available after postponed annotations are evaluated, so we
+    search the modules that actually define names rather than hardcoding a
+    registry of aliases.
+    """
+    if not is_type_alias(obj):
+        return None
+    type_alias_type = getattr(typing, "TypeAliasType", None)
+    if type_alias_type is not None and isinstance(obj, type_alias_type):
+        return f"{obj.__module__}.{obj.__name__}"
+    for module_name, module in list(sys.modules.items()):
+        if not module_name.startswith("manim_extensions."):
+            continue
+        if hasattr(module, "__path__"):
+            continue
+        for name in _defined_names(module):
+            if getattr(module, name, None) is obj:
+                return f"{module_name}.{name}"
+    return None
+
+
+def _generic_alias_annotation(annotation):
+    """Render ``type[ProjectAlias]`` without expanding the alias.
+
+    Only generic wrappers whose single argument is a project-defined type
+    alias are handled; every other annotation falls through to the existing
+    formatter.  Keeping this in the extension means all aliases benefit, not
+    just the one that prompted the change.
+    """
+    origin = getattr(annotation, "__origin__", None)
+    args = getattr(annotation, "__args__", ())
+    if origin is not type or len(args) != 1:
+        return None
+    dotted = _alias_dotted_name(args[0])
+    if dotted is None:
+        return None
+    return f":py:obj:`type`\\ \\[:py:type:`~{dotted}`]"
+
+
+def _wrap_typehints_formatter(app):
+    previous = getattr(app.config, "typehints_formatter", None)
+
+    def formatter(annotation, *args):
+        rendered = _generic_alias_annotation(annotation)
+        if rendered is not None:
+            return rendered
+        if previous is None:
+            return None
+        return previous(annotation, *args)
+
+    app.config.typehints_formatter = formatter
+
+
 def setup(app):
     from docutils.parsers.rst import directives as rst_directives
     from sphinx.ext.autodoc import DataDocumenter
@@ -580,6 +643,7 @@ def setup(app):
     app.add_autodocumenter(SummaryDataDocumenter)
     app.add_directive("autoall", AutoAllDirective)
     app.add_config_value("autodoc_all_snapshot", DEFAULT_SNAPSHOT, "env")
+    _wrap_typehints_formatter(app)
     return {
         "version": "1.0",
         "parallel_read_safe": True,

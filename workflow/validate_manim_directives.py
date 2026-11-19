@@ -23,6 +23,7 @@ ANIMATION_PATTERNS = [
     re.compile(r"\bself\.play\s*\("),
     re.compile(r"\bself\.animate\s*\("),
     re.compile(r"\bself\.animate\.value_tracker\b"),
+    re.compile(r"\bsuper\(\)\.construct\s*\("),
     re.compile(r"\.play\s*\(\s*self\s*\)"),
     re.compile(r"\bself\.compass_\w+\s*\("),
     re.compile(r"\bself\.draw_(arc|line)\s*\("),

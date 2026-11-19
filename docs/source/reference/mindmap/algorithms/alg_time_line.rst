@@ -15,14 +15,16 @@ Classes
 
    ~TimeLineLayout
 
-Internal API
-------------
-
-.. autoall:: manim_extensions.mindmap.algorithms.alg_time_line
-   :missing-only:
-
 .. toctree::
    :hidden:
    :maxdepth: 1
 
    alg_time_line.TimeLineLayout
+
+.. autoclass:: manim_extensions.mindmap.algorithms.alg_time_line.TimelineNode
+   :show-inheritance:
+
+Functions
+=========
+
+.. autofunction:: manim_extensions.mindmap.algorithms.alg_time_line.walk

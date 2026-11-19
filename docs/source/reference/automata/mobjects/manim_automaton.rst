@@ -15,14 +15,13 @@ Classes
 
    ~ManimAutomaton
 
-Internal API
-------------
-
-.. autoall:: manim_extensions.automata.mobjects.manim_automaton
-   :missing-only:
-
 .. toctree::
    :hidden:
    :maxdepth: 1
 
    manim_automaton.ManimAutomaton
+
+Constants
+=========
+
+.. autodata:: manim_extensions.automata.mobjects.manim_automaton.default_animation_style

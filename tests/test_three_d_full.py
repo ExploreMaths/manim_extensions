@@ -21,20 +21,13 @@ from manim_extensions.three_d import (
     SaddleSurfaceScene,
     TorusSurface,
     TorusSurfaceScene,
-    ellipsoid_surface_scene,
-    gaussian_surface_scene,
-    hyperboloid_one_sheet_scene,
-    paraboloid_surface_scene,
     plan_timeline,
-    saddle_surface_scene,
-    torus_surface_scene,
 )
 from manim_extensions.three_d.core import (
     GraphSurfaceScene,
     _fmt,
     _ramp_color,
     _radius_for_level,
-    _scene_name,
 )
 
 
@@ -161,24 +154,31 @@ def test_graph_base_hooks_require_override():
     assert base._annotate_camera() == (66.0, -40.0, 0.95)
 
 
-def test_scene_names_and_factories():
-    _scene_name("NameProbe")
-    second = _scene_name("NameProbe")
-    assert second == "NameProbe2"
-    for factory, base, cfg_cls in (
-        (gaussian_surface_scene, "GaussianSurface", GaussianSurface),
-        (saddle_surface_scene, "SaddleSurface", SaddleSurface),
-        (paraboloid_surface_scene, "ParaboloidSurface", ParaboloidSurface),
-        (ellipsoid_surface_scene, "EllipsoidSurface", EllipsoidSurface),
-        (torus_surface_scene, "TorusSurface", TorusSurface),
-        (hyperboloid_one_sheet_scene, "HyperboloidOneSheet", HyperboloidOneSheet),
+def test_scene_configuration_api():
+    scene = GaussianSurfaceScene(pace="fast")
+    assert isinstance(scene.style, GaussianSurface)
+    assert scene.style.pace == "fast"
+
+    mapped = SaddleSurfaceScene(config={"pace": "normal"})
+    assert isinstance(mapped.style, SaddleSurface)
+    assert mapped.style.pace == "normal"
+
+    for cls, cfg_cls in (
+        (GaussianSurfaceScene, GaussianSurface),
+        (SaddleSurfaceScene, SaddleSurface),
+        (ParaboloidSurfaceScene, ParaboloidSurface),
+        (EllipsoidSurfaceScene, EllipsoidSurface),
+        (TorusSurfaceScene, TorusSurface),
+        (HyperboloidOneSheetScene, HyperboloidOneSheet),
     ):
-        built = factory()
-        assert issubclass(built, object)
-        assert isinstance(built.style, cfg_cls)
-        named = factory(name="MyScene")
-        assert named.__name__ == "MyScene"
-        assert "Factory" in factory.__doc__
+        instance = cls()
+        assert isinstance(instance.style, cfg_cls)
+
+    class FastDemo(GaussianSurfaceScene, pace="fast"):
+        pass
+
+    assert isinstance(FastDemo.style, GaussianSurface)
+    assert FastDemo.style.pace == "fast"
 
 
 # ------------------------------------------------------------- graph scenes

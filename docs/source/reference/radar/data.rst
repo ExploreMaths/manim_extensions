@@ -15,12 +15,6 @@ Classes
 
    ~RadarData
 
-Internal API
-------------
-
-.. autoall:: manim_extensions.radar.data
-   :missing-only:
-
 .. toctree::
    :hidden:
    :maxdepth: 1
