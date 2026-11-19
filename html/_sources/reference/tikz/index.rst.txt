@@ -2,7 +2,7 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-TikZ
+tikz
 ====
 
 .. module:: manim_extensions.tikz

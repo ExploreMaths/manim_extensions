@@ -1,8 +1,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Nerd Font Icons
-===============
+nerdfont
+========
 
 .. module:: manim_extensions.nerdfont
 

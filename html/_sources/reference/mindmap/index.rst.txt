@@ -2,7 +2,7 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-MindMap
+mindmap
 =======
 
 .. module:: manim_extensions.mindmap

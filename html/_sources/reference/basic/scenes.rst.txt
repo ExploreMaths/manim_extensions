@@ -1,7 +1,7 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Scenes
+scenes
 ======
 
 .. module:: manim_extensions.scenes

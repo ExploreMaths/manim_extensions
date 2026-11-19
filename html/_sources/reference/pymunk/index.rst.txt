@@ -1,7 +1,7 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Pymunk
+pymunk
 ======
 
 .. module:: manim_extensions.pymunk

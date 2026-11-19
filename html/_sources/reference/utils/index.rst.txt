@@ -1,8 +1,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Utilities
-=========
+utils
+=====
 
 .. module:: manim_extensions.utils
 

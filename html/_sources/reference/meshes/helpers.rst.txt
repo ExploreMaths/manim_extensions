@@ -2,7 +2,7 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Helpers
+helpers
 =======
 
 .. module:: manim_extensions.meshes.helpers

@@ -1,8 +1,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Font Awesome
-============
+fontawesome
+===========
 
 .. module:: manim_extensions.fontawesome
 
