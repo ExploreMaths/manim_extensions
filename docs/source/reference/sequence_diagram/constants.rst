@@ -1,7 +1,7 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Constants
+constants
 =========
 
 .. module:: manim_extensions.sequence_diagram.constants

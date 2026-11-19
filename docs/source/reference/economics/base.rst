@@ -1,7 +1,7 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Base
+base
 ====
 
 .. module:: manim_extensions.economics.base

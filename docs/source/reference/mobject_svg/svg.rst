@@ -2,8 +2,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-Functions
-=========
+svg
+===
 
 .. module:: manim_extensions.mobject_svg.svg
 
