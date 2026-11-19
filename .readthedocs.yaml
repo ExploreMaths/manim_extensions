@@ -1,9 +1,10 @@
 version: 2
 
 # The documentation is built by GitHub Actions (see .github/workflows/docs-cache.yml)
-# and published to the `rtd-html` branch. Read the Docs only waits for that
-# commit's artifact and copies the HTML into its output directory; it never
-# runs Sphinx or renders Manim examples itself.
+# and published to the `rtd-html` branch. Read the Docs copies the latest
+# prebuilt HTML into its output directory; it never runs Sphinx or renders
+# Manim examples itself.  Waiting for the exact commit would time out
+# whenever a non-docs commit does not publish a new artifact.
 build:
   os: ubuntu-24.04
   tools:
@@ -12,28 +13,13 @@ build:
     - |
       set -e
       rm -rf /tmp/rtd-html
-      for attempt in $(seq 1 90); do
-        if [ ! -d /tmp/rtd-html/.git ]; then
-          git clone --depth 1 --branch rtd-html \
-            https://github.com/ExploreMaths/manim_extensions.git /tmp/rtd-html 2>/dev/null || true
-        fi
-        if [ -d /tmp/rtd-html/.git ]; then
-          git -C /tmp/rtd-html fetch --depth 1 origin rtd-html >/dev/null 2>&1 || true
-          git -C /tmp/rtd-html reset --hard FETCH_HEAD >/dev/null 2>&1 || true
-        fi
-        if [ -f /tmp/rtd-html/commit ] && [ "$(cat /tmp/rtd-html/commit)" = "$READTHEDOCS_GIT_COMMIT_HASH" ]; then
-          break
-        fi
-        sleep 10
-      done
+      git clone --depth 1 --branch rtd-html \
+        https://github.com/ExploreMaths/manim_extensions.git /tmp/rtd-html
       if [ ! -f /tmp/rtd-html/html/index.html ]; then
         echo "No prebuilt HTML artifact found on the rtd-html branch."
         exit 1
       fi
-      if [ "$(cat /tmp/rtd-html/commit)" != "$READTHEDOCS_GIT_COMMIT_HASH" ]; then
-        echo "No prebuilt HTML artifact for commit $READTHEDOCS_GIT_COMMIT_HASH; latest is $(cat /tmp/rtd-html/commit)."
-        exit 1
-      fi
+      echo "Copying prebuilt HTML for $(cat /tmp/rtd-html/commit) (RTD commit $READTHEDOCS_GIT_COMMIT_HASH)."
     - mkdir -p "$READTHEDOCS_OUTPUT/html"
     - cp -a /tmp/rtd-html/html/. "$READTHEDOCS_OUTPUT/html/"
 
