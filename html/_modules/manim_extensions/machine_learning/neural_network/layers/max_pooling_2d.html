@@ -1477,9 +1477,12 @@
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="c1"># patched: return a real Create animation instead of a no-op</span>
 
+
 <span class="sd">"""Max pooling 2D layer visualization for neural networks."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">Animation</span><span class="p">,</span>
@@ -1576,8 +1579,8 @@
         <span class="n">color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">BLUE</span><span class="p">,</span>
         <span class="n">show_grid_lines</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">stroke_width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kernel_size</span> <span class="o">=</span> <span class="n">kernel_size</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stride</span> <span class="o">=</span> <span class="n">stride</span>
@@ -1595,8 +1598,8 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">input_layer</span><span class="p">:</span> <span class="n">NeuralNetworkLayer</span><span class="p">,</span>
         <span class="n">output_layer</span><span class="p">:</span> <span class="n">NeuralNetworkLayer</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build the output feature maps and apply 3D rotation to the layer.</span>
 
 <span class="sd">        Parameters</span>
@@ -1614,9 +1617,9 @@
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">feature_maps</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span>
-            <span class="n">config</span><span class="o">.</span><span class="n">three_d_config</span><span class="o">.</span><span class="n">rotation_angle</span><span class="p">,</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span><span class="o">.</span><span class="n">three_d_config</span><span class="o">.</span><span class="n">rotation_angle</span><span class="p">,</span>
             <span class="n">about_point</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_center</span><span class="p">(),</span>
-            <span class="n">axis</span><span class="o">=</span><span class="n">config</span><span class="o">.</span><span class="n">three_d_config</span><span class="o">.</span><span class="n">rotation_axis</span><span class="p">,</span>
+            <span class="n">axis</span><span class="o">=</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span><span class="o">.</span><span class="n">three_d_config</span><span class="o">.</span><span class="n">rotation_axis</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">feature_map_size</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">input_layer</span><span class="o">.</span><span class="n">feature_map_size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">kernel_size</span><span class="p">,</span>
@@ -1676,7 +1679,7 @@
 <div class="viewcode-block" id="MaxPooling2DLayer.make_forward_pass_animation">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/max_pooling_2d.MaxPooling2DLayer.html#manim_extensions.machine_learning.neural_network.layers.max_pooling_2d.MaxPooling2DLayer.make_forward_pass_animation">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_forward_pass_animation</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">layer_args</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">layer_args</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnimationGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Makes forward pass of Max Pooling Layer.</span>
 
@@ -1697,7 +1700,7 @@
 <div class="viewcode-block" id="MaxPooling2DLayer._create_override">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/max_pooling_2d.MaxPooling2DLayer.html#manim_extensions.machine_learning.neural_network.layers.max_pooling_2d.MaxPooling2DLayer._create_override">[docs]</a>
     <span class="nd">@override_animation</span><span class="p">(</span><span class="n">Create</span><span class="p">)</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_create_override</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_override</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create animation for the MaxPooling operation.</span>
 
 <span class="sd">        Parameters</span>

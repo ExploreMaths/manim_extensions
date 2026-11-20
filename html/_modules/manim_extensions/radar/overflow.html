@@ -1476,6 +1476,7 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+
 <span class="sd">"""The overflow radar chart: :class:`~manim_extensions.radar.overflow.OverflowRadarChart`.</span>
 
 <span class="sd">Values above the full scale are no longer clamped to a ``"10+"`` read-out.</span>
@@ -1485,6 +1486,7 @@
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span>
 
@@ -1599,7 +1601,7 @@
         <span class="n">sweep</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">rim</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">opacity</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">base</span> <span class="o">=</span> <span class="n">config</span> <span class="k">if</span> <span class="n">config</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">get_style</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
         <span class="n">base</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">evolved</span><span class="p">(</span><span class="n">overflow</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -1635,7 +1637,7 @@
     <span class="c1"># ------------------------------------------------------------------</span>
 <div class="viewcode-block" id="OverflowRadarChart.morph_to">
 <a class="viewcode-back" href="../../../reference/radar/overflow.OverflowRadarChart.html#manim_extensions.radar.overflow.OverflowRadarChart.morph_to">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">morph_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">RadarInputList</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">morph_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">RadarInputList</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Morph with the burst transition unless told otherwise.</span>
 
 <span class="sd">        Parameters</span>
@@ -1657,7 +1659,7 @@
 
 <div class="viewcode-block" id="OverflowRadarChart.burst_in">
 <a class="viewcode-back" href="../../../reference/radar/overflow.OverflowRadarChart.html#manim_extensions.radar.overflow.OverflowRadarChart.burst_in">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">burst_in</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">burst_in</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Play the overflow entrance.</span>
 
 <span class="sd">        Parameters</span>

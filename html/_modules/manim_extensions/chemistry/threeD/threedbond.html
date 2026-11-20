@@ -1475,6 +1475,9 @@
 <span></span><span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
 <span class="sd">"""3D bond representation for Manim chemistry.</span>
 
 <span class="sd">This module provides 3D bond classes for rendering chemical bonds in three dimensions.</span>
@@ -1538,11 +1541,11 @@
         <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
         <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">Z_AXIS</span><span class="p">,</span>
-        <span class="n">v_range</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">TAU</span><span class="p">],</span>
+        <span class="n">v_range</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">TAU</span><span class="p">],</span>
         <span class="n">show_ends</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="n">resolution</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">24</span><span class="p">),</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="n">resolution</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">24</span><span class="p">,</span> <span class="mi">24</span><span class="p">),</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_height</span> <span class="o">=</span> <span class="n">height</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="n">radius</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
@@ -1582,14 +1585,14 @@
 
 <div class="viewcode-block" id="ThreeDCylinder.add_bases">
 <a class="viewcode-back" href="../../../../reference/chemistry/threeD/threedbond.ThreeDCylinder.html#manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder.add_bases">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_bases</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_bases</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Adds the end caps of the cylinder."""</span>
         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">renderer</span> <span class="o">==</span> <span class="n">RendererType</span><span class="o">.</span><span class="n">OPENGL</span><span class="p">:</span>
             <span class="n">color</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span>
             <span class="n">opacity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">opacity</span>
         <span class="k">elif</span> <span class="n">config</span><span class="o">.</span><span class="n">renderer</span> <span class="o">==</span> <span class="n">RendererType</span><span class="o">.</span><span class="n">CAIRO</span><span class="p">:</span>
-            <span class="n">color</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fill_color</span>
-            <span class="n">opacity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fill_opacity</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">fill_color</span>
+            <span class="n">opacity</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">fill_opacity</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">base_top</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span>
             <span class="n">radius</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">radius</span><span class="p">,</span>
@@ -1611,7 +1614,7 @@
 
 <div class="viewcode-block" id="ThreeDCylinder._rotate_to_direction">
 <a class="viewcode-back" href="../../../../reference/chemistry/threeD/threedbond.ThreeDCylinder.html#manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder._rotate_to_direction">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_rotate_to_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_rotate_to_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Orient the bond along its target direction."""</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span>
 
@@ -1648,7 +1651,7 @@
 
 <div class="viewcode-block" id="ThreeDCylinder.set_direction">
 <a class="viewcode-back" href="../../../../reference/chemistry/threeD/threedbond.ThreeDCylinder.html#manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder.set_direction">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Align the cylinder to point along the given direction vector.</span>
 
 <span class="sd">        Parameters</span>
@@ -1701,8 +1704,8 @@
         <span class="n">end</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="n">RIGHT</span><span class="p">,</span>
         <span class="n">thickness</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span>
         <span class="n">color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">thickness</span> <span class="o">=</span> <span class="n">thickness</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_start_and_end_attrs</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">color</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -1710,7 +1713,9 @@
 
 <div class="viewcode-block" id="ThreeDLine.set_start_and_end_attrs">
 <a class="viewcode-back" href="../../../../reference/chemistry/threeD/threedbond.ThreeDLine.html#manim_extensions.chemistry.threeD.threedbond.ThreeDLine.set_start_and_end_attrs">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_start_and_end_attrs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_start_and_end_attrs</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Sets the start and end points of the line.</span>
 
 <span class="sd">        If either ``start`` or ``end`` are :class:`~manim.mobject.mobject.Mobject`,</span>
@@ -1802,7 +1807,7 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/threeD/threedbond.ThreeDLine.html#manim_extensions.chemistry.threeD.threedbond.ThreeDLine.parallel_to">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">parallel_to</span><span class="p">(</span>
-        <span class="bp">cls</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="n">Line3D</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="n">ORIGIN</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="n">Line3D</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="n">ORIGIN</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Line3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Returns a line parallel to another line going through</span>
 <span class="sd">        a given point.</span>
@@ -1842,10 +1847,13 @@
 <span class="sd">        """</span>
         <span class="n">point</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
         <span class="n">vect</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">vect</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
-            <span class="n">point</span> <span class="o">+</span> <span class="n">vect</span> <span class="o">*</span> <span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
-            <span class="n">point</span> <span class="o">-</span> <span class="n">vect</span> <span class="o">*</span> <span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
-            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="s2">"Line3D"</span><span class="p">,</span>
+            <span class="bp">cls</span><span class="p">(</span>
+                <span class="n">point</span> <span class="o">+</span> <span class="n">vect</span> <span class="o">*</span> <span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="n">point</span> <span class="o">-</span> <span class="n">vect</span> <span class="o">*</span> <span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+            <span class="p">),</span>
         <span class="p">)</span></div>
 
 
@@ -1853,7 +1861,7 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/threeD/threedbond.ThreeDLine.html#manim_extensions.chemistry.threeD.threedbond.ThreeDLine.perpendicular_to">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">perpendicular_to</span><span class="p">(</span>
-        <span class="bp">cls</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="n">Line3D</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="n">ORIGIN</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="n">Line3D</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="n">ORIGIN</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Line3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Returns a line perpendicular to another line going through</span>
 <span class="sd">        a given point.</span>
@@ -1907,10 +1915,13 @@
 
         <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">perpendicular_bisector</span><span class="p">([</span><span class="n">line</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">line</span><span class="o">.</span><span class="n">end</span><span class="p">],</span> <span class="n">norm</span><span class="p">)</span>
         <span class="n">vect</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
-            <span class="n">point</span> <span class="o">+</span> <span class="n">vect</span> <span class="o">*</span> <span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
-            <span class="n">point</span> <span class="o">-</span> <span class="n">vect</span> <span class="o">*</span> <span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
-            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="s2">"Line3D"</span><span class="p">,</span>
+            <span class="bp">cls</span><span class="p">(</span>
+                <span class="n">point</span> <span class="o">+</span> <span class="n">vect</span> <span class="o">*</span> <span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="n">point</span> <span class="o">-</span> <span class="n">vect</span> <span class="o">*</span> <span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+            <span class="p">),</span>
         <span class="p">)</span></div>
 </div>
 
@@ -1966,9 +1977,9 @@
         <span class="n">from_atom</span><span class="p">:</span> <span class="n">ThreeDAtom</span><span class="p">,</span>
         <span class="n">to_atom</span><span class="p">:</span> <span class="n">ThreeDAtom</span><span class="p">,</span>
         <span class="n">bond_type</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">mobjects</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">*</span><span class="n">mobjects</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span> <span class="o">=</span> <span class="n">from_atom</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span> <span class="o">=</span> <span class="n">to_atom</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1988,7 +1999,7 @@
 
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">"Unknown or unsupported bond type at bond with from atom </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="si">}</span><span class="s2"> with index </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">index</span><span class="si">}</span><span class="s2">and to atom </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span><span class="si">}</span><span class="s2"> with index </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">index</span><span class="si">}</span><span class="s2">"</span>
+                <span class="sa">f</span><span class="s2">"Unknown or unsupported bond type at bond with from atom </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="si">}</span><span class="s2"> with index </span><span class="si">{</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="si">}</span><span class="s2">and to atom </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span><span class="si">}</span><span class="s2"> with index </span><span class="si">{</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="si">}</span><span class="s2">"</span>
             <span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bonds</span><span class="p">)</span>

@@ -1476,6 +1476,7 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+
 <span class="sd">"""Structural configuration + bundled style presets.</span>
 
 <span class="sd">Every knob that is *not* a colour lives here (geometry, what to draw, fonts,</span>
@@ -1483,6 +1484,7 @@
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">replace</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span>
@@ -1501,7 +1503,7 @@
     <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.9</span>
     <span class="c1">#: chart centre in scene units ``(x, y)``; a little below the middle leaves</span>
     <span class="c1">#: room for the nameplate / title above the chart</span>
-    <span class="n">position</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.18</span><span class="p">)</span>
+    <span class="n">position</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.18</span><span class="p">)</span>
     <span class="c1">#: number of concentric grid rings (the outermost ring is the full scale)</span>
     <span class="n">levels</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span>
     <span class="c1">#: angle of the first axis, in degrees (90 = straight up)</span>
@@ -1676,12 +1678,12 @@
     <span class="c1">#: random seed for decorations that live on the chart</span>
     <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">7</span>
     <span class="c1">#: extra keyword arguments forwarded to every :class:`~manim.mobject.text.text_mobject.Text` mobject</span>
-    <span class="n">text_kwargs</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
+    <span class="n">text_kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">dict</span><span class="p">)</span>
 
     <span class="c1"># ------------------------------------------------------------------</span>
 <div class="viewcode-block" id="RadarConfig.evolved">
 <a class="viewcode-back" href="../../../reference/radar/config.RadarConfig.html#manim_extensions.radar.config.RadarConfig.evolved">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">evolved</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">changes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"RadarConfig"</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">evolved</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">changes</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"RadarConfig"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a copy with selected fields replaced.</span>
 
 <span class="sd">        Parameters</span>

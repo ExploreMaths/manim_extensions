@@ -1476,9 +1476,11 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+
 <span class="sd">"""Colour themes for :class:`~manim_extensions.radar.chart.RadarChart`."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">replace</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Union</span>
@@ -1595,7 +1597,7 @@
 
 <div class="viewcode-block" id="RadarTheme.evolved">
 <a class="viewcode-back" href="../../../reference/radar/theme.RadarTheme.html#manim_extensions.radar.theme.RadarTheme.evolved">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">evolved</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">changes</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"RadarTheme"</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">evolved</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">changes</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"RadarTheme"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a copy of this theme with selected fields replaced.</span>
 
 <span class="sd">        Parameters</span>

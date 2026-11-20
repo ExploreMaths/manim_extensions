@@ -1476,6 +1476,9 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
 <span class="sd">"""Mindmap animations for Manim.</span>
 
 <span class="sd">This module provides animations for mindmap visualizations.</span>
@@ -1567,8 +1570,8 @@
     <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span>
     <span class="n">pos</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span>
     <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">,</span>
-    <span class="n">line_styles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span>
-    <span class="n">node_styles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span>
+    <span class="n">line_styles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">node_styles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
     <span class="n">layout_type</span><span class="p">:</span> <span class="n">LayoutType</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Animation</span><span class="p">]:</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""Create-node animation.</span>
@@ -1624,10 +1627,10 @@
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">vmobject</span><span class="p">,</span> <span class="p">(</span><span class="n">Tex</span><span class="p">,</span> <span class="n">MathTex</span><span class="p">)):</span>
         <span class="n">AnimateClass</span> <span class="o">=</span> <span class="n">Write</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">AnimateClass</span> <span class="o">=</span> <span class="n">Create</span>
+        <span class="n">AnimateClass</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"type[Write]"</span><span class="p">,</span> <span class="n">Create</span><span class="p">)</span>
     <span class="n">anims</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
         <span class="p">[</span>
-            <span class="n">AnimateClass</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">vmobject</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">pos</span><span class="p">)),</span>
+            <span class="n">AnimateClass</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">vmobject</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">pos</span><span class="p">)),</span>
             <span class="n">Create</span><span class="p">(</span>
                 <span class="n">node</span><span class="o">.</span><span class="n">surr_rect</span><span class="o">.</span><span class="n">become</span><span class="p">(</span>
                     <span class="n">Rectangle</span><span class="p">(</span>
@@ -1650,8 +1653,8 @@
     <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span>
     <span class="n">pos</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span>
     <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">,</span>
-    <span class="n">line_styles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span>
-    <span class="n">node_styles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span>
+    <span class="n">line_styles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">node_styles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
     <span class="n">layout_type</span><span class="p">:</span> <span class="n">LayoutType</span><span class="p">,</span>
     <span class="n">change_dir</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
     <span class="n">change_layout</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
@@ -1711,7 +1714,7 @@
 <span class="sd">                   content.scale_to_fit_height(7).move_to(ORIGIN)</span>
 <span class="sd">    """</span>
     <span class="n">anims</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">node</span><span class="o">.</span><span class="n">vmobject</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">pos</span><span class="p">),</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">vmobject</span><span class="p">)</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">pos</span><span class="p">),</span>
         <span class="n">node</span><span class="o">.</span><span class="n">surr_rect</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">become</span><span class="p">(</span>
             <span class="n">Rectangle</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="n">node</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">node</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="o">**</span><span class="n">node_styles</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
         <span class="p">),</span>
@@ -1729,8 +1732,8 @@
     <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span>
     <span class="n">pos</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span>
     <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">,</span>
-    <span class="n">line_styles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span>
-    <span class="n">node_styles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span>
+    <span class="n">line_styles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">node_styles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
     <span class="n">layout_type</span><span class="p">:</span> <span class="n">LayoutType</span><span class="p">,</span>
     <span class="n">change_dir</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
     <span class="n">change_layout</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
@@ -1788,7 +1791,7 @@
 <span class="sd">               content.scale_to_fit_height(5).move_to(ORIGIN)</span>
 <span class="sd">    """</span>
     <span class="n">anims</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">node</span><span class="o">.</span><span class="n">vmobject</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">pos</span><span class="p">),</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">vmobject</span><span class="p">)</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">scale_factor</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">pos</span><span class="p">),</span>
         <span class="n">node</span><span class="o">.</span><span class="n">surr_rect</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">become</span><span class="p">(</span>
             <span class="n">Rectangle</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="n">node</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">node</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="o">**</span><span class="n">node_styles</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
         <span class="p">),</span>
@@ -1807,8 +1810,8 @@
     <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span>
     <span class="n">pos</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span>
     <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">,</span>
-    <span class="n">line_styles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span>
-    <span class="n">node_styles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span>
+    <span class="n">line_styles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">node_styles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
     <span class="n">layout_type</span><span class="p">:</span> <span class="n">LayoutType</span><span class="p">,</span>
     <span class="n">change_dir</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
     <span class="n">change_layout</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
@@ -1866,7 +1869,7 @@
 <span class="sd">               content.scale_to_fit_width(10).move_to(ORIGIN)</span>
 <span class="sd">    """</span>
     <span class="n">anims</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">node</span><span class="o">.</span><span class="n">vmobject</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">become</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">alter_vmobject</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">pos</span><span class="p">)),</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">vmobject</span><span class="p">)</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">become</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">alter_vmobject</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">pos</span><span class="p">)),</span>
         <span class="n">node</span><span class="o">.</span><span class="n">surr_rect</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">become</span><span class="p">(</span>
             <span class="n">Rectangle</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="n">node</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">node</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="o">**</span><span class="n">node_styles</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
         <span class="p">),</span>
@@ -1885,8 +1888,8 @@
     <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span>
     <span class="n">pos</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span>
     <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">,</span>
-    <span class="n">line_styles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span>
-    <span class="n">node_styles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span>
+    <span class="n">line_styles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+    <span class="n">node_styles</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
     <span class="n">layout_type</span><span class="p">:</span> <span class="n">LayoutType</span><span class="p">,</span>
     <span class="n">change_dir</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
     <span class="n">change_layout</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
@@ -2058,9 +2061,9 @@
     <span class="n">direction</span> <span class="o">=</span> <span class="n">layout_config</span><span class="o">.</span><span class="n">direction</span>
     <span class="n">change_dir</span> <span class="o">=</span> <span class="n">is_direction_change</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">direction</span><span class="p">)</span>
     <span class="n">change_layout</span> <span class="o">=</span> <span class="n">is_layout_change</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">layout_type</span><span class="p">)</span>
-    <span class="n">current_x</span><span class="p">,</span> <span class="n">current_y</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="n">vmobject</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>
+    <span class="n">current_x</span><span class="p">,</span> <span class="n">current_y</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">root</span><span class="o">.</span><span class="n">vmobject</span><span class="p">)</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>
     <span class="n">layout</span> <span class="o">=</span> <span class="n">LayoutFactory</span><span class="o">.</span><span class="n">create_layout</span><span class="p">(</span><span class="n">layout_type</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">layout_config</span><span class="p">)</span>
-    <span class="n">root</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">layout</span><span class="p">()</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"Node"</span><span class="p">,</span> <span class="n">layout</span><span class="o">.</span><span class="n">layout</span><span class="p">())</span>
     <span class="nb">setattr</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s2">"layout_type"</span><span class="p">,</span> <span class="n">layout_type</span><span class="p">)</span>
     <span class="nb">setattr</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s2">"direction"</span><span class="p">,</span> <span class="n">direction</span><span class="p">)</span>
     <span class="n">x_offset</span> <span class="o">=</span> <span class="n">current_x</span> <span class="o">-</span> <span class="n">root</span><span class="o">.</span><span class="n">x</span>
@@ -2086,7 +2089,7 @@
             <span class="p">)</span>
         <span class="p">)</span>
         <span class="n">node</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">return</span> <span class="n">anims</span></div>
+    <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"list[Animation]"</span><span class="p">,</span> <span class="n">anims</span><span class="p">)</span></div>
 
 
 
@@ -2142,8 +2145,8 @@
         <span class="n">layout_type</span><span class="p">:</span> <span class="n">LayoutType</span> <span class="o">=</span> <span class="n">LayoutType</span><span class="o">.</span><span class="n">MindMap</span><span class="p">,</span>
         <span class="n">layout_config</span><span class="p">:</span> <span class="n">LayoutConfig</span> <span class="o">=</span> <span class="n">LayoutConfig</span><span class="p">(),</span>
         <span class="n">node_style</span><span class="p">:</span> <span class="n">NodeStyle</span> <span class="o">=</span> <span class="n">NodeStyle</span><span class="p">(),</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scene</span> <span class="o">=</span> <span class="n">scene</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">root</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">layout_type</span> <span class="o">=</span> <span class="n">layout_type</span>
@@ -2255,7 +2258,7 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">root</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">get_root</span><span class="p">()</span> <span class="ow">is</span> <span class="n">root</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">::]):</span>
-            <span class="k">return</span> <span class="kc">None</span>
+            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"Node"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">root</span></div>
 </div>
 
@@ -2325,8 +2328,8 @@
         <span class="n">layout_type</span><span class="p">:</span> <span class="n">LayoutType</span> <span class="o">=</span> <span class="n">LayoutType</span><span class="o">.</span><span class="n">MindMap</span><span class="p">,</span>
         <span class="n">layout_config</span><span class="p">:</span> <span class="n">LayoutConfig</span> <span class="o">=</span> <span class="n">LayoutConfig</span><span class="p">(),</span>
         <span class="n">node_style</span><span class="p">:</span> <span class="n">NodeStyle</span> <span class="o">=</span> <span class="n">NodeStyle</span><span class="p">(),</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">scene</span><span class="p">,</span>
             <span class="n">root</span><span class="p">,</span>
@@ -2346,12 +2349,15 @@
 <span class="sd">            The layout animations.</span>
 <span class="sd">        """</span>
         <span class="n">remove_nodes</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_node_state</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">animate_of_layout</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span>
-            <span class="n">remove_nodes</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">layout_type</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">layout_config</span><span class="p">,</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">node_style</span><span class="p">,</span>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="s2">"tuple[Animation]"</span><span class="p">,</span>
+            <span class="n">animate_of_layout</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span>
+                <span class="n">remove_nodes</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">layout_type</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">layout_config</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">node_style</span><span class="p">,</span>
+            <span class="p">),</span>
         <span class="p">)</span></div>
 </div>
 
@@ -2403,11 +2409,11 @@
         <span class="n">layout_type</span><span class="p">:</span> <span class="n">LayoutType</span> <span class="o">=</span> <span class="n">LayoutType</span><span class="o">.</span><span class="n">MindMap</span><span class="p">,</span>
         <span class="n">layout_config</span><span class="p">:</span> <span class="n">LayoutConfig</span> <span class="o">=</span> <span class="n">LayoutConfig</span><span class="p">(),</span>
         <span class="n">node_style</span><span class="p">:</span> <span class="n">NodeStyle</span> <span class="o">=</span> <span class="n">NodeStyle</span><span class="p">(),</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">is_whole_tree</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">Node</span><span class="p">):</span>
-            <span class="n">nodes</span> <span class="o">=</span> <span class="p">(</span><span class="n">nodes</span><span class="p">,)</span>
+            <span class="n">nodes</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"Node | list[Node]"</span><span class="p">,</span> <span class="p">(</span><span class="n">nodes</span><span class="p">,))</span>
         <span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_common_root</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">"nodes must be in the same tree"</span><span class="p">)</span>
@@ -2516,8 +2522,8 @@
         <span class="n">layout_type</span><span class="p">:</span> <span class="n">LayoutType</span> <span class="o">=</span> <span class="n">LayoutType</span><span class="o">.</span><span class="n">MindMap</span><span class="p">,</span>
         <span class="n">layout_config</span><span class="p">:</span> <span class="n">LayoutConfig</span> <span class="o">=</span> <span class="n">LayoutConfig</span><span class="p">(),</span>
         <span class="n">node_style</span><span class="p">:</span> <span class="n">NodeStyle</span> <span class="o">=</span> <span class="n">NodeStyle</span><span class="p">(),</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">root</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">father_children</span> <span class="o">=</span> <span class="n">father_children</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
@@ -2570,7 +2576,7 @@
                 <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
                     <span class="n">father</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_root</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">father_children</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">collect_animations</span><span class="p">()</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"list[Animation]"</span><span class="p">,</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">collect_animations</span><span class="p">())</span></div>
 </div>
 
 
@@ -2622,11 +2628,11 @@
         <span class="n">layout_type</span><span class="p">:</span> <span class="n">LayoutType</span> <span class="o">=</span> <span class="n">LayoutType</span><span class="o">.</span><span class="n">MindMap</span><span class="p">,</span>
         <span class="n">layout_config</span><span class="p">:</span> <span class="n">LayoutConfig</span> <span class="o">=</span> <span class="n">LayoutConfig</span><span class="p">(),</span>
         <span class="n">node_style</span><span class="p">:</span> <span class="n">NodeStyle</span> <span class="o">=</span> <span class="n">NodeStyle</span><span class="p">(),</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
-        <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">scale</span> <span class="ow">in</span> <span class="n">node_scale</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">scale</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node_scale</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">node</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale</span><span class="p">)</span>
-        <span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_common_root</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">node_scale</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_common_root</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node_scale</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">scene</span><span class="p">,</span>
             <span class="n">root</span><span class="p">,</span>
@@ -2682,11 +2688,11 @@
         <span class="n">layout_type</span><span class="p">:</span> <span class="n">LayoutType</span> <span class="o">=</span> <span class="n">LayoutType</span><span class="o">.</span><span class="n">MindMap</span><span class="p">,</span>
         <span class="n">layout_config</span><span class="p">:</span> <span class="n">LayoutConfig</span> <span class="o">=</span> <span class="n">LayoutConfig</span><span class="p">(),</span>
         <span class="n">node_style</span><span class="p">:</span> <span class="n">NodeStyle</span> <span class="o">=</span> <span class="n">NodeStyle</span><span class="p">(),</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
-        <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">scale</span> <span class="ow">in</span> <span class="n">node_vmobject</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">scale</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node_vmobject</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">node</span><span class="o">.</span><span class="n">alter_content</span><span class="p">(</span><span class="n">scale</span><span class="p">)</span>
-        <span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_common_root</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">node_vmobject</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_common_root</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node_vmobject</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">scene</span><span class="p">,</span>
             <span class="n">root</span><span class="p">,</span>

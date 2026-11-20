@@ -1476,6 +1476,9 @@
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="c1"># patched: document module-level constants</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
 <span class="sd">"""File handling for chemistry module.</span>
 
 <span class="sd">This module provides file parsing utilities for chemistry file formats.</span>
@@ -1515,7 +1518,7 @@
 <span class="sd">        Path to the chemistry file to parse.</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="n">os</span><span class="o">.</span><span class="n">PathLike</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="n">os</span><span class="o">.</span><span class="n">PathLike</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"File </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2"> does not exist."</span><span class="p">)</span>
 
@@ -1531,7 +1534,7 @@
 <div class="viewcode-block" id="FileHandler.get_file_extension">
 <a class="viewcode-back" href="../../../../reference/chemistry/utils/file_handler.FileHandler.html#manim_extensions.chemistry.utils.file_handler.FileHandler.get_file_extension">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_file_extension</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="n">os</span><span class="o">.</span><span class="n">PathLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_file_extension</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="n">os</span><span class="o">.</span><span class="n">PathLike</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the lowercase file extension without the leading dot.</span>
 
 <span class="sd">        Parameters</span>
@@ -1543,7 +1546,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            The lowercase file extension without the leading dot.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">file_path</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"str"</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">file_path</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">:])</span></div>
 
 
 <div class="viewcode-block" id="FileHandler.parsed_atoms_bonds_data">
@@ -1556,7 +1559,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            ``(atoms_dict, bonds_dict)`` parsed by the selected parser.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">molecule_data</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"tuple[dict[Any, Any], dict[Any, Any]]"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">molecule_data</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="FileHandler.parse_from_string">
@@ -1593,7 +1596,7 @@
         <span class="k">if</span> <span class="n">parse_from_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">parse_from_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">data_parser</span><span class="p">(</span><span class="n">string</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">parser</span><span class="p">)</span><span class="o">.</span><span class="n">data_parser</span><span class="p">(</span><span class="n">string</span><span class="p">)</span></div>
 </div>
 
 </pre></div>

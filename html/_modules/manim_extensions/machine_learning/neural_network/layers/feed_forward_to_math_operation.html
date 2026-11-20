@@ -1476,9 +1476,11 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+
 <span class="sd">"""Feed-forward to math operation layer connection visualization."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimColor</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">ORANGE</span><span class="p">,</span> <span class="n">ShowPassingFlash</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.feed_forward</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeedForwardLayer</span>
@@ -1512,8 +1514,8 @@
         <span class="n">input_layer</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
         <span class="n">output_layer</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
         <span class="n">active_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">ORANGE</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">active_color</span> <span class="o">=</span> <span class="n">active_color</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -1523,7 +1525,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">input_layer</span><span class="p">:</span> <span class="n">NeuralNetworkLayer</span><span class="p">,</span>
         <span class="n">output_layer</span><span class="p">:</span> <span class="n">NeuralNetworkLayer</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build a straight arrow connection between the feed-forward and math operation layers.</span>
 
@@ -1549,7 +1551,7 @@
 <div class="viewcode-block" id="FeedForwardToMathOperation.make_forward_pass_animation">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/feed_forward_to_math_operation.FeedForwardToMathOperation.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_math_operation.FeedForwardToMathOperation.make_forward_pass_animation">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_forward_pass_animation</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">layer_args</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">layer_args</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ShowPassingFlash</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Makes dots diverge from the given location and move to the feed forward nodes decoder.</span>
 

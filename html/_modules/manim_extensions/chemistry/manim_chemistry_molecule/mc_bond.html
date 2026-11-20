@@ -1476,6 +1476,7 @@
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="c1"># patched: document module-level constants</span>
 
+
 <span class="sd">"""Manim chemistry bond representation.</span>
 
 <span class="sd">This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond` class for representing chemical bonds in molecules.</span>
@@ -1483,6 +1484,7 @@
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
 
@@ -1537,7 +1539,7 @@
         <span class="n">molecule_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">topology</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">reacting_center_status</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bond_type</span> <span class="o">=</span> <span class="n">bond_type</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span> <span class="o">=</span> <span class="n">from_atom</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span> <span class="o">=</span> <span class="n">to_atom</span>
@@ -1548,7 +1550,7 @@
 
 <div class="viewcode-block" id="MCBond.assign_from_atom">
 <a class="viewcode-back" href="../../../../reference/chemistry/manim_chemistry_molecule/mc_bond.MCBond.html#manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond.assign_from_atom">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">assign_from_atom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_atom</span><span class="p">:</span> <span class="n">MCAtom</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">assign_from_atom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_atom</span><span class="p">:</span> <span class="n">MCAtom</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Set the atom the bond originates from.</span>
 
 <span class="sd">        Parameters</span>
@@ -1561,7 +1563,7 @@
 
 <div class="viewcode-block" id="MCBond.assign_to_atom">
 <a class="viewcode-back" href="../../../../reference/chemistry/manim_chemistry_molecule/mc_bond.MCBond.html#manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond.assign_to_atom">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">assign_to_atom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">to_atom</span><span class="p">:</span> <span class="n">MCAtom</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">assign_to_atom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">to_atom</span><span class="p">:</span> <span class="n">MCAtom</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Set the atom the bond points to.</span>
 
 <span class="sd">        Parameters</span>
@@ -1574,7 +1576,7 @@
 
 <div class="viewcode-block" id="MCBond.assign_stereo">
 <a class="viewcode-back" href="../../../../reference/chemistry/manim_chemistry_molecule/mc_bond.MCBond.html#manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond.assign_stereo">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">assign_stereo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stereo</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">assign_stereo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stereo</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Set the stereochemistry type of the bond.</span>
 
 <span class="sd">        Parameters</span>
@@ -1589,7 +1591,7 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/manim_chemistry_molecule/mc_bond.MCBond.html#manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond.construct_from_bond_dict">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">construct_from_bond_dict</span><span class="p">(</span>
-        <span class="n">bond_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">bond_data_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">molecule</span><span class="p">:</span> <span class="n">MCMolecule</span>
+        <span class="n">bond_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">bond_data_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">molecule</span><span class="p">:</span> <span class="n">MCMolecule</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"MCBond"</span><span class="p">:</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Given a bond data dict from a parser, returns an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`.</span>

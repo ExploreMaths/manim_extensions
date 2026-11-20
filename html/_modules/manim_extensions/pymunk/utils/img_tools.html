@@ -1483,6 +1483,7 @@
 <span class="sd">"""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">ImageFilter</span><span class="p">,</span> <span class="n">ImageOps</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">...utils.deps</span><span class="w"> </span><span class="kn">import</span> <span class="n">require</span>
@@ -1493,7 +1494,7 @@
 <a class="viewcode-back" href="../../../../reference/pymunk/utils/img_tools.html#manim_extensions.pymunk.utils.img_tools.get_normalized_convex_polygons">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">get_normalized_convex_polygons</span><span class="p">(</span>
     <span class="n">pixel_array</span><span class="p">:</span> <span class="n">PixelArray</span><span class="p">,</span>
-    <span class="n">base_px_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mf">512.0</span><span class="p">,</span>
+    <span class="n">base_px_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">512</span><span class="p">,</span>
     <span class="n">target_cell_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
     <span class="n">img_manim_w</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
     <span class="n">img_manim_h</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">14.22</span><span class="p">,</span>
@@ -1579,7 +1580,7 @@
     <span class="c1"># Closing operation: bridge broken highlight regions</span>
     <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ImageFilter</span><span class="o">.</span><span class="n">MaxFilter</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">ImageFilter</span><span class="o">.</span><span class="n">MinFilter</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">sample_func</span><span class="p">(</span><span class="n">point</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sample_func</span><span class="p">(</span><span class="n">point</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the mask value at the given coordinate.</span>
 
 <span class="sd">        Parameters</span>
@@ -1593,8 +1594,8 @@
 <span class="sd">        """</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">int</span><span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">actual_base_width</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">actual_base_height</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">mask</span><span class="o">.</span><span class="n">getpixel</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
-        <span class="k">return</span> <span class="mi">0</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mask</span><span class="o">.</span><span class="n">getpixel</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))))</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
 
     <span class="n">bb</span> <span class="o">=</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">BB</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">actual_base_width</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">actual_base_height</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">x_samples</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="nb">int</span><span class="p">(</span><span class="n">actual_base_width</span> <span class="o">/</span> <span class="n">target_cell_size</span><span class="p">))</span>
@@ -1603,7 +1604,7 @@
     <span class="n">pl_set</span> <span class="o">=</span> <span class="n">march_soft</span><span class="p">(</span><span class="n">bb</span><span class="p">,</span> <span class="n">x_samples</span><span class="p">,</span> <span class="n">y_samples</span><span class="p">,</span> <span class="mf">128.0</span><span class="p">,</span> <span class="n">sample_func</span><span class="p">)</span>
 
     <span class="c1"># 4. Vertex mapping reconstruction</span>
-    <span class="n">pixel_polygons</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">pixel_polygons</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">polyline</span> <span class="ow">in</span> <span class="n">pl_set</span><span class="p">:</span>
         <span class="n">simplified</span> <span class="o">=</span> <span class="n">simplify_vertexes</span><span class="p">(</span><span class="n">polyline</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">)</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">simplified</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
@@ -1632,8 +1633,12 @@
 <div class="viewcode-block" id="map_polygons_to_manim">
 <a class="viewcode-back" href="../../../../reference/pymunk/utils/img_tools.html#manim_extensions.pymunk.utils.img_tools.map_polygons_to_manim">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">map_polygons_to_manim</span><span class="p">(</span>
-    <span class="n">polygons</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">img_px_w</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">img_px_h</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">img_manim_w</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">img_manim_h</span><span class="p">:</span> <span class="nb">float</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="n">polygons</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]],</span>
+    <span class="n">img_px_w</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">img_px_h</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">img_manim_w</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">img_manim_h</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]]]:</span>
 <span class="w">    </span><span class="sd">"""Map pixel-coordinate polygons into Manim coordinates.</span>
 
 <span class="sd">    Performs the coordinate transform from image pixel space into Manim's</span>

@@ -1472,7 +1472,9 @@
         </div>
         <article role="main" id="furo-main-content">
           <h1>Source code for manim_extensions.algorithm.utils.debug</h1><div class="highlight"><pre>
-<span></span><span class="c1"># SPDX-FileCopyrightText: 2024 sinianluoye</span>
+<span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
+<span class="c1"># SPDX-FileCopyrightText: 2024 sinianluoye</span>
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
@@ -1486,7 +1488,7 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">index_paragraph_labels</span><span class="p">(</span>
     <span class="n">paragraph</span><span class="p">:</span> <span class="n">Paragraph</span><span class="p">,</span>
     <span class="n">label_height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Add integer index labels below each paragraph line.</span>
 

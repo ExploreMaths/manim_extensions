@@ -1476,6 +1476,9 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
 <span class="sd">"""Image layer visualization for neural networks."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
@@ -1562,8 +1565,8 @@
         <span class="n">numpy_image</span><span class="p">:</span> <span class="n">PixelArray</span><span class="p">,</span>
         <span class="n">height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span>
         <span class="n">show_image_on_create</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">image_height</span> <span class="o">=</span> <span class="n">height</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">numpy_image</span> <span class="o">=</span> <span class="n">numpy_image</span>
@@ -1571,7 +1574,9 @@
 
 <div class="viewcode-block" id="ImageLayer.construct_layer">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/image.ImageLayer.html#manim_extensions.machine_learning.neural_network.layers.image.ImageLayer.construct_layer">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct_layer</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_layer</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct_layer</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">input_layer</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Construct layer method.</span>
 
 <span class="sd">        Parameters</span>
@@ -1592,8 +1597,9 @@
         <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">numpy_image</span><span class="p">))</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
             <span class="c1"># Assumed RGB</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">num_channels</span> <span class="o">=</span> <span class="mi">3</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">image_mobject</span> <span class="o">=</span> <span class="n">ImageMobject</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">numpy_image</span><span class="p">)</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">image_height</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">image_mobject</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+                <span class="s2">"GrayscaleImageMobject"</span><span class="p">,</span>
+                <span class="n">ImageMobject</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">numpy_image</span><span class="p">)</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_height</span><span class="p">),</span>
             <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_mobject</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
@@ -1603,7 +1609,7 @@
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/image.ImageLayer.html#manim_extensions.machine_learning.neural_network.layers.image.ImageLayer.from_path">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_path</span><span class="p">(</span>
-        <span class="bp">cls</span><span class="p">,</span> <span class="n">image_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">grayscale</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="bp">cls</span><span class="p">,</span> <span class="n">image_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">grayscale</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"ImageLayer"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Creates a query using the paths.</span>
 
@@ -1632,7 +1638,7 @@
 <div class="viewcode-block" id="ImageLayer._create_override">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/image.ImageLayer.html#manim_extensions.machine_learning.neural_network.layers.image.ImageLayer._create_override">[docs]</a>
     <span class="nd">@override_animation</span><span class="p">(</span><span class="n">Create</span><span class="p">)</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_create_override</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_override</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Fade in the image when configured, otherwise wait.</span>
 
 <span class="sd">        Parameters</span>
@@ -1658,7 +1664,7 @@
 <div class="viewcode-block" id="ImageLayer.make_forward_pass_animation">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/image.ImageLayer.html#manim_extensions.machine_learning.neural_network.layers.image.ImageLayer.make_forward_pass_animation">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_forward_pass_animation</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">layer_args</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">layer_args</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnimationGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return an empty animation group; the image layer has no forward pass effect.</span>
 
@@ -1690,7 +1696,7 @@
 
 <div class="viewcode-block" id="ImageLayer.scale">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/image.ImageLayer.html#manim_extensions.machine_learning.neural_network.layers.image.ImageLayer.scale">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Scales the image mobject.</span>
 
 <span class="sd">        Parameters</span>

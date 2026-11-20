@@ -1486,7 +1486,7 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">ImageMobject</span><span class="p">,</span> <span class="n">Line</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">subdivide_bezier</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.mobject.opengl.opengl_compatibility</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConvertToOpenGL</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">cast</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">...utils.deps</span><span class="w"> </span><span class="kn">import</span> <span class="n">require</span>
@@ -1572,10 +1572,13 @@
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">gravity</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">),</span> <span class="n">sub_step</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
-    <span class="p">):</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">gravity</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">),</span>
+        <span class="n">sub_step</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">pymunk</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"physics"</span><span class="p">,</span> <span class="s2">"pymunk"</span><span class="p">)</span>
+        <span class="n">pymunk</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">require</span><span class="p">(</span><span class="s2">"physics"</span><span class="p">,</span> <span class="s2">"pymunk"</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">space</span> <span class="o">=</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">gravity</span> <span class="o">=</span> <span class="n">gravity</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">sleep_time_threshold</span> <span class="o">=</span> <span class="mi">1</span>
@@ -1584,7 +1587,7 @@
     <span class="c1"># ================================== init ==================================</span>
 <div class="viewcode-block" id="VSpace.init_updater">
 <a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace.init_updater">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">init_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">init_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Register the per-frame step updater that advances the physics</span>
 <span class="sd">        simulation and synchronizes Mobject positions with their bodies.</span>
 <span class="sd">        """</span>
@@ -1592,7 +1595,7 @@
 
 
     <span class="c1"># ================================== updater ==================================</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">__step_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vspace</span><span class="p">:</span> <span class="s2">"VSpace"</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__step_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vspace</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Executes a single frame update step for the physical simulation.</span>
 
 <span class="sd">        Divides the frame duration into multiple sub-steps and performs incremental</span>
@@ -1609,9 +1612,9 @@
 <span class="sd">        """</span>
         <span class="n">sub_dt</span> <span class="o">=</span> <span class="n">dt</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_step</span>
         <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sub_step</span><span class="p">):</span>
-            <span class="n">vspace</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">sub_dt</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">sub_dt</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">__simulate_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__simulate_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Synchronizes a :class:`~manim.mobject.mobject.Mobject`'s position and rotation with its associated physical body.</span>
 
 <span class="sd">        Reads the latest kinematic state (position and angle) from the Pymunk ``Body``</span>
@@ -1624,17 +1627,17 @@
 <span class="sd">            The Manim Mobject to be synchronized. It must have a `.body`</span>
 <span class="sd">            attribute linked to a Pymunk body.</span>
 <span class="sd">        """</span>
-        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">position</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">position</span>
         <span class="n">mob</span><span class="o">.</span><span class="n">move_to</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-        <span class="n">mob</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">angle</span> <span class="o">-</span> <span class="n">mob</span><span class="o">.</span><span class="n">angle</span><span class="p">)</span>
-        <span class="n">mob</span><span class="o">.</span><span class="n">angle</span> <span class="o">=</span> <span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">angle</span>
+        <span class="n">mob</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">angle</span> <span class="o">-</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">angle</span><span class="p">)</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">angle</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">angle</span>
 
     <span class="c1"># =============================== space  ==================================</span>
 <div class="viewcode-block" id="VSpace.remove_body_shapes_constraints">
 <a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace.remove_body_shapes_constraints">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">remove_body_shapes_constraints</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">items</span><span class="p">:</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span> <span class="o">|</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Shape</span> <span class="o">|</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">constraints</span><span class="o">.</span><span class="n">Constraint</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Removes physical bodies, shapes, or constraints from the physical space.</span>
 
 <span class="sd">        This method handles the unregistration of Pymunk objects. It is crucial for</span>
@@ -1652,7 +1655,7 @@
 
 <div class="viewcode-block" id="VSpace._add_body2space">
 <a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace._add_body2space">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_add_body2space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_add_body2space</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Registers the physical body and shapes of a :class:`~manim.mobject.mobject.Mobject` into the simulation space.</span>
 
 <span class="sd">        If the body is static, only the shapes are added to the space. For dynamic</span>
@@ -1666,13 +1669,13 @@
 <span class="sd">            The :class:`~manim.mobject.mobject.Mobject` containing `.body` and `.shapes` attributes to be integrated</span>
 <span class="sd">            into the physical world.</span>
 <span class="sd">        """</span>
-        <span class="k">if</span> <span class="n">mob</span><span class="o">.</span><span class="n">body</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">static_body</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">*</span><span class="n">mob</span><span class="o">.</span><span class="n">shapes</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span> <span class="ow">is</span> <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">static_body</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">*</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">shapes</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">*</span><span class="n">mob</span><span class="o">.</span><span class="n">shapes</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">*</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">shapes</span><span class="p">)</span>
         <span class="n">mob</span><span class="o">.</span><span class="n">add_updater</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__simulate_updater</span><span class="p">)</span>
-        <span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">activate</span><span class="p">()</span></div>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">activate</span><span class="p">()</span></div>
 
 
     <span class="k">def</span><span class="w"> </span><span class="nf">__set_body</span><span class="p">(</span>
@@ -1683,7 +1686,7 @@
         <span class="n">center_of_gravity</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">velocity</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">angular_velocity</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Initializes and configures the Pymunk physical body for a :class:`~manim.mobject.mobject.Mobject`.</span>
 
 <span class="sd">        This internal method creates a :class:`~pymunk.Body` instance, sets its motion</span>
@@ -1704,23 +1707,23 @@
 <span class="sd">            The initial angular velocity (in radians per second).</span>
 <span class="sd">        """</span>
 
-        <span class="n">pymunk</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"physics"</span><span class="p">,</span> <span class="s2">"pymunk"</span><span class="p">)</span>
+        <span class="n">pymunk</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">require</span><span class="p">(</span><span class="s2">"physics"</span><span class="p">,</span> <span class="s2">"pymunk"</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">mob</span><span class="p">,</span> <span class="s2">"body"</span><span class="p">):</span>
             <span class="n">mob</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">mob</span><span class="p">,</span> <span class="s2">"angle"</span><span class="p">):</span>
             <span class="n">mob</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">angle</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">body_type</span> <span class="o">==</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="o">.</span><span class="n">DYNAMIC</span><span class="p">:</span>
-            <span class="n">mob</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="p">(</span><span class="n">body_type</span><span class="o">=</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="o">.</span><span class="n">DYNAMIC</span><span class="p">)</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="p">(</span><span class="n">body_type</span><span class="o">=</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="o">.</span><span class="n">DYNAMIC</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">body_type</span> <span class="o">==</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="o">.</span><span class="n">KINEMATIC</span><span class="p">:</span>
-            <span class="n">mob</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="p">(</span><span class="n">body_type</span><span class="o">=</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="o">.</span><span class="n">KINEMATIC</span><span class="p">)</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="p">(</span><span class="n">body_type</span><span class="o">=</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="o">.</span><span class="n">KINEMATIC</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">mob</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="p">(</span><span class="n">body_type</span><span class="o">=</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="o">.</span><span class="n">STATIC</span><span class="p">)</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span> <span class="o">=</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="p">(</span><span class="n">body_type</span><span class="o">=</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="o">.</span><span class="n">STATIC</span><span class="p">)</span>
 
-        <span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">mob</span><span class="o">.</span><span class="n">get_x</span><span class="p">(),</span> <span class="n">mob</span><span class="o">.</span><span class="n">get_y</span><span class="p">()</span>
-        <span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">center_of_gravity</span> <span class="o">=</span> <span class="n">center_of_gravity</span>
-        <span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="n">velocity</span>
-        <span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">angular_velocity</span> <span class="o">=</span> <span class="n">angular_velocity</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">mob</span><span class="o">.</span><span class="n">get_x</span><span class="p">(),</span> <span class="n">mob</span><span class="o">.</span><span class="n">get_y</span><span class="p">()</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">center_of_gravity</span> <span class="o">=</span> <span class="n">center_of_gravity</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">velocity</span> <span class="o">=</span> <span class="n">velocity</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">angular_velocity</span> <span class="o">=</span> <span class="n">angular_velocity</span>
 
 <div class="viewcode-block" id="VSpace.set_body_and_shapes">
 <a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace.set_body_and_shapes">[docs]</a>
@@ -1739,7 +1742,7 @@
         <span class="n">center_of_gravity</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">velocity</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">angular_velocity</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Sets up both the physical body and its collision shapes for a :class:`~manim.mobject.mobject.Mobject`.</span>
 
 <span class="sd">        This method acts as a high-level initializer that configures the motion</span>
@@ -1794,7 +1797,7 @@
 <div class="viewcode-block" id="VSpace._set_collision_type">
 <a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace._set_collision_type">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_set_collision_type</span><span class="p">(</span><span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">collision_type</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_collision_type</span><span class="p">(</span><span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">collision_type</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Sets the collision type ID for all physical shapes associated with a :class:`~manim.mobject.mobject.Mobject`.</span>
 
 <span class="sd">        Collision types are user-defined integers used to categorize shapes. By</span>
@@ -1809,7 +1812,7 @@
 <span class="sd">            An integer ID representing the collision category.</span>
 <span class="sd">            (e.g., 1 for players, 2 for enemies).</span>
 <span class="sd">        """</span>
-        <span class="k">for</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">mob</span><span class="o">.</span><span class="n">shapes</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">shapes</span><span class="p">:</span>
             <span class="n">shape</span><span class="o">.</span><span class="n">collision_type</span> <span class="o">=</span> <span class="n">collision_type</span></div>
 
 
@@ -1818,12 +1821,20 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">_wildcard_collision_handler</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">collision_type_a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-        <span class="n">begin</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="n">Dict</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">pre_solve</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="n">Dict</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">post_solve</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="n">Dict</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">separate</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="n">Dict</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">begin</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">pre_solve</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">post_solve</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">separate</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">object</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">CollisionHandler</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Registers a wildcard collision handler for a specific collision type.</span>
 
 <span class="sd">        This handler triggers whenever a shape with ``collision_type_a`` collides</span>
@@ -1878,7 +1889,7 @@
                 <span class="n">handler</span><span class="o">.</span><span class="n">separate</span> <span class="o">=</span> <span class="n">separate</span>
             <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
                 <span class="n">handler</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">handler</span></div>
+            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">handler</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="VSpace._collision_detection_handler">
@@ -1887,12 +1898,20 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">collision_type_a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
         <span class="n">collision_type_b</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-        <span class="n">begin</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="n">Dict</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">pre_solve</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="n">Dict</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">post_solve</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="n">Dict</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">separate</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="n">Dict</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">begin</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">pre_solve</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">post_solve</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">separate</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">object</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">CollisionHandler</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">object</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Registers a collision handler between two specific collision types.</span>
 
 <span class="sd">        This method defines custom callback logic for when a shape of type A</span>
@@ -1953,7 +1972,7 @@
                 <span class="n">handler</span><span class="o">.</span><span class="n">separate</span> <span class="o">=</span> <span class="n">separate</span>
             <span class="k">if</span> <span class="n">data</span><span class="p">:</span>
                 <span class="n">handler</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">handler</span></div>
+            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">handler</span><span class="p">)</span></div>
 
 
     <span class="c1"># =============================== body ==================================</span>
@@ -1964,7 +1983,7 @@
         <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
         <span class="n">force</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">point</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Applies a force to a :class:`~manim.mobject.mobject.Mobject`'s physical body at a point defined in local coordinates.</span>
 
 <span class="sd">        The force is applied relative to the body's current orientation. If the point</span>
@@ -1983,7 +2002,7 @@
 <span class="sd">            the force is applied, in local coordinates.</span>
 <span class="sd">        """</span>
 
-        <span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">apply_force_at_local_point</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="n">force</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">point</span><span class="o">=</span><span class="n">point</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span></div>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">apply_force_at_local_point</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="n">force</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">point</span><span class="o">=</span><span class="n">point</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span></div>
 
 
 <div class="viewcode-block" id="VSpace.apply_force_at_world_point">
@@ -1993,7 +2012,7 @@
         <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
         <span class="n">force</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">point</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Applies a force to a :class:`~manim.mobject.mobject.Mobject`'s physical body at a point defined in world coordinates.</span>
 
 <span class="sd">        The force vector is applied at an absolute position in the scene. If the</span>
@@ -2012,7 +2031,7 @@
 <span class="sd">            The absolute position in the world (scene) coordinates where the</span>
 <span class="sd">            force is applied. :math:`(0, 0, 0)`.</span>
 <span class="sd">        """</span>
-        <span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">apply_force_at_world_point</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="n">force</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">point</span><span class="o">=</span><span class="n">point</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span></div>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">apply_force_at_world_point</span><span class="p">(</span><span class="n">force</span><span class="o">=</span><span class="n">force</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">point</span><span class="o">=</span><span class="n">point</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span></div>
 
 
 <div class="viewcode-block" id="VSpace.apply_impulse_at_local_point">
@@ -2022,7 +2041,7 @@
         <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
         <span class="n">impulse</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">point</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Applies an instantaneous impulse to a :class:`~manim.mobject.mobject.Mobject`'s physical body at a local point.</span>
 
 <span class="sd">        Impulses cause an immediate change in velocity (linear and angular) without</span>
@@ -2040,7 +2059,9 @@
 <span class="sd">            The offset from the body's center of gravity :math:`(x, y, z)` where the</span>
 <span class="sd">            impulse is applied, in local coordinates.</span>
 <span class="sd">        """</span>
-        <span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">apply_impulse_at_local_point</span><span class="p">(</span><span class="n">impulse</span><span class="o">=</span><span class="n">impulse</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">point</span><span class="o">=</span><span class="n">point</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span></div>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">apply_impulse_at_local_point</span><span class="p">(</span>
+            <span class="n">impulse</span><span class="o">=</span><span class="n">impulse</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">point</span><span class="o">=</span><span class="n">point</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="VSpace.apply_impulse_at_world_point">
@@ -2050,7 +2071,7 @@
         <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
         <span class="n">impulse</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">point</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Applies an instantaneous impulse to a :class:`~manim.mobject.mobject.Mobject`'s physical body at a world coordinate.</span>
 
 <span class="sd">        The impulse vector is applied at an absolute position in the scene. This causes</span>
@@ -2069,7 +2090,9 @@
 <span class="sd">            The absolute position in world (scene) coordinates where the</span>
 <span class="sd">            impulse is applied. :math:`(0, 0, 0)`.</span>
 <span class="sd">        """</span>
-        <span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">apply_impulse_at_world_point</span><span class="p">(</span><span class="n">impulse</span><span class="o">=</span><span class="n">impulse</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">point</span><span class="o">=</span><span class="n">point</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span></div>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">apply_impulse_at_world_point</span><span class="p">(</span>
+            <span class="n">impulse</span><span class="o">=</span><span class="n">impulse</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">point</span><span class="o">=</span><span class="n">point</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="VSpace.local_to_world">
@@ -2092,7 +2115,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            The corresponding world-space point (x, y, 0).</span>
 <span class="sd">        """</span>
-        <span class="n">world_pos</span> <span class="o">=</span> <span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">local_to_world</span><span class="p">(</span><span class="n">point</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">world_pos</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">local_to_world</span><span class="p">(</span><span class="n">point</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
         <span class="k">return</span> <span class="p">(</span><span class="o">*</span><span class="n">world_pos</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
 
 
@@ -2116,7 +2139,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            The corresponding local-space point (x, y, 0).</span>
 <span class="sd">        """</span>
-        <span class="n">local_pos</span> <span class="o">=</span> <span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">world_to_local</span><span class="p">(</span><span class="n">point</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">local_pos</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">world_to_local</span><span class="p">(</span><span class="n">point</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
         <span class="k">return</span> <span class="p">(</span><span class="o">*</span><span class="n">local_pos</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
 
 
@@ -2124,8 +2147,8 @@
 <a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace.set_position_func">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_position_func</span><span class="p">(</span>
-        <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="p">):</span>
+        <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Assigns a custom position update callback to a :class:`~manim.mobject.mobject.Mobject`'s physical body.</span>
 
 <span class="sd">        Pymunk updates a body's position based on its velocity. This</span>
@@ -2146,7 +2169,7 @@
 <span class="sd">            If None, the default Pymunk position update logic is restored.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
-            <span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">position_func</span> <span class="o">=</span> <span class="n">callback</span></div>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">position_func</span> <span class="o">=</span> <span class="n">callback</span></div>
 
 
 <div class="viewcode-block" id="VSpace.set_velocity_func">
@@ -2154,8 +2177,10 @@
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_velocity_func</span><span class="p">(</span>
         <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
-        <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Body</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="n">callback</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">Callable</span><span class="p">[[</span><span class="n">Body</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Assigns a custom velocity update callback to a :class:`~manim.mobject.mobject.Mobject`'s physical body.</span>
 
 <span class="sd">        This method overrides how Pymunk calculates velocity in each step. It is commonly</span>
@@ -2176,7 +2201,7 @@
 <span class="sd">            If None, the default Pymunk velocity update logic is restored.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">callback</span><span class="p">:</span>
-            <span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">velocity_func</span> <span class="o">=</span> <span class="n">callback</span></div>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">velocity_func</span> <span class="o">=</span> <span class="n">callback</span></div>
 
 
 <div class="viewcode-block" id="VSpace.velocity_at_local_point">
@@ -2200,7 +2225,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            The velocity vector (vx, vy, 0) at the given point.</span>
 <span class="sd">        """</span>
-        <span class="n">velocity</span> <span class="o">=</span> <span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">velocity_at_local_point</span><span class="p">(</span><span class="n">point</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">velocity</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">velocity_at_local_point</span><span class="p">(</span><span class="n">point</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
         <span class="k">return</span> <span class="p">(</span><span class="o">*</span><span class="n">velocity</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
 
 
@@ -2225,7 +2250,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            The velocity vector (vx, vy, 0) at the given point.</span>
 <span class="sd">        """</span>
-        <span class="n">velocity</span> <span class="o">=</span> <span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">velocity_at_world_point</span><span class="p">(</span><span class="n">point</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+        <span class="n">velocity</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">velocity_at_world_point</span><span class="p">(</span><span class="n">point</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
         <span class="k">return</span> <span class="p">(</span><span class="o">*</span><span class="n">velocity</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span></div>
 
 
@@ -2240,7 +2265,7 @@
         <span class="n">density</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
         <span class="n">sensor</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">surface_velocity</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Configures and attaches collision shapes to a :class:`~manim.mobject.mobject.Mobject`'s physical body.</span>
 
 <span class="sd">        This internal method defines the 'material' and 'boundary' properties of the</span>
@@ -2279,14 +2304,14 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__calculate_hollow_shape</span><span class="p">(</span><span class="n">mob</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">mob</span><span class="o">.</span><span class="n">shapes</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">shapes</span><span class="p">:</span>
             <span class="n">shape</span><span class="o">.</span><span class="n">elasticity</span> <span class="o">=</span> <span class="n">elasticity</span>
             <span class="n">shape</span><span class="o">.</span><span class="n">friction</span> <span class="o">=</span> <span class="n">friction</span>
             <span class="n">shape</span><span class="o">.</span><span class="n">density</span> <span class="o">=</span> <span class="n">density</span>
             <span class="n">shape</span><span class="o">.</span><span class="n">sensor</span> <span class="o">=</span> <span class="n">sensor</span>
             <span class="n">shape</span><span class="o">.</span><span class="n">surface_velocity</span> <span class="o">=</span> <span class="n">surface_velocity</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">__calculate_solid_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__calculate_solid_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Generates Pymunk collision shapes for a solid Mobject.</span>
 
 <span class="sd">        This method maps Manim primitives (Circle, Line, Polygon, etc.) to their</span>
@@ -2305,16 +2330,18 @@
 <span class="sd">            objects are decomposed into multiple convex sub-shapes attached to</span>
 <span class="sd">            the same body.</span>
 <span class="sd">        """</span>
-        <span class="n">pymunk</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"physics"</span><span class="p">,</span> <span class="s2">"pymunk"</span><span class="p">)</span>
+        <span class="n">pymunk</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">require</span><span class="p">(</span><span class="s2">"physics"</span><span class="p">,</span> <span class="s2">"pymunk"</span><span class="p">))</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">pymunk</span><span class="w"> </span><span class="kn">import</span> <span class="n">autogeometry</span>
 
-        <span class="n">stroke_width</span> <span class="o">=</span> <span class="p">(</span><span class="n">mob</span><span class="o">.</span><span class="n">stroke_width</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
+        <span class="n">stroke_width</span> <span class="o">=</span> <span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">stroke_width</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
             <span class="n">config</span><span class="o">.</span><span class="n">frame_height</span> <span class="o">/</span> <span class="n">config</span><span class="o">.</span><span class="n">frame_width</span>
         <span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mob</span><span class="p">,</span> <span class="n">Circle</span><span class="p">):</span>
-            <span class="n">mob</span><span class="o">.</span><span class="n">shapes</span> <span class="o">=</span> <span class="p">[</span>
-                <span class="n">pymunk</span><span class="o">.</span><span class="n">Circle</span><span class="p">(</span><span class="n">body</span><span class="o">=</span><span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">mob</span><span class="o">.</span><span class="n">radius</span> <span class="o">+</span> <span class="n">stroke_width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">shapes</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">pymunk</span><span class="o">.</span><span class="n">Circle</span><span class="p">(</span>
+                    <span class="n">body</span><span class="o">=</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">mob</span><span class="o">.</span><span class="n">radius</span> <span class="o">+</span> <span class="n">stroke_width</span> <span class="o">/</span> <span class="mi">2</span>
+                <span class="p">)</span>
             <span class="p">]</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mob</span><span class="p">,</span> <span class="n">Line</span><span class="p">):</span>
             <span class="n">center_x</span><span class="p">,</span> <span class="n">center_y</span> <span class="o">=</span> <span class="n">mob</span><span class="o">.</span><span class="n">get_center</span><span class="p">()[:</span><span class="mi">2</span><span class="p">]</span>
@@ -2323,7 +2350,9 @@
 
             <span class="n">local_a</span> <span class="o">=</span> <span class="p">(</span><span class="n">start</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">center_x</span><span class="p">,</span> <span class="n">start</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">center_y</span><span class="p">)</span>
             <span class="n">local_b</span> <span class="o">=</span> <span class="p">(</span><span class="n">end</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">center_x</span><span class="p">,</span> <span class="n">end</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">center_y</span><span class="p">)</span>
-            <span class="n">mob</span><span class="o">.</span><span class="n">shapes</span> <span class="o">=</span> <span class="p">[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Segment</span><span class="p">(</span><span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="n">local_a</span><span class="p">,</span> <span class="n">local_b</span><span class="p">,</span> <span class="n">stroke_width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)]</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">shapes</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">pymunk</span><span class="o">.</span><span class="n">Segment</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="n">local_a</span><span class="p">,</span> <span class="n">local_b</span><span class="p">,</span> <span class="n">stroke_width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="p">]</span>
 
         <span class="c1">#  Polygram, Star, RegularPolygon, VMobject,etc.</span>
         <span class="k">else</span><span class="p">:</span>
@@ -2338,19 +2367,23 @@
 
             <span class="k">if</span> <span class="n">is_convex</span><span class="p">:</span>
                 <span class="c1"># is convex</span>
-                <span class="n">mob</span><span class="o">.</span><span class="n">shapes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                    <span class="n">pymunk</span><span class="o">.</span><span class="n">Poly</span><span class="p">(</span><span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="n">local_points</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">stroke_width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">shapes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="n">pymunk</span><span class="o">.</span><span class="n">Poly</span><span class="p">(</span>
+                        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="n">local_points</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">stroke_width</span> <span class="o">/</span> <span class="mi">2</span>
+                    <span class="p">)</span>
                 <span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">convex_hulls</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__concave2convex_refined</span><span class="p">(</span>
                     <span class="n">mob</span><span class="p">,</span> <span class="n">n_divisions</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">tolerance</span><span class="o">=</span><span class="mf">0.01</span>
                 <span class="p">)</span>
                 <span class="k">for</span> <span class="n">hull_verts</span> <span class="ow">in</span> <span class="n">convex_hulls</span><span class="p">:</span>
-                    <span class="n">mob</span><span class="o">.</span><span class="n">shapes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                        <span class="n">pymunk</span><span class="o">.</span><span class="n">Poly</span><span class="p">(</span><span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="n">hull_verts</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">stroke_width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+                    <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">shapes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                        <span class="n">pymunk</span><span class="o">.</span><span class="n">Poly</span><span class="p">(</span>
+                            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="n">hull_verts</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">stroke_width</span> <span class="o">/</span> <span class="mi">2</span>
+                        <span class="p">)</span>
                     <span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">__calculate_hollow_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">n_divisions</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__calculate_hollow_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">n_divisions</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Generates Pymunk collision shapes for a hollow Mobject (outline only).</span>
 
 <span class="sd">        Instead of a solid polygon, this method constructs a collision boundary using</span>
@@ -2366,9 +2399,9 @@
 <span class="sd">            The subdivision level for Bezier curves. Higher values result in</span>
 <span class="sd">            smoother boundaries but may impact simulation performance.</span>
 <span class="sd">        """</span>
-        <span class="n">pymunk</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"physics"</span><span class="p">,</span> <span class="s2">"pymunk"</span><span class="p">)</span>
+        <span class="n">pymunk</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">require</span><span class="p">(</span><span class="s2">"physics"</span><span class="p">,</span> <span class="s2">"pymunk"</span><span class="p">))</span>
 
-        <span class="n">stroke_width</span> <span class="o">=</span> <span class="p">(</span><span class="n">mob</span><span class="o">.</span><span class="n">stroke_width</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
+        <span class="n">stroke_width</span> <span class="o">=</span> <span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">stroke_width</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
             <span class="n">config</span><span class="o">.</span><span class="n">frame_height</span> <span class="o">/</span> <span class="n">config</span><span class="o">.</span><span class="n">frame_width</span>
         <span class="p">)</span>
         <span class="n">refined_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_refined_points</span><span class="p">(</span><span class="n">mob</span><span class="p">,</span> <span class="n">n_divisions</span><span class="p">)</span>
@@ -2389,11 +2422,14 @@
                 <span class="k">continue</span>
 
             <span class="n">seg</span> <span class="o">=</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Segment</span><span class="p">(</span>
-                <span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="p">(</span><span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="p">(</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">radius</span><span class="o">=</span><span class="n">stroke_width</span> <span class="o">/</span> <span class="mi">2</span>
+                <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="p">,</span>
+                <span class="p">(</span><span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="p">(</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
+                <span class="n">radius</span><span class="o">=</span><span class="n">stroke_width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
             <span class="p">)</span>
-            <span class="n">mob</span><span class="o">.</span><span class="n">shapes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seg</span><span class="p">)</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">shapes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seg</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">__calculate_img_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">ImageMobject</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__calculate_img_shape</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">ImageMobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Generates Pymunk collision shapes from ImageMobject pixel data.</span>
 
 <span class="sd">        This method analyzes the image's transparency (alpha channel) or pixel</span>
@@ -2411,12 +2447,12 @@
 <span class="sd">            For better performance and physical stability, complex image outlines are</span>
 <span class="sd">            often simplified into low-vertex count convex polygons.</span>
 <span class="sd">        """</span>
-        <span class="n">pymunk</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"physics"</span><span class="p">,</span> <span class="s2">"pymunk"</span><span class="p">)</span>
+        <span class="n">pymunk</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">require</span><span class="p">(</span><span class="s2">"physics"</span><span class="p">,</span> <span class="s2">"pymunk"</span><span class="p">))</span>
 
         <span class="n">pixel_array</span> <span class="o">=</span> <span class="n">mob</span><span class="o">.</span><span class="n">pixel_array</span>
         <span class="n">polygons_verts</span> <span class="o">=</span> <span class="n">get_normalized_convex_polygons</span><span class="p">(</span>
             <span class="n">pixel_array</span><span class="p">,</span>
-            <span class="n">base_px_width</span><span class="o">=</span><span class="mf">512.0</span><span class="p">,</span>
+            <span class="n">base_px_width</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
             <span class="n">target_cell_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
             <span class="n">img_manim_w</span><span class="o">=</span><span class="n">mob</span><span class="o">.</span><span class="n">width</span><span class="p">,</span>
             <span class="n">img_manim_h</span><span class="o">=</span><span class="n">mob</span><span class="o">.</span><span class="n">height</span><span class="p">,</span>
@@ -2424,17 +2460,21 @@
         <span class="k">if</span> <span class="n">polygons_verts</span><span class="p">:</span>
             <span class="c1"># create polygons</span>
             <span class="k">for</span> <span class="n">poly_verts</span> <span class="ow">in</span> <span class="n">polygons_verts</span><span class="p">:</span>
-                <span class="n">mob</span><span class="o">.</span><span class="n">shapes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Poly</span><span class="p">(</span><span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="n">poly_verts</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.1</span><span class="p">))</span>
+                <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">shapes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="n">pymunk</span><span class="o">.</span><span class="n">Poly</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="n">poly_verts</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+                <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># Simple box</span>
-            <span class="n">mob</span><span class="o">.</span><span class="n">shapes</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">shapes</span> <span class="o">=</span> <span class="p">[</span>
                 <span class="n">pymunk</span><span class="o">.</span><span class="n">Poly</span><span class="o">.</span><span class="n">create_box</span><span class="p">(</span>
-                    <span class="n">mob</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">mob</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">mob</span><span class="o">.</span><span class="n">height</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.1</span>
+                    <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">mob</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">mob</span><span class="o">.</span><span class="n">height</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.1</span>
                 <span class="p">)</span>
             <span class="p">]</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">__get_refined_points</span><span class="p">(</span><span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">n_divisions</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__get_refined_points</span><span class="p">(</span>
+        <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">n_divisions</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">"""Extracts subdivided sample points from a Mobject for precise collision shape generation.</span>
 
 <span class="sd">        This method performs adaptive sampling on the Bezier curves that define a</span>
@@ -2455,7 +2495,7 @@
 <span class="sd">            A list of subdivided :math:`(x, y)` coordinate tuples representing the</span>
 <span class="sd">            sampled path.</span>
 <span class="sd">        """</span>
-        <span class="n">all_points</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">all_points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">submob</span> <span class="ow">in</span> <span class="n">mob</span><span class="o">.</span><span class="n">family_members_with_points</span><span class="p">():</span>
             <span class="n">pts</span> <span class="o">=</span> <span class="n">submob</span><span class="o">.</span><span class="n">points</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -2470,7 +2510,7 @@
                 <span class="n">all_points</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">sub_pts</span><span class="p">)</span>
 
         <span class="c1"># Convert to 2D coords and dedupe</span>
-        <span class="n">unique_points</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">unique_points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">all_points</span><span class="p">:</span>
             <span class="n">p_2d</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">unique_points</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">p_2d</span><span class="p">,</span> <span class="n">unique_points</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">):</span>
@@ -2502,7 +2542,7 @@
 <span class="sd">            A list where each element is a list of vertices defining a</span>
 <span class="sd">            specific convex sub-polygon.</span>
 <span class="sd">        """</span>
-        <span class="n">pymunk</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"physics"</span><span class="p">,</span> <span class="s2">"pymunk"</span><span class="p">)</span>
+        <span class="n">pymunk</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">require</span><span class="p">(</span><span class="s2">"physics"</span><span class="p">,</span> <span class="s2">"pymunk"</span><span class="p">))</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">pymunk</span><span class="w"> </span><span class="kn">import</span> <span class="n">autogeometry</span>
 
         <span class="c1"># 1. Sample for high-quality point set</span>
@@ -2514,13 +2554,13 @@
             <span class="k">return</span> <span class="p">[]</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">convex_hulls</span> <span class="o">=</span> <span class="n">autogeometry</span><span class="o">.</span><span class="n">convex_decomposition</span><span class="p">(</span><span class="n">local_points</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">convex_hulls</span>
+            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]],</span> <span class="n">convex_hulls</span><span class="p">)</span>
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
             <span class="n">manim_pymunk_logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span>
                 <span class="s2">"Decomposition failed, attempting to downgrade to convex hull. Please check if the SVG path is clockwise: </span><span class="si">{e}</span><span class="s2">"</span>
             <span class="p">)</span>
             <span class="n">hull</span> <span class="o">=</span> <span class="n">autogeometry</span><span class="o">.</span><span class="n">to_convex_hull</span><span class="p">(</span><span class="n">local_points</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">)</span>
-            <span class="k">return</span> <span class="p">[</span><span class="n">hull</span><span class="p">]</span>
+            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]],</span> <span class="p">[</span><span class="n">hull</span><span class="p">])</span>
 
 <div class="viewcode-block" id="VSpace._add_shape_filter">
 <a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace._add_shape_filter">[docs]</a>
@@ -2530,7 +2570,7 @@
         <span class="n">group</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">categories</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4294967295</span><span class="p">,</span>
         <span class="n">mask</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4294967295</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Configures collision filtering for all shapes associated with a :class:`~manim.mobject.mobject.Mobject`.</span>
 
 <span class="sd">        This method defines which objects can collide with each other using Pymunk's</span>
@@ -2549,10 +2589,10 @@
 <span class="sd">        mask</span>
 <span class="sd">            A bitmask representing which categories this shape will collide with.</span>
 <span class="sd">        """</span>
-        <span class="n">pymunk</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"physics"</span><span class="p">,</span> <span class="s2">"pymunk"</span><span class="p">)</span>
+        <span class="n">pymunk</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">require</span><span class="p">(</span><span class="s2">"physics"</span><span class="p">,</span> <span class="s2">"pymunk"</span><span class="p">))</span>
 
         <span class="n">shape_filter</span> <span class="o">=</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">ShapeFilter</span><span class="p">(</span><span class="n">group</span><span class="p">,</span> <span class="n">categories</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">mob</span><span class="o">.</span><span class="n">shapes</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">shapes</span><span class="p">:</span>
             <span class="n">shape</span><span class="o">.</span><span class="n">filter</span> <span class="o">=</span> <span class="n">shape_filter</span></div>
 
 
@@ -2561,7 +2601,7 @@
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_point_query_info</span><span class="p">(</span>
         <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">object</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">"""Performs a spatial query to find the relationship between a point and a :class:`~manim.mobject.mobject.Mobject`'s shapes.</span>
 
 <span class="sd">        This method calculates how a specific point in space relates to the physical</span>
@@ -2597,8 +2637,8 @@
 <span class="sd">                 - The specific :class:`~pymunk.Shape` object that was queried.</span>
 <span class="sd">        """</span>
 
-        <span class="n">query_info_list</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">mob</span><span class="o">.</span><span class="n">shapes</span><span class="p">:</span>
+        <span class="n">query_info_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">object</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">shapes</span><span class="p">:</span>
             <span class="n">point_query_info</span> <span class="o">=</span> <span class="n">shape</span><span class="o">.</span><span class="n">point_query</span><span class="p">(</span><span class="n">point</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
             <span class="n">query_info_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                 <span class="p">(</span>
@@ -2619,7 +2659,7 @@
         <span class="n">start</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">end</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">stroke_width</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">object</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">"""Performs a segment query to detect intersections between a line and a :class:`~manim.mobject.mobject.Mobject`'s shapes.</span>
 
 <span class="sd">        This method simulates a 'laser beam' or thick line segment traveling from</span>
@@ -2655,8 +2695,8 @@
 <span class="sd">               * - ``shape``</span>
 <span class="sd">                 - The specific :class:`~pymunk.Shape` that was hit.</span>
 <span class="sd">        """</span>
-        <span class="n">query_info_list</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">mob</span><span class="o">.</span><span class="n">shapes</span><span class="p">:</span>
+        <span class="n">query_info_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">object</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">shape</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">shapes</span><span class="p">:</span>
             <span class="n">line_query_info</span> <span class="o">=</span> <span class="n">shape</span><span class="o">.</span><span class="n">segment_query</span><span class="p">(</span>
                 <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">radius</span><span class="o">=</span><span class="n">stroke_width</span>
             <span class="p">)</span>
@@ -2674,7 +2714,9 @@
 <div class="viewcode-block" id="VSpace.get_shapea_shapeb_info">
 <a class="viewcode-back" href="../../../../reference/pymunk/space/VSpace.VSpace.html#manim_extensions.pymunk.space.VSpace.VSpace.get_shapea_shapeb_info">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_shapea_shapeb_info</span><span class="p">(</span><span class="n">shape_a</span><span class="p">:</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Shape</span><span class="p">,</span> <span class="n">shape_b</span><span class="p">:</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Shape</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_shapea_shapeb_info</span><span class="p">(</span>
+        <span class="n">shape_a</span><span class="p">:</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Shape</span><span class="p">,</span> <span class="n">shape_b</span><span class="p">:</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Shape</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Retrieves detailed contact information between two specific physical shapes.</span>
 
 <span class="sd">        This method performs a low-level collision query to find the 'contact manifold'</span>

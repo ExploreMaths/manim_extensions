@@ -1477,6 +1477,8 @@
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="c1"># patched: document module-level constants</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
 <span class="sd">"""CLI utilities for automata.</span>
 
 <span class="sd">This module provides the :class:`~manim_extensions.automata.mobjects.manim_cli.ManimAutomataCLI` class for interactive command-line interface.</span>
@@ -1521,12 +1523,12 @@
 <span class="sd">       # Choice: 0</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">cli_logo</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ManimAutomataCLI.creation_menu">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_cli.ManimAutomataCLI.html#manim_extensions.automata.mobjects.manim_cli.ManimAutomataCLI.creation_menu">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">creation_menu</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">creation_menu</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Prompt the user to choose an automaton type and schema file path."""</span>
         <span class="n">options</span> <span class="o">=</span> <span class="p">[</span>
             <span class="s2">"Deterministic Finite Automaton"</span><span class="p">,</span>
@@ -1539,7 +1541,7 @@
 
 <div class="viewcode-block" id="ManimAutomataCLI.display_nda_options">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_cli.ManimAutomataCLI.html#manim_extensions.automata.mobjects.manim_cli.ManimAutomataCLI.display_nda_options">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">display_nda_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">display_nda_options</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Prompt the user to choose an NDA-specific option."""</span>
         <span class="n">options</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Non-deterministic Automaton Path Builder"</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">nda_option</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">display_options</span><span class="p">(</span><span class="n">options</span><span class="p">)</span></div>
@@ -1567,7 +1569,7 @@
 
 <div class="viewcode-block" id="ManimAutomataCLI.display_dictionary_options">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_cli.ManimAutomataCLI.html#manim_extensions.automata.mobjects.manim_cli.ManimAutomataCLI.display_dictionary_options">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">display_dictionary_options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">display_dictionary_options</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">options</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Print dictionary keys with their first value column and return the user's choice.</span>
 
 <span class="sd">        Parameters</span>

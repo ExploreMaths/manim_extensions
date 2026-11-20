@@ -1476,6 +1476,9 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
 <span class="sd">"""Machine learning visualizations for Manim.</span>
 
 <span class="sd">This module provides various machine learning related visualizations</span>
@@ -1502,7 +1505,7 @@
 <span class="sd">        Colour scheme applied to the machine learning visualisations.</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">default_color_scheme</span><span class="p">:</span> <span class="n">ColorScheme</span> <span class="o">=</span> <span class="n">dark_mode</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">default_color_scheme</span><span class="p">:</span> <span class="n">ColorScheme</span> <span class="o">=</span> <span class="n">dark_mode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_color_scheme</span> <span class="o">=</span> <span class="n">default_color_scheme</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">three_d_config</span> <span class="o">=</span> <span class="n">Namespace</span><span class="p">(</span>
             <span class="n">three_d_x_rotation</span><span class="o">=</span><span class="mi">90</span> <span class="o">*</span> <span class="n">DEGREES</span><span class="p">,</span>
@@ -1524,7 +1527,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_color_scheme</span>
 
     <span class="nd">@color_scheme</span><span class="o">.</span><span class="n">setter</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">color_scheme</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">ColorScheme</span> <span class="o">|</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">color_scheme</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">ColorScheme</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Set the active color scheme and apply its background color.</span>
 
 <span class="sd">        Parameters</span>
@@ -1556,7 +1559,9 @@
 
 
 <span class="c1"># These are accessible from the manim_ml namespace</span>
-<span class="n">config</span> <span class="o">=</span> <span class="n">ManimMLConfig</span><span class="p">()</span>  <span class="c1"># intentionally shadows manim's star-imported config</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+    <span class="s2">"ManimConfig"</span><span class="p">,</span> <span class="n">ManimMLConfig</span><span class="p">()</span>
+<span class="p">)</span>  <span class="c1"># intentionally shadows manim's star-imported config</span>
 </pre></div>
         </article>
       </div>

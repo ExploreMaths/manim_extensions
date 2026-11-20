@@ -1477,9 +1477,12 @@
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="c1"># patched: drop a stale TODO (FadeIn is the intended create animation)</span>
 
+
 <span class="sd">"""Paired query layer visualization for neural networks."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
@@ -1571,8 +1574,8 @@
         <span class="n">stroke_width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
         <span class="n">font_size</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">18</span><span class="p">,</span>
         <span class="n">spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">positive</span> <span class="o">=</span> <span class="n">positive</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">negative</span> <span class="o">=</span> <span class="n">negative</span>
@@ -1591,7 +1594,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">input_layer</span><span class="p">:</span> <span class="n">NeuralNetworkLayer</span><span class="p">,</span>
         <span class="n">output_layer</span><span class="p">:</span> <span class="n">NeuralNetworkLayer</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Forward to the parent construct_layer method.</span>
 
@@ -1611,7 +1614,11 @@
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/paired_query.PairedQueryLayer.html#manim_extensions.machine_learning.neural_network.layers.paired_query.PairedQueryLayer.from_paths">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_paths</span><span class="p">(</span>
-        <span class="bp">cls</span><span class="p">,</span> <span class="n">positive_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">negative_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">grayscale</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="bp">cls</span><span class="p">,</span>
+        <span class="n">positive_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">negative_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+        <span class="n">grayscale</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"PairedQueryLayer"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Creates a query using the paths.</span>
 
@@ -1635,8 +1642,8 @@
             <span class="n">positive</span> <span class="o">=</span> <span class="n">GrayscaleImageMobject</span><span class="o">.</span><span class="n">from_path</span><span class="p">(</span><span class="n">positive_path</span><span class="p">)</span>
             <span class="n">negative</span> <span class="o">=</span> <span class="n">GrayscaleImageMobject</span><span class="o">.</span><span class="n">from_path</span><span class="p">(</span><span class="n">negative_path</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">positive</span> <span class="o">=</span> <span class="n">ImageMobject</span><span class="p">(</span><span class="n">positive_path</span><span class="p">)</span>
-            <span class="n">negative</span> <span class="o">=</span> <span class="n">ImageMobject</span><span class="p">(</span><span class="n">negative_path</span><span class="p">)</span>
+            <span class="n">positive</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"GrayscaleImageMobject"</span><span class="p">,</span> <span class="n">ImageMobject</span><span class="p">(</span><span class="n">positive_path</span><span class="p">))</span>
+            <span class="n">negative</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"GrayscaleImageMobject"</span><span class="p">,</span> <span class="n">ImageMobject</span><span class="p">(</span><span class="n">negative_path</span><span class="p">))</span>
         <span class="c1"># Make the layer</span>
         <span class="n">query_layer</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">positive</span><span class="p">,</span> <span class="n">negative</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -1691,7 +1698,7 @@
 <div class="viewcode-block" id="PairedQueryLayer.make_forward_pass_animation">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/paired_query.PairedQueryLayer.html#manim_extensions.machine_learning.neural_network.layers.paired_query.PairedQueryLayer.make_forward_pass_animation">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_forward_pass_animation</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">layer_args</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">layer_args</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnimationGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Forward pass for query.</span>
 

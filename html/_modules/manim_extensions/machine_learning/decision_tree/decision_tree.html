@@ -1477,6 +1477,9 @@
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="c1"># patched: implement text leaf nodes and the tree expansion animations</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
 <span class="sd">"""</span>
 <span class="sd">Module for visualizing decision trees in Manim.</span>
 <span class="sd">It parses a decision tree classifier from sklearn.</span>
@@ -1584,10 +1587,10 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">class_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
         <span class="n">display_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"image"</span><span class="p">,</span>
-        <span class="n">class_image_paths</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[],</span>
-        <span class="n">class_colors</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="n">class_image_paths</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="n">class_colors</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
         <span class="n">class_names</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">display_type</span> <span class="o">=</span> <span class="n">display_type</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">class_image_paths</span> <span class="o">=</span> <span class="n">class_image_paths</span>
@@ -1601,7 +1604,7 @@
 
 <div class="viewcode-block" id="LeafNode._construct_text_node">
 <a class="viewcode-back" href="../../../../reference/machine_learning/decision_tree/decision_tree.LeafNode.html#manim_extensions.machine_learning.decision_tree.decision_tree.LeafNode._construct_text_node">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_construct_text_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_construct_text_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build a text leaf node.</span>
 
 <span class="sd">        Parameters</span>
@@ -1622,7 +1625,7 @@
 
 <div class="viewcode-block" id="LeafNode._construct_image_node">
 <a class="viewcode-back" href="../../../../reference/machine_learning/decision_tree/decision_tree.LeafNode.html#manim_extensions.machine_learning.decision_tree.decision_tree.LeafNode._construct_image_node">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_construct_image_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_construct_image_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">class_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build an image leaf node.</span>
 
 <span class="sd">        Parameters</span>
@@ -1675,7 +1678,7 @@
 <span class="sd">               self.add(SplitNode(feature=0, threshold=0.5).scale(2))</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span> <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">,</span> <span class="n">threshold</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="n">node_text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">feature</span><span class="si">}</span><span class="se">\n</span><span class="s2">&lt;=  </span><span class="si">{</span><span class="n">threshold</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span>
         <span class="c1"># Draw decision text</span>
@@ -1754,8 +1757,8 @@
         <span class="n">feature_names</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">class_names</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">class_images_paths</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">class_colors</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="n">RED</span><span class="p">,</span> <span class="n">GREEN</span><span class="p">,</span> <span class="n">BLUE</span><span class="p">],</span>
-    <span class="p">):</span>
+        <span class="n">class_colors</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">RED</span><span class="p">,</span> <span class="n">GREEN</span><span class="p">,</span> <span class="n">BLUE</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">tree</span> <span class="o">=</span> <span class="n">sklearn_tree</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">feature_names</span> <span class="o">=</span> <span class="n">feature_names</span>
@@ -1787,19 +1790,22 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">children_left</span><span class="p">[</span><span class="n">node_index</span><span class="p">]</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">children_right</span><span class="p">[</span><span class="n">node_index</span><span class="p">]</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">is_split_node</span><span class="p">:</span>
-            <span class="n">node_feature</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">feature</span><span class="p">[</span><span class="n">node_index</span><span class="p">]</span>
-            <span class="n">node_threshold</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">threshold</span><span class="p">[</span><span class="n">node_index</span><span class="p">]</span>
+            <span class="n">node_feature</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">)</span><span class="o">.</span><span class="n">feature</span><span class="p">[</span><span class="n">node_index</span><span class="p">]</span>
+            <span class="n">node_threshold</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">)</span><span class="o">.</span><span class="n">threshold</span><span class="p">[</span><span class="n">node_index</span><span class="p">]</span>
             <span class="n">node</span> <span class="o">=</span> <span class="n">SplitNode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">feature_names</span><span class="p">[</span><span class="n">node_feature</span><span class="p">],</span> <span class="n">node_threshold</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="c1"># Get the most abundant class for the given leaf node</span>
             <span class="c1"># Make the leaf node object</span>
-            <span class="n">tree_class_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="n">node_index</span><span class="p">])</span>
-            <span class="n">node</span> <span class="o">=</span> <span class="n">LeafNode</span><span class="p">(</span>
-                <span class="n">class_index</span><span class="o">=</span><span class="n">tree_class_index</span><span class="p">,</span>
-                <span class="n">class_colors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">class_colors</span><span class="p">,</span>
-                <span class="n">class_image_paths</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">class_image_paths</span><span class="p">,</span>
-                <span class="n">class_names</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">,</span>
-                <span class="n">display_type</span><span class="o">=</span><span class="s2">"image"</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_image_paths</span> <span class="k">else</span> <span class="s2">"text"</span><span class="p">,</span>
+            <span class="n">tree_class_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="n">node_index</span><span class="p">])</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+                <span class="s2">"SplitNode"</span><span class="p">,</span>
+                <span class="n">LeafNode</span><span class="p">(</span>
+                    <span class="n">class_index</span><span class="o">=</span><span class="n">tree_class_index</span><span class="p">,</span>
+                    <span class="n">class_colors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">class_colors</span><span class="p">,</span>
+                    <span class="n">class_image_paths</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">class_image_paths</span><span class="p">,</span>
+                    <span class="n">class_names</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">class_names</span><span class="p">,</span>
+                    <span class="n">display_type</span><span class="o">=</span><span class="s2">"image"</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">class_image_paths</span> <span class="k">else</span> <span class="s2">"text"</span><span class="p">,</span>
+                <span class="p">),</span>
             <span class="p">)</span>
         <span class="k">return</span> <span class="n">node</span></div>
 
@@ -1845,7 +1851,7 @@
 <span class="sd">            map keyed by ``"parent,child"`` pairs.</span>
 <span class="sd">        """</span>
         <span class="n">tree_group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">()</span>
-        <span class="n">max_depth</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">max_depth</span>
+        <span class="n">max_depth</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">)</span><span class="o">.</span><span class="n">max_depth</span>
         <span class="c1"># Make the root node</span>
         <span class="n">nodes_map</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">root_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_node</span><span class="p">(</span>
@@ -1866,7 +1872,7 @@
             <span class="n">direction</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
             <span class="n">parent_object</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
             <span class="n">parent_node</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-        <span class="p">):</span>
+        <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">"""Recursively build tree nodes and connections at the given depth."""</span>
             <span class="c1"># make the node object</span>
             <span class="n">is_leaf</span> <span class="o">=</span> <span class="p">(</span>
@@ -1916,7 +1922,12 @@
         <span class="n">recurse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">children_right</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"right"</span><span class="p">,</span> <span class="n">root_node</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
         <span class="n">tree_group</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.35</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">tree_group</span><span class="p">,</span> <span class="n">nodes_map</span><span class="p">,</span> <span class="n">edge_map</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="s2">"tuple[Group, dict[int, Mobject], dict[str, Line]]"</span><span class="p">,</span>
+            <span class="n">tree_group</span><span class="p">,</span>
+            <span class="n">nodes_map</span><span class="p">,</span>
+            <span class="n">edge_map</span><span class="p">,</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="DecisionTreeDiagram._make_placeholder_leaf">
@@ -1972,7 +1983,7 @@
         <span class="n">split_node_animations</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="n">placeholder_class_nodes</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="c1"># Show the root node as its dominant class first.</span>
-        <span class="n">root_class_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+        <span class="n">root_class_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
         <span class="n">root_placeholder_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_placeholder_leaf</span><span class="p">(</span><span class="n">root_class_index</span><span class="p">)</span>
         <span class="n">root_placeholder_node</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_map</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">root_placeholder_node</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_map</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
@@ -2004,7 +2015,9 @@
                         <span class="n">lag_ratio</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
                     <span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">child_class_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="n">child_index</span><span class="p">]))</span>
+                    <span class="n">child_class_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span>
+                        <span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">)</span><span class="o">.</span><span class="n">value</span><span class="p">[</span><span class="n">child_index</span><span class="p">])</span>
+                    <span class="p">)</span>
                     <span class="n">placeholder_child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_placeholder_leaf</span><span class="p">(</span><span class="n">child_class_index</span><span class="p">)</span>
                     <span class="n">placeholder_child</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodes_map</span><span class="p">[</span><span class="n">child_index</span><span class="p">])</span>
                     <span class="n">placeholder_child</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span>
@@ -2154,7 +2167,7 @@
         <span class="n">sklearn_tree</span><span class="p">:</span> <span class="n">helpers</span><span class="o">.</span><span class="n">SklearnTree</span><span class="p">,</span>
         <span class="n">points</span><span class="p">:</span> <span class="n">Point2D_Array</span><span class="p">,</span>
         <span class="n">classes</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sklearn_tree</span> <span class="o">=</span> <span class="n">sklearn_tree</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">points</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">classes</span> <span class="o">=</span> <span class="n">classes</span>

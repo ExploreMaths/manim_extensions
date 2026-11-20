@@ -1476,9 +1476,12 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+
 <span class="sd">"""Embedding to feed-forward layer connection visualization."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">Animation</span><span class="p">,</span>
@@ -1526,8 +1529,8 @@
         <span class="n">output_layer</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
         <span class="n">animation_dot_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">RED</span><span class="p">,</span>
         <span class="n">dot_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.03</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">feed_forward_layer</span> <span class="o">=</span> <span class="n">output_layer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">embedding_layer</span> <span class="o">=</span> <span class="n">input_layer</span>
@@ -1540,7 +1543,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">input_layer</span><span class="p">:</span> <span class="n">NeuralNetworkLayer</span><span class="p">,</span>
         <span class="n">output_layer</span><span class="p">:</span> <span class="n">NeuralNetworkLayer</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Forward to the parent construct_layer method.</span>
 
@@ -1559,7 +1562,7 @@
 <div class="viewcode-block" id="EmbeddingToFeedForward.make_forward_pass_animation">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/embedding_to_feed_forward.EmbeddingToFeedForward.html#manim_extensions.machine_learning.neural_network.layers.embedding_to_feed_forward.EmbeddingToFeedForward.make_forward_pass_animation">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_forward_pass_animation</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">layer_args</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">layer_args</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Succession</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Makes dots diverge from the given location and move the decoder.</span>
 
@@ -1597,8 +1600,10 @@
         <span class="n">remove_animations</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">dot</span> <span class="ow">in</span> <span class="n">dots</span><span class="p">:</span>
             <span class="n">remove_animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">FadeOut</span><span class="p">(</span><span class="n">dot</span><span class="p">))</span>
-        <span class="n">remove_animations</span> <span class="o">=</span> <span class="n">AnimationGroup</span><span class="p">(</span><span class="o">*</span><span class="n">remove_animations</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
-        <span class="n">animations</span> <span class="o">=</span> <span class="n">AnimationGroup</span><span class="p">(</span><span class="o">*</span><span class="n">animations</span><span class="p">)</span>
+        <span class="n">remove_animations</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="s2">"list[FadeOut]"</span><span class="p">,</span> <span class="n">AnimationGroup</span><span class="p">(</span><span class="o">*</span><span class="n">remove_animations</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">animations</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"list[Succession]"</span><span class="p">,</span> <span class="n">AnimationGroup</span><span class="p">(</span><span class="o">*</span><span class="n">animations</span><span class="p">))</span>
         <span class="n">animation_group</span> <span class="o">=</span> <span class="n">Succession</span><span class="p">(</span><span class="n">animations</span><span class="p">,</span> <span class="n">remove_animations</span><span class="p">,</span> <span class="n">lag_ratio</span><span class="o">=</span><span class="mf">1.0</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">animation_group</span></div>
@@ -1607,7 +1612,7 @@
 <div class="viewcode-block" id="EmbeddingToFeedForward._create_override">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/embedding_to_feed_forward.EmbeddingToFeedForward.html#manim_extensions.machine_learning.neural_network.layers.embedding_to_feed_forward.EmbeddingToFeedForward._create_override">[docs]</a>
     <span class="nd">@override_animation</span><span class="p">(</span><span class="n">Create</span><span class="p">)</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_create_override</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_override</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a zero-duration wait for an invisible layer.</span>
 
 <span class="sd">        Parameters</span>

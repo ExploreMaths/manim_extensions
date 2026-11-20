@@ -1517,7 +1517,7 @@ chart’s own coordinate frame on each frame.</p>
 <li><p><strong>rim</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>]</span>) – Whether the emphasis rim is enabled.</p></li>
 <li><p><strong>overflow</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>]</span>) – Whether values above the full scale trigger overflow effects.</p></li>
 <li><p><strong>opacity</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Initial opacity of the whole chart.</p></li>
-<li><p><strong>kwargs</strong> – Further keyword arguments forwarded to <code class="docutils literal notranslate"><span class="pre">VGroup</span></code>.</p></li>
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Further keyword arguments forwarded to <code class="docutils literal notranslate"><span class="pre">VGroup</span></code>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1592,7 +1592,7 @@ before the next animation.</p>
 <dd><p>Rebuild the visible series from a sequence of snapshots.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>items</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a></span>) – Snapshots, mappings or value sequences to display.</p>
+<dd class="field-odd"><p><strong>items</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Snapshots, mappings or value sequences to display.</p>
 </dd>
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If a snapshot has a different axis count or axis layout.</p>
@@ -1660,7 +1660,7 @@ before the next animation.</p>
 sequence of values. The first item fixes the axis layout.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>datasets</strong> – Snapshots or value sequences to display together.</p>
+<dd class="field-odd"><p><strong>datasets</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Snapshots or value sequences to display together.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#manim_extensions.radar.chart.RadarChart" title="manim_extensions.radar.chart.RadarChart"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarChart</span></code></a></span></p>
@@ -1683,7 +1683,7 @@ sequence of values. The first item fixes the axis layout.</p>
 sequence of values. The first item fixes the axis layout.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>datasets</strong> – Snapshots or value sequences to display together.</p>
+<dd class="field-odd"><p><strong>datasets</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Snapshots or value sequences to display together.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#manim_extensions.radar.chart.RadarChart" title="manim_extensions.radar.chart.RadarChart"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarChart</span></code></a></span></p>
@@ -2000,7 +2000,7 @@ camera move that also carries the backdrop, use a
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>factor</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Scale factor applied to the chart.</p></li>
 <li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the animation; zero leaves timing to the caller.</p></li>
-<li><p><strong>kwargs</strong> – Further animation keyword arguments.</p></li>
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Further animation keyword arguments.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -2021,7 +2021,7 @@ camera move that also carries the backdrop, use a
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>factor</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Factor previously used by <a class="reference internal" href="#manim_extensions.radar.chart.RadarChart.push_in" title="manim_extensions.radar.chart.RadarChart.push_in"><code class="xref py py-meth docutils literal notranslate"><span class="pre">push_in()</span></code></a>.</p></li>
 <li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the animation; zero leaves timing to the caller.</p></li>
-<li><p><strong>kwargs</strong> – Further animation keyword arguments.</p></li>
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Further animation keyword arguments.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -2064,7 +2064,7 @@ comparison mode.</p></li>
 <li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – Optional colour override applied to every target.</p></li>
 <li><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – Optional name override applied to every target.</p></li>
 <li><p><strong>max_value</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Optional full-scale override applied to every target.</p></li>
-<li><p><strong>kwargs</strong> – The transition options such as <code class="docutils literal notranslate"><span class="pre">transition</span></code>, <code class="docutils literal notranslate"><span class="pre">run_time</span></code>,
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – The transition options such as <code class="docutils literal notranslate"><span class="pre">transition</span></code>, <code class="docutils literal notranslate"><span class="pre">run_time</span></code>,
 <code class="docutils literal notranslate"><span class="pre">dip</span></code>, <code class="docutils literal notranslate"><span class="pre">shockwave</span></code>, <code class="docutils literal notranslate"><span class="pre">stepped</span></code>, <code class="docutils literal notranslate"><span class="pre">rim</span></code> and <code class="docutils literal notranslate"><span class="pre">stagger</span></code>.</p></li>
 </ul>
 </dd>
@@ -2086,7 +2086,7 @@ animation for <code class="docutils literal notranslate"><span class="pre">self.
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the reveal.</p></li>
-<li><p><strong>kwargs</strong> – Further animation keyword arguments.</p></li>
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Further animation keyword arguments.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -2106,7 +2106,7 @@ animation for <code class="docutils literal notranslate"><span class="pre">self.
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the fade.</p></li>
-<li><p><strong>kwargs</strong> – Further animation keyword arguments.</p></li>
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Further animation keyword arguments.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -2126,7 +2126,7 @@ animation for <code class="docutils literal notranslate"><span class="pre">self.
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the glitch flash.</p></li>
-<li><p><strong>kwargs</strong> – Further animation keyword arguments.</p></li>
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Further animation keyword arguments.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -2144,7 +2144,7 @@ animation for <code class="docutils literal notranslate"><span class="pre">self.
 <dd><p>Build a single shockwave ring centred on the chart.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>kwargs</strong> – Further animation keyword arguments.</p>
+<dd class="field-odd"><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Further animation keyword arguments.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a></span></p>
@@ -2214,7 +2214,7 @@ animation for <code class="docutils literal notranslate"><span class="pre">self.
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>scene</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a></span>) – Scene that should receive the backdrop.</p></li>
 <li><p><strong>theme</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference internal" href="theme.RadarTheme.html#manim_extensions.radar.theme.RadarTheme" title="manim_extensions.radar.theme.RadarTheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarTheme</span></code></a>]</span>) – The theme for the backdrop; defaults to the chart’s theme.</p></li>
-<li><p><strong>kwargs</strong> – Further keyword arguments forwarded to
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Further keyword arguments forwarded to
 <a class="reference internal" href="backdrop.DeepSpace.html#manim_extensions.radar.backdrop.DeepSpace" title="manim_extensions.radar.backdrop.DeepSpace"><code class="xref py py-class docutils literal notranslate"><span class="pre">DeepSpace</span></code></a>.</p></li>
 </ul>
 </dd>
@@ -3022,8 +3022,8 @@ animation for <code class="docutils literal notranslate"><span class="pre">self.
 <li><a class="reference internal" href="#manim_extensions.radar.chart.RadarChart._ensure_breach"><code class="docutils literal notranslate"><span class="pre">RadarChart._ensure_breach()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.radar.chart.RadarChart._ensure_overflow_number"><code class="docutils literal notranslate"><span class="pre">RadarChart._ensure_overflow_number()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.radar.chart.RadarChart._paint_overflow"><code class="docutils literal notranslate"><span class="pre">RadarChart._paint_overflow()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.radar.chart.RadarChart._hide_overflow"><code class="docutils literal notranslate"><span class="pre">RadarChart._hide_overflow()</span></code></a></li>
 
+<li><a class="reference internal" href="#manim_extensions.radar.chart.RadarChart._hide_overflow"><code class="docutils literal notranslate"><span class="pre">RadarChart._hide_overflow()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.radar.chart.RadarChart._begin_name_swap"><code class="docutils literal notranslate"><span class="pre">RadarChart._begin_name_swap()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.radar.chart.RadarChart._swap_name_progress"><code class="docutils literal notranslate"><span class="pre">RadarChart._swap_name_progress()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.radar.chart.RadarChart._end_name_swap"><code class="docutils literal notranslate"><span class="pre">RadarChart._end_name_swap()</span></code></a></li>

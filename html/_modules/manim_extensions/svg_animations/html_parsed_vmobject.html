@@ -1477,6 +1477,8 @@
 <span class="c1"># patched: lazily import the vendored manim_extensions.mobject_svg and svgpathtools (svg extra)</span>
 <span class="c1"># patched: document module-level constants</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
 <span class="sd">"""HTML parsed SVG vmobjects for Manim.</span>
 
 <span class="sd">This module provides functionality to parse SVG files and create</span>
@@ -1665,7 +1667,7 @@
         <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">,</span>
         <span class="n">width</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"500px"</span><span class="p">,</span>
         <span class="n">basic_html</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vmobject</span> <span class="o">=</span> <span class="n">vmobject</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scene</span> <span class="o">=</span> <span class="n">scene</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">filename_base</span> <span class="o">=</span> <span class="n">scene</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span>
@@ -1686,7 +1688,7 @@
 
 <div class="viewcode-block" id="HTMLParsedVMobject.updater">
 <a class="viewcode-back" href="../../../reference/svg_animations/html_parsed_vmobject.HTMLParsedVMobject.html#manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject.updater">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">updater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">updater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Export the vmobject to an SVG frame and append the JS update.</span>
 
 <span class="sd">        Called once per rendered frame through the scene updater registered</span>
@@ -1761,7 +1763,7 @@
 
 <div class="viewcode-block" id="HTMLParsedVMobject.update_html">
 <a class="viewcode-back" href="../../../reference/svg_animations/html_parsed_vmobject.HTMLParsedVMobject.html#manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject.update_html">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">update_html</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_html</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Rewrite the HTML page with the current frame and time.</span>
 
 <span class="sd">        Called on every scene update; embeds the current SVG frame and</span>
@@ -1795,7 +1797,7 @@
 
 <div class="viewcode-block" id="HTMLParsedVMobject.finish">
 <a class="viewcode-back" href="../../../reference/svg_animations/html_parsed_vmobject.HTMLParsedVMobject.html#manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject.finish">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Stop the updater and write the final HTML and JS files.</span>
 
 <span class="sd">        Removes the scene updater and flushes the accumulated</span>
@@ -1828,7 +1830,7 @@
         <span class="n">value_trackers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ValueTracker</span><span class="p">],</span>
         <span class="n">linspaces</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">VectorND</span><span class="p">],</span>
         <span class="n">animate_this</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Precompute the interactive JavaScript state for value combinations.</span>
 
 <span class="sd">        Iterates over the cartesian product of ``linspaces``, sets each</span>

@@ -1475,6 +1475,9 @@
 <span></span><span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
 <span class="sd">"""Chemical formula representation for Manim chemistry.</span>
 
 <span class="sd">This module provides the :class:`~manim_extensions.chemistry.twoD.chemical_formula.ChemicalFormula` class for rendering chemical formulas.</span>
@@ -1523,9 +1526,9 @@
         <span class="n">metal_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">WHITE</span><span class="p">,</span>
         <span class="n">non_metal_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">WHITE</span><span class="p">,</span>
         <span class="n">oxygen_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">WHITE</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">formula</span> <span class="o">=</span> <span class="n">formula</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metal_color</span> <span class="o">=</span> <span class="n">metal_color</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">non_metal_color</span> <span class="o">=</span> <span class="n">non_metal_color</span>
@@ -1542,7 +1545,7 @@
 
 <div class="viewcode-block" id="ChemicalFormula.parse_formula">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.ChemicalFormula.html#manim_extensions.chemistry.twoD.chemical_formula.ChemicalFormula.parse_formula">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">parse_formula</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">formula</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">parse_formula</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">formula</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Parse a formula string into a dict mapping element symbols to their counts.</span>
 
 <span class="sd">        Parameters</span>
@@ -1696,9 +1699,9 @@
         <span class="n">spanish_structure</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">buff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_MOBJECT_TO_MOBJECT_BUFFER</span><span class="p">,</span>
         <span class="n">direction</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">DOWN</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">metal_name</span> <span class="o">=</span> <span class="n">metal_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">non_metal_name</span> <span class="o">=</span> <span class="n">non_metal_name</span>
@@ -1717,8 +1720,9 @@
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">chemical_formula</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_name</span><span class="p">()</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span>
-            <span class="n">chemical_formula</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="n">buff</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="s2">"str"</span><span class="p">,</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">make_name</span><span class="p">()</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">chemical_formula</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">direction</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="n">buff</span><span class="p">),</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
 
@@ -1777,7 +1781,7 @@
 <span class="sd">        Additional keyword arguments passed to :class:`~manim.mobject.text.text_mobject.MarkupText`.</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">formula_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">formula_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">markup</span> <span class="o">=</span> <span class="s2">""</span>
         <span class="k">for</span> <span class="n">formula</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="n">formula_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">markup</span> <span class="o">+=</span> <span class="p">(</span>
@@ -1889,13 +1893,13 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">name_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
-        <span class="n">formula_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+        <span class="n">name_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">formula_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
         <span class="n">direction</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">DOWN</span><span class="p">,</span>
         <span class="n">buff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_MOBJECT_TO_MOBJECT_BUFFER</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name_dict</span> <span class="o">=</span> <span class="n">name_dict</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">formula_dict</span> <span class="o">=</span> <span class="n">formula_dict</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>

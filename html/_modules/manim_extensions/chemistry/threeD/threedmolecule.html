@@ -1475,6 +1475,9 @@
 <span></span><span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
 <span class="sd">"""3D molecule representation for Manim chemistry.</span>
 
 <span class="sd">This module provides the :class:`~manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule` class for rendering molecules in 3D.</span>
@@ -1582,14 +1585,14 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">atoms_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
-        <span class="n">bonds_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+        <span class="n">atoms_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">bonds_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
         <span class="n">source_csv</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">add_bonds</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">add_atoms</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">mobjects</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">*</span><span class="n">mobjects</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">renderer</span> <span class="o">!=</span> <span class="n">RendererType</span><span class="o">.</span><span class="n">OPENGL</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span>
                 <span class="s2">"ThreeDMolecule requires using a OpenGL renderer. You can use it adding the `--renderer=opengl` flag or adding `config.renderer = opengl` to your python file."</span>
@@ -1628,7 +1631,9 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">source_csv</span><span class="p">,</span> <span class="n">atom</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"element"</span><span class="p">)</span><span class="o">.</span><span class="n">symbol</span>
                 <span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">element</span> <span class="o">=</span> <span class="n">mc_element_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">atom</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"element"</span><span class="p">)</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span>
+                <span class="n">element</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+                    <span class="s2">"Element"</span><span class="p">,</span> <span class="n">mc_element_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">atom</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"element"</span><span class="p">)</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span>
+                <span class="p">)</span>
             <span class="n">atoms</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ThreeDAtom</span><span class="p">(</span><span class="n">element</span><span class="p">,</span> <span class="n">atom</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"coords"</span><span class="p">)))</span>
 
         <span class="k">return</span> <span class="n">atoms</span></div>
@@ -1707,10 +1712,10 @@
         <span class="k">for</span> <span class="n">atom_index</span> <span class="ow">in</span> <span class="n">atoms</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="n">atom_bonds</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">bond</span> <span class="ow">in</span> <span class="n">mc_molecule</span><span class="o">.</span><span class="n">bonds</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">atom_index</span> <span class="o">==</span> <span class="n">bond</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">molecule_index</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">atom_index</span> <span class="o">==</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">bond</span><span class="o">.</span><span class="n">to_atom</span><span class="p">)</span><span class="o">.</span><span class="n">molecule_index</span><span class="p">:</span>
                     <span class="n">atom_bonds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                         <span class="p">{</span>
-                            <span class="s2">"to"</span><span class="p">:</span> <span class="n">bond</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">molecule_index</span><span class="p">,</span>
+                            <span class="s2">"to"</span><span class="p">:</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">bond</span><span class="o">.</span><span class="n">from_atom</span><span class="p">)</span><span class="o">.</span><span class="n">molecule_index</span><span class="p">,</span>
                             <span class="s2">"type"</span><span class="p">:</span> <span class="n">bond</span><span class="o">.</span><span class="n">bond_type</span><span class="p">,</span>
                             <span class="s2">"stereo"</span><span class="p">:</span> <span class="n">bond</span><span class="o">.</span><span class="n">stereo</span><span class="p">,</span>
                             <span class="s2">"topology"</span><span class="p">:</span> <span class="n">bond</span><span class="o">.</span><span class="n">topology</span><span class="p">,</span>
@@ -1761,7 +1766,7 @@
 <span class="sd">        """</span>
         <span class="c1"># patched: accept the whole MOL block here, not only its lines.</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mol_string</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="n">mol_string</span> <span class="o">=</span> <span class="n">mol_string</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+            <span class="n">mol_string</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"str"</span><span class="p">,</span> <span class="n">mol_string</span><span class="o">.</span><span class="n">splitlines</span><span class="p">())</span>
         <span class="n">atoms</span><span class="p">,</span> <span class="n">bonds</span> <span class="o">=</span> <span class="n">mol_parser_string</span><span class="p">(</span><span class="n">mol_string</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ThreeDMolecule</span><span class="p">(</span><span class="n">atoms_dict</span><span class="o">=</span><span class="n">atoms</span><span class="p">,</span> <span class="n">bonds_dict</span><span class="o">=</span><span class="n">bonds</span><span class="p">,</span> <span class="n">source_csv</span><span class="o">=</span><span class="n">source_csv</span><span class="p">)</span></div>
 </div>

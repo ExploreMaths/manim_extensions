@@ -1484,8 +1484,9 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Arc</span><span class="p">,</span> <span class="n">Line</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">PI</span><span class="p">,</span> <span class="n">RED</span><span class="p">,</span> <span class="n">VMobject</span><span class="p">,</span> <span class="n">YELLOW</span><span class="p">,</span> <span class="n">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Arc</span><span class="p">,</span> <span class="n">Line</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">PI</span><span class="p">,</span> <span class="n">RED</span><span class="p">,</span> <span class="n">VMobject</span><span class="p">,</span> <span class="n">YELLOW</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">VConstraint</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">...utils.deps</span><span class="w"> </span><span class="kn">import</span> <span class="n">require</span>
@@ -1563,12 +1564,16 @@
         <span class="n">rest_angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
         <span class="n">stiffness</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10.0</span><span class="p">,</span>
         <span class="n">damping</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
-        <span class="n">arc_indicator_class</span><span class="p">:</span> <span class="n">Arc</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Arc</span><span class="p">,</span>
-        <span class="n">arc_indicator_config</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"radius"</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span> <span class="s2">"color"</span><span class="p">:</span> <span class="n">RED</span><span class="p">,</span> <span class="s2">"stroke_width"</span><span class="p">:</span> <span class="mi">4</span><span class="p">},</span>
-        <span class="n">connect_line_class</span><span class="p">:</span> <span class="n">Line</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">connect_line_config</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"color"</span><span class="p">:</span> <span class="n">YELLOW</span><span class="p">,</span> <span class="s2">"stroke_width"</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="n">arc_indicator_class</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">Arc</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Arc</span><span class="p">,</span>
+        <span class="n">arc_indicator_config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"radius"</span><span class="p">:</span> <span class="mf">0.1</span><span class="p">,</span>
+            <span class="s2">"color"</span><span class="p">:</span> <span class="n">RED</span><span class="p">,</span>
+            <span class="s2">"stroke_width"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="p">},</span>
+        <span class="n">connect_line_class</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">Line</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">connect_line_config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"color"</span><span class="p">:</span> <span class="n">YELLOW</span><span class="p">,</span> <span class="s2">"stroke_width"</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">a_mob</span><span class="o">=</span><span class="n">a_mob</span><span class="p">,</span> <span class="n">b_mob</span><span class="o">=</span><span class="n">b_mob</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">rest_angle</span> <span class="o">=</span> <span class="n">rest_angle</span>
@@ -1588,7 +1593,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">constraint</span><span class="p">:</span> <span class="n">DampedRotarySpring</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__check_data</span><span class="p">()</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">__check_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__check_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Verify the validity of constraint parameters.</span>
 
 <span class="sd">        Raises</span>
@@ -1614,7 +1619,7 @@
 
 <div class="viewcode-block" id="VDampedRotarySpring.install">
 <a class="viewcode-back" href="../../../../reference/pymunk/constraints/VDampedRotarySpring.VDampedRotarySpring.html#manim_extensions.pymunk.constraints.VDampedRotarySpring.VDampedRotarySpring.install">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space</span><span class="p">:</span> <span class="n">Space</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space</span><span class="p">:</span> <span class="n">Space</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Initialization of physics and visualization components.</span>
 
 <span class="sd">        Parameters</span>
@@ -1658,7 +1663,7 @@
 
 <div class="viewcode-block" id="VDampedRotarySpring.mob_updater">
 <a class="viewcode-back" href="../../../../reference/pymunk/constraints/VDampedRotarySpring.VDampedRotarySpring.html#manim_extensions.pymunk.constraints.VDampedRotarySpring.VDampedRotarySpring.mob_updater">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">mob_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mob_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Visual control updater.</span>
 
 <span class="sd">        Parameters</span>
@@ -1704,7 +1709,7 @@
             <span class="n">unit_vec</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">unit_vec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="p">)</span>  <span class="c1"># Absolute angle of connecting line</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">arc_a</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">arc_a</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">arc_indicator_class</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">new_arc_a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arc_indicator_class</span><span class="p">(</span>
                 <span class="n">angle</span><span class="o">=</span><span class="n">display_angle</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">arc_indicator_config</span>
             <span class="p">)</span>
@@ -1715,7 +1720,7 @@
             <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">arc_a</span><span class="o">.</span><span class="n">become</span><span class="p">(</span><span class="n">new_arc_a</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">arc_b</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">arc_b</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">arc_indicator_class</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">new_arc_b</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arc_indicator_class</span><span class="p">(</span>
                 <span class="n">angle</span><span class="o">=-</span><span class="n">display_angle</span><span class="p">,</span> <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">arc_indicator_config</span>
             <span class="p">)</span>

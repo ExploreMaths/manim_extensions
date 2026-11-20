@@ -1484,8 +1484,10 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dot</span><span class="p">,</span> <span class="n">GREEN_A</span><span class="p">,</span> <span class="n">Line</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">ORIGIN</span><span class="p">,</span> <span class="n">RED</span><span class="p">,</span> <span class="n">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dot</span><span class="p">,</span> <span class="n">GREEN_A</span><span class="p">,</span> <span class="n">Line</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">ORIGIN</span><span class="p">,</span> <span class="n">RED</span><span class="p">,</span> <span class="n">VMobject</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point3D</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">VConstraint</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">...utils.deps</span><span class="w"> </span><span class="kn">import</span> <span class="n">require</span>
@@ -1563,19 +1565,19 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">a_mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
         <span class="n">b_mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
-        <span class="n">anchor_a_local</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">ORIGIN</span><span class="p">,</span>
-        <span class="n">anchor_b_local</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">ORIGIN</span><span class="p">,</span>
+        <span class="n">anchor_a_local</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">ORIGIN</span><span class="p">,</span>
+        <span class="n">anchor_b_local</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">ORIGIN</span><span class="p">,</span>
         <span class="n">min_dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
         <span class="n">max_dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
-        <span class="n">anchor_a_appearance</span><span class="p">:</span> <span class="n">Mobject</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">GREEN_A</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.08</span><span class="p">),</span>
-        <span class="n">anchor_b_appearance</span><span class="p">:</span> <span class="n">Mobject</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">GREEN_A</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.08</span><span class="p">),</span>
-        <span class="n">indicator_line_class</span><span class="p">:</span> <span class="n">Line</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Line</span><span class="p">,</span>
-        <span class="n">indicator_line_config</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">anchor_a_appearance</span><span class="p">:</span> <span class="n">VMobject</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">GREEN_A</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.08</span><span class="p">),</span>
+        <span class="n">anchor_b_appearance</span><span class="p">:</span> <span class="n">VMobject</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">GREEN_A</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.08</span><span class="p">),</span>
+        <span class="n">indicator_line_class</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">Line</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Line</span><span class="p">,</span>
+        <span class="n">indicator_line_config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">"color"</span><span class="p">:</span> <span class="n">RED</span><span class="p">,</span>
             <span class="s2">"stroke_width"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
         <span class="p">},</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">a_mob</span><span class="o">=</span><span class="n">a_mob</span><span class="p">,</span> <span class="n">b_mob</span><span class="o">=</span><span class="n">b_mob</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -1589,16 +1591,16 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">anchor_b_appearance</span> <span class="o">=</span> <span class="n">anchor_b_appearance</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">indicator_line_class</span> <span class="o">=</span> <span class="n">indicator_line_class</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">indicator_line_config</span> <span class="o">=</span> <span class="n">indicator_line_config</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">indicator_line</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">indicator_line</span><span class="p">:</span> <span class="n">VMobject</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">constraint</span><span class="p">:</span> <span class="n">SlideJoint</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">__check_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__check_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Verify the validity of constraint parameters."""</span>
         <span class="k">pass</span>
 
 <div class="viewcode-block" id="VSlideJoint.install">
 <a class="viewcode-back" href="../../../../reference/pymunk/constraints/VSlideJoint.VSlideJoint.html#manim_extensions.pymunk.constraints.VSlideJoint.VSlideJoint.install">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space</span><span class="p">:</span> <span class="n">Space</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space</span><span class="p">:</span> <span class="n">Space</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create the Pymunk SlideJoint constraint, initialize visual</span>
 <span class="sd">        indicator line and anchor markers, add to the space, and register</span>
 <span class="sd">        the per-frame updater.</span>
@@ -1626,8 +1628,8 @@
 
         <span class="n">pos_a</span> <span class="o">=</span> <span class="n">a_body</span><span class="o">.</span><span class="n">local_to_world</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">anchor_a_local</span><span class="p">[:</span><span class="mi">2</span><span class="p">]))</span>
         <span class="n">pos_b</span> <span class="o">=</span> <span class="n">b_body</span><span class="o">.</span><span class="n">local_to_world</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">anchor_b_local</span><span class="p">[:</span><span class="mi">2</span><span class="p">]))</span>
-        <span class="n">p1</span> <span class="o">=</span> <span class="p">[</span><span class="n">pos_a</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">pos_a</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-        <span class="n">p2</span> <span class="o">=</span> <span class="p">[</span><span class="n">pos_b</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">pos_b</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">p1</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">pos_a</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">pos_a</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">)</span>
+        <span class="n">p2</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">pos_b</span><span class="o">.</span><span class="n">x</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">pos_b</span><span class="o">.</span><span class="n">y</span><span class="p">),</span> <span class="mf">0.0</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">indicator_line_class</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">indicator_line</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">indicator_line_class</span><span class="p">(</span>
@@ -1645,7 +1647,7 @@
 
 <div class="viewcode-block" id="VSlideJoint.mob_updater">
 <a class="viewcode-back" href="../../../../reference/pymunk/constraints/VSlideJoint.VSlideJoint.html#manim_extensions.pymunk.constraints.VSlideJoint.VSlideJoint.mob_updater">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">mob_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mob_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Visual control updater.</span>
 
 <span class="sd">        Parameters</span>
@@ -1662,8 +1664,8 @@
         <span class="n">b_body</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">constraint</span><span class="o">.</span><span class="n">b</span>
         <span class="n">wa</span> <span class="o">=</span> <span class="n">a_body</span><span class="o">.</span><span class="n">local_to_world</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">constraint</span><span class="o">.</span><span class="n">anchor_a</span><span class="p">)</span>
         <span class="n">wb</span> <span class="o">=</span> <span class="n">b_body</span><span class="o">.</span><span class="n">local_to_world</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">constraint</span><span class="o">.</span><span class="n">anchor_b</span><span class="p">)</span>
-        <span class="n">p1</span> <span class="o">=</span> <span class="p">[</span><span class="n">wa</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">wa</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-        <span class="n">p2</span> <span class="o">=</span> <span class="p">[</span><span class="n">wb</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">wb</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">p1</span> <span class="o">=</span> <span class="p">(</span><span class="n">wa</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">wa</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">p2</span> <span class="o">=</span> <span class="p">(</span><span class="n">wb</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">wb</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">anchor_a_appearance</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">anchor_b_appearance</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span>

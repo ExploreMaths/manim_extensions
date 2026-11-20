@@ -1479,6 +1479,7 @@
 <span class="c1"># patched: document the module-level constant and the cairo context helpers</span>
 <span class="c1"># patched: type the cairo context helpers and replace tempfile.mktemp</span>
 
+
 <span class="sd">"""Render manim mobjects into SVG files through a Cairo surface.</span>
 
 <span class="sd">Vendored from ``manim-mobject-svg`` 0.5.0. The public entry points are</span>
@@ -1489,6 +1490,8 @@
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">it</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">tempfile</span>
@@ -1613,7 +1616,7 @@
     <span class="n">ctx</span><span class="p">:</span> <span class="n">cairo</span><span class="o">.</span><span class="n">Context</span><span class="p">,</span>
     <span class="n">rgbas</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">vmobject</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">,</span>
-<span class="p">):</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Set the cairo source to a solid colour or a stroke gradient.</span>
 
 <span class="sd">    Parameters</span>
@@ -1631,7 +1634,10 @@
         <span class="n">ctx</span><span class="o">.</span><span class="n">set_source_rgba</span><span class="p">(</span><span class="o">*</span><span class="n">rgbas</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">points</span> <span class="o">=</span> <span class="n">vmobject</span><span class="o">.</span><span class="n">get_gradient_start_and_end_points</span><span class="p">()</span>
-        <span class="n">points</span> <span class="o">=</span> <span class="n">_transform_points_pre_display</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="s2">"tuple[ndarray[tuple[Any, ...], dtype[float64]], ndarray[tuple[Any, ...], dtype[float64]]]"</span><span class="p">,</span>
+            <span class="n">_transform_points_pre_display</span><span class="p">(</span><span class="n">points</span><span class="p">),</span>
+        <span class="p">)</span>
         <span class="n">pat</span> <span class="o">=</span> <span class="n">cairo</span><span class="o">.</span><span class="n">LinearGradient</span><span class="p">(</span><span class="o">*</span><span class="n">it</span><span class="o">.</span><span class="n">chain</span><span class="p">(</span><span class="o">*</span><span class="p">(</span><span class="n">point</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">points</span><span class="p">)))</span>
         <span class="n">step</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">rgbas</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
         <span class="n">offsets</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">step</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
@@ -1643,7 +1649,9 @@
 
 <div class="viewcode-block" id="_apply_stroke">
 <a class="viewcode-back" href="../../../reference/mobject_svg/svg.html#manim_extensions.mobject_svg.svg._apply_stroke">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">_apply_stroke</span><span class="p">(</span><span class="n">ctx</span><span class="p">:</span> <span class="n">cairo</span><span class="o">.</span><span class="n">Context</span><span class="p">,</span> <span class="n">vmobject</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">,</span> <span class="n">background</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_apply_stroke</span><span class="p">(</span>
+    <span class="n">ctx</span><span class="p">:</span> <span class="n">cairo</span><span class="o">.</span><span class="n">Context</span><span class="p">,</span> <span class="n">vmobject</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">,</span> <span class="n">background</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Stroke the current cairo path with the mobject's stroke colour.</span>
 
 <span class="sd">    Parameters</span>
@@ -1679,7 +1687,7 @@
 
 <div class="viewcode-block" id="_apply_fill">
 <a class="viewcode-back" href="../../../reference/mobject_svg/svg.html#manim_extensions.mobject_svg.svg._apply_fill">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">_apply_fill</span><span class="p">(</span><span class="n">ctx</span><span class="p">:</span> <span class="n">cairo</span><span class="o">.</span><span class="n">Context</span><span class="p">,</span> <span class="n">vmobject</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_apply_fill</span><span class="p">(</span><span class="n">ctx</span><span class="p">:</span> <span class="n">cairo</span><span class="o">.</span><span class="n">Context</span><span class="p">,</span> <span class="n">vmobject</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Fill the current cairo path with the vmobject's fill colours.</span>
 
 <span class="sd">    Parameters</span>
@@ -1715,7 +1723,7 @@
 
 <div class="viewcode-block" id="_create_svg_from_vmobject_internal">
 <a class="viewcode-back" href="../../../reference/mobject_svg/svg.html#manim_extensions.mobject_svg.svg._create_svg_from_vmobject_internal">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">_create_svg_from_vmobject_internal</span><span class="p">(</span><span class="n">vmobject</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">,</span> <span class="n">ctx</span><span class="p">:</span> <span class="n">cairo</span><span class="o">.</span><span class="n">Context</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">_create_svg_from_vmobject_internal</span><span class="p">(</span><span class="n">vmobject</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">,</span> <span class="n">ctx</span><span class="p">:</span> <span class="n">cairo</span><span class="o">.</span><span class="n">Context</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Draw one mobject into the current cairo context.</span>
 
 <span class="sd">    Parameters</span>
@@ -1822,7 +1830,7 @@
     <span class="k">with</span> <span class="n">_get_cairo_context</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">height</span><span class="p">)</span> <span class="k">as</span> <span class="n">ctx</span><span class="p">:</span>
         <span class="c1"># a vgroup is a list of VMobjects which may contain other VGroups</span>
         <span class="c1"># flatten the vgroup to get a list of VMobjects</span>
-        <span class="n">vgroup</span> <span class="o">=</span> <span class="n">extract_mobject_family_members</span><span class="p">(</span><span class="n">vgroup</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
+        <span class="n">vgroup</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"VGroup"</span><span class="p">,</span> <span class="n">extract_mobject_family_members</span><span class="p">(</span><span class="n">vgroup</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">))</span>
         <span class="k">for</span> <span class="n">vmobject</span> <span class="ow">in</span> <span class="n">vgroup</span><span class="p">:</span>
             <span class="n">_create_svg_from_vmobject_internal</span><span class="p">(</span><span class="n">vmobject</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">file_name</span></div>

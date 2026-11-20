@@ -1476,6 +1476,8 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
 <span class="sd">""":class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` class for automata visualizations.</span>
 
 <span class="sd">This module provides state visualization for automata.</span>
@@ -1549,8 +1551,8 @@
         <span class="n">final</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">scaling</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
         <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">State</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">name</span><span class="p">,</span> <span class="n">initial</span><span class="o">=</span><span class="n">initial</span><span class="p">,</span> <span class="n">final</span><span class="o">=</span><span class="n">final</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">)</span>
 
         <span class="c1"># manim settings for animations and colors</span>
@@ -1580,7 +1582,7 @@
 
 <div class="viewcode-block" id="ManimState.update_subscript">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_state.ManimState.html#manim_extensions.automata.mobjects.manim_state.ManimState.update_subscript">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">update_subscript</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update_subscript</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">number</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Replace the state's subscript label with a new number or string.</span>
 
 <span class="sd">        Parameters</span>
@@ -1597,7 +1599,7 @@
 
 <div class="viewcode-block" id="ManimState.initialise_subscript">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_state.ManimState.html#manim_extensions.automata.mobjects.manim_state.ManimState.initialise_subscript">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">initialise_subscript</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">initialise_subscript</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create the initial subscript (``0``) positioned next to the state text."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">subscript</span> <span class="o">=</span> <span class="n">Tex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">subscript</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
@@ -1606,7 +1608,7 @@
 
 <div class="viewcode-block" id="ManimState.set_to_final_state">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_state.ManimState.html#manim_extensions.automata.mobjects.manim_state.ManimState.set_to_final_state">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_to_final_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_to_final_state</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Add an outer concentric circle to mark this state as a final state."""</span>
         <span class="n">state_outer</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">*</span> <span class="mf">0.4</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">)</span>
         <span class="c1"># move x and y of outerloop to be in the same position as parameter:state</span>
@@ -1617,7 +1619,7 @@
 
 <div class="viewcode-block" id="ManimState.set_to_initial_state">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_state.ManimState.html#manim_extensions.automata.mobjects.manim_state.ManimState.set_to_initial_state">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_to_initial_state</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_to_initial_state</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Add an incoming arrow to mark this state as the initial state."""</span>
         <span class="n">arrow</span> <span class="o">=</span> <span class="n">Arrow</span><span class="p">(</span>
             <span class="n">start</span><span class="o">=</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">5</span><span class="p">,</span>

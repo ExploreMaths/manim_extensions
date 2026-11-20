@@ -1476,6 +1476,9 @@
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="c1"># patched: lazy-import pandas (chemistry extra)</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
 <span class="sd">"""Periodic table visualization objects for Manim chemistry.</span>
 
 <span class="sd">This module provides the :class:`~manim_extensions.chemistry.periodic_table.table_objects.MElementObject` class for rendering periodic table elements.</span>
@@ -1568,12 +1571,12 @@
         <span class="n">element_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"Hydrogen"</span><span class="p">,</span>
         <span class="n">element_symbol</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"H"</span><span class="p">,</span>
         <span class="n">coloring</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">BLACK</span><span class="p">,</span>
-        <span class="n">fill_colors</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="n">WHITE</span><span class="p">,</span> <span class="n">BLUE</span><span class="p">),</span>
+        <span class="n">fill_colors</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">WHITE</span><span class="p">,</span> <span class="n">BLUE</span><span class="p">),</span>
         <span class="n">gradient</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span>
         <span class="n">opacity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">text_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">BLACK</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">VGroup</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">atomic_number</span> <span class="o">=</span> <span class="n">atomic_number</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">atomic_mass</span> <span class="o">=</span> <span class="n">atomic_mass</span>
@@ -1627,7 +1630,7 @@
             <span class="n">ratio</span> <span class="o">=</span> <span class="mf">0.3</span> <span class="o">/</span> <span class="n">text_height</span>
             <span class="n">name_text</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">ratio</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">name_text</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"Text"</span><span class="p">,</span> <span class="n">name_text</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="MElementObject.create_frame_base">
@@ -1702,7 +1705,7 @@
 <div class="viewcode-block" id="MElementObject.from_csv_file_data">
 <a class="viewcode-back" href="../../../../reference/chemistry/periodic_table/table_objects.MElementObject.html#manim_extensions.chemistry.periodic_table.table_objects.MElementObject.from_csv_file_data">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_csv_file_data</span><span class="p">(</span>
-        <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">atomic_number</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">atomic_number</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"MElementObject"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Load an :class:`~manim_extensions.chemistry.periodic_table.table_objects.MElementObject` from a CSV file by looking up the given atomic number.</span>
 
@@ -1780,7 +1783,7 @@
 <span class="sd">    """</span>
 
     <span class="c1"># TODO Change to english database</span>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">vmobjects</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">vmobjects</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">VGroup</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">vmobjects</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">data_file</span> <span class="o">=</span> <span class="n">data_file</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">table</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_elements</span><span class="p">()</span>
@@ -1815,7 +1818,7 @@
 
 <div class="viewcode-block" id="PeriodicTable.elements_position_dict">
 <a class="viewcode-back" href="../../../../reference/chemistry/periodic_table/table_objects.PeriodicTable.html#manim_extensions.chemistry.periodic_table.table_objects.PeriodicTable.elements_position_dict">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">elements_position_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">elements_position_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return a dict mapping each atomic number to its [x, y, z] grid position in the table.</span>
 
 <span class="sd">        Returns</span>

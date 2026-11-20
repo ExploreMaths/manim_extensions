@@ -1476,6 +1476,8 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
 <span class="sd">"""Faster meshes (WORK IN PROGRESS) by using OpenGL more efficiently."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.mobject.opengl.opengl_mobject</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenGLMobject</span>
@@ -1538,8 +1540,8 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">mesh</span><span class="p">:</span> <span class="n">Mesh</span><span class="p">,</span>
         <span class="n">shader_folder</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="c1"># imported here because OGLM requires the optional moderngl dependency</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">...params</span><span class="w"> </span><span class="kn">import</span> <span class="n">OGLM</span>
 
@@ -1594,7 +1596,7 @@
 
 <div class="viewcode-block" id="FastManimMesh.init_points">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/manim_models/opengl_mesh.FastManimMesh.html#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.init_points">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">init_points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">init_points</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Set the mesh vertices as the mobject's points."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_points</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">vertices</span><span class="p">)</span></div>
 

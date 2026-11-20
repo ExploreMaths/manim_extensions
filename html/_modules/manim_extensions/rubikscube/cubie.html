@@ -1476,6 +1476,9 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
 <span class="sd">"""Individual cubie used by the Rubik's Cube mobject."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">DOWN</span><span class="p">,</span> <span class="n">IN</span><span class="p">,</span> <span class="n">LEFT</span><span class="p">,</span> <span class="n">OUT</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">UP</span>
@@ -1529,7 +1532,7 @@
 <span class="sd">               self.wait()</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">dim</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">colors</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">z</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">dim</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">colors</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">=</span> <span class="n">dim</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">colors</span> <span class="o">=</span> <span class="n">colors</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">])</span>
@@ -1557,14 +1560,17 @@
 <span class="sd">        -------</span>
 <span class="sd">            The rounded :math:`(x, y, z)` coordinates.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span>
-            <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_x</span><span class="p">(),</span> <span class="mi">3</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_y</span><span class="p">(),</span> <span class="mi">3</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_z</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="s2">"tuple[float]"</span><span class="p">,</span>
+            <span class="nb">tuple</span><span class="p">(</span>
+                <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_x</span><span class="p">(),</span> <span class="mi">3</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_y</span><span class="p">(),</span> <span class="mi">3</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_z</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)]</span>
+            <span class="p">),</span>
         <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Cubie.generate_points">
 <a class="viewcode-back" href="../../../reference/rubikscube/cubie.Cubie.html#manim_extensions.rubikscube.cubie.Cubie.generate_points">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">generate_points</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_points</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Construct the six square faces that correspond to this cubie."""</span>
         <span class="n">faces</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
             <span class="n">get_faces_of_cubie</span><span class="p">(</span>
@@ -1589,7 +1595,7 @@
             <span class="c1"># keeps all faces of one cubie moving together during rotation,</span>
             <span class="c1"># avoiding the depth-order flicker that comes from sorting the</span>
             <span class="c1"># 162 individual faces independently.</span>
-            <span class="n">face</span><span class="o">.</span><span class="n">z_index_group</span> <span class="o">=</span> <span class="bp">self</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">face</span><span class="p">)</span><span class="o">.</span><span class="n">z_index_group</span> <span class="o">=</span> <span class="bp">self</span>
 
             <span class="bp">self</span><span class="o">.</span><span class="n">faces</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">vect</span><span class="p">)]</span> <span class="o">=</span> <span class="n">face</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">face</span><span class="p">)</span>
@@ -1627,7 +1633,7 @@
 
 <div class="viewcode-block" id="Cubie.init_colors">
 <a class="viewcode-back" href="../../../reference/rubikscube/cubie.Cubie.html#manim_extensions.rubikscube.cubie.Cubie.init_colors">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">init_colors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">init_colors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Apply fill, stroke, and background-stroke colours to the cubie."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_fill</span><span class="p">(</span>
             <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fill_color</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">fill_opacity</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="kc">False</span>

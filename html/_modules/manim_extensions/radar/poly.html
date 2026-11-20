@@ -1477,6 +1477,8 @@
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
 <span class="c1"># -*- coding: utf-8 -*-</span>
+
+
 <span class="sd">""":class:`~manim_extensions.radar.poly.PolyRadarChart` — a dodecahedral radar.</span>
 
 <span class="sd">The twelve data axes point along the centres of the twelve pentagonal faces.</span>
@@ -1504,6 +1506,8 @@
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 
@@ -1708,7 +1712,7 @@
         <span class="n">cam_pos</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">),</span>
         <span class="n">center</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.15</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
         <span class="n">sphere_color</span><span class="p">:</span> <span class="n">ParsableManimColor</span> <span class="o">=</span> <span class="n">DYE_C</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">axes_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">axes_names</span><span class="p">)</span>
@@ -1721,7 +1725,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">inr</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">INRADIUS</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">poly_radius</span>
         <span class="p">)</span>  <span class="c1"># world radius of the panel centre at full scale</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>  <span class="c1"># rotation axis (world coordinates)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="s2">"Callable[[], PolyRadarChart]"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="p">)</span>  <span class="c1"># rotation axis (world coordinates)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cam_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">cam_pos</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">theta</span> <span class="o">=</span> <span class="mf">0.0</span>  <span class="c1"># rotation angle (plain float)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">spin_rate</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">spin_rate</span><span class="p">)</span>  <span class="c1"># degrees/second (slow by default)</span>
@@ -1840,7 +1846,7 @@
         <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
             <span class="n">fs</span> <span class="o">=</span> <span class="p">[</span><span class="n">fi</span> <span class="k">for</span> <span class="n">fi</span><span class="p">,</span> <span class="n">face</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">DODECA_FACES</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">face</span><span class="p">]</span>
             <span class="n">tris</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">fs</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">tris</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"list[tuple[int, int, int]]"</span><span class="p">,</span> <span class="n">tris</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="PolyRadarChart._world">
@@ -1971,7 +1977,7 @@
             <span class="k">return</span> <span class="bp">self</span>
         <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">skin_parts</span><span class="p">):</span>
             <span class="n">part</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">skin_parts</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
-            <span class="n">part</span><span class="p">[</span><span class="s2">"edges"</span><span class="p">]</span><span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">part</span><span class="p">[</span><span class="s2">"edges"</span><span class="p">])</span><span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span>
                 <span class="n">opacity</span><span class="o">=</span><span class="p">(</span><span class="mf">0.7</span> <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">skin_parts</span><span class="p">)</span> <span class="k">else</span> <span class="mf">0.42</span><span class="p">)</span>
             <span class="p">)</span>
             <span class="n">anims</span> <span class="o">=</span> <span class="p">[</span><span class="n">Create</span><span class="p">(</span><span class="n">part</span><span class="p">[</span><span class="s2">"edges"</span><span class="p">])]</span>
@@ -2014,7 +2020,7 @@
 <span class="sd">                :class:`~manim.animation.animation.Animation`.</span>
 <span class="sd">            """</span>
 
-            <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">poly</span><span class="p">:</span> <span class="n">PolyRadarChart</span><span class="p">,</span> <span class="n">delta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">poly</span><span class="p">:</span> <span class="n">PolyRadarChart</span><span class="p">,</span> <span class="n">delta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">poly</span> <span class="o">=</span> <span class="n">poly</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">delta</span> <span class="o">=</span> <span class="n">delta</span>
                 <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">poly</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">)</span>
@@ -2082,7 +2088,7 @@
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">poly</span><span class="p">:</span> <span class="n">PolyRadarChart</span><span class="p">,</span> <span class="n">target_values</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">poly</span><span class="p">:</span> <span class="n">PolyRadarChart</span><span class="p">,</span> <span class="n">target_values</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">poly</span> <span class="o">=</span> <span class="n">poly</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">target</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">target_values</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="o">/</span> <span class="n">poly</span><span class="o">.</span><span class="n">max_value</span>

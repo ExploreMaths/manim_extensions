@@ -1476,6 +1476,8 @@
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="c1"># patched: document module-level constants</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
+
 <span class="sd">"""Utility functions for chemistry file parsing.</span>
 
 <span class="sd">This module provides utility functions for parsing chemical molecule data.</span>
@@ -1483,7 +1485,7 @@
 <span class="sd">"""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Literal</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Any</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">..element</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">H</span><span class="p">,</span>
@@ -1729,7 +1731,7 @@
 
 <div class="viewcode-block" id="mol_parser_string">
 <a class="viewcode-back" href="../../../../reference/chemistry/utils/utils.html#manim_extensions.chemistry.utils.utils.mol_parser_string">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">mol_parser_string</span><span class="p">(</span><span class="n">mol_string</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">mol_parser_string</span><span class="p">(</span><span class="n">mol_string</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">"""Parse a MOL-format string (list of lines) into atoms and bonds dicts.</span>
 
 <span class="sd">    Parameters</span>
@@ -1805,33 +1807,37 @@
 
         <span class="k">if</span> <span class="n">first_atom_index</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">bonds</span><span class="p">:</span>
             <span class="n">bonds</span><span class="p">[</span><span class="n">first_atom_index</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">bond_data</span><span class="p">]</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">atoms</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">first_atom_index</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">atoms</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">first_atom_index</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-                <span class="s2">"bond_to"</span>
-            <span class="p">):</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">atoms</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">first_atom_index</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">cast</span><span class="p">(</span>
+                <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">atoms</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">first_atom_index</span><span class="p">)</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"bond_to"</span><span class="p">):</span>
                 <span class="n">atoms</span><span class="p">[</span><span class="n">first_atom_index</span><span class="p">][</span><span class="s2">"bond_to"</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-                    <span class="n">second_atom_index</span><span class="p">:</span> <span class="n">atoms</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">second_atom_index</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"element"</span><span class="p">)</span>
+                    <span class="n">second_atom_index</span><span class="p">:</span> <span class="n">cast</span><span class="p">(</span>
+                        <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">atoms</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">second_atom_index</span><span class="p">)</span>
+                    <span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"element"</span><span class="p">)</span>
                 <span class="p">}</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">atoms</span><span class="p">[</span><span class="n">first_atom_index</span><span class="p">][</span><span class="s2">"bond_to"</span><span class="p">][</span><span class="n">second_atom_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">atoms</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-                    <span class="n">second_atom_index</span>
+                <span class="n">atoms</span><span class="p">[</span><span class="n">first_atom_index</span><span class="p">][</span><span class="s2">"bond_to"</span><span class="p">][</span><span class="n">second_atom_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+                    <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">atoms</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">second_atom_index</span><span class="p">)</span>
                 <span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"element"</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
             <span class="n">bonds</span><span class="p">[</span><span class="n">first_atom_index</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bond_data</span><span class="p">)</span>
-            <span class="n">atoms</span><span class="p">[</span><span class="n">first_atom_index</span><span class="p">][</span><span class="s2">"bond_to"</span><span class="p">][</span><span class="n">second_atom_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">atoms</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-                <span class="n">second_atom_index</span>
+            <span class="n">atoms</span><span class="p">[</span><span class="n">first_atom_index</span><span class="p">][</span><span class="s2">"bond_to"</span><span class="p">][</span><span class="n">second_atom_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+                <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">atoms</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">second_atom_index</span><span class="p">)</span>
             <span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"element"</span><span class="p">)</span>
 
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">atoms</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">second_atom_index</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"bond_to"</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">atoms</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">second_atom_index</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"bond_to"</span><span class="p">):</span>
             <span class="n">atoms</span><span class="p">[</span><span class="n">second_atom_index</span><span class="p">][</span><span class="s2">"bond_to"</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="n">first_atom_index</span><span class="p">:</span> <span class="n">atoms</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">first_atom_index</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"element"</span><span class="p">)</span>
+                <span class="n">first_atom_index</span><span class="p">:</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">atoms</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">first_atom_index</span><span class="p">))</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                    <span class="s2">"element"</span>
+                <span class="p">)</span>
             <span class="p">}</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">atoms</span><span class="p">[</span><span class="n">second_atom_index</span><span class="p">][</span><span class="s2">"bond_to"</span><span class="p">][</span><span class="n">first_atom_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">atoms</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
-                <span class="n">first_atom_index</span>
+            <span class="n">atoms</span><span class="p">[</span><span class="n">second_atom_index</span><span class="p">][</span><span class="s2">"bond_to"</span><span class="p">][</span><span class="n">first_atom_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+                <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">atoms</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">first_atom_index</span><span class="p">)</span>
             <span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"element"</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">bonds</span>  <span class="c1"># Should return atoms and bonds</span></div>
+    <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"tuple[dict[Any, Any]]"</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">bonds</span><span class="p">)</span>  <span class="c1"># Should return atoms and bonds</span></div>
 
 
 
@@ -1850,8 +1856,8 @@
 <span class="sd">        The parsed atoms and bonds from the ``.mol`` file.</span>
 <span class="sd">    """</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-        <span class="n">mol_file</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
-    <span class="k">return</span> <span class="n">mol_parser_string</span><span class="p">(</span><span class="n">mol_file</span><span class="p">)</span></div>
+        <span class="n">mol_file</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"tuple[dict[Any, Any], dict[Any, Any]]"</span><span class="p">,</span> <span class="n">mol_parser_string</span><span class="p">(</span><span class="n">mol_file</span><span class="p">))</span></div>
 
 
 
@@ -1897,7 +1903,7 @@
 <span class="sd">        The list of parsed ``(atoms, bonds)`` pairs from the ``.sdf`` file.</span>
 <span class="sd">    """</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-        <span class="n">sdf_file</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="n">sdf_file</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">sdf_parser_string</span><span class="p">(</span><span class="n">sdf_file</span><span class="p">)</span></div>
 
 
@@ -1923,7 +1929,7 @@
     <span class="k">elif</span> <span class="n">language</span> <span class="o">==</span> <span class="s2">"ESP"</span><span class="p">:</span>
         <span class="n">element_dict</span> <span class="o">=</span> <span class="n">ELEMENT_DICT_ESP</span>
 
-    <span class="k">return</span> <span class="n">element_dict</span><span class="p">[</span><span class="n">element</span><span class="p">]</span></div>
+    <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"Element"</span><span class="p">,</span> <span class="n">element_dict</span><span class="p">[</span><span class="n">element</span><span class="p">])</span></div>
 
 
 
@@ -1957,7 +1963,7 @@
 <span class="sd">        ``bonds`` maps ``(from_idx, to_idx)`` tuples to bond data.</span>
 <span class="sd">    """</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-        <span class="n">mol_file</span> <span class="o">=</span> <span class="n">file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="n">mol_file</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
     <span class="c1"># Get general data</span>
 
     <span class="n">mol_general_info</span> <span class="o">=</span> <span class="n">mol_file</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>  <span class="c1"># This info is not always available</span>
@@ -1988,7 +1994,7 @@
         <span class="n">bond_type</span> <span class="o">=</span> <span class="n">line_data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
         <span class="n">bonds</span><span class="p">[(</span><span class="n">first_atom_index</span><span class="p">,</span> <span class="n">second_atom_index</span><span class="p">)]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="n">bond_type</span><span class="p">}</span>
 
-    <span class="k">return</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">bonds</span>  <span class="c1"># Should return atoms and bonds</span></div>
+    <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"tuple[dict[Any, Any]]"</span><span class="p">,</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">bonds</span><span class="p">)</span>  <span class="c1"># Should return atoms and bonds</span></div>
 
 
 

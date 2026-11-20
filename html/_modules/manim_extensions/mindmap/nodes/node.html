@@ -1476,6 +1476,7 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+
 <span class="sd">"""Mindmap node classes for Manim.</span>
 
 <span class="sd">This module provides node classes for mindmap visualizations.</span>
@@ -1483,6 +1484,8 @@
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">BLUE</span><span class="p">,</span>
@@ -1606,7 +1609,7 @@
             <span class="p">{</span><span class="s2">"color"</span><span class="p">:</span> <span class="n">GREEN</span><span class="p">,</span> <span class="s2">"font_size"</span><span class="p">:</span> <span class="mi">48</span><span class="p">},</span>
             <span class="p">{</span><span class="s2">"color"</span><span class="p">:</span> <span class="n">WHITE</span><span class="p">,</span> <span class="s2">"font_size"</span><span class="p">:</span> <span class="mi">36</span><span class="p">},</span>
         <span class="p">],</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">node_num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">node_style</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_num</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">node_style</span> <span class="o">=</span> <span class="n">node_style</span>
@@ -1630,7 +1633,7 @@
 
 <div class="viewcode-block" id="NodeStyle.get_node_style">
 <a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.NodeStyle.html#manim_extensions.mindmap.nodes.node.NodeStyle.get_node_style">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_node_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_node_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Return the box style configured for a hierarchy level.</span>
 
@@ -1651,7 +1654,7 @@
 
 <div class="viewcode-block" id="NodeStyle.get_line_style">
 <a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.NodeStyle.html#manim_extensions.mindmap.nodes.node.NodeStyle.get_line_style">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_line_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_line_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return the line style for the requested hierarchy level.</span>
 
 <span class="sd">        Parameters</span>
@@ -1671,7 +1674,7 @@
 
 <div class="viewcode-block" id="NodeStyle.get_text_style">
 <a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.NodeStyle.html#manim_extensions.mindmap.nodes.node.NodeStyle.get_text_style">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_text_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_text_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return the text style for the requested hierarchy level.</span>
 
 <span class="sd">        Parameters</span>
@@ -1789,11 +1792,11 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">vmobject</span><span class="p">:</span> <span class="n">VMobject</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">buff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vmobject</span> <span class="o">=</span> <span class="n">vmobject</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vmobject</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">buff</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vmobject</span><span class="o">.</span><span class="n">width</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">buff</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vmobject</span><span class="p">)</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">buff</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">vmobject</span><span class="p">)</span><span class="o">.</span><span class="n">width</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">buff</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">buff</span> <span class="o">=</span> <span class="n">buff</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">surr_rect</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
@@ -1807,7 +1810,7 @@
 
 <div class="viewcode-block" id="Node.scale">
 <a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.scale">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Scale the node around its current center.</span>
 
 <span class="sd">        Parameters</span>
@@ -1823,7 +1826,7 @@
 
 <div class="viewcode-block" id="Node.add_child">
 <a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.add_child">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">:</span> <span class="s2">"Node"</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">:</span> <span class="s2">"Node"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Attach a child node to the current node.</span>
 
 <span class="sd">        Parameters</span>
@@ -1835,12 +1838,12 @@
             <span class="n">child</span><span class="o">.</span><span class="n">neighbor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
             <span class="n">child</span><span class="o">.</span><span class="n">node_state</span> <span class="o">=</span> <span class="n">NodeState</span><span class="o">.</span><span class="n">INSERT</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
-        <span class="n">child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span></div>
+        <span class="n">child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"None"</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Node.remove_child">
 <a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.remove_child">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">remove_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">:</span> <span class="s2">"Node"</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">:</span> <span class="s2">"Node"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Mark a child node for removal from the current node.</span>
 
 <span class="sd">        Parameters</span>
@@ -1860,7 +1863,7 @@
 
 <div class="viewcode-block" id="Node.alter_content">
 <a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.alter_content">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">alter_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vmobject</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">alter_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vmobject</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Replace the displayed content of the node.</span>
 
 <span class="sd">        Parameters</span>
@@ -1876,7 +1879,7 @@
 
 <div class="viewcode-block" id="Node._get_mindmap_connector">
 <a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node._get_mindmap_connector">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_get_mindmap_connector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Line</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_mindmap_connector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Line</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the connector line for a mind-map node.</span>
 
 <span class="sd">        Parameters</span>
@@ -1913,7 +1916,7 @@
 
 <div class="viewcode-block" id="Node._get_timeline_connector">
 <a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node._get_timeline_connector">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_get_timeline_connector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Line</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_timeline_connector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Line</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the connector line for a timeline node.</span>
 
 <span class="sd">        Parameters</span>
@@ -1954,7 +1957,7 @@
 
 <div class="viewcode-block" id="Node._get_catalog_connector">
 <a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node._get_catalog_connector">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_get_catalog_connector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Line</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_catalog_connector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Line</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the connector line for a catalog node.</span>
 
 <span class="sd">        Parameters</span>
@@ -1994,7 +1997,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">layout_type</span><span class="p">:</span> <span class="n">LayoutType</span><span class="p">,</span>
         <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Line</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the connector from this node to its parent based on layout type.</span>
 
@@ -2017,7 +2020,7 @@
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_mindmap_connector</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="k">case</span> <span class="n">LayoutType</span><span class="o">.</span><span class="n">Standard</span><span class="p">:</span>
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_mindmap_connector</span><span class="p">(</span>
-                    <span class="o">-</span><span class="n">direction</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_flip</span> <span class="k">else</span> <span class="n">direction</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+                    <span class="o">-</span><span class="n">direction</span> <span class="k">if</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">is_flip</span> <span class="k">else</span> <span class="n">direction</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
                 <span class="p">)</span>
             <span class="k">case</span> <span class="n">LayoutType</span><span class="o">.</span><span class="n">TimeLine</span><span class="p">:</span>
                 <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_timeline_connector</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -2028,8 +2031,8 @@
 <div class="viewcode-block" id="Node.set_connector">
 <a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.set_connector">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_connector</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">layout_type</span><span class="p">:</span> <span class="n">LayoutType</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span>
-    <span class="p">):</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">layout_type</span><span class="p">:</span> <span class="n">LayoutType</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Set the connector line.</span>
 
 <span class="sd">        Parameters</span>
@@ -2057,8 +2060,8 @@
         <span class="n">change_layout</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
         <span class="n">layout_type</span><span class="p">:</span> <span class="n">LayoutType</span><span class="p">,</span>
         <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">RIGHT</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Change the connector line.</span>
 
 <span class="sd">        Parameters</span>

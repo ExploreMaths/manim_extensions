@@ -1486,10 +1486,10 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">VGroup</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
-    <span class="kn">from</span><span class="w"> </span><span class="nn">pymunk</span><span class="w"> </span><span class="kn">import</span> <span class="n">Body</span><span class="p">,</span> <span class="n">Space</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">pymunk</span><span class="w"> </span><span class="kn">import</span> <span class="n">Body</span><span class="p">,</span> <span class="n">Constraint</span><span class="p">,</span> <span class="n">Space</span>
 
 
 <div class="viewcode-block" id="VConstraint">
@@ -1523,16 +1523,21 @@
 <span class="sd">               self.add(content)</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a_mob</span><span class="p">:</span> <span class="n">Mobject</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">b_mob</span><span class="p">:</span> <span class="n">Mobject</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">a_mob</span><span class="p">:</span> <span class="n">Mobject</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">b_mob</span><span class="p">:</span> <span class="n">Mobject</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">a_mob</span> <span class="o">=</span> <span class="n">a_mob</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">b_mob</span> <span class="o">=</span> <span class="n">b_mob</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">constraint</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a_mob</span><span class="p">:</span> <span class="n">Mobject</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Mobject</span><span class="p">,</span> <span class="n">a_mob</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b_mob</span><span class="p">:</span> <span class="n">Mobject</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Mobject</span><span class="p">,</span> <span class="n">b_mob</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">constraint</span><span class="p">:</span> <span class="n">Constraint</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_check_data</span><span class="p">()</span>
 
 <div class="viewcode-block" id="VConstraint._check_data">
 <a class="viewcode-back" href="../../../../reference/pymunk/constraints/constraint.VConstraint.html#manim_extensions.pymunk.constraints.constraint.VConstraint._check_data">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_check_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Verify the validity of constraint parameters.</span>
 
 <span class="sd">        Override in subclasses to perform subclass-specific validation.</span>
@@ -1542,7 +1547,7 @@
 
 <div class="viewcode-block" id="VConstraint._get_bodies">
 <a class="viewcode-back" href="../../../../reference/pymunk/constraints/constraint.VConstraint.html#manim_extensions.pymunk.constraints.constraint.VConstraint._get_bodies">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_get_bodies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">error_msg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Body</span><span class="p">,</span> <span class="n">Body</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_bodies</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">error_msg</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Body</span><span class="p">,</span> <span class="n">Body</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Extract pymunk bodies from the two connected mobjects and validate them.</span>
 
 <span class="sd">        Parameters</span>
@@ -1574,7 +1579,7 @@
 
 <div class="viewcode-block" id="VConstraint._finalize_install">
 <a class="viewcode-back" href="../../../../reference/pymunk/constraints/constraint.VConstraint.html#manim_extensions.pymunk.constraints.constraint.VConstraint._finalize_install">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_finalize_install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space</span><span class="p">:</span> <span class="n">Space</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_finalize_install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space</span><span class="p">:</span> <span class="n">Space</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Finalize the installation by adding the constraint to the space</span>
 <span class="sd">        and registering the per-frame updater.</span>
 
@@ -1585,13 +1590,14 @@
 <span class="sd">        space</span>
 <span class="sd">            The Pymunk space to add the constraint to.</span>
 <span class="sd">        """</span>
+        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">constraint</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
         <span class="n">space</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">constraint</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_updater</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mob_updater</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="VConstraint.install">
 <a class="viewcode-back" href="../../../../reference/pymunk/constraints/constraint.VConstraint.html#manim_extensions.pymunk.constraints.constraint.VConstraint.install">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space</span><span class="p">:</span> <span class="n">Space</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space</span><span class="p">:</span> <span class="n">Space</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Installs physical constraints into the Pymunk physical space.</span>
 <span class="sd">        This method should be overridden by subclasses to implement the</span>
 <span class="sd">        following steps.</span>
@@ -1611,7 +1617,7 @@
 
 <div class="viewcode-block" id="VConstraint.mob_updater">
 <a class="viewcode-back" href="../../../../reference/pymunk/constraints/constraint.VConstraint.html#manim_extensions.pymunk.constraints.constraint.VConstraint.mob_updater">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">mob_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mob_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Updates the visual representation of constraints in real time.</span>
 <span class="sd">        This method should be overridden by subclasses and called in every frame,</span>
 <span class="sd">        to synchronize the state of the visual components and the physics engine regarding constraints.</span>

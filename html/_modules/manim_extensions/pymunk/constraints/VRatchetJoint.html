@@ -1484,8 +1484,9 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Arrow</span><span class="p">,</span> <span class="n">BLUE</span><span class="p">,</span> <span class="n">Line</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">PI</span><span class="p">,</span> <span class="n">UP</span><span class="p">,</span> <span class="n">VMobject</span><span class="p">,</span> <span class="n">YELLOW</span><span class="p">,</span> <span class="n">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Arrow</span><span class="p">,</span> <span class="n">BLUE</span><span class="p">,</span> <span class="n">Line</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">PI</span><span class="p">,</span> <span class="n">UP</span><span class="p">,</span> <span class="n">VMobject</span><span class="p">,</span> <span class="n">YELLOW</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">VConstraint</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">...utils.deps</span><span class="w"> </span><span class="kn">import</span> <span class="n">require</span>
@@ -1564,16 +1565,16 @@
         <span class="n">b_mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
         <span class="n">phase</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
         <span class="n">ratchet</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
-        <span class="n">indicator_line_class</span><span class="p">:</span> <span class="n">Line</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Arrow</span><span class="p">,</span>
-        <span class="n">indicator_line_config</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">indicator_line_class</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">Line</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">Arrow</span><span class="p">,</span>
+        <span class="n">indicator_line_config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">"color"</span><span class="p">:</span> <span class="n">BLUE</span><span class="p">,</span>
             <span class="s2">"stroke_width"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
         <span class="p">},</span>
         <span class="n">indicator_line_length</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.4</span><span class="p">,</span>
-        <span class="n">connect_line_class</span><span class="p">:</span> <span class="n">Line</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">connect_line_config</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"color"</span><span class="p">:</span> <span class="n">YELLOW</span><span class="p">,</span> <span class="s2">"stroke_width"</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="n">connect_line_class</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">Line</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">connect_line_config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"color"</span><span class="p">:</span> <span class="n">YELLOW</span><span class="p">,</span> <span class="s2">"stroke_width"</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">a_mob</span><span class="o">=</span><span class="n">a_mob</span><span class="p">,</span> <span class="n">b_mob</span><span class="o">=</span><span class="n">b_mob</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">phase</span> <span class="o">=</span> <span class="n">phase</span>
@@ -1584,14 +1585,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">indicator_line_length</span> <span class="o">=</span> <span class="n">indicator_line_length</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">connect_line_class</span> <span class="o">=</span> <span class="n">connect_line_class</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">connect_line_config</span> <span class="o">=</span> <span class="n">connect_line_config</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">indicator_a</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">indicator_b</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">indicator_a</span><span class="p">:</span> <span class="n">VMobject</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">indicator_b</span><span class="p">:</span> <span class="n">VMobject</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">connect_line</span><span class="p">:</span> <span class="n">VMobject</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">constraint</span><span class="p">:</span> <span class="n">RatchetJoint</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__check_data</span><span class="p">()</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">__check_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__check_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Verify the validity of constraint parameters.</span>
 
 <span class="sd">        Raises</span>
@@ -1616,7 +1617,7 @@
 
 <div class="viewcode-block" id="VRatchetJoint.install">
 <a class="viewcode-back" href="../../../../reference/pymunk/constraints/VRatchetJoint.VRatchetJoint.html#manim_extensions.pymunk.constraints.VRatchetJoint.VRatchetJoint.install">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space</span><span class="p">:</span> <span class="n">Space</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">install</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">space</span><span class="p">:</span> <span class="n">Space</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create the Pymunk RatchetJoint constraint, initialize visual</span>
 <span class="sd">        indicator arrows and connecting line, add to the space, and</span>
 <span class="sd">        register the per-frame updater.</span>
@@ -1661,7 +1662,7 @@
 
 <div class="viewcode-block" id="VRatchetJoint.mob_updater">
 <a class="viewcode-back" href="../../../../reference/pymunk/constraints/VRatchetJoint.VRatchetJoint.html#manim_extensions.pymunk.constraints.VRatchetJoint.VRatchetJoint.mob_updater">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">mob_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mob_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Visual control updater.</span>
 
 <span class="sd">        Parameters</span>

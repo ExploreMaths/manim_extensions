@@ -1476,6 +1476,9 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
 <span class="sd">"""Deterministic finite state automaton visualization.</span>
 
 <span class="sd">This module provides the :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimdeterministicFiniteAutomaton` class for visualizing DFAs.</span>
@@ -1546,8 +1549,8 @@
         <span class="n">camera_follow</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">animation_style</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">cli</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">animation_style</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">json_template</span><span class="p">,</span> <span class="n">xml_file</span><span class="p">,</span> <span class="n">camera_follow</span><span class="p">,</span> <span class="n">cli</span><span class="o">=</span><span class="n">cli</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
@@ -1561,9 +1564,9 @@
             <span class="p">)</span>
 
         <span class="k">if</span> <span class="n">cli</span><span class="p">:</span>  <span class="c1"># if cli exist display options to user</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">cli</span><span class="o">.</span><span class="n">display_nda_options</span><span class="p">()</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cli</span><span class="p">)</span><span class="o">.</span><span class="n">display_nda_options</span><span class="p">()</span>
             <span class="k">if</span> <span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">cli</span><span class="o">.</span><span class="n">nda_option</span> <span class="o">==</span> <span class="mi">0</span>
+                <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cli</span><span class="p">)</span><span class="o">.</span><span class="n">nda_option</span> <span class="o">==</span> <span class="mi">0</span>
             <span class="p">):</span>  <span class="c1"># check the settings of the cli (what the user wants to do)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">nda_builder</span> <span class="o">=</span> <span class="kc">True</span></div>
 

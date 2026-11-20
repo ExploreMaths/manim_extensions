@@ -1476,6 +1476,7 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+
 <span class="sd">""":class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` class for automata visualizations.</span>
 
 <span class="sd">This module provides transition visualization for automata.</span>
@@ -1483,6 +1484,8 @@
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span>
 
@@ -1567,8 +1570,8 @@
         <span class="n">animation_style</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">],</span>
         <span class="n">font_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
         <span class="n">buffer</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">Transition</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transition_from</span><span class="p">,</span> <span class="n">transition_to</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">circle</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="c1"># manim settings for animations and colors</span>
@@ -1601,7 +1604,7 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">transition_from</span><span class="o">.</span><span class="n">id</span>
                 <span class="p">)</span>
             <span class="p">)</span>
-            <span class="n">opposite_transition</span><span class="o">.</span><span class="n">convert_straight_arrow_to_curved_arrow</span><span class="p">()</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">opposite_transition</span><span class="p">)</span><span class="o">.</span><span class="n">convert_straight_arrow_to_curved_arrow</span><span class="p">()</span>
 
             <span class="c1"># create this(self) arrow</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">construct_curved_arrow</span><span class="p">()</span>
@@ -1649,7 +1652,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            The two vertex points ``(p1, p2)``.</span>
 <span class="sd">        """</span>
-        <span class="n">circle</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition_from</span><span class="o">.</span><span class="n">circle</span>
+        <span class="n">circle</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition_from</span><span class="p">)</span><span class="o">.</span><span class="n">circle</span>
 
         <span class="n">p1</span> <span class="o">=</span> <span class="n">circle</span><span class="o">.</span><span class="n">point_at_angle</span><span class="p">(</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span> <span class="o">+</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
         <span class="n">p2</span> <span class="o">=</span> <span class="n">circle</span><span class="o">.</span><span class="n">point_at_angle</span><span class="p">(</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
@@ -1659,7 +1662,7 @@
 
 <div class="viewcode-block" id="ManimTransition.create_reflexive_arrow">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_transition.ManimTransition.html#manim_extensions.automata.mobjects.manim_transition.ManimTransition.create_reflexive_arrow">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">create_reflexive_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point1</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">point2</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_reflexive_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">point1</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">point2</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create a curved reflexive arrow from the source state back to itself.</span>
 
 <span class="sd">        Parameters</span>
@@ -1669,7 +1672,7 @@
 <span class="sd">        point2</span>
 <span class="sd">            End point on the state circle.</span>
 <span class="sd">        """</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">arrow</span> <span class="o">=</span> <span class="n">CurvedArrow</span><span class="p">(</span><span class="n">point2</span><span class="p">,</span> <span class="n">point1</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mf">1.5</span> <span class="o">*</span> <span class="n">PI</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">arrow</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"Arrow"</span><span class="p">,</span> <span class="n">CurvedArrow</span><span class="p">(</span><span class="n">point2</span><span class="p">,</span> <span class="n">point1</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mf">1.5</span> <span class="o">*</span> <span class="n">PI</span><span class="p">))</span>
 
         <span class="c1"># used to position the read symbols</span>
         <span class="n">center_of_arc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arrow</span><span class="o">.</span><span class="n">get_arc_center</span><span class="p">()</span>
@@ -1699,11 +1702,11 @@
 <span class="sd">            The normal direction used to offset the arrow label.</span>
 <span class="sd">        """</span>
 
-        <span class="n">x1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition_from</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span>
-        <span class="n">y1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition_from</span><span class="o">.</span><span class="n">get_y</span><span class="p">()</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition_from</span><span class="p">)</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span>
+        <span class="n">y1</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition_from</span><span class="p">)</span><span class="o">.</span><span class="n">get_y</span><span class="p">()</span>
 
-        <span class="n">x2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition_to</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span>
-        <span class="n">y2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition_to</span><span class="o">.</span><span class="n">get_y</span><span class="p">()</span>
+        <span class="n">x2</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition_to</span><span class="p">)</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span>
+        <span class="n">y2</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition_to</span><span class="p">)</span><span class="o">.</span><span class="n">get_y</span><span class="p">()</span>
 
         <span class="n">difference_of_x</span> <span class="o">=</span> <span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span>
         <span class="n">difference_of_y</span> <span class="o">=</span> <span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span>
@@ -1721,7 +1724,7 @@
 
 <div class="viewcode-block" id="ManimTransition.position_text">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_transition.ManimTransition.html#manim_extensions.automata.mobjects.manim_transition.ManimTransition.position_text">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">position_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buffer</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">position_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buffer</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Place each read-symbol label next to the transition arrow.</span>
 
 <span class="sd">        Parameters</span>
@@ -1736,11 +1739,11 @@
             <span class="n">x1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition_from</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">y1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition_from</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">x1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition_from</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span>
-            <span class="n">y1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition_from</span><span class="o">.</span><span class="n">get_y</span><span class="p">()</span>
+            <span class="n">x1</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition_from</span><span class="p">)</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span>
+            <span class="n">y1</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition_from</span><span class="p">)</span><span class="o">.</span><span class="n">get_y</span><span class="p">()</span>
 
-        <span class="n">x2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition_to</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span>
-        <span class="n">y2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition_to</span><span class="o">.</span><span class="n">get_y</span><span class="p">()</span>
+        <span class="n">x2</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition_to</span><span class="p">)</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span>
+        <span class="n">y2</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition_to</span><span class="p">)</span><span class="o">.</span><span class="n">get_y</span><span class="p">()</span>
 
         <span class="c1"># midpoint</span>
         <span class="n">c1</span> <span class="o">=</span> <span class="p">(</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
@@ -1766,7 +1769,7 @@
 
 <div class="viewcode-block" id="ManimTransition.convert_straight_arrow_to_curved_arrow">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_transition.ManimTransition.html#manim_extensions.automata.mobjects.manim_transition.ManimTransition.convert_straight_arrow_to_curved_arrow">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">convert_straight_arrow_to_curved_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">convert_straight_arrow_to_curved_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Converts a straight arrow transition to a curved arrow transition.</span>
 <span class="sd">        This method is primarily used when there are two opposing transitions</span>
@@ -1786,7 +1789,7 @@
 
 <div class="viewcode-block" id="ManimTransition.construct_curved_arrow">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_transition.ManimTransition.html#manim_extensions.automata.mobjects.manim_transition.ManimTransition.construct_curved_arrow">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct_curved_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buffer</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct_curved_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">buffer</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
         <span class="c1"># create a straight line and use the points locations to create curved arrow</span>
 <span class="w">        </span><span class="sd">"""Construct a curved arrow and position its read-symbol labels.</span>
 
@@ -1799,7 +1802,7 @@
         <span class="n">from_point</span> <span class="o">=</span> <span class="n">temp_arrow</span><span class="o">.</span><span class="n">start</span>
         <span class="n">to_point</span> <span class="o">=</span> <span class="n">temp_arrow</span><span class="o">.</span><span class="n">end</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">arrow</span> <span class="o">=</span> <span class="n">CurvedArrow</span><span class="p">(</span><span class="n">from_point</span><span class="p">,</span> <span class="n">to_point</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">arrow</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"Arrow"</span><span class="p">,</span> <span class="n">CurvedArrow</span><span class="p">(</span><span class="n">from_point</span><span class="p">,</span> <span class="n">to_point</span><span class="p">))</span>
 
         <span class="n">chord_center_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">from_point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">to_point</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
         <span class="n">chord_center_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">from_point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">to_point</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
@@ -1859,7 +1862,7 @@
 
 <div class="viewcode-block" id="ManimTransition.rotate_symbols_parallel_to_arrow">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_transition.ManimTransition.html#manim_extensions.automata.mobjects.manim_transition.ManimTransition.rotate_symbols_parallel_to_arrow">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">rotate_symbols_parallel_to_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">rotate_symbols_parallel_to_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Rotate all read symbols so they are aligned parallel to the arrow."""</span>
         <span class="k">for</span> <span class="n">read_symbol</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_symbols</span><span class="p">:</span>
             <span class="n">slope</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_slope_of_line</span><span class="p">()</span>
@@ -1949,8 +1952,8 @@
         <span class="n">animation_style</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">],</span>
         <span class="n">font_size</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span><span class="p">,</span>
         <span class="n">buffer</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">Transition</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transition_from</span><span class="p">,</span> <span class="n">transition_to</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">circle</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="c1"># manim settings for animations and colors</span>
@@ -1984,7 +1987,7 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">transition_from</span><span class="o">.</span><span class="n">id</span>
                 <span class="p">)</span>
             <span class="p">)</span>
-            <span class="n">opposite_transition</span><span class="o">.</span><span class="n">convert_straight_arrow_to_curved_arrow</span><span class="p">()</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">opposite_transition</span><span class="p">)</span><span class="o">.</span><span class="n">convert_straight_arrow_to_curved_arrow</span><span class="p">()</span>
 
             <span class="c1"># create this(self) arrow</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">construct_curved_arrow</span><span class="p">()</span>

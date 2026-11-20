@@ -1476,6 +1476,9 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
 <span class="sd">""":class:`~manim_extensions.mindmap.algorithms.layout.Layout` configuration for mindmap algorithms.</span>
 
 <span class="sd">This module provides configuration classes for layout algorithms.</span>
@@ -1636,11 +1639,14 @@
         <span class="n">node_spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
         <span class="n">level_spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
         <span class="n">sides</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">|</span> <span class="n">List</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">UP</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">),</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="p">[</span><span class="n">UP</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">,</span> <span class="n">LEFT</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">]):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"direction must be one of </span><span class="si">{</span><span class="n">LEFT</span><span class="p">,</span><span class="n">RIGHT</span><span class="p">,</span><span class="n">UP</span><span class="p">,</span><span class="n">DOWN</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sides</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
-            <span class="n">sides</span> <span class="o">=</span> <span class="p">(</span><span class="n">sides</span><span class="p">,)</span>
+            <span class="n">sides</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+                <span class="s2">"ndarray[tuple[Any, ...], dtype[float64]] | list[ndarray[tuple[Any, ...], dtype[float64]]]"</span><span class="p">,</span>
+                <span class="p">(</span><span class="n">sides</span><span class="p">,),</span>
+            <span class="p">)</span>
         <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="n">sides</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">side</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="p">[</span><span class="n">UP</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">]):</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"side must be one of </span><span class="si">{</span><span class="n">UP</span><span class="p">,</span><span class="n">DOWN</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
@@ -1674,11 +1680,11 @@
             <span class="n">string</span> <span class="o">=</span> <span class="n">LayoutDirection</span><span class="o">.</span><span class="n">RightToLeft</span>
         <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">):</span>
             <span class="n">string</span> <span class="o">=</span> <span class="n">LayoutDirection</span><span class="o">.</span><span class="n">LeftToRight</span>
-        <span class="k">return</span> <span class="n">string</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"LayoutDirection"</span><span class="p">,</span> <span class="n">string</span><span class="p">)</span></div>
 
 
     <span class="nd">@property</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">catalog</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">catalog</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return the catalog layout settings as a dictionary.</span>
 
 <span class="sd">        Returns</span>
@@ -1692,11 +1698,11 @@
     <span class="nd">@catalog</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">catalog</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">catalog</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">catalog</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">"node_spacing"</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
             <span class="s2">"level_spacing"</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
         <span class="p">},</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Update the catalog layout settings from a dictionary.</span>
 
 <span class="sd">        Parameters</span>
@@ -1708,7 +1714,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">level_spacing</span> <span class="o">=</span> <span class="n">catalog</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"level_spacing"</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">mindmap</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mindmap</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return the mind map layout settings as a dictionary.</span>
 
 <span class="sd">        Returns</span>
@@ -1723,8 +1729,12 @@
     <span class="nd">@mindmap</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">mindmap</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">mindmap</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"direction"</span><span class="p">:</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="s2">"node_spacing"</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s2">"level_spacing"</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">},</span>
-    <span class="p">):</span>
+        <span class="n">mindmap</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"direction"</span><span class="p">:</span> <span class="n">RIGHT</span><span class="p">,</span>
+            <span class="s2">"node_spacing"</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+            <span class="s2">"level_spacing"</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
+        <span class="p">},</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Update the mind map layout settings from a dictionary.</span>
 
 <span class="sd">        Parameters</span>
@@ -1748,7 +1758,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">level_spacing</span> <span class="o">=</span> <span class="n">mindmap</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"level_spacing"</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">timeline</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">timeline</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return the timeline layout settings as a dictionary.</span>
 
 <span class="sd">        Returns</span>
@@ -1763,12 +1773,12 @@
     <span class="nd">@timeline</span><span class="o">.</span><span class="n">setter</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">timeline</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">timeline</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">timeline</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">"node_spacing"</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
             <span class="s2">"level_spacing"</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span>
             <span class="s2">"sides"</span><span class="p">:</span> <span class="p">(</span><span class="n">UP</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">),</span>
         <span class="p">},</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Update the timeline layout settings from a dictionary.</span>
 
 <span class="sd">        Parameters</span>

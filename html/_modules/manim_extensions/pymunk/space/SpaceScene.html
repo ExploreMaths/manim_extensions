@@ -1485,9 +1485,9 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">ZoomedScene</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">cast</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">.</span><span class="w"> </span><span class="kn">import</span> <span class="n">VSpace</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.VSpace</span><span class="w"> </span><span class="kn">import</span> <span class="n">VSpace</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..constraints.constraint</span><span class="w"> </span><span class="kn">import</span> <span class="n">VConstraint</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..utils.logger_tool</span><span class="w"> </span><span class="kn">import</span> <span class="n">manim_pymunk_logger</span>
 
@@ -1542,14 +1542,16 @@
 <span class="sd">               Group(*self.mobjects).scale(0.08).move_to(ORIGIN)</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">gravity</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">gravity</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">9.81</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vspace</span> <span class="o">=</span> <span class="n">VSpace</span><span class="p">(</span><span class="n">gravity</span><span class="o">=</span><span class="n">gravity</span><span class="p">)</span>
         <span class="n">manim_pymunk_logger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="s2">"SpaceScene initional~"</span><span class="p">)</span>
 
 <div class="viewcode-block" id="SpaceScene.setup">
 <a class="viewcode-back" href="../../../../reference/pymunk/space/SpaceScene.SpaceScene.html#manim_extensions.pymunk.space.SpaceScene.SpaceScene.setup">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Instance initialization configuration.</span>
 <span class="sd">        Automatically add physical space to the scene and start the physics state updater.</span>
 <span class="sd">        """</span>
@@ -1561,11 +1563,11 @@
 <a class="viewcode-back" href="../../../../reference/pymunk/space/SpaceScene.SpaceScene.html#manim_extensions.pymunk.space.SpaceScene.SpaceScene.add_shapes_filter">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_shapes_filter</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">mobs</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
         <span class="n">group</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">categories</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4294967295</span><span class="p">,</span>
         <span class="n">mask</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4294967295</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Sets the collision filter for the shapes associated with the given Mobjects.</span>
 <span class="sd">        This determines which shapes can collide with each other based on groups,</span>
 <span class="sd">        categories, and masks.</span>
@@ -1590,7 +1592,7 @@
 <a class="viewcode-back" href="../../../../reference/pymunk/space/SpaceScene.SpaceScene.html#manim_extensions.pymunk.space.SpaceScene.SpaceScene.add_static_body">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_static_body</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">mobs</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
         <span class="n">family_members</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">is_solid</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="c1"># shapes-related</span>
@@ -1603,7 +1605,7 @@
         <span class="n">center_of_gravity</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
         <span class="n">velocity</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
         <span class="n">angular_velocity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Adds Mobjects to the physical space as static bodies.</span>
 <span class="sd">        Static bodies do not move under the influence of gravity or collisions</span>
 <span class="sd">        and are typically used for environment boundaries like floors and walls.</span>
@@ -1667,7 +1669,7 @@
 <a class="viewcode-back" href="../../../../reference/pymunk/space/SpaceScene.SpaceScene.html#manim_extensions.pymunk.space.SpaceScene.SpaceScene.add_dynamic_body">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_dynamic_body</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">mobs</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
         <span class="n">family_members</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">is_solid</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="c1"># shapes-related</span>
@@ -1680,7 +1682,7 @@
         <span class="n">center_of_gravity</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
         <span class="n">velocity</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
         <span class="n">angular_velocity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Adds Mobjects to the physical space as static bodies.</span>
 <span class="sd">        Static bodies do not move under the influence of gravity or collisions</span>
 <span class="sd">        and are typically used for environment boundaries like floors and walls.</span>
@@ -1744,7 +1746,7 @@
 <a class="viewcode-back" href="../../../../reference/pymunk/space/SpaceScene.SpaceScene.html#manim_extensions.pymunk.space.SpaceScene.SpaceScene.add_kinematic_body">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_kinematic_body</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">mobs</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
         <span class="n">family_members</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">is_solid</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="c1"># shapes-related</span>
@@ -1757,7 +1759,7 @@
         <span class="n">center_of_gravity</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
         <span class="n">velocity</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
         <span class="n">angular_velocity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Adds Mobjects to the physical space as static bodies.</span>
 <span class="sd">        Static bodies do not move under the influence of gravity or collisions</span>
 <span class="sd">        and are typically used for environment boundaries like floors and walls.</span>
@@ -1819,7 +1821,7 @@
 
 <div class="viewcode-block" id="SpaceScene.add_constraints">
 <a class="viewcode-back" href="../../../../reference/pymunk/space/SpaceScene.SpaceScene.html#manim_extensions.pymunk.space.SpaceScene.SpaceScene.add_constraints">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_constraints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">VConstraint</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_constraints</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">VConstraint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Adds constraint Mobjects to the scene and installs them into the physical space.</span>
 <span class="sd">        This method ensures that the constraints (such as springs, joints, or motors)</span>
 <span class="sd">        are both visually rendered in Manim and physically simulated in Pymunk.</span>
@@ -1837,7 +1839,7 @@
 
 <div class="viewcode-block" id="SpaceScene.active_body">
 <a class="viewcode-back" href="../../../../reference/pymunk/space/SpaceScene.SpaceScene.html#manim_extensions.pymunk.space.SpaceScene.SpaceScene.active_body">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">active_body</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">active_body</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Activates the physical bodies of the given Mobjects if they are sleeping.</span>
 <span class="sd">        In physics simulations, bodies that have come to rest are often put to 'sleep'</span>
 <span class="sd">        to save computation. This method forces those bodies back into an active state.</span>
@@ -1852,17 +1854,14 @@
         <span class="k">for</span> <span class="n">mob</span> <span class="ow">in</span> <span class="n">mobs</span><span class="p">:</span>
             <span class="n">family</span> <span class="o">=</span> <span class="n">mob</span><span class="o">.</span><span class="n">family_members_with_points</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">sub_mob</span> <span class="ow">in</span> <span class="n">family</span><span class="p">:</span>
-                <span class="k">if</span> <span class="p">(</span>
-                    <span class="nb">hasattr</span><span class="p">(</span><span class="n">sub_mob</span><span class="p">,</span> <span class="s2">"body"</span><span class="p">)</span>
-                    <span class="ow">and</span> <span class="n">sub_mob</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">body_type</span> <span class="ow">is</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="o">.</span><span class="n">DYNAMIC</span>
-                    <span class="ow">and</span> <span class="n">sub_mob</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">is_sleeping</span>
-                <span class="p">):</span>
-                    <span class="n">sub_mob</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">activate</span><span class="p">()</span></div>
+                <span class="n">body</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">sub_mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span>
+                <span class="k">if</span> <span class="n">body</span><span class="o">.</span><span class="n">body_type</span> <span class="ow">is</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="o">.</span><span class="n">DYNAMIC</span> <span class="ow">and</span> <span class="n">body</span><span class="o">.</span><span class="n">is_sleeping</span><span class="p">:</span>
+                    <span class="n">body</span><span class="o">.</span><span class="n">activate</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="SpaceScene.sleep_body">
 <a class="viewcode-back" href="../../../../reference/pymunk/space/SpaceScene.SpaceScene.html#manim_extensions.pymunk.space.SpaceScene.SpaceScene.sleep_body">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">sleep_body</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">sleep_body</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Forces the physical bodies of the given Mobjects into a sleeping state.</span>
 <span class="sd">        Sleeping bodies are removed from the physics simulation update loop until</span>
 <span class="sd">        they are touched by another active body or manually activated, which</span>
@@ -1880,18 +1879,19 @@
             <span class="c1"># Resolve group issue</span>
             <span class="n">family</span> <span class="o">=</span> <span class="n">mob</span><span class="o">.</span><span class="n">family_members_with_points</span><span class="p">()</span>
             <span class="k">for</span> <span class="n">sub_mob</span> <span class="ow">in</span> <span class="n">family</span><span class="p">:</span>
-                <span class="k">if</span> <span class="p">(</span>
-                    <span class="nb">hasattr</span><span class="p">(</span><span class="n">sub_mob</span><span class="p">,</span> <span class="s2">"body"</span><span class="p">)</span>
-                    <span class="ow">and</span> <span class="n">sub_mob</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">body_type</span> <span class="ow">is</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="o">.</span><span class="n">DYNAMIC</span>
-                <span class="p">):</span>
-                    <span class="n">sub_mob</span><span class="o">.</span><span class="n">body</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span></div>
+                <span class="n">body</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">sub_mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span>
+                <span class="k">if</span> <span class="n">body</span><span class="o">.</span><span class="n">body_type</span> <span class="ow">is</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="o">.</span><span class="n">DYNAMIC</span><span class="p">:</span>
+                    <span class="n">body</span><span class="o">.</span><span class="n">sleep</span><span class="p">()</span></div>
 
 
 <div class="viewcode-block" id="SpaceScene.draw_debug_img">
 <a class="viewcode-back" href="../../../../reference/pymunk/space/SpaceScene.SpaceScene.html#manim_extensions.pymunk.space.SpaceScene.SpaceScene.draw_debug_img">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">draw_debug_img</span><span class="p">(</span>  <span class="c1"># pragma: no cover - requires an interactive TkAgg display</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">xlim</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">ylim</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-    <span class="p">):</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">option</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">xlim</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+        <span class="n">ylim</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Pops up a Matplotlib window to render a debug view of the physical space.</span>
 <span class="sd">        This is an essential diagnostic tool used to verify if collision shapes,</span>
 <span class="sd">        constraints, and pivots are correctly aligned when they are not behaving</span>
@@ -1964,7 +1964,7 @@
 <span class="sd">            If the :class:`~manim.mobject.mobject.Mobject` has not been added to the physical space yet.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">mob</span><span class="p">,</span> <span class="s2">"body"</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">mob</span><span class="o">.</span><span class="n">body</span>
+            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"pymunk.Body"</span><span class="p">,</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"Please add 'mobject' to the space first!"</span><span class="p">)</span></div>
 
@@ -1993,7 +1993,7 @@
 <span class="sd">            If the :class:`~manim.mobject.mobject.Mobject` has not been added to the physical space yet.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">mob</span><span class="p">,</span> <span class="s2">"shapes"</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">mob</span><span class="o">.</span><span class="n">shapes</span>
+            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"list[pymunk.Shape]"</span><span class="p">,</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">shapes</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"Please add 'mobject' to the space first!"</span><span class="p">)</span></div>
 
@@ -2001,7 +2001,7 @@
     <span class="c1"># collision ID setter</span>
 <div class="viewcode-block" id="SpaceScene.set_collision_type">
 <a class="viewcode-back" href="../../../../reference/pymunk/space/SpaceScene.SpaceScene.html#manim_extensions.pymunk.space.SpaceScene.SpaceScene.set_collision_type">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_collision_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">collision_type</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_collision_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">collision_type</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Set the collision type integer on the physical shapes of the</span>
 <span class="sd">        given Mobjects, used by collision handlers to match pairs.</span>
 
@@ -2022,12 +2022,20 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">set_wildcard_collision_handler</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">collision_type_a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-        <span class="n">begin</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="n">Dict</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">pre_solve</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="n">Dict</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">post_solve</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="n">Dict</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">separate</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="n">Dict</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">object</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="n">begin</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">pre_solve</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">post_solve</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">separate</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">object</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Register a wildcard collision handler that matches any collision</span>
 <span class="sd">        involving the given collision type.</span>
 
@@ -2057,12 +2065,20 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">collision_type_a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
         <span class="n">collision_type_b</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
-        <span class="n">begin</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="n">Dict</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">pre_solve</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="n">Dict</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">post_solve</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="n">Dict</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">separate</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="n">Dict</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">data</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">object</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="n">begin</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">pre_solve</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="nb">bool</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">post_solve</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">separate</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Arbiter</span><span class="p">,</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Space</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">object</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Register a collision handler between two specific collision types.</span>
 
 <span class="sd">        Parameters</span>
@@ -2101,7 +2117,7 @@
         <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
         <span class="n">force</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">point</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Apply a continuous force to each given Mobject at a local point</span>
 <span class="sd">        relative to the body's center.</span>
 
@@ -2126,7 +2142,7 @@
         <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
         <span class="n">force</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">point</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Apply a continuous force to each given Mobject at a point in</span>
 <span class="sd">        world (scene) coordinates.</span>
 
@@ -2152,7 +2168,7 @@
         <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
         <span class="n">impulse</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">point</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Apply an instantaneous impulse to each given Mobject at a local</span>
 <span class="sd">        point relative to the body's center.</span>
 
@@ -2177,7 +2193,7 @@
         <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
         <span class="n">impulse</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">point</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Apply an instantaneous impulse to each given Mobject at a point</span>
 <span class="sd">        in world (scene) coordinates.</span>
 
@@ -2200,7 +2216,7 @@
 <a class="viewcode-back" href="../../../../reference/pymunk/space/SpaceScene.SpaceScene.html#manim_extensions.pymunk.space.SpaceScene.SpaceScene.local_to_world">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">local_to_world</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Convert a point from the Mobject's local body coordinates to</span>
 <span class="sd">        world (scene) coordinates.</span>
 
@@ -2218,7 +2234,7 @@
 <a class="viewcode-back" href="../../../../reference/pymunk/space/SpaceScene.SpaceScene.html#manim_extensions.pymunk.space.SpaceScene.SpaceScene.world_to_local">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">world_to_local</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Convert a point from world (scene) coordinates to the Mobject's</span>
 <span class="sd">        local body coordinates.</span>
 
@@ -2236,8 +2252,10 @@
 <div class="viewcode-block" id="SpaceScene.set_position_func">
 <a class="viewcode-back" href="../../../../reference/pymunk/space/SpaceScene.SpaceScene.html#manim_extensions.pymunk.space.SpaceScene.SpaceScene.set_position_func">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_position_func</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="p">):</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
+        <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Assign a custom position update callback to each Mobject's</span>
 <span class="sd">        physical body, overriding Pymunk's default position integration.</span>
 
@@ -2263,10 +2281,10 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">set_velocity_func</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="o">*</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
-        <span class="n">callback</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span>
-            <span class="p">[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="kc">None</span>
-        <span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="n">callback</span><span class="p">:</span> <span class="p">(</span>
+            <span class="n">Callable</span><span class="p">[[</span><span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+        <span class="p">)</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Assign a custom velocity update callback to each Mobject's</span>
 <span class="sd">        physical body, overriding Pymunk's default velocity integration.</span>
 
@@ -2339,7 +2357,7 @@
 <a class="viewcode-back" href="../../../../reference/pymunk/space/SpaceScene.SpaceScene.html#manim_extensions.pymunk.space.SpaceScene.SpaceScene.get_point_query_info">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_point_query_info</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Query which shapes of the :class:`~manim.mobject.mobject.Mobject` contain or are closest to a</span>
 <span class="sd">        given point in world coordinates.</span>
 
@@ -2368,7 +2386,7 @@
         <span class="n">start</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">end</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span>
         <span class="n">stroke_width</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Perform a segment (line) query against the Mobject's shapes,</span>
 <span class="sd">        finding the first intersection along the line segment.</span>
 
@@ -2394,7 +2412,7 @@
 <a class="viewcode-back" href="../../../../reference/pymunk/space/SpaceScene.SpaceScene.html#manim_extensions.pymunk.space.SpaceScene.SpaceScene.get_shapea_shapeb_info">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_shapea_shapeb_info</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">shape_a</span><span class="p">:</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Shape</span><span class="p">,</span> <span class="n">shape_b</span><span class="p">:</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Shape</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return collision information between two specific Pymunk shapes,</span>
 <span class="sd">        such as contact points and normal.</span>
 

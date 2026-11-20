@@ -1476,6 +1476,8 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
+
 <span class="sd">"""Utility functions for neural network layers."""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
@@ -1517,14 +1519,17 @@
             <span class="k">break</span>
 
     <span class="k">if</span> <span class="n">connective_layer_class</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">connective_layer_class</span> <span class="o">=</span> <span class="n">BlankConnective</span>
+        <span class="n">connective_layer_class</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="s2">"type[EmbeddingToFeedForward] | type[FeedForwardToEmbedding] | type[FeedForwardToFeedForward] | type[FeedForwardToImage] | type[ImageToFeedForward] | &lt;10 more items&gt; | None"</span><span class="p">,</span>
+            <span class="n">BlankConnective</span><span class="p">,</span>
+        <span class="p">)</span>
         <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
             <span class="sa">f</span><span class="s2">"Unrecognized input/output class pair: </span><span class="si">{</span><span class="n">input_layer</span><span class="si">}</span><span class="s2"> and </span><span class="si">{</span><span class="n">output_layer</span><span class="si">}</span><span class="s2">"</span>
         <span class="p">)</span>
     <span class="c1"># Make the instance now</span>
     <span class="n">connective_layer</span> <span class="o">=</span> <span class="n">connective_layer_class</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">connective_layer</span></div>
+    <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"ConnectiveLayer"</span><span class="p">,</span> <span class="n">connective_layer</span><span class="p">)</span></div>
 
 </pre></div>
         </article>

@@ -1482,7 +1482,7 @@
 
 <span class="sd">"""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Literal</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">Any</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">types</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModuleType</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">,</span> <span class="n">ManimColor</span><span class="p">,</span> <span class="n">ORIGIN</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">Rectangle</span><span class="p">,</span> <span class="n">VGroup</span><span class="p">,</span> <span class="n">WHITE</span>
@@ -1506,7 +1506,7 @@
     <span class="n">circle_kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="n">error_correction</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"L"</span><span class="p">,</span> <span class="s2">"M"</span><span class="p">,</span> <span class="s2">"Q"</span><span class="p">,</span> <span class="s2">"H"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"H"</span><span class="p">,</span>
     <span class="n">segno_kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Create a QR code as a :class:`~manim.mobject.types.vectorized_mobject.VGroup` of Manim objects.</span>

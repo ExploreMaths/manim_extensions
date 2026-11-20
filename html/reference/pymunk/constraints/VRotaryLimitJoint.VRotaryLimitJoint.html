@@ -1499,10 +1499,10 @@ bodies reach the minimum or maximum angle limits.</p>
 <li><p><strong>b_mob</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The second Mobject (the constrained body).</p></li>
 <li><p><strong>min_angle</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The minimum allowed relative angle (in radians).</p></li>
 <li><p><strong>max_angle</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The maximum allowed relative angle (in radians).</p></li>
-<li><p><strong>arc_indicator_class</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.Arc.html#manim.mobject.geometry.arc.Arc" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Arc</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – The Manim class used to visualize the angular limits (typically Arc).
+<li><p><strong>arc_indicator_class</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#type" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.Arc.html#manim.mobject.geometry.arc.Arc" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Arc</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – The Manim class used to visualize the angular limits (typically Arc).
 Set to None to hide the visual representation.</p></li>
-<li><p><strong>arc_indicator_config</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a></span>) – Configuration dictionary for the styling of the visual arc.</p></li>
-<li><p><strong>**kwargs</strong> – Forwarded to the parent <a class="reference internal" href="constraint.VConstraint.html#manim_extensions.pymunk.constraints.constraint.VConstraint" title="manim_extensions.pymunk.constraints.constraint.VConstraint"><code class="xref py py-class docutils literal notranslate"><span class="pre">VConstraint</span></code></a>.</p></li>
+<li><p><strong>arc_indicator_config</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Configuration dictionary for the styling of the visual arc.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent <a class="reference internal" href="constraint.VConstraint.html#manim_extensions.pymunk.constraints.constraint.VConstraint" title="manim_extensions.pymunk.constraints.constraint.VConstraint"><code class="xref py py-class docutils literal notranslate"><span class="pre">VConstraint</span></code></a>.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1541,6 +1541,11 @@ Set to None to hide the visual representation.</p></li>
 <dt class="sig sig-object py" id="manim_extensions.pymunk.constraints.VRotaryLimitJoint.VRotaryLimitJoint.__check_data">
 <span class="sig-name descname"><span class="pre">__check_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#manim_extensions.pymunk.constraints.VRotaryLimitJoint.VRotaryLimitJoint.__check_data" title="Link to this definition">¶</a></dt>
 <dd><p>Verify the validity of constraint parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -1552,6 +1557,9 @@ the per-frame updater.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>space</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://www.pymunk.org/en/latest/pymunk.html#pymunk.Space" title="(in Pymunk)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Space</span></code></a></span>) – The Pymunk space to add the constraint to.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1566,6 +1574,9 @@ the per-frame updater.</p>
 <li><p><strong>mob</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The constraint mobject being updated.</p></li>
 <li><p><strong>dt</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Time step since the last frame, in seconds.</p></li>
 </ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1631,9 +1642,12 @@ the per-frame updater.</p>
             <ul>
 <li><a class="reference internal" href="#">VRotaryLimitJoint</a><ul>
 <li><a class="reference internal" href="#manim_extensions.pymunk.constraints.VRotaryLimitJoint.VRotaryLimitJoint"><code class="docutils literal notranslate"><span class="pre">VRotaryLimitJoint</span></code></a><ul>
+
 <li><a class="reference internal" href="#manim_extensions.pymunk.constraints.VRotaryLimitJoint.VRotaryLimitJoint.__check_data"><code class="docutils literal notranslate"><span class="pre">VRotaryLimitJoint.__check_data()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.pymunk.constraints.VRotaryLimitJoint.VRotaryLimitJoint.install"><code class="docutils literal notranslate"><span class="pre">VRotaryLimitJoint.install()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.pymunk.constraints.VRotaryLimitJoint.VRotaryLimitJoint.mob_updater"><code class="docutils literal notranslate"><span class="pre">VRotaryLimitJoint.mob_updater()</span></code></a></li>
+
+
 
 </ul>
 </li>

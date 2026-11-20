@@ -1476,6 +1476,9 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
 <span class="sd">"""Rubik's Cube animations for Manim.</span>
 
 <span class="sd">This module provides animations for Rubik's Cube manipulations.</span>
@@ -1531,7 +1534,7 @@
 <span class="sd">               self.wait()</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mobject</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">face</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mobject</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">face</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">axis</span> <span class="o">=</span> <span class="n">get_axis_from_face</span><span class="p">(</span><span class="n">face</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">face</span> <span class="o">=</span> <span class="n">face</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">angle</span> <span class="o">=</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">2</span> <span class="k">if</span> <span class="p">(</span><span class="s2">"R"</span> <span class="ow">in</span> <span class="n">face</span> <span class="ow">or</span> <span class="s2">"F"</span> <span class="ow">in</span> <span class="n">face</span> <span class="ow">or</span> <span class="s2">"D"</span> <span class="ow">in</span> <span class="n">face</span><span class="p">)</span> <span class="k">else</span> <span class="o">-</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">2</span>
@@ -1549,14 +1552,14 @@
 <span class="sd">            A copy of the cube with indices initialised if needed.</span>
 <span class="sd">        """</span>
         <span class="n">starting_mobject</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mobject</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">starting_mobject</span><span class="o">.</span><span class="n">indices</span> <span class="o">==</span> <span class="p">{}:</span>
-            <span class="n">starting_mobject</span><span class="o">.</span><span class="n">set_indices</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">starting_mobject</span></div>
+        <span class="k">if</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">starting_mobject</span><span class="p">)</span><span class="o">.</span><span class="n">indices</span> <span class="o">==</span> <span class="p">{}:</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">starting_mobject</span><span class="p">)</span><span class="o">.</span><span class="n">set_indices</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"RubiksCube"</span><span class="p">,</span> <span class="n">starting_mobject</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="CubeMove.interpolate_mobject">
 <a class="viewcode-back" href="../../../reference/rubikscube/cube_animations.CubeMove.html#manim_extensions.rubikscube.cube_animations.CubeMove.interpolate_mobject">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">interpolate_mobject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">interpolate_mobject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Interpolate the cube rotation at progress ``alpha``.</span>
 
 <span class="sd">        Parameters</span>
@@ -1566,17 +1569,19 @@
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mobject</span><span class="o">.</span><span class="n">become</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">starting_mobject</span><span class="p">)</span>
 
-        <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">mobject</span><span class="o">.</span><span class="n">get_face</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">face</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span>
+        <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mobject</span><span class="p">)</span><span class="o">.</span><span class="n">get_face</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">face</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">rate_func</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">angle</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">axis</span>
         <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="CubeMove.finish">
 <a class="viewcode-back" href="../../../reference/rubikscube/cube_animations.CubeMove.html#manim_extensions.rubikscube.cube_animations.CubeMove.finish">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Finalise the cube move and update face indices after animation completes."""</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mobject</span><span class="o">.</span><span class="n">adjust_indices</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mobject</span><span class="o">.</span><span class="n">get_face</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">face</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="kc">False</span><span class="p">))</span></div>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mobject</span><span class="p">)</span><span class="o">.</span><span class="n">adjust_indices</span><span class="p">(</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">mobject</span><span class="p">)</span><span class="o">.</span><span class="n">get_face</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">face</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="p">)</span></div>
 </div>
 
 </pre></div>

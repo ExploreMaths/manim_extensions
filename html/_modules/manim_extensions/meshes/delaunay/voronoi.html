@@ -1476,6 +1476,9 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
 <span class="sd">"""</span>
 <span class="sd">functions to display voronoi diagram and create delaunay meshes as its dual.</span>
 <span class="sd">"""</span>
@@ -1537,7 +1540,7 @@
 <span class="sd">               self.wait()</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">,</span> <span class="n">triangle_mesh</span><span class="p">:</span> <span class="n">TriangleManim2DMesh</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">,</span> <span class="n">triangle_mesh</span><span class="p">:</span> <span class="n">TriangleManim2DMesh</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span> <span class="o">=</span> <span class="n">scene</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">triangle_mesh</span><span class="p">:</span> <span class="n">TriangleManim2DMesh</span> <span class="o">=</span> <span class="n">triangle_mesh</span>
         <span class="n">verts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">triangle_mesh</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">get_3d_vertices</span><span class="p">()</span>
@@ -1649,12 +1652,12 @@
                 <span class="p">)</span>
                 <span class="n">circle</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">vert_a</span><span class="p">)</span>
                 <span class="k">return</span> <span class="n">circle</span>
-        <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># should never get here</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"Circle"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>  <span class="c1"># should never get here</span></div>
 
 
 <div class="viewcode-block" id="VoronoiDelaunay.create_triangle">
 <a class="viewcode-back" href="../../../../reference/meshes/delaunay/voronoi.VoronoiDelaunay.html#manim_extensions.meshes.delaunay.voronoi.VoronoiDelaunay.create_triangle">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">create_triangle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">voronoi_vertex_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_triangle</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">voronoi_vertex_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create the dual triangle for a given Voronoi vertex and add it to the mesh.</span>
 
 <span class="sd">        The triangle is formed by the three mesh vertices whose Voronoi</span>

@@ -1476,6 +1476,7 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+
 <span class="sd">"""</span>
 <span class="sd">Non-layered Tidy Tree :class:`~manim_extensions.mindmap.algorithms.layout.Layout` Algorithm (Python Implementation).</span>
 <span class="sd">Used to compute node positions for tree structures.</span>
@@ -1484,6 +1485,8 @@
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"TidyTreeLayout"</span><span class="p">]</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
@@ -1658,7 +1661,7 @@
 
 <div class="viewcode-block" id="move_right">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_tidy_tree.html#manim_extensions.mindmap.algorithms.alg_tidy_tree.move_right">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">move_right</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">move</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">is_horizontal</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">move_right</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">move</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">is_horizontal</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Move a node and all its descendants by ``move`` in the non-layered direction.</span>
 
 <span class="sd">    Parameters</span>
@@ -1671,10 +1674,10 @@
 <span class="sd">        If ``True``, shifts ``y``; otherwise shifts ``x``.</span>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="n">is_horizontal</span><span class="p">:</span>
-        <span class="n">node</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">move</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">move</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">node</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="n">move</span>
-    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="n">move</span>
+    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
         <span class="n">move_right</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">move</span><span class="p">,</span> <span class="n">is_horizontal</span><span class="p">)</span></div>
 
 
@@ -1695,8 +1698,8 @@
 <span class="sd">    -------</span>
 <span class="sd">        The minimum coordinate value.</span>
 <span class="sd">    """</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">y</span> <span class="k">if</span> <span class="n">is_horizontal</span> <span class="k">else</span> <span class="n">node</span><span class="o">.</span><span class="n">x</span>
-    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">y</span> <span class="k">if</span> <span class="n">is_horizontal</span> <span class="k">else</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">x</span>
+    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
         <span class="n">res</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">get_min</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">is_horizontal</span><span class="p">),</span> <span class="n">res</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">res</span></div>
 
@@ -1704,7 +1707,7 @@
 
 <div class="viewcode-block" id="normalize">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_tidy_tree.html#manim_extensions.mindmap.algorithms.alg_tidy_tree.normalize">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">normalize</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">is_horizontal</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">normalize</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">is_horizontal</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Shift the subtree so that its minimum non-layered coordinate is 0.</span>
 
 <span class="sd">    Parameters</span>
@@ -1721,7 +1724,7 @@
 
 <div class="viewcode-block" id="convert_back">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_tidy_tree.html#manim_extensions.mindmap.algorithms.alg_tidy_tree.convert_back">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">convert_back</span><span class="p">(</span><span class="n">converted</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">is_horizontal</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">convert_back</span><span class="p">(</span><span class="n">converted</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">is_horizontal</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Write computed coordinates back to the original node tree.</span>
 
 <span class="sd">    Copies :attr:`~manim_extensions.mindmap.algorithms.alg_tidy_tree.WrappedTree.x` to the original node's ``x`` or ``y``</span>
@@ -1737,19 +1740,19 @@
 <span class="sd">        Whether the layout is horizontal.</span>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="n">is_horizontal</span><span class="p">:</span>
-        <span class="n">root</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">converted</span><span class="o">.</span><span class="n">x</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">root</span><span class="p">)</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">converted</span><span class="o">.</span><span class="n">x</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">root</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">converted</span><span class="o">.</span><span class="n">x</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">root</span><span class="p">)</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">converted</span><span class="p">)</span><span class="o">.</span><span class="n">x</span>
 
     <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">child</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">converted</span><span class="o">.</span><span class="n">children</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">children</span><span class="p">):</span>
-            <span class="n">convert_back</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">root</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">is_horizontal</span><span class="p">)</span></div>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">root</span><span class="p">)</span><span class="o">.</span><span class="n">children</span><span class="p">):</span>
+            <span class="n">convert_back</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">root</span><span class="p">)</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">is_horizontal</span><span class="p">)</span></div>
 
 
 
 <div class="viewcode-block" id="layer">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_tidy_tree.html#manim_extensions.mindmap.algorithms.alg_tidy_tree.layer">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">layer</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">level_spacing</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">layer</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">level_spacing</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Set the layer (depth) coordinate for each node in the tree.</span>
 
 <span class="sd">    Assigns ``level`` based on the parent's level and positions the</span>
@@ -1764,8 +1767,8 @@
 <span class="sd">    level_spacing</span>
 <span class="sd">        Spacing between adjacent layers.</span>
 <span class="sd">    """</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">parent</span> <span class="o">:=</span> <span class="n">node</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">node</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">level</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">parent</span> <span class="o">:=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span><span class="o">.</span><span class="n">level</span> <span class="o">+</span> <span class="mi">1</span>
         <span class="k">if</span> <span class="n">direction</span> <span class="o">==</span> <span class="n">LayoutDirection</span><span class="o">.</span><span class="n">LeftToRight</span><span class="p">:</span>
             <span class="n">node</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="p">(</span><span class="n">parent</span><span class="o">.</span><span class="n">width</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="n">width</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">level_spacing</span>
         <span class="k">elif</span> <span class="n">direction</span> <span class="o">==</span> <span class="n">LayoutDirection</span><span class="o">.</span><span class="n">RightToLeft</span><span class="p">:</span>
@@ -1773,9 +1776,13 @@
         <span class="k">elif</span> <span class="n">direction</span> <span class="o">==</span> <span class="n">LayoutDirection</span><span class="o">.</span><span class="n">BottomToTop</span><span class="p">:</span>
             <span class="n">node</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="p">(</span><span class="n">parent</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="n">height</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">level_spacing</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">node</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="p">(</span><span class="n">parent</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="n">height</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">level_spacing</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span><span class="o">.</span><span class="n">y</span>
+                <span class="o">-</span> <span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">height</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+                <span class="o">-</span> <span class="n">level_spacing</span>
+            <span class="p">)</span>
 
-    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
         <span class="n">layer</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">level_spacing</span><span class="p">)</span></div>
 
 
@@ -1838,7 +1845,7 @@
         <span class="n">direction</span><span class="p">:</span> <span class="n">LayoutDirection</span> <span class="o">=</span> <span class="n">LayoutDirection</span><span class="o">.</span><span class="n">LeftToRight</span><span class="p">,</span>
         <span class="n">node_spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
         <span class="n">level_spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">root</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="n">direction</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">is_horizontal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_horizontal</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span>
@@ -1872,7 +1879,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            The root node of the completed layout."""</span>
         <span class="n">layer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">level_spacing</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wt</span> <span class="o">=</span> <span class="n">WrappedTree</span><span class="o">.</span><span class="n">from_node</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_horizontal</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wt</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"None"</span><span class="p">,</span> <span class="n">WrappedTree</span><span class="o">.</span><span class="n">from_node</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_horizontal</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">first_walk</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wt</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">second_walk</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wt</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="n">convert_back</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_horizontal</span><span class="p">)</span>
@@ -1882,7 +1889,7 @@
 
 <div class="viewcode-block" id="TidyTreeLayout.first_walk">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_tidy_tree.TidyTreeLayout.html#manim_extensions.mindmap.algorithms.alg_tidy_tree.TidyTreeLayout.first_walk">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">first_walk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">first_walk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""First traversal: compute prelim and mod, detect and eliminate overlaps.</span>
 
 <span class="sd">        Parameters</span>
@@ -1911,7 +1918,7 @@
 
 <div class="viewcode-block" id="TidyTreeLayout.set_extremes">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_tidy_tree.TidyTreeLayout.html#manim_extensions.mindmap.algorithms.alg_tidy_tree.TidyTreeLayout.set_extremes">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_extremes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_extremes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Set the extreme (leftmost and rightmost) nodes for a subtree.</span>
 
 <span class="sd">        Parameters</span>
@@ -1959,7 +1966,7 @@
 
 <div class="viewcode-block" id="TidyTreeLayout.separate">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_tidy_tree.TidyTreeLayout.html#manim_extensions.mindmap.algorithms.alg_tidy_tree.TidyTreeLayout.separate">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">separate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">ih</span><span class="p">:</span> <span class="n">IYLNode</span> <span class="o">|</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">separate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">ih</span><span class="p">:</span> <span class="n">IYLNode</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Core of the algorithm: separate the i-th subtree from previous subtrees to avoid overlap.</span>
 
@@ -2004,12 +2011,12 @@
             <span class="n">cy</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span><span class="p">(</span><span class="n">cl</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">sy</span> <span class="o">&lt;=</span> <span class="n">cy</span><span class="p">:</span>
-                <span class="n">sr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_right_contour</span><span class="p">(</span><span class="n">sr</span><span class="p">)</span>
+                <span class="n">sr</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"WrappedTree"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_right_contour</span><span class="p">(</span><span class="n">sr</span><span class="p">))</span>
                 <span class="k">if</span> <span class="n">sr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">mssr</span> <span class="o">+=</span> <span class="n">sr</span><span class="o">.</span><span class="n">mod</span>
 
             <span class="k">if</span> <span class="n">sy</span> <span class="o">&gt;=</span> <span class="n">cy</span><span class="p">:</span>
-                <span class="n">cl</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_left_contour</span><span class="p">(</span><span class="n">cl</span><span class="p">)</span>
+                <span class="n">cl</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"WrappedTree"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">next_left_contour</span><span class="p">(</span><span class="n">cl</span><span class="p">))</span>
                 <span class="k">if</span> <span class="n">cl</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">mscl</span> <span class="o">+=</span> <span class="n">cl</span><span class="o">.</span><span class="n">mod</span>
 
@@ -2021,7 +2028,7 @@
 
 <div class="viewcode-block" id="TidyTreeLayout.move_subtree">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_tidy_tree.TidyTreeLayout.html#manim_extensions.mindmap.algorithms.alg_tidy_tree.TidyTreeLayout.move_subtree">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">move_subtree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">si</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">dist</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">move_subtree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">si</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">dist</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Shift a subtree by adding ``dist`` to its modifier.</span>
 
 <span class="sd">        Parameters</span>
@@ -2043,7 +2050,7 @@
 
 <div class="viewcode-block" id="TidyTreeLayout.distribute_extra">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_tidy_tree.TidyTreeLayout.html#manim_extensions.mindmap.algorithms.alg_tidy_tree.TidyTreeLayout.distribute_extra">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">distribute_extra</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">si</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">dist</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">distribute_extra</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">si</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">dist</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Distribute extra spacing among siblings after a subtree is moved.</span>
 
 <span class="sd">        Parameters</span>
@@ -2119,7 +2126,9 @@
 
 <div class="viewcode-block" id="TidyTreeLayout.set_left_thread">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_tidy_tree.TidyTreeLayout.html#manim_extensions.mindmap.algorithms.alg_tidy_tree.TidyTreeLayout.set_left_thread">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_left_thread</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">cl</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">,</span> <span class="n">modsumcl</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_left_thread</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">cl</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">,</span> <span class="n">modsumcl</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Set the left thread for a subtree whose left contour is exhausted.</span>
 
 <span class="sd">        Parameters</span>
@@ -2134,10 +2143,10 @@
 <span class="sd">            The accumulated modifier sum along the left contour.</span>
 <span class="sd">        """</span>
         <span class="n">li</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">extreme_left</span>
-        <span class="n">li</span><span class="o">.</span><span class="n">thread_left</span> <span class="o">=</span> <span class="n">cl</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">li</span><span class="p">)</span><span class="o">.</span><span class="n">thread_left</span> <span class="o">=</span> <span class="n">cl</span>
         <span class="n">diff</span> <span class="o">=</span> <span class="p">(</span><span class="n">modsumcl</span> <span class="o">-</span> <span class="n">cl</span><span class="o">.</span><span class="n">mod</span><span class="p">)</span> <span class="o">-</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">mod_sum_extreme_left</span>
-        <span class="n">li</span><span class="o">.</span><span class="n">mod</span> <span class="o">+=</span> <span class="n">diff</span>
-        <span class="n">li</span><span class="o">.</span><span class="n">prelim</span> <span class="o">-=</span> <span class="n">diff</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">li</span><span class="p">)</span><span class="o">.</span><span class="n">mod</span> <span class="o">+=</span> <span class="n">diff</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">li</span><span class="p">)</span><span class="o">.</span><span class="n">prelim</span> <span class="o">-=</span> <span class="n">diff</span>
         <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">extreme_left</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">extreme_left</span>
         <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">mod_sum_extreme_left</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">mod_sum_extreme_left</span></div>
 
@@ -2146,7 +2155,7 @@
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_tidy_tree.TidyTreeLayout.html#manim_extensions.mindmap.algorithms.alg_tidy_tree.TidyTreeLayout.set_right_thread">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_right_thread</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">sr</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">,</span> <span class="n">modsumsr</span><span class="p">:</span> <span class="nb">float</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Set the right thread for a subtree whose right contour is exhausted.</span>
 
 <span class="sd">        Parameters</span>
@@ -2161,17 +2170,17 @@
 <span class="sd">            The accumulated modifier sum along the right contour.</span>
 <span class="sd">        """</span>
         <span class="n">ri</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">extreme_right</span>
-        <span class="n">ri</span><span class="o">.</span><span class="n">thread_right</span> <span class="o">=</span> <span class="n">sr</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">ri</span><span class="p">)</span><span class="o">.</span><span class="n">thread_right</span> <span class="o">=</span> <span class="n">sr</span>
         <span class="n">diff</span> <span class="o">=</span> <span class="p">(</span><span class="n">modsumsr</span> <span class="o">-</span> <span class="n">sr</span><span class="o">.</span><span class="n">mod</span><span class="p">)</span> <span class="o">-</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">mod_sum_extreme_right</span>
-        <span class="n">ri</span><span class="o">.</span><span class="n">mod</span> <span class="o">+=</span> <span class="n">diff</span>
-        <span class="n">ri</span><span class="o">.</span><span class="n">prelim</span> <span class="o">-=</span> <span class="n">diff</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">ri</span><span class="p">)</span><span class="o">.</span><span class="n">mod</span> <span class="o">+=</span> <span class="n">diff</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">ri</span><span class="p">)</span><span class="o">.</span><span class="n">prelim</span> <span class="o">-=</span> <span class="n">diff</span>
         <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">extreme_right</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">extreme_right</span>
         <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">mod_sum_extreme_right</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">mod_sum_extreme_right</span></div>
 
 
 <div class="viewcode-block" id="TidyTreeLayout.position_root">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_tidy_tree.TidyTreeLayout.html#manim_extensions.mindmap.algorithms.alg_tidy_tree.TidyTreeLayout.position_root">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">position_root</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">position_root</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Place the root of a subtree halfway between its first and last children.</span>
 
 <span class="sd">        Parameters</span>
@@ -2189,7 +2198,7 @@
 
 <div class="viewcode-block" id="TidyTreeLayout.second_walk">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_tidy_tree.TidyTreeLayout.html#manim_extensions.mindmap.algorithms.alg_tidy_tree.TidyTreeLayout.second_walk">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">second_walk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">,</span> <span class="n">modsum</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">second_walk</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">,</span> <span class="n">modsum</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Second traversal: accumulate prelim and mod into final coordinates.</span>
 
 <span class="sd">        Parameters</span>
@@ -2212,7 +2221,7 @@
 
 <div class="viewcode-block" id="TidyTreeLayout.add_child_spacing">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_tidy_tree.TidyTreeLayout.html#manim_extensions.mindmap.algorithms.alg_tidy_tree.TidyTreeLayout.add_child_spacing">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_child_spacing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_child_spacing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Apply accumulated shift and change values to children's mod.</span>
 
 <span class="sd">        Parameters</span>
@@ -2230,10 +2239,10 @@
 
 <div class="viewcode-block" id="TidyTreeLayout.compute_connectors">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_tidy_tree.TidyTreeLayout.html#manim_extensions.mindmap.algorithms.alg_tidy_tree.TidyTreeLayout.compute_connectors">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">compute_connectors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_connectors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Compute connector paths between each node and its parent in the layout."""</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">compute_node</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="nb">object</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">compute_node</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">"""Compute the connector path from a node to its parent.</span>
 
 <span class="sd">            Parameters</span>
@@ -2245,11 +2254,14 @@
 <span class="sd">            -------</span>
 <span class="sd">                The connector line/curve.</span>
 <span class="sd">            """</span>
-            <span class="n">parent</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">parent</span>
+            <span class="n">parent</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span>
             <span class="k">match</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">:</span>
                 <span class="k">case</span> <span class="n">LayoutDirection</span><span class="o">.</span><span class="n">TopToBottom</span><span class="p">:</span>
                     <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">parent</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">parent</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span>
-                    <span class="n">xe</span><span class="p">,</span> <span class="n">ye</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span>
+                    <span class="n">xe</span><span class="p">,</span> <span class="n">ye</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+                        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+                    <span class="p">)</span>
                     <span class="n">points</span> <span class="o">=</span> <span class="p">(</span>
                         <span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">),</span>
                         <span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="p">(</span><span class="n">ys</span> <span class="o">+</span> <span class="n">ye</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
@@ -2258,7 +2270,10 @@
                     <span class="p">)</span>
                 <span class="k">case</span> <span class="n">LayoutDirection</span><span class="o">.</span><span class="n">BottomToTop</span><span class="p">:</span>
                     <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">parent</span><span class="o">.</span><span class="n">y</span> <span class="o">+</span> <span class="n">parent</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span>
-                    <span class="n">xe</span><span class="p">,</span> <span class="n">ye</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">node</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span>
+                    <span class="n">xe</span><span class="p">,</span> <span class="n">ye</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">x</span><span class="p">,</span>
+                        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+                    <span class="p">)</span>
                     <span class="n">points</span> <span class="o">=</span> <span class="p">(</span>
                         <span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">),</span>
                         <span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="p">(</span><span class="n">ys</span> <span class="o">+</span> <span class="n">ye</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">),</span>
@@ -2267,7 +2282,10 @@
                     <span class="p">)</span>
                 <span class="k">case</span> <span class="n">LayoutDirection</span><span class="o">.</span><span class="n">LeftToRight</span><span class="p">:</span>
                     <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">parent</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">parent</span><span class="o">.</span><span class="n">y</span>
-                    <span class="n">xe</span><span class="p">,</span> <span class="n">ye</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">node</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">y</span>
+                    <span class="n">xe</span><span class="p">,</span> <span class="n">ye</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+                        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+                    <span class="p">)</span>
                     <span class="n">points</span> <span class="o">=</span> <span class="p">(</span>
                         <span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">),</span>
                         <span class="p">((</span><span class="n">xs</span> <span class="o">+</span> <span class="n">xe</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">ys</span><span class="p">),</span>
@@ -2276,19 +2294,22 @@
                     <span class="p">)</span>
                 <span class="k">case</span> <span class="n">LayoutDirection</span><span class="o">.</span><span class="n">RightToLeft</span><span class="p">:</span>
                     <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="n">parent</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">parent</span><span class="o">.</span><span class="n">y</span>
-                    <span class="n">xe</span><span class="p">,</span> <span class="n">ye</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">y</span>
+                    <span class="n">xe</span><span class="p">,</span> <span class="n">ye</span> <span class="o">=</span> <span class="p">(</span>
+                        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+                        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+                    <span class="p">)</span>
                     <span class="n">points</span> <span class="o">=</span> <span class="p">(</span>
                         <span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">),</span>
                         <span class="p">((</span><span class="n">xs</span> <span class="o">+</span> <span class="n">xe</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">ys</span><span class="p">),</span>
                         <span class="p">((</span><span class="n">xs</span> <span class="o">+</span> <span class="n">xe</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">ye</span><span class="p">),</span>
                         <span class="p">(</span><span class="n">xe</span><span class="p">,</span> <span class="n">ye</span><span class="p">),</span>
                     <span class="p">)</span>
-            <span class="n">node</span><span class="o">.</span><span class="n">connector_points</span> <span class="o">=</span> <span class="n">points</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">connector_points</span> <span class="o">=</span> <span class="n">points</span>
 
-            <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
                 <span class="n">compute_node</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
 
-        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
             <span class="n">compute_node</span><span class="p">(</span><span class="n">child</span><span class="p">)</span></div>
 </div>
 

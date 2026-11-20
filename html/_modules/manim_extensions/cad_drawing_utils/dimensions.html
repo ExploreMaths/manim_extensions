@@ -1476,9 +1476,12 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+
 <span class="sd">"""CAD dimension mobjects: linear and angular dimensions with arrows and labels."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">Vector3D</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">Arc</span><span class="p">,</span>
@@ -1531,7 +1534,7 @@
         <span class="n">text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Mobject</span><span class="p">,</span>
         <span class="n">offset_vector</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">RIGHT</span> <span class="o">+</span> <span class="n">DOWN</span><span class="p">,</span>
         <span class="n">pointer_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">text_buff</span> <span class="o">=</span> <span class="mf">0.1</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="s2">"stroke_width"</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
@@ -1541,7 +1544,7 @@
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="n">textmob</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">):</span>
-            <span class="n">textmob</span> <span class="o">=</span> <span class="n">text</span>
+            <span class="n">textmob</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"Text"</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">textmob</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="s2">"A"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">({</span><span class="s2">"text"</span><span class="p">:</span> <span class="n">textmob</span><span class="p">})</span>
@@ -1643,7 +1646,7 @@
         <span class="n">text</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Mobject</span><span class="p">,</span>
         <span class="n">dist</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">pointer_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">point</span> <span class="o">=</span> <span class="n">mob</span><span class="o">.</span><span class="n">point_from_proportion</span><span class="p">(</span><span class="n">proportion</span><span class="p">)</span>
 
@@ -1733,7 +1736,7 @@
         <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
         <span class="n">ext_line_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">tip_len</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_ARROW_TIP_LENGTH</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">start</span>
@@ -1758,7 +1761,7 @@
             <span class="k">if</span> <span class="s2">"stroke_width"</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">arrow_offset</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">"stroke_width"</span><span class="p">]</span> <span class="o">*</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">100</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">arrow_offset</span> <span class="o">=</span> <span class="n">DEFAULT_STROKE_WIDTH</span> <span class="o">*</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">100</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">arrow_offset</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"int"</span><span class="p">,</span> <span class="n">DEFAULT_STROKE_WIDTH</span> <span class="o">*</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">100</span><span class="p">)</span>
             <span class="n">ext_dir</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">endpoint</span> <span class="o">-</span> <span class="n">startpoint</span><span class="p">)</span>
             <span class="n">main_line</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span>
                 <span class="n">start</span><span class="o">=</span><span class="n">startpoint</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">arrow_offset</span> <span class="o">*</span> <span class="n">ext_dir</span><span class="p">,</span>
@@ -1815,7 +1818,7 @@
             <span class="n">textmob</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="n">textmob</span><span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span><span class="n">opacity</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">):</span>
-            <span class="n">textmob</span> <span class="o">=</span> <span class="n">text</span>
+            <span class="n">textmob</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"Text"</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">dist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">startpoint</span> <span class="o">-</span> <span class="n">endpoint</span><span class="p">)</span>
             <span class="n">textmob</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">dist</span><span class="si">:</span><span class="s2">.2</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1880,7 +1883,7 @@
         <span class="n">outside_arrow</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">ext_line_offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">tip_len</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_ARROW_TIP_LENGTH</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
@@ -1966,7 +1969,7 @@
             <span class="n">textmob</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="n">textmob</span><span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span><span class="n">opacity</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">):</span>
-            <span class="n">textmob</span> <span class="o">=</span> <span class="n">text</span>
+            <span class="n">textmob</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"Text"</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">textmob</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">abs</span><span class="p">(</span><span class="n">angle_1</span><span class="o">/</span><span class="n">DEGREES</span><span class="p">)</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2">°"</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="n">textmob</span><span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span><span class="n">opacity</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -2006,7 +2009,11 @@
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">Mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">start_proportion</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">end_proportion</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">Mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
+        <span class="n">start_proportion</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="n">end_proportion</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">start</span> <span class="o">=</span> <span class="n">Mob</span><span class="o">.</span><span class="n">point_from_proportion</span><span class="p">(</span><span class="n">start_proportion</span><span class="p">)</span>
         <span class="n">end</span> <span class="o">=</span> <span class="n">Mob</span><span class="o">.</span><span class="n">point_from_proportion</span><span class="p">(</span><span class="n">end_proportion</span><span class="p">)</span>
@@ -2060,7 +2067,7 @@
         <span class="n">anchor_point</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">arrow_size</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_ARROW_TIP_LENGTH</span><span class="p">,</span>
         <span class="n">reversed_arrow</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 
         <span class="c1"># set default value</span>

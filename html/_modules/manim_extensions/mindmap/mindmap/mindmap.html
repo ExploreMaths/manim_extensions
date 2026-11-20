@@ -1476,6 +1476,8 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
 <span class="sd">"""Mindmap main classes for Manim.</span>
 
 <span class="sd">This module provides main mindmap classes for visualizations.</span>
@@ -1557,7 +1559,7 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="nb">map</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="p">{},</span>
+        <span class="nb">map</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span>
         <span class="n">buff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
         <span class="n">direction</span><span class="p">:</span> <span class="nb">object</span> <span class="o">=</span> <span class="n">RIGHT</span><span class="p">,</span>
         <span class="n">level_spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
@@ -1580,7 +1582,7 @@
                 <span class="p">{</span><span class="s2">"color"</span><span class="p">:</span> <span class="n">WHITE</span><span class="p">,</span> <span class="s2">"font_size"</span><span class="p">:</span> <span class="mi">36</span><span class="p">},</span>
             <span class="p">],</span>
         <span class="p">),</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">node_style</span> <span class="o">=</span> <span class="n">node_style</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="n">direction</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
@@ -1596,7 +1598,7 @@
 
 <div class="viewcode-block" id="MindMap._set_connectors">
 <a class="viewcode-back" href="../../../../reference/mindmap/mindmap/mindmap.MindMap.html#manim_extensions.mindmap.mindmap.mindmap.MindMap._set_connectors">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_set_connectors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_connectors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create a connector from each node to its parent in the active layout."""</span>
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">bfs_walker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">):</span>
             <span class="n">node</span><span class="o">.</span><span class="n">connector</span> <span class="o">=</span> <span class="p">(</span>
@@ -1666,7 +1668,7 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="nb">map</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="p">{},</span>
+        <span class="nb">map</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span>
         <span class="n">buff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
         <span class="n">sides</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">object</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">UP</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">),</span>
         <span class="n">level_spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
@@ -1689,7 +1691,7 @@
                 <span class="p">{</span><span class="s2">"color"</span><span class="p">:</span> <span class="n">WHITE</span><span class="p">,</span> <span class="s2">"font_size"</span><span class="p">:</span> <span class="mi">36</span><span class="p">},</span>
             <span class="p">],</span>
         <span class="p">),</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">node_style</span> <span class="o">=</span> <span class="n">node_style</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">layout_method</span><span class="o">=</span><span class="n">TimeLineLayout</span><span class="p">(</span>
@@ -1702,7 +1704,7 @@
 
 <div class="viewcode-block" id="TimeLine._set_connectors">
 <a class="viewcode-back" href="../../../../reference/mindmap/mindmap/mindmap.TimeLine.html#manim_extensions.mindmap.mindmap.mindmap.TimeLine._set_connectors">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_set_connectors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_connectors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create a connector from each node to its parent in the active layout."""</span>
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">bfs_walker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">):</span>
             <span class="n">node</span><span class="o">.</span><span class="n">connector</span> <span class="o">=</span> <span class="p">(</span>
@@ -1774,7 +1776,7 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="nb">map</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="p">{},</span>
+        <span class="nb">map</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span>
         <span class="n">buff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
         <span class="n">direction</span><span class="p">:</span> <span class="nb">object</span> <span class="o">=</span> <span class="n">RIGHT</span><span class="p">,</span>
         <span class="n">level_spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
@@ -1797,7 +1799,7 @@
                 <span class="p">{</span><span class="s2">"color"</span><span class="p">:</span> <span class="n">WHITE</span><span class="p">,</span> <span class="s2">"font_size"</span><span class="p">:</span> <span class="mi">36</span><span class="p">},</span>
             <span class="p">],</span>
         <span class="p">),</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">node_style</span> <span class="o">=</span> <span class="n">node_style</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">layout_method</span><span class="o">=</span><span class="n">StandardLayout</span><span class="p">(</span>
@@ -1812,7 +1814,7 @@
 
 <div class="viewcode-block" id="StandardMap._set_connectors">
 <a class="viewcode-back" href="../../../../reference/mindmap/mindmap/mindmap.StandardMap.html#manim_extensions.mindmap.mindmap.mindmap.StandardMap._set_connectors">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_set_connectors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_connectors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create a connector from each node to its parent in the active layout."""</span>
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">bfs_walker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">):</span>
             <span class="n">node</span><span class="o">.</span><span class="n">connector</span> <span class="o">=</span> <span class="p">(</span>
@@ -1886,7 +1888,7 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="nb">map</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">=</span> <span class="p">{},</span>
+        <span class="nb">map</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span>
         <span class="n">buff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
         <span class="n">level_spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
         <span class="n">node_spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
@@ -1908,7 +1910,7 @@
                 <span class="p">{</span><span class="s2">"color"</span><span class="p">:</span> <span class="n">WHITE</span><span class="p">,</span> <span class="s2">"font_size"</span><span class="p">:</span> <span class="mi">36</span><span class="p">},</span>
             <span class="p">],</span>
         <span class="p">),</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">node_style</span> <span class="o">=</span> <span class="n">node_style</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">layout_method</span><span class="o">=</span><span class="n">CatalogLayout</span><span class="p">(</span>
@@ -1922,7 +1924,7 @@
 
 <div class="viewcode-block" id="CatalogMap._set_connectors">
 <a class="viewcode-back" href="../../../../reference/mindmap/mindmap/mindmap.CatalogMap.html#manim_extensions.mindmap.mindmap.mindmap.CatalogMap._set_connectors">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_set_connectors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_connectors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create a connector from each node to its parent in the active layout."""</span>
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">bfs_walker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">):</span>
             <span class="n">node</span><span class="o">.</span><span class="n">connector</span> <span class="o">=</span> <span class="p">(</span>

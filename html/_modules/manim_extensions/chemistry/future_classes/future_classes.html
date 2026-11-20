@@ -1475,6 +1475,9 @@
 <span></span><span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
 <span class="sd">"""Future classes for Manim chemistry.</span>
 
 <span class="sd">This module contains experimental classes that may be implemented in the future.</span>
@@ -1546,7 +1549,9 @@
 <span class="sd">               self.add(Hole().scale(7))</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">WHITE</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.25</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">WHITE</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">DashedVMobject</span><span class="p">(</span><span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">),</span> <span class="n">num_dashes</span><span class="o">=</span><span class="mi">7</span><span class="p">))</span></div>
 
@@ -1579,7 +1584,9 @@
 <span class="sd">               self.add(Electron().scale(7))</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">BLUE_E</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">BLUE_E</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span> <span class="n">fill_opacity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">))</span></div>
 
@@ -1637,12 +1644,12 @@
         <span class="n">add_electrons</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">add_holes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">subelectron_holes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">element_label</span> <span class="o">=</span> <span class="n">element</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">label_color</span> <span class="o">=</span> <span class="n">label_color</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"ManimColor"</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="n">radius</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_electrons</span> <span class="o">=</span> <span class="n">n_electrons</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_holes</span> <span class="o">=</span> <span class="n">n_holes</span>
@@ -1657,8 +1664,8 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">arrange_particles</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">subelectron_holes_group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_subelectron_holes</span><span class="p">()</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">subelectron_holes</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">subelectron_holes_group</span><span class="o">.</span><span class="n">shift</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">subelectron_holes_group</span><span class="o">.</span><span class="n">shift</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">subelectron_holes_group</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">subelectron_holes_group</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
 
 <div class="viewcode-block" id="Element.central_atom">
 <a class="viewcode-back" href="../../../../reference/chemistry/future_classes/future_classes.Element.html#manim_extensions.chemistry.future_classes.future_classes.Element.central_atom">[docs]</a>
@@ -1813,20 +1820,22 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">element_symbol</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"H"</span><span class="p">,</span>
         <span class="n">element_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"Hidrógeno"</span><span class="p">,</span>
-        <span class="n">frame_colors</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="n">BLUE</span><span class="p">,</span> <span class="n">BLUE_B</span><span class="p">],</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="n">frame_colors</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">BLUE</span><span class="p">,</span> <span class="n">BLUE_B</span><span class="p">],</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span>
             <span class="n">height</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">fill_opacity</span><span class="o">=</span><span class="mi">1</span>
         <span class="p">)</span><span class="o">.</span><span class="n">set_color_by_gradient</span><span class="p">(</span><span class="n">frame_colors</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">symbol</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="n">element_symbol</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLACK</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mf">0.2</span> <span class="o">*</span> <span class="n">UP</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="n">element_name</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLACK</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mf">0.75</span> <span class="o">*</span> <span class="n">DOWN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"str"</span><span class="p">,</span> <span class="n">Text</span><span class="p">(</span><span class="n">element_name</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLACK</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mf">0.75</span> <span class="o">*</span> <span class="n">DOWN</span><span class="p">))</span>
 
-        <span class="n">name_rescaling_factor</span> <span class="o">=</span> <span class="mf">0.75</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">width</span>
+        <span class="n">name_rescaling_factor</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="mf">0.75</span> <span class="o">*</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="p">)</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">width</span>
+        <span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">name_rescaling_factor</span><span class="p">)</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">name_rescaling_factor</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">frame</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">symbol</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span></div>
 
 
@@ -1856,7 +1865,7 @@
 <span class="sd">               self.add(NPNTransistor())</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">regions_opacity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">regions_opacity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">regions_opacity</span> <span class="o">=</span> <span class="n">regions_opacity</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">left_n_region</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span>
@@ -1891,8 +1900,8 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">particle_type</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">VMobject</span><span class="p">],</span>
         <span class="n">n_copies</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
-        <span class="n">vertical_boundary</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.8</span> <span class="o">*</span> <span class="n">UP</span><span class="p">,</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="n">DOWN</span><span class="p">],</span>
-        <span class="n">horizontal_boundary</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">],</span>
+        <span class="n">vertical_boundary</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.8</span> <span class="o">*</span> <span class="n">UP</span><span class="p">,</span> <span class="mf">0.8</span> <span class="o">*</span> <span class="n">DOWN</span><span class="p">],</span>
+        <span class="n">horizontal_boundary</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">],</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create a :class:`~manim.mobject.types.vectorized_mobject.VGroup` of scaled particle mobjects arranged in a rectangular grid.</span>
 
@@ -1958,8 +1967,8 @@
         <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span> <span class="o">=</span> <span class="n">Square</span><span class="p">(),</span>
         <span class="n">schema_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"horizontal"</span><span class="p">,</span>
         <span class="n">inverted_terminals</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">mob</span> <span class="o">=</span> <span class="n">mob</span>
@@ -2161,7 +2170,9 @@
 <span class="sd">               self.add(MOSFETTransistor())</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">show_holes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">show_battery</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">show_holes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">show_battery</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">main_board</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_main_board</span><span class="p">()</span>
@@ -2337,7 +2348,7 @@
 <span class="sd">               self.add(content)</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">terminal</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">anchor</span><span class="p">:</span> <span class="n">VGroup</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">terminal</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">anchor</span><span class="p">:</span> <span class="n">VGroup</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">terminal</span> <span class="o">=</span> <span class="n">terminal</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">anchor</span> <span class="o">=</span> <span class="n">anchor</span>
@@ -2367,7 +2378,7 @@
 
 <div class="viewcode-block" id="arrange_in_1d_boundary">
 <a class="viewcode-back" href="../../../../reference/chemistry/future_classes/future_classes.html#manim_extensions.chemistry.future_classes.future_classes.arrange_in_1d_boundary">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">arrange_in_1d_boundary</span><span class="p">(</span><span class="n">mobs</span><span class="p">:</span> <span class="n">VGroup</span><span class="p">,</span> <span class="n">boundary</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">]):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">arrange_in_1d_boundary</span><span class="p">(</span><span class="n">mobs</span><span class="p">:</span> <span class="n">VGroup</span><span class="p">,</span> <span class="n">boundary</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Evenly distribute mobjects along a 1D line between two boundary points.</span>
 
 <span class="sd">    Parameters</span>
@@ -2387,7 +2398,9 @@
 
 <div class="viewcode-block" id="duplicate_and_rearrange">
 <a class="viewcode-back" href="../../../../reference/chemistry/future_classes/future_classes.html#manim_extensions.chemistry.future_classes.future_classes.duplicate_and_rearrange">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">duplicate_and_rearrange</span><span class="p">(</span><span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">boundary</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">duplicate_and_rearrange</span><span class="p">(</span>
+    <span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">boundary</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Duplicate each mobject and evenly space all copies along a 1D boundary.</span>
 
 <span class="sd">    Parameters</span>
@@ -2450,7 +2463,7 @@
 
 <div class="viewcode-block" id="get_element_by_data">
 <a class="viewcode-back" href="../../../../reference/chemistry/future_classes/future_classes.html#manim_extensions.chemistry.future_classes.future_classes.get_element_by_data">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">get_element_by_data</span><span class="p">(</span><span class="n">element</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Element</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_element_by_data</span><span class="p">(</span><span class="n">element</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Element</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Create an :class:`~manim_extensions.chemistry.future_classes.future_classes.Element` mobject from a dictionary of element properties.</span>
 
 <span class="sd">    Parameters</span>
@@ -2512,8 +2525,8 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">arrange_copies_in_rectangle</span><span class="p">(</span>
     <span class="n">mobs</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
     <span class="n">n_copies</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
-    <span class="n">vertical_boundary</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="n">UP</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">],</span>
-    <span class="n">horizontal_boundary</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">],</span>
+    <span class="n">vertical_boundary</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">UP</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">],</span>
+    <span class="n">horizontal_boundary</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">],</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Create n_copies of mobs and arrange them in a rectangular grid pattern.</span>
 
@@ -2569,7 +2582,7 @@
 <span class="nd">@deprecated</span><span class="p">(</span>
     <span class="s2">"``zero`` is deprecated; use :func:`manim.utils.rate_functions.zero` instead."</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">zero</span><span class="p">(</span><span class="n">function</span><span class="p">:</span> <span class="n">Callable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">zero</span><span class="p">(</span><span class="n">function</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">"""Decorator that clamps a function to return 0 outside the :math:`[0, 1]` domain.</span>
 
 <span class="sd">    Parameters</span>
@@ -2583,7 +2596,7 @@
 <span class="sd">    """</span>
 
     <span class="nd">@wraps</span><span class="p">(</span><span class="n">function</span><span class="p">)</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="n">VectorND</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="n">VectorND</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Clamp the curve parameter to the unit interval."""</span>
         <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">function</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -2594,7 +2607,7 @@
 
 
 
-<span class="n">_zero</span> <span class="o">=</span> <span class="n">zero</span><span class="o">.</span><span class="n">__wrapped__</span>
+<span class="n">_zero</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">zero</span><span class="p">)</span><span class="o">.</span><span class="n">__wrapped__</span>
 
 
 <div class="viewcode-block" id="inverse_smooth">

@@ -1476,11 +1476,14 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+
 <span class="sd">"""</span>
 <span class="sd">Transformations for manipulating a neural network object.</span>
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 
@@ -1540,7 +1543,7 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">layer</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">neural_network</span><span class="p">:</span> <span class="n">NeuralNetwork</span><span class="p">,</span> <span class="n">layer_spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">layer</span> <span class="o">=</span> <span class="n">layer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">neural_network</span> <span class="o">=</span> <span class="n">neural_network</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">layer_spacing</span> <span class="o">=</span> <span class="n">layer_spacing</span>
@@ -1640,11 +1643,15 @@
         <span class="n">fade_out_before_connective</span> <span class="o">=</span> <span class="n">AnimationGroup</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">before_connective</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">neural_network</span><span class="o">.</span><span class="n">all_layers</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">before_connective</span><span class="p">)</span>
-            <span class="n">fade_out_before_connective</span> <span class="o">=</span> <span class="n">FadeOut</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">before_connective</span><span class="p">)</span>
+            <span class="n">fade_out_before_connective</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+                <span class="s2">"AnimationGroup"</span><span class="p">,</span> <span class="n">FadeOut</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">before_connective</span><span class="p">)</span>
+            <span class="p">)</span>
         <span class="n">fade_out_after_connective</span> <span class="o">=</span> <span class="n">AnimationGroup</span><span class="p">()</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">after_connective</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">neural_network</span><span class="o">.</span><span class="n">all_layers</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">after_connective</span><span class="p">)</span>
-            <span class="n">fade_out_after_connective</span> <span class="o">=</span> <span class="n">FadeOut</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">after_connective</span><span class="p">)</span>
+            <span class="n">fade_out_after_connective</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+                <span class="s2">"AnimationGroup"</span><span class="p">,</span> <span class="n">FadeOut</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">after_connective</span><span class="p">)</span>
+            <span class="p">)</span>
         <span class="c1"># Group items</span>
         <span class="n">remove_connective_group</span> <span class="o">=</span> <span class="n">AnimationGroup</span><span class="p">(</span>
             <span class="n">fade_out_after_connective</span><span class="p">,</span> <span class="n">fade_out_before_connective</span>
@@ -1678,7 +1685,9 @@
             <span class="n">layers_before</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span>
                 <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">neural_network</span><span class="o">.</span><span class="n">all_layers</span><span class="p">[:</span> <span class="n">before_layer_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
             <span class="p">)</span>
-            <span class="n">move_before_layers</span> <span class="o">=</span> <span class="n">layers_before</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">shift_right_amount</span><span class="p">)</span>
+            <span class="n">move_before_layers</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+                <span class="s2">"AnimationGroup"</span><span class="p">,</span> <span class="n">layers_before</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">shift_right_amount</span><span class="p">)</span>
+            <span class="p">)</span>
         <span class="n">move_after_layers</span> <span class="o">=</span> <span class="n">AnimationGroup</span><span class="p">()</span>
         <span class="n">shift_left_amount</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">after_layer</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1691,7 +1700,9 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">after_layer</span>
             <span class="p">)</span>
             <span class="n">layers_after</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">neural_network</span><span class="o">.</span><span class="n">all_layers</span><span class="p">[</span><span class="n">after_layer_index</span><span class="p">:])</span>
-            <span class="n">move_after_layers</span> <span class="o">=</span> <span class="n">layers_after</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">shift_left_amount</span><span class="p">)</span>
+            <span class="n">move_after_layers</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+                <span class="s2">"AnimationGroup"</span><span class="p">,</span> <span class="n">layers_after</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">shift_left_amount</span><span class="p">)</span>
+            <span class="p">)</span>
         <span class="c1"># Group the move animations</span>
         <span class="n">move_group</span> <span class="o">=</span> <span class="n">AnimationGroup</span><span class="p">(</span><span class="n">move_before_layers</span><span class="p">,</span> <span class="n">move_after_layers</span><span class="p">)</span>
 
@@ -1709,7 +1720,7 @@
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">anim_count</span> <span class="o">=</span> <span class="mi">0</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">create_new_connective</span><span class="p">(</span><span class="n">neural_network</span><span class="p">:</span> <span class="n">NeuralNetwork</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">create_new_connective</span><span class="p">(</span><span class="n">neural_network</span><span class="p">:</span> <span class="n">NeuralNetwork</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">"""</span>
 <span class="sd">            Creates new connective layer.</span>
 
@@ -1774,7 +1785,9 @@
 <span class="sd">               self.wait()</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layer</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">neural_network</span><span class="p">:</span> <span class="n">NeuralNetwork</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">layer</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">neural_network</span><span class="p">:</span> <span class="n">NeuralNetwork</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">layer</span> <span class="o">=</span> <span class="n">layer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">index</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">neural_network</span> <span class="o">=</span> <span class="n">neural_network</span>
@@ -1827,10 +1840,10 @@
         <span class="c1"># Compute the widths</span>
         <span class="n">before_connective_width</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">before_connective</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">before_connective_width</span> <span class="o">=</span> <span class="n">before_connective</span><span class="o">.</span><span class="n">width</span>
+            <span class="n">before_connective_width</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"int"</span><span class="p">,</span> <span class="n">before_connective</span><span class="o">.</span><span class="n">width</span><span class="p">)</span>
         <span class="n">after_connective_width</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">after_connective</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">after_connective_width</span> <span class="o">=</span> <span class="n">after_connective</span><span class="o">.</span><span class="n">width</span>
+            <span class="n">after_connective_width</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"int"</span><span class="p">,</span> <span class="n">after_connective</span><span class="o">.</span><span class="n">width</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">before_connective_width</span><span class="p">,</span> <span class="n">after_connective_width</span></div>
 
 
@@ -1883,8 +1896,8 @@
                 <span class="p">]</span>
             <span class="p">)</span>
             <span class="c1"># Shift layers before</span>
-            <span class="n">before_shift_animation</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">layers_before</span><span class="p">)</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span>
-                <span class="n">before_shift</span>
+            <span class="n">before_shift_animation</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+                <span class="s2">"AnimationGroup"</span><span class="p">,</span> <span class="n">Group</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">layers_before</span><span class="p">)</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">before_shift</span><span class="p">)</span>
             <span class="p">)</span>
         <span class="c1"># After layer shift</span>
         <span class="n">after_shift_animation</span> <span class="o">=</span> <span class="n">AnimationGroup</span><span class="p">()</span>
@@ -1893,7 +1906,9 @@
                 <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">after_connective_width</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
             <span class="p">)</span>
             <span class="c1"># Shift layers after</span>
-            <span class="n">after_shift_animation</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">layers_after</span><span class="p">)</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">after_shift</span><span class="p">)</span>
+            <span class="n">after_shift_animation</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+                <span class="s2">"AnimationGroup"</span><span class="p">,</span> <span class="n">Group</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">layers_after</span><span class="p">)</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">after_shift</span><span class="p">)</span>
+            <span class="p">)</span>
         <span class="c1"># Make animation group</span>
         <span class="n">shift_animations</span> <span class="o">=</span> <span class="n">AnimationGroup</span><span class="p">(</span><span class="n">before_shift_animation</span><span class="p">,</span> <span class="n">after_shift_animation</span><span class="p">)</span>
 

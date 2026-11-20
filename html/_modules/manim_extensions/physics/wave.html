@@ -1476,11 +1476,13 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+
 <span class="sd">"""3D and 2D Waves module."""</span>
 
 <span class="c1"># unlinked-class-ok: Source</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">ORIGIN</span><span class="p">,</span> <span class="n">PI</span><span class="p">,</span> <span class="n">ParametricFunction</span><span class="p">,</span> <span class="n">Surface</span>
@@ -1552,8 +1554,8 @@
         <span class="n">amplitude</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
         <span class="n">x_range</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
         <span class="n">y_range</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wavelength</span> <span class="o">=</span> <span class="n">wavelength</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">period</span> <span class="o">=</span> <span class="n">period</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">amplitude</span> <span class="o">=</span> <span class="n">amplitude</span>
@@ -1598,7 +1600,7 @@
 
 <div class="viewcode-block" id="RadialWave._update_wave">
 <a class="viewcode-back" href="../../../reference/physics/wave.RadialWave.html#manim_extensions.physics.wave.RadialWave._update_wave">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_update_wave</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_wave</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Advance the wave simulation by ``dt`` seconds and refresh the surface.</span>
 
 <span class="sd">        Parameters</span>
@@ -1621,14 +1623,14 @@
 
 <div class="viewcode-block" id="RadialWave.start_wave">
 <a class="viewcode-back" href="../../../reference/physics/wave.RadialWave.html#manim_extensions.physics.wave.RadialWave.start_wave">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">start_wave</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start_wave</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Animate the wave propagation."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_updater</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_update_wave</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="RadialWave.stop_wave">
 <a class="viewcode-back" href="../../../reference/physics/wave.RadialWave.html#manim_extensions.physics.wave.RadialWave.stop_wave">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">stop_wave</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stop_wave</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Stop animating the wave propagation."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remove_updater</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_update_wave</span><span class="p">)</span></div>
 </div>
@@ -1679,8 +1681,8 @@
         <span class="n">amplitude</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
         <span class="n">x_range</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
         <span class="n">y_range</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">ORIGIN</span><span class="p">,</span>
             <span class="n">wavelength</span><span class="o">=</span><span class="n">wavelength</span><span class="p">,</span>
@@ -1762,8 +1764,8 @@
         <span class="n">length</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
         <span class="n">period</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">amplitude</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">n</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="n">length</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">period</span> <span class="o">=</span> <span class="n">period</span>
@@ -1780,7 +1782,7 @@
 
 <div class="viewcode-block" id="StandingWave._update_wave">
 <a class="viewcode-back" href="../../../reference/physics/wave.StandingWave.html#manim_extensions.physics.wave.StandingWave._update_wave">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_update_wave</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_wave</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Advance the standing-wave simulation and refresh the curve.</span>
 
 <span class="sd">        Parameters</span>
@@ -1810,7 +1812,7 @@
 
 <div class="viewcode-block" id="StandingWave.start_wave">
 <a class="viewcode-back" href="../../../reference/physics/wave.StandingWave.html#manim_extensions.physics.wave.StandingWave.start_wave">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">start_wave</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start_wave</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Begin the standing-wave animation and store its current center."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wave_center</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_updater</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_update_wave</span><span class="p">)</span></div>
@@ -1818,7 +1820,7 @@
 
 <div class="viewcode-block" id="StandingWave.stop_wave">
 <a class="viewcode-back" href="../../../reference/physics/wave.StandingWave.html#manim_extensions.physics.wave.StandingWave.stop_wave">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">stop_wave</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">stop_wave</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Stop the standing-wave animation."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remove_updater</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_update_wave</span><span class="p">)</span></div>
 </div>

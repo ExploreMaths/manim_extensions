@@ -1476,6 +1476,7 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+
 <span class="sd">"""</span>
 <span class="sd">Catalog / organisation-chart layout algorithm - Python implementation.</span>
 
@@ -1488,6 +1489,8 @@
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"CatalogLayout"</span><span class="p">]</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
@@ -1581,7 +1584,7 @@
 <span class="sd">            The root of the created catalog node tree.</span>
 <span class="sd">        """</span>
         <span class="n">org_node</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">()</span>
-        <span class="n">org_node</span><span class="o">.</span><span class="n">node</span> <span class="o">=</span> <span class="n">node</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">org_node</span><span class="p">)</span><span class="o">.</span><span class="n">node</span> <span class="o">=</span> <span class="n">node</span>
         <span class="n">org_node</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">"width"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
         <span class="n">org_node</span><span class="o">.</span><span class="n">height</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">"height"</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
@@ -1645,7 +1648,7 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">node_spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">level_spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">CatalogNode</span><span class="o">.</span><span class="n">from_data</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">margin_root_child</span> <span class="o">=</span> <span class="n">node_spacing</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">margin_vertical</span> <span class="o">=</span> <span class="n">level_spacing</span>
@@ -1686,7 +1689,9 @@
 
 <div class="viewcode-block" id="CatalogLayout._update_children">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_catalog.CatalogLayout.html#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._update_children">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_update_children</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">CatalogNode</span><span class="p">],</span> <span class="n">prop</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_children</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">nodes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">CatalogNode</span><span class="p">],</span> <span class="n">prop</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Recursively update a child-node attribute such as left or top.</span>
 
 <span class="sd">        Parameters</span>
@@ -1706,7 +1711,9 @@
 
 <div class="viewcode-block" id="CatalogLayout._update_children_pro">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_catalog.CatalogLayout.html#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._update_children_pro">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_update_children_pro</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">CatalogNode</span><span class="p">],</span> <span class="n">props</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_children_pro</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">nodes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">CatalogNode</span><span class="p">],</span> <span class="n">props</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Recursively update multiple child-node attributes in one pass.</span>
 
 <span class="sd">        Parameters</span>
@@ -1728,11 +1735,11 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">_walk</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">node</span><span class="p">:</span> <span class="n">CatalogNode</span><span class="p">,</span>
-        <span class="n">pre_cb</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">post_cb</span><span class="p">:</span> <span class="n">Callable</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">pre_cb</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">post_cb</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">layer</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Traverse the tree while running pre-order and post-order callbacks.</span>
 
 <span class="sd">        Parameters</span>
@@ -1824,7 +1831,7 @@
 
 <div class="viewcode-block" id="CatalogLayout._update_brothers_left">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_catalog.CatalogLayout.html#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._update_brothers_left">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_update_brothers_left</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">CatalogNode</span><span class="p">,</span> <span class="n">add_width</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_brothers_left</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">CatalogNode</span><span class="p">,</span> <span class="n">add_width</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Shift elder sibling nodes to the right by ``add_width``.</span>
 
 <span class="sd">        Also propagates the adjustment upward to the parent's siblings.</span>
@@ -1851,7 +1858,7 @@
 
 <div class="viewcode-block" id="CatalogLayout._update_brothers_top">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_catalog.CatalogLayout.html#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._update_brothers_top">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_update_brothers_top</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">CatalogNode</span><span class="p">,</span> <span class="n">add_height</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_update_brothers_top</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">CatalogNode</span><span class="p">,</span> <span class="n">add_height</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Shift elder sibling nodes downward by ``add_height``.</span>
 
 <span class="sd">        Parameters</span>
@@ -1877,12 +1884,12 @@
     <span class="c1"># ------------------------------------------------------------------</span>
 <div class="viewcode-block" id="CatalogLayout._compute_base_value">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_catalog.CatalogLayout.html#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._compute_base_value">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_compute_base_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compute_base_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Step 1: create nodes, set the root position, and set the initial top of second-level nodes.</span>
 <span class="sd">        """</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">pre_cb</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">CatalogNode</span><span class="p">,</span> <span class="n">layer</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">pre_cb</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">CatalogNode</span><span class="p">,</span> <span class="n">layer</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">"""Pre-order callback: set initial top position for second-level nodes.</span>
 
 <span class="sd">            Parameters</span>
@@ -1901,7 +1908,7 @@
                     <span class="n">node</span><span class="o">.</span><span class="n">top</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">top</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="n">margin_y</span>
 
         <span class="c1"># Post-order traversal: compute children_area_width (total width of children) for the root</span>
-        <span class="k">def</span><span class="w"> </span><span class="nf">post_cb</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">CatalogNode</span><span class="p">,</span> <span class="n">layer</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">post_cb</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">CatalogNode</span><span class="p">,</span> <span class="n">layer</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">"""Post-order callback: compute children area width for the root.</span>
 
 <span class="sd">            Parameters</span>
@@ -1929,7 +1936,7 @@
 
 <div class="viewcode-block" id="CatalogLayout._compute_left_top_value">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_catalog.CatalogLayout.html#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._compute_left_top_value">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_compute_left_top_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_compute_left_top_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Step 2: compute left and top of child nodes.</span>
 
@@ -1937,7 +1944,7 @@
 <span class="sd">        - Children of non-root nodes are arranged vertically.</span>
 <span class="sd">        """</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">pre_cb</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">CatalogNode</span><span class="p">,</span> <span class="n">layer</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">pre_cb</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">CatalogNode</span><span class="p">,</span> <span class="n">layer</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">"""Pre-order callback: compute left and top positions for child nodes.</span>
 
 <span class="sd">            Parameters</span>
@@ -1975,7 +1982,7 @@
 
 <div class="viewcode-block" id="CatalogLayout._adjust_left_top_value">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_catalog.CatalogLayout.html#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._adjust_left_top_value">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_adjust_left_top_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_adjust_left_top_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Step 3: adjust positions (handle subtree width/height offsets).</span>
 
@@ -1985,7 +1992,7 @@
 <span class="sd">        """</span>
 
         <span class="c1"># Pre-order callback</span>
-        <span class="k">def</span><span class="w"> </span><span class="nf">pre_cb</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">CatalogNode</span><span class="p">,</span> <span class="n">layer</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">pre_cb</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">CatalogNode</span><span class="p">,</span> <span class="n">layer</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
             <span class="c1"># Horizontal adjustment (second-level nodes and their descendants)</span>
 <span class="w">            </span><span class="sd">"""Pre-order callback: adjust left/top values to avoid overlapping.</span>
 
@@ -2010,7 +2017,7 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">_update_brothers_top</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">total_height</span><span class="p">)</span>
 
         <span class="c1"># Post-order callback: centre the whole subtree under the root</span>
-        <span class="k">def</span><span class="w"> </span><span class="nf">post_cb</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">CatalogNode</span><span class="p">,</span> <span class="n">layer</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">post_cb</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">CatalogNode</span><span class="p">,</span> <span class="n">layer</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">"""Post-order callback: centre the root's children horizontally.</span>
 
 <span class="sd">            Parameters</span>
@@ -2037,10 +2044,10 @@
 
 <div class="viewcode-block" id="CatalogLayout._applay_coords">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_catalog.CatalogLayout.html#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._applay_coords">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_applay_coords</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_applay_coords</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Apply the computed results to the original nodes."""</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">_applay_coords_for_node</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">CatalogNode</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">_applay_coords_for_node</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">CatalogNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">"""Apply computed ``left``/``top`` coordinates to a node and its descendants.</span>
 
 <span class="sd">            Parameters</span>
@@ -2048,9 +2055,9 @@
 <span class="sd">            node</span>
 <span class="sd">                The root of the subtree to update.</span>
 <span class="sd">            """</span>
-            <span class="n">node</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span>
-            <span class="n">node</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="n">node</span><span class="o">.</span><span class="n">top</span> <span class="o">-</span> <span class="n">node</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span>
-            <span class="n">node</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">layer_index</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="n">node</span><span class="o">.</span><span class="n">top</span> <span class="o">-</span> <span class="n">node</span><span class="o">.</span><span class="n">height</span> <span class="o">/</span> <span class="mi">2</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">node</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">layer_index</span>
             <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
                 <span class="n">_applay_coords_for_node</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
 
@@ -2071,7 +2078,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_compute_left_top_value</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_adjust_left_top_value</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_applay_coords</span><span class="p">()</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">node</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span><span class="o">.</span><span class="n">node</span></div>
 </div>
 
 </pre></div>

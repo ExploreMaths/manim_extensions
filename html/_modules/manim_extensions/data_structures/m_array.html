@@ -1516,17 +1516,20 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.mobject.mobject</span><span class="w"> </span><span class="kn">import</span> <span class="n">_AnimationBuilder</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">types</span><span class="w"> </span><span class="kn">import</span> <span class="n">MethodType</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Any</span><span class="p">,</span>
     <span class="n">Callable</span><span class="p">,</span>
     <span class="n">ClassVar</span><span class="p">,</span>
     <span class="n">List</span><span class="p">,</span>
     <span class="n">Protocol</span><span class="p">,</span>
+    <span class="n">TypedDict</span><span class="p">,</span>
     <span class="n">cast</span><span class="p">,</span>
+    <span class="n">Any</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.m_enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">MArrayDirection</span><span class="p">,</span> <span class="n">MArrayElementComp</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">Vector3D</span>
 
-<span class="n">MobProps</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span>
+<span class="n">MobProps</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
 <span class="sd">"""Type alias for a ``dict`` of keyword arguments forwarded to manim mobject constructors."""</span>
 
 
@@ -1655,7 +1658,7 @@
         <span class="n">index_gap</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">label_pos</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span>
         <span class="n">label_gap</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Initializes the attributes for the class.</span>
 
 <span class="sd">        Parameters</span>
@@ -1701,7 +1704,7 @@
         <span class="n">mob_value_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{},</span>
         <span class="n">mob_index_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{},</span>
         <span class="n">mob_label_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{},</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Updates the attributes of the class.</span>
 
 <span class="sd">        Parameters</span>
@@ -1738,7 +1741,7 @@
         <span class="n">init_label</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">next_to_mob</span><span class="p">:</span> <span class="s2">"MArrayElement | None"</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">next_to_dir</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">RIGHT</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Initializes the mobjects for the class.</span>
 
 <span class="sd">        Parameters</span>
@@ -1786,7 +1789,7 @@
 
 <div class="viewcode-block" id="MArrayElement.__deepcopy__">
 <a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.m_array.MArrayElement.__deepcopy__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">"MArrayElement"</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">"MArrayElement"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Deep-copy the object while excluding scene references.</span>
 
 <span class="sd">        Parameters</span>
@@ -1823,7 +1826,7 @@
         <span class="n">label_gap</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
         <span class="n">next_to_mob</span><span class="p">:</span> <span class="s2">"MArrayElement | None"</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">next_to_dir</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">RIGHT</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">):</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -2234,6 +2237,9 @@
 
 <span class="sd">    """</span>
 
+    <span class="n">__mob_arr</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">MArrayElement</span><span class="p">]</span>
+    <span class="n">__mob_arr_label</span><span class="p">:</span> <span class="n">Text</span>
+
     <span class="n">__dir_map</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Vector3D</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">{</span><span class="s2">"arr"</span><span class="p">:</span> <span class="n">UP</span><span class="p">,</span> <span class="s2">"index"</span><span class="p">:</span> <span class="n">RIGHT</span><span class="p">},</span>
         <span class="p">{</span><span class="s2">"arr"</span><span class="p">:</span> <span class="n">DOWN</span><span class="p">,</span> <span class="s2">"index"</span><span class="p">:</span> <span class="n">RIGHT</span><span class="p">},</span>
@@ -2242,7 +2248,7 @@
     <span class="p">]</span>
 <span class="w">    </span><span class="sd">"""Maps :class:`~manim_extensions.data_structures.m_enum.MArrayDirection` to :class:`~numpy.ndarray`."""</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">__sum_elem_len</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">index_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__sum_elem_len</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index_start</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">index_end</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Sums the side_length of all elements' square mobject present in the array between the specified range.</span>
 
 <span class="sd">        Parameters</span>
@@ -2270,7 +2276,7 @@
         <span class="p">):</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">"Index out of bounds!"</span><span class="p">)</span>
 
-        <span class="n">total_len</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">total_len</span> <span class="o">=</span> <span class="mf">0.0</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">index_start</span><span class="p">,</span> <span class="n">index_end</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
             <span class="n">total_len</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mob_arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">fetch_mob_square</span><span class="p">()</span><span class="o">.</span><span class="n">side_length</span>
         <span class="k">return</span> <span class="n">total_len</span>
@@ -2302,7 +2308,9 @@
             <span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">middle_index</span> <span class="o">=</span> <span class="n">len_before</span> <span class="o">=</span> <span class="n">len_after</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">middle_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">len_before</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+            <span class="n">len_after</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__mob_arr</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="n">odd_indices</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__mob_arr</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span>
                 <span class="n">middle_index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__mob_arr</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
@@ -2495,9 +2503,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__mob_arr</span><span class="p">[</span><span class="n">index</span><span class="p">])</span>
         <span class="n">removed_mob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mob_arr</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__mob_arr</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">MArrayElement</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">__mob_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">index</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mob_arr</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:]</span>
-        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__mob_arr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mob_arr</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">index</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">__mob_arr</span><span class="p">[</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span> <span class="p">:]</span>
 
         <span class="n">anims_shift</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__mob_arr</span><span class="p">)):</span>
@@ -2578,7 +2584,7 @@
         <span class="n">switch_index_pos</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
         <span class="n">arr_label_pos</span><span class="p">:</span> <span class="n">MArrayDirection</span><span class="p">,</span>
         <span class="n">arr_label_gap</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Initializes the attributes for the class.</span>
 
 <span class="sd">        Parameters</span>
@@ -2615,7 +2621,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__scene</span><span class="p">:</span> <span class="n">Scene</span> <span class="o">=</span> <span class="n">scene</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__arr</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__label</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">label</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__mob_arr</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">MArrayElement</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__mob_arr</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__index_offset</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">index_offset</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__index_start</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="n">index_start</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__index_hex_display</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">index_hex_display</span>
@@ -2628,7 +2634,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">__update_props</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">mob_arr_label_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{},</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Updates the attributes of the class.</span>
 
 <span class="sd">        Parameters</span>
@@ -2646,7 +2652,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">__init_mobs</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">init_arr_label</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Initializes the mobjects for the class.</span>
 
 <span class="sd">        Parameters</span>
@@ -2671,7 +2677,7 @@
 
 <div class="viewcode-block" id="MArray.__deepcopy__">
 <a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.m_array.MArray.__deepcopy__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">"MArray"</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">"MArray"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Deep-copy the object while excluding scene references.</span>
 
 <span class="sd">        Parameters</span>
@@ -2712,7 +2718,7 @@
         <span class="n">mob_square_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{},</span>
         <span class="n">mob_value_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{},</span>
         <span class="n">mob_index_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{},</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">):</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -3274,7 +3280,14 @@
 
 <span class="sd">    """</span>
 
-    <span class="n">__dir_map</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Vector3D</span> <span class="o">|</span> <span class="n">MArrayDirection</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">__pointer_pos</span><span class="p">:</span> <span class="n">MArrayDirection</span>
+    <span class="n">__updater_pos</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Mobject</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">__DirEntry</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+        <span class="n">np</span><span class="p">:</span> <span class="n">Vector3D</span>
+        <span class="nb">dir</span><span class="p">:</span> <span class="n">MArrayDirection</span>
+
+    <span class="n">__dir_map</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">__DirEntry</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">{</span><span class="s2">"np"</span><span class="p">:</span> <span class="n">UP</span><span class="p">,</span> <span class="s2">"dir"</span><span class="p">:</span> <span class="n">MArrayDirection</span><span class="o">.</span><span class="n">UP</span><span class="p">},</span>
         <span class="p">{</span><span class="s2">"np"</span><span class="p">:</span> <span class="n">DOWN</span><span class="p">,</span> <span class="s2">"dir"</span><span class="p">:</span> <span class="n">MArrayDirection</span><span class="o">.</span><span class="n">DOWN</span><span class="p">},</span>
         <span class="p">{</span><span class="s2">"np"</span><span class="p">:</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="s2">"dir"</span><span class="p">:</span> <span class="n">MArrayDirection</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">},</span>
@@ -3301,10 +3314,10 @@
 
         <span class="k">return</span> <span class="n">arrow_pos_np</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">__add_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__add_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Attaches the position updater function with the pointer."""</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">updater_pos</span><span class="p">(</span><span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">updater_pos</span><span class="p">(</span><span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">"""Reposition the pointer to its element on every frame.</span>
 
 <span class="sd">            Parameters</span>
@@ -3317,7 +3330,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_updater</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__updater_pos</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">__remove_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__remove_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Removes the attached position updater function from the pointer."""</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">remove_updater</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__updater_pos</span><span class="p">)</span>
@@ -3366,7 +3379,7 @@
         <span class="n">arrow_gap</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">label_gap</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">pointer_pos</span><span class="p">:</span> <span class="n">MArrayDirection</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Initializes the attributes for the class.</span>
 
 <span class="sd">        Parameters</span>
@@ -3409,11 +3422,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__arrow_len</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">arrow_len</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__arrow_gap</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">arrow_gap</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">__label_gap</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">label_gap</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__pointer_pos</span><span class="p">:</span> <span class="n">MArrayDirection</span> <span class="o">=</span> <span class="n">pointer_pos</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__pointer_pos</span> <span class="o">=</span> <span class="n">pointer_pos</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">__update_props</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">mob_arrow_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{},</span> <span class="n">mob_label_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Updates the attributes of the class.</span>
 
 <span class="sd">        Parameters</span>
@@ -3431,7 +3444,7 @@
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__mob_label_props</span><span class="p">[</span><span class="s2">"text"</span><span class="p">])</span> <span class="o">!=</span> <span class="nb">str</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__mob_label_props</span><span class="p">[</span><span class="s2">"text"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__mob_label_props</span><span class="p">[</span><span class="s2">"text"</span><span class="p">])</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">__init_mobs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">init_arrow</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">init_label</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__init_mobs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">init_arrow</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">init_label</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Initializes the mobjects for the class.</span>
 
 <span class="sd">        Parameters</span>
@@ -3465,7 +3478,7 @@
             <span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__mob_label</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">__init_pos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__init_pos</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Initializes the position of the object."""</span>
 
         <span class="n">arrow_pos_np</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__calc_arrow_pos</span><span class="p">()</span>
@@ -3477,7 +3490,7 @@
 
 <div class="viewcode-block" id="MArrayPointer.__deepcopy__">
 <a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.m_array.MArrayPointer.__deepcopy__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">"MArrayPointer"</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">"MArrayPointer"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Deep-copy the object while excluding scene references.</span>
 
 <span class="sd">        Parameters</span>
@@ -3513,7 +3526,7 @@
         <span class="n">pointer_pos</span><span class="p">:</span> <span class="n">MArrayDirection</span> <span class="o">=</span> <span class="n">MArrayDirection</span><span class="o">.</span><span class="n">DOWN</span><span class="p">,</span>
         <span class="n">mob_arrow_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{},</span>
         <span class="n">mob_label_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{},</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">):</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -3686,7 +3699,7 @@
 
 <div class="viewcode-block" id="MArrayPointer.attach_to_elem">
 <a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.m_array.MArrayPointer.attach_to_elem">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">attach_to_elem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">attach_to_elem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Attaches pointer to the specified element.</span>
 
 <span class="sd">        Parameters</span>
@@ -3794,7 +3807,11 @@
 
 <span class="sd">    """</span>
 
-    <span class="n">__dir_map</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Vector3D</span> <span class="o">|</span> <span class="n">MArrayDirection</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="k">class</span><span class="w"> </span><span class="nc">__DirEntry</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+        <span class="n">np</span><span class="p">:</span> <span class="n">Vector3D</span>
+        <span class="nb">dir</span><span class="p">:</span> <span class="n">MArrayDirection</span>
+
+    <span class="n">__dir_map</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">__DirEntry</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">{</span><span class="s2">"np"</span><span class="p">:</span> <span class="n">UP</span><span class="p">,</span> <span class="s2">"dir"</span><span class="p">:</span> <span class="n">MArrayDirection</span><span class="o">.</span><span class="n">UP</span><span class="p">},</span>
         <span class="p">{</span><span class="s2">"np"</span><span class="p">:</span> <span class="n">DOWN</span><span class="p">,</span> <span class="s2">"dir"</span><span class="p">:</span> <span class="n">MArrayDirection</span><span class="o">.</span><span class="n">DOWN</span><span class="p">},</span>
         <span class="p">{</span><span class="s2">"np"</span><span class="p">:</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="s2">"dir"</span><span class="p">:</span> <span class="n">MArrayDirection</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">},</span>
@@ -3877,7 +3894,7 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__dir_map</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">__label_pos</span><span class="o">.</span><span class="n">value</span><span class="p">][</span><span class="s2">"np"</span><span class="p">]</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">__pos_mobs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos_window</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">pos_label</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__pos_mobs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos_window</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">pos_label</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Positions mobjects of the class.</span>
 
 <span class="sd">        Parameters</span>
@@ -3899,10 +3916,10 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">__label_gap</span><span class="p">,</span>
             <span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">__add_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__add_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Attaches the position updater function with the pointer."""</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">updater_pos</span><span class="p">(</span><span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">):</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">updater_pos</span><span class="p">(</span><span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">"""Reposition the pointer to its element on every frame.</span>
 
 <span class="sd">            Parameters</span>
@@ -3915,7 +3932,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">add_updater</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__updater_pos</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">__remove_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__remove_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Removes the attached position updater function from the pointer."""</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">remove_updater</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__updater_pos</span><span class="p">)</span>
@@ -3929,7 +3946,7 @@
         <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
         <span class="n">label_gap</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
         <span class="n">label_pos</span><span class="p">:</span> <span class="n">MArrayDirection</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Initializes the attributes for the class.</span>
 
 <span class="sd">        Parameters</span>
@@ -3975,7 +3992,7 @@
 
     <span class="k">def</span><span class="w"> </span><span class="nf">__update_props</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">mob_window_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{},</span> <span class="n">mob_label_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Updates the attributes of the class.</span>
 
 <span class="sd">        Parameters</span>
@@ -3993,7 +4010,7 @@
         <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__mob_label_props</span><span class="p">[</span><span class="s2">"text"</span><span class="p">])</span> <span class="o">!=</span> <span class="nb">str</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">__mob_label_props</span><span class="p">[</span><span class="s2">"text"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__mob_label_props</span><span class="p">[</span><span class="s2">"text"</span><span class="p">])</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">__init_mobs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">init_window</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">init_label</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__init_mobs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">init_window</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">init_label</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Initializes the mobjects for the class.</span>
 
 <span class="sd">        Parameters</span>
@@ -4017,14 +4034,14 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">__pos_mobs</span><span class="p">(</span><span class="n">pos_label</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__mob_label</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">__init_pos</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__init_pos</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Initializes the position of the object."""</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">__pos_mobs</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
 
 <div class="viewcode-block" id="MArraySlidingWindow.__deepcopy__">
 <a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.m_array.MArraySlidingWindow.__deepcopy__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">"MArraySlidingWindow"</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">"MArraySlidingWindow"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Deep-copy the object while excluding scene references.</span>
 
 <span class="sd">        Parameters</span>
@@ -4059,7 +4076,7 @@
         <span class="n">label_pos</span><span class="p">:</span> <span class="n">MArrayDirection</span> <span class="o">=</span> <span class="n">MArrayDirection</span><span class="o">.</span><span class="n">DOWN</span><span class="p">,</span>
         <span class="n">mob_window_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{},</span>
         <span class="n">mob_label_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{},</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">):</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -4213,7 +4230,7 @@
 
 <div class="viewcode-block" id="MArraySlidingWindow.attach_to_elem">
 <a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.m_array.MArraySlidingWindow.attach_to_elem">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">attach_to_elem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">attach_to_elem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Attaches pointer to the specified element.</span>
 
 <span class="sd">        Parameters</span>

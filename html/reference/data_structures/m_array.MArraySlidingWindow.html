@@ -1501,7 +1501,7 @@
 <li><p><strong>label_pos</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="m_enum.MArrayDirection.html#manim_extensions.data_structures.m_enum.MArrayDirection" title="manim_extensions.data_structures.m_enum.MArrayDirection"><code class="xref py py-class docutils literal notranslate"><span class="pre">MArrayDirection</span></code></a></span>) – Specifies the position of the pointer w.r.t to <a class="reference internal" href="#manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window" title="manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_window"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__mob_window</span></code></a>.</p></li>
 <li><p><strong>mob_window_args</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.data_structures.m_array.MobProps" title="manim_extensions.data_structures.m_array.MobProps"><code class="xref py py-type docutils literal notranslate"><span class="pre">MobProps</span></code></a></span>) – Arguments for <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.polygram.Rectangle.html#manim.mobject.geometry.polygram.Rectangle" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rectangle</span></code></a> that represents the window.</p></li>
 <li><p><strong>mob_label_args</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.data_structures.m_array.MobProps" title="manim_extensions.data_structures.m_array.MobProps"><code class="xref py py-type docutils literal notranslate"><span class="pre">MobProps</span></code></a></span>) – Arguments for <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.text.text_mobject.Text.html#manim.mobject.text.text_mobject.Text" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Text</span></code></a> that represents the window label.</p></li>
-<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></span>) – Forwarded to constructor of the parent.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to constructor of the parent.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1539,7 +1539,24 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Uncreate</span><span class="p">(</span><span class="n">window</span><span class="p">))</span>
 </pre></div>
 </div>
-</div><dl class="py method">
+</div><dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.data_structures.m_array.MArraySlidingWindow.__DirEntry">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">__DirEntry</span></span><a class="headerlink" href="#manim_extensions.data_structures.m_array.MArraySlidingWindow.__DirEntry" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.TypedDict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypedDict</span></code></a></p>
+<p class="rubric">Attributes</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.data_structures.m_array.MArraySlidingWindow.__DirEntry.np">
+<span class="sig-name descname"><span class="pre">np</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">float64</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#manim_extensions.data_structures.m_array.MArraySlidingWindow.__DirEntry.np" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.data_structures.m_array.MArraySlidingWindow.__DirEntry.dir">
+<span class="sig-name descname"><span class="pre">dir</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="m_enum.MArrayDirection.html#manim_extensions.data_structures.m_enum.MArrayDirection" title="manim_extensions.data_structures.m_enum.MArrayDirection"><span class="pre">MArrayDirection</span></a></span><a class="headerlink" href="#manim_extensions.data_structures.m_array.MArraySlidingWindow.__DirEntry.dir" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.data_structures.m_array.MArraySlidingWindow.__calc_window_dim">
 <span class="sig-name descname"><span class="pre">__calc_window_dim</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#manim_extensions.data_structures.m_array.MArraySlidingWindow.__calc_window_dim" title="Link to this definition">¶</a></dt>
 <dd><p>Calculates dimensions of window mobject.</p>
@@ -1594,6 +1611,9 @@ Align vector for <a class="reference internal" href="#manim_extensions.data_stru
 <li><p><strong>pos_label</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, correctly positions <a class="reference internal" href="#manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label" title="manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__mob_label</span></code></a>.</p></li>
 </ul>
 </dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -1601,12 +1621,22 @@ Align vector for <a class="reference internal" href="#manim_extensions.data_stru
 <dt class="sig sig-object py" id="manim_extensions.data_structures.m_array.MArraySlidingWindow.__add_updater">
 <span class="sig-name descname"><span class="pre">__add_updater</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#manim_extensions.data_structures.m_array.MArraySlidingWindow.__add_updater" title="Link to this definition">¶</a></dt>
 <dd><p>Attaches the position updater function with the pointer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.data_structures.m_array.MArraySlidingWindow.__remove_updater">
 <span class="sig-name descname"><span class="pre">__remove_updater</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#manim_extensions.data_structures.m_array.MArraySlidingWindow.__remove_updater" title="Link to this definition">¶</a></dt>
 <dd><p>Removes the attached position updater function from the pointer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -1628,6 +1658,9 @@ Align vector for <a class="reference internal" href="#manim_extensions.data_stru
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#Exception" title="(in Python v3.15)"><strong>Exception</strong></a> – If the index is outside the array or the window exceeds its bounds.</p>
 </dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -1641,6 +1674,9 @@ Align vector for <a class="reference internal" href="#manim_extensions.data_stru
 <li><p><strong>mob_window_args</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.data_structures.m_array.MobProps" title="manim_extensions.data_structures.m_array.MobProps"><code class="xref py py-type docutils literal notranslate"><span class="pre">MobProps</span></code></a></span>) – Arguments for <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.polygram.Rectangle.html#manim.mobject.geometry.polygram.Rectangle" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rectangle</span></code></a> that represents the window.</p></li>
 <li><p><strong>mob_label_args</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.data_structures.m_array.MobProps" title="manim_extensions.data_structures.m_array.MobProps"><code class="xref py py-type docutils literal notranslate"><span class="pre">MobProps</span></code></a></span>) – Arguments for <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.text.text_mobject.Text.html#manim.mobject.text.text_mobject.Text" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Text</span></code></a> that represents the window label.</p></li>
 </ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1656,6 +1692,9 @@ Align vector for <a class="reference internal" href="#manim_extensions.data_stru
 <li><p><strong>init_label</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, instantiates a <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.text.text_mobject.Text.html#manim.mobject.text.text_mobject.Text" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Text</span></code></a> and assigns it to <a class="reference internal" href="#manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label" title="manim_extensions.data_structures.m_array.MArraySlidingWindow.__mob_label"><code class="xref py py-attr docutils literal notranslate"><span class="pre">__mob_label</span></code></a>.</p></li>
 </ul>
 </dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -1663,6 +1702,11 @@ Align vector for <a class="reference internal" href="#manim_extensions.data_stru
 <dt class="sig sig-object py" id="manim_extensions.data_structures.m_array.MArraySlidingWindow.__init_pos">
 <span class="sig-name descname"><span class="pre">__init_pos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#manim_extensions.data_structures.m_array.MArraySlidingWindow.__init_pos" title="Link to this definition">¶</a></dt>
 <dd><p>Initializes the position of the object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
@@ -1671,7 +1715,7 @@ Align vector for <a class="reference internal" href="#manim_extensions.data_stru
 <dd><p>Deep-copy the object while excluding scene references.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>memo</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>]</span>) – Identity map used by the copy machinery.</p>
+<dd class="field-odd"><p><strong>memo</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a>]</span>) – Identity map used by the copy machinery.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#manim_extensions.data_structures.m_array.MArraySlidingWindow" title="manim_extensions.data_structures.m_array.MArraySlidingWindow"><code class="xref py py-class docutils literal notranslate"><span class="pre">MArraySlidingWindow</span></code></a></span></p>
@@ -1797,6 +1841,9 @@ Align vector for <a class="reference internal" href="#manim_extensions.data_stru
 <dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#Exception" title="(in Python v3.15)"><strong>Exception</strong></a> – Raised when the element index is out of bounds.</p>
 </dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
 </dl>
 </dd></dl>
 
@@ -1897,6 +1944,11 @@ Align vector for <a class="reference internal" href="#manim_extensions.data_stru
 
 
 
+<li><a class="reference internal" href="#manim_extensions.data_structures.m_array.MArraySlidingWindow.__DirEntry"><code class="docutils literal notranslate"><span class="pre">MArraySlidingWindow.__DirEntry</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.data_structures.m_array.MArraySlidingWindow.__DirEntry.np"><code class="docutils literal notranslate"><span class="pre">MArraySlidingWindow.__DirEntry.np</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.data_structures.m_array.MArraySlidingWindow.__DirEntry.dir"><code class="docutils literal notranslate"><span class="pre">MArraySlidingWindow.__DirEntry.dir</span></code></a></li>
+</ul>
+</li>
 
 <li><a class="reference internal" href="#manim_extensions.data_structures.m_array.MArraySlidingWindow.__calc_window_dim"><code class="docutils literal notranslate"><span class="pre">MArraySlidingWindow.__calc_window_dim()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.data_structures.m_array.MArraySlidingWindow.__calc_window_pos_np"><code class="docutils literal notranslate"><span class="pre">MArraySlidingWindow.__calc_window_pos_np()</span></code></a></li>

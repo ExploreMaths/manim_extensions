@@ -1477,6 +1477,8 @@
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="c1"># patched: lazy-import moderngl (meshes extra)</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
+
 <span class="sd">"""</span>
 <span class="sd">Parameters can get out of hand for the meshes, store defaults and casting in separate functions.</span>
 <span class="sd">"""</span>
@@ -1616,7 +1618,7 @@
             <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="n">value</span><span class="p">]),</span> <span class="n">default</span><span class="p">[</span><span class="n">value</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span>
                 <span class="nb">type</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="n">value</span><span class="p">]),</span> <span class="n">default</span><span class="p">[</span><span class="n">value</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
             <span class="p">):</span>
-                <span class="k">return</span> <span class="n">params</span><span class="p">[</span><span class="n">value</span><span class="p">]</span>
+                <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"ManimColor | bool | float | int"</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="n">value</span><span class="p">])</span>
             <span class="k">try</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">default</span><span class="p">[</span><span class="n">value</span><span class="p">][</span><span class="mi">0</span><span class="p">](</span><span class="n">params</span><span class="p">[</span><span class="n">value</span><span class="p">])</span>
             <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">)</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
@@ -1627,7 +1629,7 @@
         <span class="k">raise</span> <span class="n">BadParameterException</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Value </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2"> is not an expected default value."</span><span class="p">)</span>
     <span class="c1"># get value from default parameters</span>
     <span class="k">if</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">default</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">default</span><span class="p">[</span><span class="n">value</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"ManimColor | bool | float | int"</span><span class="p">,</span> <span class="n">default</span><span class="p">[</span><span class="n">value</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
     <span class="c1"># should this be raised?</span>
     <span class="k">raise</span> <span class="n">BadParameterException</span><span class="p">(</span>
         <span class="sa">f</span><span class="s2">"Value </span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2"> is not in params and not in default params."</span>

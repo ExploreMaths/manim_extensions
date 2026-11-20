@@ -1475,6 +1475,7 @@
 <span></span><span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+
 <span class="sd">"""2D molecule representation for Manim chemistry.</span>
 
 <span class="sd">This module provides the :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject` class for rendering molecules in 2D.</span>
@@ -1482,6 +1483,8 @@
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 
@@ -1586,17 +1589,17 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">atoms_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
-        <span class="n">bonds_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+        <span class="n">atoms_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">bonds_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
         <span class="n">representation_type</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">explicit_carbons</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">explicit_hydrogens</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">planar</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">add_atoms_numbering</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">add_bonds_numbering</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">rotate_bonds</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[],</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="n">rotate_bonds</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">VGroup</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">atoms_dict</span> <span class="o">=</span> <span class="n">atoms_dict</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bonds_dict</span> <span class="o">=</span> <span class="n">bonds_dict</span>
@@ -1690,11 +1693,14 @@
                             <span class="p">)</span>
                             <span class="n">from_atom</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="n">from_atom</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
                             <span class="n">to_atom</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="n">to_atom</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
-                            <span class="n">new_bond</span> <span class="o">=</span> <span class="n">DashedCramBond</span><span class="p">(</span>
-                                <span class="n">from_atom</span><span class="o">=</span><span class="n">from_atom</span><span class="p">,</span>
-                                <span class="n">to_atom</span><span class="o">=</span><span class="n">to_atom</span><span class="p">,</span>
-                                <span class="n">index</span><span class="o">=</span><span class="n">bond_index</span><span class="p">,</span>
-                                <span class="nb">type</span><span class="o">=</span><span class="n">bond_type</span><span class="p">,</span>
+                            <span class="n">new_bond</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+                                <span class="s2">"PlainCramBond"</span><span class="p">,</span>
+                                <span class="n">DashedCramBond</span><span class="p">(</span>
+                                    <span class="n">from_atom</span><span class="o">=</span><span class="n">from_atom</span><span class="p">,</span>
+                                    <span class="n">to_atom</span><span class="o">=</span><span class="n">to_atom</span><span class="p">,</span>
+                                    <span class="n">index</span><span class="o">=</span><span class="n">bond_index</span><span class="p">,</span>
+                                    <span class="nb">type</span><span class="o">=</span><span class="n">bond_type</span><span class="p">,</span>
+                                <span class="p">),</span>
                             <span class="p">)</span>
 
                             <span class="n">bond_index</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -1715,11 +1721,14 @@
                         <span class="p">)</span>
                         <span class="n">from_atom</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="n">from_atom</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
                         <span class="n">to_atom</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="n">to_atom</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
-                        <span class="n">new_bond</span> <span class="o">=</span> <span class="n">SimpleBond</span><span class="p">(</span>
-                            <span class="n">from_atom</span><span class="o">=</span><span class="n">from_atom</span><span class="p">,</span>
-                            <span class="n">to_atom</span><span class="o">=</span><span class="n">to_atom</span><span class="p">,</span>
-                            <span class="n">index</span><span class="o">=</span><span class="n">bond_index</span><span class="p">,</span>
-                            <span class="nb">type</span><span class="o">=</span><span class="n">bond_type</span><span class="p">,</span>
+                        <span class="n">new_bond</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+                            <span class="s2">"PlainCramBond"</span><span class="p">,</span>
+                            <span class="n">SimpleBond</span><span class="p">(</span>
+                                <span class="n">from_atom</span><span class="o">=</span><span class="n">from_atom</span><span class="p">,</span>
+                                <span class="n">to_atom</span><span class="o">=</span><span class="n">to_atom</span><span class="p">,</span>
+                                <span class="n">index</span><span class="o">=</span><span class="n">bond_index</span><span class="p">,</span>
+                                <span class="nb">type</span><span class="o">=</span><span class="n">bond_type</span><span class="p">,</span>
+                            <span class="p">),</span>
                         <span class="p">)</span>
 
                         <span class="n">bond_index</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -1728,29 +1737,38 @@
                     <span class="c1"># patched: a hydrogen bond with no stereo information and no</span>
                     <span class="c1"># explicit hydrogens used to be dropped silently.</span>
                     <span class="k">else</span><span class="p">:</span>
-                        <span class="n">new_bond</span> <span class="o">=</span> <span class="n">SimpleBond</span><span class="p">(</span>
-                            <span class="n">from_atom</span><span class="o">=</span><span class="n">from_atom</span><span class="p">,</span>
-                            <span class="n">to_atom</span><span class="o">=</span><span class="n">to_atom</span><span class="p">,</span>
-                            <span class="n">index</span><span class="o">=</span><span class="n">bond_index</span><span class="p">,</span>
-                            <span class="nb">type</span><span class="o">=</span><span class="n">bond_type</span><span class="p">,</span>
+                        <span class="n">new_bond</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+                            <span class="s2">"PlainCramBond"</span><span class="p">,</span>
+                            <span class="n">SimpleBond</span><span class="p">(</span>
+                                <span class="n">from_atom</span><span class="o">=</span><span class="n">from_atom</span><span class="p">,</span>
+                                <span class="n">to_atom</span><span class="o">=</span><span class="n">to_atom</span><span class="p">,</span>
+                                <span class="n">index</span><span class="o">=</span><span class="n">bond_index</span><span class="p">,</span>
+                                <span class="nb">type</span><span class="o">=</span><span class="n">bond_type</span><span class="p">,</span>
+                            <span class="p">),</span>
                         <span class="p">)</span>
                         <span class="n">bond_index</span> <span class="o">+=</span> <span class="mi">1</span>
                         <span class="n">bonds</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_bond</span><span class="p">)</span>
 
                 <span class="k">else</span><span class="p">:</span>
                     <span class="k">if</span> <span class="n">bond_type</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">bond_type</span> <span class="o">==</span> <span class="mi">5</span> <span class="ow">or</span> <span class="n">bond_type</span> <span class="o">==</span> <span class="mi">7</span><span class="p">:</span>
-                        <span class="n">new_bond</span> <span class="o">=</span> <span class="n">DoubleBond</span><span class="p">(</span>  <span class="c1"># TODO: Add function inside bond to create it from data</span>
-                            <span class="n">from_atom</span><span class="o">=</span><span class="n">from_atom</span><span class="p">,</span>
-                            <span class="n">to_atom</span><span class="o">=</span><span class="n">to_atom</span><span class="p">,</span>
-                            <span class="n">index</span><span class="o">=</span><span class="n">bond_index</span><span class="p">,</span>
-                            <span class="nb">type</span><span class="o">=</span><span class="n">bond_type</span><span class="p">,</span>
+                        <span class="n">new_bond</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+                            <span class="s2">"PlainCramBond"</span><span class="p">,</span>
+                            <span class="n">DoubleBond</span><span class="p">(</span>  <span class="c1"># TODO: Add function inside bond to create it from data</span>
+                                <span class="n">from_atom</span><span class="o">=</span><span class="n">from_atom</span><span class="p">,</span>
+                                <span class="n">to_atom</span><span class="o">=</span><span class="n">to_atom</span><span class="p">,</span>
+                                <span class="n">index</span><span class="o">=</span><span class="n">bond_index</span><span class="p">,</span>
+                                <span class="nb">type</span><span class="o">=</span><span class="n">bond_type</span><span class="p">,</span>
+                            <span class="p">),</span>
                         <span class="p">)</span>
                     <span class="k">elif</span> <span class="n">bond_type</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-                        <span class="n">new_bond</span> <span class="o">=</span> <span class="n">TripleBond</span><span class="p">(</span>
-                            <span class="n">from_atom</span><span class="o">=</span><span class="n">from_atom</span><span class="p">,</span>
-                            <span class="n">to_atom</span><span class="o">=</span><span class="n">to_atom</span><span class="p">,</span>
-                            <span class="n">index</span><span class="o">=</span><span class="n">bond_index</span><span class="p">,</span>
-                            <span class="nb">type</span><span class="o">=</span><span class="n">bond_type</span><span class="p">,</span>
+                        <span class="n">new_bond</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+                            <span class="s2">"PlainCramBond"</span><span class="p">,</span>
+                            <span class="n">TripleBond</span><span class="p">(</span>
+                                <span class="n">from_atom</span><span class="o">=</span><span class="n">from_atom</span><span class="p">,</span>
+                                <span class="n">to_atom</span><span class="o">=</span><span class="n">to_atom</span><span class="p">,</span>
+                                <span class="n">index</span><span class="o">=</span><span class="n">bond_index</span><span class="p">,</span>
+                                <span class="nb">type</span><span class="o">=</span><span class="n">bond_type</span><span class="p">,</span>
+                            <span class="p">),</span>
                         <span class="p">)</span>
                     <span class="k">else</span><span class="p">:</span>
                         <span class="k">if</span> <span class="n">bond</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"stereo"</span><span class="p">):</span>
@@ -1763,18 +1781,24 @@
                                 <span class="p">)</span>
 
                             <span class="k">else</span><span class="p">:</span>
-                                <span class="n">new_bond</span> <span class="o">=</span> <span class="n">DashedCramBond</span><span class="p">(</span>
+                                <span class="n">new_bond</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+                                    <span class="s2">"PlainCramBond"</span><span class="p">,</span>
+                                    <span class="n">DashedCramBond</span><span class="p">(</span>
+                                        <span class="n">from_atom</span><span class="o">=</span><span class="n">from_atom</span><span class="p">,</span>
+                                        <span class="n">to_atom</span><span class="o">=</span><span class="n">to_atom</span><span class="p">,</span>
+                                        <span class="n">index</span><span class="o">=</span><span class="n">bond_index</span><span class="p">,</span>
+                                        <span class="nb">type</span><span class="o">=</span><span class="n">bond_type</span><span class="p">,</span>
+                                    <span class="p">),</span>
+                                <span class="p">)</span>
+                        <span class="k">else</span><span class="p">:</span>
+                            <span class="n">new_bond</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+                                <span class="s2">"PlainCramBond"</span><span class="p">,</span>
+                                <span class="n">SimpleBond</span><span class="p">(</span>
                                     <span class="n">from_atom</span><span class="o">=</span><span class="n">from_atom</span><span class="p">,</span>
                                     <span class="n">to_atom</span><span class="o">=</span><span class="n">to_atom</span><span class="p">,</span>
                                     <span class="n">index</span><span class="o">=</span><span class="n">bond_index</span><span class="p">,</span>
                                     <span class="nb">type</span><span class="o">=</span><span class="n">bond_type</span><span class="p">,</span>
-                                <span class="p">)</span>
-                        <span class="k">else</span><span class="p">:</span>
-                            <span class="n">new_bond</span> <span class="o">=</span> <span class="n">SimpleBond</span><span class="p">(</span>
-                                <span class="n">from_atom</span><span class="o">=</span><span class="n">from_atom</span><span class="p">,</span>
-                                <span class="n">to_atom</span><span class="o">=</span><span class="n">to_atom</span><span class="p">,</span>
-                                <span class="n">index</span><span class="o">=</span><span class="n">bond_index</span><span class="p">,</span>
-                                <span class="nb">type</span><span class="o">=</span><span class="n">bond_type</span><span class="p">,</span>
+                                <span class="p">),</span>
                             <span class="p">)</span>
                     <span class="n">bond_index</span> <span class="o">+=</span> <span class="mi">1</span>
                     <span class="n">bonds</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_bond</span><span class="p">)</span>
@@ -1824,10 +1848,13 @@
         <span class="n">numbering</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">bond</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bonds</span><span class="p">:</span>
             <span class="k">if</span> <span class="p">(</span>
-                <span class="ow">not</span> <span class="n">bond</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">explicit_hydrogens</span>
-                <span class="ow">and</span> <span class="ow">not</span> <span class="n">bond</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">explicit_hydrogens</span>
+                <span class="ow">not</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">bond</span><span class="o">.</span><span class="n">from_atom</span><span class="p">)</span><span class="o">.</span><span class="n">explicit_hydrogens</span>
+                <span class="ow">and</span> <span class="ow">not</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">bond</span><span class="o">.</span><span class="n">to_atom</span><span class="p">)</span><span class="o">.</span><span class="n">explicit_hydrogens</span>
             <span class="p">):</span>
-                <span class="k">if</span> <span class="n">bond</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">element</span> <span class="o">!=</span> <span class="s2">"H"</span> <span class="ow">and</span> <span class="n">bond</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">element</span> <span class="o">!=</span> <span class="s2">"H"</span><span class="p">:</span>
+                <span class="k">if</span> <span class="p">(</span>
+                    <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">bond</span><span class="o">.</span><span class="n">from_atom</span><span class="p">)</span><span class="o">.</span><span class="n">element</span> <span class="o">!=</span> <span class="s2">"H"</span>
+                    <span class="ow">and</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">bond</span><span class="o">.</span><span class="n">to_atom</span><span class="p">)</span><span class="o">.</span><span class="n">element</span> <span class="o">!=</span> <span class="s2">"H"</span>
+                <span class="p">):</span>
                     <span class="n">numbering</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
                         <span class="n">MarkupText</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">index</span><span class="p">))</span>
                         <span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">GREEN</span><span class="p">)</span>
@@ -1868,7 +1895,7 @@
 
 <div class="viewcode-block" id="MMoleculeObject.complete_missing_hydrogens">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.complete_missing_hydrogens">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">complete_missing_hydrogens</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">complete_missing_hydrogens</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Append implicit hydrogen labels to atoms that don't fulfill their minimum bond count."""</span>
         <span class="n">supported_atoms</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"O"</span><span class="p">,</span> <span class="s2">"S"</span><span class="p">,</span> <span class="s2">"N"</span><span class="p">,</span> <span class="s2">"P"</span><span class="p">]</span>
 
@@ -1884,7 +1911,8 @@
                     <span class="k">if</span> <span class="n">bond</span><span class="o">.</span><span class="n">atom_is_in_bond</span><span class="p">(</span><span class="n">atom</span><span class="p">)</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">bond</span><span class="o">.</span><span class="n">type</span> <span class="o">&lt;=</span> <span class="mi">4</span><span class="p">:</span>
                         <span class="n">total_bonds</span> <span class="o">+=</span> <span class="n">bond</span><span class="o">.</span><span class="n">type</span> <span class="o">-</span> <span class="mi">1</span>
                         <span class="n">bonds_direction</span> <span class="o">+=</span> <span class="p">(</span>
-                            <span class="n">bond</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">bond</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">bond</span><span class="o">.</span><span class="n">to_atom</span><span class="p">)</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+                            <span class="o">-</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">bond</span><span class="o">.</span><span class="n">from_atom</span><span class="p">)</span><span class="o">.</span><span class="n">coords</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
                         <span class="p">)</span>
 
                 <span class="k">if</span> <span class="n">total_bonds</span> <span class="o">&lt;</span> <span class="n">minimum_bonds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">atom</span><span class="o">.</span><span class="n">element</span><span class="p">):</span>
@@ -1913,7 +1941,7 @@
 
 <div class="viewcode-block" id="MMoleculeObject.from_mol_file">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.from_mol_file">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">from_mol_file</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"MMoleculeObject"</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_mol_file</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"MMoleculeObject"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create an :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject` by parsing a .mol file.</span>
 
 <span class="sd">        Parameters</span>
@@ -1934,7 +1962,9 @@
 
 <div class="viewcode-block" id="MMoleculeObject.from_mol_string">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.from_mol_string">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">from_mol_string</span><span class="p">(</span><span class="n">mol_string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"MMoleculeObject"</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_mol_string</span><span class="p">(</span>
+        <span class="n">mol_string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"MMoleculeObject"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create an :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject` by parsing a mol-format string.</span>
 
 <span class="sd">        Parameters</span>
@@ -1952,14 +1982,16 @@
         <span class="c1"># patched: the parser wants the lines of a MOL block, but the public</span>
         <span class="c1"># entry point is documented as taking the whole string.</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mol_string</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="n">mol_string</span> <span class="o">=</span> <span class="n">mol_string</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+            <span class="n">mol_string</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"str"</span><span class="p">,</span> <span class="n">mol_string</span><span class="o">.</span><span class="n">splitlines</span><span class="p">())</span>
         <span class="n">atoms</span><span class="p">,</span> <span class="n">bonds</span> <span class="o">=</span> <span class="n">mol_parser_string</span><span class="p">(</span><span class="n">mol_string</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">MMoleculeObject</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">bonds</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="MMoleculeObject.from_sdf_file">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.from_sdf_file">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">from_sdf_file</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"list[MMoleculeObject]"</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_sdf_file</span><span class="p">(</span>
+        <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"list[MMoleculeObject]"</span><span class="p">:</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">"""Create a list of :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`\ s by parsing an .sdf file.</span>
 
 <span class="sd">        Parameters</span>
@@ -1984,7 +2016,9 @@
 
 <div class="viewcode-block" id="MMoleculeObject.from_sdf_string">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.from_sdf_string">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">from_sdf_string</span><span class="p">(</span><span class="n">sdf_string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"list[MMoleculeObject]"</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">from_sdf_string</span><span class="p">(</span>
+        <span class="n">sdf_string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"list[MMoleculeObject]"</span><span class="p">:</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">"""Create a list of :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`\ s by parsing an sdf-format string.</span>
 
 <span class="sd">        Parameters</span>
@@ -2051,7 +2085,7 @@
 
 <div class="viewcode-block" id="MMoleculeObject.find_atoms_position_by_index">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.find_atoms_position_by_index">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">find_atoms_position_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms_index_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_atoms_position_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms_index_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Returns the position of multiple atoms given their indices.</span>
 
 <span class="sd">        Parameters</span>
@@ -2155,7 +2189,9 @@
 
         <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">key_error</span><span class="p">:</span>
             <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Bond index </span><span class="si">{</span><span class="n">bond_index</span><span class="si">}</span><span class="s2"> is not valid for molecule </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-            <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Valid indices are: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">bonds</span><span class="o">.</span><span class="n">submob_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Valid indices are: </span><span class="si">{</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">bonds</span><span class="o">.</span><span class="n">submob_dict</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span>
+            <span class="p">)</span>
             <span class="k">raise</span> <span class="n">key_error</span>
 
         <span class="n">bond_vector</span> <span class="o">=</span> <span class="n">bond</span><span class="o">.</span><span class="n">get_vector</span><span class="p">()</span>
@@ -2166,7 +2202,7 @@
 
 <div class="viewcode-block" id="MMoleculeObject.find_bonds_center_by_index">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.find_bonds_center_by_index">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">find_bonds_center_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bonds_index_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_bonds_center_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bonds_index_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Returns the position of multiple bonds given their indices.</span>
 
 <span class="sd">        Parameters</span>
@@ -2199,7 +2235,7 @@
 
 <div class="viewcode-block" id="MMoleculeObject.find_all_atoms_positions">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.find_all_atoms_positions">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">find_all_atoms_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_all_atoms_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return a dict mapping every atom index to its current position.</span>
 
 <span class="sd">        Returns</span>
@@ -2217,7 +2253,7 @@
 
 <div class="viewcode-block" id="MMoleculeObject.find_all_bonds_centers">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.find_all_bonds_centers">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">find_all_bonds_centers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_all_bonds_centers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return a dict mapping every bond index to its center position.</span>
 
 <span class="sd">        Returns</span>
@@ -2284,10 +2320,10 @@
         <span class="k">for</span> <span class="n">atom_index</span> <span class="ow">in</span> <span class="n">atoms</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="n">atom_bonds</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">for</span> <span class="n">bond</span> <span class="ow">in</span> <span class="n">mc_molecule</span><span class="o">.</span><span class="n">bonds</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">atom_index</span> <span class="o">==</span> <span class="n">bond</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">molecule_index</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">atom_index</span> <span class="o">==</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">bond</span><span class="o">.</span><span class="n">to_atom</span><span class="p">)</span><span class="o">.</span><span class="n">molecule_index</span><span class="p">:</span>
                     <span class="n">atom_bonds</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                         <span class="p">{</span>
-                            <span class="s2">"to"</span><span class="p">:</span> <span class="n">bond</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">molecule_index</span><span class="p">,</span>
+                            <span class="s2">"to"</span><span class="p">:</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">bond</span><span class="o">.</span><span class="n">from_atom</span><span class="p">)</span><span class="o">.</span><span class="n">molecule_index</span><span class="p">,</span>
                             <span class="s2">"type"</span><span class="p">:</span> <span class="n">bond</span><span class="o">.</span><span class="n">bond_type</span><span class="p">,</span>
                             <span class="s2">"stereo"</span><span class="p">:</span> <span class="n">bond</span><span class="o">.</span><span class="n">stereo</span><span class="p">,</span>
                             <span class="s2">"topology"</span><span class="p">:</span> <span class="n">bond</span><span class="o">.</span><span class="n">topology</span><span class="p">,</span>
@@ -2353,9 +2389,9 @@
         <span class="n">buff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">tex</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">font</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">molecule_data</span><span class="p">,</span> <span class="n">MMoleculeObject</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">molecule</span> <span class="o">=</span> <span class="n">molecule_data</span>
 
@@ -2368,7 +2404,7 @@
         <span class="k">elif</span> <span class="n">tex</span><span class="p">:</span>
             <span class="n">name_text</span> <span class="o">=</span> <span class="n">MathTex</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">name_text</span> <span class="o">=</span> <span class="n">MarkupText</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">name_text</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"MathTex"</span><span class="p">,</span> <span class="n">MarkupText</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">))</span>
 
         <span class="n">name_text</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">molecule</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="n">buff</span><span class="p">)</span>
 
@@ -2385,8 +2421,8 @@
         <span class="n">buff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">tex</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">font</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"NamedMolecule"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create a :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule` from a .mol file and a name string.</span>
 
@@ -2436,8 +2472,8 @@
         <span class="n">buff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">tex</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">font</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"NamedMolecule"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create a :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule` from a mol-format string and a name string.</span>
 
@@ -2487,8 +2523,8 @@
         <span class="n">buff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">tex</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">font</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"list[NamedMolecule]"</span><span class="p">:</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">"""Create a list of :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule`\ s from an .sdf file with a shared base name.</span>
 
@@ -2542,8 +2578,8 @@
         <span class="n">buff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">tex</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">font</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"list[NamedMolecule]"</span><span class="p">:</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">"""Create a list of :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule`\ s from an sdf-format string with a shared base name.</span>
 
@@ -2680,7 +2716,7 @@
 
 <div class="viewcode-block" id="NamedMolecule.find_atoms_position_by_index">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.twoD.molecule.NamedMolecule.find_atoms_position_by_index">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">find_atoms_position_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms_index_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_atoms_position_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms_index_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Returns the position of multiple atoms given their indices.</span>
 
 <span class="sd">        Parameters</span>
@@ -2746,7 +2782,9 @@
 
         <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">key_error</span><span class="p">:</span>
             <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Bond index </span><span class="si">{</span><span class="n">bond_index</span><span class="si">}</span><span class="s2"> is not valid for molecule </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-            <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Valid indices are: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">bonds</span><span class="o">.</span><span class="n">submob_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Valid indices are: </span><span class="si">{</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">bonds</span><span class="o">.</span><span class="n">submob_dict</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span>
+            <span class="p">)</span>
             <span class="k">raise</span> <span class="n">key_error</span>
 
         <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
@@ -2785,7 +2823,9 @@
 
         <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">key_error</span><span class="p">:</span>
             <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Bond index </span><span class="si">{</span><span class="n">bond_index</span><span class="si">}</span><span class="s2"> is not valid for molecule </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-            <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Valid indices are: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">bonds</span><span class="o">.</span><span class="n">submob_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Valid indices are: </span><span class="si">{</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span><span class="w"> </span><span class="bp">self</span><span class="o">.</span><span class="n">bonds</span><span class="o">.</span><span class="n">submob_dict</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span>
+            <span class="p">)</span>
             <span class="k">raise</span> <span class="n">key_error</span>
 
         <span class="n">bond_vector</span> <span class="o">=</span> <span class="n">bond</span><span class="o">.</span><span class="n">get_vector</span><span class="p">()</span>
@@ -2796,7 +2836,7 @@
 
 <div class="viewcode-block" id="NamedMolecule.find_bonds_center_by_index">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.twoD.molecule.NamedMolecule.find_bonds_center_by_index">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">find_bonds_center_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bonds_index_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_bonds_center_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bonds_index_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Returns the position of multiple bonds given their indices.</span>
 
 <span class="sd">        Parameters</span>
@@ -2829,7 +2869,7 @@
 
 <div class="viewcode-block" id="NamedMolecule.find_all_atoms_positions">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.twoD.molecule.NamedMolecule.find_all_atoms_positions">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">find_all_atoms_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_all_atoms_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return a dict mapping every atom index to its current position.</span>
 
 <span class="sd">        Returns</span>
@@ -2847,7 +2887,7 @@
 
 <div class="viewcode-block" id="NamedMolecule.find_all_bonds_centers">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.twoD.molecule.NamedMolecule.find_all_bonds_centers">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">find_all_bonds_centers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_all_bonds_centers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return a dict mapping every bond index to its center position.</span>
 
 <span class="sd">        Returns</span>

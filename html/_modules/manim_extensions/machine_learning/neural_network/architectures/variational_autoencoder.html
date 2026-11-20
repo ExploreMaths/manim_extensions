@@ -1477,6 +1477,8 @@
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="c1"># patched: implement make_triplet_forward_pass and make_image_forward_pass</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
 <span class="sd">"""Variational Autoencoder Manim Visualizations.</span>
 
 <span class="sd">In this module I define Manim visualizations for Variational Autoencoders</span>
@@ -1538,13 +1540,13 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">encoder_nodes_per_layer</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
-        <span class="n">decoder_nodes_per_layer</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+        <span class="n">encoder_nodes_per_layer</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+        <span class="n">decoder_nodes_per_layer</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
         <span class="n">point_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">BLUE</span><span class="p">,</span>
         <span class="n">dot_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span>
         <span class="n">ellipse_stroke_width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
         <span class="n">layer_spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">encoder_nodes_per_layer</span> <span class="o">=</span> <span class="n">encoder_nodes_per_layer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">decoder_nodes_per_layer</span> <span class="o">=</span> <span class="n">decoder_nodes_per_layer</span>

@@ -1508,7 +1508,7 @@
 <span class="sd">        Moment of inertia.</span>
 <span class="sd">    """</span>
     <span class="n">moment_for_box</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"physics"</span><span class="p">,</span> <span class="s2">"pymunk"</span><span class="p">)</span><span class="o">.</span><span class="n">moment_for_box</span>
-    <span class="k">return</span> <span class="n">moment_for_box</span><span class="p">(</span><span class="n">mass</span><span class="o">=</span><span class="n">mass</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span></div>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">moment_for_box</span><span class="p">(</span><span class="n">mass</span><span class="o">=</span><span class="n">mass</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)))</span></div>
 
 
 
@@ -1545,11 +1545,13 @@
 <span class="sd">        Moment of inertia.</span>
 <span class="sd">    """</span>
     <span class="n">moment_for_circle</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"physics"</span><span class="p">,</span> <span class="s2">"pymunk"</span><span class="p">)</span><span class="o">.</span><span class="n">moment_for_circle</span>
-    <span class="k">return</span> <span class="n">moment_for_circle</span><span class="p">(</span>
-        <span class="n">mass</span><span class="o">=</span><span class="n">mass</span><span class="p">,</span>
-        <span class="n">inner_radius</span><span class="o">=</span><span class="n">inner_radius</span><span class="p">,</span>
-        <span class="n">outer_radius</span><span class="o">=</span><span class="n">outer_radius</span><span class="p">,</span>
-        <span class="n">offset</span><span class="o">=</span><span class="p">(</span><span class="n">x_offset</span><span class="p">,</span> <span class="n">y_offset</span><span class="p">),</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span>
+        <span class="n">moment_for_circle</span><span class="p">(</span>
+            <span class="n">mass</span><span class="o">=</span><span class="n">mass</span><span class="p">,</span>
+            <span class="n">inner_radius</span><span class="o">=</span><span class="n">inner_radius</span><span class="p">,</span>
+            <span class="n">outer_radius</span><span class="o">=</span><span class="n">outer_radius</span><span class="p">,</span>
+            <span class="n">offset</span><span class="o">=</span><span class="p">(</span><span class="n">x_offset</span><span class="p">,</span> <span class="n">y_offset</span><span class="p">),</span>
+        <span class="p">)</span>
     <span class="p">)</span></div>
 
 
@@ -1586,8 +1588,13 @@
 <span class="sd">        Moment of inertia.</span>
 <span class="sd">    """</span>
     <span class="n">moment_for_poly</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"physics"</span><span class="p">,</span> <span class="s2">"pymunk"</span><span class="p">)</span><span class="o">.</span><span class="n">moment_for_poly</span>
-    <span class="k">return</span> <span class="n">moment_for_poly</span><span class="p">(</span>
-        <span class="n">mass</span><span class="o">=</span><span class="n">mass</span><span class="p">,</span> <span class="n">vertices</span><span class="o">=</span><span class="n">vertices</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="p">(</span><span class="n">x_offset</span><span class="p">,</span> <span class="n">y_offset</span><span class="p">),</span> <span class="n">radius</span><span class="o">=</span><span class="n">stroke_width</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span>
+        <span class="n">moment_for_poly</span><span class="p">(</span>
+            <span class="n">mass</span><span class="o">=</span><span class="n">mass</span><span class="p">,</span>
+            <span class="n">vertices</span><span class="o">=</span><span class="n">vertices</span><span class="p">,</span>
+            <span class="n">offset</span><span class="o">=</span><span class="p">(</span><span class="n">x_offset</span><span class="p">,</span> <span class="n">y_offset</span><span class="p">),</span>
+            <span class="n">radius</span><span class="o">=</span><span class="n">stroke_width</span><span class="p">,</span>
+        <span class="p">)</span>
     <span class="p">)</span></div>
 
 
@@ -1621,7 +1628,7 @@
 <span class="sd">        Moment of inertia.</span>
 <span class="sd">    """</span>
     <span class="n">moment_for_segment</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"physics"</span><span class="p">,</span> <span class="s2">"pymunk"</span><span class="p">)</span><span class="o">.</span><span class="n">moment_for_segment</span>
-    <span class="k">return</span> <span class="n">moment_for_segment</span><span class="p">(</span><span class="n">mass</span><span class="o">=</span><span class="n">mass</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">stroke_width</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">moment_for_segment</span><span class="p">(</span><span class="n">mass</span><span class="o">=</span><span class="n">mass</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">stroke_width</span><span class="p">))</span></div>
 
 </pre></div>
         </article>

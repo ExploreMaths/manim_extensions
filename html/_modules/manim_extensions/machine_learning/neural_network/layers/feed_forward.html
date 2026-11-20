@@ -1476,12 +1476,15 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+
 <span class="sd">"""Feed forward layer for neural network visualizations.</span>
 
 <span class="sd">This module provides the feed forward layer class for neural network visualizations.</span>
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">Animation</span><span class="p">,</span>
@@ -1576,17 +1579,19 @@
         <span class="n">num_nodes</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
         <span class="n">layer_buffer</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">SMALL_BUFF</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
         <span class="n">node_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.08</span><span class="p">,</span>
-        <span class="n">node_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">color_scheme</span><span class="o">.</span><span class="n">primary_color</span><span class="p">,</span>
-        <span class="n">node_outline_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">color_scheme</span><span class="o">.</span><span class="n">secondary_color</span><span class="p">,</span>
-        <span class="n">rectangle_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">color_scheme</span><span class="o">.</span><span class="n">secondary_color</span><span class="p">,</span>
+        <span class="n">node_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span><span class="o">.</span><span class="n">color_scheme</span><span class="o">.</span><span class="n">primary_color</span><span class="p">,</span>
+        <span class="n">node_outline_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span><span class="o">.</span><span class="n">color_scheme</span><span class="o">.</span><span class="n">secondary_color</span><span class="p">,</span>
+        <span class="n">rectangle_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span><span class="o">.</span><span class="n">color_scheme</span><span class="o">.</span><span class="n">secondary_color</span><span class="p">,</span>
         <span class="n">node_spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span>
-        <span class="n">rectangle_fill_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">color_scheme</span><span class="o">.</span><span class="n">background_color</span><span class="p">,</span>
+        <span class="n">rectangle_fill_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="n">Any</span><span class="p">,</span> <span class="n">config</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">color_scheme</span><span class="o">.</span><span class="n">background_color</span><span class="p">,</span>
         <span class="n">node_stroke_width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span>
         <span class="n">rectangle_stroke_width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span>
-        <span class="n">animation_dot_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">color_scheme</span><span class="o">.</span><span class="n">active_color</span><span class="p">,</span>
+        <span class="n">animation_dot_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span><span class="o">.</span><span class="n">color_scheme</span><span class="o">.</span><span class="n">active_color</span><span class="p">,</span>
         <span class="n">activation_function</span><span class="p">:</span> <span class="n">ActivationFunction</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">VGroupNeuralNetworkLayer</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">num_nodes</span> <span class="o">=</span> <span class="n">num_nodes</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">layer_buffer</span> <span class="o">=</span> <span class="n">layer_buffer</span>
@@ -1609,8 +1614,8 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">input_layer</span><span class="p">:</span> <span class="n">NeuralNetworkLayer</span><span class="p">,</span>
         <span class="n">output_layer</span><span class="p">:</span> <span class="n">NeuralNetworkLayer</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Creates the neural network layer.</span>
 
 <span class="sd">        Parameters</span>
@@ -1654,7 +1659,7 @@
 
 <div class="viewcode-block" id="FeedForwardLayer.construct_activation_function">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/feed_forward.FeedForwardLayer.html#manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer.construct_activation_function">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct_activation_function</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct_activation_function</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build the activation-function plot for this feed-forward layer."""</span>
         <span class="c1"># Add the activation function</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">activation_function</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1674,7 +1679,7 @@
 <div class="viewcode-block" id="FeedForwardLayer.make_dropout_forward_pass_animation">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/feed_forward.FeedForwardLayer.html#manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer.make_dropout_forward_pass_animation">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_dropout_forward_pass_animation</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">layer_args</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">layer_args</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Succession</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Makes a forward pass animation with dropout.</span>
 
@@ -1698,14 +1703,18 @@
         <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_group</span><span class="p">):</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">dropout_node_indices</span><span class="p">:</span>
                 <span class="n">nodes_to_highlight</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
-        <span class="n">nodes_to_highlight</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="n">nodes_to_highlight</span><span class="p">)</span>
+        <span class="n">nodes_to_highlight</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"list[VMobject]"</span><span class="p">,</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="n">nodes_to_highlight</span><span class="p">))</span>
         <span class="c1"># Make highlight animation</span>
         <span class="n">succession</span> <span class="o">=</span> <span class="n">Succession</span><span class="p">(</span>
             <span class="n">ApplyMethod</span><span class="p">(</span>
-                <span class="n">nodes_to_highlight</span><span class="o">.</span><span class="n">set_color</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">animation_dot_color</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="mf">0.25</span>
+                <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">nodes_to_highlight</span><span class="p">)</span><span class="o">.</span><span class="n">set_color</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">animation_dot_color</span><span class="p">,</span>
+                <span class="n">run_time</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
             <span class="p">),</span>
             <span class="n">Wait</span><span class="p">(</span><span class="mf">1.0</span><span class="p">),</span>
-            <span class="n">ApplyMethod</span><span class="p">(</span><span class="n">nodes_to_highlight</span><span class="o">.</span><span class="n">set_color</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_color</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="mf">0.25</span><span class="p">),</span>
+            <span class="n">ApplyMethod</span><span class="p">(</span>
+                <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">nodes_to_highlight</span><span class="p">)</span><span class="o">.</span><span class="n">set_color</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_color</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="mf">0.25</span>
+            <span class="p">),</span>
         <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">succession</span></div>
@@ -1714,7 +1723,7 @@
 <div class="viewcode-block" id="FeedForwardLayer.make_forward_pass_animation">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/feed_forward.FeedForwardLayer.html#manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer.make_forward_pass_animation">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_forward_pass_animation</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">layer_args</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">layer_args</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Succession</span> <span class="o">|</span> <span class="n">AnimationGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a highlight animation for all nodes, respecting dropout indices if given.</span>
 
@@ -1759,7 +1768,7 @@
 <div class="viewcode-block" id="FeedForwardLayer._create_override">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/feed_forward.FeedForwardLayer.html#manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer._create_override">[docs]</a>
     <span class="nd">@override_animation</span><span class="p">(</span><span class="n">Create</span><span class="p">)</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_create_override</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_create_override</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create the surrounding rectangle and all nodes.</span>
 
 <span class="sd">        Parameters</span>
@@ -1828,7 +1837,7 @@
 
 <div class="viewcode-block" id="FeedForwardLayer.move_to">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/feed_forward.FeedForwardLayer.html#manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer.move_to">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">move_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mobject_or_point</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">move_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mobject_or_point</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Moves the center of the layer to the given mobject or point.</span>
 
 <span class="sd">        Parameters</span>

@@ -1475,6 +1475,9 @@
 <span></span><span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
 <span class="sd">"""Graph-based molecule representation for Manim chemistry.</span>
 
 <span class="sd">This module provides graph-based molecule visualization classes.</span>
@@ -1532,7 +1535,7 @@
 <span class="sd">               self.add(line)</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sheen_direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_unit_vector</span><span class="p">()</span>
 
@@ -1573,12 +1576,12 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">start</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-        <span class="n">end</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">start</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">end</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
         <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span>
         <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">start</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="n">end</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -1616,7 +1619,9 @@
 
 <div class="viewcode-block" id="DoubleLine.set_points_by_ends">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.DoubleLine.html#manim_extensions.chemistry.twoD.graph_molecule.DoubleLine.set_points_by_ends">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_points_by_ends</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_points_by_ends</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Reposition both arcs of the double bond to span from start to end.</span>
 
 <span class="sd">        Parameters</span>
@@ -1655,12 +1660,12 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">start</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-        <span class="n">end</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">start</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">end</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
         <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">middle_line</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="n">middle_line</span><span class="o">.</span><span class="n">sheen_direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheen_direction</span>
@@ -1771,18 +1776,20 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">vertices_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
-        <span class="n">edges_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+        <span class="n">vertices_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">edges_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
         <span class="n">label</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">numeric_label</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">label_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">BLACK</span><span class="p">,</span>
-        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-    <span class="p">):</span>
+        <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">edges_dict</span> <span class="o">=</span> <span class="n">edges_dict</span>
         <span class="n">labels</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">if</span> <span class="n">label</span> <span class="ow">or</span> <span class="n">numeric_label</span><span class="p">:</span>
-            <span class="n">labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_labels</span><span class="p">(</span><span class="n">vertices_dict</span><span class="p">,</span> <span class="n">numeric_label</span><span class="p">,</span> <span class="n">label_color</span><span class="p">)</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+                <span class="s2">"bool"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_labels</span><span class="p">(</span><span class="n">vertices_dict</span><span class="p">,</span> <span class="n">numeric_label</span><span class="p">,</span> <span class="n">label_color</span><span class="p">)</span>
+            <span class="p">)</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">vertices</span><span class="o">=</span><span class="n">vertices_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span>
@@ -1801,7 +1808,9 @@
 
 <div class="viewcode-block" id="GraphMolecule._populate_edge_dict">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule._populate_edge_dict">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_populate_edge_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edges</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span> <span class="n">_</span><span class="p">:</span> <span class="n">VectorND</span> <span class="o">|</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_populate_edge_dict</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">edges</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span> <span class="n">_</span><span class="p">:</span> <span class="n">VectorND</span> <span class="o">|</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create a bond mobject for every edge.</span>
 
 <span class="sd">        Parameters</span>
@@ -1870,12 +1879,12 @@
                 <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">bond_type</span><span class="si">}</span><span class="s2"> is an unknown type of bond. Options are 1, 2 or 3"</span>
             <span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">bond</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"type[Line] | type[ArcBetweenPoints]"</span><span class="p">,</span> <span class="n">bond</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="GraphMolecule.make_layout">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.make_layout">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">make_layout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertices_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Point3D</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">make_layout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertices_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Point3D</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Build a layout dict mapping each atom index to its 3D coordinates.</span>
 
 <span class="sd">        Parameters</span>
@@ -1892,7 +1901,7 @@
 
 <div class="viewcode-block" id="GraphMolecule.make_vertex_config">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.make_vertex_config">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">make_vertex_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertices_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">make_vertex_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertices_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Build a vertex config dict with element colors and dot radius.</span>
 
 <span class="sd">        Parameters</span>
@@ -1916,7 +1925,7 @@
 
 <div class="viewcode-block" id="GraphMolecule.make_edge_config">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.make_edge_config">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">make_edge_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edges</span><span class="p">:</span> <span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">make_edge_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edges</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Build an edge config dict with gradient colors derived from bonded atom colors.</span>
 
 <span class="sd">        Parameters</span>
@@ -1946,7 +1955,7 @@
 <div class="viewcode-block" id="GraphMolecule.make_labels">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.make_labels">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_labels</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">vertices_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">numeric_label</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">label_color</span><span class="p">:</span> <span class="nb">str</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">vertices_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">numeric_label</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">label_color</span><span class="p">:</span> <span class="nb">str</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Text</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Create label text mobjects for each atom, either numeric or element symbols.</span>
 
@@ -1977,8 +1986,12 @@
 <div class="viewcode-block" id="GraphMolecule.depth_first_search">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.depth_first_search">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">depth_first_search</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">graph</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">atom</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">visited_atoms</span><span class="p">:</span> <span class="nb">set</span><span class="p">,</span> <span class="n">connected_atoms</span><span class="p">:</span> <span class="nb">list</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">graph</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span>
+        <span class="n">atom</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+        <span class="n">visited_atoms</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+        <span class="n">connected_atoms</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Recursive depht-first search to find connected atoms.</span>
 
@@ -2019,7 +2032,9 @@
 
 <div class="viewcode-block" id="GraphMolecule.get_connected_atoms">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_connected_atoms">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_connected_atoms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_atom_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">to_atom_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_connected_atoms</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">from_atom_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">to_atom_index</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Given two atoms index, returns the connected atoms to the second atom</span>
 <span class="sd">        after the bond between the first atom and the second one.</span>
@@ -2087,7 +2102,7 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_connected_atoms_v_group">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_connected_atoms_v_group</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">from_atom_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">to_atom_index</span><span class="p">:</span> <span class="nb">int</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return a VGroup of all atoms connected to to_atom_index beyond the bond from from_atom_index.</span>
 
 <span class="sd">        Parameters</span>
@@ -2104,14 +2119,14 @@
         <span class="n">connected_atoms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_connected_atoms</span><span class="p">(</span>
             <span class="n">from_atom_index</span><span class="o">=</span><span class="n">from_atom_index</span><span class="p">,</span> <span class="n">to_atom_index</span><span class="o">=</span><span class="n">to_atom_index</span>
         <span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_atoms_vgroup_from_index</span><span class="p">(</span><span class="n">connected_atoms</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"list[Any]"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_atoms_vgroup_from_index</span><span class="p">(</span><span class="n">connected_atoms</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="GraphMolecule.get_bonds_from_atoms_indices">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_bonds_from_atoms_indices">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_bonds_from_atoms_indices</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">connected_atoms</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">excluded_atom</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">connected_atoms</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">excluded_atom</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Given a list of atoms, returns the bonds related to those atoms.</span>
 
@@ -2138,7 +2153,7 @@
 <div class="viewcode-block" id="GraphMolecule.get_bonds_vgroup_from_index">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_bonds_vgroup_from_index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_bonds_vgroup_from_index</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">connected_atoms</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">excluded_atom</span><span class="p">:</span> <span class="nb">int</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">connected_atoms</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">excluded_atom</span><span class="p">:</span> <span class="nb">int</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a :class:`~manim.mobject.types.vectorized_mobject.VGroup` of bond mobjects connected to the given atoms, excluding one.</span>
 
@@ -2160,7 +2175,7 @@
 <div class="viewcode-block" id="GraphMolecule.get_connected_atoms_and_bonds_group_from_index">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_connected_atoms_and_bonds_group_from_index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_connected_atoms_and_bonds_group_from_index</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">connected_atoms</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">excluded_atom</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">connected_atoms</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">excluded_atom</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a combined VGroup of connected atoms and their bonds, excluding one atom.</span>
 
@@ -2252,7 +2267,7 @@
 
 <div class="viewcode-block" id="GraphMolecule.find_atoms_position_by_index">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_atoms_position_by_index">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">find_atoms_position_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms_index_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_atoms_position_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms_index_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Returns the position of multiple atoms given their indices.</span>
 
 <span class="sd">        Parameters</span>
@@ -2368,7 +2383,7 @@
 
 <div class="viewcode-block" id="GraphMolecule.find_bonds_center_by_index">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_bonds_center_by_index">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">find_bonds_center_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bonds_tuples_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_bonds_center_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bonds_tuples_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Returns the position of multiple bonds given their indices.</span>
 
 <span class="sd">        Parameters</span>
@@ -2403,7 +2418,7 @@
 
 <div class="viewcode-block" id="GraphMolecule.find_all_atoms_positions">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_all_atoms_positions">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">find_all_atoms_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_all_atoms_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return a dict mapping every atom index to its current position.</span>
 
 <span class="sd">        Returns</span>
@@ -2421,7 +2436,7 @@
 
 <div class="viewcode-block" id="GraphMolecule.find_all_bonds_centers">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_all_bonds_centers">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">find_all_bonds_centers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_all_bonds_centers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return a dict mapping every bond tuple to its center position.</span>
 
 <span class="sd">        Returns</span>
@@ -2466,7 +2481,10 @@
         <span class="n">vertices</span> <span class="o">=</span> <span class="n">mc_molecule</span><span class="o">.</span><span class="n">atoms_by_index</span>
 
         <span class="n">edges</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="p">(</span><span class="n">bond</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">molecule_index</span><span class="p">,</span> <span class="n">bond</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">molecule_index</span><span class="p">):</span> <span class="n">bond</span>
+            <span class="p">(</span>
+                <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">bond</span><span class="o">.</span><span class="n">from_atom</span><span class="p">)</span><span class="o">.</span><span class="n">molecule_index</span><span class="p">,</span>
+                <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">bond</span><span class="o">.</span><span class="n">to_atom</span><span class="p">)</span><span class="o">.</span><span class="n">molecule_index</span><span class="p">,</span>
+            <span class="p">):</span> <span class="n">bond</span>
             <span class="k">for</span> <span class="n">bond</span> <span class="ow">in</span> <span class="n">mc_molecule</span><span class="o">.</span><span class="n">bonds</span>
         <span class="p">}</span>
 

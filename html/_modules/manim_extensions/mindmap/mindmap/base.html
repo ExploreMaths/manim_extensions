@@ -1476,6 +1476,9 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
 <span class="sd">"""Mindmap base classes for Manim.</span>
 
 <span class="sd">This module provides base classes for mindmap visualizations.</span>
@@ -1541,7 +1544,7 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">vmobject</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">,</span> <span class="n">surr_rect</span><span class="p">:</span> <span class="n">Rectangle</span><span class="p">,</span> <span class="n">connector</span><span class="p">:</span> <span class="n">Line</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="p">):</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vmobject</span> <span class="o">=</span> <span class="n">vmobject</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">surr_rect</span> <span class="o">=</span> <span class="n">surr_rect</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">connector</span> <span class="o">=</span> <span class="n">connector</span>
@@ -1574,7 +1577,9 @@
 <span class="sd">        The root node of the generated tree.</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_tree</span><span class="p">(</span><span class="n">ID</span><span class="p">:</span> <span class="nb">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,),</span> <span class="n">current_map</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate_tree</span><span class="p">(</span>
+        <span class="n">ID</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,),</span> <span class="n">current_map</span><span class="p">:</span> <span class="n">Dict</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Recursively build a :class:`~manim_extensions.mindmap.nodes.node.Node` tree from a dictionary map.</span>
 
 <span class="sd">        Parameters</span>
@@ -1591,8 +1596,8 @@
         <span class="n">level</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">ID</span><span class="p">)</span>
         <span class="n">mobj</span> <span class="o">=</span> <span class="n">_generate_node</span><span class="p">(</span><span class="n">Mobj</span><span class="o">=</span><span class="n">current_map</span><span class="p">[</span><span class="s2">"node"</span><span class="p">],</span> <span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span>
         <span class="n">current_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">mobj</span><span class="p">,</span> <span class="n">buff</span><span class="p">,</span> <span class="o">**</span><span class="n">node_style</span><span class="o">.</span><span class="n">get_node_style</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">))</span>
-        <span class="n">current_node</span><span class="o">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">ID</span>
-        <span class="n">current_node</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">current_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"text"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">current_node</span><span class="p">)</span><span class="o">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">ID</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">current_node</span><span class="p">)</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">current_map</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"text"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="s2">"child"</span> <span class="ow">in</span> <span class="n">current_map</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">child_map</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">current_map</span><span class="p">[</span><span class="s2">"child"</span><span class="p">]):</span>
@@ -1661,7 +1666,7 @@
 <span class="sd">               self.add(mind_map)</span>
 <span class="sd">    """</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layout_method</span><span class="p">:</span> <span class="n">Layout</span> <span class="o">=</span> <span class="n">Layout</span><span class="p">()):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">layout_method</span><span class="p">:</span> <span class="n">Layout</span> <span class="o">=</span> <span class="n">Layout</span><span class="p">())</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">node_data_dict</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">layout_method</span><span class="o">.</span><span class="n">layout</span><span class="p">()</span>
@@ -1672,7 +1677,7 @@
 
 <div class="viewcode-block" id="AbstractMap._set_node_position">
 <a class="viewcode-back" href="../../../../reference/mindmap/mindmap/base.AbstractMap.html#manim_extensions.mindmap.mindmap.base.AbstractMap._set_node_position">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_set_node_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_node_position</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Recursively position a node and all its descendants.</span>
 
 <span class="sd">        Parameters</span>
@@ -1681,7 +1686,7 @@
 <span class="sd">            The root of the subtree to position.</span>
 <span class="sd">        """</span>
         <span class="n">pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">node</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-        <span class="n">node</span><span class="o">.</span><span class="n">vmobject</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">vmobject</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
         <span class="n">node</span><span class="o">.</span><span class="n">surr_rect</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_set_node_position</span><span class="p">(</span><span class="n">child</span><span class="p">)</span></div>
@@ -1689,7 +1694,7 @@
 
 <div class="viewcode-block" id="AbstractMap._set_connectors">
 <a class="viewcode-back" href="../../../../reference/mindmap/mindmap/base.AbstractMap.html#manim_extensions.mindmap.mindmap.base.AbstractMap._set_connectors">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_set_connectors</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_set_connectors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Set connection lines.</span>
 
 <span class="sd">        Raises</span>
@@ -1715,7 +1720,7 @@
 <span class="sd">            The component wrapper of the node, or ``None`` if no node with</span>
 <span class="sd">            the given ID exists.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_data_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"NodeMobject"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_data_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="AbstractMap.get_node">
@@ -1737,7 +1742,7 @@
         <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_data_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">Group</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">vmobject</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">surr_rect</span><span class="p">)</span>
-        <span class="k">return</span> <span class="kc">None</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"Group"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="AbstractMap.get_text">
@@ -1759,7 +1764,7 @@
         <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_data_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">text</span>
-        <span class="k">return</span> <span class="kc">None</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"str"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="AbstractMap.get_connector">
@@ -1781,7 +1786,7 @@
         <span class="n">node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_data_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">connector</span>
-        <span class="k">return</span> <span class="kc">None</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"Line"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="AbstractMap.get_all_mindmap">
@@ -1867,12 +1872,12 @@
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">dfs_walker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">):</span>
             <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">ID</span> <span class="o">==</span> <span class="n">ID</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">node</span>
-        <span class="k">return</span> <span class="kc">None</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"Node"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="AbstractMap._get_connector_style">
 <a class="viewcode-back" href="../../../../reference/mindmap/mindmap/base.AbstractMap.html#manim_extensions.mindmap.mindmap.base.AbstractMap._get_connector_style">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_get_connector_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_connector_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return the line style for the given level.</span>
 
 <span class="sd">        Parameters</span>
@@ -1884,7 +1889,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            The connector style dictionary for that level.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_style</span><span class="o">.</span><span class="n">get_line_style</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_style</span><span class="p">)</span><span class="o">.</span><span class="n">get_line_style</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">level</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="AbstractMap.get_children">
