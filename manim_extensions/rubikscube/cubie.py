@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """Individual cubie used by the Rubik's Cube mobject."""
@@ -107,7 +108,7 @@ class Cubie(VGroup):
             # keeps all faces of one cubie moving together during rotation,
             # avoiding the depth-order flicker that comes from sorting the
             # 162 individual faces independently.
-            face.z_index_group = self
+            cast(Any, face).z_index_group = self
 
             self.faces[tuple(vect)] = face
             self.add(face)

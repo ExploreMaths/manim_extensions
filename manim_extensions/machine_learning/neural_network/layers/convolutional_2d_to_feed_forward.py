@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 """Convolutional 2D to feed-forward layer connection visualization."""
 
 from __future__ import annotations
@@ -91,7 +93,7 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
             # Go through each node
             for node in feed_forward_nodes:
                 line = Line(corner, node, stroke_width=1.0)
-                line.set_z_index(self.output_layer.node_group.z_index)
+                line.set_z_index(cast(Any, self.output_layer.node_group).z_index)
                 anim = ShowPassingFlash(
                     line.set_color(self.passing_flash_color), time_width=0.2
                 )

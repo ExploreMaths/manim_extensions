@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 """Mindmap node classes for Manim.
 
 This module provides node classes for mindmap visualizations.
@@ -297,8 +299,8 @@ class Node:
         **kwargs: Any,
     ) -> None:
         self.vmobject = vmobject
-        self.height = self.vmobject.height + 2 * buff
-        self.width = self.vmobject.width + 2 * buff
+        cast(Any, self).height = cast(Any, self.vmobject).height + 2 * buff
+        cast(Any, self).width = cast(Any, self.vmobject).width + 2 * buff
         self.buff = buff
         self.surr_rect = Rectangle(width=self.width, height=self.height, **kwargs)
         self.x = 0
@@ -499,7 +501,7 @@ class Node:
                 return self._get_mindmap_connector(direction, **kwargs)
             case LayoutType.Standard:
                 return self._get_mindmap_connector(
-                    -direction if self.is_flip else direction, **kwargs
+                    -direction if cast(Any, self).is_flip else direction, **kwargs
                 )
             case LayoutType.TimeLine:
                 return self._get_timeline_connector(**kwargs)

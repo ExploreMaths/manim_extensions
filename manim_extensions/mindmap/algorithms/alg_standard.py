@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 """Standard mind map layout algorithm."""
 
 # unlinked-class-ok: Source
@@ -101,8 +103,8 @@ def copy_node(node: object) -> TreeNode:
 
     if node is None:
         return None
-    root = TreeNode(node.height, node.width)
-    for child in node.children:
+    root = TreeNode(cast(Any, node).height, cast(Any, node).width)
+    for child in cast(Any, node).children:
         root.add_child(copy_node(child))
     return root
 
@@ -153,17 +155,19 @@ def sync_copy_bfs(src: TreeNode, dst: object) -> Any:
             continue
         if s_node is None or d_node is None:
             raise ValueError("Tree structures do not match")
-        if len(s_node.children) != len(d_node.children):
+        if len(cast(Any, s_node).children) != len(cast(Any, d_node).children):
             raise ValueError("Child node counts do not match")
 
         # Copy data
-        d_node.x = s_node.x
-        d_node.y = s_node.y
-        d_node.level = s_node.level
-        d_node.is_flip = s_node.is_flip
+        cast(Any, d_node).x = cast(Any, s_node).x
+        cast(Any, d_node).y = cast(Any, s_node).y
+        cast(Any, d_node).level = cast(Any, s_node).level
+        cast(Any, d_node).is_flip = cast(Any, s_node).is_flip
 
         # Synchronously enqueue children
-        for s_child, d_child in zip(s_node.children, d_node.children):
+        for s_child, d_child in zip(
+            cast(Any, s_node).children, cast(Any, d_node).children
+        ):
             queue.append((s_child, d_child))
 
 
@@ -248,15 +252,17 @@ class StandardLayout(Layout):
 
     def _split(self) -> Any:
         """Split the root's children into left/right (or top/bottom) parts."""
-        self.left = TreeNode(self.root.height, self.root.width)
-        if (number := len(self.root.children)) > 0:
+        self.left = TreeNode(cast(Any, self.root).height, cast(Any, self.root).width)
+        if (number := len(cast(Any, self.root).children)) > 0:
             m, n = split_integer(number)
-            children = [copy_node(child) for child in self.root.children]
+            children = [copy_node(child) for child in cast(Any, self.root).children]
             for child in children[0:m]:
                 self.left.add_child(child)
             self.right = None
             if n > 0:
-                self.right = TreeNode(self.root.height, self.root.width)
+                self.right = TreeNode(
+                    cast(Any, self.root).height, cast(Any, self.root).width
+                )
                 for child in children[m::]:
                     self.right.add_child(child)
 
@@ -274,8 +280,8 @@ class StandardLayout(Layout):
             self.right = TidyTreeLayout(
                 self.right, self.flip_direction, self.node_spacing, self.level_spacing
             ).layout()
-            x = self.left.x - self.right.x
-            y = self.left.y - self.right.y
+            x = cast(Any, self.left).x - cast(Any, self.right).x
+            y = cast(Any, self.left).y - cast(Any, self.right).y
             self._offset(self.right, x, y)
             self._merge()
         sync_copy_bfs(self.left, self.root)
@@ -301,5 +307,5 @@ class StandardLayout(Layout):
 
     def _merge(self) -> Any:
         """Merge the right (or bottom) subtree into the left tree."""
-        for child in self.right.children:
+        for child in cast(Any, self.right).children:
             self.left.add_child(child)

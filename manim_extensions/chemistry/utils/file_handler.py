@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants
 
+from typing import cast, Any
 from typing import Any
 
 """File handling for chemistry module.
@@ -108,4 +109,4 @@ class FileHandler:
         if parse_from_string is not None:
             return parse_from_string(string)
 
-        return parser.data_parser(string)
+        return cast(Any, parser).data_parser(string)

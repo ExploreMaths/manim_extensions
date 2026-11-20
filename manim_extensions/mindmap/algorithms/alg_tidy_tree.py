@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 """
 Non-layered Tidy Tree :class:`~manim_extensions.mindmap.algorithms.layout.Layout` Algorithm (Python Implementation).
 Used to compute node positions for tree structures.
@@ -188,10 +190,10 @@ def move_right(node: object, move: float, is_horizontal: bool) -> Any:
         If ``True``, shifts ``y``; otherwise shifts ``x``.
     """
     if is_horizontal:
-        node.y += move
+        cast(Any, node).y += move
     else:
-        node.x += move
-    for child in node.children:
+        cast(Any, node).x += move
+    for child in cast(Any, node).children:
         move_right(child, move, is_horizontal)
 
 
@@ -209,8 +211,8 @@ def get_min(node: object, is_horizontal: bool) -> float:
     -------
         The minimum coordinate value.
     """
-    res = node.y if is_horizontal else node.x
-    for child in node.children:
+    res = cast(Any, node).y if is_horizontal else cast(Any, node).x
+    for child in cast(Any, node).children:
         res = min(get_min(child, is_horizontal), res)
     return res
 
@@ -245,13 +247,13 @@ def convert_back(converted: WrappedTree, root: object, is_horizontal: bool) -> A
         Whether the layout is horizontal.
     """
     if is_horizontal:
-        root.y = converted.x
+        cast(Any, root).y = converted.x
     else:
-        root.x = converted.x
+        cast(Any, root).x = cast(Any, converted).x
 
     for i, child in enumerate(converted.children):
-        if i < len(root.children):
-            convert_back(child, root.children[i], is_horizontal)
+        if i < len(cast(Any, root).children):
+            convert_back(child, cast(Any, root).children[i], is_horizontal)
 
 
 def layer(node: object, direction: str, level_spacing: float) -> Any:
@@ -269,8 +271,8 @@ def layer(node: object, direction: str, level_spacing: float) -> Any:
     level_spacing
         Spacing between adjacent layers.
     """
-    if (parent := node.parent) is not None:
-        node.level = parent.level + 1
+    if (parent := cast(Any, node).parent) is not None:
+        cast(Any, node).level = cast(Any, parent).level + 1
         if direction == LayoutDirection.LeftToRight:
             node.x = parent.x + (parent.width + node.width) / 2 + level_spacing
         elif direction == LayoutDirection.RightToLeft:
@@ -278,9 +280,13 @@ def layer(node: object, direction: str, level_spacing: float) -> Any:
         elif direction == LayoutDirection.BottomToTop:
             node.y = parent.y + (parent.height + node.height) / 2 + level_spacing
         else:
-            node.y = parent.y - (parent.height + node.height) / 2 - level_spacing
+            cast(Any, node).y = (
+                cast(Any, parent).y
+                - (cast(Any, parent).height + cast(Any, node).height) / 2
+                - level_spacing
+            )
 
-    for child in node.children:
+    for child in cast(Any, node).children:
         layer(child, direction, level_spacing)
 
 
@@ -603,10 +609,10 @@ class TidyTreeLayout(Layout):
             The accumulated modifier sum along the left contour.
         """
         li = t.children[0].extreme_left
-        li.thread_left = cl
+        cast(Any, li).thread_left = cl
         diff = (modsumcl - cl.mod) - t.children[0].mod_sum_extreme_left
-        li.mod += diff
-        li.prelim -= diff
+        cast(Any, li).mod += diff
+        cast(Any, li).prelim -= diff
         t.children[0].extreme_left = t.children[i].extreme_left
         t.children[0].mod_sum_extreme_left = t.children[i].mod_sum_extreme_left
 
@@ -627,10 +633,10 @@ class TidyTreeLayout(Layout):
             The accumulated modifier sum along the right contour.
         """
         ri = t.children[i].extreme_right
-        ri.thread_right = sr
+        cast(Any, ri).thread_right = sr
         diff = (modsumsr - sr.mod) - t.children[i].mod_sum_extreme_right
-        ri.mod += diff
-        ri.prelim -= diff
+        cast(Any, ri).mod += diff
+        cast(Any, ri).prelim -= diff
         t.children[i].extreme_right = t.children[i - 1].extreme_right
         t.children[i].mod_sum_extreme_right = t.children[i - 1].mod_sum_extreme_right
 
@@ -699,11 +705,14 @@ class TidyTreeLayout(Layout):
             -------
                 The connector line/curve.
             """
-            parent = node.parent
+            parent = cast(Any, node).parent
             match self.direction:
                 case LayoutDirection.TopToBottom:
                     xs, ys = parent.x, parent.y - parent.height / 2
-                    xe, ye = node.x, node.y + node.height / 2
+                    xe, ye = (
+                        cast(Any, node).x,
+                        cast(Any, node).y + cast(Any, node).height / 2,
+                    )
                     points = (
                         (xs, ys),
                         (xs, (ys + ye) / 2),
@@ -712,7 +721,10 @@ class TidyTreeLayout(Layout):
                     )
                 case LayoutDirection.BottomToTop:
                     xs, ys = parent.x, parent.y + parent.height / 2
-                    xe, ye = node.x, node.y - node.height / 2
+                    xe, ye = (
+                        cast(Any, node).x,
+                        cast(Any, node).y - cast(Any, node).height / 2,
+                    )
                     points = (
                         (xs, ys),
                         (xs, (ys + ye) / 2),
@@ -721,7 +733,10 @@ class TidyTreeLayout(Layout):
                     )
                 case LayoutDirection.LeftToRight:
                     xs, ys = parent.x + parent.width / 2, parent.y
-                    xe, ye = node.x - node.width / 2, node.y
+                    xe, ye = (
+                        cast(Any, node).x - cast(Any, node).width / 2,
+                        cast(Any, node).y,
+                    )
                     points = (
                         (xs, ys),
                         ((xs + xe) / 2, ys),
@@ -730,17 +745,20 @@ class TidyTreeLayout(Layout):
                     )
                 case LayoutDirection.RightToLeft:
                     xs, ys = parent.x - parent.width / 2, parent.y
-                    xe, ye = node.x + node.width / 2, node.y
+                    xe, ye = (
+                        cast(Any, node).x + cast(Any, node).width / 2,
+                        cast(Any, node).y,
+                    )
                     points = (
                         (xs, ys),
                         ((xs + xe) / 2, ys),
                         ((xs + xe) / 2, ye),
                         (xe, ye),
                     )
-            node.connector_points = points
+            cast(Any, node).connector_points = points
 
-            for child in node.children:
+            for child in cast(Any, node).children:
                 compute_node(child)
 
-        for child in self.root.children:
+        for child in cast(Any, self.root).children:
             compute_node(child)

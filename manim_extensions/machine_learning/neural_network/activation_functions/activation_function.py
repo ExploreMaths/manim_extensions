@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: MIT
 # patched: highlight the evaluated point in make_evaluate_animation
 
+from typing import cast, Any
 from typing import Any
 
 """Base class for activation function visualization."""
@@ -81,9 +82,9 @@ class ActivationFunction(ABC, VGroup):
         x_length: float = 0.5,
         y_length: float = 0.3,
         show_function_name: bool = True,
-        active_color: ManimColor = config.color_scheme.active_color,
-        plot_color: ManimColor = config.color_scheme.primary_color,
-        rectangle_color: ManimColor = config.color_scheme.secondary_color,
+        active_color: ManimColor = cast(Any, config).color_scheme.active_color,
+        plot_color: ManimColor = cast(Any, config).color_scheme.primary_color,
+        rectangle_color: ManimColor = cast(Any, config).color_scheme.secondary_color,
     ) -> None:
         super(VGroup, self).__init__()
         self.function_name = function_name

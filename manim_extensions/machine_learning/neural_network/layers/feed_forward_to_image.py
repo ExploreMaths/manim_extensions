@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 """Feed-forward to image layer connection visualization."""
 
 from __future__ import annotations
@@ -99,7 +101,7 @@ class FeedForwardToImage(ConnectiveLayer):
         animations = []
         image_mobject = self.image_layer.image_mobject
         # Move the dots to the centers of each of the nodes in the FeedForwardLayer
-        image_location = image_mobject.get_center()
+        image_location = cast(Any, image_mobject).get_center()
         for node in self.feed_forward_layer.node_group:
             new_dot = Dot(
                 node.get_center(),

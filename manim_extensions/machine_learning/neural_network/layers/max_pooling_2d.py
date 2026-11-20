@@ -4,6 +4,8 @@
 # patched: return a real Create animation instead of a no-op
 
 
+from typing import cast, Any
+
 """Max pooling 2D layer visualization for neural networks."""
 
 from __future__ import annotations
@@ -138,9 +140,9 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         )
         self.add(self.feature_maps)
         self.rotate(
-            config.three_d_config.rotation_angle,
+            cast(Any, config).three_d_config.rotation_angle,
             about_point=self.get_center(),
-            axis=config.three_d_config.rotation_axis,
+            axis=cast(Any, config).three_d_config.rotation_axis,
         )
         self.feature_map_size = (
             input_layer.feature_map_size[0] / self.kernel_size,

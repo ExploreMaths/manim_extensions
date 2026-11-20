@@ -4,6 +4,8 @@
 # patched: lazy-import pymunk (physics extra)
 
 
+from typing import cast, Any
+
 r"""Systems of :class:`~manim_extensions.physics.rigid_mechanics.pendulum.Pendulum` and their motion visualisations."""
 
 from __future__ import annotations
@@ -163,7 +165,7 @@ class MultiPendulum(VGroup):
     def end_swinging(self) -> Any:
         """Stop swinging."""
         spacescene = self.bobs[0].spacescene
-        spacescene.stop_rigidity(self.bobs)
+        cast(Any, spacescene).stop_rigidity(self.bobs)
 
 
 class Pendulum(MultiPendulum):

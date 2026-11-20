@@ -4,6 +4,8 @@
 # patched: document module-level constants
 
 
+from typing import cast, Any
+
 """Contains pushdown automaton."""
 
 # unlinked-class-ok: Source
@@ -288,11 +290,11 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
         for transition in state_transitions:
 
             # check if any transition's rules match the input token
-            for (
-                rule
-            ) in transition.rules:  # Iterate through the transtion's read options
+            for rule in cast(
+                Any, transition
+            ).rules:  # Iterate through the transtion's read options
                 if (
-                    rule.read_symbol == token.tex_string
+                    rule.read_symbol == cast(Any, token).tex_string
                     or rule.read_symbol == r"\epsilon"
                 ):
                     next_states.append(transition.transition_to)

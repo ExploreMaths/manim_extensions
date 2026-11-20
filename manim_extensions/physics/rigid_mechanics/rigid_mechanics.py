@@ -243,24 +243,24 @@ class SpaceScene(Scene):
         for mob in mobs:
             if not hasattr(mob, "body"):
                 self.add(mob)
-                mob.body = pymunk.Body()
+                cast(Any, mob).body = pymunk.Body()
                 mob.body.position = mob.get_x(), mob.get_y()
                 get_angle(mob)
                 if not hasattr(mob, "angle"):
-                    mob.angle = 0
+                    cast(Any, mob).angle = 0
                 mob.body.angle = mob.angle
                 get_shape(mob)
-                mob.shape.density = density
-                mob.shape.elasticity = elasticity
-                mob.shape.friction = friction
-                mob.spacescene = self
+                cast(Any, mob.shape).density = density
+                cast(Any, mob.shape).elasticity = elasticity
+                cast(Any, mob.shape).friction = friction
+                cast(Any, mob).spacescene = self
 
                 self.add_body(mob)
                 mob.add_updater(_simulate)
 
             else:
-                if mob.body.is_sleeping:
-                    mob.body.activate()
+                if cast(Any, mob.body).is_sleeping:
+                    cast(Any, mob.body).activate()
 
     def make_static_body(
         self, *mobs: Mobject, elasticity: float = 1, friction: float = 0.8
@@ -280,10 +280,10 @@ class SpaceScene(Scene):
             if isinstance(mob, VGroup or Group):
                 self.make_static_body(*mob)
                 return
-            mob.body = self.space.space.static_body
+            cast(Any, mob).body = self.space.space.static_body
             get_shape(mob)
-            mob.shape.elasticity = elasticity
-            mob.shape.friction = friction
+            cast(Any, mob.shape).elasticity = elasticity
+            cast(Any, mob.shape).friction = friction
             self.add_body(mob)
 
     def stop_rigidity(self, *mobs: Mobject) -> Any:
@@ -298,7 +298,7 @@ class SpaceScene(Scene):
             if isinstance(mob, VGroup or Group):
                 self.stop_rigidity(*mob)
             if hasattr(mob, "body"):
-                mob.body.sleep()
+                cast(Any, mob.body).sleep()
 
 
 def _step(space: Space, dt: float) -> Any:
@@ -322,10 +322,10 @@ def _simulate(b: Mobject) -> Any:
     b
         The physics body whose state is synchronised to its mobject.
     """
-    x, y = b.body.position
+    x, y = cast(Any, b.body).position
     b.move_to(x * RIGHT + y * UP)
-    b.rotate(b.body.angle - b.angle)
-    b.angle = b.body.angle
+    b.rotate(cast(Any, b.body).angle - cast(Any, b).angle)
+    cast(Any, b).angle = cast(Any, b.body).angle
 
 
 def get_shape(mob: VMobject) -> Any:
@@ -338,9 +338,9 @@ def get_shape(mob: VMobject) -> Any:
     """
     pymunk = require("physics", "pymunk")
     if isinstance(mob, Circle):
-        mob.shape = pymunk.Circle(body=mob.body, radius=mob.radius)
+        cast(Any, mob).shape = pymunk.Circle(body=mob.body, radius=mob.radius)
     elif isinstance(mob, Line):
-        mob.shape = pymunk.Segment(
+        cast(Any, mob).shape = pymunk.Segment(
             mob.body,
             (mob.get_start()[0], mob.get_start()[1]),
             (mob.get_end()[0], mob.get_end()[1]),
@@ -349,12 +349,12 @@ def get_shape(mob: VMobject) -> Any:
     elif issubclass(type(mob), Rectangle):
         width = np.linalg.norm(mob.get_vertices()[1] - mob.get_vertices()[0])
         height = np.linalg.norm(mob.get_vertices()[2] - mob.get_vertices()[1])
-        mob.shape = pymunk.Poly.create_box(mob.body, (width, height))
+        cast(Any, mob).shape = pymunk.Poly.create_box(mob.body, (width, height))
     elif issubclass(type(mob), Polygram):
         vertices = [(a, b) for a, b, _ in mob.get_vertices() - mob.get_center()]
-        mob.shape = pymunk.Poly(mob.body, vertices)
+        cast(Any, mob).shape = pymunk.Poly(mob.body, vertices)
     else:
-        mob.shape = pymunk.Poly.create_box(mob.body, (mob.width, mob.height))
+        cast(Any, mob).shape = pymunk.Poly.create_box(mob.body, (mob.width, mob.height))
 
 
 def get_angle(mob: VMobject) -> Any:
@@ -369,6 +369,6 @@ def get_angle(mob: VMobject) -> Any:
     if issubclass(type(mob), Polygon):
         vec1 = mob.get_vertices()[0] - mob.get_vertices()[1]
         vec2 = type(mob)().get_vertices()[0] - type(mob)().get_vertices()[1]
-        mob.angle = angle_between_vectors(vec1, vec2)
+        cast(Any, mob).angle = angle_between_vectors(vec1, vec2)
     elif isinstance(mob, Line):
-        mob.angle = mob.get_angle()
+        cast(Any, mob).angle = mob.get_angle()

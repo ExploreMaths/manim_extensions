@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 """:class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` class for automata visualizations.
 
 This module provides transition visualization for automata.
@@ -127,7 +129,7 @@ class ManimTransition(Transition, VGroup):
                     self.transition_from.id
                 )
             )
-            opposite_transition.convert_straight_arrow_to_curved_arrow()
+            cast(Any, opposite_transition).convert_straight_arrow_to_curved_arrow()
 
             # create this(self) arrow
             self.construct_curved_arrow()
@@ -170,7 +172,7 @@ class ManimTransition(Transition, VGroup):
         -------
             The two vertex points ``(p1, p2)``.
         """
-        circle = self.transition_from.circle
+        circle = cast(Any, self.transition_from).circle
 
         p1 = circle.point_at_angle(PI / 4 + PI / 2)
         p2 = circle.point_at_angle(PI / 4)
@@ -214,11 +216,11 @@ class ManimTransition(Transition, VGroup):
             The normal direction used to offset the arrow label.
         """
 
-        x1 = self.transition_from.get_x()
-        y1 = self.transition_from.get_y()
+        x1 = cast(Any, self.transition_from).get_x()
+        y1 = cast(Any, self.transition_from).get_y()
 
-        x2 = self.transition_to.get_x()
-        y2 = self.transition_to.get_y()
+        x2 = cast(Any, self.transition_to).get_x()
+        y2 = cast(Any, self.transition_to).get_y()
 
         difference_of_x = x2 - x1
         difference_of_y = y2 - y1
@@ -248,11 +250,11 @@ class ManimTransition(Transition, VGroup):
             x1 = self.transition_from[0]
             y1 = self.transition_from[1]
         else:
-            x1 = self.transition_from.get_x()
-            y1 = self.transition_from.get_y()
+            x1 = cast(Any, self.transition_from).get_x()
+            y1 = cast(Any, self.transition_from).get_y()
 
-        x2 = self.transition_to.get_x()
-        y2 = self.transition_to.get_y()
+        x2 = cast(Any, self.transition_to).get_x()
+        y2 = cast(Any, self.transition_to).get_y()
 
         # midpoint
         c1 = (x1 + x2) / 2
@@ -477,7 +479,7 @@ class ManimPushDownAutomatonTransition(ManimTransition):
                     self.transition_from.id
                 )
             )
-            opposite_transition.convert_straight_arrow_to_curved_arrow()
+            cast(Any, opposite_transition).convert_straight_arrow_to_curved_arrow()
 
             # create this(self) arrow
             self.construct_curved_arrow()

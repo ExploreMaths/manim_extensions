@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 """Rubik's Cube helpers and scene objects.
 
 The module exposes the main cube model and related animation utilities for
@@ -54,7 +56,7 @@ def _install_grouped_depth_sorting() -> None:
         return sorted(mobjects, key=z_key)
 
     ThreeDCamera.get_mobjects_to_display = _grouped
-    ThreeDCamera._manim_extensions_grouped_z_key = True
+    cast(Any, ThreeDCamera)._manim_extensions_grouped_z_key = True
 
 
 try:

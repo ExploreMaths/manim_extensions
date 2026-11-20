@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """Manim chemistry molecule representation.
@@ -124,10 +125,10 @@ class MCMolecule:
             raise Exception("Bonds list is not a bonds list.")
 
         for mc_bond in self.bonds:
-            mc_bond.from_atom.add_atoms(mc_bond.to_atom)
-            mc_bond.from_atom.add_bonds(mc_bond)
-            mc_bond.to_atom.add_atoms(mc_bond.from_atom)
-            mc_bond.to_atom.add_bonds(mc_bond)
+            cast(Any, mc_bond.from_atom).add_atoms(mc_bond.to_atom)
+            cast(Any, mc_bond.from_atom).add_bonds(mc_bond)
+            cast(Any, mc_bond.to_atom).add_atoms(mc_bond.from_atom)
+            cast(Any, mc_bond.to_atom).add_bonds(mc_bond)
 
     @staticmethod
     def construct_from_data_dict(
@@ -411,10 +412,10 @@ class MCMolecule:
 
         bonds_to_be_removed = []
         for index, bond in enumerate(self.bonds):
-            if bond.from_atom.molecule_index in atoms_to_be_removed:
+            if cast(Any, bond.from_atom).molecule_index in atoms_to_be_removed:
                 bonds_to_be_removed.append(index)
 
-            if bond.to_atom.molecule_index in atoms_to_be_removed:
+            if cast(Any, bond.to_atom).molecule_index in atoms_to_be_removed:
                 bonds_to_be_removed.append(index)
 
         if not bonds_to_be_removed:
@@ -437,12 +438,15 @@ class MCMolecule:
             self.atoms_by_index[index] = atom
 
         for bond in self.bonds:
-            if bond.from_atom.molecule_index in atoms_old_index_mapping.keys():
-                bond.from_atom.molecule_index = atoms_old_index_mapping[
-                    bond.from_atom.molecule_index
+            if (
+                cast(Any, bond.from_atom).molecule_index
+                in atoms_old_index_mapping.keys()
+            ):
+                cast(Any, bond.from_atom).molecule_index = atoms_old_index_mapping[
+                    cast(Any, bond.from_atom).molecule_index
                 ]
 
-            if bond.to_atom.molecule_index in atoms_old_index_mapping.keys():
-                bond.to_atom.molecule_index = atoms_old_index_mapping[
-                    bond.to_atom.molecule_index
+            if cast(Any, bond.to_atom).molecule_index in atoms_old_index_mapping.keys():
+                cast(Any, bond.to_atom).molecule_index = atoms_old_index_mapping[
+                    cast(Any, bond.to_atom).molecule_index
                 ]

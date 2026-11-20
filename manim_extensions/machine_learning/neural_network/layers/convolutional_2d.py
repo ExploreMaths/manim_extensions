@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 """Convolutional 2D layer for neural network visualizations.
 
 This module provides the convolutional 2D layer class for neural network visualizations.
@@ -314,9 +316,9 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         # Rotate stuff properly
         # normal_vector = self.feature_maps[0].get_normal_vector()
         self.rotate(
-            config.three_d_config.rotation_angle,
+            cast(Any, config).three_d_config.rotation_angle,
             about_point=self.get_center(),
-            axis=config.three_d_config.rotation_axis,
+            axis=cast(Any, config).three_d_config.rotation_axis,
         )
 
         self.construct_activation_function()

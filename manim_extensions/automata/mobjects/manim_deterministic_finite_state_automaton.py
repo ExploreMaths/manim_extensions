@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """Deterministic finite state automaton visualization.
@@ -87,8 +88,8 @@ class ManimdeterministicFiniteAutomaton(ManimAutomaton):
             )
 
         if cli:  # if cli exist display options to user
-            self.cli.display_nda_options()
+            cast(Any, self.cli).display_nda_options()
             if (
-                self.cli.nda_option == 0
+                cast(Any, self.cli).nda_option == 0
             ):  # check the settings of the cli (what the user wants to do)
                 self.nda_builder = True

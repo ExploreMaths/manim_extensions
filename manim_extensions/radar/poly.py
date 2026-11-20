@@ -4,6 +4,8 @@
 
 # -*- coding: utf-8 -*-
 
+from typing import cast, Any
+
 """:class:`~manim_extensions.radar.poly.PolyRadarChart` — a dodecahedral radar.
 
 The twelve data axes point along the centres of the twelve pentagonal faces.
@@ -480,7 +482,7 @@ class PolyRadarChart(VGroup):
             return self
         for s in sorted(self.skin_parts):
             part = self.skin_parts[s]
-            part["edges"].set_stroke(
+            cast(Any, part["edges"]).set_stroke(
                 opacity=(0.7 if s == max(self.skin_parts) else 0.42)
             )
             anims = [Create(part["edges"])]

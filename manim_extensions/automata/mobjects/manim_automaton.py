@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 """Contains classes for Manim automaton."""
 
 from __future__ import annotations
@@ -256,7 +258,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         if auto_scaling > 10.0:
             size_factor = 10.0 / auto_scaling
             for state_obj in self.states:
-                state_obj.scale(size_factor)
+                cast(Any, state_obj).scale(size_factor)
 
     def construct_transitions(self, transitions: list[dict[str, object]]) -> Any:
         """Build :class:`~manim_extensions.automata.mobjects.manim_transition.ManimTransition` objects from transition dicts, grouping read symbols by state pair.
@@ -437,7 +439,9 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
                 path_options = self.generate_next_state_options(
                     state_pointer, transitions
                 )
-                user_choice = self.cli.display_dictionary_options(path_options)
+                user_choice = cast(Any, self.cli).display_dictionary_options(
+                    path_options
+                )
                 transition = path_options[user_choice][
                     1
                 ]  # get transition given user choice
@@ -897,20 +901,20 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         for state in self.states:
             if state.id in state_counter:
                 new_subscript_object = Tex(state_counter[state.id], color=PURE_YELLOW)
-                new_subscript_object.set_x(state.subscript.get_x())
-                new_subscript_object.set_y(state.subscript.get_y())
+                new_subscript_object.set_x(cast(Any, state).subscript.get_x())
+                new_subscript_object.set_y(cast(Any, state).subscript.get_y())
                 animations.append(
                     self.manim_animations.animate_transform_to_new_subscript_object(
-                        state.subscript, new_subscript_object
+                        cast(Any, state).subscript, new_subscript_object
                     )
                 )
             else:
                 new_subscript_object = Tex(0, color=BLUE)
-                new_subscript_object.set_x(state.subscript.get_x())
-                new_subscript_object.set_y(state.subscript.get_y())
+                new_subscript_object.set_x(cast(Any, state).subscript.get_x())
+                new_subscript_object.set_y(cast(Any, state).subscript.get_y())
                 animations.append(
                     self.manim_animations.animate_transform_to_new_subscript_object(
-                        state.subscript, new_subscript_object
+                        cast(Any, state).subscript, new_subscript_object
                     )
                 )
 

@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: MIT
 # patched: implement text leaf nodes and the tree expansion animations
 
+from typing import cast, Any
 from typing import Any
 
 """
@@ -299,13 +300,13 @@ class DecisionTreeDiagram(Group):
             self.tree.children_left[node_index] != self.tree.children_right[node_index]
         )
         if is_split_node:
-            node_feature = self.tree.feature[node_index]
-            node_threshold = self.tree.threshold[node_index]
+            node_feature = cast(Any, self.tree).feature[node_index]
+            node_threshold = cast(Any, self.tree).threshold[node_index]
             node = SplitNode(self.feature_names[node_feature], node_threshold)
         else:
             # Get the most abundant class for the given leaf node
             # Make the leaf node object
-            tree_class_index = np.argmax(self.tree.value[node_index])
+            tree_class_index = np.argmax(cast(Any, self.tree).value[node_index])
             node = LeafNode(
                 class_index=tree_class_index,
                 class_colors=self.class_colors,
@@ -351,7 +352,7 @@ class DecisionTreeDiagram(Group):
             map keyed by ``"parent,child"`` pairs.
         """
         tree_group = Group()
-        max_depth = self.tree.max_depth
+        max_depth = cast(Any, self.tree).max_depth
         # Make the root node
         nodes_map = {}
         root_node = self._make_node(
@@ -472,7 +473,7 @@ class DecisionTreeDiagram(Group):
         split_node_animations = {}
         placeholder_class_nodes = {}
         # Show the root node as its dominant class first.
-        root_class_index = int(np.argmax(self.tree.value[0]))
+        root_class_index = int(np.argmax(cast(Any, self.tree).value[0]))
         root_placeholder_node = self._make_placeholder_leaf(root_class_index)
         root_placeholder_node.move_to(self.nodes_map[0])
         root_placeholder_node.scale_to_fit_height(self.nodes_map[0].height)
@@ -504,7 +505,9 @@ class DecisionTreeDiagram(Group):
                         lag_ratio=0.0,
                     )
                 else:
-                    child_class_index = int(np.argmax(self.tree.value[child_index]))
+                    child_class_index = int(
+                        np.argmax(cast(Any, self.tree).value[child_index])
+                    )
                     placeholder_child = self._make_placeholder_leaf(child_class_index)
                     placeholder_child.move_to(self.nodes_map[child_index])
                     placeholder_child.scale_to_fit_height(

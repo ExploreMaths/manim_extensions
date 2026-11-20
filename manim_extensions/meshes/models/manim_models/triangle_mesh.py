@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """2D triangle manim mesh with functionality useful for delaunay meshes."""
@@ -132,10 +133,10 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
                 triangle = [self.mesh.get_3d_vertices()[i] for i in face]
                 face = self.get_face(face_idx)
                 new_face = face.copy()
-                new_face.set_points_as_corners(
+                cast(Any, new_face).set_points_as_corners(
                     [triangle[0], triangle[1], triangle[2], triangle[0]],
                 )
-                anims.append(face.animate(**kwargs).become(new_face))
+                anims.append(cast(Any, face).animate(**kwargs).become(new_face))
         if self.display_edges:
             self.edges.remove(old_edge)
             self.edges.insert(

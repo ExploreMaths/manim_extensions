@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 """Triplet to feed-forward layer connection visualization."""
 
 from __future__ import annotations
@@ -107,7 +109,7 @@ class TripletToFeedForward(ConnectiveLayer):
             image_animations = []
             dots = []
             # Move dots from each image to the centers of each of the nodes in the FeedForwardLayer
-            image_location = image_mobject.get_center()
+            image_location = cast(Any, image_mobject).get_center()
             for node in self.feed_forward_layer.node_group:
                 new_dot = Dot(
                     image_location,

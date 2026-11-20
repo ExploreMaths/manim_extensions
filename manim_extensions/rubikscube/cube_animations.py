@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """Rubik's Cube animations for Manim.
@@ -73,8 +74,8 @@ class CubeMove(Animation):
             A copy of the cube with indices initialised if needed.
         """
         starting_mobject = self.mobject.copy()
-        if starting_mobject.indices == {}:
-            starting_mobject.set_indices()
+        if cast(Any, starting_mobject).indices == {}:
+            cast(Any, starting_mobject).set_indices()
         return starting_mobject
 
     def interpolate_mobject(self, alpha: float) -> Any:
@@ -87,11 +88,13 @@ class CubeMove(Animation):
         """
         self.mobject.become(self.starting_mobject)
 
-        VGroup(*self.mobject.get_face(self.face[0])).rotate(
+        VGroup(*cast(Any, self.mobject).get_face(self.face[0])).rotate(
             self.rate_func(alpha) * self.angle, self.axis
         )
 
     def finish(self) -> Any:
         """Finalise the cube move and update face indices after animation completes."""
         super().finish()
-        self.mobject.adjust_indices(self.mobject.get_face(self.face[0], False))
+        cast(Any, self.mobject).adjust_indices(
+            cast(Any, self.mobject).get_face(self.face[0], False)
+        )

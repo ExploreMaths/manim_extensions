@@ -2,6 +2,8 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import xmltodict (chemistry extra)
 
+from typing import cast, Any
+
 """XML format parser for chemical files.
 
 This module provides the :class:`~manim_extensions.chemistry.utils.parsers.xml_parser.XMLParser` class for parsing XML format chemical files.
@@ -82,7 +84,9 @@ class XMLParser(BaseParser):
         """
         xmltodict: ModuleType = require("chemistry", "xmltodict")
         parsed_xml: dict[str, object] = xmltodict.parse(data)
-        molecule_data = parsed_xml.get("PC-Compounds").get("PC-Compound")
+        molecule_data = cast(Any, cast(Any, parsed_xml).get("PC-Compounds")).get(
+            "PC-Compound"
+        )
         molecule_parsed_data = XMLParser.parse_molecule_data(
             molecule_data=molecule_data
         )
@@ -142,16 +146,22 @@ class XMLParser(BaseParser):
 
         compound_coords: dict[str, object] = molecule_data.get("PC-Compound_coords")
         coords_data_dict = compound_coords.get("PC-Coordinates")
-        conformers_section: dict[str, object] = coords_data_dict.get(
+        conformers_section: dict[str, object] = cast(Any, coords_data_dict).get(
             "PC-Coordinates_conformers"
         )
         atoms_coords_raw = conformers_section.get("PC-Conformer")
 
-        conformer_x: dict[str, object] = atoms_coords_raw.get("PC-Conformer_x")
+        conformer_x: dict[str, object] = cast(Any, atoms_coords_raw).get(
+            "PC-Conformer_x"
+        )
         coords_x = [float(coord) for coord in conformer_x.get("PC-Conformer_x_E")]
-        conformer_y: dict[str, object] = atoms_coords_raw.get("PC-Conformer_y")
+        conformer_y: dict[str, object] = cast(Any, atoms_coords_raw).get(
+            "PC-Conformer_y"
+        )
         coords_y = [float(coord) for coord in conformer_y.get("PC-Conformer_y_E")]
-        conformer_z: dict[str, object] | None = atoms_coords_raw.get("PC-Conformer_z")
+        conformer_z: dict[str, object] | None = cast(Any, atoms_coords_raw).get(
+            "PC-Conformer_z"
+        )
         if conformer_z:
             coords_z = [float(coord) for coord in conformer_z.get("PC-Conformer_z_E")]
 
@@ -188,17 +198,23 @@ class XMLParser(BaseParser):
         compound_bonds: dict[str, object] = molecule_data.get("PC-Compound_bonds")
         bonds_data_dict = compound_bonds.get("PC-Bonds")
 
-        aid1_section: dict[str, object] = bonds_data_dict.get("PC-Bonds_aid1")
+        aid1_section: dict[str, object] = cast(Any, bonds_data_dict).get(
+            "PC-Bonds_aid1"
+        )
         from_atoms_raw_data = aid1_section.get("PC-Bonds_aid1_E")
         from_atoms_data = [
             int(from_atom_index) for from_atom_index in from_atoms_raw_data
         ]
 
-        aid2_section: dict[str, object] = bonds_data_dict.get("PC-Bonds_aid2")
+        aid2_section: dict[str, object] = cast(Any, bonds_data_dict).get(
+            "PC-Bonds_aid2"
+        )
         to_atoms_raw_data = aid2_section.get("PC-Bonds_aid2_E")
         to_atoms_data = [int(to_atom_index) for to_atom_index in to_atoms_raw_data]
 
-        order_section: dict[str, object] = bonds_data_dict.get("PC-Bonds_order")
+        order_section: dict[str, object] = cast(Any, bonds_data_dict).get(
+            "PC-Bonds_order"
+        )
         bonds_type_raw_data = order_section.get("PC-BondType")
         bonds_type_data = [
             int(bond_type_data.get("#text")) for bond_type_data in bonds_type_raw_data

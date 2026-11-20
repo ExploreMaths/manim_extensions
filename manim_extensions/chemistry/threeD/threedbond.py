@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """3D bond representation for Manim chemistry.
@@ -109,8 +110,8 @@ class ThreeDCylinder(OpenGLSurface):
             color = self.color
             opacity = self.opacity
         elif config.renderer == RendererType.CAIRO:
-            color = self.fill_color
-            opacity = self.fill_opacity
+            color = cast(Any, self).fill_color
+            opacity = cast(Any, self).fill_opacity
 
         self.base_top = Circle(
             radius=self.radius,
@@ -471,7 +472,7 @@ class ThreeDBond(OpenGLGroup):
 
         else:
             raise Exception(
-                f"Unknown or unsupported bond type at bond with from atom {self.from_atom} with index {self.from_atom.index}and to atom {self.to_atom} with index {self.from_atom.index}"
+                f"Unknown or unsupported bond type at bond with from atom {self.from_atom} with index {cast(Any, self.from_atom).index}and to atom {self.to_atom} with index {cast(Any, self.from_atom).index}"
             )
 
         self.add(self.bonds)

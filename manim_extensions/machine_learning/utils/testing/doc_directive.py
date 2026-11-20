@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 r"""
 A directive for including Manim videos in a Sphinx document.
 """
@@ -190,9 +192,9 @@ class ManimDirective(Directive):
         document = state_machine.document
 
         source_file_name = Path(document.attributes["source"])
-        source_rel_name = source_file_name.relative_to(setup.confdir)
+        source_rel_name = source_file_name.relative_to(cast(Any, setup).confdir)
         source_rel_dir = source_rel_name.parents[0]
-        dest_dir = Path(setup.app.builder.outdir, source_rel_dir).absolute()
+        dest_dir = Path(cast(Any, setup).app.builder.outdir, source_rel_dir).absolute()
         if not dest_dir.exists():
             dest_dir.mkdir(parents=True, exist_ok=True)
 
@@ -204,7 +206,7 @@ class ManimDirective(Directive):
         ]
         source_block = "\n".join(source_block)
 
-        config.media_dir = (Path(setup.confdir) / "media").absolute()
+        config.media_dir = (Path(cast(Any, setup).confdir) / "media").absolute()
         config.images_dir = "{media_dir}/images"
         config.video_dir = "{media_dir}/videos/{quality}"
         output_file = f"{clsname}-{classnamedict[clsname]}"
@@ -267,7 +269,7 @@ class ManimDirective(Directive):
             clsname=clsname,
             clsname_lowercase=clsname.lower(),
             hide_source=hide_source,
-            filesrc_rel=Path(filesrc).relative_to(setup.confdir).as_posix(),
+            filesrc_rel=Path(filesrc).relative_to(cast(Any, setup).confdir).as_posix(),
             no_autoplay=no_autoplay,
             output_file=output_file,
             save_last_frame=save_last_frame,
@@ -367,9 +369,9 @@ def setup(app: Sphinx) -> dict[Any, Any]:
     """
     app.add_node(SkipManimNode, html=(visit, depart))
 
-    setup.app = app
-    setup.config = app.config
-    setup.confdir = app.confdir
+    cast(Any, setup).app = app
+    cast(Any, setup).config = cast(Any, app).config
+    cast(Any, setup).confdir = cast(Any, app).confdir
 
     app.add_directive("manim", ManimDirective)
 

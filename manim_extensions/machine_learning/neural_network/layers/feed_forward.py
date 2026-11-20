@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 """Feed forward layer for neural network visualizations.
 
 This module provides the feed forward layer class for neural network visualizations.
@@ -102,14 +104,16 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         num_nodes: int,
         layer_buffer: float = SMALL_BUFF / 2,
         node_radius: float = 0.08,
-        node_color: ManimColor = config.color_scheme.primary_color,
-        node_outline_color: ManimColor = config.color_scheme.secondary_color,
-        rectangle_color: ManimColor = config.color_scheme.secondary_color,
+        node_color: ManimColor = cast(Any, config).color_scheme.primary_color,
+        node_outline_color: ManimColor = cast(Any, config).color_scheme.secondary_color,
+        rectangle_color: ManimColor = cast(Any, config).color_scheme.secondary_color,
         node_spacing: float = 0.3,
-        rectangle_fill_color: ManimColor = config.color_scheme.background_color,
+        rectangle_fill_color: ManimColor = cast(
+            Any, config
+        ).color_scheme.background_color,
         node_stroke_width: float = 2.0,
         rectangle_stroke_width: float = 2.0,
-        animation_dot_color: ManimColor = config.color_scheme.active_color,
+        animation_dot_color: ManimColor = cast(Any, config).color_scheme.active_color,
         activation_function: ActivationFunction | str | None = None,
         **kwargs: Any,
     ) -> None:
@@ -220,10 +224,14 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         # Make highlight animation
         succession = Succession(
             ApplyMethod(
-                nodes_to_highlight.set_color, self.animation_dot_color, run_time=0.25
+                cast(Any, nodes_to_highlight).set_color,
+                self.animation_dot_color,
+                run_time=0.25,
             ),
             Wait(1.0),
-            ApplyMethod(nodes_to_highlight.set_color, self.node_color, run_time=0.25),
+            ApplyMethod(
+                cast(Any, nodes_to_highlight).set_color, self.node_color, run_time=0.25
+            ),
         )
 
         return succession

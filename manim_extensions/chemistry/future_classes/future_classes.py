@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """Future classes for Manim chemistry.
@@ -181,8 +182,8 @@ class Element(VGroup):
         self.arrange_particles()
         self.subelectron_holes_group = self.make_subelectron_holes()
         if self.subelectron_holes:
-            self.particles.add(self.subelectron_holes_group.shift([0, 0, 0]))
-            self.add(self.subelectron_holes_group.shift([0, 0, 0]))
+            self.particles.add(cast(Any, self.subelectron_holes_group).shift([0, 0, 0]))
+            self.add(cast(Any, self.subelectron_holes_group).shift([0, 0, 0]))
 
     def central_atom(self) -> LabeledDot:
         """Create a labeled dot representing the central atom scaled to the element radius.
@@ -324,9 +325,11 @@ class ElementFrame(VGroup):
         self.symbol = Text(element_symbol, color=BLACK).scale(1.5).shift(0.2 * UP)
         self.name = Text(element_name, color=BLACK).shift(0.75 * DOWN)
 
-        name_rescaling_factor = 0.75 * self.frame.width / self.name.width
+        name_rescaling_factor = (
+            0.75 * cast(Any, self.frame).width / cast(Any, self.name).width
+        )
 
-        self.name.scale(name_rescaling_factor)
+        cast(Any, self.name).scale(name_rescaling_factor)
         self.add(self.frame, self.symbol, self.name)
 
 
@@ -1022,7 +1025,7 @@ def zero(function: Callable[..., Any]) -> Callable[..., float]:
     return wrapper
 
 
-_zero = zero.__wrapped__
+_zero = cast(Any, zero).__wrapped__
 
 
 @_zero

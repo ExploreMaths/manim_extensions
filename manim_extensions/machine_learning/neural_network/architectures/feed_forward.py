@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """Feed-forward neural network architecture visualization."""
@@ -32,7 +33,7 @@ class FeedForwardNeuralNetwork(NeuralNetwork):
         self,
         layer_node_count: list[int],
         node_radius: float = 0.08,
-        node_color: ManimColor = config.color_scheme.primary_color,
+        node_color: ManimColor = cast(Any, config).color_scheme.primary_color,
         **kwargs: Any,
     ) -> None:
         # construct layer

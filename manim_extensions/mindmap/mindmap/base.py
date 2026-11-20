@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """Mindmap base classes for Manim.
@@ -116,8 +117,8 @@ def generate_tree(
         level = len(ID)
         mobj = _generate_node(Mobj=current_map["node"], level=level)
         current_node = Node(mobj, buff, **node_style.get_node_style(level=level))
-        current_node.ID = ID
-        current_node.text = current_map.get("text", None)
+        cast(Any, current_node).ID = ID
+        cast(Any, current_node).text = cast(Any, current_map).get("text", None)
 
         if "child" in current_map:
             for index, child_map in enumerate(current_map["child"]):
@@ -201,7 +202,7 @@ class AbstractMap(Group):
             The root of the subtree to position.
         """
         pos = np.array([node.x, node.y, 0])
-        node.vmobject.move_to(pos)
+        cast(Any, node.vmobject).move_to(pos)
         node.surr_rect.move_to(pos)
         for child in node.children:
             self._set_node_position(child)
@@ -371,7 +372,7 @@ class AbstractMap(Group):
         -------
             The connector style dictionary for that level.
         """
-        return self.node_style.get_line_style(level=level)
+        return cast(Any, self.node_style).get_line_style(level=level)
 
     def get_children(self, ID: str) -> Group:
         """Return the child nodes of the node with the given ID.

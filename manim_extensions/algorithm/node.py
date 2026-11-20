@@ -4,6 +4,8 @@
 # patched: document module-level constants
 
 
+from typing import cast, Any
+
 """:class:`~manim_extensions.algorithm.node.Node` data structure for algorithm visualization."""
 
 from __future__ import annotations
@@ -430,7 +432,10 @@ class Node(VMobject):
 
             super().__init__(
                 AnimationGroup(
-                    *[node.animate.set_fill(color, opacity) for node in nodes]
+                    *[
+                        cast(Any, node).animate.set_fill(color, opacity)
+                        for node in nodes
+                    ]
                 ),
                 **kwargs,
             )
@@ -469,7 +474,12 @@ class Node(VMobject):
         def __init__(self, *nodes: List[Node], **kwargs: Any) -> None:
             super().__init__(
                 AnimationGroup(
-                    *[node.animate.set_fill(node.get_fill_color(), 0) for node in nodes]
+                    *[
+                        cast(Any, node).animate.set_fill(
+                            cast(Any, node).get_fill_color(), 0
+                        )
+                        for node in nodes
+                    ]
                 ),
                 **kwargs,
             )

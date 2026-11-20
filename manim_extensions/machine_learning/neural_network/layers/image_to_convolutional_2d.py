@@ -4,6 +4,8 @@
 # patched: route three-channel images to the RGB animation and implement it
 
 
+from typing import cast, Any
+
 """Image to convolutional 2D layer connection visualization."""
 
 from __future__ import annotations
@@ -204,8 +206,8 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         # Make rotation of image
         rotation = ApplyMethod(
             image_mobject.rotate,
-            config.three_d_config.rotation_angle,
-            config.three_d_config.rotation_axis,
+            cast(Any, config).three_d_config.rotation_angle,
+            cast(Any, config).three_d_config.rotation_axis,
             # A trailing dict is forwarded to the method as keyword
             # arguments (see ApplyMethod.create_target).
             {"about_point": image_mobject.get_center()},

@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """Graph-based molecule representation for Manim chemistry.
@@ -913,7 +914,10 @@ class GraphMolecule(Graph, AbstractMolecule):
         vertices = mc_molecule.atoms_by_index
 
         edges = {
-            (bond.from_atom.molecule_index, bond.to_atom.molecule_index): bond
+            (
+                cast(Any, bond.from_atom).molecule_index,
+                cast(Any, bond.to_atom).molecule_index,
+            ): bond
             for bond in mc_molecule.bonds
         }
 

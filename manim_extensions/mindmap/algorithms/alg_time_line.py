@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 """Timeline layout algorithm - Python implementation."""
 
 from __future__ import annotations
@@ -629,9 +631,9 @@ class TimeLineLayout(Layout):
             The root of the (sub)tree whose coordinates should be applied.
         """
         if node.node:
-            node.node.x = node.x + node.width / 2
-            node.node.y = -node.y - node.height / 2
-            node.node.side = node.side_dir
-            node.node.level = node._layer_index
+            cast(Any, node.node).x = cast(Any, node).x + node.width / 2
+            cast(Any, node.node).y = -cast(Any, node).y - node.height / 2
+            cast(Any, node.node).side = node.side_dir
+            cast(Any, node.node).level = node._layer_index
         for child in node.children:
             self._apply_coords(child)

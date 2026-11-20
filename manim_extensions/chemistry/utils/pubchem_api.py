@@ -3,6 +3,8 @@
 # patched: lazy-import requests (chemistry extra)
 
 
+from typing import cast, Any
+
 """PubChem API manager for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.utils.pubchem_api.PubchemAPIManager` class for fetching molecular data from PubChem.
@@ -162,7 +164,7 @@ class PubchemAPIManager:
             If the compound cannot be found or the PubChem API fails."""
         requests = require("chemistry", "requests")
         identifier = self.inchi
-        if identifier.startswith("InChI="):
+        if cast(Any, identifier).startswith("InChI="):
             # PubChem only accepts the raw InChI in the form body; a
             # urlencoded value is rejected with PUGREST.BadRequest.
             lookup = requests.post(

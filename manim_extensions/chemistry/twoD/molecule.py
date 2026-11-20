@@ -2,6 +2,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 """2D molecule representation for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject` class for rendering molecules in 2D.
@@ -339,10 +341,13 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         numbering = VGroup()
         for bond in self.bonds:
             if (
-                not bond.from_atom.explicit_hydrogens
-                and not bond.to_atom.explicit_hydrogens
+                not cast(Any, bond.from_atom).explicit_hydrogens
+                and not cast(Any, bond.to_atom).explicit_hydrogens
             ):
-                if bond.from_atom.element != "H" and bond.to_atom.element != "H":
+                if (
+                    cast(Any, bond.from_atom).element != "H"
+                    and cast(Any, bond.to_atom).element != "H"
+                ):
                     numbering.add(
                         MarkupText(str(bond.index))
                         .set_color(GREEN)
@@ -393,7 +398,8 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                     if bond.atom_is_in_bond(atom) and 0 < bond.type <= 4:
                         total_bonds += bond.type - 1
                         bonds_direction += (
-                            bond.to_atom.coords[0] - bond.from_atom.coords[0]
+                            cast(Any, bond.to_atom).coords[0]
+                            - cast(Any, bond.from_atom).coords[0]
                         )
 
                 if total_bonds < minimum_bonds.get(atom.element):
@@ -646,7 +652,9 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         except KeyError as key_error:
             _logger.warning(f"Bond index {bond_index} is not valid for molecule {self}")
-            _logger.warning(f"Valid indices are: {self.bonds.submob_dict.keys()}")
+            _logger.warning(
+                f"Valid indices are: {cast(Any, self.bonds.submob_dict).keys()}"
+            )
             raise key_error
 
         bond_vector = bond.get_vector()
@@ -763,10 +771,10 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         for atom_index in atoms.keys():
             atom_bonds = []
             for bond in mc_molecule.bonds:
-                if atom_index == bond.to_atom.molecule_index:
+                if atom_index == cast(Any, bond.to_atom).molecule_index:
                     atom_bonds.append(
                         {
-                            "to": bond.from_atom.molecule_index,
+                            "to": cast(Any, bond.from_atom).molecule_index,
                             "type": bond.bond_type,
                             "stereo": bond.stereo,
                             "topology": bond.topology,
@@ -1192,7 +1200,9 @@ class NamedMolecule(VGroup):
 
         except KeyError as key_error:
             _logger.warning(f"Bond index {bond_index} is not valid for molecule {self}")
-            _logger.warning(f"Valid indices are: {self.bonds.submob_dict.keys()}")
+            _logger.warning(
+                f"Valid indices are: {cast(Any, self.bonds.submob_dict).keys()}"
+            )
             raise key_error
 
         except Exception as exception:
@@ -1228,7 +1238,9 @@ class NamedMolecule(VGroup):
 
         except KeyError as key_error:
             _logger.warning(f"Bond index {bond_index} is not valid for molecule {self}")
-            _logger.warning(f"Valid indices are: {self.bonds.submob_dict.keys()}")
+            _logger.warning(
+                f"Valid indices are: {cast(Any, self.bonds.submob_dict).keys()}"
+            )
             raise key_error
 
         bond_vector = bond.get_vector()

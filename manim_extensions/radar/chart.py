@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 """The core objects: :class:`~manim_extensions.radar.chart.RadarChart` (single- or multi-dataset).
 
 New in 0.1.1: several datasets can share one grid (comparison mode), with a
@@ -1854,7 +1856,9 @@ class RadarChart(VGroup):
 
         # data polygons ----------------------------------------------------
         for s in self._series:
-            s.opacity += (s.opacity_target - s.opacity) * min(1.0, dt * 7.0)
+            cast(Any, s).opacity += (
+                cast(Any, s).opacity_target - cast(Any, s).opacity
+            ) * min(1.0, dt * 7.0)
             self._paint_series(s, a, u, v, unit, op, multi, pulse)
 
         # labels ------------------------------------------------------------
@@ -2318,7 +2322,7 @@ class RadarChart(VGroup):
         content.add(*[r.arrange(RIGHT, buff=cfg.legend_gap) for r in rows])
         if len(rows) > 1:
             content.arrange(DOWN, buff=0.12)
-        content._chips = chips  # type: ignore[attr-defined]  (per-content, so
+        cast(Any, content)._chips = chips  # type: ignore[attr-defined]  (per-content, so
         # the outgoing legend fades with *its own* chips during a swap)
         self._legend_chips = chips
         return content
@@ -2631,7 +2635,7 @@ class RadarChart(VGroup):
             for _ in range(16):
                 pool.add(Line(ORIGIN, ORIGIN, stroke_width=self.config.spoke_width))
             s.dash_pool[j] = pool
-            s.fx_group.add(pool)
+            cast(Any, s.fx_group).add(pool)
         return s.dash_pool[j]
 
     def _ensure_breach(self, s: Series, j: int) -> VGroup:
@@ -2665,7 +2669,7 @@ class RadarChart(VGroup):
             g = VGroup(out, mid, core)
             g.set_opacity(0)
             s.breach[j] = g
-            s.fx_group.add(g)
+            cast(Any, s.fx_group).add(g)
         return s.breach[j]
 
     def _ensure_overflow_number(self, series_index: int, j: int) -> RollingNumber:
@@ -2822,7 +2826,7 @@ class RadarChart(VGroup):
             for line in s.dash_pool[j]:
                 line.set_stroke(opacity=0)
         if j < len(s.breach) and s.breach[j] is not None:
-            s.breach[j].set_opacity(0)
+            cast(Any, s.breach[j]).set_opacity(0)
         num = s.big_numbers.get(j)
         if num is not None:
             num.hide()

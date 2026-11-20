@@ -4,6 +4,8 @@
 # patched: implement modify_edge_colors
 
 
+from typing import cast, Any
+
 """Feed-forward to feed-forward layer connection visualization."""
 
 from __future__ import annotations
@@ -70,8 +72,8 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         output_layer: Mobject,
         passing_flash: bool = True,
         dot_radius: float = 0.05,
-        animation_dot_color: ManimColor = config.color_scheme.active_color,
-        edge_color: ManimColor = config.color_scheme.secondary_color,
+        animation_dot_color: ManimColor = cast(Any, config).color_scheme.active_color,
+        edge_color: ManimColor = cast(Any, config).color_scheme.secondary_color,
         edge_width: float = 1.5,
         camera: Camera | None = None,
         **kwargs: Any,
@@ -261,7 +263,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         assert len(widths) > 0
         # Note: 1d-arrays are assumed to be in row major order
         widths = np.array(widths)
-        widths = widths.flatten()
+        widths = cast(Any, widths).flatten()
         # Check thickness size
         assert np.shape(widths)[0] == len(self.edges)
         # Make animation

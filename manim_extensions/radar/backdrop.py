@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 """The deep-space backdrop: radial glow, vignette, nebula blobs and stars."""
 
 from __future__ import annotations
@@ -216,13 +218,15 @@ class DeepSpace(VGroup):
                 g = VGroup(halo2, halo1, core).move_to(
                     [rnd.uniform(x0, x1), rnd.uniform(y0, y1), 0]
                 )
-                g.vel = np.array(
+                cast(Any, g).vel = np.array(
                     [rnd.uniform(-0.22, 0.22), rnd.uniform(-0.13, 0.13), 0.0]
                 )
-                g.op = rnd.uniform(0.3, 1.0)
-                g.freq = rnd.uniform(0.5, 1.8)
-                g.phase = rnd.uniform(0.0, 6.28)
-                g.accent = accents[i % len(accents)] if i % 4 == 0 and accents else None
+                cast(Any, g).op = rnd.uniform(0.3, 1.0)
+                cast(Any, g).freq = rnd.uniform(0.5, 1.8)
+                cast(Any, g).phase = rnd.uniform(0.0, 6.28)
+                cast(Any, g).accent = (
+                    accents[i % len(accents)] if i % 4 == 0 and accents else None
+                )
                 self._stars.add(g)
             self._star_bounds = (x0, x1, y0, y1)
         self.add(self._stars)

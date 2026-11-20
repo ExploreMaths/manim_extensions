@@ -8,6 +8,8 @@
 # unlinked-class-ok: CodeBlock
 
 
+from typing import cast, Any
+
 """A syntax-highlighted code block for Manim.
 
 The upstream module fetched GitHub's language colour table over the network
@@ -79,7 +81,7 @@ class Theme:
             The matching hex colour, or white when no rule matches.
         """
         for key, value in self.colors.items():
-            if token.type in value:
+            if cast(Any, token).type in value:
                 return key
         return "#FFFFFF"
 
@@ -234,7 +236,7 @@ class CodeBlock(VGroup):
             group_count = 0
             finished: list[str] = []
             for line in lines:
-                tokens = language.language.tokenize(line)
+                tokens = cast(Any, language.language).tokenize(line)
                 for token in tokens:
                     if token.type.startswith("left"):
                         finished.append(

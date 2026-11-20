@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2020 manim-kindergarten
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """Custom animations for Manim."""
@@ -177,7 +178,7 @@ def ease_out_bounce(t: float) -> float:
         return 7.5625 * c * c + 0.984375
 
 
-_ease_out_bounce = ease_out_bounce.__wrapped__
+_ease_out_bounce = cast(Any, ease_out_bounce).__wrapped__
 
 
 @deprecated(
@@ -228,7 +229,7 @@ def ease_in_bounce(t: float) -> float:
     return 1 - _ease_out_bounce(1 - t)
 
 
-_ease_in_bounce = ease_in_bounce.__wrapped__
+_ease_in_bounce = cast(Any, ease_in_bounce).__wrapped__
 
 
 @deprecated(

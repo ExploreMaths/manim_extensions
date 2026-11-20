@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """Mindmap animations for Manim.
@@ -150,7 +151,7 @@ def animate_of_create(
         AnimateClass = Create
     anims.extend(
         [
-            AnimateClass(node.vmobject.move_to(pos)),
+            AnimateClass(cast(Any, node.vmobject).move_to(pos)),
             Create(
                 node.surr_rect.become(
                     Rectangle(
@@ -231,7 +232,7 @@ def animate_of_display(
                    content.scale_to_fit_height(7).move_to(ORIGIN)
     """
     anims = [
-        node.vmobject.animate.move_to(pos),
+        cast(Any, node.vmobject).animate.move_to(pos),
         node.surr_rect.animate.become(
             Rectangle(height=node.height, width=node.width, **node_styles).move_to(pos)
         ),
@@ -305,7 +306,7 @@ def animate_of_scale(
                content.scale_to_fit_height(5).move_to(ORIGIN)
     """
     anims = [
-        node.vmobject.animate.scale(node.scale_factor).move_to(pos),
+        cast(Any, node.vmobject).animate.scale(node.scale_factor).move_to(pos),
         node.surr_rect.animate.become(
             Rectangle(height=node.height, width=node.width, **node_styles).move_to(pos)
         ),
@@ -380,7 +381,7 @@ def animate_of_alter(
                content.scale_to_fit_width(10).move_to(ORIGIN)
     """
     anims = [
-        node.vmobject.animate.become(node.alter_vmobject.move_to(pos)),
+        cast(Any, node.vmobject).animate.become(node.alter_vmobject.move_to(pos)),
         node.surr_rect.animate.become(
             Rectangle(height=node.height, width=node.width, **node_styles).move_to(pos)
         ),
@@ -560,7 +561,7 @@ def animate_of_layout(
     direction = layout_config.direction
     change_dir = is_direction_change(root, direction)
     change_layout = is_layout_change(root, layout_type)
-    current_x, current_y, _ = root.vmobject.get_center()
+    current_x, current_y, _ = cast(Any, root.vmobject).get_center()
     layout = LayoutFactory.create_layout(layout_type, root, layout_config)
     root = layout.layout()
     setattr(root, "layout_type", layout_type)
@@ -1087,9 +1088,9 @@ class ScaleNode(LayoutAnimation):
         node_style: NodeStyle = NodeStyle(),
         **kwargs: Any,
     ) -> None:
-        for node, scale in node_scale.items():
+        for node, scale in cast(Any, node_scale).items():
             node.scale(scale)
-        root = self.get_common_root(list(node_scale.keys()))
+        root = self.get_common_root(list(cast(Any, node_scale).keys()))
         super().__init__(
             scene,
             root,
@@ -1144,9 +1145,9 @@ class AlterNode(LayoutAnimation):
         node_style: NodeStyle = NodeStyle(),
         **kwargs: Any,
     ) -> None:
-        for node, scale in node_vmobject.items():
+        for node, scale in cast(Any, node_vmobject).items():
             node.alter_content(scale)
-        root = self.get_common_root(list(node_vmobject.keys()))
+        root = self.get_common_root(list(cast(Any, node_vmobject).keys()))
         super().__init__(
             scene,
             root,

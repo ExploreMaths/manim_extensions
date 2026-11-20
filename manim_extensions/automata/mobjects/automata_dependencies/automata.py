@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants
 
+from typing import cast, Any
 from typing import Any
 
 """Automata data structures."""
@@ -154,7 +155,7 @@ class FiniteStateAutomaton:
             to_state = self.get_state_by_id(to_id)
             if from_state and to_state:
                 transition = Transition(from_state, to_state)
-                transition.read_symbols = [read] if read else []
+                cast(Any, transition).read_symbols = [read] if read else []
                 self.transitions.append(transition)
                 from_state.add_transition_to_state(transition)
 
@@ -231,13 +232,11 @@ class FiniteStateAutomaton:
         state_transitions = state_pointer.get_transitions()
         for transition in state_transitions:
             # check if any transition's symbols match the input token
-            for (
-                read_symbol
-            ) in (
-                transition.read_symbols
-            ):  # Iterate through the transtion's read options
+            for read_symbol in cast(
+                Any, transition
+            ).read_symbols:  # Iterate through the transtion's read options
                 if (
-                    read_symbol.tex_string == token.tex_string
+                    cast(Any, read_symbol).tex_string == cast(Any, token).tex_string
                     or read_symbol.tex_string == r"\epsilon"
                 ):
                     next_states.append(transition.transition_to)
@@ -355,12 +354,10 @@ class PushDownAutomaton(FiniteStateAutomaton):
         state_transitions = state_pointer.get_transitions()
         for transition in state_transitions:
             # check if any transition's symbols match the input token
-            for (
-                read_symbol
-            ) in (
-                transition.read_symbols
-            ):  # Iterate through the transtion's read options
-                if read_symbol.tex_string == token.tex_string:
+            for read_symbol in cast(
+                Any, transition
+            ).read_symbols:  # Iterate through the transtion's read options
+                if cast(Any, read_symbol).tex_string == cast(Any, token).tex_string:
                     next_states.append(transition.transition_to)
                     transition_ids.append(transition.id)
                     if (

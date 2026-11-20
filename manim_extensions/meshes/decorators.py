@@ -50,7 +50,10 @@ def dangling_vert_decorator() -> Callable[[Callable[P, R]], Callable[P, R]]:
             """
             mesh = cast(object, args[0])
             return_value = func(*args, **kwargs)
-            if mesh.test_for_dangling and mesh.dangling_vert_check():
+            if (
+                cast(Any, mesh).test_for_dangling
+                and cast(Any, mesh).dangling_vert_check()
+            ):
                 warnings.warn(f"Dangling vertices in {func.__name__}")
             return return_value
 
@@ -95,7 +98,10 @@ def dangling_face_decorator() -> Callable[[Callable[P, R]], Callable[P, R]]:
             """
             mesh = cast(object, args[0])
             return_value = func(*args, **kwargs)
-            if mesh.test_for_dangling and mesh.dangling_face_check():
+            if (
+                cast(Any, mesh).test_for_dangling
+                and cast(Any, mesh).dangling_face_check()
+            ):
                 warnings.warn(f"Dangling faces in {func.__name__}")
             return return_value
 

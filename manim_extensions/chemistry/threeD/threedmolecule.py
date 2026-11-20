@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """3D molecule representation for Manim chemistry.
@@ -225,10 +226,10 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
         for atom_index in atoms.keys():
             atom_bonds = []
             for bond in mc_molecule.bonds:
-                if atom_index == bond.to_atom.molecule_index:
+                if atom_index == cast(Any, bond.to_atom).molecule_index:
                     atom_bonds.append(
                         {
-                            "to": bond.from_atom.molecule_index,
+                            "to": cast(Any, bond.from_atom).molecule_index,
                             "type": bond.bond_type,
                             "stereo": bond.stereo,
                             "topology": bond.topology,

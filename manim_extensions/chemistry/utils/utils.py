@@ -2,6 +2,8 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants
 
+from typing import cast, Any
+
 """Utility functions for chemistry file parsing.
 
 This module provides utility functions for parsing chemical molecule data.
@@ -329,30 +331,34 @@ def mol_parser_string(mol_string: list[Any]) -> tuple[dict]:
 
         if first_atom_index not in bonds:
             bonds[first_atom_index] = [bond_data]
-            if not atoms.get(first_atom_index) or not atoms.get(first_atom_index).get(
-                "bond_to"
-            ):
+            if not cast(Any, atoms).get(first_atom_index) or not cast(
+                Any, cast(Any, atoms).get(first_atom_index)
+            ).get("bond_to"):
                 atoms[first_atom_index]["bond_to"] = {
-                    second_atom_index: atoms.get(second_atom_index).get("element")
+                    second_atom_index: cast(
+                        Any, cast(Any, atoms).get(second_atom_index)
+                    ).get("element")
                 }
             else:
-                atoms[first_atom_index]["bond_to"][second_atom_index] = atoms.get(
-                    second_atom_index
+                atoms[first_atom_index]["bond_to"][second_atom_index] = cast(
+                    Any, cast(Any, atoms).get(second_atom_index)
                 ).get("element")
 
         else:
             bonds[first_atom_index].append(bond_data)
-            atoms[first_atom_index]["bond_to"][second_atom_index] = atoms.get(
-                second_atom_index
+            atoms[first_atom_index]["bond_to"][second_atom_index] = cast(
+                Any, cast(Any, atoms).get(second_atom_index)
             ).get("element")
 
-        if not atoms.get(second_atom_index).get("bond_to"):
+        if not cast(Any, cast(Any, atoms).get(second_atom_index)).get("bond_to"):
             atoms[second_atom_index]["bond_to"] = {
-                first_atom_index: atoms.get(first_atom_index).get("element")
+                first_atom_index: cast(Any, cast(Any, atoms).get(first_atom_index)).get(
+                    "element"
+                )
             }
         else:
-            atoms[second_atom_index]["bond_to"][first_atom_index] = atoms.get(
-                first_atom_index
+            atoms[second_atom_index]["bond_to"][first_atom_index] = cast(
+                Any, cast(Any, atoms).get(first_atom_index)
             ).get("element")
 
     return atoms, bonds  # Should return atoms and bonds
@@ -371,7 +377,7 @@ def mol_parser(file: str) -> tuple[dict, dict]:
         The parsed atoms and bonds from the ``.mol`` file.
     """
     with open(file) as file:
-        mol_file = file.readlines()
+        mol_file = cast(Any, file).readlines()
     return mol_parser_string(mol_file)
 
 
@@ -412,7 +418,7 @@ def sdf_parser(file: str) -> list[tuple[dict, dict]]:
         The list of parsed ``(atoms, bonds)`` pairs from the ``.sdf`` file.
     """
     with open(file) as file:
-        sdf_file = file.read()
+        sdf_file = cast(Any, file).read()
     return sdf_parser_string(sdf_file)
 
 
@@ -466,7 +472,7 @@ def mol_to_graph(file: str, language: Literal["ENG", "ESP"] = "ENG") -> tuple[di
         ``bonds`` maps ``(from_idx, to_idx)`` tuples to bond data.
     """
     with open(file) as file:
-        mol_file = file.readlines()
+        mol_file = cast(Any, file).readlines()
     # Get general data
 
     mol_general_info = mol_file[3]  # This info is not always available

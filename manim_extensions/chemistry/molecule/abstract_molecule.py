@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """Abstract molecule base class for Manim chemistry.
@@ -382,5 +383,5 @@ class AbstractMolecule:
             name = Text(name)
 
         name.scale(scale).next_to(self, direction=direction, buff=buff)
-        self.add(name)
+        cast(Any, self).add(name)
         return self

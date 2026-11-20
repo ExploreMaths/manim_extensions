@@ -4,6 +4,8 @@
 # patched: add the module docstring and SPDX header
 # patched: reflow the docstring and the rich-display lambdas
 
+from typing import cast, Any
+
 """SVG export helpers for manim mobjects.
 
 Exports :func:`~manim_extensions.mobject_svg.svg.create_svg_from_vmobject`
@@ -22,9 +24,9 @@ from .svg import create_svg_from_vgroup, create_svg_from_vmobject
 
 __all__ = ["create_svg_from_vgroup", "create_svg_from_vmobject"]
 
-VMobject.to_svg = create_svg_from_vmobject
-VGroup.to_svg = create_svg_from_vgroup
+cast(Any, VMobject).to_svg = create_svg_from_vmobject
+cast(Any, VGroup).to_svg = create_svg_from_vgroup
 
 # Rich display for manim objects in Jupyter notebooks.
-VMobject._repr_svg_ = lambda self: create_svg_from_vmobject(self).read_text()
-VGroup._repr_svg_ = lambda self: create_svg_from_vgroup(self).read_text()
+cast(Any, VMobject)._repr_svg_ = lambda self: create_svg_from_vmobject(self).read_text()
+cast(Any, VGroup)._repr_svg_ = lambda self: create_svg_from_vgroup(self).read_text()

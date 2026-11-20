@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 """All animations: the morph, the intro/outro and the transition effects.
 
 New in 0.1.1: :class:`~manim_extensions.radar.animations.RadarMorph` morphs *lists* of datasets (comparison
@@ -242,7 +244,7 @@ class Shockwave(Animation):
             Raw animation progress in the range 0 to 1.
         """
         k = self.rate_func(alpha)
-        self.mobject.restyle(
+        cast(Any, self.mobject).restyle(
             self._r0 + (self._r1 - self._r0) * k,
             self._w0 + (self._w1 - self._w0) * k,
             0.9 * (1.0 - k),

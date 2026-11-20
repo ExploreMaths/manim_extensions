@@ -4,6 +4,8 @@
 # patched: drop a stale TODO and unreachable duplicate return
 
 
+from typing import cast, Any
+
 """Convolutional 2D to convolutional 2D layer connection visualization."""
 
 from __future__ import annotations
@@ -56,7 +58,8 @@ def get_rotated_shift_vectors(input_layer: Mobject, normalized: bool = False) ->
     down_shift = np.array([0, -input_layer.cell_width, 0])
     # Make rotation matrix
     rot_mat = rotation_matrix(
-        config.three_d_config.rotation_angle, config.three_d_config.rotation_axis
+        cast(Any, config).three_d_config.rotation_angle,
+        cast(Any, config).three_d_config.rotation_axis,
     )
     # Rotate the vectors
     right_shift = np.dot(right_shift, rot_mat.T)
@@ -174,9 +177,9 @@ class Filters(VGroup):
             )
             # normal_vector = rectangle.get_normal_vector()
             rectangle.rotate(
-                config.three_d_config.rotation_angle,
+                cast(Any, config).three_d_config.rotation_angle,
                 about_point=rectangle.get_center(),
-                axis=config.three_d_config.rotation_axis,
+                axis=cast(Any, config).three_d_config.rotation_axis,
             )
             # Move the rectangle to the corner of the feature map
             rectangle.next_to(
@@ -229,9 +232,9 @@ class Filters(VGroup):
             )
             # Rotate the rectangle
             rectangle.rotate(
-                config.three_d_config.rotation_angle,
+                cast(Any, config).three_d_config.rotation_angle,
                 about_point=rectangle.get_center(),
-                axis=config.three_d_config.rotation_axis,
+                axis=cast(Any, config).three_d_config.rotation_axis,
             )
             # Move the rectangle to the corner location
             rectangle.next_to(

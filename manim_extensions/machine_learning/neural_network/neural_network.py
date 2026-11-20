@@ -4,6 +4,8 @@
 # patched: implement replace_layer
 
 
+from typing import cast, Any
+
 """Neural Network Manim Visualization.
 
 This module is responsible for generating a neural network visualization with
@@ -116,7 +118,7 @@ class NeuralNetwork(Group):
         self,
         input_layers: list[Any],
         layer_spacing: float = 0.2,
-        animation_dot_color: ManimColor = config.color_scheme.active_color,
+        animation_dot_color: ManimColor = cast(Any, config).color_scheme.active_color,
         edge_width: float = 2.5,
         dot_radius: float = 0.03,
         title: str = " ",
@@ -126,7 +128,7 @@ class NeuralNetwork(Group):
     ) -> None:
         super(Group, self).__init__()
         self.input_layers_dict = self.make_input_layers_dict(input_layers)
-        self.input_layers = ListGroup(*self.input_layers_dict.values())
+        self.input_layers = ListGroup(*cast(Any, self.input_layers_dict).values())
         self.edge_width = edge_width
         self.layer_spacing = layer_spacing
         self.animation_dot_color = animation_dot_color
@@ -304,16 +306,18 @@ class NeuralNetwork(Group):
                         [
                             0,
                             layer_max_height / 2
-                            + current_layer.activation_function.height / 2
+                            + cast(Any, current_layer.activation_function).height / 2
                             + 0.5 * self.layer_spacing,
                             0,
                         ]
                     )
-                    current_layer.activation_function.move_to(
+                    cast(Any, current_layer.activation_function).move_to(
                         current_layer,
                     )
-                    current_layer.activation_function.match_y(self.input_layers[0])
-                    current_layer.activation_function.shift(up_movement)
+                    cast(Any, current_layer.activation_function).match_y(
+                        self.input_layers[0]
+                    )
+                    cast(Any, current_layer.activation_function).shift(up_movement)
                     self.add(current_layer.activation_function)
 
     def _construct_connective_layers(self) -> tuple[ListGroup, ListGroup]:
@@ -354,8 +358,8 @@ class NeuralNetwork(Group):
         # Place each of the connective layers halfway between the adjacent layers
         for connective_layer in self.connective_layers:
             layer_midpoint = (
-                connective_layer.input_layer.get_center()
-                + connective_layer.output_layer.get_center()
+                cast(Any, connective_layer.input_layer).get_center()
+                + cast(Any, connective_layer.output_layer).get_center()
             ) / 2
             connective_layer.move_to(layer_midpoint)
 
@@ -432,7 +436,7 @@ class NeuralNetwork(Group):
         def swap_layer(network: NeuralNetwork) -> Any:
             """Replace the layer and rebuild the surrounding connections."""
             network.input_layers.replace(input_index, new_layer)
-            for name, layer in network.input_layers_dict.items():
+            for name, layer in cast(Any, network.input_layers_dict).items():
                 if layer is old_layer:
                     network.input_layers_dict[name] = new_layer
             # Remove the stale activation function from the scene
@@ -595,7 +599,7 @@ class NeuralNetwork(Group):
             layer_animation = Create(layer)
             # Make titles (empty default titles are plain Groups and
             # cannot be played with Create, so skip them)
-            if len(layer.title.submobjects) > 0:
+            if len(cast(Any, layer.title).submobjects) > 0:
                 create_title = Create(layer.title)
                 # Create layer animation group
                 animation_group = AnimationGroup(layer_animation, create_title)

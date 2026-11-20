@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 """
 Catalog / organisation-chart layout algorithm - Python implementation.
 
@@ -105,7 +107,7 @@ class CatalogNode:
             The root of the created catalog node tree.
         """
         org_node = cls()
-        org_node.node = node
+        cast(Any, org_node).node = node
         org_node.width = getattr(node, "width", 0)
         org_node.height = getattr(node, "height", 0)
 
@@ -531,9 +533,9 @@ class CatalogLayout(Layout):
             node
                 The root of the subtree to update.
             """
-            node.node.x = node.left + node.width / 2
-            node.node.y = -node.top - node.height / 2
-            node.node.level = node.layer_index
+            cast(Any, node).node.x = node.left + node.width / 2
+            cast(Any, node).node.y = -node.top - node.height / 2
+            cast(Any, node).node.level = node.layer_index
             for child in node.children:
                 _applay_coords_for_node(child)
 
@@ -551,4 +553,4 @@ class CatalogLayout(Layout):
         self._compute_left_top_value()
         self._adjust_left_top_value()
         self._applay_coords()
-        return self.root.node
+        return cast(Any, self.root).node
