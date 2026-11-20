@@ -4,8 +4,6 @@
 # patched: implement replace_layer
 
 
-from typing import cast, Any
-
 """Neural Network Manim Visualization.
 
 This module is responsible for generating a neural network visualization with
@@ -22,6 +20,7 @@ manim, specifically a fully connected neural network diagram.
 # unlinked-class-ok: Layout, Filters
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 import textwrap

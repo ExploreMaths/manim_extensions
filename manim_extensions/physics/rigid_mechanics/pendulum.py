@@ -4,11 +4,10 @@
 # patched: lazy-import pymunk (physics extra)
 
 
-from typing import cast, Any
-
 r"""Systems of :class:`~manim_extensions.physics.rigid_mechanics.pendulum.Pendulum` and their motion visualisations."""
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 from manim import Circle, DOWN, Line, Mobject, ORANGE, RIGHT, UP, VGroup

@@ -3,14 +3,13 @@
 # SPDX-License-Identifier: MIT
 
 
-from typing import cast, Any
-
 """
 Code for making a dropout animation for the
 feed forward layers of a neural network.
 """
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 from typing import TYPE_CHECKING

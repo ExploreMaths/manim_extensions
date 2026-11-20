@@ -3,11 +3,10 @@
 # SPDX-License-Identifier: MIT
 
 
-from typing import cast, Any
-
 """CAD dimension mobjects: linear and angular dimensions with arrows and labels."""
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 from manim.typing import Point3D, Vector3D
 from manim import (

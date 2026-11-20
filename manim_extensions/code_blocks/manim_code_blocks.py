@@ -8,8 +8,6 @@
 # unlinked-class-ok: CodeBlock
 
 
-from typing import cast, Any
-
 """A syntax-highlighted code block for Manim.
 
 The upstream module fetched GitHub's language colour table over the network
@@ -19,6 +17,7 @@ programming-language tokenizer is actually used.
 """
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 import re as regex

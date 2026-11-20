@@ -3,8 +3,6 @@
 # SPDX-License-Identifier: MIT
 
 
-from typing import cast, Any
-
 """The core objects: :class:`~manim_extensions.radar.chart.RadarChart` (single- or multi-dataset).
 
 New in 0.1.1: several datasets can share one grid (comparison mode), with a
@@ -14,6 +12,7 @@ legend, four per-vertex number modes, focus dimming, a difference highlight
 """
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 import math

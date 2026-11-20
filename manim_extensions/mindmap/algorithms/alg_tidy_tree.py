@@ -3,8 +3,6 @@
 # SPDX-License-Identifier: MIT
 
 
-from typing import cast, Any
-
 """
 Non-layered Tidy Tree :class:`~manim_extensions.mindmap.algorithms.layout.Layout` Algorithm (Python Implementation).
 Used to compute node positions for tree structures.
@@ -13,6 +11,7 @@ Algorithm reference: "Improving Walker's Algorithm to Run in Linear Time"
 """
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 __all__ = ["TidyTreeLayout"]

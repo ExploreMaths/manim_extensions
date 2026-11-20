@@ -3,11 +3,10 @@
 # SPDX-License-Identifier: MIT
 
 
-from typing import cast, Any
-
 """Image to feed-forward layer connection visualization."""
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 from manim import (

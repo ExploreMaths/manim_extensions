@@ -4,11 +4,10 @@
 # patched: drop a stale TODO (FadeIn is the intended create animation)
 
 
-from typing import cast, Any
-
 """Paired query layer visualization for neural networks."""
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 

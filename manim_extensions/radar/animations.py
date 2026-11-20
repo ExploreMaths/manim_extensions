@@ -3,8 +3,6 @@
 # SPDX-License-Identifier: MIT
 
 
-from typing import cast, Any
-
 """All animations: the morph, the intro/outro and the transition effects.
 
 New in 0.1.1: :class:`~manim_extensions.radar.animations.RadarMorph` morphs *lists* of datasets (comparison
@@ -14,6 +12,7 @@ and :class:`~manim_extensions.radar.animations.RadarBurstIn` is the matching ent
 """
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 import math

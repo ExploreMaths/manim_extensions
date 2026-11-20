@@ -3,8 +3,6 @@
 # SPDX-License-Identifier: MIT
 
 
-from typing import cast, Any
-
 r"""
 A directive for including Manim videos in a Sphinx document.
 """
@@ -12,6 +10,7 @@ A directive for including Manim videos in a Sphinx document.
 # unlinked-class-ok: Space
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 from manim import QUALITIES, config, tempconfig

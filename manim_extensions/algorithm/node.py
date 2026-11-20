@@ -4,11 +4,10 @@
 # patched: document module-level constants
 
 
-from typing import cast, Any
-
 """:class:`~manim_extensions.algorithm.node.Node` data structure for algorithm visualization."""
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 from manim import (

@@ -3,8 +3,6 @@
 # SPDX-License-Identifier: MIT
 
 
-from typing import cast, Any
-
 """Rubik's Cube helpers and scene objects.
 
 The module exposes the main cube model and related animation utilities for
@@ -13,6 +11,7 @@ visualising cube states in Manim scenes.
 """
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 from .cube import *

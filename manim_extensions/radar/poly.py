@@ -4,7 +4,6 @@
 
 # -*- coding: utf-8 -*-
 
-from typing import cast, Any
 
 """:class:`~manim_extensions.radar.poly.PolyRadarChart` — a dodecahedral radar.
 
@@ -33,6 +32,7 @@ projected onto world up, so they stay readable at any rotation angle.
 """
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 from typing import Sequence
 import math

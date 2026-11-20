@@ -3,8 +3,6 @@
 # SPDX-License-Identifier: MIT
 
 
-from typing import cast, Any
-
 """:class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` class for automata visualizations.
 
 This module provides transition visualization for automata.
@@ -12,6 +10,7 @@ This module provides transition visualization for automata.
 """
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 from collections.abc import Sequence

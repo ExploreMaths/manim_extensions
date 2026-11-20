@@ -3,11 +3,10 @@
 # SPDX-License-Identifier: MIT
 
 
-from typing import cast, Any
-
 """Max pooling 2D to convolutional 2D layer connection visualization."""
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 from manim import ManimColor, ORANGE

@@ -3,11 +3,10 @@
 # SPDX-License-Identifier: MIT
 
 
-from typing import cast, Any
-
 """The deep-space backdrop: radial glow, vignette, nebula blobs and stars."""
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 import math

@@ -3,8 +3,6 @@
 # SPDX-License-Identifier: MIT
 
 
-from typing import cast, Any
-
 """Electrostatic field helpers.
 
 The classes in this module generate charge objects and electric-field vector
@@ -15,6 +13,7 @@ fields suitable for teaching and demonstration scenes in Manim.
 # unlinked-class-ok: Charge
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 import numpy as np

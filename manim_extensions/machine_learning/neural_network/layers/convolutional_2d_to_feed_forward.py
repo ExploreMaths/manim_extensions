@@ -3,11 +3,10 @@
 # SPDX-License-Identifier: MIT
 
 
-from typing import cast, Any
-
 """Convolutional 2D to feed-forward layer connection visualization."""
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 from manim import AnimationGroup, Line, ManimColor, ORANGE, ShowPassingFlash

@@ -2,8 +2,6 @@
 # SPDX-License-Identifier: MIT
 
 
-from typing import cast, Any
-
 """2D molecule representation for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject` class for rendering molecules in 2D.
@@ -11,6 +9,7 @@ This module provides the :class:`~manim_extensions.chemistry.twoD.molecule.MMole
 """
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 import logging

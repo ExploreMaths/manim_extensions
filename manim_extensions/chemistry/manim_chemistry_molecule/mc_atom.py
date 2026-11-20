@@ -2,8 +2,6 @@
 # SPDX-License-Identifier: MIT
 
 
-from typing import cast, Any
-
 """Manim chemistry atom representation.
 
 This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom` class for representing atoms in molecules.
@@ -11,6 +9,7 @@ This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_mol
 """
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 from typing import Dict, TYPE_CHECKING

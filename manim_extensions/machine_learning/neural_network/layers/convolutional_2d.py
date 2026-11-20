@@ -3,14 +3,13 @@
 # SPDX-License-Identifier: MIT
 
 
-from typing import cast, Any
-
 """Convolutional 2D layer for neural network visualizations.
 
 This module provides the convolutional 2D layer class for neural network visualizations.
 """
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 from ..activation_functions import get_activation_function_by_name

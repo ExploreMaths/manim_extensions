@@ -3,11 +3,10 @@
 # SPDX-License-Identifier: MIT
 
 
-from typing import cast, Any
-
 """Timeline layout algorithm - Python implementation."""
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 __all__ = [

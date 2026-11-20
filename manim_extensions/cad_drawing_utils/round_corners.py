@@ -2,11 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
 
 """Fit tangent arcs and chamfers between adjoining Bezier curves."""
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Callable, Sequence
 from manim.typing import Vector3D
 import numpy as np

@@ -5,8 +5,6 @@
 # patched: document module-level constants
 
 
-from typing import cast, Any
-
 """Reusable Manim mobjects and convenience wrappers.
 
 This module provides small reusable building blocks for common educational and
@@ -18,6 +16,7 @@ objects.
 # unlinked-class-ok: Select
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 from manim import (

@@ -3,14 +3,13 @@
 # SPDX-License-Identifier: MIT
 
 
-from typing import cast, Any
-
 """Feed forward layer for neural network visualizations.
 
 This module provides the feed forward layer class for neural network visualizations.
 """
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 from manim import (

@@ -6,8 +6,6 @@
 # patched: type the cairo context helpers and replace tempfile.mktemp
 
 
-from typing import cast, Any
-
 """Render manim mobjects into SVG files through a Cairo surface.
 
 Vendored from ``manim-mobject-svg`` 0.5.0. The public entry points are
@@ -18,6 +16,7 @@ subpaths, gradients and stroke/fill ordering keep working.
 """
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 import itertools as it

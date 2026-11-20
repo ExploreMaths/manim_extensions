@@ -3,11 +3,10 @@
 # SPDX-License-Identifier: MIT
 
 
-from typing import cast, Any
-
 """Odometer style value numbers (the "rolling digits" used by style ``neo``)."""
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 import math

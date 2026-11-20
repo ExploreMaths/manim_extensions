@@ -3,13 +3,12 @@
 # SPDX-License-Identifier: MIT
 
 
-from typing import cast, Any
-
 """
 Transformations for manipulating a neural network object.
 """
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 from typing import TYPE_CHECKING

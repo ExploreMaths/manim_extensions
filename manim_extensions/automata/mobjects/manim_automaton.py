@@ -3,11 +3,10 @@
 # SPDX-License-Identifier: MIT
 
 
-from typing import cast, Any
-
 """Contains classes for Manim automaton."""
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 from manim import (

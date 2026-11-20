@@ -3,8 +3,6 @@
 # patched: lazy-import requests (chemistry extra)
 
 
-from typing import cast, Any
-
 """PubChem API manager for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.utils.pubchem_api.PubchemAPIManager` class for fetching molecular data from PubChem.
@@ -12,6 +10,7 @@ This module provides the :class:`~manim_extensions.chemistry.utils.pubchem_api.P
 """
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 from typing import TYPE_CHECKING

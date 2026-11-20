@@ -3,8 +3,6 @@
 # SPDX-License-Identifier: MIT
 
 
-from typing import cast, Any
-
 """Mindmap node classes for Manim.
 
 This module provides node classes for mindmap visualizations.
@@ -12,6 +10,7 @@ This module provides node classes for mindmap visualizations.
 """
 
 from __future__ import annotations
+from typing import Any, cast
 from typing import Any
 
 from manim import (
