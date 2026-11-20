@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """All animations: the morph, the intro/outro and the transition effects.
 
@@ -13,6 +12,7 @@ and :class:`~manim_extensions.radar.animations.RadarBurstIn` is the matching ent
 """
 
 from __future__ import annotations
+from typing import Any
 
 import math
 from typing import TYPE_CHECKING, Callable, List, Optional, Sequence

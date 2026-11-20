@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """Rubik's Cube helpers and scene objects.
 
@@ -12,6 +11,7 @@ visualising cube states in Manim scenes.
 """
 
 from __future__ import annotations
+from typing import Any
 
 from .cube import *
 from .cube_animations import *

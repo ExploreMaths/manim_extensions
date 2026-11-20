@@ -97,7 +97,9 @@ def generate_tree(
         The root node of the generated tree.
     """
 
-    def _generate_tree(ID: tuple = (0,), current_map: Dict | None = None) -> Node:
+    def _generate_tree(
+        ID: tuple[Any, ...] = (0,), current_map: Dict | None = None
+    ) -> Node:
         """Recursively build a :class:`~manim_extensions.mindmap.nodes.node.Node` tree from a dictionary map.
 
         Parameters

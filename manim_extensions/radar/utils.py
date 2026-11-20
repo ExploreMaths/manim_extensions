@@ -7,7 +7,7 @@
 from __future__ import annotations
 
 import math
-from typing import Iterable, Optional, Sequence
+from typing import Iterable, Optional, Sequence, Any
 
 import numpy as np
 from manim import ManimColor, ParsableManimColor, WHITE, interpolate_color

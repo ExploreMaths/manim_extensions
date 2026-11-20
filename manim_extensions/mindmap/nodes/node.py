@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """Mindmap node classes for Manim.
 
@@ -11,6 +10,7 @@ This module provides node classes for mindmap visualizations.
 """
 
 from __future__ import annotations
+from typing import Any
 
 from manim import (
     BLUE,

@@ -38,7 +38,7 @@ class FileHandler:
         Path to the chemistry file to parse.
     """
 
-    def __init__(self, file_path: str | bytes | os.PathLike) -> None:
+    def __init__(self, file_path: str | bytes | os.PathLike[str]) -> None:
         if not os.path.isfile(file_path):
             raise FileNotFoundError(f"File {file_path} does not exist.")
 
@@ -52,7 +52,7 @@ class FileHandler:
         self.parser = SUPPORTED_FORMATS.get(file_extension)(filename=file_path)
 
     @staticmethod
-    def get_file_extension(file_path: str | bytes | os.PathLike) -> str:
+    def get_file_extension(file_path: str | bytes | os.PathLike[str]) -> str:
         """Return the lowercase file extension without the leading dot.
 
         Parameters

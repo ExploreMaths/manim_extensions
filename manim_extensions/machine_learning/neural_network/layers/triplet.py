@@ -3,11 +3,11 @@
 # SPDX-License-Identifier: MIT
 # patched: drop a stale TODO (FadeIn is the intended create animation)
 
-from typing import Any
 
 """Triplet layer visualization for neural networks."""
 
 from __future__ import annotations
+from typing import Any
 
 
 from manim import (

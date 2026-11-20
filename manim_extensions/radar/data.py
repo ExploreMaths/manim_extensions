@@ -2,11 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """The data model: one radar snapshot."""
 
 from __future__ import annotations
+from typing import Any
 
 import math
 from dataclasses import dataclass, field, replace

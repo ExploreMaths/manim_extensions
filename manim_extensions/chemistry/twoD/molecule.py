@@ -1,7 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """2D molecule representation for Manim chemistry.
 
@@ -10,6 +9,7 @@ This module provides the :class:`~manim_extensions.chemistry.twoD.molecule.MMole
 """
 
 from __future__ import annotations
+from typing import Any
 
 import logging
 

@@ -4,13 +4,13 @@
 # patched: lazy-import scikit-learn (ml extra)
 # patched: implement make_split_to_animation_map
 
-from typing import Any
 
 """Decision tree visualization for Manim."""
 
 # unlinked-class-ok: Array
 
 from __future__ import annotations
+from typing import Any
 
 from manim import (
     AnimationGroup,

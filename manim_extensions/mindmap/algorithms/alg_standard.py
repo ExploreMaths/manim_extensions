@@ -2,13 +2,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """Standard mind map layout algorithm."""
 
 # unlinked-class-ok: Source
 
 from __future__ import annotations
+from typing import Any
 
 __all__ = [
     "StandardLayout",

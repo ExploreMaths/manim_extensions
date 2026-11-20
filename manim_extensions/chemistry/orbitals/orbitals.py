@@ -63,9 +63,9 @@ class OrbitalBase(OpenGLSurface):
     def __init__(
         self,
         center: Point3D = ORIGIN,
-        resolution: tuple = (100, 50),
-        u_range: tuple = (0, PI),
-        v_range: tuple = (0, TAU),
+        resolution: tuple[Any, ...] = (100, 50),
+        u_range: tuple[Any, ...] = (0, PI),
+        v_range: tuple[Any, ...] = (0, TAU),
         n_value: int = 1,
         l_value: int = 0,
         m_value: int = 0,

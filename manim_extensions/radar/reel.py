@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """One-command sequence player: :class:`~manim_extensions.radar.reel.RadarReel`.
 
@@ -13,6 +12,7 @@ keeps its colour across the whole reel.
 """
 
 from __future__ import annotations
+from typing import Any
 
 from dataclasses import replace
 from typing import Iterable, List, Optional, Union

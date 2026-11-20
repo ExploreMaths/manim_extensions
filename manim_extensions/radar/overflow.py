@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """The overflow radar chart: :class:`~manim_extensions.radar.overflow.OverflowRadarChart`.
 
@@ -13,6 +12,7 @@ transitions whose overshoot makes the escape visible.
 """
 
 from __future__ import annotations
+from typing import Any
 
 from typing import Optional, Sequence, Union
 

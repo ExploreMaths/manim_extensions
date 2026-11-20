@@ -3,13 +3,13 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants
 
-from typing import Any
 
 """Contains pushdown automaton."""
 
 # unlinked-class-ok: Source
 
 from __future__ import annotations
+from typing import Any
 
 from .manim_non_deterministic_finite_state_automaton import (
     ManimNondeterministicFiniteAutomaton,

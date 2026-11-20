@@ -135,7 +135,7 @@ class MCMolecule:
         bonds_data_dict: dict[Any, Any],
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: dict | None = None,
+        elements_data_dict: dict[Any, Any] | None = None,
     ) -> "MCMolecule":
         r"""
         Given data with the format provided by a parser, constructs a :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`,
@@ -182,7 +182,7 @@ class MCMolecule:
         filepath: str,
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: dict | None = None,
+        elements_data_dict: dict[Any, Any] | None = None,
     ) -> "MCMolecule":
         """
         Returns an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule` given a file path.
@@ -223,7 +223,7 @@ class MCMolecule:
         filepath: str,
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: dict | None = None,
+        elements_data_dict: dict[Any, Any] | None = None,
     ) -> list[Any]:
         r"""
         Similar to ``construct_from_file`` but returning a list of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`\ s.
@@ -267,7 +267,7 @@ class MCMolecule:
         format: Literal["mol", "sdf", "asnt", "json", "xml"] = "json",
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: dict | None = None,
+        elements_data_dict: dict[Any, Any] | None = None,
     ) -> "MCMolecule":
         """
         Reads a string and returns a molecule.
@@ -327,7 +327,7 @@ class MCMolecule:
         format: Literal["mol", "sdf", "asnt", "json", "xml"] = "json",
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: dict | None = None,
+        elements_data_dict: dict[Any, Any] | None = None,
     ) -> list[Any]:
         r"""
         Similar to ``construct_from_string`` but returning a list of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`\ s.

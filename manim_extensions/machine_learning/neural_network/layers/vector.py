@@ -3,11 +3,11 @@
 # SPDX-License-Identifier: MIT
 # patched: drop the unreachable LaTeX branch of make_vector
 
-from typing import Any
 
 """Vector layer visualization for neural networks."""
 
 from __future__ import annotations
+from typing import Any
 
 from manim import Animation, AnimationGroup, Create, Text, Write, override_animation
 import random

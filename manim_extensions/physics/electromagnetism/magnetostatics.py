@@ -2,11 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """Magnetostatics visualisations, including field lines and current elements."""
 
 from __future__ import annotations
+from typing import Any
 from manim import ArrowVectorField, VMobject
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 import itertools as it

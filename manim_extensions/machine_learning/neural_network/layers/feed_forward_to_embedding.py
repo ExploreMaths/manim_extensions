@@ -2,11 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """Feed-forward to embedding layer connection visualization."""
 
 from __future__ import annotations
+from typing import Any
 
 from manim import (
     Animation,

@@ -2,11 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """Convolutional 2D to max pooling 2D layer connection visualization."""
 
 from __future__ import annotations
+from typing import Any
 
 import random
 from manim import (

@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: MIT
 # patched: implement apply_flip, 4-D projection, 4-D rotation, and the operator protocol
 
-from typing import Any
 
 """
 :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh` structure.
@@ -12,6 +11,7 @@ from typing import Any
 # unlinked-class-ok: Array
 
 from __future__ import annotations
+from typing import Any
 
 # python imports
 from copy import deepcopy

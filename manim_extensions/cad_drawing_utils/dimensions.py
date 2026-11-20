@@ -2,11 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """CAD dimension mobjects: linear and angular dimensions with arrows and labels."""
 
 from __future__ import annotations
+from typing import Any
 from manim.typing import Point3D, Vector3D
 from manim import (
     Arc,

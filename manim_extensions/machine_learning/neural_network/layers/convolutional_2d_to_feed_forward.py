@@ -2,11 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """Convolutional 2D to feed-forward layer connection visualization."""
 
 from __future__ import annotations
+from typing import Any
 
 from manim import AnimationGroup, Line, ManimColor, ORANGE, ShowPassingFlash
 from .parent_layers import ConnectiveLayer, NeuralNetworkLayer, ThreeDLayer

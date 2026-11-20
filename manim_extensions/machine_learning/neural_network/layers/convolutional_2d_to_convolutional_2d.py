@@ -3,11 +3,11 @@
 # SPDX-License-Identifier: MIT
 # patched: drop a stale TODO and unreachable duplicate return
 
-from typing import Any
 
 """Convolutional 2D to convolutional 2D layer connection visualization."""
 
 from __future__ import annotations
+from typing import Any
 
 import numpy as np
 

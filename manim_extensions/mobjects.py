@@ -4,7 +4,6 @@
 # patched: lazy-import cv2 (video extra)
 # patched: document module-level constants
 
-from typing import Any
 
 """Reusable Manim mobjects and convenience wrappers.
 
@@ -17,6 +16,7 @@ objects.
 # unlinked-class-ok: Select
 
 from __future__ import annotations
+from typing import Any
 
 from manim import (
     AnimationGroup,

@@ -2,13 +2,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """3D and 2D Waves module."""
 
 # unlinked-class-ok: Source
 
 from __future__ import annotations
+from typing import Any
 
 import numpy as np
 from manim import Mobject, ORIGIN, PI, ParametricFunction, Surface

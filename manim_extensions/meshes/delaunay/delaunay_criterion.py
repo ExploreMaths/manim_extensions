@@ -7,7 +7,7 @@ functions to check delaunay criterion.
 """
 
 # python imports
-from typing import List
+from typing import List, Any
 import numpy as np
 
 # third-party imports

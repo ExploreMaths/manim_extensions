@@ -2,11 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 r""":class:`~manim_extensions.physics.optics.rays.Ray`\ s of light. Refracted by Lenses."""
 
 from __future__ import annotations
+from typing import Any
 
 from manim import Line, angle_of_vector, config, rotate_vector
 from typing import Iterable

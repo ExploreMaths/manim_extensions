@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """True-camera helpers for radar charts (:class:`~manim.scene.moving_camera_scene.MovingCameraScene`).
 
@@ -15,6 +14,7 @@ scales the chart instead — same idea, zero setup.
 """
 
 from __future__ import annotations
+from typing import Any
 
 from typing import Optional
 

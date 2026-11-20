@@ -3,11 +3,11 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants
 
-from typing import Any
 
 """:class:`~manim_extensions.algorithm.node.Node` data structure for algorithm visualization."""
 
 from __future__ import annotations
+from typing import Any
 
 from manim import (
     AnimationGroup,

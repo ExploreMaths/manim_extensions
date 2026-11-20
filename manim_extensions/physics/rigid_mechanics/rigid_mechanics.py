@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
 
-from typing import Any
 
 """A gravity simulation space.
 
@@ -29,6 +28,7 @@ the specific functions of the space.
 """
 
 from __future__ import annotations
+from typing import Any
 
 from typing import TYPE_CHECKING, Protocol, cast
 

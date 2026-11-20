@@ -2,11 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """Hatch-line and intersection helpers for CAD drawings."""
 
 from __future__ import annotations
+from typing import Any
 import numpy as np
 from manim import (
     DOWN,

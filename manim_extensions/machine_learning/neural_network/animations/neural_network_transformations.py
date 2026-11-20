@@ -2,13 +2,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """
 Transformations for manipulating a neural network object.
 """
 
 from __future__ import annotations
+from typing import Any
 
 from typing import TYPE_CHECKING
 

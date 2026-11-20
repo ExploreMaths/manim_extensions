@@ -49,6 +49,7 @@ from typing import (
     Protocol,
     TypedDict,
     cast,
+    Any,
 )
 
 from .m_enum import MArrayDirection, MArrayElementComp

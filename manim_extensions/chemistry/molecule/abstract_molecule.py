@@ -43,7 +43,7 @@ class AbstractMolecule:
         filepath: str,
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: dict | None = None,
+        elements_data_dict: dict[Any, Any] | None = None,
         *args: Any,
         **kwargs: Any,
     ) -> "AbstractMolecule":
@@ -87,7 +87,7 @@ class AbstractMolecule:
         filepath: str,
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: dict | None = None,
+        elements_data_dict: dict[Any, Any] | None = None,
         *args: Any,
         **kwargs: Any,
     ) -> OpenGLGroup | VGroup:
@@ -141,7 +141,7 @@ class AbstractMolecule:
         format: Literal["mol", "sdf", "asnt", "json", "xml"] = "json",
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: dict | None = None,
+        elements_data_dict: dict[Any, Any] | None = None,
         *args: Any,
         **kwargs: Any,
     ) -> "AbstractMolecule":
@@ -190,7 +190,7 @@ class AbstractMolecule:
         format: Literal["mol", "sdf", "asnt", "json", "xml"] = "json",
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
-        elements_data_dict: dict | None = None,
+        elements_data_dict: dict[Any, Any] | None = None,
         *args: Any,
         **kwargs: Any,
     ) -> OpenGLGroup:
@@ -249,7 +249,7 @@ class AbstractMolecule:
         smiles: str | None = None,
         inchi: str | None = None,
         three_d: bool = False,
-        elements_data_dict: dict | None = None,
+        elements_data_dict: dict[Any, Any] | None = None,
         *args: Any,
         **kwargs: Any,
     ) -> "AbstractMolecule":

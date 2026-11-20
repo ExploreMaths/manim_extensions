@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """The core objects: :class:`~manim_extensions.radar.chart.RadarChart` (single- or multi-dataset).
 
@@ -13,6 +12,7 @@ legend, four per-vertex number modes, focus dimming, a difference highlight
 """
 
 from __future__ import annotations
+from typing import Any
 
 import math
 from dataclasses import replace

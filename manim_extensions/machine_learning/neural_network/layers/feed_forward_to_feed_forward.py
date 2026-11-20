@@ -3,11 +3,11 @@
 # SPDX-License-Identifier: MIT
 # patched: implement modify_edge_colors
 
-from typing import Any
 
 """Feed-forward to feed-forward layer connection visualization."""
 
 from __future__ import annotations
+from typing import Any
 
 import numpy as np
 

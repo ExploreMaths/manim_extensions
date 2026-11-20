@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: MIT
 # patched: implement replace_layer
 
-from typing import Any
 
 """Neural Network Manim Visualization.
 
@@ -21,6 +20,7 @@ manim, specifically a fully connected neural network diagram.
 # unlinked-class-ok: Layout, Filters
 
 from __future__ import annotations
+from typing import Any
 
 import textwrap
 from ..utils.mobjects.connections import NetworkConnection

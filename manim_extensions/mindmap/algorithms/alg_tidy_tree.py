@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """
 Non-layered Tidy Tree :class:`~manim_extensions.mindmap.algorithms.layout.Layout` Algorithm (Python Implementation).
@@ -12,6 +11,7 @@ Algorithm reference: "Improving Walker's Algorithm to Run in Linear Time"
 """
 
 from __future__ import annotations
+from typing import Any
 
 __all__ = ["TidyTreeLayout"]
 from dataclasses import dataclass, field

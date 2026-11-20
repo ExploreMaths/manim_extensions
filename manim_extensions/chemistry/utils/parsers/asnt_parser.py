@@ -55,7 +55,7 @@ class ASNTParser(BaseParser):
     """
 
     @staticmethod
-    def read_file(filename: str | bytes | os.PathLike) -> List[List[str]]:
+    def read_file(filename: str | bytes | os.PathLike[str]) -> List[List[str]]:
         """Read an ASNT file and return its lines as a list of strings.
 
         Parameters

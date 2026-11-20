@@ -2,11 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """Timeline layout algorithm - Python implementation."""
 
 from __future__ import annotations
+from typing import Any
 
 __all__ = [
     "TimeLineLayout",
@@ -117,8 +117,8 @@ class TimelineNode:
 def walk(
     node: TimelineNode,
     parent: TimelineNode | None,
-    before_callback: Callable | None,
-    after_callback: Callable | None,
+    before_callback: Callable[..., Any] | None,
+    after_callback: Callable[..., Any] | None,
     is_root: bool = False,
     layer_index: int = 0,
     index: int = 0,

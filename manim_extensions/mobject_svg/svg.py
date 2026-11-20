@@ -5,7 +5,6 @@
 # patched: document the module-level constant and the cairo context helpers
 # patched: type the cairo context helpers and replace tempfile.mktemp
 
-from typing import Any
 
 """Render manim mobjects into SVG files through a Cairo surface.
 
@@ -17,6 +16,7 @@ subpaths, gradients and stroke/fill ordering keep working.
 """
 
 from __future__ import annotations
+from typing import Any
 
 import itertools as it
 import tempfile

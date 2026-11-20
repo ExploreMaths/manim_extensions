@@ -9,7 +9,7 @@ This module provides utility functions for parsing chemical molecule data.
 """
 
 import numpy as np
-from typing import Literal
+from typing import Literal, Any
 
 from ..element import (
     H,

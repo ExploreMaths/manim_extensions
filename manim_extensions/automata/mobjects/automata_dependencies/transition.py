@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """:class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` representation for automata.
 
@@ -11,6 +10,7 @@ This module provides the :class:`~manim_extensions.automata.mobjects.automata_de
 """
 
 from __future__ import annotations
+from typing import Any
 
 import itertools
 

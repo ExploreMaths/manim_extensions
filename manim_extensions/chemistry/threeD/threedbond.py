@@ -66,7 +66,7 @@ class ThreeDCylinder(OpenGLSurface):
         direction: Vector3D = Z_AXIS,
         v_range: list[Any] = [0, TAU],
         show_ends: bool = True,
-        resolution: tuple = (24, 24),
+        resolution: tuple[Any, ...] = (24, 24),
         **kwargs: Any,
     ) -> None:
         self._height = height

@@ -2,7 +2,6 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants
 
-from typing import Any
 
 """Manim chemistry bond representation.
 
@@ -11,6 +10,7 @@ This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_mol
 """
 
 from __future__ import annotations
+from typing import Any
 
 from typing import Dict, TYPE_CHECKING
 

@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """Structural configuration + bundled style presets.
 
@@ -11,6 +10,7 @@ transition timing). Colours live in :class:`manim_extensions.radar.theme.RadarTh
 """
 
 from __future__ import annotations
+from typing import Any
 
 from dataclasses import dataclass, field, replace
 from typing import Optional, Union
@@ -27,7 +27,7 @@ class RadarConfig:
     radius: float = 2.9
     #: chart centre in scene units ``(x, y)``; a little below the middle leaves
     #: room for the nameplate / title above the chart
-    position: tuple = (0.0, -0.18)
+    position: tuple[Any, ...] = (0.0, -0.18)
     #: number of concentric grid rings (the outermost ring is the full scale)
     levels: int = 5
     #: angle of the first axis, in degrees (90 = straight up)

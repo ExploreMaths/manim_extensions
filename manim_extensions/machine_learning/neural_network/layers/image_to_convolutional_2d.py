@@ -3,11 +3,11 @@
 # SPDX-License-Identifier: MIT
 # patched: route three-channel images to the RGB animation and implement it
 
-from typing import Any
 
 """Image to convolutional 2D layer connection visualization."""
 
 from __future__ import annotations
+from typing import Any
 
 from manim import (
     Animation,

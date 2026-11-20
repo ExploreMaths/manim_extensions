@@ -2,11 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """Arc-length, offset, warp and dashed-path helpers for Manim vector paths."""
 
 from __future__ import annotations
+from typing import Any
 from typing import Callable, Sequence
 import numpy as np
 from manim import (

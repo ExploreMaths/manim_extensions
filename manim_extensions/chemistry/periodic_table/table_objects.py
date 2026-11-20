@@ -94,7 +94,7 @@ class MElementObject(VGroup):
         element_name: str = "Hydrogen",
         element_symbol: str = "H",
         coloring: ManimColor = BLACK,
-        fill_colors: tuple = (WHITE, BLUE),
+        fill_colors: tuple[Any, ...] = (WHITE, BLUE),
         gradient: int = 10,
         opacity: float = 1,
         text_color: ManimColor = BLACK,

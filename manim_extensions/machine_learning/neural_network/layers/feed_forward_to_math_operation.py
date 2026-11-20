@@ -2,11 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """Feed-forward to math operation layer connection visualization."""
 
 from __future__ import annotations
+from typing import Any
 
 from manim import ManimColor, Mobject, ORANGE, ShowPassingFlash
 from .feed_forward import FeedForwardLayer

@@ -2,11 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """Math operation layer visualization for neural networks."""
 
 from __future__ import annotations
+from typing import Any
 
 from manim import (
     AnimationGroup,

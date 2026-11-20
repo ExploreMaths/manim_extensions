@@ -2,11 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """The deep-space backdrop: radial glow, vignette, nebula blobs and stars."""
 
 from __future__ import annotations
+from typing import Any
 
 import math
 import random
@@ -125,7 +125,7 @@ class DeepSpace(VGroup):
         nebula_count: int = 8,
         stars: bool = True,
         star_count: int = 64,
-        star_region: tuple = (-7.6, 7.6, -4.3, 4.3),
+        star_region: tuple[Any, ...] = (-7.6, 7.6, -4.3, 4.3),
         seed: int = 7,
         **kwargs: Any,
     ) -> None:

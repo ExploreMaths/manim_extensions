@@ -7,7 +7,6 @@
 
 # unlinked-class-ok: CodeBlock
 
-from typing import Any
 
 """A syntax-highlighted code block for Manim.
 
@@ -18,6 +17,7 @@ programming-language tokenizer is actually used.
 """
 
 from __future__ import annotations
+from typing import Any
 
 import re as regex
 from abc import ABC as abstract

@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """
 Code for making a dropout animation for the
@@ -10,6 +9,7 @@ feed forward layers of a neural network.
 """
 
 from __future__ import annotations
+from typing import Any
 
 from typing import TYPE_CHECKING
 

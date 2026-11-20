@@ -2,11 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """Max pooling 2D to feed-forward layer connection visualization."""
 
 from __future__ import annotations
+from typing import Any
 
 from manim import ManimColor, ORANGE
 from .convolutional_2d_to_feed_forward import Convolutional2DToFeedForward

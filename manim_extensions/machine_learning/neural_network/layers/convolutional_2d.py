@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """Convolutional 2D layer for neural network visualizations.
 
@@ -10,6 +9,7 @@ This module provides the convolutional 2D layer class for neural network visuali
 """
 
 from __future__ import annotations
+from typing import Any
 
 from ..activation_functions import get_activation_function_by_name
 from ..activation_functions.activation_function import ActivationFunction
@@ -82,7 +82,7 @@ class FeatureMap(VGroup):
         fill_color: ManimColor = ORANGE,
         fill_opacity: float = 0.2,
         cell_width: float = 0.2,
-        padding: tuple = (0, 0),
+        padding: tuple[Any, ...] = (0, 0),
         stroke_width: float = 2.0,
         show_grid_lines: bool = False,
         padding_dashed: bool = False,

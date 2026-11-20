@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """
 Catalog / organisation-chart layout algorithm - Python implementation.
@@ -16,6 +15,7 @@ Layout characteristics:
 """
 
 from __future__ import annotations
+from typing import Any
 
 __all__ = ["CatalogLayout"]
 from dataclasses import dataclass, field
@@ -238,8 +238,8 @@ class CatalogLayout(Layout):
     def _walk(
         self,
         node: CatalogNode,
-        pre_cb: Callable | None = None,
-        post_cb: Callable | None = None,
+        pre_cb: Callable[..., Any] | None = None,
+        post_cb: Callable[..., Any] | None = None,
         layer: int = 0,
         index: int = 0,
     ) -> Any:

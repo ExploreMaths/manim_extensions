@@ -3,11 +3,11 @@
 # SPDX-License-Identifier: MIT
 # patched: return a real Create animation instead of a no-op
 
-from typing import Any
 
 """Max pooling 2D layer visualization for neural networks."""
 
 from __future__ import annotations
+from typing import Any
 
 from manim import (
     Animation,

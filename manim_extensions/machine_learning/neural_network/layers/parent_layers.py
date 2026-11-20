@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: MIT
 # patched: BlankConnective implements the inherited abstract construct_layer (blank fallback)
 
-from typing import Any
 
 """Parent layer classes for neural network visualizations.
 
@@ -12,6 +11,7 @@ This module provides abstract base classes for neural network layer visualizatio
 """
 
 from __future__ import annotations
+from typing import Any
 
 
 from manim import (

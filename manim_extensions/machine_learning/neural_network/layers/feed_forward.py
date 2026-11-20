@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """Feed forward layer for neural network visualizations.
 
@@ -10,6 +9,7 @@ This module provides the feed forward layer class for neural network visualizati
 """
 
 from __future__ import annotations
+from typing import Any
 
 from manim import (
     Animation,

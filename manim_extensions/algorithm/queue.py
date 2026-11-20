@@ -2,11 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """:class:`~manim_extensions.algorithm.queue.Queue` data structure for algorithm visualization."""
 
 from __future__ import annotations
+from typing import Any
 
 from manim import (
     AnimationGroup,

@@ -2,11 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """Testing utilities for frame comparison."""
 
 from __future__ import annotations
+from typing import Any
 
 from manim import CairoRenderer, Scene, ThreeDCamera, ThreeDScene, tempconfig
 from manim._config.utils import ManimConfig
@@ -33,7 +33,7 @@ PATH_CONTROL_DATA = _tests_root_dir_path / Path("control_data", "graphical_units
 
 
 def frames_comparison(
-    func: Callable | None = None,
+    func: Callable[..., Any] | None = None,
     *,
     last_frame: bool = True,
     renderer_class: type[CairoRenderer] = CairoRenderer,

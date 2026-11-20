@@ -3,13 +3,13 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import shapely (physics extra)
 
-from typing import Any
 
 r"""Lenses for refracting :class:`~manim_extensions.physics.optics.rays.Ray`\ s."""
 
 # unlinked-class-ok: Array
 
 from __future__ import annotations
+from typing import Any
 
 from manim import (
     Circle,

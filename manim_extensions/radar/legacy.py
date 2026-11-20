@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """The two original generations, rebuilt on top of the library.
 
@@ -13,6 +12,7 @@ Both play the same 23-snapshot demo reel that ships with the package.
 """
 
 from __future__ import annotations
+from typing import Any
 
 from typing import Optional, Sequence
 

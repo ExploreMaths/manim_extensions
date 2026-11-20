@@ -89,7 +89,7 @@ class FiniteStateAutomaton:
 
     id_iter = itertools.count()
 
-    def __init__(self, json_template: dict | None = None) -> None:
+    def __init__(self, json_template: dict[Any, Any] | None = None) -> None:
         self.id = next(self.id_iter)
         self.states: list[State] = []
         self.transitions: list[Transition] = []

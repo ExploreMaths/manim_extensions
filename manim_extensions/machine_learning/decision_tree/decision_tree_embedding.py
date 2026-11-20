@@ -2,11 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
 
 """Embedding of a dataset in feature space together with a decision tree's areas."""
 
 from __future__ import annotations
+from typing import Any
 
 from manim import (
     AnimationGroup,
