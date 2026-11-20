@@ -640,7 +640,9 @@ def _discover_project_type_aliases():
             continue
         for node in tree.body:
             if isinstance(node, ast.Assign):
-                targets = [target for target in node.targets if isinstance(target, ast.Name)]
+                targets = [
+                    target for target in node.targets if isinstance(target, ast.Name)
+                ]
                 value = node.value
             elif isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
                 targets = [node.target]
