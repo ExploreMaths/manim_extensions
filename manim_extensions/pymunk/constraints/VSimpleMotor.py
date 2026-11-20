@@ -11,8 +11,8 @@ This module provides the :class:`~manim_extensions.pymunk.constraints.VSimpleMot
 from __future__ import annotations
 
 from math import inf
-from manim import Arrow, Line, Mobject, PI, RED
-from typing import TYPE_CHECKING
+from manim import Arrow, Line, Mobject, PI, RED, VMobject
+from typing import TYPE_CHECKING, Any
 from . import VConstraint
 
 from ...utils.deps import require
@@ -77,13 +77,13 @@ class VSimpleMotor(VConstraint):
         b_mob: Mobject,
         rate: float = PI,
         max_torque: float = inf,
-        indicator_line_class: Line | None = Arrow,
-        indicator_line_config: dict = {
+        indicator_line_class: type[Line] | None = Arrow,
+        indicator_line_config: dict[str, Any] = {
             "color": RED,
             "stroke_width": 2,
         },
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
 
         super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 
@@ -93,14 +93,14 @@ class VSimpleMotor(VConstraint):
 
         self.indicator_line_class = indicator_line_class
         self.indicator_line_config = indicator_line_config
-        self.indicator_line = None
+        self.indicator_line: VMobject | None = None
         self.constraint: SimpleMotor | None = None
 
-    def __check_data(self):
+    def __check_data(self) -> None:
         """Verify the validity of constraint parameters."""
         pass
 
-    def install(self, space: Space):
+    def install(self, space: Space) -> None:
         """Create the Pymunk SimpleMotor constraint, set max torque,
         initialize visual indicator, add to the space, and register the
         per-frame updater.
@@ -131,7 +131,7 @@ class VSimpleMotor(VConstraint):
 
         self._finalize_install(space)
 
-    def mob_updater(self, mob: Mobject, dt: float):
+    def mob_updater(self, mob: Mobject, dt: float) -> None:
         """Visual control updater.
 
         Parameters

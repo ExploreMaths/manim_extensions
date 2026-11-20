@@ -4,7 +4,9 @@
 
 """:class:`~manim_extensions.pymunk.custom_mobjects.apple.Apple` Mobject for Pymunk physics simulations."""
 
-from manim import VMobject, np
+import numpy as np
+from manim import VMobject
+from typing import Any
 
 
 class Apple(VMobject):
@@ -20,6 +22,7 @@ class Apple(VMobject):
     .. manim:: Apple
        :save_last_frame:
 
+       import numpy as np
        from manim import *
        from manim_extensions.pymunk import *
 
@@ -34,7 +37,7 @@ class Apple(VMobject):
                self.add(apples)
     """
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs: Any) -> None:
         super().__init__(**kwargs)
         # Bezier curve point set
         points = np.array(

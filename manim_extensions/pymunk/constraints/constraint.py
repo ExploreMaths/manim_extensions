@@ -12,10 +12,10 @@ This module provides the :class:`~manim_extensions.pymunk.constraints.constraint
 from __future__ import annotations
 
 from manim import Mobject, VGroup
-from typing import TYPE_CHECKING
+from typing import Any, cast, TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from pymunk import Body, Space
+    from pymunk import Body, Constraint, Space
 
 
 class VConstraint(VGroup):
@@ -47,21 +47,26 @@ class VConstraint(VGroup):
                self.add(content)
     """
 
-    def __init__(self, a_mob: Mobject = None, b_mob: Mobject = None, **kwargs):
+    def __init__(
+        self,
+        a_mob: Mobject | None = None,
+        b_mob: Mobject | None = None,
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
-        self.a_mob = a_mob
-        self.b_mob = b_mob
-        self.constraint = None
+        self.a_mob: Mobject = cast(Mobject, a_mob)
+        self.b_mob: Mobject = cast(Mobject, b_mob)
+        self.constraint: Constraint | None = None
         self._check_data()
 
-    def _check_data(self):
+    def _check_data(self) -> None:
         """Verify the validity of constraint parameters.
 
         Override in subclasses to perform subclass-specific validation.
         """
         pass
 
-    def _get_bodies(self, error_msg: str = None) -> tuple[Body, Body]:
+    def _get_bodies(self, error_msg: str | None = None) -> tuple[Body, Body]:
         """Extract pymunk bodies from the two connected mobjects and validate them.
 
         Parameters
@@ -90,7 +95,7 @@ class VConstraint(VGroup):
             raise ValueError(error_msg)
         return a_body, b_body
 
-    def _finalize_install(self, space: Space):
+    def _finalize_install(self, space: Space) -> None:
         """Finalize the installation by adding the constraint to the space
         and registering the per-frame updater.
 
@@ -101,10 +106,11 @@ class VConstraint(VGroup):
         space
             The Pymunk space to add the constraint to.
         """
+        assert self.constraint is not None
         space.add(self.constraint)
         self.add_updater(self.mob_updater)
 
-    def install(self, space: Space):
+    def install(self, space: Space) -> None:
         """Installs physical constraints into the Pymunk physical space.
         This method should be overridden by subclasses to implement the
         following steps.
@@ -121,7 +127,7 @@ class VConstraint(VGroup):
         """
         pass
 
-    def mob_updater(self, mob: Mobject, dt: float):
+    def mob_updater(self, mob: Mobject, dt: float) -> None:
         """Updates the visual representation of constraints in real time.
         This method should be overridden by subclasses and called in every frame,
         to synchronize the state of the visual components and the physics engine regarding constraints.

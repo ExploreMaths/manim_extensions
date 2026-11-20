@@ -12,7 +12,8 @@ from __future__ import annotations
 
 from ..custom_mobjects import VSpring
 from manim import BLUE, Dot, Line, Mobject, ORIGIN, VMobject, YELLOW
-from typing import TYPE_CHECKING
+from manim.typing import Point3D
+from typing import TYPE_CHECKING, Any
 from . import VConstraint
 
 from ...utils.deps import require
@@ -98,17 +99,17 @@ class VDampedSpring(VConstraint):
         self,
         a_mob: Mobject,
         b_mob: Mobject,
-        anchor_a_local: list[float, float, float] = ORIGIN,
-        anchor_b_local: list[float, float, float] = ORIGIN,
+        anchor_a_local: Point3D | tuple[float, float, float] = ORIGIN,
+        anchor_b_local: Point3D | tuple[float, float, float] = ORIGIN,
         rest_length: float = 1.0,
         stiffness: float = 100.0,
         damping: float = 10.0,
-        mob_a_appearance: Mobject = Dot(color=BLUE),
-        mob_b_appearance: Mobject = Dot(color=BLUE),
-        connect_line_class: Line | None = VSpring,
-        connect_line_config: dict = {"color": YELLOW, "stroke_width": 2},
-        **kwargs,
-    ):
+        mob_a_appearance: VMobject = Dot(color=BLUE),
+        mob_b_appearance: VMobject = Dot(color=BLUE),
+        connect_line_class: type[Line] | None = VSpring,
+        connect_line_config: dict[str, Any] = {"color": YELLOW, "stroke_width": 2},
+        **kwargs: Any,
+    ) -> None:
 
         super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
         self.anchor_a_local = anchor_a_local
@@ -126,7 +127,7 @@ class VDampedSpring(VConstraint):
         self.conn_line: VMobject | None = None
         self.constraint: DampedSpring | None = None
 
-    def install(self, space: Space):
+    def install(self, space: Space) -> None:
         """Verify the validity of constraint parameters.
 
         Parameters
@@ -153,8 +154,8 @@ class VDampedSpring(VConstraint):
 
         pos_a = a_body.local_to_world(tuple(self.anchor_a_local[:2]))
         pos_b = b_body.local_to_world(tuple(self.anchor_b_local[:2]))
-        p1 = [pos_a.x, pos_a.y, 0]
-        p2 = [pos_b.x, pos_b.y, 0]
+        p1 = (float(pos_a.x), float(pos_a.y), 0.0)
+        p2 = (float(pos_b.x), float(pos_b.y), 0.0)
 
         if self.connect_line_class:
             self.conn_line = self.connect_line_class(p1, p2, **self.connect_line_config)
@@ -162,11 +163,12 @@ class VDampedSpring(VConstraint):
         self.appearance_a.move_to(p1)
         self.appearance_b.move_to(p2)
 
-        self.add(self.conn_line, self.appearance_a, self.appearance_b)
+        if self.conn_line is not None:
+            self.add(self.conn_line, self.appearance_a, self.appearance_b)
 
         self._finalize_install(space)
 
-    def mob_updater(self, mob: Mobject, dt: float):
+    def mob_updater(self, mob: Mobject, dt: float) -> None:
         """Visual control updater.
 
         Parameters
@@ -183,8 +185,8 @@ class VDampedSpring(VConstraint):
         body_b = self.constraint.b
         wa = body_a.local_to_world(self.constraint.anchor_a)
         wb = body_b.local_to_world(self.constraint.anchor_b)
-        p1 = [wa.x, wa.y, 0]
-        p2 = [wb.x, wb.y, 0]
+        p1 = (wa.x, wa.y, 0)
+        p2 = (wb.x, wb.y, 0)
 
         self.appearance_a.move_to(p1)
         self.appearance_b.move_to(p2)

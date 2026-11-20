@@ -10,8 +10,9 @@ This module provides the :class:`~manim_extensions.pymunk.constraints.VGearJoint
 
 from __future__ import annotations
 
-from manim import Arrow, BLUE, Line, Mobject, UP, np
-from typing import TYPE_CHECKING
+from manim import Arrow, BLUE, Line, Mobject, UP, VMobject
+import numpy as np
+from typing import TYPE_CHECKING, Any
 from . import VConstraint
 
 from ...utils.deps import require
@@ -87,26 +88,26 @@ class VGearJoint(VConstraint):
         b_mob: Mobject,
         phase: float = 0.0,
         ratio: float = 1.0,
-        indicator_line_class: Line | None = Arrow,
-        indicator_line_config: dict = {
+        indicator_line_class: type[Line] | None = Arrow,
+        indicator_line_config: dict[str, Any] = {
             "color": BLUE,
             "stroke_width": 2,
         },
         indicator_length: float = 0.4,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
 
         super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
         self.phase = phase
         self.ratio = ratio
-        self.indicator_a = None
-        self.indicator_b = None
+        self.indicator_a: VMobject | None = None
+        self.indicator_b: VMobject | None = None
         self.constraint: GearJoint | None = None
         self.indicator_line_class = indicator_line_class
         self.indicator_line_config = indicator_line_config
         self.indicator_length = indicator_length
 
-    def install(self, space: Space):
+    def install(self, space: Space) -> None:
         """Verify the validity of constraint parameters.
 
         Parameters
@@ -138,7 +139,7 @@ class VGearJoint(VConstraint):
 
         self._finalize_install(space)
 
-    def mob_updater(self, mob: Mobject, dt: float):
+    def mob_updater(self, mob: Mobject, dt: float) -> None:
         """Visual control updater.
 
         Parameters

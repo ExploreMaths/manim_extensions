@@ -10,8 +10,10 @@ This module provides the :class:`~manim_extensions.pymunk.constraints.VPivotJoin
 
 from __future__ import annotations
 
-from manim import Dot, Line, Mobject, ORIGIN, RED, YELLOW, np
-from typing import TYPE_CHECKING
+from manim import Dot, Line, Mobject, ORIGIN, RED, YELLOW, VMobject
+import numpy as np
+from manim.typing import Point3D
+from typing import TYPE_CHECKING, Any
 from . import VConstraint
 
 from ...utils.deps import require
@@ -89,19 +91,19 @@ class VPivotJoint(VConstraint):
         self,
         a_mob: Mobject,
         b_mob: Mobject,
-        pivot_world: list[float, float, float] | None = None,
-        anchor_a_local: list[float, float, float] = ORIGIN,
-        anchor_b_local: list[float, float, float] = ORIGIN,
-        anchor_a_appearance: Mobject = Dot(color=RED),
-        anchor_b_appearance: Mobject = Dot(color=RED),
-        pivot_appearance: Mobject = Dot(color=RED),
-        connect_line_class: Line | None = Line,
-        connect_line_config: dict = {
+        pivot_world: Point3D | tuple[float, float, float] | None = None,
+        anchor_a_local: Point3D | tuple[float, float, float] = ORIGIN,
+        anchor_b_local: Point3D | tuple[float, float, float] = ORIGIN,
+        anchor_a_appearance: VMobject = Dot(color=RED),
+        anchor_b_appearance: VMobject = Dot(color=RED),
+        pivot_appearance: VMobject = Dot(color=RED),
+        connect_line_class: type[Line] | None = Line,
+        connect_line_config: dict[str, Any] = {
             "color": YELLOW,
             "stroke_width": 2,
         },
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 
         self.pivot_world = pivot_world
@@ -114,14 +116,14 @@ class VPivotJoint(VConstraint):
 
         self.connect_line_class = connect_line_class
         self.connect_line_config = connect_line_config
-        self.anchor_connect_line = None
+        self.anchor_connect_line: VMobject | None = None
 
-        self.pivot_connect_line_a = None
-        self.pivot_connect_line_b = None
+        self.pivot_connect_line_a: VMobject | None = None
+        self.pivot_connect_line_b: VMobject | None = None
 
         self.constraint: PivotJoint | None = None
 
-    def install(self, space: Space):
+    def install(self, space: Space) -> None:
         """Verify the validity of constraint parameters.
 
         Parameters
@@ -163,8 +165,8 @@ class VPivotJoint(VConstraint):
             )
             pos_a = a_body.local_to_world(tuple(self.anchor_a_local[:2]))
             pos_b = b_body.local_to_world(tuple(self.anchor_b_local[:2]))
-            p1 = [pos_a.x, pos_a.y, 0]
-            p2 = [pos_b.x, pos_b.y, 0]
+            p1 = (float(pos_a.x), float(pos_a.y), 0.0)
+            p2 = (float(pos_b.x), float(pos_b.y), 0.0)
 
             if self.connect_line_class:
                 self.anchor_connect_line = self.connect_line_class(
@@ -182,7 +184,7 @@ class VPivotJoint(VConstraint):
 
         self._finalize_install(space)
 
-    def mob_updater(self, mob: Mobject, dt: float):
+    def mob_updater(self, mob: Mobject, dt: float) -> None:
         """Visual control updater.
 
         Parameters
@@ -197,7 +199,7 @@ class VPivotJoint(VConstraint):
 
         if self.pivot_world is not None:
             p = self.constraint.anchor_a
-            pivot = [p.x, p.y, 0]
+            pivot = (p.x, p.y, 0.0)
             self.pivot_appearance.move_to(pivot)
             if isinstance(self.pivot_connect_line_a, Line) and not np.allclose(
                 self.a_mob.get_center(), pivot
@@ -219,8 +221,8 @@ class VPivotJoint(VConstraint):
             b_body = self.constraint.b
             wa = a_body.local_to_world(self.constraint.anchor_a)
             wb = b_body.local_to_world(self.constraint.anchor_b)
-            p1 = [wa.x, wa.y, 0]
-            p2 = [wb.x, wb.y, 0]
+            p1 = (wa.x, wa.y, 0)
+            p2 = (wb.x, wb.y, 0)
 
             self.anchor_a_appearance.move_to(p1)
             self.anchor_b_appearance.move_to(p2)

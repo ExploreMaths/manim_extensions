@@ -10,8 +10,9 @@ This module provides the :class:`~manim_extensions.pymunk.constraints.VDampedRot
 
 from __future__ import annotations
 
-from manim import Arc, Line, Mobject, PI, RED, VMobject, YELLOW, np
-from typing import TYPE_CHECKING
+from manim import Arc, Line, Mobject, PI, RED, VMobject, YELLOW
+import numpy as np
+from typing import TYPE_CHECKING, Any
 from . import VConstraint
 
 from ...utils.deps import require
@@ -87,12 +88,16 @@ class VDampedRotarySpring(VConstraint):
         rest_angle: float = 0.0,
         stiffness: float = 10.0,
         damping: float = 1.0,
-        arc_indicator_class: Arc | None = Arc,
-        arc_indicator_config: dict = {"radius": 0.1, "color": RED, "stroke_width": 4},
-        connect_line_class: Line | None = None,
-        connect_line_config: dict = {"color": YELLOW, "stroke_width": 2},
-        **kwargs,
-    ):
+        arc_indicator_class: type[Arc] | None = Arc,
+        arc_indicator_config: dict[str, Any] = {
+            "radius": 0.1,
+            "color": RED,
+            "stroke_width": 4,
+        },
+        connect_line_class: type[Line] | None = None,
+        connect_line_config: dict[str, Any] = {"color": YELLOW, "stroke_width": 2},
+        **kwargs: Any,
+    ) -> None:
         super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 
         self.rest_angle = rest_angle
@@ -112,7 +117,7 @@ class VDampedRotarySpring(VConstraint):
         self.constraint: DampedRotarySpring | None = None
         self.__check_data()
 
-    def __check_data(self):
+    def __check_data(self) -> None:
         """Verify the validity of constraint parameters.
 
         Raises
@@ -136,7 +141,7 @@ class VDampedRotarySpring(VConstraint):
                     "Connecting them with a line makes no sense."
                 )
 
-    def install(self, space: Space):
+    def install(self, space: Space) -> None:
         """Initialization of physics and visualization components.
 
         Parameters
@@ -177,7 +182,7 @@ class VDampedRotarySpring(VConstraint):
         # 3. Inject into physics world
         self._finalize_install(space)
 
-    def mob_updater(self, mob: Mobject, dt: float):
+    def mob_updater(self, mob: Mobject, dt: float) -> None:
         """Visual control updater.
 
         Parameters
@@ -223,7 +228,7 @@ class VDampedRotarySpring(VConstraint):
             unit_vec[1], unit_vec[0]
         )  # Absolute angle of connecting line
 
-        if self.arc_a:
+        if self.arc_a and self.arc_indicator_class is not None:
             new_arc_a = self.arc_indicator_class(
                 angle=display_angle, **self.arc_indicator_config
             )
@@ -234,7 +239,7 @@ class VDampedRotarySpring(VConstraint):
             )
             self.arc_a.become(new_arc_a)
 
-        if self.arc_b:
+        if self.arc_b and self.arc_indicator_class is not None:
             new_arc_b = self.arc_indicator_class(
                 angle=-display_angle, **self.arc_indicator_config
             )

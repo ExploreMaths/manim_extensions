@@ -10,8 +10,9 @@ This module provides the :class:`~manim_extensions.pymunk.constraints.VRatchetJo
 
 from __future__ import annotations
 
-from manim import Arrow, BLUE, Line, Mobject, PI, UP, VMobject, YELLOW, np
-from typing import TYPE_CHECKING
+from manim import Arrow, BLUE, Line, Mobject, PI, UP, VMobject, YELLOW
+import numpy as np
+from typing import TYPE_CHECKING, Any
 from . import VConstraint
 
 from ...utils.deps import require
@@ -88,16 +89,16 @@ class VRatchetJoint(VConstraint):
         b_mob: Mobject,
         phase: float = 0.0,
         ratchet: float = PI / 2,
-        indicator_line_class: Line | None = Arrow,
-        indicator_line_config: dict = {
+        indicator_line_class: type[Line] | None = Arrow,
+        indicator_line_config: dict[str, Any] = {
             "color": BLUE,
             "stroke_width": 2,
         },
         indicator_line_length: float = 0.4,
-        connect_line_class: Line | None = None,
-        connect_line_config: dict = {"color": YELLOW, "stroke_width": 2},
-        **kwargs,
-    ):
+        connect_line_class: type[Line] | None = None,
+        connect_line_config: dict[str, Any] = {"color": YELLOW, "stroke_width": 2},
+        **kwargs: Any,
+    ) -> None:
         super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 
         self.phase = phase
@@ -108,14 +109,14 @@ class VRatchetJoint(VConstraint):
         self.indicator_line_length = indicator_line_length
         self.connect_line_class = connect_line_class
         self.connect_line_config = connect_line_config
-        self.indicator_a = None
-        self.indicator_b = None
+        self.indicator_a: VMobject | None = None
+        self.indicator_b: VMobject | None = None
 
         self.connect_line: VMobject | None = None
         self.constraint: RatchetJoint | None = None
         self.__check_data()
 
-    def __check_data(self):
+    def __check_data(self) -> None:
         """Verify the validity of constraint parameters.
 
         Raises
@@ -138,7 +139,7 @@ class VRatchetJoint(VConstraint):
                     "Connecting them with a line makes no sense."
                 )
 
-    def install(self, space: Space):
+    def install(self, space: Space) -> None:
         """Create the Pymunk RatchetJoint constraint, initialize visual
         indicator arrows and connecting line, add to the space, and
         register the per-frame updater.
@@ -180,7 +181,7 @@ class VRatchetJoint(VConstraint):
 
         self._finalize_install(space)
 
-    def mob_updater(self, mob: Mobject, dt: float):
+    def mob_updater(self, mob: Mobject, dt: float) -> None:
         """Visual control updater.
 
         Parameters

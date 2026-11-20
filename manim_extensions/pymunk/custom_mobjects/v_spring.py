@@ -5,6 +5,7 @@
 """Spring Mobject for Pymunk physics simulations."""
 
 import numpy as np
+from typing import Any
 from manim import LEFT, Line, ManimColor, ORIGIN, PI, RIGHT, WHITE, angle_of_vector
 from manim.typing import Point3D
 
@@ -65,15 +66,15 @@ class VSpring(Line):
         end_length: float = 0.2,
         stroke_width: float = 1,
         color: ManimColor = WHITE,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.turns = turns
         self.amplitude = amplitude
         self.end_length = end_length
         # Note: Line.__init__ internally calls generate_points()
         super().__init__(start, end, stroke_width=stroke_width, color=color, **kwargs)
 
-    def generate_points(self):
+    def generate_points(self) -> "VSpring":
         """Override generate_points to produce a helix instead of a straight line."""
         # 1. Compute distance between start and end
         start = self._pointify(self.start)
@@ -84,15 +85,15 @@ class VSpring(Line):
         # Avoid division by zero
         if total_dist < 0.001:
             self.set_points_as_corners([start, end])
-            return
+            return self
 
         # 2. Generate helix point set along horizontal (x) axis
         helix_dist = max(total_dist - 2 * self.end_length, 0.01)
-        points = []
+        points: list[tuple[float, float, float]] = []
 
         # Start terminal segment
-        points.append([0, 0, 0])
-        points.append([self.end_length, 0, 0])
+        points.append((0.0, 0.0, 0.0))
+        points.append((self.end_length, 0.0, 0.0))
 
         # Helix portion
         num_steps = self.turns * 12
@@ -109,10 +110,10 @@ class VSpring(Line):
                 taper = (1 - t) / 0.1
 
             y = self.amplitude * np.sin(angle) * taper
-            points.append([x, y, 0])
+            points.append((x, y, 0.0))
 
         # End terminal segment
-        points.append([self.end_length + helix_dist + self.end_length, 0, 0])
+        points.append((self.end_length + helix_dist + self.end_length, 0.0, 0.0))
 
         # 3. Transform horizontal point set to align with start -> end vector
         self.set_points_as_corners(points)
@@ -122,8 +123,13 @@ class VSpring(Line):
         target_angle = angle_of_vector(vec)
         self.rotate(target_angle, about_point=ORIGIN)
         self.shift(start)
+        return self
 
-    def put_start_and_end_on(self, start: Point3D, end: Point3D) -> "VSpring":
+    def put_start_and_end_on(
+        self,
+        start: Point3D | tuple[float, float, float],
+        end: Point3D | tuple[float, float, float],
+    ) -> "VSpring":
         """Regenerate points when positions change (e.g. called by an Updater).
 
         Parameters

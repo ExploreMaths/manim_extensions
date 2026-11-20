@@ -6,6 +6,7 @@
 
 from manim import Circle, DEGREES, Exclusion, Polygon, Union, VMobject
 import numpy as np
+from typing import Any
 
 
 class Gear(VMobject):
@@ -59,8 +60,8 @@ class Gear(VMobject):
         width_factor: float = 0.5,  # Tooth width as fraction of tooth pitch space; 0.5 = half tooth, half gap
         roundness: float = 0.05,
         hole_radius: float = 0.1,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
 
         # Auto-compute optimal tooth width
@@ -68,22 +69,22 @@ class Gear(VMobject):
         auto_width = (np.pi * radius / num_teeth) * width_factor
 
         # 1. Create base disc
-        res = Circle(radius=radius)
+        res: VMobject = Circle(radius=radius)
 
         # 2. Prepare all teeth
-        teeth_to_union = []
+        teeth_to_union: list[VMobject] = []
         for i in range(num_teeth):
             # Use auto-computed width
-            p1 = [-auto_width, radius, 0]
-            p2 = [auto_width, radius, 0]
-            p3 = [0, radius + tooth_height, 0]
+            p1 = (-auto_width, radius, 0.0)
+            p2 = (auto_width, radius, 0.0)
+            p3 = (0.0, radius + tooth_height, 0.0)
 
             tooth = Polygon(p1, p2, p3)
 
             dist = radius + tooth_height / 2 - 0.05
             angle = i * (360 / num_teeth) * DEGREES
 
-            pos = [dist * np.cos(angle), dist * np.sin(angle), 0]
+            pos = (dist * np.cos(angle), dist * np.sin(angle), 0.0)
             tooth.move_to(pos)
             tooth.rotate(angle - 90 * DEGREES)
 

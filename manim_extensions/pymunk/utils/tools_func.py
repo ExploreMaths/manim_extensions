@@ -32,7 +32,7 @@ def get_moment_for_box(mass: float, width: float, height: float) -> float:
         Moment of inertia.
     """
     moment_for_box = require("physics", "pymunk").moment_for_box
-    return moment_for_box(mass=mass, size=(width, height))
+    return float(moment_for_box(mass=mass, size=(width, height)))
 
 
 def get_moment_for_circle(
@@ -66,11 +66,13 @@ def get_moment_for_circle(
         Moment of inertia.
     """
     moment_for_circle = require("physics", "pymunk").moment_for_circle
-    return moment_for_circle(
-        mass=mass,
-        inner_radius=inner_radius,
-        outer_radius=outer_radius,
-        offset=(x_offset, y_offset),
+    return float(
+        moment_for_circle(
+            mass=mass,
+            inner_radius=inner_radius,
+            outer_radius=outer_radius,
+            offset=(x_offset, y_offset),
+        )
     )
 
 
@@ -104,8 +106,13 @@ def get_moment_for_poly(
         Moment of inertia.
     """
     moment_for_poly = require("physics", "pymunk").moment_for_poly
-    return moment_for_poly(
-        mass=mass, vertices=vertices, offset=(x_offset, y_offset), radius=stroke_width
+    return float(
+        moment_for_poly(
+            mass=mass,
+            vertices=vertices,
+            offset=(x_offset, y_offset),
+            radius=stroke_width,
+        )
     )
 
 
@@ -136,4 +143,4 @@ def get_moment_for_line(
         Moment of inertia.
     """
     moment_for_segment = require("physics", "pymunk").moment_for_segment
-    return moment_for_segment(mass=mass, a=start, b=end, radius=stroke_width)
+    return float(moment_for_segment(mass=mass, a=start, b=end, radius=stroke_width))

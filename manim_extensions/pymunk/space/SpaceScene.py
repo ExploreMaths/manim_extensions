@@ -11,9 +11,9 @@ This module provides the :class:`~manim_extensions.pymunk.space.SpaceScene.Space
 from __future__ import annotations
 
 from manim import Mobject, ZoomedScene
-from typing import Callable, Dict, TYPE_CHECKING
+from typing import Any, Callable, TYPE_CHECKING, cast
 
-from . import VSpace
+from .VSpace import VSpace
 from ..constraints.constraint import VConstraint
 from ..utils.logger_tool import manim_pymunk_logger
 
@@ -66,12 +66,14 @@ class SpaceScene(ZoomedScene):
                Group(*self.mobjects).scale(0.08).move_to(ORIGIN)
     """
 
-    def __init__(self, gravity: tuple[float, float] = (0, -9.81), **kwargs):
+    def __init__(
+        self, gravity: tuple[float, float] = (0, -9.81), **kwargs: Any
+    ) -> None:
         super().__init__(**kwargs)
         self.vspace = VSpace(gravity=gravity)
         manim_pymunk_logger.debug("SpaceScene initional~")
 
-    def setup(self):
+    def setup(self) -> None:
         """Instance initialization configuration.
         Automatically add physical space to the scene and start the physics state updater.
         """
@@ -80,11 +82,11 @@ class SpaceScene(ZoomedScene):
 
     def add_shapes_filter(
         self,
-        *mobs,
+        *mobs: Mobject,
         group: int = 0,
         categories: int = 4294967295,
         mask: int = 4294967295,
-    ):
+    ) -> None:
         """Sets the collision filter for the shapes associated with the given Mobjects.
         This determines which shapes can collide with each other based on groups,
         categories, and masks.
@@ -106,7 +108,7 @@ class SpaceScene(ZoomedScene):
 
     def add_static_body(
         self,
-        *mobs,
+        *mobs: Mobject,
         family_members: bool = False,
         is_solid: bool = True,
         # shapes-related
@@ -119,7 +121,7 @@ class SpaceScene(ZoomedScene):
         center_of_gravity: tuple[float, float] = (0.0, 0.0),
         velocity: tuple[float, float] = (0.0, 0.0),
         angular_velocity: float = 0.0,
-    ):
+    ) -> None:
         """Adds Mobjects to the physical space as static bodies.
         Static bodies do not move under the influence of gravity or collisions
         and are typically used for environment boundaries like floors and walls.
@@ -180,7 +182,7 @@ class SpaceScene(ZoomedScene):
 
     def add_dynamic_body(
         self,
-        *mobs,
+        *mobs: Mobject,
         family_members: bool = False,
         is_solid: bool = True,
         # shapes-related
@@ -193,7 +195,7 @@ class SpaceScene(ZoomedScene):
         center_of_gravity: tuple[float, float] = (0.0, 0.0),
         velocity: tuple[float, float] = (0.0, 0.0),
         angular_velocity: float = 0.0,
-    ):
+    ) -> None:
         """Adds Mobjects to the physical space as static bodies.
         Static bodies do not move under the influence of gravity or collisions
         and are typically used for environment boundaries like floors and walls.
@@ -254,7 +256,7 @@ class SpaceScene(ZoomedScene):
 
     def add_kinematic_body(
         self,
-        *mobs,
+        *mobs: Mobject,
         family_members: bool = False,
         is_solid: bool = True,
         # shapes-related
@@ -267,7 +269,7 @@ class SpaceScene(ZoomedScene):
         center_of_gravity: tuple[float, float] = (0.0, 0.0),
         velocity: tuple[float, float] = (0.0, 0.0),
         angular_velocity: float = 0.0,
-    ):
+    ) -> None:
         """Adds Mobjects to the physical space as static bodies.
         Static bodies do not move under the influence of gravity or collisions
         and are typically used for environment boundaries like floors and walls.
@@ -326,7 +328,7 @@ class SpaceScene(ZoomedScene):
                     angular_velocity=angular_velocity,
                 )
 
-    def add_constraints(self, *mobs: VConstraint):
+    def add_constraints(self, *mobs: VConstraint) -> None:
         """Adds constraint Mobjects to the scene and installs them into the physical space.
         This method ensures that the constraints (such as springs, joints, or motors)
         are both visually rendered in Manim and physically simulated in Pymunk.
@@ -341,7 +343,7 @@ class SpaceScene(ZoomedScene):
         for mob in mobs:
             mob.install(space=self.vspace.space)
 
-    def active_body(self, *mobs: Mobject):
+    def active_body(self, *mobs: Mobject) -> None:
         """Activates the physical bodies of the given Mobjects if they are sleeping.
         In physics simulations, bodies that have come to rest are often put to 'sleep'
         to save computation. This method forces those bodies back into an active state.
@@ -356,14 +358,11 @@ class SpaceScene(ZoomedScene):
         for mob in mobs:
             family = mob.family_members_with_points()
             for sub_mob in family:
-                if (
-                    hasattr(sub_mob, "body")
-                    and sub_mob.body.body_type is pymunk.Body.DYNAMIC
-                    and sub_mob.body.is_sleeping
-                ):
-                    sub_mob.body.activate()
+                body = cast(Any, sub_mob).body
+                if body.body_type is pymunk.Body.DYNAMIC and body.is_sleeping:
+                    body.activate()
 
-    def sleep_body(self, *mobs: Mobject):
+    def sleep_body(self, *mobs: Mobject) -> None:
         """Forces the physical bodies of the given Mobjects into a sleeping state.
         Sleeping bodies are removed from the physics simulation update loop until
         they are touched by another active body or manually activated, which
@@ -381,15 +380,16 @@ class SpaceScene(ZoomedScene):
             # Resolve group issue
             family = mob.family_members_with_points()
             for sub_mob in family:
-                if (
-                    hasattr(sub_mob, "body")
-                    and sub_mob.body.body_type is pymunk.Body.DYNAMIC
-                ):
-                    sub_mob.body.sleep()
+                body = cast(Any, sub_mob).body
+                if body.body_type is pymunk.Body.DYNAMIC:
+                    body.sleep()
 
     def draw_debug_img(  # pragma: no cover - requires an interactive TkAgg display
-        self, option: int | None = None, xlim: tuple = (-8, 8), ylim: tuple = (-5, 5)
-    ):
+        self,
+        option: int | None = None,
+        xlim: tuple[float, float] = (-8, 8),
+        ylim: tuple[float, float] = (-5, 5),
+    ) -> None:
         """Pops up a Matplotlib window to render a debug view of the physical space.
         This is an essential diagnostic tool used to verify if collision shapes,
         constraints, and pivots are correctly aligned when they are not behaving
@@ -459,7 +459,7 @@ class SpaceScene(ZoomedScene):
             If the :class:`~manim.mobject.mobject.Mobject` has not been added to the physical space yet.
         """
         if hasattr(mob, "body"):
-            return mob.body
+            return cast("pymunk.Body", cast(Any, mob).body)
         else:
             raise RuntimeError("Please add 'mobject' to the space first!")
 
@@ -485,12 +485,12 @@ class SpaceScene(ZoomedScene):
             If the :class:`~manim.mobject.mobject.Mobject` has not been added to the physical space yet.
         """
         if hasattr(mob, "shapes"):
-            return mob.shapes
+            return cast("list[pymunk.Shape]", cast(Any, mob).shapes)
         else:
             raise RuntimeError("Please add 'mobject' to the space first!")
 
     # collision ID setter
-    def set_collision_type(self, *mobs: Mobject, collision_type: int = 4):
+    def set_collision_type(self, *mobs: Mobject, collision_type: int = 4) -> None:
         """Set the collision type integer on the physical shapes of the
         given Mobjects, used by collision handlers to match pairs.
 
@@ -508,12 +508,20 @@ class SpaceScene(ZoomedScene):
     def set_wildcard_collision_handler(
         self,
         collision_type_a: int,
-        begin: Callable[[pymunk.Arbiter, pymunk.Space, Dict], bool] = None,
-        pre_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], bool] = None,
-        post_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
-        separate: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
-        data: Dict[object, object] | None = None,
-    ):
+        begin: (
+            Callable[[pymunk.Arbiter, pymunk.Space, dict[str, Any]], bool] | None
+        ) = None,
+        pre_solve: (
+            Callable[[pymunk.Arbiter, pymunk.Space, dict[str, Any]], bool] | None
+        ) = None,
+        post_solve: (
+            Callable[[pymunk.Arbiter, pymunk.Space, dict[str, Any]], None] | None
+        ) = None,
+        separate: (
+            Callable[[pymunk.Arbiter, pymunk.Space, dict[str, Any]], None] | None
+        ) = None,
+        data: dict[object, object] | None = None,
+    ) -> None:
         """Register a wildcard collision handler that matches any collision
         involving the given collision type.
 
@@ -540,12 +548,20 @@ class SpaceScene(ZoomedScene):
         self,
         collision_type_a: int,
         collision_type_b: int,
-        begin: Callable[[pymunk.Arbiter, pymunk.Space, Dict], bool] = None,
-        pre_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], bool] = None,
-        post_solve: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
-        separate: Callable[[pymunk.Arbiter, pymunk.Space, Dict], None] = None,
-        data: Dict[object, object] | None = None,
-    ):
+        begin: (
+            Callable[[pymunk.Arbiter, pymunk.Space, dict[str, Any]], bool] | None
+        ) = None,
+        pre_solve: (
+            Callable[[pymunk.Arbiter, pymunk.Space, dict[str, Any]], bool] | None
+        ) = None,
+        post_solve: (
+            Callable[[pymunk.Arbiter, pymunk.Space, dict[str, Any]], None] | None
+        ) = None,
+        separate: (
+            Callable[[pymunk.Arbiter, pymunk.Space, dict[str, Any]], None] | None
+        ) = None,
+        data: dict[object, object] | None = None,
+    ) -> None:
         """Register a collision handler between two specific collision types.
 
         Parameters
@@ -581,7 +597,7 @@ class SpaceScene(ZoomedScene):
         *mobs: Mobject,
         force: tuple[float, float, float],
         point: tuple[float, float, float] = (0, 0, 0),
-    ):
+    ) -> None:
         """Apply a continuous force to each given Mobject at a local point
         relative to the body's center.
 
@@ -603,7 +619,7 @@ class SpaceScene(ZoomedScene):
         *mobs: Mobject,
         force: tuple[float, float, float],
         point: tuple[float, float, float] = (0, 0, 0),
-    ):
+    ) -> None:
         """Apply a continuous force to each given Mobject at a point in
         world (scene) coordinates.
 
@@ -626,7 +642,7 @@ class SpaceScene(ZoomedScene):
         *mobs: Mobject,
         impulse: tuple[float, float, float],
         point: tuple[float, float, float] = (0, 0, 0),
-    ):
+    ) -> None:
         """Apply an instantaneous impulse to each given Mobject at a local
         point relative to the body's center.
 
@@ -648,7 +664,7 @@ class SpaceScene(ZoomedScene):
         *mobs: Mobject,
         impulse: tuple[float, float, float],
         point: tuple[float, float, float] = (0, 0, 0),
-    ):
+    ) -> None:
         """Apply an instantaneous impulse to each given Mobject at a point
         in world (scene) coordinates.
 
@@ -668,7 +684,7 @@ class SpaceScene(ZoomedScene):
     # pos utils
     def local_to_world(
         self, mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
-    ):
+    ) -> None:
         """Convert a point from the Mobject's local body coordinates to
         world (scene) coordinates.
 
@@ -683,7 +699,7 @@ class SpaceScene(ZoomedScene):
 
     def world_to_local(
         self, mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
-    ):
+    ) -> None:
         """Convert a point from world (scene) coordinates to the Mobject's
         local body coordinates.
 
@@ -698,8 +714,10 @@ class SpaceScene(ZoomedScene):
 
     # custom position | velocity
     def set_position_func(
-        self, *mobs: Mobject, callback: Callable[[pymunk.Body, float], None] = None
-    ):
+        self,
+        *mobs: Mobject,
+        callback: Callable[[pymunk.Body, float], None] | None = None,
+    ) -> None:
         """Assign a custom position update callback to each Mobject's
         physical body, overriding Pymunk's default position integration.
 
@@ -722,10 +740,10 @@ class SpaceScene(ZoomedScene):
     def set_velocity_func(
         self,
         *mobs: Mobject,
-        callback: Callable[
-            [pymunk.Body, tuple[float, float], float, float], None
-        ] = None,
-    ):
+        callback: (
+            Callable[[pymunk.Body, tuple[float, float], float, float], None] | None
+        ) = None,
+    ) -> None:
         """Assign a custom velocity update callback to each Mobject's
         physical body, overriding Pymunk's default velocity integration.
 
@@ -789,7 +807,7 @@ class SpaceScene(ZoomedScene):
     # get point info
     def get_point_query_info(
         self, mob: Mobject, point: tuple[float, float, float] = (0, 0, 0)
-    ) -> list:
+    ) -> list[Any]:
         """Query which shapes of the :class:`~manim.mobject.mobject.Mobject` contain or are closest to a
         given point in world coordinates.
 
@@ -815,7 +833,7 @@ class SpaceScene(ZoomedScene):
         start: tuple[float, float, float],
         end: tuple[float, float, float],
         stroke_width: float,
-    ) -> list:
+    ) -> list[Any]:
         """Perform a segment (line) query against the Mobject's shapes,
         finding the first intersection along the line segment.
 
@@ -838,7 +856,7 @@ class SpaceScene(ZoomedScene):
 
     def get_shapea_shapeb_info(
         self, shape_a: pymunk.Shape, shape_b: pymunk.Shape
-    ) -> list:
+    ) -> list[Any]:
         """Return collision information between two specific Pymunk shapes,
         such as contact points and normal.
 

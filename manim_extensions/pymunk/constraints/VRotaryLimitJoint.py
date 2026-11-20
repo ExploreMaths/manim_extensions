@@ -11,7 +11,7 @@ This module provides the :class:`~manim_extensions.pymunk.constraints.VRotaryLim
 from __future__ import annotations
 
 from manim import Arc, Mobject, PI, VMobject, YELLOW
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 from . import VConstraint
 import numpy as np
 
@@ -80,14 +80,14 @@ class VRotaryLimitJoint(VConstraint):
         b_mob: Mobject,
         min_angle: float = -PI / 4,
         max_angle: float = PI / 4,
-        arc_indicator_class: Arc | None = Arc,
-        arc_indicator_config: dict = {
+        arc_indicator_class: type[Arc] | None = Arc,
+        arc_indicator_config: dict[str, Any] = {
             "radius": 0.5,
             "color": YELLOW,
             "stroke_width": 2,
         },
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
 
         super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 
@@ -102,11 +102,11 @@ class VRotaryLimitJoint(VConstraint):
         self.arc_indicator_b: VMobject | None = None
         self.constraint: RotaryLimitJoint | None = None
 
-    def __check_data(self):
+    def __check_data(self) -> None:
         """Verify the validity of constraint parameters."""
         pass
 
-    def install(self, space: Space):
+    def install(self, space: Space) -> None:
         """Create the Pymunk RotaryLimitJoint constraint, initialize arc
         indicator visuals, add the constraint to the space, and register
         the per-frame updater.
@@ -138,7 +138,7 @@ class VRotaryLimitJoint(VConstraint):
 
         self._finalize_install(space)
 
-    def mob_updater(self, mob: Mobject, dt: float):
+    def mob_updater(self, mob: Mobject, dt: float) -> None:
         """Visual control updater.
 
         Parameters
@@ -155,8 +155,8 @@ class VRotaryLimitJoint(VConstraint):
         b_body = self.constraint.b
         wa = a_body.position
         wb = b_body.position
-        p1 = np.array([wa.x, wa.y, 0])
-        p2 = np.array([wb.x, wb.y, 0])
+        p1 = np.array((wa.x, wa.y, 0.0))
+        p2 = np.array((wb.x, wb.y, 0.0))
 
         diff = p2 - p1
         dist = np.linalg.norm(diff)
@@ -174,7 +174,7 @@ class VRotaryLimitJoint(VConstraint):
             unit_vec[1], unit_vec[0]
         )  # Absolute angle of the connecting line
 
-        if self.arc_indicator_a:
+        if self.arc_indicator_a and self.arc_indicator_class is not None:
             new_arc_a = self.arc_indicator_class(
                 angle=display_angle, **self.arc_indicator_config
             )
@@ -186,7 +186,7 @@ class VRotaryLimitJoint(VConstraint):
             )
             self.arc_indicator_a.become(new_arc_a)
 
-        if self.arc_indicator_b:
+        if self.arc_indicator_b and self.arc_indicator_class is not None:
             new_arc_b = self.arc_indicator_class(
                 angle=-display_angle, **self.arc_indicator_config
             )

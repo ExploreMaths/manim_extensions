@@ -11,8 +11,9 @@ This module provides the :class:`~manim_extensions.pymunk.constraints.VGrooveJoi
 
 from __future__ import annotations
 
-from manim import Dot, GREEN, Line, Mobject, ORIGIN, RED, RIGHT, YELLOW
-from typing import TYPE_CHECKING
+from manim import Dot, GREEN, Line, Mobject, ORIGIN, RED, RIGHT, YELLOW, VMobject
+from manim.typing import Point3D
+from typing import TYPE_CHECKING, Any
 from . import VConstraint
 
 from ...utils.deps import require
@@ -87,19 +88,19 @@ class VGrooveJoint(VConstraint):
         self,
         a_mob: Mobject,
         b_mob: Mobject,
-        groove_a_local: list[float, float, float] = RIGHT,
-        groove_b_local: list[float, float, float] = RIGHT * 2,
-        anchor_b_local: list[float, float, float] = ORIGIN,
-        groove_a_appearance: Mobject = Dot(color=RED),
-        groove_b_appearance: Mobject = Dot(color=RED),
-        anchor_b_appearance: Mobject = Dot(color=GREEN),
-        groove_line_class: Line | None = Line,
-        groove_line_config: dict = {
+        groove_a_local: Point3D | tuple[float, float, float] = RIGHT,
+        groove_b_local: Point3D | tuple[float, float, float] = RIGHT * 2,
+        anchor_b_local: Point3D | tuple[float, float, float] = ORIGIN,
+        groove_a_appearance: VMobject = Dot(color=RED),
+        groove_b_appearance: VMobject = Dot(color=RED),
+        anchor_b_appearance: VMobject = Dot(color=GREEN),
+        groove_line_class: type[Line] | None = Line,
+        groove_line_config: dict[str, Any] = {
             "color": YELLOW,
             "stroke_width": 2,
         },
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 
         self.groove_a_local = groove_a_local
@@ -111,11 +112,11 @@ class VGrooveJoint(VConstraint):
         self.anchor_b_appearance = anchor_b_appearance
         self.groove_line_class = groove_line_class
         self.groove_line_config = groove_line_config
-        self.groove_line = None
+        self.groove_line: VMobject | None = None
 
         self.constraint: GrooveJoint | None = None
 
-    def install(self, space: Space):
+    def install(self, space: Space) -> None:
         """Verify the validity of constraint parameters.
 
         Parameters
@@ -142,9 +143,9 @@ class VGrooveJoint(VConstraint):
         groove_b_world = a_body.local_to_world(tuple(self.groove_b_local[:2]))
         anchor_b_world = b_body.local_to_world(tuple(self.anchor_b_local[:2]))
 
-        ga = [groove_a_world.x, groove_a_world.y, 0]
-        gb = [groove_b_world.x, groove_b_world.y, 0]
-        ab = [anchor_b_world.x, anchor_b_world.y, 0]
+        ga = (groove_a_world.x, groove_a_world.y, 0.0)
+        gb = (groove_b_world.x, groove_b_world.y, 0.0)
+        ab = (anchor_b_world.x, anchor_b_world.y, 0.0)
 
         if self.groove_line_class:
             self.groove_line = self.groove_line_class(ga, gb, **self.groove_line_config)
@@ -160,7 +161,7 @@ class VGrooveJoint(VConstraint):
 
         self._finalize_install(space)
 
-    def mob_updater(self, mob: Mobject, dt: float):
+    def mob_updater(self, mob: Mobject, dt: float) -> None:
         """Visual control updater.
 
         Parameters
@@ -180,9 +181,9 @@ class VGrooveJoint(VConstraint):
         groove_b_world = a_body.local_to_world(tuple(self.groove_b_local[:2]))
         anchor_b_world = b_body.local_to_world(tuple(self.anchor_b_local[:2]))
 
-        ga = [groove_a_world.x, groove_a_world.y, 0]
-        gb = [groove_b_world.x, groove_b_world.y, 0]
-        ab = [anchor_b_world.x, anchor_b_world.y, 0]
+        ga = (groove_a_world.x, groove_a_world.y, 0.0)
+        gb = (groove_b_world.x, groove_b_world.y, 0.0)
+        ab = (anchor_b_world.x, anchor_b_world.y, 0.0)
 
         self.groove_a_appearance.move_to(ga)
         self.groove_b_appearance.move_to(gb)

@@ -9,6 +9,7 @@ from __future__ import annotations
 
 __all__ = ["manim_pymunk_logger"]
 import logging
+from typing import Any
 import threading
 
 
@@ -20,7 +21,7 @@ class SingletonLogger:
     _instance_lock = threading.Lock()
     _instance = None
 
-    def __new__(cls, *args, **kwargs) -> "SingletonLogger":
+    def __new__(cls, *args: Any, **kwargs: Any) -> "SingletonLogger":
         """Return the process-wide singleton logger instance.
 
         Parameters
@@ -42,7 +43,7 @@ class SingletonLogger:
                     cls._instance._inherited_init()
         return cls._instance
 
-    def _inherited_init(self):
+    def _inherited_init(self) -> None:
         """Configure the singleton logger format, level and stream handler."""
         self.logger = logging.getLogger("MySingletonLogger")
         self.logger.setLevel(logging.DEBUG)

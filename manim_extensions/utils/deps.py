@@ -14,6 +14,17 @@ the ImportError names the right
 
 import importlib
 from types import ModuleType
+from typing import overload
+
+
+@overload
+def require(extra: str, name: str) -> ModuleType: ...
+
+
+@overload
+def require(
+    extra: str, name1: str, name2: str, /, *names: str
+) -> tuple[ModuleType, ...]: ...
 
 
 def require(extra: str, *names: str) -> ModuleType | tuple[ModuleType, ...]:

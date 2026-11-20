@@ -10,8 +10,10 @@ This module provides the :class:`~manim_extensions.pymunk.constraints.VPinJoint.
 
 from __future__ import annotations
 
-from manim import Dot, Line, Mobject, ORIGIN, RED, YELLOW, np
-from typing import TYPE_CHECKING
+from manim import Dot, Line, Mobject, ORIGIN, RED, YELLOW, VMobject
+import numpy as np
+from manim.typing import Point3D
+from typing import TYPE_CHECKING, Any
 from . import VConstraint
 
 from ...utils.deps import require
@@ -92,18 +94,18 @@ class VPinJoint(VConstraint):
         self,
         a_mob: Mobject,
         b_mob: Mobject,
-        anchor_a_local: list[float, float, float] = ORIGIN,
-        anchor_b_local: list[float, float, float] = ORIGIN,
+        anchor_a_local: Point3D | tuple[float, float, float] = ORIGIN,
+        anchor_b_local: Point3D | tuple[float, float, float] = ORIGIN,
         distance: float | None = None,
-        anchor_a_appearance: Mobject = Dot(color=RED),
-        anchor_b_appearance: Mobject = Dot(color=RED),
-        connect_line_class: Line | None = None,
-        connect_line_config: dict = {
+        anchor_a_appearance: VMobject = Dot(color=RED),
+        anchor_b_appearance: VMobject = Dot(color=RED),
+        connect_line_class: type[Line] | None = None,
+        connect_line_config: dict[str, Any] = {
             "color": YELLOW,
             "stroke_width": 2,
         },
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
 
         super().__init__(a_mob=a_mob, b_mob=b_mob, **kwargs)
 
@@ -115,13 +117,13 @@ class VPinJoint(VConstraint):
 
         self.connect_line_class = connect_line_class
         self.connect_line_config = connect_line_config
-        self.connect_line = None
+        self.connect_line: VMobject | None = None
 
         self.constraint: PinJoint | None = None
         self.init_distance = distance
         self.__check_data()
 
-    def __check_data(self):
+    def __check_data(self) -> None:
         """Verify the validity of constraint parameters.
 
         Raises
@@ -144,7 +146,7 @@ class VPinJoint(VConstraint):
                     "Connecting them with a line makes no sense."
                 )
 
-    def install(self, space: Space):
+    def install(self, space: Space) -> None:
         """Create the Pymunk PinJoint constraint, initialize visual anchor
         markers and connecting line, add the constraint to the space, and
         register the per-frame updater.
@@ -174,8 +176,8 @@ class VPinJoint(VConstraint):
 
         pos_a = a_body.local_to_world(tuple(self.anchor_a_local[:2]))
         pos_b = b_body.local_to_world(tuple(self.anchor_b_local[:2]))
-        p1 = [pos_a.x, pos_a.y, 0]
-        p2 = [pos_b.x, pos_b.y, 0]
+        p1 = (float(pos_a.x), float(pos_a.y), 0.0)
+        p2 = (float(pos_b.x), float(pos_b.y), 0.0)
 
         if self.connect_line_class:
             self.connect_line = self.connect_line_class(
@@ -190,7 +192,7 @@ class VPinJoint(VConstraint):
 
         self._finalize_install(space)
 
-    def mob_updater(self, mob: Mobject, dt: float):
+    def mob_updater(self, mob: Mobject, dt: float) -> None:
         """Visual control updater.
 
         Parameters
@@ -207,8 +209,8 @@ class VPinJoint(VConstraint):
         wa = a_body.local_to_world(self.constraint.anchor_a)
         wb = b_body.local_to_world(self.constraint.anchor_b)
 
-        p1 = [wa.x, wa.y, 0]
-        p2 = [wb.x, wb.y, 0]
+        p1 = (wa.x, wa.y, 0)
+        p2 = (wb.x, wb.y, 0)
 
         self.anchor_a_appearance.move_to(p1)
         self.anchor_b_appearance.move_to(p2)
