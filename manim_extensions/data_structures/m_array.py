@@ -42,17 +42,19 @@ from manim import (
 from manim.mobject.mobject import _AnimationBuilder
 from types import MethodType
 from typing import (
+    Any,
     Callable,
     ClassVar,
     List,
     Protocol,
+    TypedDict,
     cast,
 )
 
 from .m_enum import MArrayDirection, MArrayElementComp
 from manim.typing import Point3D, Vector3D
 
-MobProps = dict[str, object]
+MobProps = dict[str, Any]
 """Type alias for a ``dict`` of keyword arguments forwarded to manim mobject constructors."""
 
 
@@ -173,7 +175,7 @@ class MArrayElement(VGroup):
         index_gap: float,
         label_pos: Point3D,
         label_gap: float,
-    ):
+    ) -> None:
         """Initializes the attributes for the class.
 
         Parameters
@@ -219,7 +221,7 @@ class MArrayElement(VGroup):
         mob_value_args: MobProps = {},
         mob_index_args: MobProps = {},
         mob_label_args: MobProps = {},
-    ):
+    ) -> None:
         """Updates the attributes of the class.
 
         Parameters
@@ -256,7 +258,7 @@ class MArrayElement(VGroup):
         init_label: bool = False,
         next_to_mob: "MArrayElement | None" = None,
         next_to_dir: Vector3D = RIGHT,
-    ):
+    ) -> None:
         """Initializes the mobjects for the class.
 
         Parameters
@@ -302,7 +304,7 @@ class MArrayElement(VGroup):
             )
             self.add(self.__mob_label)
 
-    def __deepcopy__(self, memo: dict[int, object]) -> "MArrayElement":
+    def __deepcopy__(self, memo: dict[int, Mobject]) -> "MArrayElement":
         """Deep-copy the object while excluding scene references.
 
         Parameters
@@ -710,6 +712,9 @@ class MArray(VGroup):
 
     """
 
+    __mob_arr: list[MArrayElement]
+    __mob_arr_label: Text
+
     __dir_map: ClassVar[list[dict[str, Vector3D]]] = [
         {"arr": UP, "index": RIGHT},
         {"arr": DOWN, "index": RIGHT},
@@ -718,7 +723,7 @@ class MArray(VGroup):
     ]
     """Maps :class:`~manim_extensions.data_structures.m_enum.MArrayDirection` to :class:`~numpy.ndarray`."""
 
-    def __sum_elem_len(self, index_start: int, index_end: int) -> int:
+    def __sum_elem_len(self, index_start: int, index_end: int) -> float:
         """Sums the side_length of all elements' square mobject present in the array between the specified range.
 
         Parameters
@@ -746,7 +751,7 @@ class MArray(VGroup):
         ):
             raise Exception("Index out of bounds!")
 
-        total_len = 0
+        total_len = 0.0
         for i in range(index_start, index_end + 1):
             total_len += self.__mob_arr[i].fetch_mob_square().side_length
         return total_len
@@ -778,7 +783,9 @@ class MArray(VGroup):
             )
 
         else:
-            middle_index = len_before = len_after = 0
+            middle_index: int = 0
+            len_before: float = 0.0
+            len_after: float = 0.0
             if len(self.__mob_arr) > 1:
                 odd_indices = len(self.__mob_arr) % 2 == 1
                 middle_index = int(len(self.__mob_arr) / 2)
@@ -971,9 +978,7 @@ class MArray(VGroup):
 
         self.remove(self.__mob_arr[index])
         removed_mob = self.__mob_arr[index]
-        self.__mob_arr: List[MArrayElement] = (
-            self.__mob_arr[0:index] + self.__mob_arr[index + 1 :]
-        )
+        self.__mob_arr = self.__mob_arr[0:index] + self.__mob_arr[index + 1 :]
 
         anims_shift = []
         for i in range(index, len(self.__mob_arr)):
@@ -1054,7 +1059,7 @@ class MArray(VGroup):
         switch_index_pos: bool,
         arr_label_pos: MArrayDirection,
         arr_label_gap: float,
-    ):
+    ) -> None:
         """Initializes the attributes for the class.
 
         Parameters
@@ -1091,7 +1096,7 @@ class MArray(VGroup):
         self.__scene: Scene = scene
         self.__arr: List[object] = arr
         self.__label: str = label
-        self.__mob_arr: List[MArrayElement] = []
+        self.__mob_arr = []
         self.__index_offset: int = index_offset
         self.__index_start: int = index_start
         self.__index_hex_display: bool = index_hex_display
@@ -1104,7 +1109,7 @@ class MArray(VGroup):
     def __update_props(
         self,
         mob_arr_label_args: MobProps = {},
-    ):
+    ) -> None:
         """Updates the attributes of the class.
 
         Parameters
@@ -1122,7 +1127,7 @@ class MArray(VGroup):
     def __init_mobs(
         self,
         init_arr_label: bool = False,
-    ):
+    ) -> None:
         """Initializes the mobjects for the class.
 
         Parameters
@@ -1145,7 +1150,7 @@ class MArray(VGroup):
                     )
             self.add(self.__mob_arr_label)
 
-    def __deepcopy__(self, memo: dict[int, object]) -> "MArray":
+    def __deepcopy__(self, memo: dict[int, Mobject]) -> "MArray":
         """Deep-copy the object while excluding scene references.
 
         Parameters
@@ -1705,7 +1710,14 @@ class MArrayPointer(VGroup):
 
     """
 
-    __dir_map: ClassVar[list[dict[str, Vector3D | MArrayDirection]]] = [
+    __pointer_pos: MArrayDirection
+    __updater_pos: Callable[[Mobject], None]
+
+    class __DirEntry(TypedDict):
+        np: Vector3D
+        dir: MArrayDirection
+
+    __dir_map: ClassVar[list[__DirEntry]] = [
         {"np": UP, "dir": MArrayDirection.UP},
         {"np": DOWN, "dir": MArrayDirection.DOWN},
         {"np": RIGHT, "dir": MArrayDirection.RIGHT},
@@ -1732,10 +1744,10 @@ class MArrayPointer(VGroup):
 
         return arrow_pos_np
 
-    def __add_updater(self):
+    def __add_updater(self) -> None:
         """Attaches the position updater function with the pointer."""
 
-        def updater_pos(mob: Mobject):
+        def updater_pos(mob: Mobject) -> None:
             """Reposition the pointer to its element on every frame.
 
             Parameters
@@ -1748,7 +1760,7 @@ class MArrayPointer(VGroup):
 
         self.add_updater(self.__updater_pos)
 
-    def __remove_updater(self):
+    def __remove_updater(self) -> None:
         """Removes the attached position updater function from the pointer."""
 
         self.remove_updater(self.__updater_pos)
@@ -1797,7 +1809,7 @@ class MArrayPointer(VGroup):
         arrow_gap: float,
         label_gap: float,
         pointer_pos: MArrayDirection,
-    ):
+    ) -> None:
         """Initializes the attributes for the class.
 
         Parameters
@@ -1840,11 +1852,11 @@ class MArrayPointer(VGroup):
         self.__arrow_len: float = arrow_len
         self.__arrow_gap: float = arrow_gap
         self.__label_gap: float = label_gap
-        self.__pointer_pos: MArrayDirection = pointer_pos
+        self.__pointer_pos = pointer_pos
 
     def __update_props(
         self, mob_arrow_args: MobProps = {}, mob_label_args: MobProps = {}
-    ):
+    ) -> None:
         """Updates the attributes of the class.
 
         Parameters
@@ -1862,7 +1874,7 @@ class MArrayPointer(VGroup):
         if type(self.__mob_label_props["text"]) != str:
             self.__mob_label_props["text"] = str(self.__mob_label_props["text"])
 
-    def __init_mobs(self, init_arrow: bool = False, init_label: bool = False):
+    def __init_mobs(self, init_arrow: bool = False, init_label: bool = False) -> None:
         """Initializes the mobjects for the class.
 
         Parameters
@@ -1896,7 +1908,7 @@ class MArrayPointer(VGroup):
             )
             self.add(self.__mob_label)
 
-    def __init_pos(self):
+    def __init_pos(self) -> None:
         """Initializes the position of the object."""
 
         arrow_pos_np = self.__calc_arrow_pos()
@@ -1906,7 +1918,7 @@ class MArrayPointer(VGroup):
             self.__arrow_gap,
         )
 
-    def __deepcopy__(self, memo: dict[int, object]) -> "MArrayPointer":
+    def __deepcopy__(self, memo: dict[int, Mobject]) -> "MArrayPointer":
         """Deep-copy the object while excluding scene references.
 
         Parameters
@@ -2091,7 +2103,7 @@ class MArrayPointer(VGroup):
 
         return shift_anim
 
-    def attach_to_elem(self, index: int):
+    def attach_to_elem(self, index: int) -> None:
         """Attaches pointer to the specified element.
 
         Parameters
@@ -2195,7 +2207,11 @@ class MArraySlidingWindow(VGroup):
 
     """
 
-    __dir_map: ClassVar[list[dict[str, Vector3D | MArrayDirection]]] = [
+    class __DirEntry(TypedDict):
+        np: Vector3D
+        dir: MArrayDirection
+
+    __dir_map: ClassVar[list[__DirEntry]] = [
         {"np": UP, "dir": MArrayDirection.UP},
         {"np": DOWN, "dir": MArrayDirection.DOWN},
         {"np": RIGHT, "dir": MArrayDirection.RIGHT},
@@ -2278,7 +2294,7 @@ class MArraySlidingWindow(VGroup):
         else:
             return self.__dir_map[self.__label_pos.value]["np"]
 
-    def __pos_mobs(self, pos_window: bool = False, pos_label: bool = False):
+    def __pos_mobs(self, pos_window: bool = False, pos_label: bool = False) -> None:
         """Positions mobjects of the class.
 
         Parameters
@@ -2300,10 +2316,10 @@ class MArraySlidingWindow(VGroup):
                 self.__label_gap,
             )
 
-    def __add_updater(self):
+    def __add_updater(self) -> None:
         """Attaches the position updater function with the pointer."""
 
-        def updater_pos(mob: Mobject):
+        def updater_pos(mob: Mobject) -> None:
             """Reposition the pointer to its element on every frame.
 
             Parameters
@@ -2316,7 +2332,7 @@ class MArraySlidingWindow(VGroup):
 
         self.add_updater(self.__updater_pos)
 
-    def __remove_updater(self):
+    def __remove_updater(self) -> None:
         """Removes the attached position updater function from the pointer."""
 
         self.remove_updater(self.__updater_pos)
@@ -2330,7 +2346,7 @@ class MArraySlidingWindow(VGroup):
         label: str,
         label_gap: float,
         label_pos: MArrayDirection,
-    ):
+    ) -> None:
         """Initializes the attributes for the class.
 
         Parameters
@@ -2376,7 +2392,7 @@ class MArraySlidingWindow(VGroup):
 
     def __update_props(
         self, mob_window_args: MobProps = {}, mob_label_args: MobProps = {}
-    ):
+    ) -> None:
         """Updates the attributes of the class.
 
         Parameters
@@ -2394,7 +2410,7 @@ class MArraySlidingWindow(VGroup):
         if type(self.__mob_label_props["text"]) != str:
             self.__mob_label_props["text"] = str(self.__mob_label_props["text"])
 
-    def __init_mobs(self, init_window: bool = False, init_label: bool = False):
+    def __init_mobs(self, init_window: bool = False, init_label: bool = False) -> None:
         """Initializes the mobjects for the class.
 
         Parameters
@@ -2418,12 +2434,12 @@ class MArraySlidingWindow(VGroup):
             self.__pos_mobs(pos_label=True)
             self.add(self.__mob_label)
 
-    def __init_pos(self):
+    def __init_pos(self) -> None:
         """Initializes the position of the object."""
 
         self.__pos_mobs(True, True)
 
-    def __deepcopy__(self, memo: dict[int, object]) -> "MArraySlidingWindow":
+    def __deepcopy__(self, memo: dict[int, Mobject]) -> "MArraySlidingWindow":
         """Deep-copy the object while excluding scene references.
 
         Parameters
@@ -2591,7 +2607,7 @@ class MArraySlidingWindow(VGroup):
         self.__index = index
         return self.resize_window(self.__size, play_anim, play_anim_args)
 
-    def attach_to_elem(self, index: int):
+    def attach_to_elem(self, index: int) -> None:
         """Attaches pointer to the specified element.
 
         Parameters
