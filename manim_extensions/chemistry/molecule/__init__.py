@@ -7,5 +7,5 @@ This module provides molecule classes for visualizing chemical structures.
 
 """
 
-from .abstract_molecule import AbstractMolecule  # noqa F841
-from .molecule import Molecule  # noqa F841
+from .abstract_molecule import AbstractMolecule as AbstractMolecule  # noqa F841
+from .molecule import Molecule as Molecule  # noqa F841

@@ -8,3 +8,5 @@ This module provides chemical element visualizations.
 """
 
 from .element import *  # noqa F841
+
+__all__ = ["Element", "GenericElement"]
