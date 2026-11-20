@@ -1789,7 +1789,9 @@
 
     <span class="n">found</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Point3D</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_intersect_curves</span><span class="p">(</span><span class="n">c1</span><span class="p">:</span> <span class="n">CubicBezierPoints</span><span class="p">,</span> <span class="n">c2</span><span class="p">:</span> <span class="n">CubicBezierPoints</span><span class="p">,</span> <span class="n">depth</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_intersect_curves</span><span class="p">(</span>
+        <span class="n">c1</span><span class="p">:</span> <span class="n">CubicBezierPoints</span><span class="p">,</span> <span class="n">c2</span><span class="p">:</span> <span class="n">CubicBezierPoints</span><span class="p">,</span> <span class="n">depth</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Recursively intersect two cubic Bézier curves."""</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">_bbox_overlap</span><span class="p">(</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">,</span> <span class="n">tolerance</span><span class="p">):</span>
             <span class="k">return</span>

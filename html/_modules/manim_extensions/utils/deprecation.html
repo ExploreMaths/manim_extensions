@@ -1519,7 +1519,13 @@
 
 <div class="viewcode-block" id="deprecated">
 <a class="viewcode-back" href="../../../reference/utils/deprecation.html#manim_extensions.utils.deprecation.deprecated">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">deprecated</span><span class="p">(</span><span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="n">T</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">deprecated</span><span class="p">(</span>
+    <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="o">/</span><span class="p">,</span>
+    <span class="o">*</span><span class="p">,</span>
+    <span class="n">category</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="ne">Warning</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="ne">DeprecationWarning</span><span class="p">,</span>
+    <span class="n">stacklevel</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">T</span><span class="p">],</span> <span class="n">T</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">"""Mark ``obj`` as deprecated.</span>
 
 <span class="sd">    Parameters</span>
@@ -1528,11 +1534,11 @@
 <span class="sd">        Deprecation message. May contain RST inline markup (``:func:``</span>
 <span class="sd">        roles, double-backtick code, ...) which is kept for the docs but</span>
 <span class="sd">        stripped from the runtime warning.</span>
-<span class="sd">    *args</span>
-<span class="sd">        Forwarded to :func:`~typing_extensions.deprecated`.</span>
-<span class="sd">    **kwargs</span>
-<span class="sd">        Forwarded to :func:`~typing_extensions.deprecated`</span>
-<span class="sd">        (``category``, ``stacklevel``).</span>
+<span class="sd">    category</span>
+<span class="sd">        Warning category forwarded to</span>
+<span class="sd">        :func:`~typing_extensions.deprecated`.</span>
+<span class="sd">    stacklevel</span>
+<span class="sd">        Stack level forwarded to :func:`~typing_extensions.deprecated`.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -1550,7 +1556,7 @@
 
 <span class="sd">       old()</span>
 <span class="sd">    """</span>
-    <span class="n">outer</span> <span class="o">=</span> <span class="n">_deprecated</span><span class="p">(</span><span class="n">_strip_rst</span><span class="p">(</span><span class="n">msg</span><span class="p">),</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+    <span class="n">outer</span> <span class="o">=</span> <span class="n">_deprecated</span><span class="p">(</span><span class="n">_strip_rst</span><span class="p">(</span><span class="n">msg</span><span class="p">),</span> <span class="n">category</span><span class="o">=</span><span class="n">category</span><span class="p">,</span> <span class="n">stacklevel</span><span class="o">=</span><span class="n">stacklevel</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">wrapper</span><span class="p">(</span><span class="n">obj</span><span class="p">:</span> <span class="n">T</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">T</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Apply the deprecation decorator and restore the RST message."""</span>
@@ -1558,7 +1564,7 @@
         <span class="c1"># Restore the RST version for Sphinx (typing_extensions stored the</span>
         <span class="c1"># stripped one).</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="n">decorated</span><span class="o">.</span><span class="n">__deprecated__</span> <span class="o">=</span> <span class="n">msg</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="n">decorated</span><span class="p">,</span> <span class="s2">"__deprecated__"</span><span class="p">,</span> <span class="n">msg</span><span class="p">)</span>
         <span class="k">except</span> <span class="p">(</span><span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
             <span class="k">pass</span>
         <span class="k">return</span> <span class="n">decorated</span>

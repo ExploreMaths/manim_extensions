@@ -1489,6 +1489,11 @@
 <section id="added">
 <h3>Added<a class="headerlink" href="#added" title="Link to this heading">¶</a></h3>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">validate-types</span></code> runs <code class="docutils literal notranslate"><span class="pre">mypy</span></code> in strict mode over the first-party
+modules (<code class="docutils literal notranslate"><span class="pre">manim_extensions/__init__.py</span></code>, <code class="docutils literal notranslate"><span class="pre">geometry.py</span></code>, <code class="docutils literal notranslate"><span class="pre">scenes.py</span></code>
+and <code class="docutils literal notranslate"><span class="pre">utils</span></code>).  Vendored packages are followed for inference but their
+upstream diagnostics are not reported, so a vendored resync does not
+require re-annotating upstream code.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">workflow/validate_english_text.py</span></code> replaces the docstring-only CJK
 check.  It scans every text file in the repository, including tests,
 scripts, workflow files, docs and configuration, and rejects Chinese text
