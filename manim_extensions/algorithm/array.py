@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """:class:`~manim_extensions.algorithm.array.Array` data structure for algorithm visualization."""
@@ -110,7 +111,7 @@ class Array(VMobject):
             The selected node or a new array slice.
         """
         if isinstance(key, slice):
-            return Array(self.array[key])
+            return cast("Node", Array(self.array[key]))
         return self.array[key]
 
     def __len__(self) -> int:

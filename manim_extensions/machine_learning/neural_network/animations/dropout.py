@@ -298,7 +298,9 @@ def make_forward_pass_with_dropout_animation(
         _, edge_indices = get_edges_to_drop_out(layer, layers_to_nodes_to_drop_out)
         layer_args[layer] = {"edge_indices_to_dropout": edge_indices}
 
-    return neural_network.make_forward_pass_animation(layer_args=layer_args)
+    return cast(
+        "Succession", neural_network.make_forward_pass_animation(layer_args=layer_args)
+    )
 
 
 def make_neural_network_dropout_animation(

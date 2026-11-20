@@ -914,7 +914,7 @@ class PlainCramBond(BaseMBondObject):
         """
         direction = self.to_atom.coords - self.from_atom.coords
         if np.linalg.norm(direction) == 0:
-            return VGroup()
+            return cast("Polygram", VGroup())
         base_line = Line(self.from_atom.coords, self.to_atom.coords)
         pivot_line = (
             base_line.copy().rotate(angle=PI / 2).scale(0.3).shift(direction / 2)

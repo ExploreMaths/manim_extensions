@@ -417,7 +417,7 @@ class MCMCAxes(Group):
         )
 
         create_guassian = Create(gaussian)
-        return create_guassian
+        return cast("AnimationGroup", create_guassian)
 
     def make_transition_animation(
         self,
@@ -453,7 +453,7 @@ class MCMCAxes(Group):
         # point_is_rejected = not candidate_location == end_location
         point_is_rejected = False
         if point_is_rejected:
-            return AnimationGroup(), Dot().set_opacity(0.0)
+            return cast("AnimationGroup", AnimationGroup(), Dot().set_opacity(0.0))
         else:
             create_end_point = Create(end_point)
             line = Line(
@@ -467,16 +467,25 @@ class MCMCAxes(Group):
             create_line = Create(line)
 
             if show_dots:
-                return (
-                    AnimationGroup(
-                        create_end_point, create_line, lag_ratio=1.0, run_time=run_time
+                return cast(
+                    "AnimationGroup",
+                    (
+                        AnimationGroup(
+                            create_end_point,
+                            create_line,
+                            lag_ratio=1.0,
+                            run_time=run_time,
+                        ),
+                        line,
                     ),
-                    line,
                 )
             else:
-                return (
-                    AnimationGroup(create_line, lag_ratio=1.0, run_time=run_time),
-                    line,
+                return cast(
+                    "AnimationGroup",
+                    (
+                        AnimationGroup(create_line, lag_ratio=1.0, run_time=run_time),
+                        line,
+                    ),
                 )
 
     def show_ground_truth_gaussian(

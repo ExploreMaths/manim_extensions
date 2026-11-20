@@ -65,7 +65,7 @@ class FileHandler:
         -------
             The lowercase file extension without the leading dot.
         """
-        return os.path.splitext(file_path)[1][1:]
+        return cast("str", os.path.splitext(file_path)[1][1:])
 
     def parsed_atoms_bonds_data(self) -> tuple[Dict, Dict]:
         """
@@ -75,7 +75,7 @@ class FileHandler:
         -------
             ``(atoms_dict, bonds_dict)`` parsed by the selected parser.
         """
-        return self.parser.molecule_data
+        return cast("tuple[dict[Any, Any], dict[Any, Any]]", self.parser.molecule_data)
 
     def parse_from_string(
         string: str, format: Literal["mol", "sdf", "asnt", "json", "xml"]

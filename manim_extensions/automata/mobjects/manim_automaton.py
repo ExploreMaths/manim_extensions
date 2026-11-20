@@ -388,7 +388,9 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             # position the mobject
             self.set_default_position_of_input_string()
         else:
-            return input  # if input is already an instance of ManimAutomataInput
+            return cast(
+                "ManimAutomataInput | None", input
+            )  # if input is already an instance of ManimAutomataInput
 
     def run_sequence(
         self,
@@ -538,7 +540,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             "automaton_result": self.check_automaton_result(state_pointers),
         }
 
-        return global_history
+        return cast("list[Any]", global_history)
 
     def generate_next_state_options(
         self,

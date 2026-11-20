@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """
@@ -170,7 +171,7 @@ class VoronoiDelaunay:
                 )
                 circle.shift(vert_a)
                 return circle
-        return None  # should never get here
+        return cast("Circle", None)  # should never get here
 
     def create_triangle(self, voronoi_vertex_index: int) -> Any:
         """Create the dual triangle for a given Voronoi vertex and add it to the mesh.

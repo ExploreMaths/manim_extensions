@@ -180,7 +180,7 @@ class XMLParser(BaseParser):
             )
         }
 
-        return atoms_data
+        return cast("dict[int, dict[str, object]]", atoms_data)
 
     @staticmethod
     def extract_bonds_data(molecule_data: dict[str, object]) -> BondsDict:

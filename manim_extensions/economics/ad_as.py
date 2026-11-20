@@ -353,8 +353,11 @@ class ADASDiagram(EconDiagram):
             The animation shifting the SRAS curve back toward long-run
             equilibrium.
         """
-        return self.shift_sras(
-            sras_price=self._lr_price, run_time=run_time, show_arrows=show_arrows
+        return cast(
+            "AnimationGroup",
+            self.shift_sras(
+                sras_price=self._lr_price, run_time=run_time, show_arrows=show_arrows
+            ),
         )
 
     # ---- Demand shocks ----
@@ -418,7 +421,7 @@ class ADASDiagram(EconDiagram):
         anims = [self.shift_ad(m=m, v=v, show_arrows=show_arrows)]
         if long_run:
             self._append_long_run(anims, lr_run_time, show_arrows)
-        return anims
+        return cast("list[AnimationGroup]", anims)
 
     def negative_demand_shock(
         self,
@@ -458,7 +461,7 @@ class ADASDiagram(EconDiagram):
         anims = [self.shift_ad(m=m, v=v, show_arrows=show_arrows)]
         if long_run:
             self._append_long_run(anims, lr_run_time, show_arrows)
-        return anims
+        return cast("list[AnimationGroup]", anims)
 
     # ---- Supply shocks ----
 
@@ -495,7 +498,7 @@ class ADASDiagram(EconDiagram):
         anims = [self.shift_sras(sras_price=sras_price, show_arrows=show_arrows)]
         if long_run:
             self._append_long_run(anims, lr_run_time, show_arrows)
-        return anims
+        return cast("list[AnimationGroup]", anims)
 
     def positive_supply_shock(
         self,
@@ -530,4 +533,4 @@ class ADASDiagram(EconDiagram):
         anims = [self.shift_sras(sras_price=sras_price, show_arrows=show_arrows)]
         if long_run:
             self._append_long_run(anims, lr_run_time, show_arrows)
-        return anims
+        return cast("list[AnimationGroup]", anims)

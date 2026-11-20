@@ -1226,7 +1226,9 @@ class RadarChart(VGroup):
         """
         center = self._anchor[0].get_center()
         builder = self.animate.scale(float(factor), about_point=center, **kwargs)
-        return builder.set_run_time(run_time) if run_time else builder
+        return cast(
+            "_AnimationBuilder", builder.set_run_time(run_time) if run_time else builder
+        )
 
     def pull_out(
         self, factor: float = 1.35, run_time: float = 1.0, **kwargs: Any
@@ -1249,7 +1251,9 @@ class RadarChart(VGroup):
 
         center = self._anchor[0].get_center()
         builder = self.animate.scale(1.0 / float(factor), about_point=center, **kwargs)
-        return builder.set_run_time(run_time) if run_time else builder
+        return cast(
+            "_AnimationBuilder", builder.set_run_time(run_time) if run_time else builder
+        )
 
     def attach_camera(self, rig: CameraRig) -> "RadarChart":
         """Attach a camera rig for coupled camera moves.
@@ -1986,7 +1990,7 @@ class RadarChart(VGroup):
         y = min(offset * cfg.radius, top_limit)
         if y < floor:
             y = floor
-        return y, y <= top_limit + 1e-6
+        return cast("float", y, y <= top_limit + 1e-6)
 
     # ------------------------------------------------------------------
     def _paint_series(
@@ -2639,7 +2643,7 @@ class RadarChart(VGroup):
                 pool.add(Line(ORIGIN, ORIGIN, stroke_width=self.config.spoke_width))
             s.dash_pool[j] = pool
             cast(Any, s.fx_group).add(pool)
-        return s.dash_pool[j]
+        return cast("VGroup", s.dash_pool[j])
 
     def _ensure_breach(self, s: Series, j: int) -> VGroup:
         """Return the ring-breach glow for a dataset and axis.
@@ -2673,7 +2677,7 @@ class RadarChart(VGroup):
             g.set_opacity(0)
             s.breach[j] = g
             cast(Any, s.fx_group).add(g)
-        return s.breach[j]
+        return cast("VGroup", s.breach[j])
 
     def _ensure_overflow_number(self, series_index: int, j: int) -> RollingNumber:
         """Return the unclamped read-out for a dataset and axis.

@@ -79,8 +79,11 @@ class Cubie(VGroup):
         -------
             The rounded :math:`(x, y, z)` coordinates.
         """
-        return tuple(
-            [round(self.get_x(), 3), round(self.get_y(), 3), round(self.get_z(), 3)]
+        return cast(
+            "tuple[float]",
+            tuple(
+                [round(self.get_x(), 3), round(self.get_y(), 3), round(self.get_z(), 3)]
+            ),
         )
 
     def generate_points(self) -> Any:

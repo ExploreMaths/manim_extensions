@@ -102,7 +102,7 @@ def copy_node(node: object) -> TreeNode:
     """
 
     if node is None:
-        return None
+        return cast("TreeNode", None)
     root = TreeNode(cast(Any, node).height, cast(Any, node).width)
     for child in cast(Any, node).children:
         root.add_child(copy_node(child))

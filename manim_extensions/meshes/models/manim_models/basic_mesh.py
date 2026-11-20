@@ -281,7 +281,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
                 self.edges.insert(self.mesh.get_edge_index(edge_verts), edge)
                 new_edges.append(edge)
 
-        return new_face, new_edges
+        return cast("tuple[VGroup, VGroup]", new_face, new_edges)
 
     def remove_face(self, face_idx: int) -> tuple:
         """Remove a face (and its orphaned edges) by index.

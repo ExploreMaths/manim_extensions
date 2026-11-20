@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import moderngl (meshes extra)
 
+from typing import cast, Any
+
 """
 Parameters can get out of hand for the meshes, store defaults and casting in separate functions.
 """
@@ -137,7 +139,7 @@ def get_param_or_default(
             if issubclass(type(params[value]), default[value][0]) or isinstance(
                 type(params[value]), default[value][0]
             ):
-                return params[value]
+                return cast("ManimColor | bool | float | int", params[value])
             try:
                 return default[value][0](params[value])
             except (ValueError, TypeError) as e:
@@ -148,7 +150,7 @@ def get_param_or_default(
         raise BadParameterException(f"Value {value} is not an expected default value.")
     # get value from default parameters
     if value in default:
-        return default[value][1]
+        return cast("ManimColor | bool | float | int", default[value][1])
     # should this be raised?
     raise BadParameterException(
         f"Value {value} is not in params and not in default params."

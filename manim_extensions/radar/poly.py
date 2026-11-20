@@ -368,7 +368,7 @@ class PolyRadarChart(VGroup):
         for v in range(20):
             fs = [fi for fi, face in enumerate(DODECA_FACES) if v in face]
             tris.append(tuple(fs))
-        return tris
+        return cast("list[tuple[int, int, int]]", tris)
 
     def _world(self, i: int, extra: float = 0.0) -> np.ndarray:
         """Compute the rotated world position of an axis marker.

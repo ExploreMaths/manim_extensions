@@ -589,7 +589,7 @@ def animate_of_layout(
             )
         )
         node.x = node.y = 0
-    return anims
+    return cast("list[Animation]", anims)
 
 
 class AbstractLayoutAnimation(AnimationGroup):
@@ -747,7 +747,7 @@ class AbstractLayoutAnimation(AnimationGroup):
         if len(nodes) == 1:
             return root
         if not all(node.get_root() is root for node in nodes[1::]):
-            return None
+            return cast("Node", None)
         return root
 
 
@@ -832,12 +832,15 @@ class LayoutAnimation(AbstractLayoutAnimation):
             The layout animations.
         """
         remove_nodes = self._check_node_state()
-        return animate_of_layout(
-            self.root,
-            remove_nodes,
-            self.layout_type,
-            self.layout_config,
-            self.node_style,
+        return cast(
+            "tuple[Animation]",
+            animate_of_layout(
+                self.root,
+                remove_nodes,
+                self.layout_type,
+                self.layout_config,
+                self.node_style,
+            ),
         )
 
 
@@ -1038,7 +1041,7 @@ class InsertNode(LayoutAnimation):
                 for child in children:
                     father.add_child(child)
         self.root = self.get_root(list(self.father_children.keys()))
-        return super().collect_animations()
+        return cast("list[Animation]", super().collect_animations())
 
 
 class ScaleNode(LayoutAnimation):

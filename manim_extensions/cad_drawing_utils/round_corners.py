@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
+
 """Fit tangent arcs and chamfers between adjoining Bezier curves."""
 
 from __future__ import annotations
@@ -235,7 +237,11 @@ def chamfer_corner_param(
     p2 = bez_func_2(a2)
     param = {"start": p1, "end": p2}
 
-    return param, [a1, a2]
+    return cast(
+        "tuple[ndarray[tuple[Any, ...], dtype[Any]], ndarray[tuple[Any, ...], dtype[Any]], ndarray[tuple[Any, ...], dtype[Any]]]",
+        param,
+        [a1, a2],
+    )
 
 
 def chamfer_corners(mob: VMobject, offset: float | Sequence[float] = 0.2) -> VMobject:

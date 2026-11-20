@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 """Contains classes for state."""
 
 from __future__ import annotations
@@ -126,7 +128,7 @@ class State:
         for transition in self.transitions:
             if transition.id == id:
                 return transition
-        return None
+        return cast("Transition", None)
 
     def get_transitions(self) -> list[Transition]:
         """

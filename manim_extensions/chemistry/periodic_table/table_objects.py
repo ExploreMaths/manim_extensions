@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pandas (chemistry extra)
 
+from typing import cast, Any
 from typing import Any
 
 """Periodic table visualization objects for Manim chemistry.
@@ -148,7 +149,7 @@ class MElementObject(VGroup):
             ratio = 0.3 / text_height
             name_text.scale(ratio)
 
-        return name_text
+        return cast("Text", name_text)
 
     def create_frame_base(self) -> Rectangle:
         """Create the gradient-filled rectangle that forms the element tile background.

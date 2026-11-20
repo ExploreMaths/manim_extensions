@@ -257,7 +257,7 @@ class PathMapper(VMobject):
             -------
                 The path proportion whose arc length matches ``rate_func(t)``.
             """
-            return self.equalize_alpha(rate_func(t))
+            return cast("float", self.equalize_alpha(rate_func(t)))
 
         return eq_func
 

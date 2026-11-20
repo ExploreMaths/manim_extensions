@@ -349,9 +349,12 @@ class CodeBlock(VGroup):
                 AddTextLetterByLetter(self.title, **kwargs),
             )
 
-        return (
-            FadeIn(self.code_background, **kwargs),
-            AddTextLetterByLetter(self.code, **kwargs),
+        return cast(
+            "tuple[FadeIn, AddTextLetterByLetter, FadeIn, AddTextLetterByLetter]",
+            (
+                FadeIn(self.code_background, **kwargs),
+                AddTextLetterByLetter(self.code, **kwargs),
+            ),
         )
 
     def uncreate(self, **kwargs: Any) -> tuple[Animation, ...]:

@@ -196,7 +196,7 @@ class LayoutConfig:
             string = LayoutDirection.RightToLeft
         elif np.array_equal(direction, RIGHT):
             string = LayoutDirection.LeftToRight
-        return string
+        return cast("LayoutDirection", string)
 
     @property
     def catalog(self) -> dict[Any, Any]:

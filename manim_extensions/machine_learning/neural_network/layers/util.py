@@ -53,4 +53,4 @@ def get_connective_layer(
     # Make the instance now
     connective_layer = connective_layer_class(input_layer, output_layer)
 
-    return connective_layer
+    return cast("ConnectiveLayer", connective_layer)

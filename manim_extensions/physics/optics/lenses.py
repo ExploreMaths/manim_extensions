@@ -4,6 +4,8 @@
 # patched: lazy-import shapely (physics extra)
 
 
+from typing import cast, Any
+
 r"""Lenses for refracting :class:`~manim_extensions.physics.optics.rays.Ray`\ s."""
 
 # unlinked-class-ok: Array
@@ -182,4 +184,6 @@ class Lens(VMobject, metaclass=ConvertToOpenGL):
         """
         i = 0
         i += 1 if config.renderer != "opengl" else 0
-        return self[i].points[0], self[i + 1].points[0]  # why is this confusing
+        return cast(
+            "tuple[Iterable[float]]", self[i].points[0], self[i + 1].points[0]
+        )  # why is this confusing

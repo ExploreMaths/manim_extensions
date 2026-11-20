@@ -339,10 +339,13 @@ class ThreeDLine(ThreeDCylinder):
         """
         point = np.array(point)
         vect = normalize(line.vect)
-        return cls(
-            point + vect * length / 2,
-            point - vect * length / 2,
-            **kwargs,
+        return cast(
+            "Line3D",
+            cls(
+                point + vect * length / 2,
+                point - vect * length / 2,
+                **kwargs,
+            ),
         )
 
     @classmethod
@@ -401,10 +404,13 @@ class ThreeDLine(ThreeDCylinder):
 
         start, end = perpendicular_bisector([line.start, line.end], norm)
         vect = normalize(end - start)
-        return cls(
-            point + vect * length / 2,
-            point - vect * length / 2,
-            **kwargs,
+        return cast(
+            "Line3D",
+            cls(
+                point + vect * length / 2,
+                point - vect * length / 2,
+                **kwargs,
+            ),
         )
 
 

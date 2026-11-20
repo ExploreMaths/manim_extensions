@@ -230,7 +230,7 @@ class AbstractMap(Group):
             The component wrapper of the node, or ``None`` if no node with
             the given ID exists.
         """
-        return self.node_data_dict.get(ID, None)
+        return cast("NodeMobject", self.node_data_dict.get(ID, None))
 
     def get_node(self, ID: str) -> Group:
         """
@@ -249,7 +249,7 @@ class AbstractMap(Group):
         node = self.node_data_dict.get(ID, None)
         if node is not None:
             return Group(node.vmobject, node.surr_rect)
-        return None
+        return cast("Group", None)
 
     def get_text(self, ID: str) -> str:
         """
@@ -268,7 +268,7 @@ class AbstractMap(Group):
         node = self.node_data_dict.get(ID, None)
         if node is not None:
             return node.text
-        return None
+        return cast("str", None)
 
     def get_connector(self, ID: str) -> Line:
         """
@@ -287,7 +287,7 @@ class AbstractMap(Group):
         node = self.node_data_dict.get(ID, None)
         if node is not None:
             return node.connector
-        return None
+        return cast("Line", None)
 
     def get_all_mindmap(self) -> Group:
         """Return all node and connector mobjects in the mind map.
@@ -358,7 +358,7 @@ class AbstractMap(Group):
         for node in dfs_walker(self.root):
             if node.ID == ID:
                 return node
-        return None
+        return cast("Node", None)
 
     def _get_connector_style(self, level: int) -> dict[Any, Any]:
         """Return the line style for the given level.

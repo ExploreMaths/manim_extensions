@@ -76,7 +76,7 @@ class CubeMove(Animation):
         starting_mobject = self.mobject.copy()
         if cast(Any, starting_mobject).indices == {}:
             cast(Any, starting_mobject).set_indices()
-        return starting_mobject
+        return cast("RubiksCube", starting_mobject)
 
     def interpolate_mobject(self, alpha: float) -> Any:
         """Interpolate the cube rotation at progress ``alpha``.

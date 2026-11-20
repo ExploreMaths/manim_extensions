@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """Animation utilities for 2D chemistry molecules.
@@ -91,7 +92,7 @@ class GMAnimationBuilder:
         """
         for bond in self.molecule.edges:
             if atom_a in bond and atom_b in bond:
-                return bond
+                return cast("tuple[int, int]", bond)
 
         raise Exception(f"No bond found for atoms {atom_a}, {atom_b}")
 

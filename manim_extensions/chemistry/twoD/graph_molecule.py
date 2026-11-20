@@ -374,7 +374,7 @@ class GraphMolecule(Graph, AbstractMolecule):
                 f"{bond_type} is an unknown type of bond. Options are 1, 2 or 3"
             )
 
-        return bond
+        return cast("type[Line] | type[ArcBetweenPoints]", bond)
 
     def make_layout(self, vertices_dict: dict[Any, Any]) -> dict[int, Point3D]:
         """Build a layout dict mapping each atom index to its 3D coordinates.
@@ -590,7 +590,7 @@ class GraphMolecule(Graph, AbstractMolecule):
         connected_atoms = self.get_connected_atoms(
             from_atom_index=from_atom_index, to_atom_index=to_atom_index
         )
-        return self.get_atoms_vgroup_from_index(connected_atoms)
+        return cast("list[Any]", self.get_atoms_vgroup_from_index(connected_atoms))
 
     def get_bonds_from_atoms_indices(
         self, connected_atoms: list[Any], excluded_atom: int = 0

@@ -349,7 +349,7 @@ class RubiksCube(VMobject):
         if flatten:
             return face.flatten()
         else:
-            return face
+            return cast("ndarray[tuple[Any, ...], dtype[Any]]", face)
 
     def set_indices(self) -> Any:
         """Build the position-to-cubie index map for the current cube state."""

@@ -303,16 +303,22 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
                     # some code for stack too
 
         if len(next_states) != 0:
-            return (
-                True,
-                next_states,
-                transitions,
+            return cast(
+                "tuple[bool, list[State], list[ManimTransition]]",
+                (
+                    True,
+                    next_states,
+                    transitions,
+                ),
             )  # the token matches the transition's input
 
-        return (
-            False,
-            next_states,
-            transitions,
+        return cast(
+            "tuple[bool, list[State], list[ManimTransition]]",
+            (
+                False,
+                next_states,
+                transitions,
+            ),
         )  # There are no other transitions/ reachable next states given the token
 
     # nondeterministic pushdown automata have difference stacks - maybe a later requirement? Probably

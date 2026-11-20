@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """:class:`~manim_extensions.chemistry.molecule.molecule.Molecule` proxy class for Manim chemistry.
@@ -83,7 +84,9 @@ class Molecule:
         -------
             The molecule loaded from the file.
         """
-        return self.molecule_class.molecule_from_file(*args, **kwargs)
+        return cast(
+            "GraphMolecule", self.molecule_class.molecule_from_file(*args, **kwargs)
+        )
 
     def multiple_molecules_from_file(self, *args: Any, **kwargs: Any) -> VGroup:
         """Delegate to the wrapped molecule class to construct multiple molecules from a file.
@@ -99,7 +102,9 @@ class Molecule:
         -------
             The group of molecules loaded from the file.
         """
-        return self.molecule_class.multiple_molecules_from_file(*args, **kwargs)
+        return cast(
+            "VGroup", self.molecule_class.multiple_molecules_from_file(*args, **kwargs)
+        )
 
     def molecule_from_string(self, *args: Any, **kwargs: Any) -> GraphMolecule:
         """Delegate to the wrapped molecule class to construct a molecule from a string.
@@ -115,7 +120,9 @@ class Molecule:
         -------
             The molecule parsed from the string.
         """
-        return self.molecule_class.molecule_from_string(*args, **kwargs)
+        return cast(
+            "GraphMolecule", self.molecule_class.molecule_from_string(*args, **kwargs)
+        )
 
     def multiple_molecules_from_string(self, *args: Any, **kwargs: Any) -> VGroup:
         """Delegate to the wrapped molecule class to construct multiple molecules from a string.
@@ -131,7 +138,10 @@ class Molecule:
         -------
             The group of molecules parsed from the string.
         """
-        return self.molecule_class.multiple_molecules_from_string(*args, **kwargs)
+        return cast(
+            "VGroup",
+            self.molecule_class.multiple_molecules_from_string(*args, **kwargs),
+        )
 
     def molecule_from_pubchem(self, *args: Any, **kwargs: Any) -> GraphMolecule:
         """Delegate to the wrapped molecule class to fetch a molecule from PubChem.
@@ -147,7 +157,9 @@ class Molecule:
         -------
             The molecule fetched from PubChem.
         """
-        return self.molecule_class.molecule_from_pubchem(*args, **kwargs)
+        return cast(
+            "GraphMolecule", self.molecule_class.molecule_from_pubchem(*args, **kwargs)
+        )
 
     def mc_molecule_to_atoms_and_bonds(
         self, *args: Any, **kwargs: Any

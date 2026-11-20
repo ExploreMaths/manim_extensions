@@ -170,7 +170,7 @@ class MCAtom:
 
         self.molecule = cast("None", molecule)
 
-        return self.molecule
+        return cast("MCMolecule", self.molecule)
 
     def assign_molecule_index(self, molecule_index: int) -> int:
         """Set the index of this atom within its parent molecule.

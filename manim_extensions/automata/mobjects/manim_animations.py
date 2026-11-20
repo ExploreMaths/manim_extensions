@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """Animation utilities for automata visualization.
@@ -142,7 +143,7 @@ class ManimAnimations:
         -------
             The animation marking the token as consumed.
         """
-        return token.animate.set_opacity(0.5)
+        return cast("Animation", token.animate.set_opacity(0.5))
 
     def animate_highlight_input_token(self, token: Mobject) -> Animation:
         """Return an animation highlighting an input token.

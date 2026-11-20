@@ -890,7 +890,7 @@ class FileTree(Code):
         begin_index = len(prefix.replace(" ", ""))
 
         if not self.submobjects[0]:
-            return Wait(0)
+            return cast("AnimationGroup", Wait(0))
 
         return AnimationGroup(
             VGroup(self.submobjects[0][line][begin_index:]).animate.set_color(color)
