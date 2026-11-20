@@ -337,7 +337,7 @@ class Node:
             child.neighbor = self.children[-1]
             child.node_state = NodeState.INSERT
         self.children.append(child)
-        child.parent = self
+        child.parent = cast("None", self)
 
     def remove_child(self, child: "Node") -> Any:
         """Mark a child node for removal from the current node.

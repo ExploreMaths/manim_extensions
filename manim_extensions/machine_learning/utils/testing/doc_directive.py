@@ -204,7 +204,7 @@ class ManimDirective(Directive):
             "    from manim import *\n",
             *("    " + line for line in self.content),
         ]
-        source_block = "\n".join(source_block)
+        source_block = cast("list[Any]", "\n".join(source_block))
 
         config.media_dir = (Path(cast(Any, setup).confdir) / "media").absolute()
         config.images_dir = "{media_dir}/images"
@@ -329,7 +329,7 @@ def _log_rendering_times(*args: Any) -> Any:
         max_file_length = max(len(row[0]) for row in data)
         for key, group in it.groupby(data, key=lambda row: row[0]):
             key = key.ljust(max_file_length + 1, ".")
-            group = list(group)
+            group = cast("Iterator[list[str]]", list(group))
             if len(group) == 1:
                 row = group[0]
                 print(f"{key}{row[2].rjust(7, '.')}s {row[1]}")

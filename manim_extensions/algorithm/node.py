@@ -229,7 +229,7 @@ class Node(VMobject):
         if box_type == Square:
             self.box = Square(width)
         elif box_type == Circle:
-            self.box = Circle(width / 2)
+            self.box = cast("Square", Circle(width / 2))
         self.box.set_color(color)
         self.add(self.box)
         return self
@@ -263,7 +263,7 @@ class Node(VMobject):
         if value is None or not str(value).strip():
             self.text = Dot(radius=0)
         else:
-            self.text = Tex(str(value)).scale(self.text_scale)
+            self.text = cast("Dot", Tex(str(value)).scale(self.text_scale))
         self.text.move_to(self)
         self.add(self.text)
         return self
@@ -353,14 +353,14 @@ class Node(VMobject):
         if NumpyHelper.is_same_direction(direction, RIGHT):
             proportion = 0
         elif NumpyHelper.is_same_direction(direction, LEFT):
-            proportion = 0.5
+            proportion = cast("int", 0.5)
         elif NumpyHelper.is_same_direction(direction, UP):
-            proportion = 0.75
+            proportion = cast("int", 0.75)
         elif NumpyHelper.is_same_direction(direction, DOWN):
-            proportion = 0.25
+            proportion = cast("int", 0.25)
         else:
             raise ValueError("direction must be LEFT or RIGHT or UP or DOWN")
-        proportion = proportion + index / NodeSolt.SPLIT_PARTS / 4
+        proportion = cast("int", proportion + index / NodeSolt.SPLIT_PARTS / 4)
         if isinstance(self.box, Square):
             pass
         elif isinstance(self.box, Circle):

@@ -2,6 +2,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 """Manim chemistry atom representation.
 
 This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom` class for representing atoms in molecules.
@@ -166,7 +168,7 @@ class MCAtom:
                 f"Expected {MCMolecule} when assigning molecule but received {molecule}"
             )
 
-        self.molecule = molecule
+        self.molecule = cast("None", molecule)
 
         return self.molecule
 

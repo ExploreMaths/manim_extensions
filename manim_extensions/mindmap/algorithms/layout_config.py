@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """:class:`~manim_extensions.mindmap.algorithms.layout.Layout` configuration for mindmap algorithms.
@@ -160,7 +161,10 @@ class LayoutConfig:
         if not any(np.array_equal(direction, d) for d in [UP, DOWN, LEFT, RIGHT]):
             raise ValueError(f"direction must be one of {LEFT,RIGHT,UP,DOWN}")
         if not isinstance(sides, (list, tuple)):
-            sides = (sides,)
+            sides = cast(
+                "ndarray[tuple[Any, ...], dtype[float64]] | list[ndarray[tuple[Any, ...], dtype[float64]]]",
+                (sides,),
+            )
         for side in sides:
             if not any(np.array_equal(side, d) for d in [UP, DOWN]):
                 raise ValueError(f"side must be one of {UP,DOWN}")

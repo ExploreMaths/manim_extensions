@@ -136,7 +136,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         **kwargs: Any,
     ) -> None:
         if json_template is None and xml_file is None:
-            json_template = automaton_json
+            json_template = cast("dict[str, object] | None", automaton_json)
 
         FiniteStateAutomaton.__init__(self)
 
@@ -146,7 +146,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         if manim_animations is None:
             self.manim_animations = ManimAnimations()
         else:
-            self.manim_animations = manim_animations
+            self.manim_animations = cast("ManimAnimations", manim_animations)
 
         self.cli = None
         if cli:
@@ -615,7 +615,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             self.manim_automata_input = (
                 input  # if input is already an instance of ManimAutomataInput
             )
-            input_to_run = input
+            input_to_run = cast("ManimAutomataInput", input)
 
         # display manim_automaton_input to the screen
         list_of_animations = [

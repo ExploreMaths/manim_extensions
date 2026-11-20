@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: MIT
 # patched: implement flip and 4-D transforms for the underlying data mesh
 
+from typing import cast, Any
 from typing import Any
 
 """Manim models for mesh objects.
@@ -244,7 +245,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             The newly created face mobject and a list of newly created edge mobjects.
         """
         if color is None:
-            color = self.faces_color
+            color = cast("ManimColor | None", self.faces_color)
         old_edges = self.mesh.edges
         self.mesh.add_faces([face])
         verts_3d = self.mesh.get_3d_vertices()

@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """
@@ -537,10 +538,10 @@ class DivideAndConquer:
         )
         while move_left or move_right:
             if move_left:
-                left = next_left
+                left = cast("int", next_left)
                 next_left = next_index(left, left_hull[::-1])
             else:
-                right = next_right
+                right = cast("int", next_right)
                 next_right = next_index(right, right_hull)
             move_left = on_right(
                 (verts[indices_left][left], verts[indices_right][right]),

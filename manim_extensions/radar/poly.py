@@ -249,7 +249,9 @@ class PolyRadarChart(VGroup):
         self.inr = (
             INRADIUS * self.poly_radius
         )  # world radius of the panel centre at full scale
-        self.center = np.array(center, dtype=float)  # rotation axis (world coordinates)
+        self.center = cast(
+            "Callable[[], PolyRadarChart]", np.array(center, dtype=float)
+        )  # rotation axis (world coordinates)
         self.cam_pos = np.array(cam_pos, dtype=float)
         self.theta = 0.0  # rotation angle (plain float)
         self.spin_rate = float(spin_rate)  # degrees/second (slow by default)

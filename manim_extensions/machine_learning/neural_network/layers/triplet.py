@@ -4,6 +4,8 @@
 # patched: drop a stale TODO (FadeIn is the intended create animation)
 
 
+from typing import cast, Any
+
 """Triplet layer visualization for neural networks."""
 
 from __future__ import annotations
@@ -127,9 +129,9 @@ class TripletLayer(NeuralNetworkLayer):
             positive = GrayscaleImageMobject.from_path(positive_path)
             negative = GrayscaleImageMobject.from_path(negative_path)
         else:
-            anchor = ImageMobject(anchor_path)
-            positive = ImageMobject(positive_path)
-            negative = ImageMobject(negative_path)
+            anchor = cast("GrayscaleImageMobject", ImageMobject(anchor_path))
+            positive = cast("GrayscaleImageMobject", ImageMobject(positive_path))
+            negative = cast("GrayscaleImageMobject", ImageMobject(negative_path))
         # Make the layer
         triplet_layer = cls(anchor, positive, negative, font_size=font_size, buff=buff)
 

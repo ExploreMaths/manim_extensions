@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """2D bond representation for Manim chemistry.
@@ -96,7 +97,7 @@ class BaseMBondObject(VGroup):
         self.from_atom = from_atom
         self.to_atom = to_atom
         self.type = type
-        self.color = color
+        self.color = cast("ManimColor", color)
         self.subtype = self.define_subtype(subtype) or subtype
         self.bond = self.create_line()
         self.index = index

@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """3D atom representation for Manim chemistry.
@@ -36,7 +37,7 @@ class ThreeDAtom(OpenGLSphere):
     def __init__(
         self, element: Element, coords: Point3D = np.array([0, 0, 0]), **kwargs: Any
     ) -> None:
-        self.center = coords
+        self.center = cast("Callable[[], ThreeDAtom]", coords)
         self.coords = coords
         self.element = element
 

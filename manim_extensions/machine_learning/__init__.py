@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """Machine learning visualizations for Manim.
@@ -81,4 +82,6 @@ class ManimMLConfig:
 
 
 # These are accessible from the manim_ml namespace
-config = ManimMLConfig()  # intentionally shadows manim's star-imported config
+config = cast(
+    "ManimConfig", ManimMLConfig()
+)  # intentionally shadows manim's star-imported config

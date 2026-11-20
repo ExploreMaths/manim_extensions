@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """Base classes for economic diagrams.
@@ -567,8 +568,11 @@ class EconDiagram(VGroup):
                     )
                     anims.append(FadeIn(new_labels, run_time=run_time))
             else:
-                new_eq_group = self._build_eq_group(
-                    *self._eq_curve_names, self._eq_label_x, self._eq_label_y
+                new_eq_group = cast(
+                    "VGroup",
+                    self._build_eq_group(
+                        *self._eq_curve_names, self._eq_label_x, self._eq_label_y
+                    ),
                 )
                 if new_eq_group is not None:
                     old_eq_group = self._eq_group

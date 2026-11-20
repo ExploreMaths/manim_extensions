@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """Chemical formula representation for Manim chemistry.
@@ -231,8 +232,9 @@ class NamedFormula(VGroup):
             **kwargs,
         )
         self.add(chemical_formula)
-        self.name = self.make_name().next_to(
-            chemical_formula, direction=direction, buff=buff
+        self.name = cast(
+            "str",
+            self.make_name().next_to(chemical_formula, direction=direction, buff=buff),
         )
         self.add(self.name)
 

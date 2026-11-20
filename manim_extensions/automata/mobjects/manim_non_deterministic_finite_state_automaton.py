@@ -105,7 +105,7 @@ class ManimNondeterministicFiniteAutomaton(ManimAutomaton):
         **kwargs: Any,
     ) -> None:
         if json_template is None and xml_file is None:
-            json_template = nfa_automaton_json
+            json_template = cast("dict[str, object] | None", nfa_automaton_json)
         if animation_style is None:
             super().__init__(json_template, xml_file, camera_follow, cli=cli, **kwargs)
         else:

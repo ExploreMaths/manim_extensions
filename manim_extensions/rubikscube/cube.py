@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import kociemba (rubikscube extra)
 
+from typing import cast, Any
 from typing import Any
 
 """Rubik's Cube mobject built from Manim primitives.
@@ -193,7 +194,10 @@ class RubiksCube(VMobject):
         self.y_offset = [[Mobject.shift, [0, y_offset, 0]]]
         self.z_offset = [[Mobject.shift, [0, 0, z_offset]]]
 
-        self.cubies = np.ndarray((dim, dim, dim), dtype=Cubie)
+        self.cubies = cast(
+            "type[ndarray[_ShapeT_co, _DTypeT_co]]",
+            np.ndarray((dim, dim, dim), dtype=Cubie),
+        )
         self.generate_cubies()  # **kwargs)
 
     def get_center(self) -> Point3D:
@@ -321,17 +325,26 @@ class RubiksCube(VMobject):
             The selected face values, either as a 2D grid or a flattened array.
         """
         if face == "F":
-            face = self.cubies[0, :, :]
+            face = cast("Literal['F', 'B', 'U', 'D', 'L', 'R']", self.cubies[0, :, :])
         elif face == "B":
-            face = self.cubies[self.dimensions - 1, :, :]
+            face = cast(
+                "Literal['F', 'B', 'U', 'D', 'L', 'R']",
+                self.cubies[self.dimensions - 1, :, :],
+            )
         elif face == "U":
-            face = self.cubies[:, :, self.dimensions - 1]
+            face = cast(
+                "Literal['F', 'B', 'U', 'D', 'L', 'R']",
+                self.cubies[:, :, self.dimensions - 1],
+            )
         elif face == "D":
-            face = self.cubies[:, :, 0]
+            face = cast("Literal['F', 'B', 'U', 'D', 'L', 'R']", self.cubies[:, :, 0])
         elif face == "L":
-            face = self.cubies[:, self.dimensions - 1, :]
+            face = cast(
+                "Literal['F', 'B', 'U', 'D', 'L', 'R']",
+                self.cubies[:, self.dimensions - 1, :],
+            )
         elif face == "R":
-            face = self.cubies[:, 0, :]
+            face = cast("Literal['F', 'B', 'U', 'D', 'L', 'R']", self.cubies[:, 0, :])
 
         if flatten:
             return face.flatten()

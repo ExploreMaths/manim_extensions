@@ -131,7 +131,9 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
             for face_idx in [face_idx_1, face_idx_2]:
                 face = self.mesh.faces[face_idx]
                 triangle = [self.mesh.get_3d_vertices()[i] for i in face]
-                face = self.get_face(face_idx)
+                face = cast(
+                    "ndarray[tuple[Any, ...], dtype[float64]]", self.get_face(face_idx)
+                )
                 new_face = face.copy()
                 cast(Any, new_face).set_points_as_corners(
                     [triangle[0], triangle[1], triangle[2], triangle[0]],

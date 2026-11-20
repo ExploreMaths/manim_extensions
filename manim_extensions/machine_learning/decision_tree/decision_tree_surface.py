@@ -5,6 +5,8 @@
 # patched: implement make_split_to_animation_map
 
 
+from typing import cast, Any
+
 """Decision tree visualization for Manim."""
 
 # unlinked-class-ok: Array
@@ -149,7 +151,7 @@ def compute_decision_areas(
 
     tree = tree_classifier.tree_
     aabbs = tree_bounds(tree, n_features)
-    maxrange = np.array(maxrange)
+    maxrange = cast("list[float]", np.array(maxrange))
     rectangles = []
     for i in range(len(aabbs)):
         if tree.children_left[i] != ctree.TREE_LEAF:
@@ -169,7 +171,7 @@ def compute_decision_areas(
         print(r)
         """
         rectangles.append(r)
-    rectangles = np.array(rectangles)
+    rectangles = cast("list[list[Any]]", np.array(rectangles))
     rectangles[:, [0, 2]] = np.maximum(rectangles[:, [0, 2]], maxrange[0::2])
     rectangles[:, [1, 3]] = np.minimum(rectangles[:, [1, 3]], maxrange[1::2])
     return rectangles
@@ -227,7 +229,7 @@ def merge_overlapping_polygons(
 
     return_polygons = []
     for color in colors:
-        color = str(color).lower()
+        color = cast("ManimColor", str(color).lower())
         polygons = polygon_dict[color]
         points = set()
         for polygon in polygons:
@@ -238,7 +240,7 @@ def merge_overlapping_polygons(
                     points.remove(pt)
                 else:
                     points.add(pt)
-        points = list(points)
+        points = cast("set[Any]", list(points))
         sort_x = sorted(points)
         sort_y = sorted(points, key=lambda x: x[1])
 
@@ -263,7 +265,7 @@ def merge_overlapping_polygons(
         # Get all the polygons.
         while edges_h:
             # We can start with any point.
-            polygon = [(edges_h.popitem()[0], 0)]
+            polygon = cast("Polygon", [(edges_h.popitem()[0], 0)])
             while True:
                 curr, e = polygon[-1]
                 if e == 0:

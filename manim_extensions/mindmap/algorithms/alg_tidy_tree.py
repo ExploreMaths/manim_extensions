@@ -375,7 +375,7 @@ class TidyTreeLayout(Layout):
         -------
             The root node of the completed layout."""
         layer(self.root, self.direction, self.level_spacing)
-        self.wt = WrappedTree.from_node(self.root, self.is_horizontal)
+        self.wt = cast("None", WrappedTree.from_node(self.root, self.is_horizontal))
         self.first_walk(self.wt)
         self.second_walk(self.wt, 0)
         convert_back(self.wt, self.root, self.is_horizontal)
@@ -495,12 +495,12 @@ class TidyTreeLayout(Layout):
             cy = self.bottom(cl)
 
             if sy <= cy:
-                sr = self.next_right_contour(sr)
+                sr = cast("WrappedTree", self.next_right_contour(sr))
                 if sr is not None:
                     mssr += sr.mod
 
             if sy >= cy:
-                cl = self.next_left_contour(cl)
+                cl = cast("WrappedTree", self.next_left_contour(cl))
                 if cl is not None:
                     mscl += cl.mod
 

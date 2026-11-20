@@ -4,6 +4,8 @@
 # patched: drop a stale TODO (FadeIn is the intended create animation)
 
 
+from typing import cast, Any
+
 """Paired query layer visualization for neural networks."""
 
 from __future__ import annotations
@@ -160,8 +162,8 @@ class PairedQueryLayer(NeuralNetworkLayer):
             positive = GrayscaleImageMobject.from_path(positive_path)
             negative = GrayscaleImageMobject.from_path(negative_path)
         else:
-            positive = ImageMobject(positive_path)
-            negative = ImageMobject(negative_path)
+            positive = cast("GrayscaleImageMobject", ImageMobject(positive_path))
+            negative = cast("GrayscaleImageMobject", ImageMobject(negative_path))
         # Make the layer
         query_layer = cls(positive, negative, **kwargs)
 

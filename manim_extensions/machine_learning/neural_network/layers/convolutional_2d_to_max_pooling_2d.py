@@ -235,8 +235,8 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
         create_gridded_rectangle_animation = AnimationGroup(
             *create_gridded_rectangle_animations
         )
-        create_and_remove_cell_animation = AnimationGroup(
-            *create_and_remove_cell_animations
+        create_and_remove_cell_animation = cast(
+            "Succession", AnimationGroup(*create_and_remove_cell_animations)
         )
         transform_gridded_rectangle_animation = AnimationGroup(
             *transform_gridded_rectangle_animations

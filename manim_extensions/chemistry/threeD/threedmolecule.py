@@ -153,7 +153,9 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
                     self.source_csv, atom.get("element").symbol
                 )
             else:
-                element = mc_element_dict.get(atom.get("element").symbol)
+                element = cast(
+                    "Element", mc_element_dict.get(atom.get("element").symbol)
+                )
             atoms.add(ThreeDAtom(element, atom.get("coords")))
 
         return atoms
@@ -274,6 +276,6 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
         """
         # patched: accept the whole MOL block here, not only its lines.
         if isinstance(mol_string, str):
-            mol_string = mol_string.splitlines()
+            mol_string = cast("str", mol_string.splitlines())
         atoms, bonds = mol_parser_string(mol_string)
         return ThreeDMolecule(atoms_dict=atoms, bonds_dict=bonds, source_csv=source_csv)

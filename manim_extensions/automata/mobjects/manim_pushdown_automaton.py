@@ -111,7 +111,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
         **kwargs: Any,
     ) -> None:
         if json_template is None and xml_file is None:
-            json_template = pushdown_automaton_json
+            json_template = cast("dict[str, object] | None", pushdown_automaton_json)
         super().__init__(
             json_template, xml_file, camera_follow, animation_style, **kwargs
         )
@@ -240,7 +240,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
             self.manim_automata_input = (
                 input  # if input is already an instance of ManimAutomataInput
             )
-            input_to_run = input
+            input_to_run = cast("ManimAutomataInput", input)
 
         # display manim_automaton_input to the screen
         list_of_animations = [

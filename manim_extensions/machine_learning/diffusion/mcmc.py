@@ -3,6 +3,7 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import matplotlib/seaborn (ml extra)
 
+from typing import cast, Any
 from typing import Any
 
 """
@@ -601,7 +602,7 @@ class MCMCAxes(Group):
             *transition_animations, lag_ratio=1.0, run_time=5.0
         )
         # 3. Convert the chain to points, excluding the warmup
-        lines = VGroup(*lines)
+        lines = cast("list[Any]", VGroup(*lines))
         warm_up_points = VGroup(*warmup_points)
         fade_out_lines_and_warmup = AnimationGroup(
             Uncreate(lines), Uncreate(warm_up_points), lag_ratio=0.0

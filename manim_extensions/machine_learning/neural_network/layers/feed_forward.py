@@ -220,7 +220,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         for index, node in enumerate(self.node_group):
             if not index in dropout_node_indices:
                 nodes_to_highlight.append(node)
-        nodes_to_highlight = VGroup(*nodes_to_highlight)
+        nodes_to_highlight = cast("list[VMobject]", VGroup(*nodes_to_highlight))
         # Make highlight animation
         succession = Succession(
             ApplyMethod(

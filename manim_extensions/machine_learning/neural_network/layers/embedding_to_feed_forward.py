@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 """Embedding to feed-forward layer connection visualization."""
 
 from __future__ import annotations
@@ -118,8 +120,10 @@ class EmbeddingToFeedForward(ConnectiveLayer):
         remove_animations = []
         for dot in dots:
             remove_animations.append(FadeOut(dot))
-        remove_animations = AnimationGroup(*remove_animations, run_time=0.2)
-        animations = AnimationGroup(*animations)
+        remove_animations = cast(
+            "list[FadeOut]", AnimationGroup(*remove_animations, run_time=0.2)
+        )
+        animations = cast("list[Succession]", AnimationGroup(*animations))
         animation_group = Succession(animations, remove_animations, lag_ratio=1.0)
 
         return animation_group

@@ -213,7 +213,9 @@ def _make_test_comparing_frames(
     if is_set_test_data_test:
         frames_tester = _ControlDataWriter(file_path, size_frame=size_frame)
     else:
-        frames_tester = _FramesTester(file_path, show_diff=show_diff)
+        frames_tester = cast(
+            "_ControlDataWriter", _FramesTester(file_path, show_diff=show_diff)
+        )
 
     file_writer_class = (
         _make_scene_file_writer_class(frames_tester)

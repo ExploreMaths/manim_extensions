@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 """Odometer style value numbers (the "rolling digits" used by style ``neo``)."""
 
 from __future__ import annotations
@@ -86,7 +88,7 @@ class RollingNumber(VGroup):
         super().__init__(**kwargs)
         self.font = font
         self.size = size
-        self.color = color
+        self.color = cast("ManimColor", color)
         self.decimals = max(0, int(decimals))
         self.template = template
         self.max_value = float(max_value)
@@ -174,7 +176,7 @@ class RollingNumber(VGroup):
         if getattr(self, "_live_color", None) == col:
             return
         self._live_color = col
-        self.color = col
+        self.color = cast("ManimColor", col)
         for txt in self._cache.values():
             txt.set_color(col)
 

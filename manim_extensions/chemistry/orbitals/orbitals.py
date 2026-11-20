@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """Atomic orbital visualization for Manim chemistry.
@@ -175,7 +176,7 @@ class OrbitalPositive(OrbitalBase):
         """
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
         if psi < 0:
-            psi = 0
+            psi = cast("ndarray[tuple[Any, ...], dtype[float64]]", 0)
 
         return self.calculate_coordinates(psi, u, v)
 
@@ -201,7 +202,7 @@ class OrbitalNegative(OrbitalBase):
         """
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
         if psi > 0:
-            psi = 0
+            psi = cast("ndarray[tuple[Any, ...], dtype[float64]]", 0)
 
         return self.calculate_coordinates(psi, u, v)
 

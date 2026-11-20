@@ -124,7 +124,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
                 )
                 edges.append(line)
 
-        edges = VGroup(*edges)
+        edges = cast("list[Line]", VGroup(*edges))
         return edges
 
     @override_animation(FadeOut)
@@ -190,16 +190,19 @@ class FeedForwardToFeedForward(ConnectiveLayer):
                         copy_edge.set_color(self.animation_dot_color), time_width=0.3
                     )
                 else:
-                    anim = MoveAlongPath(
-                        dot, edge, run_time=run_time, rate_func=sigmoid
+                    anim = cast(
+                        "ShowPassingFlash",
+                        MoveAlongPath(dot, edge, run_time=run_time, rate_func=sigmoid),
                     )
                 path_animations.append(anim)
 
         if not self.passing_flash:
-            dots = VGroup(*dots)
+            dots = cast("list[Dot]", VGroup(*dots))
             self.add(dots)
 
-        path_animations = AnimationGroup(*path_animations)
+        path_animations = cast(
+            "list[ShowPassingFlash]", AnimationGroup(*path_animations)
+        )
 
         return path_animations
 
@@ -262,7 +265,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         """
         assert len(widths) > 0
         # Note: 1d-arrays are assumed to be in row major order
-        widths = np.array(widths)
+        widths = cast("Sequence[float]", np.array(widths))
         widths = cast(Any, widths).flatten()
         # Check thickness size
         assert np.shape(widths)[0] == len(self.edges)

@@ -470,7 +470,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         self.stride = self.output_layer.stride
         self.padding = self.input_layer.padding
         self.filter_opacity = filter_opacity
-        self.cell_width = cell_width
+        self.cell_width = cast("MethodType", cell_width)
         self.line_color = line_color
         self.active_color = active_color
         self.show_grid_lines = show_grid_lines

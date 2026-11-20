@@ -148,7 +148,7 @@ def animate_of_create(
     elif isinstance(node.vmobject, (Tex, MathTex)):
         AnimateClass = Write
     else:
-        AnimateClass = Create
+        AnimateClass = cast("type[Write]", Create)
     anims.extend(
         [
             AnimateClass(cast(Any, node.vmobject).move_to(pos)),
@@ -563,7 +563,7 @@ def animate_of_layout(
     change_layout = is_layout_change(root, layout_type)
     current_x, current_y, _ = cast(Any, root.vmobject).get_center()
     layout = LayoutFactory.create_layout(layout_type, root, layout_config)
-    root = layout.layout()
+    root = cast("Node", layout.layout())
     setattr(root, "layout_type", layout_type)
     setattr(root, "direction", direction)
     x_offset = current_x - root.x
@@ -889,7 +889,7 @@ class RemoveNode(LayoutAnimation):
     ) -> None:
         self.is_whole_tree = False
         if isinstance(nodes, Node):
-            nodes = (nodes,)
+            nodes = cast("Node | list[Node]", (nodes,))
         root = self.get_common_root(nodes)
         if root is None:
             raise Exception("nodes must be in the same tree")

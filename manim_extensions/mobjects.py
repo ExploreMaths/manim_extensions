@@ -5,6 +5,8 @@
 # patched: document module-level constants
 
 
+from typing import cast, Any
+
 """Reusable Manim mobjects and convenience wrappers.
 
 This module provides small reusable building blocks for common educational and
@@ -981,14 +983,14 @@ class CropImageMobject(ImageMobject):
         if isinstance(filename_or_array, str):
             img = Image.open(filename_or_array)
         elif isinstance(filename_or_array, np.ndarray):
-            img = Image.fromarray(filename_or_array)
+            img = cast("ImageFile", Image.fromarray(filename_or_array))
         elif isinstance(filename_or_array, Image.Image):
-            img = filename_or_array
+            img = cast("ImageFile", filename_or_array)
         else:
             super().__init__(filename_or_array, **kwargs)
             return
 
-        img = img.convert("RGBA")
+        img = cast("ImageFile", img.convert("RGBA"))
         if isinstance(corner_radius, (int, float)):
             if 0 < corner_radius <= 1.0:
                 radius = int(min(img.size) * corner_radius)
@@ -1008,7 +1010,7 @@ class CropImageMobject(ImageMobject):
 
         r, g, b, a = img.split()
         a = ImageChops.multiply(a, mask)
-        img = Image.merge("RGBA", (r, g, b, a))
+        img = cast("ImageFile", Image.merge("RGBA", (r, g, b, a)))
         super().__init__(np.array(img), **kwargs)
 
 

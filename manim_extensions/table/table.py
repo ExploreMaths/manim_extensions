@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants
 
+from typing import cast, Any
 from typing import Any
 
 """
@@ -869,7 +870,9 @@ class Table(VGroup):
             max_text_width = 0
             for text_str in all_text:
                 t = Text(text_str, font_size=self.font_size)
-                max_text_width = max(max_text_width, t.width + self.padding)
+                max_text_width = cast(
+                    "int", max(max_text_width, t.width + self.padding)
+                )
             new_width = max_text_width
 
         self.column_widths.insert(index, new_width)

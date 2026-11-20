@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 """Arc-length, offset, warp and dashed-path helpers for Manim vector paths."""
 
 from __future__ import annotations
@@ -284,7 +286,7 @@ class PathMapper(VMobject):
                     remainder = 1
                 else:
                     index = int(a * self.path.get_num_curves() // 1)
-                    remainder = (a * self.path.get_num_curves()) % 1
+                    remainder = cast("int", (a * self.path.get_num_curves()) % 1)
                 p = self.path.get_nth_curve_function(index)(remainder)
                 ret = np.concatenate([ret, np.reshape(p, (1, 3))], axis=0)
             return ret
@@ -295,7 +297,7 @@ class PathMapper(VMobject):
                 remainder = 1
             else:
                 index = int(a * self.path.get_num_curves() // 1)
-                remainder = (a * self.path.get_num_curves()) % 1
+                remainder = cast("int", (a * self.path.get_num_curves()) % 1)
             return self.path.get_nth_curve_function(index)(remainder)
 
     def get_length_between_points(self, b: float, a: float) -> float:
@@ -993,14 +995,20 @@ class CurveWarp(VMobject):
                 elif x > L:
                     endpoint = self.PM.point_from_proportion(1)
                     tanv = self.PM.get_tangent_unit_vector(L)
-                    nv = rotate_vector(tanv, PI / 2)
+                    nv = cast(
+                        "list[ndarray[tuple[Any, ...], dtype[Any]]]",
+                        rotate_vector(tanv, PI / 2),
+                    )
                     x_1 = x - L
                     p = endpoint + x_1 * tanv + y * nv
                     self.points = np.append(self.points, np.reshape(p, (1, 3)), axis=0)
                 else:
                     startpoint = self.PM.point_from_proportion(0)
                     tanv = self.PM.get_tangent_unit_vector(0)
-                    nv = rotate_vector(tanv, PI / 2)
+                    nv = cast(
+                        "list[ndarray[tuple[Any, ...], dtype[Any]]]",
+                        rotate_vector(tanv, PI / 2),
+                    )
                     x_1 = x
                     p = startpoint + x_1 * tanv + y * nv
                     self.points = np.append(self.points, np.reshape(p, (1, 3)), axis=0)

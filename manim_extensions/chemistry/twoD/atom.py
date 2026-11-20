@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """2D atom representation for Manim chemistry.
@@ -114,7 +115,7 @@ class MAtomObject(VGroup):
         self.charge = charge
         self.index = index
         self.planar = planar
-        self.color = color
+        self.color = cast("ManimColor", color)
         self.atom = self.add_atom()
 
         if self.planar:

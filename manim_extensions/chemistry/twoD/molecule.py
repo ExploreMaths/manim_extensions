@@ -213,11 +213,14 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                             )
                             from_atom = self.atoms[from_atom.index]
                             to_atom = self.atoms[to_atom.index]
-                            new_bond = DashedCramBond(
-                                from_atom=from_atom,
-                                to_atom=to_atom,
-                                index=bond_index,
-                                type=bond_type,
+                            new_bond = cast(
+                                "PlainCramBond",
+                                DashedCramBond(
+                                    from_atom=from_atom,
+                                    to_atom=to_atom,
+                                    index=bond_index,
+                                    type=bond_type,
+                                ),
                             )
 
                             bond_index += 1
@@ -238,11 +241,14 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                         )
                         from_atom = self.atoms[from_atom.index]
                         to_atom = self.atoms[to_atom.index]
-                        new_bond = SimpleBond(
-                            from_atom=from_atom,
-                            to_atom=to_atom,
-                            index=bond_index,
-                            type=bond_type,
+                        new_bond = cast(
+                            "PlainCramBond",
+                            SimpleBond(
+                                from_atom=from_atom,
+                                to_atom=to_atom,
+                                index=bond_index,
+                                type=bond_type,
+                            ),
                         )
 
                         bond_index += 1
@@ -251,29 +257,38 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                     # patched: a hydrogen bond with no stereo information and no
                     # explicit hydrogens used to be dropped silently.
                     else:
-                        new_bond = SimpleBond(
-                            from_atom=from_atom,
-                            to_atom=to_atom,
-                            index=bond_index,
-                            type=bond_type,
+                        new_bond = cast(
+                            "PlainCramBond",
+                            SimpleBond(
+                                from_atom=from_atom,
+                                to_atom=to_atom,
+                                index=bond_index,
+                                type=bond_type,
+                            ),
                         )
                         bond_index += 1
                         bonds.add(new_bond)
 
                 else:
                     if bond_type == 2 or bond_type == 5 or bond_type == 7:
-                        new_bond = DoubleBond(  # TODO: Add function inside bond to create it from data
-                            from_atom=from_atom,
-                            to_atom=to_atom,
-                            index=bond_index,
-                            type=bond_type,
+                        new_bond = cast(
+                            "PlainCramBond",
+                            DoubleBond(  # TODO: Add function inside bond to create it from data
+                                from_atom=from_atom,
+                                to_atom=to_atom,
+                                index=bond_index,
+                                type=bond_type,
+                            ),
                         )
                     elif bond_type == 3:
-                        new_bond = TripleBond(
-                            from_atom=from_atom,
-                            to_atom=to_atom,
-                            index=bond_index,
-                            type=bond_type,
+                        new_bond = cast(
+                            "PlainCramBond",
+                            TripleBond(
+                                from_atom=from_atom,
+                                to_atom=to_atom,
+                                index=bond_index,
+                                type=bond_type,
+                            ),
                         )
                     else:
                         if bond.get("stereo"):
@@ -286,18 +301,24 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                                 )
 
                             else:
-                                new_bond = DashedCramBond(
+                                new_bond = cast(
+                                    "PlainCramBond",
+                                    DashedCramBond(
+                                        from_atom=from_atom,
+                                        to_atom=to_atom,
+                                        index=bond_index,
+                                        type=bond_type,
+                                    ),
+                                )
+                        else:
+                            new_bond = cast(
+                                "PlainCramBond",
+                                SimpleBond(
                                     from_atom=from_atom,
                                     to_atom=to_atom,
                                     index=bond_index,
                                     type=bond_type,
-                                )
-                        else:
-                            new_bond = SimpleBond(
-                                from_atom=from_atom,
-                                to_atom=to_atom,
-                                index=bond_index,
-                                type=bond_type,
+                                ),
                             )
                     bond_index += 1
                     bonds.add(new_bond)
@@ -463,7 +484,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         # patched: the parser wants the lines of a MOL block, but the public
         # entry point is documented as taking the whole string.
         if isinstance(mol_string, str):
-            mol_string = mol_string.splitlines()
+            mol_string = cast("str", mol_string.splitlines())
         atoms, bonds = mol_parser_string(mol_string)
         return MMoleculeObject(atoms, bonds, *args, **kwargs)
 
@@ -851,7 +872,7 @@ class NamedMolecule(VGroup):
         elif tex:
             name_text = MathTex(name, *args, **kwargs)
         else:
-            name_text = MarkupText(name, font=font, *args, **kwargs)
+            name_text = cast("MathTex", MarkupText(name, font=font, *args, **kwargs))
 
         name_text.next_to(self.molecule, direction, buff)
 

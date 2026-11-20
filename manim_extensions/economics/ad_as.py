@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """AD-AS diagram for Manim.
@@ -237,8 +238,8 @@ class ADASDiagram(EconDiagram):
             The curve-shift animation, together with the share update
             if shares are visible.
         """
-        self._m = m if m is not None else self._m
-        self._v = v if v is not None else self._v
+        self._m = cast("int", m if m is not None else self._m)
+        self._v = cast("int", v if v is not None else self._v)
         new_func = self._make_ad_func(self._m, self._v)
         y_max = self.axes.y_range[1]
         x_min = self._ad_x_min(self._m, self._v, y_max)
@@ -279,7 +280,7 @@ class ADASDiagram(EconDiagram):
             if shares are visible.
         """
         if sras_price is not None:
-            self._sras_price = sras_price
+            self._sras_price = cast("int", sras_price)
         if sras_slope is not None:
             self._sras_slope = sras_slope
         new_func = self._make_sras_func(
@@ -317,7 +318,7 @@ class ADASDiagram(EconDiagram):
             color=old_line.get_color(),
         )
         self.curves["lras"] = new_line
-        self._lras_y = new_y
+        self._lras_y = cast("int", new_y)
 
         anims = [Transform(old_line, new_line, run_time=run_time)]
 

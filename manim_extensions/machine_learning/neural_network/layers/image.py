@@ -2,6 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import cast, Any
 from typing import Any
 
 """Image layer visualization for neural networks."""
@@ -118,8 +119,9 @@ class ImageLayer(NeuralNetworkLayer):
         elif len(np.shape(self.numpy_image)) == 3:
             # Assumed RGB
             self.num_channels = 3
-            self.image_mobject = ImageMobject(self.numpy_image).scale_to_fit_height(
-                self.image_height
+            self.image_mobject = cast(
+                "GrayscaleImageMobject",
+                ImageMobject(self.numpy_image).scale_to_fit_height(self.image_height),
             )
         self.add(self.image_mobject)
         super().construct_layer(input_layer, output_layer, **kwargs)

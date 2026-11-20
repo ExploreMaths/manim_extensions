@@ -307,12 +307,15 @@ class DecisionTreeDiagram(Group):
             # Get the most abundant class for the given leaf node
             # Make the leaf node object
             tree_class_index = np.argmax(cast(Any, self.tree).value[node_index])
-            node = LeafNode(
-                class_index=tree_class_index,
-                class_colors=self.class_colors,
-                class_image_paths=self.class_image_paths,
-                class_names=self.class_names,
-                display_type="image" if self.class_image_paths else "text",
+            node = cast(
+                "SplitNode",
+                LeafNode(
+                    class_index=tree_class_index,
+                    class_colors=self.class_colors,
+                    class_image_paths=self.class_image_paths,
+                    class_names=self.class_names,
+                    display_type="image" if self.class_image_paths else "text",
+                ),
             )
         return node
 

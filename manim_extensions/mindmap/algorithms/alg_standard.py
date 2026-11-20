@@ -273,13 +273,22 @@ class StandardLayout(Layout):
         -------
             The root node of the completed layout."""
         self._split()
-        self.left = TidyTreeLayout(
-            self.left, self.direction, self.node_spacing, self.level_spacing
-        ).layout()
+        self.left = cast(
+            "TreeNode",
+            TidyTreeLayout(
+                self.left, self.direction, self.node_spacing, self.level_spacing
+            ).layout(),
+        )
         if self.right is not None:
-            self.right = TidyTreeLayout(
-                self.right, self.flip_direction, self.node_spacing, self.level_spacing
-            ).layout()
+            self.right = cast(
+                "TreeNode | None",
+                TidyTreeLayout(
+                    self.right,
+                    self.flip_direction,
+                    self.node_spacing,
+                    self.level_spacing,
+                ).layout(),
+            )
             x = cast(Any, self.left).x - cast(Any, self.right).x
             y = cast(Any, self.left).y - cast(Any, self.right).y
             self._offset(self.right, x, y)

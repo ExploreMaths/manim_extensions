@@ -313,8 +313,8 @@ class CodeBlock(VGroup):
                 background_rect, markup, lang_background, lang_name, **kwargs
             )
         else:
-            self.title = None
-            self.title_background = None
+            self.title = cast("MarkupText", None)
+            self.title_background = cast("BackgroundRectangle", None)
             super().__init__(background_rect, markup, **kwargs)
 
         self.code = markup

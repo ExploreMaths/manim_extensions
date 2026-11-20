@@ -167,7 +167,7 @@ class Element(VGroup):
         super().__init__(**kwargs)
         self.element_label = element
         self.label_color = label_color
-        self.color = color
+        self.color = cast("ManimColor", color)
         self.radius = radius
         self.n_electrons = n_electrons
         self.n_holes = n_holes
@@ -323,7 +323,7 @@ class ElementFrame(VGroup):
             height=2, width=1.5, fill_opacity=1
         ).set_color_by_gradient(frame_colors)
         self.symbol = Text(element_symbol, color=BLACK).scale(1.5).shift(0.2 * UP)
-        self.name = Text(element_name, color=BLACK).shift(0.75 * DOWN)
+        self.name = cast("str", Text(element_name, color=BLACK).shift(0.75 * DOWN))
 
         name_rescaling_factor = (
             0.75 * cast(Any, self.frame).width / cast(Any, self.name).width

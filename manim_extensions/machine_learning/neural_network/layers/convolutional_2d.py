@@ -275,12 +275,12 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         if isinstance(feature_map_size, int):
             self.feature_map_size = (feature_map_size, feature_map_size)
         else:
-            self.feature_map_size = feature_map_size
+            self.feature_map_size = cast("tuple[int, int]", feature_map_size)
 
         if isinstance(filter_size, int):
             self.filter_size = (filter_size, filter_size)
         else:
-            self.filter_size = filter_size
+            self.filter_size = cast("tuple[int, int]", filter_size)
 
         self.cell_width = cell_width
         self.filter_spacing = filter_spacing

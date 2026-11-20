@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 """
 Code for making a dropout animation for the
 feed forward layers of a neural network.
@@ -370,7 +372,7 @@ def make_neural_network_dropout_animation(
             neural_network, layers_to_nodes_to_drop_out
         )
     else:
-        forward_pass_animation = AnimationGroup()
+        forward_pass_animation = cast("Succession", AnimationGroup())
 
     post_dropout_animation = make_post_dropout_animation(
         neural_network, layers_to_nodes_to_drop_out, x_marks

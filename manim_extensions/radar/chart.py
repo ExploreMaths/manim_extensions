@@ -449,10 +449,13 @@ class RadarChart(VGroup):
             spoke.base_so = cfg.spoke_opacity  # type: ignore[attr-defined]
             self.web.add(spoke)
             if cfg.grid_glow:
-                g = spoke.copy().set_stroke(
-                    color=self.theme.axis_color(i),
-                    width=cfg.grid_glow_width,
-                    opacity=cfg.grid_glow_opacity,
+                g = cast(
+                    "Polygon",
+                    spoke.copy().set_stroke(
+                        color=self.theme.axis_color(i),
+                        width=cfg.grid_glow_width,
+                        opacity=cfg.grid_glow_opacity,
+                    ),
                 )
                 g.base_so = cfg.grid_glow_opacity  # type: ignore[attr-defined]
                 self.grid_glow.add(g)
@@ -1263,7 +1266,7 @@ class RadarChart(VGroup):
         -------
             The same chart, allowing calls to be chained.
         """
-        self._rig = rig
+        self._rig = cast("None", rig)
         return self
 
     # ==================================================================

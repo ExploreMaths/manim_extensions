@@ -189,7 +189,7 @@ class ManimTransition(Transition, VGroup):
         point2
             End point on the state circle.
         """
-        self.arrow = CurvedArrow(point2, point1, angle=1.5 * PI)
+        self.arrow = cast("Arrow", CurvedArrow(point2, point1, angle=1.5 * PI))
 
         # used to position the read symbols
         center_of_arc = self.arrow.get_arc_center()
@@ -307,7 +307,7 @@ class ManimTransition(Transition, VGroup):
         from_point = temp_arrow.start
         to_point = temp_arrow.end
 
-        self.arrow = CurvedArrow(from_point, to_point)
+        self.arrow = cast("Arrow", CurvedArrow(from_point, to_point))
 
         chord_center_x = (from_point[0] + to_point[0]) / 2
         chord_center_y = (from_point[1] + to_point[1]) / 2

@@ -290,7 +290,9 @@ class GraphMolecule(Graph, AbstractMolecule):
         self.edges_dict = edges_dict
         labels = False
         if label or numeric_label:
-            labels = self.make_labels(vertices_dict, numeric_label, label_color)
+            labels = cast(
+                "bool", self.make_labels(vertices_dict, numeric_label, label_color)
+            )
 
         super().__init__(
             vertices=vertices_dict.keys(),

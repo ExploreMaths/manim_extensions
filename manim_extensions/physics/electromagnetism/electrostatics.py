@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 
+from typing import cast, Any
+
 """Electrostatic field helpers.
 
 The classes in this module generate charge objects and electric-field vector
@@ -95,7 +97,7 @@ class Charge(VGroup):
             layer_colors = [RED_D, RED_A]
             layer_radius = 4
         else:
-            label = Rectangle(width=0.27, height=0.003)
+            label = cast("VGroup", Rectangle(width=0.27, height=0.003))
             color = BLUE
             layer_colors = ["#3399FF", "#66B2FF"]
             layer_radius = 2
