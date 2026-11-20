@@ -67,6 +67,13 @@ Fixed
   installed 3.17.5 release actually calls — and restores aliases parsed from
   the original annotation string, including names nested inside ``list[...]``
   and unions.
+* Project aliases are also registered with Sphinx's official
+  ``autodoc_type_aliases`` option.  ``autodoc_all`` discovers public alias
+  assignments from the package AST and merges them on ``config-inited``, so
+  direct annotations such as ``ramp: ColorRamp`` and ``type[SurfaceConfig]``
+  render as linked alias names instead of expanded structures.  Sphinx 9
+  replaces a ``typehints_formatter`` assigned during ``setup()`` with the
+  configured value, so the earlier wrapper never saw parameter annotations.
 * Every vendored package that defines type aliases now has a ``Type Aliases``
   section on its reference page.  ``autoall`` gained a ``typealias``
   classification that renders real ``py:type`` targets with the alias source

@@ -1547,6 +1547,13 @@ The Sphinx hook now patches
 installed 3.17.5 release actually calls — and restores aliases parsed from
 the original annotation string, including names nested inside <code class="docutils literal notranslate"><span class="pre">list[...]</span></code>
 and unions.</p></li>
+<li><p>Project aliases are also registered with Sphinx’s official
+<code class="docutils literal notranslate"><span class="pre">autodoc_type_aliases</span></code> option.  <code class="docutils literal notranslate"><span class="pre">autodoc_all</span></code> discovers public alias
+assignments from the package AST and merges them on <code class="docutils literal notranslate"><span class="pre">config-inited</span></code>, so
+direct annotations such as <code class="docutils literal notranslate"><span class="pre">ramp:</span> <span class="pre">ColorRamp</span></code> and <code class="docutils literal notranslate"><span class="pre">type[SurfaceConfig]</span></code>
+render as linked alias names instead of expanded structures.  Sphinx 9
+replaces a <code class="docutils literal notranslate"><span class="pre">typehints_formatter</span></code> assigned during <code class="docutils literal notranslate"><span class="pre">setup()</span></code> with the
+configured value, so the earlier wrapper never saw parameter annotations.</p></li>
 <li><p>Every vendored package that defines type aliases now has a <code class="docutils literal notranslate"><span class="pre">Type</span> <span class="pre">Aliases</span></code>
 section on its reference page.  <code class="docutils literal notranslate"><span class="pre">autoall</span></code> gained a <code class="docutils literal notranslate"><span class="pre">typealias</span></code>
 classification that renders real <code class="docutils literal notranslate"><span class="pre">py:type</span></code> targets with the alias source
