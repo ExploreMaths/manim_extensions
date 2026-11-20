@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """:class:`~manim_extensions.compass.compass.pencil.Pencil` animations for Manim.
 
 This module provides animations for pencil manipulations.
@@ -51,8 +53,8 @@ class MovePencilAlongPath(MoveAlongPath):
         mobject: Pencil,
         path: VMobject | None = None,
         suspend_mobject_updating: bool = False,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         assert path is not None
         start = path.get_start()
         path = path.copy().shift(mobject.get_center() - start)
@@ -88,7 +90,9 @@ class MovePencilTipTo(ApplyMethod):
                content.scale_to_fit_height(5).move_to(ORIGIN)
     """
 
-    def __init__(self, pencil: Pencil, point: Point3D | None = None, **kwargs: object):
+    def __init__(
+        self, pencil: Pencil, point: Point3D | None = None, **kwargs: Any
+    ) -> None:
         super().__init__(pencil.move_nid_to, point, **kwargs)
 
 
@@ -119,7 +123,9 @@ class DrawPath(AnimationGroup):
                self.wait()
     """
 
-    def __init__(self, pencil: Pencil, path: VMobject | None = None, **kwargs: object):
+    def __init__(
+        self, pencil: Pencil, path: VMobject | None = None, **kwargs: Any
+    ) -> None:
         assert path is not None
         super().__init__(Create(path), MovePencilAlongPath(pencil, path), **kwargs)
 
@@ -152,5 +158,7 @@ class PutPencilAway(MovePencilTipTo):
                self.wait()
     """
 
-    def __init__(self, pencil: Pencil, point: Point3D | None = None, **kwargs: object):
+    def __init__(
+        self, pencil: Pencil, point: Point3D | None = None, **kwargs: Any
+    ) -> None:
         super().__init__(pencil, point, **kwargs)

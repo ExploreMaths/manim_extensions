@@ -253,7 +253,7 @@ from ..element import (
 from ..element.element import Element
 
 
-def mol_parser_string(mol_string: list) -> tuple[dict]:
+def mol_parser_string(mol_string: list[Any]) -> tuple[dict]:
     """Parse a MOL-format string (list of lines) into atoms and bonds dicts.
 
     Parameters

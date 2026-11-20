@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """True-camera helpers for radar charts (:class:`~manim.scene.moving_camera_scene.MovingCameraScene`).
 
 :class:`~manim_extensions.radar.camera.CameraRig` wraps the camera frame so a radar scene can be shot like a
@@ -62,7 +64,7 @@ class CameraRig:
         target: Mobject | Point3D | None = None,
         factor: float = 1.35,
         run_time: float = 1.0,
-        **kwargs,
+        **kwargs: Any,
     ) -> _AnimationBuilder:
         """Zoom the camera towards a target.
 
@@ -93,7 +95,7 @@ class CameraRig:
         factor: Optional[float] = None,
         target: Mobject | Point3D | None = None,
         run_time: float = 1.0,
-        **kwargs,
+        **kwargs: Any,
     ) -> _AnimationBuilder:
         """Zoom back out towards the default frame or a target.
 
@@ -128,7 +130,7 @@ class CameraRig:
         return self._timed(anim, run_time)
 
     def focus_point(
-        self, point: Point3D, factor: float = 1.5, run_time: float = 0.9, **kwargs
+        self, point: Point3D, factor: float = 1.5, run_time: float = 0.9, **kwargs: Any
     ) -> _AnimationBuilder:
         """Pan to a point and zoom in during one move.
 

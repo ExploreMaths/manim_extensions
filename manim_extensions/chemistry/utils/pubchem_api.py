@@ -2,6 +2,8 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import requests (chemistry extra)
 
+from typing import Any
+
 """PubChem API manager for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.utils.pubchem_api.PubchemAPIManager` class for fetching molecular data from PubChem.
@@ -49,7 +51,7 @@ class PubchemAPIManager:
         inchi: str | None = None,
         three_d: bool = False,
         format: str = "json",
-    ):
+    ) -> None:
         if not any([cid, name, smiles, inchi]):
             raise Exception(
                 "You should provide an identifier. Available identifiers are cid, name, smiles and inchi"

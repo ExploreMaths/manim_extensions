@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Animation utilities for automata visualization.
 
 This module provides the :class:`~manim_extensions.automata.mobjects.manim_animations.ManimAnimations` class for animating automata visualizations.
@@ -52,7 +54,7 @@ class ManimAnimations:
                self.play(animations.animate_state_to_default_color(state))
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         pass
 
     # state animations

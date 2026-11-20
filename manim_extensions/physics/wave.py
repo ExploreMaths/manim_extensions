@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """3D and 2D Waves module."""
 
 # unlinked-class-ok: Source
@@ -76,8 +78,8 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
         amplitude: float = 0.1,
         x_range: tuple[float, float] = (-5, 5),
         y_range: tuple[float, float] = (-5, 5),
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.wavelength = wavelength
         self.period = period
         self.amplitude = amplitude
@@ -117,7 +119,7 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
             )
         return z
 
-    def _update_wave(self, mob: Mobject, dt: float):
+    def _update_wave(self, mob: Mobject, dt: float) -> Any:
         """Advance the wave simulation by ``dt`` seconds and refresh the surface.
 
         Parameters
@@ -137,11 +139,11 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
             )
         )
 
-    def start_wave(self):
+    def start_wave(self) -> Any:
         """Animate the wave propagation."""
         self.add_updater(self._update_wave)
 
-    def stop_wave(self):
+    def stop_wave(self) -> Any:
         """Stop animating the wave propagation."""
         self.remove_updater(self._update_wave)
 
@@ -188,8 +190,8 @@ class LinearWave(RadialWave):
         amplitude: float = 0.1,
         x_range: tuple[float, float] = (-5, 5),
         y_range: tuple[float, float] = (-5, 5),
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(
             ORIGIN,
             wavelength=wavelength,
@@ -265,8 +267,8 @@ class StandingWave(ParametricFunction):
         length: float = 4,
         period: float = 1,
         amplitude: float = 1,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.n = n
         self.length = length
         self.period = period
@@ -281,7 +283,7 @@ class StandingWave(ParametricFunction):
         )
         self.shift((-self.length / 2, 0, 0))
 
-    def _update_wave(self, mob: Mobject, dt: float):
+    def _update_wave(self, mob: Mobject, dt: float) -> Any:
         """Advance the standing-wave simulation and refresh the curve.
 
         Parameters
@@ -308,11 +310,11 @@ class StandingWave(ParametricFunction):
             ).shift(self.wave_center + (-self.length / 2, 0, 0))
         )
 
-    def start_wave(self):
+    def start_wave(self) -> Any:
         """Begin the standing-wave animation and store its current center."""
         self.wave_center = self.get_center()
         self.add_updater(self._update_wave)
 
-    def stop_wave(self):
+    def stop_wave(self) -> Any:
         """Stop the standing-wave animation."""
         self.remove_updater(self._update_wave)

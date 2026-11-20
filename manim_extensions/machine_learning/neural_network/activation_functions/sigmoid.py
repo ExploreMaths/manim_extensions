@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Sigmoid activation function visualization."""
 
 import numpy as np
@@ -42,9 +44,9 @@ class SigmoidFunction(ActivationFunction):
     def __init__(
         self,
         function_name: str = "Sigmoid",
-        x_range: list = [-5, 5],
-        y_range: list = [0, 1],
-    ):
+        x_range: list[Any] = [-5, 5],
+        y_range: list[Any] = [0, 1],
+    ) -> None:
         super().__init__(function_name, x_range, y_range)
 
     def apply_function(self, x_val: float) -> float:

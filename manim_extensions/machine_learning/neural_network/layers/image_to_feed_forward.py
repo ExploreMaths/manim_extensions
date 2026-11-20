@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Image to feed-forward layer connection visualization."""
 
 from __future__ import annotations
@@ -49,8 +51,8 @@ class ImageToFeedForward(ConnectiveLayer):
         output_layer: Mobject,
         animation_dot_color: ManimColor = RED,
         dot_radius: float = 0.05,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(input_layer, output_layer, **kwargs)
         self.animation_dot_color = animation_dot_color
         self.dot_radius = dot_radius
@@ -62,7 +64,7 @@ class ImageToFeedForward(ConnectiveLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         """Forward to the parent construct_layer method.
 
@@ -78,7 +80,7 @@ class ImageToFeedForward(ConnectiveLayer):
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(
-        self, layer_args: dict = {}, **kwargs
+        self, layer_args: dict[Any, Any] = {}, **kwargs: Any
     ) -> AnimationGroup:
         """Makes dots diverge from the given location and move to the feed forward nodes decoder.
 

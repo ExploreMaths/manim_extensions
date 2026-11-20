@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Small vector and construction helpers shared by the CAD drawing utilities."""
 
 from __future__ import annotations
@@ -52,7 +54,7 @@ class BezierHandlebars(VDict):
         Keyword arguments forwarded to the vector dictionary.
     """
 
-    def __init__(self, target_mobject: VMobject, **kwargs) -> None:
+    def __init__(self, target_mobject: VMobject, **kwargs: Any) -> None:
         super().__init__(**kwargs)
         self.target = target_mobject
         self.generate_circles(0.03)

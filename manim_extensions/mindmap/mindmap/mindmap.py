@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Mindmap main classes for Manim.
 
 This module provides main mindmap classes for visualizations.
@@ -81,7 +83,7 @@ class MindMap(AbstractMap):
 
     def __init__(
         self,
-        map: Dict = {},
+        map: Dict[Any, Any] = {},
         buff: float = 0.2,
         direction: object = RIGHT,
         level_spacing: float = 1.0,
@@ -104,7 +106,7 @@ class MindMap(AbstractMap):
                 {"color": WHITE, "font_size": 36},
             ],
         ),
-    ):
+    ) -> None:
         self.node_style = node_style
         self.direction = direction
         super().__init__(
@@ -118,7 +120,7 @@ class MindMap(AbstractMap):
             )
         )
 
-    def _set_connectors(self):
+    def _set_connectors(self) -> Any:
         """Create a connector from each node to its parent in the active layout."""
         for node in bfs_walker(self.root):
             node.connector = (
@@ -184,7 +186,7 @@ class TimeLine(AbstractMap):
 
     def __init__(
         self,
-        map: Dict = {},
+        map: Dict[Any, Any] = {},
         buff: float = 0.2,
         sides: tuple[object, object] = (UP, DOWN),
         level_spacing: float = 1.0,
@@ -207,7 +209,7 @@ class TimeLine(AbstractMap):
                 {"color": WHITE, "font_size": 36},
             ],
         ),
-    ):
+    ) -> None:
         self.node_style = node_style
         super().__init__(
             layout_method=TimeLineLayout(
@@ -218,7 +220,7 @@ class TimeLine(AbstractMap):
             )
         )
 
-    def _set_connectors(self):
+    def _set_connectors(self) -> Any:
         """Create a connector from each node to its parent in the active layout."""
         for node in bfs_walker(self.root):
             node.connector = (
@@ -286,7 +288,7 @@ class StandardMap(AbstractMap):
 
     def __init__(
         self,
-        map: Dict = {},
+        map: Dict[Any, Any] = {},
         buff: float = 0.2,
         direction: object = RIGHT,
         level_spacing: float = 1.0,
@@ -309,7 +311,7 @@ class StandardMap(AbstractMap):
                 {"color": WHITE, "font_size": 36},
             ],
         ),
-    ):
+    ) -> None:
         self.node_style = node_style
         super().__init__(
             layout_method=StandardLayout(
@@ -322,7 +324,7 @@ class StandardMap(AbstractMap):
             )
         )
 
-    def _set_connectors(self):
+    def _set_connectors(self) -> Any:
         """Create a connector from each node to its parent in the active layout."""
         for node in bfs_walker(self.root):
             node.connector = (
@@ -392,7 +394,7 @@ class CatalogMap(AbstractMap):
 
     def __init__(
         self,
-        map: Dict = {},
+        map: Dict[Any, Any] = {},
         buff: float = 0.2,
         level_spacing: float = 1.0,
         node_spacing: float = 0.5,
@@ -414,7 +416,7 @@ class CatalogMap(AbstractMap):
                 {"color": WHITE, "font_size": 36},
             ],
         ),
-    ):
+    ) -> None:
         self.node_style = node_style
         super().__init__(
             layout_method=CatalogLayout(
@@ -426,7 +428,7 @@ class CatalogMap(AbstractMap):
             )
         )
 
-    def _set_connectors(self):
+    def _set_connectors(self) -> Any:
         """Create a connector from each node to its parent in the active layout."""
         for node in bfs_walker(self.root):
             node.connector = (

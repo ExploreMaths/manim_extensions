@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """The core objects: :class:`~manim_extensions.radar.chart.RadarChart` (single- or multi-dataset).
 
 New in 0.1.1: several datasets can share one grid (comparison mode), with a
@@ -116,7 +118,7 @@ class Series:
         self.fx_group: Optional[VGroup] = None  # dash tracks, in the chart's fx layer
         self.dash_pool: List[Optional[VGroup]] = []  # per axis
         self.breach: List[Optional[VGroup]] = []  # per axis
-        self.big_numbers: dict = {}  # axis -> unclamped RollingNumber
+        self.big_numbers: dict[Any, Any] = {}  # axis -> unclamped RollingNumber
         self.big_numbers_group: Optional[VGroup] = None
 
         cfg = chart.config
@@ -337,7 +339,7 @@ class RadarChart(VGroup):
         rim: Optional[bool] = None,
         overflow: Optional[bool] = None,
         opacity: Optional[float] = None,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         super().__init__(**kwargs)
 
@@ -635,7 +637,7 @@ class RadarChart(VGroup):
             raise ValueError("all datasets must share the same axis layout")
         return out
 
-    def _install_datasets(self, items: Sequence) -> None:
+    def _install_datasets(self, items: Sequence[Any]) -> None:
         """Rebuild the visible series from a sequence of snapshots.
 
         Parameters
@@ -811,7 +813,7 @@ class RadarChart(VGroup):
     # ------------------------------------------------------------------
     # comparison API (new in 0.1.1)
     # ------------------------------------------------------------------
-    def compare(self, *datasets) -> "RadarChart":
+    def compare(self, *datasets: Any) -> "RadarChart":
         """Show several datasets on this grid at once without animating.
 
         Each positional item may be a
@@ -1196,7 +1198,7 @@ class RadarChart(VGroup):
     # camera helpers (new in 0.1.1)
     # ==================================================================
     def push_in(
-        self, factor: float = 1.35, run_time: float = 1.0, **kwargs
+        self, factor: float = 1.35, run_time: float = 1.0, **kwargs: Any
     ) -> _AnimationBuilder:
         """Zoom the chart up about its own centre.
 
@@ -1222,7 +1224,7 @@ class RadarChart(VGroup):
         return builder.set_run_time(run_time) if run_time else builder
 
     def pull_out(
-        self, factor: float = 1.35, run_time: float = 1.0, **kwargs
+        self, factor: float = 1.35, run_time: float = 1.0, **kwargs: Any
     ) -> _AnimationBuilder:
         """Scale the chart back down about its own centre.
 
@@ -1272,7 +1274,7 @@ class RadarChart(VGroup):
         color: Optional[str] = None,
         name: Optional[str] = None,
         max_value: Optional[float] = None,
-        **kwargs,
+        **kwargs: Any,
     ) -> Animation:
         """Morph this chart into one or more target snapshots.
 
@@ -1311,7 +1313,7 @@ class RadarChart(VGroup):
             ]
         return RadarMorph(self, targets, **kwargs)
 
-    def reveal(self, run_time: float = 0.9, **kwargs) -> Animation:
+    def reveal(self, run_time: float = 0.9, **kwargs: Any) -> Animation:
         """Build the intro animation that grows out of the centre.
 
         Parameters
@@ -1330,7 +1332,7 @@ class RadarChart(VGroup):
 
         return RadarReveal(self, run_time=run_time, **kwargs)
 
-    def disappear(self, run_time: float = 0.8, **kwargs) -> Animation:
+    def disappear(self, run_time: float = 0.8, **kwargs: Any) -> Animation:
         """Build the outro animation that fades the whole chart out.
 
         Parameters
@@ -1349,7 +1351,7 @@ class RadarChart(VGroup):
 
         return RadarFade(self, 0.0, run_time=run_time, **kwargs)
 
-    def glitch_in(self, run_time: float = 0.75, **kwargs) -> Animation:
+    def glitch_in(self, run_time: float = 0.75, **kwargs: Any) -> Animation:
         """Build a glitchy entrance animation.
 
         Parameters
@@ -1368,7 +1370,7 @@ class RadarChart(VGroup):
 
         return GlitchFlash(self, run_time=run_time, **kwargs)
 
-    def shockwave(self, **kwargs) -> Animation:
+    def shockwave(self, **kwargs: Any) -> Animation:
         """Build a single shockwave ring centred on the chart.
 
         Parameters
@@ -1451,7 +1453,7 @@ class RadarChart(VGroup):
     # scene helpers
     # ==================================================================
     def attach_backdrop(
-        self, scene: Scene, theme: Optional[RadarTheme] = None, **kwargs
+        self, scene: Scene, theme: Optional[RadarTheme] = None, **kwargs: Any
     ) -> Mobject:
         """Add a deep-space backdrop behind the chart.
 
@@ -1500,7 +1502,7 @@ class RadarChart(VGroup):
 
         if isinstance(data, (list, tuple)):
             if data and isinstance(data[0], (int, float, np.floating)):
-                items: list = [data]
+                items: list[Any] = [data]
             else:
                 items = list(data)
         else:

@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """:class:`~manim_extensions.algorithm.queue.Queue` data structure for algorithm visualization."""
 
 from __future__ import annotations
@@ -73,8 +75,8 @@ class Queue(VMobject):
         font_size: int = 48,
         box_type: NodeBoxType = Square,
         bound_color: ManimColor = RED,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
         self.capacity = capacity
         self.total_width = total_width
@@ -135,7 +137,7 @@ class Queue(VMobject):
                    self.wait(0.5)
         """
 
-        def __init__(self, queue: Queue, item: Node, **kwargs):
+        def __init__(self, queue: Queue, item: Node, **kwargs: Any) -> None:
             path = [
                 item.get_center(),
                 queue.get_right() + queue.item_width / 2 * RIGHT,
@@ -185,7 +187,9 @@ class Queue(VMobject):
                    self.wait(0.5)
         """
 
-        def __init__(self, queue: Queue, target_pos: Point3D | None = None, **kwargs):
+        def __init__(
+            self, queue: Queue, target_pos: Point3D | None = None, **kwargs: Any
+        ) -> None:
             if not queue.data:
                 return
             item = queue.data[0]

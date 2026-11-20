@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """:class:`~manim_extensions.mindmap.algorithms.layout.Layout` base class for mindmap algorithms.
 
 This module provides base class for layout algorithms.

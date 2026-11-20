@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """3D utilities for Manim chemistry.
 
 This module provides OpenGL-based 3D geometry classes for chemistry visualizations.
@@ -27,8 +29,8 @@ class OpenGLSphere(OpenGLSurface):
     def __init__(
         self,
         center: Point3D = ORIGIN,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(
             self.uv_func,
             u_range=(0, TAU),

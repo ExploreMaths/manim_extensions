@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: drop the unreachable LaTeX branch of make_vector
 
+from typing import Any
+
 """Vector layer visualization for neural networks."""
 
 from __future__ import annotations
@@ -62,9 +64,9 @@ class VectorLayer(VGroupNeuralNetworkLayer):
     def __init__(
         self,
         num_values: int,
-        value_func: Callable = lambda: random.uniform(0, 1),
-        **kwargs,
-    ):
+        value_func: Callable[..., Any] = lambda: random.uniform(0, 1),
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
         self.num_values = num_values
         self.value_func = value_func
@@ -73,8 +75,8 @@ class VectorLayer(VGroupNeuralNetworkLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> Any:
         """Build the vector label and add it to the layer.
 
         Parameters
@@ -104,7 +106,7 @@ class VectorLayer(VGroupNeuralNetworkLayer):
         return vector_label
 
     def make_forward_pass_animation(
-        self, layer_args: dict = {}, **kwargs
+        self, layer_args: dict[Any, Any] = {}, **kwargs: Any
     ) -> AnimationGroup:
         """Return an empty animation group; the vector layer has no forward pass effect.
 

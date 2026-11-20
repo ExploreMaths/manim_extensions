@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """AD-AS diagram for Manim.
 
 This module provides the Aggregate Demand-Aggregate Supply diagram.
@@ -93,8 +95,8 @@ class ADASDiagram(EconDiagram):
         sras_only: bool = False,
         lras_only: bool = False,
         numbered_eq: bool = False,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         if sras_only and lras_only:
             raise ValueError("sras_only and lras_only cannot both be True")
 
@@ -356,7 +358,9 @@ class ADASDiagram(EconDiagram):
 
     # ---- Demand shocks ----
 
-    def _append_long_run(self, anims: list, lr_run_time: float, show_arrows: bool):
+    def _append_long_run(
+        self, anims: list[Any], lr_run_time: float, show_arrows: bool
+    ) -> Any:
         """Append the long-run adjustment to an animation list.
 
         Parameters

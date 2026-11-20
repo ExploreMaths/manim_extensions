@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Future classes for Manim chemistry.
 
 This module contains experimental classes that may be implemented in the future.
@@ -70,7 +72,9 @@ class Hole(VMobject):
                self.add(Hole().scale(7))
     """
 
-    def __init__(self, radius: float = 0.25, color: ManimColor = WHITE, **kwargs):
+    def __init__(
+        self, radius: float = 0.25, color: ManimColor = WHITE, **kwargs: Any
+    ) -> None:
         super().__init__(**kwargs)
         self.add(DashedVMobject(Circle(radius=radius, color=color), num_dashes=7))
 
@@ -100,7 +104,9 @@ class Electron(VMobject):
                self.add(Electron().scale(7))
     """
 
-    def __init__(self, radius: float = 0.2, color: ManimColor = BLUE_E, **kwargs):
+    def __init__(
+        self, radius: float = 0.2, color: ManimColor = BLUE_E, **kwargs: Any
+    ) -> None:
         super().__init__(**kwargs)
         self.add(Circle(radius=radius, fill_opacity=1, color=color))
 
@@ -155,8 +161,8 @@ class Element(VGroup):
         add_electrons: bool = True,
         add_holes: bool = True,
         subelectron_holes: bool = True,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
         self.element_label = element
         self.label_color = label_color
@@ -307,9 +313,9 @@ class ElementFrame(VGroup):
         self,
         element_symbol: str = "H",
         element_name: str = "Hidrógeno",
-        frame_colors: list = [BLUE, BLUE_B],
-        **kwargs,
-    ):
+        frame_colors: list[Any] = [BLUE, BLUE_B],
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
 
         self.frame = Rectangle(
@@ -347,7 +353,7 @@ class NPNTransistor(VGroup):
                self.add(NPNTransistor())
     """
 
-    def __init__(self, regions_opacity: float = 0.8, **kwargs):
+    def __init__(self, regions_opacity: float = 0.8, **kwargs: Any) -> None:
         super().__init__(**kwargs)
         self.regions_opacity = regions_opacity
         self.left_n_region = Rectangle(
@@ -380,8 +386,8 @@ class NPNTransistor(VGroup):
         self,
         particle_type: type[VMobject],
         n_copies: int = 5,
-        vertical_boundary: list = [0.8 * UP, 0.8 * DOWN],
-        horizontal_boundary: list = [LEFT, RIGHT],
+        vertical_boundary: list[Any] = [0.8 * UP, 0.8 * DOWN],
+        horizontal_boundary: list[Any] = [LEFT, RIGHT],
     ) -> VGroup:
         """Create a :class:`~manim.mobject.types.vectorized_mobject.VGroup` of scaled particle mobjects arranged in a rectangular grid.
 
@@ -443,8 +449,8 @@ class BatterySchema(VGroup):
         mob: Mobject = Square(),
         schema_type: str = "horizontal",
         inverted_terminals: bool = False,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
 
         self.mob = mob
@@ -628,7 +634,9 @@ class MOSFETTransistor(VGroup):
                self.add(MOSFETTransistor())
     """
 
-    def __init__(self, show_holes: bool = False, show_battery: bool = False, **kwargs):
+    def __init__(
+        self, show_holes: bool = False, show_battery: bool = False, **kwargs: Any
+    ) -> None:
         super().__init__(**kwargs)
 
         self.main_board = self.make_main_board()
@@ -783,7 +791,7 @@ class BatterySide(VMobject):
                self.add(content)
     """
 
-    def __init__(self, terminal: Mobject, anchor: VGroup, **kwargs):
+    def __init__(self, terminal: Mobject, anchor: VGroup, **kwargs: Any) -> None:
         super().__init__(**kwargs)
         self.terminal = terminal
         self.anchor = anchor
@@ -807,7 +815,7 @@ class BatterySide(VMobject):
 # Useful functions
 
 
-def arrange_in_1d_boundary(mobs: VGroup, boundary: list = [LEFT, RIGHT]):
+def arrange_in_1d_boundary(mobs: VGroup, boundary: list[Any] = [LEFT, RIGHT]) -> Any:
     """Evenly distribute mobjects along a 1D line between two boundary points.
 
     Parameters
@@ -824,7 +832,9 @@ def arrange_in_1d_boundary(mobs: VGroup, boundary: list = [LEFT, RIGHT]):
         mob.move_to(positions[index])
 
 
-def duplicate_and_rearrange(mobs: Mobject, boundary: list = [LEFT, RIGHT]) -> VGroup:
+def duplicate_and_rearrange(
+    mobs: Mobject, boundary: list[Any] = [LEFT, RIGHT]
+) -> VGroup:
     """Duplicate each mobject and evenly space all copies along a 1D boundary.
 
     Parameters
@@ -881,7 +891,7 @@ def add_over_rectangular_surface(
     return group
 
 
-def get_element_by_data(element: dict) -> Element:
+def get_element_by_data(element: dict[Any, Any]) -> Element:
     """Create an :class:`~manim_extensions.chemistry.future_classes.future_classes.Element` mobject from a dictionary of element properties.
 
     Parameters
@@ -937,8 +947,8 @@ def randomly_distributed_in_2d(
 def arrange_copies_in_rectangle(
     mobs: Mobject,
     n_copies: int = 2,
-    vertical_boundary: list = [UP, DOWN],
-    horizontal_boundary: list = [LEFT, RIGHT],
+    vertical_boundary: list[Any] = [UP, DOWN],
+    horizontal_boundary: list[Any] = [LEFT, RIGHT],
 ) -> VGroup:
     """Create n_copies of mobs and arrange them in a rectangular grid pattern.
 
@@ -988,7 +998,7 @@ def make_subpaths(group: VMobject) -> VMobject:
 @deprecated(
     "``zero`` is deprecated; use :func:`manim.utils.rate_functions.zero` instead.",
 )
-def zero(function: Callable) -> Callable[..., float]:
+def zero(function: Callable[..., Any]) -> Callable[..., float]:
     """Decorator that clamps a function to return 0 outside the :math:`[0, 1]` domain.
 
     Parameters
@@ -1002,7 +1012,7 @@ def zero(function: Callable) -> Callable[..., float]:
     """
 
     @wraps(function)
-    def wrapper(t: VectorND | None, *args, **kwargs) -> float:
+    def wrapper(t: VectorND | None, *args: Any, **kwargs: Any) -> float:
         """Clamp the curve parameter to the unit interval."""
         if 0 <= t <= 1:
             return function(t, *args, **kwargs)

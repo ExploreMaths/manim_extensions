@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: drop a stale TODO (FadeIn is the intended create animation)
 
+from typing import Any
+
 """Paired query layer visualization for neural networks."""
 
 from __future__ import annotations
@@ -95,8 +97,8 @@ class PairedQueryLayer(NeuralNetworkLayer):
         stroke_width: float = 5,
         font_size: float = 18,
         spacing: float = 0.5,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
         self.positive = positive
         self.negative = negative
@@ -113,7 +115,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         """Forward to the parent construct_layer method.
 
@@ -130,7 +132,11 @@ class PairedQueryLayer(NeuralNetworkLayer):
 
     @classmethod
     def from_paths(
-        cls, positive_path: str, negative_path: str, grayscale: bool = True, **kwargs
+        cls,
+        positive_path: str,
+        negative_path: str,
+        grayscale: bool = True,
+        **kwargs: Any,
     ) -> "PairedQueryLayer":
         """Creates a query using the paths.
 
@@ -201,7 +207,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
         return FadeIn(self.assets)
 
     def make_forward_pass_animation(
-        self, layer_args: dict = {}, **kwargs
+        self, layer_args: dict[Any, Any] = {}, **kwargs: Any
     ) -> AnimationGroup:
         """Forward pass for query.
 

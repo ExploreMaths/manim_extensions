@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Math operation layer visualization for neural networks."""
 
 from __future__ import annotations
@@ -95,8 +97,8 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         active_color: ManimColor = ORANGE,
         activation_function: ActivationFunction | str | None = None,
         font_size: float = 20,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
         # Ensure operation type is valid
         assert operation_type in MathOperationLayer.valid_operations
@@ -112,8 +114,8 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> Any:
         """Creates the neural network layer.
 
         Parameters
@@ -137,7 +139,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         self.construct_activation_function()
         super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def construct_activation_function(self):
+    def construct_activation_function(self) -> Any:
         """Build the activation-function plot for this math-operation layer."""
         # Add the activation function
         if not self.activation_function is None:
@@ -154,7 +156,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             self.add(self.activation_function)
 
     def make_forward_pass_animation(
-        self, layer_args: dict = {}, **kwargs
+        self, layer_args: dict[Any, Any] = {}, **kwargs: Any
     ) -> Succession | AnimationGroup:
         """Makes the forward pass animation.
 
@@ -215,7 +217,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             The rightmost point of the surrounding shape."""
         return self.surrounding_circle.get_right()
 
-    def move_to(self, mobject_or_point: Mobject):
+    def move_to(self, mobject_or_point: Mobject) -> Any:
         """Moves the center of the layer to the given mobject or point.
 
         Parameters

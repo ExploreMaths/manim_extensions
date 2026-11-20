@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: implement replace_layer
 
+from typing import Any
+
 """Neural Network Manim Visualization.
 
 This module is responsible for generating a neural network visualization with
@@ -112,7 +114,7 @@ class NeuralNetwork(Group):
 
     def __init__(
         self,
-        input_layers: list,
+        input_layers: list[Any],
         layer_spacing: float = 0.2,
         animation_dot_color: ManimColor = config.color_scheme.active_color,
         edge_width: float = 2.5,
@@ -121,7 +123,7 @@ class NeuralNetwork(Group):
         layout: str = "linear",
         layout_direction: Literal["left_to_right", "top_to_bottom"] = "left_to_right",
         debug_mode: bool = False,
-    ):
+    ) -> None:
         super(Group, self).__init__()
         self.input_layers_dict = self.make_input_layers_dict(input_layers)
         self.input_layers = ListGroup(*self.input_layers_dict.values())
@@ -157,7 +159,7 @@ class NeuralNetwork(Group):
         # Print neural network
         print(repr(self))
 
-    def make_input_layers_dict(self, input_layers: list) -> dict | None:
+    def make_input_layers_dict(self, input_layers: list[Any]) -> dict | None:
         """Make dictionary of input layers.
 
         Parameters
@@ -195,7 +197,7 @@ class NeuralNetwork(Group):
         connection_style: str = "default",
         connection_position: str = "bottom",
         arc_direction: str = "down",
-    ):
+    ) -> Any:
         """Add connection from start layer to end layer.
 
         Parameters
@@ -230,7 +232,7 @@ class NeuralNetwork(Group):
             self.connections.append(connection)
             self.add(connection)
 
-    def _construct_input_layers(self):
+    def _construct_input_layers(self) -> Any:
         """Constructs each of the input layers in context
         of their adjacent layers.."""
         prev_layer = None
@@ -253,7 +255,7 @@ class NeuralNetwork(Group):
         self,
         layout: str = "linear",
         layout_direction: Literal["left_to_right", "top_to_bottom"] = "top_to_bottom",
-    ):
+    ) -> Any:
         """Position the layers of the network.
 
         Parameters
@@ -347,7 +349,7 @@ class NeuralNetwork(Group):
         # Handle layering
         return connective_layers, all_layers
 
-    def _place_connective_layers(self):
+    def _place_connective_layers(self) -> Any:
         """Center each connective layer between its input and output layers."""
         # Place each of the connective layers halfway between the adjacent layers
         for connective_layer in self.connective_layers:
@@ -427,7 +429,7 @@ class NeuralNetwork(Group):
         new_layer.move_to(old_layer)
         prior_center = self.all_layers.get_center()
 
-        def swap_layer(network: NeuralNetwork):
+        def swap_layer(network: NeuralNetwork) -> Any:
             """Replace the layer and rebuild the surrounding connections."""
             network.input_layers.replace(input_index, new_layer)
             for name, layer in network.input_layers_dict.items():
@@ -463,9 +465,9 @@ class NeuralNetwork(Group):
         self,
         run_time: float | None = None,
         passing_flash: bool = True,
-        layer_args: dict = {},
+        layer_args: dict[Any, Any] = {},
         per_layer_animations: bool = False,
-        **kwargs,
+        **kwargs: Any,
     ) -> Succession | dict[Mobject, Animation]:
         """Generates an animation for feed forward propagation.
 
@@ -566,7 +568,7 @@ class NeuralNetwork(Group):
             return animation_group
 
     @override_animation(Create)
-    def _create_override(self, **kwargs) -> Animation:
+    def _create_override(self, **kwargs: Any) -> Animation:
         """Create the network with a single guarded pass.
 
         Parameters
@@ -605,7 +607,7 @@ class NeuralNetwork(Group):
 
         return animation_group
 
-    def set_z_index(self, z_index_value: float, family: bool = False):
+    def set_z_index(self, z_index_value: float, family: bool = False) -> Any:
         """Overridden set_z_index.
 
         Parameters
@@ -621,7 +623,7 @@ class NeuralNetwork(Group):
             if not isinstance(layer, NeuralNetwork):
                 layer.set_z_index(z_index_value)
 
-    def scale(self, scale_factor: float, **kwargs):
+    def scale(self, scale_factor: float, **kwargs: Any) -> Any:
         """Overridden scale.
 
         Scales every layer and re-places the layers and connective layers
@@ -651,7 +653,7 @@ class NeuralNetwork(Group):
 
         self.move_to(prior_center)
 
-    def filter_layers(self, function: Callable) -> list:
+    def filter_layers(self, function: Callable[..., Any]) -> list[Any]:
         """Filters layers of the network given function.
 
         Parameters

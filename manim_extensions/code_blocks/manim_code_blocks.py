@@ -7,6 +7,8 @@
 
 # unlinked-class-ok: CodeBlock
 
+from typing import Any
+
 """A syntax-highlighted code block for Manim.
 
 The upstream module fetched GitHub's language colour table over the network
@@ -224,7 +226,7 @@ class CodeBlock(VGroup):
         language: ProgrammingLanguage | None = None,
         theme: Theme = OneDark,
         font: str = "consolas",
-        **kwargs: object,
+        **kwargs: Any,
     ) -> None:
 
         if language:
@@ -317,7 +319,7 @@ class CodeBlock(VGroup):
         self.code_background = background_rect
 
     def create(
-        self, **kwargs
+        self, **kwargs: Any
     ) -> tuple[FadeIn, AddTextLetterByLetter, FadeIn, AddTextLetterByLetter]:
         r"""
         Return a tuple of animations for creating the code block. Use such as:\n
@@ -350,7 +352,7 @@ class CodeBlock(VGroup):
             AddTextLetterByLetter(self.code, **kwargs),
         )
 
-    def uncreate(self, **kwargs) -> tuple[Animation, ...]:
+    def uncreate(self, **kwargs: Any) -> tuple[Animation, ...]:
         """
         Return a tuple of animations for uncreating the code block. Use such as:
         ```

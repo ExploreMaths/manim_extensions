@@ -2,6 +2,8 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants
 
+from typing import Any
+
 """File handling for chemistry module.
 
 This module provides file parsing utilities for chemistry file formats.
@@ -36,7 +38,7 @@ class FileHandler:
         Path to the chemistry file to parse.
     """
 
-    def __init__(self, file_path: str | bytes | os.PathLike):
+    def __init__(self, file_path: str | bytes | os.PathLike) -> None:
         if not os.path.isfile(file_path):
             raise FileNotFoundError(f"File {file_path} does not exist.")
 

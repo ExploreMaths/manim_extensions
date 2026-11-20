@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Electrostatic field helpers.
 
 The classes in this module generate charge objects and electric-field vector
@@ -77,8 +79,8 @@ class Charge(VGroup):
         magnitude: float = 1,
         point: Point3D = ORIGIN,
         add_glow: bool = True,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         VGroup.__init__(self, **kwargs)
         self.magnitude = magnitude
         self.point = point
@@ -154,7 +156,7 @@ class ElectricField(ArrowVectorField):
                self.add(content)
     """
 
-    def __init__(self, *charges: Charge, **kwargs):
+    def __init__(self, *charges: Charge, **kwargs: Any) -> None:
         self.charges = charges
         positions = []
         magnitudes = []

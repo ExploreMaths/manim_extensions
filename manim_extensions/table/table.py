@@ -2,6 +2,8 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants
 
+from typing import Any
+
 """
 :class:`~manim_extensions.table.table.Table` - The main database table component.
 """
@@ -181,8 +183,8 @@ class Table(VGroup):
         show_border: bool = True,
         auto_fit: bool = True,
         padding: float = 0.3,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
 
         # Parse input (copy the lists: add/delete column mutate them and

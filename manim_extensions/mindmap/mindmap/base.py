@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Mindmap base classes for Manim.
 
 This module provides base classes for mindmap visualizations.
@@ -65,7 +67,7 @@ class NodeMobject:
 
     def __init__(
         self, vmobject: VMobject, surr_rect: Rectangle, connector: Line, text: str
-    ):
+    ) -> None:
         self.vmobject = vmobject
         self.surr_rect = surr_rect
         self.connector = connector
@@ -179,7 +181,7 @@ class AbstractMap(Group):
                self.add(mind_map)
     """
 
-    def __init__(self, layout_method: Layout = Layout()):
+    def __init__(self, layout_method: Layout = Layout()) -> None:
         super().__init__()
         self.node_data_dict = {}
         self.root = layout_method.layout()
@@ -188,7 +190,7 @@ class AbstractMap(Group):
         self.add(*self.get_all_mindmap())
         self.move_to(ORIGIN)
 
-    def _set_node_position(self, node: Node):
+    def _set_node_position(self, node: Node) -> Any:
         """Recursively position a node and all its descendants.
 
         Parameters
@@ -202,7 +204,7 @@ class AbstractMap(Group):
         for child in node.children:
             self._set_node_position(child)
 
-    def _set_connectors(self):
+    def _set_connectors(self) -> Any:
         """Set connection lines.
 
         Raises
@@ -355,7 +357,7 @@ class AbstractMap(Group):
                 return node
         return None
 
-    def _get_connector_style(self, level: int) -> dict:
+    def _get_connector_style(self, level: int) -> dict[Any, Any]:
         """Return the line style for the given level.
 
         Parameters

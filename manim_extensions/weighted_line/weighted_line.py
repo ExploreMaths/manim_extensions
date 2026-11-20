@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Weighted line class for Manim.
 
 This module provides the :class:`~manim_extensions.weighted_line.weighted_line.WeightedLine` class for displaying weighted edges in network graphs.
@@ -99,14 +101,14 @@ class WeightedLine(Line):
 
     def __init__(
         self,
-        *args: object,
+        *args: Any,
         weight: str | int | float | None = None,
         weight_config: dict[str, object] | None = None,
         weight_alpha: float = 0.5,
         bg_config: dict[str, object] | None = None,
         add_bg: bool = True,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.weight = weight
         self.alpha = weight_alpha
         self.add_bg = add_bg
@@ -131,7 +133,7 @@ class WeightedLine(Line):
         if self.weight is not None:
             self._add_weight()
 
-    def _add_weight(self):
+    def _add_weight(self) -> Any:
         """
         Clears any current weight and then displays the weight is not none.
 

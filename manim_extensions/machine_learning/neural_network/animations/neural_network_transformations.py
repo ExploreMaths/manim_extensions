@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """
 Transformations for manipulating a neural network object.
 """
@@ -64,7 +66,7 @@ class RemoveLayer(AnimationGroup):
 
     def __init__(
         self, layer: Mobject, neural_network: NeuralNetwork, layer_spacing: float = 0.2
-    ):
+    ) -> None:
         self.layer = layer
         self.neural_network = neural_network
         self.layer_spacing = layer_spacing
@@ -216,7 +218,7 @@ class RemoveLayer(AnimationGroup):
         """
         self.anim_count = 0
 
-        def create_new_connective(neural_network: NeuralNetwork):
+        def create_new_connective(neural_network: NeuralNetwork) -> Any:
             """
             Creates new connective layer.
 
@@ -277,7 +279,9 @@ class InsertLayer(AnimationGroup):
                self.wait()
     """
 
-    def __init__(self, layer: Mobject, index: int, neural_network: NeuralNetwork):
+    def __init__(
+        self, layer: Mobject, index: int, neural_network: NeuralNetwork
+    ) -> None:
         self.layer = layer
         self.index = index
         self.neural_network = neural_network

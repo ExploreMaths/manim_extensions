@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants
 
+from typing import Any
+
 """CLI utilities for automata.
 
 This module provides the :class:`~manim_extensions.automata.mobjects.manim_cli.ManimAutomataCLI` class for interactive command-line interface.
@@ -45,10 +47,10 @@ class ManimAutomataCLI:
        # Choice: 0
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         print(cli_logo)
 
-    def creation_menu(self):
+    def creation_menu(self) -> Any:
         """Prompt the user to choose an automaton type and schema file path."""
         options = [
             "Deterministic Finite Automaton",
@@ -58,7 +60,7 @@ class ManimAutomataCLI:
         self.creation_option = self.display_options(options)
         self.file_path = input("Schema File Path: ")
 
-    def display_nda_options(self):
+    def display_nda_options(self) -> Any:
         """Prompt the user to choose an NDA-specific option."""
         options = ["Non-deterministic Automaton Path Builder"]
         self.nda_option = self.display_options(options)
@@ -80,7 +82,7 @@ class ManimAutomataCLI:
 
         return int(input("Choice: "))
 
-    def display_dictionary_options(self, options: dict) -> int:
+    def display_dictionary_options(self, options: dict[Any, Any]) -> int:
         """Print dictionary keys with their first value column and return the user's choice.
 
         Parameters

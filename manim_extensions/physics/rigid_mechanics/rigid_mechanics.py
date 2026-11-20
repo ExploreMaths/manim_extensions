@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
 
+from typing import Any
+
 """A gravity simulation space.
 
 Most objects can be made into a rigid body (moves according to gravity
@@ -127,7 +129,9 @@ class Space(Mobject, metaclass=ConvertToOpenGL):
                Group(*self.mobjects).scale(0.2).move_to(ORIGIN)
     """
 
-    def __init__(self, gravity: tuple[float, float] = (0, -9.81), **kwargs):
+    def __init__(
+        self, gravity: tuple[float, float] = (0, -9.81), **kwargs: Any
+    ) -> None:
         super().__init__(**kwargs)
         pymunk = require("physics", "pymunk")
         self.space = pymunk.Space()
@@ -193,16 +197,16 @@ class SpaceScene(Scene):
 
     GRAVITY: tuple[float, float] = 0, -9.81
 
-    def __init__(self, renderer: str | None = None, **kwargs):
+    def __init__(self, renderer: str | None = None, **kwargs: Any) -> None:
         self.space = Space(gravity=self.GRAVITY)
         super().__init__(renderer=renderer, **kwargs)
 
-    def setup(self):
+    def setup(self) -> Any:
         """Add the physics space to the scene and advance it every frame."""
         self.add(self.space)
         self.space.add_updater(_step)
 
-    def add_body(self, body: Mobject):
+    def add_body(self, body: Mobject) -> Any:
         """Register a pymunk body's shape in the physics space.
 
         Parameters
@@ -221,7 +225,7 @@ class SpaceScene(Scene):
         elasticity: float = 0.8,
         density: float = 1,
         friction: float = 0.8,
-    ):
+    ) -> Any:
         """Make any mobject movable by gravity.
         Equivalent to :class:`~manim.scene.scene.Scene`'s ``add`` function.
 
@@ -260,7 +264,7 @@ class SpaceScene(Scene):
 
     def make_static_body(
         self, *mobs: Mobject, elasticity: float = 1, friction: float = 0.8
-    ):
+    ) -> Any:
         """Make any mobject interactable by rigid objects.
 
         Parameters
@@ -282,7 +286,7 @@ class SpaceScene(Scene):
             mob.shape.friction = friction
             self.add_body(mob)
 
-    def stop_rigidity(self, *mobs: Mobject):
+    def stop_rigidity(self, *mobs: Mobject) -> Any:
         """Stop the mobjects rigidity.
 
         Parameters
@@ -297,7 +301,7 @@ class SpaceScene(Scene):
                 mob.body.sleep()
 
 
-def _step(space: Space, dt: float):
+def _step(space: Space, dt: float) -> Any:
     """Advance the pymont simulation by one time step.
 
     Parameters
@@ -310,7 +314,7 @@ def _step(space: Space, dt: float):
     space.space.step(dt)
 
 
-def _simulate(b: Mobject):
+def _simulate(b: Mobject) -> Any:
     """Read the current state of a pymont body and update the Manim mobject.
 
     Parameters
@@ -324,7 +328,7 @@ def _simulate(b: Mobject):
     b.angle = b.body.angle
 
 
-def get_shape(mob: VMobject):
+def get_shape(mob: VMobject) -> Any:
     """Obtains the shape of the body from the mobject.
 
     Parameters
@@ -353,7 +357,7 @@ def get_shape(mob: VMobject):
         mob.shape = pymunk.Poly.create_box(mob.body, (mob.width, mob.height))
 
 
-def get_angle(mob: VMobject):
+def get_angle(mob: VMobject) -> Any:
     """Obtains the angle of the body from the mobject.
     Used internally for updaters.
 

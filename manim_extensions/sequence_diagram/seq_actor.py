@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Sequence diagram actor for Manim.
 
 This module provides actor class for sequence diagrams.
@@ -64,7 +66,7 @@ class SeqActor(VGroup):
         self,
         name: str,
         font_size: float = 24,
-    ):
+    ) -> None:
         self.actor_name = name
         actor_label = Text(name, font_size=font_size).set_color(WHITE)
         self.actor_ctn = Rectangle(

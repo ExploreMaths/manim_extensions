@@ -21,6 +21,8 @@
 #          BEFORE Pango initializes, so the installation happens at
 #          module import time (importing manim does not initialize Pango)
 #          and the docs build/CI pre-install it before rendering.
+from typing import Any
+
 """Create Nerd Font icon mobjects (vendored from manim-nerdfont-icons)."""
 
 from manim import Text
@@ -48,7 +50,7 @@ def _font_path() -> str:
     return str(pkg_resources.files("manim_extensions.nerdfont") / _FONT_FILENAME)
 
 
-def _install_font_linux():
+def _install_font_linux() -> Any:
     """Install the TTF into the fontconfig user font dir (Linux only).
 
     Idempotent and best-effort: a missing ``fc-cache`` binary or an
@@ -114,7 +116,7 @@ class NerdFontIcon(Text):
                self.add(icon)
     """
 
-    def __init__(self, icon: int | str, **kwargs: object):
+    def __init__(self, icon: int | str, **kwargs: Any) -> None:
         font_path = _font_path()
         _install_font_linux()
         with register_font(font_path):

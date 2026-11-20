@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """:class:`~manim_extensions.compass.compass.ruler.Ruler` animations for Manim.
 
 This module provides animations for ruler manipulations.
@@ -54,8 +56,8 @@ class PutRuler(ApplyMethod):
         ruler: Ruler,
         start: Point3D | None = None,
         end: Point3D | None = None,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(ruler.set_ruler, start, end, **kwargs)
 
 
@@ -93,8 +95,8 @@ class PutRulerAway(PutRuler):
         ruler: Ruler,
         point: Point3D | None = None,
         is_flat: bool = True,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         assert point is not None
         if is_flat:
             start = point + LEFT

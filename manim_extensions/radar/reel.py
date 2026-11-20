@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """One-command sequence player: :class:`~manim_extensions.radar.reel.RadarReel`.
 
 New in 0.1.1: each step may be a **list** of :class:`~manim_extensions.radar.data.RadarData` — a

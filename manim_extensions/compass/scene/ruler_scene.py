@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Scene that draws lines with a ruler and a pencil.
 
 :class:`~manim_extensions.compass.scene.ruler_scene.SingleRulerScene` extends
@@ -41,7 +43,7 @@ class SingleRulerScene(MovingCameraScene):
                self.put_ruler_back()
     """
 
-    def setup(self):
+    def setup(self) -> Any:
         """Place the ruler at the bottom edge and the pencil at the right edge."""
         self.ruler = Ruler(width=0.4, length=8).to_edge(DOWN)
         self.pencil = Pencil(height=1).to_edge(RIGHT)
@@ -53,7 +55,7 @@ class SingleRulerScene(MovingCameraScene):
         start: Point3D,
         end: Point3D,
         added_anims: list | None = None,
-        **kwargs,
+        **kwargs: Any,
     ) -> Line:
         """Draw a :class:`~manim.mobject.geometry.line.Line` from ``start`` to ``end``.
 
@@ -93,8 +95,8 @@ class SingleRulerScene(MovingCameraScene):
         return line
 
     def put_ruler_back(
-        self, added_anims: list | None = None, run_time: float = 0.5, **kwargs
-    ):
+        self, added_anims: list | None = None, run_time: float = 0.5, **kwargs: Any
+    ) -> Any:
         """Restore the ruler to its saved state and move the pencil back.
 
         Parameters

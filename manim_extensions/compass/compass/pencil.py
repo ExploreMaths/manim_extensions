@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """:class:`~manim_extensions.compass.compass.pencil.Pencil` class for Manim.
 
 This module provides pencil visualization for geometry.
@@ -44,7 +46,7 @@ class Pencil(SVGMobject):
                self.add(pencil, Dot(pencil.get_nib(), color=RED).scale(1.5))
     """
 
-    def __init__(self, height: float = 2, angle: float = PI / 4):
+    def __init__(self, height: float = 2, angle: float = PI / 4) -> None:
         super().__init__(
             file_name=Path(__file__).resolve().parent / "assets/pencil.svg",
             height=height,

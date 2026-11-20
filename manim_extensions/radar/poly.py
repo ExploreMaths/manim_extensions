@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 
 # -*- coding: utf-8 -*-
+from typing import Any
+
 """:class:`~manim_extensions.radar.poly.PolyRadarChart` — a dodecahedral radar.
 
 The twelve data axes point along the centres of the twelve pentagonal faces.
@@ -232,7 +234,7 @@ class PolyRadarChart(VGroup):
         cam_pos: Point3D = (0.0, 0.0, 20.0),
         center: Point3D = (0.0, -0.15, 0.0),
         sphere_color: ParsableManimColor = DYE_C,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         super().__init__(**kwargs)
         self.axes_names = list(axes_names)
@@ -518,7 +520,7 @@ class PolyRadarChart(VGroup):
                 :class:`~manim.animation.animation.Animation`.
             """
 
-            def __init__(self, poly: PolyRadarChart, delta: float, **kw) -> None:
+            def __init__(self, poly: PolyRadarChart, delta: float, **kw: Any) -> None:
                 self.poly = poly
                 self.delta = delta
                 super().__init__(poly, **kw)
@@ -579,7 +581,7 @@ class PolyMorph(Animation):
     """
 
     def __init__(
-        self, poly: PolyRadarChart, target_values: Sequence[float], **kwargs
+        self, poly: PolyRadarChart, target_values: Sequence[float], **kwargs: Any
     ) -> None:
         self.poly = poly
         self.target = np.array(target_values, dtype=float) / poly.max_value

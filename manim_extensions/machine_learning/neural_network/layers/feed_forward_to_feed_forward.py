@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: implement modify_edge_colors
 
+from typing import Any
+
 """Feed-forward to feed-forward layer connection visualization."""
 
 from __future__ import annotations
@@ -72,8 +74,8 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         edge_color: ManimColor = config.color_scheme.secondary_color,
         edge_width: float = 1.5,
         camera: Camera | None = None,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(input_layer, output_layer, **kwargs)
         self.passing_flash = passing_flash
         self.edge_color = edge_color
@@ -85,8 +87,8 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> Any:
         """Build the fully-connected edges between input and output layers.
 
         Parameters
@@ -102,7 +104,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         self.add(self.edges)
         super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def construct_edges(self) -> list:
+    def construct_edges(self) -> list[Any]:
         """Create all connecting lines between input and output layer nodes.
 
         Returns
@@ -142,11 +144,11 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
     def make_forward_pass_animation(
         self,
-        layer_args: dict = {},
+        layer_args: dict[Any, Any] = {},
         run_time: float = 1,
         feed_forward_dropout: float = 0.0,
-        **kwargs,
-    ) -> list:
+        **kwargs: Any,
+    ) -> list[Any]:
         """Animation for passing information from one :class:`~manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer` to the next.
 
         Parameters
@@ -204,7 +206,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         colors: list[ManimColor] | None = None,
         magnitudes: VectorND | None = None,
         color_scheme: str = "inferno",
-    ):
+    ) -> Any:
         """Changes the colors of edges.
 
         Either explicit per-edge colors or magnitudes mapped through a
@@ -275,7 +277,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         return animation_group
 
     @override_animation(Create)
-    def _create_override(self, **kwargs) -> Animation:
+    def _create_override(self, **kwargs: Any) -> Animation:
         """Create every connection edge.
 
         Parameters

@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """:class:`~manim_extensions.table.cell.Cell` class for Manim tables.
 
 This module provides the :class:`~manim_extensions.table.cell.Cell` class for table visualizations.
@@ -64,8 +66,8 @@ class Cell(VGroup):
         font_size: int = 20,
         is_header: bool = False,
         show_border: bool = True,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
 
         self.value = value
@@ -243,7 +245,7 @@ class Cell(VGroup):
 
         return new_cell
 
-    def resize_width(self, new_width: float):
+    def resize_width(self, new_width: float) -> Any:
         """
         Resize this cell to a new width (instant, no animation).
         Updates border lines in place.

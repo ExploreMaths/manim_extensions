@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """ReLU activation function visualization."""
 
 from .activation_function import ActivationFunction
@@ -40,9 +42,9 @@ class ReLUFunction(ActivationFunction):
     def __init__(
         self,
         function_name: str = "ReLU",
-        x_range: list = [-1, 1],
-        y_range: list = [-1, 1],
-    ):
+        x_range: list[Any] = [-1, 1],
+        y_range: list[Any] = [-1, 1],
+    ) -> None:
         super().__init__(function_name, x_range, y_range)
 
     def apply_function(self, x_val: float) -> int | None:

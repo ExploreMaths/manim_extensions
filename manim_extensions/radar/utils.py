@@ -232,7 +232,7 @@ def closed(points: np.ndarray) -> np.ndarray:
     return np.vstack([points, points[:1]])
 
 
-def as_points(values: Iterable) -> np.ndarray:
+def as_points(values: Iterable[Any]) -> np.ndarray:
     """Coerce 2D or 3D points into a float array with three columns.
 
     Parameters

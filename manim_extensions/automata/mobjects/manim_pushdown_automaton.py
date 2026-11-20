@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants
 
+from typing import Any
+
 """Contains pushdown automaton."""
 
 # unlinked-class-ok: Source
@@ -96,7 +98,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
                self.play(Transform(label, stack_label().move_to(label)))
     """
 
-    stack: list
+    stack: list[Any]
 
     def __init__(
         self,
@@ -104,8 +106,8 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
         xml_file: str | None = None,
         camera_follow: bool = False,
         animation_style: dict[str, object] | None = None,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         if json_template is None and xml_file is None:
             json_template = pushdown_automaton_json
         super().__init__(
@@ -115,7 +117,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
         self.stack = ["Z"]
 
     # override ManimAutomaton method
-    def construct_transitions(self, transitions: list[dict[str, object]]):
+    def construct_transitions(self, transitions: list[dict[str, object]]) -> Any:
         r"""Build pushdown-automaton transitions from XML or JSON definitions.
 
         Parameters
@@ -155,7 +157,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
         transition_from: ManimState,
         transition_to: ManimState,
         rules: list[PushDownAutomatonRule],
-    ):
+    ) -> Any:
         """Create and attach a pushdown transition between two states.
 
         Parameters
@@ -211,7 +213,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
         self,
         input: str | ManimAutomataInput,
         automaton_path_name: str | None = None,
-    ) -> list:
+    ) -> list[Any]:
         """Animate the pushdown automaton processing an input string.
 
         Parameters
@@ -368,7 +370,7 @@ class PushDownAutomatonRule:
 
     def __init__(
         self, read_symbol: str, pop: str, push: str, empty_transition: str = r"\epsilon"
-    ):
+    ) -> None:
         if read_symbol is None:
             self.read_symbol = empty_transition
         else:

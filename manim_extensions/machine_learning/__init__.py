@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Machine learning visualizations for Manim.
 
 This module provides various machine learning related visualizations
@@ -26,7 +28,7 @@ class ManimMLConfig:
         Colour scheme applied to the machine learning visualisations.
     """
 
-    def __init__(self, default_color_scheme: ColorScheme = dark_mode):
+    def __init__(self, default_color_scheme: ColorScheme = dark_mode) -> None:
         self._color_scheme = default_color_scheme
         self.three_d_config = Namespace(
             three_d_x_rotation=90 * DEGREES,
@@ -48,7 +50,7 @@ class ManimMLConfig:
         return self._color_scheme
 
     @color_scheme.setter
-    def color_scheme(self, value: ColorScheme | str):
+    def color_scheme(self, value: ColorScheme | str) -> None:
         """Set the active color scheme and apply its background color.
 
         Parameters

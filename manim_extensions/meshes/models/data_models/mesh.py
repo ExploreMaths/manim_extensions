@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: implement apply_flip, 4-D projection, 4-D rotation, and the operator protocol
 
+from typing import Any
+
 """
 :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh` structure.
 """
@@ -109,7 +111,7 @@ class Mesh:
             MatrixMN | List[VectorND] | List[List[int]] | List[tuple[int, ...]] | None
         ) = None,
         dangling: bool = False,
-    ):
+    ) -> None:
         # check vertices, faces and parts for correct types
         if faces is not None and not is_twice_nested_iterable(faces):
             raise InvalidMeshException("Faces have to be twice nested enumerates.")
@@ -454,7 +456,7 @@ class Mesh:
             vert_ids.update(set(int(vert_id) for vert_id in self._faces[face_id]))
         return list(vert_ids)
 
-    def convert_vertices_to_3d(self, perspective: float | None = None):
+    def convert_vertices_to_3d(self, perspective: float | None = None) -> Any:
         """transforms currents mesh vertices permanently to be 3D, works if dim is < 3.
 
         A 4-D mesh is projected onto three dimensions first, so the mesh
@@ -545,7 +547,7 @@ class Mesh:
         ]
 
     @dangling_vert_decorator()
-    def add_vertices(self, new_vertices: Vertices):
+    def add_vertices(self, new_vertices: Vertices) -> Any:
         """Append new vertices to the mesh.
 
         Parameters
@@ -568,7 +570,7 @@ class Mesh:
             )
         self._vertices = np.vstack([self._vertices, new_vertices])
 
-    def remove_vertices(self, indices: VectorND | List[int]):
+    def remove_vertices(self, indices: VectorND | List[int]) -> Any:
         """Remove vertices at the given indices and update references.
 
         Parameters
@@ -593,7 +595,7 @@ class Mesh:
         # Topology changed: rebuild the edge cache once for all removed faces.
         self._rebuild_edge_cache()
 
-    def update_vertex(self, idx: int, new_vert: Vertex):
+    def update_vertex(self, idx: int, new_vert: Vertex) -> Any:
         """Update the coordinates of a single vertex.
 
         Parameters
@@ -634,7 +636,7 @@ class Mesh:
             ) from e
 
     @dangling_face_decorator()
-    def add_faces(self, new_faces: Faces):
+    def add_faces(self, new_faces: Faces) -> Any:
         """Append new faces to the mesh.
 
         Parameters
@@ -674,7 +676,7 @@ class Mesh:
 
     @dangling_vert_decorator()
     @dangling_face_decorator()
-    def remove_faces(self, indices: VectorND | List[int]):
+    def remove_faces(self, indices: VectorND | List[int]) -> Any:
         """Remove faces at the given indices and update parts.
 
         Parameters
@@ -702,7 +704,7 @@ class Mesh:
         self._edges = sorted(self._edge_face_counts)
 
     @dangling_vert_decorator()
-    def update_face(self, idx: int, new_face: Face):
+    def update_face(self, idx: int, new_face: Face) -> Any:
         """Update the vertices of a single face.
 
         Parameters
@@ -734,7 +736,7 @@ class Mesh:
         self._edges = sorted(self._edge_face_counts)
 
     @dangling_face_decorator()
-    def add_parts(self, new_parts: Parts):
+    def add_parts(self, new_parts: Parts) -> Any:
         """Append new parts to the mesh.
 
         Parameters
@@ -771,7 +773,7 @@ class Mesh:
             raise InvalidTypeException(f"unknown type for new_part {type(new_parts)}")
 
     @dangling_face_decorator()
-    def remove_parts(self, indices: VectorND | List[int]):
+    def remove_parts(self, indices: VectorND | List[int]) -> Any:
         """Remove parts at the given indices.
 
         Parameters
@@ -793,7 +795,7 @@ class Mesh:
             del self._parts[idx]
 
     @dangling_face_decorator()
-    def update_part(self, idx: int, new_part: Part):
+    def update_part(self, idx: int, new_part: Part) -> Any:
         """Update the faces of a single part.
 
         Parameters
@@ -823,7 +825,7 @@ class Mesh:
 
     @dangling_vert_decorator()
     @dangling_face_decorator()
-    def add_to_mesh(self, other: "Mesh"):
+    def add_to_mesh(self, other: "Mesh") -> Any:
         """Merge another mesh into this one by shifting its indices.
 
         The vertices, faces and parts of ``other`` are appended with
@@ -998,7 +1000,7 @@ class Mesh:
         unique = np.unique(np.concatenate(self._parts).ravel())
         return any(f_idx not in unique for f_idx in range(len(self._faces)))
 
-    def scale_mesh(self, scaling: float, about_point: Point3D | None = None):
+    def scale_mesh(self, scaling: float, about_point: Point3D | None = None) -> Any:
         """Scale all vertices by a uniform factor.
 
         Parameters
@@ -1015,7 +1017,9 @@ class Mesh:
         else:
             self._vertices *= float(scaling)
 
-    def stretch_mesh(self, factor: float, dim: int, about_point: Point3D | None = None):
+    def stretch_mesh(
+        self, factor: float, dim: int, about_point: Point3D | None = None
+    ) -> Any:
         """Stretch all vertices along a single dimension.
 
         Parameters
@@ -1034,7 +1038,7 @@ class Mesh:
         else:
             self._vertices[:, dim] *= float(factor)
 
-    def translate_mesh(self, translation: Vector3D):
+    def translate_mesh(self, translation: Vector3D) -> Any:
         """Translate (shift) all vertices by the given vector.
 
         Parameters
@@ -1060,7 +1064,7 @@ class Mesh:
             )
         self._vertices += np.array(translation)
 
-    def translate_vertex(self, v_id: int, translation: Vector3D):
+    def translate_vertex(self, v_id: int, translation: Vector3D) -> Any:
         """Translate a single vertex by the given vector.
 
         Parameters
@@ -1099,7 +1103,7 @@ class Mesh:
         angle: float,
         axis: Vector3D = np.array([0, 0, 1]),
         about_point: Point3D | None = None,
-    ):
+    ) -> Any:
         """Rotate all vertices around a given axis.
 
         For 2-D meshes the rotation is performed around the implicit z-axis,
@@ -1235,7 +1239,7 @@ class Mesh:
         self,
         axis: Vector3D = np.array([0, 1, 0]),
         about_point: Point3D | None = None,
-    ):
+    ) -> Any:
         r"""Flip all vertices across the plane orthogonal to ``axis``.
 
         This mirrors :meth:`~manim.mobject.mobject.Mobject.flip`, which is
@@ -1380,7 +1384,7 @@ class Mesh:
             self.remove_duplicates()
         return vertices
 
-    def remove_duplicate_vertices(self, precision: int = 10):
+    def remove_duplicate_vertices(self, precision: int = 10) -> Any:
         """Remove duplicate vertices and update all face references.
 
         Parameters
@@ -1408,7 +1412,7 @@ class Mesh:
         # current faces are fixed now
         self._rebuild_edge_cache()
 
-    def remove_duplicate_faces(self):
+    def remove_duplicate_faces(self) -> Any:
         """Remove duplicate faces and update part references.
 
         Faces are considered equal when their vertex indices match
@@ -1430,7 +1434,7 @@ class Mesh:
             del self._faces[del_f_idx]
         self._rebuild_edge_cache()
 
-    def remove_duplicate_parts(self):
+    def remove_duplicate_parts(self) -> Any:
         """Remove duplicate parts from the mesh.
 
         Parts are considered equal when they contain the same face indices
@@ -1447,7 +1451,7 @@ class Mesh:
             # exact duplicates can be removed
             del self._parts[del_p_idx]
 
-    def remove_duplicates(self, precision: int = 10):
+    def remove_duplicates(self, precision: int = 10) -> Any:
         """Remove all duplicate vertices, faces and parts.
 
         Parameters

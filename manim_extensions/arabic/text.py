@@ -7,6 +7,8 @@
 #          installed font from _FONT_CANDIDATES (queried via fontconfig's
 #          fc-list) is used; an explicitly passed font_name is
 #          used verbatim.
+from typing import Any
+
 """Utilities for rendering Arabic text in Manim using XeLaTeX."""
 
 import subprocess
@@ -77,7 +79,7 @@ class ArabicTemplate(TexTemplate):
                self.add(label)
     """
 
-    def __init__(self, font_name: str | None = None):
+    def __init__(self, font_name: str | None = None) -> None:
         super().__init__()
         font_name = _resolve_arabic_font(font_name)
         self.tex_compiler = "xelatex"
@@ -132,7 +134,7 @@ class ArabicText(Tex):
         color: str = "arabicblue",
         font_size: int = 34,
         font_name: str | None = None,
-    ):
+    ) -> None:
         template = ArabicTemplate(font_name=font_name)
         super().__init__(
             rf"\textcolor{{{color}}}{{{text}}}",

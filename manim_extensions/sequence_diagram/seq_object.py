@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Sequence diagram object for Manim.
 
 This module provides object class for sequence diagrams.
@@ -43,7 +45,7 @@ class SeqObject(VGroup):
                content.scale_to_fit_height(5).move_to(ORIGIN)
     """
 
-    def __init__(self, name: str, font_size: float = 18):
+    def __init__(self, name: str, font_size: float = 18) -> None:
         self.obj_name = name
         obj_label = self.create_obj_label(font_size)
         obj_ctn = Rectangle(

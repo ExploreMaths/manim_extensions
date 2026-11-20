@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """:class:`~manim_extensions.table.row.Row` class for Manim tables.
 
 This module provides the :class:`~manim_extensions.table.row.Row` class for table visualizations.
@@ -62,8 +64,8 @@ class Row(VGroup):
         is_header: bool = False,
         show_border: bool = True,
         index: int = 0,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
 
         self.values = values
@@ -81,7 +83,7 @@ class Row(VGroup):
         self.cells: List[Cell] = []
         self.create_cells()
 
-    def create_cells(self):
+    def create_cells(self) -> Any:
         """Create and position all cells in this row."""
         for i, value in enumerate(self.values):
             cell = Cell(

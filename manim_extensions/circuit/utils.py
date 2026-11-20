@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """:class:`~manim_extensions.circuit.utils.Circuit` diagram utilities for Manim."""
 
 from __future__ import annotations
@@ -81,8 +83,8 @@ class Source(VMobject):
         direction: Vector3DLike = LEFT,
         label: bool = True,
         dependent: bool = True,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         # initialize the vmobject
         super().__init__(**kwargs)
         self._direction = direction
@@ -146,7 +148,7 @@ class Source(VMobject):
 
         return self
 
-    def rotate(self, angle: float, *args: object, **kwargs: object) -> "Source":
+    def rotate(self, angle: float, *args: Any, **kwargs: Any) -> "Source":
         """Rotate the source symbol around its center.
 
         Parameters
@@ -218,7 +220,7 @@ class Circuit(VMobject):
                    self.play(node.animate.set_color(color), run_time=0.5)
     """
 
-    def __init__(self, **kwargs: object):
+    def __init__(self, **kwargs: Any) -> None:
         super().__init__(**kwargs)
 
         # Get a VGroup() of components
@@ -275,7 +277,7 @@ class Circuit(VMobject):
         else:
             return [end1, end2]
 
-    def add_components(self, *args: Mobject):
+    def add_components(self, *args: Mobject) -> Any:
         """Append circuit components to the circuit definition.
 
         Parameters
@@ -390,7 +392,7 @@ class Node(VMobject):
                self.add(node)
     """
 
-    def __init__(self, **kwargs: object):
+    def __init__(self, **kwargs: Any) -> None:
         super().__init__(**kwargs)
 
         # NOTE In a future update, I want to try to
@@ -407,7 +409,7 @@ class Node(VMobject):
 
         self.set_color(WHITE)
 
-    def __update(self):
+    def __update(self) -> Any:
         """Rebuild the internal wire paths for this junction node."""
         self.clear_points()
         for path in self.coords:
@@ -452,7 +454,7 @@ class Node(VMobject):
 
         return False
 
-    def add_dot(self, dot_coord: Point3DLike):
+    def add_dot(self, dot_coord: Point3DLike) -> Any:
         """Add a junction dot at the provided coordinate.
 
         Parameters
@@ -464,7 +466,7 @@ class Node(VMobject):
 
     # wire is just a matrix with dimensions 2n x 3 or 3 x 3
     # depending entirely on if it is a diagonal wire or not
-    def add_wire(self, wire_param: list[Point3DLike]):
+    def add_wire(self, wire_param: list[Point3DLike]) -> Any:
         """Append a wire path to the node's internal connectivity list.
 
         Parameters
@@ -507,7 +509,7 @@ class Node(VMobject):
 
         self.__update()
 
-    def merge(self, node: "Node", wire: list[Point3DLike] | bool = False):
+    def merge(self, node: "Node", wire: list[Point3DLike] | bool = False) -> Any:
         """Merge this node with another node and optionally attach a wire.
 
         Parameters

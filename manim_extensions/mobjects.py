@@ -4,6 +4,8 @@
 # patched: lazy-import cv2 (video extra)
 # patched: document module-level constants
 
+from typing import Any
+
 """Reusable Manim mobjects and convenience wrappers.
 
 This module provides small reusable building blocks for common educational and
@@ -119,8 +121,8 @@ class ChineseMathTex(MathTex):
         *texts: str,
         font: str = DEFAULT_CJK_FONT,
         tex_to_color_map: dict[str, ParsableManimColor] | None = None,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         if tex_to_color_map is None:
             tex_to_color_map = {}
         user_template = kwargs.pop("tex_template", None)
@@ -233,8 +235,8 @@ class LabelDot(VGroup):
         dot_pos: Point3D,
         label_pos: Vector3D = DOWN,
         buff: float = 0.1,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
         dot = Dot().move_to(dot_pos)
         label = MathTex(dot_label).next_to(dot, label_pos, buff=buff)
@@ -305,8 +307,8 @@ class MathTexLine(VGroup):
         formula: MathTex,
         direction: Vector3D = UP,
         buff: float = 0.5,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__()
         line = Line(**kwargs)
         tex = formula.next_to(line, direction, buff=buff)
@@ -354,8 +356,8 @@ class MathTexBrace(VGroup):
         formula: MathTex,
         direction: Vector3D = UP,
         buff: float = 0.5,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__()
         brace = Brace(target, direction=direction, **kwargs)
         tex = formula.next_to(brace, direction, buff=buff)
@@ -401,8 +403,8 @@ class MathTexDoublearrow(VGroup):
         formula: MathTex,
         direction: Vector3D = UP,
         buff: float = 0.5,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__()
         doublearrow = DoubleArrow(**kwargs)
         tex = formula.next_to(doublearrow, direction, buff=buff)
@@ -456,8 +458,8 @@ class PerpendicularLine(Line):
         self,
         point: Point3DLike | Mobject,
         line: Line,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         if isinstance(point, Mobject):
             self.point = point.get_center()
         else:
@@ -518,7 +520,7 @@ class ExtendedLine(Line):
                VGroup(extended, dots).scale(2.3).move_to(ORIGIN)
     """
 
-    def __init__(self, line: Line, extend_distance: float):
+    def __init__(self, line: Line, extend_distance: float) -> None:
         start_point = line.get_start()
         end_point = line.get_end()
         direction_vector = end_point - start_point
@@ -565,7 +567,7 @@ class ShortenedLine(Line):
                VGroup(ghost, shortened).scale(1.7).move_to(ORIGIN)
     """
 
-    def __init__(self, line: Line, shorten_distance: float):
+    def __init__(self, line: Line, shorten_distance: float) -> None:
         start_point = line.get_start()
         end_point = line.get_end()
         direction_vector = end_point - start_point
@@ -632,8 +634,8 @@ class PerpendicularSign(VGroup):
         line2: Line,
         length: float = 0.25,
         corner_direction: Vector3DLike | None = None,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
 
         # Compute the intersection of the two lines
@@ -834,8 +836,8 @@ class FileTree(Code):
         tree_dict: dict[str, dict | None],
         font_size: float = DEFAULT_FONT_SIZE,
         color: ParsableManimColor = WHITE,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         if not isinstance(tree_dict, dict):
             raise TypeError(f"tree_dict must be a dict, got {type(tree_dict).__name__}")
         self._tree = self._build_tree(tree_dict)
@@ -893,7 +895,9 @@ class FileTree(Code):
         )
 
     @staticmethod
-    def _build_tree(data: dict, prefix: str = "", is_root: bool = True) -> list[str]:
+    def _build_tree(
+        data: dict[Any, Any], prefix: str = "", is_root: bool = True
+    ) -> list[str]:
         """Recursively build ASCII tree lines from a nested dictionary.
 
         Parameters
@@ -972,8 +976,8 @@ class CropImageMobject(ImageMobject):
         self,
         filename_or_array: str | PixelArray | Image.Image,
         corner_radius: int | float = 0.1,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         if isinstance(filename_or_array, str):
             img = Image.open(filename_or_array)
         elif isinstance(filename_or_array, np.ndarray):
@@ -1052,8 +1056,8 @@ class VideoMobject(ImageMobject):
     """
 
     def __init__(
-        self, filename: str, loop: bool = False, rate: float = 1.0, **kwargs: object
-    ):
+        self, filename: str, loop: bool = False, rate: float = 1.0, **kwargs: Any
+    ) -> None:
         cv2 = require("video", "cv2")
 
         self.filename = filename
@@ -1090,7 +1094,7 @@ class VideoMobject(ImageMobject):
         """
         return self._duration / self.rate if self.rate > 0 else 0.0
 
-    def _video_updater(self, mob: "VideoMobject", dt: float):
+    def _video_updater(self, mob: "VideoMobject", dt: float) -> Any:
         """Internal updater that advances the video frame on each render step.
 
         Parameters
@@ -1126,7 +1130,7 @@ class VideoMobject(ImageMobject):
             self._frame_idx += 1
             self.pixel_array = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
 
-    def __deepcopy__(self, memo: dict) -> "VideoMobject":
+    def __deepcopy__(self, memo: dict[Any, Any]) -> "VideoMobject":
         """Deep-copy the mobject, reopening the video capture for the clone.
 
         Parameters
@@ -1251,7 +1255,7 @@ class VideoMobject(ImageMobject):
             self.pixel_array = cv2.cvtColor(frame, cv2.COLOR_BGR2RGBA)
         return self
 
-    def __del__(self):
+    def __del__(self) -> Any:
         """Release the OpenCV capture on garbage collection."""
         if hasattr(self, "_cap") and self._cap is not None and self._cap.isOpened():
             self._cap.release()
@@ -1316,8 +1320,8 @@ class ColorText(Text):
         background_color: ManimColor = WHITE,
         font: str = "Consolas",
         font_size: float = 28,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         if name is not None:
             super().__init__(
                 str(name), color=color, font=font, font_size=font_size, **kwargs
@@ -1407,8 +1411,8 @@ class Trail(VGroup):
         nums: int = 500,
         trail_color: ManimColor = BLUE_B,
         rate_func: Callable[[float], float] | None = None,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
         self.max_width = max_width
         self.nums = nums
@@ -1420,7 +1424,7 @@ class Trail(VGroup):
         self.add(self.trail)
         self.pos_old = self[0].get_center()
 
-    def get_path_xyz(self, err: float = 1e-4):
+    def get_path_xyz(self, err: float = 1e-4) -> Any:
         """Record the latest centre position if the mobject has moved.
 
         Parameters
@@ -1460,7 +1464,7 @@ class Trail(VGroup):
             )
         return path
 
-    def update_path(self, trail: VGroup):
+    def update_path(self, trail: VGroup) -> Any:
         """Updater: replace ``trail`` by the freshly created path.
 
         Parameters
@@ -1554,8 +1558,8 @@ class ShadowAround(VGroup):
         scale_factor: float = 1.0,
         shadow_out: bool = True,
         show_basic_shape: bool = True,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
         self.shadow_color = shadow_color
         self.shadow_opacity = shadow_opacity
@@ -1645,8 +1649,8 @@ class ObjectBorder(VGroup):
         track: bool = True,
         border_color: ManimColor = WHITE,
         corner_radius: float = 0.06,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
         self.obj = obj
         self.buff = buff
@@ -1660,7 +1664,7 @@ class ObjectBorder(VGroup):
         if track:
             self.add_updater(lambda m: self._rebuild())
 
-    def _rebuild(self):
+    def _rebuild(self) -> Any:
         """Recreate the border and corner markers around the current position of ``obj``."""
         border = Rectangle(
             width=self.obj.width + 2 * self.buff,
@@ -1742,8 +1746,8 @@ class ThreeDVector(VGroup):
         color: ManimColor = BLUE,
         tip_fraction: float = 0.25,
         fill_opacity: float = 0.9,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
         self.radius = radius
         self.color = color
@@ -1832,8 +1836,8 @@ class TreeDiagram(VGroup):
         branch_opacity: float = 1,
         item_v_buff: float = 0.3,
         item_scale: float = 0.7,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
         self.branch_color = branch_color
         self.branch_opacity = branch_opacity
@@ -1842,7 +1846,7 @@ class TreeDiagram(VGroup):
         self.tree = tree
         self.add(self._generate(tree)[1])
 
-    def _lowest(self, leaves: list) -> VGroup:
+    def _lowest(self, leaves: list[Any]) -> VGroup:
         """Create a vertical group of text mobjects for the leaf nodes.
 
         Parameters
@@ -1857,7 +1861,7 @@ class TreeDiagram(VGroup):
         vg = VGroup(*[Text(str(i)).scale(self.item_scale) for i in leaves])
         return vg.arrange(DOWN, buff=self.item_v_buff, aligned_edge=LEFT)
 
-    def _generate(self, tree: dict) -> VGroup:
+    def _generate(self, tree: dict[Any, Any]) -> VGroup:
         """Recursively build the tree diagram mobject.
 
         Parameters

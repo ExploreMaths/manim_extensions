@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: return a real Create animation instead of a no-op
 
+from typing import Any
+
 """Max pooling 2D layer visualization for neural networks."""
 
 from __future__ import annotations
@@ -100,8 +102,8 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         color: ManimColor = BLUE,
         show_grid_lines: bool = False,
         stroke_width: float = 2.0,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
         self.kernel_size = kernel_size
         self.stride = stride
@@ -117,8 +119,8 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> Any:
         """Build the output feature maps and apply 3D rotation to the layer.
 
         Parameters
@@ -192,7 +194,7 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         return VGroup(*feature_maps)
 
     def make_forward_pass_animation(
-        self, layer_args: dict = {}, **kwargs
+        self, layer_args: dict[Any, Any] = {}, **kwargs: Any
     ) -> AnimationGroup:
         """Makes forward pass of Max Pooling Layer.
 
@@ -210,7 +212,7 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         return AnimationGroup()
 
     @override_animation(Create)
-    def _create_override(self, **kwargs) -> Animation:
+    def _create_override(self, **kwargs: Any) -> Animation:
         """Create animation for the MaxPooling operation.
 
         Parameters

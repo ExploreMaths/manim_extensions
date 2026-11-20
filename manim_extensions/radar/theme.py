@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Colour themes for :class:`~manim_extensions.radar.chart.RadarChart`."""
 
 from __future__ import annotations
@@ -111,7 +113,7 @@ class RadarTheme:
         cols = list(self.palette)
         return ManimColor(cols[index % len(cols)])
 
-    def evolved(self, **changes) -> "RadarTheme":
+    def evolved(self, **changes: Any) -> "RadarTheme":
         """Return a copy of this theme with selected fields replaced.
 
         Parameters

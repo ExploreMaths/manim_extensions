@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: drop a stale TODO (FadeIn is the intended create animation)
 
+from typing import Any
+
 """Triplet layer visualization for neural networks."""
 
 from __future__ import annotations
@@ -55,8 +57,8 @@ class TripletLayer(NeuralNetworkLayer):
         stroke_width: float = 5,
         font_size: float = 22,
         buff: float = 0.2,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
         self.anchor = anchor
         self.positive = positive
@@ -70,8 +72,8 @@ class TripletLayer(NeuralNetworkLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> Any:
         """Build the triplet assets and add them to the layer.
 
         Parameters
@@ -184,7 +186,7 @@ class TripletLayer(NeuralNetworkLayer):
         return FadeIn(self.assets)
 
     def make_forward_pass_animation(
-        self, layer_args: dict = {}, **kwargs
+        self, layer_args: dict[Any, Any] = {}, **kwargs: Any
     ) -> AnimationGroup:
         """Forward pass for triplet.
 

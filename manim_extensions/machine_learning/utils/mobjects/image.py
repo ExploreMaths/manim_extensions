@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Image mobject utilities for neural network visualization."""
 
 import numpy as np
@@ -48,7 +50,7 @@ class GrayscaleImageMobject(Group):
                self.add(GrayscaleImageMobject(gradient))
     """
 
-    def __init__(self, numpy_image: PixelArray, height: float = 2.3):
+    def __init__(self, numpy_image: PixelArray, height: float = 2.3) -> None:
         super().__init__()
         self.numpy_image = numpy_image
         assert len(np.shape(self.numpy_image)) == 2
@@ -101,8 +103,8 @@ class GrayscaleImageMobject(Group):
         return FadeIn(self)
 
     def scale(  # intentionally returns None instead of the group
-        self, scale_factor: float, **kwargs: object
-    ):
+        self, scale_factor: float, **kwargs: Any
+    ) -> Any:
         """Scales the image mobject.
 
         Parameters
@@ -120,7 +122,7 @@ class GrayscaleImageMobject(Group):
         #     lambda points: scale_factor * points, **kwargs
         # )
 
-    def set_opacity(self, opacity: float):
+    def set_opacity(self, opacity: float) -> Any:
         """Set the opacity.
 
         Parameters
@@ -177,7 +179,7 @@ class LabeledColorImage(Group):
         stroke_width: float = 5,
         font_size: float = 24,
         buff: float = 0.2,
-    ):
+    ) -> None:
         super().__init__()
         self.image = image
         self.color = color

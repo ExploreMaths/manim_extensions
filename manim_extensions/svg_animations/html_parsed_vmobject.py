@@ -3,6 +3,8 @@
 # patched: lazily import the vendored manim_extensions.mobject_svg and svgpathtools (svg extra)
 # patched: document module-level constants
 
+from typing import Any
+
 """HTML parsed SVG vmobjects for Manim.
 
 This module provides functionality to parse SVG files and create
@@ -189,7 +191,7 @@ class HTMLParsedVMobject:
         scene: Scene,
         width: str = "500px",
         basic_html: bool = False,
-    ):
+    ) -> None:
         self.vmobject = vmobject
         self.scene = scene
         self.filename_base = scene.__class__.__name__
@@ -208,7 +210,7 @@ class HTMLParsedVMobject:
         _ensure_to_svg_plugin()
         self.scene.add_updater(self.updater)
 
-    def updater(self, dt: float):
+    def updater(self, dt: float) -> Any:
         """Export the vmobject to an SVG frame and append the JS update.
 
         Called once per rendered frame through the scene updater registered
@@ -280,7 +282,7 @@ class HTMLParsedVMobject:
         self.current_index += 1
         os.remove(svg_filename)
 
-    def update_html(self):
+    def update_html(self) -> Any:
         """Rewrite the HTML page with the current frame and time.
 
         Called on every scene update; embeds the current SVG frame and
@@ -311,7 +313,7 @@ class HTMLParsedVMobject:
                 bg_color_css,
             )
 
-    def finish(self):
+    def finish(self) -> Any:
         """Stop the updater and write the final HTML and JS files.
 
         Removes the scene updater and flushes the accumulated
@@ -341,7 +343,7 @@ class HTMLParsedVMobject:
         value_trackers: list[ValueTracker],
         linspaces: list[VectorND],
         animate_this: bool = True,
-    ):
+    ) -> Any:
         """Precompute the interactive JavaScript state for value combinations.
 
         Iterates over the cartesian product of ``linspaces``, sets each

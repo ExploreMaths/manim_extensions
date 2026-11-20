@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Animation utilities for 2D chemistry molecules.
 
 This module provides the :class:`~manim_extensions.chemistry.twoD.animations.GMAnimationBuilder` class for building molecule animations.
@@ -61,7 +63,7 @@ class GMAnimationBuilder:
         molecule: GraphMolecule,
         atoms: VGroup | None = None,
         bonds: VGroup | None = None,
-    ):
+    ) -> None:
         self.molecule = molecule
         self.atoms = atoms or self.molecule.vertices.values()
         self.atoms_copy = self.atoms.copy()
@@ -125,7 +127,7 @@ class GMAnimationBuilder:
         atoms_color: ManimColor = BLACK,
         bonds_color: ManimColor | None = None,
         label_color: ManimColor | None = None,
-    ) -> list:
+    ) -> list[Any]:
         """Return color-change animations for atoms, bonds and optionally atom labels.
 
         Parameters

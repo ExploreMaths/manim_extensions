@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Image layer visualization for neural networks."""
 
 from manim import (
@@ -86,14 +88,16 @@ class ImageLayer(NeuralNetworkLayer):
         numpy_image: PixelArray,
         height: float = 1.5,
         show_image_on_create: bool = True,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
         self.image_height = height
         self.numpy_image = numpy_image
         self.show_image_on_create = show_image_on_create
 
-    def construct_layer(self, input_layer: Mobject, output_layer: Mobject, **kwargs):
+    def construct_layer(
+        self, input_layer: Mobject, output_layer: Mobject, **kwargs: Any
+    ) -> Any:
         """Construct layer method.
 
         Parameters
@@ -122,7 +126,7 @@ class ImageLayer(NeuralNetworkLayer):
 
     @classmethod
     def from_path(
-        cls, image_path: str, grayscale: bool = True, **kwargs
+        cls, image_path: str, grayscale: bool = True, **kwargs: Any
     ) -> "ImageLayer":
         """Creates a query using the paths.
 
@@ -148,7 +152,7 @@ class ImageLayer(NeuralNetworkLayer):
         return image_layer
 
     @override_animation(Create)
-    def _create_override(self, **kwargs) -> Animation:
+    def _create_override(self, **kwargs: Any) -> Animation:
         """Fade in the image when configured, otherwise wait.
 
         Parameters
@@ -171,7 +175,7 @@ class ImageLayer(NeuralNetworkLayer):
             return Wait(run_time=0)
 
     def make_forward_pass_animation(
-        self, layer_args: dict = {}, **kwargs
+        self, layer_args: dict[Any, Any] = {}, **kwargs: Any
     ) -> AnimationGroup:
         """Return an empty animation group; the image layer has no forward pass effect.
 
@@ -197,7 +201,7 @@ class ImageLayer(NeuralNetworkLayer):
             The rightmost point of the surrounding shape."""
         return self.image_mobject.get_right()
 
-    def scale(self, scale_factor: float, **kwargs):
+    def scale(self, scale_factor: float, **kwargs: Any) -> Any:
         """Scales the image mobject.
 
         Parameters

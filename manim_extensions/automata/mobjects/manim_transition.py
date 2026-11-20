@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """:class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` class for automata visualizations.
 
 This module provides transition visualization for automata.
@@ -91,8 +93,8 @@ class ManimTransition(Transition, VGroup):
         animation_style: dict[str, object],
         font_size: int = 100,
         buffer: int = 1,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         Transition.__init__(self, transition_from, transition_to)
         self.circle = None
         # manim settings for animations and colors
@@ -175,7 +177,7 @@ class ManimTransition(Transition, VGroup):
 
         return p1, p2
 
-    def create_reflexive_arrow(self, point1: Point3D, point2: Point3D):
+    def create_reflexive_arrow(self, point1: Point3D, point2: Point3D) -> Any:
         """Create a curved reflexive arrow from the source state back to itself.
 
         Parameters
@@ -231,7 +233,7 @@ class ManimTransition(Transition, VGroup):
 
         return normal_vectors[normal_vector_choice]
 
-    def position_text(self, buffer: float):
+    def position_text(self, buffer: float) -> Any:
         """Place each read-symbol label next to the transition arrow.
 
         Parameters
@@ -273,7 +275,7 @@ class ManimTransition(Transition, VGroup):
             read_symbol.set_x(text_coordinates[0])
             read_symbol.set_y(text_coordinates[1])
 
-    def convert_straight_arrow_to_curved_arrow(self):
+    def convert_straight_arrow_to_curved_arrow(self) -> Any:
         """
         Converts a straight arrow transition to a curved arrow transition.
         This method is primarily used when there are two opposing transitions
@@ -290,7 +292,7 @@ class ManimTransition(Transition, VGroup):
         self.construct_curved_arrow()
         self.add(self.arrow, *self.read_symbols)
 
-    def construct_curved_arrow(self, buffer: float = 0.5):
+    def construct_curved_arrow(self, buffer: float = 0.5) -> Any:
         # create a straight line and use the points locations to create curved arrow
         """Construct a curved arrow and position its read-symbol labels.
 
@@ -357,7 +359,7 @@ class ManimTransition(Transition, VGroup):
                 return True  # There is a read_symbol that matches the given token
         return False  # There are no read_symbols that match the given token
 
-    def rotate_symbols_parallel_to_arrow(self):
+    def rotate_symbols_parallel_to_arrow(self) -> Any:
         """Rotate all read symbols so they are aligned parallel to the arrow."""
         for read_symbol in self.read_symbols:
             slope = self.calculate_slope_of_line()
@@ -440,8 +442,8 @@ class ManimPushDownAutomatonTransition(ManimTransition):
         animation_style: dict[str, object],
         font_size: int = 100,
         buffer: int = 1,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         Transition.__init__(self, transition_from, transition_to)
         self.circle = None
         # manim settings for animations and colors

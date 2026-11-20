@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Arc-length, offset, warp and dashed-path helpers for Manim vector paths."""
 
 from __future__ import annotations
@@ -50,7 +52,7 @@ class PathMapper(VMobject):
     """
 
     def __init__(
-        self, path_source: VMobject, num_of_path_points: int = 100, **kwargs
+        self, path_source: VMobject, num_of_path_points: int = 100, **kwargs: Any
     ) -> None:
         super().__init__(**kwargs)
         self.num_of_path_points = num_of_path_points
@@ -488,7 +490,7 @@ class DashedLineMobject(VDict):
         num_dashes: int = 15,
         dashed_ratio: float = 0.5,
         dash_offset: float = 0.0,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         super().__init__(**kwargs)
         self.path = PathMapper(
@@ -641,7 +643,7 @@ class DashDotMobject(DashedLineMobject):
         dashed_ratio: float = 0.35,
         dash_offset: float = 0.0,
         dot_scale: float = 1.0,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         super().__init__(
             target_mobject, num_dashes, dashed_ratio, dash_offset, **kwargs
@@ -730,7 +732,7 @@ class PathOffsetMobject(VMobject):
         ofs_func_kwargs: dict[str, object] = {},
         num_of_samples: int = 100,
         discontinuities: Sequence[float] = (),
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         super().__init__(**kwargs)
         self.ofs_func_kwargs = ofs_func_kwargs
@@ -948,7 +950,7 @@ class CurveWarp(VMobject):
         warp_source: VMobject,
         warp_curve: VMobject,
         anchor_point: float = 0.5,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
 
         self.warp_curve = warp_curve

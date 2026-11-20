@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """
 Code for making a dropout animation for the
 feed forward layers of a neural network.
@@ -56,7 +58,7 @@ class XMark(VGroup):
                self.add(XMark().scale(15))
     """
 
-    def __init__(self, stroke_width: float = 1.0, color: ManimColor = GRAY):
+    def __init__(self, stroke_width: float = 1.0, color: ManimColor = GRAY) -> None:
         super().__init__()
         line_one = Line(
             [-0.1, 0.1, 0],

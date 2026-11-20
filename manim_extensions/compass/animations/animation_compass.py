@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Compass animations for Manim.
 
 This module provides animations for compass manipulations.
@@ -69,7 +71,7 @@ class DrawArc(AnimationGroup):
                self.wait()
     """
 
-    def __init__(self, compass: Compass, arc: Arc, **kwargs: object):
+    def __init__(self, compass: Compass, arc: Arc, **kwargs: Any) -> None:
         super().__init__(Create(arc), RotateCompass(compass, arc.angle), **kwargs)
 
 
@@ -103,7 +105,9 @@ class SplitCompass(AnimationGroup):
                self.wait()
     """
 
-    def __init__(self, compass: Compass, span: float | None = None, **kwargs: object):
+    def __init__(
+        self, compass: Compass, span: float | None = None, **kwargs: Any
+    ) -> None:
         assert span is not None
         theta_new, theta_old = np.arcsin(span / 2 / compass.leg_length), compass.theta
         compass.theta = theta_new
@@ -154,7 +158,9 @@ class RotateCompass(Rotate):
                self.wait()
     """
 
-    def __init__(self, compass: Compass, angle: float | None = None, **kwargs: object):
+    def __init__(
+        self, compass: Compass, angle: float | None = None, **kwargs: Any
+    ) -> None:
         assert angle is not None
         super().__init__(
             compass, about_point=compass.get_niddle_tip(), angle=angle, **kwargs
@@ -193,8 +199,8 @@ class MoveNiddleTipTo(ApplyMethod):
         self,
         compass: Compass,
         point: Point3D | None = None,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(compass.move_niddle_tip_to, point, **kwargs)
 
 
@@ -241,8 +247,8 @@ class PutCompass(ApplyMethod):
         compass: Compass,
         niddle_pos: Point3D | None = None,
         pen_pos: Point3D | None = None,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         assert niddle_pos is not None and pen_pos is not None
         arc_radius = get_distance(niddle_pos, pen_pos)
         if arc_radius > compass.leg_length * 2:
@@ -292,8 +298,8 @@ class PutCompassAway(PutCompass):
         compass: Compass,
         point: Point3D = RIGHT,
         span_buff: float = 0.1,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         r = 0.5 * compass.leg_length
         vec = r * DOWN if compass.get_compass_rotate_angle_direction() else r * UP
         super().__init__(

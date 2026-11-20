@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 r"""
 A directive for including Manim videos in a Sphinx document.
 """
@@ -38,7 +40,7 @@ class SkipManimNode(nodes.Admonition, nodes.Element):
     pass
 
 
-def visit(self, node: list, name: str = ""):
+def visit(self, node: list[Any], name: str = "") -> Any:
     """Visit a :class:`~manim_extensions.machine_learning.utils.testing.doc_directive.SkipManimNode`, adding a placeholder title if missing, then render as admonition.
 
     Parameters
@@ -53,7 +55,7 @@ def visit(self, node: list, name: str = ""):
         node.insert(0, nodes.title("skip-manim", "Example Placeholder"))
 
 
-def depart(self, node: SkipManimNode):
+def depart(self, node: SkipManimNode) -> Any:
     """Depart from a :class:`~manim_extensions.machine_learning.utils.testing.doc_directive.SkipManimNode` by closing the admonition rendering.
 
     Parameters
@@ -117,7 +119,7 @@ class ManimDirective(Directive):
     }
     final_argument_whitespace = True
 
-    def run(self) -> list:
+    def run(self) -> list[Any]:
         """Execute the directive: either render the manim example or output a placeholder.
 
         Returns
@@ -284,7 +286,7 @@ class ManimDirective(Directive):
 rendering_times_file_path = Path("../rendering_times.csv")
 
 
-def _write_rendering_stats(scene_name: str, run_time: float, file_name: str):
+def _write_rendering_stats(scene_name: str, run_time: float, file_name: str) -> Any:
     """Append one rendering-time row to the statistics CSV.
 
     Parameters
@@ -306,7 +308,7 @@ def _write_rendering_stats(scene_name: str, run_time: float, file_name: str):
         )
 
 
-def _log_rendering_times(*args):
+def _log_rendering_times(*args: Any) -> Any:
     """Print a summary of the collected rendering times.
 
     Parameters
@@ -339,7 +341,7 @@ def _log_rendering_times(*args):
         print("")
 
 
-def _delete_rendering_times(*args):
+def _delete_rendering_times(*args: Any) -> Any:
     """Remove the rendering-time CSV if it exists.
 
     Parameters
@@ -351,7 +353,7 @@ def _delete_rendering_times(*args):
         rendering_times_file_path.unlink()
 
 
-def setup(app: Sphinx) -> dict:
+def setup(app: Sphinx) -> dict[Any, Any]:
     """Register the manim directive and its nodes with the Sphinx application.
 
     Parameters

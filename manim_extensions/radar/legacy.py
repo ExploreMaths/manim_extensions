@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """The two original generations, rebuilt on top of the library.
 
 :class:`~manim_extensions.radar.legacy.RadarV1Scene` reproduces the **1.0** look (flat grid, one glow layer, snap-in

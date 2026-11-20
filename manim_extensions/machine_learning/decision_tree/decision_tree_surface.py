@@ -4,6 +4,8 @@
 # patched: lazy-import scikit-learn (ml extra)
 # patched: implement make_split_to_animation_map
 
+from typing import Any
+
 """Decision tree visualization for Manim."""
 
 # unlinked-class-ok: Array
@@ -56,7 +58,7 @@ class AABB:
         Number of features; each feature gets a ``[-inf, inf]`` limit pair.
     """
 
-    def __init__(self, n_features: int):
+    def __init__(self, n_features: int) -> None:
         self.limits = np.array([[-np.inf, np.inf]] * n_features)
 
     def split(self, f: int, v: float) -> tuple:
@@ -122,7 +124,7 @@ def compute_decision_areas(
     x: int = 0,
     y: int = 1,
     n_features: int | None = None,
-) -> list:
+) -> list[Any]:
     """Extract decision areas.
 
     Parameters
@@ -173,7 +175,7 @@ def compute_decision_areas(
     return rectangles
 
 
-def plot_areas(rectangles: MatrixMN):
+def plot_areas(rectangles: MatrixMN) -> Any:
     """Plot decision area rectangles on the current matplotlib axes.
 
     Parameters
@@ -199,7 +201,7 @@ def plot_areas(rectangles: MatrixMN):
 
 def merge_overlapping_polygons(
     all_polygons: list[Polygon], colors: list[ManimColor] = [BLUE, GREEN, ORANGE]
-) -> list:
+) -> list[Any]:
     """Merge adjacent polygons of the same color into larger contiguous polygons.
 
     Parameters
@@ -311,7 +313,7 @@ class IrisDatasetPlot(VGroup):
                self.add(plot.all_group)
     """
 
-    def __init__(self, iris: Bunch):
+    def __init__(self, iris: Bunch) -> None:
         points = iris.data[:, 0:2]
         labels = iris.feature_names
         targets = iris.target
@@ -533,7 +535,7 @@ class DecisionTreeSurface(VGroup):
         data: MatrixMN,
         axes: Axes,
         class_colors: list[ManimColor] = [BLUE, ORANGE, GREEN],
-    ):
+    ) -> None:
         # take the tree and construct the surface from it
         self.tree_clf = tree_clf
         self.data = data
@@ -541,7 +543,7 @@ class DecisionTreeSurface(VGroup):
         self.class_colors = class_colors
         self.surface_rectangles = self.generate_surface_rectangles()
 
-    def generate_surface_rectangles(self) -> list:
+    def generate_surface_rectangles(self) -> list[Any]:
         """Compute decision areas from the tree and return them as Manim polygon mobjects.
 
         Returns

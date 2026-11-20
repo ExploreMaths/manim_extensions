@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Gridded rectangle visualization utility."""
 
 from manim import (
@@ -84,8 +86,8 @@ class GriddedRectangle(VGroup):
         fill_opacity: float = 0.2,
         show_grid_lines: bool = False,
         dotted_lines: bool = False,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__()
         # Fields
         self.color = color
@@ -255,7 +257,7 @@ class GriddedRectangle(VGroup):
 
     def set_color(  # intentionally returns None instead of the group
         self, color: ManimColor
-    ):
+    ) -> Any:
         """Sets the color of the gridded rectangle.
 
         Parameters

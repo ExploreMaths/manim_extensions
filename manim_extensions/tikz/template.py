@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """TikZ template for Manim.
 
 This module provides the TikZ template class for rendering TikZ diagrams.
@@ -77,8 +79,8 @@ class TikzTemplate(TexTemplate):
         tikzset: List[str] | None = None,
         preamble: str | None = None,
         use_pdf: bool = False,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         default_preamble = self._DEFAULT_PREAMBLE
         merged_preamble = (
             default_preamble

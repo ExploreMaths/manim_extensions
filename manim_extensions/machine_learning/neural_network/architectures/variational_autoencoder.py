@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: implement make_triplet_forward_pass and make_image_forward_pass
 
+from typing import Any
+
 """Variational Autoencoder Manim Visualizations.
 
 In this module I define Manim visualizations for Variational Autoencoders
@@ -62,13 +64,13 @@ class VariationalAutoencoder(Group):
 
     def __init__(
         self,
-        encoder_nodes_per_layer: list = [5, 3],
-        decoder_nodes_per_layer: list = [3, 5],
+        encoder_nodes_per_layer: list[Any] = [5, 3],
+        decoder_nodes_per_layer: list[Any] = [3, 5],
         point_color: ManimColor = BLUE,
         dot_radius: float = 0.05,
         ellipse_stroke_width: float = 1.0,
         layer_spacing: float = 0.5,
-    ):
+    ) -> None:
         super().__init__()
         self.encoder_nodes_per_layer = encoder_nodes_per_layer
         self.decoder_nodes_per_layer = decoder_nodes_per_layer

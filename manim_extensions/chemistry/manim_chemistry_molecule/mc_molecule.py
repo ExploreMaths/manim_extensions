@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Manim chemistry molecule representation.
 
 This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule` class for representing molecules.
@@ -37,14 +39,16 @@ class MCMolecule:
         bonds: List[MCBond] | None = None,
         name: str | None = None,
         elements: MCElement | None = None,
-    ):
+    ) -> None:
         self.atoms = atoms or []
         self.bonds = bonds or []
         self.elements = elements or {}
         self.atoms_by_index = {}
         self.name = name
 
-    def add_atoms_from_atoms_dict(self, atoms_dict: Dict, elements_data_dict: Dict):
+    def add_atoms_from_atoms_dict(
+        self, atoms_dict: Dict[Any, Any], elements_data_dict: Dict[Any, Any]
+    ) -> Any:
         """
         Uses the atoms dict returned by a parser to add the atoms to the molecule.
 
@@ -78,7 +82,7 @@ class MCMolecule:
             self.atoms.append(mc_atom)
             self.atoms_by_index[atom_index] = mc_atom
 
-    def add_bonds_from_bonds_dict(self, bonds_dict: Dict):
+    def add_bonds_from_bonds_dict(self, bonds_dict: Dict[Any, Any]) -> Any:
         """
         Uses the bonds dict returned by a parser to add the bonds to the molecule.
 
@@ -106,7 +110,7 @@ class MCMolecule:
                 )
             )
 
-    def add_connections_between_atoms(self):
+    def add_connections_between_atoms(self) -> Any:
         r"""
         Uses the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`\ s to add connections between :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`\ s.
 
@@ -127,8 +131,8 @@ class MCMolecule:
 
     @staticmethod
     def construct_from_data_dict(
-        atoms_data_dict: dict,
-        bonds_data_dict: dict,
+        atoms_data_dict: dict[Any, Any],
+        bonds_data_dict: dict[Any, Any],
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: dict | None = None,
@@ -220,7 +224,7 @@ class MCMolecule:
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: dict | None = None,
-    ) -> list:
+    ) -> list[Any]:
         r"""
         Similar to ``construct_from_file`` but returning a list of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`\ s.
 
@@ -324,7 +328,7 @@ class MCMolecule:
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: dict | None = None,
-    ) -> list:
+    ) -> list[Any]:
         r"""
         Similar to ``construct_from_string`` but returning a list of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`\ s.
 
@@ -390,7 +394,7 @@ class MCMolecule:
 
         return self.remove_hydrogens(atoms_to_be_removed)
 
-    def remove_hydrogens(self, atoms_to_be_removed: list):
+    def remove_hydrogens(self, atoms_to_be_removed: list[Any]) -> Any:
         """Remove specified atoms and their associated bonds, then reindex.
 
         Parameters
@@ -423,7 +427,7 @@ class MCMolecule:
 
         self.reindex_molecule_atoms()
 
-    def reindex_molecule_atoms(self):
+    def reindex_molecule_atoms(self) -> Any:
         """Reassign consecutive indices to all atoms and update bond references."""
         self.atoms_by_index = {}
         atoms_old_index_mapping = {}

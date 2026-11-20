@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import shapely (physics extra)
 
+from typing import Any
+
 r"""Lenses for refracting :class:`~manim_extensions.physics.optics.rays.Ray`\ s."""
 
 # unlinked-class-ok: Array
@@ -136,7 +138,7 @@ class Lens(VMobject, metaclass=ConvertToOpenGL):
                )
     """
 
-    def __init__(self, f: float, d: float, n: float = 1.52, **kwargs):
+    def __init__(self, f: float, d: float, n: float = 1.52, **kwargs: Any) -> None:
         super().__init__(**kwargs)
         self.f = f
         f *= 50 / 7 * f if f > 0 else -50 / 7 * f  # this is odd, but it works

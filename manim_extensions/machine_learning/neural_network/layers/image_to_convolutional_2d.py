@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: route three-channel images to the RGB animation and implement it
 
+from typing import Any
+
 """Image to convolutional 2D layer connection visualization."""
 
 from __future__ import annotations
@@ -80,8 +82,8 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     output_class = Convolutional2DLayer
 
     def __init__(
-        self, input_layer: ImageLayer, output_layer: Convolutional2DLayer, **kwargs
-    ):
+        self, input_layer: ImageLayer, output_layer: Convolutional2DLayer, **kwargs: Any
+    ) -> None:
         super().__init__(input_layer, output_layer, **kwargs)
         self.input_layer = input_layer
         self.output_layer = output_layer
@@ -90,7 +92,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         """Forward to the parent construct_layer method.
 
@@ -106,7 +108,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(
-        self, run_time: float = 5, layer_args: dict = {}, **kwargs
+        self, run_time: float = 5, layer_args: dict[Any, Any] = {}, **kwargs: Any
     ) -> Succession:
         """Maps image to convolutional layer.
 
@@ -248,7 +250,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             self.input_layer.image_mobject, self.output_layer.feature_maps[0]
         )
 
-    def scale(self, scale_factor: float, **kwargs):
+    def scale(self, scale_factor: float, **kwargs: Any) -> Any:
         """Scale the layer by forwarding to the parent class.
 
         Parameters
@@ -261,7 +263,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         super().scale(scale_factor, **kwargs)
 
     @override_animation(Create)
-    def _create_override(self, **kwargs) -> Animation:
+    def _create_override(self, **kwargs: Any) -> Animation:
         """Return a zero-duration wait for an invisible layer.
 
         Parameters

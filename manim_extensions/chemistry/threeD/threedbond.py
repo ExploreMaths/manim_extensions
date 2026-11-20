@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """3D bond representation for Manim chemistry.
 
 This module provides 3D bond classes for rendering chemical bonds in three dimensions.
@@ -62,11 +64,11 @@ class ThreeDCylinder(OpenGLSurface):
         radius: float = 1,
         height: float = 2,
         direction: Vector3D = Z_AXIS,
-        v_range: list = [0, TAU],
+        v_range: list[Any] = [0, TAU],
         show_ends: bool = True,
         resolution: tuple = (24, 24),
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self._height = height
         self.radius = radius
         super().__init__(
@@ -101,7 +103,7 @@ class ThreeDCylinder(OpenGLSurface):
         r = self.radius
         return np.array([r * np.cos(phi), r * np.sin(phi), height])
 
-    def add_bases(self):
+    def add_bases(self) -> Any:
         """Adds the end caps of the cylinder."""
         if config.renderer == RendererType.OPENGL:
             color = self.color
@@ -127,7 +129,7 @@ class ThreeDCylinder(OpenGLSurface):
         )
         self.base_bottom.shift(self.u_range[0] * IN)
 
-    def _rotate_to_direction(self):
+    def _rotate_to_direction(self) -> Any:
         """Orient the bond along its target direction."""
         x, y, z = self.direction
 
@@ -161,7 +163,7 @@ class ThreeDCylinder(OpenGLSurface):
         self._current_theta = theta
         self._current_phi = phi
 
-    def set_direction(self, direction: Vector3D):
+    def set_direction(self, direction: Vector3D) -> Any:
         """Align the cylinder to point along the given direction vector.
 
         Parameters
@@ -207,14 +209,16 @@ class ThreeDLine(ThreeDCylinder):
         end: Point3D = RIGHT,
         thickness: float = 0.05,
         color: ManimColor | None = None,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.thickness = thickness
         self.set_start_and_end_attrs(start, end, **kwargs)
         if color is not None:
             self.set_color(color)
 
-    def set_start_and_end_attrs(self, start: Point3D, end: Point3D, **kwargs):
+    def set_start_and_end_attrs(
+        self, start: Point3D, end: Point3D, **kwargs: Any
+    ) -> Any:
         """Sets the start and end points of the line.
 
         If either ``start`` or ``end`` are :class:`~manim.mobject.mobject.Mobject`,
@@ -294,7 +298,7 @@ class ThreeDLine(ThreeDCylinder):
 
     @classmethod
     def parallel_to(
-        cls, line: Line3D, point: Point3D = ORIGIN, length: float = 5, **kwargs
+        cls, line: Line3D, point: Point3D = ORIGIN, length: float = 5, **kwargs: Any
     ) -> Line3D:
         """Returns a line parallel to another line going through
         a given point.
@@ -342,7 +346,7 @@ class ThreeDLine(ThreeDCylinder):
 
     @classmethod
     def perpendicular_to(
-        cls, line: Line3D, point: Point3D = ORIGIN, length: float = 5, **kwargs
+        cls, line: Line3D, point: Point3D = ORIGIN, length: float = 5, **kwargs: Any
     ) -> Line3D:
         """Returns a line perpendicular to another line going through
         a given point.
@@ -445,9 +449,9 @@ class ThreeDBond(OpenGLGroup):
         from_atom: ThreeDAtom,
         to_atom: ThreeDAtom,
         bond_type: int,
-        *mobjects,
-        **kwargs,
-    ):
+        *mobjects: Any,
+        **kwargs: Any,
+    ) -> None:
         self.from_atom = from_atom
         self.to_atom = to_atom
         super().__init__(**kwargs)

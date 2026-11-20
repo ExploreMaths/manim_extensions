@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """CLI module for chemistry.
 
 This module provides command-line interface for downloading molecules from PubChem.
@@ -18,7 +20,7 @@ from typing import Literal
 
 
 @click.group
-def cli():
+def cli() -> Any:
     """Command-line interface group for chemistry-related commands."""
 
 
@@ -45,7 +47,7 @@ def pubchem_molecule(
     inchi: tuple[str, ...],
     three_d: bool,
     output_folder: str,
-):
+) -> Any:
     r"""
     Download molecule from pubchem.
 

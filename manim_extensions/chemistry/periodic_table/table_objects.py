@@ -2,6 +2,8 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pandas (chemistry extra)
 
+from typing import Any
+
 """Periodic table visualization objects for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.periodic_table.table_objects.MElementObject` class for rendering periodic table elements.
@@ -96,8 +98,8 @@ class MElementObject(VGroup):
         gradient: int = 10,
         opacity: float = 1,
         text_color: ManimColor = BLACK,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         VGroup.__init__(self, **kwargs)
         self.atomic_number = atomic_number
         self.atomic_mass = atomic_mass
@@ -212,7 +214,7 @@ class MElementObject(VGroup):
         return VGroup(frame_rectangle, symbol_text, name_text, atomic_number_text)
 
     def from_csv_file_data(
-        filename: str, atomic_number: int, **kwargs
+        filename: str, atomic_number: int, **kwargs: Any
     ) -> "MElementObject":
         """Load an :class:`~manim_extensions.chemistry.periodic_table.table_objects.MElementObject` from a CSV file by looking up the given atomic number.
 
@@ -286,7 +288,7 @@ class PeriodicTable(VGroup):
     """
 
     # TODO Change to english database
-    def __init__(self, data_file: str, *vmobjects, **kwargs):
+    def __init__(self, data_file: str, *vmobjects: Any, **kwargs: Any) -> None:
         VGroup.__init__(self, *vmobjects, **kwargs)
         self.data_file = data_file
         self.table = self.add_elements()
@@ -316,7 +318,7 @@ class PeriodicTable(VGroup):
         table.move_to(ORIGIN).scale(0.25)
         return table
 
-    def elements_position_dict(self) -> dict:
+    def elements_position_dict(self) -> dict[Any, Any]:
         """Return a dict mapping each atomic number to its [x, y, z] grid position in the table.
 
         Returns

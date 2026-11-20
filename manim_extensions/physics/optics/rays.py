@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 r""":class:`~manim_extensions.physics.optics.rays.Ray`\ s of light. Refracted by Lenses."""
 
 from __future__ import annotations
@@ -70,15 +72,15 @@ class Ray(Line):
         direction: Iterable[float],
         init_length: float = 5,
         propagate: Iterable[Lens] | None = None,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.init_length = init_length
         self.propagated = False
         super().__init__(start, start + direction * init_length, **kwargs)
         if propagate:
             self.propagate(*propagate)
 
-    def propagate(self, *lenses: Lens):
+    def propagate(self, *lenses: Lens) -> Any:
         """Let the ray propagate through the list
         of lenses passed.
 

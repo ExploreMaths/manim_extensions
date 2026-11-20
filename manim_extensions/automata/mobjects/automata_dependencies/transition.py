@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """:class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` representation for automata.
 
 This module provides the :class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` class for representing state transitions in automata.
@@ -73,7 +75,7 @@ class Transition:
 
     id_iter = itertools.count()
 
-    def __init__(self, transition_from: State, transition_to: State):
+    def __init__(self, transition_from: State, transition_to: State) -> None:
         self.id = next(self.id_iter)
         self.transition_from = transition_from
         self.transition_to = transition_to

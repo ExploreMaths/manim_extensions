@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """TikZ integration for Manim.
 
 This module provides TikZ markup to SVG conversion for Manim animations.
@@ -81,8 +83,8 @@ class Tikz(SVGMobject):
         tikzset: List[str] | None = None,
         preamble: str | None = None,
         use_pdf: bool = False,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         file_name = self.convert(code, packages, libraries, tikzset, preamble, use_pdf)
         super().__init__(
             file_name,

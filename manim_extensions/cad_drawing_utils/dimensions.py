@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """CAD dimension mobjects: linear and angular dimensions with arrows and labels."""
 
 from __future__ import annotations
@@ -55,7 +57,7 @@ class PointerLabelFree(VDict):
         text: str | Mobject,
         offset_vector: Vector3D = RIGHT + DOWN,
         pointer_offset: float = 0,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         text_buff = 0.1
         if not "stroke_width" in kwargs:
@@ -161,7 +163,7 @@ class PointerToMob(PointerLabelFree):
         text: str | Mobject,
         dist: float = 1,
         pointer_offset: float = 0,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         point = mob.point_from_proportion(proportion)
 
@@ -245,7 +247,7 @@ class LinearDimension(VDict):
         offset: float = 2,
         ext_line_offset: float = 0,
         tip_len: float = DEFAULT_ARROW_TIP_LENGTH,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         super().__init__(**kwargs)
         self.start = start
@@ -389,7 +391,7 @@ class AngleDimension3Point(VDict):
         outside_arrow: bool = False,
         ext_line_offset: float = 0,
         tip_len: float = DEFAULT_ARROW_TIP_LENGTH,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         super().__init__(**kwargs)
 
@@ -512,7 +514,11 @@ class AngleDimensionMob(AngleDimension3Point):
     """
 
     def __init__(
-        self, Mob: Mobject, start_proportion: float, end_proportion: float, **kwargs
+        self,
+        Mob: Mobject,
+        start_proportion: float,
+        end_proportion: float,
+        **kwargs: Any,
     ) -> None:
         start = Mob.point_from_proportion(start_proportion)
         end = Mob.point_from_proportion(end_proportion)
@@ -563,7 +569,7 @@ class CADArrowHead(CurveWarp):
         anchor_point: float = 1,
         arrow_size: float = DEFAULT_ARROW_TIP_LENGTH,
         reversed_arrow: bool = False,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
 
         # set default value

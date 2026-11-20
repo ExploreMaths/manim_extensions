@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """
 functions to display voronoi diagram and create delaunay meshes as its dual.
 """
@@ -61,7 +63,7 @@ class VoronoiDelaunay:
                self.wait()
     """
 
-    def __init__(self, scene: Scene, triangle_mesh: TriangleManim2DMesh):
+    def __init__(self, scene: Scene, triangle_mesh: TriangleManim2DMesh) -> None:
         self.scene: Scene = scene
         self.triangle_mesh: TriangleManim2DMesh = triangle_mesh
         verts = self.triangle_mesh.mesh.get_3d_vertices()
@@ -170,7 +172,7 @@ class VoronoiDelaunay:
                 return circle
         return None  # should never get here
 
-    def create_triangle(self, voronoi_vertex_index: int):
+    def create_triangle(self, voronoi_vertex_index: int) -> Any:
         """Create the dual triangle for a given Voronoi vertex and add it to the mesh.
 
         The triangle is formed by the three mesh vertices whose Voronoi

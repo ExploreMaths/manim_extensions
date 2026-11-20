@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """List group utility for neural network visualization."""
 
 from typing import Iterator
@@ -31,7 +33,7 @@ class ListGroup(Mobject):
                                   Triangle()).scale(3))
     """
 
-    def __init__(self, *layers: Mobject):
+    def __init__(self, *layers: Mobject) -> None:
         super().__init__()
         self.items: list[Mobject] = [*layers]
         # Add the items as submobjects so the group is visible when rendered
@@ -56,7 +58,7 @@ class ListGroup(Mobject):
 
     def insert(  # intentionally returns None instead of the group
         self, index: int, item: Mobject
-    ):
+    ) -> Any:
         """Inserts item at index.
 
         Parameters
@@ -148,7 +150,7 @@ class ListGroup(Mobject):
 
     def add(
         self, item: Mobject
-    ):  # intentionally shadows Mobject.add with list semantics
+    ) -> Any:  # intentionally shadows Mobject.add with list semantics
         """Adds to end.
 
         Parameters
@@ -161,7 +163,7 @@ class ListGroup(Mobject):
 
     def replace(
         self, index: int, item: Mobject
-    ):  # intentionally shadows Mobject.replace with list semantics
+    ) -> Any:  # intentionally shadows Mobject.replace with list semantics
         """Replaces item at index.
 
         Parameters
@@ -203,7 +205,7 @@ class ListGroup(Mobject):
 
     def set_z_index(  # intentionally returns None instead of the group
         self, z_index_value: int, family: bool = True
-    ):
+    ) -> Any:
         """Sets z index of all values in :class:`~manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup`.
 
         Parameters

@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Odometer style value numbers (the "rolling digits" used by style ``neo``)."""
 
 from __future__ import annotations
@@ -79,7 +81,7 @@ class RollingNumber(VGroup):
         roll_height: float = 0.30,
         mode: str = "roll",
         weight: str = "BOLD",
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         super().__init__(**kwargs)
         self.font = font

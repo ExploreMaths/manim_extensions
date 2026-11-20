@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Max pooling 2D to convolutional 2D layer connection visualization."""
 
 from __future__ import annotations
@@ -47,8 +49,8 @@ class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
         cell_width: float = 1.0,
         stroke_width: float = 2.0,
         show_grid_lines: bool = False,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         input_layer.num_feature_maps = output_layer.num_feature_maps
         super().__init__(input_layer, output_layer, **kwargs)
         self.passing_flash_color = passing_flash_color
@@ -60,8 +62,8 @@ class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> Any:
         """Constructs the MaxPooling to Convolution3D layer.
 
         Parameters

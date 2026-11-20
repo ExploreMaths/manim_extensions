@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """2D triangle manim mesh with functionality useful for delaunay meshes."""
 
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
@@ -65,7 +67,7 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
     """
 
     # pylint:disable=abstract-method
-    def __init__(self, mesh: Mesh, *args, **kwargs):
+    def __init__(self, mesh: Mesh, *args: Any, **kwargs: Any) -> None:
         if any(len(face) != 3 for face in mesh.faces):
             raise InvalidMeshException("Mesh must only consist of triangles!")
         # init Manim2DMesh
@@ -75,7 +77,9 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
             **kwargs,
         )
 
-    def edge_flip(self, scene: Scene, face_idx_1: int, face_idx_2: int, **kwargs):
+    def edge_flip(
+        self, scene: Scene, face_idx_1: int, face_idx_2: int, **kwargs: Any
+    ) -> Any:
         """Flip the shared edge between two adjacent triangle faces.
 
         The edge connecting the two non-shared vertices of the original

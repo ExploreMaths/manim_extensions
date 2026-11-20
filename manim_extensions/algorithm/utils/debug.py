@@ -10,7 +10,7 @@ from manim import DOWN, Dot, Integer, Paragraph, VGroup
 def index_paragraph_labels(
     paragraph: Paragraph,
     label_height: float = 0.1,
-    **kwargs: object,
+    **kwargs: Any,
 ) -> VGroup:
     """Add integer index labels below each paragraph line.
 

@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """3D molecule representation for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule` class for rendering molecules in 3D.
@@ -106,14 +108,14 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
 
     def __init__(
         self,
-        atoms_dict: dict,
-        bonds_dict: dict,
+        atoms_dict: dict[Any, Any],
+        bonds_dict: dict[Any, Any],
         source_csv: str | None = None,
         add_bonds: bool = True,
         add_atoms: bool = True,
-        *mobjects,
-        **kwargs,
-    ):
+        *mobjects: Any,
+        **kwargs: Any,
+    ) -> None:
         if config.renderer != RendererType.OPENGL:
             raise Exception(
                 "ThreeDMolecule requires using a OpenGL renderer. You can use it adding the `--renderer=opengl` flag or adding `config.renderer = opengl` to your python file."

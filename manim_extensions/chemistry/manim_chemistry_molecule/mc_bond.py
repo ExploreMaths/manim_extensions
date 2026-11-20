@@ -2,6 +2,8 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants
 
+from typing import Any
+
 """Manim chemistry bond representation.
 
 This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond` class for representing chemical bonds in molecules.
@@ -61,7 +63,7 @@ class MCBond:
         molecule_index: int | None = None,
         topology: int | None = None,
         reacting_center_status: int | None = None,
-    ):
+    ) -> None:
         self.bond_type = bond_type
         self.from_atom = from_atom
         self.to_atom = to_atom
@@ -70,7 +72,7 @@ class MCBond:
         self.topology = topology
         self.reacting_center_status = reacting_center_status
 
-    def assign_from_atom(self, from_atom: MCAtom):
+    def assign_from_atom(self, from_atom: MCAtom) -> Any:
         """Set the atom the bond originates from.
 
         Parameters
@@ -80,7 +82,7 @@ class MCBond:
         """
         self.from_atom = from_atom
 
-    def assign_to_atom(self, to_atom: MCAtom):
+    def assign_to_atom(self, to_atom: MCAtom) -> Any:
         """Set the atom the bond points to.
 
         Parameters
@@ -90,7 +92,7 @@ class MCBond:
         """
         self.to_atom = to_atom
 
-    def assign_stereo(self, stereo: int | None):
+    def assign_stereo(self, stereo: int | None) -> Any:
         """Set the stereochemistry type of the bond.
 
         Parameters
@@ -102,7 +104,7 @@ class MCBond:
 
     @staticmethod
     def construct_from_bond_dict(
-        bond_index: int, bond_data_dict: Dict, molecule: MCMolecule
+        bond_index: int, bond_data_dict: Dict[Any, Any], molecule: MCMolecule
     ) -> "MCBond":
         r"""
         Given a bond data dict from a parser, returns an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`.

@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: forward play to ThreeDScene instead of silently doing nothing
 
+from typing import Any
+
 """Scene classes for Manim ML visualizations.
 
 This module provides custom scene classes for machine learning visualizations.
@@ -31,10 +33,10 @@ class ManimML3DScene(ThreeDScene):
         Forwarded to :class:`~manim.scene.three_d_scene.ThreeDScene`.
     """
 
-    def __init__(self, *args: object, **kwargs: object):
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
 
-    def play(self, *args: object, **kwargs: object):
+    def play(self, *args: Any, **kwargs: Any) -> Any:
         """Override :meth:`~manim.scene.scene.Scene.play` for ML scenes.
 
         Parameters

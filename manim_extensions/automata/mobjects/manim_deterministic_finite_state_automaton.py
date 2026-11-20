@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Deterministic finite state automaton visualization.
 
 This module provides the :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimdeterministicFiniteAutomaton` class for visualizing DFAs.
@@ -70,8 +72,8 @@ class ManimdeterministicFiniteAutomaton(ManimAutomaton):
         camera_follow: bool = False,
         animation_style: dict[str, object] | None = None,
         cli: bool = False,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         if animation_style is None:
             super().__init__(json_template, xml_file, camera_follow, cli=cli, **kwargs)
         else:

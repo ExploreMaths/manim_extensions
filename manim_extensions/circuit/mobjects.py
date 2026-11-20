@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """:class:`~manim_extensions.circuit.utils.Circuit` mobjects for Manim.
 
 This module provides circuit component visualizations.
@@ -89,8 +91,8 @@ class VoltageSource(Source):
         label: bool = True,
         direction: Vector3DLike = LEFT,
         dependent: bool = True,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         # + and -
         markings = VGroup()
         markings.add(Line(DOWN * 0.3, UP * 0.3).shift(UP * 0.5))
@@ -146,8 +148,8 @@ class CurrentSource(Source):
         label: bool = True,
         direction: Vector3DLike = LEFT,
         dependent: bool = True,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         # Arrow
         markings = Line(DOWN * 0.75, UP * 0.75).add_tip(tip_shape=StealthTip)
         super().__init__(
@@ -200,8 +202,8 @@ class Inductor(VMobject):
         self,
         label: str | None = None,
         direction: Vector3DLike = DOWN,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         # initialize the vmobject
         super().__init__(**kwargs)
         self._direction = direction
@@ -267,7 +269,7 @@ class Inductor(VMobject):
 
         return self
 
-    def rotate(self, angle: float, *args: object, **kwargs: object) -> "Inductor":
+    def rotate(self, angle: float, *args: Any, **kwargs: Any) -> "Inductor":
         """Rotate the inductor about the centre of its main body.
 
         The label is rotated by the opposite angle to keep it upright.
@@ -325,8 +327,8 @@ class Resistor(VMobject):
         self,
         label: str | None = None,
         direction: Vector3DLike = DOWN,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         # initialize the vmobject
         super().__init__(**kwargs)
         self._direction = direction
@@ -400,7 +402,7 @@ class Resistor(VMobject):
 
         return self
 
-    def rotate(self, angle: float, *args: object, **kwargs: object) -> "Resistor":
+    def rotate(self, angle: float, *args: Any, **kwargs: Any) -> "Resistor":
         """Rotate the resistor about the centre of its main body.
 
         The label is rotated by the opposite angle to keep it upright.
@@ -463,8 +465,8 @@ class Capacitor(VMobject):
         label: str | None = None,
         direction: Vector3DLike = DOWN,
         polarized: bool = False,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         # initialize the vmobject
         super().__init__(**kwargs)
         self._direction = direction
@@ -531,7 +533,7 @@ class Capacitor(VMobject):
 
         return self
 
-    def rotate(self, angle: float, *args: object, **kwargs: object) -> "Capacitor":
+    def rotate(self, angle: float, *args: Any, **kwargs: Any) -> "Capacitor":
         """Rotate the capacitor about the centre of its main body.
 
         The label is rotated by the opposite angle to keep it upright.
@@ -592,8 +594,8 @@ class Ground(VMobject):
         self,
         ground_type: Literal["ground", "earth"] = "ground",
         label: str | None = None,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         # initialize the vmobject
         super().__init__(**kwargs)
 
@@ -620,7 +622,7 @@ class Ground(VMobject):
 
         self.main_body.center().scale(0.25).center()
 
-    def get_terminals(self, *args: object) -> Point3D:
+    def get_terminals(self, *args: Any) -> Point3D:
         """Return the top connection point of the ground symbol.
 
         Parameters
@@ -684,8 +686,8 @@ class Opamp(VMobject):
         self,
         bias_supply: str | None = None,
         label: bool = False,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         # initialize the vmobject
         super().__init__(**kwargs)
 

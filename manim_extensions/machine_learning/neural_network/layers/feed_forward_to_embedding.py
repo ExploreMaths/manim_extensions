@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Feed-forward to embedding layer connection visualization."""
 
 from __future__ import annotations
@@ -51,8 +53,8 @@ class FeedForwardToEmbedding(ConnectiveLayer):
         output_layer: Mobject,
         animation_dot_color: ManimColor = RED,
         dot_radius: float = 0.03,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(input_layer, output_layer, **kwargs)
         self.feed_forward_layer = input_layer
         self.embedding_layer = output_layer
@@ -63,7 +65,7 @@ class FeedForwardToEmbedding(ConnectiveLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         """Forward to the parent construct_layer method.
 
@@ -79,7 +81,7 @@ class FeedForwardToEmbedding(ConnectiveLayer):
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(
-        self, layer_args: dict = {}, run_time: float = 1.5, **kwargs
+        self, layer_args: dict[Any, Any] = {}, run_time: float = 1.5, **kwargs: Any
     ) -> Succession:
         """Makes dots converge on a specific location.
 
@@ -130,7 +132,7 @@ class FeedForwardToEmbedding(ConnectiveLayer):
         return animation_group
 
     @override_animation(Create)
-    def _create_override(self, **kwargs) -> Animation:
+    def _create_override(self, **kwargs: Any) -> Animation:
         """Return a zero-duration wait for an invisible layer.
 
         Parameters

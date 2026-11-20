@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Mindmap animations for Manim.
 
 This module provides animations for mindmap visualizations.
@@ -88,8 +90,8 @@ def animate_of_create(
     node: Node,
     pos: Point3D,
     direction: Vector3D,
-    line_styles: Dict,
-    node_styles: Dict,
+    line_styles: Dict[Any, Any],
+    node_styles: Dict[Any, Any],
     layout_type: LayoutType,
 ) -> List[Animation]:
     r"""Create-node animation.
@@ -168,8 +170,8 @@ def animate_of_display(
     node: Node,
     pos: Point3D,
     direction: Vector3D,
-    line_styles: Dict,
-    node_styles: Dict,
+    line_styles: Dict[Any, Any],
+    node_styles: Dict[Any, Any],
     layout_type: LayoutType,
     change_dir: bool,
     change_layout: bool,
@@ -244,8 +246,8 @@ def animate_of_scale(
     node: Node,
     pos: Point3D,
     direction: Vector3D,
-    line_styles: Dict,
-    node_styles: Dict,
+    line_styles: Dict[Any, Any],
+    node_styles: Dict[Any, Any],
     layout_type: LayoutType,
     change_dir: bool,
     change_layout: bool,
@@ -319,8 +321,8 @@ def animate_of_alter(
     node: Node,
     pos: Point3D,
     direction: Vector3D,
-    line_styles: Dict,
-    node_styles: Dict,
+    line_styles: Dict[Any, Any],
+    node_styles: Dict[Any, Any],
     layout_type: LayoutType,
     change_dir: bool,
     change_layout: bool,
@@ -394,8 +396,8 @@ def animate_of_node(
     node: Node,
     pos: Point3D,
     direction: Vector3D,
-    line_styles: Dict,
-    node_styles: Dict,
+    line_styles: Dict[Any, Any],
+    node_styles: Dict[Any, Any],
     layout_type: LayoutType,
     change_dir: bool,
     change_layout: bool,
@@ -639,8 +641,8 @@ class AbstractLayoutAnimation(AnimationGroup):
         layout_type: LayoutType = LayoutType.MindMap,
         layout_config: LayoutConfig = LayoutConfig(),
         node_style: NodeStyle = NodeStyle(),
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.scene = scene
         self.root = root
         self.layout_type = layout_type
@@ -810,8 +812,8 @@ class LayoutAnimation(AbstractLayoutAnimation):
         layout_type: LayoutType = LayoutType.MindMap,
         layout_config: LayoutConfig = LayoutConfig(),
         node_style: NodeStyle = NodeStyle(),
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(
             scene,
             root,
@@ -882,8 +884,8 @@ class RemoveNode(LayoutAnimation):
         layout_type: LayoutType = LayoutType.MindMap,
         layout_config: LayoutConfig = LayoutConfig(),
         node_style: NodeStyle = NodeStyle(),
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.is_whole_tree = False
         if isinstance(nodes, Node):
             nodes = (nodes,)
@@ -986,8 +988,8 @@ class InsertNode(LayoutAnimation):
         layout_type: LayoutType = LayoutType.MindMap,
         layout_config: LayoutConfig = LayoutConfig(),
         node_style: NodeStyle = NodeStyle(),
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         root = None
         self.father_children = father_children
         super().__init__(
@@ -1083,8 +1085,8 @@ class ScaleNode(LayoutAnimation):
         layout_type: LayoutType = LayoutType.MindMap,
         layout_config: LayoutConfig = LayoutConfig(),
         node_style: NodeStyle = NodeStyle(),
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         for node, scale in node_scale.items():
             node.scale(scale)
         root = self.get_common_root(list(node_scale.keys()))
@@ -1140,8 +1142,8 @@ class AlterNode(LayoutAnimation):
         layout_type: LayoutType = LayoutType.MindMap,
         layout_config: LayoutConfig = LayoutConfig(),
         node_style: NodeStyle = NodeStyle(),
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         for node, scale in node_vmobject.items():
             node.alter_content(scale)
         root = self.get_common_root(list(node_vmobject.keys()))

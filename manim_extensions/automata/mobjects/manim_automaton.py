@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Contains classes for Manim automaton."""
 
 from __future__ import annotations
@@ -129,8 +131,8 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         manim_animations: object | None = None,
         cli: bool = False,
         animate_subscripts: bool = True,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         if json_template is None and xml_file is None:
             json_template = automaton_json
 
@@ -166,7 +168,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         if self.states:
             self.center()
 
-    def add_manim_state(self, manim_state: ManimState):
+    def add_manim_state(self, manim_state: ManimState) -> Any:
         """Add an existing :class:`~manim_extensions.automata.mobjects.manim_state.ManimState` mobject to the automaton's VGroup.
 
         Parameters
@@ -178,7 +180,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         # adds an already existing manim_state to automaton
         self.add(manim_state)
 
-    def construct_state(self, state: dict[str, object], scaling: float = 10):
+    def construct_state(self, state: dict[str, object], scaling: float = 10) -> Any:
         """Create a :class:`~manim_extensions.automata.mobjects.manim_state.ManimState` from a state dict and append it to self.states.
 
         Parameters
@@ -215,7 +217,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             )
         )
 
-    def construct_states(self, states: list[dict[str, object]]):
+    def construct_states(self, states: list[dict[str, object]]) -> Any:
         """Build all :class:`~manim_extensions.automata.mobjects.manim_state.ManimState` objects from a list of state dicts with auto-scaling.
 
         Parameters
@@ -256,7 +258,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             for state_obj in self.states:
                 state_obj.scale(size_factor)
 
-    def construct_transitions(self, transitions: list[dict[str, object]]):
+    def construct_transitions(self, transitions: list[dict[str, object]]) -> Any:
         """Build :class:`~manim_extensions.automata.mobjects.manim_transition.ManimTransition` objects from transition dicts, grouping read symbols by state pair.
 
         Parameters
@@ -299,7 +301,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         transition_from: ManimState,
         transition_to: ManimState,
         read_symbols: list[str],
-    ):
+    ) -> Any:
         """Create a single :class:`~manim_extensions.automata.mobjects.manim_transition.ManimTransition` between two states and register it.
 
         Parameters
@@ -336,7 +338,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         """
         return ManimAutomataInput(input_string, animation_style=self.animation_style)
 
-    def set_default_position_of_input_string(self):
+    def set_default_position_of_input_string(self) -> Any:
         """Position the input string mobject centered above the automaton."""
         # get centre of self
         c1 = self.get_x()
@@ -465,7 +467,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
     def run_input_through_automaton(
         self, input: str | ManimAutomataInput, automaton_path_name: str | None = None
-    ) -> list:
+    ) -> list[Any]:
         """Run the input through the automaton and return the run history.
 
         Parameters
@@ -559,7 +561,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         return options
 
-    def export_recorded_path_to_file(self):
+    def export_recorded_path_to_file(self) -> Any:
         """Save the recorded NDA path as JSON to recorded_path.txt."""
         with open("recorded_path.txt", "w") as fp:
             json.dump(self.recorded_path, fp)
@@ -586,7 +588,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
                 return path_list
         return None
 
-    def play_string(self, input: str | ManimAutomataInput) -> list:
+    def play_string(self, input: str | ManimAutomataInput) -> list[Any]:
         """Run ``input`` through the automaton and return the animations.
 
         Parameters

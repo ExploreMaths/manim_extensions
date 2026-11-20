@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """The overflow radar chart: :class:`~manim_extensions.radar.overflow.OverflowRadarChart`.
 
 Values above the full scale are no longer clamped to a ``"10+"`` read-out.
@@ -123,7 +125,7 @@ class OverflowRadarChart(RadarChart):
         sweep: Optional[bool] = None,
         rim: Optional[bool] = None,
         opacity: Optional[float] = None,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         base = config if config is not None else get_style(style)
         base = base.evolved(overflow=True)
@@ -157,7 +159,7 @@ class OverflowRadarChart(RadarChart):
         )
 
     # ------------------------------------------------------------------
-    def morph_to(self, data: RadarInputList, **kwargs) -> Animation:
+    def morph_to(self, data: RadarInputList, **kwargs: Any) -> Animation:
         """Morph with the burst transition unless told otherwise.
 
         Parameters
@@ -176,7 +178,7 @@ class OverflowRadarChart(RadarChart):
         kwargs.setdefault("transition", "burst")
         return super().morph_to(data, **kwargs)
 
-    def burst_in(self, run_time: float = 1.1, **kwargs) -> Animation:
+    def burst_in(self, run_time: float = 1.1, **kwargs: Any) -> Animation:
         """Play the overflow entrance.
 
         Parameters

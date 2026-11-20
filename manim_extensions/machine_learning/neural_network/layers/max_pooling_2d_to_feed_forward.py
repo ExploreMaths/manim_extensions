@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Max pooling 2D to feed-forward layer connection visualization."""
 
 from __future__ import annotations
@@ -37,15 +39,15 @@ class MaxPooling2DToFeedForward(Convolutional2DToFeedForward):
         input_layer: MaxPooling2DLayer,
         output_layer: FeedForwardLayer,
         passing_flash_color: ManimColor = ORANGE,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(input_layer, output_layer, **kwargs)
 
     def construct_layer(
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         """Forward to the parent construct_layer method.
 

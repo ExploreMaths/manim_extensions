@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """:class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear` mobject for Manim.
 
 This module provides gear and rack visualizations.
@@ -222,7 +224,7 @@ def involute_deriv_func(
         return diff_val(t)
 
 
-def involute_height_func(k: float | VectorND, r: float, **kwargs) -> float:
+def involute_height_func(k: float | VectorND, r: float, **kwargs: Any) -> float:
     """
     Returns the radial height of the involute compared to the base circle.
 
@@ -266,7 +268,7 @@ def involute_height_func(k: float | VectorND, r: float, **kwargs) -> float:
     return np.linalg.norm(involute_func(k, r, **kwargs)) - r
 
 
-def involute_point_gen(t: VectorND, r: float, **kwargs) -> Point3D_Array:
+def involute_point_gen(t: VectorND, r: float, **kwargs: Any) -> Point3D_Array:
     """
     Returns a list of points to be for cubic bezier approximation of the involute curve.
     Output is compatible with :class:`~manim.mobject.mobject.Mobject`.points.
@@ -398,8 +400,8 @@ class Gear(VMobject):
         profile_shift: int = 0,
         cutout_teeth_num: int = 0,
         nppc: int = 5,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.z = num_of_teeth
         self.z_cut = cutout_teeth_num
         self.m = module
@@ -474,7 +476,7 @@ class Gear(VMobject):
         v = self.get_angle_vector()
         return np.arctan2(v[1], v[0])
 
-    def set_stroke(self, color: ManimColor | None = None, **kwargs):
+    def set_stroke(self, color: ManimColor | None = None, **kwargs: Any) -> Any:
         """Override set_stroke to avoid revealing the line which is used for tracking center and angle.
         If family is specified, it will still do it.
 
@@ -490,7 +492,7 @@ class Gear(VMobject):
         else:
             super().set_stroke(color, family=False, **kwargs)
 
-    def generate_points(self):
+    def generate_points(self) -> Any:
         """Build the gear outline from involute curves, fillets, and arcs."""
 
         # involute starts at 0 angle at rb, but it should be at 0 on rp, so need an offset angle
@@ -727,7 +729,7 @@ class Gear(VMobject):
 
         involute_curve.reverse_direction()
 
-        def smooth_curve_joint(curve1: VMobject, curve2: VMobject):
+        def smooth_curve_joint(curve1: VMobject, curve2: VMobject) -> Any:
             """Smoothly join two curves by inserting a midpoint between their ends.
 
             Parameters
@@ -778,7 +780,7 @@ class Gear(VMobject):
             Outer_ring = Circle(radius=self.ra * 1.1)
             self.append_points(Outer_ring.points)
 
-    def mesh_to(self, gear2: "Gear", offset: float = 0, bias: int = 1):
+    def mesh_to(self, gear2: "Gear", offset: float = 0, bias: int = 1) -> Any:
         """This will position and rotate the gear (self) next to the input gear2 so that they mesh properly.
 
         Parameters
@@ -999,7 +1001,7 @@ class Gear(VMobject):
         angle: float,
         axis: Vector3D = OUT,
         about_point: Sequence[float] | None = None,
-        **kwargs,
+        **kwargs: Any,
     ) -> "Gear":
         """Rotate the gear around its centre.
 
@@ -1080,8 +1082,8 @@ class Rack(VMobject):
         alpha: int = 20,
         h_a: int = 1,
         h_f: float = 1.17,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.z = num_of_teeth
         self.m = module
 
@@ -1104,7 +1106,7 @@ class Rack(VMobject):
             Line(start=ORIGIN, end=UP, stroke_opacity=0, fill_opacity=0)
         )
 
-    def generate_points(self):
+    def generate_points(self) -> Any:
         """Build the rack outline from trapezoidal teeth."""
 
         h_amax = self.pitch / 4 / np.tan(self.alpha * DEGREES)
@@ -1166,7 +1168,7 @@ class Rack(VMobject):
         angle: float,
         axis: Vector3D = OUT,
         about_point: Sequence[float] | None = None,
-        **kwargs,
+        **kwargs: Any,
     ) -> "Rack":
         """Rotate the rack around its centre.
 

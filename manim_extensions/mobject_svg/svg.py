@@ -5,6 +5,8 @@
 # patched: document the module-level constant and the cairo context helpers
 # patched: type the cairo context helpers and replace tempfile.mktemp
 
+from typing import Any
+
 """Render manim mobjects into SVG files through a Cairo surface.
 
 Vendored from ``manim-mobject-svg`` 0.5.0. The public entry points are
@@ -128,7 +130,7 @@ def _set_cairo_context_color(
     ctx: cairo.Context,
     rgbas: np.ndarray,
     vmobject: VMobject,
-):
+) -> Any:
     """Set the cairo source to a solid colour or a stroke gradient.
 
     Parameters
@@ -155,7 +157,9 @@ def _set_cairo_context_color(
         ctx.set_source(pat)
 
 
-def _apply_stroke(ctx: cairo.Context, vmobject: VMobject, background: bool = False):
+def _apply_stroke(
+    ctx: cairo.Context, vmobject: VMobject, background: bool = False
+) -> Any:
     """Stroke the current cairo path with the mobject's stroke colour.
 
     Parameters
@@ -188,7 +192,7 @@ def _apply_stroke(ctx: cairo.Context, vmobject: VMobject, background: bool = Fal
     ctx.stroke_preserve()
 
 
-def _apply_fill(ctx: cairo.Context, vmobject: VMobject):
+def _apply_fill(ctx: cairo.Context, vmobject: VMobject) -> Any:
     """Fill the current cairo path with the vmobject's fill colours.
 
     Parameters
@@ -218,7 +222,7 @@ def _temporary_svg_path() -> Path:
         return Path(handle.name)
 
 
-def _create_svg_from_vmobject_internal(vmobject: VMobject, ctx: cairo.Context):
+def _create_svg_from_vmobject_internal(vmobject: VMobject, ctx: cairo.Context) -> Any:
     """Draw one mobject into the current cairo context.
 
     Parameters

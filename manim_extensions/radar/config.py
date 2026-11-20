@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Structural configuration + bundled style presets.
 
 Every knob that is *not* a colour lives here (geometry, what to draw, fonts,
@@ -200,10 +202,10 @@ class RadarConfig:
     #: random seed for decorations that live on the chart
     seed: int = 7
     #: extra keyword arguments forwarded to every :class:`~manim.mobject.text.text_mobject.Text` mobject
-    text_kwargs: dict = field(default_factory=dict)
+    text_kwargs: dict[Any, Any] = field(default_factory=dict)
 
     # ------------------------------------------------------------------
-    def evolved(self, **changes) -> "RadarConfig":
+    def evolved(self, **changes: Any) -> "RadarConfig":
         """Return a copy with selected fields replaced.
 
         Parameters

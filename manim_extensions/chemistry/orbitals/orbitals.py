@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Atomic orbital visualization for Manim chemistry.
 
 This module provides classes for rendering atomic orbitals in 3D.
@@ -54,7 +56,7 @@ class OrbitalBase(OpenGLSurface):
         OpenGLSurface.
     """
 
-    def add_background_rectangle_to_family_members_with_points(self):
+    def add_background_rectangle_to_family_members_with_points(self) -> Any:
         """No-op override to prevent background rectangle addition on orbital surfaces."""
         pass
 
@@ -68,8 +70,8 @@ class OrbitalBase(OpenGLSurface):
         l_value: int = 0,
         m_value: int = 0,
         size: int = 1,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.n_value = n_value
         self.l_value = l_value
         self.m_value = m_value
@@ -231,8 +233,8 @@ class Orbital(OpenGLSurface):
     """
 
     def __init__(
-        self, n: int | None = None, l: int = 0, m: int = 0, size: int = 3, **kwargs
-    ):
+        self, n: int | None = None, l: int = 0, m: int = 0, size: int = 3, **kwargs: Any
+    ) -> None:
         super().__init__(self.uv_func, **kwargs)
         if not n:
             self.n = l + 1

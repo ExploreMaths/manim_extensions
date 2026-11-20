@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Solow growth model diagram for Manim.
 
 This module provides the Solow growth model diagram.
@@ -100,8 +102,8 @@ class SolowDiagram(EconDiagram):
         show_equilibrium: bool = True,
         numbered_eq: bool = False,
         show_production: bool = True,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         kwargs.setdefault("x_range", [0, 10, 1])
         kwargs.setdefault("y_range", [0, 4, 1])
         super().__init__(x_label="k", y_label="y", **kwargs)
@@ -549,7 +551,7 @@ class SolowDiagram(EconDiagram):
 
         container = self._shares_group
 
-        def updater(mob: Mobject, alpha: float):
+        def updater(mob: Mobject, alpha: float) -> Any:
             """Rebuilds the consumption/investment shares mobject at capital level k."""
             k = k_start + (k_end - k_start) * alpha
             new = self._build_shares(k, c_color, i_color)

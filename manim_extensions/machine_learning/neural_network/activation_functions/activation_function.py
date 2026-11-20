@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: highlight the evaluated point in make_evaluate_animation
 
+from typing import Any
+
 """Base class for activation function visualization."""
 
 from manim import (
@@ -74,15 +76,15 @@ class ActivationFunction(ABC, VGroup):
     def __init__(
         self,
         function_name: str | None = None,
-        x_range: list = [-1, 1],
-        y_range: list = [-1, 1],
+        x_range: list[Any] = [-1, 1],
+        y_range: list[Any] = [-1, 1],
         x_length: float = 0.5,
         y_length: float = 0.3,
         show_function_name: bool = True,
         active_color: ManimColor = config.color_scheme.active_color,
         plot_color: ManimColor = config.color_scheme.primary_color,
         rectangle_color: ManimColor = config.color_scheme.secondary_color,
-    ):
+    ) -> None:
         super(VGroup, self).__init__()
         self.function_name = function_name
         self.x_range = x_range
@@ -96,7 +98,7 @@ class ActivationFunction(ABC, VGroup):
 
         self.construct_activation_function()
 
-    def construct_activation_function(self):
+    def construct_activation_function(self) -> Any:
         """Build the axes, curve and labels for the activation function."""
         # Make an axis
         self.axes = Axes(
@@ -139,7 +141,7 @@ class ActivationFunction(ABC, VGroup):
             self.add(function_name_text)
 
     @abstractmethod
-    def apply_function(self, x_val: float | None):
+    def apply_function(self, x_val: float | None) -> Any:
         """Evaluates function at given x_val.
 
         Abstract method: concrete subclasses implement the actual

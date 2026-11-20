@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Abstract molecule base class for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule` class as a template for all molecule implementations.
@@ -33,7 +35,7 @@ class AbstractMolecule:
 
     group_class = VGroup
 
-    def __init__(self, *args, **kwargs): ...
+    def __init__(self, *args: Any, **kwargs: Any) -> None: ...
 
     @classmethod
     def molecule_from_file(
@@ -42,8 +44,8 @@ class AbstractMolecule:
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: dict | None = None,
-        *args,
-        **kwargs,
+        *args: Any,
+        **kwargs: Any,
     ) -> "AbstractMolecule":
         """
         Reads a string and returns a single molecule from the parsed data.
@@ -86,8 +88,8 @@ class AbstractMolecule:
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: dict | None = None,
-        *args,
-        **kwargs,
+        *args: Any,
+        **kwargs: Any,
     ) -> OpenGLGroup | VGroup:
         """
         Reads a file and returns a collection of molecules from that file as a OpenGLGroup or :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
@@ -140,8 +142,8 @@ class AbstractMolecule:
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: dict | None = None,
-        *args,
-        **kwargs,
+        *args: Any,
+        **kwargs: Any,
     ) -> "AbstractMolecule":
         """
         Reads a string and returns a single molecule from the parsed data.
@@ -189,8 +191,8 @@ class AbstractMolecule:
         ignore_hydrogens: bool = True,
         ignore_all_hydrogens: bool = False,
         elements_data_dict: dict | None = None,
-        *args,
-        **kwargs,
+        *args: Any,
+        **kwargs: Any,
     ) -> OpenGLGroup:
         """
         Reads a file and returns a collection of molecules from that file as a OpenGLGroup.
@@ -248,8 +250,8 @@ class AbstractMolecule:
         inchi: str | None = None,
         three_d: bool = False,
         elements_data_dict: dict | None = None,
-        *args,
-        **kwargs,
+        *args: Any,
+        **kwargs: Any,
     ) -> "AbstractMolecule":
         """
         Generates a :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule` from an identifier using PubChem API.

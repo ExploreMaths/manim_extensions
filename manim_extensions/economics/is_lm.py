@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """IS-LM diagram for Manim.
 
 This module provides the IS-LM model diagram.
@@ -77,8 +79,8 @@ class ISLMDiagram(EconDiagram):
         h: int = 1,
         show_equilibrium: bool = True,
         numbered_eq: bool = False,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         kwargs.setdefault("y_range", [-2, 8, 1])
         super().__init__(x_label="Y", y_label="r", **kwargs)
 
@@ -279,7 +281,7 @@ class ISLMDiagram(EconDiagram):
 
     # ---- Monetary policy ----
 
-    def monetary_expansion(self, ms: float, show_arrows: bool = False) -> list:
+    def monetary_expansion(self, ms: float, show_arrows: bool = False) -> list[Any]:
         """Increase in money supply → LM shifts right → lower r, higher Y.
 
         Parameters
@@ -296,7 +298,7 @@ class ISLMDiagram(EconDiagram):
         """
         return [self.shift_lm(ms=ms, show_arrows=show_arrows)]
 
-    def monetary_contraction(self, ms: float, show_arrows: bool = False) -> list:
+    def monetary_contraction(self, ms: float, show_arrows: bool = False) -> list[Any]:
         """Decrease in money supply → LM shifts left → higher r, lower Y.
 
         Parameters
@@ -315,7 +317,7 @@ class ISLMDiagram(EconDiagram):
 
     # ---- Fiscal policy ----
 
-    def fiscal_expansion(self, a: float, show_arrows: bool = False) -> list:
+    def fiscal_expansion(self, a: float, show_arrows: bool = False) -> list[Any]:
         """Increase in government spending → IS shifts right → higher r, higher Y.
 
         Parameters
@@ -332,7 +334,7 @@ class ISLMDiagram(EconDiagram):
         """
         return [self.shift_is(a=a, show_arrows=show_arrows)]
 
-    def fiscal_contraction(self, a: float, show_arrows: bool = False) -> list:
+    def fiscal_contraction(self, a: float, show_arrows: bool = False) -> list[Any]:
         """Decrease in government spending → IS shifts left → lower r, lower Y.
 
         Parameters

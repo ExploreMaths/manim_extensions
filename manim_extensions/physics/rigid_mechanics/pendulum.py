@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
 
+from typing import Any
+
 r"""Systems of :class:`~manim_extensions.physics.rigid_mechanics.pendulum.Pendulum` and their motion visualisations."""
 
 from __future__ import annotations
@@ -75,14 +77,14 @@ class MultiPendulum(VGroup):
         self,
         *bobs: Iterable[Point3D],
         pivot_point: Point3D = UP * 2,
-        rod_style: dict = {},
-        bob_style: dict = {
+        rod_style: dict[Any, Any] = {},
+        bob_style: dict[Any, Any] = {
             "radius": 0.1,
             "color": ORANGE,
             "fill_opacity": 1,
         },
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.pivot_point = pivot_point
         self.bobs = VGroup(*[Circle(**bob_style).move_to(i) for i in bobs])
         self.pins = [pivot_point]
@@ -103,7 +105,7 @@ class MultiPendulum(VGroup):
         super().__init__(**kwargs)
         self.add(self.rods, self.bobs)
 
-    def _make_joints(self, mob1: Mobject, mob2: Mobject, spacescene: SpaceScene):
+    def _make_joints(self, mob1: Mobject, mob2: Mobject, spacescene: SpaceScene) -> Any:
         """Create a pymont pin joint between two bodies (or a body and a fixed point).
 
         Parameters
@@ -125,7 +127,7 @@ class MultiPendulum(VGroup):
         joint = pymunk.PinJoint(a, b)
         spacescene.space.space.add(joint)
 
-    def _redraw_rods(self, mob: Line, pins: list, i: int):
+    def _redraw_rods(self, mob: Line, pins: list[Any], i: int) -> Any:
         """Update a rod line to connect the positions of two consecutive pins.
 
         Parameters
@@ -148,7 +150,7 @@ class MultiPendulum(VGroup):
             RIGHT * x1 + UP * y1,
         )
 
-    def start_swinging(self):
+    def start_swinging(self) -> Any:
         """Creates pymunk joints between bobs and starts the physics simulation."""
         spacescene: SpaceScene = self.bobs[0].spacescene
         pins = [self.pivot_point]
@@ -158,7 +160,7 @@ class MultiPendulum(VGroup):
             self._make_joints(pins[i + 1], pins[i], spacescene)
             self.rods[i].add_updater(lambda mob, i=i: self._redraw_rods(mob, pins, i))
 
-    def end_swinging(self):
+    def end_swinging(self) -> Any:
         """Stop swinging."""
         spacescene = self.bobs[0].spacescene
         spacescene.stop_rigidity(self.bobs)
@@ -211,14 +213,14 @@ class Pendulum(MultiPendulum):
         length: float = 3.5,
         initial_theta: float = 0.3,
         pivot_point: Point3D = UP * 2,
-        rod_style: dict = {},
-        bob_style: dict = {
+        rod_style: dict[Any, Any] = {},
+        bob_style: dict[Any, Any] = {
             "radius": 0.25,
             "color": ORANGE,
             "fill_opacity": 1,
         },
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.length = length
         self.pivot_point = pivot_point
 

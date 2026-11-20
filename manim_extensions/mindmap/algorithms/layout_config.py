@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """:class:`~manim_extensions.mindmap.algorithms.layout.Layout` configuration for mindmap algorithms.
 
 This module provides configuration classes for layout algorithms.
@@ -154,7 +156,7 @@ class LayoutConfig:
         node_spacing: float = 0.5,
         level_spacing: float = 0.5,
         sides: Vector3D | List[Vector3D] = (UP, DOWN),
-    ):
+    ) -> None:
         if not any(np.array_equal(direction, d) for d in [UP, DOWN, LEFT, RIGHT]):
             raise ValueError(f"direction must be one of {LEFT,RIGHT,UP,DOWN}")
         if not isinstance(sides, (list, tuple)):
@@ -193,7 +195,7 @@ class LayoutConfig:
         return string
 
     @property
-    def catalog(self) -> dict:
+    def catalog(self) -> dict[Any, Any]:
         """Return the catalog layout settings as a dictionary.
 
         Returns
@@ -207,11 +209,11 @@ class LayoutConfig:
     @catalog.setter
     def catalog(
         self,
-        catalog: Dict = {
+        catalog: Dict[Any, Any] = {
             "node_spacing": 0.5,
             "level_spacing": 0.5,
         },
-    ):
+    ) -> None:
         """Update the catalog layout settings from a dictionary.
 
         Parameters
@@ -223,7 +225,7 @@ class LayoutConfig:
         self.level_spacing = catalog.get("level_spacing", 0.5)
 
     @property
-    def mindmap(self) -> dict:
+    def mindmap(self) -> dict[Any, Any]:
         """Return the mind map layout settings as a dictionary.
 
         Returns
@@ -238,8 +240,12 @@ class LayoutConfig:
     @mindmap.setter
     def mindmap(
         self,
-        mindmap: Dict = {"direction": RIGHT, "node_spacing": 0.5, "level_spacing": 0.5},
-    ):
+        mindmap: Dict[Any, Any] = {
+            "direction": RIGHT,
+            "node_spacing": 0.5,
+            "level_spacing": 0.5,
+        },
+    ) -> None:
         """Update the mind map layout settings from a dictionary.
 
         Parameters
@@ -263,7 +269,7 @@ class LayoutConfig:
         self.level_spacing = mindmap.get("level_spacing", 0.5)
 
     @property
-    def timeline(self) -> dict:
+    def timeline(self) -> dict[Any, Any]:
         """Return the timeline layout settings as a dictionary.
 
         Returns
@@ -278,12 +284,12 @@ class LayoutConfig:
     @timeline.setter
     def timeline(
         self,
-        timeline: Dict = {
+        timeline: Dict[Any, Any] = {
             "node_spacing": 0.5,
             "level_spacing": 0.5,
             "sides": (UP, DOWN),
         },
-    ):
+    ) -> None:
         """Update the timeline layout settings from a dictionary.
 
         Parameters

@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Standard mind map layout algorithm."""
 
 # unlinked-class-ok: Source
@@ -61,7 +63,7 @@ class TreeNode:
         self,
         height: float = 0,
         width: float = 0,
-    ):
+    ) -> None:
         self.width = width
         self.height = height
         self.x: float = 0
@@ -71,7 +73,7 @@ class TreeNode:
         self.children: List[TreeNode] = []
         self.parent: TreeNode = None
 
-    def add_child(self, child: "TreeNode"):
+    def add_child(self, child: "TreeNode") -> Any:
         """Add a child node and establish the parent-child relationship.
 
         Parameters
@@ -125,7 +127,7 @@ def split_integer(n: int) -> tuple[int, int]:
     return k, k
 
 
-def sync_copy_bfs(src: TreeNode, dst: object):
+def sync_copy_bfs(src: TreeNode, dst: object) -> Any:
     """
     Synchronously traverse two trees and copy data from src to dst.
 
@@ -215,7 +217,7 @@ class StandardLayout(Layout):
         direction: LayoutDirection = LayoutDirection.LeftToRight,
         node_spacing: float = 0.5,
         level_spacing: float = 0.5,
-    ):
+    ) -> None:
         self.root = root
         self.direction = direction
         self.flip_direction = self._flip_direction(direction)
@@ -244,7 +246,7 @@ class StandardLayout(Layout):
             case LayoutDirection.BottomToTop:
                 return LayoutDirection.TopToBottom
 
-    def _split(self):
+    def _split(self) -> Any:
         """Split the root's children into left/right (or top/bottom) parts."""
         self.left = TreeNode(self.root.height, self.root.width)
         if (number := len(self.root.children)) > 0:
@@ -279,7 +281,7 @@ class StandardLayout(Layout):
         sync_copy_bfs(self.left, self.root)
         return self.root
 
-    def _offset(self, node: TreeNode, x: float, y: float):
+    def _offset(self, node: TreeNode, x: float, y: float) -> Any:
         """Translate a subtree by *(x, y)* and mark it as flipped.
 
         Parameters
@@ -297,7 +299,7 @@ class StandardLayout(Layout):
         for child in node.children:
             self._offset(child, x, y)
 
-    def _merge(self):
+    def _merge(self) -> Any:
         """Merge the right (or bottom) subtree into the left tree."""
         for child in self.right.children:
             self.left.add_child(child)

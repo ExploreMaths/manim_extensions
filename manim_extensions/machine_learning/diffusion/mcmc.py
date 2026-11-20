@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import matplotlib/seaborn (ml extra)
 
+from typing import Any
+
 """
 Tool for animating Markov Chain Monte Carlo simulations in 2D.
 """
@@ -105,7 +107,7 @@ class MultidimensionalGaussianPosterior:
         scale: int = 3,
         mu: VectorND | None = None,
         var: VectorND | None = None,
-    ):
+    ) -> None:
         np.random.seed(seed)
         self.scale = scale
 
@@ -350,11 +352,11 @@ class MCMCAxes(Group):
         reject_line_color: ManimColor = RED,
         line_color: ManimColor = BLUE,
         line_stroke_width: int = 2,
-        x_range: list = [-3, 3],
-        y_range: list = [-3, 3],
+        x_range: list[Any] = [-3, 3],
+        y_range: list[Any] = [-3, 3],
         x_length: int = 5,
         y_length: int = 5,
-    ):
+    ) -> None:
         super().__init__()
         self.dot_color = dot_color
         self.dot_radius = dot_radius
@@ -379,7 +381,7 @@ class MCMCAxes(Group):
         self.add(self.axes)
 
     @override_animation(Create)
-    def _create_override(self, **kwargs) -> AnimationGroup:
+    def _create_override(self, **kwargs: Any) -> AnimationGroup:
         """Create the axes with a guarded animation.
 
         Parameters
@@ -504,7 +506,7 @@ class MCMCAxes(Group):
         prop_fn: Callable[[VectorND], tuple[VectorND, float]] = gaussian_proposal,
         show_dots: bool = False,
         true_samples: Point2D_Array | None = None,
-        sampling_kwargs: dict = {},
+        sampling_kwargs: dict[Any, Any] = {},
     ) -> Succession:
         """
         Makes an animation for visualizing a 2D markov chain using

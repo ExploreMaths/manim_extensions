@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Linked IS-LM and AD-AS diagrams for Manim.
 
 This module provides linked IS-LM and AD-AS diagrams for policy analysis.
@@ -64,8 +66,8 @@ class LinkedISLMADAS(VGroup):
         spacing: float = 1.0,
         numbered_eq: bool = False,
         show_arrows: bool = False,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
 
         self._show_arrows = show_arrows
@@ -98,7 +100,7 @@ class LinkedISLMADAS(VGroup):
 
     def monetary_expansion(
         self, ms: float, m: float | None = None, v: float | None = None
-    ) -> list:
+    ) -> list[Any]:
         """Monetary expansion: LM shifts right, AD shifts right.
 
         Parameters
@@ -126,7 +128,7 @@ class LinkedISLMADAS(VGroup):
 
     def monetary_contraction(
         self, ms: float, m: float | None = None, v: float | None = None
-    ) -> list:
+    ) -> list[Any]:
         """Monetary contraction: LM shifts left, AD shifts left.
 
         Parameters
@@ -156,7 +158,7 @@ class LinkedISLMADAS(VGroup):
 
     def fiscal_expansion(
         self, a: float, m: float | None = None, v: float | None = None
-    ) -> list:
+    ) -> list[Any]:
         """Fiscal expansion: IS shifts right, AD shifts right.
 
         Parameters
@@ -184,7 +186,7 @@ class LinkedISLMADAS(VGroup):
 
     def fiscal_contraction(
         self, a: float, m: float | None = None, v: float | None = None
-    ) -> list:
+    ) -> list[Any]:
         """Fiscal contraction: IS shifts left, AD shifts left.
 
         Parameters

@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Base classes for economic diagrams.
 
 This module provides the base classes for economic diagram visualizations.
@@ -114,8 +116,8 @@ class EconDiagram(VGroup):
         y_range: Sequence[float] | None = None,
         x_length: float = 6,
         y_length: float = 4,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
 
         x_range = x_range or [0, 10, 1]

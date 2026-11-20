@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Timeline layout algorithm - Python implementation."""
 
 from __future__ import annotations
@@ -120,7 +122,7 @@ def walk(
     is_root: bool = False,
     layer_index: int = 0,
     index: int = 0,
-):
+) -> Any:
     """Tree traversal utility.
 
     Supports pre-order (before_callback) and post-order (after_callback) callbacks.
@@ -229,7 +231,7 @@ class TimeLineLayout(Layout):
         ),
         level_spacing: float = 0.5,
         node_spacing: float = 0.5,
-    ):
+    ) -> None:
         self.root = TimelineNode.from_node(root)
         self.level_spacing = level_spacing
         self.node_spacing = node_spacing
@@ -252,7 +254,7 @@ class TimeLineLayout(Layout):
         return self.root.node
 
     # ==================== Stage 1: base-value computation ====================
-    def _compute_base(self):
+    def _compute_base(self) -> Any:
         """Pre-order traversal: create nodes, set root position, compute second-level top values."""
 
         def before_callback(
@@ -303,7 +305,7 @@ class TimeLineLayout(Layout):
         walk(self.root, None, before_callback, None, True, 0)
 
     # ==================== Stage 2: precise coordinate computation ====================
-    def _compute_coords(self):
+    def _compute_coords(self) -> Any:
         """Pre-order traversal: compute node left (x) and top (y)."""
 
         def before_callback(
@@ -352,7 +354,7 @@ class TimeLineLayout(Layout):
         walk(self.root, None, before_callback, None, True, 0)
 
     # ==================== Stage 3: collision adjustment ====================
-    def _adjust(self):
+    def _adjust(self) -> Any:
         """Pre-order + post-order traversal: adjust node left and top."""
 
         def before_callback(
@@ -395,7 +397,7 @@ class TimeLineLayout(Layout):
             is_root: bool,
             layer_index: int,
             index: int,
-        ):
+        ) -> Any:
             # Special handling: mirror-flip upward-growing branches
             """_adjust after_callback helper.
 
@@ -428,7 +430,7 @@ class TimeLineLayout(Layout):
         walk(self.root, None, before_callback, after_callback, True, 0)
 
     # ==================== Core collision-adjustment algorithms ====================
-    def _update_brothers_left(self, node: TimelineNode):
+    def _update_brothers_left(self, node: TimelineNode) -> Any:
         """Adjust siblings' left (x coordinate).
 
         Logic: traverse the root's children (second-level nodes). If a node's
@@ -454,7 +456,7 @@ class TimeLineLayout(Layout):
             if difference > 0:
                 total_add_width += difference
 
-    def _update_brothers_top(self, node: TimelineNode, add_height: float):
+    def _update_brothers_top(self, node: TimelineNode, add_height: float) -> Any:
         """Adjust siblings' top (y coordinate).
 
         Logic: the current node's subtree is tall, so following siblings in the
@@ -520,7 +522,7 @@ class TimeLineLayout(Layout):
         """
         total_height = 0.0
 
-        def loop(n: TimelineNode):
+        def loop(n: TimelineNode) -> Any:
             """Recursively accumulate the total height of a subtree.
 
             Parameters
@@ -554,7 +556,7 @@ class TimeLineLayout(Layout):
             ``"bottom"`` representing the bounding box of the subtree.
         """
 
-        def walk_tree(root: TimelineNode) -> dict:
+        def walk_tree(root: TimelineNode) -> dict[Any, Any]:
             """Recursively walk the subtree to find boundary values.
 
             Parameters
@@ -594,7 +596,9 @@ class TimeLineLayout(Layout):
 
         return walk_tree(node)
 
-    def _update_children(self, children: List[TimelineNode], prop: str, offset: float):
+    def _update_children(
+        self, children: List[TimelineNode], prop: str, offset: float
+    ) -> Any:
         """Recursively shift a property on each child in a list.
 
         Parameters
@@ -613,7 +617,7 @@ class TimeLineLayout(Layout):
                 self._update_children(item.children, prop, offset)
 
     # ==================== Coordinate write-back ====================
-    def _apply_coords(self, node: TimelineNode):
+    def _apply_coords(self, node: TimelineNode) -> Any:
         """Write computed layout coordinates back to the original node tree.
 
         Sets ``x``, ``y``, ``side``, and ``level`` on the wrapped

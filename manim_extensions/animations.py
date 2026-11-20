@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2020 manim-kindergarten
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Custom animations for Manim."""
 
 from .utils.deprecation import deprecated
@@ -79,7 +81,7 @@ class TypeWriter(Animation):
                self.wait()
     """
 
-    def __init__(self, mobject: Text, interval: float = 0.1, **kwargs: object):
+    def __init__(self, mobject: Text, interval: float = 0.1, **kwargs: Any) -> None:
         assert isinstance(mobject, Text), "TypeWriter only supports Text mobjects."
         self.interval = interval
         self.char_count = len(mobject.submobjects)
@@ -90,7 +92,7 @@ class TypeWriter(Animation):
 
         super().__init__(mobject, **kwargs)
 
-    def interpolate_mobject(self, alpha: float):
+    def interpolate_mobject(self, alpha: float) -> Any:
         """Set the visible characters based on the animation progress ``alpha``.
 
         This method is called internally by Manim during the animation.  It
@@ -374,7 +376,9 @@ class WriteRandom(LaggedStart):
                self.wait()
     """
 
-    def __init__(self, mobject: VMobject, lag_ratio: float = 0.1, **kwargs: object):
+    def __init__(
+        self, mobject: VMobject, lag_ratio: float = 0.1, **kwargs: Any
+    ) -> None:
         submobjects = mobject.submobjects
         indices = list(range(len(submobjects)))
         random.shuffle(indices)
@@ -418,7 +422,9 @@ class ReversedWrite(LaggedStart):
                self.wait()
     """
 
-    def __init__(self, mobject: VMobject, lag_ratio: float = 0.1, **kwargs: object):
+    def __init__(
+        self, mobject: VMobject, lag_ratio: float = 0.1, **kwargs: Any
+    ) -> None:
         submobjects = mobject.submobjects
         indices = list(range(len(submobjects) - 1, -1, -1))
         super().__init__(
@@ -460,7 +466,7 @@ class FadeInRandom(LaggedStart):
                self.wait()
     """
 
-    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: object):
+    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any) -> None:
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
         super().__init__(
@@ -502,7 +508,7 @@ class FadeOutRandom(LaggedStart):
                self.play(FadeOutRandom(mob))
     """
 
-    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: object):
+    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any) -> None:
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
         super().__init__(
@@ -546,7 +552,7 @@ class GrowRandom(LaggedStart):
                self.wait()
     """
 
-    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: object):
+    def __init__(self, mobject: Mobject, lag_ratio: float = 0.1, **kwargs: Any) -> None:
         indices = list(range(len(mobject.submobjects)))
         random.shuffle(indices)
         super().__init__(
@@ -602,8 +608,8 @@ class PassingRectangle(Animation):
         color: ManimColor = RED,
         buff: float = 0.05,
         fill_opacity: float = 0.6,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.mob_left = mobject.get_left() + buff * LEFT
         self.mob_right = mobject.get_right() + buff * RIGHT
         self.height = mobject.height + 2 * buff
@@ -618,7 +624,7 @@ class PassingRectangle(Animation):
         rect.move_to((self.mob_left + self.mob_right) / 2)
         super().__init__(rect, rate_func=linear, **kwargs)
 
-    def interpolate_mobject(self, alpha: float):
+    def interpolate_mobject(self, alpha: float) -> Any:
         """Slide and resize the sweep rectangle based on ``alpha``.
 
         Parameters
@@ -682,8 +688,8 @@ class LaggedCreation(Animation):
         mobject: Mobject,
         lag_ratio: float = 1.0,
         start_ratio: float = 1 / 6,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.lag_ratio = lag_ratio
         self.start_ratio = start_ratio
         super().__init__(mobject, rate_func=linear, **kwargs)
@@ -781,8 +787,8 @@ class HighLightWithLines(AnimationGroup):
         color: ManimColor = RED,
         buff: float = 0.05,
         rec_opacity: float = 0.5,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         line_up = Line(color=color, stroke_width=2)
         line_up.width = config.frame_width
         line_up.next_to(mobject, UP, buff=buff)
@@ -859,8 +865,8 @@ class UnHighLightWithLines(AnimationGroup):
         color: ManimColor = RED,
         buff: float = 0.05,
         rec_opacity: float = 0.5,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         parts = getattr(mobject, "_highlight_with_lines_parts", None)
         if parts is not None:
             # remove exactly the objects created by HighLightWithLines

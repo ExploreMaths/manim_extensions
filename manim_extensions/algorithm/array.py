@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """:class:`~manim_extensions.algorithm.array.Array` data structure for algorithm visualization."""
 
 from manim import ManimColor, VMobject
@@ -65,8 +67,8 @@ class Array(VMobject):
         box_type: NodeBoxType = NodeConfig.BOX_TYPE,
         box_color: ManimColor = NodeConfig.BOX_COLOR,
         text_scale: float = 1.0,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
         if total_width is None:
             total_width = NodeConfig.WIDTH * len(data)

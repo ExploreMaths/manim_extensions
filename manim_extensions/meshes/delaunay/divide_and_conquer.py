@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """
 functions to create delaunay meshes by divide and conquer.
 """
@@ -116,13 +118,13 @@ class DivideAndConquer:
                self.wait()
     """
 
-    def __init__(self, scene: Scene, triangle_mesh: TriangleManim2DMesh):
+    def __init__(self, scene: Scene, triangle_mesh: TriangleManim2DMesh) -> None:
         self.scene: Scene = scene
         self.triangle_mesh: TriangleManim2DMesh = triangle_mesh
 
     def split_points(
         self,
-        vert_indices: list,
+        vert_indices: list[Any],
         dash_length: float = 0.2,
         line_width: float = 1,
         speed: float = 1.0,
@@ -181,7 +183,7 @@ class DivideAndConquer:
             split_line,
         )
 
-    def triangulate_leq_3(self, vert_indices: List):
+    def triangulate_leq_3(self, vert_indices: List[Any]) -> Any:
         """Triangulate a base case of at most three vertices.
 
         Creates a triangle (or a degenerate segment when only two vertices
@@ -212,7 +214,9 @@ class DivideAndConquer:
         """Commit a mesh mutation to the renderer before the next animation."""
         self.scene.renderer.update_frame(self.scene)
 
-    def _right_candidate(self, base_lr: list, rr_edges: Mobject, speed: float = 1.0):
+    def _right_candidate(
+        self, base_lr: list[Any], rr_edges: Mobject, speed: float = 1.0
+    ) -> Any:
         """Find the best right-side candidate vertex for the merge step.
 
         The method evaluates all right-side vertices connected to the
@@ -284,7 +288,9 @@ class DivideAndConquer:
                 self.scene.wait(0.3 * speed)
         return None
 
-    def _left_candidate(self, base_lr: list, ll_edges: Mobject, speed: float = 1.0):
+    def _left_candidate(
+        self, base_lr: list[Any], ll_edges: Mobject, speed: float = 1.0
+    ) -> Any:
         """Find the best left-side candidate vertex for the merge step.
 
         Mirror of :meth:`~manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._right_candidate` for the left side.  Evaluates
@@ -354,8 +360,8 @@ class DivideAndConquer:
 
     def merge_sets(
         self,
-        indices_left: List,
-        indices_right: List,
+        indices_left: List[Any],
+        indices_right: List[Any],
         split_line: DashedLine,
         speed: float = 1.0,
     ) -> list[int]:
@@ -445,7 +451,9 @@ class DivideAndConquer:
         merged_indices.extend(indices_right)
         return merged_indices
 
-    def _find_base_lr(self, indices_left: List, indices_right: List) -> tuple[int, int]:
+    def _find_base_lr(
+        self, indices_left: List[Any], indices_right: List[Any]
+    ) -> tuple[int, int]:
         """Find the initial base edge connecting the left and right vertex sets.
 
         The method identifies the rightmost vertex of the left hull and the
@@ -464,7 +472,7 @@ class DivideAndConquer:
             The ``(l, r)`` vertex indices forming the initial base edge.
         """
 
-        def next_index(cur_idx: int, indices: list) -> int | None:
+        def next_index(cur_idx: int, indices: list[Any]) -> int | None:
             """Return the next index in a cyclic sequence.
 
             Parameters
@@ -545,7 +553,7 @@ class DivideAndConquer:
 
         return indices_left[left], indices_right[right]
 
-    def divide_and_conquer_recursive(self, speed: float = 1.0):
+    def divide_and_conquer_recursive(self, speed: float = 1.0) -> Any:
         """Run the complete recursive divide-and-conquer algorithm.
 
         Starts with the full set of mesh vertices and recursively splits,
@@ -572,7 +580,7 @@ class DivideAndConquer:
         self._divide_and_conquer_recursive(vert_indices, speed)
 
     def _divide_and_conquer_recursive(
-        self, vert_indices: List, speed: float = 1.0
+        self, vert_indices: List[Any], speed: float = 1.0
     ) -> list[int]:
         """Internal recursive implementation of the divide-and-conquer algorithm.
 

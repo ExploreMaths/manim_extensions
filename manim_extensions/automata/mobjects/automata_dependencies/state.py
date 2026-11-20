@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Contains classes for state."""
 
 from __future__ import annotations
@@ -81,7 +83,7 @@ class State:
         initial: bool | None = None,
         final: bool | None = None,
         id: int | None = None,
-    ):
+    ) -> None:
         if id is not None:
             self.id = int(id)
         else:
@@ -94,7 +96,7 @@ class State:
         # list of transitions links this state to others
         self.transitions = []
 
-    def add_transition_to_state(self, transition: Transition) -> list:
+    def add_transition_to_state(self, transition: Transition) -> list[Any]:
         """Add a transition to the state's transition list.
 
         Parameters

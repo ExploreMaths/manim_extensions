@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Feed-forward neural network architecture visualization."""
 
 from ... import config
@@ -31,8 +33,8 @@ class FeedForwardNeuralNetwork(NeuralNetwork):
         layer_node_count: list[int],
         node_radius: float = 0.08,
         node_color: ManimColor = config.color_scheme.primary_color,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         # construct layer
         layers = []
         for num_nodes in layer_node_count:

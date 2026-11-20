@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Feed forward layer for neural network visualizations.
 
 This module provides the feed forward layer class for neural network visualizations.
@@ -109,8 +111,8 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         rectangle_stroke_width: float = 2.0,
         animation_dot_color: ManimColor = config.color_scheme.active_color,
         activation_function: ActivationFunction | str | None = None,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
         self.num_nodes = num_nodes
         self.layer_buffer = layer_buffer
@@ -131,8 +133,8 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> Any:
         """Creates the neural network layer.
 
         Parameters
@@ -173,7 +175,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         self.construct_activation_function()
         super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def construct_activation_function(self):
+    def construct_activation_function(self) -> Any:
         """Build the activation-function plot for this feed-forward layer."""
         # Add the activation function
         if not self.activation_function is None:
@@ -190,7 +192,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             self.add(self.activation_function)
 
     def make_dropout_forward_pass_animation(
-        self, layer_args: dict, **kwargs
+        self, layer_args: dict[Any, Any], **kwargs: Any
     ) -> Succession:
         """Makes a forward pass animation with dropout.
 
@@ -227,7 +229,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         return succession
 
     def make_forward_pass_animation(
-        self, layer_args: dict = {}, **kwargs
+        self, layer_args: dict[Any, Any] = {}, **kwargs: Any
     ) -> Succession | AnimationGroup:
         """Return a highlight animation for all nodes, respecting dropout indices if given.
 
@@ -269,7 +271,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
                 return succession
 
     @override_animation(Create)
-    def _create_override(self, **kwargs) -> Animation:
+    def _create_override(self, **kwargs: Any) -> Animation:
         """Create the surrounding rectangle and all nodes.
 
         Parameters
@@ -323,7 +325,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             The rightmost point of the surrounding shape."""
         return self.surrounding_rectangle.get_right()
 
-    def move_to(self, mobject_or_point: Mobject):
+    def move_to(self, mobject_or_point: Mobject) -> Any:
         """Moves the center of the layer to the given mobject or point.
 
         Parameters

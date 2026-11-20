@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """:class:`~manim_extensions.compass.compass.compass.Compass` class for Manim.
 
 This module provides compass visualization for geometry.
@@ -87,8 +89,8 @@ class Compass(VGroup):
         leg_length: float = 3.1,
         leg_width: float = 0.12,
         r: float = 0.2,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(stroke_width=stroke_width, **kwargs)
         self.head_color = head_color
         self.niddle_color = niddle_color

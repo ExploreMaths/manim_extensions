@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """:class:`~manim_extensions.compass.compass.ruler.Ruler` class for Manim.
 
 This module provides ruler visualization for geometry.
@@ -60,8 +62,8 @@ class Ruler(VGroup):
         ruler_color: ParsableManimColor = WHITE,
         stroke_width: float = 2,
         fill_opacity: float = 0.4,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
         self.ruler_length = length
         self.ruler_width = width

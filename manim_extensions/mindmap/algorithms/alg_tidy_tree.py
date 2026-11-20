@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """
 Non-layered Tidy Tree :class:`~manim_extensions.mindmap.algorithms.layout.Layout` Algorithm (Python Implementation).
 Used to compute node positions for tree structures.
@@ -173,7 +175,7 @@ class IYLNode:
     )
 
 
-def move_right(node: object, move: float, is_horizontal: bool):
+def move_right(node: object, move: float, is_horizontal: bool) -> Any:
     """Move a node and all its descendants by ``move`` in the non-layered direction.
 
     Parameters
@@ -213,7 +215,7 @@ def get_min(node: object, is_horizontal: bool) -> float:
     return res
 
 
-def normalize(node: object, is_horizontal: bool):
+def normalize(node: object, is_horizontal: bool) -> Any:
     """Shift the subtree so that its minimum non-layered coordinate is 0.
 
     Parameters
@@ -227,7 +229,7 @@ def normalize(node: object, is_horizontal: bool):
     move_right(node, -min_val, is_horizontal)
 
 
-def convert_back(converted: WrappedTree, root: object, is_horizontal: bool):
+def convert_back(converted: WrappedTree, root: object, is_horizontal: bool) -> Any:
     """Write computed coordinates back to the original node tree.
 
     Copies :attr:`~manim_extensions.mindmap.algorithms.alg_tidy_tree.WrappedTree.x` to the original node's ``x`` or ``y``
@@ -252,7 +254,7 @@ def convert_back(converted: WrappedTree, root: object, is_horizontal: bool):
             convert_back(child, root.children[i], is_horizontal)
 
 
-def layer(node: object, direction: str, level_spacing: float):
+def layer(node: object, direction: str, level_spacing: float) -> Any:
     """Set the layer (depth) coordinate for each node in the tree.
 
     Assigns ``level`` based on the parent's level and positions the
@@ -338,7 +340,7 @@ class TidyTreeLayout(Layout):
         direction: LayoutDirection = LayoutDirection.LeftToRight,
         node_spacing: float = 0.5,
         level_spacing: float = 0.5,
-    ):
+    ) -> None:
         self.root = root
         self.direction = direction
         self.is_horizontal = self._is_horizontal(direction)
@@ -374,7 +376,7 @@ class TidyTreeLayout(Layout):
         normalize(self.root, self.is_horizontal)
         return self.root
 
-    def first_walk(self, t: WrappedTree):
+    def first_walk(self, t: WrappedTree) -> Any:
         """First traversal: compute prelim and mod, detect and eliminate overlaps.
 
         Parameters
@@ -400,7 +402,7 @@ class TidyTreeLayout(Layout):
         self.position_root(t)
         self.set_extremes(t)
 
-    def set_extremes(self, t: WrappedTree):
+    def set_extremes(self, t: WrappedTree) -> Any:
         """Set the extreme (leftmost and rightmost) nodes for a subtree.
 
         Parameters
@@ -442,7 +444,7 @@ class TidyTreeLayout(Layout):
             ih = ih.nxt
         return IYLNode(low, index, ih)
 
-    def separate(self, t: WrappedTree, i: int, ih: IYLNode | None):
+    def separate(self, t: WrappedTree, i: int, ih: IYLNode | None) -> Any:
         """
         Core of the algorithm: separate the i-th subtree from previous subtrees to avoid overlap.
 
@@ -501,7 +503,7 @@ class TidyTreeLayout(Layout):
         elif sr is not None and cl is None:
             self.set_right_thread(t, i, sr, mssr)
 
-    def move_subtree(self, t: WrappedTree, i: int, si: int, dist: float):
+    def move_subtree(self, t: WrappedTree, i: int, si: int, dist: float) -> Any:
         """Shift a subtree by adding ``dist`` to its modifier.
 
         Parameters
@@ -520,7 +522,7 @@ class TidyTreeLayout(Layout):
         t.children[i].mod_sum_extreme_right += dist
         self.distribute_extra(t, i, si, dist)
 
-    def distribute_extra(self, t: WrappedTree, i: int, si: int, dist: float):
+    def distribute_extra(self, t: WrappedTree, i: int, si: int, dist: float) -> Any:
         """Distribute extra spacing among siblings after a subtree is moved.
 
         Parameters
@@ -584,7 +586,9 @@ class TidyTreeLayout(Layout):
             return t.height / 2 + abs(t.x)
         return abs(t.y) + t.height / 2
 
-    def set_left_thread(self, t: WrappedTree, i: int, cl: WrappedTree, modsumcl: float):
+    def set_left_thread(
+        self, t: WrappedTree, i: int, cl: WrappedTree, modsumcl: float
+    ) -> Any:
         """Set the left thread for a subtree whose left contour is exhausted.
 
         Parameters
@@ -608,7 +612,7 @@ class TidyTreeLayout(Layout):
 
     def set_right_thread(
         self, t: WrappedTree, i: int, sr: WrappedTree, modsumsr: float
-    ):
+    ) -> Any:
         """Set the right thread for a subtree whose right contour is exhausted.
 
         Parameters
@@ -630,7 +634,7 @@ class TidyTreeLayout(Layout):
         t.children[i].extreme_right = t.children[i - 1].extreme_right
         t.children[i].mod_sum_extreme_right = t.children[i - 1].mod_sum_extreme_right
 
-    def position_root(self, t: WrappedTree):
+    def position_root(self, t: WrappedTree) -> Any:
         """Place the root of a subtree halfway between its first and last children.
 
         Parameters
@@ -645,7 +649,7 @@ class TidyTreeLayout(Layout):
             + t.children[-1].prelim
         ) / 2
 
-    def second_walk(self, t: WrappedTree, modsum: float):
+    def second_walk(self, t: WrappedTree, modsum: float) -> Any:
         """Second traversal: accumulate prelim and mod into final coordinates.
 
         Parameters
@@ -665,7 +669,7 @@ class TidyTreeLayout(Layout):
         for child in t.children:
             self.second_walk(child, modsum)
 
-    def add_child_spacing(self, t: WrappedTree):
+    def add_child_spacing(self, t: WrappedTree) -> Any:
         """Apply accumulated shift and change values to children's mod.
 
         Parameters
@@ -680,10 +684,10 @@ class TidyTreeLayout(Layout):
             modsumdelta += d + child.change
             child.mod += modsumdelta
 
-    def compute_connectors(self):
+    def compute_connectors(self) -> Any:
         """Compute connector paths between each node and its parent in the layout."""
 
-        def compute_node(node: object):
+        def compute_node(node: object) -> Any:
             """Compute the connector path from a node to its parent.
 
             Parameters

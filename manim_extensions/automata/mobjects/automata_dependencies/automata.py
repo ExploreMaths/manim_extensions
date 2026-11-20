@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants
 
+from typing import Any
+
 """Automata data structures."""
 
 from .xml_parser import parse_xml_file
@@ -87,7 +89,7 @@ class FiniteStateAutomaton:
 
     id_iter = itertools.count()
 
-    def __init__(self, json_template: dict | None = None):
+    def __init__(self, json_template: dict | None = None) -> None:
         self.id = next(self.id_iter)
         self.states: list[State] = []
         self.transitions: list[Transition] = []
@@ -97,7 +99,7 @@ class FiniteStateAutomaton:
         if json_template:
             self.construct_from_json(json_template)
 
-    def process_xml(self, xml_file: str):
+    def process_xml(self, xml_file: str) -> Any:
         """Construct the automaton from an XML file.
 
         Parameters
@@ -107,7 +109,7 @@ class FiniteStateAutomaton:
         """
         self.construct_from_json(parse_xml_file(xml_file))
 
-    def construct_from_json(self, json_dictionary: dict):
+    def construct_from_json(self, json_dictionary: dict[Any, Any]) -> Any:
         """Construct the automaton from a JSON-like dictionary.
 
         Parameters
@@ -121,7 +123,7 @@ class FiniteStateAutomaton:
         self.construct_states(states)
         self.construct_transitions(transitions)
 
-    def construct_states(self, states: list[dict[str, object]]):
+    def construct_states(self, states: list[dict[str, object]]) -> Any:
         """Construct state objects from a list of state dictionaries.
 
         Parameters
@@ -136,7 +138,7 @@ class FiniteStateAutomaton:
             name = state_data.get("@name", str(state_id))
             self.states.append(State(name, initial=initial, final=final, id=state_id))
 
-    def construct_transitions(self, transitions: list[dict[str, object]]):
+    def construct_transitions(self, transitions: list[dict[str, object]]) -> Any:
         """Construct transition objects from a list of transition dictionaries.
 
         Parameters
@@ -321,7 +323,7 @@ class PushDownAutomaton(FiniteStateAutomaton):
                self.add(info)
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
 
     def automaton_step(

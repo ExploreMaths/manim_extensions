@@ -26,7 +26,7 @@ def get_arc(
     pen_pos: Point3D,
     angle: float,
     color: ParsableManimColor = PURE_YELLOW,
-    **kwargs: object,
+    **kwargs: Any,
 ) -> Arc:
     """Construct an arc from its centre and starting point.
 

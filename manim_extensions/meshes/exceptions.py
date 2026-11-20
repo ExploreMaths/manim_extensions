@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Exceptions raised while validating mesh topology and geometry."""
 
 # unlinked-class-ok: Mesh
@@ -110,7 +112,7 @@ class InvalidMeshDimensionsException(Exception):
         actual: int | tuple[int | str, int | str],
         expected: int | tuple[int | str, int | str],
         name: str = "",
-    ):
+    ) -> None:
         if name == "":
             super().__init__(
                 f"Dimensions is expected to be {expected} but was {actual}."
@@ -149,7 +151,7 @@ class InvalidShapeException(Exception):
        mm.move_vertices_to(Scene(), np.zeros((2, 3)))
     """
 
-    def __init__(self, name: str, actual: int, expected: int):
+    def __init__(self, name: str, actual: int, expected: int) -> None:
         super().__init__(
             f"Size of {name} is expected to be {expected} but was {actual}."
         )

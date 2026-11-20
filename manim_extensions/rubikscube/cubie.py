@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Individual cubie used by the Rubik's Cube mobject."""
 
 from manim.constants import DOWN, IN, LEFT, OUT, RIGHT, UP
@@ -53,7 +55,7 @@ class Cubie(VGroup):
                self.wait()
     """
 
-    def __init__(self, x: int, y: int, z: int, dim: int, colors: list):
+    def __init__(self, x: int, y: int, z: int, dim: int, colors: list[Any]) -> None:
         self.dimensions = dim
         self.colors = colors
         self.position = np.array([x, y, z])
@@ -80,7 +82,7 @@ class Cubie(VGroup):
             [round(self.get_x(), 3), round(self.get_y(), 3), round(self.get_z(), 3)]
         )
 
-    def generate_points(self):
+    def generate_points(self) -> Any:
         """Construct the six square faces that correspond to this cubie."""
         faces = np.array(
             get_faces_of_cubie(
@@ -137,7 +139,7 @@ class Cubie(VGroup):
         elif face == "D":
             return self.faces[tuple(IN)]
 
-    def init_colors(self):
+    def init_colors(self) -> Any:
         """Apply fill, stroke, and background-stroke colours to the cubie."""
         self.set_fill(
             color=self.fill_color or self.color, opacity=self.fill_opacity, family=False

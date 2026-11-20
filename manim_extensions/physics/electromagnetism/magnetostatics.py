@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Magnetostatics visualisations, including field lines and current elements."""
 
 from __future__ import annotations
@@ -56,8 +58,8 @@ class Wire(VMobject, metaclass=ConvertToOpenGL):
         stroke: VMobject,
         current: float = 1,
         samples: int = 16,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.current = current
         self.samples = samples
 
@@ -97,7 +99,7 @@ class MagneticField(ArrowVectorField):
 
     """
 
-    def __init__(self, *wires: Wire, **kwargs):
+    def __init__(self, *wires: Wire, **kwargs: Any) -> None:
         dls = []
         currents = []
         for wire in wires:

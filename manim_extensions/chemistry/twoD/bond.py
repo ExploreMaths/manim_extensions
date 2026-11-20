@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """2D bond representation for Manim chemistry.
 
 This module provides bond classes for representing chemical bonds in 2D.
@@ -88,8 +90,8 @@ class BaseMBondObject(VGroup):
         subtype: Literal["complete", "skeleton", "over_bond"] | None = None,
         color: str = WHITE,
         index: int = 0,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         VGroup.__init__(self, **kwargs)
         self.from_atom = from_atom
         self.to_atom = to_atom
@@ -250,7 +252,7 @@ class BaseMBondObject(VGroup):
 
         return perp_vector / np.linalg.norm(perp_vector)
 
-    def no_subtype(self):
+    def no_subtype(self) -> Any:
         """
         Provide the geometry used when no bond subtype is selected.
 
@@ -258,7 +260,7 @@ class BaseMBondObject(VGroup):
         """
         pass
 
-    def shorter_subtype(self):
+    def shorter_subtype(self) -> Any:
         """
         Provide the geometry used when the bond is drawn shorter on both ends.
 
@@ -266,7 +268,7 @@ class BaseMBondObject(VGroup):
         """
         pass
 
-    def shorter_from_subtype(self):
+    def shorter_from_subtype(self) -> Any:
         """
         Provide the geometry used when the bond is shortened at the from-atom end.
 
@@ -274,7 +276,7 @@ class BaseMBondObject(VGroup):
         """
         pass
 
-    def shorter_to_subtype(self):
+    def shorter_to_subtype(self) -> Any:
         """
         Provide the geometry used when the bond is shortened at the to-atom end.
 
@@ -282,7 +284,7 @@ class BaseMBondObject(VGroup):
         """
         pass
 
-    def longer_subtype(self):
+    def longer_subtype(self) -> Any:
         """
         Provide the geometry used when the bond is drawn longer.
 
@@ -290,7 +292,7 @@ class BaseMBondObject(VGroup):
         """
         pass
 
-    def create_line(self):
+    def create_line(self) -> Any:
         """
         Assemble the bond's line components for the selected subtype.
 
@@ -461,8 +463,8 @@ class DoubleBond(BaseMBondObject):
         side: int = 0,
         distance: float = 0.15,
         double_bond_scale: float = 0.7,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.side = side
         self.distance = distance
         self.double_bond_scale = double_bond_scale
@@ -720,8 +722,8 @@ class TripleBond(BaseMBondObject):
         side: int = 0,
         distance: float = 0.3,
         triple_bond_scale: float = 0.8,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.distance = distance
         self.triple_bond_scale = triple_bond_scale
         super().__init__(from_atom, to_atom, **kwargs)
@@ -818,7 +820,7 @@ class TripleBond(BaseMBondObject):
 
         return VGroup(base_line, double_line, triple_line)
 
-    def longer_subtype(self, bond: Mobject, base_line: Mobject):
+    def longer_subtype(self, bond: Mobject, base_line: Mobject) -> Any:
         """Add two offset parallel lines to form a triple bond from a base line.
 
         Parameters

@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: implement text leaf nodes and the tree expansion animations
 
+from typing import Any
+
 """
 Module for visualizing decision trees in Manim.
 It parses a decision tree classifier from sklearn.
@@ -108,10 +110,10 @@ class LeafNode(Group):
         self,
         class_index: int,
         display_type: str = "image",
-        class_image_paths: list = [],
-        class_colors: list = [],
+        class_image_paths: list[Any] = [],
+        class_colors: list[Any] = [],
         class_names: list[str] | None = None,
-    ):
+    ) -> None:
         super().__init__()
         self.display_type = display_type
         self.class_image_paths = class_image_paths
@@ -123,7 +125,7 @@ class LeafNode(Group):
         else:
             self._construct_text_node(class_index)
 
-    def _construct_text_node(self, class_index: int):
+    def _construct_text_node(self, class_index: int) -> Any:
         """Build a text leaf node.
 
         Parameters
@@ -141,7 +143,7 @@ class LeafNode(Group):
         self.add(rectangle)
         self.add(node)
 
-    def _construct_image_node(self, class_index: int):
+    def _construct_image_node(self, class_index: int) -> Any:
         """Build an image leaf node.
 
         Parameters
@@ -190,7 +192,7 @@ class SplitNode(VGroup):
                self.add(SplitNode(feature=0, threshold=0.5).scale(2))
     """
 
-    def __init__(self, feature: int | str, threshold: float):
+    def __init__(self, feature: int | str, threshold: float) -> None:
         super().__init__()
         node_text = f"{feature}\n<=  {threshold:.2f}"
         # Draw decision text
@@ -266,8 +268,8 @@ class DecisionTreeDiagram(Group):
         feature_names: list[str] | None = None,
         class_names: list[str] | None = None,
         class_images_paths: list[str] | None = None,
-        class_colors: list = [RED, GREEN, BLUE],
-    ):
+        class_colors: list[Any] = [RED, GREEN, BLUE],
+    ) -> None:
         super().__init__()
         self.tree = sklearn_tree
         self.feature_names = feature_names
@@ -370,7 +372,7 @@ class DecisionTreeDiagram(Group):
             direction: str,
             parent_object: Mobject,
             parent_node: int,
-        ):
+        ) -> Any:
             """Recursively build tree nodes and connections at the given depth."""
             # make the node object
             is_leaf = (
@@ -636,7 +638,7 @@ class DecisionTreeContainer:
         sklearn_tree: helpers.SklearnTree,
         points: Point2D_Array,
         classes: VectorND,
-    ):
+    ) -> None:
         self.sklearn_tree = sklearn_tree
         self.points = points
         self.classes = classes

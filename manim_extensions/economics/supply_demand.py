@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Supply and demand diagram for Manim.
 
 This module provides the supply and demand diagram.
@@ -53,8 +55,8 @@ class SupplyDemandDiagram(EconDiagram):
         demand_func: Callable[[float], float] | None = None,
         supply_func: Callable[[float], float] | None = None,
         show_equilibrium: bool = True,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(x_label="Q", y_label="P", **kwargs)
 
         demand_func = demand_func or (lambda x: 8 - 0.5 * x)

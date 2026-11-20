@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Network connection visualization utilities."""
 
 import numpy as np
@@ -85,7 +87,7 @@ class NetworkConnection(VGroup):
         stroke_width: float = 2.0,
         color: ManimColor = WHITE,
         active_color: ManimColor = ORANGE,
-    ):
+    ) -> None:
         super().__init__()
         assert arc_direction in ["straight", "up", "down", "left", "right"]
         self.start_mobject = start_mobject
@@ -99,7 +101,7 @@ class NetworkConnection(VGroup):
 
         self.make_mobjects()
 
-    def make_mobjects(self):
+    def make_mobjects(self) -> Any:
         """Build the arrow or arc that connects the two mobjects."""
         if self.start_mobject.get_center()[0] < self.end_mobject.get_center()[0]:
             left_mobject = self.start_mobject

@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: BlankConnective implements the inherited abstract construct_layer (blank fallback)
 
+from typing import Any
+
 """Parent layer classes for neural network visualizations.
 
 This module provides abstract base classes for neural network layer visualizations.
@@ -60,7 +62,7 @@ class NeuralNetworkLayer(ABC, Group):
                self.add(layer)
     """
 
-    def __init__(self, text: str | None = None, *args: object, **kwargs: object):
+    def __init__(self, text: str | None = None, *args: Any, **kwargs: Any) -> None:
         super(Group, self).__init__()
         self.title_text = kwargs["title"] if "title" in kwargs else " "
         self.title: Text | Group
@@ -78,8 +80,8 @@ class NeuralNetworkLayer(ABC, Group):
         self,
         input_layer: "NeuralNetworkLayer",
         output_layer: "NeuralNetworkLayer",
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> Any:
         """Constructs the layer at network construction time.
 
         Parameters
@@ -96,7 +98,7 @@ class NeuralNetworkLayer(ABC, Group):
             self.add(SurroundingRectangle(self))
 
     @abstractmethod
-    def make_forward_pass_animation(self, *args: object, **kwargs: object) -> Animation:
+    def make_forward_pass_animation(self, *args: Any, **kwargs: Any) -> Animation:
         """Makes the forward pass animation for the layer.
 
         Parameters
@@ -162,12 +164,12 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
                self.add(layer)
     """
 
-    def __init__(self, *args: object, **kwargs: object):
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
         # self.camera = camera
 
     @abstractmethod
-    def make_forward_pass_animation(self, *args: object, **kwargs: object) -> Animation:
+    def make_forward_pass_animation(self, *args: Any, **kwargs: Any) -> Animation:
         """Makes the forward pass animation for the layer.
 
         Parameters
@@ -241,8 +243,8 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
         self.input_layer = input_layer
         self.output_layer = output_layer
@@ -252,7 +254,7 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
 
     @abstractmethod
     def make_forward_pass_animation(
-        self, run_time: float = 2.0, layer_args: dict = {}, **kwargs: object
+        self, run_time: float = 2.0, layer_args: dict[Any, Any] = {}, **kwargs: Any
     ) -> Animation:
         """Makes the forward pass animation between the connected layers.
 
@@ -339,12 +341,12 @@ class BlankConnective(ConnectiveLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(
-        self, run_time: float = 1.5, layer_args: dict = {}, **kwargs: object
+        self, run_time: float = 1.5, layer_args: dict[Any, Any] = {}, **kwargs: Any
     ) -> Animation:
         """Makes an empty forward pass animation for the blank connection.
 
@@ -368,8 +370,8 @@ class BlankConnective(ConnectiveLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> Any:
         """Construct nothing: a blank connective has no geometry of its own.
 
         Parameters

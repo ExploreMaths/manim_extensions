@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Base parser class for chemical file formats.
 
 This module provides the :class:`~manim_extensions.chemistry.utils.parsers.base_parser.BaseParser` abstract class for parsing chemical files.
@@ -42,7 +44,7 @@ class BaseParser(ABC):
 
     """
 
-    def __init__(self, filename: FilePath):
+    def __init__(self, filename: FilePath) -> None:
         self.file_data: str | list[str] = self.read_file(filename)
         parsed_data = self.parse_file_data()
         if isinstance(parsed_data, list):

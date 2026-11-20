@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Faster meshes (WORK IN PROGRESS) by using OpenGL more efficiently."""
 
 from manim.mobject.opengl.opengl_mobject import OpenGLMobject
@@ -62,8 +64,8 @@ class FastManimMesh(OpenGLMobject):
         self,
         mesh: Mesh,
         shader_folder: str | None = None,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         # imported here because OGLM requires the optional moderngl dependency
         from ...params import OGLM
 
@@ -110,7 +112,7 @@ class FastManimMesh(OpenGLMobject):
         """
         return np.hstack(mesh.faces) if mesh.faces else np.array([], dtype=int)
 
-    def init_points(self):
+    def init_points(self) -> Any:
         """Set the mesh vertices as the mobject's points."""
         self.set_points(self.mesh.vertices)
 

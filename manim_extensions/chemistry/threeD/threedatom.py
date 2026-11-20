@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """3D atom representation for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.threeD.threedatom.ThreeDAtom` class for rendering atoms in 3D.
@@ -32,8 +34,8 @@ class ThreeDAtom(OpenGLSphere):
     """
 
     def __init__(
-        self, element: Element, coords: Point3D = np.array([0, 0, 0]), **kwargs
-    ):
+        self, element: Element, coords: Point3D = np.array([0, 0, 0]), **kwargs: Any
+    ) -> None:
         self.center = coords
         self.coords = coords
         self.element = element

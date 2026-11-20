@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """All animations: the morph, the intro/outro and the transition effects.
 
 New in 0.1.1: :class:`~manim_extensions.radar.animations.RadarMorph` morphs *lists* of datasets (comparison
@@ -117,7 +119,9 @@ class Ring(Polygon):
                ring.restyle(2.0, 1.0, 0.5)
     """
 
-    def __init__(self, center: Point3D, color: ParsableManimColor, **kwargs) -> None:
+    def __init__(
+        self, center: Point3D, color: ParsableManimColor, **kwargs: Any
+    ) -> None:
         center = np.asarray(center, dtype=float)
         super().__init__(*(np.tile(center, (3, 1))), stroke_color=color, **kwargs)
         self.ring_center = center
@@ -211,7 +215,7 @@ class Shockwave(Animation):
         expand: bool = True,
         run_time: float = 0.42,
         rate_func: Callable[[float], float] = smooth,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         if center is None:
             center = np.zeros(3)
@@ -331,7 +335,7 @@ class RadarMorph(Animation):
         fade_name: bool = True,
         name_shift: float = 0.30,
         stagger: Optional[float] = None,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         if transition is not None and transition not in TRANSITIONS:
             raise ValueError(
@@ -727,7 +731,7 @@ class RadarReveal(Animation):
         rate_func: Callable[[float], float] = smooth,
         from_values: Optional[Sequence[float]] = None,
         with_shockwave: Optional[bool] = None,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         self.chart = chart
         self.from_values = (
@@ -831,7 +835,7 @@ class RadarBurstIn(Animation):
         run_time: float = 1.1,
         rate_func: Callable[[float], float] = smooth,
         with_shockwave: Optional[bool] = None,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         self.chart = chart
         self.overshoot = chart.config.burst_overshoot
@@ -929,7 +933,7 @@ class RadarFade(Animation):
         *,
         run_time: float = 0.8,
         rate_func: Callable[[float], float] = smooth,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         self.chart = chart
         self.to = float(np.clip(to, 0.0, 1.0))
@@ -989,7 +993,7 @@ class GlitchFlash(Animation):
         rate_func: Callable[[float], float] = smooth,
         bars: bool = True,
         flickers: int = 3,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         self.chart = chart
         self.bars = bars

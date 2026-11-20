@@ -10,6 +10,8 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE.txt file.
 
+from typing import Any
+
 """Font Awesome icons for Manim.
 
 Access the SVG icons through the three style namespaces
@@ -4193,7 +4195,7 @@ class Brand:
                self.add(brand.python)
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         pass
 
     def __getattr__(self, name: str) -> SVGMobject:
@@ -4231,7 +4233,7 @@ class Regular:
                self.add(regular.heart)
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         pass
 
     def __getattr__(self, name: str) -> SVGMobject:
@@ -4271,7 +4273,7 @@ class Solid:
                self.add(rocket)
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         pass
 
     def __getattr__(self, name: str) -> SVGMobject:

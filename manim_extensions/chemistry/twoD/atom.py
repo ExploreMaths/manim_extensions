@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """2D atom representation for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.twoD.atom.MAtomObject` class for representing atoms in 2D chemical structures.
@@ -99,8 +101,8 @@ class MAtomObject(VGroup):
         charge: int = 0,
         index: int = 0,
         planar: bool = True,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         VGroup.__init__(self, **kwargs)
         self.coords = coords
         self.element = element
@@ -256,7 +258,7 @@ class MAtomObject(VGroup):
 
         return self.make_copy()
 
-    def set_atom_color(self, color: ManimColor):
+    def set_atom_color(self, color: ManimColor) -> Any:
         """
         TODO: Add the color depending on cpk convention
 

@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Rubik's Cube animations for Manim.
 
 This module provides animations for Rubik's Cube manipulations.
@@ -55,7 +57,7 @@ class CubeMove(Animation):
                self.wait()
     """
 
-    def __init__(self, mobject: Mobject, face: str, **kwargs):
+    def __init__(self, mobject: Mobject, face: str, **kwargs: Any) -> None:
         self.axis = get_axis_from_face(face[0])
         self.face = face
         self.angle = PI / 2 if ("R" in face or "F" in face or "D" in face) else -PI / 2
@@ -75,7 +77,7 @@ class CubeMove(Animation):
             starting_mobject.set_indices()
         return starting_mobject
 
-    def interpolate_mobject(self, alpha: float):
+    def interpolate_mobject(self, alpha: float) -> Any:
         """Interpolate the cube rotation at progress ``alpha``.
 
         Parameters
@@ -89,7 +91,7 @@ class CubeMove(Animation):
             self.rate_func(alpha) * self.angle, self.axis
         )
 
-    def finish(self):
+    def finish(self) -> Any:
         """Finalise the cube move and update face indices after animation completes."""
         super().finish()
         self.mobject.adjust_indices(self.mobject.get_face(self.face[0], False))

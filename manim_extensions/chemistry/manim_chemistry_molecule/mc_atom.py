@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Manim chemistry atom representation.
 
 This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom` class for representing atoms in molecules.
@@ -49,7 +51,7 @@ class MCAtom:
         bonds: list | None = None,
         molecule: None | None = None,
         molecule_index: int | None = None,
-    ):
+    ) -> None:
         self.element = element
         self.coords = coords
         self.atoms = atoms or []
@@ -199,7 +201,9 @@ class MCAtom:
 
     @staticmethod
     def construct_from_atom_dict(
-        atom_index: int, atom_data_dict: Dict, elements_data_dict: Dict
+        atom_index: int,
+        atom_data_dict: Dict[Any, Any],
+        elements_data_dict: Dict[Any, Any],
     ) -> "MCAtom":
         """
         Given an atom data dict from a parser, returns an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`.

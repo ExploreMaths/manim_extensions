@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants
 
+from typing import Any
+
 """Non-deterministic finite state automaton visualization.
 
 This module provides the ManimNonDeterministicFiniteAutomaton class for visualizing NFAs.
@@ -99,8 +101,8 @@ class ManimNondeterministicFiniteAutomaton(ManimAutomaton):
         camera_follow: bool = False,
         animation_style: dict[str, object] | None = None,
         cli: bool = False,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         if json_template is None and xml_file is None:
             json_template = nfa_automaton_json
         if animation_style is None:

@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Convolutional 2D layer for neural network visualizations.
 
 This module provides the convolutional 2D layer class for neural network visualizations.
@@ -84,7 +86,7 @@ class FeatureMap(VGroup):
         stroke_width: float = 2.0,
         show_grid_lines: bool = False,
         padding_dashed: bool = False,
-    ):
+    ) -> None:
         super().__init__()
         self.color = color
         self.feature_map_size = feature_map_size
@@ -255,8 +257,8 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         activation_function: ActivationFunction | str | None = None,
         padding: int = 0,
         padding_dashed: bool = True,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
         self.num_feature_maps = num_feature_maps
         self.filter_color = filter_color
@@ -293,8 +295,8 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> Any:
         """Build the feature maps and apply the 3D rotation to the layer.
 
         Parameters
@@ -320,7 +322,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         self.construct_activation_function()
         super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def construct_activation_function(self):
+    def construct_activation_function(self) -> Any:
         """Build the activation-function plot for this convolutional layer."""
         # Add the activation function
         if not self.activation_function is None:
@@ -393,7 +395,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         )
 
     def make_forward_pass_animation(
-        self, run_time: float = 5, layer_args: dict = {}, **kwargs
+        self, run_time: float = 5, layer_args: dict[Any, Any] = {}, **kwargs: Any
     ) -> AnimationGroup:
         """Convolution forward pass animation.
 
@@ -423,7 +425,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         return animation_group
 
-    def scale(self, scale_factor: float, **kwargs):
+    def scale(self, scale_factor: float, **kwargs: Any) -> Any:
         """Scale the layer and adjust cell_width proportionally.
 
         Parameters
@@ -463,7 +465,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             The height of the surrounding shape."""
         return self.feature_maps.length_over_dim(1)
 
-    def move_to(self, mobject_or_point: Mobject):
+    def move_to(self, mobject_or_point: Mobject) -> Any:
         """Moves the center of the layer to the given mobject or point.
 
         Parameters
@@ -480,7 +482,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         self.shift(target_center - layer_center)
 
     @override_animation(Create)
-    def _create_override(self, **kwargs) -> Animation:
+    def _create_override(self, **kwargs: Any) -> Animation:
         """Fade in the feature maps.
 
         Parameters

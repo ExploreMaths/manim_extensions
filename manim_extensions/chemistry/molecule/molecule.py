@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """:class:`~manim_extensions.chemistry.molecule.molecule.Molecule` proxy class for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.molecule.molecule.Molecule` class as a unified interface for different molecule types.
@@ -64,10 +66,10 @@ class Molecule:
                self.add(label)
     """
 
-    def __init__(self, molecule_class: type[GraphMolecule] = GraphMolecule):
+    def __init__(self, molecule_class: type[GraphMolecule] = GraphMolecule) -> None:
         self.molecule_class = molecule_class
 
-    def molecule_from_file(self, *args, **kwargs) -> GraphMolecule:
+    def molecule_from_file(self, *args: Any, **kwargs: Any) -> GraphMolecule:
         """Delegate to the wrapped molecule class to construct a molecule from a file.
 
         Parameters
@@ -83,7 +85,7 @@ class Molecule:
         """
         return self.molecule_class.molecule_from_file(*args, **kwargs)
 
-    def multiple_molecules_from_file(self, *args, **kwargs) -> VGroup:
+    def multiple_molecules_from_file(self, *args: Any, **kwargs: Any) -> VGroup:
         """Delegate to the wrapped molecule class to construct multiple molecules from a file.
 
         Parameters
@@ -99,7 +101,7 @@ class Molecule:
         """
         return self.molecule_class.multiple_molecules_from_file(*args, **kwargs)
 
-    def molecule_from_string(self, *args, **kwargs) -> GraphMolecule:
+    def molecule_from_string(self, *args: Any, **kwargs: Any) -> GraphMolecule:
         """Delegate to the wrapped molecule class to construct a molecule from a string.
 
         Parameters
@@ -115,7 +117,7 @@ class Molecule:
         """
         return self.molecule_class.molecule_from_string(*args, **kwargs)
 
-    def multiple_molecules_from_string(self, *args, **kwargs) -> VGroup:
+    def multiple_molecules_from_string(self, *args: Any, **kwargs: Any) -> VGroup:
         """Delegate to the wrapped molecule class to construct multiple molecules from a string.
 
         Parameters
@@ -131,7 +133,7 @@ class Molecule:
         """
         return self.molecule_class.multiple_molecules_from_string(*args, **kwargs)
 
-    def molecule_from_pubchem(self, *args, **kwargs) -> GraphMolecule:
+    def molecule_from_pubchem(self, *args: Any, **kwargs: Any) -> GraphMolecule:
         """Delegate to the wrapped molecule class to fetch a molecule from PubChem.
 
         Parameters
@@ -147,7 +149,9 @@ class Molecule:
         """
         return self.molecule_class.molecule_from_pubchem(*args, **kwargs)
 
-    def mc_molecule_to_atoms_and_bonds(self, *args, **kwargs) -> tuple[dict, dict]:
+    def mc_molecule_to_atoms_and_bonds(
+        self, *args: Any, **kwargs: Any
+    ) -> tuple[dict, dict]:
         """Delegate to the wrapped molecule class to convert an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule` to atoms and bonds.
 
         Parameters

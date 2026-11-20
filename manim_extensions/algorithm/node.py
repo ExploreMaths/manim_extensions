@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants
 
+from typing import Any
+
 """:class:`~manim_extensions.algorithm.node.Node` data structure for algorithm visualization."""
 
 from __future__ import annotations
@@ -184,8 +186,8 @@ class Node(VMobject):
         text_scale: float = 1.0,
         box_type: NodeBoxType = NodeConfig.BOX_TYPE,
         box_color: ManimColor = NodeConfig.BOX_COLOR,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
 
         super().__init__(**kwargs)
         self.set_box(box_type, width, box_color)
@@ -423,8 +425,8 @@ class Node(VMobject):
             *nodes: List[Node],
             color: ManimColor = NodeConfig.SELECT_COLOR,
             opacity: float = NodeConfig.SELECT_OPACITY,
-            **kwargs,
-        ):
+            **kwargs: Any,
+        ) -> None:
 
             super().__init__(
                 AnimationGroup(
@@ -464,7 +466,7 @@ class Node(VMobject):
                    self.wait(0.5)
         """
 
-        def __init__(self, *nodes: List[Node], **kwargs):
+        def __init__(self, *nodes: List[Node], **kwargs: Any) -> None:
             super().__init__(
                 AnimationGroup(
                     *[node.animate.set_fill(node.get_fill_color(), 0) for node in nodes]
@@ -500,7 +502,7 @@ class Node(VMobject):
                    self.wait(0.5)
         """
 
-        def __init__(self, node: Node, value: NodeValue, **kwargs):
+        def __init__(self, node: Node, value: NodeValue, **kwargs: Any) -> None:
             super().__init__(*[node.animate.set_value(value)], **kwargs)
 
     class MoveAndOverWrite(Succession):
@@ -545,8 +547,8 @@ class Node(VMobject):
             target: Node,
             select_color: ManimColor = None,
             select_opacity: float = 0.2,
-            **kwargs,
-        ):
+            **kwargs: Any,
+        ) -> None:
             steps = []
             if select_color is not None:
                 steps.append(
@@ -605,8 +607,8 @@ class Node(VMobject):
             target: Node,
             select_color: ManimColor = None,
             select_opacity: float = 0.2,
-            **kwargs,
-        ):
+            **kwargs: Any,
+        ) -> None:
             copied_node = node.copy().move_to(node)
             steps = [
                 FadeIn(copied_node),
@@ -660,8 +662,8 @@ class Node(VMobject):
             node2: Node,
             select_color: ManimColor = None,
             select_opacity: float = 0.2,
-            **kwargs,
-        ):
+            **kwargs: Any,
+        ) -> None:
             copied_node1 = node1.copy().move_to(node1)
             copied_node2 = node2.copy().move_to(node2)
             steps = [

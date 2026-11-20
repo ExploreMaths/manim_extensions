@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """The data model: one radar snapshot."""
 
 from __future__ import annotations
@@ -60,7 +62,7 @@ class RadarData:
     hold: Optional[float] = None
     transition: Optional[str] = None
     note: Optional[str] = None
-    meta: dict = field(default_factory=dict)
+    meta: dict[Any, Any] = field(default_factory=dict)
 
     def __post_init__(self) -> None:
         """Validate the snapshot and freeze its sequences.
@@ -204,7 +206,7 @@ class RadarData:
 
         return ManimColor(self.color) if self.color else ManimColor(fallback)
 
-    def with_values(self, values: Sequence[float], **changes) -> "RadarData":
+    def with_values(self, values: Sequence[float], **changes: Any) -> "RadarData":
         """Copy this snapshot with new values and optional other changes.
 
         Parameters

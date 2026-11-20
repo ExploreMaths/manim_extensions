@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Embedding layer visualization for neural networks."""
 
 from __future__ import annotations
@@ -89,8 +91,8 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         covariance: MatrixMN = np.array([[1.0, 0], [0, 1.0]]),
         dist_theme: str = "gaussian",
         paired_query_mode: bool = False,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super(VGroupNeuralNetworkLayer, self).__init__(**kwargs)
         self.mean = mean
         self.covariance = covariance
@@ -104,8 +106,8 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> Any:
         """Build the axes, point cloud, and latent distribution for the embedding.
 
         Parameters
@@ -236,7 +238,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         return point_dots
 
     def make_forward_pass_animation(
-        self, layer_args: dict = {}, **kwargs
+        self, layer_args: dict[Any, Any] = {}, **kwargs: Any
     ) -> AnimationGroup:
         """Forward pass animation.
 
@@ -327,7 +329,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
         return animation_group
 
     @override_animation(Create)
-    def _create_override(self, **kwargs) -> Animation:
+    def _create_override(self, **kwargs: Any) -> Animation:
         """Reveal the point cloud point by point.
 
         Parameters
@@ -352,7 +354,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 class NeuralNetworkEmbeddingTestScene(Scene):
     """Test scene for verifying the embedding layer visualization."""
 
-    def construct(self):
+    def construct(self) -> Any:
         """Build the test scene with an embedding layer and Gaussian distribution."""
         nne = EmbeddingLayer()
         mean = np.array([0, 0])

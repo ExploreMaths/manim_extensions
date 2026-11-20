@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Chemical formula representation for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.twoD.chemical_formula.ChemicalFormula` class for rendering chemical formulas.
@@ -47,9 +49,9 @@ class ChemicalFormula(MarkupText):
         metal_color: str = WHITE,
         non_metal_color: str = WHITE,
         oxygen_color: str = WHITE,
-        *args,
-        **kwargs,
-    ):
+        *args: Any,
+        **kwargs: Any,
+    ) -> None:
         self.formula = formula
         self.metal_color = metal_color
         self.non_metal_color = non_metal_color
@@ -64,7 +66,7 @@ class ChemicalFormula(MarkupText):
 
         super().__init__(markup, *args, **kwargs)
 
-    def parse_formula(self, formula: str) -> dict:
+    def parse_formula(self, formula: str) -> dict[Any, Any]:
         """Parse a formula string into a dict mapping element symbols to their counts.
 
         Parameters
@@ -208,9 +210,9 @@ class NamedFormula(VGroup):
         spanish_structure: bool = False,
         buff: float = DEFAULT_MOBJECT_TO_MOBJECT_BUFFER,
         direction: str = DOWN,
-        *args,
-        **kwargs,
-    ):
+        *args: Any,
+        **kwargs: Any,
+    ) -> None:
         super().__init__(*args, **kwargs)
         self.metal_name = metal_name
         self.non_metal_name = non_metal_name
@@ -283,7 +285,7 @@ class ComplexFormula(MarkupText):
         Additional keyword arguments passed to :class:`~manim.mobject.text.text_mobject.MarkupText`.
     """
 
-    def __init__(self, formula_dict: dict, *args, **kwargs):
+    def __init__(self, formula_dict: dict[Any, Any], *args: Any, **kwargs: Any) -> None:
         markup = ""
         for formula, color in formula_dict.items():
             markup += (
@@ -383,13 +385,13 @@ class NamedComplexFormula(VGroup):
 
     def __init__(
         self,
-        name_dict: dict,
-        formula_dict: dict,
+        name_dict: dict[Any, Any],
+        formula_dict: dict[Any, Any],
         direction: str = DOWN,
         buff: float = DEFAULT_MOBJECT_TO_MOBJECT_BUFFER,
-        *args,
-        **kwargs,
-    ):
+        *args: Any,
+        **kwargs: Any,
+    ) -> None:
         self.name_dict = name_dict
         self.formula_dict = formula_dict
         super().__init__(*args, **kwargs)

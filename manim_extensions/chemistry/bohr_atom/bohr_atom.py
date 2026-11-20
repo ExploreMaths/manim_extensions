@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Bohr atom model visualization for Manim."""
 
 from manim import BLUE, Circle, Dot, ManimColor, RED, RIGHT, TAU, VGroup, WHITE
@@ -59,8 +61,8 @@ class BohrAtom(VGroup):
         electron_color: ManimColor = BLUE,
         proton_color: ManimColor = RED,
         neutron_color: ManimColor = WHITE,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
         self.e = e
         self.p = p

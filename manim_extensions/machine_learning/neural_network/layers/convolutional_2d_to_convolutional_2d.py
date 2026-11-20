@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: drop a stale TODO and unreachable duplicate return
 
+from typing import Any
+
 """Convolutional 2D to convolutional 2D layer connection visualization."""
 
 from __future__ import annotations
@@ -120,7 +122,7 @@ class Filters(VGroup):
         stroke_width: float = 2.0,
         show_grid_lines: bool = False,
         output_feature_map_to_connect: int | None = None,  # None means all at once
-    ):
+    ) -> None:
         super().__init__()
         self.input_layer = input_layer
         self.output_layer = output_layer
@@ -346,7 +348,7 @@ class Filters(VGroup):
         return connective_lines
 
     @override_animation(Create)
-    def _create_override(self, **kwargs) -> Animation:
+    def _create_override(self, **kwargs: Any) -> Animation:
         """
         NOTE This create override animation
         is a workaround to make sure that the filter
@@ -448,8 +450,8 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         cell_width: float = 0.2,
         show_grid_lines: bool = True,
         highlight_color: ManimColor = ORANGE,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(
             input_layer,
             output_layer,
@@ -475,7 +477,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         """Forward to the parent construct_layer method.
 
@@ -668,11 +670,11 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
 
     def make_forward_pass_animation(
         self,
-        layer_args: dict = {},
+        layer_args: dict[Any, Any] = {},
         all_filters_at_once: bool = False,
         highlight_active_feature_map: bool = True,
         run_time: float = 10.5,
-        **kwargs,
+        **kwargs: Any,
     ) -> Succession:
         """Forward pass animation from conv2d to conv2d.
 
@@ -705,7 +707,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
                 highlight_active_feature_map=highlight_active_feature_map
             )
 
-    def scale(self, scale_factor: float, **kwargs):
+    def scale(self, scale_factor: float, **kwargs: Any) -> Any:
         """Scale the layer and adjust cell_width proportionally.
 
         Parameters
@@ -719,7 +721,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         super().scale(scale_factor, **kwargs)
 
     @override_animation(Create)
-    def _create_override(self, **kwargs) -> Animation:
+    def _create_override(self, **kwargs: Any) -> Animation:
         """Return an empty succession for the connective layer.
 
         Parameters

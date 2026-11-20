@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Input representation for automata visualization.
 
 This module provides the :class:`~manim_extensions.automata.mobjects.manim_automaton_input.ManimAutomataInput` class for representing input strings in automata.
@@ -56,8 +58,8 @@ class ManimAutomataInput(VGroup):
         input_string: str,
         animation_style: dict[str, object],
         font_size: int = 100,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super().__init__(**kwargs)
 
         self.animation_style = animation_style
@@ -132,8 +134,8 @@ class Token(MathTex):
     id_iter = itertools.count()
 
     def __init__(
-        self, token_symbol: str, spacing: int, font_size: int = 100, **kwargs: object
-    ):
+        self, token_symbol: str, spacing: int, font_size: int = 100, **kwargs: Any
+    ) -> None:
         super().__init__(token_symbol, font_size=font_size, **kwargs)
 
         self.id = next(self.id_iter)

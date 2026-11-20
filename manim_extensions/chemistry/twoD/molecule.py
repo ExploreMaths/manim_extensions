@@ -1,6 +1,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """2D molecule representation for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject` class for rendering molecules in 2D.
@@ -110,17 +112,17 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
     def __init__(
         self,
-        atoms_dict: dict,
-        bonds_dict: dict,
+        atoms_dict: dict[Any, Any],
+        bonds_dict: dict[Any, Any],
         representation_type: str | None = None,
         explicit_carbons: bool = False,
         explicit_hydrogens: bool = False,
         planar: bool = True,
         add_atoms_numbering: bool = False,
         add_bonds_numbering: bool = False,
-        rotate_bonds: list = [],
-        **kwargs,
-    ):
+        rotate_bonds: list[Any] = [],
+        **kwargs: Any,
+    ) -> None:
         VGroup.__init__(self, **kwargs)
         self.atoms_dict = atoms_dict
         self.bonds_dict = bonds_dict
@@ -375,7 +377,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         return self
 
-    def complete_missing_hydrogens(self):
+    def complete_missing_hydrogens(self) -> Any:
         """Append implicit hydrogen labels to atoms that don't fulfill their minimum bond count."""
         supported_atoms = ["O", "S", "N", "P"]
 
@@ -417,7 +419,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                                 atom.element + "H", bonds_direction
                             )
 
-    def from_mol_file(filename: str, *args, **kwargs) -> "MMoleculeObject":
+    def from_mol_file(filename: str, *args: Any, **kwargs: Any) -> "MMoleculeObject":
         """Create an :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject` by parsing a .mol file.
 
         Parameters
@@ -435,7 +437,9 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         atoms, bonds = mol_parser(filename)
         return MMoleculeObject(atoms, bonds, *args, **kwargs)
 
-    def from_mol_string(mol_string: str, *args, **kwargs) -> "MMoleculeObject":
+    def from_mol_string(
+        mol_string: str, *args: Any, **kwargs: Any
+    ) -> "MMoleculeObject":
         """Create an :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject` by parsing a mol-format string.
 
         Parameters
@@ -457,7 +461,9 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         atoms, bonds = mol_parser_string(mol_string)
         return MMoleculeObject(atoms, bonds, *args, **kwargs)
 
-    def from_sdf_file(filename: str, *args, **kwargs) -> "list[MMoleculeObject]":
+    def from_sdf_file(
+        filename: str, *args: Any, **kwargs: Any
+    ) -> "list[MMoleculeObject]":
         r"""Create a list of :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`\ s by parsing an .sdf file.
 
         Parameters
@@ -479,7 +485,9 @@ class MMoleculeObject(VGroup, AbstractMolecule):
             moleculeObjects.append(MMoleculeObject(atoms, bonds, *args, **kwargs))
         return moleculeObjects
 
-    def from_sdf_string(sdf_string: str, *args, **kwargs) -> "list[MMoleculeObject]":
+    def from_sdf_string(
+        sdf_string: str, *args: Any, **kwargs: Any
+    ) -> "list[MMoleculeObject]":
         r"""Create a list of :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject`\ s by parsing an sdf-format string.
 
         Parameters
@@ -540,7 +548,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
         except Exception as exception:
             raise exception
 
-    def find_atoms_position_by_index(self, atoms_index_list: list) -> list:
+    def find_atoms_position_by_index(self, atoms_index_list: list[Any]) -> list[Any]:
         """Returns the position of multiple atoms given their indices.
 
         Parameters
@@ -646,7 +654,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         return bond_center + bond_vector * position_buff * 0.5
 
-    def find_bonds_center_by_index(self, bonds_index_list: list) -> list:
+    def find_bonds_center_by_index(self, bonds_index_list: list[Any]) -> list[Any]:
         """Returns the position of multiple bonds given their indices.
 
         Parameters
@@ -676,7 +684,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         return bonds_positions
 
-    def find_all_atoms_positions(self) -> dict:
+    def find_all_atoms_positions(self) -> dict[Any, Any]:
         """Return a dict mapping every atom index to its current position.
 
         Returns
@@ -691,7 +699,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         return atoms_positions
 
-    def find_all_bonds_centers(self) -> dict:
+    def find_all_bonds_centers(self) -> dict[Any, Any]:
         """Return a dict mapping every bond index to its center position.
 
         Returns
@@ -820,9 +828,9 @@ class NamedMolecule(VGroup):
         buff: float = 1,
         tex: bool = False,
         font: str = "",
-        *args,
-        **kwargs,
-    ):
+        *args: Any,
+        **kwargs: Any,
+    ) -> None:
         if isinstance(molecule_data, MMoleculeObject):
             self.molecule = molecule_data
 
@@ -850,8 +858,8 @@ class NamedMolecule(VGroup):
         buff: float = 1,
         tex: bool = False,
         font: str = "",
-        *args,
-        **kwargs,
+        *args: Any,
+        **kwargs: Any,
     ) -> "NamedMolecule":
         """Create a :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule` from a .mol file and a name string.
 
@@ -898,8 +906,8 @@ class NamedMolecule(VGroup):
         buff: float = 1,
         tex: bool = False,
         font: str = "",
-        *args,
-        **kwargs,
+        *args: Any,
+        **kwargs: Any,
     ) -> "NamedMolecule":
         """Create a :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule` from a mol-format string and a name string.
 
@@ -946,8 +954,8 @@ class NamedMolecule(VGroup):
         buff: float = 1,
         tex: bool = False,
         font: str = "",
-        *args,
-        **kwargs,
+        *args: Any,
+        **kwargs: Any,
     ) -> "list[NamedMolecule]":
         r"""Create a list of :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule`\ s from an .sdf file with a shared base name.
 
@@ -998,8 +1006,8 @@ class NamedMolecule(VGroup):
         buff: float = 1,
         tex: bool = False,
         font: str = "",
-        *args,
-        **kwargs,
+        *args: Any,
+        **kwargs: Any,
     ) -> "list[NamedMolecule]":
         r"""Create a list of :class:`~manim_extensions.chemistry.twoD.molecule.NamedMolecule`\ s from an sdf-format string with a shared base name.
 
@@ -1121,7 +1129,7 @@ class NamedMolecule(VGroup):
         except Exception as exception:
             raise exception
 
-    def find_atoms_position_by_index(self, atoms_index_list: list) -> list:
+    def find_atoms_position_by_index(self, atoms_index_list: list[Any]) -> list[Any]:
         """Returns the position of multiple atoms given their indices.
 
         Parameters
@@ -1228,7 +1236,7 @@ class NamedMolecule(VGroup):
 
         return bond_center + bond_vector * position_buff * 0.5
 
-    def find_bonds_center_by_index(self, bonds_index_list: list) -> list:
+    def find_bonds_center_by_index(self, bonds_index_list: list[Any]) -> list[Any]:
         """Returns the position of multiple bonds given their indices.
 
         Parameters
@@ -1258,7 +1266,7 @@ class NamedMolecule(VGroup):
 
         return bonds_positions
 
-    def find_all_atoms_positions(self) -> dict:
+    def find_all_atoms_positions(self) -> dict[Any, Any]:
         """Return a dict mapping every atom index to its current position.
 
         Returns
@@ -1273,7 +1281,7 @@ class NamedMolecule(VGroup):
 
         return atoms_positions
 
-    def find_all_bonds_centers(self) -> dict:
+    def find_all_bonds_centers(self) -> dict[Any, Any]:
         """Return a dict mapping every bond index to its center position.
 
         Returns

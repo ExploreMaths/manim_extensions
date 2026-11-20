@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Feed-forward to math operation layer connection visualization."""
 
 from __future__ import annotations
@@ -36,8 +38,8 @@ class FeedForwardToMathOperation(ConnectiveLayer):
         input_layer: Mobject,
         output_layer: Mobject,
         active_color: ManimColor = ORANGE,
-        **kwargs,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.active_color = active_color
         super().__init__(input_layer, output_layer, **kwargs)
 
@@ -45,7 +47,7 @@ class FeedForwardToMathOperation(ConnectiveLayer):
         self,
         input_layer: NeuralNetworkLayer,
         output_layer: NeuralNetworkLayer,
-        **kwargs,
+        **kwargs: Any,
     ) -> None:
         """Build a straight arrow connection between the feed-forward and math operation layers.
 
@@ -68,7 +70,7 @@ class FeedForwardToMathOperation(ConnectiveLayer):
         return super().construct_layer(input_layer, output_layer, **kwargs)
 
     def make_forward_pass_animation(
-        self, layer_args: dict = {}, **kwargs
+        self, layer_args: dict[Any, Any] = {}, **kwargs: Any
     ) -> ShowPassingFlash:
         """Makes dots diverge from the given location and move to the feed forward nodes decoder.
 

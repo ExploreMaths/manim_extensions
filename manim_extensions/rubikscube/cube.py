@@ -3,6 +3,8 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import kociemba (rubikscube extra)
 
+from typing import Any
+
 """Rubik's Cube mobject built from Manim primitives.
 
 This module exposes a 3D-styled cube model that is useful for puzzles,
@@ -169,11 +171,18 @@ class RubiksCube(VMobject):
     def __init__(
         self,
         dim: int = 3,
-        colors: list = [WHITE, "#B90000", "#009B48", "#FFD500", "#FF5900", "#0045AD"],
+        colors: list[Any] = [
+            WHITE,
+            "#B90000",
+            "#009B48",
+            "#FFD500",
+            "#FF5900",
+            "#0045AD",
+        ],
         x_offset: float = 2.1,
         y_offset: float = 2.1,
         z_offset: float = 2.1,
-    ):  # , **kwargs):
+    ) -> None:  # , **kwargs):
         if not (dim >= 2):
             raise Exception("Dimension must be >= 2")
 
@@ -200,7 +209,7 @@ class RubiksCube(VMobject):
             return np.zeros(3)
         return (all_points.min(axis=0) + all_points.max(axis=0)) / 2
 
-    def generate_cubies(self):  # , **kwargs):
+    def generate_cubies(self) -> Any:  # , **kwargs):
         """Populate the cube with its cubies and apply offsets.
 
         Returns
@@ -218,7 +227,7 @@ class RubiksCube(VMobject):
                     self.cubies[x, y, z] = cubie
         self.move_to(ORIGIN)
 
-    def set_state(self, positions: list):
+    def set_state(self, positions: list[Any]) -> Any:
         """Apply a colour state to each cube face.
 
         Parameters
@@ -268,7 +277,7 @@ class RubiksCube(VMobject):
         sv = require("rubikscube", "kociemba")
         return sv.solve(state).replace("3", "'").replace("1", "").split()
 
-    def transform_cubie(self, position: int, offset: list, tile: Cubie):
+    def transform_cubie(self, position: int, offset: list[Any], tile: Cubie) -> Any:
         """Apply translation offsets to a cubie based on its position.
 
         Parameters
@@ -329,12 +338,12 @@ class RubiksCube(VMobject):
         else:
             return face
 
-    def set_indices(self):
+    def set_indices(self) -> Any:
         """Build the position-to-cubie index map for the current cube state."""
         for c in self.cubies.flatten():
             self.indices[c.get_rounded_center()] = c.position
 
-    def adjust_indices(self, cubies: np.ndarray):
+    def adjust_indices(self, cubies: np.ndarray) -> Any:
         """Rebuild the cube index mapping from a set of cubies.
 
         Parameters

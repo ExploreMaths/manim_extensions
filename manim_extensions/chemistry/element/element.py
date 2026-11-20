@@ -3,6 +3,8 @@
 # patched: lazy-import pandas (chemistry extra)
 # patched: document module-level constants
 
+from typing import Any
+
 """Chemical element data structure."""
 
 from dataclasses import dataclass
@@ -45,7 +47,7 @@ class Element:
         atomic_number: int = 1,
         mass: float = 1.008,
         color: str | None = "#FFFFFF",
-    ):
+    ) -> None:
         self.symbol = symbol
         self.name = name
         self.atomic_number = atomic_number

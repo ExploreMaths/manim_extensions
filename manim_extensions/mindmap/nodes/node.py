@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Mindmap node classes for Manim.
 
 This module provides node classes for mindmap visualizations.
@@ -127,7 +129,7 @@ class NodeStyle:
             {"color": GREEN, "font_size": 48},
             {"color": WHITE, "font_size": 36},
         ],
-    ):
+    ) -> None:
         self.node_num = len(node_style)
         if self.node_num:
             self.node_style = node_style
@@ -149,7 +151,7 @@ class NodeStyle:
             self.text_style = [{"color": PURE_YELLOW, "font_size": 36}]
             self.text_num = 1
 
-    def get_node_style(self, level: int) -> Dict:
+    def get_node_style(self, level: int) -> Dict[Any, Any]:
         """
         Return the box style configured for a hierarchy level.
 
@@ -167,7 +169,7 @@ class NodeStyle:
             return self.node_style[level]
         return self.node_style[-1]
 
-    def get_line_style(self, level: int) -> Dict:
+    def get_line_style(self, level: int) -> Dict[Any, Any]:
         """Return the line style for the requested hierarchy level.
 
         Parameters
@@ -184,7 +186,7 @@ class NodeStyle:
             return self.line_style[level]
         return self.line_style[-1]
 
-    def get_text_style(self, level: int) -> Dict:
+    def get_text_style(self, level: int) -> Dict[Any, Any]:
         """Return the text style for the requested hierarchy level.
 
         Parameters
@@ -292,8 +294,8 @@ class Node:
         self,
         vmobject: VMobject | None = None,
         buff: float = 0.2,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         self.vmobject = vmobject
         self.height = self.vmobject.height + 2 * buff
         self.width = self.vmobject.width + 2 * buff
@@ -308,7 +310,7 @@ class Node:
         self.node_state = NodeState.INSERT  # node state
         self.side = None
 
-    def scale(self, scale_factor: float):
+    def scale(self, scale_factor: float) -> Any:
         """Scale the node around its current center.
 
         Parameters
@@ -321,7 +323,7 @@ class Node:
         self.width *= scale_factor
         self.height *= scale_factor
 
-    def add_child(self, child: "Node"):
+    def add_child(self, child: "Node") -> Any:
         """Attach a child node to the current node.
 
         Parameters
@@ -335,7 +337,7 @@ class Node:
         self.children.append(child)
         child.parent = self
 
-    def remove_child(self, child: "Node"):
+    def remove_child(self, child: "Node") -> Any:
         """Mark a child node for removal from the current node.
 
         Parameters
@@ -352,7 +354,7 @@ class Node:
             raise ValueError(f"Node {child} is not a child of {self}")
         child.node_state = NodeState.REMOVE
 
-    def alter_content(self, vmobject: VMobject):
+    def alter_content(self, vmobject: VMobject) -> Any:
         """Replace the displayed content of the node.
 
         Parameters
@@ -365,7 +367,7 @@ class Node:
         self.width = self.alter_vmobject.width + 2 * self.buff
         self.height = self.alter_vmobject.height + 2 * self.buff
 
-    def _get_mindmap_connector(self, direction: Vector3D, **kwargs: object) -> Line:
+    def _get_mindmap_connector(self, direction: Vector3D, **kwargs: Any) -> Line:
         """Return the connector line for a mind-map node.
 
         Parameters
@@ -399,7 +401,7 @@ class Node:
             Line(start, start + vec, **kwargs).add_line_to(end - vec).add_line_to(end)
         )
 
-    def _get_timeline_connector(self, **kwargs: object) -> Line:
+    def _get_timeline_connector(self, **kwargs: Any) -> Line:
         """Return the connector line for a timeline node.
 
         Parameters
@@ -437,7 +439,7 @@ class Node:
         middle = np.array([start[0], end[1], 0])
         return Line(start, middle, **kwargs).add_line_to(end)
 
-    def _get_catalog_connector(self, **kwargs: object) -> Line:
+    def _get_catalog_connector(self, **kwargs: Any) -> Line:
         """Return the connector line for a catalog node.
 
         Parameters
@@ -474,7 +476,7 @@ class Node:
         self,
         layout_type: LayoutType,
         direction: Vector3D,
-        **kwargs: object,
+        **kwargs: Any,
     ) -> Line:
         """Return the connector from this node to its parent based on layout type.
 
@@ -505,8 +507,8 @@ class Node:
                 return self._get_catalog_connector(**kwargs)
 
     def set_connector(
-        self, layout_type: LayoutType, direction: Vector3D = RIGHT, **kwargs: object
-    ):
+        self, layout_type: LayoutType, direction: Vector3D = RIGHT, **kwargs: Any
+    ) -> Any:
         """Set the connector line.
 
         Parameters
@@ -531,8 +533,8 @@ class Node:
         change_layout: bool,
         layout_type: LayoutType,
         direction: Vector3D = RIGHT,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> Any:
         """Change the connector line.
 
         Parameters

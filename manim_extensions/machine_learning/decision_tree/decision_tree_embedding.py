@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Embedding of a dataset in feature space together with a decision tree's areas."""
 
 from __future__ import annotations
@@ -92,7 +94,7 @@ class DecisionTreeEmbedding(VGroup):
         axes: Axes | None = None,
         class_colors: list | None = None,
         point_radius: float = 0.04,
-    ):
+    ) -> None:
         super().__init__()
         self.tree = (
             sklearn_tree

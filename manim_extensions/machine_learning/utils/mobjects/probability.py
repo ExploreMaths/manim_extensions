@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Probability distribution utilities for neural network visualization."""
 
 # unlinked-class-ok: Source
@@ -66,8 +68,8 @@ class GaussianDistribution(VGroup):
         cov: MatrixMN | None = None,
         dist_theme: str = "gaussian",
         color: ManimColor = ORANGE,
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
         super(VGroup, self).__init__(**kwargs)
         self.axes = axes
         if mean is None:

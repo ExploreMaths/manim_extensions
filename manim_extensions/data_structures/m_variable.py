@@ -2,6 +2,8 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+from typing import Any
+
 """Contains classes to construct variable."""
 
 from __future__ import annotations
@@ -79,8 +81,8 @@ class MVariable(MArrayElement):
         mob_value_args: MobProps = {},
         mob_index_args: MobProps = {},
         mob_label_args: MobProps = {},
-        **kwargs: object,
-    ):
+        **kwargs: Any,
+    ) -> None:
 
         self.__value: object = value
         self.__index: str | int = index
@@ -132,11 +134,11 @@ class MVariable(MArrayElement):
     def update_value(
         self,
         value: object,
-        mob_value_args: dict = {},
+        mob_value_args: dict[Any, Any] = {},
         update_anim: Animation = Indicate,
-        update_anim_args: dict = {},
+        update_anim_args: dict[Any, Any] = {},
         play_anim: bool = True,
-        play_anim_args: dict = {},
+        play_anim_args: dict[Any, Any] = {},
     ) -> Text:
         """Updates the value of the variable.
 
@@ -169,11 +171,11 @@ class MVariable(MArrayElement):
     def update_index(
         self,
         index: str | int,
-        mob_index_args: dict = {},
+        mob_index_args: dict[Any, Any] = {},
         update_anim: Animation = Indicate,
-        update_anim_args: dict = {},
+        update_anim_args: dict[Any, Any] = {},
         play_anim: bool = True,
-        play_anim_args: dict = {},
+        play_anim_args: dict[Any, Any] = {},
     ) -> Text:
         """Updates the index of the variable.
 
@@ -206,11 +208,11 @@ class MVariable(MArrayElement):
     def update_label(
         self,
         label: str,
-        mob_label_args: dict = {},
+        mob_label_args: dict[Any, Any] = {},
         update_anim: Animation = Indicate,
-        update_anim_args: dict = {},
+        update_anim_args: dict[Any, Any] = {},
         play_anim: bool = True,
-        play_anim_args: dict = {},
+        play_anim_args: dict[Any, Any] = {},
     ) -> Text:
         """Updates the label of the variable.
 
