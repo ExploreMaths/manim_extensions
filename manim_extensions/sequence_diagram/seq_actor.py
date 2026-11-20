@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Sequence diagram actor for Manim.
 
 This module provides actor class for sequence diagrams.
@@ -10,7 +9,7 @@ This module provides actor class for sequence diagrams.
 """
 
 from __future__ import annotations
-from typing import Any
+from typing import cast
 
 from manim import (
     Create,
@@ -27,7 +26,6 @@ from manim import (
     VGroup,
     WHITE,
 )
-from typing import cast
 
 from .constants import HALF_DOWN
 

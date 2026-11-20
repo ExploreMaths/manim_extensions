@@ -2,14 +2,13 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pandas (chemistry extra)
 
-from typing import cast, Any
-from typing import Any
-
 """Periodic table visualization objects for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.periodic_table.table_objects.MElementObject` class for rendering periodic table elements.
 
 """
+
+from typing import Any
 
 from manim import (
     BLACK,
@@ -149,7 +148,7 @@ class MElementObject(VGroup):
             ratio = 0.3 / text_height
             name_text.scale(ratio)
 
-        return cast("Text", name_text)
+        return name_text
 
     def create_frame_base(self) -> Rectangle:
         """Create the gradient-filled rectangle that forms the element tile background.

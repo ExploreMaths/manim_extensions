@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Feed forward layer for neural network visualizations.
 
 This module provides the feed forward layer class for neural network visualizations.
@@ -10,7 +9,6 @@ This module provides the feed forward layer class for neural network visualizati
 
 from __future__ import annotations
 from typing import Any, cast
-from typing import Any
 
 from manim import (
     Animation,
@@ -148,6 +146,11 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             The layer following this layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         # Add Nodes
         for node_number in range(self.num_nodes):
@@ -179,7 +182,12 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         super().construct_layer(input_layer, output_layer, **kwargs)
 
     def construct_activation_function(self) -> Any:
-        """Build the activation-function plot for this feed-forward layer."""
+        """Build the activation-function plot for this feed-forward layer.
+
+        Returns
+        -------
+            The resulting value.
+        """
         # Add the activation function
         if not self.activation_function is None:
             # Check if it is a string
@@ -219,7 +227,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         for index, node in enumerate(self.node_group):
             if not index in dropout_node_indices:
                 nodes_to_highlight.append(node)
-        nodes_to_highlight = cast("list[VMobject]", VGroup(*nodes_to_highlight))
+        nodes_to_highlight = VGroup(*nodes_to_highlight)
         # Make highlight animation
         succession = Succession(
             ApplyMethod(
@@ -339,6 +347,11 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         ----------
         mobject_or_point
             The mobject or point whose center the layer is moved to.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         layer_center = self.surrounding_rectangle.get_center()
         if isinstance(mobject_or_point, Mobject):

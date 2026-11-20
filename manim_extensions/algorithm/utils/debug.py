@@ -1,10 +1,10 @@
-from typing import Any
-
 # SPDX-FileCopyrightText: 2024 sinianluoye
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
 """Debug utilities for algorithm visualization."""
+
+from typing import Any
 
 from manim import DOWN, Dot, Integer, Paragraph, VGroup
 

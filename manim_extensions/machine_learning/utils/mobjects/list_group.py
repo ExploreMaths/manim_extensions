@@ -2,11 +2,9 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """List group utility for neural network visualization."""
 
-from typing import Iterator
+from typing import Any, Iterator
 
 from manim import Mobject
 
@@ -67,6 +65,11 @@ class ListGroup(Mobject):
             Index at which to insert the item.
         item
             Item to insert into the group.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.items.insert(index, item)
         self.submobjects = self.items
@@ -157,6 +160,11 @@ class ListGroup(Mobject):
         ----------
         item
             Item to append to the end of the group.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.items.append(item)
         self.submobjects = self.items
@@ -172,6 +180,11 @@ class ListGroup(Mobject):
             Index of the item to replace.
         item
             Item to store at the given index.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.items[index] = item
         self.submobjects = self.items
@@ -214,6 +227,11 @@ class ListGroup(Mobject):
             Z-index to apply to all items in the group.
         family
             Whether to also set the z-index of submobjects.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         for item in self.items:
             item.set_z_index(z_index_value, family=True)

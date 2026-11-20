@@ -2,13 +2,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """:class:`~manim_extensions.compass.compass.compass.Compass` class for Manim.
 
 This module provides compass visualization for geometry.
 
 """
+
+from typing import Any
 
 from manim import (
     Circle,

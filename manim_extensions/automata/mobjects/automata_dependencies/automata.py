@@ -3,10 +3,9 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants
 
-from typing import cast, Any
-from typing import Any
-
 """Automata data structures."""
+
+from typing import Any, cast
 
 from .xml_parser import parse_xml_file
 
@@ -107,6 +106,11 @@ class FiniteStateAutomaton:
         ----------
         xml_file
             Path to the XML file describing the automaton.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.construct_from_json(parse_xml_file(xml_file))
 
@@ -117,6 +121,11 @@ class FiniteStateAutomaton:
         ----------
         json_dictionary
             Structured automaton data containing the state and transition lists.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         states = json_dictionary["structure"]["automaton"]["state"]
         transitions = json_dictionary["structure"]["automaton"]["transition"]
@@ -131,6 +140,11 @@ class FiniteStateAutomaton:
         ----------
         states
             :class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` definitions from JSON or XML parsing.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         for state_data in states:
             initial = "initial" in state_data
@@ -146,6 +160,11 @@ class FiniteStateAutomaton:
         ----------
         transitions
             :class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` definitions from JSON or XML parsing.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         for trans_data in transitions:
             from_id = int(trans_data["from"])

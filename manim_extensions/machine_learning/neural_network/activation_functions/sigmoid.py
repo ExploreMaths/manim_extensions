@@ -2,9 +2,9 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """Sigmoid activation function visualization."""
+
+from typing import Any
 
 import numpy as np
 

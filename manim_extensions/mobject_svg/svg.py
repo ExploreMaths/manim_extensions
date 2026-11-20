@@ -5,7 +5,6 @@
 # patched: document the module-level constant and the cairo context helpers
 # patched: type the cairo context helpers and replace tempfile.mktemp
 
-
 """Render manim mobjects into SVG files through a Cairo surface.
 
 Vendored from ``manim-mobject-svg`` 0.5.0. The public entry points are
@@ -16,7 +15,6 @@ subpaths, gradients and stroke/fill ordering keep working.
 """
 
 from __future__ import annotations
-from typing import Any, cast
 from typing import Any
 
 import itertools as it
@@ -142,6 +140,11 @@ def _set_cairo_context_color(
         One rgba per stroke or fill point.
     vmobject
         The mobject that provides the gradient start and end points.
+
+
+        Returns
+        -------
+            The resulting value.
     """
     if len(rgbas) == 1:
         # Use reversed rgb because cairo surface is
@@ -149,10 +152,7 @@ def _set_cairo_context_color(
         ctx.set_source_rgba(*rgbas[0])
     else:
         points = vmobject.get_gradient_start_and_end_points()
-        points = cast(
-            "tuple[ndarray[tuple[Any, ...], dtype[float64]], ndarray[tuple[Any, ...], dtype[float64]]]",
-            _transform_points_pre_display(points),
-        )
+        points = _transform_points_pre_display(points)
         pat = cairo.LinearGradient(*it.chain(*(point[:2] for point in points)))
         step = 1.0 / (len(rgbas) - 1)
         offsets = np.arange(0, 1 + step, step)
@@ -174,6 +174,11 @@ def _apply_stroke(
         The mobject whose stroke width and rgbas are applied.
     background
         Stroke with the background stroke instead of the foreground one.
+
+
+        Returns
+        -------
+            The resulting value.
     """
     from manim import config
 
@@ -205,6 +210,11 @@ def _apply_fill(ctx: cairo.Context, vmobject: VMobject) -> Any:
         The cairo context to draw into.
     vmobject
         The vmobject whose fill rgbas are applied.
+
+
+        Returns
+        -------
+            The resulting value.
     """
     _set_cairo_context_color(
         ctx,
@@ -235,6 +245,11 @@ def _create_svg_from_vmobject_internal(vmobject: VMobject, ctx: cairo.Context) -
         The mobject to draw.
     ctx
         The cairo context that receives the drawing.
+
+
+        Returns
+        -------
+            The resulting value.
     """
     # Drop non-finite points before building the path.
     points = vmobject.points
@@ -327,7 +342,7 @@ def create_svg_from_vgroup(
     with _get_cairo_context(file_name, width=width, height=height) as ctx:
         # a vgroup is a list of VMobjects which may contain other VGroups
         # flatten the vgroup to get a list of VMobjects
-        vgroup = cast("VGroup", extract_mobject_family_members(vgroup, True, True))
+        vgroup = extract_mobject_family_members(vgroup, True, True)
         for vmobject in vgroup:
             _create_svg_from_vmobject_internal(vmobject, ctx)
     return file_name

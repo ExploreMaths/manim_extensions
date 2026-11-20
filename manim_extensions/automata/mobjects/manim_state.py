@@ -2,13 +2,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """:class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` class for automata visualizations.
 
 This module provides state visualization for automata.
 
 """
+
+from typing import Any
 
 from manim import Arrow, BLUE, Circle, LEFT, Tex, VGroup
 from .automata_dependencies.automata import State
@@ -111,6 +111,11 @@ class ManimState(State, VGroup):
         ----------
         number
             New subscript content.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.remove(self.subscript)
         self.subscript = Tex(str(number), font_size=50)
@@ -119,13 +124,23 @@ class ManimState(State, VGroup):
         self.add(self.subscript)
 
     def initialise_subscript(self) -> Any:
-        """Create the initial subscript (``0``) positioned next to the state text."""
+        """Create the initial subscript (``0``) positioned next to the state text.
+
+        Returns
+        -------
+            The resulting value.
+        """
         self.subscript = Tex(0, font_size=50)
         self.subscript.set_x(self.text.get_x() + -0.5)
         self.subscript.set_y(self.text.get_y() + -0.5)
 
     def set_to_final_state(self) -> Any:
-        """Add an outer concentric circle to mark this state as a final state."""
+        """Add an outer concentric circle to mark this state as a final state.
+
+        Returns
+        -------
+            The resulting value.
+        """
         state_outer = Circle(radius=self.width * 0.4, color=BLUE)
         # move x and y of outerloop to be in the same position as parameter:state
         state_outer.set_x(self.circle.get_x())
@@ -133,7 +148,12 @@ class ManimState(State, VGroup):
         self.add(state_outer)
 
     def set_to_initial_state(self) -> Any:
-        """Add an incoming arrow to mark this state as the initial state."""
+        """Add an incoming arrow to mark this state as the initial state.
+
+        Returns
+        -------
+            The resulting value.
+        """
         arrow = Arrow(
             start=LEFT * 5,
             end=self,

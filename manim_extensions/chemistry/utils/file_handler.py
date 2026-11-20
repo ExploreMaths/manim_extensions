@@ -2,17 +2,15 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants
 
-from typing import cast, Any
-from typing import Any
-
 """File handling for chemistry module.
 
 This module provides file parsing utilities for chemistry file formats.
 
 """
 
+from typing import Any, Dict, Literal, cast
+
 import os
-from typing import Dict, Literal
 
 from .parsers import MolParser, SDFParser, ASNTParser, JSONParser, XMLParser
 
@@ -65,7 +63,7 @@ class FileHandler:
         -------
             The lowercase file extension without the leading dot.
         """
-        return cast("str", os.path.splitext(file_path)[1][1:])
+        return os.path.splitext(file_path)[1][1:]
 
     def parsed_atoms_bonds_data(self) -> tuple[Dict, Dict]:
         """
@@ -75,7 +73,7 @@ class FileHandler:
         -------
             ``(atoms_dict, bonds_dict)`` parsed by the selected parser.
         """
-        return cast("tuple[dict[Any, Any], dict[Any, Any]]", self.parser.molecule_data)
+        return self.parser.molecule_data
 
     def parse_from_string(
         string: str, format: Literal["mol", "sdf", "asnt", "json", "xml"]

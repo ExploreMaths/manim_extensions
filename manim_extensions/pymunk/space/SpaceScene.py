@@ -9,9 +9,9 @@ This module provides the :class:`~manim_extensions.pymunk.space.SpaceScene.Space
 """
 
 from __future__ import annotations
+from typing import Any, Callable, TYPE_CHECKING, cast
 
 from manim import Mobject, ZoomedScene
-from typing import Any, Callable, TYPE_CHECKING, cast
 
 from .VSpace import VSpace
 from ..constraints.constraint import VConstraint
@@ -459,7 +459,7 @@ class SpaceScene(ZoomedScene):
             If the :class:`~manim.mobject.mobject.Mobject` has not been added to the physical space yet.
         """
         if hasattr(mob, "body"):
-            return cast("pymunk.Body", cast(Any, mob).body)
+            return cast(Any, mob).body
         else:
             raise RuntimeError("Please add 'mobject' to the space first!")
 
@@ -485,7 +485,7 @@ class SpaceScene(ZoomedScene):
             If the :class:`~manim.mobject.mobject.Mobject` has not been added to the physical space yet.
         """
         if hasattr(mob, "shapes"):
-            return cast("list[pymunk.Shape]", cast(Any, mob).shapes)
+            return cast(Any, mob).shapes
         else:
             raise RuntimeError("Please add 'mobject' to the space first!")
 

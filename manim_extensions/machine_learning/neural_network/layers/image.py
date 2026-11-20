@@ -2,10 +2,9 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """Image layer visualization for neural networks."""
+
+from typing import Any
 
 from manim import (
     Animation,
@@ -109,6 +108,11 @@ class ImageLayer(NeuralNetworkLayer):
             Output layer.
         **kwargs
             Forwarded to the parent layer classes.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if len(np.shape(self.numpy_image)) == 2:
             # Assumed Grayscale
@@ -119,9 +123,8 @@ class ImageLayer(NeuralNetworkLayer):
         elif len(np.shape(self.numpy_image)) == 3:
             # Assumed RGB
             self.num_channels = 3
-            self.image_mobject = cast(
-                "GrayscaleImageMobject",
-                ImageMobject(self.numpy_image).scale_to_fit_height(self.image_height),
+            self.image_mobject = ImageMobject(self.numpy_image).scale_to_fit_height(
+                self.image_height
             )
         self.add(self.image_mobject)
         super().construct_layer(input_layer, output_layer, **kwargs)
@@ -213,6 +216,11 @@ class ImageLayer(NeuralNetworkLayer):
         **kwargs
             Forwarded to
             :meth:`~manim.mobject.mobject.Mobject.scale`.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.image_mobject.scale(scale_factor)
 

@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """
 Catalog / organisation-chart layout algorithm - Python implementation.
 
@@ -15,12 +14,10 @@ Layout characteristics:
 """
 
 from __future__ import annotations
-from typing import Any, cast
-from typing import Any
+from typing import Any, Callable, List, cast
 
 __all__ = ["CatalogLayout"]
 from dataclasses import dataclass, field
-from typing import List, Callable
 from .layout import Layout
 
 
@@ -212,6 +209,11 @@ class CatalogLayout(Layout):
             Attribute name to update, such as left or top.
         offset
             Amount added to each node coordinate.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         for node in nodes:
             setattr(node, prop, getattr(node, prop) + offset)
@@ -229,6 +231,11 @@ class CatalogLayout(Layout):
             Child nodes whose attributes should be adjusted.
         props
             Mapping of attribute names to offset values.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         for node in nodes:
             for k, v in props.items():
@@ -258,6 +265,11 @@ class CatalogLayout(Layout):
             Current depth of the node in the tree.
         index
             Position of the node within its parent children list.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if pre_cb:
             pre_cb(node, layer, index)
@@ -334,6 +346,11 @@ class CatalogLayout(Layout):
             The node whose younger siblings must shift.
         add_width
             The horizontal offset to apply.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if node.parent is None:
             return
@@ -356,6 +373,11 @@ class CatalogLayout(Layout):
             The node whose younger siblings must shift.
         add_height
             The vertical offset to apply.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if node.parent and not node.parent.layer_index == 0:  # parent is not the root
             siblings = node.parent.children
@@ -373,6 +395,11 @@ class CatalogLayout(Layout):
     def _compute_base_value(self) -> Any:
         """
         Step 1: create nodes, set the root position, and set the initial top of second-level nodes.
+
+
+            Returns
+            -------
+                The resulting value.
         """
 
         def pre_cb(node: CatalogNode, layer: int, _idx: int) -> Any:
@@ -425,6 +452,11 @@ class CatalogLayout(Layout):
 
         - Children of the root are arranged horizontally
         - Children of non-root nodes are arranged vertically.
+
+
+            Returns
+            -------
+                The resulting value.
         """
 
         def pre_cb(node: CatalogNode, layer: int, _idx: int) -> Any:
@@ -469,6 +501,11 @@ class CatalogLayout(Layout):
         - Pre-order: for second-level nodes, if their subtree width exceeds their own width, shift following siblings
         - Pre-order: for non-root nodes with children, adjust vertical offset
         - Post-order: for the root, shift all children horizontally to centre the whole subtree.
+
+
+            Returns
+            -------
+                The resulting value.
         """
 
         # Pre-order callback
@@ -522,7 +559,12 @@ class CatalogLayout(Layout):
         self._walk(self.root, pre_cb=pre_cb, post_cb=post_cb)
 
     def _applay_coords(self) -> Any:
-        """Apply the computed results to the original nodes."""
+        """Apply the computed results to the original nodes.
+
+        Returns
+        -------
+            The resulting value.
+        """
 
         def _applay_coords_for_node(node: CatalogNode) -> Any:
             """Apply computed ``left``/``top`` coordinates to a node and its descendants.

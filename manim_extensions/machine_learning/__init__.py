@@ -2,14 +2,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """Machine learning visualizations for Manim.
 
 This module provides various machine learning related visualizations
 including neural networks, decision trees, and diffusion models.
 """
+
+from typing import Any, cast
 
 from argparse import Namespace
 from manim import *
@@ -82,6 +81,4 @@ class ManimMLConfig:
 
 
 # These are accessible from the manim_ml namespace
-config = cast(
-    "ManimConfig", ManimMLConfig()
-)  # intentionally shadows manim's star-imported config
+config = ManimMLConfig()  # intentionally shadows manim's star-imported config

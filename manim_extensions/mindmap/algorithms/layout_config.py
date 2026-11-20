@@ -2,20 +2,18 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """:class:`~manim_extensions.mindmap.algorithms.layout.Layout` configuration for mindmap algorithms.
 
 This module provides configuration classes for layout algorithms.
 
 """
 
+from typing import Any, Dict, List
+
 from manim import DOWN, LEFT, RIGHT, UP
 
 __all__ = ["LayoutConfig", "LayoutDirection", "LayoutType"]
 from enum import Enum
-from typing import List, Dict
 import numpy as np
 from manim.typing import Vector3D
 
@@ -161,10 +159,7 @@ class LayoutConfig:
         if not any(np.array_equal(direction, d) for d in [UP, DOWN, LEFT, RIGHT]):
             raise ValueError(f"direction must be one of {LEFT,RIGHT,UP,DOWN}")
         if not isinstance(sides, (list, tuple)):
-            sides = cast(
-                "ndarray[tuple[Any, ...], dtype[float64]] | list[ndarray[tuple[Any, ...], dtype[float64]]]",
-                (sides,),
-            )
+            sides = (sides,)
         for side in sides:
             if not any(np.array_equal(side, d) for d in [UP, DOWN]):
                 raise ValueError(f"side must be one of {UP,DOWN}")
@@ -196,7 +191,7 @@ class LayoutConfig:
             string = LayoutDirection.RightToLeft
         elif np.array_equal(direction, RIGHT):
             string = LayoutDirection.LeftToRight
-        return cast("LayoutDirection", string)
+        return string
 
     @property
     def catalog(self) -> dict[Any, Any]:

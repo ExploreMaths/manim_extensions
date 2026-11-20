@@ -2,13 +2,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """:class:`~manim_extensions.compass.compass.compass.Compass` scene for Manim.
 
 This module provides scene classes for compass-based geometry animations.
 
 """
+
+from typing import Any
 
 from manim import (
     Animation,
@@ -73,7 +73,12 @@ class CompassScene(MovingCameraScene):
     """
 
     def setup(self) -> Any:
-        """Arrange the compass, ruler and pencil around the canvas edges."""
+        """Arrange the compass, ruler and pencil around the canvas edges.
+
+        Returns
+        -------
+            The resulting value.
+        """
         self.compass = Compass(span=0.5).to_edge(LEFT)
         self.ruler = Ruler().to_edge(DOWN)
         self.pencil = Pencil().to_corner(UR)
@@ -89,6 +94,11 @@ class CompassScene(MovingCameraScene):
             Target position for the needle tip.
         run_time
             Duration of the animation.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.play(
             self.compass.animate.move_niddle_tip_to(pos),
@@ -116,6 +126,11 @@ class CompassScene(MovingCameraScene):
         **kwargs
             Additional keyword arguments forwarded to
             :meth:`~manim.scene.scene.Scene.play()`.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         anims: list[Animation] = [
             Rotate(
@@ -144,6 +159,11 @@ class CompassScene(MovingCameraScene):
             Target distance between the compass tips.
         run_time
             Duration of the opening animation.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.play(
             SplitCompass(self.compass, span=span), run_time=run_time, rate_func=linear
@@ -158,6 +178,11 @@ class CompassScene(MovingCameraScene):
             Desired distance between the compass tips.
         run_time
             Duration of the animation.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         angle = self.compass.get_compass_rotate_angle_with_span(span)
         self.play(
@@ -184,6 +209,11 @@ class CompassScene(MovingCameraScene):
             Target position for the compass pen tip (pen_tip).
         run_time
             Duration of the placement animation in seconds.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.play(
             PutCompass(
@@ -259,6 +289,11 @@ class CompassScene(MovingCameraScene):
         ----------
         run_time
             Duration of the flip animation in seconds.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.play(self.compass.animate.reverse_tip(), run_time=run_time)
 
@@ -279,6 +314,11 @@ class CompassScene(MovingCameraScene):
             Distance between the two compass tips when placed aside.
         run_time
             Time required to place the compass.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         r = 0.5 * self.compass.leg_length
         vec = r * DOWN if self.compass.get_compass_rotate_angle_direction() else r * UP
@@ -311,6 +351,11 @@ class CompassScene(MovingCameraScene):
             Time to place the ruler.
         with_pencil
             Whether to place the pencil at the same time.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if with_pencil:
             self.play(
@@ -333,6 +378,11 @@ class CompassScene(MovingCameraScene):
             Target position for the pencil nib.
         run_time
             Duration of the move animation in seconds.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.play(
             self.pencil.animate.move_nid_to(pos),
@@ -391,6 +441,11 @@ class CompassScene(MovingCameraScene):
             Target position for the pencil.
         run_time
             Duration of the translation animation in seconds.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         curr_pos = self.pencil.get_center()
         self.play(self.pencil.animate.shift(pos - curr_pos), run_time=run_time)
@@ -414,6 +469,11 @@ class CompassScene(MovingCameraScene):
             If ``True``, align the ruler horizontally; otherwise vertically.
         run_time
             Total duration of the put-away animation in seconds.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         vec_w = self.ruler.get_direction_vector_of_ruler()
         vec = RIGHT if horizontal_or_vertical else DOWN

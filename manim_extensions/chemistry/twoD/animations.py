@@ -1,14 +1,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """Animation utilities for 2D chemistry molecules.
 
 This module provides the :class:`~manim_extensions.chemistry.twoD.animations.GMAnimationBuilder` class for building molecule animations.
 
 """
+
+from typing import Any
 
 from manim import Animation, BLACK, ManimColor, PI, VGroup
 from .graph_molecule import GraphMolecule
@@ -92,7 +91,7 @@ class GMAnimationBuilder:
         """
         for bond in self.molecule.edges:
             if atom_a in bond and atom_b in bond:
-                return cast("tuple[int, int]", bond)
+                return bond
 
         raise Exception(f"No bond found for atoms {atom_a}, {atom_b}")
 

@@ -12,8 +12,9 @@ out of that compensation.
 
 """
 
-import functools
 from typing import Any, Callable
+
+import functools
 
 from manim import Mobject, VMobject, config
 from manim.mobject.opengl.opengl_mobject import OpenGLMobject

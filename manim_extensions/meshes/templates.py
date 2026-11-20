@@ -6,11 +6,12 @@
 define a few basic mesh-structures to be used as examples or test.
 """
 
+from typing import List
+
 # python imports
 # patched: lazy-import trimesh (meshes extra)
 # patched: implement create_grid for 3D and 4-D meshes
 import pathlib
-from typing import List
 
 # third-party imports
 import numpy as np

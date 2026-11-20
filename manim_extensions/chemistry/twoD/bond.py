@@ -1,21 +1,19 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """2D bond representation for Manim chemistry.
 
 This module provides bond classes for representing chemical bonds in 2D.
 
 """
 
+from typing import Any, Literal
+
 from manim import Line, Mobject, PI, Polygram, VGroup, VMobject, WHITE
 import numpy as np
 from .atom import MAtomObject
 
 
-from typing import Literal
 from manim.typing import Point3D, Vector3D
 
 
@@ -97,7 +95,7 @@ class BaseMBondObject(VGroup):
         self.from_atom = from_atom
         self.to_atom = to_atom
         self.type = type
-        self.color = cast("ManimColor", color)
+        self.color = color
         self.subtype = self.define_subtype(subtype) or subtype
         self.bond = self.create_line()
         self.index = index
@@ -258,6 +256,11 @@ class BaseMBondObject(VGroup):
         Provide the geometry used when no bond subtype is selected.
 
         Bond subclasses override this hook and return their concrete mobject.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         pass
 
@@ -266,6 +269,11 @@ class BaseMBondObject(VGroup):
         Provide the geometry used when the bond is drawn shorter on both ends.
 
         Bond subclasses override this hook and return their concrete mobject.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         pass
 
@@ -274,6 +282,11 @@ class BaseMBondObject(VGroup):
         Provide the geometry used when the bond is shortened at the from-atom end.
 
         Bond subclasses override this hook and return their concrete mobject.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         pass
 
@@ -282,6 +295,11 @@ class BaseMBondObject(VGroup):
         Provide the geometry used when the bond is shortened at the to-atom end.
 
         Bond subclasses override this hook and return their concrete mobject.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         pass
 
@@ -290,6 +308,11 @@ class BaseMBondObject(VGroup):
         Provide the geometry used when the bond is drawn longer.
 
         Bond subclasses override this hook and return their concrete mobject.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         pass
 
@@ -298,6 +321,11 @@ class BaseMBondObject(VGroup):
         Assemble the bond's line components for the selected subtype.
 
         Bond subclasses override this hook and return their concrete mobject.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         pass
 
@@ -830,6 +858,11 @@ class TripleBond(BaseMBondObject):
             Bond the lines are added to.
         base_line
             Base line the parallel lines are copied from.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         bond.add(base_line)
         double_line = base_line.copy().scale(self.triple_bond_scale)
@@ -914,7 +947,7 @@ class PlainCramBond(BaseMBondObject):
         """
         direction = self.to_atom.coords - self.from_atom.coords
         if np.linalg.norm(direction) == 0:
-            return cast("Polygram", VGroup())
+            return VGroup()
         base_line = Line(self.from_atom.coords, self.to_atom.coords)
         pivot_line = (
             base_line.copy().rotate(angle=PI / 2).scale(0.3).shift(direction / 2)

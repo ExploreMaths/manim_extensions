@@ -2,13 +2,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """Input representation for automata visualization.
 
 This module provides the :class:`~manim_extensions.automata.mobjects.manim_automaton_input.ManimAutomataInput` class for representing input strings in automata.
 
 """
+
+from typing import Any
 
 from manim import Animation, MathTex, VGroup
 

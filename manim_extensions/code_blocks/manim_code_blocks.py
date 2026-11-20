@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Utilities for the manim_code_blocks module."""
+
+from __future__ import annotations
+from typing import Any, Callable, cast
+
 # patched: bundled GitHub language colours locally, removed the import-time
 # patched: network request, and made tokenize-all-code a lazy optional extra
 
@@ -16,13 +21,9 @@ package exposes, and ``tokenize-all-code`` is imported only when a
 programming-language tokenizer is actually used.
 """
 
-from __future__ import annotations
-from typing import Any, cast
-from typing import Any
 
 import re as regex
 from abc import ABC as abstract
-from typing import Callable
 
 from manim import (
     Animation,
@@ -312,8 +313,8 @@ class CodeBlock(VGroup):
                 background_rect, markup, lang_background, lang_name, **kwargs
             )
         else:
-            self.title = cast("MarkupText", None)
-            self.title_background = cast("BackgroundRectangle", None)
+            self.title = None
+            self.title_background = None
             super().__init__(background_rect, markup, **kwargs)
 
         self.code = markup
@@ -348,12 +349,9 @@ class CodeBlock(VGroup):
                 AddTextLetterByLetter(self.title, **kwargs),
             )
 
-        return cast(
-            "tuple[FadeIn, AddTextLetterByLetter, FadeIn, AddTextLetterByLetter]",
-            (
-                FadeIn(self.code_background, **kwargs),
-                AddTextLetterByLetter(self.code, **kwargs),
-            ),
+        return (
+            FadeIn(self.code_background, **kwargs),
+            AddTextLetterByLetter(self.code, **kwargs),
         )
 
     def uncreate(self, **kwargs: Any) -> tuple[Animation, ...]:

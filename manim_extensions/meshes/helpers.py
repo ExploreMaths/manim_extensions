@@ -6,8 +6,9 @@
 some basic helpers for our models.
 """
 
-# python imports
 from typing import Dict, List
+
+# python imports
 
 # third-party imports
 import numpy as np

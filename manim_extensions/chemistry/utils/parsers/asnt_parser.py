@@ -2,8 +2,6 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants and rewrite the class docstring
 
-from typing import cast, Any
-
 """ASNT format parser for chemical files.
 
 This module provides the :class:`~manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser` class for parsing ASNT format chemical files.
@@ -11,6 +9,7 @@ This module provides the :class:`~manim_extensions.chemistry.utils.parsers.asnt_
 """
 
 from typing import Dict, List
+
 import os
 
 import numpy as np
@@ -72,7 +71,7 @@ class ASNTParser(BaseParser):
         with open(filename, "r") as asnt_file:
             file_list = asnt_file.readlines()
 
-        return cast("list[list[str]]", file_list)
+        return file_list
 
     @staticmethod
     def replace_stuff(line: str) -> str:

@@ -2,16 +2,12 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """
 Code for making a dropout animation for the
 feed forward layers of a neural network.
 """
 
 from __future__ import annotations
-from typing import Any, cast
-from typing import Any
-
 from typing import TYPE_CHECKING
 
 from manim import (
@@ -297,9 +293,7 @@ def make_forward_pass_with_dropout_animation(
         _, edge_indices = get_edges_to_drop_out(layer, layers_to_nodes_to_drop_out)
         layer_args[layer] = {"edge_indices_to_dropout": edge_indices}
 
-    return cast(
-        "Succession", neural_network.make_forward_pass_animation(layer_args=layer_args)
-    )
+    return neural_network.make_forward_pass_animation(layer_args=layer_args)
 
 
 def make_neural_network_dropout_animation(
@@ -373,7 +367,7 @@ def make_neural_network_dropout_animation(
             neural_network, layers_to_nodes_to_drop_out
         )
     else:
-        forward_pass_animation = cast("Succession", AnimationGroup())
+        forward_pass_animation = AnimationGroup()
 
     post_dropout_animation = make_post_dropout_animation(
         neural_network, layers_to_nodes_to_drop_out, x_marks

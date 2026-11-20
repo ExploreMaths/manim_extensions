@@ -2,20 +2,19 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """TikZ integration for Manim.
 
 This module provides TikZ markup to SVG conversion for Manim animations.
 
 """
 
+from typing import Any, List
+
 from manim import SVGMobject
 from manim.utils.tex_file_writing import tex_to_svg_file
 from .template import TikzTemplate
 
 from pathlib import Path
-from typing import List
 
 
 class Tikz(SVGMobject):

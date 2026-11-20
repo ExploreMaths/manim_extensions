@@ -2,13 +2,13 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import xmltodict (chemistry extra)
 
-from typing import cast, Any
-
 """XML format parser for chemical files.
 
 This module provides the :class:`~manim_extensions.chemistry.utils.parsers.xml_parser.XMLParser` class for parsing XML format chemical files.
 
 """
+
+from typing import Any, cast
 
 from types import ModuleType
 
@@ -180,7 +180,7 @@ class XMLParser(BaseParser):
             )
         }
 
-        return cast("dict[int, dict[str, object]]", atoms_data)
+        return atoms_data
 
     @staticmethod
     def extract_bonds_data(molecule_data: dict[str, object]) -> BondsDict:

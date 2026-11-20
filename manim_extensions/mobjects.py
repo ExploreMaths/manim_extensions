@@ -4,7 +4,6 @@
 # patched: lazy-import cv2 (video extra)
 # patched: document module-level constants
 
-
 """Reusable Manim mobjects and convenience wrappers.
 
 This module provides small reusable building blocks for common educational and
@@ -13,11 +12,11 @@ objects.
 
 """
 
+from __future__ import annotations
+from typing import Any, Callable
+
 # unlinked-class-ok: Select
 
-from __future__ import annotations
-from typing import Any, cast
-from typing import Any
 
 from manim import (
     AnimationGroup,
@@ -60,7 +59,6 @@ from manim import (
 from manim.typing import Point3D, Vector3DLike, Point3DLike, Vector3D, PixelArray
 import numpy as np
 import platform
-from typing import Callable
 
 from PIL import Image, ImageChops, ImageDraw
 
@@ -889,7 +887,7 @@ class FileTree(Code):
         begin_index = len(prefix.replace(" ", ""))
 
         if not self.submobjects[0]:
-            return cast("AnimationGroup", Wait(0))
+            return Wait(0)
 
         return AnimationGroup(
             VGroup(self.submobjects[0][line][begin_index:]).animate.set_color(color)
@@ -982,14 +980,14 @@ class CropImageMobject(ImageMobject):
         if isinstance(filename_or_array, str):
             img = Image.open(filename_or_array)
         elif isinstance(filename_or_array, np.ndarray):
-            img = cast("ImageFile", Image.fromarray(filename_or_array))
+            img = Image.fromarray(filename_or_array)
         elif isinstance(filename_or_array, Image.Image):
-            img = cast("ImageFile", filename_or_array)
+            img = filename_or_array
         else:
             super().__init__(filename_or_array, **kwargs)
             return
 
-        img = cast("ImageFile", img.convert("RGBA"))
+        img = img.convert("RGBA")
         if isinstance(corner_radius, (int, float)):
             if 0 < corner_radius <= 1.0:
                 radius = int(min(img.size) * corner_radius)
@@ -1009,7 +1007,7 @@ class CropImageMobject(ImageMobject):
 
         r, g, b, a = img.split()
         a = ImageChops.multiply(a, mask)
-        img = cast("ImageFile", Image.merge("RGBA", (r, g, b, a)))
+        img = Image.merge("RGBA", (r, g, b, a))
         super().__init__(np.array(img), **kwargs)
 
 
@@ -1104,6 +1102,11 @@ class VideoMobject(ImageMobject):
             The mobject this updater is attached to.
         dt
             Elapsed time (in seconds) since the last frame.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         cv2 = require("video", "cv2")
 
@@ -1257,7 +1260,12 @@ class VideoMobject(ImageMobject):
         return self
 
     def __del__(self) -> Any:
-        """Release the OpenCV capture on garbage collection."""
+        """Release the OpenCV capture on garbage collection.
+
+        Returns
+        -------
+            The resulting value.
+        """
         if hasattr(self, "_cap") and self._cap is not None and self._cap.isOpened():
             self._cap.release()
 
@@ -1432,6 +1440,11 @@ class Trail(VGroup):
         ----------
         err
             Minimum displacement required to record a new point.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         pos_new = self[0].get_center()
         pos_old = self.pos_old
@@ -1473,6 +1486,11 @@ class Trail(VGroup):
         trail
             The trail mobject to update (typically a :class:`~manim_extensions.mobjects.Trail` instance
             with a custom shape).
+
+
+            Returns
+            -------
+                The resulting value.
         """
         trail.become(self.create_path())
 
@@ -1666,7 +1684,12 @@ class ObjectBorder(VGroup):
             self.add_updater(lambda m: self._rebuild())
 
     def _rebuild(self) -> Any:
-        """Recreate the border and corner markers around the current position of ``obj``."""
+        """Recreate the border and corner markers around the current position of ``obj``.
+
+        Returns
+        -------
+            The resulting value.
+        """
         border = Rectangle(
             width=self.obj.width + 2 * self.buff,
             height=self.obj.height + 2 * self.buff,

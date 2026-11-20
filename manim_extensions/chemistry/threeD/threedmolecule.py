@@ -1,14 +1,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """3D molecule representation for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule` class for rendering molecules in 3D.
 
 """
+
+from typing import Any, cast
 
 from manim import ORIGIN, RendererType, config
 
@@ -153,9 +152,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
                     self.source_csv, atom.get("element").symbol
                 )
             else:
-                element = cast(
-                    "Element", mc_element_dict.get(atom.get("element").symbol)
-                )
+                element = mc_element_dict.get(atom.get("element").symbol)
             atoms.add(ThreeDAtom(element, atom.get("coords")))
 
         return atoms
@@ -276,6 +273,6 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
         """
         # patched: accept the whole MOL block here, not only its lines.
         if isinstance(mol_string, str):
-            mol_string = cast("str", mol_string.splitlines())
+            mol_string = mol_string.splitlines()
         atoms, bonds = mol_parser_string(mol_string)
         return ThreeDMolecule(atoms_dict=atoms, bonds_dict=bonds, source_csv=source_csv)

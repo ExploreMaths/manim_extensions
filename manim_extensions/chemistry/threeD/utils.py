@@ -1,13 +1,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """3D utilities for Manim chemistry.
 
 This module provides OpenGL-based 3D geometry classes for chemistry visualizations.
 
 """
+
+from typing import Any
 
 from manim import ORIGIN, PI, TAU
 from manim.mobject.opengl.opengl_surface import OpenGLSurface

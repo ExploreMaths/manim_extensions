@@ -6,10 +6,10 @@
 """Logger utility for Pymunk physics simulations."""
 
 from __future__ import annotations
+from typing import Any
 
 __all__ = ["manim_pymunk_logger"]
 import logging
-from typing import Any
 import threading
 
 

@@ -3,15 +3,15 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
 
+"""Utilities for the pendulum module."""
+
+from __future__ import annotations
+from typing import Any, Iterable, cast
 
 r"""Systems of :class:`~manim_extensions.physics.rigid_mechanics.pendulum.Pendulum` and their motion visualisations."""
 
-from __future__ import annotations
-from typing import Any, cast
-from typing import Any
 
 from manim import Circle, DOWN, Line, Mobject, ORANGE, RIGHT, UP, VGroup
-from typing import Iterable
 
 import numpy as np
 
@@ -117,6 +117,11 @@ class MultiPendulum(VGroup):
             Second body mobject, or a fixed point in space.
         spacescene
             The physics scene to which the joint is added.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         pymunk = require("physics", "pymunk")
         a = mob1.body
@@ -139,6 +144,11 @@ class MultiPendulum(VGroup):
             List of pin joints or positions.
         i
             Index of the first pin; the rod connects ``pins[i]`` to ``pins[i+1]``.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         try:
             x, y, _ = pins[i]
@@ -152,7 +162,12 @@ class MultiPendulum(VGroup):
         )
 
     def start_swinging(self) -> Any:
-        """Creates pymunk joints between bobs and starts the physics simulation."""
+        """Creates pymunk joints between bobs and starts the physics simulation.
+
+        Returns
+        -------
+            The resulting value.
+        """
         spacescene: SpaceScene = self.bobs[0].spacescene
         pins = [self.pivot_point]
         pins += self.bobs
@@ -162,7 +177,12 @@ class MultiPendulum(VGroup):
             self.rods[i].add_updater(lambda mob, i=i: self._redraw_rods(mob, pins, i))
 
     def end_swinging(self) -> Any:
-        """Stop swinging."""
+        """Stop swinging.
+
+        Returns
+        -------
+            The resulting value.
+        """
         spacescene = self.bobs[0].spacescene
         cast(Any, spacescene).stop_rigidity(self.bobs)
 

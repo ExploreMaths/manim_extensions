@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Mindmap node classes for Manim.
 
 This module provides node classes for mindmap visualizations.
@@ -10,8 +9,7 @@ This module provides node classes for mindmap visualizations.
 """
 
 from __future__ import annotations
-from typing import Any, cast
-from typing import Any
+from typing import Any, Dict, Generator, List, cast
 
 from manim import (
     BLUE,
@@ -32,7 +30,6 @@ from manim import (
 __all__ = ["Node", "NodeState", "NodeStyle", "dfs_walker", "bfs_walker"]
 from enum import Enum
 from collections import deque
-from typing import Generator, List, Dict
 
 import numpy as np
 
@@ -318,6 +315,11 @@ class Node:
         ----------
         scale_factor
             Uniform scaling factor applied to the node dimensions.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.node_state = NodeState.SCALE
         self.scale_factor = scale_factor
@@ -331,12 +333,17 @@ class Node:
         ----------
         child
             Child node to insert beneath the current parent.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if self.children:
             child.neighbor = self.children[-1]
             child.node_state = NodeState.INSERT
         self.children.append(child)
-        child.parent = cast("None", self)
+        child.parent = self
 
     def remove_child(self, child: "Node") -> Any:
         """Mark a child node for removal from the current node.
@@ -346,10 +353,16 @@ class Node:
         child
             Child node scheduled for removal from the tree.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         ValueError
             Raised when ``child`` is not a child of the current node.
+
         """
         if child not in self.children:
             raise ValueError(f"Node {child} is not a child of {self}")
@@ -362,6 +375,11 @@ class Node:
         ----------
         vmobject
             New mobject used to render the node content.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.node_state = NodeState.ALTER
         self.alter_vmobject = vmobject
@@ -520,6 +538,11 @@ class Node:
             The direction of the operation.
         kwargs
             Kwargs processed by this operation.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if self.parent is not None and not hasattr(self, "connector"):
             self.connector_style = kwargs
@@ -550,6 +573,11 @@ class Node:
             The direction of the operation.
         **kwargs
             Additional keyword arguments used as the connector line style.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         current_style = getattr(self, "connector_style", None)
         if (

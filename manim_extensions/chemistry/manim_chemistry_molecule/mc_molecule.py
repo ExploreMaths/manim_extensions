@@ -1,16 +1,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """Manim chemistry molecule representation.
 
 This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule` class for representing molecules.
 
 """
 
-from typing import Dict, List, Literal
+from typing import Any, Dict, List, Literal, cast
 
 from .mc_atom import MCAtom
 from .mc_bond import MCBond
@@ -61,10 +58,16 @@ class MCMolecule:
             Dictionary of custom element data to merge over the
             default elements data.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         Exception
             Raised when ``atoms_dict`` is not a dict of atom data dicts.
+
         """
 
         if self.atoms and not isinstance(self.atoms, list):
@@ -92,10 +95,16 @@ class MCMolecule:
         bonds_dict
             Bonds dict from a parser. See Base Parser.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         Exception
             Raised when ``bonds_dict`` is not a dict of bond data dicts.
+
         """
 
         if self.bonds and not isinstance(self.bonds, list):
@@ -115,10 +124,16 @@ class MCMolecule:
         r"""
         Uses the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`\ s to add connections between :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`\ s.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         Exception
             Raised when the bonds list is not a list of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`\ s.
+
         """
 
         if self.bonds and not isinstance(self.bonds, list):
@@ -402,6 +417,11 @@ class MCMolecule:
         ----------
         atoms_to_be_removed
             Indices of the atoms to remove.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if not atoms_to_be_removed:
             return
@@ -429,7 +449,12 @@ class MCMolecule:
         self.reindex_molecule_atoms()
 
     def reindex_molecule_atoms(self) -> Any:
-        """Reassign consecutive indices to all atoms and update bond references."""
+        """Reassign consecutive indices to all atoms and update bond references.
+
+        Returns
+        -------
+            The resulting value.
+        """
         self.atoms_by_index = {}
         atoms_old_index_mapping = {}
         for index, atom in enumerate(self.atoms, start=1):

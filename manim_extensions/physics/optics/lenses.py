@@ -3,14 +3,15 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import shapely (physics extra)
 
+"""Utilities for the lenses module."""
+
+from __future__ import annotations
+from typing import Any, Iterable
 
 r"""Lenses for refracting :class:`~manim_extensions.physics.optics.rays.Ray`\ s."""
 
 # unlinked-class-ok: Array
 
-from __future__ import annotations
-from typing import Any, cast
-from typing import Any
 
 from manim import (
     Circle,
@@ -23,7 +24,6 @@ from manim import (
     VectorizedPoint,
     config,
 )
-from typing import Iterable
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 import numpy as np
 
@@ -183,6 +183,4 @@ class Lens(VMobject, metaclass=ConvertToOpenGL):
         """
         i = 0
         i += 1 if config.renderer != "opengl" else 0
-        return cast(
-            "tuple[Iterable[float]]", self[i].points[0], self[i + 1].points[0]
-        )  # why is this confusing
+        return self[i].points[0]  # why is this confusing

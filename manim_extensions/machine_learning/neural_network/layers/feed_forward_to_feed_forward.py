@@ -3,12 +3,10 @@
 # SPDX-License-Identifier: MIT
 # patched: implement modify_edge_colors
 
-
 """Feed-forward to feed-forward layer connection visualization."""
 
 from __future__ import annotations
-from typing import Any, cast
-from typing import Any
+from typing import Any, Sequence, cast
 
 import numpy as np
 
@@ -28,7 +26,6 @@ from manim import (
     override_animation,
     sigmoid,
 )
-from typing import Sequence
 
 from .feed_forward import FeedForwardLayer
 from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
@@ -100,6 +97,11 @@ class FeedForwardToFeedForward(ConnectiveLayer):
             The layer following this connective layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.edges = self.construct_edges()
         self.add(self.edges)
@@ -123,7 +125,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
                 )
                 edges.append(line)
 
-        edges = cast("list[Line]", VGroup(*edges))
+        edges = VGroup(*edges)
         return edges
 
     @override_animation(FadeOut)
@@ -189,19 +191,16 @@ class FeedForwardToFeedForward(ConnectiveLayer):
                         copy_edge.set_color(self.animation_dot_color), time_width=0.3
                     )
                 else:
-                    anim = cast(
-                        "ShowPassingFlash",
-                        MoveAlongPath(dot, edge, run_time=run_time, rate_func=sigmoid),
+                    anim = MoveAlongPath(
+                        dot, edge, run_time=run_time, rate_func=sigmoid
                     )
                 path_animations.append(anim)
 
         if not self.passing_flash:
-            dots = cast("list[Dot]", VGroup(*dots))
+            dots = VGroup(*dots)
             self.add(dots)
 
-        path_animations = cast(
-            "list[ShowPassingFlash]", AnimationGroup(*path_animations)
-        )
+        path_animations = AnimationGroup(*path_animations)
 
         return path_animations
 
@@ -226,10 +225,16 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         color_scheme
             Name of the color scheme used when mapping magnitudes to colors.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         ValueError
             If neither ``colors`` nor ``magnitudes`` is provided.
+
         """
         if colors is not None:
             assert len(colors) == len(self.edges)
@@ -264,7 +269,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         """
         assert len(widths) > 0
         # Note: 1d-arrays are assumed to be in row major order
-        widths = cast("Sequence[float]", np.array(widths))
+        widths = np.array(widths)
         widths = cast(Any, widths).flatten()
         # Check thickness size
         assert np.shape(widths)[0] == len(self.edges)

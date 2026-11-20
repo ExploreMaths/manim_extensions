@@ -3,12 +3,10 @@
 # SPDX-License-Identifier: MIT
 # patched: return a real Create animation instead of a no-op
 
-
 """Max pooling 2D layer visualization for neural networks."""
 
 from __future__ import annotations
 from typing import Any, cast
-from typing import Any
 
 from manim import (
     Animation,
@@ -132,6 +130,11 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             The layer following this layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         # Make the output feature maps
         self.feature_maps = self._make_output_feature_maps(

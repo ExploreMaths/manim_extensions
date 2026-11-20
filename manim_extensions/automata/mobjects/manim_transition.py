@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """:class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` class for automata visualizations.
 
 This module provides transition visualization for automata.
@@ -10,8 +9,7 @@ This module provides transition visualization for automata.
 """
 
 from __future__ import annotations
-from typing import Any, cast
-from typing import Any
+from typing import Any, TYPE_CHECKING, cast
 
 from collections.abc import Sequence
 
@@ -27,7 +25,6 @@ from manim import (
     VGroup,
     normalize,
 )
-from typing import TYPE_CHECKING
 from .automata_dependencies.automata import Transition
 
 from .manim_state import ManimState
@@ -187,8 +184,13 @@ class ManimTransition(Transition, VGroup):
             Start point on the state circle.
         point2
             End point on the state circle.
+
+
+            Returns
+            -------
+                The resulting value.
         """
-        self.arrow = cast("Arrow", CurvedArrow(point2, point1, angle=1.5 * PI))
+        self.arrow = CurvedArrow(point2, point1, angle=1.5 * PI)
 
         # used to position the read symbols
         center_of_arc = self.arrow.get_arc_center()
@@ -241,6 +243,11 @@ class ManimTransition(Transition, VGroup):
         ----------
         buffer
             Padding distance used to separate multiple labels stacked around the arrow.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         # Obtain coordinates for the centre of the line
         x1 = None
@@ -281,6 +288,11 @@ class ManimTransition(Transition, VGroup):
         Converts a straight arrow transition to a curved arrow transition.
         This method is primarily used when there are two opposing transitions
         between two states.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         # remove existing manim arrow
         self.remove(self.arrow)
@@ -301,12 +313,17 @@ class ManimTransition(Transition, VGroup):
         ----------
         buffer
             Extra offset applied to stacked labels near the arc.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         temp_arrow = Arrow(self.transition_from, self.transition_to)
         from_point = temp_arrow.start
         to_point = temp_arrow.end
 
-        self.arrow = cast("Arrow", CurvedArrow(from_point, to_point))
+        self.arrow = CurvedArrow(from_point, to_point)
 
         chord_center_x = (from_point[0] + to_point[0]) / 2
         chord_center_y = (from_point[1] + to_point[1]) / 2
@@ -361,7 +378,12 @@ class ManimTransition(Transition, VGroup):
         return False  # There are no read_symbols that match the given token
 
     def rotate_symbols_parallel_to_arrow(self) -> Any:
-        """Rotate all read symbols so they are aligned parallel to the arrow."""
+        """Rotate all read symbols so they are aligned parallel to the arrow.
+
+        Returns
+        -------
+            The resulting value.
+        """
         for read_symbol in self.read_symbols:
             slope = self.calculate_slope_of_line()
 

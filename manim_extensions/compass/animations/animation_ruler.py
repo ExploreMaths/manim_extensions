@@ -2,13 +2,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """:class:`~manim_extensions.compass.compass.ruler.Ruler` animations for Manim.
 
 This module provides animations for ruler manipulations.
 
 """
+
+from typing import Any
 
 # unlinked-class-ok: Compass
 

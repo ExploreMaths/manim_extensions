@@ -2,12 +2,10 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Convolutional 2D to max pooling 2D layer connection visualization."""
 
 from __future__ import annotations
 from typing import Any, cast
-from typing import Any
 
 import random
 from manim import (
@@ -234,8 +232,8 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
         create_gridded_rectangle_animation = AnimationGroup(
             *create_gridded_rectangle_animations
         )
-        create_and_remove_cell_animation = cast(
-            "Succession", AnimationGroup(*create_and_remove_cell_animations)
+        create_and_remove_cell_animation = AnimationGroup(
+            *create_and_remove_cell_animations
         )
         transform_gridded_rectangle_animation = AnimationGroup(
             *transform_gridded_rectangle_animations

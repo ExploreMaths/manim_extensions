@@ -3,14 +3,13 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants
 
-
 """Contains pushdown automaton."""
-
-# unlinked-class-ok: Source
 
 from __future__ import annotations
 from typing import Any, cast
-from typing import Any
+
+# unlinked-class-ok: Source
+
 
 from .manim_non_deterministic_finite_state_automaton import (
     ManimNondeterministicFiniteAutomaton,
@@ -110,7 +109,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
         **kwargs: Any,
     ) -> None:
         if json_template is None and xml_file is None:
-            json_template = cast("dict[str, object] | None", pushdown_automaton_json)
+            json_template = pushdown_automaton_json
         super().__init__(
             json_template, xml_file, camera_follow, animation_style, **kwargs
         )
@@ -125,6 +124,11 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
         ----------
         transitions
             :class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition`\ s processed by this operation.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         # counts the number of transitions between two states
         transition_counter = {}
@@ -170,6 +174,11 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
         rules
             Pushdown rules (input symbol, pop symbol, push symbol)
             associated with this transition.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         new_transition = ManimPushDownAutomatonTransition(
             transition_from,
@@ -239,7 +248,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
             self.manim_automata_input = (
                 input  # if input is already an instance of ManimAutomataInput
             )
-            input_to_run = cast("ManimAutomataInput", input)
+            input_to_run = input
 
         # display manim_automaton_input to the screen
         list_of_animations = [
@@ -302,22 +311,16 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
                     # some code for stack too
 
         if len(next_states) != 0:
-            return cast(
-                "tuple[bool, list[State], list[ManimTransition]]",
-                (
-                    True,
-                    next_states,
-                    transitions,
-                ),
-            )  # the token matches the transition's input
-
-        return cast(
-            "tuple[bool, list[State], list[ManimTransition]]",
-            (
-                False,
+            return (
+                True,
                 next_states,
                 transitions,
-            ),
+            )  # the token matches the transition's input
+
+        return (
+            False,
+            next_states,
+            transitions,
         )  # There are no other transitions/ reachable next states given the token
 
     # nondeterministic pushdown automata have difference stacks - maybe a later requirement? Probably

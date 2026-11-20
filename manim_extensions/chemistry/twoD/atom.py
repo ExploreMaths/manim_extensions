@@ -1,20 +1,18 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """2D atom representation for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.twoD.atom.MAtomObject` class for representing atoms in 2D chemical structures.
 
 """
 
+from typing import Any, Dict, Literal
+
 # unlinked-class-ok: Element
 
 from manim import Dot, LEFT, ManimColor, MarkupText, RIGHT, VGroup, WHITE
 import numpy as np
-from typing import Dict, Literal
 from manim.typing import Point3D
 
 
@@ -115,7 +113,7 @@ class MAtomObject(VGroup):
         self.charge = charge
         self.index = index
         self.planar = planar
-        self.color = cast("ManimColor", color)
+        self.color = color
         self.atom = self.add_atom()
 
         if self.planar:
@@ -267,5 +265,10 @@ class MAtomObject(VGroup):
         ----------
         color
             New color of the atom.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         pass

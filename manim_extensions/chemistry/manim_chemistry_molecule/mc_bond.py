@@ -2,7 +2,6 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants
 
-
 """Manim chemistry bond representation.
 
 This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond` class for representing chemical bonds in molecules.
@@ -10,9 +9,7 @@ This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_mol
 """
 
 from __future__ import annotations
-from typing import Any
-
-from typing import Dict, TYPE_CHECKING
+from typing import Any, Dict, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from .mc_atom import MCAtom
@@ -79,6 +76,11 @@ class MCBond:
         ----------
         from_atom
             Atom the bond starts from.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.from_atom = from_atom
 
@@ -89,6 +91,11 @@ class MCBond:
         ----------
         to_atom
             Atom the bond ends at.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.to_atom = to_atom
 
@@ -99,6 +106,11 @@ class MCBond:
         ----------
         stereo
             Stereo type of the bond.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.stereo = stereo
 

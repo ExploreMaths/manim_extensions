@@ -4,9 +4,10 @@
 
 """:class:`~manim_extensions.pymunk.custom_mobjects.apple.Apple` Mobject for Pymunk physics simulations."""
 
+from typing import Any
+
 import numpy as np
 from manim import VMobject
-from typing import Any
 
 
 class Apple(VMobject):

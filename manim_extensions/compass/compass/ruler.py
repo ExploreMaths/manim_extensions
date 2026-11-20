@@ -2,13 +2,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """:class:`~manim_extensions.compass.compass.ruler.Ruler` class for Manim.
 
 This module provides ruler visualization for geometry.
 
 """
+
+from typing import Any
 
 from manim import LEFT, Line, RIGHT, Rectangle, VGroup, WHITE
 from manim.typing import Point3D, Vector3D

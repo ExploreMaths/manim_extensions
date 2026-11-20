@@ -1,14 +1,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """Graph-based molecule representation for Manim chemistry.
 
 This module provides graph-based molecule visualization classes.
 
 """
+
+from typing import Any, Dict, cast
 
 import logging
 
@@ -23,7 +22,6 @@ from manim import (
     VGroup,
     color_gradient,
 )
-from typing import Dict
 import numpy as np
 import networkx as nx
 
@@ -143,6 +141,11 @@ class DoubleLine(ArcBetweenPoints):
         **kwargs
             Additional keyword arguments passed to
             :meth:`~manim.mobject.geometry.line.Line.put_start_and_end_on`.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.put_start_and_end_on(start=start, end=end)
 
@@ -290,9 +293,7 @@ class GraphMolecule(Graph, AbstractMolecule):
         self.edges_dict = edges_dict
         labels = False
         if label or numeric_label:
-            labels = cast(
-                "bool", self.make_labels(vertices_dict, numeric_label, label_color)
-            )
+            labels = self.make_labels(vertices_dict, numeric_label, label_color)
 
         super().__init__(
             vertices=vertices_dict.keys(),
@@ -320,6 +321,11 @@ class GraphMolecule(Graph, AbstractMolecule):
             Pairs of vertex indices that should be connected.
         _
             Unused parameter kept for the graph interface.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.edges = {}
 
@@ -374,7 +380,7 @@ class GraphMolecule(Graph, AbstractMolecule):
                 f"{bond_type} is an unknown type of bond. Options are 1, 2 or 3"
             )
 
-        return cast("type[Line] | type[ArcBetweenPoints]", bond)
+        return bond
 
     def make_layout(self, vertices_dict: dict[Any, Any]) -> dict[int, Point3D]:
         """Build a layout dict mapping each atom index to its 3D coordinates.
@@ -590,7 +596,7 @@ class GraphMolecule(Graph, AbstractMolecule):
         connected_atoms = self.get_connected_atoms(
             from_atom_index=from_atom_index, to_atom_index=to_atom_index
         )
-        return cast("list[Any]", self.get_atoms_vgroup_from_index(connected_atoms))
+        return self.get_atoms_vgroup_from_index(connected_atoms)
 
     def get_bonds_from_atoms_indices(
         self, connected_atoms: list[Any], excluded_atom: int = 0

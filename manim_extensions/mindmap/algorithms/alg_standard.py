@@ -2,19 +2,17 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Standard mind map layout algorithm."""
+
+from __future__ import annotations
+from typing import Any, List, cast
 
 # unlinked-class-ok: Source
 
-from __future__ import annotations
-from typing import Any, cast
-from typing import Any
 
 __all__ = [
     "StandardLayout",
 ]
-from typing import List
 from collections import deque
 from .alg_tidy_tree import TidyTreeLayout
 from .layout_config import LayoutDirection
@@ -81,6 +79,11 @@ class TreeNode:
         ----------
         child
             The child node to add.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.children.append(child)
         child.parent = self
@@ -101,7 +104,7 @@ def copy_node(node: object) -> TreeNode:
     """
 
     if node is None:
-        return cast("TreeNode", None)
+        return None
     root = TreeNode(cast(Any, node).height, cast(Any, node).width)
     for child in cast(Any, node).children:
         root.add_child(copy_node(child))
@@ -139,11 +142,17 @@ def sync_copy_bfs(src: TreeNode, dst: object) -> Any:
     dst
         Destination tree (data receiver).
 
+
+    Returns
+    -------
+        The resulting value.
+
     Raises
     ------
     ValueError
         Raised when the two trees have mismatched structures: one node is
         missing, or two corresponding nodes have different child counts.
+
     """
     queue = deque([(src, dst)])
 
@@ -250,7 +259,12 @@ class StandardLayout(Layout):
                 return LayoutDirection.TopToBottom
 
     def _split(self) -> Any:
-        """Split the root's children into left/right (or top/bottom) parts."""
+        """Split the root's children into left/right (or top/bottom) parts.
+
+        Returns
+        -------
+            The resulting value.
+        """
         self.left = TreeNode(cast(Any, self.root).height, cast(Any, self.root).width)
         if (number := len(cast(Any, self.root).children)) > 0:
             m, n = split_integer(number)
@@ -272,22 +286,16 @@ class StandardLayout(Layout):
         -------
             The root node of the completed layout."""
         self._split()
-        self.left = cast(
-            "TreeNode",
-            TidyTreeLayout(
-                self.left, self.direction, self.node_spacing, self.level_spacing
-            ).layout(),
-        )
+        self.left = TidyTreeLayout(
+            self.left, self.direction, self.node_spacing, self.level_spacing
+        ).layout()
         if self.right is not None:
-            self.right = cast(
-                "TreeNode | None",
-                TidyTreeLayout(
-                    self.right,
-                    self.flip_direction,
-                    self.node_spacing,
-                    self.level_spacing,
-                ).layout(),
-            )
+            self.right = TidyTreeLayout(
+                self.right,
+                self.flip_direction,
+                self.node_spacing,
+                self.level_spacing,
+            ).layout()
             x = cast(Any, self.left).x - cast(Any, self.right).x
             y = cast(Any, self.left).y - cast(Any, self.right).y
             self._offset(self.right, x, y)
@@ -306,6 +314,11 @@ class StandardLayout(Layout):
             Horizontal offset.
         y
             Vertical offset.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         node.x += x
         node.y += y
@@ -314,6 +327,11 @@ class StandardLayout(Layout):
             self._offset(child, x, y)
 
     def _merge(self) -> Any:
-        """Merge the right (or bottom) subtree into the left tree."""
+        """Merge the right (or bottom) subtree into the left tree.
+
+        Returns
+        -------
+            The resulting value.
+        """
         for child in cast(Any, self.right).children:
             self.left.add_child(child)

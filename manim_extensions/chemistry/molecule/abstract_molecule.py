@@ -1,17 +1,15 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """Abstract molecule base class for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule` class as a template for all molecule implementations.
 
 """
 
+from typing import Any, Dict, Literal, cast
+
 from manim import DOWN, Tex, Text, VGroup
-from typing import Dict, Literal
 from manim.mobject.opengl.opengl_mobject import OpenGLGroup
 from abc import abstractmethod
 

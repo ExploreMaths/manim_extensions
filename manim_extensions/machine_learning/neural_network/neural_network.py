@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: MIT
 # patched: implement replace_layer
 
-
 """Neural Network Manim Visualization.
 
 This module is responsible for generating a neural network visualization with
@@ -17,11 +16,11 @@ manim, specifically a fully connected neural network diagram.
     NeuralNetwork(layer_node_count)
 """
 
+from __future__ import annotations
+from typing import Any, Callable, Literal, cast
+
 # unlinked-class-ok: Layout, Filters
 
-from __future__ import annotations
-from typing import Any, cast
-from typing import Any
 
 import textwrap
 from ..utils.mobjects.connections import NetworkConnection
@@ -44,7 +43,6 @@ from manim import (
     Wait,
     override_animation,
 )
-from typing import Callable, Literal
 
 from .layers.parent_layers import ConnectiveLayer
 from .layers.util import get_connective_layer
@@ -213,6 +211,11 @@ class NeuralNetwork(Group):
             Unused position hint reserved for future use.
         arc_direction
             Direction the connection arc bends.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         assert connection_style in ["default"]
         if connection_style == "default":
@@ -235,7 +238,12 @@ class NeuralNetwork(Group):
 
     def _construct_input_layers(self) -> Any:
         """Constructs each of the input layers in context
-        of their adjacent layers.."""
+        of their adjacent layers..
+
+            Returns
+            -------
+                The resulting value.
+        """
         prev_layer = None
         next_layer = None
         # Go through all the input layers and run their construct method
@@ -266,10 +274,16 @@ class NeuralNetwork(Group):
         layout_direction
             Direction in which layers are arranged.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         Exception
             If an unsupported layout mode is requested.
+
         """
         # Default: Linear layout
         for layer_index in range(1, len(self.input_layers)):
@@ -353,7 +367,12 @@ class NeuralNetwork(Group):
         return connective_layers, all_layers
 
     def _place_connective_layers(self) -> Any:
-        """Center each connective layer between its input and output layers."""
+        """Center each connective layer between its input and output layers.
+
+        Returns
+        -------
+            The resulting value.
+        """
         # Place each of the connective layers halfway between the adjacent layers
         for connective_layer in self.connective_layers:
             layer_midpoint = (
@@ -620,6 +639,11 @@ class NeuralNetwork(Group):
         family
             Kept for signature compatibility; setting ``family=False`` stops
             sub-neural networks from inheriting the parent z-index.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         # Setting family=False stops sub-neural networks from inheriting parent z_index
         for layer in self.all_layers:
@@ -638,6 +662,11 @@ class NeuralNetwork(Group):
             The scaling factor.
         **kwargs
             Additional keyword arguments forwarded to each layer's ``scale``.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         prior_center = self.get_center()
 

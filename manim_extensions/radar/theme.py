@@ -2,14 +2,12 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Colour themes for :class:`~manim_extensions.radar.chart.RadarChart`."""
 
 from __future__ import annotations
-from typing import Any
+from typing import Any, Sequence, Union
 
 from dataclasses import dataclass, replace
-from typing import Sequence, Union
 
 from manim import ManimColor
 

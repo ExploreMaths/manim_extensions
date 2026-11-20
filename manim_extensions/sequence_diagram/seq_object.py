@@ -2,8 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """Sequence diagram object for Manim.
 
 This module provides object class for sequence diagrams.

@@ -2,13 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Arc-length, offset, warp and dashed-path helpers for Manim vector paths."""
 
 from __future__ import annotations
-from typing import Any, cast
-from typing import Any
-from typing import Callable, Sequence
+from typing import Any, Callable, Sequence
+
 import numpy as np
 from manim import (
     Circle,
@@ -256,7 +254,7 @@ class PathMapper(VMobject):
             -------
                 The path proportion whose arc length matches ``rate_func(t)``.
             """
-            return cast("float", self.equalize_alpha(rate_func(t)))
+            return self.equalize_alpha(rate_func(t))
 
         return eq_func
 
@@ -285,7 +283,7 @@ class PathMapper(VMobject):
                     remainder = 1
                 else:
                     index = int(a * self.path.get_num_curves() // 1)
-                    remainder = cast("int", (a * self.path.get_num_curves()) % 1)
+                    remainder = (a * self.path.get_num_curves()) % 1
                 p = self.path.get_nth_curve_function(index)(remainder)
                 ret = np.concatenate([ret, np.reshape(p, (1, 3))], axis=0)
             return ret
@@ -296,7 +294,7 @@ class PathMapper(VMobject):
                 remainder = 1
             else:
                 index = int(a * self.path.get_num_curves() // 1)
-                remainder = cast("int", (a * self.path.get_num_curves()) % 1)
+                remainder = (a * self.path.get_num_curves()) % 1
             return self.path.get_nth_curve_function(index)(remainder)
 
     def get_length_between_points(self, b: float, a: float) -> float:
@@ -994,20 +992,14 @@ class CurveWarp(VMobject):
                 elif x > L:
                     endpoint = self.PM.point_from_proportion(1)
                     tanv = self.PM.get_tangent_unit_vector(L)
-                    nv = cast(
-                        "list[ndarray[tuple[Any, ...], dtype[Any]]]",
-                        rotate_vector(tanv, PI / 2),
-                    )
+                    nv = rotate_vector(tanv, PI / 2)
                     x_1 = x - L
                     p = endpoint + x_1 * tanv + y * nv
                     self.points = np.append(self.points, np.reshape(p, (1, 3)), axis=0)
                 else:
                     startpoint = self.PM.point_from_proportion(0)
                     tanv = self.PM.get_tangent_unit_vector(0)
-                    nv = cast(
-                        "list[ndarray[tuple[Any, ...], dtype[Any]]]",
-                        rotate_vector(tanv, PI / 2),
-                    )
+                    nv = rotate_vector(tanv, PI / 2)
                     x_1 = x
                     p = startpoint + x_1 * tanv + y * nv
                     self.points = np.append(self.points, np.reshape(p, (1, 3)), axis=0)

@@ -4,8 +4,9 @@
 
 """Spring Mobject for Pymunk physics simulations."""
 
-import numpy as np
 from typing import Any
+
+import numpy as np
 from manim import LEFT, Line, ManimColor, ORIGIN, PI, RIGHT, WHITE, angle_of_vector
 from manim.typing import Point3D
 
@@ -75,7 +76,12 @@ class VSpring(Line):
         super().__init__(start, end, stroke_width=stroke_width, color=color, **kwargs)
 
     def generate_points(self) -> "VSpring":
-        """Override generate_points to produce a helix instead of a straight line."""
+        """Override generate_points to produce a helix instead of a straight line.
+
+        Returns
+        -------
+            The resulting value.
+        """
         # 1. Compute distance between start and end
         start = self._pointify(self.start)
         end = self._pointify(self.end)

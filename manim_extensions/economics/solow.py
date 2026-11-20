@@ -1,16 +1,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """Solow growth model diagram for Manim.
 
 This module provides the Solow growth model diagram.
 
 """
 
-from typing import Callable
+from typing import Any, Callable
 
 from manim import (
     AnimationGroup,
@@ -510,7 +507,7 @@ class SolowDiagram(EconDiagram):
         """
         if hasattr(self, "_shares_group") and self._shares_group is not None:
             old = self._shares_group
-            self._shares_group = cast("VGroup", None)
+            self._shares_group = None
             return FadeOut(old)
         return None
 
@@ -625,6 +622,6 @@ class SolowDiagram(EconDiagram):
         """
         if hasattr(self, "_golden_group") and self._golden_group is not None:
             old = self._golden_group
-            self._golden_group = cast("VGroup", None)
+            self._golden_group = None
             return FadeOut(old)
         return None

@@ -3,6 +3,10 @@
 # SPDX-License-Identifier: BSD-3-Clause
 # patched: document module-level constants
 
+"""Utilities for the package module."""
+
+from typing import Any
+
 # Automatically generated using scripts/update.py. Don't edit.
 
 # Copyright Naveen M K
@@ -10,7 +14,6 @@
 # Use of this source code is governed by a BSD-style license that can be
 # found in the LICENSE.txt file.
 
-from typing import Any
 
 """Font Awesome icons for Manim.
 

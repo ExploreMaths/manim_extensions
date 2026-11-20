@@ -1,13 +1,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """Weighted line class for Manim.
 
 This module provides the :class:`~manim_extensions.weighted_line.weighted_line.WeightedLine` class for displaying weighted edges in network graphs.
 
 """
+
+from typing import Any
 
 from manim import DEFAULT_FONT_SIZE, ITALIC, Line, SMALL_BUFF, Text, WHITE, config
 
@@ -141,6 +141,11 @@ class WeightedLine(Line):
 
         Use bg_config dict to send options to the background Rectangle object.
 
+
+
+            Returns
+            -------
+                The resulting value.
         """
 
         # Set the new weight if it is present

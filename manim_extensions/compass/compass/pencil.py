@@ -2,8 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """:class:`~manim_extensions.compass.compass.pencil.Pencil` class for Manim.
 
 This module provides pencil visualization for geometry.

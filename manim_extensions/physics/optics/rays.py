@@ -2,14 +2,15 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Utilities for the rays module."""
+
+from __future__ import annotations
+from typing import Any, Iterable
 
 r""":class:`~manim_extensions.physics.optics.rays.Ray`\ s of light. Refracted by Lenses."""
 
-from __future__ import annotations
-from typing import Any
 
 from manim import Line, angle_of_vector, config, rotate_vector
-from typing import Iterable
 import numpy as np
 
 from .lenses import Lens, antisnell, intersection, snell
@@ -88,6 +89,11 @@ class Ray(Line):
         ----------
         lenses
             All the lenses for the ray to propagate through.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         sorted_lens = self._sort_lens(lenses)
         for lens in sorted_lens:

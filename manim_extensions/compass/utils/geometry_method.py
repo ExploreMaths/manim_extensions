@@ -1,5 +1,3 @@
-from typing import Any
-
 # SPDX-FileCopyrightText: 2026 jj-math
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
@@ -9,6 +7,8 @@ from typing import Any
 This module provides geometry utility functions for compass operations.
 
 """
+
+from typing import Any
 
 # unlinked-class-ok: Source
 

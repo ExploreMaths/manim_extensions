@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """True-camera helpers for radar charts (:class:`~manim.scene.moving_camera_scene.MovingCameraScene`).
 
 :class:`~manim_extensions.radar.camera.CameraRig` wraps the camera frame so a radar scene can be shot like a
@@ -14,9 +13,7 @@ scales the chart instead — same idea, zero setup.
 """
 
 from __future__ import annotations
-from typing import Any
-
-from typing import Optional
+from typing import Any, Optional
 
 import numpy as np
 from manim import Mobject, MovingCameraScene

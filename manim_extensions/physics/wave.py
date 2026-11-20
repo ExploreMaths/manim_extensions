@@ -2,17 +2,16 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """3D and 2D Waves module."""
+
+from __future__ import annotations
+from typing import Any, Iterable
 
 # unlinked-class-ok: Source
 
-from __future__ import annotations
-from typing import Any
 
 import numpy as np
 from manim import Mobject, ORIGIN, PI, ParametricFunction, Surface
-from typing import Iterable
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 from manim.typing import Point3D
 
@@ -128,6 +127,11 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
             The surface mobject being updated.
         dt
             The time step since the last update.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.time += dt
         mob.match_points(
@@ -140,11 +144,21 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
         )
 
     def start_wave(self) -> Any:
-        """Animate the wave propagation."""
+        """Animate the wave propagation.
+
+        Returns
+        -------
+            The resulting value.
+        """
         self.add_updater(self._update_wave)
 
     def stop_wave(self) -> Any:
-        """Stop animating the wave propagation."""
+        """Stop animating the wave propagation.
+
+        Returns
+        -------
+            The resulting value.
+        """
         self.remove_updater(self._update_wave)
 
 
@@ -292,6 +306,11 @@ class StandingWave(ParametricFunction):
             The parametric curve object being updated.
         dt
             The time step since the last update.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.time += dt
         mob.become(
@@ -311,10 +330,20 @@ class StandingWave(ParametricFunction):
         )
 
     def start_wave(self) -> Any:
-        """Begin the standing-wave animation and store its current center."""
+        """Begin the standing-wave animation and store its current center.
+
+        Returns
+        -------
+            The resulting value.
+        """
         self.wave_center = self.get_center()
         self.add_updater(self._update_wave)
 
     def stop_wave(self) -> Any:
-        """Stop the standing-wave animation."""
+        """Stop the standing-wave animation.
+
+        Returns
+        -------
+            The resulting value.
+        """
         self.remove_updater(self._update_wave)

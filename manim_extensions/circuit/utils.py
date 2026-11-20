@@ -2,14 +2,12 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """:class:`~manim_extensions.circuit.utils.Circuit` diagram utilities for Manim."""
 
 from __future__ import annotations
-from typing import Any
+from typing import Any, Literal
 
 import math
-from typing import Literal
 
 import numpy as np
 from manim import (
@@ -284,6 +282,11 @@ class Circuit(VMobject):
         ----------
         *args
             Components to add to the circuit.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         for component in args:
             self.component_list.add(component)
@@ -410,7 +413,12 @@ class Node(VMobject):
         self.set_color(WHITE)
 
     def __update(self) -> Any:
-        """Rebuild the internal wire paths for this junction node."""
+        """Rebuild the internal wire paths for this junction node.
+
+        Returns
+        -------
+            The resulting value.
+        """
         self.clear_points()
         for path in self.coords:
             self.start_new_path(path[0])
@@ -461,6 +469,11 @@ class Node(VMobject):
         ----------
         dot_coord
             Position of the dot to place on the node.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.junction_dots.add(Dot(dot_coord))
 
@@ -473,6 +486,11 @@ class Node(VMobject):
         ----------
         wire_param
             Sequence of points describing a wire path.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if len(self.coords) == 0:
             self.coords.append(wire_param)
@@ -518,6 +536,11 @@ class Node(VMobject):
             Other node to merge into this one.
         wire
             Optional wire path to add before or during the merge.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if wire is not False:
             self.add_wire(wire)

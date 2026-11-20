@@ -1,14 +1,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """Future classes for Manim chemistry.
 
 This module contains experimental classes that may be implemented in the future.
 
 """
+
+from typing import Any, Callable, cast
 
 from functools import wraps
 
@@ -42,7 +41,6 @@ from manim import (
     np,
     smooth,
 )
-from typing import Callable
 
 from ...utils.deprecation import deprecated
 from manim.typing import Point3D, Vector3D, VectorND
@@ -167,7 +165,7 @@ class Element(VGroup):
         super().__init__(**kwargs)
         self.element_label = element
         self.label_color = label_color
-        self.color = cast("ManimColor", color)
+        self.color = color
         self.radius = radius
         self.n_electrons = n_electrons
         self.n_holes = n_holes
@@ -323,7 +321,7 @@ class ElementFrame(VGroup):
             height=2, width=1.5, fill_opacity=1
         ).set_color_by_gradient(frame_colors)
         self.symbol = Text(element_symbol, color=BLACK).scale(1.5).shift(0.2 * UP)
-        self.name = cast("str", Text(element_name, color=BLACK).shift(0.75 * DOWN))
+        self.name = Text(element_name, color=BLACK).shift(0.75 * DOWN)
 
         name_rescaling_factor = (
             0.75 * cast(Any, self.frame).width / cast(Any, self.name).width
@@ -827,6 +825,11 @@ def arrange_in_1d_boundary(mobs: VGroup, boundary: list[Any] = [LEFT, RIGHT]) ->
         Mobjects to distribute along the line.
     boundary
         Boundary points of the line.
+
+
+        Returns
+        -------
+            The resulting value.
     """
     divisions = len(mobs)
     positions = np.linspace(boundary[0], boundary[1], divisions)

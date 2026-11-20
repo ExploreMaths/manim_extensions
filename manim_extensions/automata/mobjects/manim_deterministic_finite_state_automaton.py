@@ -2,14 +2,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """Deterministic finite state automaton visualization.
 
 This module provides the :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimdeterministicFiniteAutomaton` class for visualizing DFAs.
 
 """
+
+from typing import Any, cast
 
 from .manim_automaton import ManimAutomaton
 

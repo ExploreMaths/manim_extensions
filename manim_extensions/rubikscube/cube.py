@@ -3,9 +3,6 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import kociemba (rubikscube extra)
 
-from typing import cast, Any
-from typing import Any
-
 """Rubik's Cube mobject built from Manim primitives.
 
 This module exposes a 3D-styled cube model that is useful for puzzles,
@@ -13,14 +10,14 @@ visual demonstrations, and algorithm walkthroughs.
 
 """
 
+from typing import Any, Literal
+
 from manim import Mobject, ORIGIN, VMobject, WHITE
 import numpy as np
 from .cubie import Cubie
 
 from ..utils.deps import require
 from manim.typing import Point3D
-
-from typing import Literal
 
 
 class RubiksCube(VMobject):
@@ -194,10 +191,7 @@ class RubiksCube(VMobject):
         self.y_offset = [[Mobject.shift, [0, y_offset, 0]]]
         self.z_offset = [[Mobject.shift, [0, 0, z_offset]]]
 
-        self.cubies = cast(
-            "type[ndarray[_ShapeT_co, _DTypeT_co]]",
-            np.ndarray((dim, dim, dim), dtype=Cubie),
-        )
+        self.cubies = np.ndarray((dim, dim, dim), dtype=Cubie)
         self.generate_cubies()  # **kwargs)
 
     def get_center(self) -> Point3D:
@@ -238,6 +232,11 @@ class RubiksCube(VMobject):
         ----------
         positions
             A sequence of face letters specifying the cube state.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         colors = {
             "U": self.colors[0],
@@ -292,6 +291,11 @@ class RubiksCube(VMobject):
             The offset metadata used to translate the cubie.
         tile
             The cubie to transform.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         offsets_nr = len(offset)
         for i in range(offsets_nr):
@@ -325,34 +329,30 @@ class RubiksCube(VMobject):
             The selected face values, either as a 2D grid or a flattened array.
         """
         if face == "F":
-            face = cast("Literal['F', 'B', 'U', 'D', 'L', 'R']", self.cubies[0, :, :])
+            face = self.cubies[0, :, :]
         elif face == "B":
-            face = cast(
-                "Literal['F', 'B', 'U', 'D', 'L', 'R']",
-                self.cubies[self.dimensions - 1, :, :],
-            )
+            face = self.cubies[self.dimensions - 1, :, :]
         elif face == "U":
-            face = cast(
-                "Literal['F', 'B', 'U', 'D', 'L', 'R']",
-                self.cubies[:, :, self.dimensions - 1],
-            )
+            face = self.cubies[:, :, self.dimensions - 1]
         elif face == "D":
-            face = cast("Literal['F', 'B', 'U', 'D', 'L', 'R']", self.cubies[:, :, 0])
+            face = self.cubies[:, :, 0]
         elif face == "L":
-            face = cast(
-                "Literal['F', 'B', 'U', 'D', 'L', 'R']",
-                self.cubies[:, self.dimensions - 1, :],
-            )
+            face = self.cubies[:, self.dimensions - 1, :]
         elif face == "R":
-            face = cast("Literal['F', 'B', 'U', 'D', 'L', 'R']", self.cubies[:, 0, :])
+            face = self.cubies[:, 0, :]
 
         if flatten:
             return face.flatten()
         else:
-            return cast("ndarray[tuple[Any, ...], dtype[Any]]", face)
+            return face
 
     def set_indices(self) -> Any:
-        """Build the position-to-cubie index map for the current cube state."""
+        """Build the position-to-cubie index map for the current cube state.
+
+        Returns
+        -------
+            The resulting value.
+        """
         for c in self.cubies.flatten():
             self.indices[c.get_rounded_center()] = c.position
 
@@ -363,6 +363,11 @@ class RubiksCube(VMobject):
         ----------
         cubies
             The cubies whose positions should be reindexed.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         for c in cubies.flatten():
             loc = self.indices[c.get_rounded_center()]

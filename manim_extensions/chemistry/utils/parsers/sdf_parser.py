@@ -7,9 +7,10 @@ This module provides the :class:`~manim_extensions.chemistry.utils.parsers.sdf_p
 
 """
 
+from typing import List
+
 # unlinked-class-ok: Molecules
 
-from typing import List
 
 from .base_parser import AtomsDict, BondsDict, FilePath
 from .mol_parser import MolParser

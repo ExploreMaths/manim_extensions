@@ -9,11 +9,11 @@ This module provides the :class:`~manim_extensions.pymunk.constraints.VSlideJoin
 """
 
 from __future__ import annotations
+from typing import Any, TYPE_CHECKING
 
 from manim import Dot, GREEN_A, Line, Mobject, ORIGIN, RED, VMobject
 import numpy as np
 from manim.typing import Point3D
-from typing import TYPE_CHECKING, Any
 from . import VConstraint
 
 from ...utils.deps import require

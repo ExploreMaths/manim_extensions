@@ -3,12 +3,11 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import matplotlib/seaborn (ml extra)
 
-from typing import cast, Any
-from typing import Any
-
 """
 Tool for animating Markov Chain Monte Carlo simulations in 2D.
 """
+
+from typing import Any, Callable
 
 # unlinked-class-ok: Ground
 
@@ -31,7 +30,6 @@ from manim import (
     VGroup,
     override_animation,
 )
-from typing import Callable
 
 from ..utils.mobjects.plotting import convert_matplotlib_figure_to_image_mobject
 import numpy as np
@@ -417,7 +415,7 @@ class MCMCAxes(Group):
         )
 
         create_guassian = Create(gaussian)
-        return cast("AnimationGroup", create_guassian)
+        return create_guassian
 
     def make_transition_animation(
         self,
@@ -453,7 +451,7 @@ class MCMCAxes(Group):
         # point_is_rejected = not candidate_location == end_location
         point_is_rejected = False
         if point_is_rejected:
-            return cast("AnimationGroup", AnimationGroup(), Dot().set_opacity(0.0))
+            return AnimationGroup()
         else:
             create_end_point = Create(end_point)
             line = Line(
@@ -467,25 +465,19 @@ class MCMCAxes(Group):
             create_line = Create(line)
 
             if show_dots:
-                return cast(
-                    "AnimationGroup",
-                    (
-                        AnimationGroup(
-                            create_end_point,
-                            create_line,
-                            lag_ratio=1.0,
-                            run_time=run_time,
-                        ),
-                        line,
+                return (
+                    AnimationGroup(
+                        create_end_point,
+                        create_line,
+                        lag_ratio=1.0,
+                        run_time=run_time,
                     ),
+                    line,
                 )
             else:
-                return cast(
-                    "AnimationGroup",
-                    (
-                        AnimationGroup(create_line, lag_ratio=1.0, run_time=run_time),
-                        line,
-                    ),
+                return (
+                    AnimationGroup(create_line, lag_ratio=1.0, run_time=run_time),
+                    line,
                 )
 
     def show_ground_truth_gaussian(
@@ -611,7 +603,7 @@ class MCMCAxes(Group):
             *transition_animations, lag_ratio=1.0, run_time=5.0
         )
         # 3. Convert the chain to points, excluding the warmup
-        lines = cast("list[Any]", VGroup(*lines))
+        lines = VGroup(*lines)
         warm_up_points = VGroup(*warmup_points)
         fade_out_lines_and_warmup = AnimationGroup(
             Uncreate(lines), Uncreate(warm_up_points), lag_ratio=0.0

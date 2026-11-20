@@ -11,6 +11,7 @@ CAD-style diagrams in Manim scenes.
 """
 
 from __future__ import annotations
+
 from .dimensions import *
 from .hatch import *
 from .path_mapper import *

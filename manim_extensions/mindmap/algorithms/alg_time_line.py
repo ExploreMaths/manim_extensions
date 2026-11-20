@@ -2,19 +2,16 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Timeline layout algorithm - Python implementation."""
 
 from __future__ import annotations
-from typing import Any, cast
-from typing import Any
+from typing import Any, Callable, Dict, List, cast
 
 __all__ = [
     "TimeLineLayout",
 ]
 
 from dataclasses import dataclass, field
-from typing import List, Dict, Callable
 from .layout import Layout
 from .layout_config import LayoutDirection
 
@@ -148,6 +145,11 @@ def walk(
         The depth of the current node (root is 0).
     index
         The index of ``node`` within its parent's children list.
+
+
+        Returns
+        -------
+            The resulting value.
     """
     # Pre-order callback
     if before_callback:
@@ -256,7 +258,12 @@ class TimeLineLayout(Layout):
 
     # ==================== Stage 1: base-value computation ====================
     def _compute_base(self) -> Any:
-        """Pre-order traversal: create nodes, set root position, compute second-level top values."""
+        """Pre-order traversal: create nodes, set root position, compute second-level top values.
+
+        Returns
+        -------
+            The resulting value.
+        """
 
         def before_callback(
             node: TimelineNode,
@@ -307,7 +314,12 @@ class TimeLineLayout(Layout):
 
     # ==================== Stage 2: precise coordinate computation ====================
     def _compute_coords(self) -> Any:
-        """Pre-order traversal: compute node left (x) and top (y)."""
+        """Pre-order traversal: compute node left (x) and top (y).
+
+        Returns
+        -------
+            The resulting value.
+        """
 
         def before_callback(
             node: TimelineNode,
@@ -356,7 +368,12 @@ class TimeLineLayout(Layout):
 
     # ==================== Stage 3: collision adjustment ====================
     def _adjust(self) -> Any:
-        """Pre-order + post-order traversal: adjust node left and top."""
+        """Pre-order + post-order traversal: adjust node left and top.
+
+        Returns
+        -------
+            The resulting value.
+        """
 
         def before_callback(
             node: TimelineNode,
@@ -442,6 +459,11 @@ class TimeLineLayout(Layout):
         ----------
         node
             The root node whose children are examined.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         children_list = node.children
         total_add_width = 0.0
@@ -470,6 +492,11 @@ class TimeLineLayout(Layout):
             The node whose siblings need to be shifted.
         add_height
             The vertical offset to apply to younger siblings.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if node._parent and not node._parent._is_root:
             children_list = node._parent.children
@@ -610,6 +637,11 @@ class TimeLineLayout(Layout):
             The attribute name to modify (e.g. ``"x"`` or ``"y"``).
         offset
             The offset to add to the current value.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         for item in children:
             current = getattr(item, prop)
@@ -628,6 +660,11 @@ class TimeLineLayout(Layout):
         ----------
         node
             The root of the (sub)tree whose coordinates should be applied.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if node.node:
             cast(Any, node.node).x = cast(Any, node).x + node.width / 2

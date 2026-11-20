@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Max pooling 2D to feed-forward layer connection visualization."""
 
 from __future__ import annotations

@@ -1,13 +1,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """Linked IS-LM and AD-AS diagrams for Manim.
 
 This module provides linked IS-LM and AD-AS diagrams for policy analysis.
 
 """
+
+from typing import Any
 
 from manim import AnimationGroup, RIGHT, VGroup
 from .ad_as import ADASDiagram

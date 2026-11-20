@@ -2,8 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """Turing machine visualization.
 
 This module provides the :class:`~manim_extensions.automata.mobjects.manim_turing_machine.ManimTuringMachine` class for visualizing Turing machines.

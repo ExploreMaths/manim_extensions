@@ -2,9 +2,9 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """Gridded rectangle visualization utility."""
+
+from typing import Any
 
 from manim import (
     DOWN,
@@ -264,6 +264,11 @@ class GriddedRectangle(VGroup):
         ----------
         color
             Color to apply to the rectangle border and fill.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.color = color
         self.rectangle.set_color(color)

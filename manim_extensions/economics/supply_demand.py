@@ -1,19 +1,16 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """Supply and demand diagram for Manim.
 
 This module provides the supply and demand diagram.
 
 """
 
+from typing import Any, Callable
+
 from manim import BLUE, RED
 from .base import EconDiagram
-
-
-from typing import Callable
 
 
 class SupplyDemandDiagram(EconDiagram):

@@ -2,15 +2,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """:class:`~manim_extensions.circuit.utils.Circuit` mobjects for Manim.
 
 This module provides circuit component visualizations.
 
 """
 
-from typing import Literal
+from typing import Any, Literal
 
 import numpy as np
 from manim import (

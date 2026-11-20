@@ -1152,6 +1152,7 @@
  "manim_extensions.three_d.core.SaddleSurface",
  "manim_extensions.three_d.core.SaddleSurfaceScene",
  "manim_extensions.three_d.core.SurfaceConfig",
+ "manim_extensions.three_d.core.SurfaceConfigClass",
  "manim_extensions.three_d.core.SurfaceFunction",
  "manim_extensions.three_d.core.TorusSurface",
  "manim_extensions.three_d.core.TorusSurfaceScene",

@@ -2,6 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Utilities for the poly module."""
+
+from __future__ import annotations
+from typing import Any, Sequence, cast
+
 # -*- coding: utf-8 -*-
 
 
@@ -31,10 +36,6 @@ with ``theta`` a plain float attribute. Labels use look-at billboards
 projected onto world up, so they stay readable at any rotation angle.
 """
 
-from __future__ import annotations
-from typing import Any, cast
-from typing import Any
-from typing import Sequence
 import math
 
 import numpy as np
@@ -249,9 +250,7 @@ class PolyRadarChart(VGroup):
         self.inr = (
             INRADIUS * self.poly_radius
         )  # world radius of the panel centre at full scale
-        self.center = cast(
-            "Callable[[], PolyRadarChart]", np.array(center, dtype=float)
-        )  # rotation axis (world coordinates)
+        self.center = np.array(center, dtype=float)  # rotation axis (world coordinates)
         self.cam_pos = np.array(cam_pos, dtype=float)
         self.theta = 0.0  # rotation angle (plain float)
         self.spin_rate = float(spin_rate)  # degrees/second (slow by default)
@@ -368,7 +367,7 @@ class PolyRadarChart(VGroup):
         for v in range(20):
             fs = [fi for fi, face in enumerate(DODECA_FACES) if v in face]
             tris.append(tuple(fs))
-        return cast("list[tuple[int, int, int]]", tris)
+        return tris
 
     def _world(self, i: int, extra: float = 0.0) -> np.ndarray:
         """Compute the rotated world position of an axis marker.

@@ -2,11 +2,10 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """:class:`~manim_extensions.algorithm.queue.Queue` data structure for algorithm visualization."""
 
 from __future__ import annotations
-from typing import Any
+from typing import Any, List
 
 from manim import (
     AnimationGroup,
@@ -24,7 +23,6 @@ from manim import (
     VMobject,
     linear,
 )
-from typing import List
 from manim.typing import Point3D
 from .node import Node, NodeBoxType
 

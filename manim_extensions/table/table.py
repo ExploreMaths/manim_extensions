@@ -2,12 +2,11 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants
 
-from typing import cast, Any
-from typing import Any
-
 """
 :class:`~manim_extensions.table.table.Table` - The main database table component.
 """
+
+from typing import Any, List, overload
 
 # unlinked-class-ok: Row
 
@@ -17,7 +16,6 @@ from manim.utils.color import ParsableManimColor
 import numpy as np
 from .row import Row
 from .cell import Cell
-from typing import List, overload
 
 #: Animation produced by the mutation methods: either a real Animation
 #: (Transform/FadeIn/FadeOut) or a builder created via ``mobject.animate``.
@@ -870,9 +868,7 @@ class Table(VGroup):
             max_text_width = 0
             for text_str in all_text:
                 t = Text(text_str, font_size=self.font_size)
-                max_text_width = cast(
-                    "int", max(max_text_width, t.width + self.padding)
-                )
+                max_text_width = max(max_text_width, t.width + self.padding)
             new_width = max_text_width
 
         self.column_widths.insert(index, new_width)

@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """The overflow radar chart: :class:`~manim_extensions.radar.overflow.OverflowRadarChart`.
 
 Values above the full scale are no longer clamped to a ``"10+"`` read-out.
@@ -12,9 +11,7 @@ transitions whose overshoot makes the escape visible.
 """
 
 from __future__ import annotations
-from typing import Any
-
-from typing import Optional, Sequence, Union
+from typing import Any, Optional, Sequence, Union
 
 from manim import Animation
 

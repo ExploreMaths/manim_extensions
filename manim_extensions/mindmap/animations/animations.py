@@ -2,14 +2,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """Mindmap animations for Manim.
 
 This module provides animations for mindmap visualizations.
 
 """
+
+from typing import Any, Dict, List, cast
 
 from manim import (
     Animation,
@@ -35,7 +34,6 @@ __all__ = [
     "ScaleNode",
     "AlterNode",
 ]
-from typing import Dict, List
 
 import numpy as np
 
@@ -148,7 +146,7 @@ def animate_of_create(
     elif isinstance(node.vmobject, (Tex, MathTex)):
         AnimateClass = Write
     else:
-        AnimateClass = cast("type[Write]", Create)
+        AnimateClass = Create
     anims.extend(
         [
             AnimateClass(cast(Any, node.vmobject).move_to(pos)),
@@ -563,7 +561,7 @@ def animate_of_layout(
     change_layout = is_layout_change(root, layout_type)
     current_x, current_y, _ = cast(Any, root.vmobject).get_center()
     layout = LayoutFactory.create_layout(layout_type, root, layout_config)
-    root = cast("Node", layout.layout())
+    root = layout.layout()
     setattr(root, "layout_type", layout_type)
     setattr(root, "direction", direction)
     x_offset = current_x - root.x
@@ -589,7 +587,7 @@ def animate_of_layout(
             )
         )
         node.x = node.y = 0
-    return cast("list[Animation]", anims)
+    return anims
 
 
 class AbstractLayoutAnimation(AnimationGroup):
@@ -747,7 +745,7 @@ class AbstractLayoutAnimation(AnimationGroup):
         if len(nodes) == 1:
             return root
         if not all(node.get_root() is root for node in nodes[1::]):
-            return cast("Node", None)
+            return None
         return root
 
 
@@ -832,15 +830,12 @@ class LayoutAnimation(AbstractLayoutAnimation):
             The layout animations.
         """
         remove_nodes = self._check_node_state()
-        return cast(
-            "tuple[Animation]",
-            animate_of_layout(
-                self.root,
-                remove_nodes,
-                self.layout_type,
-                self.layout_config,
-                self.node_style,
-            ),
+        return animate_of_layout(
+            self.root,
+            remove_nodes,
+            self.layout_type,
+            self.layout_config,
+            self.node_style,
         )
 
 
@@ -892,7 +887,7 @@ class RemoveNode(LayoutAnimation):
     ) -> None:
         self.is_whole_tree = False
         if isinstance(nodes, Node):
-            nodes = cast("Node | list[Node]", (nodes,))
+            nodes = (nodes,)
         root = self.get_common_root(nodes)
         if root is None:
             raise Exception("nodes must be in the same tree")
@@ -1041,7 +1036,7 @@ class InsertNode(LayoutAnimation):
                 for child in children:
                     father.add_child(child)
         self.root = self.get_root(list(self.father_children.keys()))
-        return cast("list[Animation]", super().collect_animations())
+        return super().collect_animations()
 
 
 class ScaleNode(LayoutAnimation):

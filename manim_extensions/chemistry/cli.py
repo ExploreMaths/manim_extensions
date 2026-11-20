@@ -1,13 +1,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """CLI module for chemistry.
 
 This module provides command-line interface for downloading molecules from PubChem.
 
 """
+
+from typing import Any, Literal
 
 import os
 
@@ -16,12 +16,14 @@ import click
 from .utils import PubchemAPIManager
 
 
-from typing import Literal
-
-
 @click.group
 def cli() -> Any:
-    """Command-line interface group for chemistry-related commands."""
+    """Command-line interface group for chemistry-related commands.
+
+    Returns
+    -------
+        The resulting value.
+    """
 
 
 @click.command()
@@ -83,6 +85,11 @@ def pubchem_molecule(
     output_folder
         Folder where the downloaded files are saved.
 
+
+    Returns
+    -------
+        The resulting value.
+
     Raises
     ------
     Exception
@@ -96,6 +103,7 @@ def pubchem_molecule(
        :prompt-in: "$"
 
        manim-chemistry pubchem-molecule --format sdf -n acetone -n morphine
+
     """
 
     identifier = cid or name or smiles or inchi

@@ -2,8 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """Scene that draws lines with a ruler and a pencil.
 
 :class:`~manim_extensions.compass.scene.ruler_scene.SingleRulerScene` extends
@@ -11,6 +9,8 @@ from typing import Any
 methods to lay down a ruler, draw a line with the pencil, and return the
 ruler to its resting position.
 """
+
+from typing import Any
 
 __all__ = ["SingleRulerScene"]
 
@@ -44,7 +44,12 @@ class SingleRulerScene(MovingCameraScene):
     """
 
     def setup(self) -> Any:
-        """Place the ruler at the bottom edge and the pencil at the right edge."""
+        """Place the ruler at the bottom edge and the pencil at the right edge.
+
+        Returns
+        -------
+            The resulting value.
+        """
         self.ruler = Ruler(width=0.4, length=8).to_edge(DOWN)
         self.pencil = Pencil(height=1).to_edge(RIGHT)
         self.pen_pos = self.pencil.get_center()
@@ -107,6 +112,11 @@ class SingleRulerScene(MovingCameraScene):
             Run time for the play.
         **kwargs
             Additional keyword arguments passed to the play.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         anims = [
             Restore(self.ruler),

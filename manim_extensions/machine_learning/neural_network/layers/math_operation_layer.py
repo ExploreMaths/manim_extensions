@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Math operation layer visualization for neural networks."""
 
 from __future__ import annotations
@@ -126,6 +125,11 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             The layer following this layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         # Draw the operation
         self.operation_text = Text(self.operation_type, font_size=self.font_size)
@@ -140,7 +144,12 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         super().construct_layer(input_layer, output_layer, **kwargs)
 
     def construct_activation_function(self) -> Any:
-        """Build the activation-function plot for this math-operation layer."""
+        """Build the activation-function plot for this math-operation layer.
+
+        Returns
+        -------
+            The resulting value.
+        """
         # Add the activation function
         if not self.activation_function is None:
             # Check if it is a string
@@ -224,6 +233,11 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         ----------
         mobject_or_point
             The mobject or point whose center the layer is moved to.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         layer_center = self.surrounding_circle.get_center()
         if isinstance(mobject_or_point, Mobject):

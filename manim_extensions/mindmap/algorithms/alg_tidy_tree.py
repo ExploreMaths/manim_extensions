@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """
 Non-layered Tidy Tree :class:`~manim_extensions.mindmap.algorithms.layout.Layout` Algorithm (Python Implementation).
 Used to compute node positions for tree structures.
@@ -11,12 +10,10 @@ Algorithm reference: "Improving Walker's Algorithm to Run in Linear Time"
 """
 
 from __future__ import annotations
-from typing import Any, cast
-from typing import Any
+from typing import Any, List, cast
 
 __all__ = ["TidyTreeLayout"]
 from dataclasses import dataclass, field
-from typing import List
 from .layout_config import LayoutDirection
 from .layout import Layout
 
@@ -187,6 +184,11 @@ def move_right(node: object, move: float, is_horizontal: bool) -> Any:
         The offset to apply.
     is_horizontal
         If ``True``, shifts ``y``; otherwise shifts ``x``.
+
+
+        Returns
+        -------
+            The resulting value.
     """
     if is_horizontal:
         cast(Any, node).y += move
@@ -225,6 +227,11 @@ def normalize(node: object, is_horizontal: bool) -> Any:
         The subtree root.
     is_horizontal
         Whether the layout is horizontal.
+
+
+        Returns
+        -------
+            The resulting value.
     """
     min_val = get_min(node, is_horizontal)
     move_right(node, -min_val, is_horizontal)
@@ -244,6 +251,11 @@ def convert_back(converted: WrappedTree, root: object, is_horizontal: bool) -> A
         The original node to update.
     is_horizontal
         Whether the layout is horizontal.
+
+
+        Returns
+        -------
+            The resulting value.
     """
     if is_horizontal:
         cast(Any, root).y = converted.x
@@ -269,6 +281,11 @@ def layer(node: object, direction: str, level_spacing: float) -> Any:
         The layout direction.
     level_spacing
         Spacing between adjacent layers.
+
+
+        Returns
+        -------
+            The resulting value.
     """
     if (parent := cast(Any, node).parent) is not None:
         cast(Any, node).level = cast(Any, parent).level + 1
@@ -374,7 +391,7 @@ class TidyTreeLayout(Layout):
         -------
             The root node of the completed layout."""
         layer(self.root, self.direction, self.level_spacing)
-        self.wt = cast("None", WrappedTree.from_node(self.root, self.is_horizontal))
+        self.wt = WrappedTree.from_node(self.root, self.is_horizontal)
         self.first_walk(self.wt)
         self.second_walk(self.wt, 0)
         convert_back(self.wt, self.root, self.is_horizontal)
@@ -388,6 +405,11 @@ class TidyTreeLayout(Layout):
         ----------
         t
             The root of the subtree to process.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if t.child_number == 0:
             self.set_extremes(t)
@@ -414,6 +436,11 @@ class TidyTreeLayout(Layout):
         ----------
         t
             The subtree root.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if t.child_number == 0:
             t.extreme_left = t
@@ -461,6 +488,11 @@ class TidyTreeLayout(Layout):
             Index of the current subtree.
         ih
             Preceding subtrees whose right contour may still collide with the current subtree.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         sr = t.children[
             i - 1
@@ -494,12 +526,12 @@ class TidyTreeLayout(Layout):
             cy = self.bottom(cl)
 
             if sy <= cy:
-                sr = cast("WrappedTree", self.next_right_contour(sr))
+                sr = self.next_right_contour(sr)
                 if sr is not None:
                     mssr += sr.mod
 
             if sy >= cy:
-                cl = cast("WrappedTree", self.next_left_contour(cl))
+                cl = self.next_left_contour(cl)
                 if cl is not None:
                     mscl += cl.mod
 
@@ -521,6 +553,11 @@ class TidyTreeLayout(Layout):
             Index of the leftmost sibling that was moved.
         dist
             The shift distance.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         t.children[i].mod += dist
         t.children[i].mod_sum_extreme_left += dist
@@ -540,6 +577,11 @@ class TidyTreeLayout(Layout):
             Index of the leftmost sibling that was moved.
         dist
             The total extra distance to distribute.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if si != i - 1:
             nr = i - si
@@ -606,6 +648,11 @@ class TidyTreeLayout(Layout):
             The left-contour node of the current subtree.
         modsumcl
             The accumulated modifier sum along the left contour.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         li = t.children[0].extreme_left
         cast(Any, li).thread_left = cl
@@ -630,6 +677,11 @@ class TidyTreeLayout(Layout):
             The right-contour node of the current subtree.
         modsumsr
             The accumulated modifier sum along the right contour.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         ri = t.children[i].extreme_right
         cast(Any, ri).thread_right = sr
@@ -646,6 +698,11 @@ class TidyTreeLayout(Layout):
         ----------
         t
             The subtree root.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         t.prelim = (
             t.children[0].prelim
@@ -663,6 +720,11 @@ class TidyTreeLayout(Layout):
             The subtree root.
         modsum
             Sum of all ancestor mod values from the root to the current node.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         modsum += t.mod
         if self.is_horizontal:
@@ -681,6 +743,11 @@ class TidyTreeLayout(Layout):
         ----------
         t
             The parent node whose children are updated.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         d = 0
         modsumdelta = 0
@@ -690,7 +757,12 @@ class TidyTreeLayout(Layout):
             child.mod += modsumdelta
 
     def compute_connectors(self) -> Any:
-        """Compute connector paths between each node and its parent in the layout."""
+        """Compute connector paths between each node and its parent in the layout.
+
+        Returns
+        -------
+            The resulting value.
+        """
 
         def compute_node(node: object) -> Any:
             """Compute the connector path from a node to its parent.

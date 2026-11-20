@@ -7,7 +7,6 @@
 #          installed font from _FONT_CANDIDATES (queried via fontconfig's
 #          fc-list) is used; an explicitly passed font_name is
 #          used verbatim.
-from typing import Any
 
 """Utilities for rendering Arabic text in Manim using XeLaTeX."""
 

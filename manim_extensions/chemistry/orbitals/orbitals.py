@@ -1,14 +1,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """Atomic orbital visualization for Manim chemistry.
 
 This module provides classes for rendering atomic orbitals in 3D.
 
 """
+
+from typing import Any
 
 from manim import BLUE, ORIGIN, PI, RED, TAU
 from manim.mobject.opengl.opengl_surface import OpenGLSurface
@@ -58,7 +57,12 @@ class OrbitalBase(OpenGLSurface):
     """
 
     def add_background_rectangle_to_family_members_with_points(self) -> Any:
-        """No-op override to prevent background rectangle addition on orbital surfaces."""
+        """No-op override to prevent background rectangle addition on orbital surfaces.
+
+        Returns
+        -------
+            The resulting value.
+        """
         pass
 
     def __init__(
@@ -176,7 +180,7 @@ class OrbitalPositive(OrbitalBase):
         """
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
         if psi < 0:
-            psi = cast("ndarray[tuple[Any, ...], dtype[float64]]", 0)
+            psi = 0
 
         return self.calculate_coordinates(psi, u, v)
 
@@ -202,7 +206,7 @@ class OrbitalNegative(OrbitalBase):
         """
         psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
         if psi > 0:
-            psi = cast("ndarray[tuple[Any, ...], dtype[float64]]", 0)
+            psi = 0
 
         return self.calculate_coordinates(psi, u, v)
 

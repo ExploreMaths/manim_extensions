@@ -2,19 +2,24 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """Main module for Rubik's Cube extension.
 
 This module provides the entry point for the Rubik's Cube extension.
 
 """
 
+from typing import Any
+
 from . import __version__
 
 
 def main() -> Any:
-    """Entry point for the ``python -m manim_extensions.rubikscube`` command."""
+    """Entry point for the ``python -m manim_extensions.rubikscube`` command.
+
+    Returns
+    -------
+        The resulting value.
+    """
     print("Manim Rubik's Cube v" + __version__ + "\n")
 
 

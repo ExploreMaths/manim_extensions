@@ -4,9 +4,10 @@
 
 """:class:`~manim_extensions.pymunk.custom_mobjects.gear.Gear` Mobject for Pymunk physics simulations."""
 
+from typing import Any
+
 from manim import Circle, DEGREES, Exclusion, Polygon, Union, VMobject
 import numpy as np
-from typing import Any
 
 
 class Gear(VMobject):

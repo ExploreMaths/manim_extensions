@@ -2,8 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-
 """Utility functions for neural network layers."""
 
 import warnings
@@ -43,14 +41,11 @@ def get_connective_layer(
             break
 
     if connective_layer_class is None:
-        connective_layer_class = cast(
-            "type[EmbeddingToFeedForward] | type[FeedForwardToEmbedding] | type[FeedForwardToFeedForward] | type[FeedForwardToImage] | type[ImageToFeedForward] | <10 more items> | None",
-            BlankConnective,
-        )
+        connective_layer_class = BlankConnective
         warnings.warn(
             f"Unrecognized input/output class pair: {input_layer} and {output_layer}"
         )
     # Make the instance now
     connective_layer = connective_layer_class(input_layer, output_layer)
 
-    return cast("ConnectiveLayer", connective_layer)
+    return connective_layer

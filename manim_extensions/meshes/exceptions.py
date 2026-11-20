@@ -2,8 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """Exceptions raised while validating mesh topology and geometry."""
 
 # unlinked-class-ok: Mesh

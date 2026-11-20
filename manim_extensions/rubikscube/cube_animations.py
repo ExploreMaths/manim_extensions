@@ -2,14 +2,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """Rubik's Cube animations for Manim.
 
 This module provides animations for Rubik's Cube manipulations.
 
 """
+
+from typing import Any, cast
 
 from manim import Animation, Mobject, PI, VGroup
 from .cube import RubiksCube
@@ -76,7 +75,7 @@ class CubeMove(Animation):
         starting_mobject = self.mobject.copy()
         if cast(Any, starting_mobject).indices == {}:
             cast(Any, starting_mobject).set_indices()
-        return cast("RubiksCube", starting_mobject)
+        return starting_mobject
 
     def interpolate_mobject(self, alpha: float) -> Any:
         """Interpolate the cube rotation at progress ``alpha``.
@@ -85,6 +84,11 @@ class CubeMove(Animation):
         ----------
         alpha
             Animation progress between ``0`` and ``1``.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.mobject.become(self.starting_mobject)
 
@@ -93,7 +97,12 @@ class CubeMove(Animation):
         )
 
     def finish(self) -> Any:
-        """Finalise the cube move and update face indices after animation completes."""
+        """Finalise the cube move and update face indices after animation completes.
+
+        Returns
+        -------
+            The resulting value.
+        """
         super().finish()
         cast(Any, self.mobject).adjust_indices(
             cast(Any, self.mobject).get_face(self.face[0], False)

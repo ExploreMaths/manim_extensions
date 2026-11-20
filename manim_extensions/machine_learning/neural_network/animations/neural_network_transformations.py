@@ -2,16 +2,12 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """
 Transformations for manipulating a neural network object.
 """
 
 from __future__ import annotations
-from typing import Any, cast
-from typing import Any
-
-from typing import TYPE_CHECKING
+from typing import Any, TYPE_CHECKING
 
 from manim import AnimationGroup, Create, FadeOut, Group, Mobject, UpdateFromFunc, np
 from ..layers.util import get_connective_layer
@@ -156,15 +152,11 @@ class RemoveLayer(AnimationGroup):
         fade_out_before_connective = AnimationGroup()
         if not self.before_connective is None:
             self.neural_network.all_layers.remove(self.before_connective)
-            fade_out_before_connective = cast(
-                "AnimationGroup", FadeOut(self.before_connective)
-            )
+            fade_out_before_connective = FadeOut(self.before_connective)
         fade_out_after_connective = AnimationGroup()
         if not self.after_connective is None:
             self.neural_network.all_layers.remove(self.after_connective)
-            fade_out_after_connective = cast(
-                "AnimationGroup", FadeOut(self.after_connective)
-            )
+            fade_out_after_connective = FadeOut(self.after_connective)
         # Group items
         remove_connective_group = AnimationGroup(
             fade_out_after_connective, fade_out_before_connective
@@ -195,9 +187,7 @@ class RemoveLayer(AnimationGroup):
             layers_before = Group(
                 *self.neural_network.all_layers[: before_layer_index + 1]
             )
-            move_before_layers = cast(
-                "AnimationGroup", layers_before.animate.shift(shift_right_amount)
-            )
+            move_before_layers = layers_before.animate.shift(shift_right_amount)
         move_after_layers = AnimationGroup()
         shift_left_amount = None
         if not self.after_layer is None:
@@ -210,9 +200,7 @@ class RemoveLayer(AnimationGroup):
                 self.after_layer
             )
             layers_after = Group(*self.neural_network.all_layers[after_layer_index:])
-            move_after_layers = cast(
-                "AnimationGroup", layers_after.animate.shift(shift_left_amount)
-            )
+            move_after_layers = layers_after.animate.shift(shift_left_amount)
         # Group the move animations
         move_group = AnimationGroup(move_before_layers, move_after_layers)
 
@@ -341,10 +329,10 @@ class InsertLayer(AnimationGroup):
         # Compute the widths
         before_connective_width = 0
         if not before_connective is None:
-            before_connective_width = cast("int", before_connective.width)
+            before_connective_width = before_connective.width
         after_connective_width = 0
         if not after_connective is None:
-            after_connective_width = cast("int", after_connective.width)
+            after_connective_width = after_connective.width
         return before_connective_width, after_connective_width
 
     def remove_connective_layer_animation(self) -> tuple:
@@ -391,8 +379,8 @@ class InsertLayer(AnimationGroup):
                 ]
             )
             # Shift layers before
-            before_shift_animation = cast(
-                "AnimationGroup", Group(*self.layers_before).animate.shift(before_shift)
+            before_shift_animation = Group(*self.layers_before).animate.shift(
+                before_shift
             )
         # After layer shift
         after_shift_animation = AnimationGroup()
@@ -401,9 +389,7 @@ class InsertLayer(AnimationGroup):
                 [self.layer.width / 2 + after_connective_width, 0, 0]
             )
             # Shift layers after
-            after_shift_animation = cast(
-                "AnimationGroup", Group(*self.layers_after).animate.shift(after_shift)
-            )
+            after_shift_animation = Group(*self.layers_after).animate.shift(after_shift)
         # Make animation group
         shift_animations = AnimationGroup(before_shift_animation, after_shift_animation)
 

@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """The two original generations, rebuilt on top of the library.
 
 :class:`~manim_extensions.radar.legacy.RadarV1Scene` reproduces the **1.0** look (flat grid, one glow layer, snap-in
@@ -12,8 +11,6 @@ Both play the same 23-snapshot demo reel that ships with the package.
 """
 
 from __future__ import annotations
-from typing import Any
-
 from typing import Optional, Sequence
 
 from manim import Scene

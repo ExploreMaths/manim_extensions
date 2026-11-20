@@ -9,10 +9,10 @@ This module provides the :class:`~manim_extensions.pymunk.constraints.VSimpleMot
 """
 
 from __future__ import annotations
+from typing import Any, TYPE_CHECKING
 
 from math import inf
 from manim import Arrow, Line, Mobject, PI, RED, VMobject
-from typing import TYPE_CHECKING, Any
 from . import VConstraint
 
 from ...utils.deps import require

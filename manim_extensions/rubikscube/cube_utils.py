@@ -10,8 +10,7 @@ This module provides utility functions for Rubik's Cube operations.
 """
 
 from __future__ import annotations
-
-from typing import TYPE_CHECKING, Literal, Any
+from typing import Any, Literal, TYPE_CHECKING
 
 import numpy as np
 from manim.constants import DOWN, IN, LEFT, OUT, RIGHT, UP, X_AXIS, Y_AXIS, Z_AXIS

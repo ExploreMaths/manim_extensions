@@ -10,9 +10,9 @@ This module provides the :class:`~manim_extensions.pymunk.constraints.constraint
 """
 
 from __future__ import annotations
+from typing import Any, TYPE_CHECKING, cast
 
 from manim import Mobject, VGroup
-from typing import Any, cast, TYPE_CHECKING
 
 if TYPE_CHECKING:
     from pymunk import Body, Constraint, Space

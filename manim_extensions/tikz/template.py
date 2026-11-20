@@ -2,16 +2,15 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """TikZ template for Manim.
 
 This module provides the TikZ template class for rendering TikZ diagrams.
 
 """
 
+from typing import Any, List
+
 from manim import TexTemplate
-from typing import List
 
 
 class TikzTemplate(TexTemplate):

@@ -2,11 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Small vector and construction helpers shared by the CAD drawing utilities."""
 
 from __future__ import annotations
 from typing import Any
+
 import numpy as np
 from manim.typing import Vector3D
 from manim import (

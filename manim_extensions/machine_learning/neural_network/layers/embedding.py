@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Embedding layer visualization for neural networks."""
 
 from __future__ import annotations
@@ -118,6 +117,11 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
             The layer following this layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.axes = Axes(
             tips=False,
@@ -355,7 +359,12 @@ class NeuralNetworkEmbeddingTestScene(Scene):
     """Test scene for verifying the embedding layer visualization."""
 
     def construct(self) -> Any:
-        """Build the test scene with an embedding layer and Gaussian distribution."""
+        """Build the test scene with an embedding layer and Gaussian distribution.
+
+        Returns
+        -------
+            The resulting value.
+        """
         nne = EmbeddingLayer()
         mean = np.array([0, 0])
         cov = np.array([[5.0, 1.0], [0.0, 1.0]])

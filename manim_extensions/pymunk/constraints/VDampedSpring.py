@@ -9,11 +9,11 @@ This module provides the :class:`~manim_extensions.pymunk.constraints.VDampedSpr
 """
 
 from __future__ import annotations
+from typing import Any, TYPE_CHECKING
 
 from ..custom_mobjects import VSpring
 from manim import BLUE, Dot, Line, Mobject, ORIGIN, VMobject, YELLOW
 from manim.typing import Point3D
-from typing import TYPE_CHECKING, Any
 from . import VConstraint
 
 from ...utils.deps import require

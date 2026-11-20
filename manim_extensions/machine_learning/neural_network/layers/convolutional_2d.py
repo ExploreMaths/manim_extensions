@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Convolutional 2D layer for neural network visualizations.
 
 This module provides the convolutional 2D layer class for neural network visualizations.
@@ -10,7 +9,6 @@ This module provides the convolutional 2D layer class for neural network visuali
 
 from __future__ import annotations
 from typing import Any, cast
-from typing import Any
 
 from ..activation_functions import get_activation_function_by_name
 from ..activation_functions.activation_function import ActivationFunction
@@ -274,12 +272,12 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         if isinstance(feature_map_size, int):
             self.feature_map_size = (feature_map_size, feature_map_size)
         else:
-            self.feature_map_size = cast("tuple[int, int]", feature_map_size)
+            self.feature_map_size = feature_map_size
 
         if isinstance(filter_size, int):
             self.filter_size = (filter_size, filter_size)
         else:
-            self.filter_size = cast("tuple[int, int]", filter_size)
+            self.filter_size = filter_size
 
         self.cell_width = cell_width
         self.filter_spacing = filter_spacing
@@ -308,6 +306,11 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             The layer following this layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         # Make the feature maps
         self.feature_maps = self.construct_feature_maps()
@@ -324,7 +327,12 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         super().construct_layer(input_layer, output_layer, **kwargs)
 
     def construct_activation_function(self) -> Any:
-        """Build the activation-function plot for this convolutional layer."""
+        """Build the activation-function plot for this convolutional layer.
+
+        Returns
+        -------
+            The resulting value.
+        """
         # Add the activation function
         if not self.activation_function is None:
             # Check if it is a string
@@ -435,6 +443,11 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             Factor by which the layer is scaled.
         **kwargs
             Forwarded to :meth:`~manim.mobject.mobject.Mobject.scale`.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.cell_width *= scale_factor
         super().scale(scale_factor, **kwargs)
@@ -473,6 +486,11 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         ----------
         mobject_or_point
             The mobject or point whose center the layer is moved to.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         layer_center = self.feature_maps.get_center()
         if isinstance(mobject_or_point, Mobject):

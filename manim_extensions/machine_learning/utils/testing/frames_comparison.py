@@ -2,12 +2,10 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Testing utilities for frame comparison."""
 
 from __future__ import annotations
-from typing import Any, cast
-from typing import Any
+from typing import Any, Callable, cast
 
 from manim import CairoRenderer, Scene, ThreeDCamera, ThreeDScene, tempconfig
 from manim._config.utils import ManimConfig
@@ -21,7 +19,6 @@ from manim.utils.testing._test_class_makers import (
 import functools
 import inspect
 from pathlib import Path
-from typing import Callable
 
 from _pytest.fixtures import FixtureRequest
 
@@ -212,9 +209,7 @@ def _make_test_comparing_frames(
     if is_set_test_data_test:
         frames_tester = _ControlDataWriter(file_path, size_frame=size_frame)
     else:
-        frames_tester = cast(
-            "_ControlDataWriter", _FramesTester(file_path, show_diff=show_diff)
-        )
+        frames_tester = _FramesTester(file_path, show_diff=show_diff)
 
     file_writer_class = (
         _make_scene_file_writer_class(frames_tester)

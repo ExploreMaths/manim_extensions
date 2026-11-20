@@ -2,11 +2,9 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Feed-forward to embedding layer connection visualization."""
 
 from __future__ import annotations
-from typing import Any, cast
 from typing import Any
 
 from manim import (
@@ -126,10 +124,8 @@ class FeedForwardToEmbedding(ConnectiveLayer):
         for dot in dots:
             remove_animations.append(FadeOut(dot))
         self.remove(self.dots)
-        remove_animations = cast(
-            "list[FadeOut]", AnimationGroup(*remove_animations, run_time=0.2)
-        )
-        animations = cast("list[Succession]", AnimationGroup(*animations))
+        remove_animations = AnimationGroup(*remove_animations, run_time=0.2)
+        animations = AnimationGroup(*animations)
         animation_group = Succession(animations, remove_animations, lag_ratio=1.0)
 
         return animation_group

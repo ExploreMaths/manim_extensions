@@ -3,17 +3,15 @@
 # SPDX-License-Identifier: MIT
 # patched: implement text leaf nodes and the tree expansion animations
 
-from typing import cast, Any
-from typing import Any
-
 """
 Module for visualizing decision trees in Manim.
 It parses a decision tree classifier from sklearn.
 """
 
+from typing import Any, Literal, cast
+
 # unlinked-class-ok: Node
 
-from typing import Literal
 
 from manim import (
     Animation,
@@ -133,6 +131,11 @@ class LeafNode(Group):
         ----------
         class_index
             Index of the represented class.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if self.class_names is None:
             label = str(class_index)
@@ -151,6 +154,11 @@ class LeafNode(Group):
         ----------
         class_index
             Index of the represented class.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         # Get image
         image_path = self.class_image_paths[class_index]
@@ -307,15 +315,12 @@ class DecisionTreeDiagram(Group):
             # Get the most abundant class for the given leaf node
             # Make the leaf node object
             tree_class_index = np.argmax(cast(Any, self.tree).value[node_index])
-            node = cast(
-                "SplitNode",
-                LeafNode(
-                    class_index=tree_class_index,
-                    class_colors=self.class_colors,
-                    class_image_paths=self.class_image_paths,
-                    class_names=self.class_names,
-                    display_type="image" if self.class_image_paths else "text",
-                ),
+            node = LeafNode(
+                class_index=tree_class_index,
+                class_colors=self.class_colors,
+                class_image_paths=self.class_image_paths,
+                class_names=self.class_names,
+                display_type="image" if self.class_image_paths else "text",
             )
         return node
 
@@ -426,12 +431,7 @@ class DecisionTreeDiagram(Group):
         recurse(self.tree.children_right[0], 1, "right", root_node, 0)
 
         tree_group.scale(0.35)
-        return cast(
-            "tuple[Group, dict[int, Mobject], dict[str, Line]]",
-            tree_group,
-            nodes_map,
-            edge_map,
-        )
+        return tree_group
 
     def _make_placeholder_leaf(self, class_index: int) -> LeafNode:
         """Make a leaf node showing the dominant class of a tree node.

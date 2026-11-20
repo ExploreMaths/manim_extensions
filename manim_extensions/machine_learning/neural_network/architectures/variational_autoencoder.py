@@ -3,13 +3,13 @@
 # SPDX-License-Identifier: MIT
 # patched: implement make_triplet_forward_pass and make_image_forward_pass
 
-from typing import Any
-
 """Variational Autoencoder Manim Visualizations.
 
 In this module I define Manim visualizations for Variational Autoencoders
 and Traditional Autoencoders.
 """
+
+from typing import Any
 
 from manim import (
     AnimationGroup,

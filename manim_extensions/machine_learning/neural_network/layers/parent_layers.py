@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: MIT
 # patched: BlankConnective implements the inherited abstract construct_layer (blank fallback)
 
-
 """Parent layer classes for neural network visualizations.
 
 This module provides abstract base classes for neural network layer visualizations.
@@ -12,7 +11,6 @@ This module provides abstract base classes for neural network layer visualizatio
 
 from __future__ import annotations
 from typing import Any
-
 
 from manim import (
     Animation,
@@ -93,6 +91,11 @@ class NeuralNetworkLayer(ABC, Group):
         **kwargs
             Forwarded to the parent class; a ``"debug_mode"`` entry draws a
             surrounding rectangle around the layer.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if "debug_mode" in kwargs and kwargs["debug_mode"]:
             self.add(SurroundingRectangle(self))
@@ -382,6 +385,11 @@ class BlankConnective(ConnectiveLayer):
             Following layer.
         **kwargs
             Ignored.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         return None
 

@@ -1,13 +1,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """:class:`~manim_extensions.table.cell.Cell` class for Manim tables.
 
 This module provides the :class:`~manim_extensions.table.cell.Cell` class for table visualizations.
 
 """
+
+from typing import Any
 
 """
 Cell - A single table cell with optional border.
@@ -254,6 +254,11 @@ class Cell(VGroup):
         ----------
         new_width
             The new width.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.cell_width = new_width
 

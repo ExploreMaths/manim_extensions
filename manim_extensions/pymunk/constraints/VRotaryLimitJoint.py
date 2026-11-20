@@ -9,9 +9,9 @@ This module provides the :class:`~manim_extensions.pymunk.constraints.VRotaryLim
 """
 
 from __future__ import annotations
+from typing import Any, TYPE_CHECKING
 
 from manim import Arc, Mobject, PI, VMobject, YELLOW
-from typing import TYPE_CHECKING, Any
 from . import VConstraint
 import numpy as np
 

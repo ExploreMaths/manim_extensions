@@ -2,9 +2,9 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """Probability distribution utilities for neural network visualization."""
+
+from typing import Any
 
 # unlinked-class-ok: Source
 

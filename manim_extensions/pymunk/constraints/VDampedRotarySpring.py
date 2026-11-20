@@ -9,10 +9,10 @@ This module provides the :class:`~manim_extensions.pymunk.constraints.VDampedRot
 """
 
 from __future__ import annotations
+from typing import Any, TYPE_CHECKING
 
 from manim import Arc, Line, Mobject, PI, RED, VMobject, YELLOW
 import numpy as np
-from typing import TYPE_CHECKING, Any
 from . import VConstraint
 
 from ...utils.deps import require

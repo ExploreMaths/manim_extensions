@@ -9,10 +9,10 @@ This module provides the :class:`~manim_extensions.pymunk.space.VSpace.VSpace` c
 """
 
 from __future__ import annotations
+from typing import Any, Callable, Dict, TYPE_CHECKING, cast
 
 from manim import Circle, ImageMobject, Line, Mobject, config, subdivide_bezier
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
-from typing import Any, Callable, Dict, TYPE_CHECKING, cast
 import numpy as np
 
 from ...utils.deps import require

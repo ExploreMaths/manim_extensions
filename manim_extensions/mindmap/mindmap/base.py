@@ -2,14 +2,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """Mindmap base classes for Manim.
 
 This module provides base classes for mindmap visualizations.
 
 """
+
+from typing import Any, Dict, Generator, List, cast
 
 from manim import (
     Group,
@@ -23,7 +22,6 @@ from manim import (
 )
 
 __all__ = ["NodeMobject", "generate_tree", "AbstractMap"]
-from typing import Dict, Generator, List
 
 import numpy as np
 
@@ -200,6 +198,11 @@ class AbstractMap(Group):
         ----------
         node
             The root of the subtree to position.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         pos = np.array([node.x, node.y, 0])
         cast(Any, node.vmobject).move_to(pos)
@@ -210,10 +213,16 @@ class AbstractMap(Group):
     def _set_connectors(self) -> Any:
         """Set connection lines.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         NotImplementedError
             Always, because subclasses must implement this method.
+
         """
         raise NotImplementedError
 
@@ -230,7 +239,7 @@ class AbstractMap(Group):
             The component wrapper of the node, or ``None`` if no node with
             the given ID exists.
         """
-        return cast("NodeMobject", self.node_data_dict.get(ID, None))
+        return self.node_data_dict.get(ID, None)
 
     def get_node(self, ID: str) -> Group:
         """
@@ -249,7 +258,7 @@ class AbstractMap(Group):
         node = self.node_data_dict.get(ID, None)
         if node is not None:
             return Group(node.vmobject, node.surr_rect)
-        return cast("Group", None)
+        return None
 
     def get_text(self, ID: str) -> str:
         """
@@ -268,7 +277,7 @@ class AbstractMap(Group):
         node = self.node_data_dict.get(ID, None)
         if node is not None:
             return node.text
-        return cast("str", None)
+        return None
 
     def get_connector(self, ID: str) -> Line:
         """
@@ -287,7 +296,7 @@ class AbstractMap(Group):
         node = self.node_data_dict.get(ID, None)
         if node is not None:
             return node.connector
-        return cast("Line", None)
+        return None
 
     def get_all_mindmap(self) -> Group:
         """Return all node and connector mobjects in the mind map.
@@ -358,7 +367,7 @@ class AbstractMap(Group):
         for node in dfs_walker(self.root):
             if node.ID == ID:
                 return node
-        return cast("Node", None)
+        return None
 
     def _get_connector_style(self, level: int) -> dict[Any, Any]:
         """Return the line style for the given level.

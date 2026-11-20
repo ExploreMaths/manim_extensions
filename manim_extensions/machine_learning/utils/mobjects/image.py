@@ -2,9 +2,9 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """Image mobject utilities for neural network visualization."""
+
+from typing import Any
 
 import numpy as np
 from manim import (
@@ -113,6 +113,11 @@ class GrayscaleImageMobject(Group):
             Factor by which to scale the image mobject.
         **kwargs
             Additional keyword arguments for scaling.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         # super().scale(scale_factor)
         # height = self.height
@@ -129,6 +134,11 @@ class GrayscaleImageMobject(Group):
         ----------
         opacity
             Opacity to apply to the image mobject.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.image_mobject.set_opacity(opacity)
 

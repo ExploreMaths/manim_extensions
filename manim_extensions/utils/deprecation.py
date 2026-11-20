@@ -12,9 +12,9 @@ readable on the console.
 """
 
 from __future__ import annotations
+from typing import Callable, TypeVar
 
 import re
-from typing import Callable, TypeVar
 
 from typing_extensions import deprecated as _deprecated
 

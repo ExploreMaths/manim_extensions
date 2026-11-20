@@ -3,12 +3,10 @@
 # SPDX-License-Identifier: MIT
 # patched: route three-channel images to the RGB animation and implement it
 
-
 """Image to convolutional 2D layer connection visualization."""
 
 from __future__ import annotations
 from typing import Any, cast
-from typing import Any
 
 from manim import (
     Animation,
@@ -260,6 +258,11 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             Factor by which the layer is scaled.
         **kwargs
             Forwarded to :meth:`~manim.mobject.mobject.Mobject.scale`.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         super().scale(scale_factor, **kwargs)
 

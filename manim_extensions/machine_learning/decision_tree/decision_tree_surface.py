@@ -4,14 +4,13 @@
 # patched: lazy-import scikit-learn (ml extra)
 # patched: implement make_split_to_animation_map
 
-
 """Decision tree visualization for Manim."""
+
+from __future__ import annotations
+from typing import Any, TYPE_CHECKING
 
 # unlinked-class-ok: Array
 
-from __future__ import annotations
-from typing import Any, cast
-from typing import Any
 
 from manim import (
     AnimationGroup,
@@ -36,7 +35,6 @@ from manim import (
     Wait,
     override_animation,
 )
-from typing import TYPE_CHECKING
 import types
 
 import numpy as np
@@ -150,7 +148,7 @@ def compute_decision_areas(
 
     tree = tree_classifier.tree_
     aabbs = tree_bounds(tree, n_features)
-    maxrange = cast("list[float]", np.array(maxrange))
+    maxrange = np.array(maxrange)
     rectangles = []
     for i in range(len(aabbs)):
         if tree.children_left[i] != ctree.TREE_LEAF:
@@ -170,7 +168,7 @@ def compute_decision_areas(
         print(r)
         """
         rectangles.append(r)
-    rectangles = cast("list[list[Any]]", np.array(rectangles))
+    rectangles = np.array(rectangles)
     rectangles[:, [0, 2]] = np.maximum(rectangles[:, [0, 2]], maxrange[0::2])
     rectangles[:, [1, 3]] = np.minimum(rectangles[:, [1, 3]], maxrange[1::2])
     return rectangles
@@ -185,6 +183,11 @@ def plot_areas(rectangles: MatrixMN) -> Any:
         Array of decision-area rectangles as returned by
         :func:`~manim_extensions.machine_learning.decision_tree.decision_tree_surface.compute_decision_areas`;
         each row is ``[left, right, bottom, top, class_index]``.
+
+
+        Returns
+        -------
+            The resulting value.
     """
     plt = require("ml", "matplotlib.pyplot")
     for rect in rectangles:
@@ -228,7 +231,7 @@ def merge_overlapping_polygons(
 
     return_polygons = []
     for color in colors:
-        color = cast("ManimColor", str(color).lower())
+        color = str(color).lower()
         polygons = polygon_dict[color]
         points = set()
         for polygon in polygons:
@@ -239,7 +242,7 @@ def merge_overlapping_polygons(
                     points.remove(pt)
                 else:
                     points.add(pt)
-        points = cast("set[Any]", list(points))
+        points = list(points)
         sort_x = sorted(points)
         sort_y = sorted(points, key=lambda x: x[1])
 
@@ -264,7 +267,7 @@ def merge_overlapping_polygons(
         # Get all the polygons.
         while edges_h:
             # We can start with any point.
-            polygon = cast("Polygon", [(edges_h.popitem()[0], 0)])
+            polygon = [(edges_h.popitem()[0], 0)]
             while True:
                 curr, e = polygon[-1]
                 if e == 0:

@@ -2,15 +2,14 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Magnetostatics visualisations, including field lines and current elements."""
 
 from __future__ import annotations
-from typing import Any
+from typing import Any, Iterable
+
 from manim import ArrowVectorField, VMobject
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 import itertools as it
-from typing import Iterable
 
 import numpy as np
 from manim.typing import Point3D, Vector3D

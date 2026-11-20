@@ -2,13 +2,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """:class:`~manim_extensions.compass.compass.pencil.Pencil` animations for Manim.
 
 This module provides animations for pencil manipulations.
 
 """
+
+from typing import Any
 
 from manim import AnimationGroup, ApplyMethod, Create, MoveAlongPath, VMobject
 from manim.typing import Point3D

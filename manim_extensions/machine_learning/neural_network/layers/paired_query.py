@@ -3,13 +3,10 @@
 # SPDX-License-Identifier: MIT
 # patched: drop a stale TODO (FadeIn is the intended create animation)
 
-
 """Paired query layer visualization for neural networks."""
 
 from __future__ import annotations
-from typing import Any, cast
 from typing import Any
-
 
 from manim import (
     Animation,
@@ -161,8 +158,8 @@ class PairedQueryLayer(NeuralNetworkLayer):
             positive = GrayscaleImageMobject.from_path(positive_path)
             negative = GrayscaleImageMobject.from_path(negative_path)
         else:
-            positive = cast("GrayscaleImageMobject", ImageMobject(positive_path))
-            negative = cast("GrayscaleImageMobject", ImageMobject(negative_path))
+            positive = ImageMobject(positive_path)
+            negative = ImageMobject(negative_path)
         # Make the layer
         query_layer = cls(positive, negative, **kwargs)
 

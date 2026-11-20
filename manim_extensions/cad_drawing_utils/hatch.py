@@ -2,12 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Hatch-line and intersection helpers for CAD drawings."""
 
 from __future__ import annotations
-from typing import Any, cast
 from typing import Any
+
 import numpy as np
 from manim import (
     DOWN,
@@ -61,7 +60,7 @@ class HatchLines(VGroup):
         **kwargs: Any,
     ) -> None:
         super().__init__(**kwargs)
-        self.target = cast("VMobject", target_mobject)
+        self.target = target_mobject
         target_size_xy = [
             self.target.get_critical_point(RIGHT)
             - self.target.get_critical_point(LEFT),

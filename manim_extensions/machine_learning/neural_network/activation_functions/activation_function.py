@@ -3,10 +3,9 @@
 # SPDX-License-Identifier: MIT
 # patched: highlight the evaluated point in make_evaluate_animation
 
-from typing import cast, Any
-from typing import Any
-
 """Base class for activation function visualization."""
+
+from typing import Any, cast
 
 from manim import (
     AnimationGroup,
@@ -100,7 +99,12 @@ class ActivationFunction(ABC, VGroup):
         self.construct_activation_function()
 
     def construct_activation_function(self) -> Any:
-        """Build the axes, curve and labels for the activation function."""
+        """Build the axes, curve and labels for the activation function.
+
+        Returns
+        -------
+            The resulting value.
+        """
         # Make an axis
         self.axes = Axes(
             x_range=self.x_range,
@@ -153,6 +157,11 @@ class ActivationFunction(ABC, VGroup):
         x_val
             Input value at which to evaluate the function. If ``None``,
             a random value within ``x_range`` is used instead.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if x_val == None:
             x_val = random.uniform(self.x_range[0], self.x_range[1])

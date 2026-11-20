@@ -6,9 +6,10 @@
 A place for all decorators.
 """
 
+from typing import Any, Callable, ParamSpec, TypeVar, cast
+
 import functools
 import warnings
-from typing import Callable, ParamSpec, TypeVar, cast
 
 P = ParamSpec("P")
 R = TypeVar("R")

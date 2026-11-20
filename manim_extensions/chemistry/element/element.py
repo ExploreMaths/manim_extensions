@@ -3,8 +3,6 @@
 # patched: lazy-import pandas (chemistry extra)
 # patched: document module-level constants
 
-from typing import Any
-
 """Chemical element data structure."""
 
 from dataclasses import dataclass

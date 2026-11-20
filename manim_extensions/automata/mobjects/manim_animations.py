@@ -2,9 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """Animation utilities for automata visualization.
 
 This module provides the :class:`~manim_extensions.automata.mobjects.manim_animations.ManimAnimations` class for animating automata visualizations.
@@ -143,7 +140,7 @@ class ManimAnimations:
         -------
             The animation marking the token as consumed.
         """
-        return cast("Animation", token.animate.set_opacity(0.5))
+        return token.animate.set_opacity(0.5)
 
     def animate_highlight_input_token(self, token: Mobject) -> Animation:
         """Return an animation highlighting an input token.

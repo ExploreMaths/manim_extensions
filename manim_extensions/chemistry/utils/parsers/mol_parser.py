@@ -1,8 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-
 """MOL format parser for chemical files.
 
 This module provides the :class:`~manim_extensions.chemistry.utils.parsers.mol_parser.MolParser` class for parsing MOL format chemical files.
@@ -172,7 +170,7 @@ class MolParser(BaseParser):
 
         for bonds_data in bonds.values():
             for bond in bonds_data:
-                bond_index = cast("int", bond.pop("bond_index"))
+                bond_index = bond.pop("bond_index")
                 new_bonds[bond_index] = bond
 
         return atoms, new_bonds

@@ -2,10 +2,9 @@
 # SPDX-FileCopyrightText: 2020 manim-kindergarten
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """Custom animations for Manim."""
+
+from typing import Any, cast
 
 from .utils.deprecation import deprecated
 
@@ -103,6 +102,11 @@ class TypeWriter(Animation):
         ----------
         alpha
             Animation progress from ``0`` to ``1``.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         current_index = int(alpha * self.char_count)
         for i, char in enumerate(self.mobject.submobjects):
@@ -632,6 +636,11 @@ class PassingRectangle(Animation):
         ----------
         alpha
             Animation progress from ``0`` to ``1``.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         a_left = rush_into(alpha)
         a_right = 1 - rush_into(1 - alpha)

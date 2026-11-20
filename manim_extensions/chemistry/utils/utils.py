@@ -2,16 +2,15 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants
 
-from typing import cast, Any
-
 """Utility functions for chemistry file parsing.
 
 This module provides utility functions for parsing chemical molecule data.
 
 """
 
+from typing import Any, Literal, cast
+
 import numpy as np
-from typing import Literal, Any
 
 from ..element import (
     H,
@@ -361,7 +360,7 @@ def mol_parser_string(mol_string: list[Any]) -> tuple[dict]:
                 Any, cast(Any, atoms).get(first_atom_index)
             ).get("element")
 
-    return cast("tuple[dict[Any, Any]]", atoms, bonds)  # Should return atoms and bonds
+    return atoms  # Should return atoms and bonds
 
 
 def mol_parser(file: str) -> tuple[dict, dict]:
@@ -378,7 +377,7 @@ def mol_parser(file: str) -> tuple[dict, dict]:
     """
     with open(file) as file:
         mol_file = cast(Any, file).readlines()
-    return cast("tuple[dict[Any, Any], dict[Any, Any]]", mol_parser_string(mol_file))
+    return mol_parser_string(mol_file)
 
 
 def sdf_parser_string(sdf_string: str) -> list[tuple]:
@@ -441,7 +440,7 @@ def get_element(element: str, language: Literal["ENG", "ESP"] = "ENG") -> Elemen
     elif language == "ESP":
         element_dict = ELEMENT_DICT_ESP
 
-    return cast("Element", element_dict[element])
+    return element_dict[element]
 
 
 def mol_to_graph(file: str, language: Literal["ENG", "ESP"] = "ENG") -> tuple[dict]:
@@ -503,7 +502,7 @@ def mol_to_graph(file: str, language: Literal["ENG", "ESP"] = "ENG") -> tuple[di
         bond_type = line_data[2]
         bonds[(first_atom_index, second_atom_index)] = {"type": bond_type}
 
-    return cast("tuple[dict[Any, Any]]", atoms, bonds)  # Should return atoms and bonds
+    return atoms  # Should return atoms and bonds
 
 
 #: Mapping from element symbol to the corresponding :class:~manim_extensions.chemistry.element.element.Element.

@@ -2,12 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """CAD dimension mobjects: linear and angular dimensions with arrows and labels."""
 
 from __future__ import annotations
-from typing import Any, cast
 from typing import Any
+
 from manim.typing import Point3D, Vector3D
 from manim import (
     Arc,
@@ -68,7 +67,7 @@ class PointerLabelFree(VDict):
         if isinstance(text, str):
             textmob = Text(text, **kwargs)
         elif isinstance(text, Mobject):
-            textmob = cast("Text", text)
+            textmob = text
         else:
             textmob = Text("A", **kwargs)
         self.add({"text": textmob})
@@ -273,7 +272,7 @@ class LinearDimension(VDict):
             if "stroke_width" in kwargs:
                 self.arrow_offset = kwargs["stroke_width"] * 1 / 100
             else:
-                self.arrow_offset = cast("int", DEFAULT_STROKE_WIDTH * 1 / 100)
+                self.arrow_offset = DEFAULT_STROKE_WIDTH * 1 / 100
             ext_dir = normalize(endpoint - startpoint)
             main_line = Line(
                 start=startpoint + self.arrow_offset * ext_dir,
@@ -330,7 +329,7 @@ class LinearDimension(VDict):
             textmob = Text(text, **kwargs)
             textmob.set_stroke(opacity=0)
         elif isinstance(text, Mobject):
-            textmob = cast("Text", text)
+            textmob = text
         else:
             dist = np.linalg.norm(startpoint - endpoint)
             textmob = Text(f"{dist:.2}", **kwargs)
@@ -478,7 +477,7 @@ class AngleDimension3Point(VDict):
             textmob = Text(text, **kwargs)
             textmob.set_stroke(opacity=0)
         elif isinstance(text, Mobject):
-            textmob = cast("Text", text)
+            textmob = text
         else:
             textmob = Text(f"{abs(angle_1/DEGREES):.0f}°", **kwargs)
             textmob.set_stroke(opacity=0)

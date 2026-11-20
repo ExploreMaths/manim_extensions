@@ -3,14 +3,14 @@
 # patched: lazily import the vendored manim_extensions.mobject_svg and svgpathtools (svg extra)
 # patched: document module-level constants
 
-from typing import Any
-
 """HTML parsed SVG vmobjects for Manim.
 
 This module provides functionality to parse SVG files and create
 animated Manim objects from them.
 
 """
+
+from typing import Any, cast
 
 # unlinked-class-ok: Arrays
 
@@ -29,7 +29,6 @@ from manim.camera.moving_camera import MovingCamera
 import itertools
 import os
 from types import ModuleType
-from typing import cast
 
 
 from ..utils.deps import require
@@ -222,6 +221,11 @@ class HTMLParsedVMobject:
         ----------
         dt
             Elapsed time since the previous frame, in seconds.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if self.continue_updating is False:
             return
@@ -287,6 +291,11 @@ class HTMLParsedVMobject:
 
         Called on every scene update; embeds the current SVG frame and
         renderer time into the HTML/JS output.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         camera = cast(Camera, self.scene.camera)
         bg_color = color_to_int_rgba(camera.background_color, camera.background_opacity)
@@ -319,6 +328,11 @@ class HTMLParsedVMobject:
         Removes the scene updater and flushes the accumulated
         JavaScript updates to ``<scene_name>.js`` and the final page to
         ``<scene_name>.html``.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.scene.remove_updater(self.updater)
         self.js_updates.removesuffix("\n")
@@ -363,6 +377,11 @@ class HTMLParsedVMobject:
             If ``False``, stop the per-frame updater before sweeping and
             record the current scene time as ``self.last_t``.
 
+
+
+            Returns
+            -------
+                The resulting value.
         """
         svg2paths = cast(ModuleType, require("svg", "svgpathtools")).svg2paths
         if animate_this is False:

@@ -1,6 +1,10 @@
 # SPDX-FileCopyrightText: 2025 Alexander Nasuta
 # SPDX-License-Identifier: MIT
 
+"""Utilities for the icons module."""
+
+from typing import Any
+
 # Vendored from manim-nerdfont-icons 1.0.2.
 # Upstream: https://github.com/Alexander-Nasuta/manim-nerdfont-icons
 #
@@ -21,7 +25,6 @@
 #          BEFORE Pango initializes, so the installation happens at
 #          module import time (importing manim does not initialize Pango)
 #          and the docs build/CI pre-install it before rendering.
-from typing import Any
 
 """Create Nerd Font icon mobjects (vendored from manim-nerdfont-icons)."""
 
@@ -56,6 +59,11 @@ def _install_font_linux() -> Any:
     Idempotent and best-effort: a missing ``fc-cache`` binary or an
     unwritable home directory is silently ignored (``register_font``
     remains sufficient on Windows/macOS and older pango).
+
+
+        Returns
+        -------
+            The resulting value.
     """
     global _font_installed
     if _font_installed or platform.system() != "Linux":

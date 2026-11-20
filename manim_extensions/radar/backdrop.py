@@ -2,16 +2,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """The deep-space backdrop: radial glow, vignette, nebula blobs and stars."""
 
 from __future__ import annotations
-from typing import Any, cast
-from typing import Any
+from typing import Any, Sequence, TYPE_CHECKING, Union, cast
 
 import math
 import random
-from typing import TYPE_CHECKING, Sequence, Union
 
 from manim.utils.color import ParsableManimColor
 

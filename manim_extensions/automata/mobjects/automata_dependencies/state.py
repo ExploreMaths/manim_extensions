@@ -2,15 +2,12 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Contains classes for state."""
 
 from __future__ import annotations
-from typing import Any, cast
-from typing import Any
+from typing import Any, TYPE_CHECKING
 
 import itertools
-from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from .transition import Transition
@@ -127,7 +124,7 @@ class State:
         for transition in self.transitions:
             if transition.id == id:
                 return transition
-        return cast("Transition", None)
+        return None
 
     def get_transitions(self) -> list[Transition]:
         """

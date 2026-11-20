@@ -1,17 +1,16 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """:class:`~manim_extensions.table.row.Row` class for Manim tables.
 
 This module provides the :class:`~manim_extensions.table.row.Row` class for table visualizations.
 
 """
 
+from typing import Any, Iterator, List, overload
+
 from manim import RIGHT, VGroup
 from .cell import Cell
-from typing import Iterator, List, overload
 
 
 class Row(VGroup):
@@ -84,7 +83,12 @@ class Row(VGroup):
         self.create_cells()
 
     def create_cells(self) -> Any:
-        """Create and position all cells in this row."""
+        """Create and position all cells in this row.
+
+        Returns
+        -------
+            The resulting value.
+        """
         for i, value in enumerate(self.values):
             cell = Cell(
                 value=value,

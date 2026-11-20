@@ -2,11 +2,10 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Embedding of a dataset in feature space together with a decision tree's areas."""
 
 from __future__ import annotations
-from typing import Any
+from typing import TYPE_CHECKING
 
 from manim import (
     AnimationGroup,
@@ -21,7 +20,6 @@ from manim import (
     VGroup,
     override_animation,
 )
-from typing import TYPE_CHECKING
 from types import SimpleNamespace
 
 import numpy as np

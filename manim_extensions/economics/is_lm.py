@@ -1,16 +1,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """IS-LM diagram for Manim.
 
 This module provides the IS-LM model diagram.
 
 """
 
-from typing import Callable
+from typing import Any, Callable
 
 from manim import AnimationGroup, BLUE, RED
 from .base import EconDiagram
@@ -268,9 +265,9 @@ class ISLMDiagram(EconDiagram):
         -------
             The animation that shifts the LM curve.
         """
-        self._ms = cast("int", ms if ms is not None else self._ms)
-        self._k = cast("int", k if k is not None else self._k)
-        self._h = cast("int", h if h is not None else self._h)
+        self._ms = ms if ms is not None else self._ms
+        self._k = k if k is not None else self._k
+        self._h = h if h is not None else self._h
         new_func = self._make_lm_func(self._ms, self._k, self._h)
         return self.get_shift_animation(
             "lm",

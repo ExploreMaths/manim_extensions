@@ -2,12 +2,10 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Max pooling 2D to convolutional 2D layer connection visualization."""
 
 from __future__ import annotations
 from typing import Any, cast
-from typing import Any
 
 from manim import ManimColor, ORANGE
 
@@ -57,7 +55,7 @@ class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
         ).num_feature_maps
         super().__init__(input_layer, output_layer, **kwargs)
         self.passing_flash_color = passing_flash_color
-        self.cell_width = cast("MethodType", cell_width)
+        self.cell_width = cell_width
         self.stroke_width = stroke_width
         self.show_grid_lines = show_grid_lines
 
@@ -77,5 +75,10 @@ class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
             Output layer.
         **kwargs
             Forwarded to the parent layer classes.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         super().construct_layer(input_layer, output_layer, **kwargs)

@@ -3,21 +3,20 @@
 # SPDX-License-Identifier: MIT
 # patched: implement apply_flip, 4-D projection, 4-D rotation, and the operator protocol
 
-
 """
 :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh` structure.
 """
 
+from __future__ import annotations
+from typing import Any, List, Set
+
 # unlinked-class-ok: Array
 
-from __future__ import annotations
-from typing import Any
 
 # python imports
 from copy import deepcopy
 
 # third-party imports
-from typing import List, Set
 import numpy as np
 
 # local imports
@@ -468,11 +467,17 @@ class Mesh:
             Distance of the projection centre for a 4-D mesh.  Ignored for
             lower dimensions; defaults to the mesh dimensionality.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         InvalidRequestException
             If the current dimensionality is greater than 4, or if a 4-D
             vertex lies at or beyond the projection centre.
+
         """
         if self.dim < 3:
             self._vertices = np.pad(self._vertices, ((0, 0), (0, 3 - self.dim)))
@@ -555,12 +560,18 @@ class Mesh:
         new_vertices
             Array of vertex coordinates to add.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         InvalidMeshException
             If ``new_vertices`` is not a :class:`~numpy.ndarray`.
         InvalidMeshDimensionsException
             If the shape of ``new_vertices`` does not match the mesh dimension.
+
         """
         if not isinstance(new_vertices, np.ndarray):
             raise InvalidMeshException(f"new_vertices has invalid type {new_vertices}")
@@ -579,10 +590,16 @@ class Mesh:
             Indices of the vertices to remove.  Negative indexing is not
             supported.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         MeshIndexException
             If any index is out of range.
+
         """
         if any(len(self._vertices) <= idx or idx < 0 for idx in indices):
             raise MeshIndexException("Vertex index out of range")
@@ -605,6 +622,11 @@ class Mesh:
         new_vert
             New coordinates for the vertex.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         MeshIndexException
@@ -613,6 +635,7 @@ class Mesh:
             If ``new_vert`` has an unexpected shape.
         InvalidMeshException
             If the coordinate dimension does not match the mesh.
+
         """
         if len(self._vertices) <= idx or idx < 0:
             raise MeshIndexException(
@@ -644,6 +667,11 @@ class Mesh:
         new_faces
             Faces to add.  Each face is an iterable of vertex indices.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         InvalidMeshException
@@ -654,6 +682,7 @@ class Mesh:
         MeshIndexException
             If a vertex index in ``new_faces`` is out of range or not
             defined.
+
         """
         # type-check whole array
         if not is_twice_nested_iterable(new_faces):
@@ -685,10 +714,16 @@ class Mesh:
             Indices of the faces to remove.  Negative indexing is not
             supported.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         MeshIndexException
             If any index is out of range.
+
         """
         if any(len(self._faces) <= idx or idx < 0 for idx in indices):
             raise MeshIndexException("Face index out of range")
@@ -714,12 +749,18 @@ class Mesh:
         new_face
             New vertex indices for the face.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         MeshIndexException
             If ``idx`` or any vertex index in ``new_face`` is out of range.
         InvalidTypeException
             If ``new_face`` has an unexpected shape.
+
         """
         if len(self._faces) <= idx or idx < 0:
             raise MeshIndexException(f"Face index {idx} out of range.")
@@ -744,6 +785,11 @@ class Mesh:
         new_parts
             Parts to add.  Each part is an iterable of face indices.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         InvalidMeshException
@@ -753,6 +799,7 @@ class Mesh:
             If ``new_parts`` has an unsupported type.
         MeshIndexException
             If a face index in ``new_parts`` is out of range.
+
         """
         # validate array type
         if not is_twice_nested_iterable(new_parts, min_lens=(1, 1)):
@@ -782,10 +829,16 @@ class Mesh:
             Indices of the parts to remove.  Negative indexing is not
             supported.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         MeshIndexException
             If any index is out of range.
+
         """
         if any(len(self._parts) <= idx or idx < 0 for idx in indices):
             raise MeshIndexException("Part index out of range")
@@ -805,12 +858,18 @@ class Mesh:
         new_part
             New face indices for the part.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         MeshIndexException
             If ``idx`` or any face index in ``new_part`` is out of range.
         InvalidTypeException
             If ``new_part`` has an unexpected shape.
+
         """
         if len(self._parts) <= idx or idx < 0:
             raise MeshIndexException(f"Part index {idx} out of range.")
@@ -838,6 +897,11 @@ class Mesh:
         other
             Another mesh to merge into this one.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         InvalidMeshException
@@ -846,6 +910,7 @@ class Mesh:
         MeshIndexException
             If a face or part index would be out of bounds after the
             merge.
+
         """
         # Mesh has to be a correct mesh therefore many checks can be omitted
         # check if vertices have the same dimension
@@ -1009,6 +1074,11 @@ class Mesh:
             Scale factor applied to every vertex.
         about_point
             If given, the scaling is performed around this point.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if about_point is not None:
             self._vertices -= about_point
@@ -1030,6 +1100,11 @@ class Mesh:
             Index of the dimension to stretch.
         about_point
             If given, the stretch is performed around this point.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if about_point is not None:
             self._vertices -= about_point
@@ -1047,12 +1122,18 @@ class Mesh:
             Translation vector.  Its length must equal the mesh
             dimension.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         InvalidTypeException
             If ``translation`` is not a :class:`~numpy.ndarray`.
         InvalidMeshDimensionsException
             If the length of ``translation`` does not match the mesh dimension.
+
         """
         if not isinstance(translation, np.ndarray):
             raise InvalidTypeException(
@@ -1075,6 +1156,11 @@ class Mesh:
             Translation vector.  Its length must equal the mesh
             dimension.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         MeshIndexException
@@ -1083,6 +1169,7 @@ class Mesh:
             If ``translation`` is not a :class:`~numpy.ndarray`.
         InvalidMeshDimensionsException
             If the length of ``translation`` does not match the mesh dimension.
+
         """
         if 0 > v_id or v_id >= len(self._vertices):
             raise MeshIndexException(
@@ -1122,11 +1209,17 @@ class Mesh:
         about_point
             If given, the rotation is performed around this point.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         InvalidRequestException
             If the mesh dimension is above 4, or if the 4-D rotation plane is
             not given by two linearly independent vectors.
+
         """
 
         def rotation_matrix(
@@ -1257,12 +1350,18 @@ class Mesh:
         about_point
             If given, the flip is performed around this point.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         InvalidRequestException
             If the mesh dimension is greater than 4.
         InvalidMeshDimensionsException
             If a 4-D mesh is flipped without a 4-D ``axis``.
+
         """
         if self.dim > 4:
             raise InvalidRequestException(
@@ -1391,6 +1490,11 @@ class Mesh:
         ----------
         precision
             Decimal places used when comparing vertices; i.e. equality up to ``1e-10``.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         old_vertices = deepcopy(self._vertices)
         # get unique vertices, indices, and the inverse references
@@ -1418,6 +1522,11 @@ class Mesh:
         Faces are considered equal when their vertex indices match
         up to a cyclic permutation (rolling order), not necessarily
         at the exact same positions.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         to_delete = []
         for i_face, face in enumerate(self._faces):
@@ -1439,6 +1548,11 @@ class Mesh:
 
         Parts are considered equal when they contain the same face indices
         regardless of their order.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         to_delete = []
         for i_part, part in enumerate(self._parts):
@@ -1459,6 +1573,11 @@ class Mesh:
         precision
             Decimal places passed to :meth:`~manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicate_vertices`
             .
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.remove_duplicate_vertices(precision=precision)
         self.remove_duplicate_faces()

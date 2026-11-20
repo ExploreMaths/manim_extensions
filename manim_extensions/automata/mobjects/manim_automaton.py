@@ -2,12 +2,10 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Contains classes for Manim automaton."""
 
 from __future__ import annotations
 from typing import Any, cast
-from typing import Any
 
 from manim import (
     BLUE,
@@ -135,7 +133,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         **kwargs: Any,
     ) -> None:
         if json_template is None and xml_file is None:
-            json_template = cast("dict[str, object] | None", automaton_json)
+            json_template = automaton_json
 
         FiniteStateAutomaton.__init__(self)
 
@@ -145,7 +143,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         if manim_animations is None:
             self.manim_animations = ManimAnimations()
         else:
-            self.manim_animations = cast("ManimAnimations", manim_animations)
+            self.manim_animations = manim_animations
 
         self.cli = None
         if cli:
@@ -176,6 +174,11 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         ----------
         manim_state
             The state mobject to add.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         # maybe need validation
         # adds an already existing manim_state to automaton
@@ -191,6 +194,11 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             and optional ``"initial"``/``"final"`` flags.
         scaling
             Coordinate scaling factor.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         initial = False
         final = False
@@ -225,6 +233,11 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         ----------
         states
             :class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` definitions from JSON or XML parsing.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         for state in states:
             if "initial" in state.keys():
@@ -266,6 +279,11 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         ----------
         transitions
             :class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` definitions from JSON or XML parsing.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         # counts the number of transitions between two states
         transition_counter: dict[tuple[str, str], list[object]] = {}
@@ -313,6 +331,11 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             The destination state of the transition.
         read_symbols
             The symbols that trigger this transition.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         new_transition = ManimTransition(
             transition_from,
@@ -340,7 +363,12 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         return ManimAutomataInput(input_string, animation_style=self.animation_style)
 
     def set_default_position_of_input_string(self) -> Any:
-        """Position the input string mobject centered above the automaton."""
+        """Position the input string mobject centered above the automaton.
+
+        Returns
+        -------
+            The resulting value.
+        """
         # get centre of self
         c1 = self.get_x()
         c2 = self.get_y()
@@ -387,9 +415,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             # position the mobject
             self.set_default_position_of_input_string()
         else:
-            return cast(
-                "ManimAutomataInput | None", input
-            )  # if input is already an instance of ManimAutomataInput
+            return input  # if input is already an instance of ManimAutomataInput
 
     def run_sequence(
         self,
@@ -539,7 +565,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             "automaton_result": self.check_automaton_result(state_pointers),
         }
 
-        return cast("list[Any]", global_history)
+        return global_history
 
     def generate_next_state_options(
         self,
@@ -567,7 +593,12 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         return options
 
     def export_recorded_path_to_file(self) -> Any:
-        """Save the recorded NDA path as JSON to recorded_path.txt."""
+        """Save the recorded NDA path as JSON to recorded_path.txt.
+
+        Returns
+        -------
+            The resulting value.
+        """
         with open("recorded_path.txt", "w") as fp:
             json.dump(self.recorded_path, fp)
 
@@ -616,7 +647,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             self.manim_automata_input = (
                 input  # if input is already an instance of ManimAutomataInput
             )
-            input_to_run = cast("ManimAutomataInput", input)
+            input_to_run = input
 
         # display manim_automaton_input to the screen
         list_of_animations = [

@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Structural configuration + bundled style presets.
 
 Every knob that is *not* a colour lives here (geometry, what to draw, fonts,
@@ -10,10 +9,9 @@ transition timing). Colours live in :class:`manim_extensions.radar.theme.RadarTh
 """
 
 from __future__ import annotations
-from typing import Any
+from typing import Any, Optional, Union
 
 from dataclasses import dataclass, field, replace
-from typing import Optional, Union
 
 __all__ = ["RadarConfig", "STYLES", "style_names", "get_style"]
 

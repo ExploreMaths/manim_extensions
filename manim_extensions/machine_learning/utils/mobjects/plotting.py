@@ -6,10 +6,10 @@
 """Plotting utilities for neural network visualization."""
 
 from __future__ import annotations
+from typing import TYPE_CHECKING, cast
 
 import io
 from types import ModuleType
-from typing import TYPE_CHECKING, cast
 
 import numpy as np
 from manim import ImageMobject

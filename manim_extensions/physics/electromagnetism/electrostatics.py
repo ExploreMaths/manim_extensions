@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Electrostatic field helpers.
 
 The classes in this module generate charge objects and electric-field vector
@@ -10,11 +9,11 @@ fields suitable for teaching and demonstration scenes in Manim.
 
 """
 
+from __future__ import annotations
+from typing import Any, Iterable
+
 # unlinked-class-ok: Charge
 
-from __future__ import annotations
-from typing import Any, cast
-from typing import Any
 
 import numpy as np
 
@@ -33,7 +32,6 @@ from manim import (
     color_gradient,
     normalize,
 )
-from typing import Iterable
 from manim.typing import Point3D, Vector3D
 
 __all__ = [
@@ -96,7 +94,7 @@ class Charge(VGroup):
             layer_colors = [RED_D, RED_A]
             layer_radius = 4
         else:
-            label = cast("VGroup", Rectangle(width=0.27, height=0.003))
+            label = Rectangle(width=0.27, height=0.003)
             color = BLUE
             layer_colors = ["#3399FF", "#66B2FF"]
             layer_radius = 2

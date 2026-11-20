@@ -2,10 +2,9 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """ReLU activation function visualization."""
+
+from typing import Any
 
 from .activation_function import ActivationFunction
 
@@ -63,4 +62,4 @@ class ReLUFunction(ActivationFunction):
         if x_val < 0:
             return 0
         else:
-            return cast("int | None", x_val)
+            return x_val

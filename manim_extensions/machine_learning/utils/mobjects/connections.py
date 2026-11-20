@@ -2,9 +2,9 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """Network connection visualization utilities."""
+
+from typing import Any
 
 import numpy as np
 from manim import (
@@ -102,7 +102,12 @@ class NetworkConnection(VGroup):
         self.make_mobjects()
 
     def make_mobjects(self) -> Any:
-        """Build the arrow or arc that connects the two mobjects."""
+        """Build the arrow or arc that connects the two mobjects.
+
+        Returns
+        -------
+            The resulting value.
+        """
         if self.start_mobject.get_center()[0] < self.end_mobject.get_center()[0]:
             left_mobject = self.start_mobject
             right_mobject = self.end_mobject

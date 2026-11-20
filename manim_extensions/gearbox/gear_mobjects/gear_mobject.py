@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """:class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear` mobject for Manim.
 
 This module provides gear and rack visualizations.
@@ -10,7 +9,7 @@ This module provides gear and rack visualizations.
 """
 
 from __future__ import annotations
-from typing import Any
+from typing import Any, Sequence
 
 import numpy as np
 from manim import (
@@ -30,7 +29,6 @@ from manim import (
     VMobject,
     rotate_vector,
 )
-from typing import Sequence
 from scipy.optimize import fsolve
 from scipy.optimize import least_squares
 import warnings
@@ -486,6 +484,11 @@ class Gear(VMobject):
             The color to apply.
         kwargs
             Kwargs processed by this operation.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if "family" in kwargs:
             super().set_stroke(color, **kwargs)
@@ -493,7 +496,12 @@ class Gear(VMobject):
             super().set_stroke(color, family=False, **kwargs)
 
     def generate_points(self) -> Any:
-        """Build the gear outline from involute curves, fillets, and arcs."""
+        """Build the gear outline from involute curves, fillets, and arcs.
+
+        Returns
+        -------
+            The resulting value.
+        """
 
         # involute starts at 0 angle at rb, but it should be at 0 on rp, so need an offset angle
         try:
@@ -793,6 +801,11 @@ class Gear(VMobject):
             When offset is used, there will play between gears. If bias is ``False``,
             This function meshes 'self' gear to gear2 as if there was a positive rotation torque on 'self'.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Examples
         --------
         .. manim:: GearMeshingScene
@@ -827,6 +840,7 @@ class Gear(VMobject):
                    )
                    # both gears rotate by exactly one tooth pitch, so the
                    # first and last frames match and the animation loops seamlessly
+
         """
 
         # -- Rack branch -----------------------------------------------------------
@@ -1107,7 +1121,12 @@ class Rack(VMobject):
         )
 
     def generate_points(self) -> Any:
-        """Build the rack outline from trapezoidal teeth."""
+        """Build the rack outline from trapezoidal teeth.
+
+        Returns
+        -------
+            The resulting value.
+        """
 
         h_amax = self.pitch / 4 / np.tan(self.alpha * DEGREES)
         da = self.pitch / 4 * (h_amax - self.h_a * self.m) / h_amax

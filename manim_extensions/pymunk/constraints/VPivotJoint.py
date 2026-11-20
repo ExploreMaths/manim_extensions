@@ -9,11 +9,11 @@ This module provides the :class:`~manim_extensions.pymunk.constraints.VPivotJoin
 """
 
 from __future__ import annotations
+from typing import Any, TYPE_CHECKING
 
 from manim import Dot, Line, Mobject, ORIGIN, RED, YELLOW, VMobject
 import numpy as np
 from manim.typing import Point3D
-from typing import TYPE_CHECKING, Any
 from . import VConstraint
 
 from ...utils.deps import require

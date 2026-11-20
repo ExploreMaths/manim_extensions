@@ -3,14 +3,13 @@
 # SPDX-License-Identifier: MIT
 # patched: implement flip and 4-D transforms for the underlying data mesh
 
-from typing import cast, Any
-from typing import Any
-
 """Manim models for mesh objects.
 
 Contains a 3D and a 2D version. Additionally there is the mesh for only
 triangles in triangle_mesh.py.
 """
+
+from typing import Any, List
 
 # unlinked-class-ok: Array
 
@@ -18,7 +17,6 @@ from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 
 # python imports
 import copy
-from typing import List
 
 # third-party imports
 from manim import (
@@ -141,7 +139,12 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         self.setup()
 
     def setup(self) -> Any:
-        """create all the necessary manim objects for the renderer."""
+        """create all the necessary manim objects for the renderer.
+
+        Returns
+        -------
+            The resulting value.
+        """
         if self.display_faces:
             self.setup_faces()
         if self.display_edges:
@@ -245,7 +248,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             The newly created face mobject and a list of newly created edge mobjects.
         """
         if color is None:
-            color = cast("ManimColor | None", self.faces_color)
+            color = self.faces_color
         old_edges = self.mesh.edges
         self.mesh.add_faces([face])
         verts_3d = self.mesh.get_3d_vertices()
@@ -281,7 +284,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
                 self.edges.insert(self.mesh.get_edge_index(edge_verts), edge)
                 new_edges.append(edge)
 
-        return cast("tuple[VGroup, VGroup]", new_face, new_edges)
+        return new_face
 
     def remove_face(self, face_idx: int) -> tuple:
         """Remove a face (and its orphaned edges) by index.
@@ -362,6 +365,11 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             New vertices processed by this operation.
         scene
             The scene in which the action is performed.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.mesh.add_vertices(new_vertices)
         # fade out current ones, fade in all after add
@@ -381,6 +389,11 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             Index of the vertex to update.
         pos
             New position for the vertex (2-D or 3-D coordinates).
+
+
+            Returns
+            -------
+                The resulting value.
         """
         # update mesh
         self.mesh.update_vertex(vertex_idx, pos)
@@ -408,6 +421,11 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         ----------
         edge
             A pair of vertex indices defining the edge to update.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         e = self.get_edge(self.mesh.get_edge_index(edge))
         vert_1 = self.mesh.get_3d_vertices()[edge[0]]
@@ -458,6 +476,11 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         ----------
         vectors
             One or more displacement vectors to apply.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         total_shift = np.sum(vectors, axis=0)
         # update vertices of self.mesh
@@ -474,6 +497,11 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             The uniform scale factor to apply.
         **kwargs
             Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.scale`.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         about_point = self._mesh_center()
         self.mesh.scale_mesh(scale_factor, about_point)
@@ -491,10 +519,16 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         **kwargs
             Forwarded to the parent Mobject.stretch.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         LookupError
             If ``dim`` is greater than or equal to ``self.mesh.dim``.
+
         """
         if dim >= self.mesh.dim:
             raise LookupError("dim must lower than ManimMesh.mesh.dim!")
@@ -524,6 +558,11 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             Pivot point for the rotation.
         **kwargs
             Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.rotate`.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if self.mesh.dim == 4:
             if np.asarray(axis, dtype=float).shape == (2, 4):
@@ -570,6 +609,11 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             origin.
         **kwargs
             Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.flip`.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if self.mesh.dim == 4 and np.asarray(axis, dtype=float).shape[0] == 4:
             center = (
@@ -604,6 +648,11 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             Displacement vector (same dimensionality as ``mesh.dim``).
         **kwargs
             May include ``shift_vertex_runtime`` (animation duration in seconds).
+
+
+            Returns
+            -------
+                The resulting value.
         """
         start = self.mesh.vertices[vertex_idx].copy()
         tracker = ValueTracker(0)
@@ -638,6 +687,11 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             ``self.mesh.vertices``).
         **kwargs
             May include ``shift_vertices_runtime`` (animation duration in seconds).
+
+
+            Returns
+            -------
+                The resulting value.
         """
         start = copy.deepcopy(self.mesh.vertices)
         tracker = ValueTracker(0)
@@ -677,10 +731,16 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         **kwargs
             Forwarded to :meth:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.shift_vertices`.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         InvalidShapeException
             If ``new_positions`` does not have the same length as the vertex list.
+
         """
         if len(new_positions) != len(self.mesh.vertices):
             raise InvalidShapeException(
@@ -705,10 +765,16 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         **kwargs
             Forwarded to :meth:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.shift_vertex`.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         InvalidMeshDimensionsException
             If ``pos`` has the wrong dimensionality.
+
         """
         # expect pos and curr_pos / mesh.dim to have the same dimensions
         if self.mesh.dim != len(pos):
@@ -742,6 +808,11 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             Number of intermediate snap steps.
         **kwargs
             Forwarded to :meth:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.move_vertices_to`.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         # to be able to show the movement, the update needs to be calculated on a dummy mesh first
         new_verts = self.mesh.snap_to_grid(

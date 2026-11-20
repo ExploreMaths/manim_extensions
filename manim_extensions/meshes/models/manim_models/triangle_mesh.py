@@ -2,10 +2,9 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """2D triangle manim mesh with functionality useful for delaunay meshes."""
+
+from typing import Any, cast
 
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 
@@ -98,11 +97,17 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
         **kwargs
             Forwarded to :meth:`~manim.scene.scene.Scene.play` / ``animate`` (e.g. ``run_time``).
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         ValueError
             If either face is not a triangle or the faces do not share
             exactly one edge.
+
         """
         face_arr_1 = self.mesh.faces[face_idx_1]
         face_arr_2 = self.mesh.faces[face_idx_2]
@@ -131,9 +136,7 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
             for face_idx in [face_idx_1, face_idx_2]:
                 face = self.mesh.faces[face_idx]
                 triangle = [self.mesh.get_3d_vertices()[i] for i in face]
-                face = cast(
-                    "ndarray[tuple[Any, ...], dtype[float64]]", self.get_face(face_idx)
-                )
+                face = self.get_face(face_idx)
                 new_face = face.copy()
                 cast(Any, new_face).set_points_as_corners(
                     [triangle[0], triangle[1], triangle[2], triangle[0]],

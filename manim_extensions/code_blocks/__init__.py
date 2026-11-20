@@ -11,6 +11,7 @@ blocks can be rendered directly inside a Manim scene.
 """
 
 from __future__ import annotations
+
 from .manim_code_blocks import (
     C,
     CSharp,

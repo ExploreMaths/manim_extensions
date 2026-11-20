@@ -3,19 +3,15 @@
 # SPDX-License-Identifier: MIT
 # patched: drop the unreachable LaTeX branch of make_vector
 
-
 """Vector layer visualization for neural networks."""
 
 from __future__ import annotations
-from typing import Any
+from typing import Any, Callable
 
 from manim import Animation, AnimationGroup, Create, Text, Write, override_animation
 import random
 
 from .parent_layers import NeuralNetworkLayer, VGroupNeuralNetworkLayer
-
-
-from typing import Callable
 
 
 class VectorLayer(VGroupNeuralNetworkLayer):
@@ -87,6 +83,11 @@ class VectorLayer(VGroupNeuralNetworkLayer):
             The layer following this layer in the network.
         **kwargs
             Forwarded to the parent layer classes.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         super().construct_layer(input_layer, output_layer, **kwargs)
         # Make the vector

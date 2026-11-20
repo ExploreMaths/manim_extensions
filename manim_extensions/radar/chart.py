@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """The core objects: :class:`~manim_extensions.radar.chart.RadarChart` (single- or multi-dataset).
 
 New in 0.1.1: several datasets can share one grid (comparison mode), with a
@@ -12,12 +11,10 @@ legend, four per-vertex number modes, focus dimming, a difference highlight
 """
 
 from __future__ import annotations
-from typing import Any, cast
-from typing import Any
+from typing import Any, List, Optional, Sequence, TYPE_CHECKING, Union, cast
 
 import math
 from dataclasses import replace
-from typing import TYPE_CHECKING, List, Optional, Sequence, Union
 
 import numpy as np
 from manim import (
@@ -448,13 +445,10 @@ class RadarChart(VGroup):
             spoke.base_so = cfg.spoke_opacity  # type: ignore[attr-defined]
             self.web.add(spoke)
             if cfg.grid_glow:
-                g = cast(
-                    "Polygon",
-                    spoke.copy().set_stroke(
-                        color=self.theme.axis_color(i),
-                        width=cfg.grid_glow_width,
-                        opacity=cfg.grid_glow_opacity,
-                    ),
+                g = spoke.copy().set_stroke(
+                    color=self.theme.axis_color(i),
+                    width=cfg.grid_glow_width,
+                    opacity=cfg.grid_glow_opacity,
                 )
                 g.base_so = cfg.grid_glow_opacity  # type: ignore[attr-defined]
                 self.grid_glow.add(g)
@@ -1225,9 +1219,7 @@ class RadarChart(VGroup):
         """
         center = self._anchor[0].get_center()
         builder = self.animate.scale(float(factor), about_point=center, **kwargs)
-        return cast(
-            "_AnimationBuilder", builder.set_run_time(run_time) if run_time else builder
-        )
+        return builder.set_run_time(run_time) if run_time else builder
 
     def pull_out(
         self, factor: float = 1.35, run_time: float = 1.0, **kwargs: Any
@@ -1250,9 +1242,7 @@ class RadarChart(VGroup):
 
         center = self._anchor[0].get_center()
         builder = self.animate.scale(1.0 / float(factor), about_point=center, **kwargs)
-        return cast(
-            "_AnimationBuilder", builder.set_run_time(run_time) if run_time else builder
-        )
+        return builder.set_run_time(run_time) if run_time else builder
 
     def attach_camera(self, rig: CameraRig) -> "RadarChart":
         """Attach a camera rig for coupled camera moves.
@@ -1269,7 +1259,7 @@ class RadarChart(VGroup):
         -------
             The same chart, allowing calls to be chained.
         """
-        self._rig = cast("None", rig)
+        self._rig = rig
         return self
 
     # ==================================================================
@@ -1989,7 +1979,7 @@ class RadarChart(VGroup):
         y = min(offset * cfg.radius, top_limit)
         if y < floor:
             y = floor
-        return cast("float", y, y <= top_limit + 1e-6)
+        return y
 
     # ------------------------------------------------------------------
     def _paint_series(
@@ -2642,7 +2632,7 @@ class RadarChart(VGroup):
                 pool.add(Line(ORIGIN, ORIGIN, stroke_width=self.config.spoke_width))
             s.dash_pool[j] = pool
             cast(Any, s.fx_group).add(pool)
-        return cast("VGroup", s.dash_pool[j])
+        return s.dash_pool[j]
 
     def _ensure_breach(self, s: Series, j: int) -> VGroup:
         """Return the ring-breach glow for a dataset and axis.
@@ -2676,7 +2666,7 @@ class RadarChart(VGroup):
             g.set_opacity(0)
             s.breach[j] = g
             cast(Any, s.fx_group).add(g)
-        return cast("VGroup", s.breach[j])
+        return s.breach[j]
 
     def _ensure_overflow_number(self, series_index: int, j: int) -> RollingNumber:
         """Return the unclamped read-out for a dataset and axis.

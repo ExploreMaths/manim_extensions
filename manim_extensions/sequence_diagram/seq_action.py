@@ -2,16 +2,15 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """Sequence diagram action for Manim.
 
 This module provides action classes for sequence diagrams.
 
 """
 
-from collections.abc import Iterator
 from typing import Sequence, cast
+
+from collections.abc import Iterator
 
 
 from manim import (
@@ -36,7 +35,6 @@ from manim import (
 )
 from .seq_actor import SeqActor
 from .seq_object import SeqObject
-from manim.typing import Point3D
 
 
 class SeqAction(AnimationGroup):
@@ -202,12 +200,9 @@ class SeqAction(AnimationGroup):
                 max_tip_length_to_length_ratio=0.2,
             )
         iobj_moved_path = TracedPath(gift.get_center)
-        mid_point = cast(
-            "Point3D",
-            utils.space_ops.midpoint(
-                cast(Sequence[float], act_start.get_center()),
-                cast(Sequence[float], act_end.get_center()),
-            ),
+        mid_point = utils.space_ops.midpoint(
+            cast(Sequence[float], act_start.get_center()),
+            cast(Sequence[float], act_end.get_center()),
         )
         post_move_gift_label = gift.create_obj_label(font_size=16).move_to(
             mid_point, aligned_edge=UP

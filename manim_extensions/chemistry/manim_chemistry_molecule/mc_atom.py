@@ -1,7 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Manim chemistry atom representation.
 
 This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom` class for representing atoms in molecules.
@@ -9,10 +8,7 @@ This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_mol
 """
 
 from __future__ import annotations
-from typing import Any, cast
-from typing import Any
-
-from typing import Dict, TYPE_CHECKING
+from typing import Any, Dict, TYPE_CHECKING
 
 import numpy as np
 
@@ -167,9 +163,9 @@ class MCAtom:
                 f"Expected {MCMolecule} when assigning molecule but received {molecule}"
             )
 
-        self.molecule = cast("None", molecule)
+        self.molecule = molecule
 
-        return cast("MCMolecule", self.molecule)
+        return self.molecule
 
     def assign_molecule_index(self, molecule_index: int) -> int:
         """Set the index of this atom within its parent molecule.

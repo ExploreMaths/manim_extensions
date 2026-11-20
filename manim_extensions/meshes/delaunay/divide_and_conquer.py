@@ -2,17 +2,15 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """
 functions to create delaunay meshes by divide and conquer.
 """
 
+from typing import Any, List
+
 from manim import Create, DashedLine, FadeOut, Mobject, Scene, Uncreate
 
 # python imports
-from typing import List
 
 # third-party imports
 import numpy as np
@@ -196,10 +194,16 @@ class DivideAndConquer:
             Indices of the vertices to triangulate.  The list must contain
             at most three entries.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         ValueError
             If ``vert_indices`` contains more than three entries.
+
         """
 
         if len(vert_indices) > 3:
@@ -538,10 +542,10 @@ class DivideAndConquer:
         )
         while move_left or move_right:
             if move_left:
-                left = cast("int", next_left)
+                left = next_left
                 next_left = next_index(left, left_hull[::-1])
             else:
-                right = cast("int", next_right)
+                right = next_right
                 next_right = next_index(right, right_hull)
             move_left = on_right(
                 (verts[indices_left][left], verts[indices_right][right]),
@@ -566,10 +570,16 @@ class DivideAndConquer:
         speed
             Animation speed multiplier.
 
+
+        Returns
+        -------
+            The resulting value.
+
         Raises
         ------
         ValueError
             If the mesh already contains faces (must be empty).
+
         """
 
         if len(self.triangle_mesh.mesh.faces) != 0:

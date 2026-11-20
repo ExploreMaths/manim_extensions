@@ -5,9 +5,9 @@
 """Small helpers shared across :mod:`manim_extensions.radar`."""
 
 from __future__ import annotations
+from typing import Any, Iterable, Optional, Sequence
 
 import math
-from typing import Iterable, Optional, Sequence, Any
 
 import numpy as np
 from manim import ManimColor, ParsableManimColor, WHITE, interpolate_color

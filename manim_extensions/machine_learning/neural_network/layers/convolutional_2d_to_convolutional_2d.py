@@ -3,12 +3,10 @@
 # SPDX-License-Identifier: MIT
 # patched: drop a stale TODO and unreachable duplicate return
 
-
 """Convolutional 2D to convolutional 2D layer connection visualization."""
 
 from __future__ import annotations
 from typing import Any, cast
-from typing import Any
 
 import numpy as np
 
@@ -469,7 +467,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         self.stride = self.output_layer.stride
         self.padding = self.input_layer.padding
         self.filter_opacity = filter_opacity
-        self.cell_width = cast("MethodType", cell_width)
+        self.cell_width = cell_width
         self.line_color = line_color
         self.active_color = active_color
         self.show_grid_lines = show_grid_lines
@@ -718,6 +716,11 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
             Factor by which the layer is scaled.
         **kwargs
             Forwarded to :meth:`~manim.mobject.mobject.Mobject.scale`.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.cell_width *= scale_factor
         super().scale(scale_factor, **kwargs)

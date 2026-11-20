@@ -5,6 +5,7 @@
 """Contains classes to construct an array."""
 
 from __future__ import annotations
+from typing import Any, Callable, ClassVar, List, Protocol, TypedDict, cast
 
 from copy import deepcopy
 
@@ -41,16 +42,6 @@ from manim import (
 )
 from manim.mobject.mobject import _AnimationBuilder
 from types import MethodType
-from typing import (
-    Any,
-    Callable,
-    ClassVar,
-    List,
-    Protocol,
-    TypedDict,
-    cast,
-    Any,
-)
 
 from .m_enum import MArrayDirection, MArrayElementComp
 from manim.typing import Point3D, Vector3D
@@ -1714,11 +1705,13 @@ class MArrayPointer(VGroup):
     __pointer_pos: MArrayDirection
     __updater_pos: Callable[[Mobject], None]
 
-    class __DirEntry(TypedDict):
+    class DirEntry(TypedDict):
+        """Vector and animation direction used when placing an array element."""
+
         np: Vector3D
         dir: MArrayDirection
 
-    __dir_map: ClassVar[list[__DirEntry]] = [
+    __dir_map: ClassVar[list[DirEntry]] = [
         {"np": UP, "dir": MArrayDirection.UP},
         {"np": DOWN, "dir": MArrayDirection.DOWN},
         {"np": RIGHT, "dir": MArrayDirection.RIGHT},
@@ -2208,11 +2201,13 @@ class MArraySlidingWindow(VGroup):
 
     """
 
-    class __DirEntry(TypedDict):
+    class DirEntry(TypedDict):
+        """Vector and animation direction used when placing an array element."""
+
         np: Vector3D
         dir: MArrayDirection
 
-    __dir_map: ClassVar[list[__DirEntry]] = [
+    __dir_map: ClassVar[list[DirEntry]] = [
         {"np": UP, "dir": MArrayDirection.UP},
         {"np": DOWN, "dir": MArrayDirection.DOWN},
         {"np": RIGHT, "dir": MArrayDirection.RIGHT},

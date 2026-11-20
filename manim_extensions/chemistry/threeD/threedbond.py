@@ -1,14 +1,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """3D bond representation for Manim chemistry.
 
 This module provides 3D bond classes for rendering chemical bonds in three dimensions.
 
 """
+
+from typing import Any, cast
 
 from manim import (
     Circle,
@@ -105,7 +104,12 @@ class ThreeDCylinder(OpenGLSurface):
         return np.array([r * np.cos(phi), r * np.sin(phi), height])
 
     def add_bases(self) -> Any:
-        """Adds the end caps of the cylinder."""
+        """Adds the end caps of the cylinder.
+
+        Returns
+        -------
+            The resulting value.
+        """
         if config.renderer == RendererType.OPENGL:
             color = self.color
             opacity = self.opacity
@@ -131,7 +135,12 @@ class ThreeDCylinder(OpenGLSurface):
         self.base_bottom.shift(self.u_range[0] * IN)
 
     def _rotate_to_direction(self) -> Any:
-        """Orient the bond along its target direction."""
+        """Orient the bond along its target direction.
+
+        Returns
+        -------
+            The resulting value.
+        """
         x, y, z = self.direction
 
         r = np.sqrt(x**2 + y**2 + z**2)
@@ -171,6 +180,11 @@ class ThreeDCylinder(OpenGLSurface):
         ----------
         direction
             Direction the cylinder is aligned to.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         self.direction = direction
         self._rotate_to_direction()
@@ -234,6 +248,11 @@ class ThreeDLine(ThreeDCylinder):
         **kwargs
             Additional keyword arguments passed to
             :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder`.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         rough_start = self.pointify(start)
         rough_end = self.pointify(end)
@@ -339,13 +358,10 @@ class ThreeDLine(ThreeDCylinder):
         """
         point = np.array(point)
         vect = normalize(line.vect)
-        return cast(
-            "Line3D",
-            cls(
-                point + vect * length / 2,
-                point - vect * length / 2,
-                **kwargs,
-            ),
+        return cls(
+            point + vect * length / 2,
+            point - vect * length / 2,
+            **kwargs,
         )
 
     @classmethod
@@ -404,13 +420,10 @@ class ThreeDLine(ThreeDCylinder):
 
         start, end = perpendicular_bisector([line.start, line.end], norm)
         vect = normalize(end - start)
-        return cast(
-            "Line3D",
-            cls(
-                point + vect * length / 2,
-                point - vect * length / 2,
-                **kwargs,
-            ),
+        return cls(
+            point + vect * length / 2,
+            point - vect * length / 2,
+            **kwargs,
         )
 
 

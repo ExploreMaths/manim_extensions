@@ -2,10 +2,9 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """Feed-forward neural network architecture visualization."""
+
+from typing import Any, cast
 
 from ... import config
 from ..neural_network import NeuralNetwork

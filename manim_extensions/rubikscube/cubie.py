@@ -2,10 +2,9 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """Individual cubie used by the Rubik's Cube mobject."""
+
+from typing import Any, Literal, cast
 
 from manim.constants import DOWN, IN, LEFT, OUT, RIGHT, UP
 from manim.utils.color import BLACK
@@ -14,8 +13,6 @@ from .cube_utils import get_faces_of_cubie
 
 import numpy as np
 from manim.typing import Point3D
-
-from typing import Literal
 
 
 class Cubie(VGroup):
@@ -79,15 +76,17 @@ class Cubie(VGroup):
         -------
             The rounded :math:`(x, y, z)` coordinates.
         """
-        return cast(
-            "tuple[float]",
-            tuple(
-                [round(self.get_x(), 3), round(self.get_y(), 3), round(self.get_z(), 3)]
-            ),
+        return tuple(
+            [round(self.get_x(), 3), round(self.get_y(), 3), round(self.get_z(), 3)]
         )
 
     def generate_points(self) -> Any:
-        """Construct the six square faces that correspond to this cubie."""
+        """Construct the six square faces that correspond to this cubie.
+
+        Returns
+        -------
+            The resulting value.
+        """
         faces = np.array(
             get_faces_of_cubie(
                 self.dimensions, (self.position[0], self.position[1], self.position[2])
@@ -144,7 +143,12 @@ class Cubie(VGroup):
             return self.faces[tuple(IN)]
 
     def init_colors(self) -> Any:
-        """Apply fill, stroke, and background-stroke colours to the cubie."""
+        """Apply fill, stroke, and background-stroke colours to the cubie.
+
+        Returns
+        -------
+            The resulting value.
+        """
         self.set_fill(
             color=self.fill_color or self.color, opacity=self.fill_opacity, family=False
         )

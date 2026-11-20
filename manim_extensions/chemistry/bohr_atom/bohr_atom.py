@@ -1,10 +1,9 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """Bohr atom model visualization for Manim."""
+
+from typing import Any
 
 from manim import BLUE, Circle, Dot, ManimColor, RED, RIGHT, TAU, VGroup, WHITE
 import numpy as np
@@ -207,7 +206,7 @@ class BohrAtom(VGroup):
         Returns
         -------
             The orbitals VGroup (first child of the atom group)."""
-        return cast("VGroup", self[0])
+        return self[0]
 
     def get_electrons(self) -> VGroup:
         """Return the electrons VGroup (second child of the atom group).
@@ -215,7 +214,7 @@ class BohrAtom(VGroup):
         Returns
         -------
             The electrons VGroup (second child of the atom group)."""
-        return cast("VGroup", self[1])
+        return self[1]
 
     def get_nuclei(self) -> VGroup:
         """Return the nuclei VGroup (third child of the atom group).
@@ -223,4 +222,4 @@ class BohrAtom(VGroup):
         Returns
         -------
             The nuclei VGroup (third child of the atom group)."""
-        return cast("VGroup", self[2])
+        return self[2]

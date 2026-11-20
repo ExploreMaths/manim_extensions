@@ -2,6 +2,10 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
+"""Utilities for the doc_directive module."""
+
+from __future__ import annotations
+from typing import Any, cast
 
 r"""
 A directive for including Manim videos in a Sphinx document.
@@ -9,9 +13,6 @@ A directive for including Manim videos in a Sphinx document.
 
 # unlinked-class-ok: Space
 
-from __future__ import annotations
-from typing import Any, cast
-from typing import Any
 
 from manim import QUALITIES, config, tempconfig
 from sphinx.application import Sphinx
@@ -50,6 +51,11 @@ def visit(self, node: list[Any], name: str = "") -> Any:
         The :class:`~manim_extensions.machine_learning.utils.testing.doc_directive.SkipManimNode` to visit.
     name
         Name of the admonition.
+
+
+        Returns
+        -------
+            The resulting value.
     """
     self.visit_admonition(node, name)
     if not isinstance(node[0], nodes.title):
@@ -63,6 +69,11 @@ def depart(self, node: SkipManimNode) -> Any:
     ----------
     node
         The :class:`~manim_extensions.machine_learning.utils.testing.doc_directive.SkipManimNode` to depart from.
+
+
+        Returns
+        -------
+            The resulting value.
     """
     self.depart_admonition(node)
 
@@ -203,7 +214,7 @@ class ManimDirective(Directive):
             "    from manim import *\n",
             *("    " + line for line in self.content),
         ]
-        source_block = cast("list[Any]", "\n".join(source_block))
+        source_block = "\n".join(source_block)
 
         config.media_dir = (Path(cast(Any, setup).confdir) / "media").absolute()
         config.images_dir = "{media_dir}/images"
@@ -298,6 +309,11 @@ def _write_rendering_stats(scene_name: str, run_time: float, file_name: str) -> 
         Rendering duration in seconds.
     file_name
         The source file that contains the example.
+
+
+        Returns
+        -------
+            The resulting value.
     """
     with rendering_times_file_path.open("a") as file:
         csv.writer(file).writerow(
@@ -316,6 +332,11 @@ def _log_rendering_times(*args: Any) -> Any:
     ----------
     *args
         Ignored Sphinx event arguments.
+
+
+        Returns
+        -------
+            The resulting value.
     """
     if rendering_times_file_path.exists():
         with rendering_times_file_path.open() as file:
@@ -328,7 +349,7 @@ def _log_rendering_times(*args: Any) -> Any:
         max_file_length = max(len(row[0]) for row in data)
         for key, group in it.groupby(data, key=lambda row: row[0]):
             key = key.ljust(max_file_length + 1, ".")
-            group = cast("Iterator[list[str]]", list(group))
+            group = list(group)
             if len(group) == 1:
                 row = group[0]
                 print(f"{key}{row[2].rjust(7, '.')}s {row[1]}")
@@ -349,6 +370,11 @@ def _delete_rendering_times(*args: Any) -> Any:
     ----------
     *args
         Ignored Sphinx event arguments.
+
+
+        Returns
+        -------
+            The resulting value.
     """
     if rendering_times_file_path.exists():
         rendering_times_file_path.unlink()

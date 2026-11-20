@@ -12,22 +12,57 @@ the ImportError names the right
 ``pip install manim_extensions[...]`` command.
 """
 
+from typing import overload
+
 import importlib
 from types import ModuleType
-from typing import overload
 
 
 @overload
-def require(extra: str, name: str) -> ModuleType: ...
+def require(extra: str, name: str, /) -> ModuleType:
+    """Import a single optional dependency, raising a helpful error naming the extra.
+
+    Parameters
+    ----------
+    extra
+        Name of the ``[project.optional-dependencies]`` extra.
+    name
+        Name of the optional package to import.
+
+    Returns
+    -------
+        The imported module.
+    """
+    ...
 
 
 @overload
 def require(
     extra: str, name1: str, name2: str, /, *names: str
-) -> tuple[ModuleType, ...]: ...
+) -> tuple[ModuleType, ...]:
+    """Import several optional dependencies, raising a helpful error naming the extra.
+
+    Parameters
+    ----------
+    extra
+        Name of the ``[project.optional-dependencies]`` extra.
+    name1
+        First optional package to import.
+    name2
+        Second optional package to import.
+    *names
+        Names of any further optional packages to import.
+
+    Returns
+    -------
+        The imported modules in the order of ``names``.
+    """
+    ...
 
 
-def require(extra: str, *names: str) -> ModuleType | tuple[ModuleType, ...]:
+def require(
+    extra: str, name1: str = "", name2: str = "", *names: str
+) -> ModuleType | tuple[ModuleType, ...]:
     """Import optional dependencies, raising a helpful error naming the extra.
 
     Parameters
@@ -35,8 +70,12 @@ def require(extra: str, *names: str) -> ModuleType | tuple[ModuleType, ...]:
     extra
         Name of the ``[project.optional-dependencies]`` extra that provides
         the packages (e.g. ``"physics"``).
+    name1
+        First optional package to import, when importing several at once.
+    name2
+        Second optional package to import, when importing several at once.
     *names
-        Names of the optional packages to import (e.g. ``"pymunk"``).
+        Names of any further optional packages to import (e.g. ``"pymunk"``).
 
     Returns
     -------

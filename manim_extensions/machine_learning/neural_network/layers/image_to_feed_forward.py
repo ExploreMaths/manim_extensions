@@ -2,12 +2,10 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Image to feed-forward layer connection visualization."""
 
 from __future__ import annotations
 from typing import Any, cast
-from typing import Any
 
 from manim import (
     Animation,

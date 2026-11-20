@@ -4,8 +4,6 @@
 # patched: add the module docstring and SPDX header
 # patched: reflow the docstring and the rich-display lambdas
 
-from typing import cast, Any
-
 """SVG export helpers for manim mobjects.
 
 Exports :func:`~manim_extensions.mobject_svg.svg.create_svg_from_vmobject`
@@ -17,6 +15,8 @@ The upstream package is pure Python and only depends on ``pycairo``, which
 manim already requires, so it is vendored here instead of being declared as
 a runtime dependency.
 """
+
+from typing import Any, cast
 
 from manim import VGroup, VMobject
 

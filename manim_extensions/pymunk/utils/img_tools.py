@@ -8,12 +8,13 @@ This module provides functions for converting images into Pymunk collision
 shapes. Both transparent-background and solid-color images are handled.
 """
 
-import numpy as np
 from typing import Any, cast
+
+import numpy as np
 from PIL import Image, ImageFilter, ImageOps
 
 from ...utils.deps import require
-from manim.typing import PixelArray, Point3D
+from manim.typing import PixelArray
 
 
 def get_normalized_convex_polygons(

@@ -2,16 +2,15 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """Mindmap main classes for Manim.
 
 This module provides main mindmap classes for visualizations.
 
 """
 
+from typing import Any, Dict
+
 __all__ = ["MindMap", "TimeLine", "StandardMap", "CatalogMap"]
-from typing import Dict
 
 from manim.constants import DOWN, RIGHT, UP
 from manim.utils.color import GREEN, PURE_YELLOW, RED, WHITE
@@ -121,7 +120,12 @@ class MindMap(AbstractMap):
         )
 
     def _set_connectors(self) -> Any:
-        """Create a connector from each node to its parent in the active layout."""
+        """Create a connector from each node to its parent in the active layout.
+
+        Returns
+        -------
+            The resulting value.
+        """
         for node in bfs_walker(self.root):
             node.connector = (
                 node.get_connector(
@@ -221,7 +225,12 @@ class TimeLine(AbstractMap):
         )
 
     def _set_connectors(self) -> Any:
-        """Create a connector from each node to its parent in the active layout."""
+        """Create a connector from each node to its parent in the active layout.
+
+        Returns
+        -------
+            The resulting value.
+        """
         for node in bfs_walker(self.root):
             node.connector = (
                 node.get_connector(
@@ -325,7 +334,12 @@ class StandardMap(AbstractMap):
         )
 
     def _set_connectors(self) -> Any:
-        """Create a connector from each node to its parent in the active layout."""
+        """Create a connector from each node to its parent in the active layout.
+
+        Returns
+        -------
+            The resulting value.
+        """
         for node in bfs_walker(self.root):
             node.connector = (
                 node.get_connector(
@@ -429,7 +443,12 @@ class CatalogMap(AbstractMap):
         )
 
     def _set_connectors(self) -> Any:
-        """Create a connector from each node to its parent in the active layout."""
+        """Create a connector from each node to its parent in the active layout.
+
+        Returns
+        -------
+            The resulting value.
+        """
         for node in bfs_walker(self.root):
             node.connector = (
                 node.get_connector(

@@ -1,8 +1,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import Any
-
 """Base parser class for chemical file formats.
 
 This module provides the :class:`~manim_extensions.chemistry.utils.parsers.base_parser.BaseParser` abstract class for parsing chemical files.

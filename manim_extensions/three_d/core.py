@@ -3,6 +3,11 @@
 # SPDX-License-Identifier: MIT
 # patched: use the package-wide CJK font resolver instead of the macOS-only PingFang SC
 
+"""Utilities for the core module."""
+
+from __future__ import annotations
+from typing import Any, Callable, Optional, Sequence, Union, cast
+
 # -*- coding: utf-8 -*-
 """Three-dimensional geometry and animation presets for Manim.
 
@@ -43,7 +48,6 @@ flip) and the choice is printed. Caption slots follow each surface's beat
 sequence through ``_caption_slots``.
 """
 
-from __future__ import annotations
 from manim import (
     Animation,
     BLUE,
@@ -91,7 +95,6 @@ from manim.typing import Point3D
 from ..mobjects import DEFAULT_CJK_FONT
 import numpy as np
 from dataclasses import dataclass
-from typing import Any, Callable, Optional, Sequence, Union, cast
 
 SurfaceFunction = Callable[[float, float], float]
 ColorRamp = Sequence[tuple[Union[str, ManimColor], float]]

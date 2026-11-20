@@ -2,12 +2,11 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-from typing import cast, Any
-from typing import Any
-
 """
 functions to display voronoi diagram and create delaunay meshes as its dual.
 """
+
+from typing import Any
 
 # python imports
 import numpy as np
@@ -171,7 +170,7 @@ class VoronoiDelaunay:
                 )
                 circle.shift(vert_a)
                 return circle
-        return cast("Circle", None)  # should never get here
+        return None  # should never get here
 
     def create_triangle(self, voronoi_vertex_index: int) -> Any:
         """Create the dual triangle for a given Voronoi vertex and add it to the mesh.
@@ -183,6 +182,11 @@ class VoronoiDelaunay:
         ----------
         voronoi_vertex_index
             Index of the Voronoi vertex whose dual triangle is created.
+
+
+            Returns
+            -------
+                The resulting value.
         """
 
         triangle_indices = set()

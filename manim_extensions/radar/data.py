@@ -2,15 +2,13 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """The data model: one radar snapshot."""
 
 from __future__ import annotations
-from typing import Any
+from typing import Any, Optional, Sequence, Union
 
 import math
 from dataclasses import dataclass, field, replace
-from typing import Optional, Sequence, Union
 
 from manim import ManimColor
 

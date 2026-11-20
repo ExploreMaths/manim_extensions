@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import pymunk (physics extra)
 
-
 """A gravity simulation space.
 
 Most objects can be made into a rigid body (moves according to gravity
@@ -28,9 +27,7 @@ the specific functions of the space.
 """
 
 from __future__ import annotations
-from typing import Any
-
-from typing import TYPE_CHECKING, Protocol, cast
+from typing import Any, Protocol, TYPE_CHECKING, cast
 
 import numpy as np
 
@@ -73,7 +70,7 @@ def _load_pymunk() -> pymunk:
     -------
         The imported pymunk module.
     """
-    return cast("pymunk", require("physics", "pymunk"))
+    return require("physics", "pymunk")
 
 
 class PhysicsAttributes(Protocol):
@@ -202,7 +199,12 @@ class SpaceScene(Scene):
         super().__init__(renderer=renderer, **kwargs)
 
     def setup(self) -> Any:
-        """Add the physics space to the scene and advance it every frame."""
+        """Add the physics space to the scene and advance it every frame.
+
+        Returns
+        -------
+            The resulting value.
+        """
         self.add(self.space)
         self.space.add_updater(_step)
 
@@ -214,6 +216,11 @@ class SpaceScene(Scene):
         body
             A mobject whose ``body`` and ``shape`` attributes are pymunk
             objects to be added to the simulation space.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         if body.body != self.space.space.static_body:
             self.space.space.add(body.body)
@@ -238,6 +245,11 @@ class SpaceScene(Scene):
         friction
             The attributes of the mobjects in regards to
             interacting with other rigid and static objects.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         pymunk = require("physics", "pymunk")
         for mob in mobs:
@@ -275,6 +287,11 @@ class SpaceScene(Scene):
         friction
             The attributes of the mobjects in regards to
             interacting with rigid objects.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         for mob in mobs:
             if isinstance(mob, VGroup or Group):
@@ -293,6 +310,11 @@ class SpaceScene(Scene):
         ----------
         mobs
             Mobs processed by this operation.
+
+
+            Returns
+            -------
+                The resulting value.
         """
         for mob in mobs:
             if isinstance(mob, VGroup or Group):
@@ -310,6 +332,11 @@ def _step(space: Space, dt: float) -> Any:
         The physics space containing the simulation.
     dt
         Time step size in seconds.
+
+
+        Returns
+        -------
+            The resulting value.
     """
     space.space.step(dt)
 
@@ -321,6 +348,11 @@ def _simulate(b: Mobject) -> Any:
     ----------
     b
         The physics body whose state is synchronised to its mobject.
+
+
+        Returns
+        -------
+            The resulting value.
     """
     x, y = cast(Any, b.body).position
     b.move_to(x * RIGHT + y * UP)
@@ -335,6 +367,11 @@ def get_shape(mob: VMobject) -> Any:
     ----------
     mob
         The mobject to manipulate.
+
+
+        Returns
+        -------
+            The resulting value.
     """
     pymunk = require("physics", "pymunk")
     if isinstance(mob, Circle):
@@ -365,6 +402,11 @@ def get_angle(mob: VMobject) -> Any:
     ----------
     mob
         The mobject to manipulate.
+
+
+        Returns
+        -------
+            The resulting value.
     """
     if issubclass(type(mob), Polygon):
         vec1 = mob.get_vertices()[0] - mob.get_vertices()[1]

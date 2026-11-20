@@ -2,7 +2,6 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-
 """Feed-forward to math operation layer connection visualization."""
 
 from __future__ import annotations
