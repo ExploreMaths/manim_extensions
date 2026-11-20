@@ -55,11 +55,11 @@ def deprecated(
         Deprecation message. May contain RST inline markup (``:func:``
         roles, double-backtick code, ...) which is kept for the docs but
         stripped from the runtime warning.
-    *args
-        Forwarded to :func:`~typing_extensions.deprecated`.
-    **kwargs
-        Forwarded to :func:`~typing_extensions.deprecated`
-        (``category``, ``stacklevel``).
+    category
+        Warning category forwarded to
+        :func:`~typing_extensions.deprecated`.
+    stacklevel
+        Stack level forwarded to :func:`~typing_extensions.deprecated`.
 
     Returns
     -------
