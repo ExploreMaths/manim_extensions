@@ -45,6 +45,7 @@ sequence through ``_caption_slots``.
 
 from __future__ import annotations
 from manim import (
+    Animation,
     BLUE,
     Create,
     DEGREES,
@@ -76,6 +77,7 @@ from manim import (
     UP,
     UR,
     VGroup,
+    VMobject,
     WHITE,
     Write,
     YELLOW,
@@ -83,14 +85,17 @@ from manim import (
     smooth,
 )
 
+from manim.mobject.mobject import _AnimationBuilder
+from manim.typing import Point3D
+
 from ..mobjects import DEFAULT_CJK_FONT
 import numpy as np
 from dataclasses import dataclass
-from typing import Callable, Optional, Sequence, Union
+from typing import Any, Callable, Optional, Sequence, Union, cast
 
 SurfaceFunction = Callable[[float, float], float]
 ColorRamp = Sequence[tuple[Union[str, ManimColor], float]]
-GeometrySpec = tuple[SurfaceFunction, str, float, float, float]
+GeometrySpec = tuple[SurfaceFunction, Optional[str], float, float, float]
 ContourSpec = tuple[VGroup, bool]
 FeatureSpec = tuple[float, float, float, str, bool, float]
 
@@ -155,7 +160,9 @@ BEATS = [
 PACE = {"fast": 10.0, "normal": 24.0, "full": 45.0}
 
 
-def plan_timeline(duration: float, enabled: set) -> tuple[dict, list]:
+def plan_timeline(
+    duration: float, enabled: set[str]
+) -> tuple[dict[str, float], list[str]]:
     """Distribute a duration across the enabled beats.
 
     Parameters
@@ -178,7 +185,7 @@ def plan_timeline(duration: float, enabled: set) -> tuple[dict, list]:
     """
 
     active = [b for b in BEATS if b[0] in enabled]
-    dropped = []
+    dropped: list[str] = []
     while True:
         t = {b[0]: float(b[1]) for b in active}
         for _ in range(80):
@@ -200,7 +207,7 @@ def plan_timeline(duration: float, enabled: set) -> tuple[dict, list]:
         cands = [b for b in active if b[4] is not None]
         if not cands:
             return t, dropped
-        victim = min(cands, key=lambda b: b[4])
+        victim = min(cands, key=lambda b: b[4] if b[4] is not None else 0)
         active = [b for b in active if b[0] is not victim[0]]
         dropped.append(victim[0])
 
@@ -285,20 +292,22 @@ def _fmt(v: float) -> str:
 class GaussianSurface:
     """Tunable parameters for a Gaussian surface, generalized to :math:`z=f(x, y)`."""
 
-    func: Optional[Callable] = None  # z=f(x,y); None = built-in Gaussian
+    func: Optional[Callable[..., float]] = None  # z=f(x,y); None = built-in Gaussian
     func_tex: Optional[str] = (
         None  # corner formula; None = custom function without a displayed formula
     )
-    domain: tuple = (-2.6, 2.6)  # x/y domain
-    resolution: tuple = (40, 40)  # surface mesh density
-    colors: object = "rainbow"  # RAMPS theme name or [(hex, 0-1), ...]
+    domain: tuple[float, float] = (-2.6, 2.6)  # x/y domain
+    resolution: tuple[int, int] = (40, 40)  # surface mesh density
+    colors: str | Sequence[tuple[str, float]] = (
+        "rainbow"  # RAMPS theme name or [(hex, 0-1), ...]
+    )
     height: float = 1.0  # peak auto-normalised to this height
     axes: bool = True
     rings: bool = True  # floor contours (radial approximation)
     orbit: bool = True  # 360° orbit
     flip: bool = True  # flip to show the underside
     annotate: bool = True  # peak label
-    captions: Optional[Sequence] = None  # captions aligned by slot; omit for none
+    captions: Optional[Sequence[str]] = None  # captions aligned by slot; omit for none
     duration: Optional[float] = None  # content budget in seconds; None = use pace
     pace: str = "full"  # fast=10 / normal=24 / full=45
     background: str = "#050810"
@@ -306,7 +315,7 @@ class GaussianSurface:
     camera_theta: float = -55.0
     zoom: float = 0.95
 
-    def resolve(self) -> tuple[SurfaceFunction, str]:
+    def resolve(self) -> tuple[SurfaceFunction, Optional[str]]:
         """Resolve the surface function and its displayed formula.
 
         Returns
@@ -314,6 +323,7 @@ class GaussianSurface:
             The height function and the formula string, with defaults filled in.
         """
 
+        tex: Optional[str]
         if self.func is None:
             f = lambda x, y: float(np.exp(-(x * x + y * y)))
             tex = r"z = e^{-x^{2}-y^{2}}" if self.func_tex is None else self.func_tex
@@ -327,16 +337,16 @@ class GaussianSurface:
 class SaddleSurface:
     """Tunable presentation for the fixed saddle surface :math:`z = x^{2} - y^{2}`."""
 
-    domain: tuple = (-2.2, 2.2)
-    resolution: tuple = (44, 44)
-    colors: object = "rainbow"
+    domain: tuple[float, float] = (-2.2, 2.2)
+    resolution: tuple[int, int] = (44, 44)
+    colors: str | Sequence[tuple[str, float]] = "rainbow"
     height: float = 1.2  # normalise: ridge = +H, valley = -H (symmetric)
     axes: bool = True
     rings: bool = True  # hyperbola-family contours + asymptotes (floor)
     orbit: bool = True
     flip: bool = True
     annotate: bool = True  # saddle label (projected HUD label)
-    captions: Optional[Sequence] = None
+    captions: Optional[Sequence[str]] = None
     duration: Optional[float] = None
     pace: str = "full"
     background: str = "#050810"
@@ -349,16 +359,16 @@ class SaddleSurface:
 class ParaboloidSurface:
     """Tunable presentation for the fixed paraboloid :math:`z = x^{2} + y^{2}`."""
 
-    domain: tuple = (-2.2, 2.2)
-    resolution: tuple = (44, 44)
-    colors: object = "rainbow"
+    domain: tuple[float, float] = (-2.2, 2.2)
+    resolution: tuple[int, int] = (44, 44)
+    colors: str | Sequence[tuple[str, float]] = "rainbow"
     height: float = 1.2  # normalise: rim = H, bottom = 0
     axes: bool = True
     rings: bool = True  # surface-attached concentric contours (follow the flip)
     orbit: bool = True
     flip: bool = True
     annotate: bool = True  # top label (projected HUD label)
-    captions: Optional[Sequence] = None
+    captions: Optional[Sequence[str]] = None
     duration: Optional[float] = None
     pace: str = "full"
     background: str = "#050810"
@@ -371,15 +381,15 @@ class ParaboloidSurface:
 class EllipsoidSurface:
     """Configuration for an ellipsoid, the first closed parametric surface."""
 
-    semi_axes: tuple = (2.4, 1.6, 1.2)  # (a, b, c) semi-axes
-    resolution: tuple = (44, 56)  # latitude/longitude mesh density
-    colors: object = "rainbow"
+    semi_axes: tuple[float, float, float] = (2.4, 1.6, 1.2)  # (a, b, c) semi-axes
+    resolution: tuple[int, int] = (44, 56)  # latitude/longitude mesh density
+    colors: str | Sequence[tuple[str, float]] = "rainbow"
     axes: bool = True
     rings: bool = True  # surface-attached horizontal ellipses (follow the flip)
     orbit: bool = True
     flip: bool = True  # closed-surface flip = rotate to the back
     annotate: bool = True  # top vertex label (3D label)
-    captions: Optional[Sequence] = None
+    captions: Optional[Sequence[str]] = None
     duration: Optional[float] = None
     pace: str = "full"
     background: str = "#050810"
@@ -394,14 +404,14 @@ class TorusSurface:
 
     major_radius: float = 2.0  # torus radius R (tube-centre circle)
     minor_radius: float = 0.5  # tube radius r
-    resolution: tuple = (56, 24)  # (major θ, tube φ) mesh density
-    colors: object = "rainbow"
+    resolution: tuple[int, int] = (56, 24)  # (major θ, tube φ) mesh density
+    colors: str | Sequence[tuple[str, float]] = "rainbow"
     axes: bool = True
     rings: bool = True  # surface-attached paired horizontal rings (follow the flip)
     orbit: bool = True
     flip: bool = True
     annotate: bool = True  # highest-point label (3D label + antenna)
-    captions: Optional[Sequence] = None
+    captions: Optional[Sequence[str]] = None
     duration: Optional[float] = None
     pace: str = "full"
     background: str = "#050810"
@@ -416,8 +426,8 @@ class HyperboloidOneSheet:
 
     waist_radius: float = 1.0  # waist radius a (= b)
     z_extent: float = 1.5  # upper/lower truncation ±h
-    resolution: tuple = (36, 48)  # (z, circumferential) mesh density
-    colors: object = "rainbow"
+    resolution: tuple[int, int] = (36, 48)  # (z, circumferential) mesh density
+    colors: str | Sequence[tuple[str, float]] = "rainbow"
     axes: bool = True
     rings: bool = (
         True  # surface-attached horizontal circle family (including the waist; follows the flip)
@@ -425,7 +435,7 @@ class HyperboloidOneSheet:
     orbit: bool = True
     flip: bool = True
     annotate: bool = True  # waist front label (HUD label, no dashed line)
-    captions: Optional[Sequence] = None
+    captions: Optional[Sequence[str]] = None
     duration: Optional[float] = None
     pace: str = "full"
     background: str = "#050810"
@@ -445,6 +455,14 @@ SurfaceConfig = Union[
     HyperboloidOneSheet,
 ]
 GraphSurfaceConfig = Union[GaussianSurface, SaddleSurface, ParaboloidSurface]
+SurfaceConfigClass = Union[
+    type[GaussianSurface],
+    type[SaddleSurface],
+    type[ParaboloidSurface],
+    type[EllipsoidSurface],
+    type[TorusSurface],
+    type[HyperboloidOneSheet],
+]
 
 
 # ---------------- Beat skeleton (shared graph surfaces) ----------------
@@ -498,14 +516,14 @@ class GraphSurfaceScene(ThreeDScene):
                 return ["title", "outro"]
     """
 
-    style = None
-    config_cls = None
+    style: SurfaceConfig | None = None
+    config_cls: SurfaceConfigClass | None = None
     uses_flat = True
 
     def __init__(
         self,
-        config: SurfaceConfig | dict | None = None,
-        **kwargs: object,
+        config: SurfaceConfig | dict[str, Any] | None = None,
+        **kwargs: Any,
     ) -> None:
         scene_keys = {
             "renderer",
@@ -514,9 +532,13 @@ class GraphSurfaceScene(ThreeDScene):
             "random_seed",
             "skip_animations",
         }
-        scene_kwargs = {k: v for k, v in kwargs.items() if k in scene_keys}
-        style_kwargs = {k: v for k, v in kwargs.items() if k not in scene_keys}
-        super().__init__(**scene_kwargs)
+        scene_kwargs: dict[str, Any] = {
+            k: v for k, v in kwargs.items() if k in scene_keys
+        }
+        style_kwargs: dict[str, Any] = {
+            k: v for k, v in kwargs.items() if k not in scene_keys
+        }
+        super().__init__(**scene_kwargs)  # type: ignore[no-untyped-call]
         if config is not None:
             if isinstance(config, dict):
                 if self.config_cls is None:
@@ -532,7 +554,7 @@ class GraphSurfaceScene(ThreeDScene):
         elif self.style is None and self.config_cls is not None:
             self.style = self.config_cls()
 
-    def __init_subclass__(cls, **config_kwargs: object) -> None:
+    def __init_subclass__(cls, **config_kwargs: Any) -> None:
         """Apply configuration keywords written in the class statement.
 
         ``class Demo(GaussianSurfaceScene, pace="fast")`` passes ``pace``
@@ -716,7 +738,9 @@ class GraphSurfaceScene(ThreeDScene):
 
         d0, d1 = cfg.domain
         s = Surface(
-            lambda u, v: axes.c2p(u, v, f(u, v)),
+            cast(
+                Callable[[float, float], Point3D], lambda u, v: axes.c2p(u, v, f(u, v))
+            ),
             u_range=(d0, d1),
             v_range=(d0, d1),
             resolution=cfg.resolution,
@@ -742,6 +766,7 @@ class GraphSurfaceScene(ThreeDScene):
         """
 
         cfg = self.style
+        assert cfg is not None
         ramp = RAMPS[cfg.colors] if isinstance(cfg.colors, str) else list(cfg.colors)
         f_n, func_tex, zmin_n, ax_z_lo, ax_z_hi = self._geometry(cfg)
         duration = (
@@ -774,7 +799,7 @@ class GraphSurfaceScene(ThreeDScene):
 
         slots = self._caption_slots()
         cap_map = dict(zip(slots, list(cfg.captions) if cfg.captions else []))
-        self.camera.background_color = cfg.background
+        self.camera.background_color = ManimColor(cfg.background)
         self.set_camera_orientation(
             phi=cfg.camera_phi * DEGREES,
             theta=cfg.camera_theta * DEGREES,
@@ -803,7 +828,9 @@ class GraphSurfaceScene(ThreeDScene):
             """
             if tex:
                 text = f"{text} ·" if not text.rstrip().endswith("·") else text.rstrip()
-            parts = [Text(text, font=DEFAULT_CJK_FONT, font_size=42, color="#e8d9a0")]
+            parts: list[VMobject] = [
+                Text(text, font=DEFAULT_CJK_FONT, font_size=42, color="#e8d9a0")
+            ]
             if tex:
                 parts.append(MathTex(tex, font_size=52, color="#e8d9a0"))
             g = VGroup(*parts).arrange(RIGHT, buff=0.2).to_edge(DOWN, buff=0.55)
@@ -836,19 +863,24 @@ class GraphSurfaceScene(ThreeDScene):
                 self.play(FadeOut(cur_cap), run_time=0.44 * swap_t)
             self.play(FadeIn(new_cap), run_time=0.56 * swap_t)
             cur_cap = new_cap
+            return new_cap
 
         # ---------- geometry ----------
-        axes_obj = self._make_axes(cfg, ax_z_lo, ax_z_hi)
-        surface = self._make_surface(cfg, axes_obj, f_n, ramp, zmin_n)
+        graph_cfg = cast(GraphSurfaceConfig, cfg)
+        axes_obj = self._make_axes(graph_cfg, ax_z_lo, ax_z_hi)
+        surface = self._make_surface(graph_cfg, axes_obj, f_n, ramp, zmin_n)
 
         flat = None
         if self.uses_flat:
-            d0, d1 = cfg.domain
+            d0, d1 = graph_cfg.domain
             flat = Surface(
-                lambda u, v: axes_obj.c2p(u, v, 0.001),
+                cast(
+                    Callable[[float, float], Point3D],
+                    lambda u, v: axes_obj.c2p(u, v, 0.001),
+                ),
                 u_range=(d0, d1),
                 v_range=(d0, d1),
-                resolution=cfg.resolution,
+                resolution=graph_cfg.resolution,
                 fill_opacity=0.95,
                 stroke_color="#8899bb",
                 stroke_width=0.35,
@@ -856,7 +888,7 @@ class GraphSurfaceScene(ThreeDScene):
             )
             flat.set_fill_by_value(
                 axes=axes_obj,
-                colorscale=[("#14304f", zmin_n), ("#27507d", cfg.height)],
+                colorscale=[("#14304f", zmin_n), ("#27507d", graph_cfg.height)],
                 axis=2,
             )
 
@@ -888,9 +920,14 @@ class GraphSurfaceScene(ThreeDScene):
         if "axes" in t:
             if cap_map.get("axes"):
                 swap_caption(cap_map["axes"])
-            anims = []
+            anims: list[Animation | _AnimationBuilder] = []
             if formula is not None:
-                anims.append(formula.animate.scale(0.55).to_corner(UR, buff=0.45))
+                anims.append(
+                    cast(
+                        _AnimationBuilder,
+                        formula.animate.scale(0.55).to_corner(UR, buff=0.45),
+                    )
+                )
             anims.append(Create(axes_obj))
             self.play(*anims, run_time=t["axes"])
 
@@ -927,7 +964,7 @@ class GraphSurfaceScene(ThreeDScene):
             spin = t["orbit"] - settle
             self.begin_ambient_camera_rotation(rate=TAU / spin)  # exactly one full turn
             self.wait(spin)
-            self.stop_ambient_camera_rotation()
+            self.stop_ambient_camera_rotation()  # type: ignore[no-untyped-call]
             if settle:
                 self.wait(settle)
 
@@ -988,7 +1025,7 @@ class GraphSurfaceScene(ThreeDScene):
                 tag = MathTex(tag_tex, font_size=44, color=WHITE).next_to(
                     dot, RIGHT, buff=0.28
                 )
-            ann_anims = [FadeIn(dot, scale=0.3)]
+            ann_anims: list[Animation | _AnimationBuilder] = [FadeIn(dot, scale=0.3)]
             if stem is not None:
                 ann_anims.append(Create(stem))
             ann_anims.append(Write(tag))
@@ -1010,11 +1047,13 @@ class GraphSurfaceScene(ThreeDScene):
         if cur_cap is not None:
             anims.append(FadeOut(cur_cap))
         if formula is not None:
-            anims.append(formula.animate.move_to(ORIGIN).scale(1.5))
+            anims.append(
+                cast(_AnimationBuilder, formula.animate.move_to(ORIGIN).scale(1.5))
+            )
         self.play(*anims, run_time=f1)
         # cleanup: force-remove any missed objects
         self.remove(*[m for m in list(self.mobjects) if m is not formula])
-        if cap_map.get("outro") and len(list(cfg.captions)) >= 2:
+        if cap_map.get("outro") and cfg.captions and len(list(cfg.captions)) >= 2:
             last_cap = make_cap(cap_map["outro"])
             self.remove(last_cap)
             self.play(FadeIn(last_cap), run_time=capin)
@@ -1053,6 +1092,7 @@ class GaussianSurfaceScene(GraphSurfaceScene):
             The normalized height function, formula string, normalized minimum
             height, and low and high z axis limits.
         """
+        cfg = cast(GaussianSurface, cfg)
 
         f_raw, tex = cfg.resolve()
         n = 160
@@ -1094,6 +1134,7 @@ class GaussianSurfaceScene(GraphSurfaceScene):
             The contour group and ``False`` because these rings stay on the
             floor and do not rotate with the surface.
         """
+        cfg = cast(GaussianSurface, cfg)
         g = VGroup()
         for c in [0.8, 0.55, 0.33, 0.15, 0.045]:
             r = _radius_for_level(f, cfg.domain[1], c)
@@ -1101,8 +1142,11 @@ class GaussianSurfaceScene(GraphSurfaceScene):
                 continue
             g.add(
                 ParametricFunction(
-                    lambda tt, r=r: axes.c2p(r * np.cos(tt), r * np.sin(tt), 0.002),
-                    t_range=[0, TAU],
+                    cast(
+                        Callable[[float], Point3D],
+                        lambda tt, r=r: axes.c2p(r * np.cos(tt), r * np.sin(tt), 0.002),
+                    ),
+                    t_range=(0, TAU),
                     color=_ramp_color(ramp, c),
                     stroke_width=2.0,
                     stroke_opacity=0.65,
@@ -1124,6 +1168,7 @@ class GaussianSurfaceScene(GraphSurfaceScene):
         -------
             The peak coordinates, tag formula, HUD flag, and stem start height.
         """
+        cfg = cast(GaussianSurface, cfg)
         iy, ix = np.unravel_index(int(self._zs.argmax()), self._zs.shape)
 
         px, py = float(self._gx[ix]), float(self._gx[iy])
@@ -1178,6 +1223,7 @@ class SaddleSurfaceScene(GraphSurfaceScene):
             The height function, formula string, normalized minimum height, and
             low and high z axis limits.
         """
+        cfg = cast(SaddleSurface, cfg)
         d1 = cfg.domain[1]
         scale = cfg.height / (d1 * d1)
         f = lambda x, y: (x * x - y * y) * scale
@@ -1211,6 +1257,7 @@ class SaddleSurfaceScene(GraphSurfaceScene):
             The contour group and ``False`` because the contours stay on the
             floor.
         """
+        cfg = cast(SaddleSurface, cfg)
 
         d1 = cfg.domain[1]
         H = cfg.height
@@ -1218,8 +1265,10 @@ class SaddleSurfaceScene(GraphSurfaceScene):
         # asymptote x=±y (k=0 degenerate contour, saddle signature)
         for s in (+1, -1):
             line = ParametricFunction(
-                lambda t, s=s: axes.c2p(t, s * t, 0.003),
-                t_range=[-d1, d1],
+                cast(
+                    Callable[[float], Point3D], lambda t, s=s: axes.c2p(t, s * t, 0.003)
+                ),
+                t_range=(-d1, d1),
                 color="#9fb3c8",
                 stroke_width=2.0,
                 stroke_opacity=0.55,
@@ -1234,10 +1283,13 @@ class SaddleSurfaceScene(GraphSurfaceScene):
                 for s in (+1, -1):
                     g.add(
                         ParametricFunction(
-                            lambda t, k=k, s=s: axes.c2p(
-                                s * np.sqrt(k + t * t), t, 0.002
+                            cast(
+                                Callable[[float], Point3D],
+                                lambda t, k=k, s=s: axes.c2p(
+                                    s * np.sqrt(k + t * t), t, 0.002
+                                ),
                             ),
-                            t_range=[-ymax, ymax],
+                            t_range=(-ymax, ymax),
                             color=col,
                             stroke_width=2.4,
                             stroke_opacity=0.75,
@@ -1248,10 +1300,13 @@ class SaddleSurfaceScene(GraphSurfaceScene):
                 for s in (+1, -1):
                     g.add(
                         ParametricFunction(
-                            lambda t, k=k, s=s: axes.c2p(
-                                t, s * np.sqrt(-k + t * t), 0.002
+                            cast(
+                                Callable[[float], Point3D],
+                                lambda t, k=k, s=s: axes.c2p(
+                                    t, s * np.sqrt(-k + t * t), 0.002
+                                ),
                             ),
-                            t_range=[-xmax, xmax],
+                            t_range=(-xmax, xmax),
                             color=col,
                             stroke_width=2.4,
                             stroke_opacity=0.75,
@@ -1274,6 +1329,7 @@ class SaddleSurfaceScene(GraphSurfaceScene):
             The origin coordinates, tag formula, HUD flag, and stem start
             height.
         """
+        cfg = cast(SaddleSurface, cfg)
         return (
             0.0,
             0.0,
@@ -1308,6 +1364,7 @@ class ParaboloidSurfaceScene(GraphSurfaceScene):
             The height function, formula string, normalized minimum height, and
             low and high z axis limits.
         """
+        cfg = cast(ParaboloidSurface, cfg)
         d1 = cfg.domain[1]
         scale = cfg.height / (d1 * d1)
         f = lambda x, y: (x * x + y * y) * scale
@@ -1341,6 +1398,7 @@ class ParaboloidSurfaceScene(GraphSurfaceScene):
             The contour group and ``True`` because these rings follow the
             surface when it flips.
         """
+        cfg = cast(ParaboloidSurface, cfg)
 
         d1 = cfg.domain[1]
         H = cfg.height
@@ -1351,10 +1409,13 @@ class ParaboloidSurfaceScene(GraphSurfaceScene):
             r = d1 * np.sqrt(z_lv / H)
             g.add(
                 ParametricFunction(
-                    lambda t, r=r, z_lv=z_lv: axes.c2p(
-                        r * np.cos(t), r * np.sin(t), z_lv + 0.004
+                    cast(
+                        Callable[[float], Point3D],
+                        lambda t, r=r, z_lv=z_lv: axes.c2p(
+                            r * np.cos(t), r * np.sin(t), z_lv + 0.004
+                        ),
                     ),
-                    t_range=[0, TAU],
+                    t_range=(0, TAU),
                     color=_ramp_color(ramp, z_lv / H),
                     stroke_width=2.6,
                     stroke_opacity=0.85,
@@ -1377,6 +1438,7 @@ class ParaboloidSurfaceScene(GraphSurfaceScene):
             The origin coordinates, tag formula, HUD flag, and stem start
             height.
         """
+        cfg = cast(ParaboloidSurface, cfg)
         return (
             0.0,
             0.0,
@@ -1407,6 +1469,7 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
             A placeholder height function, the formula string, normalized
             minimum height, and low and high z axis limits.
         """
+        cfg = cast(EllipsoidSurface, cfg)
         a, b, c = cfg.semi_axes
         f = lambda x, y: 0.0  # closed surfaces skip graph construction; placeholder
         tex = (
@@ -1417,7 +1480,7 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
         return f, tex, -c, -c - 0.5, c + 0.9
 
     def _make_axes(
-        self, cfg: GraphSurfaceConfig, ax_z_lo: float, ax_z_hi: float
+        self, cfg: SurfaceConfig, ax_z_lo: float, ax_z_hi: float
     ) -> ThreeDAxes:
         """Scale the axes uniformly so the ellipsoid does not distort.
 
@@ -1434,6 +1497,7 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
         -------
             The uniformly scaled axes.
         """
+        cfg = cast(EllipsoidSurface, cfg)
         a, b, c = cfg.semi_axes
         k = 7.2 / (2 * (a + 0.4))
         axes = ThreeDAxes(
@@ -1448,7 +1512,7 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
 
     def _make_surface(
         self,
-        cfg: GraphSurfaceConfig,
+        cfg: SurfaceConfig,
         axes: ThreeDAxes,
         f: SurfaceFunction,
         ramp: ColorRamp,
@@ -1473,10 +1537,14 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
         -------
             The coloured ellipsoid surface.
         """
+        cfg = cast(EllipsoidSurface, cfg)
         a, b, c = cfg.semi_axes
         s = Surface(
-            lambda u, v: axes.c2p(
-                a * np.sin(u) * np.cos(v), b * np.sin(u) * np.sin(v), c * np.cos(u)
+            cast(
+                Callable[[float, float], Point3D],
+                lambda u, v: axes.c2p(
+                    a * np.sin(u) * np.cos(v), b * np.sin(u) * np.sin(v), c * np.cos(u)
+                ),
             ),
             u_range=(0, PI),
             v_range=(0, TAU),
@@ -1519,6 +1587,7 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
             The contour group and ``True`` because the rings rotate with the
             surface.
         """
+        cfg = cast(EllipsoidSurface, cfg)
         a, b, c = cfg.semi_axes
         g = VGroup()
         for h in [0.66, 0.33, 0.0, -0.33, -0.66]:  # z/c height ratio
@@ -1528,10 +1597,13 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
             )  # slight offset to avoid z-fighting
             g.add(
                 ParametricFunction(
-                    lambda t, s=s, z0=z0: axes.c2p(
-                        a * s * np.cos(t), b * s * np.sin(t), z0
+                    cast(
+                        Callable[[float], Point3D],
+                        lambda t, s=s, z0=z0: axes.c2p(
+                            a * s * np.cos(t), b * s * np.sin(t), z0
+                        ),
                     ),
-                    t_range=[0, TAU],
+                    t_range=(0, TAU),
                     color=_ramp_color(ramp, (z0 + c) / (2 * c)),
                     stroke_width=2.6,
                     stroke_opacity=0.85,
@@ -1553,6 +1625,7 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
         -------
             The apex coordinates, tag formula, HUD flag, and stem start height.
         """
+        cfg = cast(EllipsoidSurface, cfg)
         a, b, c = cfg.semi_axes
         # top vertex exposed; a 3D label suffices; dashed line from above (below the vertex is inside the surface and occluded)
         return 0.0, 0.0, c, rf"(0,\,0,\,{_fmt(c)})", False, c + 0.75
@@ -1578,13 +1651,14 @@ class TorusSurfaceScene(GraphSurfaceScene):
             A placeholder height function, the formula string, normalized
             minimum height, and low and high z axis limits.
         """
+        cfg = cast(TorusSurface, cfg)
         R, r = cfg.major_radius, cfg.minor_radius
         f = lambda x, y: 0.0  # closed surfaces skip graph construction; placeholder
         tex = rf"(\sqrt{{x^{{2}}+y^{{2}}}} - {_fmt(R)})^{{2}} + z^{{2}} = {_fmt(r * r)}"
         return f, tex, -r, -r - 0.4, r + 0.9
 
     def _make_axes(
-        self, cfg: GraphSurfaceConfig, ax_z_lo: float, ax_z_hi: float
+        self, cfg: SurfaceConfig, ax_z_lo: float, ax_z_hi: float
     ) -> ThreeDAxes:
         """Scale the axes uniformly for the torus.
 
@@ -1601,6 +1675,7 @@ class TorusSurfaceScene(GraphSurfaceScene):
         -------
             The uniformly scaled axes.
         """
+        cfg = cast(TorusSurface, cfg)
         R, r = cfg.major_radius, cfg.minor_radius
         outer = R + r
         k = 7.2 / (
@@ -1618,7 +1693,7 @@ class TorusSurfaceScene(GraphSurfaceScene):
 
     def _make_surface(
         self,
-        cfg: GraphSurfaceConfig,
+        cfg: SurfaceConfig,
         axes: ThreeDAxes,
         f: SurfaceFunction,
         ramp: ColorRamp,
@@ -1643,12 +1718,16 @@ class TorusSurfaceScene(GraphSurfaceScene):
         -------
             The coloured torus surface.
         """
+        cfg = cast(TorusSurface, cfg)
         R, r = cfg.major_radius, cfg.minor_radius
         s = Surface(
-            lambda u, v: axes.c2p(
-                (R + r * np.cos(v)) * np.cos(u),
-                (R + r * np.cos(v)) * np.sin(u),
-                r * np.sin(v),
+            cast(
+                Callable[[float, float], Point3D],
+                lambda u, v: axes.c2p(
+                    (R + r * np.cos(v)) * np.cos(u),
+                    (R + r * np.cos(v)) * np.sin(u),
+                    r * np.sin(v),
+                ),
             ),
             u_range=(0, TAU),
             v_range=(0, TAU),
@@ -1691,6 +1770,7 @@ class TorusSurfaceScene(GraphSurfaceScene):
             The contour group and ``True`` because the rings rotate with the
             surface.
         """
+        cfg = cast(TorusSurface, cfg)
         R, r = cfg.major_radius, cfg.minor_radius
         g = VGroup()
         for z_lv in [0.6, 0.0, -0.6]:  # tube cross-section height ratio (×r)
@@ -1700,10 +1780,13 @@ class TorusSurfaceScene(GraphSurfaceScene):
                 rho = (R + sgn * half) * 1.004  # slight offset to avoid z-fighting
                 g.add(
                     ParametricFunction(
-                        lambda t, rho=rho, z0=z0: axes.c2p(
-                            rho * np.cos(t), rho * np.sin(t), z0
+                        cast(
+                            Callable[[float], Point3D],
+                            lambda t, rho=rho, z0=z0: axes.c2p(
+                                rho * np.cos(t), rho * np.sin(t), z0
+                            ),
                         ),
-                        t_range=[0, TAU],
+                        t_range=(0, TAU),
                         color=_ramp_color(ramp, (z0 + r) / (2 * r)),
                         stroke_width=2.6,
                         stroke_opacity=0.85,
@@ -1725,6 +1808,7 @@ class TorusSurfaceScene(GraphSurfaceScene):
         -------
             The apex coordinates, tag formula, HUD flag, and stem start height.
         """
+        cfg = cast(TorusSurface, cfg)
         R, r = cfg.major_radius, cfg.minor_radius
         # highest point exposed; 3D label; antenna line hangs from above (other directions are inside the surface/hole)
         return 0.0, 0.0, r, rf"(0,\,0,\,{_fmt(r)})", False, r + 0.75
@@ -1750,6 +1834,7 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
             A placeholder height function, the formula string, normalized
             minimum height, and low and high z axis limits.
         """
+        cfg = cast(HyperboloidOneSheet, cfg)
         a, h = cfg.waist_radius, cfg.z_extent
         f = (
             lambda x, y: 0.0
@@ -1759,7 +1844,7 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
         return f, tex, -h, -h - 0.4, h + 0.4
 
     def _make_axes(
-        self, cfg: GraphSurfaceConfig, ax_z_lo: float, ax_z_hi: float
+        self, cfg: SurfaceConfig, ax_z_lo: float, ax_z_hi: float
     ) -> ThreeDAxes:
         """Scale the axes uniformly for the hyperboloid.
 
@@ -1776,6 +1861,7 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
         -------
             The uniformly scaled axes.
         """
+        cfg = cast(HyperboloidOneSheet, cfg)
         a, h = cfg.waist_radius, cfg.z_extent
         max_r = (a * a + h * h) ** 0.5  # port radius
         k = 7.2 / (
@@ -1793,7 +1879,7 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
 
     def _make_surface(
         self,
-        cfg: GraphSurfaceConfig,
+        cfg: SurfaceConfig,
         axes: ThreeDAxes,
         f: SurfaceFunction,
         ramp: ColorRamp,
@@ -1818,12 +1904,16 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
         -------
             The coloured hyperboloid surface.
         """
+        cfg = cast(HyperboloidOneSheet, cfg)
         a, h = cfg.waist_radius, cfg.z_extent
         s = Surface(
-            lambda u, v: axes.c2p(
-                (a * a + u * u) ** 0.5 * np.cos(v),
-                (a * a + u * u) ** 0.5 * np.sin(v),
-                u,
+            cast(
+                Callable[[float, float], Point3D],
+                lambda u, v: axes.c2p(
+                    (a * a + u * u) ** 0.5 * np.cos(v),
+                    (a * a + u * u) ** 0.5 * np.sin(v),
+                    u,
+                ),
             ),  # u is z
             u_range=(-h, h),
             v_range=(0, TAU),
@@ -1866,6 +1956,7 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
             The contour group and ``True`` because the rings rotate with the
             surface.
         """
+        cfg = cast(HyperboloidOneSheet, cfg)
         a, h = cfg.waist_radius, cfg.z_extent
         g = VGroup()
         for z_lv in [1.0, 0.5, 0.0, -0.5, -1.0]:  # horizontal circle family (0 = waist)
@@ -1876,10 +1967,13 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
             ) * 1.004  # slight offset to avoid z-fighting
             g.add(
                 ParametricFunction(
-                    lambda t, rho=rho, z_lv=z_lv: axes.c2p(
-                        rho * np.cos(t), rho * np.sin(t), z_lv
+                    cast(
+                        Callable[[float], Point3D],
+                        lambda t, rho=rho, z_lv=z_lv: axes.c2p(
+                            rho * np.cos(t), rho * np.sin(t), z_lv
+                        ),
                     ),
-                    t_range=[0, TAU],
+                    t_range=(0, TAU),
                     color=_ramp_color(ramp, (z_lv + h) / (2 * h)),
                     stroke_width=2.6,
                     stroke_opacity=0.85,
@@ -1902,6 +1996,7 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
             The waist point coordinates, tag formula, HUD flag, and stem start
             height.
         """
+        cfg = cast(HyperboloidOneSheet, cfg)
         a, h = cfg.waist_radius, cfg.z_extent
         # waist front point (a,0,0): both ends of a vertical line enter the surface; no dashed line; point + HUD label
         return a, 0.0, 0.0, rf"({_fmt(a)},\,0,\,0)", True, 0.0
