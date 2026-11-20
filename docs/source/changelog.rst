@@ -10,6 +10,11 @@ v1.0.7 :bdg-primary-line:`In Development`
 Added
 ~~~~~
 
+* ``validate-types`` runs ``mypy`` in strict mode over the first-party
+  modules (``manim_extensions/__init__.py``, ``geometry.py``, ``scenes.py``
+  and ``utils``).  Vendored packages are followed for inference but their
+  upstream diagnostics are not reported, so a vendored resync does not
+  require re-annotating upstream code.
 * ``workflow/validate_english_text.py`` replaces the docstring-only CJK
   check.  It scans every text file in the repository, including tests,
   scripts, workflow files, docs and configuration, and rejects Chinese text

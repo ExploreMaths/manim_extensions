@@ -313,7 +313,9 @@ def vmobject_int(
 
     found: list[Point3D] = []
 
-    def _intersect_curves(c1: CubicBezierPoints, c2: CubicBezierPoints, depth: int):
+    def _intersect_curves(
+        c1: CubicBezierPoints, c2: CubicBezierPoints, depth: int
+    ) -> None:
         """Recursively intersect two cubic Bézier curves."""
         if not _bbox_overlap(c1, c2, tolerance):
             return

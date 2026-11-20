@@ -13,9 +13,10 @@ out of that compensation.
 """
 
 import functools
-from typing import Callable
+from typing import Any, Callable
 
-from manim import VMobject, config
+from manim import Mobject, VMobject, config
+from manim.mobject.opengl.opengl_mobject import OpenGLMobject
 from manim.mobject.opengl.opengl_vectorized_mobject import OpenGLVMobject
 from manim.scene.moving_camera_scene import MovingCameraScene
 
@@ -79,7 +80,7 @@ class ConstantStrokeWidthScene(MovingCameraScene):
                self.play(self.camera.frame.animate.scale(3), run_time=2)
     """
 
-    def __init__(self, *args: object, **kwargs: object) -> None:
+    def __init__(self, *args: Any, **kwargs: Any) -> None:
         super().__init__(*args, **kwargs)
         self._install_stroke_width_parameter()
         self._stroke_scale = self._camera_stroke_scale()
@@ -99,7 +100,7 @@ class ConstantStrokeWidthScene(MovingCameraScene):
                 fixed = kwargs.pop("fixed_stroke_width", sentinel)
                 original_init(self, *args, **kwargs)
                 if fixed is not sentinel:
-                    self.fixed_stroke_width = fixed
+                    setattr(self, "fixed_stroke_width", fixed)
 
             return patched_init
 
@@ -130,7 +131,7 @@ class ConstantStrokeWidthScene(MovingCameraScene):
         return height / float(config.frame_height)
 
     @staticmethod
-    def _scale_stroke_width(member: VMobject, factor: float) -> None:
+    def _scale_stroke_width(member: Mobject | OpenGLMobject, factor: float) -> None:
         """Scale the stroke width of one mobject member.
 
         Parameters
@@ -144,12 +145,16 @@ class ConstantStrokeWidthScene(MovingCameraScene):
             return
         if getattr(member, "fixed_stroke_width", False):
             return
+        if not isinstance(member, VMobject):
+            return
         width = getattr(member, "stroke_width", None)
         if width is None:
             return
         member.stroke_width = width * factor
 
-    def _scale_family_stroke_widths(self, mobject: VMobject, factor: float) -> None:
+    def _scale_family_stroke_widths(
+        self, mobject: Mobject | OpenGLMobject, factor: float
+    ) -> None:
         """Scale stroke widths across the whole mobject family.
 
         Parameters
@@ -180,7 +185,7 @@ class ConstantStrokeWidthScene(MovingCameraScene):
         for member in self.get_mobject_family_members():
             self._scale_stroke_width(member, ratio)
 
-    def add(self, *mobjects: VMobject) -> "ConstantStrokeWidthScene":
+    def add(self, *mobjects: Mobject | OpenGLMobject) -> "ConstantStrokeWidthScene":
         """Add mobjects and scale their strokes to the current zoom level.
 
         Parameters

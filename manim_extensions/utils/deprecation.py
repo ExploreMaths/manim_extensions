@@ -40,7 +40,13 @@ def _strip_rst(text: str) -> str:
     return _RST_MARKUP_RE.sub(lambda m: m.group(1) or m.group(2) or m.group(3), text)
 
 
-def deprecated(msg: str, *args: object, **kwargs: object) -> Callable[[T], T]:
+def deprecated(
+    msg: str,
+    /,
+    *,
+    category: type[Warning] | None = DeprecationWarning,
+    stacklevel: int = 1,
+) -> Callable[[T], T]:
     """Mark ``obj`` as deprecated.
 
     Parameters
@@ -71,7 +77,7 @@ def deprecated(msg: str, *args: object, **kwargs: object) -> Callable[[T], T]:
 
        old()
     """
-    outer = _deprecated(_strip_rst(msg), *args, **kwargs)
+    outer = _deprecated(_strip_rst(msg), category=category, stacklevel=stacklevel)
 
     def wrapper(obj: T) -> T:
         """Apply the deprecation decorator and restore the RST message."""
@@ -79,7 +85,7 @@ def deprecated(msg: str, *args: object, **kwargs: object) -> Callable[[T], T]:
         # Restore the RST version for Sphinx (typing_extensions stored the
         # stripped one).
         try:
-            decorated.__deprecated__ = msg
+            setattr(decorated, "__deprecated__", msg)
         except (AttributeError, TypeError):
             pass
         return decorated

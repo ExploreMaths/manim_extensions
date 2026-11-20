@@ -169,7 +169,17 @@ filterwarnings = [
 
 [tool.mypy]
 strict = true
-packages = ["manim_extensions"]
+# Vendored packages keep upstream typing; checking them under ``strict``
+# would turn every upstream omission into a local failure.  First-party
+# modules are checked in full, and imports from vendored packages are
+# followed for inference without reporting their diagnostics.
+files = [
+    "manim_extensions/__init__.py",
+    "manim_extensions/geometry.py",
+    "manim_extensions/scenes.py",
+    "manim_extensions/utils",
+]
+follow_imports = "silent"
 
 # These third-party libraries ship no type information (no py.typed marker
 # and no typeshed stubs), so imports from them resolve to Any.

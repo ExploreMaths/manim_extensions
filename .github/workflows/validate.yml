@@ -19,6 +19,19 @@ jobs:
       - name: Run static checks
         run: python workflow/run_checks.py --group static
 
+  validate-types:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/configure-apt
+      - uses: ExploreMaths/setup-manim-env@v1
+        with:
+          install-editable: "true"
+      - name: Install mypy
+        run: pip install "mypy>=1.11"
+      - name: Type-check first-party modules
+        run: python -m mypy
+
   validate-naming:
     runs-on: ubuntu-latest
     steps:
