@@ -1477,12 +1477,10 @@
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="c1"># patched: implement modify_edge_colors</span>
 
-
 <span class="sd">"""Feed-forward to feed-forward layer connection visualization."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -1502,7 +1500,6 @@
     <span class="n">override_animation</span><span class="p">,</span>
     <span class="n">sigmoid</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.feed_forward</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeedForwardLayer</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.parent_layers</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConnectiveLayer</span><span class="p">,</span> <span class="n">NeuralNetworkLayer</span>
@@ -1578,6 +1575,11 @@
 <span class="sd">            The layer following this connective layer in the network.</span>
 <span class="sd">        **kwargs</span>
 <span class="sd">            Forwarded to the parent layer classes.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">edges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">construct_edges</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
@@ -1604,7 +1606,7 @@
                 <span class="p">)</span>
                 <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
 
-        <span class="n">edges</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"list[Line]"</span><span class="p">,</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="n">edges</span><span class="p">))</span>
+        <span class="n">edges</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="n">edges</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">edges</span></div>
 
 
@@ -1676,19 +1678,16 @@
                         <span class="n">copy_edge</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">animation_dot_color</span><span class="p">),</span> <span class="n">time_width</span><span class="o">=</span><span class="mf">0.3</span>
                     <span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">anim</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
-                        <span class="s2">"ShowPassingFlash"</span><span class="p">,</span>
-                        <span class="n">MoveAlongPath</span><span class="p">(</span><span class="n">dot</span><span class="p">,</span> <span class="n">edge</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="n">run_time</span><span class="p">,</span> <span class="n">rate_func</span><span class="o">=</span><span class="n">sigmoid</span><span class="p">),</span>
+                    <span class="n">anim</span> <span class="o">=</span> <span class="n">MoveAlongPath</span><span class="p">(</span>
+                        <span class="n">dot</span><span class="p">,</span> <span class="n">edge</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="n">run_time</span><span class="p">,</span> <span class="n">rate_func</span><span class="o">=</span><span class="n">sigmoid</span>
                     <span class="p">)</span>
                 <span class="n">path_animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">anim</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">passing_flash</span><span class="p">:</span>
-            <span class="n">dots</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"list[Dot]"</span><span class="p">,</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="n">dots</span><span class="p">))</span>
+            <span class="n">dots</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="n">dots</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dots</span><span class="p">)</span>
 
-        <span class="n">path_animations</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
-            <span class="s2">"list[ShowPassingFlash]"</span><span class="p">,</span> <span class="n">AnimationGroup</span><span class="p">(</span><span class="o">*</span><span class="n">path_animations</span><span class="p">)</span>
-        <span class="p">)</span>
+        <span class="n">path_animations</span> <span class="o">=</span> <span class="n">AnimationGroup</span><span class="p">(</span><span class="o">*</span><span class="n">path_animations</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">path_animations</span></div>
 
@@ -1716,10 +1715,16 @@
 <span class="sd">        color_scheme</span>
 <span class="sd">            Name of the color scheme used when mapping magnitudes to colors.</span>
 
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            The resulting value.</span>
+
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
 <span class="sd">        ValueError</span>
 <span class="sd">            If neither ``colors`` nor ``magnitudes`` is provided.</span>
+
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">colors</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
@@ -1757,7 +1762,7 @@
 <span class="sd">        """</span>
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">widths</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
         <span class="c1"># Note: 1d-arrays are assumed to be in row major order</span>
-        <span class="n">widths</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"Sequence[float]"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">widths</span><span class="p">))</span>
+        <span class="n">widths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">widths</span><span class="p">)</span>
         <span class="n">widths</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">widths</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
         <span class="c1"># Check thickness size</span>
         <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">widths</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>

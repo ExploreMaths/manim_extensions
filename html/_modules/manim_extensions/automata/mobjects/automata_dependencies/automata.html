@@ -1477,10 +1477,9 @@
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="c1"># patched: document module-level constants</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
-
 <span class="sd">"""Automata data structures."""</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.xml_parser</span><span class="w"> </span><span class="kn">import</span> <span class="n">parse_xml_file</span>
 
@@ -1585,6 +1584,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">        xml_file</span>
 <span class="sd">            Path to the XML file describing the automaton.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">construct_from_json</span><span class="p">(</span><span class="n">parse_xml_file</span><span class="p">(</span><span class="n">xml_file</span><span class="p">))</span></div>
 
@@ -1598,6 +1602,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">        json_dictionary</span>
 <span class="sd">            Structured automaton data containing the state and transition lists.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">states</span> <span class="o">=</span> <span class="n">json_dictionary</span><span class="p">[</span><span class="s2">"structure"</span><span class="p">][</span><span class="s2">"automaton"</span><span class="p">][</span><span class="s2">"state"</span><span class="p">]</span>
         <span class="n">transitions</span> <span class="o">=</span> <span class="n">json_dictionary</span><span class="p">[</span><span class="s2">"structure"</span><span class="p">][</span><span class="s2">"automaton"</span><span class="p">][</span><span class="s2">"transition"</span><span class="p">]</span>
@@ -1615,6 +1624,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">        states</span>
 <span class="sd">            :class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` definitions from JSON or XML parsing.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">for</span> <span class="n">state_data</span> <span class="ow">in</span> <span class="n">states</span><span class="p">:</span>
             <span class="n">initial</span> <span class="o">=</span> <span class="s2">"initial"</span> <span class="ow">in</span> <span class="n">state_data</span>
@@ -1633,6 +1647,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">        transitions</span>
 <span class="sd">            :class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` definitions from JSON or XML parsing.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">for</span> <span class="n">trans_data</span> <span class="ow">in</span> <span class="n">transitions</span><span class="p">:</span>
             <span class="n">from_id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">trans_data</span><span class="p">[</span><span class="s2">"from"</span><span class="p">])</span>

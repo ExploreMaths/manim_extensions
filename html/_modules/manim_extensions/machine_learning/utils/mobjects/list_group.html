@@ -1476,11 +1476,9 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
-
 <span class="sd">"""List group utility for neural network visualization."""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterator</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Iterator</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mobject</span>
 
@@ -1548,6 +1546,11 @@
 <span class="sd">            Index at which to insert the item.</span>
 <span class="sd">        item</span>
 <span class="sd">            Item to insert into the group.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">submobjects</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span></div>
@@ -1653,6 +1656,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">        item</span>
 <span class="sd">            Item to append to the end of the group.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">submobjects</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span></div>
@@ -1671,6 +1679,11 @@
 <span class="sd">            Index of the item to replace.</span>
 <span class="sd">        item</span>
 <span class="sd">            Item to store at the given index.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">submobjects</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span></div>
@@ -1722,6 +1735,11 @@
 <span class="sd">            Z-index to apply to all items in the group.</span>
 <span class="sd">        family</span>
 <span class="sd">            Whether to also set the z-index of submobjects.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">:</span>
             <span class="n">item</span><span class="o">.</span><span class="n">set_z_index</span><span class="p">(</span><span class="n">z_index_value</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>

@@ -1477,12 +1477,10 @@
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="c1"># patched: document module-level constants</span>
 
-
 <span class="sd">""":class:`~manim_extensions.algorithm.node.Node` data structure for algorithm visualization."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">TypeAlias</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">AnimationGroup</span><span class="p">,</span>
@@ -1505,7 +1503,6 @@
     <span class="n">VMobject</span><span class="p">,</span>
     <span class="n">WHITE</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">TypeAlias</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimFloat</span><span class="p">,</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">Vector3DLike</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.utils.numpy_helper</span><span class="w"> </span><span class="kn">import</span> <span class="n">NumpyHelper</span>
 
@@ -1712,7 +1709,7 @@
         <span class="k">if</span> <span class="n">box_type</span> <span class="o">==</span> <span class="n">Square</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="n">Square</span><span class="p">(</span><span class="n">width</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">box_type</span> <span class="o">==</span> <span class="n">Circle</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"Square"</span><span class="p">,</span> <span class="n">Circle</span><span class="p">(</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">box</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">box</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">box</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div>
@@ -1752,7 +1749,7 @@
         <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"Dot"</span><span class="p">,</span> <span class="n">Tex</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">))</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text_scale</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">Tex</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">))</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text_scale</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span></div>
@@ -1857,14 +1854,14 @@
         <span class="k">if</span> <span class="n">NumpyHelper</span><span class="o">.</span><span class="n">is_same_direction</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">):</span>
             <span class="n">proportion</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">elif</span> <span class="n">NumpyHelper</span><span class="o">.</span><span class="n">is_same_direction</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">LEFT</span><span class="p">):</span>
-            <span class="n">proportion</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"int"</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+            <span class="n">proportion</span> <span class="o">=</span> <span class="mf">0.5</span>
         <span class="k">elif</span> <span class="n">NumpyHelper</span><span class="o">.</span><span class="n">is_same_direction</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">UP</span><span class="p">):</span>
-            <span class="n">proportion</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"int"</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">)</span>
+            <span class="n">proportion</span> <span class="o">=</span> <span class="mf">0.75</span>
         <span class="k">elif</span> <span class="n">NumpyHelper</span><span class="o">.</span><span class="n">is_same_direction</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">):</span>
-            <span class="n">proportion</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"int"</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
+            <span class="n">proportion</span> <span class="o">=</span> <span class="mf">0.25</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"direction must be LEFT or RIGHT or UP or DOWN"</span><span class="p">)</span>
-        <span class="n">proportion</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"int"</span><span class="p">,</span> <span class="n">proportion</span> <span class="o">+</span> <span class="n">index</span> <span class="o">/</span> <span class="n">NodeSolt</span><span class="o">.</span><span class="n">SPLIT_PARTS</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="n">proportion</span> <span class="o">=</span> <span class="n">proportion</span> <span class="o">+</span> <span class="n">index</span> <span class="o">/</span> <span class="n">NodeSolt</span><span class="o">.</span><span class="n">SPLIT_PARTS</span> <span class="o">/</span> <span class="mi">4</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">box</span><span class="p">,</span> <span class="n">Square</span><span class="p">):</span>
             <span class="k">pass</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">box</span><span class="p">,</span> <span class="n">Circle</span><span class="p">):</span>

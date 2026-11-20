@@ -1476,12 +1476,10 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
-
 <span class="sd">"""Max pooling 2D to convolutional 2D layer connection visualization."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimColor</span><span class="p">,</span> <span class="n">ORANGE</span>
 
@@ -1533,7 +1531,7 @@
         <span class="p">)</span><span class="o">.</span><span class="n">num_feature_maps</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">passing_flash_color</span> <span class="o">=</span> <span class="n">passing_flash_color</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">cell_width</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"MethodType"</span><span class="p">,</span> <span class="n">cell_width</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cell_width</span> <span class="o">=</span> <span class="n">cell_width</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stroke_width</span> <span class="o">=</span> <span class="n">stroke_width</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">show_grid_lines</span> <span class="o">=</span> <span class="n">show_grid_lines</span>
 
@@ -1555,6 +1553,11 @@
 <span class="sd">            Output layer.</span>
 <span class="sd">        **kwargs</span>
 <span class="sd">            Forwarded to the parent layer classes.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 </div>

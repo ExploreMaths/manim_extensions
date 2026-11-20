@@ -1477,15 +1477,15 @@
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="c1"># patched: lazy-import pymunk (physics extra)</span>
 
+<span class="sd">"""Utilities for the pendulum module."""</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="sa">r</span><span class="sd">"""Systems of :class:`~manim_extensions.physics.rigid_mechanics.pendulum.Pendulum` and their motion visualisations."""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">,</span> <span class="n">Line</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">ORANGE</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">UP</span><span class="p">,</span> <span class="n">VGroup</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterable</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -1595,6 +1595,11 @@
 <span class="sd">            Second body mobject, or a fixed point in space.</span>
 <span class="sd">        spacescene</span>
 <span class="sd">            The physics scene to which the joint is added.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">pymunk</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"physics"</span><span class="p">,</span> <span class="s2">"pymunk"</span><span class="p">)</span>
         <span class="n">a</span> <span class="o">=</span> <span class="n">mob1</span><span class="o">.</span><span class="n">body</span>
@@ -1620,6 +1625,11 @@
 <span class="sd">            List of pin joints or positions.</span>
 <span class="sd">        i</span>
 <span class="sd">            Index of the first pin; the rod connects ``pins[i]`` to ``pins[i+1]``.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">pins</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -1636,7 +1646,12 @@
 <div class="viewcode-block" id="MultiPendulum.start_swinging">
 <a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/pendulum.MultiPendulum.html#manim_extensions.physics.rigid_mechanics.pendulum.MultiPendulum.start_swinging">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">start_swinging</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Creates pymunk joints between bobs and starts the physics simulation."""</span>
+<span class="w">        </span><span class="sd">"""Creates pymunk joints between bobs and starts the physics simulation.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            The resulting value.</span>
+<span class="sd">        """</span>
         <span class="n">spacescene</span><span class="p">:</span> <span class="n">SpaceScene</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bobs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">spacescene</span>
         <span class="n">pins</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">pivot_point</span><span class="p">]</span>
         <span class="n">pins</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bobs</span>
@@ -1649,7 +1664,12 @@
 <div class="viewcode-block" id="MultiPendulum.end_swinging">
 <a class="viewcode-back" href="../../../../reference/physics/rigid_mechanics/pendulum.MultiPendulum.html#manim_extensions.physics.rigid_mechanics.pendulum.MultiPendulum.end_swinging">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">end_swinging</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Stop swinging."""</span>
+<span class="w">        </span><span class="sd">"""Stop swinging.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            The resulting value.</span>
+<span class="sd">        """</span>
         <span class="n">spacescene</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bobs</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">spacescene</span>
         <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">spacescene</span><span class="p">)</span><span class="o">.</span><span class="n">stop_rigidity</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bobs</span><span class="p">)</span></div>
 </div>

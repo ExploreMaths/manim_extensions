@@ -1477,12 +1477,11 @@
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="c1"># patched: lazy-import matplotlib/seaborn (ml extra)</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
-
 <span class="sd">"""</span>
 <span class="sd">Tool for animating Markov Chain Monte Carlo simulations in 2D.</span>
 <span class="sd">"""</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span>
 
 <span class="c1"># unlinked-class-ok: Ground</span>
 
@@ -1505,7 +1504,6 @@
     <span class="n">VGroup</span><span class="p">,</span>
     <span class="n">override_animation</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">..utils.mobjects.plotting</span><span class="w"> </span><span class="kn">import</span> <span class="n">convert_matplotlib_figure_to_image_mobject</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -1913,7 +1911,7 @@
         <span class="p">)</span>
 
         <span class="n">create_guassian</span> <span class="o">=</span> <span class="n">Create</span><span class="p">(</span><span class="n">gaussian</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"AnimationGroup"</span><span class="p">,</span> <span class="n">create_guassian</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">create_guassian</span></div>
 
 
 <div class="viewcode-block" id="MCMCAxes.make_transition_animation">
@@ -1952,7 +1950,7 @@
         <span class="c1"># point_is_rejected = not candidate_location == end_location</span>
         <span class="n">point_is_rejected</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">if</span> <span class="n">point_is_rejected</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"AnimationGroup"</span><span class="p">,</span> <span class="n">AnimationGroup</span><span class="p">(),</span> <span class="n">Dot</span><span class="p">()</span><span class="o">.</span><span class="n">set_opacity</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">AnimationGroup</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">create_end_point</span> <span class="o">=</span> <span class="n">Create</span><span class="p">(</span><span class="n">end_point</span><span class="p">)</span>
             <span class="n">line</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span>
@@ -1966,25 +1964,19 @@
             <span class="n">create_line</span> <span class="o">=</span> <span class="n">Create</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
 
             <span class="k">if</span> <span class="n">show_dots</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
-                    <span class="s2">"AnimationGroup"</span><span class="p">,</span>
-                    <span class="p">(</span>
-                        <span class="n">AnimationGroup</span><span class="p">(</span>
-                            <span class="n">create_end_point</span><span class="p">,</span>
-                            <span class="n">create_line</span><span class="p">,</span>
-                            <span class="n">lag_ratio</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
-                            <span class="n">run_time</span><span class="o">=</span><span class="n">run_time</span><span class="p">,</span>
-                        <span class="p">),</span>
-                        <span class="n">line</span><span class="p">,</span>
+                <span class="k">return</span> <span class="p">(</span>
+                    <span class="n">AnimationGroup</span><span class="p">(</span>
+                        <span class="n">create_end_point</span><span class="p">,</span>
+                        <span class="n">create_line</span><span class="p">,</span>
+                        <span class="n">lag_ratio</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
+                        <span class="n">run_time</span><span class="o">=</span><span class="n">run_time</span><span class="p">,</span>
                     <span class="p">),</span>
+                    <span class="n">line</span><span class="p">,</span>
                 <span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
-                    <span class="s2">"AnimationGroup"</span><span class="p">,</span>
-                    <span class="p">(</span>
-                        <span class="n">AnimationGroup</span><span class="p">(</span><span class="n">create_line</span><span class="p">,</span> <span class="n">lag_ratio</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="n">run_time</span><span class="p">),</span>
-                        <span class="n">line</span><span class="p">,</span>
-                    <span class="p">),</span>
+                <span class="k">return</span> <span class="p">(</span>
+                    <span class="n">AnimationGroup</span><span class="p">(</span><span class="n">create_line</span><span class="p">,</span> <span class="n">lag_ratio</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="n">run_time</span><span class="p">),</span>
+                    <span class="n">line</span><span class="p">,</span>
                 <span class="p">)</span></div>
 
 
@@ -2116,7 +2108,7 @@
             <span class="o">*</span><span class="n">transition_animations</span><span class="p">,</span> <span class="n">lag_ratio</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="mf">5.0</span>
         <span class="p">)</span>
         <span class="c1"># 3. Convert the chain to points, excluding the warmup</span>
-        <span class="n">lines</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"list[Any]"</span><span class="p">,</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="n">lines</span><span class="p">))</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="n">lines</span><span class="p">)</span>
         <span class="n">warm_up_points</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="n">warmup_points</span><span class="p">)</span>
         <span class="n">fade_out_lines_and_warmup</span> <span class="o">=</span> <span class="n">AnimationGroup</span><span class="p">(</span>
             <span class="n">Uncreate</span><span class="p">(</span><span class="n">lines</span><span class="p">),</span> <span class="n">Uncreate</span><span class="p">(</span><span class="n">warm_up_points</span><span class="p">),</span> <span class="n">lag_ratio</span><span class="o">=</span><span class="mf">0.0</span>

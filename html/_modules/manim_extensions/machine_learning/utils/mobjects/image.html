@@ -1476,9 +1476,9 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
-
 <span class="sd">"""Image mobject utilities for neural network visualization."""</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
@@ -1597,6 +1597,11 @@
 <span class="sd">            Factor by which to scale the image mobject.</span>
 <span class="sd">        **kwargs</span>
 <span class="sd">            Additional keyword arguments for scaling.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="c1"># super().scale(scale_factor)</span>
         <span class="c1"># height = self.height</span>
@@ -1616,6 +1621,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">        opacity</span>
 <span class="sd">            Opacity to apply to the image mobject.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">image_mobject</span><span class="o">.</span><span class="n">set_opacity</span><span class="p">(</span><span class="n">opacity</span><span class="p">)</span></div>
 </div>

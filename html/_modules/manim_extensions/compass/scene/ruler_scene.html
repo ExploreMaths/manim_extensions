@@ -1476,8 +1476,6 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
-
 <span class="sd">"""Scene that draws lines with a ruler and a pencil.</span>
 
 <span class="sd">:class:`~manim_extensions.compass.scene.ruler_scene.SingleRulerScene` extends</span>
@@ -1485,6 +1483,8 @@
 <span class="sd">methods to lay down a ruler, draw a line with the pencil, and return the</span>
 <span class="sd">ruler to its resting position.</span>
 <span class="sd">"""</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"SingleRulerScene"</span><span class="p">]</span>
 
@@ -1522,7 +1522,12 @@
 <div class="viewcode-block" id="SingleRulerScene.setup">
 <a class="viewcode-back" href="../../../../reference/compass/scene/ruler_scene.SingleRulerScene.html#manim_extensions.compass.scene.ruler_scene.SingleRulerScene.setup">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Place the ruler at the bottom edge and the pencil at the right edge."""</span>
+<span class="w">        </span><span class="sd">"""Place the ruler at the bottom edge and the pencil at the right edge.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            The resulting value.</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ruler</span> <span class="o">=</span> <span class="n">Ruler</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">to_edge</span><span class="p">(</span><span class="n">DOWN</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pencil</span> <span class="o">=</span> <span class="n">Pencil</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">to_edge</span><span class="p">(</span><span class="n">RIGHT</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pen_pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pencil</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>
@@ -1591,6 +1596,11 @@
 <span class="sd">            Run time for the play.</span>
 <span class="sd">        **kwargs</span>
 <span class="sd">            Additional keyword arguments passed to the play.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">anims</span> <span class="o">=</span> <span class="p">[</span>
             <span class="n">Restore</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ruler</span><span class="p">),</span>

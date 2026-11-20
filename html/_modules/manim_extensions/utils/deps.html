@@ -1486,24 +1486,59 @@
 <span class="sd">``pip install manim_extensions[...]`` command.</span>
 <span class="sd">"""</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">overload</span>
+
 <span class="kn">import</span><span class="w"> </span><span class="nn">importlib</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">types</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModuleType</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">overload</span>
 
 
 <span class="nd">@overload</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">require</span><span class="p">(</span><span class="n">extra</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModuleType</span><span class="p">:</span> <span class="o">...</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">require</span><span class="p">(</span><span class="n">extra</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModuleType</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Import a single optional dependency, raising a helpful error naming the extra.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    extra</span>
+<span class="sd">        Name of the ``[project.optional-dependencies]`` extra.</span>
+<span class="sd">    name</span>
+<span class="sd">        Name of the optional package to import.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        The imported module.</span>
+<span class="sd">    """</span>
+    <span class="o">...</span>
 
 
 <span class="nd">@overload</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">require</span><span class="p">(</span>
     <span class="n">extra</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name2</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="n">names</span><span class="p">:</span> <span class="nb">str</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">ModuleType</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span> <span class="o">...</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">ModuleType</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Import several optional dependencies, raising a helpful error naming the extra.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    extra</span>
+<span class="sd">        Name of the ``[project.optional-dependencies]`` extra.</span>
+<span class="sd">    name1</span>
+<span class="sd">        First optional package to import.</span>
+<span class="sd">    name2</span>
+<span class="sd">        Second optional package to import.</span>
+<span class="sd">    *names</span>
+<span class="sd">        Names of any further optional packages to import.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        The imported modules in the order of ``names``.</span>
+<span class="sd">    """</span>
+    <span class="o">...</span>
 
 
 <div class="viewcode-block" id="require">
 <a class="viewcode-back" href="../../../reference/utils/deps.html#manim_extensions.utils.deps.require">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">require</span><span class="p">(</span><span class="n">extra</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">names</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModuleType</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">ModuleType</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">require</span><span class="p">(</span>
+    <span class="n">extra</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name1</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span><span class="p">,</span> <span class="n">name2</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">""</span><span class="p">,</span> <span class="o">*</span><span class="n">names</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModuleType</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">ModuleType</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">"""Import optional dependencies, raising a helpful error naming the extra.</span>
 
 <span class="sd">    Parameters</span>
@@ -1511,8 +1546,12 @@
 <span class="sd">    extra</span>
 <span class="sd">        Name of the ``[project.optional-dependencies]`` extra that provides</span>
 <span class="sd">        the packages (e.g. ``"physics"``).</span>
+<span class="sd">    name1</span>
+<span class="sd">        First optional package to import, when importing several at once.</span>
+<span class="sd">    name2</span>
+<span class="sd">        Second optional package to import, when importing several at once.</span>
 <span class="sd">    *names</span>
-<span class="sd">        Names of the optional packages to import (e.g. ``"pymunk"``).</span>
+<span class="sd">        Names of any further optional packages to import (e.g. ``"pymunk"``).</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
@@ -1537,7 +1576,9 @@
 <span class="sd">           print(error)</span>
 <span class="sd">    """</span>
     <span class="n">modules</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">(</span><span class="n">name1</span><span class="p">,</span> <span class="n">name2</span><span class="p">,</span> <span class="o">*</span><span class="n">names</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="p">:</span>
+            <span class="k">continue</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">modules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">importlib</span><span class="o">.</span><span class="n">import_module</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
         <span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>

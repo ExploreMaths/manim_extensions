@@ -1475,14 +1475,13 @@
 <span></span><span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
-
 <span class="sd">"""Graph-based molecule representation for Manim chemistry.</span>
 
 <span class="sd">This module provides graph-based molecule visualization classes.</span>
 
 <span class="sd">"""</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 
@@ -1497,7 +1496,6 @@
     <span class="n">VGroup</span><span class="p">,</span>
     <span class="n">color_gradient</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">networkx</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nx</span>
 
@@ -1633,6 +1631,11 @@
 <span class="sd">        **kwargs</span>
 <span class="sd">            Additional keyword arguments passed to</span>
 <span class="sd">            :meth:`~manim.mobject.geometry.line.Line.put_start_and_end_on`.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">put_start_and_end_on</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">)</span></div>
 </div>
@@ -1787,9 +1790,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">edges_dict</span> <span class="o">=</span> <span class="n">edges_dict</span>
         <span class="n">labels</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">if</span> <span class="n">label</span> <span class="ow">or</span> <span class="n">numeric_label</span><span class="p">:</span>
-            <span class="n">labels</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
-                <span class="s2">"bool"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_labels</span><span class="p">(</span><span class="n">vertices_dict</span><span class="p">,</span> <span class="n">numeric_label</span><span class="p">,</span> <span class="n">label_color</span><span class="p">)</span>
-            <span class="p">)</span>
+            <span class="n">labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_labels</span><span class="p">(</span><span class="n">vertices_dict</span><span class="p">,</span> <span class="n">numeric_label</span><span class="p">,</span> <span class="n">label_color</span><span class="p">)</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">vertices</span><span class="o">=</span><span class="n">vertices_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span>
@@ -1819,6 +1820,11 @@
 <span class="sd">            Pairs of vertex indices that should be connected.</span>
 <span class="sd">        _</span>
 <span class="sd">            Unused parameter kept for the graph interface.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">edges</span> <span class="o">=</span> <span class="p">{}</span>
 
@@ -1879,7 +1885,7 @@
                 <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">bond_type</span><span class="si">}</span><span class="s2"> is an unknown type of bond. Options are 1, 2 or 3"</span>
             <span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"type[Line] | type[ArcBetweenPoints]"</span><span class="p">,</span> <span class="n">bond</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">bond</span></div>
 
 
 <div class="viewcode-block" id="GraphMolecule.make_layout">
@@ -2119,7 +2125,7 @@
         <span class="n">connected_atoms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_connected_atoms</span><span class="p">(</span>
             <span class="n">from_atom_index</span><span class="o">=</span><span class="n">from_atom_index</span><span class="p">,</span> <span class="n">to_atom_index</span><span class="o">=</span><span class="n">to_atom_index</span>
         <span class="p">)</span>
-        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"list[Any]"</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_atoms_vgroup_from_index</span><span class="p">(</span><span class="n">connected_atoms</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_atoms_vgroup_from_index</span><span class="p">(</span><span class="n">connected_atoms</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="GraphMolecule.get_bonds_from_atoms_indices">

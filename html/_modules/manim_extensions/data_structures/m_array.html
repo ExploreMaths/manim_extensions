@@ -1479,6 +1479,7 @@
 <span class="sd">"""Contains classes to construct an array."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">ClassVar</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Protocol</span><span class="p">,</span> <span class="n">TypedDict</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">copy</span><span class="w"> </span><span class="kn">import</span> <span class="n">deepcopy</span>
 
@@ -1515,16 +1516,6 @@
 <span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.mobject.mobject</span><span class="w"> </span><span class="kn">import</span> <span class="n">_AnimationBuilder</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">types</span><span class="w"> </span><span class="kn">import</span> <span class="n">MethodType</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
-    <span class="n">Any</span><span class="p">,</span>
-    <span class="n">Callable</span><span class="p">,</span>
-    <span class="n">ClassVar</span><span class="p">,</span>
-    <span class="n">List</span><span class="p">,</span>
-    <span class="n">Protocol</span><span class="p">,</span>
-    <span class="n">TypedDict</span><span class="p">,</span>
-    <span class="n">cast</span><span class="p">,</span>
-    <span class="n">Any</span><span class="p">,</span>
-<span class="p">)</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.m_enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">MArrayDirection</span><span class="p">,</span> <span class="n">MArrayElementComp</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">Vector3D</span>
@@ -3283,11 +3274,16 @@
     <span class="n">__pointer_pos</span><span class="p">:</span> <span class="n">MArrayDirection</span>
     <span class="n">__updater_pos</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Mobject</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span>
 
-    <span class="k">class</span><span class="w"> </span><span class="nc">__DirEntry</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-        <span class="n">np</span><span class="p">:</span> <span class="n">Vector3D</span>
-        <span class="nb">dir</span><span class="p">:</span> <span class="n">MArrayDirection</span>
+<div class="viewcode-block" id="MArrayPointer.DirEntry">
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.m_array.MArrayPointer.DirEntry">[docs]</a>
+    <span class="k">class</span><span class="w"> </span><span class="nc">DirEntry</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Vector and animation direction used when placing an array element."""</span>
 
-    <span class="n">__dir_map</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">__DirEntry</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">np</span><span class="p">:</span> <span class="n">Vector3D</span>
+        <span class="nb">dir</span><span class="p">:</span> <span class="n">MArrayDirection</span></div>
+
+
+    <span class="n">__dir_map</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">DirEntry</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">{</span><span class="s2">"np"</span><span class="p">:</span> <span class="n">UP</span><span class="p">,</span> <span class="s2">"dir"</span><span class="p">:</span> <span class="n">MArrayDirection</span><span class="o">.</span><span class="n">UP</span><span class="p">},</span>
         <span class="p">{</span><span class="s2">"np"</span><span class="p">:</span> <span class="n">DOWN</span><span class="p">,</span> <span class="s2">"dir"</span><span class="p">:</span> <span class="n">MArrayDirection</span><span class="o">.</span><span class="n">DOWN</span><span class="p">},</span>
         <span class="p">{</span><span class="s2">"np"</span><span class="p">:</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="s2">"dir"</span><span class="p">:</span> <span class="n">MArrayDirection</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">},</span>
@@ -3807,11 +3803,16 @@
 
 <span class="sd">    """</span>
 
-    <span class="k">class</span><span class="w"> </span><span class="nc">__DirEntry</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-        <span class="n">np</span><span class="p">:</span> <span class="n">Vector3D</span>
-        <span class="nb">dir</span><span class="p">:</span> <span class="n">MArrayDirection</span>
+<div class="viewcode-block" id="MArraySlidingWindow.DirEntry">
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.m_array.MArraySlidingWindow.DirEntry">[docs]</a>
+    <span class="k">class</span><span class="w"> </span><span class="nc">DirEntry</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Vector and animation direction used when placing an array element."""</span>
 
-    <span class="n">__dir_map</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">__DirEntry</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">np</span><span class="p">:</span> <span class="n">Vector3D</span>
+        <span class="nb">dir</span><span class="p">:</span> <span class="n">MArrayDirection</span></div>
+
+
+    <span class="n">__dir_map</span><span class="p">:</span> <span class="n">ClassVar</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">DirEntry</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">{</span><span class="s2">"np"</span><span class="p">:</span> <span class="n">UP</span><span class="p">,</span> <span class="s2">"dir"</span><span class="p">:</span> <span class="n">MArrayDirection</span><span class="o">.</span><span class="n">UP</span><span class="p">},</span>
         <span class="p">{</span><span class="s2">"np"</span><span class="p">:</span> <span class="n">DOWN</span><span class="p">,</span> <span class="s2">"dir"</span><span class="p">:</span> <span class="n">MArrayDirection</span><span class="o">.</span><span class="n">DOWN</span><span class="p">},</span>
         <span class="p">{</span><span class="s2">"np"</span><span class="p">:</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="s2">"dir"</span><span class="p">:</span> <span class="n">MArrayDirection</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">},</span>

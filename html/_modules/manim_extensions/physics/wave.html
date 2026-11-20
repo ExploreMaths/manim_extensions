@@ -1476,17 +1476,16 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
-
 <span class="sd">"""3D and 2D Waves module."""</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Iterable</span>
 
 <span class="c1"># unlinked-class-ok: Source</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">ORIGIN</span><span class="p">,</span> <span class="n">PI</span><span class="p">,</span> <span class="n">ParametricFunction</span><span class="p">,</span> <span class="n">Surface</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterable</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.mobject.opengl.opengl_compatibility</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConvertToOpenGL</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point3D</span>
 
@@ -1609,6 +1608,11 @@
 <span class="sd">            The surface mobject being updated.</span>
 <span class="sd">        dt</span>
 <span class="sd">            The time step since the last update.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">+=</span> <span class="n">dt</span>
         <span class="n">mob</span><span class="o">.</span><span class="n">match_points</span><span class="p">(</span>
@@ -1624,14 +1628,24 @@
 <div class="viewcode-block" id="RadialWave.start_wave">
 <a class="viewcode-back" href="../../../reference/physics/wave.RadialWave.html#manim_extensions.physics.wave.RadialWave.start_wave">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">start_wave</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Animate the wave propagation."""</span>
+<span class="w">        </span><span class="sd">"""Animate the wave propagation.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            The resulting value.</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_updater</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_update_wave</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="RadialWave.stop_wave">
 <a class="viewcode-back" href="../../../reference/physics/wave.RadialWave.html#manim_extensions.physics.wave.RadialWave.stop_wave">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">stop_wave</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Stop animating the wave propagation."""</span>
+<span class="w">        </span><span class="sd">"""Stop animating the wave propagation.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            The resulting value.</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remove_updater</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_update_wave</span><span class="p">)</span></div>
 </div>
 
@@ -1791,6 +1805,11 @@
 <span class="sd">            The parametric curve object being updated.</span>
 <span class="sd">        dt</span>
 <span class="sd">            The time step since the last update.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="o">+=</span> <span class="n">dt</span>
         <span class="n">mob</span><span class="o">.</span><span class="n">become</span><span class="p">(</span>
@@ -1813,7 +1832,12 @@
 <div class="viewcode-block" id="StandingWave.start_wave">
 <a class="viewcode-back" href="../../../reference/physics/wave.StandingWave.html#manim_extensions.physics.wave.StandingWave.start_wave">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">start_wave</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Begin the standing-wave animation and store its current center."""</span>
+<span class="w">        </span><span class="sd">"""Begin the standing-wave animation and store its current center.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            The resulting value.</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wave_center</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add_updater</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_update_wave</span><span class="p">)</span></div>
 
@@ -1821,7 +1845,12 @@
 <div class="viewcode-block" id="StandingWave.stop_wave">
 <a class="viewcode-back" href="../../../reference/physics/wave.StandingWave.html#manim_extensions.physics.wave.StandingWave.stop_wave">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">stop_wave</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Stop the standing-wave animation."""</span>
+<span class="w">        </span><span class="sd">"""Stop the standing-wave animation.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            The resulting value.</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remove_updater</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_update_wave</span><span class="p">)</span></div>
 </div>
 

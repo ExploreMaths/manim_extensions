@@ -1476,9 +1476,6 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
-
 <span class="sd">"""Animation utilities for automata visualization.</span>
 
 <span class="sd">This module provides the :class:`~manim_extensions.automata.mobjects.manim_animations.ManimAnimations` class for animating automata visualizations.</span>
@@ -1636,7 +1633,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            The animation marking the token as consumed.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"Animation"</span><span class="p">,</span> <span class="n">token</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">set_opacity</span><span class="p">(</span><span class="mf">0.5</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="n">token</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">set_opacity</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ManimAnimations.animate_highlight_input_token">

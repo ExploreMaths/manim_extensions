@@ -1476,6 +1476,11 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
+<span class="sd">"""Utilities for the poly module."""</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">cast</span>
+
 <span class="c1"># -*- coding: utf-8 -*-</span>
 
 
@@ -1505,10 +1510,6 @@
 <span class="sd">projected onto world up, so they stay readable at any rotation angle.</span>
 <span class="sd">"""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -1725,9 +1726,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">inr</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">INRADIUS</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">poly_radius</span>
         <span class="p">)</span>  <span class="c1"># world radius of the panel centre at full scale</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
-            <span class="s2">"Callable[[], PolyRadarChart]"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-        <span class="p">)</span>  <span class="c1"># rotation axis (world coordinates)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">center</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>  <span class="c1"># rotation axis (world coordinates)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cam_pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">cam_pos</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">theta</span> <span class="o">=</span> <span class="mf">0.0</span>  <span class="c1"># rotation angle (plain float)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">spin_rate</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">spin_rate</span><span class="p">)</span>  <span class="c1"># degrees/second (slow by default)</span>
@@ -1846,7 +1845,7 @@
         <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
             <span class="n">fs</span> <span class="o">=</span> <span class="p">[</span><span class="n">fi</span> <span class="k">for</span> <span class="n">fi</span><span class="p">,</span> <span class="n">face</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">DODECA_FACES</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">face</span><span class="p">]</span>
             <span class="n">tris</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">fs</span><span class="p">))</span>
-        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"list[tuple[int, int, int]]"</span><span class="p">,</span> <span class="n">tris</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">tris</span></div>
 
 
 <div class="viewcode-block" id="PolyRadarChart._world">

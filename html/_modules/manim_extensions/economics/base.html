@@ -1475,16 +1475,13 @@
 <span></span><span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
-
 <span class="sd">"""Base classes for economic diagrams.</span>
 
 <span class="sd">This module provides the base classes for economic diagram visualizations.</span>
 
 <span class="sd">"""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Sequence</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Sequence</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">Animation</span><span class="p">,</span>
@@ -2076,11 +2073,8 @@
                     <span class="p">)</span>
                     <span class="n">anims</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">new_labels</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="n">run_time</span><span class="p">))</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">new_eq_group</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
-                    <span class="s2">"VGroup"</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_build_eq_group</span><span class="p">(</span>
-                        <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_eq_curve_names</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eq_label_x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eq_label_y</span>
-                    <span class="p">),</span>
+                <span class="n">new_eq_group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_eq_group</span><span class="p">(</span>
+                    <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_eq_curve_names</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eq_label_x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eq_label_y</span>
                 <span class="p">)</span>
                 <span class="k">if</span> <span class="n">new_eq_group</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">old_eq_group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eq_group</span>

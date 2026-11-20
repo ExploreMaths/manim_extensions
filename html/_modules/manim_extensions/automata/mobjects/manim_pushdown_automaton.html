@@ -1477,14 +1477,13 @@
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="c1"># patched: document module-level constants</span>
 
-
 <span class="sd">"""Contains pushdown automaton."""</span>
-
-<span class="c1"># unlinked-class-ok: Source</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
+<span class="c1"># unlinked-class-ok: Source</span>
+
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.manim_non_deterministic_finite_state_automaton</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">ManimNondeterministicFiniteAutomaton</span><span class="p">,</span>
@@ -1586,7 +1585,7 @@
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">json_template</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">xml_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">json_template</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"dict[str, object] | None"</span><span class="p">,</span> <span class="n">pushdown_automaton_json</span><span class="p">)</span>
+            <span class="n">json_template</span> <span class="o">=</span> <span class="n">pushdown_automaton_json</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">json_template</span><span class="p">,</span> <span class="n">xml_file</span><span class="p">,</span> <span class="n">camera_follow</span><span class="p">,</span> <span class="n">animation_style</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
         <span class="p">)</span>
@@ -1603,6 +1602,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">        transitions</span>
 <span class="sd">            :class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition`\ s processed by this operation.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="c1"># counts the number of transitions between two states</span>
         <span class="n">transition_counter</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1651,6 +1655,11 @@
 <span class="sd">        rules</span>
 <span class="sd">            Pushdown rules (input symbol, pop symbol, push symbol)</span>
 <span class="sd">            associated with this transition.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">new_transition</span> <span class="o">=</span> <span class="n">ManimPushDownAutomatonTransition</span><span class="p">(</span>
             <span class="n">transition_from</span><span class="p">,</span>
@@ -1729,7 +1738,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">manim_automata_input</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="nb">input</span>  <span class="c1"># if input is already an instance of ManimAutomataInput</span>
             <span class="p">)</span>
-            <span class="n">input_to_run</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"ManimAutomataInput"</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+            <span class="n">input_to_run</span> <span class="o">=</span> <span class="nb">input</span>
 
         <span class="c1"># display manim_automaton_input to the screen</span>
         <span class="n">list_of_animations</span> <span class="o">=</span> <span class="p">[</span>
@@ -1795,22 +1804,16 @@
                     <span class="c1"># some code for stack too</span>
 
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">next_states</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
-                <span class="s2">"tuple[bool, list[State], list[ManimTransition]]"</span><span class="p">,</span>
-                <span class="p">(</span>
-                    <span class="kc">True</span><span class="p">,</span>
-                    <span class="n">next_states</span><span class="p">,</span>
-                    <span class="n">transitions</span><span class="p">,</span>
-                <span class="p">),</span>
-            <span class="p">)</span>  <span class="c1"># the token matches the transition's input</span>
-
-        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
-            <span class="s2">"tuple[bool, list[State], list[ManimTransition]]"</span><span class="p">,</span>
-            <span class="p">(</span>
-                <span class="kc">False</span><span class="p">,</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="kc">True</span><span class="p">,</span>
                 <span class="n">next_states</span><span class="p">,</span>
                 <span class="n">transitions</span><span class="p">,</span>
-            <span class="p">),</span>
+            <span class="p">)</span>  <span class="c1"># the token matches the transition's input</span>
+
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="kc">False</span><span class="p">,</span>
+            <span class="n">next_states</span><span class="p">,</span>
+            <span class="n">transitions</span><span class="p">,</span>
         <span class="p">)</span>  <span class="c1"># There are no other transitions/ reachable next states given the token</span></div>
 </div>
 

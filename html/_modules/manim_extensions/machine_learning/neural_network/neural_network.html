@@ -1477,7 +1477,6 @@
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="c1"># patched: implement replace_layer</span>
 
-
 <span class="sd">"""Neural Network Manim Visualization.</span>
 
 <span class="sd">This module is responsible for generating a neural network visualization with</span>
@@ -1491,11 +1490,11 @@
 <span class="sd">    NeuralNetwork(layer_node_count)</span>
 <span class="sd">"""</span>
 
+<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">cast</span>
+
 <span class="c1"># unlinked-class-ok: Layout, Filters</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">textwrap</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..utils.mobjects.connections</span><span class="w"> </span><span class="kn">import</span> <span class="n">NetworkConnection</span>
@@ -1518,7 +1517,6 @@
     <span class="n">Wait</span><span class="p">,</span>
     <span class="n">override_animation</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Literal</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.layers.parent_layers</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConnectiveLayer</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.layers.util</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_connective_layer</span>
@@ -1694,6 +1692,11 @@
 <span class="sd">            Unused position hint reserved for future use.</span>
 <span class="sd">        arc_direction</span>
 <span class="sd">            Direction the connection arc bends.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">assert</span> <span class="n">connection_style</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"default"</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">connection_style</span> <span class="o">==</span> <span class="s2">"default"</span><span class="p">:</span>
@@ -1719,7 +1722,12 @@
 <a class="viewcode-back" href="../../../../reference/machine_learning/neural_network/neural_network.NeuralNetwork.html#manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork._construct_input_layers">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_construct_input_layers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Constructs each of the input layers in context</span>
-<span class="sd">        of their adjacent layers.."""</span>
+<span class="sd">        of their adjacent layers..</span>
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
+<span class="sd">        """</span>
         <span class="n">prev_layer</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">next_layer</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="c1"># Go through all the input layers and run their construct method</span>
@@ -1753,10 +1761,16 @@
 <span class="sd">        layout_direction</span>
 <span class="sd">            Direction in which layers are arranged.</span>
 
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            The resulting value.</span>
+
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
 <span class="sd">        Exception</span>
 <span class="sd">            If an unsupported layout mode is requested.</span>
+
 <span class="sd">        """</span>
         <span class="c1"># Default: Linear layout</span>
         <span class="k">for</span> <span class="n">layer_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_layers</span><span class="p">)):</span>
@@ -1846,7 +1860,12 @@
 <div class="viewcode-block" id="NeuralNetwork._place_connective_layers">
 <a class="viewcode-back" href="../../../../reference/machine_learning/neural_network/neural_network.NeuralNetwork.html#manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork._place_connective_layers">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_place_connective_layers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Center each connective layer between its input and output layers."""</span>
+<span class="w">        </span><span class="sd">"""Center each connective layer between its input and output layers.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            The resulting value.</span>
+<span class="sd">        """</span>
         <span class="c1"># Place each of the connective layers halfway between the adjacent layers</span>
         <span class="k">for</span> <span class="n">connective_layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">connective_layers</span><span class="p">:</span>
             <span class="n">layer_midpoint</span> <span class="o">=</span> <span class="p">(</span>
@@ -2131,6 +2150,11 @@
 <span class="sd">        family</span>
 <span class="sd">            Kept for signature compatibility; setting ``family=False`` stops</span>
 <span class="sd">            sub-neural networks from inheriting the parent z-index.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="c1"># Setting family=False stops sub-neural networks from inheriting parent z_index</span>
         <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_layers</span><span class="p">:</span>
@@ -2152,6 +2176,11 @@
 <span class="sd">            The scaling factor.</span>
 <span class="sd">        **kwargs</span>
 <span class="sd">            Additional keyword arguments forwarded to each layer's ``scale``.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">prior_center</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>
 

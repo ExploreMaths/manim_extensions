@@ -1477,13 +1477,10 @@
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="c1"># patched: drop a stale TODO (FadeIn is the intended create animation)</span>
 
-
 <span class="sd">"""Paired query layer visualization for neural networks."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
-
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">Animation</span><span class="p">,</span>
@@ -1642,8 +1639,8 @@
             <span class="n">positive</span> <span class="o">=</span> <span class="n">GrayscaleImageMobject</span><span class="o">.</span><span class="n">from_path</span><span class="p">(</span><span class="n">positive_path</span><span class="p">)</span>
             <span class="n">negative</span> <span class="o">=</span> <span class="n">GrayscaleImageMobject</span><span class="o">.</span><span class="n">from_path</span><span class="p">(</span><span class="n">negative_path</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">positive</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"GrayscaleImageMobject"</span><span class="p">,</span> <span class="n">ImageMobject</span><span class="p">(</span><span class="n">positive_path</span><span class="p">))</span>
-            <span class="n">negative</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"GrayscaleImageMobject"</span><span class="p">,</span> <span class="n">ImageMobject</span><span class="p">(</span><span class="n">negative_path</span><span class="p">))</span>
+            <span class="n">positive</span> <span class="o">=</span> <span class="n">ImageMobject</span><span class="p">(</span><span class="n">positive_path</span><span class="p">)</span>
+            <span class="n">negative</span> <span class="o">=</span> <span class="n">ImageMobject</span><span class="p">(</span><span class="n">negative_path</span><span class="p">)</span>
         <span class="c1"># Make the layer</span>
         <span class="n">query_layer</span> <span class="o">=</span> <span class="bp">cls</span><span class="p">(</span><span class="n">positive</span><span class="p">,</span> <span class="n">negative</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 

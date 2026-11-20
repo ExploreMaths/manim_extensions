@@ -1476,7 +1476,6 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
-
 <span class="sd">"""Mindmap node classes for Manim.</span>
 
 <span class="sd">This module provides node classes for mindmap visualizations.</span>
@@ -1484,8 +1483,7 @@
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">BLUE</span><span class="p">,</span>
@@ -1506,7 +1504,6 @@
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Node"</span><span class="p">,</span> <span class="s2">"NodeState"</span><span class="p">,</span> <span class="s2">"NodeStyle"</span><span class="p">,</span> <span class="s2">"dfs_walker"</span><span class="p">,</span> <span class="s2">"bfs_walker"</span><span class="p">]</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">enum</span><span class="w"> </span><span class="kn">import</span> <span class="n">Enum</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">deque</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Generator</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -1817,6 +1814,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">        scale_factor</span>
 <span class="sd">            Uniform scaling factor applied to the node dimensions.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">node_state</span> <span class="o">=</span> <span class="n">NodeState</span><span class="o">.</span><span class="n">SCALE</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">scale_factor</span> <span class="o">=</span> <span class="n">scale_factor</span>
@@ -1833,12 +1835,17 @@
 <span class="sd">        ----------</span>
 <span class="sd">        child</span>
 <span class="sd">            Child node to insert beneath the current parent.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
             <span class="n">child</span><span class="o">.</span><span class="n">neighbor</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
             <span class="n">child</span><span class="o">.</span><span class="n">node_state</span> <span class="o">=</span> <span class="n">NodeState</span><span class="o">.</span><span class="n">INSERT</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
-        <span class="n">child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"None"</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
+        <span class="n">child</span><span class="o">.</span><span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span></div>
 
 
 <div class="viewcode-block" id="Node.remove_child">
@@ -1851,10 +1858,16 @@
 <span class="sd">        child</span>
 <span class="sd">            Child node scheduled for removal from the tree.</span>
 
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            The resulting value.</span>
+
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
 <span class="sd">        ValueError</span>
 <span class="sd">            Raised when ``child`` is not a child of the current node.</span>
+
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">child</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Node </span><span class="si">{</span><span class="n">child</span><span class="si">}</span><span class="s2"> is not a child of </span><span class="si">{</span><span class="bp">self</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
@@ -1870,6 +1883,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">        vmobject</span>
 <span class="sd">            New mobject used to render the node content.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">node_state</span> <span class="o">=</span> <span class="n">NodeState</span><span class="o">.</span><span class="n">ALTER</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">alter_vmobject</span> <span class="o">=</span> <span class="n">vmobject</span>
@@ -2043,6 +2061,11 @@
 <span class="sd">            The direction of the operation.</span>
 <span class="sd">        kwargs</span>
 <span class="sd">            Kwargs processed by this operation.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"connector"</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">connector_style</span> <span class="o">=</span> <span class="n">kwargs</span>
@@ -2076,6 +2099,11 @@
 <span class="sd">            The direction of the operation.</span>
 <span class="sd">        **kwargs</span>
 <span class="sd">            Additional keyword arguments used as the connector line style.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">current_style</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"connector_style"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="k">if</span> <span class="p">(</span>

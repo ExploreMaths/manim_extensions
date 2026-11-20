@@ -1476,7 +1476,6 @@
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="c1"># patched: document module-level constants</span>
 
-
 <span class="sd">"""Manim chemistry bond representation.</span>
 
 <span class="sd">This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond` class for representing chemical bonds in molecules.</span>
@@ -1484,9 +1483,7 @@
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
-
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span>
 
 <span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">.mc_atom</span><span class="w"> </span><span class="kn">import</span> <span class="n">MCAtom</span>
@@ -1557,6 +1554,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">        from_atom</span>
 <span class="sd">            Atom the bond starts from.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span> <span class="o">=</span> <span class="n">from_atom</span></div>
 
@@ -1570,6 +1572,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">        to_atom</span>
 <span class="sd">            Atom the bond ends at.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span> <span class="o">=</span> <span class="n">to_atom</span></div>
 
@@ -1583,6 +1590,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">        stereo</span>
 <span class="sd">            Stereo type of the bond.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stereo</span> <span class="o">=</span> <span class="n">stereo</span></div>
 

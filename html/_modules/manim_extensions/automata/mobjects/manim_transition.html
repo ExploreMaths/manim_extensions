@@ -1476,7 +1476,6 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
-
 <span class="sd">""":class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` class for automata visualizations.</span>
 
 <span class="sd">This module provides transition visualization for automata.</span>
@@ -1484,8 +1483,7 @@
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span>
 
@@ -1501,7 +1499,6 @@
     <span class="n">VGroup</span><span class="p">,</span>
     <span class="n">normalize</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.automata_dependencies.automata</span><span class="w"> </span><span class="kn">import</span> <span class="n">Transition</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.manim_state</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimState</span>
@@ -1671,8 +1668,13 @@
 <span class="sd">            Start point on the state circle.</span>
 <span class="sd">        point2</span>
 <span class="sd">            End point on the state circle.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">arrow</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"Arrow"</span><span class="p">,</span> <span class="n">CurvedArrow</span><span class="p">(</span><span class="n">point2</span><span class="p">,</span> <span class="n">point1</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mf">1.5</span> <span class="o">*</span> <span class="n">PI</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">arrow</span> <span class="o">=</span> <span class="n">CurvedArrow</span><span class="p">(</span><span class="n">point2</span><span class="p">,</span> <span class="n">point1</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mf">1.5</span> <span class="o">*</span> <span class="n">PI</span><span class="p">)</span>
 
         <span class="c1"># used to position the read symbols</span>
         <span class="n">center_of_arc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arrow</span><span class="o">.</span><span class="n">get_arc_center</span><span class="p">()</span>
@@ -1731,6 +1733,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">        buffer</span>
 <span class="sd">            Padding distance used to separate multiple labels stacked around the arrow.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="c1"># Obtain coordinates for the centre of the line</span>
         <span class="n">x1</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1774,6 +1781,11 @@
 <span class="sd">        Converts a straight arrow transition to a curved arrow transition.</span>
 <span class="sd">        This method is primarily used when there are two opposing transitions</span>
 <span class="sd">        between two states.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="c1"># remove existing manim arrow</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arrow</span><span class="p">)</span>
@@ -1797,12 +1809,17 @@
 <span class="sd">        ----------</span>
 <span class="sd">        buffer</span>
 <span class="sd">            Extra offset applied to stacked labels near the arc.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">temp_arrow</span> <span class="o">=</span> <span class="n">Arrow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transition_from</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition_to</span><span class="p">)</span>
         <span class="n">from_point</span> <span class="o">=</span> <span class="n">temp_arrow</span><span class="o">.</span><span class="n">start</span>
         <span class="n">to_point</span> <span class="o">=</span> <span class="n">temp_arrow</span><span class="o">.</span><span class="n">end</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">arrow</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"Arrow"</span><span class="p">,</span> <span class="n">CurvedArrow</span><span class="p">(</span><span class="n">from_point</span><span class="p">,</span> <span class="n">to_point</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">arrow</span> <span class="o">=</span> <span class="n">CurvedArrow</span><span class="p">(</span><span class="n">from_point</span><span class="p">,</span> <span class="n">to_point</span><span class="p">)</span>
 
         <span class="n">chord_center_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">from_point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">to_point</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
         <span class="n">chord_center_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">from_point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">to_point</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">/</span> <span class="mi">2</span>
@@ -1863,7 +1880,12 @@
 <div class="viewcode-block" id="ManimTransition.rotate_symbols_parallel_to_arrow">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_transition.ManimTransition.html#manim_extensions.automata.mobjects.manim_transition.ManimTransition.rotate_symbols_parallel_to_arrow">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">rotate_symbols_parallel_to_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Rotate all read symbols so they are aligned parallel to the arrow."""</span>
+<span class="w">        </span><span class="sd">"""Rotate all read symbols so they are aligned parallel to the arrow.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            The resulting value.</span>
+<span class="sd">        """</span>
         <span class="k">for</span> <span class="n">read_symbol</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">read_symbols</span><span class="p">:</span>
             <span class="n">slope</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_slope_of_line</span><span class="p">()</span>
 

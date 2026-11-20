@@ -1476,19 +1476,16 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
-
 <span class="sd">"""Timeline layout algorithm - Python implementation."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">"TimeLineLayout"</span><span class="p">,</span>
 <span class="p">]</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Callable</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.layout</span><span class="w"> </span><span class="kn">import</span> <span class="n">Layout</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.layout_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">LayoutDirection</span>
 
@@ -1630,6 +1627,11 @@
 <span class="sd">        The depth of the current node (root is 0).</span>
 <span class="sd">    index</span>
 <span class="sd">        The index of ``node`` within its parent's children list.</span>
+
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            The resulting value.</span>
 <span class="sd">    """</span>
     <span class="c1"># Pre-order callback</span>
     <span class="k">if</span> <span class="n">before_callback</span><span class="p">:</span>
@@ -1746,7 +1748,12 @@
 <div class="viewcode-block" id="TimeLineLayout._compute_base">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_time_line.TimeLineLayout.html#manim_extensions.mindmap.algorithms.alg_time_line.TimeLineLayout._compute_base">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_compute_base</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Pre-order traversal: create nodes, set root position, compute second-level top values."""</span>
+<span class="w">        </span><span class="sd">"""Pre-order traversal: create nodes, set root position, compute second-level top values.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            The resulting value.</span>
+<span class="sd">        """</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">before_callback</span><span class="p">(</span>
             <span class="n">node</span><span class="p">:</span> <span class="n">TimelineNode</span><span class="p">,</span>
@@ -1800,7 +1807,12 @@
 <div class="viewcode-block" id="TimeLineLayout._compute_coords">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_time_line.TimeLineLayout.html#manim_extensions.mindmap.algorithms.alg_time_line.TimeLineLayout._compute_coords">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_compute_coords</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Pre-order traversal: compute node left (x) and top (y)."""</span>
+<span class="w">        </span><span class="sd">"""Pre-order traversal: compute node left (x) and top (y).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            The resulting value.</span>
+<span class="sd">        """</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">before_callback</span><span class="p">(</span>
             <span class="n">node</span><span class="p">:</span> <span class="n">TimelineNode</span><span class="p">,</span>
@@ -1852,7 +1864,12 @@
 <div class="viewcode-block" id="TimeLineLayout._adjust">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_time_line.TimeLineLayout.html#manim_extensions.mindmap.algorithms.alg_time_line.TimeLineLayout._adjust">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_adjust</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Pre-order + post-order traversal: adjust node left and top."""</span>
+<span class="w">        </span><span class="sd">"""Pre-order + post-order traversal: adjust node left and top.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            The resulting value.</span>
+<span class="sd">        """</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">before_callback</span><span class="p">(</span>
             <span class="n">node</span><span class="p">:</span> <span class="n">TimelineNode</span><span class="p">,</span>
@@ -1941,6 +1958,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">        node</span>
 <span class="sd">            The root node whose children are examined.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">children_list</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span>
         <span class="n">total_add_width</span> <span class="o">=</span> <span class="mf">0.0</span>
@@ -1972,6 +1994,11 @@
 <span class="sd">            The node whose siblings need to be shifted.</span>
 <span class="sd">        add_height</span>
 <span class="sd">            The vertical offset to apply to younger siblings.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">_parent</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">node</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">_is_root</span><span class="p">:</span>
             <span class="n">children_list</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">children</span>
@@ -2124,6 +2151,11 @@
 <span class="sd">            The attribute name to modify (e.g. ``"x"`` or ``"y"``).</span>
 <span class="sd">        offset</span>
 <span class="sd">            The offset to add to the current value.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
             <span class="n">current</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">prop</span><span class="p">)</span>
@@ -2145,6 +2177,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">        node</span>
 <span class="sd">            The root of the (sub)tree whose coordinates should be applied.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">node</span><span class="p">:</span>
             <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">x</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span>

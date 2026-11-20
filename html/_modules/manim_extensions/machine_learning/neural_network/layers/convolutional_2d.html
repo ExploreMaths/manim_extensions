@@ -1476,7 +1476,6 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
-
 <span class="sd">"""Convolutional 2D layer for neural network visualizations.</span>
 
 <span class="sd">This module provides the convolutional 2D layer class for neural network visualizations.</span>
@@ -1484,7 +1483,6 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">..activation_functions</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_activation_function_by_name</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..activation_functions.activation_function</span><span class="w"> </span><span class="kn">import</span> <span class="n">ActivationFunction</span>
@@ -1756,12 +1754,12 @@
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">feature_map_size</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">feature_map_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">feature_map_size</span><span class="p">,</span> <span class="n">feature_map_size</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">feature_map_size</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"tuple[int, int]"</span><span class="p">,</span> <span class="n">feature_map_size</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">feature_map_size</span> <span class="o">=</span> <span class="n">feature_map_size</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">filter_size</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">filter_size</span> <span class="o">=</span> <span class="p">(</span><span class="n">filter_size</span><span class="p">,</span> <span class="n">filter_size</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">filter_size</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"tuple[int, int]"</span><span class="p">,</span> <span class="n">filter_size</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">filter_size</span> <span class="o">=</span> <span class="n">filter_size</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">cell_width</span> <span class="o">=</span> <span class="n">cell_width</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">filter_spacing</span> <span class="o">=</span> <span class="n">filter_spacing</span>
@@ -1792,6 +1790,11 @@
 <span class="sd">            The layer following this layer in the network.</span>
 <span class="sd">        **kwargs</span>
 <span class="sd">            Forwarded to the parent layer classes.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="c1"># Make the feature maps</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">feature_maps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">construct_feature_maps</span><span class="p">()</span>
@@ -1811,7 +1814,12 @@
 <div class="viewcode-block" id="Convolutional2DLayer.construct_activation_function">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/convolutional_2d.Convolutional2DLayer.html#manim_extensions.machine_learning.neural_network.layers.convolutional_2d.Convolutional2DLayer.construct_activation_function">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">construct_activation_function</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Build the activation-function plot for this convolutional layer."""</span>
+<span class="w">        </span><span class="sd">"""Build the activation-function plot for this convolutional layer.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            The resulting value.</span>
+<span class="sd">        """</span>
         <span class="c1"># Add the activation function</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">activation_function</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="c1"># Check if it is a string</span>
@@ -1934,6 +1942,11 @@
 <span class="sd">            Factor by which the layer is scaled.</span>
 <span class="sd">        **kwargs</span>
 <span class="sd">            Forwarded to :meth:`~manim.mobject.mobject.Mobject.scale`.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cell_width</span> <span class="o">*=</span> <span class="n">scale_factor</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
@@ -1984,6 +1997,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">        mobject_or_point</span>
 <span class="sd">            The mobject or point whose center the layer is moved to.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">layer_center</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_maps</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mobject_or_point</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">):</span>

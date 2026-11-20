@@ -1475,14 +1475,13 @@
 <span></span><span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
-
 <span class="sd">"""Animation utilities for 2D chemistry molecules.</span>
 
 <span class="sd">This module provides the :class:`~manim_extensions.chemistry.twoD.animations.GMAnimationBuilder` class for building molecule animations.</span>
 
 <span class="sd">"""</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Animation</span><span class="p">,</span> <span class="n">BLACK</span><span class="p">,</span> <span class="n">ManimColor</span><span class="p">,</span> <span class="n">PI</span><span class="p">,</span> <span class="n">VGroup</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.graph_molecule</span><span class="w"> </span><span class="kn">import</span> <span class="n">GraphMolecule</span>
@@ -1570,7 +1569,7 @@
 <span class="sd">        """</span>
         <span class="k">for</span> <span class="n">bond</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecule</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">atom_a</span> <span class="ow">in</span> <span class="n">bond</span> <span class="ow">and</span> <span class="n">atom_b</span> <span class="ow">in</span> <span class="n">bond</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"tuple[int, int]"</span><span class="p">,</span> <span class="n">bond</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">bond</span>
 
         <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">"No bond found for atoms </span><span class="si">{</span><span class="n">atom_a</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">atom_b</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span></div>
 

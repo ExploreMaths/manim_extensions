@@ -1476,12 +1476,10 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
-
 <span class="sd">"""Contains classes for Manim automaton."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">BLUE</span><span class="p">,</span>
@@ -1611,7 +1609,7 @@
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">json_template</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">xml_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">json_template</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"dict[str, object] | None"</span><span class="p">,</span> <span class="n">automaton_json</span><span class="p">)</span>
+            <span class="n">json_template</span> <span class="o">=</span> <span class="n">automaton_json</span>
 
         <span class="n">FiniteStateAutomaton</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
 
@@ -1621,7 +1619,7 @@
         <span class="k">if</span> <span class="n">manim_animations</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">manim_animations</span> <span class="o">=</span> <span class="n">ManimAnimations</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">manim_animations</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"ManimAnimations"</span><span class="p">,</span> <span class="n">manim_animations</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">manim_animations</span> <span class="o">=</span> <span class="n">manim_animations</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">cli</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">cli</span><span class="p">:</span>
@@ -1654,6 +1652,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">        manim_state</span>
 <span class="sd">            The state mobject to add.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="c1"># maybe need validation</span>
         <span class="c1"># adds an already existing manim_state to automaton</span>
@@ -1672,6 +1675,11 @@
 <span class="sd">            and optional ``"initial"``/``"final"`` flags.</span>
 <span class="sd">        scaling</span>
 <span class="sd">            Coordinate scaling factor.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">initial</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="n">final</span> <span class="o">=</span> <span class="kc">False</span>
@@ -1709,6 +1717,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">        states</span>
 <span class="sd">            :class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` definitions from JSON or XML parsing.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">states</span><span class="p">:</span>
             <span class="k">if</span> <span class="s2">"initial"</span> <span class="ow">in</span> <span class="n">state</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
@@ -1753,6 +1766,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">        transitions</span>
 <span class="sd">            :class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` definitions from JSON or XML parsing.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="c1"># counts the number of transitions between two states</span>
         <span class="n">transition_counter</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
@@ -1803,6 +1821,11 @@
 <span class="sd">            The destination state of the transition.</span>
 <span class="sd">        read_symbols</span>
 <span class="sd">            The symbols that trigger this transition.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">new_transition</span> <span class="o">=</span> <span class="n">ManimTransition</span><span class="p">(</span>
             <span class="n">transition_from</span><span class="p">,</span>
@@ -1836,7 +1859,12 @@
 <div class="viewcode-block" id="ManimAutomaton.set_default_position_of_input_string">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.set_default_position_of_input_string">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_default_position_of_input_string</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Position the input string mobject centered above the automaton."""</span>
+<span class="w">        </span><span class="sd">"""Position the input string mobject centered above the automaton.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            The resulting value.</span>
+<span class="sd">        """</span>
         <span class="c1"># get centre of self</span>
         <span class="n">c1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span>
         <span class="n">c2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_y</span><span class="p">()</span>
@@ -1889,9 +1917,7 @@
             <span class="c1"># position the mobject</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">set_default_position_of_input_string</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
-                <span class="s2">"ManimAutomataInput | None"</span><span class="p">,</span> <span class="nb">input</span>
-            <span class="p">)</span>  <span class="c1"># if input is already an instance of ManimAutomataInput</span></div>
+            <span class="k">return</span> <span class="nb">input</span>  <span class="c1"># if input is already an instance of ManimAutomataInput</span></div>
 
 
 <div class="viewcode-block" id="ManimAutomaton.run_sequence">
@@ -2047,7 +2073,7 @@
             <span class="s2">"automaton_result"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">check_automaton_result</span><span class="p">(</span><span class="n">state_pointers</span><span class="p">),</span>
         <span class="p">}</span>
 
-        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"list[Any]"</span><span class="p">,</span> <span class="n">global_history</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">global_history</span></div>
 
 
 <div class="viewcode-block" id="ManimAutomaton.generate_next_state_options">
@@ -2081,7 +2107,12 @@
 <div class="viewcode-block" id="ManimAutomaton.export_recorded_path_to_file">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.export_recorded_path_to_file">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">export_recorded_path_to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Save the recorded NDA path as JSON to recorded_path.txt."""</span>
+<span class="w">        </span><span class="sd">"""Save the recorded NDA path as JSON to recorded_path.txt.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            The resulting value.</span>
+<span class="sd">        """</span>
         <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">"recorded_path.txt"</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">fp</span><span class="p">:</span>
             <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">recorded_path</span><span class="p">,</span> <span class="n">fp</span><span class="p">)</span></div>
 
@@ -2136,7 +2167,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">manim_automata_input</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="nb">input</span>  <span class="c1"># if input is already an instance of ManimAutomataInput</span>
             <span class="p">)</span>
-            <span class="n">input_to_run</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="s2">"ManimAutomataInput"</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+            <span class="n">input_to_run</span> <span class="o">=</span> <span class="nb">input</span>
 
         <span class="c1"># display manim_automaton_input to the screen</span>
         <span class="n">list_of_animations</span> <span class="o">=</span> <span class="p">[</span>

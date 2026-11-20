@@ -1477,7 +1477,6 @@
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="c1"># patched: BlankConnective implements the inherited abstract construct_layer (blank fallback)</span>
 
-
 <span class="sd">"""Parent layer classes for neural network visualizations.</span>
 
 <span class="sd">This module provides abstract base classes for neural network layer visualizations.</span>
@@ -1486,7 +1485,6 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
-
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">Animation</span><span class="p">,</span>
@@ -1571,6 +1569,11 @@
 <span class="sd">        **kwargs</span>
 <span class="sd">            Forwarded to the parent class; a ``"debug_mode"`` entry draws a</span>
 <span class="sd">            surrounding rectangle around the layer.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="s2">"debug_mode"</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">"debug_mode"</span><span class="p">]:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">SurroundingRectangle</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span></div>
@@ -1902,6 +1905,11 @@
 <span class="sd">            Following layer.</span>
 <span class="sd">        **kwargs</span>
 <span class="sd">            Ignored.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="kc">None</span></div>
 

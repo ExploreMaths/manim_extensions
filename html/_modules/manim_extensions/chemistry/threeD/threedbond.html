@@ -1475,14 +1475,13 @@
 <span></span><span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
-
 <span class="sd">"""3D bond representation for Manim chemistry.</span>
 
 <span class="sd">This module provides 3D bond classes for rendering chemical bonds in three dimensions.</span>
 
 <span class="sd">"""</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">Circle</span><span class="p">,</span>
@@ -1586,7 +1585,12 @@
 <div class="viewcode-block" id="ThreeDCylinder.add_bases">
 <a class="viewcode-back" href="../../../../reference/chemistry/threeD/threedbond.ThreeDCylinder.html#manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder.add_bases">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_bases</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Adds the end caps of the cylinder."""</span>
+<span class="w">        </span><span class="sd">"""Adds the end caps of the cylinder.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            The resulting value.</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">renderer</span> <span class="o">==</span> <span class="n">RendererType</span><span class="o">.</span><span class="n">OPENGL</span><span class="p">:</span>
             <span class="n">color</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span>
             <span class="n">opacity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">opacity</span>
@@ -1615,7 +1619,12 @@
 <div class="viewcode-block" id="ThreeDCylinder._rotate_to_direction">
 <a class="viewcode-back" href="../../../../reference/chemistry/threeD/threedbond.ThreeDCylinder.html#manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder._rotate_to_direction">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_rotate_to_direction</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Orient the bond along its target direction."""</span>
+<span class="w">        </span><span class="sd">"""Orient the bond along its target direction.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            The resulting value.</span>
+<span class="sd">        """</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span>
 
         <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">z</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
@@ -1658,6 +1667,11 @@
 <span class="sd">        ----------</span>
 <span class="sd">        direction</span>
 <span class="sd">            Direction the cylinder is aligned to.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">direction</span> <span class="o">=</span> <span class="n">direction</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_rotate_to_direction</span><span class="p">()</span></div>
@@ -1730,6 +1744,11 @@
 <span class="sd">        **kwargs</span>
 <span class="sd">            Additional keyword arguments passed to</span>
 <span class="sd">            :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder`.</span>
+
+
+<span class="sd">            Returns</span>
+<span class="sd">            -------</span>
+<span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">rough_start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pointify</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
         <span class="n">rough_end</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pointify</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
@@ -1847,13 +1866,10 @@
 <span class="sd">        """</span>
         <span class="n">point</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">point</span><span class="p">)</span>
         <span class="n">vect</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">line</span><span class="o">.</span><span class="n">vect</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
-            <span class="s2">"Line3D"</span><span class="p">,</span>
-            <span class="bp">cls</span><span class="p">(</span>
-                <span class="n">point</span> <span class="o">+</span> <span class="n">vect</span> <span class="o">*</span> <span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
-                <span class="n">point</span> <span class="o">-</span> <span class="n">vect</span> <span class="o">*</span> <span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
-                <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-            <span class="p">),</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">point</span> <span class="o">+</span> <span class="n">vect</span> <span class="o">*</span> <span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="n">point</span> <span class="o">-</span> <span class="n">vect</span> <span class="o">*</span> <span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span></div>
 
 
@@ -1915,13 +1931,10 @@
 
         <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">perpendicular_bisector</span><span class="p">([</span><span class="n">line</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">line</span><span class="o">.</span><span class="n">end</span><span class="p">],</span> <span class="n">norm</span><span class="p">)</span>
         <span class="n">vect</span> <span class="o">=</span> <span class="n">normalize</span><span class="p">(</span><span class="n">end</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
-            <span class="s2">"Line3D"</span><span class="p">,</span>
-            <span class="bp">cls</span><span class="p">(</span>
-                <span class="n">point</span> <span class="o">+</span> <span class="n">vect</span> <span class="o">*</span> <span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
-                <span class="n">point</span> <span class="o">-</span> <span class="n">vect</span> <span class="o">*</span> <span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
-                <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-            <span class="p">),</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span>
+            <span class="n">point</span> <span class="o">+</span> <span class="n">vect</span> <span class="o">*</span> <span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="n">point</span> <span class="o">-</span> <span class="n">vect</span> <span class="o">*</span> <span class="n">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span></div>
 </div>
 
