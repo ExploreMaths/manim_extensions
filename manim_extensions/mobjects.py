@@ -13,12 +13,13 @@ objects.
 """
 
 from __future__ import annotations
-from typing import Any, Callable
+from typing import Any, Callable, Iterable, cast
 
 # unlinked-class-ok: Select
 
 
 from manim import (
+    Animation,
     AnimationGroup,
     BLACK,
     BLUE,
@@ -47,6 +48,7 @@ from manim import (
     RED,
     RIGHT,
     Rectangle,
+    VMobject,
     Scene,
     TexTemplate,
     Text,
@@ -482,7 +484,7 @@ class PerpendicularLine(Line):
         ab_dot_ab = np.dot(ab, ab)
         if ab_dot_ab < 1e-12:
             return a
-        t = np.dot(ap, ab) / ab_dot_ab
+        t = float(np.dot(ap, ab) / ab_dot_ab)
         return a + t * ab
 
 
@@ -690,7 +692,7 @@ class PerpendicularSign(VGroup):
         if abs(cross[2]) < 1e-12:
             return None
 
-        t = np.cross(a2 - a1, d2)[2] / cross[2]
+        t = float(np.cross(a2 - a1, d2)[2] / cross[2])
         return a1 + t * d1
 
     def _get_both_directions(
@@ -832,7 +834,7 @@ class FileTree(Code):
 
     def __init__(
         self,
-        tree_dict: dict[str, dict | None],
+        tree_dict: dict[str, dict[str, Any] | None],
         font_size: float = DEFAULT_FONT_SIZE,
         color: ParsableManimColor = WHITE,
         **kwargs: Any,
@@ -854,7 +856,7 @@ class FileTree(Code):
         )
         del self.submobjects[0]
 
-    def highlight(self, line: int, color: ParsableManimColor = WHITE) -> AnimationGroup:
+    def highlight(self, line: int, color: ParsableManimColor = WHITE) -> Animation:
         """Highlight the content of a specific line (excluding tree prefixes).
 
         Parameters
@@ -889,9 +891,8 @@ class FileTree(Code):
         if not self.submobjects[0]:
             return Wait(0)
 
-        return AnimationGroup(
-            VGroup(self.submobjects[0][line][begin_index:]).animate.set_color(color)
-        )
+        content = cast(Any, self.submobjects[0])[line][begin_index:]
+        return AnimationGroup(cast(Any, VGroup(content)).animate.set_color(color))
 
     @staticmethod
     def _build_tree(
@@ -977,6 +978,7 @@ class CropImageMobject(ImageMobject):
         corner_radius: int | float = 0.1,
         **kwargs: Any,
     ) -> None:
+        img: Image.Image
         if isinstance(filename_or_array, str):
             img = Image.open(filename_or_array)
         elif isinstance(filename_or_array, np.ndarray):
@@ -1324,7 +1326,7 @@ class ColorText(Text):
 
     def __init__(
         self,
-        color: ManimColor,
+        color: ManimColor | Iterable[float],
         name: str | None = None,
         background_color: ManimColor = WHITE,
         font: str = "Consolas",
@@ -1333,21 +1335,25 @@ class ColorText(Text):
     ) -> None:
         if name is not None:
             super().__init__(
-                str(name), color=color, font=font, font_size=font_size, **kwargs
+                str(name),
+                color=cast(ParsableManimColor, color),
+                font=font,
+                font_size=font_size,
+                **kwargs,
             )
             return
 
-        c = [float(v) for v in color]
+        c = [float(v) for v in cast(Iterable[float], color)]
         if max(c) > 1.0:
             r, g, b = (
                 str(int(round(c[0]))),
                 str(int(round(c[1]))),
                 str(int(round(c[2]))),
             )
-            fill = rgb_to_color([c[0] / 255.0, c[1] / 255.0, c[2] / 255.0])
+            fill = rgb_to_color(np.array([c[0] / 255.0, c[1] / 255.0, c[2] / 255.0]))
         else:
             r, g, b = f"{c[0]:.2f}", f"{c[1]:.2f}", f"{c[2]:.2f}"
-            fill = rgb_to_color(c)
+            fill = rgb_to_color(np.array(c))
 
         snippet = f"np.array([{r},~{g},~{b}])"
         super().__init__(snippet, color=fill, font=font, font_size=font_size, **kwargs)
@@ -1427,9 +1433,9 @@ class Trail(VGroup):
         self.nums = nums
         self.trail_color = trail_color
         self.rate_func = rate_func if rate_func is not None else (lambda t: t**1.25)
-        self.add(mob)
+        self.add(cast(VMobject, mob))
         self.trail = VGroup()
-        self.path_xyz = []
+        self.path_xyz: list[Point3D] = []
         self.add(self.trail)
         self.pos_old = self[0].get_center()
 
@@ -1501,7 +1507,7 @@ class Trail(VGroup):
         -------
             The :class:`~manim_extensions.mobjects.Trail` instance for chaining.
         """
-        self.trail.add_updater(self.update_path)
+        self.trail.add_updater(cast(Callable[[Mobject], Any], self.update_path))
         return self
 
     def stop_trace(self) -> "Trail":
@@ -1511,7 +1517,7 @@ class Trail(VGroup):
         -------
             The :class:`~manim_extensions.mobjects.Trail` instance for chaining.
         """
-        self.trail.remove_updater(self.update_path)
+        self.trail.remove_updater(cast(Callable[[Mobject], Any], self.update_path))
         return self
 
 
@@ -1586,10 +1592,11 @@ class ShadowAround(VGroup):
         self.layer_num = layer_num
         self.shadow_out = shadow_out
 
+        self.shape: VMobject
         if isinstance(mob_or_points, list):
             self.shape = Polygon(*mob_or_points, stroke_width=0)
         else:
-            self.shape = mob_or_points.copy().set_stroke(width=0)
+            self.shape = cast(VMobject, mob_or_points).copy().set_stroke(width=0)
 
         inner_opacity = shadow_opacity if show_basic_shape else 0
         self.shape.set_fill(color=shadow_color, opacity=inner_opacity).scale(
@@ -1811,6 +1818,11 @@ class ThreeDVector(VGroup):
         self.add(vgroup)
 
 
+#: A tree structure: nested dictionaries for internal nodes, or an
+#: iterable of leaf values.
+TreeStructure = dict[Any, Any] | list[Any] | tuple[Any, ...] | set[Any]
+
+
 class TreeDiagram(VGroup):
     r"""A recursive tree diagram built from a nested dictionary.
 
@@ -1855,7 +1867,7 @@ class TreeDiagram(VGroup):
 
     def __init__(
         self,
-        tree: Mobject,
+        tree: TreeStructure,
         branch_color: ManimColor = GREY,
         branch_opacity: float = 1,
         item_v_buff: float = 0.3,
@@ -1867,10 +1879,10 @@ class TreeDiagram(VGroup):
         self.branch_opacity = branch_opacity
         self.item_v_buff = item_v_buff
         self.item_scale = item_scale
-        self.tree = tree
+        self.tree: TreeStructure = tree
         self.add(self._generate(tree)[1])
 
-    def _lowest(self, leaves: list[Any]) -> VGroup:
+    def _lowest(self, leaves: Iterable[Any]) -> VGroup:
         """Create a vertical group of text mobjects for the leaf nodes.
 
         Parameters
@@ -1885,7 +1897,7 @@ class TreeDiagram(VGroup):
         vg = VGroup(*[Text(str(i)).scale(self.item_scale) for i in leaves])
         return vg.arrange(DOWN, buff=self.item_v_buff, aligned_edge=LEFT)
 
-    def _generate(self, tree: dict[Any, Any]) -> VGroup:
+    def _generate(self, tree: TreeStructure) -> VGroup:
         """Recursively build the tree diagram mobject.
 
         Parameters
@@ -1914,7 +1926,7 @@ class TreeDiagram(VGroup):
             )
             vg.add(node)
         vg.arrange(DOWN, buff=self.item_v_buff, aligned_edge=LEFT)
-        to_be_braced = VGroup(*[i[0] for i in vg])
+        to_be_braced = VGroup(*cast(Any, [i[0] for i in vg]))
         brace = (
             Brace(to_be_braced, LEFT)
             .set_stroke(color=self.branch_color, width=2)
