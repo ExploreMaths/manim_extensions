@@ -27,9 +27,9 @@ jobs:
       - uses: ExploreMaths/setup-manim-env@v1
         with:
           install-editable: "true"
-      - name: Install mypy
-        run: pip install "mypy>=1.11"
-      - name: Type-check first-party modules
+      - name: Install mypy and the optional dependencies it analyses
+        run: pip install "mypy>=1.11" ".[all]"
+      - name: Type-check the whole package
         run: python -m mypy
 
   validate-naming:
