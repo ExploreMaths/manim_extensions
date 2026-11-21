@@ -1482,7 +1482,7 @@
 <span class="sd">triangles in triangle_mesh.py.</span>
 <span class="sd">"""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="c1"># unlinked-class-ok: Array</span>
 
@@ -1508,6 +1508,7 @@
     <span class="n">ThreeDVMobject</span><span class="p">,</span>
     <span class="n">UP</span><span class="p">,</span>
     <span class="n">VGroup</span><span class="p">,</span>
+    <span class="n">VMobject</span><span class="p">,</span>
     <span class="n">ValueTracker</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -1522,7 +1523,14 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">..data_models.mesh</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mesh</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">...params</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_param_or_default</span><span class="p">,</span> <span class="n">BM2DM</span><span class="p">,</span> <span class="n">BM3DM</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">...types</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vertices</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">Point3D_Array</span><span class="p">,</span> <span class="n">Vector3D</span><span class="p">,</span> <span class="n">VectorND</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Point3D</span><span class="p">,</span>
+    <span class="n">Point3D_Array</span><span class="p">,</span>
+    <span class="n">Point3DLike</span><span class="p">,</span>
+    <span class="n">Vector3D</span><span class="p">,</span>
+    <span class="n">Vector3DLike</span><span class="p">,</span>
+    <span class="n">VectorND</span><span class="p">,</span>
+<span class="p">)</span>
 
 
 <span class="c1"># pylint: disable=too-many-instance-attributes</span>
@@ -1597,17 +1605,43 @@
 
     <span class="c1"># pylint:disable=abstract-method</span>
 
+    <span class="n">display_vertices</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">display_edges</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">display_faces</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">clear_vertices</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">clear_edges</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">clear_faces</span><span class="p">:</span> <span class="nb">bool</span>
+    <span class="n">edges_color</span><span class="p">:</span> <span class="n">ManimColor</span>
+    <span class="n">edges_width</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">faces_color</span><span class="p">:</span> <span class="n">ManimColor</span>
+    <span class="n">faces_opacity</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">verts_color</span><span class="p">:</span> <span class="n">ManimColor</span>
+    <span class="n">verts_size</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">pre_function_handle_to_anchor_scale_factor</span><span class="p">:</span> <span class="nb">float</span>
+
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mesh</span><span class="p">:</span> <span class="n">Mesh</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="p">:</span> <span class="n">Mesh</span> <span class="o">=</span> <span class="n">mesh</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span> <span class="n">Group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span> <span class="n">VGroup</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">faces</span><span class="p">:</span> <span class="n">VGroup</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">()</span>
 
-        <span class="c1"># set all the parameters</span>
-        <span class="k">for</span> <span class="n">param_name</span> <span class="ow">in</span> <span class="n">BM3DM</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span>
-                <span class="n">param_name</span><span class="p">,</span> <span class="n">get_param_or_default</span><span class="p">(</span><span class="n">param_name</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">BM3DM</span><span class="p">)</span>
-            <span class="p">)</span>
+        <span class="c1"># set all the parameters (BM3DM gives the expected type per name)</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="n">get_param_or_default</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">BM3DM</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">BM3DM</span><span class="p">}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">display_vertices</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">bool</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s2">"display_vertices"</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">display_edges</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">bool</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s2">"display_edges"</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">display_faces</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">bool</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s2">"display_faces"</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clear_vertices</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">bool</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s2">"clear_vertices"</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clear_edges</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">bool</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s2">"clear_edges"</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">clear_faces</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">bool</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s2">"clear_faces"</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edges_color</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">ManimColor</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s2">"edges_color"</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edges_width</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s2">"edges_width"</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">faces_color</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">ManimColor</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s2">"faces_color"</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">faces_opacity</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s2">"faces_opacity"</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verts_color</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">ManimColor</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s2">"verts_color"</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verts_size</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s2">"verts_size"</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pre_function_handle_to_anchor_scale_factor</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="nb">float</span><span class="p">,</span> <span class="n">params</span><span class="p">[</span><span class="s2">"pre_function_handle_to_anchor_scale_factor"</span><span class="p">]</span>
+        <span class="p">)</span>
 
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">remove_keys_from_dict</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">BM3DM</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span>
 
@@ -1720,7 +1754,7 @@
 <a class="viewcode-back" href="../../../../../reference/meshes/models/manim_models/basic_mesh.ManimMesh.html#manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.add_face">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_face</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">face</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">VGroup</span><span class="p">,</span> <span class="n">VGroup</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">ThreeDVMobject</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">ThreeDVMobject</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">"""Add a face to the mesh and create the corresponding Manim objects.</span>
 
 <span class="sd">        If ``color`` is ``None``, the default ``self.faces_color`` is used.</span>
@@ -1734,7 +1768,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The newly created face mobject and a list of newly created edge mobjects.</span>
+<span class="sd">            The newly created face mobject and the newly created edge mobjects.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">color</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">color</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">faces_color</span>
@@ -1773,12 +1807,12 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">get_edge_index</span><span class="p">(</span><span class="n">edge_verts</span><span class="p">),</span> <span class="n">edge</span><span class="p">)</span>
                 <span class="n">new_edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">new_face</span></div>
+        <span class="k">return</span> <span class="n">new_face</span><span class="p">,</span> <span class="n">new_edges</span></div>
 
 
 <div class="viewcode-block" id="ManimMesh.remove_face">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/manim_models/basic_mesh.ManimMesh.html#manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.remove_face">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">remove_face</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">face_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove_face</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">face_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">VMobject</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">VMobject</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">"""Remove a face (and its orphaned edges) by index.</span>
 
 <span class="sd">        Parameters</span>
@@ -1988,7 +2022,7 @@
 
 <div class="viewcode-block" id="ManimMesh.shift">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/manim_models/basic_mesh.ManimMesh.html#manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.shift">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">shift</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">vectors</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">shift</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">vectors</span><span class="p">:</span> <span class="n">Vector3DLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Shift the mesh and its underlying data by the sum of ``vectors``.</span>
 
 <span class="sd">        Multiple vectors of the same dimensionality are summed to produce</span>
@@ -2004,7 +2038,7 @@
 <span class="sd">            -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
-        <span class="n">total_shift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">vectors</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">total_shift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vectors</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="c1"># update vertices of self.mesh</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">translate_mesh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_as_mesh_dim</span><span class="p">(</span><span class="n">total_shift</span><span class="p">))</span>
         <span class="c1"># shift manim vertices, edges and faces</span>
@@ -2070,8 +2104,10 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">rotate</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-        <span class="n">axis</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">OUT</span><span class="p">,</span>
-        <span class="n">about_point</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">axis</span><span class="p">:</span> <span class="n">Vector3DLike</span> <span class="o">=</span> <span class="n">OUT</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">about_point</span><span class="p">:</span> <span class="n">Point3DLike</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">about_edge</span><span class="p">:</span> <span class="n">Vector3DLike</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Rotate the mesh (data and Manim objects) about ``about_point``.</span>
@@ -2095,39 +2131,41 @@
 <span class="sd">            -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
+        <span class="n">axis_array</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">dim</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
-                <span class="n">center</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="k">if</span> <span class="n">axis_array</span><span class="o">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+                <span class="n">mesh_center</span> <span class="o">=</span> <span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">_mesh_center</span><span class="p">()</span>
                     <span class="k">if</span> <span class="n">about_point</span> <span class="ow">is</span> <span class="kc">None</span>
                     <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_mesh_dim</span><span class="p">(</span><span class="n">about_point</span><span class="p">)</span>
                 <span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">apply_rotation</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">center</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">apply_rotation</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">axis_array</span><span class="p">,</span> <span class="n">mesh_center</span><span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_rebuild_objects</span><span class="p">()</span>
                 <span class="k">return</span>
             <span class="c1"># a 3-D axis cannot express a 4-D rotation: rotate the projection only</span>
-            <span class="k">if</span> <span class="n">about_point</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">about_point</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_critical_point</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
-            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">about_point</span><span class="o">=</span><span class="n">about_point</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="n">point</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">get_critical_point</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span> <span class="k">if</span> <span class="n">about_point</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">about_point</span>
+            <span class="p">)</span>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">about_point</span><span class="o">=</span><span class="n">point</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="k">return</span>
 
-        <span class="k">if</span> <span class="n">about_point</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">about_point</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_critical_point</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
-
+        <span class="n">pivot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_critical_point</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span> <span class="k">if</span> <span class="n">about_point</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">about_point</span>
+        <span class="n">pivot_array</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">pivot</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">dim</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>  <span class="c1"># always rotate about Z if mesh is 2D</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">apply_rotation</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">OUT</span><span class="p">,</span> <span class="n">about_point</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">apply_rotation</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">OUT</span><span class="p">,</span> <span class="n">pivot_array</span><span class="p">[:</span><span class="mi">2</span><span class="p">])</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">apply_rotation</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">about_point</span><span class="p">)</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">about_point</span><span class="o">=</span><span class="n">about_point</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">apply_rotation</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">axis_array</span><span class="p">,</span> <span class="n">pivot_array</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">about_point</span><span class="o">=</span><span class="n">pivot</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ManimMesh.flip">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/manim_models/basic_mesh.ManimMesh.html#manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.flip">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">flip</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">axis</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">UP</span><span class="p">,</span>
-        <span class="n">about_point</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="n">axis</span><span class="p">:</span> <span class="n">Vector3DLike</span> <span class="o">=</span> <span class="n">UP</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">about_point</span><span class="p">:</span> <span class="n">Point3DLike</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">about_edge</span><span class="p">:</span> <span class="n">Vector3DLike</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Flip the mesh (data and Manim objects) about the plane orthogonal to ``axis``.</span>
 
@@ -2141,31 +2179,32 @@
 <span class="sd">        about_point</span>
 <span class="sd">            Pivot point for the flip. Defaults to the critical point at the</span>
 <span class="sd">            origin.</span>
-<span class="sd">        **kwargs</span>
-<span class="sd">            Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.flip`.</span>
+<span class="sd">        about_edge</span>
+<span class="sd">            Accepted for signature compatibility with</span>
+<span class="sd">            :meth:`~manim.mobject.mobject.Mobject.flip`; unused here.</span>
 
-
-<span class="sd">            Returns</span>
+<span class="sd">        Returns</span>
 <span class="sd">            -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">dim</span> <span class="o">==</span> <span class="mi">4</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
-            <span class="n">center</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">axis_array</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">dim</span> <span class="o">==</span> <span class="mi">4</span> <span class="ow">and</span> <span class="n">axis_array</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="n">mesh_center</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">_mesh_center</span><span class="p">()</span>
                 <span class="k">if</span> <span class="n">about_point</span> <span class="ow">is</span> <span class="kc">None</span>
                 <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_mesh_dim</span><span class="p">(</span><span class="n">about_point</span><span class="p">)</span>
             <span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">apply_flip</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">center</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">apply_flip</span><span class="p">(</span><span class="n">axis_array</span><span class="p">,</span> <span class="n">mesh_center</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_rebuild_objects</span><span class="p">()</span>
             <span class="k">return</span>
 
-        <span class="k">if</span> <span class="n">about_point</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">about_point</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_critical_point</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">apply_flip</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">about_point</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">dim</span><span class="p">])</span>
+        <span class="n">pivot</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_critical_point</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span> <span class="k">if</span> <span class="n">about_point</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">about_point</span>
+        <span class="n">pivot_array</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">pivot</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">apply_flip</span><span class="p">(</span><span class="n">axis_array</span><span class="p">,</span> <span class="n">pivot_array</span><span class="p">[:</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">dim</span><span class="p">])</span>
         <span class="c1"># Mobject.flip delegates to self.rotate, which this class overrides to</span>
         <span class="c1"># rotate the mesh data as well; use the parent rotation to avoid</span>
         <span class="c1"># applying the flip to the data twice.</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">TAU</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">about_point</span><span class="o">=</span><span class="n">about_point</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">TAU</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">about_point</span><span class="o">=</span><span class="n">pivot</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ManimMesh.shift_vertex">
@@ -2203,7 +2242,7 @@
         <span class="p">)</span>
         <span class="n">scene</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tracker</span><span class="p">)</span>
         <span class="n">scene</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
-            <span class="n">tracker</span><span class="o">.</span><span class="n">animate</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">tracker</span><span class="o">.</span><span class="n">animate</span><span class="p">)(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
             <span class="n">run_time</span><span class="o">=</span><span class="p">(</span>
                 <span class="n">kwargs</span><span class="p">[</span><span class="s2">"shift_vertex_runtime"</span><span class="p">]</span>
                 <span class="k">if</span> <span class="s2">"shift_vertex_runtime"</span> <span class="ow">in</span> <span class="n">kwargs</span>
@@ -2246,7 +2285,7 @@
             <span class="p">)</span>
         <span class="n">scene</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tracker</span><span class="p">)</span>
         <span class="n">scene</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
-            <span class="n">tracker</span><span class="o">.</span><span class="n">animate</span><span class="p">(</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">tracker</span><span class="o">.</span><span class="n">animate</span><span class="p">)(</span>
                 <span class="o">**</span><span class="n">remove_keys_from_dict</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="p">[</span><span class="s2">"shift_vertices_runtime"</span><span class="p">])</span>
             <span class="p">)</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
             <span class="n">run_time</span><span class="o">=</span><span class="p">(</span>
@@ -2446,12 +2485,11 @@
                 <span class="sa">f</span><span class="s2">"Mesh is not in the correct format. Expected Dim 2 or 3 with z zero, was </span><span class="si">{</span><span class="n">mesh</span><span class="o">.</span><span class="n">dim</span><span class="si">}</span><span class="s2">"</span>
             <span class="p">)</span>
         <span class="c1"># init ManimMesh</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-            <span class="n">mesh</span><span class="o">=</span><span class="n">mesh</span><span class="p">,</span>
-            <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-            <span class="o">**</span><span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">get_param_or_default</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">BM2DM</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">BM2DM</span><span class="p">},</span>
-            <span class="o">**</span><span class="n">remove_keys_from_dict</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">BM2DM</span><span class="o">.</span><span class="n">keys</span><span class="p">())),</span>
-        <span class="p">)</span>
+        <span class="n">call_kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">key</span><span class="p">:</span> <span class="n">get_param_or_default</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">BM2DM</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">BM2DM</span>
+        <span class="p">}</span>
+        <span class="n">call_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">remove_keys_from_dict</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">BM2DM</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">call_kwargs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="Manim2DMesh.setup_vertices">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/manim_models/basic_mesh.Manim2DMesh.html#manim_extensions.meshes.models.manim_models.basic_mesh.Manim2DMesh.setup_vertices">[docs]</a>

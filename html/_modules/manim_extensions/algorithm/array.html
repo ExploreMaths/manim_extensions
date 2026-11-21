@@ -1537,7 +1537,7 @@
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">data</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">NodeValue</span><span class="p">],</span>
-        <span class="n">total_width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">Node</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">total_width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">box_type</span><span class="p">:</span> <span class="n">NodeBoxType</span> <span class="o">=</span> <span class="n">NodeConfig</span><span class="o">.</span><span class="n">BOX_TYPE</span><span class="p">,</span>
         <span class="n">box_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">NodeConfig</span><span class="o">.</span><span class="n">BOX_COLOR</span><span class="p">,</span>
         <span class="n">text_scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
@@ -1573,7 +1573,7 @@
 
 <div class="viewcode-block" id="Array.__getitem__">
 <a class="viewcode-back" href="../../../reference/algorithm/array.Array.html#manim_extensions.algorithm.array.Array.__getitem__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">slice</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">slice</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Node | Array"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the node at ``key`` or a slice of nodes.</span>
 
 <span class="sd">        Parameters</span>
@@ -1583,10 +1583,10 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The selected node or a new array slice.</span>
+<span class="sd">            The selected node, or a new array holding the selected slice.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="nb">slice</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">Array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">array</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+            <span class="k">return</span> <span class="n">Array</span><span class="p">([</span><span class="n">item</span><span class="o">.</span><span class="n">value</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">array</span><span class="p">[</span><span class="n">key</span><span class="p">]])</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">array</span><span class="p">[</span><span class="n">key</span><span class="p">]</span></div>
 
 

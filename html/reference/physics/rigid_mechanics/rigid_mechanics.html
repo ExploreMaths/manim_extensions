@@ -1518,12 +1518,12 @@ and <a class="reference internal" href="#manim_extensions.physics.rigid_mechanic
 <h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.physics.rigid_mechanics.rigid_mechanics._step">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.rigid_mechanics.rigid_mechanics.</span></span><span class="sig-name descname"><span class="pre">_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">space</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics._step" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.rigid_mechanics.rigid_mechanics.</span></span><span class="sig-name descname"><span class="pre">_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">space</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">60</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.rigid_mechanics.rigid_mechanics._step" title="Link to this definition">¶</a></dt>
 <dd><p>Advance the pymont simulation by one time step.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>space</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="rigid_mechanics.Space.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space" title="manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space"><code class="xref py py-class docutils literal notranslate"><span class="pre">Space</span></code></a></span>) – The physics space containing the simulation.</p></li>
+<li><p><strong>space</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The physics space containing the simulation.</p></li>
 <li><p><strong>dt</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – <p>Time step size in seconds.</p>
 <blockquote>
 <div><p>The resulting value.</p>
@@ -1598,7 +1598,7 @@ Used internally for updaters.</p>
 <dd><p>Import pymunk lazily, as it belongs to the <code class="docutils literal notranslate"><span class="pre">physics</span></code> extra.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">GuardedModule</span></code></span></p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The imported pymunk module.</p>

@@ -1477,7 +1477,7 @@
 
 <span class="sd">"""Faster meshes (WORK IN PROGRESS) by using OpenGL more efficiently."""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Sequence</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.mobject.opengl.opengl_mobject</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenGLMobject</span>
 
@@ -1547,13 +1547,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_validate_mesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span> <span class="o">=</span> <span class="n">mesh</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">triangle_indices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_flatten_triangles</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-            <span class="n">shader_folder</span><span class="o">=</span><span class="n">shader_folder</span> <span class="k">if</span> <span class="n">shader_folder</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">"mesh"</span><span class="p">,</span>
-            <span class="c1"># default params</span>
-            <span class="o">**</span><span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">get_param_or_default</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">OGLM</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">OGLM</span><span class="p">},</span>
-            <span class="c1"># regular kwargs</span>
-            <span class="o">**</span><span class="n">remove_keys_from_dict</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">OGLM</span><span class="o">.</span><span class="n">keys</span><span class="p">())),</span>
+        <span class="n">call_kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="n">key</span><span class="p">:</span> <span class="n">get_param_or_default</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">OGLM</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">OGLM</span>
+        <span class="p">}</span>
+        <span class="n">call_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">remove_keys_from_dict</span><span class="p">(</span><span class="n">kwargs</span><span class="p">,</span> <span class="nb">list</span><span class="p">(</span><span class="n">OGLM</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span>
+        <span class="n">call_kwargs</span><span class="p">[</span><span class="s2">"shader_folder"</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">shader_folder</span> <span class="k">if</span> <span class="n">shader_folder</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="s2">"mesh"</span>
         <span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">call_kwargs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="FastManimMesh._validate_mesh">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/manim_models/opengl_mesh.FastManimMesh.html#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh._validate_mesh">[docs]</a>
@@ -1730,14 +1731,14 @@
 
 <div class="viewcode-block" id="FastManimMesh.get_shader_vert_indices">
 <a class="viewcode-back" href="../../../../../reference/meshes/models/manim_models/opengl_mesh.FastManimMesh.html#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.get_shader_vert_indices">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_shader_vert_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VectorND</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_shader_vert_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return the triangle indices used for shader rendering.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            The same array as :meth:`~manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.get_triangle_indices`.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_triangle_indices</span><span class="p">()</span></div>
+        <span class="k">return</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_triangle_indices</span><span class="p">()]</span></div>
 </div>
 
 </pre></div>

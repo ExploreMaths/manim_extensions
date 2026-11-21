@@ -1485,7 +1485,7 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">it</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">Vector3D</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point3D</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Wire"</span><span class="p">,</span> <span class="s2">"MagneticField"</span><span class="p">]</span>
 
@@ -1595,7 +1595,7 @@
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_field_func</span><span class="p">(</span>
         <span class="n">p</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span>
-        <span class="n">dls</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Point3D</span><span class="p">,</span> <span class="n">Vector3D</span><span class="p">]],</span>
+        <span class="n">dls</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Point3D</span><span class="p">,</span> <span class="n">Point3D</span><span class="p">]]],</span>
         <span class="n">currents</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Compute the magnetic field vector at a point using the Biot-Savart law.</span>
@@ -1605,8 +1605,8 @@
 <span class="sd">        p</span>
 <span class="sd">            Field point at which the magnetic field is evaluated.</span>
 <span class="sd">        dls</span>
-<span class="sd">            Line segments (pairs of points) representing current-carrying</span>
-<span class="sd">            wire segments.</span>
+<span class="sd">            One list of line segments per wire; each segment is a pair of</span>
+<span class="sd">            consecutive points along that wire.</span>
 <span class="sd">        currents</span>
 <span class="sd">            Current magnitudes (in Amperes) flowing through each wire.</span>
 

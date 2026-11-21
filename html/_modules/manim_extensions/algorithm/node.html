@@ -1482,6 +1482,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">TypeAlias</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Animation</span><span class="p">,</span>
     <span class="n">AnimationGroup</span><span class="p">,</span>
     <span class="n">Circle</span><span class="p">,</span>
     <span class="n">DOWN</span><span class="p">,</span>
@@ -1502,7 +1503,8 @@
     <span class="n">VMobject</span><span class="p">,</span>
     <span class="n">WHITE</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimFloat</span><span class="p">,</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">Vector3DLike</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimFloat</span><span class="p">,</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">Vector3DLike</span><span class="p">,</span> <span class="n">VectorND</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.utils.numpy_helper</span><span class="w"> </span><span class="kn">import</span> <span class="n">NumpyHelper</span>
 
 <span class="c1">#: Value stored in an algorithm node box.</span>
@@ -1674,6 +1676,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">width</span> <span class="o">=</span> <span class="n">width</span>
 
+    <span class="n">box</span><span class="p">:</span> <span class="n">Mobject</span>
+    <span class="n">text</span><span class="p">:</span> <span class="n">Mobject</span>
+
 <div class="viewcode-block" id="Node.set_box">
 <a class="viewcode-back" href="../../../reference/algorithm/node.Node.html#manim_extensions.algorithm.node.Node.set_box">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_box</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">box_type</span><span class="p">:</span> <span class="n">NodeBoxType</span><span class="p">,</span> <span class="n">width</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ManimColor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Node"</span><span class="p">:</span>
@@ -1805,7 +1810,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            The fill color of the node box.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">box</span><span class="o">.</span><span class="n">get_fill_color</span><span class="p">()</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">ManimColor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">box</span><span class="o">.</span><span class="n">get_fill_color</span><span class="p">())</span></div>
 
 
 <div class="viewcode-block" id="Node.get_fill_opacity">
@@ -1818,7 +1823,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            The fill opacity of the node box.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">box</span><span class="o">.</span><span class="n">get_fill_opacity</span><span class="p">()</span></div>
+        <span class="k">return</span> <span class="n">ManimFloat</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">box</span><span class="o">.</span><span class="n">get_fill_opacity</span><span class="p">())</span></div>
 
 
 <div class="viewcode-block" id="Node.get_slot">
@@ -1849,14 +1854,15 @@
 <span class="sd">            or if the box type is not supported.</span>
 <span class="sd">        """</span>
 
-        <span class="n">proportion</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">if</span> <span class="n">NumpyHelper</span><span class="o">.</span><span class="n">is_same_direction</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">):</span>
+        <span class="n">direction_array</span><span class="p">:</span> <span class="n">VectorND</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">proportion</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">NumpyHelper</span><span class="o">.</span><span class="n">is_same_direction</span><span class="p">(</span><span class="n">direction_array</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">):</span>
             <span class="n">proportion</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">elif</span> <span class="n">NumpyHelper</span><span class="o">.</span><span class="n">is_same_direction</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">LEFT</span><span class="p">):</span>
+        <span class="k">elif</span> <span class="n">NumpyHelper</span><span class="o">.</span><span class="n">is_same_direction</span><span class="p">(</span><span class="n">direction_array</span><span class="p">,</span> <span class="n">LEFT</span><span class="p">):</span>
             <span class="n">proportion</span> <span class="o">=</span> <span class="mf">0.5</span>
-        <span class="k">elif</span> <span class="n">NumpyHelper</span><span class="o">.</span><span class="n">is_same_direction</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">UP</span><span class="p">):</span>
+        <span class="k">elif</span> <span class="n">NumpyHelper</span><span class="o">.</span><span class="n">is_same_direction</span><span class="p">(</span><span class="n">direction_array</span><span class="p">,</span> <span class="n">UP</span><span class="p">):</span>
             <span class="n">proportion</span> <span class="o">=</span> <span class="mf">0.75</span>
-        <span class="k">elif</span> <span class="n">NumpyHelper</span><span class="o">.</span><span class="n">is_same_direction</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">):</span>
+        <span class="k">elif</span> <span class="n">NumpyHelper</span><span class="o">.</span><span class="n">is_same_direction</span><span class="p">(</span><span class="n">direction_array</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">):</span>
             <span class="n">proportion</span> <span class="o">=</span> <span class="mf">0.25</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"direction must be LEFT or RIGHT or UP or DOWN"</span><span class="p">)</span>
@@ -1933,7 +1939,7 @@
 
         <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span>
-            <span class="o">*</span><span class="n">nodes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Node</span><span class="p">],</span>
+            <span class="o">*</span><span class="n">nodes</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span>
             <span class="n">color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">NodeConfig</span><span class="o">.</span><span class="n">SELECT_COLOR</span><span class="p">,</span>
             <span class="n">opacity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">NodeConfig</span><span class="o">.</span><span class="n">SELECT_OPACITY</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
@@ -2028,7 +2034,9 @@
 <span class="sd">        """</span>
 
         <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="n">NodeValue</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">value</span><span class="p">)],</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+                <span class="n">cast</span><span class="p">(</span><span class="n">Animation</span><span class="p">,</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="n">value</span><span class="p">)),</span> <span class="o">**</span><span class="n">kwargs</span>
+            <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Node.MoveAndOverWrite">
@@ -2073,11 +2081,11 @@
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span>
             <span class="n">target</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span>
-            <span class="n">select_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">select_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">select_opacity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
         <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">steps</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">steps</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Animation</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">if</span> <span class="n">select_color</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">steps</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                     <span class="n">Node</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">select_color</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="n">select_opacity</span><span class="p">)</span>
@@ -2085,7 +2093,7 @@
 
             <span class="n">steps</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span>
                 <span class="p">[</span>
-                    <span class="n">node</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">target</span><span class="p">),</span>
+                    <span class="n">cast</span><span class="p">(</span><span class="n">Animation</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">target</span><span class="p">)),</span>
                     <span class="n">AnimationGroup</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">UpdateValue</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span><span class="p">),</span> <span class="n">FadeOut</span><span class="p">(</span><span class="n">node</span><span class="p">)),</span>
                 <span class="p">]</span>
             <span class="p">)</span>
@@ -2136,7 +2144,7 @@
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">node</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span>
             <span class="n">target</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span>
-            <span class="n">select_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">select_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">select_opacity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
         <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -2194,13 +2202,13 @@
             <span class="bp">self</span><span class="p">,</span>
             <span class="n">node1</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span>
             <span class="n">node2</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span>
-            <span class="n">select_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+            <span class="n">select_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
             <span class="n">select_opacity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
         <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">copied_node1</span> <span class="o">=</span> <span class="n">node1</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">node1</span><span class="p">)</span>
             <span class="n">copied_node2</span> <span class="o">=</span> <span class="n">node2</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">node2</span><span class="p">)</span>
-            <span class="n">steps</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">steps</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Animation</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
                 <span class="n">FadeIn</span><span class="p">(</span><span class="n">copied_node1</span><span class="p">,</span> <span class="n">copied_node2</span><span class="p">),</span>
             <span class="p">]</span>
             <span class="k">if</span> <span class="n">select_color</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>

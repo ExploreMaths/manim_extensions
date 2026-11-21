@@ -1524,7 +1524,7 @@
 <span class="sd">            **kwargs</span>
 <span class="sd">                Keyword arguments forwarded to the wrapped function.</span>
 <span class="sd">            """</span>
-            <span class="n">mesh</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">mesh</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">return_value</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="k">if</span> <span class="p">(</span>
                 <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mesh</span><span class="p">)</span><span class="o">.</span><span class="n">test_for_dangling</span>
@@ -1575,7 +1575,7 @@
 <span class="sd">            **kwargs</span>
 <span class="sd">                Keyword arguments forwarded to the wrapped function.</span>
 <span class="sd">            """</span>
-            <span class="n">mesh</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">mesh</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">return_value</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
             <span class="k">if</span> <span class="p">(</span>
                 <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mesh</span><span class="p">)</span><span class="o">.</span><span class="n">test_for_dangling</span>

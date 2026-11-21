@@ -1546,7 +1546,7 @@
 
 <div class="viewcode-block" id="VoronoiDelaunay.create_voronoi">
 <a class="viewcode-back" href="../../../../reference/meshes/delaunay/voronoi.VoronoiDelaunay.html#manim_extensions.meshes.delaunay.voronoi.VoronoiDelaunay.create_voronoi">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">create_voronoi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create_voronoi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">VGroup</span><span class="p">,</span> <span class="n">VGroup</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Build the Voronoi diagram for the mesh vertices and return it as Manim groups.</span>
 
 <span class="sd">        The diagram is constructed from the :class:`~scipy.spatial.Voronoi`</span>
@@ -1634,8 +1634,7 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            A :class:`~manim.mobject.geometry.arc.Circle` representing the</span>
-<span class="sd">            circumscribed circle, or ``None`` if the vertex index does not</span>
-<span class="sd">            belong to any triangle ridge.</span>
+<span class="sd">            circumscribed circle of the dual triangle.</span>
 <span class="sd">        """</span>
         <span class="n">verts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">triangle_mesh</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">get_3d_vertices</span><span class="p">()</span>
         <span class="n">voronoi_vertices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">voronoi</span><span class="o">.</span><span class="n">vertices</span><span class="p">,</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
@@ -1650,7 +1649,9 @@
                 <span class="p">)</span>
                 <span class="n">circle</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">vert_a</span><span class="p">)</span>
                 <span class="k">return</span> <span class="n">circle</span>
-        <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># should never get here</span></div>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"voronoi vertex </span><span class="si">{</span><span class="n">voronoi_vertex_index</span><span class="si">}</span><span class="s2"> is not part of any triangle ridge"</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="VoronoiDelaunay.create_triangle">

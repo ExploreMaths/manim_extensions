@@ -1699,7 +1699,7 @@
 <span class="sd">    -------</span>
 <span class="sd">        The minimum coordinate value.</span>
 <span class="sd">    """</span>
-    <span class="n">res</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">y</span> <span class="k">if</span> <span class="n">is_horizontal</span> <span class="k">else</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">x</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">y</span> <span class="k">if</span> <span class="n">is_horizontal</span> <span class="k">else</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
         <span class="n">res</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">get_min</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">is_horizontal</span><span class="p">),</span> <span class="n">res</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">res</span></div>
@@ -1708,7 +1708,7 @@
 
 <div class="viewcode-block" id="normalize">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_tidy_tree.html#manim_extensions.mindmap.algorithms.alg_tidy_tree.normalize">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">normalize</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">is_horizontal</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">normalize</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">is_horizontal</span><span class="p">:</span> <span class="nb">bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Shift the subtree so that its minimum non-layered coordinate is 0.</span>
 
 <span class="sd">    Parameters</span>
@@ -1763,7 +1763,7 @@
 
 <div class="viewcode-block" id="layer">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_tidy_tree.html#manim_extensions.mindmap.algorithms.alg_tidy_tree.layer">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">layer</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">level_spacing</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">layer</span><span class="p">(</span><span class="n">node</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">LayoutDirection</span><span class="p">,</span> <span class="n">level_spacing</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Set the layer (depth) coordinate for each node in the tree.</span>
 
 <span class="sd">    Assigns ``level`` based on the parent's level and positions the</span>
@@ -1867,11 +1867,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">is_horizontal</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_horizontal</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">node_spacing</span> <span class="o">=</span> <span class="n">node_spacing</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">level_spacing</span> <span class="o">=</span> <span class="n">level_spacing</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wt</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wt</span><span class="p">:</span> <span class="n">WrappedTree</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="TidyTreeLayout._is_horizontal">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_tidy_tree.TidyTreeLayout.html#manim_extensions.mindmap.algorithms.alg_tidy_tree.TidyTreeLayout._is_horizontal">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_is_horizontal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_is_horizontal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">LayoutDirection</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Check whether the given layout direction is horizontal.</span>
 
 <span class="sd">        Parameters</span>
@@ -1895,10 +1895,11 @@
 <span class="sd">        -------</span>
 <span class="sd">            The root node of the completed layout."""</span>
         <span class="n">layer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">level_spacing</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">wt</span> <span class="o">=</span> <span class="n">WrappedTree</span><span class="o">.</span><span class="n">from_node</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_horizontal</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">first_walk</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wt</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">second_walk</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wt</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="n">convert_back</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_horizontal</span><span class="p">)</span>
+        <span class="n">wt</span> <span class="o">=</span> <span class="n">WrappedTree</span><span class="o">.</span><span class="n">from_node</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_horizontal</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wt</span> <span class="o">=</span> <span class="n">wt</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">first_walk</span><span class="p">(</span><span class="n">wt</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">second_walk</span><span class="p">(</span><span class="n">wt</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">convert_back</span><span class="p">(</span><span class="n">wt</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_horizontal</span><span class="p">)</span>
         <span class="n">normalize</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_horizontal</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span></div>
 
@@ -1924,12 +1925,14 @@
 
         <span class="c1"># Process the first child</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">first_walk</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="n">ih</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_iyl</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bottom</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">extreme_right</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">ih</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_iyl</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">WrappedTree</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">extreme_right</span><span class="p">)),</span> <span class="mi">0</span><span class="p">,</span> <span class="kc">None</span>
+        <span class="p">)</span>
 
         <span class="c1"># Process the remaining children</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">child_number</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">first_walk</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-            <span class="n">min_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">extreme_right</span><span class="p">)</span>
+            <span class="n">min_val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">bottom</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">WrappedTree</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">extreme_right</span><span class="p">))</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">separate</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">ih</span><span class="p">)</span>
             <span class="n">ih</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_iyl</span><span class="p">(</span><span class="n">min_val</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">ih</span><span class="p">)</span>
 
@@ -2010,14 +2013,14 @@
 <span class="sd">            -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
-        <span class="n">sr</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span>
+        <span class="n">sr</span><span class="p">:</span> <span class="n">WrappedTree</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span>
             <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
         <span class="p">]</span>  <span class="c1"># current right-contour node, initially the immediate left sibling</span>
-        <span class="n">mssr</span> <span class="o">=</span> <span class="n">sr</span><span class="o">.</span><span class="n">mod</span>  <span class="c1"># sum of mod values from t.children[i-1] to sr</span>
-        <span class="n">cl</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span>
+        <span class="n">mssr</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">WrappedTree</span><span class="p">,</span> <span class="n">sr</span><span class="p">)</span><span class="o">.</span><span class="n">mod</span>  <span class="c1"># sum of mod values from t.children[i-1] to sr</span>
+        <span class="n">cl</span><span class="p">:</span> <span class="n">WrappedTree</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span>
             <span class="n">i</span>
         <span class="p">]</span>  <span class="c1"># current left-contour node, initially the current subtree root</span>
-        <span class="n">mscl</span> <span class="o">=</span> <span class="n">cl</span><span class="o">.</span><span class="n">mod</span>  <span class="c1"># sum of mod values from t.children[i] to cl</span>
+        <span class="n">mscl</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">WrappedTree</span><span class="p">,</span> <span class="n">cl</span><span class="p">)</span><span class="o">.</span><span class="n">mod</span>  <span class="c1"># sum of mod values from t.children[i] to cl</span>
 
         <span class="k">while</span> <span class="n">sr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">cl</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="c1"># Skip preceding subtrees that are completely hidden</span>
@@ -2295,8 +2298,8 @@
 <span class="sd">            -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
-        <span class="n">d</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">modsumdelta</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">d</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">modsumdelta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
             <span class="n">d</span> <span class="o">+=</span> <span class="n">child</span><span class="o">.</span><span class="n">shift</span>
             <span class="n">modsumdelta</span> <span class="o">+=</span> <span class="n">d</span> <span class="o">+</span> <span class="n">child</span><span class="o">.</span><span class="n">change</span>

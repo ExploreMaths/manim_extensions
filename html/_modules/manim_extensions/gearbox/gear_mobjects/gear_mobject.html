@@ -1482,7 +1482,7 @@
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Sequence</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
@@ -1493,10 +1493,10 @@
     <span class="n">DOWN</span><span class="p">,</span>
     <span class="n">LEFT</span><span class="p">,</span>
     <span class="n">Line</span><span class="p">,</span>
-    <span class="n">ManimColor</span><span class="p">,</span>
     <span class="n">ORIGIN</span><span class="p">,</span>
     <span class="n">OUT</span><span class="p">,</span>
     <span class="n">PI</span><span class="p">,</span>
+    <span class="n">ParsableManimColor</span><span class="p">,</span>
     <span class="n">RIGHT</span><span class="p">,</span>
     <span class="n">UP</span><span class="p">,</span>
     <span class="n">VMobject</span><span class="p">,</span>
@@ -1505,7 +1505,14 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">fsolve</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">least_squares</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">Point3D_Array</span><span class="p">,</span> <span class="n">Vector3D</span><span class="p">,</span> <span class="n">VectorND</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Point3D</span><span class="p">,</span>
+    <span class="n">Point3D_Array</span><span class="p">,</span>
+    <span class="n">Point3DLike</span><span class="p">,</span>
+    <span class="n">Vector3D</span><span class="p">,</span>
+    <span class="n">Vector3DLike</span><span class="p">,</span>
+    <span class="n">VectorND</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s2">"involute_func"</span><span class="p">,</span>
@@ -1967,12 +1974,19 @@
 <span class="sd">            The current rotation angle of the gear in radians.</span>
 <span class="sd">        """</span>
         <span class="n">v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_angle_vector</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></div>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span></div>
 
 
 <div class="viewcode-block" id="Gear.set_stroke">
 <a class="viewcode-back" href="../../../../reference/gearbox/gear_mobjects/gear_mobject.Gear.html#manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear.set_stroke">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_stroke</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_stroke</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">opacity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">background</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="n">family</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Gear"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Override set_stroke to avoid revealing the line which is used for tracking center and angle.</span>
 <span class="sd">        If family is specified, it will still do it.</span>
 
@@ -1980,18 +1994,23 @@
 <span class="sd">        ----------</span>
 <span class="sd">        color</span>
 <span class="sd">            The color to apply.</span>
-<span class="sd">        kwargs</span>
-<span class="sd">            Kwargs processed by this operation.</span>
+<span class="sd">        width</span>
+<span class="sd">            Stroke width in Manim units.</span>
+<span class="sd">        opacity</span>
+<span class="sd">            Stroke opacity between 0 and 1.</span>
+<span class="sd">        background</span>
+<span class="sd">            Whether the stroke is drawn behind the fill.</span>
+<span class="sd">        family</span>
+<span class="sd">            Whether the stroke also applies to submobjects.  Defaults to</span>
+<span class="sd">            ``False`` so the invisible tracking line keeps its stroke.</span>
 
-
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
-<span class="sd">                The resulting value.</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            The same gear, allowing calls to be chained.</span>
 <span class="sd">        """</span>
-        <span class="k">if</span> <span class="s2">"family"</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
-            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span><span class="n">color</span><span class="p">,</span> <span class="n">family</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">ParsableManimColor</span><span class="p">,</span> <span class="n">color</span><span class="p">),</span> <span class="n">width</span><span class="p">,</span> <span class="n">opacity</span><span class="p">,</span> <span class="n">background</span><span class="p">,</span> <span class="n">family</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Gear.generate_points">
@@ -2029,7 +2048,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">angle_ofs</span> <span class="o">=</span> <span class="n">angle_base</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">DEGREES</span> <span class="o">+</span> <span class="n">da</span>
 
         <span class="c1"># find t-range for the involute that lies inside the rf-ra range</span>
-        <span class="k">def</span><span class="w"> </span><span class="nf">invo_cross_diff</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="n">VectorND</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">invo_cross_diff</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">"""Compute the y-coordinate where two involute flanks intersect.</span>
 
 <span class="sd">            Used to find the maximum involute height before the tooth tip.</span>
@@ -2047,7 +2066,7 @@
                 <span class="n">involute_func</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">rb</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">pitch_angle</span> <span class="o">/</span> <span class="mi">4</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">angle_ofs</span>
             <span class="p">)</span>
             <span class="c1"># when y coordinate is 0, the 2 involutes of the tooth would intersect because of the symmetry</span>
-            <span class="k">return</span> <span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
         <span class="c1"># find max height</span>
         <span class="k">try</span><span class="p">:</span>
@@ -2095,7 +2114,7 @@
         <span class="n">rad_ucut</span> <span class="o">=</span> <span class="n">ofs_vector</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">tan_ucut</span> <span class="o">=</span> <span class="n">ofs_vector</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">undercut_func</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="n">VectorND</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VectorND</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">undercut_func</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VectorND</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">"""Compute a point on the undercut (radial) curve at parameter ``t``.</span>
 
 <span class="sd">            Parameters</span>
@@ -2115,7 +2134,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">*</span> <span class="n">DEGREES</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">rf</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">rb</span><span class="p">:</span>
             <span class="n">undercut</span> <span class="o">=</span> <span class="kc">True</span>
 
-            <span class="k">def</span><span class="w"> </span><span class="nf">diff_val_func</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="n">VectorND</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VectorND</span><span class="p">:</span>
+            <span class="k">def</span><span class="w"> </span><span class="nf">diff_val_func</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VectorND</span><span class="p">:</span>
 <span class="w">                </span><span class="sd">"""Compute the 2-D distance between undercut and involute curves.</span>
 
 <span class="sd">                Parameters</span>
@@ -2134,7 +2153,7 @@
                 <span class="n">diff</span> <span class="o">=</span> <span class="n">ucut_val</span> <span class="o">-</span> <span class="n">invo_val</span>
                 <span class="k">return</span> <span class="n">diff</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
 
-            <span class="k">def</span><span class="w"> </span><span class="nf">_solve_undercut_intersection</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+            <span class="k">def</span><span class="w"> </span><span class="nf">_solve_undercut_intersection</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">VectorND</span><span class="p">:</span>
 <span class="w">                </span><span class="sd">"""Find the intersection of undercut and involute curves robustly."""</span>
                 <span class="n">candidates</span> <span class="o">=</span> <span class="p">[</span>
                     <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">]),</span>
@@ -2142,7 +2161,7 @@
                     <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.02</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">]),</span>
                     <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.01</span><span class="p">]),</span>
                 <span class="p">]</span>
-                <span class="n">best_result</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="n">best_result</span><span class="p">:</span> <span class="n">VectorND</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
                 <span class="n">best_cost</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">inf</span>
                 <span class="k">for</span> <span class="n">x0</span> <span class="ow">in</span> <span class="n">candidates</span><span class="p">:</span>
                     <span class="k">try</span><span class="p">:</span>
@@ -2166,11 +2185,11 @@
                     <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">():</span>
                         <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">"ignore"</span><span class="p">)</span>
                         <span class="n">res</span> <span class="o">=</span> <span class="n">least_squares</span><span class="p">(</span>
-                            <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">diff_val_func</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]]),</span>
+                            <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">diff_val_func</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]])),</span>
                             <span class="n">x0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">]),</span>
                             <span class="n">bounds</span><span class="o">=</span><span class="p">([</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">],</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">]),</span>
                         <span class="p">)</span>
-                    <span class="k">return</span> <span class="n">res</span><span class="o">.</span><span class="n">x</span>
+                    <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">VectorND</span><span class="p">,</span> <span class="n">res</span><span class="o">.</span><span class="n">x</span><span class="p">)</span>
                 <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
                     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.05</span><span class="p">])</span>
 
@@ -2520,8 +2539,10 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">rotate</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-        <span class="n">axis</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">OUT</span><span class="p">,</span>
-        <span class="n">about_point</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">axis</span><span class="p">:</span> <span class="n">Vector3DLike</span> <span class="o">=</span> <span class="n">OUT</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">about_point</span><span class="p">:</span> <span class="n">Point3DLike</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">about_edge</span><span class="p">:</span> <span class="n">Vector3DLike</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Gear"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Rotate the gear around its centre.</span>
@@ -2535,17 +2556,18 @@
 <span class="sd">        about_point</span>
 <span class="sd">            Centre point for the rotation.  If ``None`` the gear's own</span>
 <span class="sd">            centre is used.</span>
-<span class="sd">        **kwargs</span>
-<span class="sd">            Additional keyword arguments forwarded to :meth:`~manim.mobject.types.vectorized_mobject.VMobject.rotate`.</span>
+<span class="sd">        about_edge</span>
+<span class="sd">            Edge of the gear used when ``about_point`` is ``None`` and the</span>
+<span class="sd">            gear should rotate around one of its sides.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            The same mobject after rotation.</span>
 <span class="sd">        """</span>
-        <span class="k">if</span> <span class="n">about_point</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">ret</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">about_point</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_center</span><span class="p">(),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">ret</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">about_point</span><span class="o">=</span><span class="n">about_point</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="c1"># ``**kwargs`` only mirrors the supertype signature: VMobject.rotate</span>
+        <span class="c1"># takes no additional keyword arguments.</span>
+        <span class="n">point</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span> <span class="k">if</span> <span class="n">about_point</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">about_point</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">about_point</span><span class="o">=</span><span class="n">point</span><span class="p">,</span> <span class="n">about_edge</span><span class="o">=</span><span class="n">about_edge</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span></div>
 </div>
 
@@ -2702,7 +2724,7 @@
 <span class="sd">            The current orientation angle of the rack in radians.</span>
 <span class="sd">        """</span>
         <span class="n">v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_angle_vector</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></div>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">v</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span></div>
 
 
 <div class="viewcode-block" id="Rack.rotate">
@@ -2710,8 +2732,10 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">rotate</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
-        <span class="n">axis</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">OUT</span><span class="p">,</span>
-        <span class="n">about_point</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">axis</span><span class="p">:</span> <span class="n">Vector3DLike</span> <span class="o">=</span> <span class="n">OUT</span><span class="p">,</span>
+        <span class="o">*</span><span class="p">,</span>
+        <span class="n">about_point</span><span class="p">:</span> <span class="n">Point3DLike</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">about_edge</span><span class="p">:</span> <span class="n">Vector3DLike</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Rack"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Rotate the rack around its centre.</span>
@@ -2725,17 +2749,18 @@
 <span class="sd">        about_point</span>
 <span class="sd">            Centre point for the rotation.  If ``None`` the rack's own</span>
 <span class="sd">            centre is used.</span>
-<span class="sd">        **kwargs</span>
-<span class="sd">            Additional keyword arguments forwarded to :meth:`~manim.mobject.types.vectorized_mobject.VMobject.rotate`.</span>
+<span class="sd">        about_edge</span>
+<span class="sd">            Edge of the gear used when ``about_point`` is ``None`` and the</span>
+<span class="sd">            gear should rotate around one of its sides.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            The same mobject after rotation.</span>
 <span class="sd">        """</span>
-        <span class="k">if</span> <span class="n">about_point</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">ret</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">about_point</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_center</span><span class="p">(),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">ret</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">about_point</span><span class="o">=</span><span class="n">about_point</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="c1"># ``**kwargs`` only mirrors the supertype signature: VMobject.rotate</span>
+        <span class="c1"># takes no additional keyword arguments.</span>
+        <span class="n">point</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span> <span class="k">if</span> <span class="n">about_point</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">about_point</span>
+        <span class="n">ret</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">axis</span><span class="p">,</span> <span class="n">about_point</span><span class="o">=</span><span class="n">point</span><span class="p">,</span> <span class="n">about_edge</span><span class="o">=</span><span class="n">about_edge</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">ret</span></div>
 </div>
 

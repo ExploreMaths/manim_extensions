@@ -1479,9 +1479,9 @@
 <span class="sd">functions to create delaunay meshes by divide and conquer.</span>
 <span class="sd">"""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Sequence</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Create</span><span class="p">,</span> <span class="n">DashedLine</span><span class="p">,</span> <span class="n">FadeOut</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">Scene</span><span class="p">,</span> <span class="n">Uncreate</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Create</span><span class="p">,</span> <span class="n">DashedLine</span><span class="p">,</span> <span class="n">FadeOut</span><span class="p">,</span> <span class="n">Scene</span><span class="p">,</span> <span class="n">Uncreate</span>
 
 <span class="c1"># python imports</span>
 
@@ -1498,7 +1498,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">..models.manim_models.triangle_mesh</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">TriangleManim2DMesh</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point2D</span><span class="p">,</span> <span class="n">Point2D_Array</span><span class="p">,</span> <span class="n">Vector2D</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vector2D</span>
 
 
 <div class="viewcode-block" id="get_clockwise_angle">
@@ -1519,10 +1519,10 @@
 <span class="sd">    """</span>
     <span class="n">dot</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># proportional to cos</span>
     <span class="n">det</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># proportional to sin</span>
-    <span class="n">angle</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">det</span><span class="p">,</span> <span class="n">dot</span><span class="p">)</span>  <span class="c1"># atan2(sin, cos)</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="o">-</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">det</span><span class="p">,</span> <span class="n">dot</span><span class="p">))</span>  <span class="c1"># atan2(sin, cos)</span>
     <span class="k">if</span> <span class="n">angle</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># counterclockwise</span>
         <span class="n">angle</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">+</span> <span class="n">angle</span>
-    <span class="k">return</span> <span class="n">angle</span></div>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">angle</span><span class="p">)</span></div>
 
 
 
@@ -1544,7 +1544,7 @@
 <span class="sd">    """</span>
     <span class="n">dot</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># proportional to cos</span>
     <span class="n">det</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># proportional to sin</span>
-    <span class="n">angle</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">det</span><span class="p">,</span> <span class="n">dot</span><span class="p">)</span>  <span class="c1"># atan2(sin, cos)</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">det</span><span class="p">,</span> <span class="n">dot</span><span class="p">))</span>  <span class="c1"># atan2(sin, cos)</span>
     <span class="k">if</span> <span class="n">angle</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># clockwise</span>
         <span class="n">angle</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">+</span> <span class="n">angle</span>
     <span class="k">return</span> <span class="n">angle</span></div>
@@ -1712,7 +1712,10 @@
 <div class="viewcode-block" id="DivideAndConquer._right_candidate">
 <a class="viewcode-back" href="../../../../reference/meshes/delaunay/divide_and_conquer.DivideAndConquer.html#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._right_candidate">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_right_candidate</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">base_lr</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">rr_edges</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">base_lr</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
+        <span class="n">rr_edges</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
+        <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Find the best right-side candidate vertex for the merge step.</span>
 
@@ -1774,14 +1777,22 @@
 
                 <span class="c1"># delete RR edge to potential_candidate</span>
                 <span class="n">faces</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">triangle_mesh</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">faces</span>
-                <span class="n">face_idx_to_delete</span> <span class="o">=</span> <span class="kc">None</span>
-                <span class="k">for</span> <span class="n">face_idx</span><span class="p">,</span> <span class="n">face</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">faces</span><span class="p">):</span>
-                    <span class="k">if</span> <span class="n">endpoints</span><span class="p">[</span><span class="n">order</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="ow">in</span> <span class="n">face</span> <span class="ow">and</span> <span class="n">base_lr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="n">face</span><span class="p">:</span>
+                <span class="n">face_idx_to_delete</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">for</span> <span class="n">face_idx</span><span class="p">,</span> <span class="n">face_vertices</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">faces</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="p">(</span>
+                        <span class="n">endpoints</span><span class="p">[</span><span class="n">order</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="ow">in</span> <span class="n">face_vertices</span>
+                        <span class="ow">and</span> <span class="n">base_lr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="ow">in</span> <span class="n">face_vertices</span>
+                    <span class="p">):</span>
                         <span class="n">face_idx_to_delete</span> <span class="o">=</span> <span class="n">face_idx</span>
                         <span class="k">break</span>
-                <span class="n">face</span><span class="p">,</span> <span class="n">edges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">triangle_mesh</span><span class="o">.</span><span class="n">remove_face</span><span class="p">(</span><span class="n">face_idx_to_delete</span><span class="p">)</span>
-                <span class="n">rr_edges</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">((</span><span class="n">base_lr</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">potential_candidate</span><span class="p">))))</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeOut</span><span class="p">(</span><span class="n">face</span><span class="p">,</span> <span class="o">*</span><span class="n">edges</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">speed</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">face_idx_to_delete</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">removed_face</span><span class="p">,</span> <span class="n">removed_edges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">triangle_mesh</span><span class="o">.</span><span class="n">remove_face</span><span class="p">(</span>
+                        <span class="n">face_idx_to_delete</span>
+                    <span class="p">)</span>
+                    <span class="n">rr_edges</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">((</span><span class="n">base_lr</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">potential_candidate</span><span class="p">))))</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
+                        <span class="n">FadeOut</span><span class="p">(</span><span class="n">removed_face</span><span class="p">,</span> <span class="o">*</span><span class="n">removed_edges</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="mf">1.0</span> <span class="o">*</span> <span class="n">speed</span><span class="p">)</span>
+                    <span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.3</span> <span class="o">*</span> <span class="n">speed</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">None</span></div>
 
@@ -1789,7 +1800,10 @@
 <div class="viewcode-block" id="DivideAndConquer._left_candidate">
 <a class="viewcode-back" href="../../../../reference/meshes/delaunay/divide_and_conquer.DivideAndConquer.html#manim_extensions.meshes.delaunay.divide_and_conquer.DivideAndConquer._left_candidate">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_left_candidate</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">base_lr</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">ll_edges</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">base_lr</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span>
+        <span class="n">ll_edges</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
+        <span class="n">speed</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Find the best left-side candidate vertex for the merge step.</span>
 
@@ -1847,14 +1861,22 @@
 
                 <span class="c1"># delete LL edge to potential_candidate</span>
                 <span class="n">faces</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">triangle_mesh</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">faces</span>
-                <span class="n">face_idx_to_delete</span> <span class="o">=</span> <span class="kc">None</span>
-                <span class="k">for</span> <span class="n">face_idx</span><span class="p">,</span> <span class="n">face</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">faces</span><span class="p">):</span>
-                    <span class="k">if</span> <span class="n">endpoints</span><span class="p">[</span><span class="n">order</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="ow">in</span> <span class="n">face</span> <span class="ow">and</span> <span class="n">base_lr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">face</span><span class="p">:</span>
+                <span class="n">face_idx_to_delete</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">for</span> <span class="n">face_idx</span><span class="p">,</span> <span class="n">face_vertices</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">faces</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="p">(</span>
+                        <span class="n">endpoints</span><span class="p">[</span><span class="n">order</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="ow">in</span> <span class="n">face_vertices</span>
+                        <span class="ow">and</span> <span class="n">base_lr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="n">face_vertices</span>
+                    <span class="p">):</span>
                         <span class="n">face_idx_to_delete</span> <span class="o">=</span> <span class="n">face_idx</span>
                         <span class="k">break</span>
-                <span class="n">face</span><span class="p">,</span> <span class="n">edges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">triangle_mesh</span><span class="o">.</span><span class="n">remove_face</span><span class="p">(</span><span class="n">face_idx_to_delete</span><span class="p">)</span>
-                <span class="n">ll_edges</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">((</span><span class="n">base_lr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">potential_candidate</span><span class="p">))))</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeOut</span><span class="p">(</span><span class="n">face</span><span class="p">,</span> <span class="o">*</span><span class="n">edges</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">speed</span><span class="p">))</span>
+                <span class="k">if</span> <span class="n">face_idx_to_delete</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">removed_face</span><span class="p">,</span> <span class="n">removed_edges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">triangle_mesh</span><span class="o">.</span><span class="n">remove_face</span><span class="p">(</span>
+                        <span class="n">face_idx_to_delete</span>
+                    <span class="p">)</span>
+                    <span class="n">ll_edges</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">((</span><span class="n">base_lr</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">potential_candidate</span><span class="p">))))</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
+                        <span class="n">FadeOut</span><span class="p">(</span><span class="n">removed_face</span><span class="p">,</span> <span class="o">*</span><span class="n">removed_edges</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">speed</span><span class="p">)</span>
+                    <span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.3</span> <span class="o">*</span> <span class="n">speed</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">None</span></div>
 
@@ -1978,7 +2000,7 @@
 <span class="sd">            The ``(l, r)`` vertex indices forming the initial base edge.</span>
 <span class="sd">        """</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">next_index</span><span class="p">(</span><span class="n">cur_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">indices</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">next_index</span><span class="p">(</span><span class="n">cur_idx</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">indices</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">"""Return the next index in a cyclic sequence.</span>
 
 <span class="sd">            Parameters</span>
@@ -1990,14 +2012,19 @@
 
 <span class="sd">            Returns</span>
 <span class="sd">            -------</span>
-<span class="sd">                The next index, or ``None`` if ``cur_idx`` is not found.</span>
+<span class="sd">                The next index in the cyclic sequence.</span>
+
+<span class="sd">            Raises</span>
+<span class="sd">            ------</span>
+<span class="sd">            ValueError</span>
+<span class="sd">                If ``cur_idx`` does not occur in ``indices``.</span>
 <span class="sd">            """</span>
             <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">idx</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">indices</span><span class="p">):</span>
                 <span class="k">if</span> <span class="n">idx</span> <span class="o">==</span> <span class="n">cur_idx</span><span class="p">:</span>
                     <span class="k">return</span> <span class="n">indices</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">indices</span><span class="p">)]</span>
-            <span class="k">return</span> <span class="kc">None</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"index </span><span class="si">{</span><span class="n">cur_idx</span><span class="si">}</span><span class="s2"> not found in </span><span class="si">{</span><span class="n">indices</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
-        <span class="k">def</span><span class="w"> </span><span class="nf">on_right</span><span class="p">(</span><span class="n">tangent</span><span class="p">:</span> <span class="n">Point2D_Array</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">Point2D</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">on_right</span><span class="p">(</span><span class="n">tangent</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">"""Check whether a point lies to the right of a tangent line.</span>
 
 <span class="sd">            Parameters</span>
@@ -2011,18 +2038,19 @@
 <span class="sd">            -------</span>
 <span class="sd">                ``True`` if the point is to the right of the tangent.</span>
 <span class="sd">            """</span>
-            <span class="k">return</span> <span class="p">(</span>
+            <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span>
                 <span class="p">(</span><span class="n">tangent</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">tangent</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">tangent</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
                 <span class="o">-</span> <span class="p">(</span><span class="n">tangent</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">tangent</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">tangent</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
-            <span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span>
+                <span class="o">&lt;</span> <span class="mi">0</span>
+            <span class="p">)</span>
 
         <span class="n">verts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">triangle_mesh</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">get_3d_vertices</span><span class="p">()</span>
-        <span class="n">left_hull</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">left_hull</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">ConvexHull</span><span class="p">(</span><span class="n">verts</span><span class="p">[</span><span class="n">indices_left</span><span class="p">][:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">vertices</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">indices_left</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span>
             <span class="k">else</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
         <span class="p">)</span>
-        <span class="n">right_hull</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">right_hull</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">ConvexHull</span><span class="p">(</span><span class="n">verts</span><span class="p">[</span><span class="n">indices_right</span><span class="p">][:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">])</span><span class="o">.</span><span class="n">vertices</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">indices_right</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span>
             <span class="k">else</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>

@@ -1627,7 +1627,7 @@
         <span class="o">*</span><span class="p">[</span><span class="n">triangle_mesh</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">get_3d_vertices</span><span class="p">()[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">face</span><span class="p">]</span>
     <span class="p">)</span>
     <span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">center</span> <span class="o">-</span> <span class="n">point</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">distance</span> <span class="o">&lt;</span> <span class="n">radius</span></div>
+    <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">distance</span> <span class="o">&lt;</span> <span class="n">radius</span><span class="p">)</span></div>
 
 </pre></div>
         </article>

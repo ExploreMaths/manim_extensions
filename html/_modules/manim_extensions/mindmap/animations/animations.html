@@ -1510,7 +1510,8 @@
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">..algorithms</span><span class="w"> </span><span class="kn">import</span> <span class="n">LayoutFactory</span><span class="p">,</span> <span class="n">LayoutType</span><span class="p">,</span> <span class="n">LayoutConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..algorithms.layout_factory</span><span class="w"> </span><span class="kn">import</span> <span class="n">LayoutFactory</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">..algorithms</span><span class="w"> </span><span class="kn">import</span> <span class="n">LayoutType</span><span class="p">,</span> <span class="n">LayoutConfig</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">..nodes</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span><span class="p">,</span> <span class="n">bfs_walker</span><span class="p">,</span> <span class="n">NodeState</span><span class="p">,</span> <span class="n">NodeStyle</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">Vector3D</span>
 
@@ -1549,7 +1550,7 @@
 <span class="sd">               self.wait()</span>
 <span class="sd">    """</span>
     <span class="n">mobjs</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span> <span class="ow">or</span> <span class="p">[]:</span>
         <span class="k">for</span> <span class="n">node_</span> <span class="ow">in</span> <span class="n">bfs_walker</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
             <span class="n">node_</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">node_</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">node_</span><span class="o">.</span><span class="n">level</span> <span class="o">=</span> <span class="mi">0</span>
             <span class="n">mobjs</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="o">*</span><span class="n">node_</span><span class="o">.</span><span class="n">get_node_and_line_without_updater</span><span class="p">()])</span>
@@ -1617,8 +1618,9 @@
 <span class="sd">               self.play(*anims)</span>
 <span class="sd">               self.wait()</span>
 <span class="sd">    """</span>
-    <span class="n">anims</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">anims</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Animation</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">node</span><span class="o">.</span><span class="n">set_connector</span><span class="p">(</span><span class="n">layout_type</span><span class="p">,</span> <span class="n">direction</span><span class="p">,</span> <span class="o">**</span><span class="n">line_styles</span><span class="p">)</span>
+    <span class="n">AnimateClass</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">Animation</span><span class="p">]</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">vmobject</span><span class="p">,</span> <span class="n">ImageMobject</span><span class="p">):</span>
         <span class="n">AnimateClass</span> <span class="o">=</span> <span class="n">FadeIn</span>
     <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">vmobject</span><span class="p">,</span> <span class="p">(</span><span class="n">Tex</span><span class="p">,</span> <span class="n">MathTex</span><span class="p">)):</span>
@@ -1637,7 +1639,7 @@
             <span class="p">),</span>
         <span class="p">]</span>
     <span class="p">)</span>
-    <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="s2">"connector"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">connector</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">anims</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Create</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">connector</span><span class="p">))</span>
     <span class="n">node</span><span class="o">.</span><span class="n">node_state</span> <span class="o">=</span> <span class="n">NodeState</span><span class="o">.</span><span class="n">DISPLAY</span>
     <span class="k">return</span> <span class="n">anims</span></div>
@@ -1972,14 +1974,14 @@
 <span class="sd">    """</span>
     <span class="n">origin_layout</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s2">"layout_type"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">origin_layout</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">origin_layout</span> <span class="o">!=</span> <span class="n">layout_type</span>
+        <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">origin_layout</span> <span class="o">!=</span> <span class="n">layout_type</span><span class="p">)</span>
     <span class="k">return</span> <span class="kc">False</span></div>
 
 
 
 <div class="viewcode-block" id="is_direction_change">
 <a class="viewcode-back" href="../../../../reference/mindmap/animations/animations.html#manim_extensions.mindmap.animations.animations.is_direction_change">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">is_direction_change</span><span class="p">(</span><span class="n">root</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">RIGHT</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">is_direction_change</span><span class="p">(</span><span class="n">root</span><span class="p">:</span> <span class="n">Node</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">RIGHT</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Check whether the layout direction has changed.</span>
 
@@ -2060,12 +2062,12 @@
     <span class="n">change_layout</span> <span class="o">=</span> <span class="n">is_layout_change</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">layout_type</span><span class="p">)</span>
     <span class="n">current_x</span><span class="p">,</span> <span class="n">current_y</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">root</span><span class="o">.</span><span class="n">vmobject</span><span class="p">)</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>
     <span class="n">layout</span> <span class="o">=</span> <span class="n">LayoutFactory</span><span class="o">.</span><span class="n">create_layout</span><span class="p">(</span><span class="n">layout_type</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">layout_config</span><span class="p">)</span>
-    <span class="n">root</span> <span class="o">=</span> <span class="n">layout</span><span class="o">.</span><span class="n">layout</span><span class="p">()</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Node</span><span class="p">,</span> <span class="n">layout</span><span class="o">.</span><span class="n">layout</span><span class="p">())</span>
     <span class="nb">setattr</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s2">"layout_type"</span><span class="p">,</span> <span class="n">layout_type</span><span class="p">)</span>
     <span class="nb">setattr</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="s2">"direction"</span><span class="p">,</span> <span class="n">direction</span><span class="p">)</span>
     <span class="n">x_offset</span> <span class="o">=</span> <span class="n">current_x</span> <span class="o">-</span> <span class="n">root</span><span class="o">.</span><span class="n">x</span>
     <span class="n">y_offset</span> <span class="o">=</span> <span class="n">current_y</span> <span class="o">-</span> <span class="n">root</span><span class="o">.</span><span class="n">y</span>
-    <span class="n">anims</span> <span class="o">=</span> <span class="p">[</span><span class="n">fadeout_of_subtrees</span><span class="p">(</span><span class="n">remove_nodes</span><span class="p">)]</span> <span class="k">if</span> <span class="n">remove_nodes</span> <span class="k">else</span> <span class="p">[]</span>
+    <span class="n">anims</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Animation</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">fadeout_of_subtrees</span><span class="p">(</span><span class="n">remove_nodes</span><span class="p">)]</span> <span class="k">if</span> <span class="n">remove_nodes</span> <span class="k">else</span> <span class="p">[]</span>
 
     <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">bfs_walker</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
         <span class="n">node</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="n">x_offset</span>
@@ -2219,7 +2221,7 @@
 
 <div class="viewcode-block" id="AbstractLayoutAnimation.collect_animations">
 <a class="viewcode-back" href="../../../../reference/mindmap/animations/animations.html#manim_extensions.mindmap.animations.animations.AbstractLayoutAnimation.collect_animations">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">collect_animations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Animation</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">collect_animations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Animation</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Collect animations: must be implemented by subclasses.</span>
 
 <span class="sd">        Returns</span>
@@ -2237,7 +2239,7 @@
 
 <div class="viewcode-block" id="AbstractLayoutAnimation.get_common_root">
 <a class="viewcode-back" href="../../../../reference/mindmap/animations/animations.html#manim_extensions.mindmap.animations.animations.AbstractLayoutAnimation.get_common_root">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_common_root</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Node</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Node</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_common_root</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nodes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Node</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Node</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Return the common root shared by the supplied nodes.</span>
 
@@ -2338,7 +2340,7 @@
 
 <div class="viewcode-block" id="LayoutAnimation.collect_animations">
 <a class="viewcode-back" href="../../../../reference/mindmap/animations/animations.LayoutAnimation.html#manim_extensions.mindmap.animations.animations.LayoutAnimation.collect_animations">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">collect_animations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Animation</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">collect_animations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Animation</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Collect the animations needed to re-layout the mind map.</span>
 
 <span class="sd">        Returns</span>
@@ -2406,12 +2408,11 @@
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">is_whole_tree</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">Node</span><span class="p">):</span>
-            <span class="n">nodes</span> <span class="o">=</span> <span class="p">(</span><span class="n">nodes</span><span class="p">,)</span>
-        <span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_common_root</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+        <span class="n">nodes_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Node</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">nodes</span><span class="p">]</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">nodes</span><span class="p">,</span> <span class="n">Node</span><span class="p">)</span> <span class="k">else</span> <span class="nb">list</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_common_root</span><span class="p">(</span><span class="n">nodes_list</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">"nodes must be in the same tree"</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes_list</span><span class="p">:</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">parent</span> <span class="o">:=</span> <span class="n">node</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">is_whole_tree</span> <span class="o">=</span> <span class="kc">True</span>
                 <span class="k">break</span>
@@ -2428,7 +2429,7 @@
 
 <div class="viewcode-block" id="RemoveNode.collect_animations">
 <a class="viewcode-back" href="../../../../reference/mindmap/animations/animations.RemoveNode.html#manim_extensions.mindmap.animations.animations.RemoveNode.collect_animations">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">collect_animations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Animation</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">collect_animations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Animation</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Collect animations for removing nodes (or the whole tree).</span>
 
 <span class="sd">        Returns</span>
@@ -2446,7 +2447,7 @@
             <span class="n">tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_whole_tree</span><span class="p">()</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">"the root </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="si">}</span><span class="s2"> is not on current scene"</span><span class="p">)</span>
-            <span class="k">return</span> <span class="p">(</span><span class="n">FadeOut</span><span class="p">(</span><span class="o">*</span><span class="n">tree</span><span class="p">),)</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">FadeOut</span><span class="p">(</span><span class="o">*</span><span class="n">tree</span><span class="p">)]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">collect_animations</span><span class="p">()</span></div>
 
@@ -2512,14 +2513,14 @@
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">,</span>
-        <span class="n">father_children</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Node</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Node</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">father_children</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Node</span><span class="p">,</span> <span class="n">List</span><span class="p">[</span><span class="n">Node</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">layout_type</span><span class="p">:</span> <span class="n">LayoutType</span> <span class="o">=</span> <span class="n">LayoutType</span><span class="o">.</span><span class="n">MindMap</span><span class="p">,</span>
         <span class="n">layout_config</span><span class="p">:</span> <span class="n">LayoutConfig</span> <span class="o">=</span> <span class="n">LayoutConfig</span><span class="p">(),</span>
         <span class="n">node_style</span><span class="p">:</span> <span class="n">NodeStyle</span> <span class="o">=</span> <span class="n">NodeStyle</span><span class="p">(),</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">root</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">father_children</span> <span class="o">=</span> <span class="n">father_children</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">father_children</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Node</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">Node</span><span class="p">]]</span> <span class="o">=</span> <span class="n">father_children</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_root</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">father_children</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">scene</span><span class="p">,</span>
             <span class="n">root</span><span class="p">,</span>
@@ -2558,7 +2559,7 @@
 
 <div class="viewcode-block" id="InsertNode.collect_animations">
 <a class="viewcode-back" href="../../../../reference/mindmap/animations/animations.InsertNode.html#manim_extensions.mindmap.animations.animations.InsertNode.collect_animations">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">collect_animations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Animation</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">collect_animations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Animation</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Collect animations for inserting new nodes into the mind map.</span>
 
 <span class="sd">        Returns</span>
@@ -2624,9 +2625,12 @@
         <span class="n">node_style</span><span class="p">:</span> <span class="n">NodeStyle</span> <span class="o">=</span> <span class="n">NodeStyle</span><span class="p">(),</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">scale</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node_scale</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">node_scale_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Node</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="n">node_scale</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">scale</span> <span class="ow">in</span> <span class="n">node_scale_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">node</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale</span><span class="p">)</span>
-        <span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_common_root</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node_scale</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_common_root</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">node_scale_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+        <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">"nodes must be in the same tree"</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">scene</span><span class="p">,</span>
             <span class="n">root</span><span class="p">,</span>
@@ -2684,9 +2688,12 @@
         <span class="n">node_style</span><span class="p">:</span> <span class="n">NodeStyle</span> <span class="o">=</span> <span class="n">NodeStyle</span><span class="p">(),</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">scale</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node_vmobject</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-            <span class="n">node</span><span class="o">.</span><span class="n">alter_content</span><span class="p">(</span><span class="n">scale</span><span class="p">)</span>
-        <span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_common_root</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node_vmobject</span><span class="p">)</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+        <span class="n">node_vmobject_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Node</span><span class="p">,</span> <span class="n">VMobject</span><span class="p">]</span> <span class="o">=</span> <span class="n">node_vmobject</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">node</span><span class="p">,</span> <span class="n">content</span> <span class="ow">in</span> <span class="n">node_vmobject_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">alter_content</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_common_root</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">node_vmobject_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+        <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">"nodes must be in the same tree"</span><span class="p">)</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">scene</span><span class="p">,</span>
             <span class="n">root</span><span class="p">,</span>

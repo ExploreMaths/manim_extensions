@@ -1483,7 +1483,7 @@
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Iterable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span>
 
 <span class="c1"># unlinked-class-ok: Charge</span>
 
@@ -1495,6 +1495,8 @@
     <span class="n">ArrowVectorField</span><span class="p">,</span>
     <span class="n">BLUE</span><span class="p">,</span>
     <span class="n">Dot</span><span class="p">,</span>
+    <span class="n">Mobject</span><span class="p">,</span>
+    <span class="n">ManimColor</span><span class="p">,</span>
     <span class="n">ORIGIN</span><span class="p">,</span>
     <span class="n">RED</span><span class="p">,</span>
     <span class="n">RED_A</span><span class="p">,</span>
@@ -1560,13 +1562,14 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">point</span> <span class="o">=</span> <span class="n">point</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">=</span> <span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">magnitude</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.4</span> <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">magnitude</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span> <span class="k">else</span> <span class="mf">0.8</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.3</span>
 
+        <span class="n">label</span><span class="p">:</span> <span class="n">Mobject</span>
         <span class="k">if</span> <span class="n">magnitude</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">label</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
                 <span class="n">Rectangle</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mf">0.32</span> <span class="o">*</span> <span class="mf">1.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.006</span> <span class="o">*</span> <span class="mf">1.1</span><span class="p">)</span><span class="o">.</span><span class="n">set_z_index</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
                 <span class="n">Rectangle</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mf">0.006</span> <span class="o">*</span> <span class="mf">1.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.32</span> <span class="o">*</span> <span class="mf">1.1</span><span class="p">)</span><span class="o">.</span><span class="n">set_z_index</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
             <span class="p">)</span>
             <span class="n">color</span> <span class="o">=</span> <span class="n">RED</span>
-            <span class="n">layer_colors</span> <span class="o">=</span> <span class="p">[</span><span class="n">RED_D</span><span class="p">,</span> <span class="n">RED_A</span><span class="p">]</span>
+            <span class="n">layer_colors</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ManimColor</span> <span class="o">|</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">RED_D</span><span class="p">,</span> <span class="n">RED_A</span><span class="p">]</span>
             <span class="n">layer_radius</span> <span class="o">=</span> <span class="mi">4</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">label</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mf">0.27</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.003</span><span class="p">)</span>
@@ -1577,8 +1580,10 @@
         <span class="k">if</span> <span class="n">add_glow</span><span class="p">:</span>  <span class="c1"># use many arcs to simulate glowing</span>
             <span class="n">layer_num</span> <span class="o">=</span> <span class="mi">80</span>
             <span class="n">color_list</span> <span class="o">=</span> <span class="n">color_gradient</span><span class="p">(</span><span class="n">layer_colors</span><span class="p">,</span> <span class="n">layer_num</span><span class="p">)</span>
-            <span class="n">opacity_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="mi">1500</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="mf">0.009</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.0001</span><span class="p">)</span>
-            <span class="n">rate_func</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="o">**</span><span class="mi">2</span>
+            <span class="n">opacity_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="mi">1500</span> <span class="o">*</span> <span class="p">(</span>
+                <span class="mi">1</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">t</span> <span class="o">-</span> <span class="mf">0.009</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.0001</span>
+            <span class="p">)</span>
+            <span class="n">rate_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="o">**</span><span class="mi">2</span>
 
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">layer_num</span><span class="p">):</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>

@@ -1483,8 +1483,8 @@
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Arrow</span><span class="p">,</span> <span class="n">BLUE</span><span class="p">,</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">LEFT</span><span class="p">,</span> <span class="n">Tex</span><span class="p">,</span> <span class="n">VGroup</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">.automata_dependencies.automata</span><span class="w"> </span><span class="kn">import</span> <span class="n">State</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Arrow</span><span class="p">,</span> <span class="n">BLUE</span><span class="p">,</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">LEFT</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">Tex</span><span class="p">,</span> <span class="n">VGroup</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.automata_dependencies.state</span><span class="w"> </span><span class="kn">import</span> <span class="n">State</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"ManimState"</span><span class="p">,</span> <span class="s2">"State"</span><span class="p">]</span>
 
@@ -1559,6 +1559,7 @@
         <span class="c1"># manim settings for animations and colors</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">animation_style</span> <span class="o">=</span> <span class="n">animation_style</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">subscript</span><span class="p">:</span> <span class="n">Mobject</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">Tex</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">circle</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">)</span>
 
@@ -1612,7 +1613,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            The resulting value.</span>
 <span class="sd">        """</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">subscript</span> <span class="o">=</span> <span class="n">Tex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">subscript</span> <span class="o">=</span> <span class="n">Tex</span><span class="p">(</span><span class="s2">"0"</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">subscript</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">get_x</span><span class="p">()</span> <span class="o">+</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">subscript</span><span class="o">.</span><span class="n">set_y</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">get_y</span><span class="p">()</span> <span class="o">+</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">)</span></div>
 

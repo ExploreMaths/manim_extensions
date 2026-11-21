@@ -1481,11 +1481,12 @@
 
 <span class="sd">"""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Sequence</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"MindMap"</span><span class="p">,</span> <span class="s2">"TimeLine"</span><span class="p">,</span> <span class="s2">"StandardMap"</span><span class="p">,</span> <span class="s2">"CatalogMap"</span><span class="p">]</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">DOWN</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">UP</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vector3D</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.utils.color</span><span class="w"> </span><span class="kn">import</span> <span class="n">GREEN</span><span class="p">,</span> <span class="n">PURE_YELLOW</span><span class="p">,</span> <span class="n">RED</span><span class="p">,</span> <span class="n">WHITE</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">NodeMobject</span><span class="p">,</span> <span class="n">AbstractMap</span><span class="p">,</span> <span class="n">generate_tree</span>
@@ -1559,7 +1560,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="nb">map</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span>
         <span class="n">buff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
-        <span class="n">direction</span><span class="p">:</span> <span class="nb">object</span> <span class="o">=</span> <span class="n">RIGHT</span><span class="p">,</span>
+        <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">RIGHT</span><span class="p">,</span>
         <span class="n">level_spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
         <span class="n">node_spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
         <span class="n">node_style</span><span class="p">:</span> <span class="n">NodeStyle</span> <span class="o">=</span> <span class="n">NodeStyle</span><span class="p">(</span>
@@ -1673,7 +1674,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="nb">map</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span>
         <span class="n">buff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
-        <span class="n">sides</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">object</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">UP</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">),</span>
+        <span class="n">sides</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">UP</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">),</span>
         <span class="n">level_spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
         <span class="n">node_spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
         <span class="n">node_style</span><span class="p">:</span> <span class="n">NodeStyle</span> <span class="o">=</span> <span class="n">NodeStyle</span><span class="p">(</span>
@@ -1786,7 +1787,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="nb">map</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span>
         <span class="n">buff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span>
-        <span class="n">direction</span><span class="p">:</span> <span class="nb">object</span> <span class="o">=</span> <span class="n">RIGHT</span><span class="p">,</span>
+        <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">RIGHT</span><span class="p">,</span>
         <span class="n">level_spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
         <span class="n">node_spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
         <span class="n">node_style</span><span class="p">:</span> <span class="n">NodeStyle</span> <span class="o">=</span> <span class="n">NodeStyle</span><span class="p">(</span>

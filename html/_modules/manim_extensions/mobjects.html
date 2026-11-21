@@ -1486,12 +1486,13 @@
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="c1"># unlinked-class-ok: Select</span>
 
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Animation</span><span class="p">,</span>
     <span class="n">AnimationGroup</span><span class="p">,</span>
     <span class="n">BLACK</span><span class="p">,</span>
     <span class="n">BLUE</span><span class="p">,</span>
@@ -1520,6 +1521,7 @@
     <span class="n">RED</span><span class="p">,</span>
     <span class="n">RIGHT</span><span class="p">,</span>
     <span class="n">Rectangle</span><span class="p">,</span>
+    <span class="n">VMobject</span><span class="p">,</span>
     <span class="n">Scene</span><span class="p">,</span>
     <span class="n">TexTemplate</span><span class="p">,</span>
     <span class="n">Text</span><span class="p">,</span>
@@ -1980,7 +1982,7 @@
         <span class="n">ab_dot_ab</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">ab</span><span class="p">,</span> <span class="n">ab</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">ab_dot_ab</span> <span class="o">&lt;</span> <span class="mf">1e-12</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">a</span>
-        <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">ap</span><span class="p">,</span> <span class="n">ab</span><span class="p">)</span> <span class="o">/</span> <span class="n">ab_dot_ab</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">ap</span><span class="p">,</span> <span class="n">ab</span><span class="p">)</span> <span class="o">/</span> <span class="n">ab_dot_ab</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">t</span> <span class="o">*</span> <span class="n">ab</span></div>
 </div>
 
@@ -2200,7 +2202,7 @@
         <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">cross</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">&lt;</span> <span class="mf">1e-12</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
 
-        <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">a2</span> <span class="o">-</span> <span class="n">a1</span><span class="p">,</span> <span class="n">d2</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span> <span class="o">/</span> <span class="n">cross</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">a2</span> <span class="o">-</span> <span class="n">a1</span><span class="p">,</span> <span class="n">d2</span><span class="p">)[</span><span class="mi">2</span><span class="p">]</span> <span class="o">/</span> <span class="n">cross</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">a1</span> <span class="o">+</span> <span class="n">t</span> <span class="o">*</span> <span class="n">d1</span></div>
 
 
@@ -2352,7 +2354,7 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">tree_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">],</span>
+        <span class="n">tree_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">],</span>
         <span class="n">font_size</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">DEFAULT_FONT_SIZE</span><span class="p">,</span>
         <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span> <span class="o">=</span> <span class="n">WHITE</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
@@ -2376,7 +2378,7 @@
 
 <div class="viewcode-block" id="FileTree.highlight">
 <a class="viewcode-back" href="../../reference/basic/mobjects.FileTree.html#manim_extensions.mobjects.FileTree.highlight">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">highlight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span> <span class="o">=</span> <span class="n">WHITE</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnimationGroup</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">highlight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span> <span class="o">=</span> <span class="n">WHITE</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Highlight the content of a specific line (excluding tree prefixes).</span>
 
 <span class="sd">        Parameters</span>
@@ -2411,9 +2413,8 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">submobjects</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
             <span class="k">return</span> <span class="n">Wait</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">AnimationGroup</span><span class="p">(</span>
-            <span class="n">VGroup</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">submobjects</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">line</span><span class="p">][</span><span class="n">begin_index</span><span class="p">:])</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
-        <span class="p">)</span></div>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">submobjects</span><span class="p">[</span><span class="mi">0</span><span class="p">])[</span><span class="n">line</span><span class="p">][</span><span class="n">begin_index</span><span class="p">:]</span>
+        <span class="k">return</span> <span class="n">AnimationGroup</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">VGroup</span><span class="p">(</span><span class="n">content</span><span class="p">))</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">color</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="FileTree._build_tree">
@@ -2506,6 +2507,7 @@
         <span class="n">corner_radius</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">img</span><span class="p">:</span> <span class="n">Image</span><span class="o">.</span><span class="n">Image</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">filename_or_array</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">filename_or_array</span><span class="p">)</span>
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">filename_or_array</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
@@ -2886,7 +2888,7 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">color</span><span class="p">:</span> <span class="n">ManimColor</span><span class="p">,</span>
+        <span class="n">color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">|</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">background_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">WHITE</span><span class="p">,</span>
         <span class="n">font</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"Consolas"</span><span class="p">,</span>
@@ -2895,21 +2897,25 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="n">name</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-                <span class="nb">str</span><span class="p">(</span><span class="n">name</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="n">font_size</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">name</span><span class="p">),</span>
+                <span class="n">color</span><span class="o">=</span><span class="n">cast</span><span class="p">(</span><span class="n">ParsableManimColor</span><span class="p">,</span> <span class="n">color</span><span class="p">),</span>
+                <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">,</span>
+                <span class="n">font_size</span><span class="o">=</span><span class="n">font_size</span><span class="p">,</span>
+                <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="k">return</span>
 
-        <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">color</span><span class="p">]</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">(</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">color</span><span class="p">)]</span>
         <span class="k">if</span> <span class="nb">max</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mf">1.0</span><span class="p">:</span>
             <span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]))),</span>
                 <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]))),</span>
                 <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">]))),</span>
             <span class="p">)</span>
-            <span class="n">fill</span> <span class="o">=</span> <span class="n">rgb_to_color</span><span class="p">([</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mf">255.0</span><span class="p">,</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="mf">255.0</span><span class="p">,</span> <span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">/</span> <span class="mf">255.0</span><span class="p">])</span>
+            <span class="n">fill</span> <span class="o">=</span> <span class="n">rgb_to_color</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mf">255.0</span><span class="p">,</span> <span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="mf">255.0</span><span class="p">,</span> <span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">/</span> <span class="mf">255.0</span><span class="p">]))</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">r</span><span class="p">,</span> <span class="n">g</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">c</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">c</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span>
-            <span class="n">fill</span> <span class="o">=</span> <span class="n">rgb_to_color</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+            <span class="n">fill</span> <span class="o">=</span> <span class="n">rgb_to_color</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
 
         <span class="n">snippet</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"np.array([</span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">,~</span><span class="si">{</span><span class="n">g</span><span class="si">}</span><span class="s2">,~</span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">])"</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">snippet</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">fill</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="n">font</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="n">font_size</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
@@ -2992,9 +2998,9 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">nums</span> <span class="o">=</span> <span class="n">nums</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">trail_color</span> <span class="o">=</span> <span class="n">trail_color</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rate_func</span> <span class="o">=</span> <span class="n">rate_func</span> <span class="k">if</span> <span class="n">rate_func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="p">(</span><span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="o">**</span><span class="mf">1.25</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">mob</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">VMobject</span><span class="p">,</span> <span class="n">mob</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">trail</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">path_xyz</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">path_xyz</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Point3D</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">trail</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pos_old</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>
 
@@ -3077,7 +3083,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            The :class:`~manim_extensions.mobjects.Trail` instance for chaining.</span>
 <span class="sd">        """</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">trail</span><span class="o">.</span><span class="n">add_updater</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">update_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trail</span><span class="o">.</span><span class="n">add_updater</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Mobject</span><span class="p">],</span> <span class="n">Any</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_path</span><span class="p">))</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
 
@@ -3090,7 +3096,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            The :class:`~manim_extensions.mobjects.Trail` instance for chaining.</span>
 <span class="sd">        """</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">trail</span><span class="o">.</span><span class="n">remove_updater</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">update_path</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">trail</span><span class="o">.</span><span class="n">remove_updater</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Callable</span><span class="p">[[</span><span class="n">Mobject</span><span class="p">],</span> <span class="n">Any</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">update_path</span><span class="p">))</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 </div>
 
@@ -3169,10 +3175,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">layer_num</span> <span class="o">=</span> <span class="n">layer_num</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">shadow_out</span> <span class="o">=</span> <span class="n">shadow_out</span>
 
+        <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="p">:</span> <span class="n">VMobject</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">mob_or_points</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span><span class="o">*</span><span class="n">mob_or_points</span><span class="p">,</span> <span class="n">stroke_width</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="n">mob_or_points</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">VMobject</span><span class="p">,</span> <span class="n">mob_or_points</span><span class="p">)</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 
         <span class="n">inner_opacity</span> <span class="o">=</span> <span class="n">shadow_opacity</span> <span class="k">if</span> <span class="n">show_basic_shape</span> <span class="k">else</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">shape</span><span class="o">.</span><span class="n">set_fill</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">shadow_color</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="n">inner_opacity</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span>
@@ -3404,6 +3411,11 @@
 
 
 
+<span class="c1">#: A tree structure: nested dictionaries for internal nodes, or an</span>
+<span class="c1">#: iterable of leaf values.</span>
+<span class="n">TreeStructure</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="nb">set</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span>
+
+
 <div class="viewcode-block" id="TreeDiagram">
 <a class="viewcode-back" href="../../reference/basic/mobjects.TreeDiagram.html#manim_extensions.mobjects.TreeDiagram">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">TreeDiagram</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
@@ -3450,7 +3462,7 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">tree</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
+        <span class="n">tree</span><span class="p">:</span> <span class="n">TreeStructure</span><span class="p">,</span>
         <span class="n">branch_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">GREY</span><span class="p">,</span>
         <span class="n">branch_opacity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">item_v_buff</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">,</span>
@@ -3462,12 +3474,12 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">branch_opacity</span> <span class="o">=</span> <span class="n">branch_opacity</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">item_v_buff</span> <span class="o">=</span> <span class="n">item_v_buff</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">item_scale</span> <span class="o">=</span> <span class="n">item_scale</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span> <span class="o">=</span> <span class="n">tree</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">:</span> <span class="n">TreeStructure</span> <span class="o">=</span> <span class="n">tree</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_generate</span><span class="p">(</span><span class="n">tree</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
 
 <div class="viewcode-block" id="TreeDiagram._lowest">
 <a class="viewcode-back" href="../../reference/basic/mobjects.TreeDiagram.html#manim_extensions.mobjects.TreeDiagram._lowest">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_lowest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">leaves</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_lowest</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">leaves</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create a vertical group of text mobjects for the leaf nodes.</span>
 
 <span class="sd">        Parameters</span>
@@ -3485,7 +3497,7 @@
 
 <div class="viewcode-block" id="TreeDiagram._generate">
 <a class="viewcode-back" href="../../reference/basic/mobjects.TreeDiagram.html#manim_extensions.mobjects.TreeDiagram._generate">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_generate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tree</span><span class="p">:</span> <span class="n">TreeStructure</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Recursively build the tree diagram mobject.</span>
 
 <span class="sd">        Parameters</span>
@@ -3514,7 +3526,7 @@
             <span class="p">)</span>
             <span class="n">vg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
         <span class="n">vg</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">item_v_buff</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">)</span>
-        <span class="n">to_be_braced</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">vg</span><span class="p">])</span>
+        <span class="n">to_be_braced</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">vg</span><span class="p">]))</span>
         <span class="n">brace</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">Brace</span><span class="p">(</span><span class="n">to_be_braced</span><span class="p">,</span> <span class="n">LEFT</span><span class="p">)</span>
             <span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">branch_color</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>

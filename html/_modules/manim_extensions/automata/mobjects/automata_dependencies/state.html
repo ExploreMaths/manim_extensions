@@ -1567,7 +1567,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">final</span> <span class="o">=</span> <span class="n">final</span>
 
         <span class="c1"># list of transitions links this state to others</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">transitions</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">transitions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Transition</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
 <div class="viewcode-block" id="State.add_transition_to_state">
 <a class="viewcode-back" href="../../../../../reference/automata/mobjects/automata_dependencies/state.State.html#manim_extensions.automata.mobjects.automata_dependencies.state.State.add_transition_to_state">[docs]</a>
@@ -1589,7 +1589,7 @@
 
 <div class="viewcode-block" id="State.get_transition">
 <a class="viewcode-back" href="../../../../../reference/automata/mobjects/automata_dependencies/state.State.html#manim_extensions.automata.mobjects.automata_dependencies.state.State.get_transition">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_transition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transition</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_transition</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Transition</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the transition matching the given identifier.</span>
 
 <span class="sd">        Parameters</span>

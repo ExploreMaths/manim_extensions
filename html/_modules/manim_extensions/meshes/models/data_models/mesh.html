@@ -2125,7 +2125,9 @@
         <span class="c1"># use indices to update self._faces</span>
         <span class="n">faces_to_remove</span> <span class="o">=</span> <span class="n">fix_references</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_faces</span><span class="p">,</span> <span class="n">indices</span><span class="p">)</span>
         <span class="c1"># remove vertices at all the indices</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_vertices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_vertices</span><span class="p">,</span> <span class="n">indices</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_vertices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_vertices</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">indices</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span>
+        <span class="p">)</span>
         <span class="c1"># remove faces and possibly parts</span>
         <span class="n">fix_references</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parts</span><span class="p">,</span> <span class="n">faces_to_remove</span><span class="p">)</span>
         <span class="c1"># Topology changed: rebuild the edge cache once for all removed faces.</span>

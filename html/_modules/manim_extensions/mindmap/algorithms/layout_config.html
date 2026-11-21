@@ -1481,7 +1481,7 @@
 
 <span class="sd">"""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">DOWN</span><span class="p">,</span> <span class="n">LEFT</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">UP</span>
 
@@ -1635,17 +1635,22 @@
         <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">RIGHT</span><span class="p">,</span>
         <span class="n">node_spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
         <span class="n">level_spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
-        <span class="n">sides</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">|</span> <span class="n">List</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">UP</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">),</span>
+        <span class="n">sides</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">UP</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">),</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="p">[</span><span class="n">UP</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">,</span> <span class="n">LEFT</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">]):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"direction must be one of </span><span class="si">{</span><span class="n">LEFT</span><span class="p">,</span><span class="n">RIGHT</span><span class="p">,</span><span class="n">UP</span><span class="p">,</span><span class="n">DOWN</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sides</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
-            <span class="n">sides</span> <span class="o">=</span> <span class="p">(</span><span class="n">sides</span><span class="p">,)</span>
-        <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="n">sides</span><span class="p">:</span>
+        <span class="n">side_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="nb">list</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Vector3D</span><span class="p">],</span> <span class="n">sides</span><span class="p">))</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sides</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">))</span>
+            <span class="k">else</span> <span class="p">[</span><span class="n">cast</span><span class="p">(</span><span class="n">Vector3D</span><span class="p">,</span> <span class="n">sides</span><span class="p">)]</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="n">side_list</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">side</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="p">[</span><span class="n">UP</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">]):</span>
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"side must be one of </span><span class="si">{</span><span class="n">UP</span><span class="p">,</span><span class="n">DOWN</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">sides</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_layout_direction</span><span class="p">(</span><span class="n">side</span><span class="p">)</span> <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="n">sides</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sides</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">LayoutDirection</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">get_layout_direction</span><span class="p">(</span><span class="n">side</span><span class="p">)</span> <span class="k">for</span> <span class="n">side</span> <span class="ow">in</span> <span class="n">side_list</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">layout_direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_layout_direction</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">node_spacing</span> <span class="o">=</span> <span class="n">node_spacing</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">level_spacing</span> <span class="o">=</span> <span class="n">level_spacing</span>
@@ -1664,8 +1669,13 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            The layout direction enum matching ``direction``.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            Raised when ``direction`` is not one of UP, DOWN, LEFT or RIGHT.</span>
 <span class="sd">        """</span>
-        <span class="n">string</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">string</span><span class="p">:</span> <span class="n">LayoutDirection</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">UP</span><span class="p">):</span>
             <span class="n">string</span> <span class="o">=</span> <span class="n">LayoutDirection</span><span class="o">.</span><span class="n">BottomToTop</span>
         <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">):</span>
@@ -1674,6 +1684,8 @@
             <span class="n">string</span> <span class="o">=</span> <span class="n">LayoutDirection</span><span class="o">.</span><span class="n">RightToLeft</span>
         <span class="k">elif</span> <span class="n">np</span><span class="o">.</span><span class="n">array_equal</span><span class="p">(</span><span class="n">direction</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">):</span>
             <span class="n">string</span> <span class="o">=</span> <span class="n">LayoutDirection</span><span class="o">.</span><span class="n">LeftToRight</span>
+        <span class="k">if</span> <span class="n">string</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"direction must be one of </span><span class="si">{</span><span class="n">LEFT</span><span class="p">,</span><span class="n">RIGHT</span><span class="p">,</span><span class="n">UP</span><span class="p">,</span><span class="n">DOWN</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">string</span></div>
 
 
