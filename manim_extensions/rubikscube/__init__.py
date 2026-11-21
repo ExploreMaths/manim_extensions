@@ -12,6 +12,9 @@ visualising cube states in Manim scenes.
 from __future__ import annotations
 from typing import Any, cast
 
+import numpy as np
+from manim import Mobject
+
 from .cube import *
 from .cube_animations import *
 
@@ -32,7 +35,7 @@ def _install_grouped_depth_sorting() -> None:
         return
     _orig = ThreeDCamera.get_mobjects_to_display
 
-    def _grouped(self, *args: Any, **kwargs: Any) -> list[Mobject]:
+    def _grouped(self: Any, *args: Any, **kwargs: Any) -> list[Mobject]:
         """Return camera-visible mobjects sorted by rotated depth."""
         mobjects = _orig(self, *args, **kwargs)
         rot_matrix = self.get_rotation_matrix()
@@ -52,12 +55,11 @@ def _install_grouped_depth_sorting() -> None:
 
         return sorted(mobjects, key=z_key)
 
-    ThreeDCamera.get_mobjects_to_display = _grouped
+    ThreeDCamera.get_mobjects_to_display = _grouped  # type: ignore[method-assign]
     cast(Any, ThreeDCamera)._manim_extensions_grouped_z_key = True
 
 
 try:
-    from manim import np
     from manim.camera.three_d_camera import ThreeDCamera
 
     _install_grouped_depth_sorting()
@@ -68,7 +70,7 @@ except Exception:  # pragma: no cover - manim not installed
 try:
     from importlib.metadata import version as _version
 except ImportError:  # pragma: no cover
-    from importlib_metadata import version as _version
+    from importlib_metadata import version as _version  # type: ignore[import-not-found,no-redef]
 
 try:
     __version__ = _version("manim_extensions.rubikscube")

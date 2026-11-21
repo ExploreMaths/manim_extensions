@@ -57,7 +57,7 @@ class Cubie(VGroup):
         self.dimensions = dim
         self.colors = colors
         self.position = np.array([x, y, z])
-        self.faces = {}
+        self.faces: dict[tuple[float, ...], Square] = {}
         super().__init__()
 
     def get_position(self) -> Point3D:
@@ -69,15 +69,17 @@ class Cubie(VGroup):
         """
         return self.position
 
-    def get_rounded_center(self) -> tuple[float]:
+    def get_rounded_center(self) -> tuple[float, float, float]:
         """Return the cubie's position with coordinates rounded to 3 decimal places.
 
         Returns
         -------
             The rounded :math:`(x, y, z)` coordinates.
         """
-        return tuple(
-            [round(self.get_x(), 3), round(self.get_y(), 3), round(self.get_z(), 3)]
+        return (
+            round(self.get_x(), 3),
+            round(self.get_y(), 3),
+            round(self.get_z(), 3),
         )
 
     def generate_points(self) -> Any:
@@ -142,7 +144,7 @@ class Cubie(VGroup):
         elif face == "D":
             return self.faces[tuple(IN)]
 
-    def init_colors(self) -> Any:
+    def init_colors(self, *args: Any, **kwargs: Any) -> "Cubie":
         """Apply fill, stroke, and background-stroke colours to the cubie.
 
         Returns
@@ -164,3 +166,4 @@ class Cubie(VGroup):
             opacity=self.background_stroke_opacity,
             family=False,
         )
+        return self

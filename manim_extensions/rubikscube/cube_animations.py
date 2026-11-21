@@ -58,7 +58,7 @@ class CubeMove(Animation):
     """
 
     def __init__(self, mobject: Mobject, face: str, **kwargs: Any) -> None:
-        self.axis = get_axis_from_face(face[0])
+        self.axis = get_axis_from_face(cast(Any, face[0]))
         self.face = face
         self.angle = PI / 2 if ("R" in face or "F" in face or "D" in face) else -PI / 2
         self.angle = self.angle if "2" not in face else self.angle * 2
@@ -75,7 +75,7 @@ class CubeMove(Animation):
         starting_mobject = self.mobject.copy()
         if cast(Any, starting_mobject).indices == {}:
             cast(Any, starting_mobject).set_indices()
-        return starting_mobject
+        return cast(RubiksCube, starting_mobject)
 
     def interpolate_mobject(self, alpha: float) -> Any:
         """Interpolate the cube rotation at progress ``alpha``.
