@@ -7,7 +7,7 @@ This module provides the :class:`~manim_extensions.chemistry.molecule.abstract_m
 
 """
 
-from typing import Any, Dict, Literal, cast
+from typing import Any, Literal, cast
 
 from manim import DOWN, Tex, Text, VGroup
 from manim.mobject.opengl.opengl_mobject import OpenGLGroup
@@ -32,7 +32,7 @@ class AbstractMolecule:
         Additional keyword arguments passed to subclass implementations.
     """
 
-    group_class = VGroup
+    group_class: Any = VGroup
 
     def __init__(self, *args: Any, **kwargs: Any) -> None: ...
 
@@ -129,9 +129,9 @@ class AbstractMolecule:
         mmolecules = cls.group_class()
         for mc_molecule in mc_molecules:
             atoms, bonds = cls.mc_molecule_to_atoms_and_bonds(mc_molecule=mc_molecule)
-            mmolecules.add(cls(atoms, bonds, *args, **kwargs))
+            mmolecules.add(cast(Any, cls(atoms, bonds, *args, **kwargs)))
 
-        return mmolecules
+        return cast(OpenGLGroup, mmolecules)
 
     @classmethod
     def molecule_from_string(
@@ -236,7 +236,7 @@ class AbstractMolecule:
         mmolecules = OpenGLGroup()
         for mc_molecule in mc_molecules:
             atoms, bonds = cls.mc_molecule_to_atoms_and_bonds(mc_molecule=mc_molecule)
-            mmolecules.add(cls(atoms, bonds, *args, **kwargs))
+            mmolecules.add(cast(Any, cls(atoms, bonds, *args, **kwargs)))
 
         return mmolecules
 
@@ -281,19 +281,19 @@ class AbstractMolecule:
             cid=cid, name=name, smiles=smiles, inchi=inchi, three_d=three_d
         )
 
-        return cls.molecule_from_string(
-            string=pubchem_api_manager.get_molecule(),
-            format="json",
-            elements_data_dict=elements_data_dict,
-            *args,
+        molecule_kwargs: dict[str, Any] = {
+            "string": pubchem_api_manager.get_molecule(),
+            "format": "json",
+            "elements_data_dict": elements_data_dict,
             **kwargs,
-        )
+        }
+        return cls.molecule_from_string(*args, **molecule_kwargs)
 
     @classmethod
     @abstractmethod
     def mc_molecule_to_atoms_and_bonds(
         cls, mc_molecule: MCMolecule
-    ) -> tuple[Dict, Dict]:
+    ) -> tuple[dict[Any, Any], dict[Any, Any]]:
         """
         Transforms the structure of a mc_molecule to a (vertices, edges) tuple.
 
@@ -380,6 +380,6 @@ class AbstractMolecule:
         if isinstance(name, str):
             name = Text(name)
 
-        name.scale(scale).next_to(self, direction=direction, buff=buff)
+        name.scale(scale).next_to(cast(Any, self), direction=direction, buff=buff)
         cast(Any, self).add(name)
         return self

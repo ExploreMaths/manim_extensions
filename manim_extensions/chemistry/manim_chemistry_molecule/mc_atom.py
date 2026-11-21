@@ -8,7 +8,7 @@ This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_mol
 """
 
 from __future__ import annotations
-from typing import Any, Dict, TYPE_CHECKING
+from typing import Any, Dict, TYPE_CHECKING, cast
 
 import numpy as np
 
@@ -44,9 +44,9 @@ class MCAtom:
         self,
         element: MCElement,
         coords: Point3D = np.array([0, 0, 0]),
-        atoms: list | None = None,
-        bonds: list | None = None,
-        molecule: None | None = None,
+        atoms: list[MCAtom] | None = None,
+        bonds: list[MCBond] | None = None,
+        molecule: MCMolecule | None = None,
         molecule_index: int | None = None,
     ) -> None:
         self.element = element
@@ -200,7 +200,7 @@ class MCAtom:
     def construct_from_atom_dict(
         atom_index: int,
         atom_data_dict: Dict[Any, Any],
-        elements_data_dict: Dict[Any, Any],
+        elements_data_dict: Dict[Any, Any] | None,
     ) -> "MCAtom":
         """
         Given an atom data dict from a parser, returns an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`.
@@ -258,4 +258,11 @@ class MCAtom:
         ):
             raise Exception(f"Coordinates {coords} are not correct coordinates.")
 
-        return MCAtom(element=mc_element, coords=coords, molecule_index=atom_index)
+        if mc_element is None:
+            raise Exception(f"Element {element} not found.")
+
+        return MCAtom(
+            element=mc_element,
+            coords=cast(Point3D, coords),
+            molecule_index=atom_index,
+        )

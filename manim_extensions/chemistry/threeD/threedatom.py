@@ -7,7 +7,7 @@ This module provides the :class:`~manim_extensions.chemistry.threeD.threedatom.T
 
 """
 
-from typing import Any
+from typing import Any, cast
 
 # unlinked-class-ok: Element
 
@@ -36,9 +36,9 @@ class ThreeDAtom(OpenGLSphere):
     def __init__(
         self, element: Element, coords: Point3D = np.array([0, 0, 0]), **kwargs: Any
     ) -> None:
-        self.center = coords
+        cast(Any, self).center = coords
         self.coords = coords
         self.element = element
 
-        super().__init__(center=self.center, color=element.color, **kwargs)
+        super().__init__(center=coords, color=element.color, **kwargs)
         self.scale(0.25)

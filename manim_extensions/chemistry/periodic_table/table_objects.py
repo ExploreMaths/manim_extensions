@@ -8,7 +8,7 @@ This module provides the :class:`~manim_extensions.chemistry.periodic_table.tabl
 
 """
 
-from typing import Any
+from typing import Any, cast
 
 from manim import (
     BLACK,
@@ -22,6 +22,7 @@ from manim import (
     Tex,
     Text,
     VGroup,
+    VMobject,
     WHITE,
     color_gradient,
 )
@@ -131,7 +132,7 @@ class MElementObject(VGroup):
         """
         return frame.width / (1.25 * name_text.width)
 
-    def max_height_ratio(self, name_text: Mobject) -> Text:
+    def max_height_ratio(self, name_text: Mobject) -> VMobject:
         """Scale down the name text if its height exceeds the 0.3 maximum threshold.
 
         Parameters
@@ -148,7 +149,7 @@ class MElementObject(VGroup):
             ratio = 0.3 / text_height
             name_text.scale(ratio)
 
-        return name_text
+        return cast(VMobject, name_text)
 
     def create_frame_base(self) -> Rectangle:
         """Create the gradient-filled rectangle that forms the element tile background.
@@ -165,7 +166,7 @@ class MElementObject(VGroup):
                 fill_opacity=self.opacity,
             )
             .scale(0.8)
-            .set_fill(color_gradient(self.fill_colors, self.gradient))
+            .set_fill(cast(Any, color_gradient(self.fill_colors, self.gradient)))
         )
 
         return frame_rectangle
@@ -183,7 +184,7 @@ class MElementObject(VGroup):
             .scale(1.1)
             .move_to(frame_rectangle.get_center())
         )
-        name_text = (
+        name_text: VMobject = (
             Text(self.element_name, color=self.text_color)
             .scale(0.2)
             .next_to(frame_rectangle, DOWN, buff=-0.4)
@@ -202,7 +203,7 @@ class MElementObject(VGroup):
         name_text.scale(ratio)
         name_text = self.max_height_ratio(name_text)
 
-        shifting_ammount = 0
+        shifting_ammount: float = 0
         if 10 <= self.atomic_number:
             shifting_ammount += 0.15
 
@@ -213,6 +214,7 @@ class MElementObject(VGroup):
 
         return VGroup(frame_rectangle, symbol_text, name_text, atomic_number_text)
 
+    @staticmethod
     def from_csv_file_data(
         filename: str, atomic_number: int, **kwargs: Any
     ) -> "MElementObject":
@@ -243,7 +245,7 @@ class MElementObject(VGroup):
             atomic_mass=element.get("AtomicMass"),
             element_name=element.get("Name"),
             element_symbol=element.get("Symbol"),
-            fill_colors=[element.get("Color"), WHITE],
+            fill_colors=(element.get("Color"), WHITE),
         )
 
 

@@ -40,12 +40,14 @@ class MCMolecule:
     ) -> None:
         self.atoms = atoms or []
         self.bonds = bonds or []
-        self.elements = elements or {}
-        self.atoms_by_index = {}
+        self.elements: MCElement | dict[Any, Any] = elements or {}
+        self.atoms_by_index: dict[Any, MCAtom] = {}
         self.name = name
 
     def add_atoms_from_atoms_dict(
-        self, atoms_dict: Dict[Any, Any], elements_data_dict: Dict[Any, Any]
+        self,
+        atoms_dict: Dict[Any, Any],
+        elements_data_dict: Dict[Any, Any] | None,
     ) -> Any:
         """
         Uses the atoms dict returned by a parser to add the atoms to the molecule.
@@ -262,7 +264,9 @@ class MCMolecule:
             A list of the results.
         """
 
-        list_of_data_dicts = FileHandler(file_path=filepath).parsed_atoms_bonds_data()
+        list_of_data_dicts = cast(
+            list[Any], FileHandler(file_path=filepath).parsed_atoms_bonds_data()
+        )
         mc_molecules = []
         for atoms_dict, bonds_dict in list_of_data_dicts:
             mc_molecules.append(
@@ -323,7 +327,9 @@ class MCMolecule:
         -------
             The molecule parsed from the string.
         """
-        parsed_data = FileHandler.parse_from_string(string=string, format=format)
+        parsed_data = cast(
+            list[Any], FileHandler.parse_from_string(string=string, format=format)
+        )
 
         if isinstance(parsed_data, list):
             parsed_data = parsed_data[0]
@@ -367,7 +373,9 @@ class MCMolecule:
         -------
             A list of the results.
         """
-        parsed_data = FileHandler.parse_from_string(string=string, format=format)
+        parsed_data = cast(
+            list[Any], FileHandler.parse_from_string(string=string, format=format)
+        )
         mc_molecules = []
         for atoms_dict, bonds_dict in parsed_data:
             mc_molecules.append(
@@ -389,15 +397,19 @@ class MCMolecule:
             if atom.element.atomic_number != 1 or atom.element.symbol != "H":
                 continue
 
+            bond = atom.bonds[0]
+            to_atom = cast(MCAtom, bond.to_atom)
+            from_atom = cast(MCAtom, bond.from_atom)
             if (
-                atom.bonds[0].to_atom.element.atomic_number == 6
-                or atom.bonds[0].from_atom.element.atomic_number == 6
-                or atom.bonds[0].to_atom.element.symbol == "C"
-                or atom.bonds[0].from_atom.element.symbol == "C"
+                to_atom.element.atomic_number == 6
+                or from_atom.element.atomic_number == 6
+                or to_atom.element.symbol == "C"
+                or from_atom.element.symbol == "C"
             ):
                 atoms_to_be_removed.append(index)
 
-        return self.remove_hydrogens(atoms_to_be_removed)
+        self.remove_hydrogens(atoms_to_be_removed)
+        return None
 
     def remove_all_hydrogens(self) -> None:
         """Remove every hydrogen atom from the molecule."""
@@ -408,7 +420,8 @@ class MCMolecule:
 
             atoms_to_be_removed.append(index)
 
-        return self.remove_hydrogens(atoms_to_be_removed)
+        self.remove_hydrogens(atoms_to_be_removed)
+        return None
 
     def remove_hydrogens(self, atoms_to_be_removed: list[Any]) -> Any:
         """Remove specified atoms and their associated bonds, then reindex.
@@ -443,8 +456,8 @@ class MCMolecule:
 
         bonds_to_be_removed.reverse()
 
-        for bond in bonds_to_be_removed:
-            self.bonds.pop(bond)
+        for bond_index in bonds_to_be_removed:
+            self.bonds.pop(bond_index)
 
         self.reindex_molecule_atoms()
 

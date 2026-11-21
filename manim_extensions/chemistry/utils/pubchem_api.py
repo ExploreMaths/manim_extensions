@@ -43,7 +43,7 @@ class PubchemAPIManager:
 
     def __init__(
         self,
-        cid: int | None = None,
+        cid: int | str | None = None,
         name: str | None = None,
         smiles: str | None = None,
         inchi: str | None = None,

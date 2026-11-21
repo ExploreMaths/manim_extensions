@@ -7,7 +7,7 @@ This module provides OpenGL-based 3D geometry classes for chemistry visualizatio
 
 """
 
-from typing import Any
+from typing import Any, cast
 
 from manim import ORIGIN, PI, TAU
 from manim.mobject.opengl.opengl_surface import OpenGLSurface
@@ -54,6 +54,7 @@ class OpenGLSphere(OpenGLSurface):
         -------
             The computed array.
         """
+        u_arr = cast(VectorND, u)
         return np.array(
-            [np.cos(u) * np.sin(v), np.sin(u) * np.sin(v), -np.cos(v)],
+            [np.cos(u_arr) * np.sin(v), np.sin(u_arr) * np.sin(v), -np.cos(v)],
         )

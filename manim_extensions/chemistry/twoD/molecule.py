@@ -760,13 +760,13 @@ class MMoleculeObject(VGroup, AbstractMolecule):
             for bond in atom.bonds:
                 # TODO: This patches an issue with from_atom and to_atom but does not solve it completely.
                 # Fix later the root cause
-                if bond.from_atom.molecule_index == index:
-                    bond_to[bond.to_atom.molecule_index] = bond.to_atom.element.symbol
+                from_atom_ref = cast(Any, bond.from_atom)
+                to_atom_ref = cast(Any, bond.to_atom)
+                if from_atom_ref.molecule_index == index:
+                    bond_to[to_atom_ref.molecule_index] = to_atom_ref.element.symbol
 
                 else:
-                    bond_to[bond.from_atom.molecule_index] = (
-                        bond.from_atom.element.symbol
-                    )
+                    bond_to[from_atom_ref.molecule_index] = from_atom_ref.element.symbol
 
             atom_data = {
                 "coords": atom.coords,

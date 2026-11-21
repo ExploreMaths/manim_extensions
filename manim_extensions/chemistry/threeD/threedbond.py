@@ -80,8 +80,8 @@ class ThreeDCylinder(OpenGLSurface):
         )
         # if show_ends:
         #    self.add_bases()
-        self._current_phi = 0
-        self._current_theta = 0
+        self._current_phi: float = 0
+        self._current_theta: float = 0
         self.set_direction(direction)
 
     def uv_func(self, u: float, v: float) -> Point3D:
@@ -111,7 +111,7 @@ class ThreeDCylinder(OpenGLSurface):
             The resulting value.
         """
         if config.renderer == RendererType.OPENGL:
-            color = self.color
+            color = cast(Any, self.color)
             opacity = self.opacity
         elif config.renderer == RendererType.CAIRO:
             color = cast(Any, self).fill_color
@@ -143,6 +143,7 @@ class ThreeDCylinder(OpenGLSurface):
         """
         x, y, z = self.direction
 
+        phi: float = 0
         r = np.sqrt(x**2 + y**2 + z**2)
         if r > 0:
             theta = np.arccos(z / r)
@@ -273,7 +274,9 @@ class ThreeDLine(ThreeDCylinder):
         self.shift((self.start + self.end) / 2)
 
     def pointify(
-        self, mob_or_point: Mobject | float, direction: Vector3D | None = None
+        self,
+        mob_or_point: Mobject | float | Point3D,
+        direction: Vector3D | None = None,
     ) -> Point3D:
         """Gets a point representing the center of the :class:`~manim.mobject.mobject.Mobject`.
 
@@ -294,7 +297,7 @@ class ThreeDLine(ThreeDCylinder):
                 return mob.get_center()
             else:
                 return mob.get_boundary_point(direction)
-        return np.array(mob_or_point)
+        return cast(Point3D, np.array(mob_or_point))
 
     def get_start(self) -> Point3D:
         """
@@ -319,7 +322,7 @@ class ThreeDLine(ThreeDCylinder):
     @classmethod
     def parallel_to(
         cls, line: Line3D, point: Point3D = ORIGIN, length: float = 5, **kwargs: Any
-    ) -> Line3D:
+    ) -> "ThreeDLine":
         """Returns a line parallel to another line going through
         a given point.
 
@@ -367,7 +370,7 @@ class ThreeDLine(ThreeDCylinder):
     @classmethod
     def perpendicular_to(
         cls, line: Line3D, point: Point3D = ORIGIN, length: float = 5, **kwargs: Any
-    ) -> Line3D:
+    ) -> "ThreeDLine":
         """Returns a line perpendicular to another line going through
         a given point.
 
@@ -506,10 +509,14 @@ class ThreeDBond(OpenGLGroup):
         midpoint = (self.to_atom.coords + self.from_atom.coords) / 2
 
         half_bond_1 = ThreeDLine(
-            self.from_atom.coords, midpoint, color=self.from_atom.element.color
+            self.from_atom.coords,
+            midpoint,
+            color=cast(ManimColor, self.from_atom.element.color),
         )
         half_bond_2 = ThreeDLine(
-            self.to_atom.coords, midpoint, color=self.to_atom.element.color
+            self.to_atom.coords,
+            midpoint,
+            color=cast(ManimColor, self.to_atom.element.color),
         )
 
         bond.add(half_bond_1, half_bond_2)

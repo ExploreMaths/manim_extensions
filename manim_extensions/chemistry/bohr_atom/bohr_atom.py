@@ -3,7 +3,7 @@
 
 """Bohr atom model visualization for Manim."""
 
-from typing import Any
+from typing import Any, cast
 
 from manim import BLUE, Circle, Dot, ManimColor, RED, RIGHT, TAU, VGroup, WHITE
 import numpy as np
@@ -195,7 +195,7 @@ class BohrAtom(VGroup):
         for angle in np.arange(0, TAU, TAU / n_electrons):
             electron = Dot(color=self.electron_color).scale(2)
             electron.shift(level * RIGHT)
-            electron.rotate(angle, about_point=[0, 0, 0])
+            electron.rotate(angle, about_point=np.array([0, 0, 0]))
             level_group.add(electron)
 
         return level_group
@@ -206,7 +206,7 @@ class BohrAtom(VGroup):
         Returns
         -------
             The orbitals VGroup (first child of the atom group)."""
-        return self[0]
+        return cast(VGroup, self[0])
 
     def get_electrons(self) -> VGroup:
         """Return the electrons VGroup (second child of the atom group).
@@ -214,7 +214,7 @@ class BohrAtom(VGroup):
         Returns
         -------
             The electrons VGroup (second child of the atom group)."""
-        return self[1]
+        return cast(VGroup, self[1])
 
     def get_nuclei(self) -> VGroup:
         """Return the nuclei VGroup (third child of the atom group).
@@ -222,4 +222,4 @@ class BohrAtom(VGroup):
         Returns
         -------
             The nuclei VGroup (third child of the atom group)."""
-        return self[2]
+        return cast(VGroup, self[2])

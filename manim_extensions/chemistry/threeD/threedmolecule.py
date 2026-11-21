@@ -104,7 +104,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
                self.wait()
     """
 
-    group_class = OpenGLGroup
+    group_class: Any = OpenGLGroup
 
     def __init__(
         self,
@@ -152,7 +152,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
                     self.source_csv, atom.get("element").symbol
                 )
             else:
-                element = mc_element_dict.get(atom.get("element").symbol)
+                element = cast(Element, mc_element_dict.get(atom.get("element").symbol))
             atoms.add(ThreeDAtom(element, atom.get("coords")))
 
         return atoms
@@ -171,14 +171,18 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
                 bond_type = bond.get("type")
                 bonds.add(
                     ThreeDBond(
-                        from_atom=from_atom, to_atom=to_atom, bond_type=int(bond_type)
+                        from_atom=cast(ThreeDAtom, from_atom),
+                        to_atom=cast(ThreeDAtom, to_atom),
+                        bond_type=int(bond_type),
                     )
                 )
 
         return bonds
 
     @staticmethod
-    def mc_molecule_to_atoms_and_bonds(mc_molecule: MCMolecule) -> tuple[dict, dict]:
+    def mc_molecule_to_atoms_and_bonds(
+        mc_molecule: MCMolecule,
+    ) -> tuple[dict[Any, Any], dict[Any, Any]]:
         """
         Transforms the structure of a mc_molecule to an (atoms, bonds) tuple.
 
@@ -205,13 +209,13 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
             for bond in atom.bonds:
                 # TODO: This patches an issue with from_atom and to_atom but does not solve it completely.
                 # Fix later the root cause
-                if bond.from_atom.molecule_index == index:
-                    bond_to[bond.to_atom.molecule_index] = bond.to_atom.element.symbol
+                from_atom_ref = cast(Any, bond.from_atom)
+                to_atom_ref = cast(Any, bond.to_atom)
+                if from_atom_ref.molecule_index == index:
+                    bond_to[to_atom_ref.molecule_index] = to_atom_ref.element.symbol
 
                 else:
-                    bond_to[bond.from_atom.molecule_index] = (
-                        bond.from_atom.element.symbol
-                    )
+                    bond_to[from_atom_ref.molecule_index] = from_atom_ref.element.symbol
 
             atom_data = {
                 "coords": atom.coords,
@@ -240,6 +244,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
 
         return atoms, bonds
 
+    @staticmethod
     def from_mol_file(filename: str, source_csv: str | None) -> "ThreeDMolecule":
         """Create a :class:`~manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule` by parsing a .mol file.
 
@@ -257,7 +262,10 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
         atoms, bonds = mol_parser(file=filename)
         return ThreeDMolecule(atoms_dict=atoms, bonds_dict=bonds, source_csv=source_csv)
 
-    def from_mol_string(mol_string: str, source_csv: str | None) -> "ThreeDMolecule":
+    @staticmethod
+    def from_mol_string(
+        mol_string: str | list[str], source_csv: str | None
+    ) -> "ThreeDMolecule":
         """Create a :class:`~manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule` by parsing a mol-format string.
 
         Parameters
@@ -272,7 +280,10 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
             A :class:`~manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule` instance representing the result.
         """
         # patched: accept the whole MOL block here, not only its lines.
+        mol_lines: list[str]
         if isinstance(mol_string, str):
-            mol_string = mol_string.splitlines()
-        atoms, bonds = mol_parser_string(mol_string)
+            mol_lines = mol_string.splitlines()
+        else:
+            mol_lines = mol_string
+        atoms, bonds = mol_parser_string(mol_lines)
         return ThreeDMolecule(atoms_dict=atoms, bonds_dict=bonds, source_csv=source_csv)

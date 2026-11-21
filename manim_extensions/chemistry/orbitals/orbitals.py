@@ -7,7 +7,7 @@ This module provides classes for rendering atomic orbitals in 3D.
 
 """
 
-from typing import Any
+from typing import Any, cast
 
 from manim import BLUE, ORIGIN, PI, RED, TAU
 from manim.mobject.opengl.opengl_surface import OpenGLSurface
@@ -19,13 +19,13 @@ if hasattr(spe, "sph_harm_y"):
     # scipy >= 1.15: Y_l^m(theta_polar, phi_azimuthal)
     def _sph_harm(m: int, l: int, azimuthal: VectorND, polar: VectorND) -> np.ndarray:
         """Return the spherical harmonic with the new scipy argument order."""
-        return spe.sph_harm_y(l, m, polar, azimuthal)
+        return cast(np.ndarray, spe.sph_harm_y(l, m, polar, azimuthal))
 
 else:
     # legacy scipy: sph_harm(m, l, theta_azimuthal, phi_polar)
     def _sph_harm(m: int, l: int, azimuthal: VectorND, polar: VectorND) -> np.ndarray:
         """Return the spherical harmonic with the legacy scipy argument order."""
-        return spe.sph_harm(m, l, azimuthal, polar)
+        return cast(np.ndarray, spe.sph_harm(m, l, azimuthal, polar))
 
 
 class OrbitalBase(OpenGLSurface):
@@ -56,14 +56,16 @@ class OrbitalBase(OpenGLSurface):
         OpenGLSurface.
     """
 
-    def add_background_rectangle_to_family_members_with_points(self) -> Any:
+    def add_background_rectangle_to_family_members_with_points(
+        self, **kwargs: Any
+    ) -> "OrbitalBase":
         """No-op override to prevent background rectangle addition on orbital surfaces.
 
         Returns
         -------
             The resulting value.
         """
-        pass
+        return self
 
     def __init__(
         self,
@@ -134,9 +136,10 @@ class OrbitalBase(OpenGLSurface):
         -------
             The scaled 3D Cartesian coordinates for the given spherical angles.
         """
-        x = np.sin(u) * np.cos(v) * abs(psi)
-        y = np.sin(u) * np.sin(v) * abs(psi)
-        z = np.cos(u) * abs(psi)
+        u_arr = cast(VectorND, u)
+        x = np.sin(u_arr) * np.cos(v) * abs(psi)
+        y = np.sin(u_arr) * np.sin(v) * abs(psi)
+        z = np.cos(u_arr) * abs(psi)
 
         return self.size * np.array([x, y, z])
 
@@ -154,7 +157,7 @@ class OrbitalBase(OpenGLSurface):
         -------
             The orbital surface coordinates for the given spherical angles.
         """
-        psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
+        psi = self.psi_ang(v, cast(VectorND, u), l=self.l_value, m=self.m_value)
 
         return self.calculate_coordinates(psi, u, v)
 
@@ -178,9 +181,9 @@ class OrbitalPositive(OrbitalBase):
         -------
             The orbital surface coordinates for the given spherical angles.
         """
-        psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
+        psi = self.psi_ang(v, cast(VectorND, u), l=self.l_value, m=self.m_value)
         if psi < 0:
-            psi = 0
+            psi = cast(VectorND, 0)
 
         return self.calculate_coordinates(psi, u, v)
 
@@ -204,9 +207,9 @@ class OrbitalNegative(OrbitalBase):
         -------
             The orbital surface coordinates for the given spherical angles.
         """
-        psi = self.psi_ang(v, u, l=self.l_value, m=self.m_value)
+        psi = self.psi_ang(v, cast(VectorND, u), l=self.l_value, m=self.m_value)
         if psi > 0:
-            psi = 0
+            psi = cast(VectorND, 0)
 
         return self.calculate_coordinates(psi, u, v)
 

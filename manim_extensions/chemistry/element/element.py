@@ -52,6 +52,7 @@ class Element:
         self.mass = mass
         self.color = color or "#ff00ff"
 
+    @staticmethod
     def from_csv_file(filename: str, element: str | int) -> "Element":
         """Create an :class:`~manim_extensions.chemistry.element.element.Element` from a CSV file.
 
