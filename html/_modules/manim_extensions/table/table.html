@@ -1479,7 +1479,7 @@
 <span class="sd">:class:`~manim_extensions.table.table.Table` - The main database table component.</span>
 <span class="sd">"""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">overload</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">cast</span><span class="p">,</span> <span class="n">overload</span>
 
 <span class="c1"># unlinked-class-ok: Row</span>
 
@@ -1869,7 +1869,7 @@
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rows</span><span class="p">)</span></div>
 
 
-    <span class="nd">@overload</span>
+    <span class="nd">@overload</span>  <span class="c1"># type: ignore[override]</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Row</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the data row at the given index.</span>
 
@@ -2261,7 +2261,9 @@
 
         <span class="c1"># Create shift-up animations for remaining rows</span>
         <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows_to_shift</span><span class="p">:</span>
-            <span class="n">all_animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">shift</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">actual_height</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
+            <span class="n">all_animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">cast</span><span class="p">(</span><span class="n">Animation</span><span class="p">,</span> <span class="n">row</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">shift</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="n">actual_height</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
+            <span class="p">)</span>
             <span class="n">row</span><span class="o">.</span><span class="n">index</span> <span class="o">-=</span> <span class="mi">1</span>
 
         <span class="c1"># Recalculate column widths if auto_fit is enabled</span>
@@ -2387,7 +2389,7 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">auto_fit</span><span class="p">:</span>
             <span class="c1"># Measure max width of new data</span>
             <span class="n">all_text</span> <span class="o">=</span> <span class="p">[</span><span class="n">header</span><span class="p">]</span> <span class="o">+</span> <span class="n">values</span>
-            <span class="n">max_text_width</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">max_text_width</span> <span class="o">=</span> <span class="mf">0.0</span>
             <span class="k">for</span> <span class="n">text_str</span> <span class="ow">in</span> <span class="n">all_text</span><span class="p">:</span>
                 <span class="n">t</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="n">text_str</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font_size</span><span class="p">)</span>
                 <span class="n">max_text_width</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_text_width</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">width</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">padding</span><span class="p">)</span>
@@ -2423,7 +2425,9 @@
         <span class="c1"># Shift cells to the right</span>
         <span class="n">cells_to_shift</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">header_row</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="n">index</span><span class="p">:]</span>
         <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">cells_to_shift</span><span class="p">:</span>
-            <span class="n">shift_animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">RIGHT</span> <span class="o">*</span> <span class="n">new_width</span><span class="p">))</span>
+            <span class="n">shift_animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">cast</span><span class="p">(</span><span class="n">Animation</span><span class="p">,</span> <span class="n">cell</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">RIGHT</span> <span class="o">*</span> <span class="n">new_width</span><span class="p">))</span>
+            <span class="p">)</span>
 
         <span class="c1"># Insert into row structure</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">header_row</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">header_cell</span><span class="p">)</span>
@@ -2447,7 +2451,9 @@
             <span class="c1"># Shift existing cells</span>
             <span class="n">cells_shift</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="n">index</span><span class="p">:]</span>
             <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cells_shift</span><span class="p">:</span>
-                <span class="n">shift_animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">RIGHT</span> <span class="o">*</span> <span class="n">new_width</span><span class="p">))</span>
+                <span class="n">shift_animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="n">cast</span><span class="p">(</span><span class="n">Animation</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">RIGHT</span> <span class="o">*</span> <span class="n">new_width</span><span class="p">))</span>
+                <span class="p">)</span>
 
             <span class="n">row</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">cell</span><span class="p">)</span>
             <span class="n">row</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
@@ -2507,7 +2513,9 @@
 
         <span class="c1"># Shift remaining cells left</span>
         <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">header_row</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="n">index</span><span class="p">:]:</span>
-            <span class="n">shift_animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cell</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="n">actual_width</span><span class="p">))</span>
+            <span class="n">shift_animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">cast</span><span class="p">(</span><span class="n">Animation</span><span class="p">,</span> <span class="n">cell</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="n">actual_width</span><span class="p">))</span>
+            <span class="p">)</span>
 
         <span class="c1"># 2. Data Rows</span>
         <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rows</span><span class="p">:</span>
@@ -2516,7 +2524,9 @@
             <span class="n">deleted_cells</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
 
             <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">row</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="n">index</span><span class="p">:]:</span>
-                <span class="n">shift_animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="n">actual_width</span><span class="p">))</span>
+                <span class="n">shift_animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                    <span class="n">cast</span><span class="p">(</span><span class="n">Animation</span><span class="p">,</span> <span class="n">c</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="n">actual_width</span><span class="p">))</span>
+                <span class="p">)</span>
 
         <span class="n">deleted_group</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="n">deleted_cells</span><span class="p">)</span>
 

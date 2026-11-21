@@ -1714,7 +1714,7 @@
 <span class="sd">               )</span>
 <span class="sd">               self.wait()</span>
 <span class="sd">    """</span>
-    <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">_ease_out_bounce</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">t</span><span class="p">)</span></div>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">_ease_out_bounce</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">t</span><span class="p">))</span></div>
 
 
 
@@ -1769,8 +1769,8 @@
 <span class="sd">               self.wait()</span>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;</span> <span class="mf">0.5</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">_ease_in_bounce</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">_ease_out_bounce</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">t</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">_ease_in_bounce</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">t</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">_ease_out_bounce</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">t</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span></div>
 
 
 

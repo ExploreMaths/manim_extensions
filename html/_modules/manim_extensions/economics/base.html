@@ -1544,7 +1544,7 @@
     <span class="n">x0</span><span class="p">,</span> <span class="n">x1</span> <span class="o">=</span> <span class="n">xs</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">xs</span><span class="p">[</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
     <span class="n">d0</span><span class="p">,</span> <span class="n">d1</span> <span class="o">=</span> <span class="n">diffs</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">diffs</span><span class="p">[</span><span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
     <span class="n">x_cross</span> <span class="o">=</span> <span class="n">x0</span> <span class="o">-</span> <span class="n">d0</span> <span class="o">*</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">d1</span> <span class="o">-</span> <span class="n">d0</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">x_cross</span></div>
+    <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">x_cross</span><span class="p">)</span></div>
 
 
 
@@ -2072,15 +2072,15 @@
                     <span class="p">)</span>
                     <span class="n">anims</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">new_labels</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="n">run_time</span><span class="p">))</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">new_eq_group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_eq_group</span><span class="p">(</span>
+                <span class="n">built_group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_eq_group</span><span class="p">(</span>
                     <span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_eq_curve_names</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eq_label_x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eq_label_y</span>
                 <span class="p">)</span>
-                <span class="k">if</span> <span class="n">new_eq_group</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">built_group</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                     <span class="n">old_eq_group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_eq_group</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_eq_group</span> <span class="o">=</span> <span class="n">new_eq_group</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_eq_group</span> <span class="o">=</span> <span class="n">built_group</span>
                     <span class="n">anims</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                         <span class="n">ReplacementTransform</span><span class="p">(</span>
-                            <span class="n">old_eq_group</span><span class="p">,</span> <span class="n">new_eq_group</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="n">run_time</span>
+                            <span class="n">old_eq_group</span><span class="p">,</span> <span class="n">built_group</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="n">run_time</span>
                         <span class="p">)</span>
                     <span class="p">)</span>
 

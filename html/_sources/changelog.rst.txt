@@ -10,11 +10,8 @@ v1.0.7 :bdg-primary-line:`In Development`
 Added
 ~~~~~
 
-* ``validate-types`` runs ``mypy`` in strict mode over the first-party
-  modules (``manim_extensions/__init__.py``, ``geometry.py``, ``scenes.py``
-  and ``utils``).  Vendored packages are followed for inference but their
-  upstream diagnostics are not reported, so a vendored resync does not
-  require re-annotating upstream code.
+* ``validate-types`` runs ``mypy`` in strict mode over the whole package,
+  including every vendored module.
 * ``workflow/validate_english_text.py`` replaces the docstring-only CJK
   check.  It scans every text file in the repository, including tests,
   scripts, workflow files, docs and configuration, and rejects Chinese text
@@ -208,6 +205,70 @@ Changed
   repository can therefore vendor ``workflow/`` and ``scripts/`` and run the
   checks against its own package and documentation tree without installing a
   separate distribution.
+
+Mypy
+~~~~
+
+* The whole package, vendored modules included, now passes
+  ``mypy --strict``: the baseline of **3,875 errors across 198 of 295 files**
+  is down to **0 errors in 295 files**.  ``follow_imports = "silent"`` and the
+  four-path ``files`` allowlist are gone; ``files = ["manim_extensions"]``
+  makes ``python -m mypy`` check every module, and the ``validate-types`` CI
+  job installs the optional extras on Python 3.12 so missing packages cannot
+  masquerade as type errors.
+* The baseline was dominated by ``arg-type`` (979), ``no-untyped-def`` (676),
+  ``assignment`` (396), ``type-arg`` (363), ``union-attr`` (352),
+  ``attr-defined`` (326), ``override`` (131), ``operator`` (103),
+  ``no-any-return`` (98) and ``return-value`` (89).  The largest package
+  shares were ``machine_learning`` (764), ``chemistry`` (729), ``pymunk``
+  (408), ``mindmap`` (297), ``three_d`` (246), ``data_structures`` (201),
+  ``automata`` (198) and ``meshes`` (161).
+* Every public and private callable now carries parameter and return
+  annotations, and bare containers were replaced by their concrete forms:
+  ``list``/``dict``/``tuple``/``Sequence``/``Callable`` gained type
+  parameters, Cairo contexts became ``cairo.Context[Any]``, and the parsers
+  share ``dict[int, dict[str, Any]]`` plus the ``ParsedData`` alias instead
+  of unparameterised payloads.
+* Manim's dynamic mobject attributes are typed at their source.  Properties
+  that ``Mobject.__getattr__`` used to expose as ``MethodType`` are declared
+  in the class body (``subscript``, ``node_style``, ``center``), while
+  ``.animate`` builders are narrowed with ``cast(Animation, ...)``.  Vector
+  attributes such as ``Point3D``, ``Vector3D`` and ``VectorND`` are no longer
+  inferred as plain arrays.
+* Overrides now match their supertypes without changing runtime behaviour:
+  vector parameters use the ``*Like`` aliases, ``move_to`` overrides accept
+  ``aligned_edge`` and ``coor_mask``, and deliberately different signatures
+  (``apply_function``, ``ListGroup.add``/``remove``, the table and row
+  ``__getitem__`` overloads) carry narrow ``# type: ignore[override]``
+  comments with the list semantics kept intact.
+* Optional values are narrowed at the point of use instead of being forced
+  into non-optional attributes: geometry and animation targets are declared
+  ``VGroup | None``/``Mobject | None`` and checked before use, ``hasattr``
+  lookups are followed by ``cast``, and constructor ``**kwargs`` dictionaries
+  use ``dict[str, Any]`` rather than ``dict[str, object]``.
+* NumPy boundaries were made explicit.  Point-like arguments are passed as
+  ``np.array(...)``, arrays returned from Manim helpers are cast to their
+  geometry aliases, ``np.ndarray`` index maps use ``dtype=object``, and
+  NumPy slices are normalised with ``np.asarray(..., dtype=int)``.
+* Dependencies without stubs are isolated: ``scikit-learn`` and
+  ``manimpango`` imports use ``# type: ignore[import-untyped]``, the docutils
+  Sphinx directive uses a module-level ``# mypy: disable-error-code``
+  pragma, and the machine-learning configuration uses a single assignment
+  ignore rather than a package-wide suppression.
+* Vendored re-exports are explicit.  Star-import packages now re-export with
+  ``Name as Name``, ``chemistry`` imports its 118 element symbols from
+  ``element.element``, and the ``manim_chemistry_molecule`` package advertises
+  ``MCElement`` and ``MC_ELEMENT_DICT`` in ``__all__``, so ``test_imports``
+  sees every advertised name.
+* The strict pass also uncovered and fixed real runtime defects:
+  ``basic_mesh.add_face`` now returns the ``(face, new_edges)`` pair its
+  callers unpack, ``MCAtom.bonds_fulfilled`` compares against the minimum
+  bond count instead of looking up the atom in it, ``MCMolecule`` no longer
+  calls ``copy`` on a ``dict_values`` view, ``Array`` slices return node
+  objects again, and ``Polygon`` receives its points as separate arguments.
+* The changelog entry for ``validate-types`` in the *Added* section above is
+  updated to describe the package-wide check rather than the first-party
+  allowlist.
 
 v1.0.6 :bdg-success-line:`Latest`
 -----------------------------------------

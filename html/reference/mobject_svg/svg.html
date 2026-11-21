@@ -1540,7 +1540,10 @@
 </ul>
 </dd>
 <dt class="field-even">Yields<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>cairo.Context</em> – The SVG context used to draw the mobject.</p>
+<dd class="field-even"><p><em>cairo.Context[Any]</em> – The SVG context used to draw the mobject.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type">Iterator[cairo.Context[Any]]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -1590,7 +1593,7 @@ NaN or infinite and therefore cannot be drawn.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ctx</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></span>) – The cairo context to update.</p></li>
+<li><p><strong>ctx</strong> (<span class="sphinx_autodoc_typehints-type">cairo.Context[Any]</span>) – The cairo context to update.</p></li>
 <li><p><strong>rgbas</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></span>) – One rgba per stroke or fill point.</p></li>
 <li><p><strong>vmobject</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a></span>) – <p>The mobject that provides the gradient start and end points.</p>
 <blockquote>
@@ -1612,7 +1615,7 @@ NaN or infinite and therefore cannot be drawn.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ctx</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></span>) – The cairo context to draw into.</p></li>
+<li><p><strong>ctx</strong> (<span class="sphinx_autodoc_typehints-type">cairo.Context[Any]</span>) – The cairo context to draw into.</p></li>
 <li><p><strong>vmobject</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a></span>) – The mobject whose stroke width and rgbas are applied.</p></li>
 <li><p><strong>background</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – <p>Stroke with the background stroke instead of the foreground one.</p>
 <blockquote>
@@ -1634,7 +1637,7 @@ NaN or infinite and therefore cannot be drawn.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>ctx</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></span>) – The cairo context to draw into.</p></li>
+<li><p><strong>ctx</strong> (<span class="sphinx_autodoc_typehints-type">cairo.Context[Any]</span>) – The cairo context to draw into.</p></li>
 <li><p><strong>vmobject</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a></span>) – <p>The vmobject whose fill rgbas are applied.</p>
 <blockquote>
 <div><p>The resulting value.</p>
@@ -1671,7 +1674,7 @@ and is overwritten when the caller writes the SVG.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>vmobject</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a></span>) – The mobject to draw.</p></li>
-<li><p><strong>ctx</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Context</span></code></span>) – <p>The cairo context that receives the drawing.</p>
+<li><p><strong>ctx</strong> (<span class="sphinx_autodoc_typehints-type">cairo.Context[Any]</span>) – <p>The cairo context that receives the drawing.</p>
 <blockquote>
 <div><p>The resulting value.</p>
 </div></blockquote>

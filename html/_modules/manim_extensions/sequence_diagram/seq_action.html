@@ -1481,7 +1481,7 @@
 
 <span class="sd">"""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterator</span>
 
@@ -1685,7 +1685,7 @@
             <span class="n">cast</span><span class="p">(</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">act_end</span><span class="o">.</span><span class="n">get_center</span><span class="p">()),</span>
         <span class="p">)</span>
         <span class="n">post_move_gift_label</span> <span class="o">=</span> <span class="n">gift</span><span class="o">.</span><span class="n">create_obj_label</span><span class="p">(</span><span class="n">font_size</span><span class="o">=</span><span class="mi">16</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span>
-            <span class="n">mid_point</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">UP</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mid_point</span><span class="p">),</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">UP</span>
         <span class="p">)</span>
 
         <span class="k">yield</span> <span class="n">Succession</span><span class="p">(</span>

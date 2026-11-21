@@ -1501,7 +1501,6 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.camera.moving_camera</span><span class="w"> </span><span class="kn">import</span> <span class="n">MovingCamera</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">itertools</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">types</span><span class="w"> </span><span class="kn">import</span> <span class="n">ModuleType</span>
 
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">..utils.deps</span><span class="w"> </span><span class="kn">import</span> <span class="n">require</span>
@@ -1706,7 +1705,7 @@
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">continue_updating</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
             <span class="k">return</span>
-        <span class="n">svg2paths</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">ModuleType</span><span class="p">,</span> <span class="n">require</span><span class="p">(</span><span class="s2">"svg"</span><span class="p">,</span> <span class="s2">"svgpathtools"</span><span class="p">))</span><span class="o">.</span><span class="n">svg2paths</span>
+        <span class="n">svg2paths</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"svg"</span><span class="p">,</span> <span class="s2">"svgpathtools"</span><span class="p">)</span><span class="o">.</span><span class="n">svg2paths</span>
         <span class="n">svg_filename</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">filename_base</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current_index</span><span class="p">)</span> <span class="o">+</span> <span class="s2">".svg"</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">vmobject</span><span class="o">.</span><span class="n">to_svg</span><span class="p">(</span><span class="n">svg_filename</span><span class="p">)</span>
         <span class="n">html_el_creations</span> <span class="o">=</span> <span class="s2">""</span>
@@ -1869,7 +1868,7 @@
 <span class="sd">            -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
-        <span class="n">svg2paths</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">ModuleType</span><span class="p">,</span> <span class="n">require</span><span class="p">(</span><span class="s2">"svg"</span><span class="p">,</span> <span class="s2">"svgpathtools"</span><span class="p">))</span><span class="o">.</span><span class="n">svg2paths</span>
+        <span class="n">svg2paths</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"svg"</span><span class="p">,</span> <span class="s2">"svgpathtools"</span><span class="p">)</span><span class="o">.</span><span class="n">svg2paths</span>
         <span class="k">if</span> <span class="n">animate_this</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">continue_updating</span> <span class="o">=</span> <span class="kc">False</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">last_t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scene</span><span class="o">.</span><span class="n">renderer</span><span class="o">.</span><span class="n">time</span>

@@ -1963,7 +1963,7 @@
 <span class="sd">            If the :class:`~manim.mobject.mobject.Mobject` has not been added to the physical space yet.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">mob</span><span class="p">,</span> <span class="s2">"body"</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span>
+            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">body</span>  <span class="c1"># type: ignore[no-any-return]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"Please add 'mobject' to the space first!"</span><span class="p">)</span></div>
 
@@ -1992,7 +1992,7 @@
 <span class="sd">            If the :class:`~manim.mobject.mobject.Mobject` has not been added to the physical space yet.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">mob</span><span class="p">,</span> <span class="s2">"shapes"</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">shapes</span>
+            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">mob</span><span class="p">)</span><span class="o">.</span><span class="n">shapes</span>  <span class="c1"># type: ignore[no-any-return]</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span><span class="s2">"Please add 'mobject' to the space first!"</span><span class="p">)</span></div>
 

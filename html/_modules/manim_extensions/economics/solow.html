@@ -1480,7 +1480,7 @@
 
 <span class="sd">"""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">AnimationGroup</span><span class="p">,</span>
@@ -1564,6 +1564,9 @@
 <span class="sd">               self.play(diagram.show_shares())</span>
 <span class="sd">               self.wait()</span>
 <span class="sd">    """</span>
+
+    <span class="n">_shares_group</span><span class="p">:</span> <span class="n">VGroup</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">_golden_group</span><span class="p">:</span> <span class="n">VGroup</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
@@ -1679,7 +1682,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            A function mapping capital to break-even investment.</span>
 <span class="sd">        """</span>
-        <span class="n">rate</span> <span class="o">=</span> <span class="n">delta</span> <span class="o">+</span> <span class="n">n</span> <span class="o">+</span> <span class="n">g</span>
+        <span class="n">rate</span> <span class="o">=</span> <span class="n">delta</span> <span class="o">+</span> <span class="p">(</span><span class="n">n</span> <span class="ow">or</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">+</span> <span class="n">g</span>
         <span class="k">return</span> <span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">rate</span> <span class="o">*</span> <span class="n">k</span></div>
 
 
@@ -1716,11 +1719,11 @@
             <span class="k">return</span> <span class="n">curve_anim</span>
 
         <span class="n">new_group</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_build_shares</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_steady_state_k</span><span class="p">(),</span>
+            <span class="n">cast</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_steady_state_k</span><span class="p">()),</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_shares_c_color</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_shares_i_color</span><span class="p">,</span>
         <span class="p">)</span>
-        <span class="n">old</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shares_group</span>
+        <span class="n">old</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">VGroup</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shares_group</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_shares_group</span> <span class="o">=</span> <span class="n">new_group</span>
         <span class="n">shares_anim</span> <span class="o">=</span> <span class="n">ReplacementTransform</span><span class="p">(</span><span class="n">old</span><span class="p">,</span> <span class="n">new_group</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="n">run_time</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">AnimationGroup</span><span class="p">(</span><span class="n">curve_anim</span><span class="p">,</span> <span class="n">shares_anim</span><span class="p">)</span></div>
@@ -2066,7 +2069,7 @@
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shares_visible</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_shares_group</span> <span class="o">=</span> <span class="n">initial</span>
 
-        <span class="n">container</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shares_group</span>
+        <span class="n">container</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">VGroup</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shares_group</span><span class="p">)</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">updater</span><span class="p">(</span><span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">"""Rebuilds the consumption/investment shares mobject at capital level k."""</span>
@@ -2092,7 +2095,7 @@
 <span class="sd">            The golden-rule capital level.</span>
 <span class="sd">        """</span>
         <span class="n">rate</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_delta</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_g</span>
-        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_alpha</span> <span class="o">/</span> <span class="n">rate</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_alpha</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_alpha</span> <span class="o">/</span> <span class="n">rate</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_alpha</span><span class="p">)))</span></div>
 
 
 <div class="viewcode-block" id="SolowDiagram.show_golden_rule">

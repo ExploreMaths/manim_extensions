@@ -1478,7 +1478,7 @@
 <span class="sd">""":class:`~manim_extensions.circuit.utils.Circuit` diagram utilities for Manim."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Literal</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
 
@@ -1778,7 +1778,7 @@
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">component_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">component</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">component_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">component</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="Circuit.add_wire">
@@ -1823,30 +1823,30 @@
         <span class="c1"># Not first wire.</span>
         <span class="c1"># Loop through all nodes and wires through each node</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">intersections</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Node</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">intersections</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="c1"># Iterate through all nodes.</span>
-            <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_list</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">existing</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_list</span><span class="p">:</span>
                 <span class="c1"># search if a coordinate of the wire belong in the node.</span>
                 <span class="c1"># If so, add to node intersections</span>
                 <span class="c1"># search is a list that returns either True or coordinate or False</span>
                 <span class="c1"># It is important because we can then add Dots() from this list.</span>
-                <span class="n">search</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">check_coord</span><span class="p">,</span> <span class="n">wire</span><span class="p">))</span>
+                <span class="n">search</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">existing</span><span class="o">.</span><span class="n">check_coord</span><span class="p">,</span> <span class="n">wire</span><span class="p">))</span>
                 <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">([</span><span class="nb">type</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="nb">bool</span> <span class="ow">and</span> <span class="n">s</span> <span class="o">==</span> <span class="kc">False</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">search</span><span class="p">]):</span>
-                    <span class="n">intersections</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+                    <span class="n">intersections</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">existing</span><span class="p">)</span>
 
                     <span class="c1"># Go through the search</span>
                     <span class="c1"># If there is a coordinate, tell the node to add a junction there.</span>
                     <span class="k">for</span> <span class="n">dot</span> <span class="ow">in</span> <span class="n">search</span><span class="p">:</span>
                         <span class="k">if</span> <span class="ow">not</span> <span class="nb">type</span><span class="p">(</span><span class="n">dot</span><span class="p">)</span> <span class="o">==</span> <span class="nb">bool</span><span class="p">:</span>
-                            <span class="n">node</span><span class="o">.</span><span class="n">add_dot</span><span class="p">(</span><span class="n">dot</span><span class="p">)</span>
+                            <span class="n">existing</span><span class="o">.</span><span class="n">add_dot</span><span class="p">(</span><span class="n">dot</span><span class="p">)</span>
 
             <span class="c1"># This means that the wire is not attached to any node,</span>
             <span class="c1"># Make a new node.</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">intersections</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">()</span>
-                <span class="n">node</span><span class="o">.</span><span class="n">add_wire</span><span class="p">(</span><span class="n">wire</span><span class="p">)</span>
-                <span class="n">node</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">WHITE</span><span class="p">)</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">node_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+                <span class="n">new_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">()</span>
+                <span class="n">new_node</span><span class="o">.</span><span class="n">add_wire</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">wire</span><span class="p">))</span>
+                <span class="n">new_node</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">WHITE</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">node_list</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">new_node</span><span class="p">)</span>
 
             <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">intersections</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="n">intersections</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">add_wire</span><span class="p">(</span><span class="n">wire</span><span class="p">)</span>
@@ -1859,7 +1859,9 @@
                 <span class="n">intersections</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">intersections</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">wire</span><span class="p">)</span>
                 <span class="n">intersections</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">intersections</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">node_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">intersections</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">node_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">intersections</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span></div>
+                <span class="bp">self</span><span class="o">.</span><span class="n">node_list</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">intersections</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="kc">None</span></div>
 </div>
 
 
@@ -2050,7 +2052,7 @@
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">wire</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">False</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">add_wire</span><span class="p">(</span><span class="n">wire</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add_wire</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">wire</span><span class="p">))</span>
 
         <span class="c1"># Get all the junction dots.</span>
         <span class="k">for</span> <span class="n">dot</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">junction_dots</span><span class="p">:</span>

@@ -1530,7 +1530,7 @@
 <span class="sd">        Colours cycled through for matched bracket groups.</span>
 <span class="sd">    """</span>
 
-    <span class="n">colors</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">]]</span>
+    <span class="n">colors</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    The colors of this theme represented as a dictionary. The keys of the dictionary are hexidecimal colors (such as `"#FFFFFF"`), and the values are lists of token types that should be colored with that color (such as `["keyword", "operation"]`).</span>
 <span class="sd">    """</span>
@@ -1538,7 +1538,9 @@
     <span class="n">group_matchers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">colors</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">]],</span> <span class="n">group_matchers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">colors</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]],</span>
+        <span class="n">group_matchers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">colors</span> <span class="o">=</span> <span class="n">colors</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">group_matchers</span> <span class="o">=</span> <span class="n">group_matchers</span>
@@ -1626,11 +1628,6 @@
 <span class="sd">    The color of the programming language. The color is used when displaying the name in the title card above the code block. by default, the official GitHub language colors are used for supported languages, see https://github.com/ozh/github-colors/blob/master/colors.json.</span>
 <span class="sd">    """</span>
 
-    <span class="n">language</span><span class="p">:</span> <span class="nb">object</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    The `TokenizableLanguage` of the language, imported on first access.</span>
-<span class="sd">    """</span>
-
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">tokenize_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_tokenize_name</span> <span class="o">=</span> <span class="n">tokenize_name</span> <span class="k">if</span> <span class="n">tokenize_name</span> <span class="k">else</span> <span class="n">name</span>
@@ -1693,7 +1690,7 @@
     <span class="n">code</span><span class="p">:</span> <span class="n">MarkupText</span>
 <span class="w">    </span><span class="sd">"""The primary :class:`~manim.mobject.text.text_mobject.MarkupText` object that makes up the code block. Equivalent to indexing at `[1]`."""</span>
 
-    <span class="n">title</span><span class="p">:</span> <span class="n">MarkupText</span>
+    <span class="n">title</span><span class="p">:</span> <span class="n">MarkupText</span> <span class="o">|</span> <span class="kc">None</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    The title :class:`~manim.mobject.text.text_mobject.MarkupText` object that makes up the langauge name title at the top of the code block. Equivalent to indexing at `[3]`.</span>
 <span class="sd">    """</span>
@@ -1701,7 +1698,7 @@
     <span class="n">code_background</span><span class="p">:</span> <span class="n">BackgroundRectangle</span>
 <span class="w">    </span><span class="sd">"""The :class:`~manim.mobject.geometry.shape_matchers.BackgroundRectangle` for the code block markup object. Equivalent to indexing at `[0]`."""</span>
 
-    <span class="n">title_background</span><span class="p">:</span> <span class="n">BackgroundRectangle</span>
+    <span class="n">title_background</span><span class="p">:</span> <span class="n">BackgroundRectangle</span> <span class="o">|</span> <span class="kc">None</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    The :class:`~manim.mobject.geometry.shape_matchers.BackgroundRectangle` for the `title` object that lists the language name above the code block. Equivalent to indexing at `[2]`.</span>
 <span class="sd">    """</span>
@@ -1806,9 +1803,7 @@
 
 <div class="viewcode-block" id="CodeBlock.create">
 <a class="viewcode-back" href="../../../reference/code_blocks/manim_code_blocks.CodeBlock.html#manim_extensions.code_blocks.manim_code_blocks.CodeBlock.create">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">FadeIn</span><span class="p">,</span> <span class="n">AddTextLetterByLetter</span><span class="p">,</span> <span class="n">FadeIn</span><span class="p">,</span> <span class="n">AddTextLetterByLetter</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
 <span class="sd">        Return a tuple of animations for creating the code block. Use such as:\n</span>
 <span class="sd">        ```</span>
@@ -1830,14 +1825,14 @@
         <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"title"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"title_background"</span><span class="p">,</span> <span class="kc">None</span><span class="p">):</span>
             <span class="k">return</span> <span class="p">(</span>
                 <span class="n">FadeIn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">code_background</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span>
-                <span class="n">AddTextLetterByLetter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span>
-                <span class="n">FadeIn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title_background</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span>
-                <span class="n">AddTextLetterByLetter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span>
+                <span class="n">AddTextLetterByLetter</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span>
+                <span class="n">FadeIn</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">title_background</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span>
+                <span class="n">AddTextLetterByLetter</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span>
             <span class="p">)</span>
 
         <span class="k">return</span> <span class="p">(</span>
             <span class="n">FadeIn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">code_background</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span>
-            <span class="n">AddTextLetterByLetter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span>
+            <span class="n">AddTextLetterByLetter</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span>
         <span class="p">)</span></div>
 
 
@@ -1866,8 +1861,8 @@
             <span class="k">return</span> <span class="p">(</span>
                 <span class="n">FadeOut</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">code_background</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span>
                 <span class="n">Uncreate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">code</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span>
-                <span class="n">FadeOut</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title_background</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span>
-                <span class="n">Uncreate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span>
+                <span class="n">FadeOut</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">title_background</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span>
+                <span class="n">Uncreate</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">),</span>
             <span class="p">)</span>
 
         <span class="k">return</span> <span class="p">(</span>

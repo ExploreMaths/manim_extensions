@@ -1480,7 +1480,7 @@
 
 <span class="sd">"""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">AnimationGroup</span><span class="p">,</span> <span class="n">BLUE</span><span class="p">,</span> <span class="n">GREEN</span><span class="p">,</span> <span class="n">Line</span><span class="p">,</span> <span class="n">RED</span><span class="p">,</span> <span class="n">Transform</span><span class="p">,</span> <span class="n">UP</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">EconDiagram</span>
@@ -1559,9 +1559,9 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">m</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
-        <span class="n">v</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="n">sras_price</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+        <span class="n">m</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">20</span><span class="p">,</span>
+        <span class="n">v</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="n">sras_price</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
         <span class="n">sras_slope</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">lras_y</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
         <span class="n">show_equilibrium</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -1579,7 +1579,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_v</span> <span class="o">=</span> <span class="n">v</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_sras_price</span> <span class="o">=</span> <span class="n">sras_price</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_sras_slope</span> <span class="o">=</span> <span class="n">sras_slope</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_lras_y</span> <span class="o">=</span> <span class="n">lras_y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_lras_y</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">lras_y</span>
 
         <span class="n">ad_func</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_ad_func</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
         <span class="n">sras_func</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_sras_func</span><span class="p">(</span><span class="n">sras_price</span><span class="p">,</span> <span class="n">sras_slope</span><span class="p">,</span> <span class="n">lras_y</span><span class="p">)</span>
@@ -1672,7 +1672,7 @@
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">slope</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">price</span>
-        <span class="k">return</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">price</span> <span class="o">+</span> <span class="n">slope</span> <span class="o">*</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_bar</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="k">lambda</span> <span class="n">y</span><span class="p">:</span> <span class="n">price</span> <span class="o">+</span> <span class="n">slope</span> <span class="o">*</span> <span class="p">(</span><span class="n">y</span> <span class="o">-</span> <span class="n">cast</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">y_bar</span><span class="p">))</span></div>
 
 
     <span class="nd">@property</span>
@@ -1823,7 +1823,7 @@
 <a class="viewcode-back" href="../../../reference/economics/ad_as.ADASDiagram.html#manim_extensions.economics.ad_as.ADASDiagram.long_run_adjust">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">long_run_adjust</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">_LR_RUN_TIME</span><span class="p">,</span> <span class="n">show_arrows</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnimationGroup</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnimationGroup</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="n">AnimationGroup</span><span class="p">]:</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">"""SRAS slowly shifts to restore long-run equilibrium.</span>
 
 <span class="sd">        Parameters</span>
@@ -1890,7 +1890,7 @@
         <span class="n">long_run</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">lr_run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">_LR_RUN_TIME</span><span class="p">,</span>
         <span class="n">show_arrows</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">AnimationGroup</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Positive demand shock (e.g. increase in M or V).</span>
 
 <span class="sd">        Parameters</span>
@@ -1933,7 +1933,7 @@
         <span class="n">long_run</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">lr_run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">_LR_RUN_TIME</span><span class="p">,</span>
         <span class="n">show_arrows</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">AnimationGroup</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Negative demand shock (e.g. decrease in M or V).</span>
 
 <span class="sd">        Parameters</span>
@@ -1977,7 +1977,7 @@
         <span class="n">long_run</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">lr_run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">_LR_RUN_TIME</span><span class="p">,</span>
         <span class="n">show_arrows</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">AnimationGroup</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Adverse supply shock (e.g. oil price spike, cost push).</span>
 
 <span class="sd">        Parameters</span>
@@ -2015,7 +2015,7 @@
         <span class="n">long_run</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">lr_run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">_LR_RUN_TIME</span><span class="p">,</span>
         <span class="n">show_arrows</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">AnimationGroup</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Animate an expansionary supply shock by shifting SRAS to a lower price level.</span>
 
 <span class="sd">        Parameters</span>

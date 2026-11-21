@@ -1488,11 +1488,8 @@
 <section id="added">
 <h3>Added<a class="headerlink" href="#added" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">validate-types</span></code> runs <code class="docutils literal notranslate"><span class="pre">mypy</span></code> in strict mode over the first-party
-modules (<code class="docutils literal notranslate"><span class="pre">manim_extensions/__init__.py</span></code>, <code class="docutils literal notranslate"><span class="pre">geometry.py</span></code>, <code class="docutils literal notranslate"><span class="pre">scenes.py</span></code>
-and <code class="docutils literal notranslate"><span class="pre">utils</span></code>).  Vendored packages are followed for inference but their
-upstream diagnostics are not reported, so a vendored resync does not
-require re-annotating upstream code.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">validate-types</span></code> runs <code class="docutils literal notranslate"><span class="pre">mypy</span></code> in strict mode over the whole package,
+including every vendored module.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">workflow/validate_english_text.py</span></code> replaces the docstring-only CJK
 check.  It scans every text file in the repository, including tests,
 scripts, workflow files, docs and configuration, and rejects Chinese text
@@ -1688,6 +1685,71 @@ from <code class="docutils literal notranslate"><span class="pre">[tool.manim-do
 repository can therefore vendor <code class="docutils literal notranslate"><span class="pre">workflow/</span></code> and <code class="docutils literal notranslate"><span class="pre">scripts/</span></code> and run the
 checks against its own package and documentation tree without installing a
 separate distribution.</p></li>
+</ul>
+</section>
+<section id="mypy">
+<h3>Mypy<a class="headerlink" href="#mypy" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>The whole package, vendored modules included, now passes
+<code class="docutils literal notranslate"><span class="pre">mypy</span> <span class="pre">--strict</span></code>: the baseline of <strong>3,875 errors across 198 of 295 files</strong>
+is down to <strong>0 errors in 295 files</strong>.  <code class="docutils literal notranslate"><span class="pre">follow_imports</span> <span class="pre">=</span> <span class="pre">&quot;silent&quot;</span></code> and the
+four-path <code class="docutils literal notranslate"><span class="pre">files</span></code> allowlist are gone; <code class="docutils literal notranslate"><span class="pre">files</span> <span class="pre">=</span> <span class="pre">[&quot;manim_extensions&quot;]</span></code>
+makes <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">mypy</span></code> check every module, and the <code class="docutils literal notranslate"><span class="pre">validate-types</span></code> CI
+job installs the optional extras on Python 3.12 so missing packages cannot
+masquerade as type errors.</p></li>
+<li><p>The baseline was dominated by <code class="docutils literal notranslate"><span class="pre">arg-type</span></code> (979), <code class="docutils literal notranslate"><span class="pre">no-untyped-def</span></code> (676),
+<code class="docutils literal notranslate"><span class="pre">assignment</span></code> (396), <code class="docutils literal notranslate"><span class="pre">type-arg</span></code> (363), <code class="docutils literal notranslate"><span class="pre">union-attr</span></code> (352),
+<code class="docutils literal notranslate"><span class="pre">attr-defined</span></code> (326), <code class="docutils literal notranslate"><span class="pre">override</span></code> (131), <code class="docutils literal notranslate"><span class="pre">operator</span></code> (103),
+<code class="docutils literal notranslate"><span class="pre">no-any-return</span></code> (98) and <code class="docutils literal notranslate"><span class="pre">return-value</span></code> (89).  The largest package
+shares were <code class="docutils literal notranslate"><span class="pre">machine_learning</span></code> (764), <code class="docutils literal notranslate"><span class="pre">chemistry</span></code> (729), <code class="docutils literal notranslate"><span class="pre">pymunk</span></code>
+(408), <code class="docutils literal notranslate"><span class="pre">mindmap</span></code> (297), <code class="docutils literal notranslate"><span class="pre">three_d</span></code> (246), <code class="docutils literal notranslate"><span class="pre">data_structures</span></code> (201),
+<code class="docutils literal notranslate"><span class="pre">automata</span></code> (198) and <code class="docutils literal notranslate"><span class="pre">meshes</span></code> (161).</p></li>
+<li><p>Every public and private callable now carries parameter and return
+annotations, and bare containers were replaced by their concrete forms:
+<code class="docutils literal notranslate"><span class="pre">list</span></code>/<code class="docutils literal notranslate"><span class="pre">dict</span></code>/<code class="docutils literal notranslate"><span class="pre">tuple</span></code>/<code class="docutils literal notranslate"><span class="pre">Sequence</span></code>/<code class="docutils literal notranslate"><span class="pre">Callable</span></code> gained type
+parameters, Cairo contexts became <code class="docutils literal notranslate"><span class="pre">cairo.Context[Any]</span></code>, and the parsers
+share <code class="docutils literal notranslate"><span class="pre">dict[int,</span> <span class="pre">dict[str,</span> <span class="pre">Any]]</span></code> plus the <code class="docutils literal notranslate"><span class="pre">ParsedData</span></code> alias instead
+of unparameterised payloads.</p></li>
+<li><p>Manim’s dynamic mobject attributes are typed at their source.  Properties
+that <code class="docutils literal notranslate"><span class="pre">Mobject.__getattr__</span></code> used to expose as <code class="docutils literal notranslate"><span class="pre">MethodType</span></code> are declared
+in the class body (<code class="docutils literal notranslate"><span class="pre">subscript</span></code>, <code class="docutils literal notranslate"><span class="pre">node_style</span></code>, <code class="docutils literal notranslate"><span class="pre">center</span></code>), while
+<code class="docutils literal notranslate"><span class="pre">.animate</span></code> builders are narrowed with <code class="docutils literal notranslate"><span class="pre">cast(Animation,</span> <span class="pre">...)</span></code>.  Vector
+attributes such as <code class="docutils literal notranslate"><span class="pre">Point3D</span></code>, <code class="docutils literal notranslate"><span class="pre">Vector3D</span></code> and <code class="docutils literal notranslate"><span class="pre">VectorND</span></code> are no longer
+inferred as plain arrays.</p></li>
+<li><p>Overrides now match their supertypes without changing runtime behaviour:
+vector parameters use the <code class="docutils literal notranslate"><span class="pre">*Like</span></code> aliases, <code class="docutils literal notranslate"><span class="pre">move_to</span></code> overrides accept
+<code class="docutils literal notranslate"><span class="pre">aligned_edge</span></code> and <code class="docutils literal notranslate"><span class="pre">coor_mask</span></code>, and deliberately different signatures
+(<code class="docutils literal notranslate"><span class="pre">apply_function</span></code>, <code class="docutils literal notranslate"><span class="pre">ListGroup.add</span></code>/<code class="docutils literal notranslate"><span class="pre">remove</span></code>, the table and row
+<code class="docutils literal notranslate"><span class="pre">__getitem__</span></code> overloads) carry narrow <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">type:</span> <span class="pre">ignore[override]</span></code>
+comments with the list semantics kept intact.</p></li>
+<li><p>Optional values are narrowed at the point of use instead of being forced
+into non-optional attributes: geometry and animation targets are declared
+<code class="docutils literal notranslate"><span class="pre">VGroup</span> <span class="pre">|</span> <span class="pre">None</span></code>/<code class="docutils literal notranslate"><span class="pre">Mobject</span> <span class="pre">|</span> <span class="pre">None</span></code> and checked before use, <code class="docutils literal notranslate"><span class="pre">hasattr</span></code>
+lookups are followed by <code class="docutils literal notranslate"><span class="pre">cast</span></code>, and constructor <code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> dictionaries
+use <code class="docutils literal notranslate"><span class="pre">dict[str,</span> <span class="pre">Any]</span></code> rather than <code class="docutils literal notranslate"><span class="pre">dict[str,</span> <span class="pre">object]</span></code>.</p></li>
+<li><p>NumPy boundaries were made explicit.  Point-like arguments are passed as
+<code class="docutils literal notranslate"><span class="pre">np.array(...)</span></code>, arrays returned from Manim helpers are cast to their
+geometry aliases, <code class="docutils literal notranslate"><span class="pre">np.ndarray</span></code> index maps use <code class="docutils literal notranslate"><span class="pre">dtype=object</span></code>, and
+NumPy slices are normalised with <code class="docutils literal notranslate"><span class="pre">np.asarray(...,</span> <span class="pre">dtype=int)</span></code>.</p></li>
+<li><p>Dependencies without stubs are isolated: <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> and
+<code class="docutils literal notranslate"><span class="pre">manimpango</span></code> imports use <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">type:</span> <span class="pre">ignore[import-untyped]</span></code>, the docutils
+Sphinx directive uses a module-level <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">mypy:</span> <span class="pre">disable-error-code</span></code>
+pragma, and the machine-learning configuration uses a single assignment
+ignore rather than a package-wide suppression.</p></li>
+<li><p>Vendored re-exports are explicit.  Star-import packages now re-export with
+<code class="docutils literal notranslate"><span class="pre">Name</span> <span class="pre">as</span> <span class="pre">Name</span></code>, <code class="docutils literal notranslate"><span class="pre">chemistry</span></code> imports its 118 element symbols from
+<code class="docutils literal notranslate"><span class="pre">element.element</span></code>, and the <code class="docutils literal notranslate"><span class="pre">manim_chemistry_molecule</span></code> package advertises
+<code class="docutils literal notranslate"><span class="pre">MCElement</span></code> and <code class="docutils literal notranslate"><span class="pre">MC_ELEMENT_DICT</span></code> in <code class="docutils literal notranslate"><span class="pre">__all__</span></code>, so <code class="docutils literal notranslate"><span class="pre">test_imports</span></code>
+sees every advertised name.</p></li>
+<li><p>The strict pass also uncovered and fixed real runtime defects:
+<code class="docutils literal notranslate"><span class="pre">basic_mesh.add_face</span></code> now returns the <code class="docutils literal notranslate"><span class="pre">(face,</span> <span class="pre">new_edges)</span></code> pair its
+callers unpack, <code class="docutils literal notranslate"><span class="pre">MCAtom.bonds_fulfilled</span></code> compares against the minimum
+bond count instead of looking up the atom in it, <code class="docutils literal notranslate"><span class="pre">MCMolecule</span></code> no longer
+calls <code class="docutils literal notranslate"><span class="pre">copy</span></code> on a <code class="docutils literal notranslate"><span class="pre">dict_values</span></code> view, <code class="docutils literal notranslate"><span class="pre">Array</span></code> slices return node
+objects again, and <code class="docutils literal notranslate"><span class="pre">Polygon</span></code> receives its points as separate arguments.</p></li>
+<li><p>The changelog entry for <code class="docutils literal notranslate"><span class="pre">validate-types</span></code> in the <em>Added</em> section above is
+updated to describe the package-wide check rather than the first-party
+allowlist.</p></li>
 </ul>
 </section>
 </section>
@@ -2358,6 +2420,7 @@ Manim extensions.</p></li>
 <li><a class="reference internal" href="#added">Added</a></li>
 <li><a class="reference internal" href="#fixed">Fixed</a></li>
 <li><a class="reference internal" href="#changed">Changed</a></li>
+<li><a class="reference internal" href="#mypy">Mypy</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#v1-0-6-latest">v1.0.6 <span class="sd-sphinx-override sd-badge sd-outline-success sd-text-success">Latest</span></a><ul>
