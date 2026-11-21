@@ -154,11 +154,11 @@ class NeuralNetwork(Group):
         self.all_layers.move_to(ORIGIN)
         self.add(self.all_layers)
         # Make container for connections
-        self.connections = []
+        self.connections: list[Any] = []
         # Print neural network
         print(repr(self))
 
-    def make_input_layers_dict(self, input_layers: list[Any]) -> dict | None:
+    def make_input_layers_dict(self, input_layers: list[Any]) -> dict[Any, Any] | None:
         """Make dictionary of input layers.
 
         Parameters
@@ -224,11 +224,11 @@ class NeuralNetwork(Group):
             if isinstance(start_mobject_or_name, Mobject):
                 input_mobject = start_mobject_or_name
             else:
-                input_mobject = self.input_layers_dict[start_mobject_or_name]
+                input_mobject = cast(Any, self.input_layers_dict)[start_mobject_or_name]
             if isinstance(end_mobject_or_name, Mobject):
                 output_mobject = end_mobject_or_name
             else:
-                output_mobject = self.input_layers_dict[end_mobject_or_name]
+                output_mobject = cast(Any, self.input_layers_dict)[end_mobject_or_name]
 
             connection = NetworkConnection(
                 input_mobject, output_mobject, arc_direction=arc_direction, buffer=0.05
@@ -256,7 +256,7 @@ class NeuralNetwork(Group):
             if layer_index > 0:
                 prev_layer = self.input_layers[layer_index - 1]
             # Run the construct layer method for each
-            current_layer.construct_layer(
+            cast(Any, current_layer).construct_layer(
                 prev_layer, next_layer, debug_mode=self.debug_mode
             )
 
@@ -289,24 +289,27 @@ class NeuralNetwork(Group):
         for layer_index in range(1, len(self.input_layers)):
             previous_layer = self.input_layers[layer_index - 1]
             current_layer = self.input_layers[layer_index]
-            current_layer.move_to(previous_layer.get_center())
+            cast(Any, current_layer).move_to(cast(Any, previous_layer).get_center())
 
             if layout_direction == "left_to_right":
                 x_shift = (
-                    previous_layer.width / 2
-                    + current_layer.width / 2
+                    cast(Any, previous_layer).width / 2
+                    + cast(Any, current_layer).width / 2
                     + self.layer_spacing
                 )
                 shift_vector = np.array([x_shift, 0, 0])
             elif layout_direction == "top_to_bottom":
                 y_shift = -(
-                    (previous_layer.width / 2 + current_layer.width / 2)
+                    (
+                        cast(Any, previous_layer).width / 2
+                        + cast(Any, current_layer).width / 2
+                    )
                     + self.layer_spacing
                 )
                 shift_vector = np.array([0, y_shift, 0])
             else:
                 raise Exception(f"Unrecognized layout direction: {layout_direction}")
-            current_layer.shift(shift_vector)
+            cast(Any, current_layer).shift(shift_vector)
 
         # After all layers have been placed place their activation functions
         layer_max_height = max([layer.height for layer in self.input_layers])
@@ -331,7 +334,7 @@ class NeuralNetwork(Group):
                         self.input_layers[0]
                     )
                     cast(Any, current_layer.activation_function).shift(up_movement)
-                    self.add(current_layer.activation_function)
+                    self.add(cast(Any, current_layer).activation_function)
 
     def _construct_connective_layers(self) -> tuple[ListGroup, ListGroup]:
         """Draws connecting lines between layers.
@@ -345,7 +348,7 @@ class NeuralNetwork(Group):
         for layer_index in range(len(self.input_layers) - 1):
             current_layer = self.input_layers[layer_index]
             # Add the layer to the list of layers
-            all_layers.add(current_layer)
+            all_layers.add(cast(Mobject, current_layer))
             next_layer = self.input_layers[layer_index + 1]
             # Check if layer is actually a nested NeuralNetwork
             if isinstance(current_layer, NeuralNetwork):
@@ -355,14 +358,18 @@ class NeuralNetwork(Group):
                 # First layer of the next layer
                 next_layer = next_layer.all_layers[0]
             # Find connective layer with correct layer pair
-            connective_layer = get_connective_layer(current_layer, next_layer)
+            connective_layer = get_connective_layer(
+                cast(Mobject, current_layer), cast(Mobject, next_layer)
+            )
             connective_layers.add(connective_layer)
             # Construct the connective layer
-            connective_layer.construct_layer(current_layer, next_layer)
+            connective_layer.construct_layer(
+                cast(Any, current_layer), cast(Any, next_layer)
+            )
             # Add the layer to the list of layers
             all_layers.add(connective_layer)
         # Add final layer
-        all_layers.add(self.input_layers[-1])
+        all_layers.add(cast(Mobject, self.input_layers[-1]))
         # Handle layering
         return connective_layers, all_layers
 
@@ -456,11 +463,11 @@ class NeuralNetwork(Group):
             network.input_layers.replace(input_index, new_layer)
             for name, layer in cast(Any, network.input_layers_dict).items():
                 if layer is old_layer:
-                    network.input_layers_dict[name] = new_layer
+                    cast(Any, network.input_layers_dict)[name] = new_layer
             # Remove the stale activation function from the scene
             if hasattr(old_layer, "activation_function"):
                 if old_layer.activation_function is not None:
-                    network.remove(old_layer.activation_function)
+                    network.remove(cast(Any, old_layer).activation_function)
             # Rebuild the layers and connections around the new layer
             network.remove(network.all_layers)
             (
@@ -478,8 +485,8 @@ class NeuralNetwork(Group):
 
         return Succession(
             FadeOut(old_layer),
-            UpdateFromFunc(self, swap_layer),
-            Create(new_layer),
+            UpdateFromFunc(self, cast(Any, swap_layer)),
+            Create(cast(Any, new_layer)),
             lag_ratio=1.0,
         )
 
@@ -609,16 +616,16 @@ class NeuralNetwork(Group):
             return Wait(run_time=0)
         self.created = True
 
-        animations = []
+        animations: list[Animation] = []
         # Create the overhead title
-        animations.append(Create(self.title))
+        animations.append(Create(cast(Any, self.title)))
         # Create each layer one by one
         for layer in self.all_layers:
-            layer_animation = Create(layer)
+            layer_animation = Create(cast(Any, layer))
             # Make titles (empty default titles are plain Groups and
             # cannot be played with Create, so skip them)
             if len(cast(Any, layer.title).submobjects) > 0:
-                create_title = Create(layer.title)
+                create_title = Create(cast(Any, layer.title))
                 # Create layer animation group
                 animation_group = AnimationGroup(layer_animation, create_title)
             else:
@@ -709,7 +716,7 @@ class NeuralNetwork(Group):
 
         return layers_to_return
 
-    def __repr__(self, metadata: str = ["z_index", "title_text"]) -> str:
+    def __repr__(self, metadata: list[str] = ["z_index", "title_text"]) -> str:
         """Return a layer-by-layer representation.
 
         Parameters

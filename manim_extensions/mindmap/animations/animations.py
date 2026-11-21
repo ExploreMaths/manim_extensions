@@ -159,7 +159,7 @@ def animate_of_create(
             ),
         ]
     )
-    if hasattr(node, "connector"):
+    if getattr(node, "connector", None) is not None:
         anims.append(Create(node.connector))
     node.node_state = NodeState.DISPLAY
     return anims

@@ -8,7 +8,7 @@ This module provides the :class:`~manim_extensions.chemistry.twoD.molecule.MMole
 """
 
 from __future__ import annotations
-from typing import Any, Dict, cast
+from typing import Any, cast
 
 import logging
 
@@ -18,7 +18,6 @@ from manim import (
     GREEN,
     MarkupText,
     MathTex,
-    Mobject,
     ORIGIN,
     PI,
     RED,

@@ -122,6 +122,7 @@ __all__ = [
 ]
 
 # ---------------- Colour themes ----------------
+#: Named colour ramps used to colour the timeline.
 RAMPS = {
     "rainbow": [
         ("#123a6d", 0.00),
@@ -149,6 +150,7 @@ RAMPS = {
 
 # ---------------- Beat table ----------------
 # (name, reference seconds, minimum seconds, maximum = reference x factor, cut priority: 1 first, None = keep)
+#: Beat table: name, reference/min/max seconds, and cut priority.
 BEATS = [
     ("title", 3.0, 1.6, 2.0, None),
     ("axes", 2.4, 1.2, 1.6, None),
@@ -160,6 +162,7 @@ BEATS = [
     ("annotate", 5.4, 2.4, 1.8, 3),
     ("outro", 6.2, 2.6, 1.8, None),
 ]
+#: Per-pace total duration in seconds for the timeline.
 PACE = {"fast": 10.0, "normal": 24.0, "full": 45.0}
 
 

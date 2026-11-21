@@ -186,6 +186,11 @@ CHECKS: dict[str, Check] = {
     "validate-docstrings": Check(
         "validate-docstrings", "package", py("workflow/validate_docstrings.py")
     ),
+    "validate-constant-docstrings": Check(
+        "validate-constant-docstrings",
+        "package",
+        py("workflow/validate_constant_docstrings.py"),
+    ),
     "validate-doc-sections": Check(
         "validate-doc-sections", "package", py("workflow/validate_doc_sections.py")
     ),
@@ -230,6 +235,7 @@ GROUPS: dict[str, tuple[str, ...]] = {
         "validate-imports",
         "validate-relative-imports",
         "validate-docstrings",
+        "validate-constant-docstrings",
         "validate-doc-sections",
         "validate-api-coverage",
         "validate-refs",

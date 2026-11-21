@@ -224,7 +224,6 @@
  "manim_extensions.cad_drawing_utils.round_corners.round_corners",
  "manim_extensions.cad_drawing_utils.utils.BezierHandlebars",
  "manim_extensions.cad_drawing_utils.utils.angle_between_vectors_signed",
- "manim_extensions.chemistry.MC_ELEMENT_DICT",
  "manim_extensions.chemistry.bohr_atom.bohr_atom.BohrAtom",
  "manim_extensions.chemistry.cli.cli",
  "manim_extensions.chemistry.cli.pubchem_molecule",

@@ -29,7 +29,7 @@ import networkx as nx
 
 from ..manim_chemistry_molecule import MCMolecule
 from ..molecule import AbstractMolecule
-from manim.typing import Point3D, Vector3D, VectorND
+from manim.typing import Point3D, Vector3D
 
 _logger = logging.getLogger(__name__)
 

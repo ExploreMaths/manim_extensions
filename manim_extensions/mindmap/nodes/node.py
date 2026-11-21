@@ -12,6 +12,7 @@ from __future__ import annotations
 from typing import Any, Dict, Generator, List, cast
 
 from manim import (
+    Mobject,
     BLUE,
     DOWN,
     GREEN,
@@ -109,19 +110,19 @@ class NodeStyle:
 
     def __init__(
         self,
-        node_style: List[Dict[str, object]] | None = [
+        node_style: List[Dict[str, Any]] = [
             {"color": RED, "stroke_width": 8},
             {"color": BLUE, "stroke_width": 6},
             {"color": PURE_YELLOW, "stroke_width": 4},
             {"color": GREEN, "stroke_width": 4},
         ],
-        line_style: List[Dict[str, object]] | None = [
+        line_style: List[Dict[str, Any]] = [
             {"color": RED, "stroke_width": 8},
             {"color": BLUE, "stroke_width": 6},
             {"color": PURE_YELLOW, "stroke_width": 4},
             {"color": GREEN, "stroke_width": 4},
         ],
-        text_style: List[Dict[str, object]] | None = [
+        text_style: List[Dict[str, Any]] = [
             {"color": RED, "font_size": 64},
             {"color": PURE_YELLOW, "font_size": 56},
             {"color": GREEN, "font_size": 48},
@@ -202,7 +203,7 @@ class NodeStyle:
         return self.text_style[-1]
 
 
-def dfs_walker(root: Node) -> Generator:
+def dfs_walker(root: Node) -> Generator["Node", None, None]:
     """Yield the tree in depth-first pre-order using a stack.
 
     Parameters
@@ -215,7 +216,7 @@ def dfs_walker(root: Node) -> Generator:
         A generator yielding the nodes in depth-first pre-order.
     """
     if not root:
-        return []
+        return
     stack = [root]
     while stack:
         node = stack.pop()
@@ -224,7 +225,7 @@ def dfs_walker(root: Node) -> Generator:
             stack.append(child)
 
 
-def bfs_walker(root: Node) -> Generator:
+def bfs_walker(root: Node) -> Generator["Node", None, None]:
     """Yield the tree in breadth-first level order using a queue.
 
     Parameters
@@ -237,7 +238,7 @@ def bfs_walker(root: Node) -> Generator:
         A generator yielding the nodes in breadth-first level order.
     """
     if not root:
-        return []
+        return
     queue = deque([root])
     while queue:
         node = queue.popleft()
@@ -295,18 +296,20 @@ class Node:
         **kwargs: Any,
     ) -> None:
         self.vmobject = vmobject
-        cast(Any, self).height = cast(Any, self.vmobject).height + 2 * buff
-        cast(Any, self).width = cast(Any, self.vmobject).width + 2 * buff
+        self.height: float = cast(Any, self.vmobject).height + 2 * buff
+        self.width: float = cast(Any, self.vmobject).width + 2 * buff
         self.buff = buff
         self.surr_rect = Rectangle(width=self.width, height=self.height, **kwargs)
         self.x = 0
         self.y = 0
         self.level = 0
-        self.parent = None
-        self.neighbor = None  # neighbouring node
-        self.children = []
+        self.parent: Node | None = None
+        self.neighbor: Node | None = None  # neighbouring node
+        self.children: list[Node] = []
         self.node_state = NodeState.INSERT  # node state
         self.side = None
+        self.connector: Mobject | None = None
+        self.connector_style: dict[str, Any] | None = None
 
     def scale(self, scale_factor: float) -> Any:
         """Scale the node around its current center.
@@ -544,7 +547,7 @@ class Node:
             -------
                 The resulting value.
         """
-        if self.parent is not None and not hasattr(self, "connector"):
+        if self.parent is not None and self.connector is None:
             self.connector_style = kwargs
             self.connector = self.get_connector(layout_type, direction, **kwargs)
             self.connector.add_updater(
@@ -657,7 +660,7 @@ class Node:
         """
         group = Group()
         for node in self.children:
-            group.add(node.vmobject, node.surr_rect)
+            group.add(cast(VMobject, node.vmobject), node.surr_rect)
         return group
 
     def get_descendants_mobjects(self) -> Group:
@@ -686,7 +689,7 @@ class Node:
                 A group containing the mobjects of all descendant nodes.
             """
             for node_ in node.children:
-                descendants.add(node_.vmobject, node_.surr_rect)
+                descendants.add(cast(VMobject, node_.vmobject), node_.surr_rect)
                 descendants_mobjects_of_node(node_, descendants)
             return descendants
 

@@ -22,7 +22,6 @@ from manim import (
     Group,
     LEFT,
     ManimColor,
-    Mobject,
     ORANGE,
     Polygon,
     RIGHT,

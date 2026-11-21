@@ -67,6 +67,8 @@ DIRECTIVE_RE = re.compile(
     re.MULTILINE,
 )
 OPTION_RE = re.compile(r"^\s+:(\w[\w-]*):\s*(.*)$")
+# A reST section underline: a run of the same adornment character.
+UNDERLINE_RE = re.compile(r"^\s*[-=~^+#*:]{3,}\s*$")
 
 
 def iter_modules():
@@ -111,11 +113,12 @@ def resolve_dotted(dotted):
 
 
 def parse_directives():
-    """Yield (directive, target, options) for every autodoc directive."""
+    """Yield ``(rst, directive, target, options, line_no)`` for every directive."""
     for rst in sorted(DOCS.rglob("*.rst")):
         text = rst.read_text(encoding="utf-8")
         for match in DIRECTIVE_RE.finditer(text):
             directive, target = match.group(1), match.group(2)
+            line_no = text.count("\n", 0, match.start()) + 1
             options = {}
             rest = text[match.end() :]
             for line in rest.splitlines()[1:]:
@@ -123,7 +126,16 @@ def parse_directives():
                 if not om:
                     break
                 options[om.group(1)] = om.group(2).strip()
-            yield rst, directive, target, options
+            yield rst, directive, target, options, line_no
+
+
+def section_heading(text: str, line_no: int) -> str:
+    """Return the underlined section heading above *line_no*, if any."""
+    lines = text.splitlines()
+    for index in range(line_no - 1, -1, -1):
+        if index + 1 < len(lines) and UNDERLINE_RE.match(lines[index + 1]):
+            return lines[index].strip()
+    return ""
 
 
 def autoall_expansion_keys(target, options):
@@ -158,7 +170,7 @@ def documented_keys():
     and from full (non-``:missing-only:``) ``autoall`` expansions."""
     keys = set()
     warnings = []
-    for rst, directive, target, options in parse_directives():
+    for rst, directive, target, options, _line in parse_directives():
         if directive == "autoall":
             if "missing-only" in options:
                 continue  # handled separately (see missing_only_coverage)
@@ -183,13 +195,33 @@ def missing_only_coverage():
     """Canonical dotted names that :missing-only: autoall blocks inject."""
     keys = set()
     warnings = []
-    for rst, directive, target, options in parse_directives():
+    for rst, directive, target, options, _line in parse_directives():
         if directive != "autoall" or "missing-only" not in options:
             continue
         expanded, w = autoall_expansion_keys(target, options)
         keys |= expanded
         warnings.extend(f"{w_} ({rst.relative_to(ROOT)})" for w_ in w)
     return keys, warnings
+
+
+def empty_autoall_sections():
+    """Full (non-``:missing-only:``) autoall blocks that expand to zero entries.
+
+    Such a block leaves its section heading (e.g. "Constants") empty on the
+    rendered page.  The section and directive must be removed, or the module
+    must actually expose the advertised names.  ``:missing-only:`` blocks are
+    exempt: an empty one means every entry is already curated elsewhere.
+    """
+    issues = []
+    for rst, directive, target, options, line_no in parse_directives():
+        if directive != "autoall" or "missing-only" in options:
+            continue
+        keys, warnings = autoall_expansion_keys(target, options)
+        if keys or warnings:
+            continue  # unresolved targets are reported as warnings above
+        heading = section_heading(rst.read_text(encoding="utf-8"), line_no)
+        issues.append((rst, line_no, heading or target, target))
+    return issues
 
 
 def main():
@@ -209,6 +241,8 @@ def main():
     explicit, warnings = documented_keys()
     for w in warnings:
         print(f"WARNING: {w}")
+
+    empty = empty_autoall_sections()
 
     if args.write_snapshot:
         SNAPSHOT_PATH.write_text(
@@ -274,14 +308,24 @@ def main():
         )
         print(f"Wrote {out}: {percent:.1f}%")
 
-    if missing:
+    if missing or empty:
+        total_issues = len(missing) + len(empty)
         print(
             f"FAIL  api-coverage  {percent:.1f}% "
             f"({covered_count}/{total} names documented)\n"
         )
         for dotted in sorted(missing):
             print(f"  -:-  undocumented-api: {dotted}")
-        print(f"\nTotal: {len(missing)} issue(s)")
+        for rst, line_no, heading, target in sorted(
+            empty, key=lambda issue: (str(issue[0]), issue[1])
+        ):
+            rel = rst.relative_to(ROOT)
+            print(
+                f"  {rel}:{line_no}  empty-autoall-section: '{heading}' "
+                f"({target}) expands to 0 entries; remove the empty section "
+                "or expose the advertised names"
+            )
+        print(f"\nTotal: {total_issues} issue(s)")
         return 1
     print(
         f"PASS  api-coverage  {percent:.1f}% "

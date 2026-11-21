@@ -55,13 +55,14 @@ from manim import (
     Z_AXIS,
 )
 from manim.mobject.three_d.three_dimensions import Dot3D
-from manim.typing import Point3D, Vector3D
+from manim.typing import Point3D
 from manim.utils.color import ParsableManimColor
 from manim.utils.space_ops import rotation_matrix
 
 # ============================================================================
 # Dodecahedron constant table (brute-force derivation + self-check; no hand-written values)
 # ============================================================================
+#: Golden ratio used to derive the dodecahedron coordinates.
 PHI = (1.0 + math.sqrt(5.0)) / 2.0
 
 _DODECA_RAW = [
@@ -105,6 +106,7 @@ def _unit(v: Point3D | tuple[float, float, float]) -> Point3D:
     return v / np.linalg.norm(v)
 
 
+#: The 20 normalized dodecahedron vertex coordinates.
 DODECA_VERTICES = [_unit(v) for v in _DODECA_RAW]
 
 from itertools import combinations
@@ -114,10 +116,13 @@ _pair_d = {
     for i, j in combinations(range(20), 2)
 }
 """Cached pairwise distances between dodecahedron vertices."""
+#: Length of a dodecahedron edge.
 EDGE_LEN = min(_pair_d.values())
+#: Vertex index pairs connected by a dodecahedron edge.
 DODECA_EDGES = [e for e, d in _pair_d.items() if d < EDGE_LEN * 1.5]
 
 _EDGE_SET = {frozenset(e) for e in DODECA_EDGES}
+#: Five-vertex faces of the dodecahedron.
 DODECA_FACES = []
 for combo in combinations(range(20), 5):
     pts = [DODECA_VERTICES[i] for i in combo]
@@ -134,12 +139,15 @@ for combo in combinations(range(20), 5):
     if deg == [2, 2, 2, 2, 2]:
         DODECA_FACES.append(list(combo))
 
+#: Outward unit normal vector for each face.
 FACE_NORMAL_DIRS = []
 for face in DODECA_FACES:
     mean = np.mean([DODECA_VERTICES[i] for i in face], axis=0)
     FACE_NORMAL_DIRS.append(_unit(mean))
+#: Distance from the center to a face plane (inradius).
 INRADIUS = float(np.dot(DODECA_VERTICES[DODECA_FACES[0][0]], FACE_NORMAL_DIRS[0]))
 
+#: Pairs of face indices that share an edge.
 FACE_ADJ = []
 for a in range(len(DODECA_FACES)):
     for b in range(a + 1, len(DODECA_FACES)):
@@ -169,12 +177,19 @@ assert 0.5 < INRADIUS < 0.95, f"inradius ratio out of range: {INRADIUS:.3f}"
 # ============================================================================
 # PolyRadarChart
 # ============================================================================
+#: Stroke width of the skin surface edges.
 SKIN_EDGE_W = 2.0
+#: Colour of the skin surface edges.
 SKIN_EDGE_C = "#5B7A9E"
+#: Opacity of the skin surface faces.
 SKIN_FACE_OP = 0.08
+#: Highlight colour for dyed vertices.
 DYE_C = "#00F5FF"
+#: Highlight colour for edges.
 EDGE_C = "#00E5CC"
+#: Colour used for values above the full scale.
 OVERFLOW_C = "#FF5A3C"
+#: Colour of the axis labels.
 LABEL_C = "#EAF2FF"
 
 

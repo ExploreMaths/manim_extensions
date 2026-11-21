@@ -54,6 +54,7 @@ RadarInputList = Union[RadarInput, Sequence[RadarInput]]
 
 __all__ = ["RadarChart"]
 
+#: Full circle in radians (two times pi).
 TAU = 2.0 * math.pi
 
 _CJK_FONTS = (
@@ -1170,7 +1171,7 @@ class RadarChart(VGroup):
             Opacity in the range 0 to 1.
         family
             Unused; kept for interface compatibility with
-            :meth:`~manim.mobject.types.vectorized_mobject.VMobject.set_opacity`.
+            :class:`~manim.mobject.types.vectorized_mobject.VMobject`.
 
         Returns
         -------

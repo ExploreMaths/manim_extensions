@@ -128,7 +128,6 @@ Modules
    ~models
    ~params
    ~templates
-   ~types
 
 Type Aliases
 ------------
@@ -148,4 +147,3 @@ Type Aliases
    models/index
    params
    templates
-   types

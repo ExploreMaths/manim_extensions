@@ -34,6 +34,7 @@ import json
 
 __all__ = ["ManimAutomaton"]
 
+#: Default animation colours and timings for transitions, state highlights, and tokens.
 default_animation_style = {
     "animate_transition": {
         "animation_function": FadeToColor,

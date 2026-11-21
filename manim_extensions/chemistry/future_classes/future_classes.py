@@ -43,7 +43,7 @@ from manim import (
 )
 
 from ...utils.deprecation import deprecated
-from manim.typing import Point3D, Vector3D, VectorND
+from manim.typing import Point3D, Vector3D
 
 
 class Hole(VMobject):
