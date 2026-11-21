@@ -105,7 +105,7 @@ class OverflowRadarChart(RadarChart):
         *,
         axes: Optional[Sequence[str]] = None,
         values: Optional[Sequence[float]] = None,
-        datasets: Optional[Sequence] = None,
+        datasets: Optional[Sequence[Any]] = None,
         name: Optional[str] = None,
         color: Optional[str] = None,
         max_value: Optional[float] = None,

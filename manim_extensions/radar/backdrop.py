@@ -13,7 +13,7 @@ import random
 from manim.utils.color import ParsableManimColor
 
 import numpy as np
-from manim import Circle, ManimColor, Scene, VGroup, WHITE, config
+from manim import Circle, ManimColor, Mobject, Scene, VGroup, WHITE, config
 
 from .theme import RadarTheme, get_theme
 
@@ -162,7 +162,7 @@ class DeepSpace(VGroup):
                             fill_color=self.theme.vignette,
                             fill_opacity=0.055,
                             stroke_width=0,
-                        ).move_to([cx, cy, 0])
+                        ).move_to(np.array([cx, cy, 0]))
                     )
             self._vignette = vig
             self.add(vig)
@@ -191,7 +191,7 @@ class DeepSpace(VGroup):
                     )
                     c.base_op = 0.017  # type: ignore[attr-defined]
                     blob.add(c)
-                blob.move_to([cx, cy, 0])
+                blob.move_to(np.array([cx, cy, 0]))
                 self._nebula.add(blob)
         self.add(self._nebula)
 
@@ -212,7 +212,7 @@ class DeepSpace(VGroup):
                     radius=r * 3.4, fill_color=WHITE, fill_opacity=0.045, stroke_width=0
                 )
                 g = VGroup(halo2, halo1, core).move_to(
-                    [rnd.uniform(x0, x1), rnd.uniform(y0, y1), 0]
+                    np.array([rnd.uniform(x0, x1), rnd.uniform(y0, y1), 0])
                 )
                 cast(Any, g).vel = np.array(
                     [rnd.uniform(-0.22, 0.22), rnd.uniform(-0.13, 0.13), 0.0]
@@ -297,7 +297,7 @@ class DeepSpace(VGroup):
         return self
 
     # ------------------------------------------------------------------
-    def _refresh(self, mob: VGroup, dt: float) -> None:
+    def _refresh(self, mob: Mobject, dt: float) -> None:
         """Advance the backdrop animation.
 
         Parameters
@@ -318,13 +318,13 @@ class DeepSpace(VGroup):
         for blob in self._nebula:
             for c in blob:
                 c.set_color(tint)
-                c.set_opacity(c.base_op * f)
+                c.set_opacity(cast(Any, c).base_op * f)
 
         if not len(self._stars):
             return
         x0, x1, y0, y1 = self._star_bounds
         for p in self._stars:
-            p.shift(p.vel * dt)
+            cast(Any, p).shift(cast(Any, p).vel * dt)
             if p.get_x() > x1:
                 p.set_x(x0)
             if p.get_x() < x0:
@@ -333,16 +333,16 @@ class DeepSpace(VGroup):
                 p.set_y(y0)
             if p.get_y() < y0:
                 p.set_y(y1)
-            osc = 0.55 + 0.45 * math.sin(t * p.freq + p.phase)
-            if p.accent:
-                base = ManimColor(p.accent)
+            osc = 0.55 + 0.45 * math.sin(t * cast(Any, p).freq + p.phase)
+            if cast(Any, p).accent:
+                base = ManimColor(cast(Any, p).accent)
                 halo = mix(base, tint, 0.30)
             else:
                 base = mix(tint, WHITE, 0.55)
                 halo = tint
             p[2].set_color(base)
-            p[2].set_opacity(p.op * osc * 0.9 * f)
+            p[2].set_opacity(cast(Any, p).op * osc * 0.9 * f)
             p[1].set_color(halo)
-            p[1].set_opacity(0.10 * p.op * osc * f)
+            p[1].set_opacity(0.10 * cast(Any, p).op * osc * f)
             p[0].set_color(halo)
-            p[0].set_opacity(0.045 * p.op * osc * f)
+            p[0].set_opacity(0.045 * cast(Any, p).op * osc * f)

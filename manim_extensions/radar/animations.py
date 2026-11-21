@@ -366,7 +366,7 @@ class RadarMorph(Animation):
         self.name_shift = name_shift
         self.stagger = cfg.stagger if stagger is None else float(stagger)
         self._ring: Optional[Ring] = None
-        self._cam: Optional[dict] = None
+        self._cam: Optional[dict[str, Any]] = None
         self._legend_path: Optional[str] = None
         super().__init__(
             chart,
@@ -393,7 +393,7 @@ class RadarMorph(Animation):
             else self.start_opacity
         )
 
-        self.slots: List[dict] = []
+        self.slots: list[dict[str, Any]] = []
         for i in range(self.k):
             s = chart._series[i] if i < len(chart._series) else None
             t = self.targets[i] if i < len(self.targets) else None
@@ -465,7 +465,7 @@ class RadarMorph(Animation):
 
         self._cam = self._prepare_camera()
 
-    def _prepare_camera(self) -> Optional[dict]:
+    def _prepare_camera(self) -> Optional[dict[str, Any]]:
         """Compute the automatic micro-push target for a burst morph.
 
         Returns

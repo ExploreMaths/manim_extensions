@@ -332,7 +332,7 @@ class RadarReel:
         scene.play(
             UpdateFromAlphaFunc(
                 self.backdrop,
-                lambda m, a, s=start, t=to: m.set_fade(s + (t - s) * a),
+                lambda m, a, s=start, t=to: m.set_fade(s + (t - s) * a),  # type: ignore[misc]
             ),
             run_time=run_time,
         )

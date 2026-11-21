@@ -5,14 +5,14 @@
 """Odometer style value numbers (the "rolling digits" used by style ``neo``)."""
 
 from __future__ import annotations
-from typing import Any, Optional
+from typing import Any, Optional, cast
 
 import math
 
 from manim.utils.color import ParsableManimColor
 
 import numpy as np
-from manim import DOWN, LEFT, RIGHT, UP, Text, VGroup
+from manim import DOWN, LEFT, RIGHT, UP, ManimColor, Text, VGroup
 
 __all__ = ["RollingNumber"]
 
@@ -84,7 +84,7 @@ class RollingNumber(VGroup):
         super().__init__(**kwargs)
         self.font = font
         self.size = size
-        self.color = color
+        self.color = cast(ManimColor, color)
         self.decimals = max(0, int(decimals))
         self.template = template
         self.max_value = float(max_value)
@@ -172,7 +172,7 @@ class RollingNumber(VGroup):
         if getattr(self, "_live_color", None) == col:
             return
         self._live_color = col
-        self.color = col
+        self.color = cast(ManimColor, col)
         for txt in self._cache.values():
             txt.set_color(col)
 
@@ -191,7 +191,7 @@ class RollingNumber(VGroup):
 
         key = int(np.clip(key, 0, self._key_limit()))
         if key not in self._cache:
-            text_kwargs = {
+            text_kwargs: dict[str, Any] = {
                 "weight": self.weight,
                 "font_size": self.size,
                 "color": self.color,

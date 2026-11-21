@@ -11,7 +11,7 @@ Both play the same 23-snapshot demo reel that ships with the package.
 """
 
 from __future__ import annotations
-from typing import Optional, Sequence
+from typing import Optional, Sequence, cast
 
 from manim import Scene
 
@@ -99,7 +99,7 @@ def replica_datasets(
     n = len(REPLICA_TIMELINE)
     for i, seg in enumerate(REPLICA_TIMELINE):
         nxt = REPLICA_TIMELINE[i + 1]["t"] if i + 1 < n else REPLICA_TOTAL
-        dur = nxt - seg["t"]
+        dur = cast(float, nxt) - cast(float, seg["t"])
         emphasis: Optional[str] = None
         if seg.get("gap"):
             emphasis = "gap"
@@ -110,8 +110,8 @@ def replica_datasets(
         out.append(
             RadarData(
                 axes=axes,
-                values=seg["v"],
-                color=seg["c"],
+                values=cast(Sequence[float], seg["v"]),
+                color=cast(str, seg["c"]),
                 max_value=max_value,
                 emphasis=emphasis,
                 hold=max(0.25, (dur - transition_time) * hold_scale),

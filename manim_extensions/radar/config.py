@@ -73,7 +73,6 @@ class RadarConfig:
     #: distance of the axis names from the centre, as a multiple of ``radius``
     label_offset: float = 1.10
     name_font: Optional[str] = None
-    name_size: int = 26
     name_weight: str = "BOLD"
     #: colour axis names with their axis colour (False -> near-white)
     colored_axis_names: bool = True

@@ -175,7 +175,7 @@ def ease_out_overshoot(t: float, fraction: float = 0.16) -> float:
     return ease_out_back(t, overshoot=c)
 
 
-_FONT_CACHE: dict[tuple, Optional[str]] = {}
+_FONT_CACHE: dict[tuple[Any, ...], Optional[str]] = {}
 
 
 def pick_font(
@@ -203,7 +203,7 @@ def pick_font(
 
     available: set[str] = set()
     try:  # pragma: no cover - depends on the host system
-        import manimpango
+        import manimpango  # type: ignore[import-untyped]
 
         available = set(manimpango.list_fonts())
     except Exception:  # pragma: no cover - font backend may be unavailable
