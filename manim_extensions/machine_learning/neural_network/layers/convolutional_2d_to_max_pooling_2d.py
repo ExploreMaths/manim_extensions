@@ -8,6 +8,8 @@ from __future__ import annotations
 from typing import Any, cast
 
 import random
+
+import numpy as np
 from manim import (
     AnimationGroup,
     Create,
@@ -73,7 +75,8 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
         **kwargs
             Forwarded to the parent layer classes.
         """
-        return super().construct_layer(input_layer, output_layer, **kwargs)
+        super().construct_layer(input_layer, output_layer, **kwargs)
+        return None
 
     def make_forward_pass_animation(
         self, layer_args: dict[Any, Any] = {}, run_time: float = 1.5, **kwargs: Any
@@ -94,16 +97,18 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
         -------
             A :class:`~manim.animation.composition.Succession` instance representing the result.
         """
-        cell_width = self.input_layer.cell_width
-        feature_map_size = self.input_layer.feature_map_size
-        kernel_size = self.output_layer.kernel_size
-        feature_maps = self.input_layer.feature_maps
+        input_layer = cast(Convolutional2DLayer, self.input_layer)
+        output_layer = cast(MaxPooling2DLayer, self.output_layer)
+        cell_width = input_layer.cell_width
+        feature_map_size = input_layer.feature_map_size
+        kernel_size = output_layer.kernel_size
+        feature_maps = input_layer.feature_maps
         grid_stroke_width = 1.0
         # Make all of the kernel gridded rectangles
-        create_gridded_rectangle_animations = []
-        create_and_remove_cell_animations = []
-        transform_gridded_rectangle_animations = []
-        remove_gridded_rectangle_animations = []
+        create_gridded_rectangle_animations: list[Any] = []
+        create_and_remove_cell_animations: list[Any] = []
+        transform_gridded_rectangle_animations: list[Any] = []
+        remove_gridded_rectangle_animations: list[Any] = []
 
         for feature_map_index, feature_map in enumerate(feature_maps):
             # 1. Draw gridded rectangle with kernel_size x kernel_size
@@ -138,16 +143,20 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
                         z_index=10,
                     )
                     # Move to the correct location
-                    kernel_shift_vector = [
-                        kernel_size * cell_width * kernel_x,
-                        -1 * kernel_size * cell_width * kernel_y,
-                        0,
-                    ]
-                    cell_shift_vector = [
-                        (cell_index % kernel_size) * cell_width,
-                        -1 * int(cell_index / kernel_size) * cell_width,
-                        0,
-                    ]
+                    kernel_shift_vector = np.array(
+                        [
+                            kernel_size * cell_width * kernel_x,
+                            -1 * kernel_size * cell_width * kernel_y,
+                            0,
+                        ]
+                    )
+                    cell_shift_vector = np.array(
+                        [
+                            (cell_index % kernel_size) * cell_width,
+                            -1 * int(cell_index / kernel_size) * cell_width,
+                            0,
+                        ]
+                    )
                     cell_rectangle.next_to(
                         gridded_rectangle.get_corners_dict()["top_left"],
                         submobject_to_align=cell_rectangle.get_corners_dict()[
@@ -207,7 +216,7 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
                 axis=cast(Any, config).three_d_config.rotation_axis,
             )
             output_gridded_rectangle.move_to(
-                self.output_layer.feature_maps[feature_map_index].copy()
+                output_layer.feature_maps[feature_map_index].copy()
             )
             transform_rectangle = ReplacementTransform(
                 gridded_rectangle,
@@ -232,7 +241,7 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
         create_gridded_rectangle_animation = AnimationGroup(
             *create_gridded_rectangle_animations
         )
-        create_and_remove_cell_animation = AnimationGroup(
+        create_and_remove_cell_animation_group = AnimationGroup(
             *create_and_remove_cell_animations
         )
         transform_gridded_rectangle_animation = AnimationGroup(
@@ -245,7 +254,7 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
         return Succession(
             create_gridded_rectangle_animation,
             Wait(1),
-            create_and_remove_cell_animation,
+            create_and_remove_cell_animation_group,
             transform_gridded_rectangle_animation,
             Wait(1),
             remove_gridded_rectangle_animation,

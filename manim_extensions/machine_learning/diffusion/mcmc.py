@@ -7,7 +7,8 @@
 Tool for animating Markov Chain Monte Carlo simulations in 2D.
 """
 
-from typing import Any, Callable
+from collections.abc import Sequence
+from typing import Any, Callable, cast
 
 # unlinked-class-ok: Ground
 
@@ -21,6 +22,7 @@ from manim import (
     GREEN,
     Group,
     ImageMobject,
+    VMobject,
     Line,
     ManimColor,
     Mobject,
@@ -45,7 +47,7 @@ from manim.typing import Point2D, Point2D_Array, VectorND, MatrixMN
 ######################## MCMC Algorithms #########################
 
 
-def gaussian_proposal(x: int, sigma: float = 0.3) -> tuple:
+def gaussian_proposal(x: VectorND, sigma: float = 0.3) -> tuple[VectorND, float]:
     """
     Gaussian proposal distribution.
 
@@ -70,7 +72,7 @@ def gaussian_proposal(x: int, sigma: float = 0.3) -> tuple:
     # Draw x_star
     x_star = x + np.random.randn(len(x)) * sigma
     # proposal ratio factor is 1 since jump is symmetric
-    qxx = 1
+    qxx: float = 1.0
 
     return (x_star, qxx)
 
@@ -120,7 +122,7 @@ class MultidimensionalGaussianPosterior:
         else:
             self.mu = mu
 
-    def __call__(self, x: int) -> float:
+    def __call__(self, x: VectorND) -> float:
         """Evaluate the log density of the posterior.
 
         Parameters
@@ -134,7 +136,9 @@ class MultidimensionalGaussianPosterior:
             point falls outside the supported range.
         """
         if np.all(x < 500) and np.all(x > -500):
-            return scipy.stats.multivariate_normal(mean=self.mu, cov=self.var).logpdf(x)
+            return float(
+                scipy.stats.multivariate_normal(mean=self.mu, cov=self.var).logpdf(x)
+            )
         else:
             return -1e6
 
@@ -147,7 +151,7 @@ def metropolis_hastings_sampler(
     warm_up: int = 0,
     ndim: int = 2,
     sampling_seed: int = 1,
-) -> tuple:
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
     """Samples using a Metropolis-Hastings sampler.
 
     Parameters
@@ -213,7 +217,7 @@ def metropolis_hastings_sampler(
 
 
 def make_dist_image_mobject_from_samples(
-    samples: Point2D_Array, ylim: list | None, xlim: list | None
+    samples: Point2D_Array, ylim: Sequence[float] | None, xlim: Sequence[float] | None
 ) -> ImageMobject:
     """Render a KDE density plot from 2D samples and return it as an :class:`~manim.mobject.types.image_mobject.ImageMobject`.
 
@@ -245,8 +249,10 @@ def make_dist_image_mobject_from_samples(
         kind="kde",
         norm=matplotlib.colors.LogNorm(),
     )
-    plt.ylim(ylim[0], ylim[1])
-    plt.xlim(xlim[0], xlim[1])
+    ylim_values = cast(list[Any], ylim)
+    plt.ylim(ylim_values[0], ylim_values[1])
+    xlim_values = cast(list[Any], xlim)
+    plt.xlim(xlim_values[0], xlim_values[1])
     plt.axis("off")
     fig = displot.fig
     image_mobject = convert_matplotlib_figure_to_image_mobject(fig)
@@ -414,8 +420,7 @@ class MCMCAxes(Group):
             axes=self.axes, mean=mean, cov=cov, dist_theme="gaussian"
         )
 
-        create_guassian = Create(gaussian)
-        return create_guassian
+        return AnimationGroup(Create(gaussian))
 
     def make_transition_animation(
         self,
@@ -424,7 +429,7 @@ class MCMCAxes(Group):
         candidate_point: Mobject,
         show_dots: bool = True,
         run_time: float = 0.1,
-    ) -> AnimationGroup:
+    ) -> tuple[AnimationGroup, Line]:
         """Makes an transition animation for a single point on a Markov Chain.
 
         Parameters
@@ -444,16 +449,25 @@ class MCMCAxes(Group):
         -------
             Animation of the transition from start to end.
         """
-        start_location = self.axes.point_to_coords(start_point.get_center())
-        end_location = self.axes.point_to_coords(end_point.get_center())
-        candidate_location = self.axes.point_to_coords(candidate_point.get_center())
+        start_location = self.axes.point_to_coords(
+            cast(Sequence[float], start_point.get_center())
+        )
+        end_location = self.axes.point_to_coords(
+            cast(Sequence[float], end_point.get_center())
+        )
+        candidate_location = self.axes.point_to_coords(
+            cast(Sequence[float], candidate_point.get_center())
+        )
         # Figure out if a point is accepted or rejected
         # point_is_rejected = not candidate_location == end_location
         point_is_rejected = False
         if point_is_rejected:
-            return AnimationGroup()
+            return (
+                AnimationGroup(),
+                Line(start_point.get_center(), end_point.get_center()),
+            )
         else:
-            create_end_point = Create(end_point)
+            create_end_point = Create(cast(VMobject, end_point))
             line = Line(
                 start_point,
                 end_point,
@@ -545,7 +559,7 @@ class MCMCAxes(Group):
         # print(f"MCMC samples: {mcmc_samples}")
         # print(f"Candidate samples: {candidate_samples}")
         # Make the animation for visualizing the chain
-        transition_animations = []
+        transition_animations: list[Any] = []
         # Place the initial point
         current_point = mcmc_samples[0]
         current_point = Dot(
@@ -557,8 +571,8 @@ class MCMCAxes(Group):
         transition_animations.append(create_initial_point)
         # Show the initial point's proposal distribution
         # NOTE: visualize the warm up and the iterations
-        lines = []
-        warmup_points = []
+        lines: list[Line] = []
+        warmup_points: list[Dot] = []
         num_iterations = len(mcmc_samples) + len(warm_up_samples)
         for iteration in tqdm(range(1, num_iterations)):
             next_sample = mcmc_samples[iteration]
@@ -591,7 +605,7 @@ class MCMCAxes(Group):
         # Overall MCMC animation
         # 1. Fade in the distribution
         image_mobject = make_dist_image_mobject_from_samples(
-            true_samples,
+            cast(Point2D_Array, true_samples),
             xlim=(self.x_range[0], self.x_range[1]),
             ylim=(self.y_range[0], self.y_range[1]),
         )
@@ -603,10 +617,10 @@ class MCMCAxes(Group):
             *transition_animations, lag_ratio=1.0, run_time=5.0
         )
         # 3. Convert the chain to points, excluding the warmup
-        lines = VGroup(*lines)
-        warm_up_points = VGroup(*warmup_points)
+        lines_group = VGroup(*lines)
+        warm_up_points_group = VGroup(*warmup_points)
         fade_out_lines_and_warmup = AnimationGroup(
-            Uncreate(lines), Uncreate(warm_up_points), lag_ratio=0.0
+            Uncreate(lines_group), Uncreate(warm_up_points_group), lag_ratio=0.0
         )
         # Make the final animation
         animation_group = Succession(
