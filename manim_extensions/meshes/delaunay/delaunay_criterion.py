@@ -134,8 +134,8 @@ def is_point_violating_delaunay(
 
     Returns
     -------
-        ``True`` if the vertex lies strictly inside the circumscribed
-        circle of the triangle.
+        Whether the vertex lies strictly inside the circumscribed circle of
+        the triangle.
     """
     point = triangle_mesh.mesh.get_3d_vertices()[vertex_idx]
     face = triangle_mesh.mesh.faces[face_idx]

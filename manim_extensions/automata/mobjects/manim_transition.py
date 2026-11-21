@@ -374,7 +374,7 @@ class ManimTransition(Transition, VGroup):
 
         Returns
         -------
-            ``True`` if a read symbol matches the token, otherwise ``False``.
+            Whether a read symbol matches the token.
         """
         for read_symbol in self.read_symbols:
             if read_symbol.tex_string == token.tex_string:

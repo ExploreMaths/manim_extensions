@@ -1052,6 +1052,8 @@ class Gear(VMobject):
         about_edge
             Edge of the gear used when ``about_point`` is ``None`` and the
             gear should rotate around one of its sides.
+        **kwargs
+            Accepted for signature compatibility with the supertype.
 
         Returns
         -------
@@ -1227,6 +1229,8 @@ class Rack(VMobject):
         about_edge
             Edge of the gear used when ``about_point`` is ``None`` and the
             gear should rotate around one of its sides.
+        **kwargs
+            Accepted for signature compatibility with the supertype.
 
         Returns
         -------

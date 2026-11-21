@@ -52,6 +52,14 @@ class FastManimMesh(OpenGLMobject):
         Path to the shader folder. (uses ``"mesh"``).
     **kwargs
         Additional keyword arguments forwarded to OpenGLMobject.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.meshes.models.manim_models.opengl_mesh import FastManimMesh
+
+        fast_mesh = FastManimMesh(mesh)
     """
 
     shader_dtype = [

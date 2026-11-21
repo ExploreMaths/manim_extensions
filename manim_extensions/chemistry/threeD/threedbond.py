@@ -57,6 +57,14 @@ class ThreeDCylinder(OpenGLSurface):
         Resolution of the surface.
     **kwargs
         Additional keyword arguments passed to OpenGLSurface.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.chemistry.threeD.threedbond import ThreeDCylinder
+
+        cylinder = ThreeDCylinder(radius=0.3, height=2)
     """
 
     def __init__(
@@ -217,6 +225,14 @@ class ThreeDLine(ThreeDCylinder):
         Color of the line.
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.chemistry.threeD.threedbond import ThreeDLine
+
+        line = ThreeDLine(start=[-1, 0, 0], end=[1, 0, 0], thickness=0.08)
     """
 
     def __init__(
@@ -447,6 +463,19 @@ class ThreeDBond(OpenGLGroup):
         Additional mobjects to add to the group.
     **kwargs
         Additional keyword arguments passed to OpenGLGroup.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        import numpy as np
+        from manim_extensions.chemistry.threeD.threedatom import ThreeDAtom
+        from manim_extensions.chemistry.threeD.threedbond import ThreeDBond
+        from manim_extensions.chemistry.utils.utils import get_element
+
+        carbon = ThreeDAtom(get_element("C"), coords=np.array([0.0, 0.0, 0.0]))
+        oxygen = ThreeDAtom(get_element("O"), coords=np.array([1.2, 0.0, 0.0]))
+        bond = ThreeDBond(from_atom=carbon, to_atom=oxygen, bond_type=2)
     """
 
     def __str__(self) -> str:

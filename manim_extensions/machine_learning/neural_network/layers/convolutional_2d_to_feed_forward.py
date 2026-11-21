@@ -26,6 +26,18 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
         Color of the flash animation during the forward pass.
     **kwargs
         Forwarded to the parent layer classes.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.machine_learning.neural_network.layers.convolutional_2d import Convolutional2DLayer
+        from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
+        from manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_feed_forward import Convolutional2DToFeedForward
+
+        conv = Convolutional2DLayer(4, 6, 3)
+        dense = FeedForwardLayer(10)
+        connection = Convolutional2DToFeedForward(conv, dense)
     """
 
     input_class: Any = Convolutional2DLayer

@@ -124,6 +124,12 @@ class RadarV1Scene(Scene):
     """The **1.0** generation: plain, angular, snap-in numbers.
 
     ``manim -qh examples/legacy_v1.py RadarV1Scene``
+
+    Examples
+    --------
+    .. code-block:: bash
+
+        python -m manim example.py RadarV1Scene
     """
 
     style = "classic"
@@ -152,6 +158,12 @@ class RadarV2Scene(Scene):
     """The **2.0** generation: rainbow outline, glow, sweep, shockwaves.
 
     ``manim -qh examples/legacy_v2.py RadarV2Scene``
+
+    Examples
+    --------
+    .. code-block:: bash
+
+        python -m manim example.py RadarV2Scene
     """
 
     style = "neo"

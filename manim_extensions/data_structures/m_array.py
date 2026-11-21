@@ -51,7 +51,17 @@ MobProps = dict[str, Any]
 
 
 class UpdateIndices(Protocol):
-    """Callable protocol for the index-updating function returned by element removal."""
+    """Callable protocol for the index-updating function returned by element removal.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.data_structures.m_array import UpdateIndices
+
+        def update(play_anim: bool = False, **kwargs) -> list:
+            return []
+    """
 
     def __call__(
         self, play_anim: bool = ..., play_anim_args: MobProps = ...
@@ -1706,7 +1716,14 @@ class MArrayPointer(VGroup):
     __updater_pos: Callable[[Mobject], None]
 
     class DirEntry(TypedDict):
-        """Vector and animation direction used when placing an array element."""
+        """Vector and animation direction used when placing an array element.
+
+        Examples
+        --------
+        .. code-block:: python
+
+            entry = {"np": UP, "dir": MArrayDirection.UP}
+        """
 
         np: Vector3D
         dir: MArrayDirection
@@ -2202,7 +2219,14 @@ class MArraySlidingWindow(VGroup):
     """
 
     class DirEntry(TypedDict):
-        """Vector and animation direction used when placing an array element."""
+        """Vector and animation direction used when placing an array element.
+
+        Examples
+        --------
+        .. code-block:: python
+
+            entry = {"np": DOWN, "dir": MArrayDirection.DOWN}
+        """
 
         np: Vector3D
         dir: MArrayDirection

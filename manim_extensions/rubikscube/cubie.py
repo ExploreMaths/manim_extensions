@@ -147,6 +147,13 @@ class Cubie(VGroup):
     def init_colors(self, *args: Any, **kwargs: Any) -> "Cubie":
         """Apply fill, stroke, and background-stroke colours to the cubie.
 
+        Parameters
+        ----------
+        *args
+            Positional arguments forwarded to the colour helpers.
+        **kwargs
+            Keyword arguments forwarded to the colour helpers.
+
         Returns
         -------
             The resulting value.

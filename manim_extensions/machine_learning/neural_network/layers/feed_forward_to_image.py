@@ -38,6 +38,19 @@ class FeedForwardToImage(ConnectiveLayer):
         Radius of the dots in the forward pass animation.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        import numpy as np
+        from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
+        from manim_extensions.machine_learning.neural_network.layers.image import ImageLayer
+        from manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image import FeedForwardToImage
+
+        dense = FeedForwardLayer(10)
+        image = ImageLayer(np.zeros((16, 16, 3)))
+        connection = FeedForwardToImage(dense, image)
     """
 
     input_class = FeedForwardLayer

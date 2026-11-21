@@ -26,6 +26,14 @@ class FeedForwardNeuralNetwork(NeuralNetwork):
         Color of each node.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.machine_learning.neural_network.architectures.feed_forward import FeedForwardNeuralNetwork
+
+        network = FeedForwardNeuralNetwork([3, 5, 2])
     """
 
     def __init__(

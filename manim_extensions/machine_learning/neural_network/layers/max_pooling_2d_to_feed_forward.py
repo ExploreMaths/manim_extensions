@@ -28,6 +28,18 @@ class MaxPooling2DToFeedForward(Convolutional2DToFeedForward):
     **kwargs
         Forwarded to
         :class:`~manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_feed_forward.Convolutional2DToFeedForward`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.machine_learning.neural_network.layers.max_pooling_2d import MaxPooling2DLayer
+        from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
+        from manim_extensions.machine_learning.neural_network.layers.max_pooling_2d_to_feed_forward import MaxPooling2DToFeedForward
+
+        pool = MaxPooling2DLayer(kernel_size=2)
+        dense = FeedForwardLayer(10)
+        connection = MaxPooling2DToFeedForward(pool, dense)
     """
 
     input_class = MaxPooling2DLayer

@@ -24,6 +24,14 @@ class OpenGLSphere(OpenGLSurface):
         Center point of the sphere.
     **kwargs
         Additional keyword arguments passed to OpenGLSurface.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.chemistry.threeD.utils import OpenGLSphere
+
+        sphere = OpenGLSphere(center=[0, 0, 0], radius=0.5)
     """
 
     def __init__(

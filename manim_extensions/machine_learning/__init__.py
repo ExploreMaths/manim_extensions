@@ -26,6 +26,14 @@ class ManimMLConfig:
     ----------
     default_color_scheme
         Colour scheme applied to the machine learning visualisations.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.machine_learning import ManimMLConfig
+
+        config = ManimMLConfig()
     """
 
     def __init__(self, default_color_scheme: ColorScheme = dark_mode) -> None:

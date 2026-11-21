@@ -528,15 +528,22 @@ class PolyRadarChart(VGroup):
         class Spin(Animation):
             """Rotate a poly chart by a fixed angular delta.
 
-            Parameters
-            ----------
-            poly
-                Chart to rotate.
-            delta
-                Rotation in radians.
-            kw
-                Further keyword arguments forwarded to
-                :class:`~manim.animation.animation.Animation`.
+                    Parameters
+                    ----------
+                    poly
+                        Chart to rotate.
+                    delta
+                        Rotation in radians.
+                    kw
+                        Further keyword arguments forwarded to
+                        :class:`~manim.animation.animation.Animation`.
+
+            Examples
+            --------
+            .. code-block:: python
+
+                poly = chart.series[0].poly
+                spin = Spin(poly, delta=PI / 4)
             """
 
             def __init__(self, poly: PolyRadarChart, delta: float, **kw: Any) -> None:
@@ -597,6 +604,13 @@ class PolyMorph(Animation):
     kwargs
         Further keyword arguments forwarded to
         :class:`~manim.animation.animation.Animation`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        poly = chart.series[0].poly
+        morph = PolyMorph(poly, [9, 7, 8])
     """
 
     def __init__(

@@ -44,6 +44,14 @@ class TripletLayer(NeuralNetworkLayer):
         Buffer between the images.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.machine_learning.neural_network.layers.triplet import TripletLayer
+
+        triplet = TripletLayer("anchor", "positive", "negative")
     """
 
     def __init__(

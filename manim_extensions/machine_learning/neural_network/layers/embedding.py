@@ -357,7 +357,14 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
 
 class NeuralNetworkEmbeddingTestScene(Scene):
-    """Test scene for verifying the embedding layer visualization."""
+    """Test scene for verifying the embedding layer visualization.
+
+    Examples
+    --------
+    .. code-block:: bash
+
+        python -m manim example.py NeuralNetworkEmbeddingTestScene
+    """
 
     def construct(self) -> Any:
         """Build the test scene with an embedding layer and Gaussian distribution.

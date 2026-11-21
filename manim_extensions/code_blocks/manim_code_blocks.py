@@ -53,6 +53,14 @@ class Theme:
         Mapping from hex colours to the token types drawn in that colour.
     group_matchers
         Colours cycled through for matched bracket groups.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.code_blocks.manim_code_blocks import Theme
+
+        theme = Theme(colors={"#ff0000": ["keyword"]}, group_matchers=["#00ff00"])
     """
 
     colors: dict[str, list[str | Callable[..., Any]]]
@@ -137,6 +145,16 @@ class ProgrammingLanguage(abstract):
         Display name of the language.
     tokenize_name
         Tokenizer attribute name; defaults to ``name``.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.code_blocks.manim_code_blocks import ProgrammingLanguage
+
+        class Python(ProgrammingLanguage):
+            name = "Python"
+            color = "#3572A5"
     """
 
     name: str

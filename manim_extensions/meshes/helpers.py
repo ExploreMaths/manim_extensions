@@ -34,7 +34,7 @@ def is_in_vararray(array: VarArray, item: VectorND, rolling: bool = True) -> boo
 
     Returns
     -------
-        ``True`` if ``item`` (or a rotation of it) is found in ``array``.
+        Whether ``item`` (or a rotation of it) is found in ``array``.
     """
     if rolling:
         alternatives = [np.roll(item, i) for i in range(len(item))]
@@ -92,7 +92,7 @@ def is_vararray_equal(array1: VarArray, array2: VarArray, rolling: bool = True) 
 
     Returns
     -------
-        ``True`` if both collections contain the same elements.
+        Whether both collections contain the same elements.
     """
     return all(
         is_in_vararray(array=array1, item=value2, rolling=rolling) for value2 in array2
@@ -116,7 +116,7 @@ def is_twice_nested_iterable(obj: object, min_lens: tuple[int, int] = (1, 3)) ->
 
     Returns
     -------
-        ``True`` if ``obj`` is a twice-nested iterable meeting the size
+        Whether ``obj`` is a twice-nested iterable meeting the size
         requirements.
     """
     # easy case np.ndarray with correct specs
@@ -156,7 +156,7 @@ def are_edges_equal(edges1: Edges, edges2: Edges) -> bool:
 
     Returns
     -------
-        ``True`` if both lists contain the same edges regardless of order.
+        Whether both lists contain the same edges regardless of order.
     """
     return all(e1 in edges2 for e1 in edges1) and all(e2 in edges1 for e2 in edges2)
 

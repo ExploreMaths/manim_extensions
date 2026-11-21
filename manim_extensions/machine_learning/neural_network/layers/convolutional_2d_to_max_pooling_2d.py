@@ -43,6 +43,18 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
         Color used to highlight the kernel windows.
     **kwargs
         Forwarded to the parent layer classes.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.machine_learning.neural_network.layers.convolutional_2d import Convolutional2DLayer
+        from manim_extensions.machine_learning.neural_network.layers.max_pooling_2d import MaxPooling2DLayer
+        from manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_max_pooling_2d import Convolutional2DToMaxPooling2D
+
+        conv = Convolutional2DLayer(4, 6, 3)
+        pool = MaxPooling2DLayer(kernel_size=2)
+        connection = Convolutional2DToMaxPooling2D(conv, pool)
     """
 
     input_class = Convolutional2DLayer

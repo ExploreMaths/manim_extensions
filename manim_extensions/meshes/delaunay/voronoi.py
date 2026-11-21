@@ -155,6 +155,11 @@ class VoronoiDelaunay:
         -------
             A :class:`~manim.mobject.geometry.arc.Circle` representing the
             circumscribed circle of the dual triangle.
+
+        Raises
+        ------
+        ValueError
+            If the vertex index has no dual triangle.
         """
         verts = self.triangle_mesh.mesh.get_3d_vertices()
         voronoi_vertices = np.pad(self.voronoi.vertices, ((0, 0), (0, 1)))

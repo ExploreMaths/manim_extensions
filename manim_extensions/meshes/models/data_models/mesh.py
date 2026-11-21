@@ -199,8 +199,8 @@ class Mesh:
 
         Returns
         -------
-            ``True`` if the meshes are equal, or ``NotImplemented`` when
-            ``other`` is not a mesh.
+            Whether the meshes are equal; a non-mesh comparison is left to
+            Python.
         """
 
         def replace_part_ids_with_vertex_ids(
@@ -288,8 +288,8 @@ class Mesh:
 
         Returns
         -------
-            ``True`` if the meshes are not equal, or ``NotImplemented`` when
-            ``other`` is not a mesh.
+            Whether the meshes differ; a non-mesh comparison is left to
+            Python.
         """
         if isinstance(other, Mesh):
             return not self.__eq__(other)
@@ -1046,7 +1046,7 @@ class Mesh:
 
         Returns
         -------
-            ``True`` if there are vertices that are not part of any face.
+            Whether vertices exist that are not part of any face.
         """
         if len(self._faces) == 0:
             return len(self._vertices) != 0
@@ -1058,7 +1058,7 @@ class Mesh:
 
         Returns
         -------
-            ``True`` if there are faces that are not part of any part.
+            Whether faces exist that are not part of any part.
         """
         if len(self._parts) == 0:
             return len(self._faces) != 0

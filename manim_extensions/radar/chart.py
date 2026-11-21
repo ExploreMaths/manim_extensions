@@ -93,6 +93,15 @@ class Series:
         Emphasis rim strength in the range 0 to 1.
     primary
         Whether this is the first dataset, which owns the glow and halo.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.radar.chart import RadarChart
+
+        chart = RadarChart(axes=["A", "B", "C"], values=[1, 2, 3])
+        series = chart.series[0]
     """
 
     def __init__(

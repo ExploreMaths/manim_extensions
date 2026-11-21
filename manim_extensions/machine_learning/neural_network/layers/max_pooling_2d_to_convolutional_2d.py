@@ -35,6 +35,18 @@ class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
     **kwargs
         Forwarded to
         :class:`~manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_convolutional_2d.Convolutional2DToConvolutional2D`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.machine_learning.neural_network.layers.max_pooling_2d import MaxPooling2DLayer
+        from manim_extensions.machine_learning.neural_network.layers.convolutional_2d import Convolutional2DLayer
+        from manim_extensions.machine_learning.neural_network.layers.max_pooling_2d_to_convolutional_2d import MaxPooling2DToConvolutional2D
+
+        pool = MaxPooling2DLayer(kernel_size=2)
+        conv = Convolutional2DLayer(4, 4, 3)
+        connection = MaxPooling2DToConvolutional2D(pool, conv)
     """
 
     input_class = MaxPooling2DLayer

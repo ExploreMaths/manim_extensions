@@ -38,6 +38,16 @@ class MCAtom:
         The molecule the atom belongs to.
     molecule_index
         Index of the atom in the molecule.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        import numpy as np
+        from manim_extensions.chemistry.manim_chemistry_molecule.mc_atom import MCAtom
+        from manim_extensions.chemistry.manim_chemistry_molecule.mc_element import MC_ELEMENT_DICT
+
+        atom = MCAtom(MC_ELEMENT_DICT["C"], coords=np.array([0.0, 0.0, 0.0]))
     """
 
     def __init__(

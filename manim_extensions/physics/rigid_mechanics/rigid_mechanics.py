@@ -81,6 +81,13 @@ class PhysicsAttributes(Protocol):
     The attributes are attached dynamically by
     :meth:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_rigid_body`
     and :func:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.get_shape`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        def describe(body: PhysicsAttributes) -> float:
+            return body.body.position.x
     """
 
     body: pymunk.Body

@@ -18,7 +18,16 @@ __all__ = ["RadarConfig", "STYLES", "style_names", "get_style"]
 
 @dataclass
 class RadarConfig:
-    """All structural options of a :class:`~manim_extensions.radar.chart.RadarChart`."""
+    """All structural options of a :class:`~manim_extensions.radar.chart.RadarChart`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.radar.config import RadarConfig
+
+        config = RadarConfig(radius=3.2, levels=6)
+    """
 
     # ---- geometry --------------------------------------------------------
     #: outer ring radius, in scene units (Manim's default frame is 14.22 x 8)

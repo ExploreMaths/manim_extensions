@@ -436,6 +436,17 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         Color used to highlight cells during animations.
     **kwargs
         Forwarded to the parent layer classes.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.machine_learning.neural_network.layers.convolutional_2d import Convolutional2DLayer
+        from manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_convolutional_2d import Convolutional2DToConvolutional2D
+
+        first = Convolutional2DLayer(4, 6, 3)
+        second = Convolutional2DLayer(8, 4, 3)
+        connection = Convolutional2DToConvolutional2D(first, second)
     """
 
     input_class: Any = Convolutional2DLayer

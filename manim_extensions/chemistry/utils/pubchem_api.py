@@ -37,6 +37,14 @@ class PubchemAPIManager:
         Whether to retrieve the 3D structure of the molecule.
     format
         Format of the response data.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.chemistry.utils.pubchem_api import PubchemAPIManager
+
+        manager = PubchemAPIManager(name="aspirin", three_d=True)
     """
 
     BASE_URL = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/"

@@ -54,6 +54,14 @@ class AABB:
     ----------
     n_features
         Number of features; each feature gets a ``[-inf, inf]`` limit pair.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.machine_learning.decision_tree.decision_tree_surface import AABB
+
+        box = AABB(n_features=2)
     """
 
     def __init__(self, n_features: int) -> None:

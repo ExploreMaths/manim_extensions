@@ -646,6 +646,16 @@ class DecisionTreeContainer:
         Data points of the embedding the tree is fitted on.
     classes
         Class label of each point in ``points``.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        import numpy as np
+        from sklearn.tree import DecisionTreeClassifier
+
+        clf = DecisionTreeClassifier(max_depth=2).fit(np.array([[0], [1]]), [0, 1])
+        container = DecisionTreeContainer(clf.tree_, np.array([[0], [1]]), np.array([0, 1]))
     """
 
     def __init__(

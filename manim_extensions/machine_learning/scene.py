@@ -31,6 +31,16 @@ class ManimML3DScene(ThreeDScene):
         :class:`~manim.scene.three_d_scene.ThreeDScene`.
     **kwargs
         Forwarded to :class:`~manim.scene.three_d_scene.ThreeDScene`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.machine_learning.scene import ManimML3DScene
+
+        class MyScene(ManimML3DScene):
+            def construct(self):
+                self.wait()
     """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:

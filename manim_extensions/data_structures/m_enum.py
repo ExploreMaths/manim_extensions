@@ -8,7 +8,16 @@ from enum import Enum
 
 
 class MArrayElementComp(Enum):
-    r"""Refers to individual component :class:`~manim.mobject.mobject.Mobject`\ s of :class:`~manim_extensions.data_structures.m_array.MArrayElement`."""
+    r"""Refers to individual component :class:`~manim.mobject.mobject.Mobject`\ s of :class:`~manim_extensions.data_structures.m_array.MArrayElement`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.data_structures.m_enum import MArrayElementComp
+
+        component = MArrayElementComp.BODY
+    """
 
     BODY = 0
     """:class:`~manim.mobject.geometry.polygram.Square` that represents the body."""
@@ -24,7 +33,16 @@ class MArrayElementComp(Enum):
 
 
 class MArrayDirection(Enum):
-    """Serves as the direction for :class:`~manim_extensions.data_structures.m_array.MArray`."""
+    """Serves as the direction for :class:`~manim_extensions.data_structures.m_array.MArray`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.data_structures.m_enum import MArrayDirection
+
+        direction = MArrayDirection.RIGHT
+    """
 
     UP = 0
     """Upward direction."""

@@ -27,6 +27,14 @@ class Element:
     color
         Display color of the element. Falls back to ``"#ff00ff"`` when
         falsy.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.chemistry.element.element import Element
+
+        hydrogen = Element("H", "Hydrogen", 1, 1.008, "#ffffff")
     """
 
     def __repr__(self) -> str:
@@ -105,7 +113,16 @@ class Element:
 
 @dataclass
 class GenericElement:
-    """Data for a chemical element (symbol, name, atomic number, mass, CPK color)."""
+    """Data for a chemical element (symbol, name, atomic number, mass, CPK color).
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.chemistry.element.element import C
+
+        print(C.symbol, C.name, C.atomic_number)
+    """
 
     symbol: str
     name: str

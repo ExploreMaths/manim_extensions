@@ -198,7 +198,15 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
 
 
 class ThreeDLayer(ABC):
-    """Abstract class for 3D layers."""
+    """Abstract class for 3D layers.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        class MyThreeDLayer(ThreeDLayer):
+            pass
+    """
 
     pass
     # Angle of ThreeD layers is static context

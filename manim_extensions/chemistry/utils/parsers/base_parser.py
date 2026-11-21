@@ -41,6 +41,16 @@ class BaseParser(ABC):
     filename
         Path to the file to parse.
 
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.chemistry.utils.parsers.base_parser import BaseParser
+
+        class MyParser(BaseParser):
+            def parse(self):
+                return {}, {}
     """
 
     def __init__(self, filename: FilePath) -> None:

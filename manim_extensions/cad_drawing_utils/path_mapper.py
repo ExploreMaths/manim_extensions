@@ -63,7 +63,7 @@ class PathMapper(VMobject):
 
         Returns
         -------
-            ``None``; the length and alpha tables are stored on the instance.
+            The length and alpha tables are stored on the instance.
         """
         norms = np.array(0)
         for k in range(self.path.get_num_curves()):
@@ -510,6 +510,20 @@ class DashedLineMobject(VDict):
         Shift of the dash pattern along the path.
     **kwargs
         Keyword arguments forwarded to the dashed group.
+
+    Examples
+    --------
+    .. manim:: DashedLineMobjectScene
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.cad_drawing_utils import DashedLineMobject
+
+       class DashedLineMobjectScene(Scene):
+           def construct(self):
+               circle = Circle(radius=2)
+               dashed = DashedLineMobject(circle, num_dashes=24, dashed_ratio=0.6)
+               self.add(dashed)
     """
 
     def __init__(
@@ -794,7 +808,7 @@ class PathOffsetMobject(VMobject):
 
         Returns
         -------
-            ``None``; the arguments are stored on the instance.
+            The arguments are stored on the instance.
         """
         self.ofs_func_kwargs = ofs_func_kwargs
 
@@ -844,7 +858,7 @@ class PathOffsetMobject(VMobject):
 
         Returns
         -------
-            ``None``; the curve and its path mapper are stored on the instance.
+            The curve and its path mapper are stored on the instance.
         """
         self.ref_curve = VMobject()
         bez_point = self.generate_bezier_points(
@@ -937,7 +951,7 @@ class PathOffsetMobject(VMobject):
 
         Returns
         -------
-            ``None``; the points are replaced in place.
+            The points are replaced in place.
         """
         self.points = cast(
             Any, self.generate_offset_paths(gen_ofs_point, gen_ref_curve)

@@ -208,7 +208,7 @@ class SolowDiagram(EconDiagram):
 
         Returns
         -------
-            ``True`` when the share annotation is present.
+            Whether the share annotation is present.
         """
         return hasattr(self, "_shares_group") and self._shares_group is not None
 

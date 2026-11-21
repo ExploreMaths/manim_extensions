@@ -38,6 +38,18 @@ class TripletToFeedForward(ConnectiveLayer):
         Radius of the dots in the forward pass animation.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.machine_learning.neural_network.layers.triplet import TripletLayer
+        from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
+        from manim_extensions.machine_learning.neural_network.layers.triplet_to_feed_forward import TripletToFeedForward
+
+        triplet = TripletLayer("a", "p", "n")
+        dense = FeedForwardLayer(10)
+        connection = TripletToFeedForward(triplet, dense)
     """
 
     input_class = TripletLayer

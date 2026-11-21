@@ -49,6 +49,19 @@ class MCBond:
         Topology of the bond.
     reacting_center_status
         Reacting center status of the bond.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        import numpy as np
+        from manim_extensions.chemistry.manim_chemistry_molecule.mc_atom import MCAtom
+        from manim_extensions.chemistry.manim_chemistry_molecule.mc_bond import MCBond
+        from manim_extensions.chemistry.manim_chemistry_molecule.mc_element import MC_ELEMENT_DICT
+
+        atom_a = MCAtom(MC_ELEMENT_DICT["C"], coords=np.array([0.0, 0.0, 0.0]))
+        atom_b = MCAtom(MC_ELEMENT_DICT["O"], coords=np.array([1.0, 0.0, 0.0]))
+        bond = MCBond(bond_type=1, from_atom=atom_a, to_atom=atom_b)
     """
 
     def __init__(

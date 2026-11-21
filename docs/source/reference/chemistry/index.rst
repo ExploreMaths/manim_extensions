@@ -253,6 +253,14 @@ Constants
 .. autodata:: manim_extensions.chemistry.manim_chemistry_molecule.mc_element.MC_ELEMENT_DICT
    :no-value:
 
+.. autodata:: manim_extensions.chemistry.MC_ELEMENT_DICT
+   :no-value:
+   :no-index:
+
+.. autodata:: manim_extensions.chemistry.manim_chemistry_molecule.MC_ELEMENT_DICT
+   :no-value:
+   :no-index:
+
 .. toctree::
    :hidden:
    :maxdepth: 1

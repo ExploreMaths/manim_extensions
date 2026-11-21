@@ -40,6 +40,18 @@ class FeedForwardToEmbedding(ConnectiveLayer):
         Radius of the dots in the forward pass animation.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.machine_learning.neural_network.layers.embedding import EmbeddingLayer
+        from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
+        from manim_extensions.machine_learning.neural_network.layers.feed_forward_to_embedding import FeedForwardToEmbedding
+
+        dense = FeedForwardLayer(10)
+        embedding = EmbeddingLayer()
+        connection = FeedForwardToEmbedding(dense, embedding)
     """
 
     input_class = FeedForwardLayer

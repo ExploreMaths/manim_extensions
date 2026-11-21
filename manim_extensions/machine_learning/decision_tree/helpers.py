@@ -14,7 +14,15 @@ from manim.typing import VectorND
 
 
 class SklearnTree(Protocol):
-    """Structural type for ``sklearn.tree.DecisionTreeClassifier.tree_``."""
+    """Structural type for ``sklearn.tree.DecisionTreeClassifier.tree_``.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        def node_count(tree: SklearnTree) -> int:
+            return tree.node_count
+    """
 
     node_count: int
     children_left: VectorND

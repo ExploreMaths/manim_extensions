@@ -380,7 +380,7 @@ class TidyTreeLayout(Layout):
 
         Returns
         -------
-            ``True`` if the direction is left-to-right or right-to-left.
+            Whether the direction is left-to-right or right-to-left.
         """
         return direction in (LayoutDirection.LeftToRight, LayoutDirection.RightToLeft)
 

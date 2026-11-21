@@ -589,6 +589,19 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         angle
             Rotation angle in radians.
         axis
+            Rotation axis.
+        about_point
+            Centre point for the rotation.
+        about_edge
+            Edge used when ``about_point`` is ``None``.
+        **kwargs
+            Accepted for signature compatibility with the supertype.
+
+        Parameters
+        ----------
+        angle
+            Rotation angle in radians.
+        axis
             Axis vector for the rotation.
         about_point
             Pivot point for the rotation.

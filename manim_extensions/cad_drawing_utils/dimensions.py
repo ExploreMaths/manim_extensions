@@ -49,6 +49,19 @@ class PointerLabelFree(VDict):
         Extra gap between the anchor and the arrow tip.
     **kwargs
         Keyword arguments forwarded to the text mobject.
+
+    Examples
+    --------
+    .. manim:: PointerLabelFreeScene
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.cad_drawing_utils import PointerLabelFree
+
+       class PointerLabelFreeScene(Scene):
+           def construct(self):
+               pointer = PointerLabelFree(LEFT, "radius", offset_vector=UP + RIGHT)
+               self.add(pointer.scale(2))
     """
 
     def __init__(
@@ -121,7 +134,7 @@ class PointerLabelFree(VDict):
 
         Returns
         -------
-            ``None``; the line and text positions are updated in place.
+            The line and text positions are updated in place.
         """
         self["line"].set_points_as_corners(
             [
@@ -157,6 +170,20 @@ class PointerToMob(PointerLabelFree):
         Extra gap between the anchor and the arrow tip.
     **kwargs
         Keyword arguments forwarded to the label and leader line.
+
+    Examples
+    --------
+    .. manim:: PointerToMobScene
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.cad_drawing_utils import PointerToMob
+
+       class PointerToMobScene(Scene):
+           def construct(self):
+               circle = Circle(radius=1).shift(LEFT * 2)
+               pointer = PointerToMob(circle, 0.25, "P", dist=1)
+               self.add(circle, pointer)
     """
 
     def __init__(
@@ -200,7 +227,7 @@ class PointerToMob(PointerLabelFree):
 
         Returns
         -------
-            ``None``; the pointer is repositioned in place.
+            The pointer is repositioned in place.
         """
         point = mob.point_from_proportion(proportion)
         # if the mob center and point happens to be the same, it causes problems
@@ -238,6 +265,20 @@ class LinearDimension(VDict):
         Length of the arrow tips.
     **kwargs
         Keyword arguments forwarded to the dimension components.
+
+    Examples
+    --------
+    .. manim:: LinearDimensionScene
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.cad_drawing_utils import LinearDimension
+
+       class LinearDimensionScene(Scene):
+           def construct(self):
+               line = Line(LEFT * 2, RIGHT * 2)
+               dimension = LinearDimension(line.get_start(), line.get_end(), offset=0.7)
+               self.add(line, dimension)
     """
 
     def __init__(
@@ -389,6 +430,20 @@ class AngleDimension3Point(VDict):
         Length of the arrow tips.
     **kwargs
         Keyword arguments forwarded to the dimension components.
+
+    Examples
+    --------
+    .. manim:: AngleDimension3PointScene
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.cad_drawing_utils import AngleDimension3Point
+
+       class AngleDimension3PointScene(Scene):
+           def construct(self):
+               center, start, end = ORIGIN, RIGHT * 2, UP * 2
+               dimension = AngleDimension3Point(start, end, center, offset=0.4)
+               self.add(dimension)
     """
 
     def __init__(
@@ -522,6 +577,20 @@ class AngleDimensionMob(AngleDimension3Point):
         Normalized position of the second point.
     **kwargs
         Keyword arguments forwarded to the parent dimension.
+
+    Examples
+    --------
+    .. manim:: AngleDimensionMobScene
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.cad_drawing_utils import AngleDimensionMob
+
+       class AngleDimensionMobScene(Scene):
+           def construct(self):
+               arc = Arc(radius=2, start_angle=0, angle=PI / 2)
+               dimension = AngleDimensionMob(arc, 0, 1)
+               self.add(arc, dimension)
     """
 
     def __init__(
@@ -572,6 +641,20 @@ class CADArrowHead(CurveWarp):
         Whether the arrow points backwards.
     **kwargs
         Keyword arguments forwarded to the curve warp.
+
+    Examples
+    --------
+    .. manim:: CADArrowHeadScene
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.cad_drawing_utils import CADArrowHead
+
+       class CADArrowHeadScene(Scene):
+           def construct(self):
+               curve = Arc(radius=2, start_angle=0, angle=PI / 2)
+               head = CADArrowHead(curve, anchor_point=1, arrow_size=0.2)
+               self.add(curve, head)
     """
 
     def __init__(
@@ -607,7 +690,7 @@ class CADArrowHead(CurveWarp):
 
         Returns
         -------
-            ``None``; the arrow points are regenerated in place.
+            The arrow points are regenerated in place.
         """
         self.PM.generate_length_map()
         self.generate_points()
@@ -634,7 +717,7 @@ class CADArrowHead(CurveWarp):
 
         Returns
         -------
-            ``None``; the arrow head is scaled in place.
+            The arrow head is scaled in place.
         """
         act_size = (
             self.arrowhead.get_critical_point(RIGHT)
@@ -650,7 +733,7 @@ class CADArrowHead(CurveWarp):
 
         Returns
         -------
-            ``None``; the arrow head is flipped in place.
+            The arrow head is flipped in place.
         """
         self.arrowhead.flip()
 
@@ -675,7 +758,7 @@ class CADArrowHead(CurveWarp):
 
         Returns
         -------
-            ``None``; the arrow is flipped when the state changes.
+            The arrow is flipped when the state changes.
         """
         if rev != self.__reversed_arrow:
             self.flip_arrow()

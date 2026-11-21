@@ -54,12 +54,25 @@ class OrbitalBase(OpenGLSurface):
     **kwargs
         Additional keyword arguments forwarded to
         OpenGLSurface.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.chemistry.orbitals.orbitals import OrbitalBase
+
+        orbital = OrbitalBase(n_value=2, l_value=1, m_value=0, size=1.5)
     """
 
     def add_background_rectangle_to_family_members_with_points(
         self, **kwargs: Any
     ) -> "OrbitalBase":
         """No-op override to prevent background rectangle addition on orbital surfaces.
+
+        Parameters
+        ----------
+        **kwargs
+            Accepted for signature compatibility and ignored.
 
         Returns
         -------
@@ -165,6 +178,14 @@ class OrbitalBase(OpenGLSurface):
 class OrbitalPositive(OrbitalBase):
     """
     Calculates the positive values of the orbital.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.chemistry.orbitals.orbitals import OrbitalPositive
+
+        positive = OrbitalPositive(size=1.5)
     """
 
     def uv_func(self, u: VectorND | None, v: VectorND) -> MatrixMN:
@@ -191,6 +212,14 @@ class OrbitalPositive(OrbitalBase):
 class OrbitalNegative(OrbitalBase):
     """
     Calculates the negative values of the orbital.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.chemistry.orbitals.orbitals import OrbitalNegative
+
+        negative = OrbitalNegative(size=1.5)
     """
 
     def uv_func(self, u: VectorND | None, v: VectorND) -> MatrixMN:
@@ -238,6 +267,14 @@ class Orbital(OpenGLSurface):
         Scale of the orbital surface.
     **kwargs
         Additional keyword arguments passed to OpenGLSurface.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.chemistry.orbitals.orbitals import Orbital
+
+        orbital = Orbital(n=2, l=1, m=0, size=2)
     """
 
     def __init__(

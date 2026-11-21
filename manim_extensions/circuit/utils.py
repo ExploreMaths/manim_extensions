@@ -443,8 +443,8 @@ class Node(VMobject):
 
         Returns
         -------
-            ``True`` if ``coord`` coincides with a wire endpoint, ``coord``
-            itself if it lies in the interior of a wire path, otherwise ``False``.
+            The coordinate when it coincides with a wire endpoint or lies in
+            the interior of a wire path, and a false result otherwise.
         """
         for wire in self.coords:
             # new wire is connected to an end of a wire.
@@ -591,8 +591,8 @@ def validate_forms_approx_line(
 
     Returns
     -------
-        ``True`` if the sum of the distances from ``coord`` to both segment
-        endpoints equals the segment length within ``tolerance``.
+        Whether the distances from ``coord`` to both segment endpoints sum
+        to the segment length within ``tolerance``.
     """
     return math.isclose(
         distance(coord, line[0]) + distance(coord, line[1]),

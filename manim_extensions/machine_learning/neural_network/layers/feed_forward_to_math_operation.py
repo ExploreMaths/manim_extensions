@@ -27,6 +27,18 @@ class FeedForwardToMathOperation(ConnectiveLayer):
         Color used when highlighting the connection.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
+        from manim_extensions.machine_learning.neural_network.layers.math_operation_layer import MathOperationLayer
+        from manim_extensions.machine_learning.neural_network.layers.feed_forward_to_math_operation import FeedForwardToMathOperation
+
+        dense = FeedForwardLayer(10)
+        operation = MathOperationLayer()
+        connection = FeedForwardToMathOperation(dense, operation)
     """
 
     input_class = FeedForwardLayer

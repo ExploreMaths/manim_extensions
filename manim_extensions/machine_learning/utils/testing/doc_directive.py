@@ -39,6 +39,13 @@ class SkipManimNode(nodes.Admonition, nodes.Element):
     or ``.pot`` files are being built.
 
     Skips rendering the manim directive and outputs a placeholder instead.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        # Internal docutils node used by the documentation extension.
+        node = SkipManimNode()
     """
 
     pass
@@ -112,6 +119,13 @@ class ManimDirective(Directive):
     the documentation.
 
     See the module docstring for documentation.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        # Internal docutils directive registered as ``.. manim::``.
+        directive = ManimDirective()
     """
 
     has_content = True

@@ -392,7 +392,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
 
         Returns
         -------
-            ``True`` if any active state is a final state, otherwise ``False``.
+            Whether any active state is a final state.
         """
         for state in state_pointers:
             if state.final == True:
@@ -519,6 +519,11 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         -------
             The history of the run, including the final ``"information"``
             entry with the active states and the automaton result.
+
+        Raises
+        ------
+        ValueError
+            If the input cannot be matched against the automaton.
         """
 
         # example_structure = [("q0", "q1")]

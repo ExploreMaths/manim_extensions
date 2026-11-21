@@ -296,7 +296,16 @@ def _fmt(v: float) -> str:
 # ---------------- Configuration ----------------
 @dataclass
 class GaussianSurface:
-    """Tunable parameters for a Gaussian surface, generalized to :math:`z=f(x, y)`."""
+    """Tunable parameters for a Gaussian surface, generalized to :math:`z=f(x, y)`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.three_d.core import GaussianSurface
+
+        cfg = GaussianSurface(height=1.4, rings=True, orbit=True)
+    """
 
     func: Optional[Callable[..., float]] = None  # z=f(x,y); None = built-in Gaussian
     func_tex: Optional[str] = (
@@ -341,7 +350,16 @@ class GaussianSurface:
 
 @dataclass
 class SaddleSurface:
-    """Tunable presentation for the fixed saddle surface :math:`z = x^{2} - y^{2}`."""
+    """Tunable presentation for the fixed saddle surface :math:`z = x^{2} - y^{2}`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.three_d.core import SaddleSurface
+
+        cfg = SaddleSurface(height=1.5, annotate=True)
+    """
 
     domain: tuple[float, float] = (-2.2, 2.2)
     resolution: tuple[int, int] = (44, 44)
@@ -363,7 +381,16 @@ class SaddleSurface:
 
 @dataclass
 class ParaboloidSurface:
-    """Tunable presentation for the fixed paraboloid :math:`z = x^{2} + y^{2}`."""
+    """Tunable presentation for the fixed paraboloid :math:`z = x^{2} + y^{2}`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.three_d.core import ParaboloidSurface
+
+        cfg = ParaboloidSurface(height=1.5)
+    """
 
     domain: tuple[float, float] = (-2.2, 2.2)
     resolution: tuple[int, int] = (44, 44)
@@ -385,7 +412,16 @@ class ParaboloidSurface:
 
 @dataclass
 class EllipsoidSurface:
-    """Configuration for an ellipsoid, the first closed parametric surface."""
+    """Configuration for an ellipsoid, the first closed parametric surface.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.three_d.core import EllipsoidSurface
+
+        cfg = EllipsoidSurface()
+    """
 
     semi_axes: tuple[float, float, float] = (2.4, 1.6, 1.2)  # (a, b, c) semi-axes
     resolution: tuple[int, int] = (44, 56)  # latitude/longitude mesh density
@@ -406,7 +442,16 @@ class EllipsoidSurface:
 
 @dataclass
 class TorusSurface:
-    """Configuration for a torus with a 4:1 major-to-minor radius ratio."""
+    """Configuration for a torus with a 4:1 major-to-minor radius ratio.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.three_d.core import TorusSurface
+
+        cfg = TorusSurface()
+    """
 
     major_radius: float = 2.0  # torus radius R (tube-centre circle)
     minor_radius: float = 0.5  # tube radius r
@@ -428,7 +473,16 @@ class TorusSurface:
 
 @dataclass
 class HyperboloidOneSheet:
-    """Configuration for a one-sheet hyperboloid, recognizable by its waist."""
+    """Configuration for a one-sheet hyperboloid, recognizable by its waist.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.three_d.core import HyperboloidOneSheet
+
+        cfg = HyperboloidOneSheet()
+    """
 
     waist_radius: float = 1.0  # waist radius a (= b)
     z_extent: float = 1.5  # upper/lower truncation ±h
@@ -768,7 +822,7 @@ class GraphSurfaceScene(ThreeDScene):
 
         Returns
         -------
-            ``None``; the method plays the scene beats.
+            The scene beats are played.
         """
 
         cfg = self.style
@@ -1081,6 +1135,12 @@ class GaussianSurfaceScene(GraphSurfaceScene):
     The scene raises the bell-shaped sheet from a flat plane, projects
     contour rings onto the floor, orbits the camera, flips the surface to
     show its underside, and annotates the peak with a HUD label.
+
+    Examples
+    --------
+    .. code-block:: bash
+
+        python -m manim example.py GaussianSurfaceScene
     """
 
     config_cls = GaussianSurface
@@ -1212,6 +1272,12 @@ class SaddleSurfaceScene(GraphSurfaceScene):
     The scene forms the hyperbolic paraboloid, draws its floor-projected
     contour family and asymptotes, orbits and flips the surface, and marks
     the saddle point where the two principal curvatures oppose each other.
+
+    Examples
+    --------
+    .. code-block:: bash
+
+        python -m manim example.py SaddleSurfaceScene
     """
 
     config_cls = SaddleSurface
@@ -1353,6 +1419,12 @@ class ParaboloidSurfaceScene(GraphSurfaceScene):
     orbits and flips it, and annotates the vertex at the origin. The radii
     of the concentric rings are derived from the configured height so the contour spacing remains
     stable when the presentation is resized.
+
+    Examples
+    --------
+    .. code-block:: bash
+
+        python -m manim example.py ParaboloidSurfaceScene
     """
 
     config_cls = ParaboloidSurface
@@ -1456,7 +1528,14 @@ class ParaboloidSurfaceScene(GraphSurfaceScene):
 
 
 class EllipsoidSurfaceScene(GraphSurfaceScene):
-    """Ellipsoid scene with an inflated formation and uniformly scaled axes."""
+    """Ellipsoid scene with an inflated formation and uniformly scaled axes.
+
+    Examples
+    --------
+    .. code-block:: bash
+
+        python -m manim example.py EllipsoidSurfaceScene
+    """
 
     uses_flat = False
 
@@ -1638,7 +1717,14 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
 
 
 class TorusSurfaceScene(GraphSurfaceScene):
-    """Torus scene with an inflated formation and uniformly scaled axes."""
+    """Torus scene with an inflated formation and uniformly scaled axes.
+
+    Examples
+    --------
+    .. code-block:: bash
+
+        python -m manim example.py TorusSurfaceScene
+    """
 
     uses_flat = False
 
@@ -1821,7 +1907,14 @@ class TorusSurfaceScene(GraphSurfaceScene):
 
 
 class HyperboloidOneSheetScene(GraphSurfaceScene):
-    """One-sheet hyperboloid scene with an inflated formation."""
+    """One-sheet hyperboloid scene with an inflated formation.
+
+    Examples
+    --------
+    .. code-block:: bash
+
+        python -m manim example.py HyperboloidOneSheetScene
+    """
 
     uses_flat = False
 

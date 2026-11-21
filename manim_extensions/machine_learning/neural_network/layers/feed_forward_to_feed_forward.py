@@ -56,6 +56,17 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         Unused camera reference reserved for future use.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
+        from manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward import FeedForwardToFeedForward
+
+        first = FeedForwardLayer(8)
+        second = FeedForwardLayer(6)
+        connection = FeedForwardToFeedForward(first, second)
     """
 
     input_class = FeedForwardLayer

@@ -142,8 +142,8 @@ class BaseMBondObject(VGroup):
 
         Returns
         -------
-            One of ``'shorter'``, ``'shorter_from'``, ``'shorter_to'`` or
-            ``False`` when the line touches both atom centers.
+            The subtype name for a shortened bond, or a false result when
+            the line touches both atom centers.
         """
         from_representation = self.from_atom.representation
         to_representation = self.to_atom.representation
@@ -257,6 +257,11 @@ class BaseMBondObject(VGroup):
 
         Bond subclasses override this hook and return their concrete mobject.
 
+        Parameters
+        ----------
+        direction
+            Direction from the from-atom to the to-atom; derived from the
+            atoms when omitted.
 
             Returns
             -------
@@ -270,6 +275,11 @@ class BaseMBondObject(VGroup):
 
         Bond subclasses override this hook and return their concrete mobject.
 
+        Parameters
+        ----------
+        direction
+            Direction from the from-atom to the to-atom; derived from the
+            atoms when omitted.
 
             Returns
             -------
@@ -283,6 +293,11 @@ class BaseMBondObject(VGroup):
 
         Bond subclasses override this hook and return their concrete mobject.
 
+        Parameters
+        ----------
+        direction
+            Direction from the from-atom to the to-atom; derived from the
+            atoms when omitted.
 
             Returns
             -------
@@ -296,6 +311,11 @@ class BaseMBondObject(VGroup):
 
         Bond subclasses override this hook and return their concrete mobject.
 
+        Parameters
+        ----------
+        direction
+            Direction from the from-atom to the to-atom; derived from the
+            atoms when omitted.
 
             Returns
             -------
@@ -309,6 +329,11 @@ class BaseMBondObject(VGroup):
 
         Bond subclasses override this hook and return their concrete mobject.
 
+        Parameters
+        ----------
+        direction
+            Direction from the from-atom to the to-atom; derived from the
+            atoms when omitted.
 
             Returns
             -------
@@ -322,6 +347,11 @@ class BaseMBondObject(VGroup):
 
         Bond subclasses override this hook and return their concrete mobject.
 
+        Parameters
+        ----------
+        direction
+            Direction from the from-atom to the to-atom; derived from the
+            atoms when omitted.
 
             Returns
             -------
@@ -1011,6 +1041,12 @@ class PlainCramBond(BaseMBondObject):
     def shorter_from_subtype(self, direction: Point3D | None = None) -> Polygram:
         """Return a triangular cram bond shortened at the from-atom end.
 
+        Parameters
+        ----------
+        direction
+            Direction from the from-atom to the to-atom; derived from the
+            atoms when omitted.
+
         Returns
         -------
             A :class:`~manim.mobject.geometry.polygram.Polygram` instance representing the result.
@@ -1030,6 +1066,12 @@ class PlainCramBond(BaseMBondObject):
 
     def shorter_to_subtype(self, direction: Point3D | None = None) -> Polygram:
         """Return a triangular cram bond shortened at the to-atom end.
+
+        Parameters
+        ----------
+        direction
+            Direction from the from-atom to the to-atom; derived from the
+            atoms when omitted.
 
         Returns
         -------
@@ -1192,6 +1234,12 @@ class DashedCramBond(BaseMBondObject):
     def shorter_from_subtype(self, direction: Point3D | None = None) -> VGroup:
         """Return a dashed cram bond shortened at the from-atom end.
 
+        Parameters
+        ----------
+        direction
+            Direction from the from-atom to the to-atom; derived from the
+            atoms when omitted.
+
         Returns
         -------
             The dashed cram bond shortened at the from-atom end.
@@ -1205,6 +1253,12 @@ class DashedCramBond(BaseMBondObject):
     def shorter_to_subtype(self, direction: Point3D | None = None) -> VGroup:
         """Return a dashed cram bond shortened at the to-atom end.
 
+        Parameters
+        ----------
+        direction
+            Direction from the from-atom to the to-atom; derived from the
+            atoms when omitted.
+
         Returns
         -------
             The dashed cram bond shortened at the to-atom end.
@@ -1217,6 +1271,12 @@ class DashedCramBond(BaseMBondObject):
 
     def longer_subtype(self, direction: Point3D | None = None) -> VGroup:
         """Return a degenerate zero-length dashed cram bond at the from atom.
+
+        Parameters
+        ----------
+        direction
+            Direction from the from-atom to the to-atom; derived from the
+            atoms when omitted.
 
         Returns
         -------

@@ -356,6 +356,12 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         ----------
         mobject_or_point
             The mobject or point whose center the layer is moved to.
+        aligned_edge
+            Edge of the layer aligned with the target; forwarded to the
+            underlying ``move_to`` implementation.
+        coor_mask
+            Coordinate mask forwarded to the underlying ``move_to``
+            implementation.
 
 
             Returns

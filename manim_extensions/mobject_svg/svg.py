@@ -53,7 +53,6 @@ def _get_cairo_context(
 
     Yields
     ------
-    cairo.Context[Any]
         The SVG context used to draw the mobject.
     """
     from manim import config

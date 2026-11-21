@@ -115,8 +115,7 @@ def is_counter_clockwise(
 
     Returns
     -------
-        ``True`` if ``vector_end`` is counter-clockwise from ``vector_start``,
-        otherwise ``False``.
+        Whether ``vector_end`` is counter-clockwise from ``vector_start``.
     """
     return bool(np.cross(vector_start, vector_end)[-1] > 0)
 

@@ -31,6 +31,16 @@ class ThreeDAtom(OpenGLSphere):
         3D coordinates of the atom center.
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.utils.OpenGLSphere`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        import numpy as np
+        from manim_extensions.chemistry.threeD.threedatom import ThreeDAtom
+        from manim_extensions.chemistry.utils.utils import get_element
+
+        atom = ThreeDAtom(get_element("C"), coords=np.array([0.0, 0.0, 0.0]))
     """
 
     def __init__(

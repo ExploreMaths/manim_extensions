@@ -440,6 +440,11 @@ def get_element(element: str, language: Literal["ENG", "ESP"] = "ENG") -> Elemen
     Returns
     -------
         The :class:`~manim_extensions.chemistry.element.element.Element` class instance matching the symbol.
+
+    Raises
+    ------
+    ValueError
+        If ``language`` is neither ``"ENG"`` nor ``"ESP"``.
     """
     element_dict: dict[str, Any]
     if language == "ENG":

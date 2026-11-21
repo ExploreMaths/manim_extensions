@@ -898,6 +898,79 @@ def check_no_manual_types(doc, qualname, lineno, violations):
                     )
 
 
+LITERAL_RETURN_RE = re.compile(
+    r"(?<![A-Za-z0-9_])(?:``)?(?:None|True|False)(?:``)?(?![A-Za-z0-9_])"
+)
+
+
+def _section_body(doc, section):
+    """Return the body lines of a numpydoc section as ``(lineno, text)``."""
+    lines = doc.splitlines()
+    for name, hpos in section_positions(doc):
+        if name != section:
+            continue
+        j = hpos + 2
+        while j < len(lines) and not lines[j].strip():
+            j += 1
+        body = []
+        item_indent = None
+        for k in range(j, len(lines)):
+            stripped = lines[k].strip()
+            if not stripped:
+                continue
+            indent = len(lines[k]) - len(lines[k].lstrip(" \t"))
+            if item_indent is None:
+                item_indent = indent
+            if (
+                k + 1 < len(lines)
+                and SECTION_UNDERLINE_RE.match(lines[k + 1].strip() or "")
+                and indent <= item_indent
+            ):
+                break
+            body.append((lines[k], indent, item_indent))
+        return body
+    return []
+
+
+def check_return_literals(doc, qualname, lineno, returns_none, violations):
+    """Returns/Yields descriptions must describe a result, not restate it.
+
+    The return type is injected from the signature, so prose such as
+    "``None``; the dots are stored ..." or "``True`` if ..." duplicates the
+    type and reads as a value assignment.  Describe the produced object or
+    the condition instead; for a ``None`` return describe the side effect.
+    """
+    for section in ("Returns", "Yields"):
+        for text, indent, item_indent in _section_body(doc, section):
+            if returns_none and re.search(
+                r"(?<![A-Za-z0-9_])None(?![A-Za-z0-9_])", text
+            ):
+                violations.append(
+                    {
+                        "line": lineno,
+                        "qualname": qualname,
+                        "type": "LITERAL_RETURN_DESCRIPTION",
+                        "message": "Returns section restates None; describe the "
+                        "side effect instead because the type is injected",
+                    }
+                )
+                return
+            if indent == item_indent:
+                match = LITERAL_RETURN_RE.match(text.strip())
+                if match and match.group(0).strip("`") in ("True", "False"):
+                    violations.append(
+                        {
+                            "line": lineno,
+                            "qualname": qualname,
+                            "type": "LITERAL_RETURN_DESCRIPTION",
+                            "message": "Returns description starts with a literal "
+                            "value; describe the condition (for example "
+                            '"Whether ...") instead',
+                        }
+                    )
+                    return
+
+
 def check_return_type_lines(doc, qualname, lineno, violations):
     """Returns/Yields entries must not hand-write a type line.
 
@@ -1383,6 +1456,9 @@ def check_file(filepath: Path) -> list:
         check_section_spacing(doc, qualname, node.lineno, violations)
         check_no_manual_types(doc, qualname, node.lineno, violations)
         check_return_type_lines(doc, qualname, node.lineno, violations)
+        check_return_literals(
+            doc, qualname, node.lineno, annotation_is_none(node.returns), violations
+        )
         check_closing_quote(node, qualname)
         secs = section_names(doc)
         params = function_params(node)
@@ -1556,6 +1632,15 @@ def check_file(filepath: Path) -> list:
         check_no_manual_types(doc, qualname, node.lineno, violations)
         check_return_type_lines(doc, qualname, node.lineno, violations)
         check_closing_quote(node, qualname)
+        if not node.name.startswith("_") and "Examples" not in section_names(doc):
+            violations.append(
+                {
+                    "line": node.lineno,
+                    "qualname": qualname,
+                    "type": "MISSING_EXAMPLES_SECTION",
+                    "message": "public class without an 'Examples' section",
+                }
+            )
         if not is_mobject_class(node, local_bases):
             return
         if ".. manim::" not in doc:

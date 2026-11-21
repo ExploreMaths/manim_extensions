@@ -26,6 +26,14 @@ class ColorScheme:
     background_color
         Scene background color; applied to ``manim.config`` when the
         scheme is activated.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.machine_learning.utils.colorschemes.colorschemes import ColorScheme
+
+        scheme = ColorScheme()
     """
 
     primary_color: ManimColor

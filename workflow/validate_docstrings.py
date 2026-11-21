@@ -246,6 +246,19 @@ def check_function_docstrings(filepath):
             if name == "__init__":
                 continue
 
+            # ``@overload`` stubs only declare a signature; the
+            # implementation below them carries the docstring.
+            if any(
+                isinstance(d, ast.Name)
+                and d.id == "overload"
+                or isinstance(d, ast.Attribute)
+                and d.attr == "overload"
+                or isinstance(d, ast.Call)
+                and getattr(d.func, "id", "") == "overload"
+                for d in getattr(node, "decorator_list", [])
+            ):
+                continue
+
             if not ast.get_docstring(node):
                 missing.append((node.lineno, name, type(node).__name__))
 

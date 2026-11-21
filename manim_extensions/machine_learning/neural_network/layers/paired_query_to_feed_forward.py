@@ -38,6 +38,18 @@ class PairedQueryToFeedForward(ConnectiveLayer):
         Radius of the dots in the forward pass animation.
     **kwargs
         Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.machine_learning.neural_network.layers.paired_query import PairedQueryLayer
+        from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
+        from manim_extensions.machine_learning.neural_network.layers.paired_query_to_feed_forward import PairedQueryToFeedForward
+
+        query = PairedQueryLayer()
+        dense = FeedForwardLayer(10)
+        connection = PairedQueryToFeedForward(query, dense)
     """
 
     input_class = PairedQueryLayer

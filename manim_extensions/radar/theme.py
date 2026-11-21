@@ -20,6 +20,14 @@ class RadarTheme:
 
     Everything colour related lives here, so swapping a theme restyles the whole
     chart (grid, axes, data polygon, labels, decorations) in one go.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.radar.theme import RadarTheme
+
+        theme = RadarTheme(name="custom", background="#070B16")
     """
 
     name: str = "custom"

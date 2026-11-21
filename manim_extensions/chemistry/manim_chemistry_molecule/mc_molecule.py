@@ -29,6 +29,21 @@ class MCMolecule:
         Name of the molecule.
     elements
         :class:`~manim_extensions.chemistry.element.element.Element`\ s data of the molecule.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        import numpy as np
+        from manim_extensions.chemistry.manim_chemistry_molecule.mc_atom import MCAtom
+        from manim_extensions.chemistry.manim_chemistry_molecule.mc_bond import MCBond
+        from manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule import MCMolecule
+        from manim_extensions.chemistry.manim_chemistry_molecule.mc_element import MC_ELEMENT_DICT
+
+        atom_a = MCAtom(MC_ELEMENT_DICT["C"], coords=np.array([0.0, 0.0, 0.0]))
+        atom_b = MCAtom(MC_ELEMENT_DICT["O"], coords=np.array([1.0, 0.0, 0.0]))
+        bond = MCBond(bond_type=1, from_atom=atom_a, to_atom=atom_b)
+        molecule = MCMolecule(atoms=[atom_a, atom_b], bonds=[bond], name="ethene")
     """
 
     def __init__(

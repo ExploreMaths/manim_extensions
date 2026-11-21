@@ -54,7 +54,16 @@ FONT_AWESOME_VERSION = "6.5.1"
 
 
 class BrandEnum(Enum):
-    """Bundled brand-style icon paths."""
+    """Bundled brand-style icon paths.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.fontawesome.manim_fontawesome import BrandEnum
+
+        icon_path = BrandEnum.medium.value
+    """
 
     hotjar = os.fspath(brand_dir / "hotjar.svg")
 
@@ -1028,7 +1037,16 @@ class BrandEnum(Enum):
 
 
 class RegularEnum(Enum):
-    """Bundled regular-style icon paths."""
+    """Bundled regular-style icon paths.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.fontawesome.manim_fontawesome import RegularEnum
+
+        icon_path = RegularEnum.folder.value
+    """
 
     calendar_plus = os.fspath(regular_dir / "calendar-plus.svg")
 
@@ -1358,7 +1376,16 @@ class RegularEnum(Enum):
 
 
 class SolidEnum(Enum):
-    """Bundled solid-style icon paths."""
+    """Bundled solid-style icon paths.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.fontawesome.manim_fontawesome import SolidEnum
+
+        icon_path = SolidEnum.star.value
+    """
 
     folder_tree = os.fspath(solid_dir / "folder-tree.svg")
 

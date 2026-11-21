@@ -52,6 +52,20 @@ class BezierHandlebars(VDict):
         Mobject whose control points and handles are visualised.
     **kwargs
         Keyword arguments forwarded to the vector dictionary.
+
+    Examples
+    --------
+    .. manim:: BezierHandlebarsScene
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.cad_drawing_utils import BezierHandlebars
+
+       class BezierHandlebarsScene(Scene):
+           def construct(self):
+               curve = Circle(radius=2)
+               handles = BezierHandlebars(curve)
+               self.add(curve, handles)
     """
 
     def __init__(self, target_mobject: VMobject, **kwargs: Any) -> None:
@@ -70,7 +84,7 @@ class BezierHandlebars(VDict):
 
         Returns
         -------
-            ``None``; the dots are stored under the ``"dots"`` key.
+            The dots are stored under the ``"dots"`` key.
         """
         DotGroup = VGroup(
             *[
@@ -92,7 +106,7 @@ class BezierHandlebars(VDict):
 
         Returns
         -------
-            ``None``; the dots are moved in place.
+            The dots are moved in place.
         """
         for zipthing in zip(self["dots"], self.target.points):
             zipthing[0].move_to(zipthing[1])
@@ -102,7 +116,7 @@ class BezierHandlebars(VDict):
 
         Returns
         -------
-            ``None``; the handles are stored under the ``"lines"`` key.
+            The handles are stored under the ``"lines"`` key.
         """
         pointlist = zip(
             self.target.points[0::4, :],
@@ -128,7 +142,7 @@ class BezierHandlebars(VDict):
 
         Returns
         -------
-            ``None``; the lines are repositioned in place.
+            The lines are repositioned in place.
         """
         pointlist = zip(
             self.target.points[0::4, :],

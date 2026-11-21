@@ -535,7 +535,7 @@ class DivideAndConquer:
 
             Returns
             -------
-                ``True`` if the point is to the right of the tangent.
+                Whether the point is to the right of the tangent.
             """
             return bool(
                 (tangent[1][0] - tangent[0][0]) * (point[1] - tangent[0][1])

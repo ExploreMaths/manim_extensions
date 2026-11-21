@@ -26,7 +26,19 @@ SUPPORTED_FORMATS = {
 
 
 class IncorrectFormat(Exception):
-    """Raised when a file has an unsupported or unrecognized format."""
+    """Raised when a file has an unsupported or unrecognized format.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.chemistry.utils.file_handler import FileHandler, IncorrectFormat
+
+        try:
+            FileHandler("notes.txt")
+        except IncorrectFormat as exc:
+            print(exc)
+    """
 
 
 class FileHandler:
@@ -36,6 +48,15 @@ class FileHandler:
     ----------
     file_path
         Path to the chemistry file to parse.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.chemistry.utils.file_handler import FileHandler
+
+        handler = FileHandler("molecule.mol")
+        atoms, bonds = handler.parser.parse()
     """
 
     def __init__(self, file_path: str | bytes | os.PathLike[str]) -> None:

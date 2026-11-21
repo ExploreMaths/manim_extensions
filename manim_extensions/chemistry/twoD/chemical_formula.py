@@ -43,6 +43,14 @@ class ChemicalFormula(MarkupText):
         Additional positional arguments passed to :class:`~manim.mobject.text.text_mobject.MarkupText`.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.text.text_mobject.MarkupText`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.chemistry.twoD.chemical_formula import ChemicalFormula
+
+        formula = ChemicalFormula("H2O")
     """
 
     def __init__(
@@ -285,6 +293,15 @@ class ComplexFormula(MarkupText):
         Additional positional arguments passed to :class:`~manim.mobject.text.text_mobject.MarkupText`.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.text.text_mobject.MarkupText`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim import BLUE, WHITE
+        from manim_extensions.chemistry.twoD.chemical_formula import ComplexFormula
+
+        formula = ComplexFormula({"H2O": WHITE, "NaCl": BLUE})
     """
 
     def __init__(self, formula_dict: dict[Any, Any], *args: Any, **kwargs: Any) -> None:

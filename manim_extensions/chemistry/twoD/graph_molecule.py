@@ -90,6 +90,14 @@ class DoubleLine(ArcBetweenPoints):
         Radius of the arcs.
     **kwargs
         Additional keyword arguments passed to :class:`~manim.mobject.geometry.arc.ArcBetweenPoints`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.chemistry.twoD.graph_molecule import DoubleLine
+
+        line = DoubleLine(start=[-1, 0, 0], end=[1, 0, 0])
     """
 
     def __init__(
@@ -171,6 +179,14 @@ class TripleLine(DoubleLine):
         Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.TripleLine.DoubleLine`.
     **kwargs
         Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.TripleLine.DoubleLine`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.chemistry.twoD.graph_molecule import TripleLine
+
+        line = TripleLine(start=[-1, 0, 0], end=[1, 0, 0])
     """
 
     def __init__(
@@ -327,6 +343,8 @@ class GraphMolecule(Graph, AbstractMolecule):
         ----------
         edges
             Pairs of vertex indices that should be connected.
+        edge_type
+            Mobject class used to build each bond.
         _
             Unused parameter kept for the graph interface.
 

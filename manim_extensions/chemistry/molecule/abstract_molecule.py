@@ -30,6 +30,17 @@ class AbstractMolecule:
         Positional arguments passed to subclass implementations.
     **kwargs
         Additional keyword arguments passed to subclass implementations.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.chemistry.molecule.abstract_molecule import AbstractMolecule
+
+        class MyMolecule(AbstractMolecule):
+            pass
+
+        molecule = MyMolecule()
     """
 
     group_class: Any = VGroup

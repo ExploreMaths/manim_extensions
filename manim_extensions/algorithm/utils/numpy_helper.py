@@ -13,6 +13,16 @@ class NumpyHelper:
 
     Provides utilities for normalizing vectors and comparing
     vector equality and direction within numerical tolerance.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        import numpy as np
+        from manim_extensions.algorithm.utils.numpy_helper import NumpyHelper
+
+        unit = NumpyHelper.normalize_vector(np.array([3.0, 4.0, 0.0]))
+        same = NumpyHelper.is_equal_vector(unit, unit)
     """
 
     @staticmethod
@@ -56,7 +66,7 @@ class NumpyHelper:
 
         Returns
         -------
-            ``True`` if ``v1`` and ``v2`` are element-wise close.
+            Whether ``v1`` and ``v2`` are element-wise close.
         """
         return bool(np.isclose(v1, v2, rtol=rtol, atol=atol).all())
 
@@ -84,7 +94,7 @@ class NumpyHelper:
 
         Returns
         -------
-            ``True`` if the normalized vectors are equal within tolerance.
+            Whether the normalized vectors are equal within tolerance.
         """
         return NumpyHelper.is_equal_vector(
             NumpyHelper.normalize_vector(v1),

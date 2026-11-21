@@ -99,6 +99,14 @@ class MultidimensionalGaussianPosterior:
         Mean of the distribution; drawn from the prior if None.
     var
         Variance of the distribution; drawn from the prior if None.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.machine_learning.diffusion.mcmc import MultidimensionalGaussianPosterior
+
+        posterior = MultidimensionalGaussianPosterior(ndim=2, seed=7)
     """
 
     def __init__(

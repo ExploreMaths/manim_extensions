@@ -16,6 +16,15 @@ import threading
 class SingletonLogger:
     """Thread-safe singleton logger that provides a single shared logging
     instance for the manim-pymunk module with a console handler.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.pymunk.utils.logger_tool import SingletonLogger
+
+        logger = SingletonLogger()
+        logger.info("physics scene ready")
     """
 
     _instance_lock = threading.Lock()

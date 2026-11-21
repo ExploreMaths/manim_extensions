@@ -309,6 +309,16 @@ class RadarMorph(Animation):
     kwargs
         Further keyword arguments forwarded to
         :class:`~manim.animation.animation.Animation`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.radar.chart import RadarChart
+        from manim_extensions.radar.animations import RadarMorph
+
+        chart = RadarChart(axes=["Speed", "Power", "Range", "Comfort", "Price", "Safety"], values=[8, 6, 7, 9, 5, 8])
+        morph = RadarMorph(chart, [7, 8, 6, 5, 9, 7])
     """
 
     def __init__(
@@ -719,6 +729,16 @@ class RadarReveal(Animation):
     kwargs
         Further keyword arguments forwarded to
         :class:`~manim.animation.animation.Animation`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.radar.chart import RadarChart
+        from manim_extensions.radar.animations import RadarReveal
+
+        chart = RadarChart(axes=["A", "B", "C"], values=[1, 2, 3])
+        reveal = RadarReveal(chart)
     """
 
     def __init__(
@@ -824,6 +844,16 @@ class RadarBurstIn(Animation):
     kwargs
         Further keyword arguments forwarded to
         :class:`~manim.animation.animation.Animation`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.radar.chart import RadarChart
+        from manim_extensions.radar.animations import RadarBurstIn
+
+        chart = RadarChart(axes=["A", "B", "C"], values=[1, 2, 3])
+        burst = RadarBurstIn(chart)
     """
 
     def __init__(
@@ -922,6 +952,16 @@ class RadarFade(Animation):
     kwargs
         Further keyword arguments forwarded to
         :class:`~manim.animation.animation.Animation`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.radar.chart import RadarChart
+        from manim_extensions.radar.animations import RadarFade
+
+        chart = RadarChart(axes=["A", "B", "C"], values=[1, 2, 3])
+        fade = RadarFade(chart, to=0.0)
     """
 
     def __init__(
@@ -981,6 +1021,16 @@ class GlitchFlash(Animation):
     kwargs
         Further keyword arguments forwarded to
         :class:`~manim.animation.animation.Animation`.
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.radar.chart import RadarChart
+        from manim_extensions.radar.animations import GlitchFlash
+
+        chart = RadarChart(axes=["A", "B", "C"], values=[1, 2, 3])
+        flash = GlitchFlash(chart)
     """
 
     def __init__(

@@ -48,6 +48,14 @@ class RadarData:
         Per-snapshot transition override, see :meth:`~manim_extensions.radar.chart.RadarChart.morph_to`.
     note:
         Free-form text (ignored by the chart itself, useful for the reel).
+
+    Examples
+    --------
+    .. code-block:: python
+
+        from manim_extensions.radar.data import RadarData
+
+        data = RadarData(axes=["Speed", "Power", "Range"], values=[8, 6, 7])
     """
 
     axes: Sequence[str]

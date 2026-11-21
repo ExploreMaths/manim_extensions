@@ -344,8 +344,8 @@ class Compass(VGroup):
 
         Returns
         -------
-            ``True`` if the pen tip direction is counter-clockwise from the
-            needle tip direction about the head centre, otherwise ``False``.
+            Whether the pen tip direction is counter-clockwise from the
+            needle tip direction about the head centre.
         """
         return is_counter_clockwise(
             self.get_niddle_tip() - self.c.get_center(),
