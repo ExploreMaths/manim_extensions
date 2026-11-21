@@ -1481,7 +1481,7 @@
 
 <span class="sd">"""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">BLACK</span><span class="p">,</span>
@@ -1495,6 +1495,7 @@
     <span class="n">Tex</span><span class="p">,</span>
     <span class="n">Text</span><span class="p">,</span>
     <span class="n">VGroup</span><span class="p">,</span>
+    <span class="n">VMobject</span><span class="p">,</span>
     <span class="n">WHITE</span><span class="p">,</span>
     <span class="n">color_gradient</span><span class="p">,</span>
 <span class="p">)</span>
@@ -1611,7 +1612,7 @@
 
 <div class="viewcode-block" id="MElementObject.max_height_ratio">
 <a class="viewcode-back" href="../../../../reference/chemistry/periodic_table/table_objects.MElementObject.html#manim_extensions.chemistry.periodic_table.table_objects.MElementObject.max_height_ratio">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">max_height_ratio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name_text</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Text</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">max_height_ratio</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name_text</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VMobject</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Scale down the name text if its height exceeds the 0.3 maximum threshold.</span>
 
 <span class="sd">        Parameters</span>
@@ -1628,7 +1629,7 @@
             <span class="n">ratio</span> <span class="o">=</span> <span class="mf">0.3</span> <span class="o">/</span> <span class="n">text_height</span>
             <span class="n">name_text</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">ratio</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="n">name_text</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">VMobject</span><span class="p">,</span> <span class="n">name_text</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="MElementObject.create_frame_base">
@@ -1648,7 +1649,7 @@
                 <span class="n">fill_opacity</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">opacity</span><span class="p">,</span>
             <span class="p">)</span>
             <span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span>
-            <span class="o">.</span><span class="n">set_fill</span><span class="p">(</span><span class="n">color_gradient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fill_colors</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gradient</span><span class="p">))</span>
+            <span class="o">.</span><span class="n">set_fill</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">color_gradient</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fill_colors</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">gradient</span><span class="p">)))</span>
         <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">frame_rectangle</span></div>
@@ -1669,7 +1670,7 @@
             <span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">1.1</span><span class="p">)</span>
             <span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">frame_rectangle</span><span class="o">.</span><span class="n">get_center</span><span class="p">())</span>
         <span class="p">)</span>
-        <span class="n">name_text</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="n">name_text</span><span class="p">:</span> <span class="n">VMobject</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">Text</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">element_name</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">text_color</span><span class="p">)</span>
             <span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span>
             <span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">frame_rectangle</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">,</span> <span class="n">buff</span><span class="o">=-</span><span class="mf">0.4</span><span class="p">)</span>
@@ -1688,7 +1689,7 @@
         <span class="n">name_text</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">ratio</span><span class="p">)</span>
         <span class="n">name_text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">max_height_ratio</span><span class="p">(</span><span class="n">name_text</span><span class="p">)</span>
 
-        <span class="n">shifting_ammount</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">shifting_ammount</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">if</span> <span class="mi">10</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">atomic_number</span><span class="p">:</span>
             <span class="n">shifting_ammount</span> <span class="o">+=</span> <span class="mf">0.15</span>
 
@@ -1702,6 +1703,7 @@
 
 <div class="viewcode-block" id="MElementObject.from_csv_file_data">
 <a class="viewcode-back" href="../../../../reference/chemistry/periodic_table/table_objects.MElementObject.html#manim_extensions.chemistry.periodic_table.table_objects.MElementObject.from_csv_file_data">[docs]</a>
+    <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_csv_file_data</span><span class="p">(</span>
         <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">atomic_number</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"MElementObject"</span><span class="p">:</span>
@@ -1732,7 +1734,7 @@
             <span class="n">atomic_mass</span><span class="o">=</span><span class="n">element</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"AtomicMass"</span><span class="p">),</span>
             <span class="n">element_name</span><span class="o">=</span><span class="n">element</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Name"</span><span class="p">),</span>
             <span class="n">element_symbol</span><span class="o">=</span><span class="n">element</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Symbol"</span><span class="p">),</span>
-            <span class="n">fill_colors</span><span class="o">=</span><span class="p">[</span><span class="n">element</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Color"</span><span class="p">),</span> <span class="n">WHITE</span><span class="p">],</span>
+            <span class="n">fill_colors</span><span class="o">=</span><span class="p">(</span><span class="n">element</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"Color"</span><span class="p">),</span> <span class="n">WHITE</span><span class="p">),</span>
         <span class="p">)</span></div>
 </div>
 

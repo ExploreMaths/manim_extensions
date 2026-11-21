@@ -1480,7 +1480,8 @@
 <span class="sd">Tool for animating Markov Chain Monte Carlo simulations in 2D.</span>
 <span class="sd">"""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="c1"># unlinked-class-ok: Ground</span>
 
@@ -1494,6 +1495,7 @@
     <span class="n">GREEN</span><span class="p">,</span>
     <span class="n">Group</span><span class="p">,</span>
     <span class="n">ImageMobject</span><span class="p">,</span>
+    <span class="n">VMobject</span><span class="p">,</span>
     <span class="n">Line</span><span class="p">,</span>
     <span class="n">ManimColor</span><span class="p">,</span>
     <span class="n">Mobject</span><span class="p">,</span>
@@ -1520,7 +1522,7 @@
 
 <div class="viewcode-block" id="gaussian_proposal">
 <a class="viewcode-back" href="../../../../reference/machine_learning/diffusion/mcmc.html#manim_extensions.machine_learning.diffusion.mcmc.gaussian_proposal">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">gaussian_proposal</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">gaussian_proposal</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">VectorND</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Gaussian proposal distribution.</span>
 
@@ -1545,7 +1547,7 @@
     <span class="c1"># Draw x_star</span>
     <span class="n">x_star</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">*</span> <span class="n">sigma</span>
     <span class="c1"># proposal ratio factor is 1 since jump is symmetric</span>
-    <span class="n">qxx</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">qxx</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>
 
     <span class="k">return</span> <span class="p">(</span><span class="n">x_star</span><span class="p">,</span> <span class="n">qxx</span><span class="p">)</span></div>
 
@@ -1600,7 +1602,7 @@
 
 <div class="viewcode-block" id="MultidimensionalGaussianPosterior.__call__">
 <a class="viewcode-back" href="../../../../reference/machine_learning/diffusion/mcmc.MultidimensionalGaussianPosterior.html#manim_extensions.machine_learning.diffusion.mcmc.MultidimensionalGaussianPosterior.__call__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Evaluate the log density of the posterior.</span>
 
 <span class="sd">        Parameters</span>
@@ -1614,7 +1616,9 @@
 <span class="sd">            point falls outside the supported range.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">500</span><span class="p">)</span> <span class="ow">and</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="o">-</span><span class="mi">500</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mu</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">)</span><span class="o">.</span><span class="n">logpdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span>
+                <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mu</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">var</span><span class="p">)</span><span class="o">.</span><span class="n">logpdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="o">-</span><span class="mf">1e6</span></div>
 </div>
@@ -1631,7 +1635,7 @@
     <span class="n">warm_up</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
     <span class="n">ndim</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
     <span class="n">sampling_seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">"""Samples using a Metropolis-Hastings sampler.</span>
 
 <span class="sd">    Parameters</span>
@@ -1700,7 +1704,7 @@
 <div class="viewcode-block" id="make_dist_image_mobject_from_samples">
 <a class="viewcode-back" href="../../../../reference/machine_learning/diffusion/mcmc.html#manim_extensions.machine_learning.diffusion.mcmc.make_dist_image_mobject_from_samples">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">make_dist_image_mobject_from_samples</span><span class="p">(</span>
-    <span class="n">samples</span><span class="p">:</span> <span class="n">Point2D_Array</span><span class="p">,</span> <span class="n">ylim</span><span class="p">:</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">xlim</span><span class="p">:</span> <span class="nb">list</span> <span class="o">|</span> <span class="kc">None</span>
+    <span class="n">samples</span><span class="p">:</span> <span class="n">Point2D_Array</span><span class="p">,</span> <span class="n">ylim</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">xlim</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ImageMobject</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Render a KDE density plot from 2D samples and return it as an :class:`~manim.mobject.types.image_mobject.ImageMobject`.</span>
 
@@ -1732,8 +1736,10 @@
         <span class="n">kind</span><span class="o">=</span><span class="s2">"kde"</span><span class="p">,</span>
         <span class="n">norm</span><span class="o">=</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">colors</span><span class="o">.</span><span class="n">LogNorm</span><span class="p">(),</span>
     <span class="p">)</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ylim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ylim</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xlim</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xlim</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">ylim_values</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">ylim</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="n">ylim_values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">ylim_values</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">xlim_values</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">xlim</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="n">xlim_values</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">xlim_values</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="s2">"off"</span><span class="p">)</span>
     <span class="n">fig</span> <span class="o">=</span> <span class="n">displot</span><span class="o">.</span><span class="n">fig</span>
     <span class="n">image_mobject</span> <span class="o">=</span> <span class="n">convert_matplotlib_figure_to_image_mobject</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
@@ -1909,8 +1915,7 @@
             <span class="n">axes</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="n">mean</span><span class="p">,</span> <span class="n">cov</span><span class="o">=</span><span class="n">cov</span><span class="p">,</span> <span class="n">dist_theme</span><span class="o">=</span><span class="s2">"gaussian"</span>
         <span class="p">)</span>
 
-        <span class="n">create_guassian</span> <span class="o">=</span> <span class="n">Create</span><span class="p">(</span><span class="n">gaussian</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">create_guassian</span></div>
+        <span class="k">return</span> <span class="n">AnimationGroup</span><span class="p">(</span><span class="n">Create</span><span class="p">(</span><span class="n">gaussian</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="MCMCAxes.make_transition_animation">
@@ -1922,7 +1927,7 @@
         <span class="n">candidate_point</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
         <span class="n">show_dots</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnimationGroup</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">AnimationGroup</span><span class="p">,</span> <span class="n">Line</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Makes an transition animation for a single point on a Markov Chain.</span>
 
 <span class="sd">        Parameters</span>
@@ -1942,16 +1947,25 @@
 <span class="sd">        -------</span>
 <span class="sd">            Animation of the transition from start to end.</span>
 <span class="sd">        """</span>
-        <span class="n">start_location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">point_to_coords</span><span class="p">(</span><span class="n">start_point</span><span class="o">.</span><span class="n">get_center</span><span class="p">())</span>
-        <span class="n">end_location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">point_to_coords</span><span class="p">(</span><span class="n">end_point</span><span class="o">.</span><span class="n">get_center</span><span class="p">())</span>
-        <span class="n">candidate_location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">point_to_coords</span><span class="p">(</span><span class="n">candidate_point</span><span class="o">.</span><span class="n">get_center</span><span class="p">())</span>
+        <span class="n">start_location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">point_to_coords</span><span class="p">(</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">start_point</span><span class="o">.</span><span class="n">get_center</span><span class="p">())</span>
+        <span class="p">)</span>
+        <span class="n">end_location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">point_to_coords</span><span class="p">(</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">end_point</span><span class="o">.</span><span class="n">get_center</span><span class="p">())</span>
+        <span class="p">)</span>
+        <span class="n">candidate_location</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">point_to_coords</span><span class="p">(</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">candidate_point</span><span class="o">.</span><span class="n">get_center</span><span class="p">())</span>
+        <span class="p">)</span>
         <span class="c1"># Figure out if a point is accepted or rejected</span>
         <span class="c1"># point_is_rejected = not candidate_location == end_location</span>
         <span class="n">point_is_rejected</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">if</span> <span class="n">point_is_rejected</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">AnimationGroup</span><span class="p">()</span>
+            <span class="k">return</span> <span class="p">(</span>
+                <span class="n">AnimationGroup</span><span class="p">(),</span>
+                <span class="n">Line</span><span class="p">(</span><span class="n">start_point</span><span class="o">.</span><span class="n">get_center</span><span class="p">(),</span> <span class="n">end_point</span><span class="o">.</span><span class="n">get_center</span><span class="p">()),</span>
+            <span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">create_end_point</span> <span class="o">=</span> <span class="n">Create</span><span class="p">(</span><span class="n">end_point</span><span class="p">)</span>
+            <span class="n">create_end_point</span> <span class="o">=</span> <span class="n">Create</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">VMobject</span><span class="p">,</span> <span class="n">end_point</span><span class="p">))</span>
             <span class="n">line</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span>
                 <span class="n">start_point</span><span class="p">,</span>
                 <span class="n">end_point</span><span class="p">,</span>
@@ -2049,7 +2063,7 @@
         <span class="c1"># print(f"MCMC samples: {mcmc_samples}")</span>
         <span class="c1"># print(f"Candidate samples: {candidate_samples}")</span>
         <span class="c1"># Make the animation for visualizing the chain</span>
-        <span class="n">transition_animations</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">transition_animations</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="c1"># Place the initial point</span>
         <span class="n">current_point</span> <span class="o">=</span> <span class="n">mcmc_samples</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">current_point</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span>
@@ -2061,8 +2075,8 @@
         <span class="n">transition_animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">create_initial_point</span><span class="p">)</span>
         <span class="c1"># Show the initial point's proposal distribution</span>
         <span class="c1"># NOTE: visualize the warm up and the iterations</span>
-        <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">warmup_points</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">lines</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Line</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">warmup_points</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Dot</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">num_iterations</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mcmc_samples</span><span class="p">)</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">warm_up_samples</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">iteration</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_iterations</span><span class="p">)):</span>
             <span class="n">next_sample</span> <span class="o">=</span> <span class="n">mcmc_samples</span><span class="p">[</span><span class="n">iteration</span><span class="p">]</span>
@@ -2095,7 +2109,7 @@
         <span class="c1"># Overall MCMC animation</span>
         <span class="c1"># 1. Fade in the distribution</span>
         <span class="n">image_mobject</span> <span class="o">=</span> <span class="n">make_dist_image_mobject_from_samples</span><span class="p">(</span>
-            <span class="n">true_samples</span><span class="p">,</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Point2D_Array</span><span class="p">,</span> <span class="n">true_samples</span><span class="p">),</span>
             <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x_range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">x_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
             <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y_range</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_range</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span>
         <span class="p">)</span>
@@ -2107,10 +2121,10 @@
             <span class="o">*</span><span class="n">transition_animations</span><span class="p">,</span> <span class="n">lag_ratio</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="mf">5.0</span>
         <span class="p">)</span>
         <span class="c1"># 3. Convert the chain to points, excluding the warmup</span>
-        <span class="n">lines</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="n">lines</span><span class="p">)</span>
-        <span class="n">warm_up_points</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="n">warmup_points</span><span class="p">)</span>
+        <span class="n">lines_group</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="n">lines</span><span class="p">)</span>
+        <span class="n">warm_up_points_group</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="n">warmup_points</span><span class="p">)</span>
         <span class="n">fade_out_lines_and_warmup</span> <span class="o">=</span> <span class="n">AnimationGroup</span><span class="p">(</span>
-            <span class="n">Uncreate</span><span class="p">(</span><span class="n">lines</span><span class="p">),</span> <span class="n">Uncreate</span><span class="p">(</span><span class="n">warm_up_points</span><span class="p">),</span> <span class="n">lag_ratio</span><span class="o">=</span><span class="mf">0.0</span>
+            <span class="n">Uncreate</span><span class="p">(</span><span class="n">lines_group</span><span class="p">),</span> <span class="n">Uncreate</span><span class="p">(</span><span class="n">warm_up_points_group</span><span class="p">),</span> <span class="n">lag_ratio</span><span class="o">=</span><span class="mf">0.0</span>
         <span class="p">)</span>
         <span class="c1"># Make the final animation</span>
         <span class="n">animation_group</span> <span class="o">=</span> <span class="n">Succession</span><span class="p">(</span>

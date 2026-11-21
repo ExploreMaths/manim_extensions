@@ -1476,7 +1476,7 @@
 
 <span class="sd">"""Bohr atom model visualization for Manim."""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">BLUE</span><span class="p">,</span> <span class="n">Circle</span><span class="p">,</span> <span class="n">Dot</span><span class="p">,</span> <span class="n">ManimColor</span><span class="p">,</span> <span class="n">RED</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">TAU</span><span class="p">,</span> <span class="n">VGroup</span><span class="p">,</span> <span class="n">WHITE</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -1684,7 +1684,7 @@
         <span class="k">for</span> <span class="n">angle</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">TAU</span><span class="p">,</span> <span class="n">TAU</span> <span class="o">/</span> <span class="n">n_electrons</span><span class="p">):</span>
             <span class="n">electron</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">electron_color</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
             <span class="n">electron</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">level</span> <span class="o">*</span> <span class="n">RIGHT</span><span class="p">)</span>
-            <span class="n">electron</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">about_point</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+            <span class="n">electron</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">about_point</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
             <span class="n">level_group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">electron</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="n">level_group</span></div>
@@ -1698,7 +1698,7 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            The orbitals VGroup (first child of the atom group)."""</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">VGroup</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></div>
 
 
 <div class="viewcode-block" id="BohrAtom.get_electrons">
@@ -1709,7 +1709,7 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            The electrons VGroup (second child of the atom group)."""</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">VGroup</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span></div>
 
 
 <div class="viewcode-block" id="BohrAtom.get_nuclei">
@@ -1720,7 +1720,7 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            The nuclei VGroup (third child of the atom group)."""</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">VGroup</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span></div>
 </div>
 
 </pre></div>

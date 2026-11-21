@@ -1515,14 +1515,16 @@
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span> <span class="o">=</span> <span class="n">atoms</span> <span class="ow">or</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bonds</span> <span class="o">=</span> <span class="n">bonds</span> <span class="ow">or</span> <span class="p">[]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span> <span class="o">=</span> <span class="n">elements</span> <span class="ow">or</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">atoms_by_index</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">elements</span><span class="p">:</span> <span class="n">MCElement</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">elements</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">atoms_by_index</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">MCAtom</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
 
 <div class="viewcode-block" id="MCMolecule.add_atoms_from_atoms_dict">
 <a class="viewcode-back" href="../../../../reference/chemistry/manim_chemistry_molecule/mc_molecule.MCMolecule.html#manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule.add_atoms_from_atoms_dict">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_atoms_from_atoms_dict</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">atoms_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">elements_data_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">atoms_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">elements_data_dict</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Uses the atoms dict returned by a parser to add the atoms to the molecule.</span>
@@ -1754,7 +1756,9 @@
 <span class="sd">            A list of the results.</span>
 <span class="sd">        """</span>
 
-        <span class="n">list_of_data_dicts</span> <span class="o">=</span> <span class="n">FileHandler</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="n">filepath</span><span class="p">)</span><span class="o">.</span><span class="n">parsed_atoms_bonds_data</span><span class="p">()</span>
+        <span class="n">list_of_data_dicts</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">FileHandler</span><span class="p">(</span><span class="n">file_path</span><span class="o">=</span><span class="n">filepath</span><span class="p">)</span><span class="o">.</span><span class="n">parsed_atoms_bonds_data</span><span class="p">()</span>
+        <span class="p">)</span>
         <span class="n">mc_molecules</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">atoms_dict</span><span class="p">,</span> <span class="n">bonds_dict</span> <span class="ow">in</span> <span class="n">list_of_data_dicts</span><span class="p">:</span>
             <span class="n">mc_molecules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
@@ -1818,7 +1822,9 @@
 <span class="sd">        -------</span>
 <span class="sd">            The molecule parsed from the string.</span>
 <span class="sd">        """</span>
-        <span class="n">parsed_data</span> <span class="o">=</span> <span class="n">FileHandler</span><span class="o">.</span><span class="n">parse_from_string</span><span class="p">(</span><span class="n">string</span><span class="o">=</span><span class="n">string</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="nb">format</span><span class="p">)</span>
+        <span class="n">parsed_data</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">FileHandler</span><span class="o">.</span><span class="n">parse_from_string</span><span class="p">(</span><span class="n">string</span><span class="o">=</span><span class="n">string</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="nb">format</span><span class="p">)</span>
+        <span class="p">)</span>
 
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">parsed_data</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
             <span class="n">parsed_data</span> <span class="o">=</span> <span class="n">parsed_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -1865,7 +1871,9 @@
 <span class="sd">        -------</span>
 <span class="sd">            A list of the results.</span>
 <span class="sd">        """</span>
-        <span class="n">parsed_data</span> <span class="o">=</span> <span class="n">FileHandler</span><span class="o">.</span><span class="n">parse_from_string</span><span class="p">(</span><span class="n">string</span><span class="o">=</span><span class="n">string</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="nb">format</span><span class="p">)</span>
+        <span class="n">parsed_data</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">FileHandler</span><span class="o">.</span><span class="n">parse_from_string</span><span class="p">(</span><span class="n">string</span><span class="o">=</span><span class="n">string</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="nb">format</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="n">mc_molecules</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">atoms_dict</span><span class="p">,</span> <span class="n">bonds_dict</span> <span class="ow">in</span> <span class="n">parsed_data</span><span class="p">:</span>
             <span class="n">mc_molecules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
@@ -1890,15 +1898,19 @@
             <span class="k">if</span> <span class="n">atom</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">atomic_number</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">atom</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">symbol</span> <span class="o">!=</span> <span class="s2">"H"</span><span class="p">:</span>
                 <span class="k">continue</span>
 
+            <span class="n">bond</span> <span class="o">=</span> <span class="n">atom</span><span class="o">.</span><span class="n">bonds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">to_atom</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">MCAtom</span><span class="p">,</span> <span class="n">bond</span><span class="o">.</span><span class="n">to_atom</span><span class="p">)</span>
+            <span class="n">from_atom</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">MCAtom</span><span class="p">,</span> <span class="n">bond</span><span class="o">.</span><span class="n">from_atom</span><span class="p">)</span>
             <span class="k">if</span> <span class="p">(</span>
-                <span class="n">atom</span><span class="o">.</span><span class="n">bonds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">atomic_number</span> <span class="o">==</span> <span class="mi">6</span>
-                <span class="ow">or</span> <span class="n">atom</span><span class="o">.</span><span class="n">bonds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">atomic_number</span> <span class="o">==</span> <span class="mi">6</span>
-                <span class="ow">or</span> <span class="n">atom</span><span class="o">.</span><span class="n">bonds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">symbol</span> <span class="o">==</span> <span class="s2">"C"</span>
-                <span class="ow">or</span> <span class="n">atom</span><span class="o">.</span><span class="n">bonds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">symbol</span> <span class="o">==</span> <span class="s2">"C"</span>
+                <span class="n">to_atom</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">atomic_number</span> <span class="o">==</span> <span class="mi">6</span>
+                <span class="ow">or</span> <span class="n">from_atom</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">atomic_number</span> <span class="o">==</span> <span class="mi">6</span>
+                <span class="ow">or</span> <span class="n">to_atom</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">symbol</span> <span class="o">==</span> <span class="s2">"C"</span>
+                <span class="ow">or</span> <span class="n">from_atom</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">symbol</span> <span class="o">==</span> <span class="s2">"C"</span>
             <span class="p">):</span>
                 <span class="n">atoms_to_be_removed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">remove_hydrogens</span><span class="p">(</span><span class="n">atoms_to_be_removed</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">remove_hydrogens</span><span class="p">(</span><span class="n">atoms_to_be_removed</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
 
 
 <div class="viewcode-block" id="MCMolecule.remove_all_hydrogens">
@@ -1912,7 +1924,8 @@
 
             <span class="n">atoms_to_be_removed</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">remove_hydrogens</span><span class="p">(</span><span class="n">atoms_to_be_removed</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">remove_hydrogens</span><span class="p">(</span><span class="n">atoms_to_be_removed</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
 
 
 <div class="viewcode-block" id="MCMolecule.remove_hydrogens">
@@ -1950,8 +1963,8 @@
 
         <span class="n">bonds_to_be_removed</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
 
-        <span class="k">for</span> <span class="n">bond</span> <span class="ow">in</span> <span class="n">bonds_to_be_removed</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">bonds</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">bond</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">bond_index</span> <span class="ow">in</span> <span class="n">bonds_to_be_removed</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">bonds</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">bond_index</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">reindex_molecule_atoms</span><span class="p">()</span></div>
 

@@ -1480,7 +1480,7 @@
 
 <span class="sd">"""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">BLUE</span><span class="p">,</span> <span class="n">ORIGIN</span><span class="p">,</span> <span class="n">PI</span><span class="p">,</span> <span class="n">RED</span><span class="p">,</span> <span class="n">TAU</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.mobject.opengl.opengl_surface</span><span class="w"> </span><span class="kn">import</span> <span class="n">OpenGLSurface</span>
@@ -1492,13 +1492,13 @@
     <span class="c1"># scipy &gt;= 1.15: Y_l^m(theta_polar, phi_azimuthal)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_sph_harm</span><span class="p">(</span><span class="n">m</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">l</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">azimuthal</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">,</span> <span class="n">polar</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the spherical harmonic with the new scipy argument order."""</span>
-        <span class="k">return</span> <span class="n">spe</span><span class="o">.</span><span class="n">sph_harm_y</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">polar</span><span class="p">,</span> <span class="n">azimuthal</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">spe</span><span class="o">.</span><span class="n">sph_harm_y</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">polar</span><span class="p">,</span> <span class="n">azimuthal</span><span class="p">))</span>
 
 <span class="k">else</span><span class="p">:</span>
     <span class="c1"># legacy scipy: sph_harm(m, l, theta_azimuthal, phi_polar)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_sph_harm</span><span class="p">(</span><span class="n">m</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">l</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">azimuthal</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">,</span> <span class="n">polar</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the spherical harmonic with the legacy scipy argument order."""</span>
-        <span class="k">return</span> <span class="n">spe</span><span class="o">.</span><span class="n">sph_harm</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">azimuthal</span><span class="p">,</span> <span class="n">polar</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">spe</span><span class="o">.</span><span class="n">sph_harm</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">azimuthal</span><span class="p">,</span> <span class="n">polar</span><span class="p">))</span>
 
 
 <div class="viewcode-block" id="OrbitalBase">
@@ -1533,14 +1533,16 @@
 
 <div class="viewcode-block" id="OrbitalBase.add_background_rectangle_to_family_members_with_points">
 <a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.OrbitalBase.html#manim_extensions.chemistry.orbitals.orbitals.OrbitalBase.add_background_rectangle_to_family_members_with_points">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add_background_rectangle_to_family_members_with_points</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_background_rectangle_to_family_members_with_points</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"OrbitalBase"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""No-op override to prevent background rectangle addition on orbital surfaces.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            The resulting value.</span>
 <span class="sd">        """</span>
-        <span class="k">pass</span></div>
+        <span class="k">return</span> <span class="bp">self</span></div>
 
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -1617,9 +1619,10 @@
 <span class="sd">        -------</span>
 <span class="sd">            The scaled 3D Cartesian coordinates for the given spherical angles.</span>
 <span class="sd">        """</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
-        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
-        <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">u</span><span class="p">)</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+        <span class="n">u_arr</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">VectorND</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">u_arr</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">u_arr</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">u_arr</span><span class="p">)</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">psi</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">])</span></div>
 
@@ -1640,7 +1643,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            The orbital surface coordinates for the given spherical angles.</span>
 <span class="sd">        """</span>
-        <span class="n">psi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">psi_ang</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">l</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">l_value</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="p">)</span>
+        <span class="n">psi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">psi_ang</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">cast</span><span class="p">(</span><span class="n">VectorND</span><span class="p">,</span> <span class="n">u</span><span class="p">),</span> <span class="n">l</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">l_value</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_coordinates</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span></div>
 </div>
@@ -1670,9 +1673,9 @@
 <span class="sd">        -------</span>
 <span class="sd">            The orbital surface coordinates for the given spherical angles.</span>
 <span class="sd">        """</span>
-        <span class="n">psi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">psi_ang</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">l</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">l_value</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="p">)</span>
+        <span class="n">psi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">psi_ang</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">cast</span><span class="p">(</span><span class="n">VectorND</span><span class="p">,</span> <span class="n">u</span><span class="p">),</span> <span class="n">l</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">l_value</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">psi</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">psi</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">psi</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">VectorND</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_coordinates</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span></div>
 </div>
@@ -1702,9 +1705,9 @@
 <span class="sd">        -------</span>
 <span class="sd">            The orbital surface coordinates for the given spherical angles.</span>
 <span class="sd">        """</span>
-        <span class="n">psi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">psi_ang</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">l</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">l_value</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="p">)</span>
+        <span class="n">psi</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">psi_ang</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">cast</span><span class="p">(</span><span class="n">VectorND</span><span class="p">,</span> <span class="n">u</span><span class="p">),</span> <span class="n">l</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">l_value</span><span class="p">,</span> <span class="n">m</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">m_value</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">psi</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="n">psi</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">psi</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">VectorND</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_coordinates</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span></div>
 </div>

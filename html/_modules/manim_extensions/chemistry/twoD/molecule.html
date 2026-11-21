@@ -2288,13 +2288,13 @@
             <span class="k">for</span> <span class="n">bond</span> <span class="ow">in</span> <span class="n">atom</span><span class="o">.</span><span class="n">bonds</span><span class="p">:</span>
                 <span class="c1"># TODO: This patches an issue with from_atom and to_atom but does not solve it completely.</span>
                 <span class="c1"># Fix later the root cause</span>
-                <span class="k">if</span> <span class="n">bond</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">molecule_index</span> <span class="o">==</span> <span class="n">index</span><span class="p">:</span>
-                    <span class="n">bond_to</span><span class="p">[</span><span class="n">bond</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">molecule_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">bond</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">symbol</span>
+                <span class="n">from_atom_ref</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">bond</span><span class="o">.</span><span class="n">from_atom</span><span class="p">)</span>
+                <span class="n">to_atom_ref</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">bond</span><span class="o">.</span><span class="n">to_atom</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">from_atom_ref</span><span class="o">.</span><span class="n">molecule_index</span> <span class="o">==</span> <span class="n">index</span><span class="p">:</span>
+                    <span class="n">bond_to</span><span class="p">[</span><span class="n">to_atom_ref</span><span class="o">.</span><span class="n">molecule_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">to_atom_ref</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">symbol</span>
 
                 <span class="k">else</span><span class="p">:</span>
-                    <span class="n">bond_to</span><span class="p">[</span><span class="n">bond</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">molecule_index</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
-                        <span class="n">bond</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">symbol</span>
-                    <span class="p">)</span>
+                    <span class="n">bond_to</span><span class="p">[</span><span class="n">from_atom_ref</span><span class="o">.</span><span class="n">molecule_index</span><span class="p">]</span> <span class="o">=</span> <span class="n">from_atom_ref</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">symbol</span>
 
             <span class="n">atom_data</span> <span class="o">=</span> <span class="p">{</span>
                 <span class="s2">"coords"</span><span class="p">:</span> <span class="n">atom</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span>

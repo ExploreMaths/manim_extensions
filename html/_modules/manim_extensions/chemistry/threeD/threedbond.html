@@ -1555,8 +1555,8 @@
         <span class="p">)</span>
         <span class="c1"># if show_ends:</span>
         <span class="c1">#    self.add_bases()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_current_phi</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_current_theta</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_current_phi</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_current_theta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_direction</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span>
 
 <div class="viewcode-block" id="ThreeDCylinder.uv_func">
@@ -1591,7 +1591,7 @@
 <span class="sd">            The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">renderer</span> <span class="o">==</span> <span class="n">RendererType</span><span class="o">.</span><span class="n">OPENGL</span><span class="p">:</span>
-            <span class="n">color</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">)</span>
             <span class="n">opacity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">opacity</span>
         <span class="k">elif</span> <span class="n">config</span><span class="o">.</span><span class="n">renderer</span> <span class="o">==</span> <span class="n">RendererType</span><span class="o">.</span><span class="n">CAIRO</span><span class="p">:</span>
             <span class="n">color</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">fill_color</span>
@@ -1626,6 +1626,7 @@
 <span class="sd">        """</span>
         <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span>
 
+        <span class="n">phi</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">z</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">r</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">z</span> <span class="o">/</span> <span class="n">r</span><span class="p">)</span>
@@ -1771,7 +1772,9 @@
 <div class="viewcode-block" id="ThreeDLine.pointify">
 <a class="viewcode-back" href="../../../../reference/chemistry/threeD/threedbond.ThreeDLine.html#manim_extensions.chemistry.threeD.threedbond.ThreeDLine.pointify">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">pointify</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">mob_or_point</span><span class="p">:</span> <span class="n">Mobject</span> <span class="o">|</span> <span class="nb">float</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">mob_or_point</span><span class="p">:</span> <span class="n">Mobject</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">Point3D</span><span class="p">,</span>
+        <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Gets a point representing the center of the :class:`~manim.mobject.mobject.Mobject`.</span>
 
@@ -1792,7 +1795,7 @@
                 <span class="k">return</span> <span class="n">mob</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">return</span> <span class="n">mob</span><span class="o">.</span><span class="n">get_boundary_point</span><span class="p">(</span><span class="n">direction</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mob_or_point</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">Point3D</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">mob_or_point</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="ThreeDLine.get_start">
@@ -1826,7 +1829,7 @@
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">parallel_to</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="n">Line3D</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="n">ORIGIN</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Line3D</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"ThreeDLine"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Returns a line parallel to another line going through</span>
 <span class="sd">        a given point.</span>
 
@@ -1877,7 +1880,7 @@
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">perpendicular_to</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span> <span class="n">line</span><span class="p">:</span> <span class="n">Line3D</span><span class="p">,</span> <span class="n">point</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="n">ORIGIN</span><span class="p">,</span> <span class="n">length</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Line3D</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"ThreeDLine"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Returns a line perpendicular to another line going through</span>
 <span class="sd">        a given point.</span>
 
@@ -2028,10 +2031,14 @@
         <span class="n">midpoint</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">coords</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">coords</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
 
         <span class="n">half_bond_1</span> <span class="o">=</span> <span class="n">ThreeDLine</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span> <span class="n">midpoint</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">color</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span>
+            <span class="n">midpoint</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">cast</span><span class="p">(</span><span class="n">ManimColor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">color</span><span class="p">),</span>
         <span class="p">)</span>
         <span class="n">half_bond_2</span> <span class="o">=</span> <span class="n">ThreeDLine</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span> <span class="n">midpoint</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">color</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">coords</span><span class="p">,</span>
+            <span class="n">midpoint</span><span class="p">,</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">cast</span><span class="p">(</span><span class="n">ManimColor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">element</span><span class="o">.</span><span class="n">color</span><span class="p">),</span>
         <span class="p">)</span>
 
         <span class="n">bond</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">half_bond_1</span><span class="p">,</span> <span class="n">half_bond_2</span><span class="p">)</span>

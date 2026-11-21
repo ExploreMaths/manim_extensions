@@ -1480,7 +1480,7 @@
 
 <span class="sd">"""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">..twoD</span><span class="w"> </span><span class="kn">import</span> <span class="n">GraphMolecule</span>
 
@@ -1560,7 +1560,9 @@
 <span class="sd">        -------</span>
 <span class="sd">            The molecule loaded from the file.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecule_class</span><span class="o">.</span><span class="n">molecule_from_file</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="n">GraphMolecule</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecule_class</span><span class="o">.</span><span class="n">molecule_from_file</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Molecule.multiple_molecules_from_file">
@@ -1579,7 +1581,9 @@
 <span class="sd">        -------</span>
 <span class="sd">            The group of molecules loaded from the file.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecule_class</span><span class="o">.</span><span class="n">multiple_molecules_from_file</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="n">VGroup</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecule_class</span><span class="o">.</span><span class="n">multiple_molecules_from_file</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Molecule.molecule_from_string">
@@ -1598,7 +1602,9 @@
 <span class="sd">        -------</span>
 <span class="sd">            The molecule parsed from the string.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecule_class</span><span class="o">.</span><span class="n">molecule_from_string</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="n">GraphMolecule</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecule_class</span><span class="o">.</span><span class="n">molecule_from_string</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Molecule.multiple_molecules_from_string">
@@ -1617,7 +1623,9 @@
 <span class="sd">        -------</span>
 <span class="sd">            The group of molecules parsed from the string.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecule_class</span><span class="o">.</span><span class="n">multiple_molecules_from_string</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="n">VGroup</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecule_class</span><span class="o">.</span><span class="n">multiple_molecules_from_string</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Molecule.molecule_from_pubchem">
@@ -1636,14 +1644,16 @@
 <span class="sd">        -------</span>
 <span class="sd">            The molecule fetched from PubChem.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecule_class</span><span class="o">.</span><span class="n">molecule_from_pubchem</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="n">GraphMolecule</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecule_class</span><span class="o">.</span><span class="n">molecule_from_pubchem</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Molecule.mc_molecule_to_atoms_and_bonds">
 <a class="viewcode-back" href="../../../../reference/chemistry/molecule/molecule.Molecule.html#manim_extensions.chemistry.molecule.molecule.Molecule.mc_molecule_to_atoms_and_bonds">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">mc_molecule_to_atoms_and_bonds</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">"""Delegate to the wrapped molecule class to convert an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule` to atoms and bonds.</span>
 
 <span class="sd">        Parameters</span>
