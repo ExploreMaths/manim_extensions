@@ -9,6 +9,8 @@ This module provides functions for parsing XML format automaton definition files
 
 """
 
+from typing import cast
+
 from ....utils.deps import require
 
 
@@ -27,4 +29,4 @@ def parse_xml_file(file_name: str) -> dict[str, object]:
     """
     xmltodict = require("automata", "xmltodict")
     with open(file_name, "rb") as f:
-        return xmltodict.parse(f)
+        return cast(dict[str, object], xmltodict.parse(f))

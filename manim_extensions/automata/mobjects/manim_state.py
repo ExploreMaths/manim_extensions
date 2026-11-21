@@ -10,8 +10,8 @@ This module provides state visualization for automata.
 
 from typing import Any
 
-from manim import Arrow, BLUE, Circle, LEFT, Tex, VGroup
-from .automata_dependencies.automata import State
+from manim import Arrow, BLUE, Circle, LEFT, Mobject, Tex, VGroup
+from .automata_dependencies.state import State
 
 __all__ = ["ManimState", "State"]
 
@@ -84,6 +84,7 @@ class ManimState(State, VGroup):
         # manim settings for animations and colors
         self.animation_style = animation_style
 
+        self.subscript: Mobject
         self.text = Tex(name, font_size=100)
         self.circle = Circle(radius=2, color=BLUE)
 
@@ -132,7 +133,7 @@ class ManimState(State, VGroup):
         -------
             The resulting value.
         """
-        self.subscript = Tex(0, font_size=50)
+        self.subscript = Tex("0", font_size=50)
         self.subscript.set_x(self.text.get_x() + -0.5)
         self.subscript.set_y(self.text.get_y() + -0.5)
 

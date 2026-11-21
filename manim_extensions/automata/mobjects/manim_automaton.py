@@ -484,9 +484,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
                     (transition.transition_from.name, transition.transition_to.name)
                 )
 
-                transition_ids = [
-                    transition.id
-                ]  # There is now only one transition that the state_pointer can take
+                # There is now only one transition that the state_pointer can take
                 next_neighbour_states = [transition.transition_to]
 
             if step_result is True:
@@ -540,6 +538,8 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
         global_history: dict[Any, Any] = {}
 
         initial_state = self.get_initial_state()
+        if initial_state is None:
+            raise ValueError("automaton has no initial state")
         state_pointers = [
             initial_state
         ]  # Keeps track of all the states that are activated
@@ -932,9 +932,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             next_neighbour_states = step_history["next_neighbour_states"]
 
             for state in next_neighbour_states:
-                counter = state_counter.setdefault(
-                    state.id, 0
-                )  # key might exist already
+                state_counter.setdefault(state.id, 0)  # key might exist already
                 state_counter[state.id] = state_counter[state.id] + 1
 
                 # state_counter.setdefault(state.id, 1)

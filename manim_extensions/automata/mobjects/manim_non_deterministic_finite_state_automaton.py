@@ -96,7 +96,7 @@ class ManimNondeterministicFiniteAutomaton(ManimAutomaton):
 
     def __init__(
         self,
-        json_template: dict[str, object] | None = None,
+        json_template: dict[str, Any] | None = None,
         xml_file: str | None = None,
         camera_follow: bool = False,
         animation_style: dict[str, object] | None = None,

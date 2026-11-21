@@ -149,8 +149,8 @@ class FiniteStateAutomaton:
         for state_data in states:
             initial = "initial" in state_data
             final = "final" in state_data
-            state_id = int(state_data.get("@id", 0))
-            name = state_data.get("@name", str(state_id))
+            state_id = int(cast(Any, state_data.get("@id", 0)))
+            name = str(state_data.get("@name", str(state_id)))
             self.states.append(State(name, initial=initial, final=final, id=state_id))
 
     def construct_transitions(self, transitions: list[dict[str, object]]) -> Any:
@@ -167,8 +167,8 @@ class FiniteStateAutomaton:
                 The resulting value.
         """
         for trans_data in transitions:
-            from_id = int(trans_data["from"])
-            to_id = int(trans_data["to"])
+            from_id = int(cast(Any, trans_data["from"]))
+            to_id = int(cast(Any, trans_data["to"]))
             read = trans_data.get("read")
             from_state = self.get_state_by_id(from_id)
             to_state = self.get_state_by_id(to_id)
@@ -179,16 +179,17 @@ class FiniteStateAutomaton:
                 from_state.add_transition_to_state(transition)
 
     # State Methods
-    def get_initial_state(self) -> State:
+    def get_initial_state(self) -> State | None:
         """Return the state marked as the initial state.
 
         Returns
         -------
-            The initial state.
+            The initial state, or ``None`` if no state is marked as initial.
         """
         for state in self.states:
             if state.initial == True:
                 return state
+        return None
 
     def get_state(self, name: str) -> State | None:
         """Return the state with the provided name.
@@ -226,7 +227,7 @@ class FiniteStateAutomaton:
 
     def automaton_step(
         self, token: str, state_pointer: State
-    ) -> tuple[bool, list[State], list[Transition]]:
+    ) -> tuple[bool, list[State], list[Any]]:
         """Advance the automaton by one token from the current state.
 
         Parameters
@@ -346,7 +347,7 @@ class PushDownAutomaton(FiniteStateAutomaton):
 
     def automaton_step(
         self, token: str, state_pointer: State, deterministic: bool = True
-    ) -> tuple[bool, list[State], list[int]]:
+    ) -> tuple[bool, list[State], list[Any]]:
         """Perform one step of the automaton on the given token.
 
         Parameters

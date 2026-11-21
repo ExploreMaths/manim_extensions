@@ -25,7 +25,7 @@ from manim import (
     VGroup,
     normalize,
 )
-from .automata_dependencies.automata import Transition
+from .automata_dependencies.transition import Transition
 
 from .manim_state import ManimState
 
@@ -33,6 +33,8 @@ if TYPE_CHECKING:
     from .manim_automaton import ManimAutomaton
 
 import math
+
+import numpy as np
 from manim.typing import Point3D
 
 
@@ -94,11 +96,12 @@ class ManimTransition(Transition, VGroup):
         **kwargs: Any,
     ) -> None:
         Transition.__init__(self, transition_from, transition_to)
-        self.circle = None
+        self.circle: Any = None
+        self.arrow: Any = None
         # manim settings for animations and colors
         self.animation_style = animation_style
         # store tex mobjects of read_symbols for transitions
-        self.read_symbols = []
+        self.read_symbols: list[MathTex] = []
 
         self.buffer = buffer
 
@@ -150,13 +153,14 @@ class ManimTransition(Transition, VGroup):
         -------
             The animation of the transition arrow.
         """
-        animation_function = self.animation_style["animate_transition"][
-            "animation_function"
-        ]
+        transition_style = cast(
+            dict[str, Any], self.animation_style["animate_transition"]
+        )
+        animation_function = transition_style["animation_function"]
 
-        color = self.animation_style["animate_transition"]["accept_color"]
+        color = transition_style["accept_color"]
 
-        return animation_function(self.arrow, color=color)
+        return cast(Animation, animation_function(self.arrow, color=color))
 
     def calculate_circle_vertices(self) -> tuple[Point3D, Point3D]:
         r"""Calculate two vertices on the source state's circle for arrow endpoints.
@@ -226,7 +230,7 @@ class ManimTransition(Transition, VGroup):
         difference_of_x = x2 - x1
         difference_of_y = y2 - y1
 
-        normalised_values = normalize([difference_of_x, difference_of_y])
+        normalised_values = normalize(np.array([difference_of_x, difference_of_y]))
 
         # calculate normal of the line
         normal_vectors = {
@@ -252,7 +256,7 @@ class ManimTransition(Transition, VGroup):
         # Obtain coordinates for the centre of the line
         x1 = None
         y1 = None
-        if type(self.transition_from) == list:
+        if isinstance(self.transition_from, list):
             x1 = self.transition_from[0]
             y1 = self.transition_from[1]
         else:
@@ -408,7 +412,7 @@ class ManimTransition(Transition, VGroup):
         if x1 == x2 and y2 == y1:  # reflexive arrow is parallel to x axis
             return 0
 
-        return (y2 - y1) / (x2 - x1)
+        return float((y2 - y1) / (x2 - x1))
 
 
 class ManimPushDownAutomatonTransition(ManimTransition):
@@ -460,7 +464,7 @@ class ManimPushDownAutomatonTransition(ManimTransition):
         self,
         transition_from: ManimState,
         transition_to: ManimState,
-        rules: list[object],
+        rules: list[Any],
         parent_automaton: ManimAutomaton,
         animation_style: dict[str, object],
         font_size: int = 100,

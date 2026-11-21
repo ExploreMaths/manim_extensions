@@ -8,7 +8,7 @@ This module provides the :class:`~manim_extensions.automata.mobjects.manim_autom
 
 """
 
-from typing import Any
+from typing import Any, cast
 
 from manim import Animation, MathTex, VGroup
 
@@ -92,10 +92,11 @@ class ManimAutomataInput(VGroup):
         -------
             The animation highlighting the token.
         """
-        animation_function = animation_style["token_highlight"]["animation_function"]
-        color = animation_style["token_highlight"]["color"]
+        token_highlight = cast(dict[str, Any], animation_style["token_highlight"])
+        animation_function = token_highlight["animation_function"]
+        color = token_highlight["color"]
 
-        return animation_function(token, color=color)
+        return cast(Animation, animation_function(token, color=color))
 
 
 class Token(MathTex):
