@@ -2023,15 +2023,22 @@
         <span class="k">class</span><span class="w"> </span><span class="nc">Spin</span><span class="p">(</span><span class="n">Animation</span><span class="p">):</span>
 <span class="w">            </span><span class="sd">"""Rotate a poly chart by a fixed angular delta.</span>
 
-<span class="sd">            Parameters</span>
-<span class="sd">            ----------</span>
-<span class="sd">            poly</span>
-<span class="sd">                Chart to rotate.</span>
-<span class="sd">            delta</span>
-<span class="sd">                Rotation in radians.</span>
-<span class="sd">            kw</span>
-<span class="sd">                Further keyword arguments forwarded to</span>
-<span class="sd">                :class:`~manim.animation.animation.Animation`.</span>
+<span class="sd">                    Parameters</span>
+<span class="sd">                    ----------</span>
+<span class="sd">                    poly</span>
+<span class="sd">                        Chart to rotate.</span>
+<span class="sd">                    delta</span>
+<span class="sd">                        Rotation in radians.</span>
+<span class="sd">                    kw</span>
+<span class="sd">                        Further keyword arguments forwarded to</span>
+<span class="sd">                        :class:`~manim.animation.animation.Animation`.</span>
+
+<span class="sd">            Examples</span>
+<span class="sd">            --------</span>
+<span class="sd">            .. code-block:: python</span>
+
+<span class="sd">                poly = chart.series[0].poly</span>
+<span class="sd">                spin = Spin(poly, delta=PI / 4)</span>
 <span class="sd">            """</span>
 
             <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">poly</span><span class="p">:</span> <span class="n">PolyRadarChart</span><span class="p">,</span> <span class="n">delta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -2099,6 +2106,13 @@
 <span class="sd">    kwargs</span>
 <span class="sd">        Further keyword arguments forwarded to</span>
 <span class="sd">        :class:`~manim.animation.animation.Animation`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        poly = chart.series[0].poly</span>
+<span class="sd">        morph = PolyMorph(poly, [9, 7, 8])</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

@@ -1890,7 +1890,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            ``True`` if any active state is a final state, otherwise ``False``.</span>
+<span class="sd">            Whether any active state is a final state.</span>
 <span class="sd">        """</span>
         <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">state_pointers</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">final</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
@@ -2026,6 +2026,11 @@
 <span class="sd">        -------</span>
 <span class="sd">            The history of the run, including the final ``"information"``</span>
 <span class="sd">            entry with the active states and the automaton result.</span>
+
+<span class="sd">        Raises</span>
+<span class="sd">        ------</span>
+<span class="sd">        ValueError</span>
+<span class="sd">            If the input cannot be matched against the automaton.</span>
 <span class="sd">        """</span>
 
         <span class="c1"># example_structure = [("q0", "q1")]</span>

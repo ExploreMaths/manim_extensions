@@ -1491,6 +1491,15 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">SingletonLogger</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Thread-safe singleton logger that provides a single shared logging</span>
 <span class="sd">    instance for the manim-pymunk module with a console handler.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.pymunk.utils.logger_tool import SingletonLogger</span>
+
+<span class="sd">        logger = SingletonLogger()</span>
+<span class="sd">        logger.info("physics scene ready")</span>
 <span class="sd">    """</span>
 
     <span class="n">_instance_lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>

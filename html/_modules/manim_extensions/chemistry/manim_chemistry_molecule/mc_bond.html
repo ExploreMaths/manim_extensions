@@ -1524,6 +1524,19 @@
 <span class="sd">        Topology of the bond.</span>
 <span class="sd">    reacting_center_status</span>
 <span class="sd">        Reacting center status of the bond.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        import numpy as np</span>
+<span class="sd">        from manim_extensions.chemistry.manim_chemistry_molecule.mc_atom import MCAtom</span>
+<span class="sd">        from manim_extensions.chemistry.manim_chemistry_molecule.mc_bond import MCBond</span>
+<span class="sd">        from manim_extensions.chemistry.manim_chemistry_molecule.mc_element import MC_ELEMENT_DICT</span>
+
+<span class="sd">        atom_a = MCAtom(MC_ELEMENT_DICT["C"], coords=np.array([0.0, 0.0, 0.0]))</span>
+<span class="sd">        atom_b = MCAtom(MC_ELEMENT_DICT["O"], coords=np.array([1.0, 0.0, 0.0]))</span>
+<span class="sd">        bond = MCBond(bond_type=1, from_atom=atom_a, to_atom=atom_b)</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

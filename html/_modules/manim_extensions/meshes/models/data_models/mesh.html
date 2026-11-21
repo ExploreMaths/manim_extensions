@@ -1682,8 +1682,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            ``True`` if the meshes are equal, or ``NotImplemented`` when</span>
-<span class="sd">            ``other`` is not a mesh.</span>
+<span class="sd">            Whether the meshes are equal; a non-mesh comparison is left to</span>
+<span class="sd">            Python.</span>
 <span class="sd">        """</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">replace_part_ids_with_vertex_ids</span><span class="p">(</span>
@@ -1774,8 +1774,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            ``True`` if the meshes are not equal, or ``NotImplemented`` when</span>
-<span class="sd">            ``other`` is not a mesh.</span>
+<span class="sd">            Whether the meshes differ; a non-mesh comparison is left to</span>
+<span class="sd">            Python.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">Mesh</span><span class="p">):</span>
             <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="fm">__eq__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
@@ -2595,7 +2595,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            ``True`` if there are vertices that are not part of any face.</span>
+<span class="sd">            Whether vertices exist that are not part of any face.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_faces</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_vertices</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span>
@@ -2610,7 +2610,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            ``True`` if there are faces that are not part of any part.</span>
+<span class="sd">            Whether faces exist that are not part of any part.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_faces</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span>

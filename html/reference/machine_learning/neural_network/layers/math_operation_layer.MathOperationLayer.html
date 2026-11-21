@@ -1654,11 +1654,19 @@ by name.</p></li>
 <dd><p>Moves the center of the layer to the given mobject or point.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>mobject_or_point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – <p>The mobject or point whose center the layer is moved to.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mobject_or_point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – The mobject or point whose center the layer is moved to.</p></li>
+<li><p><strong>aligned_edge</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Edge of the layer aligned with the target; forwarded to the
+underlying <code class="docutils literal notranslate"><span class="pre">move_to</span></code> implementation.</p></li>
+<li><p><strong>coor_mask</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – <dl class="simple">
+<dt>Coordinate mask forwarded to the underlying <code class="docutils literal notranslate"><span class="pre">move_to</span></code></dt><dd><p>implementation.</p>
+</dd>
+</dl>
 <blockquote>
 <div><p>The resulting value.</p>
 </div></blockquote>
-</p>
+</p></li>
+</ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>

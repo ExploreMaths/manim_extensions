@@ -1506,6 +1506,16 @@
 <span class="sd">        3D coordinates of the atom center.</span>
 <span class="sd">    **kwargs</span>
 <span class="sd">        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.utils.OpenGLSphere`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        import numpy as np</span>
+<span class="sd">        from manim_extensions.chemistry.threeD.threedatom import ThreeDAtom</span>
+<span class="sd">        from manim_extensions.chemistry.utils.utils import get_element</span>
+
+<span class="sd">        atom = ThreeDAtom(get_element("C"), coords=np.array([0.0, 0.0, 0.0]))</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

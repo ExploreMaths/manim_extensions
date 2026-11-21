@@ -1540,7 +1540,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            ``None``; the length and alpha tables are stored on the instance.</span>
+<span class="sd">            The length and alpha tables are stored on the instance.</span>
 <span class="sd">        """</span>
         <span class="n">norms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">get_num_curves</span><span class="p">()):</span>
@@ -2045,6 +2045,20 @@
 <span class="sd">        Shift of the dash pattern along the path.</span>
 <span class="sd">    **kwargs</span>
 <span class="sd">        Keyword arguments forwarded to the dashed group.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. manim:: DashedLineMobjectScene</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.cad_drawing_utils import DashedLineMobject</span>
+
+<span class="sd">       class DashedLineMobjectScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               circle = Circle(radius=2)</span>
+<span class="sd">               dashed = DashedLineMobject(circle, num_dashes=24, dashed_ratio=0.6)</span>
+<span class="sd">               self.add(dashed)</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -2346,7 +2360,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            ``None``; the arguments are stored on the instance.</span>
+<span class="sd">            The arguments are stored on the instance.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ofs_func_kwargs</span> <span class="o">=</span> <span class="n">ofs_func_kwargs</span></div>
 
@@ -2402,7 +2416,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            ``None``; the curve and its path mapper are stored on the instance.</span>
+<span class="sd">            The curve and its path mapper are stored on the instance.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ref_curve</span> <span class="o">=</span> <span class="n">VMobject</span><span class="p">()</span>
         <span class="n">bez_point</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_bezier_points</span><span class="p">(</span>
@@ -2507,7 +2521,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            ``None``; the points are replaced in place.</span>
+<span class="sd">            The points are replaced in place.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
             <span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_offset_paths</span><span class="p">(</span><span class="n">gen_ofs_point</span><span class="p">,</span> <span class="n">gen_ref_curve</span><span class="p">)</span>

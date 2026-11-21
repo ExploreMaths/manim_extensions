@@ -1509,7 +1509,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        ``True`` if ``item`` (or a rotation of it) is found in ``array``.</span>
+<span class="sd">        Whether ``item`` (or a rotation of it) is found in ``array``.</span>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="n">rolling</span><span class="p">:</span>
         <span class="n">alternatives</span> <span class="o">=</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">item</span><span class="p">))]</span>
@@ -1573,7 +1573,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        ``True`` if both collections contain the same elements.</span>
+<span class="sd">        Whether both collections contain the same elements.</span>
 <span class="sd">    """</span>
     <span class="k">return</span> <span class="nb">all</span><span class="p">(</span>
         <span class="n">is_in_vararray</span><span class="p">(</span><span class="n">array</span><span class="o">=</span><span class="n">array1</span><span class="p">,</span> <span class="n">item</span><span class="o">=</span><span class="n">value2</span><span class="p">,</span> <span class="n">rolling</span><span class="o">=</span><span class="n">rolling</span><span class="p">)</span> <span class="k">for</span> <span class="n">value2</span> <span class="ow">in</span> <span class="n">array2</span>
@@ -1600,7 +1600,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        ``True`` if ``obj`` is a twice-nested iterable meeting the size</span>
+<span class="sd">        Whether ``obj`` is a twice-nested iterable meeting the size</span>
 <span class="sd">        requirements.</span>
 <span class="sd">    """</span>
     <span class="c1"># easy case np.ndarray with correct specs</span>
@@ -1643,7 +1643,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        ``True`` if both lists contain the same edges regardless of order.</span>
+<span class="sd">        Whether both lists contain the same edges regardless of order.</span>
 <span class="sd">    """</span>
     <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="n">e1</span> <span class="ow">in</span> <span class="n">edges2</span> <span class="k">for</span> <span class="n">e1</span> <span class="ow">in</span> <span class="n">edges1</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span><span class="n">e2</span> <span class="ow">in</span> <span class="n">edges1</span> <span class="k">for</span> <span class="n">e2</span> <span class="ow">in</span> <span class="n">edges2</span><span class="p">)</span></div>
 

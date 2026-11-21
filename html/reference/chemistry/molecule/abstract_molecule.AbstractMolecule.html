@@ -1503,6 +1503,15 @@ all the other molecule classes.</p>
 <dd><p>alias of <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></p>
 </dd></dl>
 
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.molecule.abstract_molecule</span><span class="w"> </span><span class="kn">import</span> <span class="n">AbstractMolecule</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MyMolecule</span><span class="p">(</span><span class="n">AbstractMolecule</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="n">molecule</span> <span class="o">=</span> <span class="n">MyMolecule</span><span class="p">()</span>
+</pre></div>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule.molecule_from_file">
 <span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">molecule_from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_hydrogens</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignore_all_hydrogens</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elements_data_dict</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/molecule/abstract_molecule.html#AbstractMolecule.molecule_from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule.molecule_from_file" title="Link to this definition">¶</a></dt>

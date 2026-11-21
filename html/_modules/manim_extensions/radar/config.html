@@ -1493,7 +1493,16 @@
 <a class="viewcode-back" href="../../../reference/radar/config.RadarConfig.html#manim_extensions.radar.config.RadarConfig">[docs]</a>
 <span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">RadarConfig</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""All structural options of a :class:`~manim_extensions.radar.chart.RadarChart`."""</span>
+<span class="w">    </span><span class="sd">"""All structural options of a :class:`~manim_extensions.radar.chart.RadarChart`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.radar.config import RadarConfig</span>
+
+<span class="sd">        config = RadarConfig(radius=3.2, levels=6)</span>
+<span class="sd">    """</span>
 
     <span class="c1"># ---- geometry --------------------------------------------------------</span>
     <span class="c1">#: outer ring radius, in scene units (Manim's default frame is 14.22 x 8)</span>

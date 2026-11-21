@@ -1559,6 +1559,13 @@
 <span class="sd">    The attributes are attached dynamically by</span>
 <span class="sd">    :meth:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_rigid_body`</span>
 <span class="sd">    and :func:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.get_shape`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        def describe(body: PhysicsAttributes) -&gt; float:</span>
+<span class="sd">            return body.body.position.x</span>
 <span class="sd">    """</span>
 
     <span class="n">body</span><span class="p">:</span> <span class="n">pymunk</span><span class="o">.</span><span class="n">Body</span>

@@ -1489,7 +1489,15 @@
 <div class="viewcode-block" id="SklearnTree">
 <a class="viewcode-back" href="../../../../reference/machine_learning/decision_tree/helpers.SklearnTree.html#manim_extensions.machine_learning.decision_tree.helpers.SklearnTree">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SklearnTree</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""Structural type for ``sklearn.tree.DecisionTreeClassifier.tree_``."""</span>
+<span class="w">    </span><span class="sd">"""Structural type for ``sklearn.tree.DecisionTreeClassifier.tree_``.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        def node_count(tree: SklearnTree) -&gt; int:</span>
+<span class="sd">            return tree.node_count</span>
+<span class="sd">    """</span>
 
     <span class="n">node_count</span><span class="p">:</span> <span class="nb">int</span>
     <span class="n">children_left</span><span class="p">:</span> <span class="n">VectorND</span>

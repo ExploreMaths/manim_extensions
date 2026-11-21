@@ -1500,6 +1500,14 @@
 <dd class="field-odd"><p><strong>filename</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../index.html#manim_extensions.chemistry.utils.parsers.base_parser.FilePath" title="manim_extensions.chemistry.utils.parsers.base_parser.FilePath"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FilePath</span></code></a></span>) – Path to the file to parse.</p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.utils.parsers.base_parser</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseParser</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MyParser</span><span class="p">(</span><span class="n">BaseParser</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{},</span> <span class="p">{}</span>
+</pre></div>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.read_file">
 <span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">read_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/chemistry/utils/parsers/base_parser.html#BaseParser.read_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.read_file" title="Link to this definition">¶</a></dt>

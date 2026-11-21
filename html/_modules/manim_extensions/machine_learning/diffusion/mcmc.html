@@ -1577,6 +1577,14 @@
 <span class="sd">        Mean of the distribution; drawn from the prior if None.</span>
 <span class="sd">    var</span>
 <span class="sd">        Variance of the distribution; drawn from the prior if None.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.machine_learning.diffusion.mcmc import MultidimensionalGaussianPosterior</span>
+
+<span class="sd">        posterior = MultidimensionalGaussianPosterior(ndim=2, seed=7)</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

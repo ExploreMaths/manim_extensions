@@ -1516,6 +1516,16 @@
 <span class="sd">    filename</span>
 <span class="sd">        Path to the file to parse.</span>
 
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.chemistry.utils.parsers.base_parser import BaseParser</span>
+
+<span class="sd">        class MyParser(BaseParser):</span>
+<span class="sd">            def parse(self):</span>
+<span class="sd">                return {}, {}</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="n">FilePath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>

@@ -1499,7 +1499,21 @@
 </ul>
 </dd>
 </dl>
-<dl class="py method">
+<p class="rubric">Examples</p>
+<div id="cadarrowheadscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: CADArrowHeadScene <a class="headerlink" href="#cadarrowheadscene">¶</a></p><img alt="../../_images/CADArrowHeadScene-202833cf.png" class="align-center" src="../../_images/CADArrowHeadScene-202833cf.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.cad_drawing_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">CADArrowHead</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CADArrowHeadScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">curve</span> <span class="o">=</span> <span class="n">Arc</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">start_angle</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">head</span> <span class="o">=</span> <span class="n">CADArrowHead</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="n">anchor_point</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">arrow_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="n">head</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.cad_drawing_utils.dimensions.CADArrowHead.default_updater">
 <span class="sig-name descname"><span class="pre">default_updater</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mob</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/cad_drawing_utils/dimensions.html#CADArrowHead.default_updater"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.cad_drawing_utils.dimensions.CADArrowHead.default_updater" title="Link to this definition">¶</a></dt>
 <dd><p>Refresh the arrow geometry after the target curve changes.</p>
@@ -1511,7 +1525,7 @@
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code>; the arrow points are regenerated in place.</p>
+<dd class="field-odd"><p>The arrow points are regenerated in place.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1542,7 +1556,7 @@
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code>; the arrow head is scaled in place.</p>
+<dd class="field-odd"><p>The arrow head is scaled in place.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1556,7 +1570,7 @@
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code>; the arrow head is flipped in place.</p>
+<dd class="field-even"><p>The arrow head is flipped in place.</p>
 </dd>
 </dl>
 </dd></dl>

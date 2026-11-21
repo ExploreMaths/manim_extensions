@@ -1689,7 +1689,7 @@ and optional <code class="docutils literal notranslate"><span class="pre">&quot;
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if any active state is a final state, otherwise <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+<dd class="field-odd"><p>Whether any active state is a final state.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1756,6 +1756,9 @@ of the branches that are created by the NDA.</p></li>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The history of the run, including the final <code class="docutils literal notranslate"><span class="pre">&quot;information&quot;</span></code>
 entry with the active states and the automaton result.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If the input cannot be matched against the automaton.</p>
 </dd>
 </dl>
 </dd></dl>

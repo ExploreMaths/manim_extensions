@@ -1571,6 +1571,14 @@
 <span class="sd">        Radius of the arcs.</span>
 <span class="sd">    **kwargs</span>
 <span class="sd">        Additional keyword arguments passed to :class:`~manim.mobject.geometry.arc.ArcBetweenPoints`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.chemistry.twoD.graph_molecule import DoubleLine</span>
+
+<span class="sd">        line = DoubleLine(start=[-1, 0, 0], end=[1, 0, 0])</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -1664,6 +1672,14 @@
 <span class="sd">        Additional positional arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.TripleLine.DoubleLine`.</span>
 <span class="sd">    **kwargs</span>
 <span class="sd">        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.twoD.graph_molecule.TripleLine.DoubleLine`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.chemistry.twoD.graph_molecule import TripleLine</span>
+
+<span class="sd">        line = TripleLine(start=[-1, 0, 0], end=[1, 0, 0])</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -1825,6 +1841,8 @@
 <span class="sd">        ----------</span>
 <span class="sd">        edges</span>
 <span class="sd">            Pairs of vertex indices that should be connected.</span>
+<span class="sd">        edge_type</span>
+<span class="sd">            Mobject class used to build each bond.</span>
 <span class="sd">        _</span>
 <span class="sd">            Unused parameter kept for the graph interface.</span>
 

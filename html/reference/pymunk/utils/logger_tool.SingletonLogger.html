@@ -1488,8 +1488,6 @@
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.pymunk.utils.logger_tool.</span></span><span class="sig-name descname"><span class="pre">SingletonLogger</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/utils/logger_tool.html#SingletonLogger"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.pymunk.utils.logger_tool.SingletonLogger" title="Link to this definition">¶</a></dt>
 <dd><p>Thread-safe singleton logger that provides a single shared logging
 instance for the manim-pymunk module with a console handler.</p>
-<dl class="field-list simple">
-</dl>
 <p class="rubric">Attributes</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.pymunk.utils.logger_tool.SingletonLogger._instance_lock">
@@ -1501,6 +1499,15 @@ instance for the manim-pymunk module with a console handler.</p>
 <span class="sig-name descname"><span class="pre">_instance</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></span><a class="headerlink" href="#manim_extensions.pymunk.utils.logger_tool.SingletonLogger._instance" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.pymunk.utils.logger_tool</span><span class="w"> </span><span class="kn">import</span> <span class="n">SingletonLogger</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">SingletonLogger</span><span class="p">()</span>
+<span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"physics scene ready"</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.pymunk.utils.logger_tool.SingletonLogger.__new__">
 <span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">__new__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/utils/logger_tool.html#SingletonLogger.__new__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.pymunk.utils.logger_tool.SingletonLogger.__new__" title="Link to this definition">¶</a></dt>

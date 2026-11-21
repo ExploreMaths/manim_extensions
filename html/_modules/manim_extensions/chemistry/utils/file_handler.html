@@ -1501,7 +1501,19 @@
 <div class="viewcode-block" id="IncorrectFormat">
 <a class="viewcode-back" href="../../../../reference/chemistry/utils/file_handler.IncorrectFormat.html#manim_extensions.chemistry.utils.file_handler.IncorrectFormat">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">IncorrectFormat</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""Raised when a file has an unsupported or unrecognized format."""</span></div>
+<span class="w">    </span><span class="sd">"""Raised when a file has an unsupported or unrecognized format.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.chemistry.utils.file_handler import FileHandler, IncorrectFormat</span>
+
+<span class="sd">        try:</span>
+<span class="sd">            FileHandler("notes.txt")</span>
+<span class="sd">        except IncorrectFormat as exc:</span>
+<span class="sd">            print(exc)</span>
+<span class="sd">    """</span></div>
 
 
 
@@ -1514,6 +1526,15 @@
 <span class="sd">    ----------</span>
 <span class="sd">    file_path</span>
 <span class="sd">        Path to the chemistry file to parse.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.chemistry.utils.file_handler import FileHandler</span>
+
+<span class="sd">        handler = FileHandler("molecule.mol")</span>
+<span class="sd">        atoms, bonds = handler.parser.parse()</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="n">os</span><span class="o">.</span><span class="n">PathLike</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>

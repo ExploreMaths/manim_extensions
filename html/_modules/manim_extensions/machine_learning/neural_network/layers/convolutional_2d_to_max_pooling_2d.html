@@ -1518,6 +1518,18 @@
 <span class="sd">        Color used to highlight the kernel windows.</span>
 <span class="sd">    **kwargs</span>
 <span class="sd">        Forwarded to the parent layer classes.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.machine_learning.neural_network.layers.convolutional_2d import Convolutional2DLayer</span>
+<span class="sd">        from manim_extensions.machine_learning.neural_network.layers.max_pooling_2d import MaxPooling2DLayer</span>
+<span class="sd">        from manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_max_pooling_2d import Convolutional2DToMaxPooling2D</span>
+
+<span class="sd">        conv = Convolutional2DLayer(4, 6, 3)</span>
+<span class="sd">        pool = MaxPooling2DLayer(kernel_size=2)</span>
+<span class="sd">        connection = Convolutional2DToMaxPooling2D(conv, pool)</span>
 <span class="sd">    """</span>
 
     <span class="n">input_class</span> <span class="o">=</span> <span class="n">Convolutional2DLayer</span>

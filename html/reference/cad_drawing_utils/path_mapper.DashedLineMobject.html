@@ -1499,7 +1499,21 @@
 </ul>
 </dd>
 </dl>
-<dl class="py method">
+<p class="rubric">Examples</p>
+<div id="dashedlinemobjectscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: DashedLineMobjectScene <a class="headerlink" href="#dashedlinemobjectscene">¶</a></p><img alt="../../_images/DashedLineMobjectScene-951eeeed.png" class="align-center" src="../../_images/DashedLineMobjectScene-951eeeed.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.cad_drawing_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">DashedLineMobject</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DashedLineMobjectScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">circle</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">dashed</span> <span class="o">=</span> <span class="n">DashedLineMobject</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="n">num_dashes</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">dashed_ratio</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dashed</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.cad_drawing_utils.path_mapper.DashedLineMobject.generate_dash_pattern_metric">
 <span class="sig-name descname"><span class="pre">generate_dash_pattern_metric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dash_len</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">space_len</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_dashes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/cad_drawing_utils/path_mapper.html#DashedLineMobject.generate_dash_pattern_metric"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.cad_drawing_utils.path_mapper.DashedLineMobject.generate_dash_pattern_metric" title="Link to this definition">¶</a></dt>
 <dd><p>Build a dash pattern in metric curve-length space.</p>

@@ -1513,6 +1513,19 @@
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.data_structures.m_array.</span></span><span class="sig-name descname"><span class="pre">UpdateIndices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/data_structures/m_array.html#UpdateIndices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.data_structures.m_array.UpdateIndices" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Protocol" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Protocol</span></code></a></p>
 <p>Callable protocol for the index-updating function returned by element removal.</p>
+<p class="rubric">Attributes</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.data_structures.m_array.UpdateIndices._is_protocol">
+<span class="sig-name descname"><span class="pre">_is_protocol</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></span><a class="headerlink" href="#manim_extensions.data_structures.m_array.UpdateIndices._is_protocol" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.data_structures.m_array</span><span class="w"> </span><span class="kn">import</span> <span class="n">UpdateIndices</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="n">play_anim</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="k">return</span> <span class="p">[]</span>
+</pre></div>
+</div>
 <dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.data_structures.m_array.UpdateIndices.__call__">
 <span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">play_anim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">...</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">play_anim_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">...</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/data_structures/m_array.html#UpdateIndices.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.data_structures.m_array.UpdateIndices.__call__" title="Link to this definition">¶</a></dt>
@@ -1532,12 +1545,6 @@
 </dd>
 </dl>
 </dd></dl>
-
-<p class="rubric">Attributes</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="manim_extensions.data_structures.m_array.UpdateIndices._is_protocol">
-<span class="sig-name descname"><span class="pre">_is_protocol</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">True</span></span><a class="headerlink" href="#manim_extensions.data_structures.m_array.UpdateIndices._is_protocol" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
 
 </dd></dl>
 

@@ -1526,7 +1526,17 @@
 <div class="viewcode-block" id="UpdateIndices">
 <a class="viewcode-back" href="../../../reference/data_structures/m_array.html#manim_extensions.data_structures.m_array.UpdateIndices">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">UpdateIndices</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""Callable protocol for the index-updating function returned by element removal."""</span>
+<span class="w">    </span><span class="sd">"""Callable protocol for the index-updating function returned by element removal.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.data_structures.m_array import UpdateIndices</span>
+
+<span class="sd">        def update(play_anim: bool = False, **kwargs) -&gt; list:</span>
+<span class="sd">            return []</span>
+<span class="sd">    """</span>
 
 <div class="viewcode-block" id="UpdateIndices.__call__">
 <a class="viewcode-back" href="../../../reference/data_structures/m_array.html#manim_extensions.data_structures.m_array.UpdateIndices.__call__">[docs]</a>
@@ -3276,7 +3286,14 @@
 <div class="viewcode-block" id="MArrayPointer.DirEntry">
 <a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.m_array.MArrayPointer.DirEntry">[docs]</a>
     <span class="k">class</span><span class="w"> </span><span class="nc">DirEntry</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">"""Vector and animation direction used when placing an array element."""</span>
+<span class="w">        </span><span class="sd">"""Vector and animation direction used when placing an array element.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            entry = {"np": UP, "dir": MArrayDirection.UP}</span>
+<span class="sd">        """</span>
 
         <span class="n">np</span><span class="p">:</span> <span class="n">Vector3D</span>
         <span class="nb">dir</span><span class="p">:</span> <span class="n">MArrayDirection</span></div>
@@ -3805,7 +3822,14 @@
 <div class="viewcode-block" id="MArraySlidingWindow.DirEntry">
 <a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.m_array.MArraySlidingWindow.DirEntry">[docs]</a>
     <span class="k">class</span><span class="w"> </span><span class="nc">DirEntry</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">"""Vector and animation direction used when placing an array element."""</span>
+<span class="w">        </span><span class="sd">"""Vector and animation direction used when placing an array element.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+<span class="sd">        .. code-block:: python</span>
+
+<span class="sd">            entry = {"np": DOWN, "dir": MArrayDirection.DOWN}</span>
+<span class="sd">        """</span>
 
         <span class="n">np</span><span class="p">:</span> <span class="n">Vector3D</span>
         <span class="nb">dir</span><span class="p">:</span> <span class="n">MArrayDirection</span></div>

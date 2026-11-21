@@ -1497,7 +1497,21 @@ Used for visualizing bezier control points and handles, helps debugging.</p>
 </ul>
 </dd>
 </dl>
-<dl class="py method">
+<p class="rubric">Examples</p>
+<div id="bezierhandlebarsscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: BezierHandlebarsScene <a class="headerlink" href="#bezierhandlebarsscene">¶</a></p><img alt="../../_images/BezierHandlebarsScene-fc320b0b.png" class="align-center" src="../../_images/BezierHandlebarsScene-fc320b0b.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.cad_drawing_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">BezierHandlebars</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">BezierHandlebarsScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">curve</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">handles</span> <span class="o">=</span> <span class="n">BezierHandlebars</span><span class="p">(</span><span class="n">curve</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">curve</span><span class="p">,</span> <span class="n">handles</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.cad_drawing_utils.utils.BezierHandlebars.generate_circles">
 <span class="sig-name descname"><span class="pre">generate_circles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/cad_drawing_utils/utils.html#BezierHandlebars.generate_circles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.cad_drawing_utils.utils.BezierHandlebars.generate_circles" title="Link to this definition">¶</a></dt>
 <dd><p>Create a dot at every control point.</p>
@@ -1509,7 +1523,7 @@ Used for visualizing bezier control points and handles, helps debugging.</p>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code>; the dots are stored under the <code class="docutils literal notranslate"><span class="pre">&quot;dots&quot;</span></code> key.</p>
+<dd class="field-odd"><p>The dots are stored under the <code class="docutils literal notranslate"><span class="pre">&quot;dots&quot;</span></code> key.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1523,7 +1537,7 @@ Used for visualizing bezier control points and handles, helps debugging.</p>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code>; the dots are moved in place.</p>
+<dd class="field-even"><p>The dots are moved in place.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1537,7 +1551,7 @@ Used for visualizing bezier control points and handles, helps debugging.</p>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code>; the handles are stored under the <code class="docutils literal notranslate"><span class="pre">&quot;lines&quot;</span></code> key.</p>
+<dd class="field-even"><p>The handles are stored under the <code class="docutils literal notranslate"><span class="pre">&quot;lines&quot;</span></code> key.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1551,7 +1565,7 @@ Used for visualizing bezier control points and handles, helps debugging.</p>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">None</span></code>; the lines are repositioned in place.</p>
+<dd class="field-even"><p>The lines are repositioned in place.</p>
 </dd>
 </dl>
 </dd></dl>

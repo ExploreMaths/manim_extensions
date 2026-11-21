@@ -1625,8 +1625,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            One of ``'shorter'``, ``'shorter_from'``, ``'shorter_to'`` or</span>
-<span class="sd">            ``False`` when the line touches both atom centers.</span>
+<span class="sd">            The subtype name for a shortened bond, or a false result when</span>
+<span class="sd">            the line touches both atom centers.</span>
 <span class="sd">        """</span>
         <span class="n">from_representation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">representation</span>
         <span class="n">to_representation</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">representation</span>
@@ -1758,6 +1758,11 @@
 
 <span class="sd">        Bond subclasses override this hook and return their concrete mobject.</span>
 
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        direction</span>
+<span class="sd">            Direction from the from-atom to the to-atom; derived from the</span>
+<span class="sd">            atoms when omitted.</span>
 
 <span class="sd">            Returns</span>
 <span class="sd">            -------</span>
@@ -1774,6 +1779,11 @@
 
 <span class="sd">        Bond subclasses override this hook and return their concrete mobject.</span>
 
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        direction</span>
+<span class="sd">            Direction from the from-atom to the to-atom; derived from the</span>
+<span class="sd">            atoms when omitted.</span>
 
 <span class="sd">            Returns</span>
 <span class="sd">            -------</span>
@@ -1790,6 +1800,11 @@
 
 <span class="sd">        Bond subclasses override this hook and return their concrete mobject.</span>
 
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        direction</span>
+<span class="sd">            Direction from the from-atom to the to-atom; derived from the</span>
+<span class="sd">            atoms when omitted.</span>
 
 <span class="sd">            Returns</span>
 <span class="sd">            -------</span>
@@ -1806,6 +1821,11 @@
 
 <span class="sd">        Bond subclasses override this hook and return their concrete mobject.</span>
 
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        direction</span>
+<span class="sd">            Direction from the from-atom to the to-atom; derived from the</span>
+<span class="sd">            atoms when omitted.</span>
 
 <span class="sd">            Returns</span>
 <span class="sd">            -------</span>
@@ -1822,6 +1842,11 @@
 
 <span class="sd">        Bond subclasses override this hook and return their concrete mobject.</span>
 
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        direction</span>
+<span class="sd">            Direction from the from-atom to the to-atom; derived from the</span>
+<span class="sd">            atoms when omitted.</span>
 
 <span class="sd">            Returns</span>
 <span class="sd">            -------</span>
@@ -1838,6 +1863,11 @@
 
 <span class="sd">        Bond subclasses override this hook and return their concrete mobject.</span>
 
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        direction</span>
+<span class="sd">            Direction from the from-atom to the to-atom; derived from the</span>
+<span class="sd">            atoms when omitted.</span>
 
 <span class="sd">            Returns</span>
 <span class="sd">            -------</span>
@@ -2611,6 +2641,12 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_from_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Polygram</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a triangular cram bond shortened at the from-atom end.</span>
 
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        direction</span>
+<span class="sd">            Direction from the from-atom to the to-atom; derived from the</span>
+<span class="sd">            atoms when omitted.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            A :class:`~manim.mobject.geometry.polygram.Polygram` instance representing the result.</span>
@@ -2633,6 +2669,12 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.PlainCramBond.html#manim_extensions.chemistry.twoD.bond.PlainCramBond.shorter_to_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_to_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Polygram</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a triangular cram bond shortened at the to-atom end.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        direction</span>
+<span class="sd">            Direction from the from-atom to the to-atom; derived from the</span>
+<span class="sd">            atoms when omitted.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -2819,6 +2861,12 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_from_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a dashed cram bond shortened at the from-atom end.</span>
 
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        direction</span>
+<span class="sd">            Direction from the from-atom to the to-atom; derived from the</span>
+<span class="sd">            atoms when omitted.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            The dashed cram bond shortened at the from-atom end.</span>
@@ -2835,6 +2883,12 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_to_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a dashed cram bond shortened at the to-atom end.</span>
 
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        direction</span>
+<span class="sd">            Direction from the from-atom to the to-atom; derived from the</span>
+<span class="sd">            atoms when omitted.</span>
+
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            The dashed cram bond shortened at the to-atom end.</span>
@@ -2850,6 +2904,12 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DashedCramBond.html#manim_extensions.chemistry.twoD.bond.DashedCramBond.longer_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">longer_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a degenerate zero-length dashed cram bond at the from atom.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        direction</span>
+<span class="sd">            Direction from the from-atom to the to-atom; derived from the</span>
+<span class="sd">            atoms when omitted.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>

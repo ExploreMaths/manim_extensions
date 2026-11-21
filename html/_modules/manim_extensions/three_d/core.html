@@ -1783,7 +1783,16 @@
 <a class="viewcode-back" href="../../../reference/three_d/core.GaussianSurface.html#manim_extensions.three_d.core.GaussianSurface">[docs]</a>
 <span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">GaussianSurface</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""Tunable parameters for a Gaussian surface, generalized to :math:`z=f(x, y)`."""</span>
+<span class="w">    </span><span class="sd">"""Tunable parameters for a Gaussian surface, generalized to :math:`z=f(x, y)`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.three_d.core import GaussianSurface</span>
+
+<span class="sd">        cfg = GaussianSurface(height=1.4, rings=True, orbit=True)</span>
+<span class="sd">    """</span>
 
     <span class="n">func</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># z=f(x,y); None = built-in Gaussian</span>
     <span class="n">func_tex</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
@@ -1834,7 +1843,16 @@
 <a class="viewcode-back" href="../../../reference/three_d/core.SaddleSurface.html#manim_extensions.three_d.core.SaddleSurface">[docs]</a>
 <span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">SaddleSurface</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""Tunable presentation for the fixed saddle surface :math:`z = x^{2} - y^{2}`."""</span>
+<span class="w">    </span><span class="sd">"""Tunable presentation for the fixed saddle surface :math:`z = x^{2} - y^{2}`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.three_d.core import SaddleSurface</span>
+
+<span class="sd">        cfg = SaddleSurface(height=1.5, annotate=True)</span>
+<span class="sd">    """</span>
 
     <span class="n">domain</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">2.2</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">)</span>
     <span class="n">resolution</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">44</span><span class="p">,</span> <span class="mi">44</span><span class="p">)</span>
@@ -1859,7 +1877,16 @@
 <a class="viewcode-back" href="../../../reference/three_d/core.ParaboloidSurface.html#manim_extensions.three_d.core.ParaboloidSurface">[docs]</a>
 <span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">ParaboloidSurface</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""Tunable presentation for the fixed paraboloid :math:`z = x^{2} + y^{2}`."""</span>
+<span class="w">    </span><span class="sd">"""Tunable presentation for the fixed paraboloid :math:`z = x^{2} + y^{2}`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.three_d.core import ParaboloidSurface</span>
+
+<span class="sd">        cfg = ParaboloidSurface(height=1.5)</span>
+<span class="sd">    """</span>
 
     <span class="n">domain</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">2.2</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">)</span>
     <span class="n">resolution</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">44</span><span class="p">,</span> <span class="mi">44</span><span class="p">)</span>
@@ -1884,7 +1911,16 @@
 <a class="viewcode-back" href="../../../reference/three_d/core.EllipsoidSurface.html#manim_extensions.three_d.core.EllipsoidSurface">[docs]</a>
 <span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">EllipsoidSurface</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""Configuration for an ellipsoid, the first closed parametric surface."""</span>
+<span class="w">    </span><span class="sd">"""Configuration for an ellipsoid, the first closed parametric surface.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.three_d.core import EllipsoidSurface</span>
+
+<span class="sd">        cfg = EllipsoidSurface()</span>
+<span class="sd">    """</span>
 
     <span class="n">semi_axes</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.4</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># (a, b, c) semi-axes</span>
     <span class="n">resolution</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">44</span><span class="p">,</span> <span class="mi">56</span><span class="p">)</span>  <span class="c1"># latitude/longitude mesh density</span>
@@ -1908,7 +1944,16 @@
 <a class="viewcode-back" href="../../../reference/three_d/core.TorusSurface.html#manim_extensions.three_d.core.TorusSurface">[docs]</a>
 <span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">TorusSurface</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""Configuration for a torus with a 4:1 major-to-minor radius ratio."""</span>
+<span class="w">    </span><span class="sd">"""Configuration for a torus with a 4:1 major-to-minor radius ratio.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.three_d.core import TorusSurface</span>
+
+<span class="sd">        cfg = TorusSurface()</span>
+<span class="sd">    """</span>
 
     <span class="n">major_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span>  <span class="c1"># torus radius R (tube-centre circle)</span>
     <span class="n">minor_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># tube radius r</span>
@@ -1933,7 +1978,16 @@
 <a class="viewcode-back" href="../../../reference/three_d/core.HyperboloidOneSheet.html#manim_extensions.three_d.core.HyperboloidOneSheet">[docs]</a>
 <span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">HyperboloidOneSheet</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""Configuration for a one-sheet hyperboloid, recognizable by its waist."""</span>
+<span class="w">    </span><span class="sd">"""Configuration for a one-sheet hyperboloid, recognizable by its waist.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.three_d.core import HyperboloidOneSheet</span>
+
+<span class="sd">        cfg = HyperboloidOneSheet()</span>
+<span class="sd">    """</span>
 
     <span class="n">waist_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># waist radius a (= b)</span>
     <span class="n">z_extent</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span>  <span class="c1"># upper/lower truncation ±h</span>
@@ -2302,7 +2356,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            ``None``; the method plays the scene beats.</span>
+<span class="sd">            The scene beats are played.</span>
 <span class="sd">        """</span>
 
         <span class="n">cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">style</span>
@@ -2619,6 +2673,12 @@
 <span class="sd">    The scene raises the bell-shaped sheet from a flat plane, projects</span>
 <span class="sd">    contour rings onto the floor, orbits the camera, flips the surface to</span>
 <span class="sd">    show its underside, and annotates the peak with a HUD label.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: bash</span>
+
+<span class="sd">        python -m manim example.py GaussianSurfaceScene</span>
 <span class="sd">    """</span>
 
     <span class="n">config_cls</span> <span class="o">=</span> <span class="n">GaussianSurface</span>
@@ -2768,6 +2828,12 @@
 <span class="sd">    The scene forms the hyperbolic paraboloid, draws its floor-projected</span>
 <span class="sd">    contour family and asymptotes, orbits and flips the surface, and marks</span>
 <span class="sd">    the saddle point where the two principal curvatures oppose each other.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: bash</span>
+
+<span class="sd">        python -m manim example.py SaddleSurfaceScene</span>
 <span class="sd">    """</span>
 
     <span class="n">config_cls</span> <span class="o">=</span> <span class="n">SaddleSurface</span>
@@ -2921,6 +2987,12 @@
 <span class="sd">    orbits and flips it, and annotates the vertex at the origin. The radii</span>
 <span class="sd">    of the concentric rings are derived from the configured height so the contour spacing remains</span>
 <span class="sd">    stable when the presentation is resized.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: bash</span>
+
+<span class="sd">        python -m manim example.py ParaboloidSurfaceScene</span>
 <span class="sd">    """</span>
 
     <span class="n">config_cls</span> <span class="o">=</span> <span class="n">ParaboloidSurface</span>
@@ -3036,7 +3108,14 @@
 <div class="viewcode-block" id="EllipsoidSurfaceScene">
 <a class="viewcode-back" href="../../../reference/three_d/core.EllipsoidSurfaceScene.html#manim_extensions.three_d.core.EllipsoidSurfaceScene">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">EllipsoidSurfaceScene</span><span class="p">(</span><span class="n">GraphSurfaceScene</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""Ellipsoid scene with an inflated formation and uniformly scaled axes."""</span>
+<span class="w">    </span><span class="sd">"""Ellipsoid scene with an inflated formation and uniformly scaled axes.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: bash</span>
+
+<span class="sd">        python -m manim example.py EllipsoidSurfaceScene</span>
+<span class="sd">    """</span>
 
     <span class="n">uses_flat</span> <span class="o">=</span> <span class="kc">False</span>
 
@@ -3236,7 +3315,14 @@
 <div class="viewcode-block" id="TorusSurfaceScene">
 <a class="viewcode-back" href="../../../reference/three_d/core.TorusSurfaceScene.html#manim_extensions.three_d.core.TorusSurfaceScene">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">TorusSurfaceScene</span><span class="p">(</span><span class="n">GraphSurfaceScene</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""Torus scene with an inflated formation and uniformly scaled axes."""</span>
+<span class="w">    </span><span class="sd">"""Torus scene with an inflated formation and uniformly scaled axes.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: bash</span>
+
+<span class="sd">        python -m manim example.py TorusSurfaceScene</span>
+<span class="sd">    """</span>
 
     <span class="n">uses_flat</span> <span class="o">=</span> <span class="kc">False</span>
 
@@ -3437,7 +3523,14 @@
 <div class="viewcode-block" id="HyperboloidOneSheetScene">
 <a class="viewcode-back" href="../../../reference/three_d/core.HyperboloidOneSheetScene.html#manim_extensions.three_d.core.HyperboloidOneSheetScene">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">HyperboloidOneSheetScene</span><span class="p">(</span><span class="n">GraphSurfaceScene</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""One-sheet hyperboloid scene with an inflated formation."""</span>
+<span class="w">    </span><span class="sd">"""One-sheet hyperboloid scene with an inflated formation.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: bash</span>
+
+<span class="sd">        python -m manim example.py HyperboloidOneSheetScene</span>
+<span class="sd">    """</span>
 
     <span class="n">uses_flat</span> <span class="o">=</span> <span class="kc">False</span>
 

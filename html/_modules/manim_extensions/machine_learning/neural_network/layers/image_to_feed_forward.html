@@ -1513,6 +1513,19 @@
 <span class="sd">        Radius of the dots in the forward pass animation.</span>
 <span class="sd">    **kwargs</span>
 <span class="sd">        Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        import numpy as np</span>
+<span class="sd">        from manim_extensions.machine_learning.neural_network.layers.image import ImageLayer</span>
+<span class="sd">        from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer</span>
+<span class="sd">        from manim_extensions.machine_learning.neural_network.layers.image_to_feed_forward import ImageToFeedForward</span>
+
+<span class="sd">        image = ImageLayer(np.zeros((16, 16, 3)))</span>
+<span class="sd">        dense = FeedForwardLayer(10)</span>
+<span class="sd">        connection = ImageToFeedForward(image, dense)</span>
 <span class="sd">    """</span>
 
     <span class="n">input_class</span> <span class="o">=</span> <span class="n">ImageLayer</span>

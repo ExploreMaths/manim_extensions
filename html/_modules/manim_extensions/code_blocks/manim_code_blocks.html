@@ -1528,6 +1528,14 @@
 <span class="sd">        Mapping from hex colours to the token types drawn in that colour.</span>
 <span class="sd">    group_matchers</span>
 <span class="sd">        Colours cycled through for matched bracket groups.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.code_blocks.manim_code_blocks import Theme</span>
+
+<span class="sd">        theme = Theme(colors={"#ff0000": ["keyword"]}, group_matchers=["#00ff00"])</span>
 <span class="sd">    """</span>
 
     <span class="n">colors</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span> <span class="o">|</span> <span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]</span>
@@ -1618,6 +1626,16 @@
 <span class="sd">        Display name of the language.</span>
 <span class="sd">    tokenize_name</span>
 <span class="sd">        Tokenizer attribute name; defaults to ``name``.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.code_blocks.manim_code_blocks import ProgrammingLanguage</span>
+
+<span class="sd">        class Python(ProgrammingLanguage):</span>
+<span class="sd">            name = "Python"</span>
+<span class="sd">            color = "#3572A5"</span>
 <span class="sd">    """</span>
 
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>

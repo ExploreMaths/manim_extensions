@@ -1518,6 +1518,14 @@
 <span class="sd">        Additional positional arguments passed to :class:`~manim.mobject.text.text_mobject.MarkupText`.</span>
 <span class="sd">    **kwargs</span>
 <span class="sd">        Additional keyword arguments passed to :class:`~manim.mobject.text.text_mobject.MarkupText`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.chemistry.twoD.chemical_formula import ChemicalFormula</span>
+
+<span class="sd">        formula = ChemicalFormula("H2O")</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -1778,6 +1786,15 @@
 <span class="sd">        Additional positional arguments passed to :class:`~manim.mobject.text.text_mobject.MarkupText`.</span>
 <span class="sd">    **kwargs</span>
 <span class="sd">        Additional keyword arguments passed to :class:`~manim.mobject.text.text_mobject.MarkupText`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim import BLUE, WHITE</span>
+<span class="sd">        from manim_extensions.chemistry.twoD.chemical_formula import ComplexFormula</span>
+
+<span class="sd">        formula = ComplexFormula({"H2O": WHITE, "NaCl": BLUE})</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">formula_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>

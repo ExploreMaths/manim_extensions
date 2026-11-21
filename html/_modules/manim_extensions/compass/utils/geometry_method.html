@@ -1596,8 +1596,7 @@
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        ``True`` if ``vector_end`` is counter-clockwise from ``vector_start``,</span>
-<span class="sd">        otherwise ``False``.</span>
+<span class="sd">        Whether ``vector_end`` is counter-clockwise from ``vector_start``.</span>
 <span class="sd">    """</span>
     <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cross</span><span class="p">(</span><span class="n">vector_start</span><span class="p">,</span> <span class="n">vector_end</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span></div>
 

@@ -1513,6 +1513,16 @@
 <span class="sd">        The molecule the atom belongs to.</span>
 <span class="sd">    molecule_index</span>
 <span class="sd">        Index of the atom in the molecule.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        import numpy as np</span>
+<span class="sd">        from manim_extensions.chemistry.manim_chemistry_molecule.mc_atom import MCAtom</span>
+<span class="sd">        from manim_extensions.chemistry.manim_chemistry_molecule.mc_element import MC_ELEMENT_DICT</span>
+
+<span class="sd">        atom = MCAtom(MC_ELEMENT_DICT["C"], coords=np.array([0.0, 0.0, 0.0]))</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

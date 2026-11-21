@@ -1529,6 +1529,14 @@
 <span class="sd">    **kwargs</span>
 <span class="sd">        Additional keyword arguments forwarded to</span>
 <span class="sd">        OpenGLSurface.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.chemistry.orbitals.orbitals import OrbitalBase</span>
+
+<span class="sd">        orbital = OrbitalBase(n_value=2, l_value=1, m_value=0, size=1.5)</span>
 <span class="sd">    """</span>
 
 <div class="viewcode-block" id="OrbitalBase.add_background_rectangle_to_family_members_with_points">
@@ -1537,6 +1545,11 @@
         <span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"OrbitalBase"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""No-op override to prevent background rectangle addition on orbital surfaces.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        **kwargs</span>
+<span class="sd">            Accepted for signature compatibility and ignored.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1655,6 +1668,14 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">OrbitalPositive</span><span class="p">(</span><span class="n">OrbitalBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Calculates the positive values of the orbital.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.chemistry.orbitals.orbitals import OrbitalPositive</span>
+
+<span class="sd">        positive = OrbitalPositive(size=1.5)</span>
 <span class="sd">    """</span>
 
 <div class="viewcode-block" id="OrbitalPositive.uv_func">
@@ -1687,6 +1708,14 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">OrbitalNegative</span><span class="p">(</span><span class="n">OrbitalBase</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Calculates the negative values of the orbital.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.chemistry.orbitals.orbitals import OrbitalNegative</span>
+
+<span class="sd">        negative = OrbitalNegative(size=1.5)</span>
 <span class="sd">    """</span>
 
 <div class="viewcode-block" id="OrbitalNegative.uv_func">
@@ -1740,6 +1769,14 @@
 <span class="sd">        Scale of the orbital surface.</span>
 <span class="sd">    **kwargs</span>
 <span class="sd">        Additional keyword arguments passed to OpenGLSurface.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.chemistry.orbitals.orbitals import Orbital</span>
+
+<span class="sd">        orbital = Orbital(n=2, l=1, m=0, size=2)</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

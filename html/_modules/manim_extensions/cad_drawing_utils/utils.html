@@ -1530,6 +1530,20 @@
 <span class="sd">        Mobject whose control points and handles are visualised.</span>
 <span class="sd">    **kwargs</span>
 <span class="sd">        Keyword arguments forwarded to the vector dictionary.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. manim:: BezierHandlebarsScene</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.cad_drawing_utils import BezierHandlebars</span>
+
+<span class="sd">       class BezierHandlebarsScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               curve = Circle(radius=2)</span>
+<span class="sd">               handles = BezierHandlebars(curve)</span>
+<span class="sd">               self.add(curve, handles)</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_mobject</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -1550,7 +1564,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            ``None``; the dots are stored under the ``"dots"`` key.</span>
+<span class="sd">            The dots are stored under the ``"dots"`` key.</span>
 <span class="sd">        """</span>
         <span class="n">DotGroup</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
             <span class="o">*</span><span class="p">[</span>
@@ -1575,7 +1589,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            ``None``; the dots are moved in place.</span>
+<span class="sd">            The dots are moved in place.</span>
 <span class="sd">        """</span>
         <span class="k">for</span> <span class="n">zipthing</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="p">[</span><span class="s2">"dots"</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">points</span><span class="p">):</span>
             <span class="n">zipthing</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">zipthing</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span></div>
@@ -1588,7 +1602,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            ``None``; the handles are stored under the ``"lines"`` key.</span>
+<span class="sd">            The handles are stored under the ``"lines"`` key.</span>
 <span class="sd">        """</span>
         <span class="n">pointlist</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">4</span><span class="p">,</span> <span class="p">:],</span>
@@ -1617,7 +1631,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            ``None``; the lines are repositioned in place.</span>
+<span class="sd">            The lines are repositioned in place.</span>
 <span class="sd">        """</span>
         <span class="n">pointlist</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="mi">0</span><span class="p">::</span><span class="mi">4</span><span class="p">,</span> <span class="p">:],</span>

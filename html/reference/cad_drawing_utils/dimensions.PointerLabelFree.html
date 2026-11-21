@@ -1499,7 +1499,20 @@
 </ul>
 </dd>
 </dl>
-<dl class="py method">
+<p class="rubric">Examples</p>
+<div id="pointerlabelfreescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: PointerLabelFreeScene <a class="headerlink" href="#pointerlabelfreescene">¶</a></p><img alt="../../_images/PointerLabelFreeScene-fe17e849.png" class="align-center" src="../../_images/PointerLabelFreeScene-fe17e849.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.cad_drawing_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">PointerLabelFree</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PointerLabelFreeScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pointer</span> <span class="o">=</span> <span class="n">PointerLabelFree</span><span class="p">(</span><span class="n">LEFT</span><span class="p">,</span> <span class="s2">"radius"</span><span class="p">,</span> <span class="n">offset_vector</span><span class="o">=</span><span class="n">UP</span> <span class="o">+</span> <span class="n">RIGHT</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">pointer</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div><dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.cad_drawing_utils.dimensions.PointerLabelFree.update_point">
 <span class="sig-name descname"><span class="pre">update_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset_vector</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">RIGHT</span> <span class="pre">+</span> <span class="pre">DOWN</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/cad_drawing_utils/dimensions.html#PointerLabelFree.update_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.cad_drawing_utils.dimensions.PointerLabelFree.update_point" title="Link to this definition">¶</a></dt>
 <dd><p>Move the pointer to a new anchor point.</p>
@@ -1514,7 +1527,7 @@
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code>; the line and text positions are updated in place.</p>
+<dd class="field-odd"><p>The line and text positions are updated in place.</p>
 </dd>
 </dl>
 </dd></dl>

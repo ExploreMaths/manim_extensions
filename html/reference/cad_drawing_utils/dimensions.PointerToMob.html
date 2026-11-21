@@ -1500,7 +1500,21 @@
 </ul>
 </dd>
 </dl>
-<dl class="py method">
+<p class="rubric">Examples</p>
+<div id="pointertomobscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: PointerToMobScene <a class="headerlink" href="#pointertomobscene">¶</a></p><img alt="../../_images/PointerToMobScene-2024cd85.png" class="align-center" src="../../_images/PointerToMobScene-2024cd85.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.cad_drawing_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">PointerToMob</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PointerToMobScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">circle</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">pointer</span> <span class="o">=</span> <span class="n">PointerToMob</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">,</span> <span class="s2">"P"</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="n">pointer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.cad_drawing_utils.dimensions.PointerToMob.update_mob">
 <span class="sig-name descname"><span class="pre">update_mob</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">proportion</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/cad_drawing_utils/dimensions.html#PointerToMob.update_mob"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.cad_drawing_utils.dimensions.PointerToMob.update_mob" title="Link to this definition">¶</a></dt>
 <dd><p>Follow a point on a mobject and update the pointer.</p>
@@ -1516,7 +1530,7 @@
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">None</span></code>; the pointer is repositioned in place.</p>
+<dd class="field-odd"><p>The pointer is repositioned in place.</p>
 </dd>
 </dl>
 </dd></dl>

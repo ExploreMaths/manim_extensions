@@ -1502,6 +1502,14 @@
 <span class="sd">    color</span>
 <span class="sd">        Display color of the element. Falls back to ``"#ff00ff"`` when</span>
 <span class="sd">        falsy.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.chemistry.element.element import Element</span>
+
+<span class="sd">        hydrogen = Element("H", "Hydrogen", 1, 1.008, "#ffffff")</span>
 <span class="sd">    """</span>
 
 <div class="viewcode-block" id="Element.__repr__">
@@ -1589,7 +1597,16 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/element/element.GenericElement.html#manim_extensions.chemistry.element.element.GenericElement">[docs]</a>
 <span class="nd">@dataclass</span>
 <span class="k">class</span><span class="w"> </span><span class="nc">GenericElement</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""Data for a chemical element (symbol, name, atomic number, mass, CPK color)."""</span>
+<span class="w">    </span><span class="sd">"""Data for a chemical element (symbol, name, atomic number, mass, CPK color).</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.chemistry.element.element import C</span>
+
+<span class="sd">        print(C.symbol, C.name, C.atomic_number)</span>
+<span class="sd">    """</span>
 
     <span class="n">symbol</span><span class="p">:</span> <span class="nb">str</span>
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span>

@@ -1524,6 +1524,19 @@
 <span class="sd">        Extra gap between the anchor and the arrow tip.</span>
 <span class="sd">    **kwargs</span>
 <span class="sd">        Keyword arguments forwarded to the text mobject.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. manim:: PointerLabelFreeScene</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.cad_drawing_utils import PointerLabelFree</span>
+
+<span class="sd">       class PointerLabelFreeScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               pointer = PointerLabelFree(LEFT, "radius", offset_vector=UP + RIGHT)</span>
+<span class="sd">               self.add(pointer.scale(2))</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -1598,7 +1611,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            ``None``; the line and text positions are updated in place.</span>
+<span class="sd">            The line and text positions are updated in place.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="p">[</span><span class="s2">"line"</span><span class="p">]</span><span class="o">.</span><span class="n">set_points_as_corners</span><span class="p">(</span>
             <span class="p">[</span>
@@ -1638,6 +1651,20 @@
 <span class="sd">        Extra gap between the anchor and the arrow tip.</span>
 <span class="sd">    **kwargs</span>
 <span class="sd">        Keyword arguments forwarded to the label and leader line.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. manim:: PointerToMobScene</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.cad_drawing_utils import PointerToMob</span>
+
+<span class="sd">       class PointerToMobScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               circle = Circle(radius=1).shift(LEFT * 2)</span>
+<span class="sd">               pointer = PointerToMob(circle, 0.25, "P", dist=1)</span>
+<span class="sd">               self.add(circle, pointer)</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -1683,7 +1710,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            ``None``; the pointer is repositioned in place.</span>
+<span class="sd">            The pointer is repositioned in place.</span>
 <span class="sd">        """</span>
         <span class="n">point</span> <span class="o">=</span> <span class="n">mob</span><span class="o">.</span><span class="n">point_from_proportion</span><span class="p">(</span><span class="n">proportion</span><span class="p">)</span>
         <span class="c1"># if the mob center and point happens to be the same, it causes problems</span>
@@ -1725,6 +1752,20 @@
 <span class="sd">        Length of the arrow tips.</span>
 <span class="sd">    **kwargs</span>
 <span class="sd">        Keyword arguments forwarded to the dimension components.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. manim:: LinearDimensionScene</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.cad_drawing_utils import LinearDimension</span>
+
+<span class="sd">       class LinearDimensionScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               line = Line(LEFT * 2, RIGHT * 2)</span>
+<span class="sd">               dimension = LinearDimension(line.get_start(), line.get_end(), offset=0.7)</span>
+<span class="sd">               self.add(line, dimension)</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -1879,6 +1920,20 @@
 <span class="sd">        Length of the arrow tips.</span>
 <span class="sd">    **kwargs</span>
 <span class="sd">        Keyword arguments forwarded to the dimension components.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. manim:: AngleDimension3PointScene</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.cad_drawing_utils import AngleDimension3Point</span>
+
+<span class="sd">       class AngleDimension3PointScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               center, start, end = ORIGIN, RIGHT * 2, UP * 2</span>
+<span class="sd">               dimension = AngleDimension3Point(start, end, center, offset=0.4)</span>
+<span class="sd">               self.add(dimension)</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -2015,6 +2070,20 @@
 <span class="sd">        Normalized position of the second point.</span>
 <span class="sd">    **kwargs</span>
 <span class="sd">        Keyword arguments forwarded to the parent dimension.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. manim:: AngleDimensionMobScene</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.cad_drawing_utils import AngleDimensionMob</span>
+
+<span class="sd">       class AngleDimensionMobScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               arc = Arc(radius=2, start_angle=0, angle=PI / 2)</span>
+<span class="sd">               dimension = AngleDimensionMob(arc, 0, 1)</span>
+<span class="sd">               self.add(arc, dimension)</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -2068,6 +2137,20 @@
 <span class="sd">        Whether the arrow points backwards.</span>
 <span class="sd">    **kwargs</span>
 <span class="sd">        Keyword arguments forwarded to the curve warp.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. manim:: CADArrowHeadScene</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.cad_drawing_utils import CADArrowHead</span>
+
+<span class="sd">       class CADArrowHeadScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               curve = Arc(radius=2, start_angle=0, angle=PI / 2)</span>
+<span class="sd">               head = CADArrowHead(curve, anchor_point=1, arrow_size=0.2)</span>
+<span class="sd">               self.add(curve, head)</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -2105,7 +2188,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            ``None``; the arrow points are regenerated in place.</span>
+<span class="sd">            The arrow points are regenerated in place.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">PM</span><span class="o">.</span><span class="n">generate_length_map</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">generate_points</span><span class="p">()</span></div>
@@ -2138,7 +2221,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            ``None``; the arrow head is scaled in place.</span>
+<span class="sd">            The arrow head is scaled in place.</span>
 <span class="sd">        """</span>
         <span class="n">act_size</span> <span class="o">=</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">arrowhead</span><span class="o">.</span><span class="n">get_critical_point</span><span class="p">(</span><span class="n">RIGHT</span><span class="p">)</span>
@@ -2157,7 +2240,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            ``None``; the arrow head is flipped in place.</span>
+<span class="sd">            The arrow head is flipped in place.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">arrowhead</span><span class="o">.</span><span class="n">flip</span><span class="p">()</span></div>
 
@@ -2183,7 +2266,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            ``None``; the arrow is flipped when the state changes.</span>
+<span class="sd">            The arrow is flipped when the state changes.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">rev</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__reversed_arrow</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">flip_arrow</span><span class="p">()</span>

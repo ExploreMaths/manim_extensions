@@ -1532,6 +1532,14 @@
 <span class="sd">        Resolution of the surface.</span>
 <span class="sd">    **kwargs</span>
 <span class="sd">        Additional keyword arguments passed to OpenGLSurface.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.chemistry.threeD.threedbond import ThreeDCylinder</span>
+
+<span class="sd">        cylinder = ThreeDCylinder(radius=0.3, height=2)</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -1710,6 +1718,14 @@
 <span class="sd">        Color of the line.</span>
 <span class="sd">    **kwargs</span>
 <span class="sd">        Additional keyword arguments passed to :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.chemistry.threeD.threedbond import ThreeDLine</span>
+
+<span class="sd">        line = ThreeDLine(start=[-1, 0, 0], end=[1, 0, 0], thickness=0.08)</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -1961,6 +1977,19 @@
 <span class="sd">        Additional mobjects to add to the group.</span>
 <span class="sd">    **kwargs</span>
 <span class="sd">        Additional keyword arguments passed to OpenGLGroup.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        import numpy as np</span>
+<span class="sd">        from manim_extensions.chemistry.threeD.threedatom import ThreeDAtom</span>
+<span class="sd">        from manim_extensions.chemistry.threeD.threedbond import ThreeDBond</span>
+<span class="sd">        from manim_extensions.chemistry.utils.utils import get_element</span>
+
+<span class="sd">        carbon = ThreeDAtom(get_element("C"), coords=np.array([0.0, 0.0, 0.0]))</span>
+<span class="sd">        oxygen = ThreeDAtom(get_element("O"), coords=np.array([1.2, 0.0, 0.0]))</span>
+<span class="sd">        bond = ThreeDBond(from_atom=carbon, to_atom=oxygen, bond_type=2)</span>
 <span class="sd">    """</span>
 
 <div class="viewcode-block" id="ThreeDBond.__str__">

@@ -230,7 +230,7 @@ Mypy
   share ``dict[int, dict[str, Any]]`` plus the ``ParsedData`` alias instead
   of unparameterised payloads.
 * Manim's dynamic mobject attributes are typed at their source.  Properties
-  that ``Mobject.__getattr__`` used to expose as ``MethodType`` are declared
+  that ``Mobject`` used to expose through ``__getattr__`` as ``MethodType`` are declared
   in the class body (``subscript``, ``node_style``, ``center``), while
   ``.animate`` builders are narrowed with ``cast(Animation, ...)``.  Vector
   attributes such as ``Point3D``, ``Vector3D`` and ``VectorND`` are no longer
@@ -238,7 +238,7 @@ Mypy
 * Overrides now match their supertypes without changing runtime behaviour:
   vector parameters use the ``*Like`` aliases, ``move_to`` overrides accept
   ``aligned_edge`` and ``coor_mask``, and deliberately different signatures
-  (``apply_function``, ``ListGroup.add``/``remove``, the table and row
+  (``apply_function``, :meth:`~manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.add`/``remove``, the table and row
   ``__getitem__`` overloads) carry narrow ``# type: ignore[override]``
   comments with the list semantics kept intact.
 * Optional values are narrowed at the point of use instead of being forced
@@ -258,14 +258,14 @@ Mypy
 * Vendored re-exports are explicit.  Star-import packages now re-export with
   ``Name as Name``, ``chemistry`` imports its 118 element symbols from
   ``element.element``, and the ``manim_chemistry_molecule`` package advertises
-  ``MCElement`` and ``MC_ELEMENT_DICT`` in ``__all__``, so ``test_imports``
+  :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_element.MCElement` and ``MC_ELEMENT_DICT`` in ``__all__``, so ``test_imports``
   sees every advertised name.
 * The strict pass also uncovered and fixed real runtime defects:
   ``basic_mesh.add_face`` now returns the ``(face, new_edges)`` pair its
-  callers unpack, ``MCAtom.bonds_fulfilled`` compares against the minimum
-  bond count instead of looking up the atom in it, ``MCMolecule`` no longer
-  calls ``copy`` on a ``dict_values`` view, ``Array`` slices return node
-  objects again, and ``Polygon`` receives its points as separate arguments.
+  callers unpack, :meth:`~manim_extensions.chemistry.twoD.atom.MAtomObject.bonds_fulfilled` compares against the minimum
+  bond count instead of looking up the atom in it, :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule` no longer
+  calls ``copy`` on a ``dict_values`` view, :class:`~manim_extensions.algorithm.array.Array` slices return node
+  objects again, and ``manim.utils.polylabel.Polygon`` receives its points as separate arguments.
 * The changelog entry for ``validate-types`` in the *Added* section above is
   updated to describe the package-wide check rather than the first-party
   allowlist.
@@ -555,8 +555,8 @@ Added
   as package data).
 * Added API reference documentation for every bundled package, with a
   single consolidated inheritance graph in the Reference Manual.
-* Added a same-named optional extra for every module (:mod:`~manim_extensions.automata`,
-  :mod:`~manim_extensions.chemistry`, :mod:`~manim_extensions.physics`, :mod:`~manim_extensions.rubikscube`, :mod:`~manim_extensions.meshes`, ``video``,
+* Added a same-named optional extra for every module (``automata``,
+  ``chemistry``, ``physics``, ``rubikscube``, ``meshes``, ``video``,
   ``qr``, ``svg``, ``ml``, ...) and an ``all`` extra; the base install
   is now just ``manim`` + ``numpy``, and every heavier dependency is
   lazy-imported via the new :func:`~manim_extensions.utils.deps.require`

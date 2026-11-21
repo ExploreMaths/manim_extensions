@@ -1932,6 +1932,17 @@
 <span class="sd">        Color used to highlight cells during animations.</span>
 <span class="sd">    **kwargs</span>
 <span class="sd">        Forwarded to the parent layer classes.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.machine_learning.neural_network.layers.convolutional_2d import Convolutional2DLayer</span>
+<span class="sd">        from manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_convolutional_2d import Convolutional2DToConvolutional2D</span>
+
+<span class="sd">        first = Convolutional2DLayer(4, 6, 3)</span>
+<span class="sd">        second = Convolutional2DLayer(8, 4, 3)</span>
+<span class="sd">        connection = Convolutional2DToConvolutional2D(first, second)</span>
 <span class="sd">    """</span>
 
     <span class="n">input_class</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">Convolutional2DLayer</span>

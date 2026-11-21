@@ -1488,6 +1488,16 @@
 
 <span class="sd">    Provides utilities for normalizing vectors and comparing</span>
 <span class="sd">    vector equality and direction within numerical tolerance.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        import numpy as np</span>
+<span class="sd">        from manim_extensions.algorithm.utils.numpy_helper import NumpyHelper</span>
+
+<span class="sd">        unit = NumpyHelper.normalize_vector(np.array([3.0, 4.0, 0.0]))</span>
+<span class="sd">        same = NumpyHelper.is_equal_vector(unit, unit)</span>
 <span class="sd">    """</span>
 
 <div class="viewcode-block" id="NumpyHelper.normalize_vector">
@@ -1536,7 +1546,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            ``True`` if ``v1`` and ``v2`` are element-wise close.</span>
+<span class="sd">            Whether ``v1`` and ``v2`` are element-wise close.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="nb">bool</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">rtol</span><span class="o">=</span><span class="n">rtol</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="n">atol</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">())</span></div>
 
@@ -1567,7 +1577,7 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            ``True`` if the normalized vectors are equal within tolerance.</span>
+<span class="sd">            Whether the normalized vectors are equal within tolerance.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="n">NumpyHelper</span><span class="o">.</span><span class="n">is_equal_vector</span><span class="p">(</span>
             <span class="n">NumpyHelper</span><span class="o">.</span><span class="n">normalize_vector</span><span class="p">(</span><span class="n">v1</span><span class="p">),</span>

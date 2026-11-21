@@ -1512,6 +1512,14 @@
 <span class="sd">        Whether to retrieve the 3D structure of the molecule.</span>
 <span class="sd">    format</span>
 <span class="sd">        Format of the response data.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.chemistry.utils.pubchem_api import PubchemAPIManager</span>
+
+<span class="sd">        manager = PubchemAPIManager(name="aspirin", three_d=True)</span>
 <span class="sd">    """</span>
 
     <span class="n">BASE_URL</span> <span class="o">=</span> <span class="s2">"https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/"</span>

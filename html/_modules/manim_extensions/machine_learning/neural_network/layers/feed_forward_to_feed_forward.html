@@ -1531,6 +1531,17 @@
 <span class="sd">        Unused camera reference reserved for future use.</span>
 <span class="sd">    **kwargs</span>
 <span class="sd">        Forwarded to :class:`~manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer`.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. code-block:: python</span>
+
+<span class="sd">        from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer</span>
+<span class="sd">        from manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward import FeedForwardToFeedForward</span>
+
+<span class="sd">        first = FeedForwardLayer(8)</span>
+<span class="sd">        second = FeedForwardLayer(6)</span>
+<span class="sd">        connection = FeedForwardToFeedForward(first, second)</span>
 <span class="sd">    """</span>
 
     <span class="n">input_class</span> <span class="o">=</span> <span class="n">FeedForwardLayer</span>
