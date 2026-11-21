@@ -1018,7 +1018,6 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../meshes/params.html">params</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../meshes/templates.html">templates</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../meshes/types.html">types</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../mindmap/index.html">MindMap</a><input aria-label="Toggle navigation of MindMap" class="toctree-checkbox" id="toctree-checkbox-179" name="toctree-checkbox-179" role="switch" type="checkbox"/><label for="toctree-checkbox-179"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
@@ -1628,17 +1627,25 @@ decimal point removed.</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="manim_extensions.three_d.core.RAMPS">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.three_d.core.</span></span><span class="sig-name descname"><span class="pre">RAMPS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'magma':</span> <span class="pre">[('#1a0533',</span> <span class="pre">0.0),</span> <span class="pre">('#5b1a8a',</span> <span class="pre">0.35),</span> <span class="pre">('#c0369d',</span> <span class="pre">0.6),</span> <span class="pre">('#f2603c',</span> <span class="pre">0.8),</span> <span class="pre">('#ffd166',</span> <span class="pre">1.0)],</span> <span class="pre">'ocean':</span> <span class="pre">[('#0b1d3a',</span> <span class="pre">0.0),</span> <span class="pre">('#14508c',</span> <span class="pre">0.4),</span> <span class="pre">('#1e88b5',</span> <span class="pre">0.7),</span> <span class="pre">('#7fd4c1',</span> <span class="pre">1.0)],</span> <span class="pre">'rainbow':</span> <span class="pre">[('#123a6d',</span> <span class="pre">0.0),</span> <span class="pre">('#1e6fd9',</span> <span class="pre">0.15),</span> <span class="pre">('#18a5a5',</span> <span class="pre">0.32),</span> <span class="pre">('#63c74d',</span> <span class="pre">0.5),</span> <span class="pre">('#f5d033',</span> <span class="pre">0.68),</span> <span class="pre">('#f28c28',</span> <span class="pre">0.84),</span> <span class="pre">('#e34a33',</span> <span class="pre">1.0)]}</span></span><a class="headerlink" href="#manim_extensions.three_d.core.RAMPS" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Named colour ramps used to colour the timeline.</p>
+</dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="manim_extensions.three_d.core.PACE">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.three_d.core.</span></span><span class="sig-name descname"><span class="pre">PACE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'fast':</span> <span class="pre">10.0,</span> <span class="pre">'full':</span> <span class="pre">45.0,</span> <span class="pre">'normal':</span> <span class="pre">24.0}</span></span><a class="headerlink" href="#manim_extensions.three_d.core.PACE" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Per-pace total duration in seconds for the timeline.</p>
+</dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="manim_extensions.three_d.core.BEATS">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.three_d.core.</span></span><span class="sig-name descname"><span class="pre">BEATS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">[('title',</span> <span class="pre">3.0,</span> <span class="pre">1.6,</span> <span class="pre">2.0,</span> <span class="pre">None),</span> <span class="pre">('axes',</span> <span class="pre">2.4,</span> <span class="pre">1.2,</span> <span class="pre">1.6,</span> <span class="pre">None),</span> <span class="pre">('flat',</span> <span class="pre">2.2,</span> <span class="pre">1.0,</span> <span class="pre">1.6,</span> <span class="pre">2),</span> <span class="pre">('rise',</span> <span class="pre">4.2,</span> <span class="pre">2.0,</span> <span class="pre">1.8,</span> <span class="pre">None),</span> <span class="pre">('rings',</span> <span class="pre">2.6,</span> <span class="pre">1.2,</span> <span class="pre">1.8,</span> <span class="pre">1),</span> <span class="pre">('orbit',</span> <span class="pre">9.0,</span> <span class="pre">2.5,</span> <span class="pre">2.5,</span> <span class="pre">4),</span> <span class="pre">('flip',</span> <span class="pre">10.0,</span> <span class="pre">3.0,</span> <span class="pre">1.8,</span> <span class="pre">5),</span> <span class="pre">('annotate',</span> <span class="pre">5.4,</span> <span class="pre">2.4,</span> <span class="pre">1.8,</span> <span class="pre">3),</span> <span class="pre">('outro',</span> <span class="pre">6.2,</span> <span class="pre">2.6,</span> <span class="pre">1.8,</span> <span class="pre">None)]</span></span><a class="headerlink" href="#manim_extensions.three_d.core.BEATS" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>name, reference/min/max seconds, and cut priority.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Beat table</p>
+</dd>
+</dl>
+</dd></dl>
 
 <div class="toctree-wrapper compound">
 </div>

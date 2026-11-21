@@ -1017,7 +1017,6 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../reference/meshes/params.html">params</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../reference/meshes/templates.html">templates</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../reference/meshes/types.html">types</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../../../reference/mindmap/index.html">MindMap</a><input aria-label="Toggle navigation of MindMap" class="toctree-checkbox" id="toctree-checkbox-179" name="toctree-checkbox-179" role="switch" type="checkbox"/><label for="toctree-checkbox-179"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
@@ -1484,7 +1483,8 @@
 <span class="sa">r</span><span class="sd">""":class:`~manim_extensions.physics.optics.rays.Ray`\ s of light. Refracted by Lenses."""</span>
 
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Line</span><span class="p">,</span> <span class="n">angle_of_vector</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">rotate_vector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Line</span><span class="p">,</span> <span class="n">RendererType</span><span class="p">,</span> <span class="n">angle_of_vector</span><span class="p">,</span> <span class="n">config</span><span class="p">,</span> <span class="n">rotate_vector</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Point3D</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.lenses</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lens</span><span class="p">,</span> <span class="n">antisnell</span><span class="p">,</span> <span class="n">intersection</span><span class="p">,</span> <span class="n">snell</span>
@@ -1545,8 +1545,8 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">start</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
-        <span class="n">direction</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
+        <span class="n">start</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span>
+        <span class="n">direction</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span>
         <span class="n">init_length</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
         <span class="n">propagate</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Lens</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
@@ -1587,7 +1587,7 @@
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">nppcc</span> <span class="o">=</span> <span class="p">(</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">n_points_per_cubic_curve</span>
-                    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">renderer</span> <span class="o">!=</span> <span class="s2">"opengl"</span>
+                    <span class="k">if</span> <span class="n">config</span><span class="o">.</span><span class="n">renderer</span> <span class="o">!=</span> <span class="n">RendererType</span><span class="o">.</span><span class="n">OPENGL</span>
                     <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_points_per_curve</span>
                 <span class="p">)</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">[:</span><span class="o">-</span><span class="n">nppcc</span><span class="p">]</span>
@@ -1624,7 +1624,7 @@
 
 <div class="viewcode-block" id="Ray._sort_lens">
 <a class="viewcode-back" href="../../../../reference/physics/optics/rays.Ray.html#manim_extensions.physics.optics.rays.Ray._sort_lens">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_sort_lens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lenses</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Lens</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Lens</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_sort_lens</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lenses</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Lens</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Lens</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Sort lenses by distance from the ray's start to the intersection point.</span>
 
 <span class="sd">        Parameters</span>
@@ -1636,24 +1636,24 @@
 <span class="sd">        -------</span>
 <span class="sd">            Lenses ordered by increasing distance from the ray start.</span>
 <span class="sd">        """</span>
-        <span class="n">dists</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">dists</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">lens</span> <span class="ow">in</span> <span class="n">lenses</span><span class="p">:</span>
             <span class="k">try</span><span class="p">:</span>
-                <span class="n">dists</span> <span class="o">+=</span> <span class="p">[</span>
+                <span class="n">dists</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                     <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">intersection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lens</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">),</span> <span class="n">lens</span><span class="p">]</span>
-                <span class="p">]</span>
+                <span class="p">)</span>
             <span class="k">except</span> <span class="p">(</span><span class="ne">IndexError</span><span class="p">,</span> <span class="ne">ValueError</span><span class="p">):</span>
                 <span class="c1"># no valid intersection found — put the lens at infinity</span>
-                <span class="n">dists</span> <span class="o">+=</span> <span class="p">[[</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">lens</span><span class="p">]]</span>
+                <span class="n">dists</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="n">lens</span><span class="p">])</span>
         <span class="n">dists</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dists</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="p">[</span><span class="n">lens</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">lens</span> <span class="ow">in</span> <span class="n">dists</span><span class="p">]</span></div>
 
 
 <div class="viewcode-block" id="Ray._sort_intersections">
 <a class="viewcode-back" href="../../../../reference/physics/optics/rays.Ray.html#manim_extensions.physics.optics.rays.Ray._sort_intersections">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_sort_intersections</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">intersections</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">]]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Iterable</span><span class="p">[</span><span class="nb">float</span><span class="p">]]:</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">intersections</span><span class="p">:</span> <span class="n">Iterable</span><span class="p">[</span><span class="n">Point3D</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Point3D</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Sort intersection points by distance from the ray's current end point.</span>
 
 <span class="sd">        Parameters</span>
@@ -1665,11 +1665,11 @@
 <span class="sd">        -------</span>
 <span class="sd">            Intersections ordered by increasing distance from the ray end.</span>
 <span class="sd">        """</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">result</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">inters</span> <span class="ow">in</span> <span class="n">intersections</span><span class="p">:</span>
             <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">inters</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="p">),</span> <span class="n">inters</span><span class="p">])</span>
         <span class="n">result</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)[:,</span> <span class="mi">1</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="p">[</span><span class="n">inters</span> <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">inters</span> <span class="ow">in</span> <span class="n">result</span><span class="p">]</span></div>
 </div>
 
 </pre></div>

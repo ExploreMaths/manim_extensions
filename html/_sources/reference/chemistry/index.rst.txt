@@ -250,7 +250,7 @@ Type Aliases
 Constants
 ---------
 
-.. autodata:: manim_extensions.chemistry.MC_ELEMENT_DICT
+.. autodata:: manim_extensions.chemistry.manim_chemistry_molecule.mc_element.MC_ELEMENT_DICT
    :no-value:
 
 .. toctree::

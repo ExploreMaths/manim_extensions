@@ -1017,7 +1017,6 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../reference/meshes/params.html">params</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../reference/meshes/templates.html">templates</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../../reference/meshes/types.html">types</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../../../reference/mindmap/index.html">MindMap</a><input aria-label="Toggle navigation of MindMap" class="toctree-checkbox" id="toctree-checkbox-179" name="toctree-checkbox-179" role="switch" type="checkbox"/><label for="toctree-checkbox-179"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
@@ -1630,13 +1629,13 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">all_layers</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">all_layers</span><span class="p">)</span>
         <span class="c1"># Make container for connections</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">connections</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">connections</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="c1"># Print neural network</span>
         <span class="nb">print</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="p">))</span>
 
 <div class="viewcode-block" id="NeuralNetwork.make_input_layers_dict">
 <a class="viewcode-back" href="../../../../reference/machine_learning/neural_network/neural_network.NeuralNetwork.html#manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork.make_input_layers_dict">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">make_input_layers_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_layers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">make_input_layers_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_layers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Make dictionary of input layers.</span>
 
 <span class="sd">        Parameters</span>
@@ -1705,11 +1704,11 @@
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">start_mobject_or_name</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">):</span>
                 <span class="n">input_mobject</span> <span class="o">=</span> <span class="n">start_mobject_or_name</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">input_mobject</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_layers_dict</span><span class="p">[</span><span class="n">start_mobject_or_name</span><span class="p">]</span>
+                <span class="n">input_mobject</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_layers_dict</span><span class="p">)[</span><span class="n">start_mobject_or_name</span><span class="p">]</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">end_mobject_or_name</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">):</span>
                 <span class="n">output_mobject</span> <span class="o">=</span> <span class="n">end_mobject_or_name</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">output_mobject</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_layers_dict</span><span class="p">[</span><span class="n">end_mobject_or_name</span><span class="p">]</span>
+                <span class="n">output_mobject</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_layers_dict</span><span class="p">)[</span><span class="n">end_mobject_or_name</span><span class="p">]</span>
 
             <span class="n">connection</span> <span class="o">=</span> <span class="n">NetworkConnection</span><span class="p">(</span>
                 <span class="n">input_mobject</span><span class="p">,</span> <span class="n">output_mobject</span><span class="p">,</span> <span class="n">arc_direction</span><span class="o">=</span><span class="n">arc_direction</span><span class="p">,</span> <span class="n">buffer</span><span class="o">=</span><span class="mf">0.05</span>
@@ -1740,7 +1739,7 @@
             <span class="k">if</span> <span class="n">layer_index</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                 <span class="n">prev_layer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_layers</span><span class="p">[</span><span class="n">layer_index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
             <span class="c1"># Run the construct layer method for each</span>
-            <span class="n">current_layer</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">current_layer</span><span class="p">)</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span>
                 <span class="n">prev_layer</span><span class="p">,</span> <span class="n">next_layer</span><span class="p">,</span> <span class="n">debug_mode</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">debug_mode</span>
             <span class="p">)</span></div>
 
@@ -1776,24 +1775,27 @@
         <span class="k">for</span> <span class="n">layer_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_layers</span><span class="p">)):</span>
             <span class="n">previous_layer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_layers</span><span class="p">[</span><span class="n">layer_index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
             <span class="n">current_layer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_layers</span><span class="p">[</span><span class="n">layer_index</span><span class="p">]</span>
-            <span class="n">current_layer</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">previous_layer</span><span class="o">.</span><span class="n">get_center</span><span class="p">())</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">current_layer</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">previous_layer</span><span class="p">)</span><span class="o">.</span><span class="n">get_center</span><span class="p">())</span>
 
             <span class="k">if</span> <span class="n">layout_direction</span> <span class="o">==</span> <span class="s2">"left_to_right"</span><span class="p">:</span>
                 <span class="n">x_shift</span> <span class="o">=</span> <span class="p">(</span>
-                    <span class="n">previous_layer</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span>
-                    <span class="o">+</span> <span class="n">current_layer</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span>
+                    <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">previous_layer</span><span class="p">)</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span>
+                    <span class="o">+</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">current_layer</span><span class="p">)</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span>
                     <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_spacing</span>
                 <span class="p">)</span>
                 <span class="n">shift_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x_shift</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
             <span class="k">elif</span> <span class="n">layout_direction</span> <span class="o">==</span> <span class="s2">"top_to_bottom"</span><span class="p">:</span>
                 <span class="n">y_shift</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span>
-                    <span class="p">(</span><span class="n">previous_layer</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">current_layer</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+                    <span class="p">(</span>
+                        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">previous_layer</span><span class="p">)</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span>
+                        <span class="o">+</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">current_layer</span><span class="p">)</span><span class="o">.</span><span class="n">width</span> <span class="o">/</span> <span class="mi">2</span>
+                    <span class="p">)</span>
                     <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer_spacing</span>
                 <span class="p">)</span>
                 <span class="n">shift_vector</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">y_shift</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unrecognized layout direction: </span><span class="si">{</span><span class="n">layout_direction</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-            <span class="n">current_layer</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">shift_vector</span><span class="p">)</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">current_layer</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">shift_vector</span><span class="p">)</span>
 
         <span class="c1"># After all layers have been placed place their activation functions</span>
         <span class="n">layer_max_height</span> <span class="o">=</span> <span class="nb">max</span><span class="p">([</span><span class="n">layer</span><span class="o">.</span><span class="n">height</span> <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_layers</span><span class="p">])</span>
@@ -1818,7 +1820,7 @@
                         <span class="bp">self</span><span class="o">.</span><span class="n">input_layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
                     <span class="p">)</span>
                     <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">current_layer</span><span class="o">.</span><span class="n">activation_function</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">up_movement</span><span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">current_layer</span><span class="o">.</span><span class="n">activation_function</span><span class="p">)</span></div>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">current_layer</span><span class="p">)</span><span class="o">.</span><span class="n">activation_function</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="NeuralNetwork._construct_connective_layers">
@@ -1835,7 +1837,7 @@
         <span class="k">for</span> <span class="n">layer_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_layers</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
             <span class="n">current_layer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_layers</span><span class="p">[</span><span class="n">layer_index</span><span class="p">]</span>
             <span class="c1"># Add the layer to the list of layers</span>
-            <span class="n">all_layers</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">current_layer</span><span class="p">)</span>
+            <span class="n">all_layers</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Mobject</span><span class="p">,</span> <span class="n">current_layer</span><span class="p">))</span>
             <span class="n">next_layer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_layers</span><span class="p">[</span><span class="n">layer_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
             <span class="c1"># Check if layer is actually a nested NeuralNetwork</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">current_layer</span><span class="p">,</span> <span class="n">NeuralNetwork</span><span class="p">):</span>
@@ -1845,14 +1847,18 @@
                 <span class="c1"># First layer of the next layer</span>
                 <span class="n">next_layer</span> <span class="o">=</span> <span class="n">next_layer</span><span class="o">.</span><span class="n">all_layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
             <span class="c1"># Find connective layer with correct layer pair</span>
-            <span class="n">connective_layer</span> <span class="o">=</span> <span class="n">get_connective_layer</span><span class="p">(</span><span class="n">current_layer</span><span class="p">,</span> <span class="n">next_layer</span><span class="p">)</span>
+            <span class="n">connective_layer</span> <span class="o">=</span> <span class="n">get_connective_layer</span><span class="p">(</span>
+                <span class="n">cast</span><span class="p">(</span><span class="n">Mobject</span><span class="p">,</span> <span class="n">current_layer</span><span class="p">),</span> <span class="n">cast</span><span class="p">(</span><span class="n">Mobject</span><span class="p">,</span> <span class="n">next_layer</span><span class="p">)</span>
+            <span class="p">)</span>
             <span class="n">connective_layers</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">connective_layer</span><span class="p">)</span>
             <span class="c1"># Construct the connective layer</span>
-            <span class="n">connective_layer</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="n">current_layer</span><span class="p">,</span> <span class="n">next_layer</span><span class="p">)</span>
+            <span class="n">connective_layer</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span>
+                <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">current_layer</span><span class="p">),</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">next_layer</span><span class="p">)</span>
+            <span class="p">)</span>
             <span class="c1"># Add the layer to the list of layers</span>
             <span class="n">all_layers</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">connective_layer</span><span class="p">)</span>
         <span class="c1"># Add final layer</span>
-        <span class="n">all_layers</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">all_layers</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Mobject</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_layers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
         <span class="c1"># Handle layering</span>
         <span class="k">return</span> <span class="n">connective_layers</span><span class="p">,</span> <span class="n">all_layers</span></div>
 
@@ -1958,11 +1964,11 @@
             <span class="n">network</span><span class="o">.</span><span class="n">input_layers</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="n">input_index</span><span class="p">,</span> <span class="n">new_layer</span><span class="p">)</span>
             <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">network</span><span class="o">.</span><span class="n">input_layers_dict</span><span class="p">)</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
                 <span class="k">if</span> <span class="n">layer</span> <span class="ow">is</span> <span class="n">old_layer</span><span class="p">:</span>
-                    <span class="n">network</span><span class="o">.</span><span class="n">input_layers_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_layer</span>
+                    <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">network</span><span class="o">.</span><span class="n">input_layers_dict</span><span class="p">)[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_layer</span>
             <span class="c1"># Remove the stale activation function from the scene</span>
             <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">old_layer</span><span class="p">,</span> <span class="s2">"activation_function"</span><span class="p">):</span>
                 <span class="k">if</span> <span class="n">old_layer</span><span class="o">.</span><span class="n">activation_function</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="n">network</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">old_layer</span><span class="o">.</span><span class="n">activation_function</span><span class="p">)</span>
+                    <span class="n">network</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">old_layer</span><span class="p">)</span><span class="o">.</span><span class="n">activation_function</span><span class="p">)</span>
             <span class="c1"># Rebuild the layers and connections around the new layer</span>
             <span class="n">network</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">network</span><span class="o">.</span><span class="n">all_layers</span><span class="p">)</span>
             <span class="p">(</span>
@@ -1980,8 +1986,8 @@
 
         <span class="k">return</span> <span class="n">Succession</span><span class="p">(</span>
             <span class="n">FadeOut</span><span class="p">(</span><span class="n">old_layer</span><span class="p">),</span>
-            <span class="n">UpdateFromFunc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">swap_layer</span><span class="p">),</span>
-            <span class="n">Create</span><span class="p">(</span><span class="n">new_layer</span><span class="p">),</span>
+            <span class="n">UpdateFromFunc</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">swap_layer</span><span class="p">)),</span>
+            <span class="n">Create</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">new_layer</span><span class="p">)),</span>
             <span class="n">lag_ratio</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>
         <span class="p">)</span></div>
 
@@ -2117,16 +2123,16 @@
             <span class="k">return</span> <span class="n">Wait</span><span class="p">(</span><span class="n">run_time</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">created</span> <span class="o">=</span> <span class="kc">True</span>
 
-        <span class="n">animations</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">animations</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Animation</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="c1"># Create the overhead title</span>
-        <span class="n">animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Create</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">))</span>
+        <span class="n">animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Create</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">title</span><span class="p">)))</span>
         <span class="c1"># Create each layer one by one</span>
         <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_layers</span><span class="p">:</span>
-            <span class="n">layer_animation</span> <span class="o">=</span> <span class="n">Create</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+            <span class="n">layer_animation</span> <span class="o">=</span> <span class="n">Create</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">layer</span><span class="p">))</span>
             <span class="c1"># Make titles (empty default titles are plain Groups and</span>
             <span class="c1"># cannot be played with Create, so skip them)</span>
             <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">layer</span><span class="o">.</span><span class="n">title</span><span class="p">)</span><span class="o">.</span><span class="n">submobjects</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">create_title</span> <span class="o">=</span> <span class="n">Create</span><span class="p">(</span><span class="n">layer</span><span class="o">.</span><span class="n">title</span><span class="p">)</span>
+                <span class="n">create_title</span> <span class="o">=</span> <span class="n">Create</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">layer</span><span class="o">.</span><span class="n">title</span><span class="p">))</span>
                 <span class="c1"># Create layer animation group</span>
                 <span class="n">animation_group</span> <span class="o">=</span> <span class="n">AnimationGroup</span><span class="p">(</span><span class="n">layer_animation</span><span class="p">,</span> <span class="n">create_title</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
@@ -2229,7 +2235,7 @@
 
 <div class="viewcode-block" id="NeuralNetwork.__repr__">
 <a class="viewcode-back" href="../../../../reference/machine_learning/neural_network/neural_network.NeuralNetwork.html#manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork.__repr__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"z_index"</span><span class="p">,</span> <span class="s2">"title_text"</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">metadata</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"z_index"</span><span class="p">,</span> <span class="s2">"title_text"</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a layer-by-layer representation.</span>
 
 <span class="sd">        Parameters</span>

@@ -58,12 +58,6 @@ Type Aliases
    :recursive:
    :types: typealias
 
-Constants
----------
-
-.. autoall:: manim_extensions.algorithm
-   :types: data
-
 .. toctree::
    :hidden:
    :maxdepth: 1

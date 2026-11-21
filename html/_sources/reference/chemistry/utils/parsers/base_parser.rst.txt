@@ -14,12 +14,6 @@ Classes
 
    ~BaseParser
 
-Constants
----------
-
-.. autoall:: manim_extensions.chemistry.utils.parsers.base_parser
-   :types: data
-
 .. toctree::
    :hidden:
    :maxdepth: 1

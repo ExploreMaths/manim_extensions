@@ -19,12 +19,6 @@ Classes
    ~NodeConfig
    ~NodeSolt
 
-Constants
----------
-
-.. autoall:: manim_extensions.algorithm.node
-   :types: data
-
 .. toctree::
    :hidden:
    :maxdepth: 1

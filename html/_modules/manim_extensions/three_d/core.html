@@ -1017,7 +1017,6 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../reference/meshes/params.html">params</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../reference/meshes/templates.html">templates</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../reference/meshes/types.html">types</a></li>
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../../../reference/mindmap/index.html">MindMap</a><input aria-label="Toggle navigation of MindMap" class="toctree-checkbox" id="toctree-checkbox-179" name="toctree-checkbox-179" role="switch" type="checkbox"/><label for="toctree-checkbox-179"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
@@ -1596,6 +1595,7 @@
 <span class="p">]</span>
 
 <span class="c1"># ---------------- Colour themes ----------------</span>
+<span class="c1">#: Named colour ramps used to colour the timeline.</span>
 <span class="n">RAMPS</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">"rainbow"</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">(</span><span class="s2">"#123a6d"</span><span class="p">,</span> <span class="mf">0.00</span><span class="p">),</span>
@@ -1623,6 +1623,7 @@
 
 <span class="c1"># ---------------- Beat table ----------------</span>
 <span class="c1"># (name, reference seconds, minimum seconds, maximum = reference x factor, cut priority: 1 first, None = keep)</span>
+<span class="c1">#: Beat table: name, reference/min/max seconds, and cut priority.</span>
 <span class="n">BEATS</span> <span class="o">=</span> <span class="p">[</span>
     <span class="p">(</span><span class="s2">"title"</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
     <span class="p">(</span><span class="s2">"axes"</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
@@ -1634,6 +1635,7 @@
     <span class="p">(</span><span class="s2">"annotate"</span><span class="p">,</span> <span class="mf">5.4</span><span class="p">,</span> <span class="mf">2.4</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>
     <span class="p">(</span><span class="s2">"outro"</span><span class="p">,</span> <span class="mf">6.2</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">,</span> <span class="mf">1.8</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
 <span class="p">]</span>
+<span class="c1">#: Per-pace total duration in seconds for the timeline.</span>
 <span class="n">PACE</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"fast"</span><span class="p">:</span> <span class="mf">10.0</span><span class="p">,</span> <span class="s2">"normal"</span><span class="p">:</span> <span class="mf">24.0</span><span class="p">,</span> <span class="s2">"full"</span><span class="p">:</span> <span class="mf">45.0</span><span class="p">}</span>
 
 
