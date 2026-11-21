@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 MathItYT
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+
 # mypy: disable-error-code="misc,no-untyped-def,var-annotated,assignment,arg-type"
 
 """Utilities for the doc_directive module."""
