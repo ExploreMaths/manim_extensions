@@ -31,7 +31,7 @@ def create_triangle() -> Mesh:
     -------
         The triangle mesh.
     """
-    vertices = [
+    vertices: list[list[float]] = [
         [0.0, 0.0, 0.0],
         [0.0, 1.0, 0.0],
         [0.0, 0.0, 1.0],
@@ -58,7 +58,7 @@ def create_pyramid(triangles_only: bool = True) -> Mesh:
     -------
         The pyramid mesh.
     """
-    vertices = [
+    vertices: list[list[float]] = [
         [1, 1, 0],  # 0
         [1, -1, 0],  # 1
         [-1, -1, 0],  # 2
@@ -108,7 +108,7 @@ def create_cube(triangles_only: bool = True) -> Mesh:
     -------
         The cube mesh.
     """
-    vertices = [
+    vertices: list[list[float]] = [
         [0, 0, 0],  # V0
         [1, 0, 0],  # V1
         [0, 1, 0],  # V2
@@ -164,7 +164,7 @@ def create_coplanar_triangles() -> Mesh:
     -------
         The 2D mesh consisting of triangles.
     """
-    vertices = [
+    vertices: list[list[float]] = [
         [-1, 1],
         [1, 2],
         [1, 0],
@@ -374,7 +374,7 @@ def create_model(filepath: str | pathlib.Path = "", name: str = "") -> Mesh:
         If neither ``filepath`` nor ``name`` is provided, or if ``name`` is
         not a recognised built-in model.
     """
-    if len(name) == 0 and len(filepath) == 0:
+    if not name and not filepath:
         raise FileNotFoundError("Either provide a name or a filepath.")
     trimesh = require("meshes", "trimesh")
     path_to_models = "data/models/"

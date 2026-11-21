@@ -39,6 +39,7 @@ from manim import (
     Polygon,
     Polygram,
     RIGHT,
+    CairoRenderer,
     Rectangle,
     Scene,
     UP,
@@ -47,6 +48,7 @@ from manim import (
     angle_between_vectors,
 )
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
+from manim.renderer.opengl_renderer import OpenGLRenderer
 
 from ...utils.deps import require
 
@@ -63,7 +65,7 @@ __all__ = [
 ]
 
 
-def _load_pymunk() -> pymunk:
+def _load_pymunk() -> Any:
     """Import pymunk lazily, as it belongs to the ``physics`` extra.
 
     Returns
@@ -194,7 +196,9 @@ class SpaceScene(Scene):
 
     GRAVITY: tuple[float, float] = 0, -9.81
 
-    def __init__(self, renderer: str | None = None, **kwargs: Any) -> None:
+    def __init__(
+        self, renderer: CairoRenderer | OpenGLRenderer | None = None, **kwargs: Any
+    ) -> None:
         self.space = Space(gravity=self.GRAVITY)
         super().__init__(renderer=renderer, **kwargs)
 
@@ -256,12 +260,12 @@ class SpaceScene(Scene):
             if not hasattr(mob, "body"):
                 self.add(mob)
                 cast(Any, mob).body = pymunk.Body()
-                mob.body.position = mob.get_x(), mob.get_y()
-                get_angle(mob)
+                cast(Any, mob).body.position = mob.get_x(), mob.get_y()
+                get_angle(cast(VMobject, mob))
                 if not hasattr(mob, "angle"):
                     cast(Any, mob).angle = 0
-                mob.body.angle = mob.angle
-                get_shape(mob)
+                cast(Any, mob).body.angle = mob.angle
+                get_shape(cast(VMobject, mob))
                 cast(Any, mob.shape).density = density
                 cast(Any, mob.shape).elasticity = elasticity
                 cast(Any, mob.shape).friction = friction
@@ -294,11 +298,11 @@ class SpaceScene(Scene):
                 The resulting value.
         """
         for mob in mobs:
-            if isinstance(mob, VGroup or Group):
+            if isinstance(mob, (VGroup, Group)):
                 self.make_static_body(*mob)
                 return
             cast(Any, mob).body = self.space.space.static_body
-            get_shape(mob)
+            get_shape(cast(VMobject, mob))
             cast(Any, mob.shape).elasticity = elasticity
             cast(Any, mob.shape).friction = friction
             self.add_body(mob)
@@ -317,13 +321,13 @@ class SpaceScene(Scene):
                 The resulting value.
         """
         for mob in mobs:
-            if isinstance(mob, VGroup or Group):
+            if isinstance(mob, (VGroup, Group)):
                 self.stop_rigidity(*mob)
             if hasattr(mob, "body"):
                 cast(Any, mob.body).sleep()
 
 
-def _step(space: Space, dt: float) -> Any:
+def _step(space: Mobject, dt: float = 1 / 60) -> Any:
     """Advance the pymont simulation by one time step.
 
     Parameters
@@ -338,7 +342,7 @@ def _step(space: Space, dt: float) -> Any:
         -------
             The resulting value.
     """
-    space.space.step(dt)
+    cast(Any, space).space.step(dt)
 
 
 def _simulate(b: Mobject) -> Any:

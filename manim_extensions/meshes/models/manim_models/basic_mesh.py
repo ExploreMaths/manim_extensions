@@ -9,7 +9,7 @@ Contains a 3D and a 2D version. Additionally there is the mesh for only
 triangles in triangle_mesh.py.
 """
 
-from typing import Any, List
+from typing import Any, List, cast
 
 # unlinked-class-ok: Array
 
@@ -35,6 +35,7 @@ from manim import (
     ThreeDVMobject,
     UP,
     VGroup,
+    VMobject,
     ValueTracker,
 )
 import numpy as np
@@ -49,7 +50,14 @@ from ...helpers import remove_keys_from_dict
 from ..data_models.mesh import Mesh
 from ...params import get_param_or_default, BM2DM, BM3DM
 from ...types import Vertices
-from manim.typing import Point3D, Point3D_Array, Vector3D, VectorND
+from manim.typing import (
+    Point3D,
+    Point3D_Array,
+    Point3DLike,
+    Vector3D,
+    Vector3DLike,
+    VectorND,
+)
 
 
 # pylint: disable=too-many-instance-attributes
@@ -122,17 +130,43 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
 
     # pylint:disable=abstract-method
 
+    display_vertices: bool
+    display_edges: bool
+    display_faces: bool
+    clear_vertices: bool
+    clear_edges: bool
+    clear_faces: bool
+    edges_color: ManimColor
+    edges_width: float
+    faces_color: ManimColor
+    faces_opacity: float
+    verts_color: ManimColor
+    verts_size: float
+    pre_function_handle_to_anchor_scale_factor: float
+
     def __init__(self, mesh: Mesh, *args: Any, **kwargs: Any) -> None:
         self.mesh: Mesh = mesh
         self.vertices: Group = Group()
         self.edges: VGroup = VGroup()
         self.faces: VGroup = VGroup()
 
-        # set all the parameters
-        for param_name in BM3DM:
-            self.__setattr__(
-                param_name, get_param_or_default(param_name, kwargs, BM3DM)
-            )
+        # set all the parameters (BM3DM gives the expected type per name)
+        params = {name: get_param_or_default(name, kwargs, BM3DM) for name in BM3DM}
+        self.display_vertices = cast(bool, params["display_vertices"])
+        self.display_edges = cast(bool, params["display_edges"])
+        self.display_faces = cast(bool, params["display_faces"])
+        self.clear_vertices = cast(bool, params["clear_vertices"])
+        self.clear_edges = cast(bool, params["clear_edges"])
+        self.clear_faces = cast(bool, params["clear_faces"])
+        self.edges_color = cast(ManimColor, params["edges_color"])
+        self.edges_width = cast(float, params["edges_width"])
+        self.faces_color = cast(ManimColor, params["faces_color"])
+        self.faces_opacity = cast(float, params["faces_opacity"])
+        self.verts_color = cast(ManimColor, params["verts_color"])
+        self.verts_size = cast(float, params["verts_size"])
+        self.pre_function_handle_to_anchor_scale_factor = cast(
+            float, params["pre_function_handle_to_anchor_scale_factor"]
+        )
 
         super().__init__(*args, **remove_keys_from_dict(kwargs, list(BM3DM.keys())))
 
@@ -231,7 +265,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
 
     def add_face(
         self, face: VectorND, color: ManimColor | None = None
-    ) -> tuple[VGroup, VGroup]:
+    ) -> tuple[ThreeDVMobject, list[ThreeDVMobject]]:
         """Add a face to the mesh and create the corresponding Manim objects.
 
         If ``color`` is ``None``, the default ``self.faces_color`` is used.
@@ -245,7 +279,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
 
         Returns
         -------
-            The newly created face mobject and a list of newly created edge mobjects.
+            The newly created face mobject and the newly created edge mobjects.
         """
         if color is None:
             color = self.faces_color
@@ -284,9 +318,9 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
                 self.edges.insert(self.mesh.get_edge_index(edge_verts), edge)
                 new_edges.append(edge)
 
-        return new_face
+        return new_face, new_edges
 
-    def remove_face(self, face_idx: int) -> tuple:
+    def remove_face(self, face_idx: int) -> tuple[VMobject, list[VMobject]]:
         """Remove a face (and its orphaned edges) by index.
 
         Parameters
@@ -466,7 +500,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         self.vertices = Group()
         self.setup()
 
-    def shift(self, *vectors: Vector3D) -> Any:
+    def shift(self, *vectors: Vector3DLike) -> Any:
         """Shift the mesh and its underlying data by the sum of ``vectors``.
 
         Multiple vectors of the same dimensionality are summed to produce
@@ -482,7 +516,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             -------
                 The resulting value.
         """
-        total_shift = np.sum(vectors, axis=0)
+        total_shift = np.sum([np.asarray(v, dtype=float) for v in vectors], axis=0)
         # update vertices of self.mesh
         self.mesh.translate_mesh(self._as_mesh_dim(total_shift))
         # shift manim vertices, edges and faces
@@ -539,8 +573,10 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
     def rotate(
         self,
         angle: float,
-        axis: Vector3D = OUT,
-        about_point: Point3D | None = None,
+        axis: Vector3DLike = OUT,
+        *,
+        about_point: Point3DLike | None = None,
+        about_edge: Vector3DLike | None = None,
         **kwargs: Any,
     ) -> Any:
         """Rotate the mesh (data and Manim objects) about ``about_point``.
@@ -564,36 +600,38 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             -------
                 The resulting value.
         """
+        axis_array: Vector3D = np.asarray(axis, dtype=float)
         if self.mesh.dim == 4:
-            if np.asarray(axis, dtype=float).shape == (2, 4):
-                center = (
+            if axis_array.shape == (2, 4):
+                mesh_center = (
                     self._mesh_center()
                     if about_point is None
                     else self._as_mesh_dim(about_point)
                 )
-                self.mesh.apply_rotation(angle, axis, center)
+                self.mesh.apply_rotation(angle, axis_array, mesh_center)
                 self._rebuild_objects()
                 return
             # a 3-D axis cannot express a 4-D rotation: rotate the projection only
-            if about_point is None:
-                about_point = self.get_critical_point(ORIGIN)
-            super().rotate(angle, axis, about_point=about_point, **kwargs)
+            point = (
+                self.get_critical_point(ORIGIN) if about_point is None else about_point
+            )
+            super().rotate(angle, axis, about_point=point, **kwargs)
             return
 
-        if about_point is None:
-            about_point = self.get_critical_point(ORIGIN)
-
+        pivot = self.get_critical_point(ORIGIN) if about_point is None else about_point
+        pivot_array: Point3D = np.asarray(pivot, dtype=float)
         if self.mesh.dim == 2:  # always rotate about Z if mesh is 2D
-            self.mesh.apply_rotation(angle, OUT, about_point[:2])
+            self.mesh.apply_rotation(angle, OUT, pivot_array[:2])
         else:
-            self.mesh.apply_rotation(angle, axis, about_point)
-        super().rotate(angle, axis, about_point=about_point, **kwargs)
+            self.mesh.apply_rotation(angle, axis_array, pivot_array)
+        super().rotate(angle, axis, about_point=pivot, **kwargs)
 
     def flip(
         self,
-        axis: Vector3D = UP,
-        about_point: Point3D | None = None,
-        **kwargs: Any,
+        axis: Vector3DLike = UP,
+        *,
+        about_point: Point3DLike | None = None,
+        about_edge: Vector3DLike | None = None,
     ) -> Any:
         """Flip the mesh (data and Manim objects) about the plane orthogonal to ``axis``.
 
@@ -607,31 +645,32 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         about_point
             Pivot point for the flip. Defaults to the critical point at the
             origin.
-        **kwargs
-            Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.flip`.
+        about_edge
+            Accepted for signature compatibility with
+            :meth:`~manim.mobject.mobject.Mobject.flip`; unused here.
 
-
-            Returns
+        Returns
             -------
                 The resulting value.
         """
-        if self.mesh.dim == 4 and np.asarray(axis, dtype=float).shape[0] == 4:
-            center = (
+        axis_array: Vector3D = np.asarray(axis, dtype=float)
+        if self.mesh.dim == 4 and axis_array.shape[0] == 4:
+            mesh_center = (
                 self._mesh_center()
                 if about_point is None
                 else self._as_mesh_dim(about_point)
             )
-            self.mesh.apply_flip(axis, center)
+            self.mesh.apply_flip(axis_array, mesh_center)
             self._rebuild_objects()
             return
 
-        if about_point is None:
-            about_point = self.get_critical_point(ORIGIN)
-        self.mesh.apply_flip(axis, about_point[: self.mesh.dim])
+        pivot = self.get_critical_point(ORIGIN) if about_point is None else about_point
+        pivot_array: Point3D = np.asarray(pivot, dtype=float)
+        self.mesh.apply_flip(axis_array, pivot_array[: self.mesh.dim])
         # Mobject.flip delegates to self.rotate, which this class overrides to
         # rotate the mesh data as well; use the parent rotation to avoid
         # applying the flip to the data twice.
-        super().rotate(TAU / 2, axis, about_point=about_point, **kwargs)
+        super().rotate(TAU / 2, axis, about_point=pivot)
 
     def shift_vertex(
         self, scene: Scene, vertex_idx: int, shift: Vector3D, **kwargs: Any
@@ -666,7 +705,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         )
         scene.add(tracker)
         scene.play(
-            tracker.animate(**kwargs).set_value(1),
+            cast(Any, tracker.animate)(**kwargs).set_value(1),
             run_time=(
                 kwargs["shift_vertex_runtime"]
                 if "shift_vertex_runtime" in kwargs
@@ -706,7 +745,7 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             )
         scene.add(tracker)
         scene.play(
-            tracker.animate(
+            cast(Any, tracker.animate)(
                 **remove_keys_from_dict(kwargs, ["shift_vertices_runtime"])
             ).set_value(1),
             run_time=(
@@ -893,12 +932,11 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
                 f"Mesh is not in the correct format. Expected Dim 2 or 3 with z zero, was {mesh.dim}"
             )
         # init ManimMesh
-        super().__init__(
-            mesh=mesh,
-            *args,
-            **{key: get_param_or_default(key, kwargs, BM2DM) for key in BM2DM},
-            **remove_keys_from_dict(kwargs, list(BM2DM.keys())),
-        )
+        call_kwargs: dict[str, Any] = {
+            key: get_param_or_default(key, kwargs, BM2DM) for key in BM2DM
+        }
+        call_kwargs.update(remove_keys_from_dict(kwargs, list(BM2DM.keys())))
+        super().__init__(mesh, *args, **call_kwargs)
 
     def setup_vertices(self) -> Group:
         """Create Manim vertex mobjects for every vertex of the 2D mesh.

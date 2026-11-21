@@ -69,7 +69,7 @@ class VoronoiDelaunay:
         verts = self.triangle_mesh.mesh.get_3d_vertices()
         self.voronoi = Voronoi(verts[:, :2])
 
-    def create_voronoi(self) -> tuple:
+    def create_voronoi(self) -> tuple[VGroup, VGroup]:
         """Build the Voronoi diagram for the mesh vertices and return it as Manim groups.
 
         The diagram is constructed from the :class:`~scipy.spatial.Voronoi`
@@ -154,8 +154,7 @@ class VoronoiDelaunay:
         Returns
         -------
             A :class:`~manim.mobject.geometry.arc.Circle` representing the
-            circumscribed circle, or ``None`` if the vertex index does not
-            belong to any triangle ridge.
+            circumscribed circle of the dual triangle.
         """
         verts = self.triangle_mesh.mesh.get_3d_vertices()
         voronoi_vertices = np.pad(self.voronoi.vertices, ((0, 0), (0, 1)))
@@ -170,7 +169,9 @@ class VoronoiDelaunay:
                 )
                 circle.shift(vert_a)
                 return circle
-        return None  # should never get here
+        raise ValueError(
+            f"voronoi vertex {voronoi_vertex_index} is not part of any triangle ridge"
+        )
 
     def create_triangle(self, voronoi_vertex_index: int) -> Any:
         """Create the dual triangle for a given Voronoi vertex and add it to the mesh.

@@ -4,7 +4,7 @@
 
 """Faster meshes (WORK IN PROGRESS) by using OpenGL more efficiently."""
 
-from typing import Any
+from typing import Any, Sequence
 
 from manim.mobject.opengl.opengl_mobject import OpenGLMobject
 
@@ -72,13 +72,14 @@ class FastManimMesh(OpenGLMobject):
         self._validate_mesh(mesh)
         self.mesh = mesh
         self.triangle_indices = self._flatten_triangles(mesh)
-        super().__init__(
-            shader_folder=shader_folder if shader_folder is not None else "mesh",
-            # default params
-            **{key: get_param_or_default(key, kwargs, OGLM) for key in OGLM},
-            # regular kwargs
-            **remove_keys_from_dict(kwargs, list(OGLM.keys())),
+        call_kwargs: dict[str, Any] = {
+            key: get_param_or_default(key, kwargs, OGLM) for key in OGLM
+        }
+        call_kwargs.update(remove_keys_from_dict(kwargs, list(OGLM.keys())))
+        call_kwargs["shader_folder"] = (
+            shader_folder if shader_folder is not None else "mesh"
         )
+        super().__init__(**call_kwargs)
 
     @staticmethod
     def _validate_mesh(mesh: Mesh) -> None:
@@ -220,11 +221,11 @@ class FastManimMesh(OpenGLMobject):
         self.read_data_to_shader(shader_data, "color", "rgbas")
         return shader_data
 
-    def get_shader_vert_indices(self) -> VectorND:
+    def get_shader_vert_indices(self) -> Sequence[int]:
         """Return the triangle indices used for shader rendering.
 
         Returns
         -------
             The same array as :meth:`~manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.get_triangle_indices`.
         """
-        return self.get_triangle_indices()
+        return [int(i) for i in self.get_triangle_indices()]

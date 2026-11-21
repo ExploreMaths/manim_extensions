@@ -10,7 +10,7 @@ fields suitable for teaching and demonstration scenes in Manim.
 """
 
 from __future__ import annotations
-from typing import Any, Iterable
+from typing import Any, Callable, Iterable
 
 # unlinked-class-ok: Charge
 
@@ -22,6 +22,8 @@ from manim import (
     ArrowVectorField,
     BLUE,
     Dot,
+    Mobject,
+    ManimColor,
     ORIGIN,
     RED,
     RED_A,
@@ -85,13 +87,14 @@ class Charge(VGroup):
         self.point = point
         self.radius = (abs(magnitude) * 0.4 if abs(magnitude) < 2 else 0.8) * 0.3
 
+        label: Mobject
         if magnitude > 0:
             label = VGroup(
                 Rectangle(width=0.32 * 1.1, height=0.006 * 1.1).set_z_index(1),
                 Rectangle(width=0.006 * 1.1, height=0.32 * 1.1).set_z_index(1),
             )
             color = RED
-            layer_colors = [RED_D, RED_A]
+            layer_colors: list[ManimColor | str] = [RED_D, RED_A]
             layer_radius = 4
         else:
             label = Rectangle(width=0.27, height=0.003)
@@ -102,8 +105,10 @@ class Charge(VGroup):
         if add_glow:  # use many arcs to simulate glowing
             layer_num = 80
             color_list = color_gradient(layer_colors, layer_num)
-            opacity_func = lambda t: 1500 * (1 - abs(t - 0.009) ** 0.0001)
-            rate_func = lambda t: t**2
+            opacity_func: Callable[[float], float] = lambda t: 1500 * (
+                1 - abs(t - 0.009) ** 0.0001
+            )
+            rate_func: Callable[[float], float] = lambda t: t**2
 
             for i in range(layer_num):
                 self.add(

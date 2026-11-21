@@ -606,7 +606,9 @@ class Mesh:
         # use indices to update self._faces
         faces_to_remove = fix_references(self._faces, indices)
         # remove vertices at all the indices
-        self._vertices = np.delete(self._vertices, indices, axis=0)
+        self._vertices = np.delete(
+            self._vertices, np.asarray(indices, dtype=int), axis=0
+        )
         # remove faces and possibly parts
         fix_references(self._parts, faces_to_remove)
         # Topology changed: rebuild the edge cache once for all removed faces.

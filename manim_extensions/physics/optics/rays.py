@@ -168,9 +168,7 @@ class Ray(Line):
         dists.sort(key=lambda x: x[0])
         return [lens for _, lens in dists]
 
-    def _sort_intersections(
-        self, intersections: Iterable[Point3D]
-    ) -> list[Point3D]:
+    def _sort_intersections(self, intersections: Iterable[Point3D]) -> list[Point3D]:
         """Sort intersection points by distance from the ray's current end point.
 
         Parameters

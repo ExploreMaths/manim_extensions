@@ -6,7 +6,7 @@
 """Utilities for the pendulum module."""
 
 from __future__ import annotations
-from typing import Any, Iterable, cast
+from typing import Any, cast
 
 r"""Systems of :class:`~manim_extensions.physics.rigid_mechanics.pendulum.Pendulum` and their motion visualisations."""
 
@@ -76,7 +76,7 @@ class MultiPendulum(VGroup):
 
     def __init__(
         self,
-        *bobs: Iterable[Point3D],
+        *bobs: Point3D,
         pivot_point: Point3D = UP * 2,
         rod_style: dict[Any, Any] = {},
         bob_style: dict[Any, Any] = {
@@ -88,7 +88,7 @@ class MultiPendulum(VGroup):
     ) -> None:
         self.pivot_point = pivot_point
         self.bobs = VGroup(*[Circle(**bob_style).move_to(i) for i in bobs])
-        self.pins = [pivot_point]
+        self.pins: list[Any] = [pivot_point]
         self.pins += bobs
         self.rods = VGroup()
         self.rods += Line(self.pivot_point, self.bobs[0].get_center(), **rod_style)
@@ -106,7 +106,9 @@ class MultiPendulum(VGroup):
         super().__init__(**kwargs)
         self.add(self.rods, self.bobs)
 
-    def _make_joints(self, mob1: Mobject, mob2: Mobject, spacescene: SpaceScene) -> Any:
+    def _make_joints(
+        self, mob1: Mobject, mob2: Mobject | Point3D, spacescene: SpaceScene
+    ) -> Any:
         """Create a pymont pin joint between two bodies (or a body and a fixed point).
 
         Parameters
@@ -125,7 +127,7 @@ class MultiPendulum(VGroup):
         """
         pymunk = require("physics", "pymunk")
         a = mob1.body
-        if type(mob2) == np.ndarray:
+        if isinstance(mob2, np.ndarray):
             b = pymunk.Body(body_type=pymunk.Body.STATIC)
             b.position = mob2[0], mob2[1]
         else:
@@ -168,9 +170,9 @@ class MultiPendulum(VGroup):
         -------
             The resulting value.
         """
-        spacescene: SpaceScene = self.bobs[0].spacescene
-        pins = [self.pivot_point]
-        pins += self.bobs
+        spacescene = cast(SpaceScene, cast(Any, self.bobs[0]).spacescene)
+        pins: list[Any] = [self.pivot_point]
+        pins += list(self.bobs)
 
         for i in range(len(pins) - 1):
             self._make_joints(pins[i + 1], pins[i], spacescene)

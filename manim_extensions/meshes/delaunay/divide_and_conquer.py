@@ -6,9 +6,9 @@
 functions to create delaunay meshes by divide and conquer.
 """
 
-from typing import Any, List
+from typing import Any, List, Sequence
 
-from manim import Create, DashedLine, FadeOut, Mobject, Scene, Uncreate
+from manim import Create, DashedLine, FadeOut, Scene, Uncreate
 
 # python imports
 
@@ -25,7 +25,7 @@ from .delaunay_criterion import (
 from ..models.manim_models.triangle_mesh import (
     TriangleManim2DMesh,
 )
-from manim.typing import Point2D, Point2D_Array, Vector2D
+from manim.typing import Vector2D
 
 
 def get_clockwise_angle(a: Vector2D, b: Vector2D) -> float:
@@ -44,10 +44,10 @@ def get_clockwise_angle(a: Vector2D, b: Vector2D) -> float:
     """
     dot = a[0] * b[0] + a[1] * b[1]  # proportional to cos
     det = a[0] * b[1] - b[0] * a[1]  # proportional to sin
-    angle = -np.arctan2(det, dot)  # atan2(sin, cos)
+    angle = -float(np.arctan2(det, dot))  # atan2(sin, cos)
     if angle < 0:  # counterclockwise
         angle = 2 * np.pi + angle
-    return angle
+    return float(angle)
 
 
 def get_counter_clockwise_angle(a: Vector2D, b: Vector2D) -> float:
@@ -66,7 +66,7 @@ def get_counter_clockwise_angle(a: Vector2D, b: Vector2D) -> float:
     """
     dot = a[0] * b[0] + a[1] * b[1]  # proportional to cos
     det = a[0] * b[1] - b[0] * a[1]  # proportional to sin
-    angle = np.arctan2(det, dot)  # atan2(sin, cos)
+    angle = float(np.arctan2(det, dot))  # atan2(sin, cos)
     if angle < 0:  # clockwise
         angle = 2 * np.pi + angle
     return angle
@@ -220,7 +220,10 @@ class DivideAndConquer:
         self.scene.renderer.update_frame(self.scene)
 
     def _right_candidate(
-        self, base_lr: list[Any], rr_edges: Mobject, speed: float = 1.0
+        self,
+        base_lr: tuple[int, int],
+        rr_edges: set[tuple[Any, Any]] | list[tuple[Any, Any]],
+        speed: float = 1.0,
     ) -> Any:
         """Find the best right-side candidate vertex for the merge step.
 
@@ -282,19 +285,30 @@ class DivideAndConquer:
 
                 # delete RR edge to potential_candidate
                 faces = self.triangle_mesh.mesh.faces
-                face_idx_to_delete = None
-                for face_idx, face in enumerate(faces):
-                    if endpoints[order[i]] in face and base_lr[1] in face:
+                face_idx_to_delete: int | None = None
+                for face_idx, face_vertices in enumerate(faces):
+                    if (
+                        endpoints[order[i]] in face_vertices
+                        and base_lr[1] in face_vertices
+                    ):
                         face_idx_to_delete = face_idx
                         break
-                face, edges = self.triangle_mesh.remove_face(face_idx_to_delete)
-                rr_edges.remove(tuple(sorted((base_lr[1], potential_candidate))))
-                self.scene.play(FadeOut(face, *edges, run_time=1.0 * speed))
+                if face_idx_to_delete is not None:
+                    removed_face, removed_edges = self.triangle_mesh.remove_face(
+                        face_idx_to_delete
+                    )
+                    rr_edges.remove(tuple(sorted((base_lr[1], potential_candidate))))
+                    self.scene.play(
+                        FadeOut(removed_face, *removed_edges, run_time=1.0 * speed)
+                    )
                 self.scene.wait(0.3 * speed)
         return None
 
     def _left_candidate(
-        self, base_lr: list[Any], ll_edges: Mobject, speed: float = 1.0
+        self,
+        base_lr: tuple[int, int],
+        ll_edges: set[tuple[Any, Any]] | list[tuple[Any, Any]],
+        speed: float = 1.0,
     ) -> Any:
         """Find the best left-side candidate vertex for the merge step.
 
@@ -352,14 +366,22 @@ class DivideAndConquer:
 
                 # delete LL edge to potential_candidate
                 faces = self.triangle_mesh.mesh.faces
-                face_idx_to_delete = None
-                for face_idx, face in enumerate(faces):
-                    if endpoints[order[i]] in face and base_lr[0] in face:
+                face_idx_to_delete: int | None = None
+                for face_idx, face_vertices in enumerate(faces):
+                    if (
+                        endpoints[order[i]] in face_vertices
+                        and base_lr[0] in face_vertices
+                    ):
                         face_idx_to_delete = face_idx
                         break
-                face, edges = self.triangle_mesh.remove_face(face_idx_to_delete)
-                ll_edges.remove(tuple(sorted((base_lr[0], potential_candidate))))
-                self.scene.play(FadeOut(face, *edges, run_time=0.5 * speed))
+                if face_idx_to_delete is not None:
+                    removed_face, removed_edges = self.triangle_mesh.remove_face(
+                        face_idx_to_delete
+                    )
+                    ll_edges.remove(tuple(sorted((base_lr[0], potential_candidate))))
+                    self.scene.play(
+                        FadeOut(removed_face, *removed_edges, run_time=0.5 * speed)
+                    )
                 self.scene.wait(0.3 * speed)
         return None
 
@@ -477,7 +499,7 @@ class DivideAndConquer:
             The ``(l, r)`` vertex indices forming the initial base edge.
         """
 
-        def next_index(cur_idx: int, indices: list[Any]) -> int | None:
+        def next_index(cur_idx: int, indices: Sequence[int]) -> int:
             """Return the next index in a cyclic sequence.
 
             Parameters
@@ -489,14 +511,19 @@ class DivideAndConquer:
 
             Returns
             -------
-                The next index, or ``None`` if ``cur_idx`` is not found.
+                The next index in the cyclic sequence.
+
+            Raises
+            ------
+            ValueError
+                If ``cur_idx`` does not occur in ``indices``.
             """
             for i, idx in enumerate(indices):
                 if idx == cur_idx:
                     return indices[(i + 1) % len(indices)]
-            return None
+            raise ValueError(f"index {cur_idx} not found in {indices}")
 
-        def on_right(tangent: Point2D_Array, point: Point2D) -> bool:
+        def on_right(tangent: Any, point: Any) -> bool:
             """Check whether a point lies to the right of a tangent line.
 
             Parameters
@@ -510,18 +537,19 @@ class DivideAndConquer:
             -------
                 ``True`` if the point is to the right of the tangent.
             """
-            return (
+            return bool(
                 (tangent[1][0] - tangent[0][0]) * (point[1] - tangent[0][1])
                 - (tangent[1][1] - tangent[0][1]) * (point[0] - tangent[0][0])
-            ) < 0
+                < 0
+            )
 
         verts = self.triangle_mesh.mesh.get_3d_vertices()
-        left_hull = (
+        left_hull: Sequence[int] = (
             ConvexHull(verts[indices_left][:, :2]).vertices
             if len(indices_left) > 2
             else range(2)
         )
-        right_hull = (
+        right_hull: Sequence[int] = (
             ConvexHull(verts[indices_right][:, :2]).vertices
             if len(indices_right) > 2
             else range(2)

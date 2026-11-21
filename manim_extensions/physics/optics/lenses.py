@@ -6,7 +6,7 @@
 """Utilities for the lenses module."""
 
 from __future__ import annotations
-from typing import Any, Iterable, cast
+from typing import Any, cast
 
 r"""Lenses for refracting :class:`~manim_extensions.physics.optics.rays.Ray`\ s."""
 

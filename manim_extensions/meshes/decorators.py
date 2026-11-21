@@ -49,7 +49,7 @@ def dangling_vert_decorator() -> Callable[[Callable[P, R]], Callable[P, R]]:
             **kwargs
                 Keyword arguments forwarded to the wrapped function.
             """
-            mesh = cast(object, args[0])
+            mesh = args[0]
             return_value = func(*args, **kwargs)
             if (
                 cast(Any, mesh).test_for_dangling
@@ -97,7 +97,7 @@ def dangling_face_decorator() -> Callable[[Callable[P, R]], Callable[P, R]]:
             **kwargs
                 Keyword arguments forwarded to the wrapped function.
             """
-            mesh = cast(object, args[0])
+            mesh = args[0]
             return_value = func(*args, **kwargs)
             if (
                 cast(Any, mesh).test_for_dangling

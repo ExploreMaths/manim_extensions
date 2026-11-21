@@ -143,4 +143,4 @@ def is_point_violating_delaunay(
         *[triangle_mesh.mesh.get_3d_vertices()[i] for i in face]
     )
     distance = np.linalg.norm(center - point)
-    return distance < radius
+    return bool(distance < radius)

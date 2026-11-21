@@ -9,7 +9,7 @@ This module provides gear and rack visualizations.
 """
 
 from __future__ import annotations
-from typing import Any, Sequence
+from typing import Any, cast
 
 import numpy as np
 from manim import (
@@ -20,10 +20,10 @@ from manim import (
     DOWN,
     LEFT,
     Line,
-    ManimColor,
     ORIGIN,
     OUT,
     PI,
+    ParsableManimColor,
     RIGHT,
     UP,
     VMobject,
@@ -32,7 +32,14 @@ from manim import (
 from scipy.optimize import fsolve
 from scipy.optimize import least_squares
 import warnings
-from manim.typing import Point3D, Point3D_Array, Vector3D, VectorND
+from manim.typing import (
+    Point3D,
+    Point3D_Array,
+    Point3DLike,
+    Vector3D,
+    Vector3DLike,
+    VectorND,
+)
 
 __all__ = [
     "involute_func",
@@ -472,9 +479,16 @@ class Gear(VMobject):
             The current rotation angle of the gear in radians.
         """
         v = self.get_angle_vector()
-        return np.arctan2(v[1], v[0])
+        return float(np.arctan2(v[1], v[0]))
 
-    def set_stroke(self, color: ManimColor | None = None, **kwargs: Any) -> Any:
+    def set_stroke(
+        self,
+        color: ParsableManimColor | None = None,
+        width: float | None = None,
+        opacity: float | None = None,
+        background: bool = False,
+        family: bool = False,
+    ) -> "Gear":
         """Override set_stroke to avoid revealing the line which is used for tracking center and angle.
         If family is specified, it will still do it.
 
@@ -482,18 +496,23 @@ class Gear(VMobject):
         ----------
         color
             The color to apply.
-        kwargs
-            Kwargs processed by this operation.
+        width
+            Stroke width in Manim units.
+        opacity
+            Stroke opacity between 0 and 1.
+        background
+            Whether the stroke is drawn behind the fill.
+        family
+            Whether the stroke also applies to submobjects.  Defaults to
+            ``False`` so the invisible tracking line keeps its stroke.
 
-
-            Returns
-            -------
-                The resulting value.
+        Returns
+        -------
+            The same gear, allowing calls to be chained.
         """
-        if "family" in kwargs:
-            super().set_stroke(color, **kwargs)
-        else:
-            super().set_stroke(color, family=False, **kwargs)
+        return super().set_stroke(
+            cast(ParsableManimColor, color), width, opacity, background, family
+        )
 
     def generate_points(self) -> Any:
         """Build the gear outline from involute curves, fillets, and arcs.
@@ -528,7 +547,7 @@ class Gear(VMobject):
         self.angle_ofs = angle_base[0] - self.alpha * DEGREES + da
 
         # find t-range for the involute that lies inside the rf-ra range
-        def invo_cross_diff(t: VectorND | None) -> float:
+        def invo_cross_diff(t: VectorND) -> float:
             """Compute the y-coordinate where two involute flanks intersect.
 
             Used to find the maximum involute height before the tooth tip.
@@ -546,7 +565,7 @@ class Gear(VMobject):
                 involute_func(t[0], self.rb), self.pitch_angle / 4 + self.angle_ofs
             )
             # when y coordinate is 0, the 2 involutes of the tooth would intersect because of the symmetry
-            return p1[1]
+            return float(p1[1])
 
         # find max height
         try:
@@ -594,7 +613,7 @@ class Gear(VMobject):
         rad_ucut = ofs_vector[0]
         tan_ucut = ofs_vector[1]
 
-        def undercut_func(t: VectorND | None) -> VectorND:
+        def undercut_func(t: VectorND) -> VectorND:
             """Compute a point on the undercut (radial) curve at parameter ``t``.
 
             Parameters
@@ -614,7 +633,7 @@ class Gear(VMobject):
         if self.z < 2 / (np.sin(self.alpha * DEGREES) ** 2) or self.rf < self.rb:
             undercut = True
 
-            def diff_val_func(t: VectorND | None) -> VectorND:
+            def diff_val_func(t: VectorND) -> VectorND:
                 """Compute the 2-D distance between undercut and involute curves.
 
                 Parameters
@@ -633,7 +652,7 @@ class Gear(VMobject):
                 diff = ucut_val - invo_val
                 return diff[0:2]
 
-            def _solve_undercut_intersection() -> np.ndarray:
+            def _solve_undercut_intersection() -> VectorND:
                 """Find the intersection of undercut and involute curves robustly."""
                 candidates = [
                     np.array([0.01, 0.05]),
@@ -641,7 +660,7 @@ class Gear(VMobject):
                     np.array([0.02, 0.1]),
                     np.array([0.001, 0.01]),
                 ]
-                best_result = None
+                best_result: VectorND | None = None
                 best_cost = np.inf
                 for x0 in candidates:
                     try:
@@ -665,11 +684,11 @@ class Gear(VMobject):
                     with warnings.catch_warnings():
                         warnings.simplefilter("ignore")
                         res = least_squares(
-                            lambda t: diff_val_func([t[0], t[1]]),
+                            lambda t: diff_val_func(np.array([t[0], t[1]])),
                             x0=np.array([0.01, 0.05]),
                             bounds=([-np.pi, -np.pi], [np.pi, np.pi]),
                         )
-                    return res.x
+                    return cast(VectorND, res.x)
                 except Exception:
                     return np.array([0.01, 0.05])
 
@@ -1013,8 +1032,10 @@ class Gear(VMobject):
     def rotate(
         self,
         angle: float,
-        axis: Vector3D = OUT,
-        about_point: Sequence[float] | None = None,
+        axis: Vector3DLike = OUT,
+        *,
+        about_point: Point3DLike | None = None,
+        about_edge: Vector3DLike | None = None,
         **kwargs: Any,
     ) -> "Gear":
         """Rotate the gear around its centre.
@@ -1028,17 +1049,18 @@ class Gear(VMobject):
         about_point
             Centre point for the rotation.  If ``None`` the gear's own
             centre is used.
-        **kwargs
-            Additional keyword arguments forwarded to :meth:`~manim.mobject.types.vectorized_mobject.VMobject.rotate`.
+        about_edge
+            Edge of the gear used when ``about_point`` is ``None`` and the
+            gear should rotate around one of its sides.
 
         Returns
         -------
             The same mobject after rotation.
         """
-        if about_point is None:
-            ret = super().rotate(angle, axis, about_point=self.get_center(), **kwargs)
-        else:
-            ret = super().rotate(angle, axis, about_point=about_point, **kwargs)
+        # ``**kwargs`` only mirrors the supertype signature: VMobject.rotate
+        # takes no additional keyword arguments.
+        point = self.get_center() if about_point is None else about_point
+        ret = super().rotate(angle, axis, about_point=point, about_edge=about_edge)
         return ret
 
 
@@ -1180,13 +1202,15 @@ class Rack(VMobject):
             The current orientation angle of the rack in radians.
         """
         v = self.get_angle_vector()
-        return np.arctan2(v[1], v[0])
+        return float(np.arctan2(v[1], v[0]))
 
     def rotate(
         self,
         angle: float,
-        axis: Vector3D = OUT,
-        about_point: Sequence[float] | None = None,
+        axis: Vector3DLike = OUT,
+        *,
+        about_point: Point3DLike | None = None,
+        about_edge: Vector3DLike | None = None,
         **kwargs: Any,
     ) -> "Rack":
         """Rotate the rack around its centre.
@@ -1200,15 +1224,16 @@ class Rack(VMobject):
         about_point
             Centre point for the rotation.  If ``None`` the rack's own
             centre is used.
-        **kwargs
-            Additional keyword arguments forwarded to :meth:`~manim.mobject.types.vectorized_mobject.VMobject.rotate`.
+        about_edge
+            Edge of the gear used when ``about_point`` is ``None`` and the
+            gear should rotate around one of its sides.
 
         Returns
         -------
             The same mobject after rotation.
         """
-        if about_point is None:
-            ret = super().rotate(angle, axis, about_point=self.get_center(), **kwargs)
-        else:
-            ret = super().rotate(angle, axis, about_point=about_point, **kwargs)
+        # ``**kwargs`` only mirrors the supertype signature: VMobject.rotate
+        # takes no additional keyword arguments.
+        point = self.get_center() if about_point is None else about_point
+        ret = super().rotate(angle, axis, about_point=point, about_edge=about_edge)
         return ret

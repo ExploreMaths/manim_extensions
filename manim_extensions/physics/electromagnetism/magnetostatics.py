@@ -12,7 +12,7 @@ from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
 import itertools as it
 
 import numpy as np
-from manim.typing import Point3D, Vector3D
+from manim.typing import Point3D
 
 __all__ = ["Wire", "MagneticField"]
 
@@ -115,7 +115,7 @@ class MagneticField(ArrowVectorField):
     @staticmethod
     def _field_func(
         p: Point3D,
-        dls: Iterable[tuple[Point3D, Vector3D]],
+        dls: Iterable[Iterable[tuple[Point3D, Point3D]]],
         currents: Iterable[float],
     ) -> np.ndarray:
         """Compute the magnetic field vector at a point using the Biot-Savart law.
@@ -125,8 +125,8 @@ class MagneticField(ArrowVectorField):
         p
             Field point at which the magnetic field is evaluated.
         dls
-            Line segments (pairs of points) representing current-carrying
-            wire segments.
+            One list of line segments per wire; each segment is a pair of
+            consecutive points along that wire.
         currents
             Current magnitudes (in Amperes) flowing through each wire.
 
