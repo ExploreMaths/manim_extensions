@@ -70,7 +70,7 @@ class TreeNode:
         self.level: int = 0
         self.is_flip: bool = False
         self.children: List[TreeNode] = []
-        self.parent: TreeNode = None
+        self.parent: TreeNode | None = None
 
     def add_child(self, child: "TreeNode") -> Any:
         """Add a child node and establish the parent-child relationship.
@@ -89,7 +89,7 @@ class TreeNode:
         child.parent = self
 
 
-def copy_node(node: object) -> TreeNode:
+def copy_node(node: object | None) -> TreeNode | None:
     """Recursively create a deep copy of a node tree.
 
     Parameters
@@ -107,7 +107,9 @@ def copy_node(node: object) -> TreeNode:
         return None
     root = TreeNode(cast(Any, node).height, cast(Any, node).width)
     for child in cast(Any, node).children:
-        root.add_child(copy_node(child))
+        copied = copy_node(child)
+        if copied is not None:
+            root.add_child(copied)
     return root
 
 
@@ -268,7 +270,10 @@ class StandardLayout(Layout):
         self.left = TreeNode(cast(Any, self.root).height, cast(Any, self.root).width)
         if (number := len(cast(Any, self.root).children)) > 0:
             m, n = split_integer(number)
-            children = [copy_node(child) for child in cast(Any, self.root).children]
+            children = [
+                cast(TreeNode, copy_node(child))
+                for child in cast(Any, self.root).children
+            ]
             for child in children[0:m]:
                 self.left.add_child(child)
             self.right = None
@@ -286,16 +291,22 @@ class StandardLayout(Layout):
         -------
             The root node of the completed layout."""
         self._split()
-        self.left = TidyTreeLayout(
-            self.left, self.direction, self.node_spacing, self.level_spacing
-        ).layout()
+        self.left = cast(
+            TreeNode,
+            TidyTreeLayout(
+                self.left, self.direction, self.node_spacing, self.level_spacing
+            ).layout(),
+        )
         if self.right is not None:
-            self.right = TidyTreeLayout(
-                self.right,
-                self.flip_direction,
-                self.node_spacing,
-                self.level_spacing,
-            ).layout()
+            self.right = cast(
+                TreeNode,
+                TidyTreeLayout(
+                    self.right,
+                    self.flip_direction,
+                    self.node_spacing,
+                    self.level_spacing,
+                ).layout(),
+            )
             x = cast(Any, self.left).x - cast(Any, self.right).x
             y = cast(Any, self.left).y - cast(Any, self.right).y
             self._offset(self.right, x, y)

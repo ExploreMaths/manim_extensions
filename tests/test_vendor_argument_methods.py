@@ -7,7 +7,7 @@ import importlib
 
 import numpy as np
 import pytest
-from manim import Circle, Line
+from manim import Circle, Line, RIGHT
 
 CASES = [
     ("manim_extensions.algorithm.node:Node", "set_value", (1,)),
@@ -265,7 +265,7 @@ CASES = [
     (
         "manim_extensions.mindmap.algorithms.layout_config:LayoutConfig",
         "get_layout_direction",
-        (1,),
+        (RIGHT,),
     ),
     ("manim_extensions.mindmap.nodes.node:NodeStyle", "get_line_style", (1,)),
     ("manim_extensions.mindmap.nodes.node:NodeStyle", "get_node_style", (1,)),

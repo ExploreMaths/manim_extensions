@@ -8,7 +8,7 @@ This module provides configuration classes for layout algorithms.
 
 """
 
-from typing import Any, Dict, List
+from typing import Any, Dict, Sequence, cast
 
 from manim import DOWN, LEFT, RIGHT, UP
 
@@ -154,17 +154,22 @@ class LayoutConfig:
         direction: Vector3D = RIGHT,
         node_spacing: float = 0.5,
         level_spacing: float = 0.5,
-        sides: Vector3D | List[Vector3D] = (UP, DOWN),
+        sides: Vector3D | Sequence[Vector3D] = (UP, DOWN),
     ) -> None:
         if not any(np.array_equal(direction, d) for d in [UP, DOWN, LEFT, RIGHT]):
             raise ValueError(f"direction must be one of {LEFT,RIGHT,UP,DOWN}")
-        if not isinstance(sides, (list, tuple)):
-            sides = (sides,)
-        for side in sides:
+        side_list: list[Vector3D] = (
+            list(cast(Sequence[Vector3D], sides))
+            if isinstance(sides, (list, tuple))
+            else [cast(Vector3D, sides)]
+        )
+        for side in side_list:
             if not any(np.array_equal(side, d) for d in [UP, DOWN]):
                 raise ValueError(f"side must be one of {UP,DOWN}")
 
-        self.sides = tuple(self.get_layout_direction(side) for side in sides)
+        self.sides: tuple[LayoutDirection, ...] = tuple(
+            self.get_layout_direction(side) for side in side_list
+        )
         self.layout_direction = self.get_layout_direction(direction)
         self.node_spacing = node_spacing
         self.level_spacing = level_spacing
@@ -181,8 +186,13 @@ class LayoutConfig:
         Returns
         -------
             The layout direction enum matching ``direction``.
+
+        Raises
+        ------
+        ValueError
+            Raised when ``direction`` is not one of UP, DOWN, LEFT or RIGHT.
         """
-        string = None
+        string: LayoutDirection | None = None
         if np.array_equal(direction, UP):
             string = LayoutDirection.BottomToTop
         elif np.array_equal(direction, DOWN):
@@ -191,6 +201,8 @@ class LayoutConfig:
             string = LayoutDirection.RightToLeft
         elif np.array_equal(direction, RIGHT):
             string = LayoutDirection.LeftToRight
+        if string is None:
+            raise ValueError(f"direction must be one of {LEFT,RIGHT,UP,DOWN}")
         return string
 
     @property

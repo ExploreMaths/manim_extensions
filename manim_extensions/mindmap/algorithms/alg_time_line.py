@@ -5,7 +5,7 @@
 """Timeline layout algorithm - Python implementation."""
 
 from __future__ import annotations
-from typing import Any, Callable, Dict, List, cast
+from typing import Any, Callable, Dict, List, Sequence, cast
 
 __all__ = [
     "TimeLineLayout",
@@ -228,7 +228,7 @@ class TimeLineLayout(Layout):
     def __init__(
         self,
         root: object,
-        sides: tuple[LayoutDirection] = (
+        sides: Sequence[LayoutDirection] = (
             LayoutDirection.TopToBottom,
             LayoutDirection.BottomToTop,
         ),

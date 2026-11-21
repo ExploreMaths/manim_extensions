@@ -212,13 +212,13 @@ def get_min(node: object, is_horizontal: bool) -> float:
     -------
         The minimum coordinate value.
     """
-    res = cast(Any, node).y if is_horizontal else cast(Any, node).x
+    res = float(cast(Any, node).y if is_horizontal else cast(Any, node).x)
     for child in cast(Any, node).children:
         res = min(get_min(child, is_horizontal), res)
     return res
 
 
-def normalize(node: object, is_horizontal: bool) -> Any:
+def normalize(node: Any, is_horizontal: bool) -> Any:
     """Shift the subtree so that its minimum non-layered coordinate is 0.
 
     Parameters
@@ -267,7 +267,7 @@ def convert_back(converted: WrappedTree, root: object, is_horizontal: bool) -> A
             convert_back(child, cast(Any, root).children[i], is_horizontal)
 
 
-def layer(node: object, direction: str, level_spacing: float) -> Any:
+def layer(node: Any, direction: LayoutDirection, level_spacing: float) -> Any:
     """Set the layer (depth) coordinate for each node in the tree.
 
     Assigns ``level`` based on the parent's level and positions the
@@ -368,9 +368,9 @@ class TidyTreeLayout(Layout):
         self.is_horizontal = self._is_horizontal(direction)
         self.node_spacing = node_spacing
         self.level_spacing = level_spacing
-        self.wt = None
+        self.wt: WrappedTree | None = None
 
-    def _is_horizontal(self, direction: str) -> bool:
+    def _is_horizontal(self, direction: LayoutDirection) -> bool:
         """Check whether the given layout direction is horizontal.
 
         Parameters
@@ -391,10 +391,11 @@ class TidyTreeLayout(Layout):
         -------
             The root node of the completed layout."""
         layer(self.root, self.direction, self.level_spacing)
-        self.wt = WrappedTree.from_node(self.root, self.is_horizontal)
-        self.first_walk(self.wt)
-        self.second_walk(self.wt, 0)
-        convert_back(self.wt, self.root, self.is_horizontal)
+        wt = WrappedTree.from_node(self.root, self.is_horizontal)
+        self.wt = wt
+        self.first_walk(wt)
+        self.second_walk(wt, 0)
+        convert_back(wt, self.root, self.is_horizontal)
         normalize(self.root, self.is_horizontal)
         return self.root
 
@@ -417,12 +418,14 @@ class TidyTreeLayout(Layout):
 
         # Process the first child
         self.first_walk(t.children[0])
-        ih = self.update_iyl(self.bottom(t.children[0].extreme_right), 0, None)
+        ih = self.update_iyl(
+            self.bottom(cast(WrappedTree, t.children[0].extreme_right)), 0, None
+        )
 
         # Process the remaining children
         for i in range(1, t.child_number):
             self.first_walk(t.children[i])
-            min_val = self.bottom(t.children[i].extreme_right)
+            min_val = self.bottom(cast(WrappedTree, t.children[i].extreme_right))
             self.separate(t, i, ih)
             ih = self.update_iyl(min_val, i, ih)
 
@@ -494,14 +497,14 @@ class TidyTreeLayout(Layout):
             -------
                 The resulting value.
         """
-        sr = t.children[
+        sr: WrappedTree | None = t.children[
             i - 1
         ]  # current right-contour node, initially the immediate left sibling
-        mssr = sr.mod  # sum of mod values from t.children[i-1] to sr
-        cl = t.children[
+        mssr = cast(WrappedTree, sr).mod  # sum of mod values from t.children[i-1] to sr
+        cl: WrappedTree | None = t.children[
             i
         ]  # current left-contour node, initially the current subtree root
-        mscl = cl.mod  # sum of mod values from t.children[i] to cl
+        mscl = cast(WrappedTree, cl).mod  # sum of mod values from t.children[i] to cl
 
         while sr is not None and cl is not None:
             # Skip preceding subtrees that are completely hidden
@@ -749,8 +752,8 @@ class TidyTreeLayout(Layout):
             -------
                 The resulting value.
         """
-        d = 0
-        modsumdelta = 0
+        d: float = 0
+        modsumdelta: float = 0
         for child in t.children:
             d += child.shift
             modsumdelta += d + child.change
