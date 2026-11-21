@@ -1481,7 +1481,7 @@
 
 <span class="sd">"""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 
@@ -1490,6 +1490,8 @@
     <span class="n">BLACK</span><span class="p">,</span>
     <span class="n">Graph</span><span class="p">,</span>
     <span class="n">Line</span><span class="p">,</span>
+    <span class="n">ManimColor</span><span class="p">,</span>
+    <span class="n">Mobject</span><span class="p">,</span>
     <span class="n">ORIGIN</span><span class="p">,</span>
     <span class="n">PI</span><span class="p">,</span>
     <span class="n">Text</span><span class="p">,</span>
@@ -1574,18 +1576,22 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">start</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-        <span class="n">end</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">start</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+        <span class="n">end</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
         <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span>
         <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="n">start</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">end</span> <span class="o">=</span> <span class="n">end</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"start"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">"end"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">start</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="n">angle</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sheen_direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_unit_vector</span><span class="p">()</span>
         <span class="n">other_arc</span> <span class="o">=</span> <span class="n">ArcBetweenPoints</span><span class="p">(</span>
-            <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="n">angle</span><span class="o">=-</span><span class="n">angle</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+            <span class="n">start</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="p">,</span> <span class="n">angle</span><span class="o">=-</span><span class="n">angle</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="n">radius</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
         <span class="p">)</span>
         <span class="n">other_arc</span><span class="o">.</span><span class="n">sheen_direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheen_direction</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">other_arc</span><span class="p">)</span>
@@ -1663,14 +1669,16 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">start</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
-        <span class="n">end</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+        <span class="n">start</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+        <span class="n">end</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
         <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span>
         <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="n">middle_line</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="s2">"start"</span><span class="p">:</span> <span class="n">start</span><span class="p">,</span> <span class="s2">"end"</span><span class="p">:</span> <span class="n">end</span><span class="p">,</span> <span class="s2">"angle"</span><span class="p">:</span> <span class="n">angle</span><span class="p">}</span>
+        <span class="p">)</span>
+        <span class="n">middle_line</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="p">{</span><span class="o">**</span><span class="n">kwargs</span><span class="p">,</span> <span class="s2">"start"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">start</span><span class="p">,</span> <span class="s2">"end"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">end</span><span class="p">})</span>
         <span class="n">middle_line</span><span class="o">.</span><span class="n">sheen_direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sheen_direction</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">middle_line</span><span class="p">)</span></div>
 
@@ -1771,7 +1779,7 @@
 <span class="sd">               self.wait()</span>
 <span class="sd">    """</span>
 
-    <span class="n">SUPPORTED_BOND_TYPES</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">SUPPORTED_BOND_TYPES</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">type</span><span class="p">[</span><span class="n">Line</span><span class="p">]</span> <span class="o">|</span> <span class="nb">type</span><span class="p">[</span><span class="n">ArcBetweenPoints</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span>
         <span class="mi">1</span><span class="p">:</span> <span class="n">SimpleLine</span><span class="p">,</span>
         <span class="mi">2</span><span class="p">:</span> <span class="n">DoubleLine</span><span class="p">,</span>
         <span class="mi">3</span><span class="p">:</span> <span class="n">TripleLine</span><span class="p">,</span>
@@ -1783,25 +1791,25 @@
         <span class="n">edges_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
         <span class="n">label</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">numeric_label</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
-        <span class="n">label_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">BLACK</span><span class="p">,</span>
+        <span class="n">label_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">BLACK</span><span class="p">,</span>
         <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">edges_dict</span> <span class="o">=</span> <span class="n">edges_dict</span>
-        <span class="n">labels</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">labels</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Text</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
         <span class="k">if</span> <span class="n">label</span> <span class="ow">or</span> <span class="n">numeric_label</span><span class="p">:</span>
             <span class="n">labels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_labels</span><span class="p">(</span><span class="n">vertices_dict</span><span class="p">,</span> <span class="n">numeric_label</span><span class="p">,</span> <span class="n">label_color</span><span class="p">)</span>
 
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
-            <span class="n">vertices</span><span class="o">=</span><span class="n">vertices_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span>
-            <span class="n">edges</span><span class="o">=</span><span class="n">edges_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">(),</span>
-            <span class="n">vertex_config</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">make_vertex_config</span><span class="p">(</span><span class="n">vertices_dict</span><span class="p">),</span>
-            <span class="n">edge_config</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">make_edge_config</span><span class="p">(</span><span class="n">edges_dict</span><span class="p">),</span>
-            <span class="n">layout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">make_layout</span><span class="p">(</span><span class="n">vertices_dict</span><span class="p">),</span>
-            <span class="n">labels</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span>
-            <span class="o">*</span><span class="n">args</span><span class="p">,</span>
-            <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
-        <span class="p">)</span>
+        <span class="n">graph_kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"vertices"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">vertices_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+            <span class="s2">"edges"</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="n">edges_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">()),</span>
+            <span class="s2">"vertex_config"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_vertex_config</span><span class="p">(</span><span class="n">vertices_dict</span><span class="p">),</span>
+            <span class="s2">"edge_config"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_edge_config</span><span class="p">(</span><span class="n">edges_dict</span><span class="p">),</span>
+            <span class="s2">"layout"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_layout</span><span class="p">(</span><span class="n">vertices_dict</span><span class="p">),</span>
+            <span class="s2">"labels"</span><span class="p">:</span> <span class="n">labels</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="n">graph_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">graph_kwargs</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">vertices</span>
@@ -1810,8 +1818,8 @@
 <div class="viewcode-block" id="GraphMolecule._populate_edge_dict">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule._populate_edge_dict">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_populate_edge_dict</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">edges</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span> <span class="n">_</span><span class="p">:</span> <span class="n">VectorND</span> <span class="o">|</span> <span class="kc">None</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">edges</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">]],</span> <span class="n">edge_type</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">Mobject</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create a bond mobject for every edge.</span>
 
 <span class="sd">        Parameters</span>
@@ -1842,7 +1850,7 @@
 <div class="viewcode-block" id="GraphMolecule.select_bond_from_edge">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.select_bond_from_edge">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">select_bond_from_edge</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">edge</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">edge</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">type</span><span class="p">[</span><span class="n">Line</span><span class="p">]</span> <span class="o">|</span> <span class="nb">type</span><span class="p">[</span><span class="n">ArcBetweenPoints</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return the bond class for a given edge tuple based on its bond type.</span>
 
@@ -1961,7 +1969,10 @@
 <div class="viewcode-block" id="GraphMolecule.make_labels">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.make_labels">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_labels</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">vertices_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">numeric_label</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="n">label_color</span><span class="p">:</span> <span class="nb">str</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">vertices_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
+        <span class="n">numeric_label</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
+        <span class="n">label_color</span><span class="p">:</span> <span class="n">ManimColor</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Text</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Create label text mobjects for each atom, either numeric or element symbols.</span>
 
@@ -2101,14 +2112,16 @@
 <span class="sd">        -------</span>
 <span class="sd">            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">vertices</span><span class="p">[</span><span class="n">atom_index</span><span class="p">]</span> <span class="k">for</span> <span class="n">atom_index</span> <span class="ow">in</span> <span class="n">atoms_indices</span><span class="p">])</span></div>
+        <span class="k">return</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="o">*</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">vertices</span><span class="p">[</span><span class="n">atom_index</span><span class="p">]</span> <span class="k">for</span> <span class="n">atom_index</span> <span class="ow">in</span> <span class="n">atoms_indices</span><span class="p">])</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="GraphMolecule.get_connected_atoms_v_group">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_connected_atoms_v_group">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_connected_atoms_v_group</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">from_atom_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">to_atom_index</span><span class="p">:</span> <span class="nb">int</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a VGroup of all atoms connected to to_atom_index beyond the bond from from_atom_index.</span>
 
 <span class="sd">        Parameters</span>
@@ -2175,7 +2188,7 @@
 <span class="sd">            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.</span>
 <span class="sd">        """</span>
         <span class="n">bonds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_bonds_from_atoms_indices</span><span class="p">(</span><span class="n">connected_atoms</span><span class="p">,</span> <span class="n">excluded_atom</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">bond_atoms</span><span class="p">]</span> <span class="k">for</span> <span class="n">bond_atoms</span> <span class="ow">in</span> <span class="n">bonds</span><span class="p">])</span></div>
+        <span class="k">return</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">bond_atoms</span><span class="p">]</span> <span class="k">for</span> <span class="n">bond_atoms</span> <span class="ow">in</span> <span class="n">bonds</span><span class="p">]))</span></div>
 
 
 <div class="viewcode-block" id="GraphMolecule.get_connected_atoms_and_bonds_group_from_index">
@@ -2306,7 +2319,9 @@
 
 <div class="viewcode-block" id="GraphMolecule.find_bond_center_by_index">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_bond_center_by_index">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">find_bond_center_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bond_index</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">find_bond_center_by_index</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">bond_index</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">]</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Returns the [x, y, z] coordinates of a bond given a bond tuple.</span>
 <span class="sd">        The bond tuple corresponds to the indices of the atoms in the bond.</span>
 
@@ -2349,7 +2364,7 @@
 <div class="viewcode-block" id="GraphMolecule.find_position_along_bond_axis">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_position_along_bond_axis">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find_position_along_bond_axis</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">bond_tuple</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">position_buff</span><span class="p">:</span> <span class="nb">float</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">bond_tuple</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">],</span> <span class="n">position_buff</span><span class="p">:</span> <span class="nb">float</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Returns a position along the bond axis given a bond index and depending on a position_buff.</span>
 <span class="sd">        A value of 1 will return one end of the bond. A value of -1 will return the other end.</span>
@@ -2381,10 +2396,10 @@
             <span class="n">_logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Valid indices are: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">bonds</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
             <span class="k">raise</span> <span class="n">key_error</span>
 
-        <span class="n">bond_vector</span> <span class="o">=</span> <span class="n">bond</span><span class="o">.</span><span class="n">get_vector</span><span class="p">()</span>
+        <span class="n">bond_vector</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">bond</span><span class="p">)</span><span class="o">.</span><span class="n">get_vector</span><span class="p">()</span>
         <span class="n">bond_center</span> <span class="o">=</span> <span class="n">bond</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>
 
-        <span class="k">return</span> <span class="n">bond_center</span> <span class="o">+</span> <span class="n">bond_vector</span> <span class="o">*</span> <span class="n">position_buff</span> <span class="o">*</span> <span class="mf">0.5</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">Point3D</span><span class="p">,</span> <span class="n">bond_center</span> <span class="o">+</span> <span class="n">bond_vector</span> <span class="o">*</span> <span class="n">position_buff</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="GraphMolecule.find_bonds_center_by_index">
@@ -2431,10 +2446,10 @@
 <span class="sd">        -------</span>
 <span class="sd">            Dictionary mapping atom indices to their positions.</span>
 <span class="sd">        """</span>
-        <span class="n">atoms_positions</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">atoms_positions</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">atom_index</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="n">atoms_positions</span><span class="p">[</span><span class="n">atom_index</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_atom_position_by_index</span><span class="p">(</span>
-                <span class="n">atom_index</span><span class="o">=</span><span class="n">atom_index</span>
+                <span class="n">atom_index</span><span class="o">=</span><span class="n">cast</span><span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="n">atom_index</span><span class="p">)</span>
             <span class="p">)</span>
 
         <span class="k">return</span> <span class="n">atoms_positions</span></div>
@@ -2463,7 +2478,7 @@
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">mc_molecule_to_atoms_and_bonds</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span> <span class="n">mc_molecule</span><span class="p">:</span> <span class="n">MCMolecule</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">,</span> <span class="n">Dict</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Transforms the structure of a mc_molecule to a (vertices, edges) tuple.</span>
 

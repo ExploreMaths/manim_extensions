@@ -1479,7 +1479,7 @@
 <span class="sd">"""Arc-length, offset, warp and dashed-path helpers for Manim vector paths."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Sequence</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">cast</span><span class="p">,</span> <span class="n">overload</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
@@ -1579,7 +1579,7 @@
         <span class="n">q2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">gamma</span><span class="p">)</span> <span class="o">*</span> <span class="n">q1</span> <span class="o">+</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">q3</span>
         <span class="n">q0</span> <span class="o">=</span> <span class="n">cubic_points</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
         <span class="n">q4</span> <span class="o">=</span> <span class="n">cubic_points</span><span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="p">:]</span>
-        <span class="n">q_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">q_points</span><span class="p">,</span> <span class="p">(</span><span class="n">q0</span><span class="p">,</span> <span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">,</span> <span class="n">q2</span><span class="p">,</span> <span class="n">q3</span><span class="p">,</span> <span class="n">q4</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">q_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">q_points</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">q0</span><span class="p">,</span> <span class="n">q1</span><span class="p">,</span> <span class="n">q2</span><span class="p">,</span> <span class="n">q2</span><span class="p">,</span> <span class="n">q3</span><span class="p">,</span> <span class="n">q4</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">q_points</span></div>
 
 
@@ -1614,9 +1614,9 @@
             <span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">nA</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
                 <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">nA</span> <span class="o">*</span> <span class="n">nF</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">F</span><span class="p">))</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">nA</span> <span class="o">*</span> <span class="n">nB</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">))</span>
             <span class="p">)</span>
-            <span class="k">return</span> <span class="n">L</span>
+            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">L</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">c</span><span class="p">)</span></div>
+            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">c</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="PathMapper.calc_len_with_quads">
@@ -1628,7 +1628,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            The summed length of all quadratic segments.</span>
 <span class="sd">        """</span>
-        <span class="n">L</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">L</span> <span class="o">=</span> <span class="mf">0.0</span>
         <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">get_num_curves</span><span class="p">()):</span>
             <span class="n">points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">get_nth_curve_points</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
             <span class="n">quads</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cubic_to_quads</span><span class="p">(</span><span class="n">points</span><span class="p">)</span>
@@ -1647,8 +1647,14 @@
 <span class="sd">        -------</span>
 <span class="sd">            The cumulative length at the final sample.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathdata_lengths</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathdata_lengths</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span></div>
 
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">alpha_from_length</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span> <span class="o">...</span>
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">alpha_from_length</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span> <span class="o">...</span>
 
 <div class="viewcode-block" id="PathMapper.alpha_from_length">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathMapper.html#manim_extensions.cad_drawing_utils.path_mapper.PathMapper.alpha_from_length">[docs]</a>
@@ -1665,10 +1671,19 @@
 <span class="sd">            A proportion, or a list of proportions for iterable input.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="s2">"__iter__"</span><span class="p">):</span>
-            <span class="k">return</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathdata_lengths</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathdata_alpha</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
+            <span class="k">return</span> <span class="p">[</span>
+                <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathdata_lengths</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathdata_alpha</span><span class="p">))</span>
+                <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">s</span>
+            <span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathdata_lengths</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathdata_alpha</span><span class="p">)</span></div>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathdata_lengths</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathdata_alpha</span><span class="p">))</span></div>
 
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">length_from_alpha</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span> <span class="o">...</span>
+
+    <span class="nd">@overload</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">length_from_alpha</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span> <span class="o">...</span>
 
 <div class="viewcode-block" id="PathMapper.length_from_alpha">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathMapper.html#manim_extensions.cad_drawing_utils.path_mapper.PathMapper.length_from_alpha">[docs]</a>
@@ -1685,9 +1700,12 @@
 <span class="sd">            An arc length, or a list of arc lengths for iterable input.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s2">"__iter__"</span><span class="p">):</span>
-            <span class="k">return</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathdata_alpha</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathdata_lengths</span><span class="p">)</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">a</span><span class="p">]</span>
+            <span class="k">return</span> <span class="p">[</span>
+                <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathdata_alpha</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathdata_lengths</span><span class="p">))</span>
+                <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">a</span>
+            <span class="p">]</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathdata_alpha</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathdata_lengths</span><span class="p">)</span></div>
+            <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">interp</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathdata_alpha</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">pathdata_lengths</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="PathMapper.equalize_alpha">
@@ -1704,6 +1722,10 @@
 <span class="sd">        -------</span>
 <span class="sd">            The length-based proportion at the same path position.</span>
 <span class="sd">        """</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="s2">"__iter__"</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_from_length</span><span class="p">(</span>
+                <span class="p">[</span><span class="n">t</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_path_length</span><span class="p">()</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">(</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">a</span><span class="p">)]</span>
+            <span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_from_length</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_path_length</span><span class="p">())</span></div>
 
 
@@ -1756,14 +1778,16 @@
 <span class="sd">            -------</span>
 <span class="sd">                The path proportion whose arc length matches ``rate_func(t)``.</span>
 <span class="sd">            """</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">equalize_alpha</span><span class="p">(</span><span class="n">rate_func</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">equalize_alpha</span><span class="p">(</span><span class="n">rate_func</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span>
 
         <span class="k">return</span> <span class="n">eq_func</span></div>
 
 
 <div class="viewcode-block" id="PathMapper.point_from_proportion">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathMapper.html#manim_extensions.cad_drawing_utils.path_mapper.PathMapper.point_from_proportion">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">point_from_proportion</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">point_from_proportion</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">|</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the point at a normalized path position.</span>
 
 <span class="sd">        This overrides the base implementation with a precomputed length</span>
@@ -1780,12 +1804,17 @@
 <span class="sd">            input.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="s2">"__iter__"</span><span class="p">):</span>
-            <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_from_length</span><span class="p">(</span><span class="n">alpha</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_path_length</span><span class="p">())</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_from_length</span><span class="p">(</span>
+                <span class="p">[</span>
+                    <span class="n">t</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_path_length</span><span class="p">()</span>
+                    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">(</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">alpha</span><span class="p">))</span>
+                <span class="p">]</span>
+            <span class="p">)</span>
             <span class="n">ret</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
             <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">values</span><span class="p">:</span>
                 <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                     <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">get_num_curves</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span>
-                    <span class="n">remainder</span> <span class="o">=</span> <span class="mi">1</span>
+                    <span class="n">remainder</span> <span class="o">=</span> <span class="mf">1.0</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">get_num_curves</span><span class="p">()</span> <span class="o">//</span> <span class="mi">1</span><span class="p">)</span>
                     <span class="n">remainder</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">get_num_curves</span><span class="p">())</span> <span class="o">%</span> <span class="mi">1</span>
@@ -1796,11 +1825,11 @@
             <span class="n">a</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">alpha_from_length</span><span class="p">(</span><span class="n">alpha</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_path_length</span><span class="p">())</span>
             <span class="k">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
                 <span class="n">index</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">get_num_curves</span><span class="p">()</span> <span class="o">-</span> <span class="mi">1</span>
-                <span class="n">remainder</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="n">remainder</span> <span class="o">=</span> <span class="mf">1.0</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">index</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">get_num_curves</span><span class="p">()</span> <span class="o">//</span> <span class="mi">1</span><span class="p">)</span>
                 <span class="n">remainder</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">get_num_curves</span><span class="p">())</span> <span class="o">%</span> <span class="mi">1</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">get_nth_curve_function</span><span class="p">(</span><span class="n">index</span><span class="p">)(</span><span class="n">remainder</span><span class="p">)</span></div>
+            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">get_nth_curve_function</span><span class="p">(</span><span class="n">index</span><span class="p">)(</span><span class="n">remainder</span><span class="p">))</span></div>
 
 
 <div class="viewcode-block" id="PathMapper.get_length_between_points">
@@ -1891,7 +1920,7 @@
         <span class="n">bz_a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">*</span> <span class="n">nc</span> <span class="o">%</span> <span class="mi">1</span>
         <span class="k">if</span> <span class="n">indx</span> <span class="o">==</span> <span class="n">nc</span><span class="p">:</span>
             <span class="n">indx</span> <span class="o">=</span> <span class="n">nc</span> <span class="o">-</span> <span class="mi">1</span>
-            <span class="n">bz_a</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="n">bz_a</span> <span class="o">=</span> <span class="mf">1.0</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">indx</span><span class="p">,</span> <span class="n">bz_a</span><span class="p">)</span></div>
 
 
@@ -1992,7 +2021,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            The magnitude of the curvature vector.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_curvature_vector</span><span class="p">(</span><span class="n">s</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_curvature_vector</span><span class="p">(</span><span class="n">s</span><span class="p">)))</span></div>
 </div>
 
 
@@ -2038,7 +2067,7 @@
                 <span class="n">num_dashes</span><span class="p">,</span> <span class="n">dash_ratio</span><span class="o">=</span><span class="n">dashed_ratio</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="n">dash_offset</span>
             <span class="p">)</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">({</span><span class="s2">"dashes"</span><span class="p">:</span> <span class="n">dshgrp</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="p">{</span><span class="s2">"dashes"</span><span class="p">:</span> <span class="n">dshgrp</span><span class="p">}))</span>
         <span class="bp">self</span><span class="p">[</span><span class="s2">"dashes"</span><span class="p">]</span><span class="o">.</span><span class="n">match_style</span><span class="p">(</span><span class="n">target_mobject</span><span class="p">)</span>
 
 <div class="viewcode-block" id="DashedLineMobject.generate_dash_pattern_metric">
@@ -2327,7 +2356,7 @@
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathOffsetMobject.html#manim_extensions.cad_drawing_utils.path_mapper.PathOffsetMobject.generate_bezier_points">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">generate_bezier_points</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">input_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span>
+        <span class="n">input_func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="n">Any</span><span class="p">],</span>
         <span class="n">t_range</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
         <span class="n">Smoothing</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]]:</span>
@@ -2467,7 +2496,7 @@
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.PathOffsetMobject.html#manim_extensions.cad_drawing_utils.path_mapper.PathOffsetMobject.default_updater">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">default_updater</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">gen_ofs_point</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">gen_ref_curve</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Refresh the offset path points for an updater callback.</span>
 
 <span class="sd">        Parameters</span>
@@ -2481,7 +2510,9 @@
 <span class="sd">        -------</span>
 <span class="sd">            ``None``; the points are replaced in place.</span>
 <span class="sd">        """</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_offset_paths</span><span class="p">(</span><span class="n">gen_ofs_point</span><span class="p">,</span> <span class="n">gen_ref_curve</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_offset_paths</span><span class="p">(</span><span class="n">gen_ofs_point</span><span class="p">,</span> <span class="n">gen_ref_curve</span><span class="p">)</span>
+        <span class="p">)</span></div>
 </div>
 
 
@@ -2536,12 +2567,12 @@
 
 <div class="viewcode-block" id="CurveWarp.generate_points">
 <a class="viewcode-back" href="../../../reference/cad_drawing_utils/path_mapper.CurveWarp.html#manim_extensions.cad_drawing_utils.path_mapper.CurveWarp.generate_points">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">generate_points</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_points</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"CurveWarp"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Map the source path points onto the warp curve.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            ``None``; the mapped points are stored on the instance.</span>
+<span class="sd">            The mobject itself after its points are stored.</span>
 <span class="sd">        """</span>
         <span class="n">s0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PM</span><span class="o">.</span><span class="n">length_from_alpha</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">anchor_point</span><span class="p">)</span>
         <span class="n">x_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">warp_source</span><span class="o">.</span><span class="n">points</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">s0</span>
@@ -2551,35 +2582,43 @@
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">warp_curve</span><span class="o">.</span><span class="n">is_closed</span><span class="p">():</span>
             <span class="c1"># if the curve is closed, out-of-bound x values can wrap around to the beginning</span>
             <span class="n">x_points</span> <span class="o">=</span> <span class="n">x_points</span> <span class="o">%</span> <span class="n">L</span>
-            <span class="n">x_curve_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PM</span><span class="o">.</span><span class="n">point_from_proportion</span><span class="p">(</span><span class="n">x_points</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span>
+            <span class="n">x_curve_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PM</span><span class="o">.</span><span class="n">point_from_proportion</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">x_points</span> <span class="o">/</span> <span class="n">L</span><span class="p">))</span>
             <span class="n">nv</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">PM</span><span class="o">.</span><span class="n">get_normal_unit_vector</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">x_points</span><span class="p">]</span>
             <span class="n">y_curve_points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span>
                 <span class="p">[</span><span class="n">tuplie</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">tuplie</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">for</span> <span class="n">tuplie</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">nv</span><span class="p">,</span> <span class="n">y_points</span><span class="p">)]</span>
             <span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">x_curve_points</span> <span class="o">+</span> <span class="n">y_curve_points</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">x_curve_points</span> <span class="o">+</span> <span class="n">y_curve_points</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span>
+            <span class="n">p</span><span class="p">:</span> <span class="n">Any</span>
             <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">x_points</span><span class="p">,</span> <span class="n">y_points</span><span class="p">):</span>
                 <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">L</span><span class="p">:</span>
                     <span class="n">p</span> <span class="o">=</span> <span class="p">(</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">PM</span><span class="o">.</span><span class="n">point_from_proportion</span><span class="p">(</span><span class="n">x</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span>
                         <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">PM</span><span class="o">.</span><span class="n">get_normal_unit_vector</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">*</span> <span class="n">y</span>
                     <span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+                        <span class="n">Any</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="p">)</span>
                 <span class="k">elif</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">L</span><span class="p">:</span>
                     <span class="n">endpoint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PM</span><span class="o">.</span><span class="n">point_from_proportion</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
                     <span class="n">tanv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PM</span><span class="o">.</span><span class="n">get_tangent_unit_vector</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
-                    <span class="n">nv</span> <span class="o">=</span> <span class="n">rotate_vector</span><span class="p">(</span><span class="n">tanv</span><span class="p">,</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+                    <span class="n">normal_v</span> <span class="o">=</span> <span class="n">rotate_vector</span><span class="p">(</span><span class="n">tanv</span><span class="p">,</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
                     <span class="n">x_1</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">L</span>
-                    <span class="n">p</span> <span class="o">=</span> <span class="n">endpoint</span> <span class="o">+</span> <span class="n">x_1</span> <span class="o">*</span> <span class="n">tanv</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">nv</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="n">p</span> <span class="o">=</span> <span class="n">endpoint</span> <span class="o">+</span> <span class="n">x_1</span> <span class="o">*</span> <span class="n">tanv</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">normal_v</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+                        <span class="n">Any</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="p">)</span>
                 <span class="k">else</span><span class="p">:</span>
                     <span class="n">startpoint</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PM</span><span class="o">.</span><span class="n">point_from_proportion</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
                     <span class="n">tanv</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">PM</span><span class="o">.</span><span class="n">get_tangent_unit_vector</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-                    <span class="n">nv</span> <span class="o">=</span> <span class="n">rotate_vector</span><span class="p">(</span><span class="n">tanv</span><span class="p">,</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+                    <span class="n">normal_v</span> <span class="o">=</span> <span class="n">rotate_vector</span><span class="p">(</span><span class="n">tanv</span><span class="p">,</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
                     <span class="n">x_1</span> <span class="o">=</span> <span class="n">x</span>
-                    <span class="n">p</span> <span class="o">=</span> <span class="n">startpoint</span> <span class="o">+</span> <span class="n">x_1</span> <span class="o">*</span> <span class="n">tanv</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">nv</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></div>
+                    <span class="n">p</span> <span class="o">=</span> <span class="n">startpoint</span> <span class="o">+</span> <span class="n">x_1</span> <span class="o">*</span> <span class="n">tanv</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">normal_v</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+                        <span class="n">Any</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+                    <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
 </div>
 
 </pre></div>

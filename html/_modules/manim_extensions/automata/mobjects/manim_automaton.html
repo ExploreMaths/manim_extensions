@@ -1486,6 +1486,7 @@
     <span class="n">FadeToColor</span><span class="p">,</span>
     <span class="n">GREEN</span><span class="p">,</span>
     <span class="n">MathTex</span><span class="p">,</span>
+    <span class="n">Mobject</span><span class="p">,</span>
     <span class="n">PURE_YELLOW</span><span class="p">,</span>
     <span class="n">RED</span><span class="p">,</span>
     <span class="n">Tex</span><span class="p">,</span>
@@ -1599,11 +1600,11 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">json_template</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">json_template</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">xml_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">camera_follow</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">animation_style</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="n">default_animation_style</span><span class="p">,</span>
-        <span class="n">manim_animations</span><span class="p">:</span> <span class="nb">object</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">manim_animations</span><span class="p">:</span> <span class="n">ManimAnimations</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">cli</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">animate_subscripts</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
@@ -1637,8 +1638,8 @@
         <span class="k">elif</span> <span class="n">xml_file</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">process_xml</span><span class="p">(</span><span class="n">xml_file</span><span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">transitions</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">*</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">*</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">transitions</span><span class="p">))</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">()</span>
@@ -1665,7 +1666,7 @@
 
 <div class="viewcode-block" id="ManimAutomaton.construct_state">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.construct_state">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">],</span> <span class="n">scaling</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">scaling</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create a :class:`~manim_extensions.automata.mobjects.manim_state.ManimState` from a state dict and append it to self.states.</span>
 
 <span class="sd">        Parameters</span>
@@ -1710,7 +1711,7 @@
 
 <div class="viewcode-block" id="ManimAutomaton.construct_states">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.construct_states">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct_states</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">states</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct_states</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">states</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build all :class:`~manim_extensions.automata.mobjects.manim_state.ManimState` objects from a list of state dicts with auto-scaling.</span>
 
 <span class="sd">        Parameters</span>
@@ -1759,7 +1760,7 @@
 
 <div class="viewcode-block" id="ManimAutomaton.construct_transitions">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.construct_transitions">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct_transitions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transitions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct_transitions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transitions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build :class:`~manim_extensions.automata.mobjects.manim_transition.ManimTransition` objects from transition dicts, grouping read symbols by state pair.</span>
 
 <span class="sd">        Parameters</span>
@@ -1773,7 +1774,7 @@
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="c1"># counts the number of transitions between two states</span>
-        <span class="n">transition_counter</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">transition_counter</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">transition</span> <span class="ow">in</span> <span class="n">transitions</span><span class="p">:</span>
 <span class="w">            </span><span class="sd">"""put from and to states into tuple to be used as</span>
 <span class="sd">            dictionary key."""</span>
@@ -1800,7 +1801,11 @@
                 <span class="nb">int</span><span class="p">(</span><span class="n">state_key</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
             <span class="p">)</span>  <span class="c1"># this is using the id from xml which will be different, can't use name either - has to be passed in</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">construct_transition</span><span class="p">(</span><span class="n">transition_from</span><span class="p">,</span> <span class="n">transition_to</span><span class="p">,</span> <span class="n">read_values</span><span class="p">)</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">construct_transition</span><span class="p">(</span>
+                <span class="n">cast</span><span class="p">(</span><span class="n">ManimState</span><span class="p">,</span> <span class="n">transition_from</span><span class="p">),</span>
+                <span class="n">cast</span><span class="p">(</span><span class="n">ManimState</span><span class="p">,</span> <span class="n">transition_to</span><span class="p">),</span>
+                <span class="n">read_values</span><span class="p">,</span>
+            <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="ManimAutomaton.construct_transition">
@@ -1911,13 +1916,13 @@
 <span class="sd">        -------</span>
 <span class="sd">            The input mobject if it was already constructed, otherwise ``None``.</span>
 <span class="sd">        """</span>
-        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="c1"># create mobject of input string</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">manim_automata_input</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">construct_automaton_input</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
             <span class="c1"># position the mobject</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">set_default_position_of_input_string</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">input</span>  <span class="c1"># if input is already an instance of ManimAutomataInput</span></div>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="nb">input</span>  <span class="c1"># if input is already an instance of ManimAutomataInput</span></div>
 
 
 <div class="viewcode-block" id="ManimAutomaton.run_sequence">
@@ -1926,7 +1931,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">MathTex</span><span class="p">,</span>
         <span class="n">state_pointers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">State</span><span class="p">],</span>
-        <span class="n">iteration_history</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]],</span>
+        <span class="n">iteration_history</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span>
         <span class="n">predetermined_transition</span><span class="p">:</span> <span class="n">ManimTransition</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="n">State</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Process one input token across all active state pointers and record the step history.</span>
@@ -1954,7 +1959,7 @@
             <span class="n">state_pointers</span>
         <span class="p">):</span>  <span class="c1"># look at each state and calculate the steps that state can take.</span>
             <span class="n">step_result</span><span class="p">,</span> <span class="n">next_neighbour_states</span><span class="p">,</span> <span class="n">transitions</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">automaton_step</span><span class="p">(</span>
-                <span class="n">token</span><span class="p">,</span> <span class="n">state_pointer</span>
+                <span class="n">cast</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">token</span><span class="p">),</span> <span class="n">state_pointer</span>
             <span class="p">)</span>  <span class="c1"># simulates the machine</span>
 
             <span class="n">iteration_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
@@ -1969,7 +1974,7 @@
 
             <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">nda_builder</span><span class="p">:</span>
                 <span class="n">path_options</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_next_state_options</span><span class="p">(</span>
-                    <span class="n">state_pointer</span><span class="p">,</span> <span class="n">transitions</span>
+                    <span class="n">state_pointer</span><span class="p">,</span> <span class="n">cast</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">ManimTransition</span><span class="p">],</span> <span class="n">transitions</span><span class="p">)</span>
                 <span class="p">)</span>
                 <span class="n">user_choice</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cli</span><span class="p">)</span><span class="o">.</span><span class="n">display_dictionary_options</span><span class="p">(</span>
                     <span class="n">path_options</span>
@@ -2006,7 +2011,7 @@
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.run_input_through_automaton">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">run_input_through_automaton</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">ManimAutomataInput</span><span class="p">,</span> <span class="n">automaton_path_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Run the input through the automaton and return the run history.</span>
 
 <span class="sd">        Parameters</span>
@@ -2032,14 +2037,14 @@
             <span class="n">automaton_path_name</span>
         <span class="p">):</span>  <span class="c1"># The nda will animate the predetermined path from the user</span>
             <span class="n">automaton_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">load_recorded_path_from_file</span><span class="p">(</span><span class="n">automaton_path_name</span><span class="p">)</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">play_automaton_path</span><span class="p">(</span>
-                <span class="nb">input</span><span class="p">,</span> <span class="n">automaton_path</span>
+            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
+                <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">play_automaton_path</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="n">automaton_path</span><span class="p">)</span>
             <span class="p">)</span>  <span class="c1"># create animations to do with given path</span>
         <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">nda_builder</span><span class="p">:</span>  <span class="c1"># Stores the path of of a single branch within the nda</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">recorded_path</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">recorded_path</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="c1"># keeps track of what happened throughout each iteration</span>
-        <span class="n">global_history</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">global_history</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="n">initial_state</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_initial_state</span><span class="p">()</span>
         <span class="n">state_pointers</span> <span class="o">=</span> <span class="p">[</span>
@@ -2047,8 +2052,9 @@
         <span class="p">]</span>  <span class="c1"># Keeps track of all the states that are activated</span>
 
         <span class="c1"># Animate the automaton going through the sequence</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">token</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="nb">input</span><span class="o">.</span><span class="n">tokens</span><span class="p">):</span>
-            <span class="n">iteration_history</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">manim_input</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">ManimAutomataInput</span><span class="p">,</span> <span class="nb">input</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">token</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">manim_input</span><span class="o">.</span><span class="n">tokens</span><span class="p">):</span>
+            <span class="n">iteration_history</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
 
             <span class="n">state_pointers</span><span class="p">,</span> <span class="n">sequence_result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_sequence</span><span class="p">(</span>
                 <span class="n">token</span><span class="p">,</span> <span class="n">state_pointers</span><span class="p">,</span> <span class="n">iteration_history</span>
@@ -2157,25 +2163,24 @@
 <span class="sd">            One entry per step; each entry is a list of animations that can</span>
 <span class="sd">            be played with ``self.play(*entry)``.</span>
 <span class="sd">        """</span>
-        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
             <span class="c1"># create mobject of input string</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">manim_automata_input</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">construct_automaton_input</span><span class="p">(</span><span class="nb">input</span><span class="p">)</span>
             <span class="c1"># position the mobject</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">set_default_position_of_input_string</span><span class="p">()</span>
-            <span class="n">input_to_run</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">manim_automata_input</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">manim_automata_input</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="nb">input</span>  <span class="c1"># if input is already an instance of ManimAutomataInput</span>
             <span class="p">)</span>
-            <span class="n">input_to_run</span> <span class="o">=</span> <span class="nb">input</span>
+        <span class="n">input_to_run</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">manim_automata_input</span>
 
         <span class="c1"># display manim_automaton_input to the screen</span>
-        <span class="n">list_of_animations</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">list_of_animations</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">manim_animations</span><span class="o">.</span><span class="n">animate_display_input</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">manim_automata_input</span><span class="p">)</span>
         <span class="p">]</span>
 
         <span class="c1"># run the input through the machine, returning a history of what happened</span>
-        <span class="n">history</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_input_through_automaton</span><span class="p">(</span><span class="n">input_to_run</span><span class="p">)</span>
+        <span class="n">history</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">run_input_through_automaton</span><span class="p">(</span><span class="n">input_to_run</span><span class="p">))</span>
 
         <span class="n">list_of_animations</span> <span class="o">=</span> <span class="n">list_of_animations</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_history_animations</span><span class="p">(</span>
             <span class="n">history</span>
@@ -2191,7 +2196,7 @@
 
 <div class="viewcode-block" id="ManimAutomaton.generate_history_animations">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.generate_history_animations">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">generate_history_animations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">history</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_history_animations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">history</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Given a history of events of each iteration of the input ran through the manim automaton,</span>
 <span class="sd">        generate all of the manim animations to visualise the process of the input going through the</span>
 <span class="sd">        automaton.</span>
@@ -2209,7 +2214,7 @@
         <span class="n">list_of_animations</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="c1"># generate the pre-run animations</span>
-        <span class="n">state_pointer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_initial_state</span><span class="p">()</span>
+        <span class="n">state_pointer</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">ManimState</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_initial_state</span><span class="p">())</span>
         <span class="c1"># Highlight current state with yellow</span>
         <span class="n">list_of_animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">highlight_initial_state</span><span class="p">(</span><span class="n">state_pointer</span><span class="p">))</span>
         <span class="k">for</span> <span class="n">iteration_key</span> <span class="ow">in</span> <span class="n">history</span><span class="p">:</span>
@@ -2254,7 +2259,7 @@
 
 <div class="viewcode-block" id="ManimAutomaton.animate_step_history">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.animate_step_history">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">animate_step_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step_history</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">animate_step_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step_history</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Generate Manim animations for a single step's history entry.</span>
 
 <span class="sd">        Parameters</span>
@@ -2299,7 +2304,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            The highlight and subscript transform animations.</span>
 <span class="sd">        """</span>
-        <span class="n">new_subscript_object</span> <span class="o">=</span> <span class="n">Tex</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">PURE_YELLOW</span><span class="p">)</span>
+        <span class="n">new_subscript_object</span> <span class="o">=</span> <span class="n">Tex</span><span class="p">(</span><span class="s2">"1"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">PURE_YELLOW</span><span class="p">)</span>
         <span class="n">new_subscript_object</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="n">initial_state</span><span class="o">.</span><span class="n">subscript</span><span class="o">.</span><span class="n">get_x</span><span class="p">())</span>
         <span class="n">new_subscript_object</span><span class="o">.</span><span class="n">set_y</span><span class="p">(</span><span class="n">initial_state</span><span class="o">.</span><span class="n">subscript</span><span class="o">.</span><span class="n">get_y</span><span class="p">())</span>
 
@@ -2386,45 +2391,49 @@
         <span class="n">list_of_step_animations</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">if</span> <span class="n">step_result</span> <span class="ow">is</span> <span class="kc">False</span><span class="p">:</span>  <span class="c1"># if branch dies turn state red</span>
-            <span class="n">state_died_animation</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="n">state_revert_back_to_default_animation</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">state_died_animation</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">state_revert_back_to_default_animation</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
             <span class="c1"># state_died_animation.append(FadeToColor(state_pointer, color=RED))</span>
             <span class="n">state_died_animation</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">manim_animations</span><span class="o">.</span><span class="n">animate_dead_branch_state</span><span class="p">(</span><span class="n">state_pointer</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">manim_animations</span><span class="o">.</span><span class="n">animate_dead_branch_state</span><span class="p">(</span>
+                    <span class="n">cast</span><span class="p">(</span><span class="n">Mobject</span><span class="p">,</span> <span class="n">state_pointer</span><span class="p">)</span>
+                <span class="p">)</span>
             <span class="p">)</span>
 
             <span class="n">state_revert_back_to_default_animation</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">manim_animations</span><span class="o">.</span><span class="n">animate_state_to_default_color</span><span class="p">(</span><span class="n">state_pointer</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">manim_animations</span><span class="o">.</span><span class="n">animate_state_to_default_color</span><span class="p">(</span>
+                    <span class="n">cast</span><span class="p">(</span><span class="n">Mobject</span><span class="p">,</span> <span class="n">state_pointer</span><span class="p">)</span>
+                <span class="p">)</span>
             <span class="p">)</span>
 
             <span class="n">list_of_step_animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">state_died_animation</span><span class="p">)</span>
             <span class="n">list_of_step_animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">state_revert_back_to_default_animation</span><span class="p">)</span>
 
         <span class="k">else</span><span class="p">:</span>
-            <span class="n">activate_transition_animation</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">activate_transition_animation</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">manim_animations</span><span class="o">.</span><span class="n">animate_highlight_transition</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
                 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">manim_transitions</span>
             <span class="p">]</span>
 
             <span class="c1"># if successful point to the next state</span>
-            <span class="n">state_animations</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">state_animations</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
             <span class="k">if</span> <span class="n">step_result</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
 
                 <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">next_neighbour_states</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
                     <span class="n">state_animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                         <span class="bp">self</span><span class="o">.</span><span class="n">manim_animations</span><span class="o">.</span><span class="n">animate_state_to_default_color</span><span class="p">(</span>
-                            <span class="n">state_pointer</span>
+                            <span class="n">cast</span><span class="p">(</span><span class="n">Mobject</span><span class="p">,</span> <span class="n">state_pointer</span><span class="p">)</span>
                         <span class="p">)</span>
                     <span class="p">)</span>
 
                     <span class="n">state_animations</span> <span class="o">=</span> <span class="n">state_animations</span> <span class="o">+</span> <span class="p">[</span>
-                        <span class="bp">self</span><span class="o">.</span><span class="n">manim_animations</span><span class="o">.</span><span class="n">animate_highlight_state</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">manim_animations</span><span class="o">.</span><span class="n">animate_highlight_state</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Mobject</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
                         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">next_neighbour_states</span>
                     <span class="p">]</span>
 
-            <span class="n">deactivate_transition_animation</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">deactivate_transition_animation</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">manim_animations</span><span class="o">.</span><span class="n">animate_transition_to_default_color</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
                 <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">manim_transitions</span>
             <span class="p">]</span>
@@ -2442,7 +2451,7 @@
 <div class="viewcode-block" id="ManimAutomaton.animate_subscripts">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.animate_subscripts">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">animate_subscripts</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">iteration_history</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]]</span>
+        <span class="bp">self</span><span class="p">,</span> <span class="n">iteration_history</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Animate state subscripts to show the count of active branches ending in each state.</span>
 
@@ -2457,7 +2466,7 @@
 <span class="sd">        """</span>
         <span class="n">animations</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="c1"># record the number of branches that end on each states</span>
-        <span class="n">state_counter</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">state_counter</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
         <span class="k">for</span> <span class="n">step_history</span> <span class="ow">in</span> <span class="n">iteration_history</span><span class="p">:</span>
             <span class="n">next_neighbour_states</span> <span class="o">=</span> <span class="n">step_history</span><span class="p">[</span><span class="s2">"next_neighbour_states"</span><span class="p">]</span>
@@ -2473,7 +2482,9 @@
 
         <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">states</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">id</span> <span class="ow">in</span> <span class="n">state_counter</span><span class="p">:</span>
-                <span class="n">new_subscript_object</span> <span class="o">=</span> <span class="n">Tex</span><span class="p">(</span><span class="n">state_counter</span><span class="p">[</span><span class="n">state</span><span class="o">.</span><span class="n">id</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">PURE_YELLOW</span><span class="p">)</span>
+                <span class="n">new_subscript_object</span> <span class="o">=</span> <span class="n">Tex</span><span class="p">(</span>
+                    <span class="nb">str</span><span class="p">(</span><span class="n">state_counter</span><span class="p">[</span><span class="n">state</span><span class="o">.</span><span class="n">id</span><span class="p">]),</span> <span class="n">color</span><span class="o">=</span><span class="n">PURE_YELLOW</span>
+                <span class="p">)</span>
                 <span class="n">new_subscript_object</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">subscript</span><span class="o">.</span><span class="n">get_x</span><span class="p">())</span>
                 <span class="n">new_subscript_object</span><span class="o">.</span><span class="n">set_y</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">subscript</span><span class="o">.</span><span class="n">get_y</span><span class="p">())</span>
                 <span class="n">animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
@@ -2482,7 +2493,7 @@
                     <span class="p">)</span>
                 <span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="n">new_subscript_object</span> <span class="o">=</span> <span class="n">Tex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">)</span>
+                <span class="n">new_subscript_object</span> <span class="o">=</span> <span class="n">Tex</span><span class="p">(</span><span class="s2">"0"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">)</span>
                 <span class="n">new_subscript_object</span><span class="o">.</span><span class="n">set_x</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">subscript</span><span class="o">.</span><span class="n">get_x</span><span class="p">())</span>
                 <span class="n">new_subscript_object</span><span class="o">.</span><span class="n">set_y</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">subscript</span><span class="o">.</span><span class="n">get_y</span><span class="p">())</span>
                 <span class="n">animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>

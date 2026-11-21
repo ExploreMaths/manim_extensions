@@ -1512,7 +1512,9 @@
 
 <div class="viewcode-block" id="get_rotated_shift_vectors">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/convolutional_2d_to_convolutional_2d.html#manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_convolutional_2d.get_rotated_shift_vectors">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">get_rotated_shift_vectors</span><span class="p">(</span><span class="n">input_layer</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">normalized</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_rotated_shift_vectors</span><span class="p">(</span>
+    <span class="n">input_layer</span><span class="p">:</span> <span class="n">Convolutional2DLayer</span><span class="p">,</span> <span class="n">normalized</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">"""Rotates the shift vectors.</span>
 
 <span class="sd">    Parameters</span>
@@ -1594,8 +1596,8 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">input_layer</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
-        <span class="n">output_layer</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
+        <span class="n">input_layer</span><span class="p">:</span> <span class="n">Convolutional2DLayer</span><span class="p">,</span>
+        <span class="n">output_layer</span><span class="p">:</span> <span class="n">Convolutional2DLayer</span><span class="p">,</span>
         <span class="n">line_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">ORANGE</span><span class="p">,</span>
         <span class="n">cell_width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span>
         <span class="n">stroke_width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span>
@@ -1630,7 +1632,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.</span>
 <span class="sd">        """</span>
-        <span class="n">rectangles</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">rectangles</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">GriddedRectangle</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">rectangle_width</span> <span class="o">=</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">output_layer</span><span class="o">.</span><span class="n">filter_size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_layer</span><span class="o">.</span><span class="n">cell_width</span>
         <span class="p">)</span>
@@ -1872,7 +1874,7 @@
 
             <span class="k">return</span> <span class="nb">object</span>
 
-        <span class="k">return</span> <span class="n">ApplyFunction</span><span class="p">(</span><span class="n">add_content</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">ApplyFunction</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">add_content</span><span class="p">),</span> <span class="bp">self</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Filters.make_pulse_animation">
@@ -1954,6 +1956,8 @@
             <span class="n">output_layer</span><span class="p">,</span>
             <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
         <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">input_layer</span><span class="p">:</span> <span class="n">Convolutional2DLayer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">output_layer</span><span class="p">:</span> <span class="n">Convolutional2DLayer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">filter_color</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_layer</span><span class="o">.</span><span class="n">filter_color</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">filter_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_layer</span><span class="o">.</span><span class="n">filter_size</span>
@@ -1989,7 +1993,7 @@
 <span class="sd">        **kwargs</span>
 <span class="sd">            Forwarded to the parent layer classes.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="Convolutional2DToConvolutional2D.animate_filters_all_at_once">
@@ -2007,12 +2011,12 @@
 <span class="sd">        -------</span>
 <span class="sd">            A :class:`~manim.animation.composition.Succession` instance representing the result.</span>
 <span class="sd">        """</span>
-        <span class="n">animations</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">animations</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Animation</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="c1"># Make filters</span>
         <span class="n">filters</span> <span class="o">=</span> <span class="n">Filters</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">input_layer</span><span class="p">,</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">output_layer</span><span class="p">,</span>
-            <span class="n">line_color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span>
+            <span class="n">line_color</span><span class="o">=</span><span class="n">cast</span><span class="p">(</span><span class="n">ManimColor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">),</span>
             <span class="n">cell_width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cell_width</span><span class="p">,</span>
             <span class="n">show_grid_lines</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">show_grid_lines</span><span class="p">,</span>
             <span class="n">output_feature_map_to_connect</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="c1"># None means all at once</span>
@@ -2072,14 +2076,14 @@
 <span class="sd">        -------</span>
 <span class="sd">            A :class:`~manim.animation.composition.Succession` instance representing the result.</span>
 <span class="sd">        """</span>
-        <span class="n">animations</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">animations</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Animation</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="n">output_feature_maps</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_layer</span><span class="o">.</span><span class="n">feature_maps</span>
         <span class="k">for</span> <span class="n">feature_map_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">output_feature_maps</span><span class="p">)):</span>
             <span class="c1"># Make filters</span>
             <span class="n">filters</span> <span class="o">=</span> <span class="n">Filters</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">input_layer</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">output_layer</span><span class="p">,</span>
-                <span class="n">line_color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">,</span>
+                <span class="n">line_color</span><span class="o">=</span><span class="n">cast</span><span class="p">(</span><span class="n">ManimColor</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">color</span><span class="p">),</span>
                 <span class="n">cell_width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">cell_width</span><span class="p">,</span>
                 <span class="n">show_grid_lines</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">show_grid_lines</span><span class="p">,</span>
                 <span class="n">output_feature_map_to_connect</span><span class="o">=</span><span class="n">feature_map_index</span><span class="p">,</span>  <span class="c1"># None means all at once</span>
@@ -2090,7 +2094,7 @@
                 <span class="n">feature_map</span> <span class="o">=</span> <span class="n">output_feature_maps</span><span class="p">[</span><span class="n">feature_map_index</span><span class="p">]</span>
                 <span class="n">original_feature_map_color</span> <span class="o">=</span> <span class="n">feature_map</span><span class="o">.</span><span class="n">color</span>
                 <span class="c1"># Change the output feature map colors</span>
-                <span class="n">change_color_animations</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">change_color_animations</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Animation</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
                 <span class="n">change_color_animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                     <span class="n">ApplyMethod</span><span class="p">(</span><span class="n">feature_map</span><span class="o">.</span><span class="n">set_color</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">highlight_color</span><span class="p">)</span>
                 <span class="p">)</span>

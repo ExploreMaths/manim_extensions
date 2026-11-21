@@ -1479,7 +1479,7 @@
 <span class="sd">"""Fit tangent arcs and chamfers between adjoining Bezier curves."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Sequence</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Vector3D</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -1639,7 +1639,7 @@
             <span class="n">params</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">round_corner_param</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="n">curve_1</span><span class="p">,</span> <span class="n">curve_2</span><span class="p">)</span>
             <span class="n">cut_curve_points_1</span> <span class="o">=</span> <span class="n">partial_bezier_points</span><span class="p">(</span><span class="n">curve_1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
             <span class="n">cut_curve_points_2</span> <span class="o">=</span> <span class="n">partial_bezier_points</span><span class="p">(</span><span class="n">curve_2</span><span class="p">,</span> <span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">loc_arc</span> <span class="o">=</span> <span class="n">Arc</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">,</span> <span class="n">num_components</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+            <span class="n">loc_arc</span> <span class="o">=</span> <span class="n">Arc</span><span class="p">(</span><span class="o">**</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">params</span><span class="p">),</span> <span class="n">num_components</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
             <span class="c1"># mob.points = np.delete(mob.points, slice((ind1 * 4), (ind1 + 1) * 4), axis=0)</span>
             <span class="c1"># mob.points = np.delete(mob.points, slice((ind2 * 4), (ind2 + 1) * 4), axis=0)</span>
             <span class="n">mob</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">ind1</span> <span class="o">*</span> <span class="mi">4</span> <span class="p">:</span> <span class="p">(</span><span class="n">ind1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">cut_curve_points_1</span>
@@ -1662,7 +1662,7 @@
     <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span>
     <span class="n">curve_points_1</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
     <span class="n">curve_points_2</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
-<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">"""Compute the cut points for a chamfered corner.</span>
 
 <span class="sd">    Parameters</span>
@@ -1681,7 +1681,7 @@
 <span class="sd">    """</span>
     <span class="c1"># this is ugly, I know, don't judge</span>
     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="s2">"iter"</span><span class="p">):</span>
-        <span class="n">ofs</span> <span class="o">=</span> <span class="p">[</span><span class="n">offset</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">offset</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+        <span class="n">ofs</span> <span class="o">=</span> <span class="p">[</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">offset</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">offset</span><span class="p">)[</span><span class="mi">1</span><span class="p">]]</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">ofs</span> <span class="o">=</span> <span class="p">[</span><span class="n">offset</span><span class="p">,</span> <span class="n">offset</span><span class="p">]</span>
     <span class="n">bez_func_1</span> <span class="o">=</span> <span class="n">bezier</span><span class="p">(</span><span class="n">curve_points_1</span><span class="p">)</span>
@@ -1718,7 +1718,7 @@
     <span class="n">p2</span> <span class="o">=</span> <span class="n">bez_func_2</span><span class="p">(</span><span class="n">a2</span><span class="p">)</span>
     <span class="n">param</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"start"</span><span class="p">:</span> <span class="n">p1</span><span class="p">,</span> <span class="s2">"end"</span><span class="p">:</span> <span class="n">p2</span><span class="p">}</span>
 
-    <span class="k">return</span> <span class="n">param</span></div>
+    <span class="k">return</span> <span class="n">param</span><span class="p">,</span> <span class="p">[</span><span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">]</span></div>
 
 
 
@@ -1752,7 +1752,7 @@
             <span class="n">params</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="n">chamfer_corner_param</span><span class="p">(</span><span class="n">offset</span><span class="p">,</span> <span class="n">curve_1</span><span class="p">,</span> <span class="n">curve_2</span><span class="p">)</span>
             <span class="n">cut_curve_points_1</span> <span class="o">=</span> <span class="n">partial_bezier_points</span><span class="p">(</span><span class="n">curve_1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">k</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
             <span class="n">cut_curve_points_2</span> <span class="o">=</span> <span class="n">partial_bezier_points</span><span class="p">(</span><span class="n">curve_2</span><span class="p">,</span> <span class="n">k</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
-            <span class="n">loc_line</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
+            <span class="n">loc_line</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="o">**</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">params</span><span class="p">))</span>
             <span class="c1"># mob.points = np.delete(mob.points, slice((ind1 * 4), (ind1 + 1) * 4), axis=0)</span>
             <span class="c1"># mob.points = np.delete(mob.points, slice((ind2 * 4), (ind2 + 1) * 4), axis=0)</span>
             <span class="n">mob</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">ind1</span> <span class="o">*</span> <span class="mi">4</span> <span class="p">:</span> <span class="p">(</span><span class="n">ind1</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">cut_curve_points_1</span>

@@ -1523,7 +1523,7 @@
     <span class="kn">from</span><span class="w"> </span><span class="nn">.camera</span><span class="w"> </span><span class="kn">import</span> <span class="n">CameraRig</span>
 
 
-<span class="n">RadarInput</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">RadarData</span><span class="p">,</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]]</span>
+<span class="n">RadarInput</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">RadarData</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]]</span>
 <span class="n">RadarInputList</span> <span class="o">=</span> <span class="n">Union</span><span class="p">[</span><span class="n">RadarInput</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">RadarInput</span><span class="p">]]</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"RadarChart"</span><span class="p">]</span>
@@ -1800,7 +1800,7 @@
         <span class="n">name</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">color</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">max_value</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">datasets</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">datasets</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">style</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">RadarConfig</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"neo"</span><span class="p">,</span>
         <span class="n">theme</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">RadarTheme</span><span class="p">,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"midnight"</span><span class="p">,</span>
         <span class="n">config</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RadarConfig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1866,11 +1866,13 @@
         <span class="c1"># Manim 0.21 cannot hash a Text object whose font is None.  Minimal</span>
         <span class="c1"># Linux CI images may not contain any of our preferred families, so</span>
         <span class="c1"># fall back to Pango's generic families instead of passing None.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_font_name</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">name_font</span> <span class="ow">or</span> <span class="n">pick_font</span><span class="p">(</span><span class="n">_CJK_FONTS</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">"sans"</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_font_number</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">number_font</span> <span class="ow">or</span> <span class="n">pick_font</span><span class="p">(</span>
-            <span class="n">_MONO_FONTS</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">"monospace"</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_font_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">cfg</span><span class="o">.</span><span class="n">name_font</span> <span class="ow">or</span> <span class="n">pick_font</span><span class="p">(</span><span class="n">_CJK_FONTS</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">"sans"</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">"sans"</span>
         <span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_font_title</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">title_font</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_font_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_font_number</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">cfg</span><span class="o">.</span><span class="n">number_font</span> <span class="ow">or</span> <span class="n">pick_font</span><span class="p">(</span><span class="n">_MONO_FONTS</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="s2">"monospace"</span><span class="p">)</span> <span class="ow">or</span> <span class="s2">"sans"</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_font_title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">title_font</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">_font_name</span>
 
         <span class="n">first</span> <span class="o">=</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_coerce_item</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_initial</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -1924,13 +1926,13 @@
             <span class="n">spoke</span><span class="o">.</span><span class="n">base_so</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">spoke_opacity</span>  <span class="c1"># type: ignore[attr-defined]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">web</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">spoke</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">grid_glow</span><span class="p">:</span>
-                <span class="n">g</span> <span class="o">=</span> <span class="n">spoke</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span>
+                <span class="n">glow_spoke</span> <span class="o">=</span> <span class="n">spoke</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span><span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span>
                     <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">theme</span><span class="o">.</span><span class="n">axis_color</span><span class="p">(</span><span class="n">i</span><span class="p">),</span>
                     <span class="n">width</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">grid_glow_width</span><span class="p">,</span>
                     <span class="n">opacity</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">grid_glow_opacity</span><span class="p">,</span>
                 <span class="p">)</span>
-                <span class="n">g</span><span class="o">.</span><span class="n">base_so</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">grid_glow_opacity</span>  <span class="c1"># type: ignore[attr-defined]</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">grid_glow</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
+                <span class="n">glow_spoke</span><span class="o">.</span><span class="n">base_so</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">grid_glow_opacity</span>  <span class="c1"># type: ignore[attr-defined]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">grid_glow</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">glow_spoke</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid_glow</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">web</span><span class="p">)</span>
 
         <span class="c1"># ---- level scale numbers -------------------------------------------</span>
@@ -1988,7 +1990,7 @@
         <span class="c1"># z-order: grid -&gt; [gap lobes -&gt; series 0 -&gt; series 1 ...] -&gt; labels</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_poly_layers</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">gap_group</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">VGroup</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_gap_spec</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_gap_spec</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_series</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Series</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_poly_layers</span><span class="p">)</span>
 
@@ -2058,7 +2060,7 @@
 
         <span class="c1"># ---- datasets --------------------------------------------------------</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_focus</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_rig</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># optional CameraRig (set by attach_camera)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rig</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">CameraRig</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># set by attach_camera</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_install_datasets</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_initial</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">cfg</span><span class="o">.</span><span class="n">overflow</span><span class="p">:</span>
             <span class="c1"># above every series polygon, below the labels &amp; numbers</span>
@@ -2328,7 +2330,7 @@
 <span class="sd">        ValueError</span>
 <span class="sd">            If the first item does not define axes or the layouts differ.</span>
 <span class="sd">        """</span>
-        <span class="n">items</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">items</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">datasets</span><span class="p">):</span>
             <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">RadarData</span><span class="p">):</span>
                 <span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
@@ -2688,7 +2690,7 @@
 
 <div class="viewcode-block" id="RadarChart.set_opacity">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.set_opacity">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_opacity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"RadarChart"</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_opacity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opacity</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">family</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"RadarChart"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Set the global opacity of the chart.</span>
 
 <span class="sd">        This override keeps the per-frame painting compatible with Manim's</span>
@@ -2696,14 +2698,17 @@
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        value</span>
+<span class="sd">        opacity</span>
 <span class="sd">            Opacity in the range 0 to 1.</span>
+<span class="sd">        family</span>
+<span class="sd">            Unused; kept for interface compatibility with</span>
+<span class="sd">            :meth:`~manim.mobject.types.vectorized_mobject.VMobject.set_opacity`.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            The same chart, allowing calls to be chained.</span>
 <span class="sd">        """</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_opacity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_opacity</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">opacity</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">))</span>
         <span class="k">return</span> <span class="bp">self</span></div>
 
 
@@ -2757,7 +2762,10 @@
 <span class="sd">        """</span>
         <span class="n">center</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_anchor</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>
         <span class="n">builder</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">factor</span><span class="p">),</span> <span class="n">about_point</span><span class="o">=</span><span class="n">center</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">builder</span><span class="o">.</span><span class="n">set_run_time</span><span class="p">(</span><span class="n">run_time</span><span class="p">)</span> <span class="k">if</span> <span class="n">run_time</span> <span class="k">else</span> <span class="n">builder</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="s2">"_AnimationBuilder"</span><span class="p">,</span>
+            <span class="n">builder</span><span class="o">.</span><span class="n">set_run_time</span><span class="p">(</span><span class="n">run_time</span><span class="p">)</span> <span class="k">if</span> <span class="n">run_time</span> <span class="k">else</span> <span class="n">builder</span><span class="p">,</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="RadarChart.pull_out">
@@ -2783,7 +2791,10 @@
 
         <span class="n">center</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_anchor</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>
         <span class="n">builder</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="nb">float</span><span class="p">(</span><span class="n">factor</span><span class="p">),</span> <span class="n">about_point</span><span class="o">=</span><span class="n">center</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">builder</span><span class="o">.</span><span class="n">set_run_time</span><span class="p">(</span><span class="n">run_time</span><span class="p">)</span> <span class="k">if</span> <span class="n">run_time</span> <span class="k">else</span> <span class="n">builder</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="s2">"_AnimationBuilder"</span><span class="p">,</span>
+            <span class="n">builder</span><span class="o">.</span><span class="n">set_run_time</span><span class="p">(</span><span class="n">run_time</span><span class="p">)</span> <span class="k">if</span> <span class="n">run_time</span> <span class="k">else</span> <span class="n">builder</span><span class="p">,</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="RadarChart.attach_camera">
@@ -2990,7 +3001,9 @@
         <span class="n">ang</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_angles</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">axis_count</span><span class="p">]</span>
         <span class="n">r</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">radius</span> <span class="o">*</span> <span class="n">k</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">levels</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_frame</span><span class="p">()</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_world</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_polar_local</span><span class="p">(</span><span class="n">ang</span><span class="p">,</span> <span class="n">r</span><span class="p">)[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:],</span> <span class="n">a</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_world</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_polar_local</span><span class="p">(</span><span class="n">ang</span><span class="p">,</span> <span class="n">r</span><span class="p">)[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:],</span> <span class="n">a</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="RadarChart.trace_web">
@@ -3013,7 +3026,7 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">set_opacity</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>  <span class="c1"># hide data layer; reveal it after the web is drawn</span>
         <span class="n">rt</span> <span class="o">=</span> <span class="n">run_time</span> <span class="k">if</span> <span class="n">run_time</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">web_trace_time</span>
-        <span class="k">return</span> <span class="n">Create</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rainbow_web</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="n">rt</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">Create</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">VGroup</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_rainbow_web</span><span class="p">),</span> <span class="n">run_time</span><span class="o">=</span><span class="n">rt</span><span class="p">)</span></div>
 
 
     <span class="c1"># ==================================================================</span>
@@ -3397,13 +3410,13 @@
 <span class="sd">        """</span>
 
         <span class="n">local</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">atleast_2d</span><span class="p">(</span><span class="n">local</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">local</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span> <span class="o">+</span> <span class="n">local</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">v</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">local</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">u</span> <span class="o">+</span> <span class="n">local</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">v</span><span class="p">)</span></div>
 
 
     <span class="c1"># ------------------------------------------------------------------</span>
 <div class="viewcode-block" id="RadarChart._refresh">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._refresh">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">VGroup</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Recompute every piece of geometry for the current frame.</span>
 
 <span class="sd">        Parameters</span>
@@ -3428,20 +3441,20 @@
         <span class="c1"># grid -----------------------------------------------------------</span>
         <span class="k">for</span> <span class="n">lvl</span><span class="p">,</span> <span class="n">ring</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">web</span><span class="p">[:</span> <span class="n">cfg</span><span class="o">.</span><span class="n">levels</span><span class="p">]):</span>
             <span class="n">ring</span><span class="o">.</span><span class="n">set_points_as_corners</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_to_world</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ring_local</span><span class="p">[</span><span class="n">lvl</span><span class="p">],</span> <span class="n">a</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
-            <span class="n">ring</span><span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span><span class="n">opacity</span><span class="o">=</span><span class="n">ring</span><span class="o">.</span><span class="n">base_so</span> <span class="o">*</span> <span class="n">op</span> <span class="o">*</span> <span class="n">grid_dim</span><span class="p">)</span>
+            <span class="n">ring</span><span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span><span class="n">opacity</span><span class="o">=</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">ring</span><span class="p">)</span><span class="o">.</span><span class="n">base_so</span> <span class="o">*</span> <span class="n">op</span> <span class="o">*</span> <span class="n">grid_dim</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">spoke</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">web</span><span class="p">[</span><span class="n">cfg</span><span class="o">.</span><span class="n">levels</span> <span class="p">:]):</span>
             <span class="n">end</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_world</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_spoke_ends</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">a</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
             <span class="n">spoke</span><span class="o">.</span><span class="n">put_start_and_end_on</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
-            <span class="n">spoke</span><span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span><span class="n">opacity</span><span class="o">=</span><span class="n">spoke</span><span class="o">.</span><span class="n">base_so</span> <span class="o">*</span> <span class="n">op</span> <span class="o">*</span> <span class="n">grid_dim</span><span class="p">)</span>
+            <span class="n">spoke</span><span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span><span class="n">opacity</span><span class="o">=</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">spoke</span><span class="p">)</span><span class="o">.</span><span class="n">base_so</span> <span class="o">*</span> <span class="n">op</span> <span class="o">*</span> <span class="n">grid_dim</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">g</span><span class="p">,</span> <span class="n">src</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">grid_glow</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">web</span><span class="p">):</span>
             <span class="c1"># the glow copies must inherit the *painted* geometry every frame —</span>
             <span class="c1"># they are built from 1-unit placeholders and 0.1.0 never moved</span>
             <span class="c1"># them, leaving a stale grey bar floating next to off-centre charts</span>
             <span class="n">g</span><span class="o">.</span><span class="n">set_points_as_corners</span><span class="p">(</span><span class="n">src</span><span class="o">.</span><span class="n">get_points</span><span class="p">())</span>
-            <span class="n">g</span><span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span><span class="n">opacity</span><span class="o">=</span><span class="n">g</span><span class="o">.</span><span class="n">base_so</span> <span class="o">*</span> <span class="n">op</span> <span class="o">*</span> <span class="n">grid_dim</span><span class="p">)</span>
+            <span class="n">g</span><span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span><span class="n">opacity</span><span class="o">=</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span><span class="o">.</span><span class="n">base_so</span> <span class="o">*</span> <span class="n">op</span> <span class="o">*</span> <span class="n">grid_dim</span><span class="p">)</span>
 
         <span class="k">for</span> <span class="n">txt</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">level_labels</span><span class="p">:</span>
-            <span class="n">txt</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_to_world</span><span class="p">(</span><span class="n">txt</span><span class="o">.</span><span class="n">local_pos</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">txt</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_to_world</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">txt</span><span class="p">)</span><span class="o">.</span><span class="n">local_pos</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
             <span class="n">txt</span><span class="o">.</span><span class="n">set_opacity</span><span class="p">(</span><span class="mf">0.80</span> <span class="o">*</span> <span class="n">op</span> <span class="o">*</span> <span class="n">grid_dim</span><span class="p">)</span>
 
         <span class="c1"># sweep ----------------------------------------------------------</span>
@@ -3464,11 +3477,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_paint_gap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">op</span><span class="p">)</span>
 
         <span class="c1"># data polygons ----------------------------------------------------</span>
-        <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_series</span><span class="p">:</span>
-            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">opacity</span> <span class="o">+=</span> <span class="p">(</span>
-                <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">opacity_target</span> <span class="o">-</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span><span class="o">.</span><span class="n">opacity</span>
+        <span class="k">for</span> <span class="n">series</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_series</span><span class="p">:</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">series</span><span class="p">)</span><span class="o">.</span><span class="n">opacity</span> <span class="o">+=</span> <span class="p">(</span>
+                <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">series</span><span class="p">)</span><span class="o">.</span><span class="n">opacity_target</span> <span class="o">-</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">series</span><span class="p">)</span><span class="o">.</span><span class="n">opacity</span>
             <span class="p">)</span> <span class="o">*</span> <span class="nb">min</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">dt</span> <span class="o">*</span> <span class="mf">7.0</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_paint_series</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">unit</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">multi</span><span class="p">,</span> <span class="n">pulse</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_paint_series</span><span class="p">(</span><span class="n">series</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">unit</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">multi</span><span class="p">,</span> <span class="n">pulse</span><span class="p">)</span>
 
         <span class="c1"># labels ------------------------------------------------------------</span>
         <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">label</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axis_names</span><span class="p">):</span>
@@ -3569,7 +3582,7 @@
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._slot_y">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_slot_y</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">label_top</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_limit</span><span class="p">:</span> <span class="nb">float</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Choose the vertical slot for a label above the chart.</span>
 
 <span class="sd">        Parameters</span>
@@ -3593,9 +3606,10 @@
         <span class="n">top_limit</span> <span class="o">=</span> <span class="n">frame_limit</span> <span class="o">-</span> <span class="n">half</span>
         <span class="n">floor</span> <span class="o">=</span> <span class="n">label_top</span> <span class="o">+</span> <span class="mf">0.20</span> <span class="o">+</span> <span class="n">half</span>
         <span class="n">y</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">offset</span> <span class="o">*</span> <span class="n">cfg</span><span class="o">.</span><span class="n">radius</span><span class="p">,</span> <span class="n">top_limit</span><span class="p">)</span>
+        <span class="n">fits</span> <span class="o">=</span> <span class="n">y</span> <span class="o">&gt;=</span> <span class="n">floor</span>
         <span class="k">if</span> <span class="n">y</span> <span class="o">&lt;</span> <span class="n">floor</span><span class="p">:</span>
             <span class="n">y</span> <span class="o">=</span> <span class="n">floor</span>
-        <span class="k">return</span> <span class="n">y</span></div>
+        <span class="k">return</span> <span class="n">y</span><span class="p">,</span> <span class="n">fits</span></div>
 
 
     <span class="c1"># ------------------------------------------------------------------</span>
@@ -3726,7 +3740,7 @@
                     <span class="p">)</span>
                     <span class="n">dot</span><span class="o">.</span><span class="n">set_fill</span><span class="p">(</span>
                         <span class="n">color</span><span class="o">=</span><span class="n">WHITE</span> <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">2</span> <span class="k">else</span> <span class="n">base_col</span><span class="p">,</span>
-                        <span class="n">opacity</span><span class="o">=</span><span class="n">dot</span><span class="o">.</span><span class="n">base_op</span> <span class="o">*</span> <span class="n">op</span> <span class="o">*</span> <span class="n">sop</span><span class="p">,</span>
+                        <span class="n">opacity</span><span class="o">=</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">dot</span><span class="p">)</span><span class="o">.</span><span class="n">base_op</span> <span class="o">*</span> <span class="n">op</span> <span class="o">*</span> <span class="n">sop</span><span class="p">,</span>
                     <span class="p">)</span>
 
         <span class="n">outer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_world</span><span class="p">(</span><span class="n">poly_local</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">+</span> <span class="n">cfg</span><span class="o">.</span><span class="n">rim_offset_outer</span><span class="p">),</span> <span class="n">a</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
@@ -3883,7 +3897,7 @@
     <span class="c1"># legend ---------------------------------------------------------------</span>
 <div class="viewcode-block" id="RadarChart._rebuild_legend">
 <a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._rebuild_legend">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_rebuild_legend</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pairs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">tuple</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_rebuild_legend</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pairs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build legend chips for colour and name pairs.</span>
 
 <span class="sd">        Parameters</span>
@@ -3949,8 +3963,8 @@
         <span class="n">content</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">r</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="n">cfg</span><span class="o">.</span><span class="n">legend_gap</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">])</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">rows</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
             <span class="n">content</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.12</span><span class="p">)</span>
-        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span><span class="o">.</span><span class="n">_chips</span> <span class="o">=</span> <span class="n">chips</span>  <span class="c1"># type: ignore[attr-defined]  (per-content, so</span>
-        <span class="c1"># the outgoing legend fades with *its own* chips during a swap)</span>
+        <span class="c1"># per-content, so the outgoing legend fades with its own chips during a swap</span>
+        <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">content</span><span class="p">)</span><span class="o">.</span><span class="n">_chips</span> <span class="o">=</span> <span class="n">chips</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_legend_chips</span> <span class="o">=</span> <span class="n">chips</span>
         <span class="k">return</span> <span class="n">content</span></div>
 
@@ -4160,7 +4174,7 @@
         <span class="n">t</span> <span class="o">=</span> <span class="p">((</span><span class="n">q0</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">p0</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="n">d2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="p">(</span><span class="n">q0</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">p0</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">d2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">/</span> <span class="n">denom</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="mf">0.0</span> <span class="o">&lt;=</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">None</span>
-        <span class="k">return</span> <span class="n">p0</span> <span class="o">+</span> <span class="n">d1</span> <span class="o">*</span> <span class="n">t</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">p0</span> <span class="o">+</span> <span class="n">d1</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="RadarChart._paint_gap">
@@ -4199,7 +4213,7 @@
             <span class="n">a0</span><span class="p">,</span> <span class="n">a1</span> <span class="o">=</span> <span class="n">pa</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">pa</span><span class="p">[</span><span class="n">k1</span><span class="p">]</span>
             <span class="n">b0</span><span class="p">,</span> <span class="n">b1</span> <span class="o">=</span> <span class="n">pb</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">pb</span><span class="p">[</span><span class="n">k1</span><span class="p">]</span>
             <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_seg_intersect</span><span class="p">(</span><span class="n">a0</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">b0</span><span class="p">,</span> <span class="n">b1</span><span class="p">)</span>
-            <span class="n">lobes</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="n">lobes</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
             <span class="k">if</span> <span class="n">x</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">lobes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
                     <span class="p">(</span>
@@ -4293,7 +4307,7 @@
                 <span class="n">pool</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Line</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">,</span> <span class="n">ORIGIN</span><span class="p">,</span> <span class="n">stroke_width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">spoke_width</span><span class="p">))</span>
             <span class="n">s</span><span class="o">.</span><span class="n">dash_pool</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">pool</span>
             <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">fx_group</span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">dash_pool</span><span class="p">[</span><span class="n">j</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">VGroup</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">dash_pool</span><span class="p">[</span><span class="n">j</span><span class="p">])</span></div>
 
 
 <div class="viewcode-block" id="RadarChart._ensure_breach">
@@ -4330,7 +4344,7 @@
             <span class="n">g</span><span class="o">.</span><span class="n">set_opacity</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
             <span class="n">s</span><span class="o">.</span><span class="n">breach</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span>
             <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">fx_group</span><span class="p">)</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">breach</span><span class="p">[</span><span class="n">j</span><span class="p">]</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">VGroup</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">breach</span><span class="p">[</span><span class="n">j</span><span class="p">])</span></div>
 
 
 <div class="viewcode-block" id="RadarChart._ensure_overflow_number">
@@ -4491,9 +4505,11 @@
 <span class="sd">            Axis index.</span>
 <span class="sd">        """</span>
 
-        <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">dash_pool</span><span class="p">)</span> <span class="ow">and</span> <span class="n">s</span><span class="o">.</span><span class="n">dash_pool</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">s</span><span class="o">.</span><span class="n">dash_pool</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
-                <span class="n">line</span><span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span><span class="n">opacity</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">dash_pool</span><span class="p">):</span>
+            <span class="n">pool</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">dash_pool</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">pool</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">pool</span><span class="p">:</span>
+                    <span class="n">line</span><span class="o">.</span><span class="n">set_stroke</span><span class="p">(</span><span class="n">opacity</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">breach</span><span class="p">)</span> <span class="ow">and</span> <span class="n">s</span><span class="o">.</span><span class="n">breach</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">breach</span><span class="p">[</span><span class="n">j</span><span class="p">])</span><span class="o">.</span><span class="n">set_opacity</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">num</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">big_numbers</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>

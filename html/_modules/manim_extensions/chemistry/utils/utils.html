@@ -1730,7 +1730,7 @@
 
 <div class="viewcode-block" id="mol_parser_string">
 <a class="viewcode-back" href="../../../../reference/chemistry/utils/utils.html#manim_extensions.chemistry.utils.utils.mol_parser_string">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">mol_parser_string</span><span class="p">(</span><span class="n">mol_string</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">mol_parser_string</span><span class="p">(</span><span class="n">mol_string</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
 <span class="w">    </span><span class="sd">"""Parse a MOL-format string (list of lines) into atoms and bonds dicts.</span>
 
 <span class="sd">    Parameters</span>
@@ -1836,7 +1836,7 @@
                 <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">atoms</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">first_atom_index</span><span class="p">)</span>
             <span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"element"</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">atoms</span>  <span class="c1"># Should return atoms and bonds</span></div>
+    <span class="k">return</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">bonds</span></div>
 
 
 
@@ -1993,7 +1993,7 @@
         <span class="n">bond_type</span> <span class="o">=</span> <span class="n">line_data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
         <span class="n">bonds</span><span class="p">[(</span><span class="n">first_atom_index</span><span class="p">,</span> <span class="n">second_atom_index</span><span class="p">)]</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"type"</span><span class="p">:</span> <span class="n">bond_type</span><span class="p">}</span>
 
-    <span class="k">return</span> <span class="n">atoms</span>  <span class="c1"># Should return atoms and bonds</span></div>
+    <span class="k">return</span> <span class="n">atoms</span><span class="p">,</span> <span class="n">bonds</span></div>
 
 
 
