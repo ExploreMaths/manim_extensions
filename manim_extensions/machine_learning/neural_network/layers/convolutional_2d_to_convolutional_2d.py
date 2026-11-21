@@ -36,7 +36,9 @@ from ... import config
 from manim.typing import Vector3D
 
 
-def get_rotated_shift_vectors(input_layer: Mobject, normalized: bool = False) -> tuple:
+def get_rotated_shift_vectors(
+    input_layer: Convolutional2DLayer, normalized: bool = False
+) -> tuple[Any, Any]:
     """Rotates the shift vectors.
 
     Parameters
@@ -115,8 +117,8 @@ class Filters(VGroup):
 
     def __init__(
         self,
-        input_layer: Mobject,
-        output_layer: Mobject,
+        input_layer: Convolutional2DLayer,
+        output_layer: Convolutional2DLayer,
         line_color: ManimColor = ORANGE,
         cell_width: float = 1.0,
         stroke_width: float = 2.0,
@@ -149,7 +151,7 @@ class Filters(VGroup):
         -------
             A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
         """
-        rectangles = []
+        rectangles: list[GriddedRectangle] = []
         rectangle_width = (
             self.output_layer.filter_size[0] * self.output_layer.cell_width
         )
@@ -382,7 +384,7 @@ class Filters(VGroup):
 
             return object
 
-        return ApplyFunction(add_content, self)
+        return ApplyFunction(cast(Any, add_content), self)
 
     def make_pulse_animation(self, shift_amount: Vector3D) -> ShowPassingFlash:
         """Make animation of the filter pulsing.
@@ -457,6 +459,8 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
             output_layer,
             **kwargs,
         )
+        self.input_layer: Convolutional2DLayer
+        self.output_layer: Convolutional2DLayer
         self.color = color
         self.filter_color = self.output_layer.filter_color
         self.filter_size = self.output_layer.filter_size
@@ -490,7 +494,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         **kwargs
             Forwarded to the parent layer classes.
         """
-        return super().construct_layer(input_layer, output_layer, **kwargs)
+        super().construct_layer(input_layer, output_layer, **kwargs)
 
     def animate_filters_all_at_once(self, filters: Mobject | None = None) -> Succession:
         """Animates each of the filters all at once.
@@ -505,12 +509,12 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         -------
             A :class:`~manim.animation.composition.Succession` instance representing the result.
         """
-        animations = []
+        animations: list[Animation] = []
         # Make filters
         filters = Filters(
             self.input_layer,
             self.output_layer,
-            line_color=self.color,
+            line_color=cast(ManimColor, self.color),
             cell_width=self.cell_width,
             show_grid_lines=self.show_grid_lines,
             output_feature_map_to_connect=None,  # None means all at once
@@ -567,14 +571,14 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         -------
             A :class:`~manim.animation.composition.Succession` instance representing the result.
         """
-        animations = []
+        animations: list[Animation] = []
         output_feature_maps = self.output_layer.feature_maps
         for feature_map_index in range(len(output_feature_maps)):
             # Make filters
             filters = Filters(
                 self.input_layer,
                 self.output_layer,
-                line_color=self.color,
+                line_color=cast(ManimColor, self.color),
                 cell_width=self.cell_width,
                 show_grid_lines=self.show_grid_lines,
                 output_feature_map_to_connect=feature_map_index,  # None means all at once
@@ -585,7 +589,7 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
                 feature_map = output_feature_maps[feature_map_index]
                 original_feature_map_color = feature_map.color
                 # Change the output feature map colors
-                change_color_animations = []
+                change_color_animations: list[Animation] = []
                 change_color_animations.append(
                     ApplyMethod(feature_map.set_color, self.highlight_color)
                 )

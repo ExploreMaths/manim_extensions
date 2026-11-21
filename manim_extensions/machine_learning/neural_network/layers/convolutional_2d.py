@@ -10,6 +10,8 @@ This module provides the convolutional 2D layer class for neural network visuali
 from __future__ import annotations
 from typing import Any, cast
 
+import numpy as np
+
 from ..activation_functions import get_activation_function_by_name
 from ..activation_functions.activation_function import ActivationFunction
 from manim import (
@@ -23,6 +25,7 @@ from manim import (
     ManimColor,
     Mobject,
     ORANGE,
+    ORIGIN,
     Succession,
     VGroup,
     override_animation,
@@ -88,7 +91,9 @@ class FeatureMap(VGroup):
     ) -> None:
         super().__init__()
         self.color = color
-        self.feature_map_size = feature_map_size
+        self.feature_map_size: tuple[int, int] = (
+            feature_map_size if feature_map_size is not None else (0, 0)
+        )
         self.fill_color = fill_color
         self.fill_opacity = fill_opacity
         self.cell_width = cell_width
@@ -254,13 +259,14 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         stride: int = 1,
         stroke_width: float = 2.0,
         activation_function: ActivationFunction | str | None = None,
-        padding: int = 0,
+        padding: int | tuple[int, int] = 0,
         padding_dashed: bool = True,
         **kwargs: Any,
     ) -> None:
         super().__init__(**kwargs)
         self.num_feature_maps = num_feature_maps
         self.filter_color = filter_color
+        self.padding: tuple[int, int]
         if isinstance(padding, tuple):
             assert len(padding) == 2
             self.padding = padding
@@ -269,15 +275,21 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         else:
             raise Exception(f"Unrecognized type for padding: {type(padding)}")
 
+        self.feature_map_size: tuple[int, int]
         if isinstance(feature_map_size, int):
             self.feature_map_size = (feature_map_size, feature_map_size)
-        else:
+        elif feature_map_size is not None:
             self.feature_map_size = feature_map_size
+        else:
+            self.feature_map_size = (0, 0)
 
+        self.filter_size: tuple[int, int]
         if isinstance(filter_size, int):
             self.filter_size = (filter_size, filter_size)
-        else:
+        elif filter_size is not None:
             self.filter_size = filter_size
+        else:
+            self.filter_size = (0, 0)
 
         self.cell_width = cell_width
         self.filter_spacing = filter_spacing
@@ -363,7 +375,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
                 color=self.color,
                 height=self.feature_map_size[1] * self.cell_width,
                 width=self.feature_map_size[0] * self.cell_width,
-                fill_color=self.color,
+                fill_color=cast(ManimColor, self.color),
                 fill_opacity=self.fill_opacity,
                 stroke_color=self.color,
                 stroke_width=self.stroke_width,
@@ -376,16 +388,16 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             """
             # feature_map = GriddedRectangle()
             feature_map = FeatureMap(
-                color=self.color,
+                color=cast(ManimColor, self.color),
                 feature_map_size=self.feature_map_size,
                 cell_width=self.cell_width,
-                fill_color=self.color,
+                fill_color=cast(ManimColor, self.color),
                 fill_opacity=self.fill_opacity,
                 padding=self.padding,
                 padding_dashed=self.padding_dashed,
             )
             # Move the feature map
-            feature_map.move_to([0, 0, filter_index * self.filter_spacing])
+            feature_map.move_to((0.0, 0.0, filter_index * self.filter_spacing))
             # rectangle.set_z_index(4)
             feature_maps.append(feature_map)
 
@@ -425,7 +437,9 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         # Note: most of this animation is done in the Convolution3DToConvolution3D layer
         if not self.activation_function is None:
             animation_group = AnimationGroup(
-                self.activation_function.make_evaluate_animation(),
+                cast(
+                    ActivationFunction, self.activation_function
+                ).make_evaluate_animation(),
                 self.highlight_and_unhighlight_feature_maps(),
                 lag_ratio=0.0,
             )
@@ -479,13 +493,24 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             The height of the surrounding shape."""
         return self.feature_maps.length_over_dim(1)
 
-    def move_to(self, mobject_or_point: Mobject) -> Any:
+    def move_to(
+        self,
+        point_or_mobject: Point3D | tuple[float, float, float] | Mobject,
+        aligned_edge: Point3D | tuple[float, float, float] = ORIGIN,
+        coor_mask: Point3D | tuple[float, float, float] = np.array([1, 1, 1]),
+    ) -> "Convolutional2DLayer":
         """Moves the center of the layer to the given mobject or point.
 
         Parameters
         ----------
-        mobject_or_point
+        point_or_mobject
             The mobject or point whose center the layer is moved to.
+        aligned_edge
+            Unused; kept for interface compatibility with
+            :meth:`~manim.mobject.mobject.Mobject.move_to`.
+        coor_mask
+            Unused; kept for interface compatibility with
+            :meth:`~manim.mobject.mobject.Mobject.move_to`.
 
 
             Returns
@@ -493,12 +518,13 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
                 The resulting value.
         """
         layer_center = self.feature_maps.get_center()
-        if isinstance(mobject_or_point, Mobject):
-            target_center = mobject_or_point.get_center()
+        if isinstance(point_or_mobject, Mobject):
+            target_center = point_or_mobject.get_center()
         else:
-            target_center = mobject_or_point
+            target_center = np.array(point_or_mobject, dtype=float)
 
         self.shift(target_center - layer_center)
+        return self
 
     @override_animation(Create)
     def _create_override(self, **kwargs: Any) -> Animation:

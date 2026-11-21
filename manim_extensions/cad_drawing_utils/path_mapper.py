@@ -5,7 +5,7 @@
 """Arc-length, offset, warp and dashed-path helpers for Manim vector paths."""
 
 from __future__ import annotations
-from typing import Any, Callable, Sequence
+from typing import Any, Callable, Sequence, cast, overload
 
 import numpy as np
 from manim import (
@@ -98,7 +98,7 @@ class PathMapper(VMobject):
         q2 = (1 - gamma) * q1 + gamma * q3
         q0 = cubic_points[0, :]
         q4 = cubic_points[3, :]
-        q_points = np.append(q_points, (q0, q1, q2, q2, q3, q4), axis=0)
+        q_points = np.append(q_points, np.array((q0, q1, q2, q2, q3, q4)), axis=0)
         return q_points
 
     def calc_len_bezier_quad(self, points: np.ndarray) -> float:
@@ -130,9 +130,9 @@ class PathMapper(VMobject):
             ) / (nA**3) * (
                 np.log(nA * nF + np.dot(A, F)) - np.log(nA * nB + np.dot(A, B))
             )
-            return L
+            return cast(float, L)
         else:
-            return np.linalg.norm(a - c)
+            return cast(float, np.linalg.norm(a - c))
 
     def calc_len_with_quads(self) -> float:
         """Estimate the path length from quadratic approximations.
@@ -141,7 +141,7 @@ class PathMapper(VMobject):
         -------
             The summed length of all quadratic segments.
         """
-        L = 0
+        L = 0.0
         for k in range(self.path.get_num_curves()):
             points = self.path.get_nth_curve_points(k)
             quads = self.cubic_to_quads(points)
@@ -157,7 +157,13 @@ class PathMapper(VMobject):
         -------
             The cumulative length at the final sample.
         """
-        return self.pathdata_lengths[-1]
+        return cast(float, self.pathdata_lengths[-1])
+
+    @overload
+    def alpha_from_length(self, s: float) -> float: ...
+
+    @overload
+    def alpha_from_length(self, s: Sequence[float]) -> list[float]: ...
 
     def alpha_from_length(self, s: float | Sequence[float]) -> float | list[float]:
         """Convert arc length to normalized path proportion.
@@ -172,9 +178,18 @@ class PathMapper(VMobject):
             A proportion, or a list of proportions for iterable input.
         """
         if hasattr(s, "__iter__"):
-            return [np.interp(t, self.pathdata_lengths, self.pathdata_alpha) for t in s]
+            return [
+                float(np.interp(t, self.pathdata_lengths, self.pathdata_alpha))
+                for t in s
+            ]
         else:
-            return np.interp(s, self.pathdata_lengths, self.pathdata_alpha)
+            return float(np.interp(s, self.pathdata_lengths, self.pathdata_alpha))
+
+    @overload
+    def length_from_alpha(self, a: float) -> float: ...
+
+    @overload
+    def length_from_alpha(self, a: Sequence[float]) -> list[float]: ...
 
     def length_from_alpha(self, a: float | Sequence[float]) -> float | list[float]:
         """Convert normalized path proportion to arc length.
@@ -189,9 +204,12 @@ class PathMapper(VMobject):
             An arc length, or a list of arc lengths for iterable input.
         """
         if hasattr(a, "__iter__"):
-            return [np.interp(t, self.pathdata_alpha, self.pathdata_lengths) for t in a]
+            return [
+                float(np.interp(t, self.pathdata_alpha, self.pathdata_lengths))
+                for t in a
+            ]
         else:
-            return np.interp(a, self.pathdata_alpha, self.pathdata_lengths)
+            return float(np.interp(a, self.pathdata_alpha, self.pathdata_lengths))
 
     def equalize_alpha(self, a: float | Sequence[float]) -> float | list[float]:
         """Invert the alpha behaviour by mapping through path length.
@@ -205,6 +223,10 @@ class PathMapper(VMobject):
         -------
             The length-based proportion at the same path position.
         """
+        if hasattr(a, "__iter__"):
+            return self.alpha_from_length(
+                [t * self.get_path_length() for t in cast(Sequence[float], a)]
+            )
         return self.alpha_from_length(a * self.get_path_length())
 
     def equalize_rate_func(
@@ -254,11 +276,13 @@ class PathMapper(VMobject):
             -------
                 The path proportion whose arc length matches ``rate_func(t)``.
             """
-            return self.equalize_alpha(rate_func(t))
+            return cast(float, self.equalize_alpha(rate_func(t)))
 
         return eq_func
 
-    def point_from_proportion(self, alpha: float) -> np.ndarray:
+    def point_from_proportion(
+        self, alpha: float | Sequence[float] | np.ndarray
+    ) -> np.ndarray:
         """Return the point at a normalized path position.
 
         This overrides the base implementation with a precomputed length
@@ -275,12 +299,17 @@ class PathMapper(VMobject):
             input.
         """
         if hasattr(alpha, "__iter__"):
-            values = self.alpha_from_length(alpha * self.get_path_length())
+            values = self.alpha_from_length(
+                [
+                    t * self.get_path_length()
+                    for t in cast(Sequence[float], np.asarray(alpha))
+                ]
+            )
             ret = np.empty((0, 3))
             for a in values:
                 if a == 1:
                     index = self.path.get_num_curves() - 1
-                    remainder = 1
+                    remainder = 1.0
                 else:
                     index = int(a * self.path.get_num_curves() // 1)
                     remainder = (a * self.path.get_num_curves()) % 1
@@ -291,11 +320,11 @@ class PathMapper(VMobject):
             a = self.alpha_from_length(alpha * self.get_path_length())
             if a == 1:
                 index = self.path.get_num_curves() - 1
-                remainder = 1
+                remainder = 1.0
             else:
                 index = int(a * self.path.get_num_curves() // 1)
                 remainder = (a * self.path.get_num_curves()) % 1
-            return self.path.get_nth_curve_function(index)(remainder)
+            return cast(np.ndarray, self.path.get_nth_curve_function(index)(remainder))
 
     def get_length_between_points(self, b: float, a: float) -> float:
         """Return the signed arc length between two path positions.
@@ -374,7 +403,7 @@ class PathMapper(VMobject):
         bz_a = a * nc % 1
         if indx == nc:
             indx = nc - 1
-            bz_a = 1
+            bz_a = 1.0
         return (indx, bz_a)
 
     def get_tangent_unit_vector(self, s: float) -> np.ndarray:
@@ -460,7 +489,7 @@ class PathMapper(VMobject):
         -------
             The magnitude of the curvature vector.
         """
-        return np.linalg.norm(self.get_curvature_vector(s))
+        return cast(float, np.linalg.norm(self.get_curvature_vector(s)))
 
 
 # DashedVMobject
@@ -502,7 +531,7 @@ class DashedLineMobject(VDict):
                 num_dashes, dash_ratio=dashed_ratio, offset=dash_offset
             )
         )
-        self.add({"dashes": dshgrp})
+        self.add(cast(Any, {"dashes": dshgrp}))
         self["dashes"].match_style(target_mobject)
 
     def generate_dash_pattern_metric(
@@ -771,7 +800,7 @@ class PathOffsetMobject(VMobject):
 
     def generate_bezier_points(
         self,
-        input_func: Callable[[float], np.ndarray],
+        input_func: Callable[[float], Any],
         t_range: np.ndarray,
         Smoothing: bool = True,
     ) -> list[list[np.ndarray]]:
@@ -896,7 +925,7 @@ class PathOffsetMobject(VMobject):
 
     def default_updater(
         self, gen_ofs_point: bool = True, gen_ref_curve: bool = True
-    ) -> np.ndarray:
+    ) -> None:
         """Refresh the offset path points for an updater callback.
 
         Parameters
@@ -910,7 +939,9 @@ class PathOffsetMobject(VMobject):
         -------
             ``None``; the points are replaced in place.
         """
-        self.points = self.generate_offset_paths(gen_ofs_point, gen_ref_curve)
+        self.points = cast(
+            Any, self.generate_offset_paths(gen_ofs_point, gen_ref_curve)
+        )
 
 
 class CurveWarp(VMobject):
@@ -959,12 +990,12 @@ class CurveWarp(VMobject):
         super().__init__(**kwargs)
         self.match_style(warp_source)
 
-    def generate_points(self) -> None:
+    def generate_points(self) -> "CurveWarp":
         """Map the source path points onto the warp curve.
 
         Returns
         -------
-            ``None``; the mapped points are stored on the instance.
+            The mobject itself after its points are stored.
         """
         s0 = self.PM.length_from_alpha(self.anchor_point)
         x_points = self.warp_source.points[:, 0] + s0
@@ -974,32 +1005,40 @@ class CurveWarp(VMobject):
         if self.warp_curve.is_closed():
             # if the curve is closed, out-of-bound x values can wrap around to the beginning
             x_points = x_points % L
-            x_curve_points = self.PM.point_from_proportion(x_points / L)
+            x_curve_points = self.PM.point_from_proportion(cast(Any, x_points / L))
             nv = [self.PM.get_normal_unit_vector(x) for x in x_points]
             y_curve_points = np.array(
                 [tuplie[0] * tuplie[1] for tuplie in zip(nv, y_points)]
             )
-            self.points = x_curve_points + y_curve_points
+            self.points = cast(Any, x_curve_points + y_curve_points)
         else:
-            self.points = np.empty((0, 3))
+            self.points = cast(Any, np.empty((0, 3)))
+            p: Any
             for x, y in zip(x_points, y_points):
                 if 0 < x <= L:
                     p = (
                         self.PM.point_from_proportion(x / L)
                         + self.PM.get_normal_unit_vector(x) * y
                     )
-                    self.points = np.append(self.points, np.reshape(p, (1, 3)), axis=0)
+                    self.points = cast(
+                        Any, np.append(self.points, np.reshape(p, (1, 3)), axis=0)
+                    )
                 elif x > L:
                     endpoint = self.PM.point_from_proportion(1)
                     tanv = self.PM.get_tangent_unit_vector(L)
-                    nv = rotate_vector(tanv, PI / 2)
+                    normal_v = rotate_vector(tanv, PI / 2)
                     x_1 = x - L
-                    p = endpoint + x_1 * tanv + y * nv
-                    self.points = np.append(self.points, np.reshape(p, (1, 3)), axis=0)
+                    p = endpoint + x_1 * tanv + y * normal_v
+                    self.points = cast(
+                        Any, np.append(self.points, np.reshape(p, (1, 3)), axis=0)
+                    )
                 else:
                     startpoint = self.PM.point_from_proportion(0)
                     tanv = self.PM.get_tangent_unit_vector(0)
-                    nv = rotate_vector(tanv, PI / 2)
+                    normal_v = rotate_vector(tanv, PI / 2)
                     x_1 = x
-                    p = startpoint + x_1 * tanv + y * nv
-                    self.points = np.append(self.points, np.reshape(p, (1, 3)), axis=0)
+                    p = startpoint + x_1 * tanv + y * normal_v
+                    self.points = cast(
+                        Any, np.append(self.points, np.reshape(p, (1, 3)), axis=0)
+                    )
+        return self

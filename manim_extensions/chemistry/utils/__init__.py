@@ -26,3 +26,18 @@ from .parsers import (
 from .file_handler import FileHandler  # noqa F841
 
 from .pubchem_api import PubchemAPIManager  # noqa F841
+
+__all__ = [
+    "mol_parser",
+    "mol_parser_string",
+    "mol_to_graph",
+    "sdf_parser",
+    "sdf_parser_string",
+    "MolParser",
+    "SDFParser",
+    "JSONParser",
+    "ASNTParser",
+    "XMLParser",
+    "FileHandler",
+    "PubchemAPIManager",
+]

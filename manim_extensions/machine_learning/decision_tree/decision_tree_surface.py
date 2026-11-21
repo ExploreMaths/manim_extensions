@@ -7,7 +7,7 @@
 """Decision tree visualization for Manim."""
 
 from __future__ import annotations
-from typing import Any, TYPE_CHECKING
+from typing import Any, Sequence, TYPE_CHECKING
 
 # unlinked-class-ok: Array
 
@@ -44,8 +44,8 @@ from ...utils.deps import require
 from manim.typing import Point2D_Array, VectorND, MatrixMN
 
 if TYPE_CHECKING:
-    from sklearn.tree import DecisionTreeClassifier
-    from sklearn.utils import Bunch
+    from sklearn.tree import DecisionTreeClassifier  # type: ignore[import-untyped]
+    from sklearn.utils import Bunch  # type: ignore[import-untyped]
 
 
 class AABB:
@@ -60,7 +60,7 @@ class AABB:
     def __init__(self, n_features: int) -> None:
         self.limits = np.array([[-np.inf, np.inf]] * n_features)
 
-    def split(self, f: int, v: float) -> tuple:
+    def split(self, f: int, v: float) -> tuple[AABB, AABB]:
         r"""Split the bounding box along feature f at value v, returning left and right :class:`~manim_extensions.machine_learning.decision_tree.decision_tree_surface.AABB`\ s.
 
         Parameters
@@ -85,7 +85,7 @@ class AABB:
         return left, right
 
 
-def tree_bounds(tree: Mobject, n_features: int | None = None) -> list[AABB]:
+def tree_bounds(tree: Any, n_features: int | None = None) -> list[AABB]:
     """Compute final decision rule for each node in tree.
 
     Parameters
@@ -101,7 +101,7 @@ def tree_bounds(tree: Mobject, n_features: int | None = None) -> list[AABB]:
     -------
         The bounding boxes of the tree nodes.
     """
-    ctree = require("ml", "sklearn.tree")._tree
+    ctree = require("ml", "sklearn.tree._tree")
 
     if n_features is None:
         n_features = np.max(tree.feature) + 1
@@ -119,11 +119,11 @@ def tree_bounds(tree: Mobject, n_features: int | None = None) -> list[AABB]:
 
 def compute_decision_areas(
     tree_classifier: DecisionTreeClassifier,
-    maxrange: list[float],
+    maxrange: Sequence[float],
     x: int = 0,
     y: int = 1,
     n_features: int | None = None,
-) -> list[Any]:
+) -> MatrixMN:
     """Extract decision areas.
 
     Parameters
@@ -144,12 +144,12 @@ def compute_decision_areas(
     -------
         A list of the results.
     """
-    ctree = require("ml", "sklearn.tree")._tree
+    ctree = require("ml", "sklearn.tree._tree")
 
     tree = tree_classifier.tree_
     aabbs = tree_bounds(tree, n_features)
-    maxrange = np.array(maxrange)
-    rectangles = []
+    maxrange_arr = np.array(maxrange)
+    rectangles: list[list[float]] = []
     for i in range(len(aabbs)):
         if tree.children_left[i] != ctree.TREE_LEAF:
             continue
@@ -168,10 +168,10 @@ def compute_decision_areas(
         print(r)
         """
         rectangles.append(r)
-    rectangles = np.array(rectangles)
-    rectangles[:, [0, 2]] = np.maximum(rectangles[:, [0, 2]], maxrange[0::2])
-    rectangles[:, [1, 3]] = np.minimum(rectangles[:, [1, 3]], maxrange[1::2])
-    return rectangles
+    result: MatrixMN = np.array(rectangles)
+    result[:, [0, 2]] = np.maximum(result[:, [0, 2]], maxrange_arr[0::2])
+    result[:, [1, 3]] = np.minimum(result[:, [1, 3]], maxrange_arr[1::2])
+    return result
 
 
 def plot_areas(rectangles: MatrixMN) -> Any:
@@ -194,11 +194,10 @@ def plot_areas(rectangles: MatrixMN) -> Any:
         color = ["b", "r"][int(rect[4])]
         print(rect[0], rect[1], rect[2] - rect[0], rect[3] - rect[1])
         rp = Rectangle(
-            [rect[0], rect[2]],
-            rect[1] - rect[0],
-            rect[3] - rect[2],
+            width=rect[1] - rect[0],
+            height=rect[3] - rect[2],
             color=color,
-            alpha=0.3,
+            fill_opacity=0.3,
         )
         plt.gca().add_artist(rp)
 
@@ -221,7 +220,7 @@ def merge_overlapping_polygons(
         A list of the results.
     """
     # get all polygons of each color
-    polygon_dict = {
+    polygon_dict: dict[str, list[Polygon]] = {
         str(BLUE).lower(): [],
         str(GREEN).lower(): [],
         str(ORANGE).lower(): [],
@@ -231,9 +230,9 @@ def merge_overlapping_polygons(
 
     return_polygons = []
     for color in colors:
-        color = str(color).lower()
-        polygons = polygon_dict[color]
-        points = set()
+        color_key = str(color).lower()
+        polygons = polygon_dict[color_key]
+        points: set[tuple[float, ...]] = set()
         for polygon in polygons:
             vertices = polygon.get_vertices().tolist()
             vertices = [tuple(vert) for vert in vertices]
@@ -242,9 +241,9 @@ def merge_overlapping_polygons(
                     points.remove(pt)
                 else:
                     points.add(pt)
-        points = list(points)
-        sort_x = sorted(points)
-        sort_y = sorted(points, key=lambda x: x[1])
+        points_list = list(points)
+        sort_x = sorted(points_list)
+        sort_y = sorted(points_list, key=lambda x: x[1])
 
         edges_h = {}
         edges_v = {}
@@ -267,28 +266,33 @@ def merge_overlapping_polygons(
         # Get all the polygons.
         while edges_h:
             # We can start with any point.
-            polygon = [(edges_h.popitem()[0], 0)]
+            poly_chain = [(edges_h.popitem()[0], 0)]
             while True:
-                curr, e = polygon[-1]
+                curr, e = poly_chain[-1]
                 if e == 0:
                     next_vertex = edges_v.pop(curr)
-                    polygon.append((next_vertex, 1))
+                    poly_chain.append((next_vertex, 1))
                 else:
                     next_vertex = edges_h.pop(curr)
-                    polygon.append((next_vertex, 0))
-                if polygon[-1] == polygon[0]:
+                    poly_chain.append((next_vertex, 0))
+                if poly_chain[-1] == poly_chain[0]:
                     # Closed polygon
-                    polygon.pop()
+                    poly_chain.pop()
                     break
             # Remove implementation-markers from the polygon.
-            poly = [point for point, _ in polygon]
+            poly = [point for point, _ in poly_chain]
             for vertex in poly:
                 if vertex in edges_h:
                     edges_h.pop(vertex)
                 if vertex in edges_v:
                     edges_v.pop(vertex)
-            polygon = Polygon(*poly, color=color, fill_opacity=0.3, stroke_opacity=1.0)
-            return_polygons.append(polygon)
+            merged_polygon = Polygon(
+                *[tuple(point) for point in poly],
+                color=color_key,
+                fill_opacity=0.3,
+                stroke_opacity=1.0,
+            )
+            return_polygons.append(merged_polygon)
     return return_polygons
 
 
@@ -331,16 +335,16 @@ class IrisDatasetPlot(VGroup):
         )
         # Make title
         # title_text = "Iris Dataset Plot"
-        # self.title = Text(title_text).match_y(self.axes_group).shift([0.5, self.axes_group.height / 2 + 0.5, 0])
+        # self.title = Text(title_text).match_y(self.axes_group).shift((0.5, self.axes_group.height / 2 + 0.5, 0))
         # Make all group
         self.all_group = Group(self.point_group, self.axes_group, self.legend_group)
         # scale the groups
         self.point_group.scale(1.6)
         self.point_group.match_x(self.axes_group)
         self.point_group.match_y(self.axes_group)
-        self.point_group.shift([0.2, 0, 0])
+        self.point_group.shift((0.2, 0, 0))
         self.axes_group.scale(0.7)
-        self.all_group.shift([0, 0.2, 0])
+        self.all_group.shift((0, 0.2, 0))
 
     @override_animation(Create)
     def create_animation(self) -> AnimationGroup:
@@ -426,7 +430,7 @@ class IrisDatasetPlot(VGroup):
         legend_group.add(surrounding_rectangle)
         # shift the legend group
         legend_group.move_to(axes)
-        legend_group.shift([0, -3.0, 0])
+        legend_group.shift((0, -3.0, 0))
         legend_group.match_x(axes[0][0])
 
         return legend_group
@@ -470,14 +474,14 @@ class IrisDatasetPlot(VGroup):
             y_length=6.5,
             # axis_config={"number_scale_value":0.75, "include_numbers":True},
             tips=False,
-        ).shift([0.5, 0.25, 0])
+        ).shift((0.5, 0.25, 0))
         axes_group.add(axes)
         # make axis labels
         # x_label
         x_label = (
             Text(labels[0], font=font)
             .match_y(axes.x_axis)
-            .shift([0.5, -0.75, 0])
+            .shift((0.5, -0.75, 0))
             .scale(font_scale)
         )
         axes_group.add(x_label)
@@ -485,7 +489,7 @@ class IrisDatasetPlot(VGroup):
         y_label = (
             Text(labels[1], font=font)
             .match_x(axes.y_axis)
-            .shift([-0.75, 0, 0])
+            .shift((-0.75, 0, 0))
             .rotate(np.pi / 2)
             .scale(font_scale)
         )
@@ -619,7 +623,7 @@ class DecisionTreeSurface(VGroup):
             Mapping from leaf node index to its decision rectangle
             ``[left, right, bottom, top, class_index]``.
         """
-        ctree = require("ml", "sklearn.tree")._tree
+        ctree = require("ml", "sklearn.tree._tree")
         # compute data bounds
         left = np.amin(self.data[:, 0]) - 0.2
         right = np.amax(self.data[:, 0]) + 0.2
@@ -674,7 +678,7 @@ class DecisionTreeSurface(VGroup):
         -------
             Mapping from split node index to its classification area animation.
         """
-        ctree = require("ml", "sklearn.tree")._tree
+        ctree = require("ml", "sklearn.tree._tree")
         tree = self.tree_clf.tree_
         leaf_rectangles = self._make_decision_rectangles()
         split_to_animation = {}

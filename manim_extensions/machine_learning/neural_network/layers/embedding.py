@@ -5,6 +5,7 @@
 """Embedding layer visualization for neural networks."""
 
 from __future__ import annotations
+import numpy as np
 from typing import Any
 
 from manim import (
@@ -22,7 +23,6 @@ from manim import (
     Scene,
     VGroup,
     WHITE,
-    np,
     override_animation,
 )
 

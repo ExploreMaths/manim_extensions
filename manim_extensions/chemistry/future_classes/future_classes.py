@@ -7,6 +7,7 @@ This module contains experimental classes that may be implemented in the future.
 
 """
 
+import numpy as np
 from typing import Any, Callable, cast
 
 from functools import wraps
@@ -38,7 +39,6 @@ from manim import (
     VGroup,
     VMobject,
     WHITE,
-    np,
     smooth,
 )
 
@@ -153,8 +153,8 @@ class Element(VGroup):
         self,
         element: str = "H",
         radius: float = 1,
-        color: str = ORANGE,
-        label_color: str = BLACK,
+        color: ManimColor | str = ORANGE,
+        label_color: ManimColor | str = BLACK,
         n_electrons: int = 2,
         n_holes: int = 2,
         add_electrons: bool = True,
@@ -164,8 +164,8 @@ class Element(VGroup):
     ) -> None:
         super().__init__(**kwargs)
         self.element_label = element
-        self.label_color = label_color
-        self.color = color
+        self.label_color = ManimColor(label_color)
+        self.color = ManimColor(color)
         self.radius = radius
         self.n_electrons = n_electrons
         self.n_holes = n_holes
@@ -176,12 +176,12 @@ class Element(VGroup):
         self.holes = self.get_holes()
         self.particles = self.get_particles()
         self.atom = self.central_atom()
-        self.add(self.atom.shift([0, 0, 0]))
+        self.add(self.atom.shift((0, 0, 0)))
         self.arrange_particles()
         self.subelectron_holes_group = self.make_subelectron_holes()
         if self.subelectron_holes:
-            self.particles.add(cast(Any, self.subelectron_holes_group).shift([0, 0, 0]))
-            self.add(cast(Any, self.subelectron_holes_group).shift([0, 0, 0]))
+            self.particles.add(cast(Any, self.subelectron_holes_group).shift((0, 0, 0)))
+            self.add(cast(Any, self.subelectron_holes_group).shift((0, 0, 0)))
 
     def central_atom(self) -> LabeledDot:
         """Create a labeled dot representing the central atom scaled to the element radius.
@@ -250,12 +250,13 @@ class Element(VGroup):
             The group containing the distributed electrons and holes."""
         if len(self.particles) == 0:
             return self.particles
-        self.add(self.particles.shift([0, 0, 0]))
+        self.add(self.particles.shift((0, 0, 0)))
         angles = np.arange(0, TAU, TAU / len(self.particles))
 
         for index, particle in enumerate(self.particles):
             particle.shift(self.radius * RIGHT + 1.2 * particle.width * RIGHT)
             particle.rotate(angles[index], about_point=self.atom.get_center())
+        return self.particles
 
     def make_subelectron_holes(self) -> VGroup | None:
         """Create holes positioned at each electron location for visual effect.
@@ -271,6 +272,7 @@ class Element(VGroup):
             return VGroup(
                 *[Hole().move_to(electron.get_center()) for electron in self.electrons]
             )
+        return None
 
     def get_subelectron_holes(self) -> VGroup | None:
         """Return the :class:`~manim.mobject.types.vectorized_mobject.VGroup` of subelectron holes.
@@ -319,16 +321,15 @@ class ElementFrame(VGroup):
 
         self.frame = Rectangle(
             height=2, width=1.5, fill_opacity=1
-        ).set_color_by_gradient(frame_colors)
-        self.symbol = Text(element_symbol, color=BLACK).scale(1.5).shift(0.2 * UP)
-        self.name = Text(element_name, color=BLACK).shift(0.75 * DOWN)
-
-        name_rescaling_factor = (
-            0.75 * cast(Any, self.frame).width / cast(Any, self.name).width
+        ).set_color_by_gradient(*frame_colors)
+        self.symbol = cast(
+            Any, Text(element_symbol, color=BLACK).scale(1.5).shift(0.2 * UP)
         )
-
-        cast(Any, self.name).scale(name_rescaling_factor)
-        self.add(self.frame, self.symbol, self.name)
+        name_label = Text(element_name, color=BLACK).shift(0.75 * DOWN)
+        name_rescaling_factor = 0.75 * cast(Any, self.frame).width / name_label.width
+        name_label.scale(name_rescaling_factor)
+        self.name_label = name_label
+        self.add(self.frame, self.symbol, self.name_label)
 
 
 class NPNTransistor(VGroup):
@@ -792,7 +793,7 @@ class BatterySide(VMobject):
                self.add(content)
     """
 
-    def __init__(self, terminal: Mobject, anchor: VGroup, **kwargs: Any) -> None:
+    def __init__(self, terminal: Mobject, anchor: Mobject, **kwargs: Any) -> None:
         super().__init__(**kwargs)
         self.terminal = terminal
         self.anchor = anchor
@@ -805,8 +806,8 @@ class BatterySide(VMobject):
         -------
             The same instance, allowing calls to be chained."""
         terminal_points = self.terminal.get_center()
-        anchor_points = self.anchor.get_top() + [0, -0.2, 0]
-        intermediate_point = [anchor_points[0], terminal_points[1], 0]
+        anchor_points = self.anchor.get_top() + np.array((0, -0.2, 0))
+        intermediate_point = np.array((anchor_points[0], terminal_points[1], 0))
 
         return self.set_points_as_corners(
             [terminal_points, intermediate_point, anchor_points]
@@ -857,7 +858,7 @@ def duplicate_and_rearrange(
     if isinstance(mobs, VGroup):
         group = VGroup(*mobs.copy().submobjects, *mobs.copy().submobjects)
     else:
-        group = VGroup(mobs, mobs)
+        group = VGroup(cast(Any, mobs), cast(Any, mobs))
     arrange_in_1d_boundary(group, boundary)
     return group
 
@@ -886,11 +887,11 @@ def add_over_rectangular_surface(
     for i in range(amount):
         group.add(
             mobtype.copy().shift(
-                [
-                    np.random.randint(-50 * width, 50 * width) / 100,
-                    np.random.randint(-50 * height, 50 * height) / 100,
+                (
+                    np.random.randint(int(-50 * width), int(50 * width)) / 100,
+                    np.random.randint(int(-50 * height), int(50 * height)) / 100,
                     0,
-                ]
+                )
             )
         )
 
@@ -945,7 +946,7 @@ def randomly_distributed_in_2d(
     vertical = np.random.uniform(up, -down, n_mobs)
 
     for index, mob in enumerate(mobs):
-        mob.shift([horizontal[index], vertical[index], 0])
+        mob.shift((horizontal[index], vertical[index], 0))
 
     return mobs
 
@@ -973,10 +974,10 @@ def arrange_copies_in_rectangle(
     -------
         A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
     """
-    arrange_in_1d_boundary(mobs, vertical_boundary)
-    copies_group = VGroup(mobs)
+    arrange_in_1d_boundary(cast(Any, mobs), vertical_boundary)
+    copies_group = VGroup(cast(Any, mobs))
     for i in range(n_copies):
-        copies_group.add(mobs.copy())
+        copies_group.add(cast(Any, mobs.copy()))
 
     arrange_in_1d_boundary(copies_group, horizontal_boundary)
 
@@ -1018,17 +1019,19 @@ def zero(function: Callable[..., Any]) -> Callable[..., float]:
     """
 
     @wraps(function)
-    def wrapper(t: VectorND | None, *args: Any, **kwargs: Any) -> float:
+    def wrapper(t: float, *args: Any, **kwargs: Any) -> float:
         """Clamp the curve parameter to the unit interval."""
         if 0 <= t <= 1:
-            return function(t, *args, **kwargs)
+            return float(function(t, *args, **kwargs))
         else:
             return 0
 
     return wrapper
 
 
-_zero = cast(Any, zero).__wrapped__
+_zero: Callable[[Callable[..., float]], Callable[..., float]] = cast(
+    Callable[[Callable[..., float]], Callable[..., float]], cast(Any, zero).__wrapped__
+)
 
 
 @_zero
@@ -1086,11 +1089,11 @@ def concat_mobjects(mobject: Mobject, concats: int, buff: float = 0) -> VGroup:
     -------
         A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
     """
-    group = VGroup(mobject.copy())
+    group = VGroup(cast(Any, mobject.copy()))
     sides = {0: RIGHT, 1: LEFT}
     for i in range(concats):
         side = sides[i % 2]
         concat_mobject = mobject.copy().next_to(group, side, buff=buff)
-        group.add(concat_mobject)
+        group.add(cast(Any, concat_mobject))
 
     return group

@@ -254,7 +254,7 @@ from ..element import (
 from ..element.element import Element
 
 
-def mol_parser_string(mol_string: list[Any]) -> tuple[dict]:
+def mol_parser_string(mol_string: list[Any]) -> tuple[dict[Any, Any], dict[Any, Any]]:
     """Parse a MOL-format string (list of lines) into atoms and bonds dicts.
 
     Parameters
@@ -360,7 +360,7 @@ def mol_parser_string(mol_string: list[Any]) -> tuple[dict]:
                 Any, cast(Any, atoms).get(first_atom_index)
             ).get("element")
 
-    return atoms  # Should return atoms and bonds
+    return atoms, bonds
 
 
 def mol_parser(file: str) -> tuple[dict, dict]:
@@ -502,7 +502,7 @@ def mol_to_graph(file: str, language: Literal["ENG", "ESP"] = "ENG") -> tuple[di
         bond_type = line_data[2]
         bonds[(first_atom_index, second_atom_index)] = {"type": bond_type}
 
-    return atoms  # Should return atoms and bonds
+    return atoms, bonds
 
 
 #: Mapping from element symbol to the corresponding :class:~manim_extensions.chemistry.element.element.Element.

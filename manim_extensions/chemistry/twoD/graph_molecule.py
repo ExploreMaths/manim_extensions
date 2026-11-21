@@ -7,7 +7,7 @@ This module provides graph-based molecule visualization classes.
 
 """
 
-from typing import Any, Dict, cast
+from typing import Any, Hashable, cast
 
 import logging
 
@@ -16,6 +16,8 @@ from manim import (
     BLACK,
     Graph,
     Line,
+    ManimColor,
+    Mobject,
     ORIGIN,
     PI,
     Text,
@@ -92,18 +94,22 @@ class DoubleLine(ArcBetweenPoints):
 
     def __init__(
         self,
-        start: list[Any] = [-1, 0, 0],
-        end: list[Any] = [1, 0, 0],
+        start: Point3D | tuple[float, float, float] = (-1.0, 0.0, 0.0),
+        end: Point3D | tuple[float, float, float] = (1.0, 0.0, 0.0),
         angle: float = PI / 4,
         radius: float | None = None,
         **kwargs: Any,
     ) -> None:
-        self.start = start
-        self.end = end
-        super().__init__(start=start, end=end, angle=angle, radius=radius, **kwargs)
+        kwargs.pop("start", None)
+        kwargs.pop("end", None)
+        self.start: Point3D = np.array(start, dtype=float)
+        self.end: Point3D = np.array(end, dtype=float)
+        super().__init__(
+            start=self.start, end=self.end, angle=angle, radius=radius, **kwargs
+        )
         self.sheen_direction = self._get_unit_vector()
         other_arc = ArcBetweenPoints(
-            start=start, end=end, angle=-angle, radius=radius, **kwargs
+            start=self.start, end=self.end, angle=-angle, radius=radius, **kwargs
         )
         other_arc.sheen_direction = self.sheen_direction
         self.add(other_arc)
@@ -169,14 +175,16 @@ class TripleLine(DoubleLine):
 
     def __init__(
         self,
-        start: list[Any] = [-1, 0, 0],
-        end: list[Any] = [1, 0, 0],
+        start: Point3D | tuple[float, float, float] = (-1.0, 0.0, 0.0),
+        end: Point3D | tuple[float, float, float] = (1.0, 0.0, 0.0),
         angle: float = PI / 4,
         *args: Any,
         **kwargs: Any,
     ) -> None:
-        super().__init__(start=start, end=end, *args, **kwargs)
-        middle_line = Line(start=start, end=end, *args, **kwargs)
+        super().__init__(
+            *args, **{**kwargs, "start": start, "end": end, "angle": angle}
+        )
+        middle_line = Line(*args, **{**kwargs, "start": self.start, "end": self.end})
         middle_line.sheen_direction = self.sheen_direction
         self.add(middle_line)
 
@@ -274,7 +282,7 @@ class GraphMolecule(Graph, AbstractMolecule):
                self.wait()
     """
 
-    SUPPORTED_BOND_TYPES = {
+    SUPPORTED_BOND_TYPES: dict[int, type[Line] | type[ArcBetweenPoints]] = {
         1: SimpleLine,
         2: DoubleLine,
         3: TripleLine,
@@ -286,33 +294,33 @@ class GraphMolecule(Graph, AbstractMolecule):
         edges_dict: dict[Any, Any],
         label: bool = False,
         numeric_label: bool = False,
-        label_color: str = BLACK,
+        label_color: ManimColor = BLACK,
         *args: Any,
         **kwargs: Any,
     ) -> None:
         self.edges_dict = edges_dict
-        labels = False
+        labels: bool | dict[int, Text] = False
         if label or numeric_label:
             labels = self.make_labels(vertices_dict, numeric_label, label_color)
 
-        super().__init__(
-            vertices=vertices_dict.keys(),
-            edges=edges_dict.keys(),
-            vertex_config=self.make_vertex_config(vertices_dict),
-            edge_config=self.make_edge_config(edges_dict),
-            layout=self.make_layout(vertices_dict),
-            labels=labels,
-            *args,
-            **kwargs,
-        )
+        graph_kwargs: dict[str, Any] = {
+            "vertices": list(vertices_dict.keys()),
+            "edges": list(edges_dict.keys()),
+            "vertex_config": self.make_vertex_config(vertices_dict),
+            "edge_config": self.make_edge_config(edges_dict),
+            "layout": self.make_layout(vertices_dict),
+            "labels": labels,
+        }
+        graph_kwargs.update(kwargs)
+        super().__init__(*args, **graph_kwargs)
 
         self.move_to(ORIGIN)
         self.atoms = self.vertices
         self.bonds = self.edges
 
     def _populate_edge_dict(
-        self, edges: list[tuple[int, int]], _: VectorND | None
-    ) -> Any:
+        self, edges: list[tuple[Hashable, Hashable]], edge_type: type[Mobject]
+    ) -> None:
         """Create a bond mobject for every edge.
 
         Parameters
@@ -340,7 +348,7 @@ class GraphMolecule(Graph, AbstractMolecule):
             self.edges[(u, v)] = bond
 
     def select_bond_from_edge(
-        self, edge: tuple[int, int]
+        self, edge: tuple[Hashable, Hashable]
     ) -> type[Line] | type[ArcBetweenPoints]:
         """Return the bond class for a given edge tuple based on its bond type.
 
@@ -444,7 +452,10 @@ class GraphMolecule(Graph, AbstractMolecule):
         return edge_config
 
     def make_labels(
-        self, vertices_dict: dict[Any, Any], numeric_label: bool, label_color: str
+        self,
+        vertices_dict: dict[Any, Any],
+        numeric_label: bool,
+        label_color: ManimColor,
     ) -> dict[int, Text]:
         """Create label text mobjects for each atom, either numeric or element symbols.
 
@@ -575,11 +586,13 @@ class GraphMolecule(Graph, AbstractMolecule):
         -------
             A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
         """
-        return VGroup(*[self.vertices[atom_index] for atom_index in atoms_indices])
+        return VGroup(
+            *cast(Any, [self.vertices[atom_index] for atom_index in atoms_indices])
+        )
 
     def get_connected_atoms_v_group(
         self, from_atom_index: int, to_atom_index: int
-    ) -> list[Any]:
+    ) -> VGroup:
         """Return a VGroup of all atoms connected to to_atom_index beyond the bond from from_atom_index.
 
         Parameters
@@ -640,7 +653,7 @@ class GraphMolecule(Graph, AbstractMolecule):
             A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
         """
         bonds = self.get_bonds_from_atoms_indices(connected_atoms, excluded_atom)
-        return VGroup(*[self.edges[bond_atoms] for bond_atoms in bonds])
+        return VGroup(*cast(Any, [self.edges[bond_atoms] for bond_atoms in bonds]))
 
     def get_connected_atoms_and_bonds_group_from_index(
         self, connected_atoms: list[Any], excluded_atom: int = 0
@@ -756,7 +769,9 @@ class GraphMolecule(Graph, AbstractMolecule):
 
         return atoms_positions
 
-    def find_bond_center_by_index(self, bond_index: tuple) -> Point3D:
+    def find_bond_center_by_index(
+        self, bond_index: tuple[Hashable, Hashable]
+    ) -> Point3D:
         """Returns the [x, y, z] coordinates of a bond given a bond tuple.
         The bond tuple corresponds to the indices of the atoms in the bond.
 
@@ -796,7 +811,7 @@ class GraphMolecule(Graph, AbstractMolecule):
             raise exception
 
     def find_position_along_bond_axis(
-        self, bond_tuple: int, position_buff: float
+        self, bond_tuple: tuple[Hashable, Hashable], position_buff: float
     ) -> Point3D:
         """Returns a position along the bond axis given a bond index and depending on a position_buff.
         A value of 1 will return one end of the bond. A value of -1 will return the other end.
@@ -828,10 +843,10 @@ class GraphMolecule(Graph, AbstractMolecule):
             _logger.warning(f"Valid indices are: {self.bonds.keys()}")
             raise key_error
 
-        bond_vector = bond.get_vector()
+        bond_vector = cast(Any, bond).get_vector()
         bond_center = bond.get_center()
 
-        return bond_center + bond_vector * position_buff * 0.5
+        return cast(Point3D, bond_center + bond_vector * position_buff * 0.5)
 
     def find_bonds_center_by_index(self, bonds_tuples_list: list[Any]) -> list[Any]:
         """Returns the position of multiple bonds given their indices.
@@ -872,10 +887,10 @@ class GraphMolecule(Graph, AbstractMolecule):
         -------
             Dictionary mapping atom indices to their positions.
         """
-        atoms_positions = {}
+        atoms_positions: dict[Any, Any] = {}
         for atom_index in self.atoms.keys():
             atoms_positions[atom_index] = self.find_atom_position_by_index(
-                atom_index=atom_index
+                atom_index=cast(int, atom_index)
             )
 
         return atoms_positions
@@ -898,7 +913,7 @@ class GraphMolecule(Graph, AbstractMolecule):
     @classmethod
     def mc_molecule_to_atoms_and_bonds(
         cls, mc_molecule: MCMolecule
-    ) -> tuple[Dict, Dict]:
+    ) -> tuple[dict[Any, Any], dict[Any, Any]]:
         """
         Transforms the structure of a mc_molecule to a (vertices, edges) tuple.
 

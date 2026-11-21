@@ -10,7 +10,7 @@ This module provides abstract base classes for neural network layer visualizatio
 """
 
 from __future__ import annotations
-from typing import Any
+from typing import Any, cast
 
 from manim import (
     Animation,
@@ -194,7 +194,7 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
         -------
             The parent layer's creation animation.
         """
-        return super()._create_override()
+        return cast(Animation, super()._create_override())
 
 
 class ThreeDLayer(ABC):
@@ -256,9 +256,7 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
         # assert isinstance(output_layer, self.output_class), f"{output_layer}, {self.output_class}"
 
     @abstractmethod
-    def make_forward_pass_animation(
-        self, run_time: float = 2.0, layer_args: dict[Any, Any] = {}, **kwargs: Any
-    ) -> Animation:
+    def make_forward_pass_animation(self, *args: Any, **kwargs: Any) -> Animation:
         """Makes the forward pass animation between the connected layers.
 
         Parameters
@@ -285,7 +283,7 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
         -------
             The parent layer's creation animation.
         """
-        return super()._create_override()
+        return cast(Animation, super()._create_override())
 
     def __repr__(self) -> str:
         """Return the layer class name together with its connected layers.
@@ -401,4 +399,4 @@ class BlankConnective(ConnectiveLayer):
         -------
             The parent layer's creation animation.
         """
-        return super()._create_override()
+        return cast(Animation, super()._create_override())

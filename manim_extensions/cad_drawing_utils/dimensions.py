@@ -5,7 +5,7 @@
 """CAD dimension mobjects: linear and angular dimensions with arrows and labels."""
 
 from __future__ import annotations
-from typing import Any
+from typing import Any, cast
 
 from manim.typing import Point3D, Vector3D
 from manim import (
@@ -64,13 +64,14 @@ class PointerLabelFree(VDict):
             kwargs["stroke_width"] = DEFAULT_STROKE_WIDTH
         super().__init__(**kwargs)
 
+        textmob: Mobject
         if isinstance(text, str):
             textmob = Text(text, **kwargs)
         elif isinstance(text, Mobject):
             textmob = text
         else:
             textmob = Text("A", **kwargs)
-        self.add({"text": textmob})
+        self.add(cast(Any, {"text": textmob}))
         self.twidth = (
             self["text"].get_critical_point(RIGHT)
             - self["text"].get_critical_point(LEFT)
@@ -91,8 +92,10 @@ class PointerLabelFree(VDict):
                 point + offset_vector + self.twidth * np.sign(offset_vector[0]) * RIGHT,
             ]
         )
-        self.add({"line": dim_line})
-        self.add({"arrow": CADArrowHead(self["line"], anchor_point=0, **kwargs)})
+        self.add(cast(Any, {"line": dim_line}))
+        self.add(
+            cast(Any, {"arrow": CADArrowHead(self["line"], anchor_point=0, **kwargs)})
+        )
         self["arrow"].arrowhead.rotate(PI, about_point=ORIGIN)
         self["arrow"].add_updater(self["arrow"].default_updater)
         self["arrow"].update()
@@ -267,7 +270,7 @@ class LinearDimension(VDict):
         startpoint = start + ofs_dir * np.dot((diff_vect), ofs_dir) / 2 + ofs_vect
         endpoint = end - ofs_dir * np.dot((diff_vect), ofs_dir) / 2 + ofs_vect
 
-        self.arrow_offset = 0
+        self.arrow_offset: float = 0
         if not outside_arrow:
             if "stroke_width" in kwargs:
                 self.arrow_offset = kwargs["stroke_width"] * 1 / 100
@@ -304,27 +307,34 @@ class LinearDimension(VDict):
             arrow2.update()
 
         self.add(
-            {
-                "ext_line_1": Line(
-                    start=start + ofs_dir * ext_line_offset,
-                    end=startpoint + 0.25 * (normalize(startpoint - start)),
-                    **kwargs,
-                )
-            }
+            cast(
+                Any,
+                {
+                    "ext_line_1": Line(
+                        start=start + ofs_dir * ext_line_offset,
+                        end=startpoint + 0.25 * (normalize(startpoint - start)),
+                        **kwargs,
+                    ),
+                },
+            )
         )
         self.add(
-            {
-                "ext_line_2": Line(
-                    start=end + ofs_dir * ext_line_offset,
-                    end=endpoint + 0.25 * (normalize(endpoint - end)),
-                    **kwargs,
-                )
-            }
+            cast(
+                Any,
+                {
+                    "ext_line_2": Line(
+                        start=end + ofs_dir * ext_line_offset,
+                        end=endpoint + 0.25 * (normalize(endpoint - end)),
+                        **kwargs,
+                    ),
+                },
+            )
         )
-        self.add({"main_line": main_line})
-        self.add({"arrow1": arrow1})
-        self.add({"arrow2": arrow2})
+        self.add(cast(Any, {"main_line": main_line}))
+        self.add(cast(Any, {"arrow1": arrow1}))
+        self.add(cast(Any, {"arrow2": arrow2}))
 
+        textmob: Mobject
         if isinstance(text, str):
             textmob = Text(text, **kwargs)
             textmob.set_stroke(opacity=0)
@@ -353,7 +363,7 @@ class LinearDimension(VDict):
         textmob.move_to(
             self["main_line"].get_center() + rotate_vector(UP, text_angle) * self.text_h
         )
-        self.add({"text": textmob})
+        self.add(cast(Any, {"text": textmob}))
 
 
 class AngleDimension3Point(VDict):
@@ -425,8 +435,8 @@ class AngleDimension3Point(VDict):
             **kwargs,
         )
         # self.add(line1,line2)
-        self.add({"ext_line_1": line1})
-        self.add({"ext_line_2": line2})
+        self.add(cast(Any, {"ext_line_1": line1}))
+        self.add(cast(Any, {"ext_line_2": line2}))
         if not outside_arrow:
 
             if "stroke_width" in kwargs:
@@ -445,9 +455,9 @@ class AngleDimension3Point(VDict):
             arrow2.arrowhead.shift(RIGHT * self.arrow_offset)
             arrow1.generate_points()
             arrow2.generate_points()
-            self.add({"base_arc": base_arc})
-            self.add({"arrow_1": arrow1})
-            self.add({"arrow_2": arrow2})
+            self.add(cast(Any, {"base_arc": base_arc}))
+            self.add(cast(Any, {"arrow_1": arrow1}))
+            self.add(cast(Any, {"arrow_2": arrow2}))
         else:
             extension = tip_len * 3 * np.sign(angle_1)
             angle_ext = extension / radius
@@ -469,10 +479,11 @@ class AngleDimension3Point(VDict):
             )
             arrow2.arrowhead.shift(-extension * RIGHT)
             arrow2.default_updater(0)
-            self.add({"base_arc": base_arc})
-            self.add({"arrow_1": arrow1})
-            self.add({"arrow_2": arrow2})
+            self.add(cast(Any, {"base_arc": base_arc}))
+            self.add(cast(Any, {"arrow_1": arrow1}))
+            self.add(cast(Any, {"arrow_2": arrow2}))
 
+        textmob: Mobject
         if isinstance(text, str):
             textmob = Text(text, **kwargs)
             textmob.set_stroke(opacity=0)
@@ -495,7 +506,7 @@ class AngleDimension3Point(VDict):
         self.text_h = textmob.height
         textmob.rotate(angle_text)
         textmob.move_to(pos_text + rotate_vector(UP, angle_text) * self.text_h)
-        self.add({"text": textmob})
+        self.add(cast(Any, {"text": textmob}))
 
 
 class AngleDimensionMob(AngleDimension3Point):
@@ -586,7 +597,7 @@ class CADArrowHead(CurveWarp):
             self.arrowhead, target_curve, anchor_point=anchor_point, **kwargs
         )
 
-    def default_updater(self, mob: Mobject) -> None:
+    def default_updater(self, mob: Mobject | float = 0) -> None:
         """Refresh the arrow geometry after the target curve changes.
 
         Parameters
@@ -609,9 +620,9 @@ class CADArrowHead(CurveWarp):
             The horizontal position of the tip along the target curve.
         """
         if self.__reversed_arrow:
-            return self.arrowhead.get_critical_point(LEFT)[0]
+            return cast(float, self.arrowhead.get_critical_point(LEFT)[0])
         else:
-            return self.arrowhead.get_critical_point(RIGHT)[0]
+            return cast(float, self.arrowhead.get_critical_point(RIGHT)[0])
 
     def set_arrow_size(self, arrow_size: float) -> None:
         """Resize the arrow head while keeping its tip fixed.

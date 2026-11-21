@@ -5,7 +5,7 @@
 """Fit tangent arcs and chamfers between adjoining Bezier curves."""
 
 from __future__ import annotations
-from typing import Callable, Sequence
+from typing import Any, Callable, Sequence, cast
 
 from manim.typing import Vector3D
 import numpy as np
@@ -160,7 +160,7 @@ def round_corners(mob: VMobject, radius: float = 0.2) -> VMobject:
             params, k = round_corner_param(radius, curve_1, curve_2)
             cut_curve_points_1 = partial_bezier_points(curve_1, 0, k[0])
             cut_curve_points_2 = partial_bezier_points(curve_2, k[1], 1)
-            loc_arc = Arc(**params, num_components=5)
+            loc_arc = Arc(**cast(Any, params), num_components=5)
             # mob.points = np.delete(mob.points, slice((ind1 * 4), (ind1 + 1) * 4), axis=0)
             # mob.points = np.delete(mob.points, slice((ind2 * 4), (ind2 + 1) * 4), axis=0)
             mob.points[ind1 * 4 : (ind1 + 1) * 4, :] = cut_curve_points_1
@@ -180,7 +180,7 @@ def chamfer_corner_param(
     offset: float | Sequence[float],
     curve_points_1: np.ndarray,
     curve_points_2: np.ndarray,
-) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+) -> tuple[dict[str, np.ndarray], list[Any]]:
     """Compute the cut points for a chamfered corner.
 
     Parameters
@@ -199,7 +199,7 @@ def chamfer_corner_param(
     """
     # this is ugly, I know, don't judge
     if hasattr(offset, "iter"):
-        ofs = [offset[0], offset[1]]
+        ofs = [cast(Any, offset)[0], cast(Any, offset)[1]]
     else:
         ofs = [offset, offset]
     bez_func_1 = bezier(curve_points_1)
@@ -236,7 +236,7 @@ def chamfer_corner_param(
     p2 = bez_func_2(a2)
     param = {"start": p1, "end": p2}
 
-    return param
+    return param, [a1, a2]
 
 
 def chamfer_corners(mob: VMobject, offset: float | Sequence[float] = 0.2) -> VMobject:
@@ -267,7 +267,7 @@ def chamfer_corners(mob: VMobject, offset: float | Sequence[float] = 0.2) -> VMo
             params, k = chamfer_corner_param(offset, curve_1, curve_2)
             cut_curve_points_1 = partial_bezier_points(curve_1, 0, k[0])
             cut_curve_points_2 = partial_bezier_points(curve_2, k[1], 1)
-            loc_line = Line(**params)
+            loc_line = Line(**cast(Any, params))
             # mob.points = np.delete(mob.points, slice((ind1 * 4), (ind1 + 1) * 4), axis=0)
             # mob.points = np.delete(mob.points, slice((ind2 * 4), (ind2 + 1) * 4), axis=0)
             mob.points[ind1 * 4 : (ind1 + 1) * 4, :] = cut_curve_points_1

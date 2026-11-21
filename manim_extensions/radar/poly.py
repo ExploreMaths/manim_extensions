@@ -40,6 +40,7 @@ import math
 
 import numpy as np
 from manim import (
+    Mobject,
     Animation,
     Create,
     DEGREES,
@@ -87,7 +88,7 @@ _DODECA_RAW = [
 ]
 
 
-def _unit(v: Vector3D) -> Vector3D:
+def _unit(v: Point3D | tuple[float, float, float]) -> Point3D:
     """Normalize a vector to unit length.
 
     Parameters
@@ -234,8 +235,8 @@ class PolyRadarChart(VGroup):
         skins: Sequence[float] = (0.4, 0.7, 1.0),
         spin_rate: float = 7.0,
         grow: bool = True,
-        cam_pos: Point3D = (0.0, 0.0, 20.0),
-        center: Point3D = (0.0, -0.15, 0.0),
+        cam_pos: Point3D | tuple[float, float, float] = (0.0, 0.0, 20.0),
+        center: Point3D | tuple[float, float, float] = (0.0, -0.15, 0.0),
         sphere_color: ParsableManimColor = DYE_C,
         **kwargs: Any,
     ) -> None:
@@ -250,7 +251,7 @@ class PolyRadarChart(VGroup):
         self.inr = (
             INRADIUS * self.poly_radius
         )  # world radius of the panel centre at full scale
-        self.center = np.array(center, dtype=float)  # rotation axis (world coordinates)
+        self.pivot = np.array(center, dtype=float)  # rotation axis (world coordinates)
         self.cam_pos = np.array(cam_pos, dtype=float)
         self.theta = 0.0  # rotation angle (plain float)
         self.spin_rate = float(spin_rate)  # degrees/second (slow by default)
@@ -265,8 +266,8 @@ class PolyRadarChart(VGroup):
         for s in skins:
             edges = VGroup()
             for i, j in DODECA_EDGES:
-                p0 = self.center + np.array(DODECA_VERTICES[i]) * s * self.poly_radius
-                p1 = self.center + np.array(DODECA_VERTICES[j]) * s * self.poly_radius
+                p0 = self.pivot + np.array(DODECA_VERTICES[i]) * s * self.poly_radius
+                p1 = self.pivot + np.array(DODECA_VERTICES[j]) * s * self.poly_radius
                 edges.add(
                     Line(
                         p0,
@@ -282,7 +283,7 @@ class PolyRadarChart(VGroup):
                 dots = VGroup(
                     *[
                         Dot3D(
-                            point=self.center + np.array(v) * s * self.poly_radius,
+                            point=self.pivot + np.array(v) * s * self.poly_radius,
                             radius=0.045,
                             color="#9FC4E8",
                             resolution=(8, 8),
@@ -294,7 +295,7 @@ class PolyRadarChart(VGroup):
                     *[
                         Polygon(
                             *[
-                                self.center
+                                self.pivot
                                 + np.array(DODECA_VERTICES[i]) * s * self.poly_radius
                                 for i in face
                             ],
@@ -355,7 +356,7 @@ class PolyRadarChart(VGroup):
         self.add_updater(self._tick)
 
     # ------------------------------------------------------------------
-    def _data_triangles(self) -> list[tuple[int, int, int]]:
+    def _data_triangles(self) -> list[tuple[int, ...]]:
         """Group the dodecahedron faces around each inner vertex.
 
         Returns
@@ -395,7 +396,7 @@ class PolyRadarChart(VGroup):
                 [0.0, 0.0, 1.0],
             ]
         )
-        return self.center + Rz @ local
+        return self.pivot + Rz @ local
 
     def _rebuild(self) -> None:
         """Recompute sphere, edge, face and label geometry from ``_frac``."""
@@ -412,7 +413,7 @@ class PolyRadarChart(VGroup):
         for i in range(12):
             self.labels[i].set_color(OVERFLOW_C if self._frac[i] > 1.0 else LABEL_C)
 
-    def _tick(self, m: VGroup, dt: float) -> None:
+    def _tick(self, m: Mobject, dt: float) -> None:
         """Advance the automatic rotation.
 
         Parameters
@@ -425,7 +426,7 @@ class PolyRadarChart(VGroup):
 
         if self.spin_rate:
             delta = self.spin_rate * dt
-            self.rotate(delta, axis=Z_AXIS, about_point=self.center)
+            self.rotate(delta, axis=Z_AXIS, about_point=self.pivot)
             self.theta = (self.theta + delta) % 360.0
         # label orientation is handled by _billboard (become + look-at), see _attach_billboards
 
@@ -440,7 +441,7 @@ class PolyRadarChart(VGroup):
         self._label_base = [lab.copy().move_to(ORIGIN) for lab in self.labels]
         Rbill = rotation_matrix(75 * DEGREES, Y_AXIS)[:3, :3]
 
-        def upd(m: VGroup, dt: float = 0.0) -> None:
+        def upd(m: Mobject, dt: float = 0.0) -> None:
             """Re-orient the labels after the chart rotates.
 
             Parameters
@@ -454,8 +455,8 @@ class PolyRadarChart(VGroup):
 
             th = math.radians(self.theta)
             M = rotation_matrix(-th, Z_AXIS)[:3, :3] @ Rbill
-            for k, lab in enumerate(m):
-                anchor = self.center + rotation_matrix(th, Z_AXIS)[:3, :3] @ (
+            for k, lab in enumerate(cast(Any, m)):
+                anchor = self.pivot + rotation_matrix(th, Z_AXIS)[:3, :3] @ (
                     np.array(FACE_NORMAL_DIRS[k])
                     * (self.inr * float(self._frac[k]) + 0.55)
                 )
@@ -486,7 +487,7 @@ class PolyRadarChart(VGroup):
             cast(Any, part["edges"]).set_stroke(
                 opacity=(0.7 if s == max(self.skin_parts) else 0.42)
             )
-            anims = [Create(part["edges"])]
+            anims: list[Animation] = [Create(cast(Any, part["edges"]))]
             if part["faces"] is not None:
                 anims.append(FadeIn(part["faces"]))
             if part["dots"] is not None:
@@ -536,7 +537,7 @@ class PolyRadarChart(VGroup):
                 r"""Rotate the chart from the recorded angle by :math:`\delta \alpha`."""
                 new = self.t0 + self.delta * alpha
                 self.poly.rotate(
-                    new - self.poly.theta, axis=Z_AXIS, about_point=self.poly.center
+                    new - self.poly.theta, axis=Z_AXIS, about_point=self.poly.pivot
                 )
                 self.poly.theta = new
 
@@ -545,7 +546,7 @@ class PolyRadarChart(VGroup):
                 self.poly.rotate(
                     self.t0 + self.delta - self.poly.theta,
                     axis=Z_AXIS,
-                    about_point=self.poly.center,
+                    about_point=self.poly.pivot,
                 )
                 self.poly.theta = (self.t0 + self.delta) % 360.0
 

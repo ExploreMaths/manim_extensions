@@ -13,6 +13,8 @@ from typing import Any
 from manim import Arrow, BLUE, Circle, LEFT, Tex, VGroup
 from .automata_dependencies.automata import State
 
+__all__ = ["ManimState", "State"]
+
 
 class ManimState(State, VGroup):
     """Class that describes the graphical representation of a :class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` instance,

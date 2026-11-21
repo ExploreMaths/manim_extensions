@@ -431,7 +431,7 @@ class DecisionTreeDiagram(Group):
         recurse(self.tree.children_right[0], 1, "right", root_node, 0)
 
         tree_group.scale(0.35)
-        return tree_group
+        return tree_group, nodes_map, edge_map
 
     def _make_placeholder_leaf(self, class_index: int) -> LeafNode:
         """Make a leaf node showing the dominant class of a tree node.

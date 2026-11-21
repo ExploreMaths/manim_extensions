@@ -49,7 +49,7 @@ if TYPE_CHECKING:
     from .camera import CameraRig
 
 
-RadarInput = Union[RadarData, dict, Sequence[float]]
+RadarInput = Union[RadarData, dict[Any, Any], Sequence[float]]
 RadarInputList = Union[RadarInput, Sequence[RadarInput]]
 
 __all__ = ["RadarChart"]
@@ -321,7 +321,7 @@ class RadarChart(VGroup):
         name: Optional[str] = None,
         color: Optional[str] = None,
         max_value: Optional[float] = None,
-        datasets: Optional[Sequence] = None,
+        datasets: Optional[Sequence[Any]] = None,
         style: Union[str, RadarConfig, None] = "neo",
         theme: Union[str, RadarTheme, None] = "midnight",
         config: Optional[RadarConfig] = None,
@@ -387,11 +387,13 @@ class RadarChart(VGroup):
         # Manim 0.21 cannot hash a Text object whose font is None.  Minimal
         # Linux CI images may not contain any of our preferred families, so
         # fall back to Pango's generic families instead of passing None.
-        self._font_name = cfg.name_font or pick_font(_CJK_FONTS, default="sans")
-        self._font_number = cfg.number_font or pick_font(
-            _MONO_FONTS, default="monospace"
+        self._font_name: str = (
+            cfg.name_font or pick_font(_CJK_FONTS, default="sans") or "sans"
         )
-        self._font_title = cfg.title_font or self._font_name
+        self._font_number: str = (
+            cfg.number_font or pick_font(_MONO_FONTS, default="monospace") or "sans"
+        )
+        self._font_title: str = cfg.title_font or self._font_name
 
         first = (
             self._coerce_item(self._initial[0])
@@ -445,13 +447,13 @@ class RadarChart(VGroup):
             spoke.base_so = cfg.spoke_opacity  # type: ignore[attr-defined]
             self.web.add(spoke)
             if cfg.grid_glow:
-                g = spoke.copy().set_stroke(
+                glow_spoke = spoke.copy().set_stroke(
                     color=self.theme.axis_color(i),
                     width=cfg.grid_glow_width,
                     opacity=cfg.grid_glow_opacity,
                 )
-                g.base_so = cfg.grid_glow_opacity  # type: ignore[attr-defined]
-                self.grid_glow.add(g)
+                glow_spoke.base_so = cfg.grid_glow_opacity  # type: ignore[attr-defined]
+                self.grid_glow.add(glow_spoke)
         self.add(self.grid_glow, self.web)
 
         # ---- level scale numbers -------------------------------------------
@@ -509,7 +511,7 @@ class RadarChart(VGroup):
         # z-order: grid -> [gap lobes -> series 0 -> series 1 ...] -> labels
         self._poly_layers = VGroup()
         self.gap_group: Optional[VGroup] = None
-        self._gap_spec: Optional[dict] = None
+        self._gap_spec: Optional[dict[Any, Any]] = None
         self._series: List[Series] = []
         self.add(self._poly_layers)
 
@@ -579,7 +581,7 @@ class RadarChart(VGroup):
 
         # ---- datasets --------------------------------------------------------
         self._focus: Optional[int] = None
-        self._rig = None  # optional CameraRig (set by attach_camera)
+        self._rig: Optional[CameraRig] = None  # set by attach_camera
         self._install_datasets(self._initial)
         if cfg.overflow:
             # above every series polygon, below the labels & numbers
@@ -832,7 +834,7 @@ class RadarChart(VGroup):
         ValueError
             If the first item does not define axes or the layouts differ.
         """
-        items = []
+        items: list[Any] = []
         for k, d in enumerate(datasets):
             if isinstance(d, RadarData):
                 items.append(d)
@@ -1156,7 +1158,7 @@ class RadarChart(VGroup):
         self._glitch = float(np.clip(amount, 0.0, 1.0))
         return self
 
-    def set_opacity(self, value: float) -> "RadarChart":
+    def set_opacity(self, opacity: float, family: bool = True) -> "RadarChart":
         """Set the global opacity of the chart.
 
         This override keeps the per-frame painting compatible with Manim's
@@ -1164,14 +1166,17 @@ class RadarChart(VGroup):
 
         Parameters
         ----------
-        value
+        opacity
             Opacity in the range 0 to 1.
+        family
+            Unused; kept for interface compatibility with
+            :meth:`~manim.mobject.types.vectorized_mobject.VMobject.set_opacity`.
 
         Returns
         -------
             The same chart, allowing calls to be chained.
         """
-        self._opacity = float(np.clip(value, 0.0, 1.0))
+        self._opacity = float(np.clip(opacity, 0.0, 1.0))
         return self
 
     def set_radius(self, radius: float) -> "RadarChart":
@@ -1219,7 +1224,10 @@ class RadarChart(VGroup):
         """
         center = self._anchor[0].get_center()
         builder = self.animate.scale(float(factor), about_point=center, **kwargs)
-        return builder.set_run_time(run_time) if run_time else builder
+        return cast(
+            "_AnimationBuilder",
+            builder.set_run_time(run_time) if run_time else builder,
+        )
 
     def pull_out(
         self, factor: float = 1.35, run_time: float = 1.0, **kwargs: Any
@@ -1242,7 +1250,10 @@ class RadarChart(VGroup):
 
         center = self._anchor[0].get_center()
         builder = self.animate.scale(1.0 / float(factor), about_point=center, **kwargs)
-        return builder.set_run_time(run_time) if run_time else builder
+        return cast(
+            "_AnimationBuilder",
+            builder.set_run_time(run_time) if run_time else builder,
+        )
 
     def attach_camera(self, rig: CameraRig) -> "RadarChart":
         """Attach a camera rig for coupled camera moves.
@@ -1425,7 +1436,9 @@ class RadarChart(VGroup):
         ang = self._angles[i % self.axis_count]
         r = self.config.radius * k / self.config.levels
         a, u, v = self._frame()
-        return self._to_world(self._polar_local(ang, r)[None, :], a, u, v)[0]
+        return cast(
+            np.ndarray, self._to_world(self._polar_local(ang, r)[None, :], a, u, v)[0]
+        )
 
     def trace_web(self, run_time: Optional[float] = None) -> Animation:
         """Trace the rainbow web before revealing the data.
@@ -1445,7 +1458,7 @@ class RadarChart(VGroup):
 
         self.set_opacity(0.0)  # hide data layer; reveal it after the web is drawn
         rt = run_time if run_time is not None else self.config.web_trace_time
-        return Create(self._rainbow_web, run_time=rt)
+        return Create(cast(VGroup, self._rainbow_web), run_time=rt)
 
     # ==================================================================
     # scene helpers
@@ -1787,10 +1800,10 @@ class RadarChart(VGroup):
         """
 
         local = np.atleast_2d(local)
-        return a + local[:, :1] * u + local[:, 1:2] * v
+        return cast(np.ndarray, a + local[:, :1] * u + local[:, 1:2] * v)
 
     # ------------------------------------------------------------------
-    def _refresh(self, mob: VGroup, dt: float) -> None:
+    def _refresh(self, mob: Mobject, dt: float) -> None:
         """Recompute every piece of geometry for the current frame.
 
         Parameters
@@ -1815,20 +1828,20 @@ class RadarChart(VGroup):
         # grid -----------------------------------------------------------
         for lvl, ring in enumerate(self.web[: cfg.levels]):
             ring.set_points_as_corners(self._to_world(self._ring_local[lvl], a, u, v))
-            ring.set_stroke(opacity=ring.base_so * op * grid_dim)
+            ring.set_stroke(opacity=cast(Any, ring).base_so * op * grid_dim)
         for i, spoke in enumerate(self.web[cfg.levels :]):
             end = self._to_world(self._spoke_ends[i], a, u, v)[0]
             spoke.put_start_and_end_on(a, end)
-            spoke.set_stroke(opacity=spoke.base_so * op * grid_dim)
+            spoke.set_stroke(opacity=cast(Any, spoke).base_so * op * grid_dim)
         for g, src in zip(self.grid_glow, self.web):
             # the glow copies must inherit the *painted* geometry every frame —
             # they are built from 1-unit placeholders and 0.1.0 never moved
             # them, leaving a stale grey bar floating next to off-centre charts
             g.set_points_as_corners(src.get_points())
-            g.set_stroke(opacity=g.base_so * op * grid_dim)
+            g.set_stroke(opacity=cast(Any, g).base_so * op * grid_dim)
 
         for txt in self.level_labels:
-            txt.move_to(self._to_world(txt.local_pos, a, u, v)[0])
+            txt.move_to(self._to_world(cast(Any, txt).local_pos, a, u, v)[0])
             txt.set_opacity(0.80 * op * grid_dim)
 
         # sweep ----------------------------------------------------------
@@ -1851,11 +1864,11 @@ class RadarChart(VGroup):
         self._paint_gap(a, u, v, op)
 
         # data polygons ----------------------------------------------------
-        for s in self._series:
-            cast(Any, s).opacity += (
-                cast(Any, s).opacity_target - cast(Any, s).opacity
+        for series in self._series:
+            cast(Any, series).opacity += (
+                cast(Any, series).opacity_target - cast(Any, series).opacity
             ) * min(1.0, dt * 7.0)
-            self._paint_series(s, a, u, v, unit, op, multi, pulse)
+            self._paint_series(series, a, u, v, unit, op, multi, pulse)
 
         # labels ------------------------------------------------------------
         for i, label in enumerate(self.axis_names):
@@ -1953,7 +1966,7 @@ class RadarChart(VGroup):
 
     def _slot_y(
         self, mob: Mobject, offset: float, label_top: float, frame_limit: float
-    ) -> float:
+    ) -> tuple[float, bool]:
         """Choose the vertical slot for a label above the chart.
 
         Parameters
@@ -1977,9 +1990,10 @@ class RadarChart(VGroup):
         top_limit = frame_limit - half
         floor = label_top + 0.20 + half
         y = min(offset * cfg.radius, top_limit)
+        fits = y >= floor
         if y < floor:
             y = floor
-        return y
+        return y, fits
 
     # ------------------------------------------------------------------
     def _paint_series(
@@ -2107,7 +2121,7 @@ class RadarChart(VGroup):
                     )
                     dot.set_fill(
                         color=WHITE if k == 2 else base_col,
-                        opacity=dot.base_op * op * sop,
+                        opacity=cast(Any, dot).base_op * op * sop,
                     )
 
         outer = self._to_world(poly_local * (1.0 + cfg.rim_offset_outer), a, u, v)
@@ -2252,7 +2266,7 @@ class RadarChart(VGroup):
 
     # ------------------------------------------------------------------
     # legend ---------------------------------------------------------------
-    def _rebuild_legend(self, pairs: List[tuple]) -> VGroup:
+    def _rebuild_legend(self, pairs: List[tuple[Any, ...]]) -> VGroup:
         """Build legend chips for colour and name pairs.
 
         Parameters
@@ -2318,8 +2332,8 @@ class RadarChart(VGroup):
         content.add(*[r.arrange(RIGHT, buff=cfg.legend_gap) for r in rows])
         if len(rows) > 1:
             content.arrange(DOWN, buff=0.12)
-        cast(Any, content)._chips = chips  # type: ignore[attr-defined]  (per-content, so
-        # the outgoing legend fades with *its own* chips during a swap)
+        # per-content, so the outgoing legend fades with its own chips during a swap
+        cast(Any, content)._chips = chips
         self._legend_chips = chips
         return content
 
@@ -2508,7 +2522,7 @@ class RadarChart(VGroup):
         t = ((q0[0] - p0[0]) * d2[1] - (q0[1] - p0[1]) * d2[0]) / denom
         if not 0.0 <= t <= 1.0:
             return None
-        return p0 + d1 * t
+        return cast(np.ndarray, p0 + d1 * t)
 
     def _paint_gap(
         self, a: np.ndarray, u: np.ndarray, v: np.ndarray, op: float
@@ -2544,7 +2558,7 @@ class RadarChart(VGroup):
             a0, a1 = pa[k], pa[k1]
             b0, b1 = pb[k], pb[k1]
             x = self._seg_intersect(a0, a1, b0, b1)
-            lobes = []
+            lobes: list[tuple[Any, str]] = []
             if x is not None:
                 lobes.append(
                     (
@@ -2632,7 +2646,7 @@ class RadarChart(VGroup):
                 pool.add(Line(ORIGIN, ORIGIN, stroke_width=self.config.spoke_width))
             s.dash_pool[j] = pool
             cast(Any, s.fx_group).add(pool)
-        return s.dash_pool[j]
+        return cast(VGroup, s.dash_pool[j])
 
     def _ensure_breach(self, s: Series, j: int) -> VGroup:
         """Return the ring-breach glow for a dataset and axis.
@@ -2666,7 +2680,7 @@ class RadarChart(VGroup):
             g.set_opacity(0)
             s.breach[j] = g
             cast(Any, s.fx_group).add(g)
-        return s.breach[j]
+        return cast(VGroup, s.breach[j])
 
     def _ensure_overflow_number(self, series_index: int, j: int) -> RollingNumber:
         """Return the unclamped read-out for a dataset and axis.
@@ -2818,9 +2832,11 @@ class RadarChart(VGroup):
             Axis index.
         """
 
-        if j < len(s.dash_pool) and s.dash_pool[j] is not None:
-            for line in s.dash_pool[j]:
-                line.set_stroke(opacity=0)
+        if j < len(s.dash_pool):
+            pool = s.dash_pool[j]
+            if pool is not None:
+                for line in pool:
+                    line.set_stroke(opacity=0)
         if j < len(s.breach) and s.breach[j] is not None:
             cast(Any, s.breach[j]).set_opacity(0)
         num = s.big_numbers.get(j)
