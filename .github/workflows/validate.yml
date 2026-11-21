@@ -26,6 +26,8 @@ jobs:
       - uses: ./.github/actions/configure-apt
       - uses: ExploreMaths/setup-manim-env@v1
         with:
+          # Type stubs and optional extras are most complete on 3.12.
+          python-version: "3.12"
           install-editable: "true"
       - name: Install mypy and the optional dependencies it analyses
         run: pip install "mypy>=1.11" ".[all]"
