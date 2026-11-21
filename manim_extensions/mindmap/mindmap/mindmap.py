@@ -8,11 +8,12 @@ This module provides main mindmap classes for visualizations.
 
 """
 
-from typing import Any, Dict
+from typing import Any, Dict, Sequence
 
 __all__ = ["MindMap", "TimeLine", "StandardMap", "CatalogMap"]
 
 from manim.constants import DOWN, RIGHT, UP
+from manim.typing import Vector3D
 from manim.utils.color import GREEN, PURE_YELLOW, RED, WHITE
 
 from .base import NodeMobject, AbstractMap, generate_tree
@@ -84,7 +85,7 @@ class MindMap(AbstractMap):
         self,
         map: Dict[Any, Any] = {},
         buff: float = 0.2,
-        direction: object = RIGHT,
+        direction: Vector3D = RIGHT,
         level_spacing: float = 1.0,
         node_spacing: float = 0.5,
         node_style: NodeStyle = NodeStyle(
@@ -192,7 +193,7 @@ class TimeLine(AbstractMap):
         self,
         map: Dict[Any, Any] = {},
         buff: float = 0.2,
-        sides: tuple[object, object] = (UP, DOWN),
+        sides: Sequence[Vector3D] = (UP, DOWN),
         level_spacing: float = 1.0,
         node_spacing: float = 0.5,
         node_style: NodeStyle = NodeStyle(
@@ -299,7 +300,7 @@ class StandardMap(AbstractMap):
         self,
         map: Dict[Any, Any] = {},
         buff: float = 0.2,
-        direction: object = RIGHT,
+        direction: Vector3D = RIGHT,
         level_spacing: float = 1.0,
         node_spacing: float = 0.5,
         node_style: NodeStyle = NodeStyle(

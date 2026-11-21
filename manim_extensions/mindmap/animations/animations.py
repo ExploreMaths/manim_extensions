@@ -37,7 +37,8 @@ __all__ = [
 
 import numpy as np
 
-from ..algorithms import LayoutFactory, LayoutType, LayoutConfig
+from ..algorithms.layout_factory import LayoutFactory
+from ..algorithms import LayoutType, LayoutConfig
 from ..nodes import Node, bfs_walker, NodeState, NodeStyle
 from manim.typing import Point3D, Vector3D
 
@@ -74,7 +75,7 @@ def fadeout_of_subtrees(nodes: List[Node] | None = None) -> FadeOut:
                self.wait()
     """
     mobjs = []
-    for node in nodes:
+    for node in nodes or []:
         for node_ in bfs_walker(node):
             node_.x = node_.y = node_.level = 0
             mobjs.extend([*node_.get_node_and_line_without_updater()])
@@ -139,8 +140,9 @@ def animate_of_create(
                self.play(*anims)
                self.wait()
     """
-    anims = []
+    anims: list[Animation] = []
     node.set_connector(layout_type, direction, **line_styles)
+    AnimateClass: type[Animation]
     if isinstance(node.vmobject, ImageMobject):
         AnimateClass = FadeIn
     elif isinstance(node.vmobject, (Tex, MathTex)):
@@ -159,7 +161,7 @@ def animate_of_create(
             ),
         ]
     )
-    if getattr(node, "connector", None) is not None:
+    if node.connector is not None:
         anims.append(Create(node.connector))
     node.node_state = NodeState.DISPLAY
     return anims
@@ -479,11 +481,11 @@ def is_layout_change(root: Node, layout_type: LayoutType) -> bool:
     """
     origin_layout = getattr(root, "layout_type", None)
     if origin_layout is not None:
-        return origin_layout != layout_type
+        return bool(origin_layout != layout_type)
     return False
 
 
-def is_direction_change(root: Node, direction: str = RIGHT) -> bool:
+def is_direction_change(root: Node, direction: Vector3D = RIGHT) -> bool:
     """
     Check whether the layout direction has changed.
 
@@ -561,12 +563,12 @@ def animate_of_layout(
     change_layout = is_layout_change(root, layout_type)
     current_x, current_y, _ = cast(Any, root.vmobject).get_center()
     layout = LayoutFactory.create_layout(layout_type, root, layout_config)
-    root = layout.layout()
+    root = cast(Node, layout.layout())
     setattr(root, "layout_type", layout_type)
     setattr(root, "direction", direction)
     x_offset = current_x - root.x
     y_offset = current_y - root.y
-    anims = [fadeout_of_subtrees(remove_nodes)] if remove_nodes else []
+    anims: list[Animation] = [fadeout_of_subtrees(remove_nodes)] if remove_nodes else []
 
     for node in bfs_walker(root):
         node.x += x_offset
@@ -712,7 +714,7 @@ class AbstractLayoutAnimation(AnimationGroup):
                         pass
         return remove_nodes
 
-    def collect_animations(self) -> List[Animation]:
+    def collect_animations(self) -> list[Animation]:
         """Collect animations: must be implemented by subclasses.
 
         Returns
@@ -727,7 +729,7 @@ class AbstractLayoutAnimation(AnimationGroup):
         """
         raise NotImplementedError
 
-    def get_common_root(self, nodes: List[Node]) -> Node:
+    def get_common_root(self, nodes: List[Node]) -> Node | None:
         r"""
         Return the common root shared by the supplied nodes.
 
@@ -822,7 +824,7 @@ class LayoutAnimation(AbstractLayoutAnimation):
             **kwargs,
         )
 
-    def collect_animations(self) -> tuple[Animation]:
+    def collect_animations(self) -> list[Animation]:
         """Collect the animations needed to re-layout the mind map.
 
         Returns
@@ -886,12 +888,11 @@ class RemoveNode(LayoutAnimation):
         **kwargs: Any,
     ) -> None:
         self.is_whole_tree = False
-        if isinstance(nodes, Node):
-            nodes = (nodes,)
-        root = self.get_common_root(nodes)
+        nodes_list: list[Node] = [nodes] if isinstance(nodes, Node) else list(nodes)
+        root = self.get_common_root(nodes_list)
         if root is None:
             raise Exception("nodes must be in the same tree")
-        for node in nodes:
+        for node in nodes_list:
             if (parent := node.parent) is None:
                 self.is_whole_tree = True
                 break
@@ -906,7 +907,7 @@ class RemoveNode(LayoutAnimation):
             **kwargs,
         )
 
-    def collect_animations(self) -> tuple[Animation]:
+    def collect_animations(self) -> list[Animation]:
         """Collect animations for removing nodes (or the whole tree).
 
         Returns
@@ -924,7 +925,7 @@ class RemoveNode(LayoutAnimation):
             tree = self._get_whole_tree()
             if len(tree) == 0:
                 raise Exception(f"the root {self.root} is not on current scene")
-            return (FadeOut(*tree),)
+            return [FadeOut(*tree)]
         else:
             return super().collect_animations()
 
@@ -983,14 +984,14 @@ class InsertNode(LayoutAnimation):
     def __init__(
         self,
         scene: Scene,
-        father_children: Dict[Node, List[Node]] = None,
+        father_children: Dict[Node, List[Node]] | None = None,
         layout_type: LayoutType = LayoutType.MindMap,
         layout_config: LayoutConfig = LayoutConfig(),
         node_style: NodeStyle = NodeStyle(),
         **kwargs: Any,
     ) -> None:
-        root = None
-        self.father_children = father_children
+        self.father_children: dict[Node, list[Node]] = father_children or {}
+        root = self.get_root(list(self.father_children.keys()))
         super().__init__(
             scene,
             root,
@@ -1024,7 +1025,7 @@ class InsertNode(LayoutAnimation):
             raise Exception("all fathers must be in the same tree")
         return root
 
-    def collect_animations(self) -> List[Animation]:
+    def collect_animations(self) -> list[Animation]:
         """Collect animations for inserting new nodes into the mind map.
 
         Returns
@@ -1086,9 +1087,12 @@ class ScaleNode(LayoutAnimation):
         node_style: NodeStyle = NodeStyle(),
         **kwargs: Any,
     ) -> None:
-        for node, scale in cast(Any, node_scale).items():
+        node_scale_dict: dict[Node, float] = node_scale or {}
+        for node, scale in node_scale_dict.items():
             node.scale(scale)
-        root = self.get_common_root(list(cast(Any, node_scale).keys()))
+        root = self.get_common_root(list(node_scale_dict.keys()))
+        if root is None:
+            raise Exception("nodes must be in the same tree")
         super().__init__(
             scene,
             root,
@@ -1143,9 +1147,12 @@ class AlterNode(LayoutAnimation):
         node_style: NodeStyle = NodeStyle(),
         **kwargs: Any,
     ) -> None:
-        for node, scale in cast(Any, node_vmobject).items():
-            node.alter_content(scale)
-        root = self.get_common_root(list(cast(Any, node_vmobject).keys()))
+        node_vmobject_dict: dict[Node, VMobject] = node_vmobject or {}
+        for node, content in node_vmobject_dict.items():
+            node.alter_content(content)
+        root = self.get_common_root(list(node_vmobject_dict.keys()))
+        if root is None:
+            raise Exception("nodes must be in the same tree")
         super().__init__(
             scene,
             root,

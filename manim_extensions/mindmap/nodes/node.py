@@ -12,7 +12,6 @@ from __future__ import annotations
 from typing import Any, Dict, Generator, List, cast
 
 from manim import (
-    Mobject,
     BLUE,
     DOWN,
     GREEN,
@@ -295,7 +294,11 @@ class Node:
         buff: float = 0.2,
         **kwargs: Any,
     ) -> None:
-        self.vmobject = vmobject
+        if vmobject is None:
+            vmobject = VMobject()
+        self.vmobject: VMobject = vmobject
+        self.ID: tuple[Any, ...] = ()
+        self.text: str | None = None
         self.height: float = cast(Any, self.vmobject).height + 2 * buff
         self.width: float = cast(Any, self.vmobject).width + 2 * buff
         self.buff = buff
@@ -308,7 +311,7 @@ class Node:
         self.children: list[Node] = []
         self.node_state = NodeState.INSERT  # node state
         self.side = None
-        self.connector: Mobject | None = None
+        self.connector: Line | None = None
         self.connector_style: dict[str, Any] | None = None
 
     def scale(self, scale_factor: float) -> Any:
@@ -660,7 +663,7 @@ class Node:
         """
         group = Group()
         for node in self.children:
-            group.add(cast(VMobject, node.vmobject), node.surr_rect)
+            group.add(node.vmobject, node.surr_rect)
         return group
 
     def get_descendants_mobjects(self) -> Group:
@@ -689,7 +692,7 @@ class Node:
                 A group containing the mobjects of all descendant nodes.
             """
             for node_ in node.children:
-                descendants.add(cast(VMobject, node_.vmobject), node_.surr_rect)
+                descendants.add(node_.vmobject, node_.surr_rect)
                 descendants_mobjects_of_node(node_, descendants)
             return descendants
 
