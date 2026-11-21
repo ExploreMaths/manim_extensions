@@ -1853,7 +1853,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">name_shift</span> <span class="o">=</span> <span class="n">name_shift</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">stagger</span> <span class="o">=</span> <span class="n">cfg</span><span class="o">.</span><span class="n">stagger</span> <span class="k">if</span> <span class="n">stagger</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="n">stagger</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_ring</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Ring</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_cam</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cam</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_legend_path</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
             <span class="n">chart</span><span class="p">,</span>
@@ -1882,7 +1882,7 @@
             <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">start_opacity</span>
         <span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">slots</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">):</span>
             <span class="n">s</span> <span class="o">=</span> <span class="n">chart</span><span class="o">.</span><span class="n">_series</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">chart</span><span class="o">.</span><span class="n">_series</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
             <span class="n">t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">targets</span><span class="p">)</span> <span class="k">else</span> <span class="kc">None</span>
@@ -1957,7 +1957,7 @@
 
 <div class="viewcode-block" id="RadarMorph._prepare_camera">
 <a class="viewcode-back" href="../../../reference/radar/animations.RadarMorph.html#manim_extensions.radar.animations.RadarMorph._prepare_camera">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">_prepare_camera</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_prepare_camera</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">"""Compute the automatic micro-push target for a burst morph.</span>
 
 <span class="sd">        Returns</span>

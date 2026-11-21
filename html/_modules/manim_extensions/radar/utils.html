@@ -1669,7 +1669,7 @@
 
 
 
-<span class="n">_FONT_CACHE</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">,</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">_FONT_CACHE</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
 
 
 <div class="viewcode-block" id="pick_font">
@@ -1699,7 +1699,7 @@
 
     <span class="n">available</span><span class="p">:</span> <span class="nb">set</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
     <span class="k">try</span><span class="p">:</span>  <span class="c1"># pragma: no cover - depends on the host system</span>
-        <span class="kn">import</span><span class="w"> </span><span class="nn">manimpango</span>
+        <span class="kn">import</span><span class="w"> </span><span class="nn">manimpango</span>  <span class="c1"># type: ignore[import-untyped]</span>
 
         <span class="n">available</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">manimpango</span><span class="o">.</span><span class="n">list_fonts</span><span class="p">())</span>
     <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># pragma: no cover - font backend may be unavailable</span>
