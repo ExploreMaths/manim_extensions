@@ -6,7 +6,7 @@
 """Utilities for the lenses module."""
 
 from __future__ import annotations
-from typing import Any, Iterable
+from typing import Any, Iterable, cast
 
 r"""Lenses for refracting :class:`~manim_extensions.physics.optics.rays.Ray`\ s."""
 
@@ -19,12 +19,14 @@ from manim import (
     Intersection,
     LEFT,
     RIGHT,
+    RendererType,
     Square,
     VMobject,
     VectorizedPoint,
     config,
 )
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
+from manim.typing import Point3D
 import numpy as np
 
 from ...utils.deps import require
@@ -32,7 +34,7 @@ from ...utils.deps import require
 __all__ = ["Lens", "snell", "antisnell", "intersection"]
 
 
-def intersection(vmob1: VMobject, vmob2: VMobject) -> Iterable[Iterable[float]]:
+def intersection(vmob1: VMobject, vmob2: VMobject) -> Any:
     """Compute the intersection points of two VMobject curves.
 
     Parameters
@@ -72,7 +74,7 @@ def snell(i_ang: float, n: float) -> float:
     -------
         Refracted angle in radians.
     """
-    return np.arcsin(np.sin(i_ang) / n)
+    return float(np.arcsin(np.sin(i_ang) / n))
 
 
 def antisnell(r_ang: float, n: float) -> float:
@@ -89,7 +91,7 @@ def antisnell(r_ang: float, n: float) -> float:
     -------
         Incident angle in radians.
     """
-    return np.arcsin(np.sin(r_ang) * n)
+    return float(np.arcsin(np.sin(r_ang) * n))
 
 
 class Lens(VMobject, metaclass=ConvertToOpenGL):
@@ -174,7 +176,7 @@ class Lens(VMobject, metaclass=ConvertToOpenGL):
         self.add(VectorizedPoint(a.get_center()), VectorizedPoint(b.get_center()))
 
     @property
-    def c(self) -> tuple[Iterable[float]]:
+    def c(self) -> Point3D:
         """Return the centers of curvature of the two spherical surfaces.
 
         Returns
@@ -182,5 +184,5 @@ class Lens(VMobject, metaclass=ConvertToOpenGL):
             The center points of the two circles used to construct the lens.
         """
         i = 0
-        i += 1 if config.renderer != "opengl" else 0
-        return self[i].points[0]  # why is this confusing
+        i += 1 if config.renderer != RendererType.OPENGL else 0
+        return cast(Point3D, self[i].points[0])  # why is this confusing

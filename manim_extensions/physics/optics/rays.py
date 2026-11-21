@@ -10,7 +10,8 @@ from typing import Any, Iterable
 r""":class:`~manim_extensions.physics.optics.rays.Ray`\ s of light. Refracted by Lenses."""
 
 
-from manim import Line, angle_of_vector, config, rotate_vector
+from manim import Line, RendererType, angle_of_vector, config, rotate_vector
+from manim.typing import Point3D
 import numpy as np
 
 from .lenses import Lens, antisnell, intersection, snell
@@ -69,8 +70,8 @@ class Ray(Line):
 
     def __init__(
         self,
-        start: Iterable[float],
-        direction: Iterable[float],
+        start: Point3D,
+        direction: Point3D,
         init_length: float = 5,
         propagate: Iterable[Lens] | None = None,
         **kwargs: Any,
@@ -109,7 +110,7 @@ class Ray(Line):
             else:
                 nppcc = (
                     self.n_points_per_cubic_curve
-                    if config.renderer != "opengl"
+                    if config.renderer != RendererType.OPENGL
                     else self.n_points_per_curve
                 )
                 self.points = self.points[:-nppcc]
@@ -143,7 +144,7 @@ class Ray(Line):
                 self.end = self.get_end()
             self.propagated = True
 
-    def _sort_lens(self, lenses: Iterable[Lens]) -> Iterable[Lens]:
+    def _sort_lens(self, lenses: Iterable[Lens]) -> list[Lens]:
         """Sort lenses by distance from the ray's start to the intersection point.
 
         Parameters
@@ -155,21 +156,21 @@ class Ray(Line):
         -------
             Lenses ordered by increasing distance from the ray start.
         """
-        dists = []
+        dists: list[list[Any]] = []
         for lens in lenses:
             try:
-                dists += [
+                dists.append(
                     [np.linalg.norm(intersection(self, lens)[0] - self.start), lens]
-                ]
+                )
             except (IndexError, ValueError):
                 # no valid intersection found — put the lens at infinity
-                dists += [[np.inf, lens]]
+                dists.append([np.inf, lens])
         dists.sort(key=lambda x: x[0])
-        return np.array(dists, dtype=object)[:, 1]
+        return [lens for _, lens in dists]
 
     def _sort_intersections(
-        self, intersections: Iterable[Iterable[float]]
-    ) -> Iterable[Iterable[float]]:
+        self, intersections: Iterable[Point3D]
+    ) -> list[Point3D]:
         """Sort intersection points by distance from the ray's current end point.
 
         Parameters
@@ -181,8 +182,8 @@ class Ray(Line):
         -------
             Intersections ordered by increasing distance from the ray end.
         """
-        result = []
+        result: list[list[Any]] = []
         for inters in intersections:
             result.append([np.linalg.norm(inters - self.end), inters])
         result.sort(key=lambda x: x[0])
-        return np.array(result, dtype=object)[:, 1]
+        return [inters for _, inters in result]
