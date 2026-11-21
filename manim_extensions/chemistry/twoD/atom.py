@@ -7,7 +7,7 @@ This module provides the :class:`~manim_extensions.chemistry.twoD.atom.MAtomObje
 
 """
 
-from typing import Any, Dict, Literal
+from typing import Any, Dict, cast, Literal
 
 # unlinked-class-ok: Element
 
@@ -96,7 +96,7 @@ class MAtomObject(VGroup):
         explicit_hydrogens: bool = False,
         bond_to: Dict[int, str] = {},
         representation_type: Literal["complete", "skeleton", "over_bond"] | None = None,
-        color: str = WHITE,
+        color: ManimColor | str = WHITE,
         charge: int = 0,
         index: int = 0,
         planar: bool = True,
@@ -113,7 +113,7 @@ class MAtomObject(VGroup):
         self.charge = charge
         self.index = index
         self.planar = planar
-        self.color = color
+        self.color = cast(ManimColor, color)
         self.atom = self.add_atom()
 
         if self.planar:
@@ -183,6 +183,7 @@ class MAtomObject(VGroup):
             The created atom label, or ``None`` when the representation has no label."""
         if self.representation != "skeleton":
             return MarkupText(self.element).scale(0.8)
+        return None
 
     def bonds_fulfilled(self) -> bool:
         """Check if the atom has its expected minimum number of bonds.
@@ -193,7 +194,7 @@ class MAtomObject(VGroup):
         minimum_bonds = {"O": 2, "S": 2, "N": 3, "P": 3}
         minimum_bond = minimum_bonds.get(self.element)
         if self.bond_to and minimum_bond:
-            return len(self.bond_to) == minimum_bonds.get(self)
+            return len(self.bond_to) == minimum_bond
 
         return True
 

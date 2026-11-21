@@ -7,11 +7,13 @@ This module provides the :class:`~manim_extensions.chemistry.twoD.chemical_formu
 
 """
 
-from typing import Any
+from typing import Any, cast
 
 # unlinked-class-ok: Element
 
 import re
+
+from manim.typing import Vector3D
 
 from manim import (
     DEFAULT_MOBJECT_TO_MOBJECT_BUFFER,
@@ -46,9 +48,9 @@ class ChemicalFormula(MarkupText):
     def __init__(
         self,
         formula: str,
-        metal_color: str = WHITE,
-        non_metal_color: str = WHITE,
-        oxygen_color: str = WHITE,
+        metal_color: ManimColor | str = WHITE,
+        non_metal_color: ManimColor | str = WHITE,
+        oxygen_color: ManimColor | str = WHITE,
         *args: Any,
         **kwargs: Any,
     ) -> None:
@@ -90,9 +92,9 @@ class ChemicalFormula(MarkupText):
     def make_markup(
         self,
         parsed_formula: dict[str, int],
-        metal_color: str = WHITE,
-        non_metal_color: str = WHITE,
-        oxygen_color: str = WHITE,
+        metal_color: ManimColor | str = WHITE,
+        non_metal_color: ManimColor | str = WHITE,
+        oxygen_color: ManimColor | str = WHITE,
     ) -> str:
         """Build Pango markup string with colored elements and subscripted counts.
 
@@ -126,7 +128,7 @@ class ChemicalFormula(MarkupText):
 
         return markup
 
-    def set_atom_color(self, atom: str, subindex: int, color: ManimColor) -> str:
+    def set_atom_color(self, atom: str, subindex: int, color: ManimColor | str) -> str:
         """Wrap an atom symbol and its subscript count in a colored span tag.
 
         Parameters
@@ -203,13 +205,13 @@ class NamedFormula(VGroup):
         metal_name: str,
         non_metal_name: str,
         formula: str,
-        metal_color: str = WHITE,
-        non_metal_color: str = WHITE,
-        oxygen_color: str = WHITE,
+        metal_color: ManimColor | str = WHITE,
+        non_metal_color: ManimColor | str = WHITE,
+        oxygen_color: ManimColor | str = WHITE,
         font: str = "",
         spanish_structure: bool = False,
         buff: float = DEFAULT_MOBJECT_TO_MOBJECT_BUFFER,
-        direction: str = DOWN,
+        direction: Vector3D = DOWN,
         *args: Any,
         **kwargs: Any,
     ) -> None:
@@ -222,19 +224,19 @@ class NamedFormula(VGroup):
         self.oxygen_color = oxygen_color
         self.spanish_structure = spanish_structure
         self.font = font
-        chemical_formula = ChemicalFormula(
-            formula=self.formula,
-            metal_color=self.metal_color,
-            non_metal_color=self.non_metal_color,
-            oxygen_color=self.oxygen_color,
-            *args,
+        formula_kwargs: dict[str, Any] = {
+            "metal_color": self.metal_color,
+            "non_metal_color": self.non_metal_color,
+            "oxygen_color": self.oxygen_color,
             **kwargs,
-        )
+        }
+        chemical_formula = ChemicalFormula(self.formula, *args, **formula_kwargs)
         self.add(chemical_formula)
-        self.name = self.make_name().next_to(
+        name_mob = self.make_name().next_to(
             chemical_formula, direction=direction, buff=buff
         )
-        self.add(self.name)
+        cast(Any, self).name = name_mob
+        self.add(name_mob)
 
     def make_name(self) -> MarkupText:
         """
@@ -387,7 +389,7 @@ class NamedComplexFormula(VGroup):
         self,
         name_dict: dict[Any, Any],
         formula_dict: dict[Any, Any],
-        direction: str = DOWN,
+        direction: Vector3D = DOWN,
         buff: float = DEFAULT_MOBJECT_TO_MOBJECT_BUFFER,
         *args: Any,
         **kwargs: Any,

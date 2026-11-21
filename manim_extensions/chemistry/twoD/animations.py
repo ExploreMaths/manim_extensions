@@ -7,9 +7,10 @@ This module provides the :class:`~manim_extensions.chemistry.twoD.animations.GMA
 
 """
 
-from typing import Any
+from typing import Any, cast
 
 from manim import Animation, BLACK, ManimColor, PI, VGroup
+from manim.typing import Vector3D
 from .graph_molecule import GraphMolecule
 
 
@@ -65,9 +66,17 @@ class GMAnimationBuilder:
         bonds: VGroup | None = None,
     ) -> None:
         self.molecule = molecule
-        self.atoms = atoms or self.molecule.vertices.values()
+        self.atoms = (
+            atoms
+            if atoms is not None
+            else VGroup(*cast(Any, list(self.molecule.vertices.values())))
+        )
         self.atoms_copy = self.atoms.copy()
-        self.bonds = bonds or self.molecule.edges.values()
+        self.bonds = (
+            bonds
+            if bonds is not None
+            else VGroup(*cast(Any, list(self.molecule.edges.values())))
+        )
         self.bonds_copy = self.bonds.copy()
 
     def bonds_from_atoms(self, atom_a: int, atom_b: int) -> tuple[int, int]:
@@ -91,7 +100,7 @@ class GMAnimationBuilder:
         """
         for bond in self.molecule.edges:
             if atom_a in bond and atom_b in bond:
-                return bond
+                return cast(tuple[int, int], bond)
 
         raise Exception(f"No bond found for atoms {atom_a}, {atom_b}")
 
@@ -114,11 +123,11 @@ class GMAnimationBuilder:
             The animations rotating the atoms around the bond axis.
         """
         bond = self.bonds_from_atoms(atom_a=atom_a, atom_b=atom_b)
-        axis = self.molecule.edges[bond].sheen_direction
+        axis = cast(Vector3D, cast(Any, self.molecule.edges[bond]).sheen_direction)
         self.atoms_copy.rotate(axis=axis, angle=angle)
 
         return [
-            atom.animate.move_to(atom_copy)
+            cast(Animation, atom.animate.move_to(atom_copy))
             for atom, atom_copy in zip(self.atoms, self.atoms_copy)
         ]
 
@@ -155,7 +164,7 @@ class GMAnimationBuilder:
         else:
             for atom in self.atoms:
                 animations.append(atom[0].animate.set_color(atoms_color))
-                animations.append(atom[1].animate.set_color(atom[1].color))
+                animations.append(atom[1].animate.set_color(cast(Any, atom[1].color)))
 
         if bonds_color:
             for bond in self.bonds:
