@@ -1492,7 +1492,6 @@
     <span class="n">FadeOut</span><span class="p">,</span>
     <span class="n">Line</span><span class="p">,</span>
     <span class="n">ManimColor</span><span class="p">,</span>
-    <span class="n">Mobject</span><span class="p">,</span>
     <span class="n">MoveAlongPath</span><span class="p">,</span>
     <span class="n">ShowPassingFlash</span><span class="p">,</span>
     <span class="n">VGroup</span><span class="p">,</span>
@@ -1539,8 +1538,8 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">input_layer</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
-        <span class="n">output_layer</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
+        <span class="n">input_layer</span><span class="p">:</span> <span class="n">FeedForwardLayer</span><span class="p">,</span>
+        <span class="n">output_layer</span><span class="p">:</span> <span class="n">FeedForwardLayer</span><span class="p">,</span>
         <span class="n">passing_flash</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
         <span class="n">dot_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.05</span><span class="p">,</span>
         <span class="n">animation_dot_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span><span class="o">.</span><span class="n">color_scheme</span><span class="o">.</span><span class="n">active_color</span><span class="p">,</span>
@@ -1549,7 +1548,7 @@
         <span class="n">camera</span><span class="p">:</span> <span class="n">Camera</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">input_layer</span><span class="p">),</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">passing_flash</span> <span class="o">=</span> <span class="n">passing_flash</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">edge_color</span> <span class="o">=</span> <span class="n">edge_color</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dot_radius</span> <span class="o">=</span> <span class="n">dot_radius</span>
@@ -1587,26 +1586,27 @@
 
 <div class="viewcode-block" id="FeedForwardToFeedForward.construct_edges">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/feed_forward_to_feed_forward.FeedForwardToFeedForward.html#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward.construct_edges">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct_edges</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create all connecting lines between input and output layer nodes.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            A list of the results."""</span>
         <span class="c1"># Go through each node in the two layers and make a connecting line</span>
-        <span class="n">edges</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">node_i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_layer</span><span class="o">.</span><span class="n">node_group</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">node_j</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_layer</span><span class="o">.</span><span class="n">node_group</span><span class="p">:</span>
+        <span class="n">input_layer</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">FeedForwardLayer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_layer</span><span class="p">)</span>
+        <span class="n">output_layer</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">FeedForwardLayer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_layer</span><span class="p">)</span>
+        <span class="n">edge_lines</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">node_i</span> <span class="ow">in</span> <span class="n">input_layer</span><span class="o">.</span><span class="n">node_group</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">node_j</span> <span class="ow">in</span> <span class="n">output_layer</span><span class="o">.</span><span class="n">node_group</span><span class="p">:</span>
                 <span class="n">line</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span>
                     <span class="n">node_i</span><span class="o">.</span><span class="n">get_center</span><span class="p">(),</span>
                     <span class="n">node_j</span><span class="o">.</span><span class="n">get_center</span><span class="p">(),</span>
                     <span class="n">color</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">edge_color</span><span class="p">,</span>
                     <span class="n">stroke_width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">edge_width</span><span class="p">,</span>
                 <span class="p">)</span>
-                <span class="n">edges</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                <span class="n">edge_lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
 
-        <span class="n">edges</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="n">edges</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">edges</span></div>
+        <span class="k">return</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="n">edge_lines</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="FeedForwardToFeedForward._fadeout_animation">
@@ -1619,7 +1619,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            The grouped fade-out animation for all edges.</span>
 <span class="sd">        """</span>
-        <span class="n">animations</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">animations</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span>
             <span class="n">animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">FadeOut</span><span class="p">(</span><span class="n">edge</span><span class="p">))</span>
@@ -1637,7 +1637,7 @@
         <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
         <span class="n">feed_forward_dropout</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnimationGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Animation for passing information from one :class:`~manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer` to the next.</span>
 
 <span class="sd">        Parameters</span>
@@ -1656,8 +1656,8 @@
 <span class="sd">        -------</span>
 <span class="sd">            A list of the results.</span>
 <span class="sd">        """</span>
-        <span class="n">path_animations</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="n">dots</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">path_animations</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">dots</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Dot</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">edge_index</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">):</span>
             <span class="k">if</span> <span class="p">(</span>
                 <span class="ow">not</span> <span class="s2">"edge_indices_to_dropout"</span> <span class="ow">in</span> <span class="n">layer_args</span>
@@ -1671,6 +1671,7 @@
                 <span class="c1"># Add to dots group</span>
                 <span class="n">dots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">dot</span><span class="p">)</span>
                 <span class="c1"># Make the animation</span>
+                <span class="n">anim</span><span class="p">:</span> <span class="n">Animation</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">passing_flash</span><span class="p">:</span>
                     <span class="n">copy_edge</span> <span class="o">=</span> <span class="n">edge</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
                     <span class="n">anim</span> <span class="o">=</span> <span class="n">ShowPassingFlash</span><span class="p">(</span>
@@ -1683,12 +1684,10 @@
                 <span class="n">path_animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">anim</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">passing_flash</span><span class="p">:</span>
-            <span class="n">dots</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="n">dots</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dots</span><span class="p">)</span>
+            <span class="n">dots_group</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="n">dots</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dots_group</span><span class="p">)</span>
 
-        <span class="n">path_animations</span> <span class="o">=</span> <span class="n">AnimationGroup</span><span class="p">(</span><span class="o">*</span><span class="n">path_animations</span><span class="p">)</span>
-
-        <span class="k">return</span> <span class="n">path_animations</span></div>
+        <span class="k">return</span> <span class="n">AnimationGroup</span><span class="p">(</span><span class="o">*</span><span class="n">path_animations</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="FeedForwardToFeedForward.modify_edge_colors">
@@ -1761,16 +1760,15 @@
 <span class="sd">        """</span>
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">widths</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span>
         <span class="c1"># Note: 1d-arrays are assumed to be in row major order</span>
-        <span class="n">widths</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">widths</span><span class="p">)</span>
-        <span class="n">widths</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">widths</span><span class="p">)</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="n">widths_array</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">widths</span><span class="p">))</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
         <span class="c1"># Check thickness size</span>
-        <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">widths</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">widths_array</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
         <span class="c1"># Make animation</span>
-        <span class="n">animations</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">animations</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
         <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">edge</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">):</span>
-            <span class="n">width</span> <span class="o">=</span> <span class="n">widths</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
-            <span class="n">change_width</span> <span class="o">=</span> <span class="n">edge</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">set_stroke_width</span><span class="p">(</span><span class="n">width</span><span class="p">)</span>
+            <span class="n">width</span> <span class="o">=</span> <span class="n">widths_array</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+            <span class="n">change_width</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Animation</span><span class="p">,</span> <span class="n">edge</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">set_stroke_width</span><span class="p">(</span><span class="n">width</span><span class="p">))</span>
             <span class="n">animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">change_width</span><span class="p">)</span>
 
         <span class="n">animation_group</span> <span class="o">=</span> <span class="n">AnimationGroup</span><span class="p">(</span><span class="o">*</span><span class="n">animations</span><span class="p">)</span>

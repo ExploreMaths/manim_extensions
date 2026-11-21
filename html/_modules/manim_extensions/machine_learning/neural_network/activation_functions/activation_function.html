@@ -1617,7 +1617,7 @@
         <span class="c1"># Add the function name</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">show_function_name</span><span class="p">:</span>
             <span class="n">function_name_text</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">function_name</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s2">"sans-serif"</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">function_name</span> <span class="ow">or</span> <span class="s2">""</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">font</span><span class="o">=</span><span class="s2">"sans-serif"</span>
             <span class="p">)</span>
             <span class="n">function_name_text</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="p">,</span> <span class="n">UP</span> <span class="o">*</span> <span class="mf">0.5</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">function_name_text</span><span class="p">)</span></div>
@@ -1626,7 +1626,7 @@
 <div class="viewcode-block" id="ActivationFunction.apply_function">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/activation_functions/activation_function.ActivationFunction.html#manim_extensions.machine_learning.neural_network.activation_functions.activation_function.ActivationFunction.apply_function">[docs]</a>
     <span class="nd">@abstractmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">apply_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_val</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_val</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>  <span class="c1"># type: ignore[override]</span>
 <span class="w">        </span><span class="sd">"""Evaluates function at given x_val.</span>
 
 <span class="sd">        Abstract method: concrete subclasses implement the actual</span>

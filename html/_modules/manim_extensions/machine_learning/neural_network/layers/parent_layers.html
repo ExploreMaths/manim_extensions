@@ -1858,7 +1858,7 @@
         <span class="n">output_layer</span><span class="p">:</span> <span class="n">NeuralNetworkLayer</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">input_layer</span><span class="p">),</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="BlankConnective.make_forward_pass_animation">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/parent_layers.BlankConnective.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.BlankConnective.make_forward_pass_animation">[docs]</a>

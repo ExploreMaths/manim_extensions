@@ -1776,7 +1776,7 @@
                 <span class="k">if</span> <span class="n">vertex</span> <span class="ow">in</span> <span class="n">edges_v</span><span class="p">:</span>
                     <span class="n">edges_v</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">vertex</span><span class="p">)</span>
             <span class="n">merged_polygon</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">(</span>
-                <span class="o">*</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">point</span><span class="p">)</span> <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">poly</span><span class="p">],</span>
+                <span class="o">*</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">point</span><span class="p">)</span> <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">poly</span><span class="p">],</span>
                 <span class="n">color</span><span class="o">=</span><span class="n">color_key</span><span class="p">,</span>
                 <span class="n">fill_opacity</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
                 <span class="n">stroke_opacity</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span>

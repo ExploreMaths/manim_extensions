@@ -1477,7 +1477,7 @@
 
 <span class="sd">"""Image layer visualization for neural networks."""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">Animation</span><span class="p">,</span>
@@ -1485,7 +1485,6 @@
     <span class="n">Create</span><span class="p">,</span>
     <span class="n">FadeIn</span><span class="p">,</span>
     <span class="n">ImageMobject</span><span class="p">,</span>
-    <span class="n">Mobject</span><span class="p">,</span>
     <span class="n">SurroundingRectangle</span><span class="p">,</span>
     <span class="n">Wait</span><span class="p">,</span>
     <span class="n">override_animation</span><span class="p">,</span>
@@ -1573,7 +1572,10 @@
 <div class="viewcode-block" id="ImageLayer.construct_layer">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/image.ImageLayer.html#manim_extensions.machine_learning.neural_network.layers.image.ImageLayer.construct_layer">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">construct_layer</span><span class="p">(</span>
-        <span class="bp">self</span><span class="p">,</span> <span class="n">input_layer</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">input_layer</span><span class="p">:</span> <span class="n">NeuralNetworkLayer</span><span class="p">,</span>
+        <span class="n">output_layer</span><span class="p">:</span> <span class="n">NeuralNetworkLayer</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Construct layer method.</span>
 
@@ -1594,7 +1596,7 @@
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">numpy_image</span><span class="p">))</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
             <span class="c1"># Assumed Grayscale</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">num_channels</span> <span class="o">=</span> <span class="mi">1</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">image_mobject</span> <span class="o">=</span> <span class="n">GrayscaleImageMobject</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">image_mobject</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">GrayscaleImageMobject</span><span class="p">(</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">numpy_image</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">image_height</span>
             <span class="p">)</span>
         <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">numpy_image</span><span class="p">))</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
@@ -1693,7 +1695,7 @@
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            The rightmost point of the surrounding shape."""</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_mobject</span><span class="o">.</span><span class="n">get_right</span><span class="p">()</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">Point3D</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_mobject</span><span class="o">.</span><span class="n">get_right</span><span class="p">())</span></div>
 
 
 <div class="viewcode-block" id="ImageLayer.scale">
@@ -1717,23 +1719,23 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">image_mobject</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span></div>
 
 
-    <span class="nd">@property</span>
+    <span class="nd">@property</span>  <span class="c1"># type: ignore[misc]</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">width</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the width of the image mobject.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            The width of the image mobject."""</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_mobject</span><span class="o">.</span><span class="n">width</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_mobject</span><span class="o">.</span><span class="n">width</span><span class="p">)</span>
 
-    <span class="nd">@property</span>
+    <span class="nd">@property</span>  <span class="c1"># type: ignore[misc]</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">height</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the height of the image mobject.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            The height of the image mobject."""</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_mobject</span><span class="o">.</span><span class="n">height</span></div>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_mobject</span><span class="o">.</span><span class="n">height</span><span class="p">)</span></div>
 
 </pre></div>
         </article>

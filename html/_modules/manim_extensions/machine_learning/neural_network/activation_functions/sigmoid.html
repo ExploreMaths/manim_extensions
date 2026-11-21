@@ -1526,7 +1526,7 @@
 
 <div class="viewcode-block" id="SigmoidFunction.apply_function">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/activation_functions/sigmoid.SigmoidFunction.html#manim_extensions.machine_learning.neural_network.activation_functions.sigmoid.SigmoidFunction.apply_function">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">apply_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_val</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">apply_function</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_val</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>  <span class="c1"># type: ignore[override]</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">"""Return :math:`\frac{1}{1 + e^{-x}}`, the sigmoid of the input value.</span>
 
 <span class="sd">        Parameters</span>
@@ -1538,7 +1538,7 @@
 <span class="sd">        -------</span>
 <span class="sd">            The :math:`\frac{1}{1 + e^{-x}}`, the sigmoid of the input value.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">x_val</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">x_val</span><span class="p">)))</span></div>
 </div>
 
 </pre></div>

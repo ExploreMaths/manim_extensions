@@ -1515,7 +1515,7 @@
 
 <div class="viewcode-block" id="ListGroup.__getitem__">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/utils/mobjects/list_group.ListGroup.html#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.__getitem__">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span>  <span class="c1"># list indexing may return a single item or a slice</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span>  <span class="c1"># type: ignore[override]  # list indexing may return a single item or a slice</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">indices</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">slice</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mobject</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="n">Mobject</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return an item or a slice of items.</span>
@@ -1607,7 +1607,7 @@
 
 <div class="viewcode-block" id="ListGroup.remove">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/utils/mobjects/list_group.ListGroup.html#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.remove">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">remove</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">remove</span><span class="p">(</span>  <span class="c1"># type: ignore[override]</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">Mobject</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mobject</span><span class="p">:</span>  <span class="c1"># intentionally shadows Mobject.remove with list semantics</span>
 <span class="w">        </span><span class="sd">"""Removes first instance of item.</span>
@@ -1646,7 +1646,7 @@
 
 <div class="viewcode-block" id="ListGroup.add">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/utils/mobjects/list_group.ListGroup.html#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.add">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add</span><span class="p">(</span>  <span class="c1"># type: ignore[override]</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">Mobject</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>  <span class="c1"># intentionally shadows Mobject.add with list semantics</span>
 <span class="w">        </span><span class="sd">"""Adds to end.</span>
@@ -1667,7 +1667,7 @@
 
 <div class="viewcode-block" id="ListGroup.replace">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/utils/mobjects/list_group.ListGroup.html#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.replace">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">replace</span><span class="p">(</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">replace</span><span class="p">(</span>  <span class="c1"># type: ignore[override]</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">Mobject</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>  <span class="c1"># intentionally shadows Mobject.replace with list semantics</span>
 <span class="w">        </span><span class="sd">"""Replaces item at index.</span>
@@ -1723,7 +1723,7 @@
 
 <div class="viewcode-block" id="ListGroup.set_z_index">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/utils/mobjects/list_group.ListGroup.html#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.set_z_index">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_z_index</span><span class="p">(</span>  <span class="c1"># intentionally returns None instead of the group</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_z_index</span><span class="p">(</span>  <span class="c1"># type: ignore[override]  # intentionally returns None instead of the group</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">z_index_value</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">family</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Sets z index of all values in :class:`~manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup`.</span>

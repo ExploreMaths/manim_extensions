@@ -1483,7 +1483,7 @@
 
 <span class="sd">"""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Literal</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">ORIGIN</span><span class="p">,</span> <span class="n">VMobject</span><span class="p">,</span> <span class="n">WHITE</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -1637,8 +1637,8 @@
     <span class="c1"># If facing the Rubik's Cube, X goes Front to Back, Y goes Right to Left, Z goes Down to Up</span>
     <span class="c1"># Each coordinate starts at 0 and goes to (Dimensions - 1)</span>
 
-    <span class="n">cubies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
-    <span class="n">indices</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">cubies</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
+    <span class="n">indices</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="c1"># Colors are in the order Up, Right, Front, Down, Left, Back</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -1666,7 +1666,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">y_offset</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Mobject</span><span class="o">.</span><span class="n">shift</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">y_offset</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">z_offset</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Mobject</span><span class="o">.</span><span class="n">shift</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">z_offset</span><span class="p">]]]</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">cubies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">((</span><span class="n">dim</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">dim</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">Cubie</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cubies</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">((</span><span class="n">dim</span><span class="p">,</span> <span class="n">dim</span><span class="p">,</span> <span class="n">dim</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">generate_cubies</span><span class="p">()</span>  <span class="c1"># **kwargs)</span>
 
 <div class="viewcode-block" id="RubiksCube.get_center">
@@ -1702,7 +1702,7 @@
                     <span class="bp">self</span><span class="o">.</span><span class="n">transform_cubie</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_offset</span><span class="p">,</span> <span class="n">cubie</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">transform_cubie</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">z_offset</span><span class="p">,</span> <span class="n">cubie</span><span class="p">)</span>
                     <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">cubie</span><span class="p">)</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">cubies</span><span class="p">[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">]</span> <span class="o">=</span> <span class="n">cubie</span>
+                    <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cubies</span><span class="p">)[</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">]</span> <span class="o">=</span> <span class="n">cubie</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span></div>
 
 
@@ -1764,7 +1764,9 @@
 <span class="sd">            A list of move tokens.</span>
 <span class="sd">        """</span>
         <span class="n">sv</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"rubikscube"</span><span class="p">,</span> <span class="s2">"kociemba"</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">sv</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"3"</span><span class="p">,</span> <span class="s2">"'"</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"1"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">sv</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"3"</span><span class="p">,</span> <span class="s2">"'"</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">"1"</span><span class="p">,</span> <span class="s2">""</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+        <span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="RubiksCube.transform_cubie">
@@ -1820,23 +1822,23 @@
 <span class="sd">        -------</span>
 <span class="sd">            The selected face values, either as a 2D grid or a flattened array.</span>
 <span class="sd">        """</span>
+        <span class="n">face_data</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
         <span class="k">if</span> <span class="n">face</span> <span class="o">==</span> <span class="s2">"F"</span><span class="p">:</span>
-            <span class="n">face</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cubies</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+            <span class="n">face_data</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cubies</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
         <span class="k">elif</span> <span class="n">face</span> <span class="o">==</span> <span class="s2">"B"</span><span class="p">:</span>
-            <span class="n">face</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cubies</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+            <span class="n">face_data</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cubies</span><span class="p">)[</span><span class="bp">self</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
         <span class="k">elif</span> <span class="n">face</span> <span class="o">==</span> <span class="s2">"U"</span><span class="p">:</span>
-            <span class="n">face</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cubies</span><span class="p">[:,</span> <span class="p">:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">face_data</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cubies</span><span class="p">)[:,</span> <span class="p">:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
         <span class="k">elif</span> <span class="n">face</span> <span class="o">==</span> <span class="s2">"D"</span><span class="p">:</span>
-            <span class="n">face</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cubies</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="n">face_data</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cubies</span><span class="p">)[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
         <span class="k">elif</span> <span class="n">face</span> <span class="o">==</span> <span class="s2">"L"</span><span class="p">:</span>
-            <span class="n">face</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cubies</span><span class="p">[:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
-        <span class="k">elif</span> <span class="n">face</span> <span class="o">==</span> <span class="s2">"R"</span><span class="p">:</span>
-            <span class="n">face</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cubies</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+            <span class="n">face_data</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cubies</span><span class="p">)[:,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">face_data</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cubies</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
 
         <span class="k">if</span> <span class="n">flatten</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">face</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">face</span></div>
+            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">face_data</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">face_data</span></div>
 
 
 <div class="viewcode-block" id="RubiksCube.set_indices">
@@ -1869,7 +1871,7 @@
 <span class="sd">        """</span>
         <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">cubies</span><span class="o">.</span><span class="n">flatten</span><span class="p">():</span>
             <span class="n">loc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">indices</span><span class="p">[</span><span class="n">c</span><span class="o">.</span><span class="n">get_rounded_center</span><span class="p">()]</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">cubies</span><span class="p">[</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span> <span class="o">=</span> <span class="n">c</span></div>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">cubies</span><span class="p">)[</span><span class="n">loc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">loc</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">loc</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span> <span class="o">=</span> <span class="n">c</span></div>
 </div>
 
 </pre></div>

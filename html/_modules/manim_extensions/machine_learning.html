@@ -1558,7 +1558,7 @@
 
 <span class="c1"># These are accessible from the manim_ml namespace</span>
 <span class="c1">#: Shared ManimML configuration singleton exposed from the package namespace.</span>
-<span class="n">config</span> <span class="o">=</span> <span class="n">ManimMLConfig</span><span class="p">()</span>  <span class="c1"># intentionally shadows manim's star-imported config</span>
+<span class="n">config</span> <span class="o">=</span> <span class="n">ManimMLConfig</span><span class="p">()</span>  <span class="c1"># type: ignore[assignment]  # intentionally shadows manim's star-imported config</span>
 </pre></div>
         </article>
       </div>

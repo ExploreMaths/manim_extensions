@@ -1532,7 +1532,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">dimensions</span> <span class="o">=</span> <span class="n">dim</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">colors</span> <span class="o">=</span> <span class="n">colors</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">faces</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">faces</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">Square</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
 <div class="viewcode-block" id="Cubie.get_position">
@@ -1549,15 +1549,17 @@
 
 <div class="viewcode-block" id="Cubie.get_rounded_center">
 <a class="viewcode-back" href="../../../reference/rubikscube/cubie.Cubie.html#manim_extensions.rubikscube.cubie.Cubie.get_rounded_center">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_rounded_center</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_rounded_center</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return the cubie's position with coordinates rounded to 3 decimal places.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">            The rounded :math:`(x, y, z)` coordinates.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span>
-            <span class="p">[</span><span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_x</span><span class="p">(),</span> <span class="mi">3</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_y</span><span class="p">(),</span> <span class="mi">3</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_z</span><span class="p">(),</span> <span class="mi">3</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_x</span><span class="p">(),</span> <span class="mi">3</span><span class="p">),</span>
+            <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_y</span><span class="p">(),</span> <span class="mi">3</span><span class="p">),</span>
+            <span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_z</span><span class="p">(),</span> <span class="mi">3</span><span class="p">),</span>
         <span class="p">)</span></div>
 
 
@@ -1631,7 +1633,7 @@
 
 <div class="viewcode-block" id="Cubie.init_colors">
 <a class="viewcode-back" href="../../../reference/rubikscube/cubie.Cubie.html#manim_extensions.rubikscube.cubie.Cubie.init_colors">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">init_colors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">init_colors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Cubie"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Apply fill, stroke, and background-stroke colours to the cubie.</span>
 
 <span class="sd">        Returns</span>
@@ -1652,7 +1654,8 @@
             <span class="n">width</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">background_stroke_width</span><span class="p">,</span>
             <span class="n">opacity</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">background_stroke_opacity</span><span class="p">,</span>
             <span class="n">family</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="p">)</span></div>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span></div>
 </div>
 
 </pre></div>

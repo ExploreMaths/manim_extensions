@@ -1481,6 +1481,8 @@
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
@@ -1639,9 +1641,9 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">node_group</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node_object</span><span class="p">)</span>
         <span class="c1"># Space the nodes</span>
         <span class="c1"># Assumes Vertical orientation</span>
-        <span class="k">for</span> <span class="n">node_index</span><span class="p">,</span> <span class="n">node_object</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_group</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">node_index</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_group</span><span class="p">):</span>
             <span class="n">location</span> <span class="o">=</span> <span class="n">node_index</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_spacing</span>
-            <span class="n">node_object</span><span class="o">.</span><span class="n">move_to</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">location</span><span class="p">,</span> <span class="mi">0</span><span class="p">]))</span>
         <span class="c1"># Create Surrounding Rectangle</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">surrounding_rectangle</span> <span class="o">=</span> <span class="n">SurroundingRectangle</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">node_group</span><span class="p">,</span>
@@ -1710,17 +1712,19 @@
         <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">node_group</span><span class="p">):</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">dropout_node_indices</span><span class="p">:</span>
                 <span class="n">nodes_to_highlight</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
-        <span class="n">nodes_to_highlight</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="n">nodes_to_highlight</span><span class="p">)</span>
+        <span class="n">nodes_to_highlight_group</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="n">nodes_to_highlight</span><span class="p">)</span>
         <span class="c1"># Make highlight animation</span>
         <span class="n">succession</span> <span class="o">=</span> <span class="n">Succession</span><span class="p">(</span>
             <span class="n">ApplyMethod</span><span class="p">(</span>
-                <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">nodes_to_highlight</span><span class="p">)</span><span class="o">.</span><span class="n">set_color</span><span class="p">,</span>
+                <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">nodes_to_highlight_group</span><span class="p">)</span><span class="o">.</span><span class="n">set_color</span><span class="p">,</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">animation_dot_color</span><span class="p">,</span>
                 <span class="n">run_time</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
             <span class="p">),</span>
             <span class="n">Wait</span><span class="p">(</span><span class="mf">1.0</span><span class="p">),</span>
             <span class="n">ApplyMethod</span><span class="p">(</span>
-                <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">nodes_to_highlight</span><span class="p">)</span><span class="o">.</span><span class="n">set_color</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">node_color</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="mf">0.25</span>
+                <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">nodes_to_highlight_group</span><span class="p">)</span><span class="o">.</span><span class="n">set_color</span><span class="p">,</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">node_color</span><span class="p">,</span>
+                <span class="n">run_time</span><span class="o">=</span><span class="mf">0.25</span><span class="p">,</span>
             <span class="p">),</span>
         <span class="p">)</span>
 
@@ -1764,7 +1768,7 @@
             <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">activation_function</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
                 <span class="n">animation_group</span> <span class="o">=</span> <span class="n">AnimationGroup</span><span class="p">(</span>
                     <span class="n">succession</span><span class="p">,</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">activation_function</span><span class="o">.</span><span class="n">make_evaluate_animation</span><span class="p">(),</span>
+                    <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">activation_function</span><span class="p">)</span><span class="o">.</span><span class="n">make_evaluate_animation</span><span class="p">(),</span>
                     <span class="n">lag_ratio</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span>
                 <span class="p">)</span>
                 <span class="k">return</span> <span class="n">animation_group</span>
@@ -1844,7 +1848,12 @@
 
 <div class="viewcode-block" id="FeedForwardLayer.move_to">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/feed_forward.FeedForwardLayer.html#manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer.move_to">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">move_to</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mobject_or_point</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">move_to</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">mobject_or_point</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="n">aligned_edge</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">coor_mask</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Moves the center of the layer to the given mobject or point.</span>
 
 <span class="sd">        Parameters</span>

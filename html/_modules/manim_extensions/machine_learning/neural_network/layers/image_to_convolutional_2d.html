@@ -1558,7 +1558,7 @@
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">input_layer</span><span class="p">:</span> <span class="n">ImageLayer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">:</span> <span class="n">Convolutional2DLayer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">input_layer</span><span class="p">),</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">input_layer</span> <span class="o">=</span> <span class="n">input_layer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">output_layer</span> <span class="o">=</span> <span class="n">output_layer</span>
 
@@ -1581,7 +1581,8 @@
 <span class="sd">        **kwargs</span>
 <span class="sd">            Forwarded to the parent layer classes.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
 
 
 <div class="viewcode-block" id="ImageToConvolutional2DLayer.make_forward_pass_animation">
@@ -1708,12 +1709,14 @@
 <span class="sd">            -------</span>
 <span class="sd">                The image mobject scaled to the target feature-map size."""</span>
             <span class="n">max_width_height</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">image_mobject</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">image_mobject</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
-            <span class="n">scale_factor</span> <span class="o">=</span> <span class="n">target_feature_map</span><span class="o">.</span><span class="n">untransformed_width</span> <span class="o">/</span> <span class="n">max_width_height</span>
+            <span class="n">scale_factor</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">target_feature_map</span><span class="p">)</span><span class="o">.</span><span class="n">untransformed_width</span> <span class="o">/</span> <span class="n">max_width_height</span>
+            <span class="p">)</span>
             <span class="n">image_mobject</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span>
 
             <span class="k">return</span> <span class="n">image_mobject</span>
 
-        <span class="n">scale_image</span> <span class="o">=</span> <span class="n">ApplyFunction</span><span class="p">(</span><span class="n">scale_image_func</span><span class="p">,</span> <span class="n">image_mobject</span><span class="p">)</span>
+        <span class="n">scale_image</span> <span class="o">=</span> <span class="n">ApplyFunction</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">scale_image_func</span><span class="p">),</span> <span class="n">image_mobject</span><span class="p">)</span>
         <span class="c1"># Move the image</span>
         <span class="n">move_image</span> <span class="o">=</span> <span class="n">ApplyMethod</span><span class="p">(</span><span class="n">image_mobject</span><span class="o">.</span><span class="n">move_to</span><span class="p">,</span> <span class="n">target_feature_map</span><span class="p">)</span>
         <span class="c1"># Compose the animations</span>

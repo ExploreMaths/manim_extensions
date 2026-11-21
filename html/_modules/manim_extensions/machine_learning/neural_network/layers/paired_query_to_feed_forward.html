@@ -1486,7 +1486,6 @@
     <span class="n">Create</span><span class="p">,</span>
     <span class="n">Dot</span><span class="p">,</span>
     <span class="n">ManimColor</span><span class="p">,</span>
-    <span class="n">Mobject</span><span class="p">,</span>
     <span class="n">RED</span><span class="p">,</span>
     <span class="n">Succession</span><span class="p">,</span>
     <span class="n">Wait</span><span class="p">,</span>
@@ -1521,13 +1520,13 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">input_layer</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
-        <span class="n">output_layer</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span>
+        <span class="n">input_layer</span><span class="p">:</span> <span class="n">PairedQueryLayer</span><span class="p">,</span>
+        <span class="n">output_layer</span><span class="p">:</span> <span class="n">FeedForwardLayer</span><span class="p">,</span>
         <span class="n">animation_dot_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">RED</span><span class="p">,</span>
         <span class="n">dot_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.02</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">input_layer</span><span class="p">),</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">animation_dot_color</span> <span class="o">=</span> <span class="n">animation_dot_color</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dot_radius</span> <span class="o">=</span> <span class="n">dot_radius</span>
 
@@ -1553,7 +1552,8 @@
 <span class="sd">        **kwargs</span>
 <span class="sd">            Forwarded to the parent layer classes.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
 
 
 <div class="viewcode-block" id="PairedQueryToFeedForward.make_forward_pass_animation">
@@ -1591,7 +1591,7 @@
                 <span class="p">)</span>
                 <span class="n">per_node_succession</span> <span class="o">=</span> <span class="n">Succession</span><span class="p">(</span>
                     <span class="n">Create</span><span class="p">(</span><span class="n">new_dot</span><span class="p">),</span>
-                    <span class="n">new_dot</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">get_center</span><span class="p">()),</span>
+                    <span class="n">cast</span><span class="p">(</span><span class="n">Animation</span><span class="p">,</span> <span class="n">new_dot</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">get_center</span><span class="p">())),</span>
                 <span class="p">)</span>
                 <span class="n">image_animations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">per_node_succession</span><span class="p">)</span>
                 <span class="n">dots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_dot</span><span class="p">)</span>

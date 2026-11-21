@@ -1479,7 +1479,7 @@
 <span class="sd">"""Paired query layer visualization for neural networks."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">Animation</span><span class="p">,</span>
@@ -1491,7 +1491,6 @@
     <span class="n">Group</span><span class="p">,</span>
     <span class="n">ImageMobject</span><span class="p">,</span>
     <span class="n">RED</span><span class="p">,</span>
-    <span class="n">VGroup</span><span class="p">,</span>
     <span class="n">override_animation</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">.parent_layers</span><span class="w"> </span><span class="kn">import</span> <span class="n">NeuralNetworkLayer</span>
@@ -1565,8 +1564,8 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
-        <span class="n">positive</span><span class="p">:</span> <span class="n">VGroup</span><span class="p">,</span>
-        <span class="n">negative</span><span class="p">:</span> <span class="n">VGroup</span><span class="p">,</span>
+        <span class="n">positive</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+        <span class="n">negative</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
         <span class="n">stroke_width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
         <span class="n">font_size</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">18</span><span class="p">,</span>
         <span class="n">spacing</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
@@ -1603,7 +1602,8 @@
 <span class="sd">        **kwargs</span>
 <span class="sd">            Forwarded to the parent layer classes.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
 
 
 <div class="viewcode-block" id="PairedQueryLayer.from_paths">
@@ -1634,6 +1634,8 @@
 <span class="sd">            The layer built from the supplied image paths.</span>
 <span class="sd">        """</span>
         <span class="c1"># Load images from path</span>
+        <span class="n">positive</span><span class="p">:</span> <span class="n">Any</span>
+        <span class="n">negative</span><span class="p">:</span> <span class="n">Any</span>
         <span class="k">if</span> <span class="n">grayscale</span><span class="p">:</span>
             <span class="n">positive</span> <span class="o">=</span> <span class="n">GrayscaleImageMobject</span><span class="o">.</span><span class="n">from_path</span><span class="p">(</span><span class="n">positive_path</span><span class="p">)</span>
             <span class="n">negative</span> <span class="o">=</span> <span class="n">GrayscaleImageMobject</span><span class="o">.</span><span class="n">from_path</span><span class="p">(</span><span class="n">negative_path</span><span class="p">)</span>
@@ -1657,7 +1659,7 @@
 <span class="sd">            A :class:`~manim.mobject.mobject.Group` instance representing the result."""</span>
         <span class="c1"># Handle positive</span>
         <span class="n">positive_group</span> <span class="o">=</span> <span class="n">LabeledColorImage</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">positive</span><span class="p">,</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">positive</span><span class="p">),</span>
             <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">,</span>
             <span class="n">label</span><span class="o">=</span><span class="s2">"Positive"</span><span class="p">,</span>
             <span class="n">font_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font_size</span><span class="p">,</span>
@@ -1665,7 +1667,7 @@
         <span class="p">)</span>
         <span class="c1"># Handle negative</span>
         <span class="n">negative_group</span> <span class="o">=</span> <span class="n">LabeledColorImage</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">negative</span><span class="p">,</span>
+            <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">negative</span><span class="p">),</span>
             <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">,</span>
             <span class="n">label</span><span class="o">=</span><span class="s2">"Negative"</span><span class="p">,</span>
             <span class="n">font_size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">font_size</span><span class="p">,</span>
