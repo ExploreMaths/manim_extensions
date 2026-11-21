@@ -69,7 +69,7 @@ def find_intersection(
     x0, x1 = xs[idx], xs[idx + 1]
     d0, d1 = diffs[idx], diffs[idx + 1]
     x_cross = x0 - d0 * (x1 - x0) / (d1 - d0)
-    return x_cross
+    return float(x_cross)
 
 
 class EconDiagram(VGroup):
@@ -565,15 +565,15 @@ class EconDiagram(VGroup):
                     )
                     anims.append(FadeIn(new_labels, run_time=run_time))
             else:
-                new_eq_group = self._build_eq_group(
+                built_group = self._build_eq_group(
                     *self._eq_curve_names, self._eq_label_x, self._eq_label_y
                 )
-                if new_eq_group is not None:
+                if built_group is not None:
                     old_eq_group = self._eq_group
-                    self._eq_group = new_eq_group
+                    self._eq_group = built_group
                     anims.append(
                         ReplacementTransform(
-                            old_eq_group, new_eq_group, run_time=run_time
+                            old_eq_group, built_group, run_time=run_time
                         )
                     )
 

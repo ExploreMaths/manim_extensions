@@ -15,7 +15,7 @@ subpaths, gradients and stroke/fill ordering keep working.
 """
 
 from __future__ import annotations
-from typing import Any
+from typing import cast, Any
 
 import itertools as it
 import tempfile
@@ -39,7 +39,7 @@ def _get_cairo_context(
     file_name: str | Path,
     width: int | None = None,
     height: int | None = None,
-) -> Iterator[cairo.Context]:
+) -> Iterator[cairo.Context[Any]]:
     """Yield a Cairo SVG context scaled to the current manim frame.
 
     Parameters
@@ -53,7 +53,7 @@ def _get_cairo_context(
 
     Yields
     ------
-    cairo.Context
+    cairo.Context[Any]
         The SVG context used to draw the mobject.
     """
     from manim import config
@@ -126,7 +126,7 @@ def _get_stroke_rgbas(vmobject: VMobject, background: bool = False) -> np.ndarra
 
 
 def _set_cairo_context_color(
-    ctx: cairo.Context,
+    ctx: cairo.Context[Any],
     rgbas: np.ndarray,
     vmobject: VMobject,
 ) -> Any:
@@ -152,8 +152,8 @@ def _set_cairo_context_color(
         ctx.set_source_rgba(*rgbas[0])
     else:
         points = vmobject.get_gradient_start_and_end_points()
-        points = _transform_points_pre_display(points)
-        pat = cairo.LinearGradient(*it.chain(*(point[:2] for point in points)))
+        transformed = _transform_points_pre_display(cast(Any, points))
+        pat = cairo.LinearGradient(*it.chain(*(point[:2] for point in transformed)))
         step = 1.0 / (len(rgbas) - 1)
         offsets = np.arange(0, 1 + step, step)
         for rgba, offset in zip(rgbas, offsets):
@@ -162,7 +162,7 @@ def _set_cairo_context_color(
 
 
 def _apply_stroke(
-    ctx: cairo.Context, vmobject: VMobject, background: bool = False
+    ctx: cairo.Context[Any], vmobject: VMobject, background: bool = False
 ) -> Any:
     """Stroke the current cairo path with the mobject's stroke colour.
 
@@ -201,7 +201,7 @@ def _apply_stroke(
     ctx.stroke_preserve()
 
 
-def _apply_fill(ctx: cairo.Context, vmobject: VMobject) -> Any:
+def _apply_fill(ctx: cairo.Context[Any], vmobject: VMobject) -> Any:
     """Fill the current cairo path with the vmobject's fill colours.
 
     Parameters
@@ -236,7 +236,9 @@ def _temporary_svg_path() -> Path:
         return Path(handle.name)
 
 
-def _create_svg_from_vmobject_internal(vmobject: VMobject, ctx: cairo.Context) -> Any:
+def _create_svg_from_vmobject_internal(
+    vmobject: VMobject, ctx: cairo.Context[Any]
+) -> Any:
     """Draw one mobject into the current cairo context.
 
     Parameters
@@ -303,9 +305,11 @@ def create_svg_from_vmobject(
     width, height = None, None
     if crop:
         width, height = vmobject.width + padding, vmobject.height + padding
-    with _get_cairo_context(file_name, width=width, height=height) as ctx:
+    with _get_cairo_context(
+        file_name, width=cast(Any, width), height=cast(Any, height)
+    ) as ctx:
         for _vmobject in extract_mobject_family_members([vmobject], True, True):
-            _create_svg_from_vmobject_internal(_vmobject, ctx)
+            _create_svg_from_vmobject_internal(cast(Any, _vmobject), ctx)
     return file_name
 
 
@@ -339,10 +343,12 @@ def create_svg_from_vgroup(
     width, height = None, None
     if crop:
         width, height = vgroup.width + padding, vgroup.height + padding
-    with _get_cairo_context(file_name, width=width, height=height) as ctx:
+    with _get_cairo_context(
+        file_name, width=cast(Any, width), height=cast(Any, height)
+    ) as ctx:
         # a vgroup is a list of VMobjects which may contain other VGroups
         # flatten the vgroup to get a list of VMobjects
-        vgroup = extract_mobject_family_members(vgroup, True, True)
-        for vmobject in vgroup:
-            _create_svg_from_vmobject_internal(vmobject, ctx)
+        members = extract_mobject_family_members(vgroup, True, True)
+        for vmobject in members:
+            _create_svg_from_vmobject_internal(cast(Any, vmobject), ctx)
     return file_name

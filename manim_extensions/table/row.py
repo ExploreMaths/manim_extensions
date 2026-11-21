@@ -106,7 +106,7 @@ class Row(VGroup):
             self.cells.append(cell)
             self.add(cell)
 
-    @overload
+    @overload  # type: ignore[override]
     def __getitem__(self, index: int) -> Cell:
         """Return the cell at the given index.
 

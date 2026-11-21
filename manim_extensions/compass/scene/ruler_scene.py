@@ -10,10 +10,11 @@ methods to lay down a ruler, draw a line with the pencil, and return the
 ruler to its resting position.
 """
 
-from typing import Any
+from typing import Any, cast
 
 __all__ = ["SingleRulerScene"]
 
+from manim.animation.animation import Animation
 from manim.animation.composition import AnimationGroup
 from manim.animation.transform import Restore
 from manim.constants import DOWN, RIGHT
@@ -59,7 +60,7 @@ class SingleRulerScene(MovingCameraScene):
         self,
         start: Point3D,
         end: Point3D,
-        added_anims: list | None = None,
+        added_anims: list[Any] | None = None,
         **kwargs: Any,
     ) -> Line:
         """Draw a :class:`~manim.mobject.geometry.line.Line` from ``start`` to ``end``.
@@ -87,8 +88,8 @@ class SingleRulerScene(MovingCameraScene):
         line = Line(start, end, color=color, stroke_width=stroke_width)
         self.play(
             AnimationGroup(
-                self.ruler.animate.set_ruler(start, end),
-                self.pencil.animate.move_nid_to(start),
+                cast(Animation, self.ruler.animate.set_ruler(start, end)),
+                cast(Animation, self.pencil.animate.move_nid_to(start)),
                 lag_ratio=1.0,
             ),
             run_time=0.5 * run_time,
@@ -100,7 +101,7 @@ class SingleRulerScene(MovingCameraScene):
         return line
 
     def put_ruler_back(
-        self, added_anims: list | None = None, run_time: float = 0.5, **kwargs: Any
+        self, added_anims: list[Any] | None = None, run_time: float = 0.5, **kwargs: Any
     ) -> Any:
         """Restore the ruler to its saved state and move the pencil back.
 

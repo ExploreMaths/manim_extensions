@@ -7,7 +7,7 @@ This module provides the Aggregate Demand-Aggregate Supply diagram.
 
 """
 
-from typing import Any, Callable
+from typing import Any, Callable, cast
 
 from manim import AnimationGroup, BLUE, GREEN, Line, RED, Transform, UP
 from .base import EconDiagram
@@ -84,9 +84,9 @@ class ADASDiagram(EconDiagram):
 
     def __init__(
         self,
-        m: int = 20,
-        v: int = 1,
-        sras_price: int = 4,
+        m: float = 20,
+        v: float = 1,
+        sras_price: float = 4,
         sras_slope: float | None = None,
         lras_y: int = 5,
         show_equilibrium: bool = True,
@@ -104,7 +104,7 @@ class ADASDiagram(EconDiagram):
         self._v = v
         self._sras_price = sras_price
         self._sras_slope = sras_slope
-        self._lras_y = lras_y
+        self._lras_y: float = lras_y
 
         ad_func = self._make_ad_func(m, v)
         sras_func = self._make_sras_func(sras_price, sras_slope, lras_y)
@@ -189,7 +189,7 @@ class ADASDiagram(EconDiagram):
         """
         if slope is None:
             return lambda y: price
-        return lambda y: price + slope * (y - y_bar)
+        return lambda y: price + slope * (y - cast(float, y_bar))
 
     @property
     def _lr_price(self) -> float:
@@ -328,7 +328,7 @@ class ADASDiagram(EconDiagram):
 
     def long_run_adjust(
         self, run_time: float = _LR_RUN_TIME, show_arrows: bool = False
-    ) -> AnimationGroup:
+    ) -> AnimationGroup | list[AnimationGroup]:
         r"""SRAS slowly shifts to restore long-run equilibrium.
 
         Parameters
@@ -389,7 +389,7 @@ class ADASDiagram(EconDiagram):
         long_run: bool = True,
         lr_run_time: float = _LR_RUN_TIME,
         show_arrows: bool = False,
-    ) -> list[AnimationGroup]:
+    ) -> list[Any]:
         """Positive demand shock (e.g. increase in M or V).
 
         Parameters
@@ -429,7 +429,7 @@ class ADASDiagram(EconDiagram):
         long_run: bool = True,
         lr_run_time: float = _LR_RUN_TIME,
         show_arrows: bool = False,
-    ) -> list[AnimationGroup]:
+    ) -> list[Any]:
         """Negative demand shock (e.g. decrease in M or V).
 
         Parameters
@@ -470,7 +470,7 @@ class ADASDiagram(EconDiagram):
         long_run: bool = True,
         lr_run_time: float = _LR_RUN_TIME,
         show_arrows: bool = False,
-    ) -> list[AnimationGroup]:
+    ) -> list[Any]:
         """Adverse supply shock (e.g. oil price spike, cost push).
 
         Parameters
@@ -505,7 +505,7 @@ class ADASDiagram(EconDiagram):
         long_run: bool = True,
         lr_run_time: float = _LR_RUN_TIME,
         show_arrows: bool = False,
-    ) -> list[AnimationGroup]:
+    ) -> list[Any]:
         """Animate an expansionary supply shock by shifting SRAS to a lower price level.
 
         Parameters

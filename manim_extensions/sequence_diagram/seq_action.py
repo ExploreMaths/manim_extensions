@@ -8,7 +8,7 @@ This module provides action classes for sequence diagrams.
 
 """
 
-from typing import Sequence, cast
+from typing import Any, Sequence, cast
 
 from collections.abc import Iterator
 
@@ -205,7 +205,7 @@ class SeqAction(AnimationGroup):
             cast(Sequence[float], act_end.get_center()),
         )
         post_move_gift_label = gift.create_obj_label(font_size=16).move_to(
-            mid_point, aligned_edge=UP
+            cast(Any, mid_point), aligned_edge=UP
         )
 
         yield Succession(

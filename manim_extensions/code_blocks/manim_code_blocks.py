@@ -55,7 +55,7 @@ class Theme:
         Colours cycled through for matched bracket groups.
     """
 
-    colors: dict[str, list[str | Callable]]
+    colors: dict[str, list[str | Callable[..., Any]]]
     """
     The colors of this theme represented as a dictionary. The keys of the dictionary are hexidecimal colors (such as `"#FFFFFF"`), and the values are lists of token types that should be colored with that color (such as `["keyword", "operation"]`).
     """
@@ -63,7 +63,9 @@ class Theme:
     group_matchers: list[str]
 
     def __init__(
-        self, colors: dict[str, list[str | Callable]], group_matchers: list[str]
+        self,
+        colors: dict[str, list[str | Callable[..., Any]]],
+        group_matchers: list[str],
     ) -> None:
         self.colors = colors
         self.group_matchers = group_matchers
@@ -145,11 +147,6 @@ class ProgrammingLanguage(abstract):
     The color of the programming language. The color is used when displaying the name in the title card above the code block. by default, the official GitHub language colors are used for supported languages, see https://github.com/ozh/github-colors/blob/master/colors.json.
     """
 
-    language: object
-    """
-    The `TokenizableLanguage` of the language, imported on first access.
-    """
-
     def __init__(self, name: str, tokenize_name: str | None = None) -> None:
         self.name = name
         self._tokenize_name = tokenize_name if tokenize_name else name
@@ -209,7 +206,7 @@ class CodeBlock(VGroup):
     code: MarkupText
     """The primary :class:`~manim.mobject.text.text_mobject.MarkupText` object that makes up the code block. Equivalent to indexing at `[1]`."""
 
-    title: MarkupText
+    title: MarkupText | None
     """
     The title :class:`~manim.mobject.text.text_mobject.MarkupText` object that makes up the langauge name title at the top of the code block. Equivalent to indexing at `[3]`.
     """
@@ -217,7 +214,7 @@ class CodeBlock(VGroup):
     code_background: BackgroundRectangle
     """The :class:`~manim.mobject.geometry.shape_matchers.BackgroundRectangle` for the code block markup object. Equivalent to indexing at `[0]`."""
 
-    title_background: BackgroundRectangle
+    title_background: BackgroundRectangle | None
     """
     The :class:`~manim.mobject.geometry.shape_matchers.BackgroundRectangle` for the `title` object that lists the language name above the code block. Equivalent to indexing at `[2]`.
     """
@@ -320,9 +317,7 @@ class CodeBlock(VGroup):
         self.code = markup
         self.code_background = background_rect
 
-    def create(
-        self, **kwargs: Any
-    ) -> tuple[FadeIn, AddTextLetterByLetter, FadeIn, AddTextLetterByLetter]:
+    def create(self, **kwargs: Any) -> tuple[Any, ...]:
         r"""
         Return a tuple of animations for creating the code block. Use such as:\n
         ```
@@ -344,14 +339,14 @@ class CodeBlock(VGroup):
         if getattr(self, "title", None) and getattr(self, "title_background", None):
             return (
                 FadeIn(self.code_background, **kwargs),
-                AddTextLetterByLetter(self.code, **kwargs),
-                FadeIn(self.title_background, **kwargs),
-                AddTextLetterByLetter(self.title, **kwargs),
+                AddTextLetterByLetter(cast(Any, self.code), **kwargs),
+                FadeIn(cast(Any, self.title_background), **kwargs),
+                AddTextLetterByLetter(cast(Any, self.title), **kwargs),
             )
 
         return (
             FadeIn(self.code_background, **kwargs),
-            AddTextLetterByLetter(self.code, **kwargs),
+            AddTextLetterByLetter(cast(Any, self.code), **kwargs),
         )
 
     def uncreate(self, **kwargs: Any) -> tuple[Animation, ...]:
@@ -377,8 +372,8 @@ class CodeBlock(VGroup):
             return (
                 FadeOut(self.code_background, **kwargs),
                 Uncreate(self.code, **kwargs),
-                FadeOut(self.title_background, **kwargs),
-                Uncreate(self.title, **kwargs),
+                FadeOut(cast(Any, self.title_background), **kwargs),
+                Uncreate(cast(Any, self.title), **kwargs),
             )
 
         return (

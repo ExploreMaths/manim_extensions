@@ -6,7 +6,7 @@
 :class:`~manim_extensions.table.table.Table` - The main database table component.
 """
 
-from typing import Any, List, overload
+from typing import Any, List, cast, overload
 
 # unlinked-class-ok: Row
 
@@ -373,7 +373,7 @@ class Table(VGroup):
         """
         return len(self.rows)
 
-    @overload
+    @overload  # type: ignore[override]
     def __getitem__(self, index: int) -> Row:
         """Return the data row at the given index.
 
@@ -742,7 +742,9 @@ class Table(VGroup):
 
         # Create shift-up animations for remaining rows
         for row in rows_to_shift:
-            all_animations.append(row.animate.shift((0, actual_height, 0)))
+            all_animations.append(
+                cast(Animation, row.animate.shift((0, actual_height, 0)))
+            )
             row.index -= 1
 
         # Recalculate column widths if auto_fit is enabled
@@ -865,7 +867,7 @@ class Table(VGroup):
         if self.auto_fit:
             # Measure max width of new data
             all_text = [header] + values
-            max_text_width = 0
+            max_text_width = 0.0
             for text_str in all_text:
                 t = Text(text_str, font_size=self.font_size)
                 max_text_width = max(max_text_width, t.width + self.padding)
@@ -901,7 +903,9 @@ class Table(VGroup):
         # Shift cells to the right
         cells_to_shift = self.header_row.cells[index:]
         for cell in cells_to_shift:
-            shift_animations.append(cell.animate.shift(RIGHT * new_width))
+            shift_animations.append(
+                cast(Animation, cell.animate.shift(RIGHT * new_width))
+            )
 
         # Insert into row structure
         self.header_row.cells.insert(index, header_cell)
@@ -925,7 +929,9 @@ class Table(VGroup):
             # Shift existing cells
             cells_shift = row.cells[index:]
             for c in cells_shift:
-                shift_animations.append(c.animate.shift(RIGHT * new_width))
+                shift_animations.append(
+                    cast(Animation, c.animate.shift(RIGHT * new_width))
+                )
 
             row.cells.insert(index, cell)
             row.add(cell)
@@ -982,7 +988,9 @@ class Table(VGroup):
 
         # Shift remaining cells left
         for cell in self.header_row.cells[index:]:
-            shift_animations.append(cell.animate.shift(LEFT * actual_width))
+            shift_animations.append(
+                cast(Animation, cell.animate.shift(LEFT * actual_width))
+            )
 
         # 2. Data Rows
         for row in self.rows:
@@ -991,7 +999,9 @@ class Table(VGroup):
             deleted_cells.append(cell)
 
             for c in row.cells[index:]:
-                shift_animations.append(c.animate.shift(LEFT * actual_width))
+                shift_animations.append(
+                    cast(Animation, c.animate.shift(LEFT * actual_width))
+                )
 
         deleted_group = VGroup(*deleted_cells)
 

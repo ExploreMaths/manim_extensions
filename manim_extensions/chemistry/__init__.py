@@ -3,7 +3,7 @@
 
 """Chemistry visualizations for Manim."""
 
-from .element import *  # noqa F841
+from .element.element import *  # noqa F841
 from .periodic_table import *  # noqa F841
 from .threeD import *  # noqa F841
 from .twoD import *  # noqa F841

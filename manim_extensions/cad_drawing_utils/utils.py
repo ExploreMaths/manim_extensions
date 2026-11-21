@@ -38,7 +38,7 @@ def angle_between_vectors_signed(v1: Vector3D, v2: Vector3D) -> float:
     """
     cval = np.dot(v1, v2)
     sval = (np.cross(v1, v2))[2]
-    return np.arctan2(sval, cval)
+    return float(np.arctan2(sval, cval))
 
 
 class BezierHandlebars(VDict):

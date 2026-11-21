@@ -459,7 +459,7 @@ class SpaceScene(ZoomedScene):
             If the :class:`~manim.mobject.mobject.Mobject` has not been added to the physical space yet.
         """
         if hasattr(mob, "body"):
-            return cast(Any, mob).body
+            return cast(Any, mob).body  # type: ignore[no-any-return]
         else:
             raise RuntimeError("Please add 'mobject' to the space first!")
 
@@ -485,7 +485,7 @@ class SpaceScene(ZoomedScene):
             If the :class:`~manim.mobject.mobject.Mobject` has not been added to the physical space yet.
         """
         if hasattr(mob, "shapes"):
-            return cast(Any, mob).shapes
+            return cast(Any, mob).shapes  # type: ignore[no-any-return]
         else:
             raise RuntimeError("Please add 'mobject' to the space first!")
 

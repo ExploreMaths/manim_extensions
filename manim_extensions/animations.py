@@ -230,7 +230,7 @@ def ease_in_bounce(t: float) -> float:
                )
                self.wait()
     """
-    return 1 - _ease_out_bounce(1 - t)
+    return float(1 - _ease_out_bounce(1 - t))
 
 
 _ease_in_bounce = cast(Any, ease_in_bounce).__wrapped__
@@ -282,8 +282,8 @@ def ease_in_out_bounce(t: float) -> float:
                self.wait()
     """
     if t < 0.5:
-        return _ease_in_bounce(2 * t)
-    return _ease_out_bounce(2 * t - 1)
+        return float(_ease_in_bounce(2 * t))
+    return float(_ease_out_bounce(2 * t - 1))
 
 
 @deprecated(

@@ -72,7 +72,7 @@ class LinkedISLMADAS(VGroup):
 
         self._show_arrows = show_arrows
 
-        is_lm_kw = dict(
+        is_lm_kw: dict[str, Any] = dict(
             x_length=4,
             y_length=3,
             numbered_eq=numbered_eq,
@@ -80,7 +80,7 @@ class LinkedISLMADAS(VGroup):
         if is_lm_kwargs:
             is_lm_kw.update(is_lm_kwargs)
 
-        ad_as_kw = dict(
+        ad_as_kw: dict[str, Any] = dict(
             x_length=4,
             y_length=3,
             numbered_eq=numbered_eq,

@@ -5,7 +5,7 @@
 """Hatch-line and intersection helpers for CAD drawings."""
 
 from __future__ import annotations
-from typing import Any
+from typing import Any, cast
 
 import numpy as np
 from manim import (
@@ -60,25 +60,26 @@ class HatchLines(VGroup):
         **kwargs: Any,
     ) -> None:
         super().__init__(**kwargs)
-        self.target = target_mobject
+        self.hatch_target: VMobject = cast(VMobject, target_mobject)
         target_size_xy = [
-            self.target.get_critical_point(RIGHT)
-            - self.target.get_critical_point(LEFT),
-            self.target.get_critical_point(UP) - self.target.get_critical_point(DOWN),
+            self.hatch_target.get_critical_point(RIGHT)
+            - self.hatch_target.get_critical_point(LEFT),
+            self.hatch_target.get_critical_point(UP)
+            - self.hatch_target.get_critical_point(DOWN),
         ]
         target_size_diag = np.linalg.norm(target_size_xy)
         num_lines = int(target_size_diag // offset)
         line_v = np.array([np.cos(angle), np.sin(angle), 0])
         offs_v = np.array([-np.sin(angle), np.cos(angle), 0])
-        center = self.target.get_center()
+        center = self.hatch_target.get_center()
         for k in range(num_lines * 2):
             line_loc = Line(
                 center - line_v * target_size_diag * 1.5,
                 center + line_v * target_size_diag * 1.5,
             )
             line_loc.shift((k - (num_lines - 1)) * offs_v * offset)
-            # line_loc = Intersection(line_loc,self.target)
-            intersect_idx = curve_intersection(self.target, line_loc)
+            # line_loc = Intersection(line_loc,self.hatch_target)
+            intersect_idx = curve_intersection(self.hatch_target, line_loc)
             if any(intersect_idx[1]):
 
                 intersect_indexes = sorted(intersect_idx[1])

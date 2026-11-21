@@ -28,7 +28,6 @@ from manim.camera.camera import Camera
 from manim.camera.moving_camera import MovingCamera
 import itertools
 import os
-from types import ModuleType
 
 
 from ..utils.deps import require
@@ -229,7 +228,7 @@ class HTMLParsedVMobject:
         """
         if self.continue_updating is False:
             return
-        svg2paths = cast(ModuleType, require("svg", "svgpathtools")).svg2paths
+        svg2paths = require("svg", "svgpathtools").svg2paths
         svg_filename = self.filename_base + str(self.current_index) + ".svg"
         self.vmobject.to_svg(svg_filename)
         html_el_creations = ""
@@ -383,7 +382,7 @@ class HTMLParsedVMobject:
             -------
                 The resulting value.
         """
-        svg2paths = cast(ModuleType, require("svg", "svgpathtools")).svg2paths
+        svg2paths = require("svg", "svgpathtools").svg2paths
         if animate_this is False:
             self.continue_updating = False
             self.last_t = self.scene.renderer.time

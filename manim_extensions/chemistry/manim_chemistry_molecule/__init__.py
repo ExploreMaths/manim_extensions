@@ -12,4 +12,4 @@ from .mc_atom import MCAtom  # noqa F841
 from .mc_bond import MCBond  # noqa F841
 from .mc_molecule import MCMolecule  # noqa F841
 
-__all__ = ["MCAtom", "MCBond", "MCMolecule"]
+__all__ = ["MCAtom", "MCBond", "MC_ELEMENT_DICT", "MCElement", "MCMolecule"]

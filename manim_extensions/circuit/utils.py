@@ -5,7 +5,7 @@
 """:class:`~manim_extensions.circuit.utils.Circuit` diagram utilities for Manim."""
 
 from __future__ import annotations
-from typing import Any, Literal
+from typing import Any, Literal, cast
 
 import math
 
@@ -289,7 +289,7 @@ class Circuit(VMobject):
                 The resulting value.
         """
         for component in args:
-            self.component_list.add(component)
+            self.component_list.add(cast(Any, component))
 
     def add_wire(
         self,
@@ -331,30 +331,30 @@ class Circuit(VMobject):
         # Not first wire.
         # Loop through all nodes and wires through each node
         else:
-            intersections: list[Node] = []
+            intersections: list[Any] = []
             # Iterate through all nodes.
-            for node in self.node_list:
+            for existing in self.node_list:
                 # search if a coordinate of the wire belong in the node.
                 # If so, add to node intersections
                 # search is a list that returns either True or coordinate or False
                 # It is important because we can then add Dots() from this list.
-                search = list(map(node.check_coord, wire))
+                search = list(map(existing.check_coord, wire))
                 if not all([type(s) == bool and s == False for s in search]):
-                    intersections.append(node)
+                    intersections.append(existing)
 
                     # Go through the search
                     # If there is a coordinate, tell the node to add a junction there.
                     for dot in search:
                         if not type(dot) == bool:
-                            node.add_dot(dot)
+                            existing.add_dot(dot)
 
             # This means that the wire is not attached to any node,
             # Make a new node.
             if len(intersections) == 0:
-                node = Node()
-                node.add_wire(wire)
-                node.set_color(WHITE)
-                self.node_list.add(node)
+                new_node = Node()
+                new_node.add_wire(cast(Any, wire))
+                new_node.set_color(WHITE)
+                self.node_list.add(new_node)
 
             elif len(intersections) == 1:
                 intersections[0].add_wire(wire)
@@ -368,6 +368,8 @@ class Circuit(VMobject):
                 intersections[0].merge(intersections[2])
                 self.node_list.remove(intersections[1])
                 self.node_list.remove(intersections[2])
+
+        return None
 
 
 class Node(VMobject):
@@ -543,7 +545,7 @@ class Node(VMobject):
                 The resulting value.
         """
         if wire is not False:
-            self.add_wire(wire)
+            self.add_wire(cast(Any, wire))
 
         # Get all the junction dots.
         for dot in node.junction_dots:

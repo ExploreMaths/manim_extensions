@@ -7,7 +7,7 @@ This module provides the Solow growth model diagram.
 
 """
 
-from typing import Any, Callable
+from typing import cast, Any, Callable
 
 from manim import (
     AnimationGroup,
@@ -89,6 +89,9 @@ class SolowDiagram(EconDiagram):
                self.play(diagram.show_shares())
                self.wait()
     """
+
+    _shares_group: VGroup | None = None
+    _golden_group: VGroup | None = None
 
     def __init__(
         self,
@@ -196,7 +199,7 @@ class SolowDiagram(EconDiagram):
         -------
             A function mapping capital to break-even investment.
         """
-        rate = delta + n + g
+        rate = delta + (n or 0.0) + g
         return lambda k: rate * k
 
     @property
@@ -230,11 +233,11 @@ class SolowDiagram(EconDiagram):
             return curve_anim
 
         new_group = self._build_shares(
-            self._steady_state_k(),
+            cast(float, self._steady_state_k()),
             self._shares_c_color,
             self._shares_i_color,
         )
-        old = self._shares_group
+        old = cast(VGroup, self._shares_group)
         self._shares_group = new_group
         shares_anim = ReplacementTransform(old, new_group, run_time=run_time)
         return AnimationGroup(curve_anim, shares_anim)
@@ -547,7 +550,7 @@ class SolowDiagram(EconDiagram):
         if not self._shares_visible:
             self._shares_group = initial
 
-        container = self._shares_group
+        container = cast(VGroup, self._shares_group)
 
         def updater(mob: Mobject, alpha: float) -> Any:
             """Rebuilds the consumption/investment shares mobject at capital level k."""
@@ -570,7 +573,7 @@ class SolowDiagram(EconDiagram):
             The golden-rule capital level.
         """
         rate = self._delta + self._n + self._g
-        return (self._alpha / rate) ** (1 / (1 - self._alpha))
+        return float((self._alpha / rate) ** (1 / (1 - self._alpha)))
 
     def show_golden_rule(
         self, color: ManimColor = PURPLE, run_time: float = 1

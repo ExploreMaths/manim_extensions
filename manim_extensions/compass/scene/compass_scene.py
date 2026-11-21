@@ -10,6 +10,8 @@ This module provides scene classes for compass-based geometry animations.
 
 from typing import Any
 
+from typing import cast
+
 from manim import (
     Animation,
     AnimationGroup,
@@ -425,7 +427,7 @@ class CompassScene(MovingCameraScene):
         self.set_ruler(
             start=start, end=end, run_time=0.5 * run_time, with_pencil=with_pencil
         )
-        line = Line(start, end, color=color, **kwargs)
+        line = Line(cast(Any, start), cast(Any, end), color=color, **kwargs)
         if with_pencil:
             self.play(DrawPath(self.pencil, line), run_time=0.5 * run_time)
         else:

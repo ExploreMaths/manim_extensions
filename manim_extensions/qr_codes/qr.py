@@ -173,41 +173,50 @@ def qr_code(
             current_elem: Rectangle | Circle | None = None
 
             if data_shape == "rectangles" and is_white_qr_pixel:
-                default_rect_kwargs = {
+                default_rect_kwargs: dict[str, Any] = {
                     "width": 1,
                     "height": 1,
                     "fill_opacity": 1,
                     "color": white_color,
                     "stroke_width": 0.5,
                 }
-                rect_kwargs = {**default_rect_kwargs, **rectangles_kwargs}
+                rect_kwargs: dict[str, Any] = {
+                    **default_rect_kwargs,
+                    **rectangles_kwargs,
+                }
 
                 rect = Rectangle(**rect_kwargs)
                 rect.move_to(DOWN * y + RIGHT * x)
                 current_elem = rect
 
             elif data_shape == "circles" and is_white_qr_pixel:
-                default_circle_kwargs = {
+                default_circle_kwargs: dict[str, Any] = {
                     "radius": 0.5,
                     "fill_opacity": 1,
                     "color": white_color,
                     "stroke_width": 0.5,
                 }
-                circle_kwargs = {**default_circle_kwargs, **circle_kwargs}
-                circle = Circle(**circle_kwargs)
+                circle_style: dict[str, Any] = {
+                    **default_circle_kwargs,
+                    **circle_kwargs,
+                }
+                circle = Circle(**circle_style)
                 circle.move_to(DOWN * y + RIGHT * x)
                 current_elem = circle
 
             # override current_elem if it is a corner element
             if is_white_qr_pixel and (x, y) in corner_positions:
-                default_corner_kwargs = {
+                default_corner_kwargs: dict[str, Any] = {
                     "width": 1,
                     "height": 1,
                     "fill_opacity": 1,
                     "color": corner_color,
                     "stroke_width": 0.5,
                 }
-                corner_kwargs = {**default_corner_kwargs, **rectangles_kwargs}
+                corner_kwargs: dict[str, Any] = {
+                    **default_corner_kwargs,
+                    **rectangles_kwargs,
+                }
                 rect = Rectangle(**corner_kwargs)
                 rect.move_to(DOWN * y + RIGHT * x)
                 current_elem = rect

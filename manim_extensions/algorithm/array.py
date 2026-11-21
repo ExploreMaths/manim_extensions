@@ -4,7 +4,7 @@
 
 """:class:`~manim_extensions.algorithm.array.Array` data structure for algorithm visualization."""
 
-from typing import Any, List
+from typing import Any, List, cast
 
 from manim import ManimColor, VMobject
 
@@ -109,7 +109,7 @@ class Array(VMobject):
             The selected node, or a new array holding the selected slice.
         """
         if isinstance(key, slice):
-            return Array([item.value for item in self.array[key]])
+            return Array(cast(Any, self.array[key]))
         return self.array[key]
 
     def __len__(self) -> int:
