@@ -1756,8 +1756,8 @@
     <span class="n">number_of_atoms</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">mol_general_info</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">number_of_bonds</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">mol_general_info</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
-    <span class="n">atoms</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">bonds</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">atoms</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">bonds</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">mol_string</span><span class="p">[</span><span class="mi">3</span> <span class="p">:</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">number_of_atoms</span><span class="p">]):</span>
         <span class="n">line_data</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
         <span class="n">x_position</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">line_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -1841,7 +1841,9 @@
 
 <div class="viewcode-block" id="mol_parser">
 <a class="viewcode-back" href="../../../../reference/chemistry/utils/utils.html#manim_extensions.chemistry.utils.utils.mol_parser">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">mol_parser</span><span class="p">(</span><span class="n">file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">mol_parser</span><span class="p">(</span>
+    <span class="n">file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]]:</span>
 <span class="w">    </span><span class="sd">"""Read a .mol file from disk and return parsed ``(atoms, bonds)``.</span>
 
 <span class="sd">    Parameters</span>
@@ -1853,15 +1855,17 @@
 <span class="sd">    -------</span>
 <span class="sd">        The parsed atoms and bonds from the ``.mol`` file.</span>
 <span class="sd">    """</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-        <span class="n">mol_file</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">mol_file</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">mol_parser_string</span><span class="p">(</span><span class="n">mol_file</span><span class="p">)</span></div>
 
 
 
 <div class="viewcode-block" id="sdf_parser_string">
 <a class="viewcode-back" href="../../../../reference/chemistry/utils/utils.html#manim_extensions.chemistry.utils.utils.sdf_parser_string">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">sdf_parser_string</span><span class="p">(</span><span class="n">sdf_string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sdf_parser_string</span><span class="p">(</span>
+    <span class="n">sdf_string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]]]:</span>
 <span class="w">    </span><span class="sd">"""Parse an SDF-format string into a list of ``(atoms, bonds)`` tuples.</span>
 
 <span class="sd">    SDF files can contain multiple molecules separated by ``$$$$`` delimiters.</span>
@@ -1888,7 +1892,9 @@
 
 <div class="viewcode-block" id="sdf_parser">
 <a class="viewcode-back" href="../../../../reference/chemistry/utils/utils.html#manim_extensions.chemistry.utils.utils.sdf_parser">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">sdf_parser</span><span class="p">(</span><span class="n">file</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sdf_parser</span><span class="p">(</span>
+    <span class="n">file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]]]:</span>
 <span class="w">    </span><span class="sd">"""Read an .sdf file from disk and return a list of ``(atoms, bonds)`` tuples.</span>
 
 <span class="sd">    Parameters</span>
@@ -1900,8 +1906,8 @@
 <span class="sd">    -------</span>
 <span class="sd">        The list of parsed ``(atoms, bonds)`` pairs from the ``.sdf`` file.</span>
 <span class="sd">    """</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-        <span class="n">sdf_file</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">sdf_file</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">sdf_parser_string</span><span class="p">(</span><span class="n">sdf_file</span><span class="p">)</span></div>
 
 
@@ -1922,18 +1928,23 @@
 <span class="sd">    -------</span>
 <span class="sd">        The :class:`~manim_extensions.chemistry.element.element.Element` class instance matching the symbol.</span>
 <span class="sd">    """</span>
+    <span class="n">element_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">language</span> <span class="o">==</span> <span class="s2">"ENG"</span><span class="p">:</span>
         <span class="n">element_dict</span> <span class="o">=</span> <span class="n">ELEMENT_DICT</span>
     <span class="k">elif</span> <span class="n">language</span> <span class="o">==</span> <span class="s2">"ESP"</span><span class="p">:</span>
         <span class="n">element_dict</span> <span class="o">=</span> <span class="n">ELEMENT_DICT_ESP</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"unsupported language: </span><span class="si">{</span><span class="n">language</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
-    <span class="k">return</span> <span class="n">element_dict</span><span class="p">[</span><span class="n">element</span><span class="p">]</span></div>
+    <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">Element</span><span class="p">,</span> <span class="n">element_dict</span><span class="p">[</span><span class="n">element</span><span class="p">])</span></div>
 
 
 
 <div class="viewcode-block" id="mol_to_graph">
 <a class="viewcode-back" href="../../../../reference/chemistry/utils/utils.html#manim_extensions.chemistry.utils.utils.mol_to_graph">[docs]</a>
-<span class="k">def</span><span class="w"> </span><span class="nf">mol_to_graph</span><span class="p">(</span><span class="n">file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">language</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"ENG"</span><span class="p">,</span> <span class="s2">"ESP"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"ENG"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">mol_to_graph</span><span class="p">(</span>
+    <span class="n">file</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">language</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"ENG"</span><span class="p">,</span> <span class="s2">"ESP"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"ENG"</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]],</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]]:</span>
 <span class="w">    </span><span class="sd">"""Parse a .mol file into a simple graph representation (atoms + bonds).</span>
 
 <span class="sd">    Unlike :func:`~manim_extensions.chemistry.utils.utils.mol_parser`, this function stores atom positions under the</span>
@@ -1960,20 +1971,18 @@
 <span class="sd">        ``(atoms, bonds)`` where ``atoms`` maps index to element/position and</span>
 <span class="sd">        ``bonds`` maps ``(from_idx, to_idx)`` tuples to bond data.</span>
 <span class="sd">    """</span>
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
-        <span class="n">mol_file</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">mol_file</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
     <span class="c1"># Get general data</span>
 
-    <span class="n">mol_general_info</span> <span class="o">=</span> <span class="n">mol_file</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>  <span class="c1"># This info is not always available</span>
-    <span class="n">mol_file</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">mol_general_info</span><span class="p">)</span>  <span class="c1"># This info is not always available</span>
-    <span class="n">mol_general_info</span> <span class="o">=</span> <span class="p">(</span>
-        <span class="n">mol_general_info</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
-    <span class="p">)</span>  <span class="c1"># This info is not always available</span>
+    <span class="n">mol_general_line</span> <span class="o">=</span> <span class="n">mol_file</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>  <span class="c1"># This info is not always available</span>
+    <span class="n">mol_file</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">mol_general_line</span><span class="p">)</span>  <span class="c1"># This info is not always available</span>
+    <span class="n">mol_general_info</span> <span class="o">=</span> <span class="n">mol_general_line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
     <span class="n">number_of_atoms</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">mol_general_info</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
     <span class="n">number_of_bonds</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">mol_general_info</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
-    <span class="n">atoms</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="n">bonds</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">atoms</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">bonds</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">],</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">mol_file</span><span class="p">[</span><span class="mi">3</span> <span class="p">:</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">number_of_atoms</span><span class="p">]):</span>
         <span class="n">line_data</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
         <span class="n">x_position</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">line_data</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>

@@ -1577,7 +1577,7 @@
 <div class="viewcode-block" id="XMLParser.parse_molecule_data">
 <a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/xml_parser.XMLParser.html#manim_extensions.chemistry.utils.parsers.xml_parser.XMLParser.parse_molecule_data">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">parse_molecule_data</span><span class="p">(</span><span class="n">molecule_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">MoleculeData</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">parse_molecule_data</span><span class="p">(</span><span class="n">molecule_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">MoleculeData</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Parse a single molecule entry into atoms and bonds dicts.</span>
 
 <span class="sd">        Parameters</span>
@@ -1598,7 +1598,7 @@
 <div class="viewcode-block" id="XMLParser.extract_atoms_data">
 <a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/xml_parser.XMLParser.html#manim_extensions.chemistry.utils.parsers.xml_parser.XMLParser.extract_atoms_data">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">extract_atoms_data</span><span class="p">(</span><span class="n">molecule_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">AtomsDict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">extract_atoms_data</span><span class="p">(</span><span class="n">molecule_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">AtomsDict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Extract the atoms data from a single molecule entry.</span>
 
 <span class="sd">        Parameters</span>
@@ -1615,41 +1615,58 @@
 <span class="sd">        Exception</span>
 <span class="sd">            Raised when the atoms data has no dictionary structure.</span>
 <span class="sd">        """</span>
-        <span class="n">compound_atoms</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="n">molecule_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Compound_atoms"</span><span class="p">)</span>
+        <span class="n">compound_atoms</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">molecule_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Compound_atoms"</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="n">atoms_data_dict</span> <span class="o">=</span> <span class="n">compound_atoms</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Atoms"</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">atoms_data_dict</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Atoms data has no dictionary structure </span><span class="si">{</span><span class="n">atoms_data_dict</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 
-        <span class="n">atoms_aid</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="n">atoms_data_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Atoms_aid"</span><span class="p">)</span>
-        <span class="n">atoms_indices_raw</span> <span class="o">=</span> <span class="n">atoms_aid</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Atoms_aid_E"</span><span class="p">)</span>
+        <span class="n">atoms_aid</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">atoms_data_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Atoms_aid"</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">atoms_indices_raw</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">atoms_aid</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Atoms_aid_E"</span><span class="p">))</span>
         <span class="n">atoms_indices</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">atom_index</span><span class="p">)</span> <span class="k">for</span> <span class="n">atom_index</span> <span class="ow">in</span> <span class="n">atoms_indices_raw</span><span class="p">]</span>
 
-        <span class="n">atoms_element</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="n">atoms_data_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Atoms_element"</span><span class="p">)</span>
-        <span class="n">atoms_elements_raw</span> <span class="o">=</span> <span class="n">atoms_element</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Element"</span><span class="p">)</span>
+        <span class="n">atoms_element</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">atoms_data_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Atoms_element"</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">atoms_elements_raw</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">atoms_element</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Element"</span><span class="p">))</span>
         <span class="n">atoms_elements</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">for</span> <span class="n">atom_element_dict</span> <span class="ow">in</span> <span class="n">atoms_elements_raw</span><span class="p">:</span>
             <span class="n">atoms_elements</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">atom_element_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"@value"</span><span class="p">))</span>
 
-        <span class="n">compound_coords</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="n">molecule_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Compound_coords"</span><span class="p">)</span>
+        <span class="n">compound_coords</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">molecule_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Compound_coords"</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="n">coords_data_dict</span> <span class="o">=</span> <span class="n">compound_coords</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Coordinates"</span><span class="p">)</span>
         <span class="n">conformers_section</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">coords_data_dict</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
             <span class="s2">"PC-Coordinates_conformers"</span>
         <span class="p">)</span>
-        <span class="n">atoms_coords_raw</span> <span class="o">=</span> <span class="n">conformers_section</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Conformer"</span><span class="p">)</span>
+        <span class="n">atoms_coords_raw</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">conformers_section</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Conformer"</span><span class="p">))</span>
 
         <span class="n">conformer_x</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">atoms_coords_raw</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
             <span class="s2">"PC-Conformer_x"</span>
         <span class="p">)</span>
-        <span class="n">coords_x</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">conformer_x</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Conformer_x_E"</span><span class="p">)]</span>
+        <span class="n">coords_x</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="nb">float</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">conformer_x</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Conformer_x_E"</span><span class="p">))</span>
+        <span class="p">]</span>
         <span class="n">conformer_y</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">atoms_coords_raw</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
             <span class="s2">"PC-Conformer_y"</span>
         <span class="p">)</span>
-        <span class="n">coords_y</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">conformer_y</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Conformer_y_E"</span><span class="p">)]</span>
+        <span class="n">coords_y</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="nb">float</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">conformer_y</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Conformer_y_E"</span><span class="p">))</span>
+        <span class="p">]</span>
         <span class="n">conformer_z</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">atoms_coords_raw</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
             <span class="s2">"PC-Conformer_z"</span>
         <span class="p">)</span>
         <span class="k">if</span> <span class="n">conformer_z</span><span class="p">:</span>
-            <span class="n">coords_z</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span> <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">conformer_z</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Conformer_z_E"</span><span class="p">)]</span>
+            <span class="n">coords_z</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="nb">float</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">cast</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">conformer_z</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Conformer_z_E"</span><span class="p">))</span>
+            <span class="p">]</span>
 
         <span class="k">else</span><span class="p">:</span>
             <span class="n">coords_z</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">coords_x</span><span class="p">]</span>
@@ -1659,7 +1676,7 @@
             <span class="k">for</span> <span class="n">coord_x</span><span class="p">,</span> <span class="n">coord_y</span><span class="p">,</span> <span class="n">coord_z</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">coords_x</span><span class="p">,</span> <span class="n">coords_y</span><span class="p">,</span> <span class="n">coords_z</span><span class="p">)</span>
         <span class="p">]</span>
 
-        <span class="n">atoms_data</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">atoms_data</span><span class="p">:</span> <span class="n">AtomsDict</span> <span class="o">=</span> <span class="p">{</span>
             <span class="n">atom_index</span><span class="p">:</span> <span class="p">{</span><span class="s2">"element"</span><span class="p">:</span> <span class="n">element</span><span class="o">.</span><span class="n">capitalize</span><span class="p">(),</span> <span class="s2">"coords"</span><span class="p">:</span> <span class="n">coord</span><span class="p">}</span>
             <span class="k">for</span> <span class="n">atom_index</span><span class="p">,</span> <span class="n">element</span><span class="p">,</span> <span class="n">coord</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span>
                 <span class="n">atoms_indices</span><span class="p">,</span> <span class="n">atoms_elements</span><span class="p">,</span> <span class="n">atoms_coords</span>
@@ -1672,7 +1689,7 @@
 <div class="viewcode-block" id="XMLParser.extract_bonds_data">
 <a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/xml_parser.XMLParser.html#manim_extensions.chemistry.utils.parsers.xml_parser.XMLParser.extract_bonds_data">[docs]</a>
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">extract_bonds_data</span><span class="p">(</span><span class="n">molecule_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">BondsDict</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">extract_bonds_data</span><span class="p">(</span><span class="n">molecule_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">BondsDict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Extract the bonds data from a single molecule entry.</span>
 
 <span class="sd">        Parameters</span>
@@ -1684,13 +1701,15 @@
 <span class="sd">        -------</span>
 <span class="sd">            Bonds data of the molecule.</span>
 <span class="sd">        """</span>
-        <span class="n">compound_bonds</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="n">molecule_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Compound_bonds"</span><span class="p">)</span>
+        <span class="n">compound_bonds</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
+            <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">molecule_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Compound_bonds"</span><span class="p">)</span>
+        <span class="p">)</span>
         <span class="n">bonds_data_dict</span> <span class="o">=</span> <span class="n">compound_bonds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Bonds"</span><span class="p">)</span>
 
         <span class="n">aid1_section</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">bonds_data_dict</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
             <span class="s2">"PC-Bonds_aid1"</span>
         <span class="p">)</span>
-        <span class="n">from_atoms_raw_data</span> <span class="o">=</span> <span class="n">aid1_section</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Bonds_aid1_E"</span><span class="p">)</span>
+        <span class="n">from_atoms_raw_data</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">aid1_section</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Bonds_aid1_E"</span><span class="p">))</span>
         <span class="n">from_atoms_data</span> <span class="o">=</span> <span class="p">[</span>
             <span class="nb">int</span><span class="p">(</span><span class="n">from_atom_index</span><span class="p">)</span> <span class="k">for</span> <span class="n">from_atom_index</span> <span class="ow">in</span> <span class="n">from_atoms_raw_data</span>
         <span class="p">]</span>
@@ -1698,13 +1717,13 @@
         <span class="n">aid2_section</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">bonds_data_dict</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
             <span class="s2">"PC-Bonds_aid2"</span>
         <span class="p">)</span>
-        <span class="n">to_atoms_raw_data</span> <span class="o">=</span> <span class="n">aid2_section</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Bonds_aid2_E"</span><span class="p">)</span>
+        <span class="n">to_atoms_raw_data</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">aid2_section</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-Bonds_aid2_E"</span><span class="p">))</span>
         <span class="n">to_atoms_data</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">to_atom_index</span><span class="p">)</span> <span class="k">for</span> <span class="n">to_atom_index</span> <span class="ow">in</span> <span class="n">to_atoms_raw_data</span><span class="p">]</span>
 
         <span class="n">order_section</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">object</span><span class="p">]</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">bonds_data_dict</span><span class="p">)</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
             <span class="s2">"PC-Bonds_order"</span>
         <span class="p">)</span>
-        <span class="n">bonds_type_raw_data</span> <span class="o">=</span> <span class="n">order_section</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-BondType"</span><span class="p">)</span>
+        <span class="n">bonds_type_raw_data</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">order_section</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"PC-BondType"</span><span class="p">))</span>
         <span class="n">bonds_type_data</span> <span class="o">=</span> <span class="p">[</span>
             <span class="nb">int</span><span class="p">(</span><span class="n">bond_type_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"#text"</span><span class="p">))</span> <span class="k">for</span> <span class="n">bond_type_data</span> <span class="ow">in</span> <span class="n">bonds_type_raw_data</span>
         <span class="p">]</span>

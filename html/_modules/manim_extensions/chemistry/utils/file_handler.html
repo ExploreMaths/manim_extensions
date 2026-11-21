@@ -1481,11 +1481,12 @@
 
 <span class="sd">"""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">cast</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">cast</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">.parsers</span><span class="w"> </span><span class="kn">import</span> <span class="n">MolParser</span><span class="p">,</span> <span class="n">SDFParser</span><span class="p">,</span> <span class="n">ASNTParser</span><span class="p">,</span> <span class="n">JSONParser</span><span class="p">,</span> <span class="n">XMLParser</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">.parsers.base_parser</span><span class="w"> </span><span class="kn">import</span> <span class="n">ParsedData</span>
 
 <span class="c1">#: Mapping from file extension to the parser class that handles it.</span>
 <span class="n">SUPPORTED_FORMATS</span> <span class="o">=</span> <span class="p">{</span>
@@ -1517,16 +1518,17 @@
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="n">os</span><span class="o">.</span><span class="n">PathLike</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"File </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2"> does not exist."</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"File </span><span class="si">{</span><span class="n">file_path</span><span class="si">!r}</span><span class="s2"> does not exist."</span><span class="p">)</span>
 
         <span class="n">file_extension</span> <span class="o">=</span> <span class="n">FileHandler</span><span class="o">.</span><span class="n">get_file_extension</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">file_extension</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">SUPPORTED_FORMATS</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">IncorrectFormat</span><span class="p">(</span>
-                <span class="sa">f</span><span class="s2">"File </span><span class="si">{</span><span class="n">file_path</span><span class="si">}</span><span class="s2"> of format </span><span class="si">{</span><span class="n">file_extension</span><span class="si">}</span><span class="s2"> is not supported. Supported extensions are </span><span class="si">{</span><span class="n">SUPPORTED_FORMATS</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span>
+                <span class="sa">f</span><span class="s2">"File </span><span class="si">{</span><span class="n">file_path</span><span class="si">!r}</span><span class="s2"> of format </span><span class="si">{</span><span class="n">file_extension</span><span class="si">}</span><span class="s2"> is not supported. Supported extensions are </span><span class="si">{</span><span class="n">SUPPORTED_FORMATS</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span>
             <span class="p">)</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">SUPPORTED_FORMATS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">file_extension</span><span class="p">)(</span><span class="n">filename</span><span class="o">=</span><span class="n">file_path</span><span class="p">)</span>
+        <span class="n">parser_class</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">SUPPORTED_FORMATS</span><span class="p">[</span><span class="n">file_extension</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">parser_class</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">file_path</span><span class="p">)</span>
 
 <div class="viewcode-block" id="FileHandler.get_file_extension">
 <a class="viewcode-back" href="../../../../reference/chemistry/utils/file_handler.FileHandler.html#manim_extensions.chemistry.utils.file_handler.FileHandler.get_file_extension">[docs]</a>
@@ -1543,12 +1545,12 @@
 <span class="sd">        -------</span>
 <span class="sd">            The lowercase file extension without the leading dot.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">file_path</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">:]</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">file_path</span><span class="p">)[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">:])</span></div>
 
 
 <div class="viewcode-block" id="FileHandler.parsed_atoms_bonds_data">
 <a class="viewcode-back" href="../../../../reference/chemistry/utils/file_handler.FileHandler.html#manim_extensions.chemistry.utils.file_handler.FileHandler.parsed_atoms_bonds_data">[docs]</a>
-    <span class="k">def</span><span class="w"> </span><span class="nf">parsed_atoms_bonds_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Dict</span><span class="p">,</span> <span class="n">Dict</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">parsed_atoms_bonds_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ParsedData</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""</span>
 <span class="sd">        Return the parsed atom and bond dictionaries.</span>
 
@@ -1556,14 +1558,15 @@
 <span class="sd">        -------</span>
 <span class="sd">            ``(atoms_dict, bonds_dict)`` parsed by the selected parser.</span>
 <span class="sd">        """</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">molecule_data</span></div>
+        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">ParsedData</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">parser</span><span class="o">.</span><span class="n">molecule_data</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="FileHandler.parse_from_string">
 <a class="viewcode-back" href="../../../../reference/chemistry/utils/file_handler.FileHandler.html#manim_extensions.chemistry.utils.file_handler.FileHandler.parse_from_string">[docs]</a>
+    <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">parse_from_string</span><span class="p">(</span>
         <span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"mol"</span><span class="p">,</span> <span class="s2">"sdf"</span><span class="p">,</span> <span class="s2">"asnt"</span><span class="p">,</span> <span class="s2">"json"</span><span class="p">,</span> <span class="s2">"xml"</span><span class="p">]</span>
-    <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span> <span class="o">|</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ParsedData</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Parse molecule data directly from a string using the given format.</span>
 
 <span class="sd">        Parameters</span>
@@ -1587,13 +1590,13 @@
                 <span class="sa">f</span><span class="s2">"Format </span><span class="si">{</span><span class="nb">format</span><span class="si">}</span><span class="s2"> is not supported. Supported extensions are </span><span class="si">{</span><span class="n">SUPPORTED_FORMATS</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span>
             <span class="p">)</span>
 
-        <span class="n">parser</span> <span class="o">=</span> <span class="n">SUPPORTED_FORMATS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="nb">format</span><span class="p">)</span>
+        <span class="n">parser</span> <span class="o">=</span> <span class="n">SUPPORTED_FORMATS</span><span class="p">[</span><span class="nb">format</span><span class="p">]</span>
 
         <span class="n">parse_from_string</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">parser</span><span class="p">,</span> <span class="s2">"parse_from_string"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">parse_from_string</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">parse_from_string</span><span class="p">(</span><span class="n">string</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">ParsedData</span><span class="p">,</span> <span class="n">parse_from_string</span><span class="p">(</span><span class="n">string</span><span class="p">))</span>
 
-        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">parser</span><span class="p">)</span><span class="o">.</span><span class="n">data_parser</span><span class="p">(</span><span class="n">string</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">data_parser</span><span class="p">(</span><span class="n">string</span><span class="p">)</span></div>
 </div>
 
 </pre></div>

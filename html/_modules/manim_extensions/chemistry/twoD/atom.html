@@ -1480,7 +1480,7 @@
 
 <span class="sd">"""</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Literal</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Literal</span>
 
 <span class="c1"># unlinked-class-ok: Element</span>
 
@@ -1577,7 +1577,7 @@
         <span class="n">explicit_hydrogens</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">bond_to</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span>
         <span class="n">representation_type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"complete"</span><span class="p">,</span> <span class="s2">"skeleton"</span><span class="p">,</span> <span class="s2">"over_bond"</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-        <span class="n">color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">WHITE</span><span class="p">,</span>
+        <span class="n">color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">WHITE</span><span class="p">,</span>
         <span class="n">charge</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
         <span class="n">planar</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
@@ -1594,7 +1594,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">charge</span> <span class="o">=</span> <span class="n">charge</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">index</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">planar</span> <span class="o">=</span> <span class="n">planar</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">ManimColor</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">atom</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">add_atom</span><span class="p">()</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">planar</span><span class="p">:</span>
@@ -1668,7 +1668,8 @@
 <span class="sd">        -------</span>
 <span class="sd">            The created atom label, or ``None`` when the representation has no label."""</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">representation</span> <span class="o">!=</span> <span class="s2">"skeleton"</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">MarkupText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">element</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span></div>
+            <span class="k">return</span> <span class="n">MarkupText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">element</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span>
+        <span class="k">return</span> <span class="kc">None</span></div>
 
 
 <div class="viewcode-block" id="MAtomObject.bonds_fulfilled">
@@ -1682,7 +1683,7 @@
         <span class="n">minimum_bonds</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"O"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"S"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"N"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"P"</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
         <span class="n">minimum_bond</span> <span class="o">=</span> <span class="n">minimum_bonds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">element</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bond_to</span> <span class="ow">and</span> <span class="n">minimum_bond</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bond_to</span><span class="p">)</span> <span class="o">==</span> <span class="n">minimum_bonds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bond_to</span><span class="p">)</span> <span class="o">==</span> <span class="n">minimum_bond</span>
 
         <span class="k">return</span> <span class="kc">True</span></div>
 
