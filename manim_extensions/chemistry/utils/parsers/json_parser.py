@@ -11,6 +11,7 @@ This module provides the :class:`~manim_extensions.chemistry.utils.parsers.json_
 # unlinked-class-ok: Element
 
 import json
+from typing import Any, cast
 
 import numpy as np
 
@@ -232,7 +233,7 @@ class JSONParser(BaseParser):
         return molecules_parsed_data
 
     @staticmethod
-    def parse_single_molecule_data(molecule_data: dict[str, object]) -> MoleculeData:
+    def parse_single_molecule_data(molecule_data: dict[str, Any]) -> MoleculeData:
         """Parse a single molecule entry into atoms and bonds dicts.
 
         Parameters
@@ -250,7 +251,7 @@ class JSONParser(BaseParser):
         return atoms_data, bonds_data
 
     @staticmethod
-    def extract_atoms_data(molecule_data: dict[str, object]) -> AtomsDict:
+    def extract_atoms_data(molecule_data: dict[str, Any]) -> AtomsDict:
         """Extract the atoms data from a single molecule entry.
 
         Parameters
@@ -283,23 +284,29 @@ class JSONParser(BaseParser):
 
         atoms_elements = JSONParser.clean_elements_data(atoms_elements_raw)
 
-        coords_raw: list[dict[str, object]] = molecule_data.get("coords")
+        coords_raw: list[dict[str, Any]] = cast(
+            list[dict[str, Any]], molecule_data.get("coords")
+        )
         atoms_coords_dict = coords_raw[0]
         if not isinstance(atoms_coords_dict, dict):
             raise Exception(
                 f"Atomic coords are not defined as a dictionary: {atoms_coords_dict}"
             )
 
-        conformers_raw: list[dict[str, object]] = atoms_coords_dict.get("conformers")
+        conformers_raw: list[dict[str, Any]] = cast(
+            list[dict[str, Any]], atoms_coords_dict.get("conformers")
+        )
         conformers_coords = conformers_raw[0]
         if not isinstance(conformers_coords, dict):
             raise Exception(
                 f"Conformers coords are not defined as a dictionary: {conformers_coords}"
             )
 
-        x_coords: list[float] = conformers_coords.get("x")
-        y_coords: list[float] = conformers_coords.get("y")
-        z_coords: list[float] | None = conformers_coords.get("z")
+        x_coords: list[float] = cast(list[float], conformers_coords.get("x"))
+        y_coords: list[float] = cast(list[float], conformers_coords.get("y"))
+        z_coords: list[float] | None = cast(
+            list[float] | None, conformers_coords.get("z")
+        )
 
         if not z_coords:
             z_coords = [0 for _ in x_coords]
@@ -316,7 +323,7 @@ class JSONParser(BaseParser):
         return atoms_data
 
     @staticmethod
-    def extract_bonds_data(molecule_data: dict[str, object]) -> BondsDict:
+    def extract_bonds_data(molecule_data: dict[str, Any]) -> BondsDict:
         """Extract the bonds data from a single molecule entry.
 
         Parameters
@@ -337,9 +344,9 @@ class JSONParser(BaseParser):
         if not isinstance(bonds_data_dict, dict):
             raise Exception(f"Bonds data is not defined correctly: {molecule_data}")
 
-        from_atoms_data: list[int] = bonds_data_dict.get("aid1")
-        to_atoms_data: list[int] = bonds_data_dict.get("aid2")
-        bond_type_list: list[int] = bonds_data_dict.get("order")
+        from_atoms_data: list[int] = cast(list[int], bonds_data_dict.get("aid1"))
+        to_atoms_data: list[int] = cast(list[int], bonds_data_dict.get("aid2"))
+        bond_type_list: list[int] = cast(list[int], bonds_data_dict.get("order"))
 
         bonds_data: BondsDict = {}
         for index, bond_data in enumerate(

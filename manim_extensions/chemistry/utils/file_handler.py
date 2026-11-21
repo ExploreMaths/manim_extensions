@@ -8,11 +8,12 @@ This module provides file parsing utilities for chemistry file formats.
 
 """
 
-from typing import Any, Dict, Literal, cast
+from typing import Any, Literal, cast
 
 import os
 
 from .parsers import MolParser, SDFParser, ASNTParser, JSONParser, XMLParser
+from .parsers.base_parser import ParsedData
 
 #: Mapping from file extension to the parser class that handles it.
 SUPPORTED_FORMATS = {
@@ -39,16 +40,17 @@ class FileHandler:
 
     def __init__(self, file_path: str | bytes | os.PathLike[str]) -> None:
         if not os.path.isfile(file_path):
-            raise FileNotFoundError(f"File {file_path} does not exist.")
+            raise FileNotFoundError(f"File {file_path!r} does not exist.")
 
         file_extension = FileHandler.get_file_extension(file_path)
 
         if file_extension not in SUPPORTED_FORMATS:
             raise IncorrectFormat(
-                f"File {file_path} of format {file_extension} is not supported. Supported extensions are {SUPPORTED_FORMATS.keys()}"
+                f"File {file_path!r} of format {file_extension} is not supported. Supported extensions are {SUPPORTED_FORMATS.keys()}"
             )
 
-        self.parser = SUPPORTED_FORMATS.get(file_extension)(filename=file_path)
+        parser_class = cast(Any, SUPPORTED_FORMATS[file_extension])
+        self.parser = parser_class(filename=file_path)
 
     @staticmethod
     def get_file_extension(file_path: str | bytes | os.PathLike[str]) -> str:
@@ -63,9 +65,9 @@ class FileHandler:
         -------
             The lowercase file extension without the leading dot.
         """
-        return os.path.splitext(file_path)[1][1:]
+        return cast(str, os.path.splitext(file_path)[1][1:])
 
-    def parsed_atoms_bonds_data(self) -> tuple[Dict, Dict]:
+    def parsed_atoms_bonds_data(self) -> ParsedData:
         """
         Return the parsed atom and bond dictionaries.
 
@@ -73,11 +75,12 @@ class FileHandler:
         -------
             ``(atoms_dict, bonds_dict)`` parsed by the selected parser.
         """
-        return self.parser.molecule_data
+        return cast(ParsedData, self.parser.molecule_data)
 
+    @staticmethod
     def parse_from_string(
         string: str, format: Literal["mol", "sdf", "asnt", "json", "xml"]
-    ) -> tuple | list:
+    ) -> ParsedData:
         """Parse molecule data directly from a string using the given format.
 
         Parameters
@@ -101,10 +104,10 @@ class FileHandler:
                 f"Format {format} is not supported. Supported extensions are {SUPPORTED_FORMATS.keys()}"
             )
 
-        parser = SUPPORTED_FORMATS.get(format)
+        parser = SUPPORTED_FORMATS[format]
 
         parse_from_string = getattr(parser, "parse_from_string", None)
         if parse_from_string is not None:
-            return parse_from_string(string)
+            return cast(ParsedData, parse_from_string(string))
 
-        return cast(Any, parser).data_parser(string)
+        return parser.data_parser(string)

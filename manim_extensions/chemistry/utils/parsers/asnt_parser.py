@@ -8,13 +8,11 @@ This module provides the :class:`~manim_extensions.chemistry.utils.parsers.asnt_
 
 """
 
-from typing import Dict, List
-
-import os
+from typing import Any
 
 import numpy as np
 
-from .base_parser import BaseParser
+from .base_parser import BaseParser, FilePath, ParsedData
 
 #: Mapping from bond type name to bond order.
 BOND_TYPE_MAPPING = {
@@ -56,7 +54,7 @@ class ASNTParser(BaseParser):
     """
 
     @staticmethod
-    def read_file(filename: str | bytes | os.PathLike[str]) -> List[List[str]]:
+    def read_file(filename: FilePath) -> list[str]:
         """Read an ASNT file and return its lines as a list of strings.
 
         Parameters
@@ -68,7 +66,7 @@ class ASNTParser(BaseParser):
         -------
             Lines of the ASNT file.
         """
-        with open(filename, "r") as asnt_file:
+        with open(filename) as asnt_file:
             file_list = asnt_file.readlines()
 
         return file_list
@@ -125,7 +123,7 @@ class ASNTParser(BaseParser):
         return line
 
     @staticmethod
-    def data_parser(data: list[str]) -> tuple[Dict, Dict] | List[tuple[Dict, Dict]]:
+    def data_parser(data: Any) -> ParsedData:
         """Parses the atoms and bonds data and returns a tuple of dictionaries with each data.
 
         The atom data follows the structure:
@@ -169,7 +167,7 @@ class ASNTParser(BaseParser):
             atoms_elements.append(line.replace(",", "").replace('"', "").capitalize())
             line = ASNTParser.replace_stuff(lines_list.pop(0))
 
-        atoms_data = {
+        atoms_data: dict[int, dict[str, Any]] = {
             int(float(atom_index.strip())): {"element": atom_element}
             for atom_index, atom_element in zip(atoms_indices, atoms_elements)
         }
@@ -201,7 +199,7 @@ class ASNTParser(BaseParser):
         while not line.startswith('"conformers"'):
             line = ASNTParser.replace_stuff(lines_list.pop(0))
 
-        bonds_data = {}
+        bonds_data: dict[int, dict[str, Any]] = {}
         for bond_index, bond_params in enumerate(
             zip(from_atom_index, to_atom_index, bond_type_list)
         ):
@@ -212,33 +210,33 @@ class ASNTParser(BaseParser):
                 "bond_type": BOND_TYPE_MAPPING.get(bond_type.replace('"', ""), 1),
             }
 
-        coords_x = {}
+        coords_x: dict[int, int] = {}
         lines_list.pop(0)  # Remove { line
         lines_list.pop(0)  # Remove x { line
         line = ASNTParser.replace_stuff(lines_list.pop(0))
         for i in atoms_data.keys():
-            line = (
+            parts = (
                 line.replace("[", "")
                 .replace("]", "")
                 .replace(",", "")
                 .strip()
                 .split(" ")
             )
-            coords_x[i] = int(line[0]) * int(line[1]) ** int(line[2])
+            coords_x[i] = int(parts[0]) * int(parts[1]) ** int(parts[2])
             line = ASNTParser.replace_stuff(lines_list.pop(0))
 
-        coords_y = {}
+        coords_y: dict[int, int] = {}
         lines_list.pop(0)  # Remove y { line
         line = ASNTParser.replace_stuff(lines_list.pop(0))
         for i in atoms_data.keys():
-            line = (
+            parts = (
                 line.replace("[", "")
                 .replace("]", "")
                 .replace(",", "")
                 .strip()
                 .split(" ")
             )
-            coords_y[i] = int(line[0]) * int(line[1]) ** int(line[2])
+            coords_y[i] = int(parts[0]) * int(parts[1]) ** int(parts[2])
             line = ASNTParser.replace_stuff(lines_list.pop(0))
 
         for index in atoms_data.keys():

@@ -281,8 +281,8 @@ def mol_parser_string(mol_string: list[Any]) -> tuple[dict[Any, Any], dict[Any, 
     number_of_atoms = int(mol_general_info[0])
     number_of_bonds = int(mol_general_info[1])
 
-    atoms = {}
-    bonds = {}
+    atoms: dict[int, dict[str, Any]] = {}
+    bonds: dict[int, list[dict[str, Any]]] = {}
     for index, line in enumerate(mol_string[3 : 3 + number_of_atoms]):
         line_data = line.split()
         x_position = float(line_data[0])
@@ -363,7 +363,9 @@ def mol_parser_string(mol_string: list[Any]) -> tuple[dict[Any, Any], dict[Any, 
     return atoms, bonds
 
 
-def mol_parser(file: str) -> tuple[dict, dict]:
+def mol_parser(
+    file: str,
+) -> tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]:
     """Read a .mol file from disk and return parsed ``(atoms, bonds)``.
 
     Parameters
@@ -375,12 +377,14 @@ def mol_parser(file: str) -> tuple[dict, dict]:
     -------
         The parsed atoms and bonds from the ``.mol`` file.
     """
-    with open(file) as file:
-        mol_file = cast(Any, file).readlines()
+    with open(file) as f:
+        mol_file = f.readlines()
     return mol_parser_string(mol_file)
 
 
-def sdf_parser_string(sdf_string: str) -> list[tuple]:
+def sdf_parser_string(
+    sdf_string: str,
+) -> list[tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]]:
     """Parse an SDF-format string into a list of ``(atoms, bonds)`` tuples.
 
     SDF files can contain multiple molecules separated by ``$$$$`` delimiters.
@@ -404,7 +408,9 @@ def sdf_parser_string(sdf_string: str) -> list[tuple]:
     return mol_list
 
 
-def sdf_parser(file: str) -> list[tuple[dict, dict]]:
+def sdf_parser(
+    file: str,
+) -> list[tuple[dict[int, dict[str, Any]], dict[int, list[dict[str, Any]]]]]:
     """Read an .sdf file from disk and return a list of ``(atoms, bonds)`` tuples.
 
     Parameters
@@ -416,8 +422,8 @@ def sdf_parser(file: str) -> list[tuple[dict, dict]]:
     -------
         The list of parsed ``(atoms, bonds)`` pairs from the ``.sdf`` file.
     """
-    with open(file) as file:
-        sdf_file = cast(Any, file).read()
+    with open(file) as f:
+        sdf_file = f.read()
     return sdf_parser_string(sdf_file)
 
 
@@ -435,15 +441,20 @@ def get_element(element: str, language: Literal["ENG", "ESP"] = "ENG") -> Elemen
     -------
         The :class:`~manim_extensions.chemistry.element.element.Element` class instance matching the symbol.
     """
+    element_dict: dict[str, Any]
     if language == "ENG":
         element_dict = ELEMENT_DICT
     elif language == "ESP":
         element_dict = ELEMENT_DICT_ESP
+    else:
+        raise ValueError(f"unsupported language: {language}")
 
-    return element_dict[element]
+    return cast(Element, element_dict[element])
 
 
-def mol_to_graph(file: str, language: Literal["ENG", "ESP"] = "ENG") -> tuple[dict]:
+def mol_to_graph(
+    file: str, language: Literal["ENG", "ESP"] = "ENG"
+) -> tuple[dict[int, dict[str, Any]], dict[tuple[int, int], dict[str, Any]]]:
     """Parse a .mol file into a simple graph representation (atoms + bonds).
 
     Unlike :func:`~manim_extensions.chemistry.utils.utils.mol_parser`, this function stores atom positions under the
@@ -470,20 +481,18 @@ def mol_to_graph(file: str, language: Literal["ENG", "ESP"] = "ENG") -> tuple[di
         ``(atoms, bonds)`` where ``atoms`` maps index to element/position and
         ``bonds`` maps ``(from_idx, to_idx)`` tuples to bond data.
     """
-    with open(file) as file:
-        mol_file = cast(Any, file).readlines()
+    with open(file) as f:
+        mol_file = f.readlines()
     # Get general data
 
-    mol_general_info = mol_file[3]  # This info is not always available
-    mol_file.remove(mol_general_info)  # This info is not always available
-    mol_general_info = (
-        mol_general_info.rstrip().split()
-    )  # This info is not always available
+    mol_general_line = mol_file[3]  # This info is not always available
+    mol_file.remove(mol_general_line)  # This info is not always available
+    mol_general_info = mol_general_line.rstrip().split()
     number_of_atoms = int(mol_general_info[0])
     number_of_bonds = int(mol_general_info[1])
 
-    atoms = {}
-    bonds = {}
+    atoms: dict[int, dict[str, Any]] = {}
+    bonds: dict[tuple[int, int], dict[str, Any]] = {}
     for index, line in enumerate(mol_file[3 : 3 + number_of_atoms]):
         line_data = line.split()
         x_position = float(line_data[0])

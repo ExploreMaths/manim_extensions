@@ -62,7 +62,7 @@ class PubchemAPIManager:
         self.format = format
 
     def handle_request(
-        self, request: requests.models.Response, identifier: int | str
+        self, request: requests.models.Response, identifier: int | str | None
     ) -> str:
         """Validate a PubChem API response and return the decoded payload.
 

@@ -7,12 +7,12 @@ This module provides the :class:`~manim_extensions.chemistry.utils.parsers.sdf_p
 
 """
 
-from typing import List
+from typing import List, cast
 
 # unlinked-class-ok: Molecules
 
 
-from .base_parser import AtomsDict, BondsDict, FilePath
+from .base_parser import AtomsDict, BondsDict, FilePath, MoleculeData
 from .mol_parser import MolParser
 
 
@@ -78,4 +78,6 @@ class SDFParser(MolParser):
         -------
             List of ``(atoms_data, bonds_data)`` tuples, one per molecule.
         """
-        return [MolParser.data_parser(data) for data in molecules_data]
+        return [
+            cast(MoleculeData, MolParser.data_parser(data)) for data in molecules_data
+        ]

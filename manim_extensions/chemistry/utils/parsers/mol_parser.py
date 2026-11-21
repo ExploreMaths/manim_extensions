@@ -7,9 +7,17 @@ This module provides the :class:`~manim_extensions.chemistry.utils.parsers.mol_p
 
 """
 
+from typing import Any, cast
+
 import numpy as np
 
-from .base_parser import AtomsDict, BaseParser, BondsDict, FilePath
+from .base_parser import (
+    AtomsDict,
+    BaseParser,
+    BondsDict,
+    FilePath,
+    ParsedData,
+)
 
 
 class MolParser(BaseParser):
@@ -33,7 +41,7 @@ class MolParser(BaseParser):
     """
 
     @staticmethod
-    def read_file(filename: FilePath) -> list[str]:
+    def read_file(filename: FilePath) -> Any:
         """Read a MOL file and return its lines.
 
         Parameters
@@ -63,10 +71,12 @@ class MolParser(BaseParser):
         -------
             ``(atoms_data, bonds_data)`` tuple of dictionaries.
         """
-        return MolParser.data_parser(string.splitlines())
+        return cast(
+            tuple[AtomsDict, BondsDict], MolParser.data_parser(string.splitlines())
+        )
 
     @staticmethod
-    def data_parser(data: list[str]) -> tuple[AtomsDict, BondsDict]:
+    def data_parser(data: Any) -> ParsedData:
         # Get general data
         """Parse the lines of a MOL file into atoms and bonds dicts.
 
@@ -82,16 +92,14 @@ class MolParser(BaseParser):
         mol_name = data[0].strip()  # This info is not always available  # noqa F841
         mol_source = data[1].strip()  # This info is not always available  # noqa F841
         mol_comments = data[2].rstrip()  # This info is not always available # noqa F841
-        mol_general_info = data[3]  # This info is not always available
-        data.remove(mol_general_info)  # This info is not always available
-        mol_general_info = (
-            mol_general_info.rstrip().split()
-        )  # This info is not always available
+        mol_general_line = data[3]  # This info is not always available
+        data.remove(mol_general_line)  # This info is not always available
+        mol_general_info = mol_general_line.rstrip().split()
         number_of_atoms = int(mol_general_info[0])
         number_of_bonds = int(mol_general_info[1])
 
-        atoms: AtomsDict = {}
-        bonds: dict[int, list[dict[str, object]]] = {}
+        atoms: dict[int, dict[str, Any]] = {}
+        bonds: dict[int, list[dict[str, Any]]] = {}
         for index, line in enumerate(data[3 : 3 + number_of_atoms]):
             line_data = line.split()
             x_position = float(line_data[0])
@@ -166,11 +174,11 @@ class MolParser(BaseParser):
                     first_atom_index
                 ].get("element")
 
-        new_bonds: BondsDict = {}
+        new_bonds: dict[int, dict[str, Any]] = {}
 
         for bonds_data in bonds.values():
             for bond in bonds_data:
-                bond_index = bond.pop("bond_index")
+                bond_index = cast(int, bond.pop("bond_index"))
                 new_bonds[bond_index] = bond
 
         return atoms, new_bonds

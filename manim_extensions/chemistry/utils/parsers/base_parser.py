@@ -10,6 +10,7 @@ This module provides the :class:`~manim_extensions.chemistry.utils.parsers.base_
 # unlinked-class-ok: Molecule
 
 from abc import ABC, abstractmethod
+from typing import Any
 import os
 
 #: Path-like value accepted by the parsers: a string, raw bytes or a PathLike.
@@ -56,7 +57,7 @@ class BaseParser(ABC):
 
     @staticmethod
     @abstractmethod
-    def read_file(filename: FilePath) -> str | list[str]:
+    def read_file(filename: FilePath) -> Any:
         """
         Reads the file and converts it to a string.
 
@@ -73,7 +74,7 @@ class BaseParser(ABC):
 
     @staticmethod
     @abstractmethod
-    def data_parser(data: str | list[str]) -> ParsedData:
+    def data_parser(data: Any) -> ParsedData:
         """Parses the atoms and bonds data and returns a tuple of dictionaries with each data.
 
         The atom data follows the structure:
