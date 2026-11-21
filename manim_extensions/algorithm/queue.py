@@ -5,9 +5,10 @@
 """:class:`~manim_extensions.algorithm.queue.Queue` data structure for algorithm visualization."""
 
 from __future__ import annotations
-from typing import Any, List
+from typing import Any, List, cast
 
 from manim import (
+    Animation,
     AnimationGroup,
     DOWN,
     FadeOut,
@@ -204,7 +205,10 @@ class Queue(VMobject):
             polyline.set_points_as_corners(path)
             animations = [
                 AnimationGroup(
-                    *[item.animate.shift(LEFT * item.width) for item in queue.data]
+                    *[
+                        cast(Animation, item.animate.shift(LEFT * item.width))
+                        for item in queue.data
+                    ]
                 ),
                 MoveAlongPath(item, path=polyline, rate_func=linear, run_time=2),
             ]

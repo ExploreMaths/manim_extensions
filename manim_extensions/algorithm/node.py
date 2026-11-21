@@ -9,6 +9,7 @@ from __future__ import annotations
 from typing import Any, List, TypeAlias, cast
 
 from manim import (
+    Animation,
     AnimationGroup,
     Circle,
     DOWN,
@@ -29,7 +30,8 @@ from manim import (
     VMobject,
     WHITE,
 )
-from manim.typing import ManimFloat, Point3D, Vector3DLike
+import numpy as np
+from manim.typing import ManimFloat, Point3D, Vector3DLike, VectorND
 from .utils.numpy_helper import NumpyHelper
 
 #: Value stored in an algorithm node box.
@@ -193,6 +195,9 @@ class Node(VMobject):
         self.set_value(value)
         self.width = width
 
+    box: Mobject
+    text: Mobject
+
     def set_box(self, box_type: NodeBoxType, width: float, color: ManimColor) -> "Node":
         """Set the shape and fill colour of the node's box.
 
@@ -307,7 +312,7 @@ class Node(VMobject):
         -------
             The fill color of the node box.
         """
-        return self.box.get_fill_color()
+        return cast(ManimColor, self.box.get_fill_color())
 
     def get_fill_opacity(self) -> ManimFloat:
         """
@@ -317,7 +322,7 @@ class Node(VMobject):
         -------
             The fill opacity of the node box.
         """
-        return self.box.get_fill_opacity()
+        return ManimFloat(self.box.get_fill_opacity())
 
     def get_slot(self, direction: Vector3DLike, index: int) -> Point3D:
         """Return a point on the node's boundary at the given slot index.
@@ -345,14 +350,15 @@ class Node(VMobject):
             or if the box type is not supported.
         """
 
-        proportion = 0
-        if NumpyHelper.is_same_direction(direction, RIGHT):
+        direction_array: VectorND = np.asarray(direction, dtype=float)
+        proportion: float = 0
+        if NumpyHelper.is_same_direction(direction_array, RIGHT):
             proportion = 0
-        elif NumpyHelper.is_same_direction(direction, LEFT):
+        elif NumpyHelper.is_same_direction(direction_array, LEFT):
             proportion = 0.5
-        elif NumpyHelper.is_same_direction(direction, UP):
+        elif NumpyHelper.is_same_direction(direction_array, UP):
             proportion = 0.75
-        elif NumpyHelper.is_same_direction(direction, DOWN):
+        elif NumpyHelper.is_same_direction(direction_array, DOWN):
             proportion = 0.25
         else:
             raise ValueError("direction must be LEFT or RIGHT or UP or DOWN")
@@ -420,7 +426,7 @@ class Node(VMobject):
 
         def __init__(
             self,
-            *nodes: List[Node],
+            *nodes: Node,
             color: ManimColor = NodeConfig.SELECT_COLOR,
             opacity: float = NodeConfig.SELECT_OPACITY,
             **kwargs: Any,
@@ -509,7 +515,9 @@ class Node(VMobject):
         """
 
         def __init__(self, node: Node, value: NodeValue, **kwargs: Any) -> None:
-            super().__init__(*[node.animate.set_value(value)], **kwargs)
+            super().__init__(
+                cast(Animation, cast(Any, node).animate.set_value(value)), **kwargs
+            )
 
     class MoveAndOverWrite(Succession):
         """Move a node into place and overwrite the destination value.
@@ -551,11 +559,11 @@ class Node(VMobject):
             self,
             node: Node,
             target: Node,
-            select_color: ManimColor = None,
+            select_color: ManimColor | None = None,
             select_opacity: float = 0.2,
             **kwargs: Any,
         ) -> None:
-            steps = []
+            steps: list[Animation] = []
             if select_color is not None:
                 steps.append(
                     Node.Select(node, color=select_color, opacity=select_opacity)
@@ -563,7 +571,7 @@ class Node(VMobject):
 
             steps.extend(
                 [
-                    node.animate.move_to(target),
+                    cast(Animation, node.animate.move_to(target)),
                     AnimationGroup(Node.UpdateValue(target, node.value), FadeOut(node)),
                 ]
             )
@@ -611,7 +619,7 @@ class Node(VMobject):
             self,
             node: Node,
             target: Node,
-            select_color: ManimColor = None,
+            select_color: ManimColor | None = None,
             select_opacity: float = 0.2,
             **kwargs: Any,
         ) -> None:
@@ -666,13 +674,13 @@ class Node(VMobject):
             self,
             node1: Node,
             node2: Node,
-            select_color: ManimColor = None,
+            select_color: ManimColor | None = None,
             select_opacity: float = 0.2,
             **kwargs: Any,
         ) -> None:
             copied_node1 = node1.copy().move_to(node1)
             copied_node2 = node2.copy().move_to(node2)
-            steps = [
+            steps: list[Animation] = [
                 FadeIn(copied_node1, copied_node2),
             ]
             if select_color is not None:

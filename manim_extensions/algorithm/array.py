@@ -62,7 +62,7 @@ class Array(VMobject):
     def __init__(
         self,
         data: List[NodeValue],
-        total_width: float | Node = None,
+        total_width: float | None = None,
         box_type: NodeBoxType = NodeConfig.BOX_TYPE,
         box_color: ManimColor = NodeConfig.BOX_COLOR,
         text_scale: float = 1.0,
@@ -96,7 +96,7 @@ class Array(VMobject):
         """
         return [item.value for item in self.array]
 
-    def __getitem__(self, key: int | slice) -> Node:
+    def __getitem__(self, key: int | slice) -> "Node | Array":
         """Return the node at ``key`` or a slice of nodes.
 
         Parameters
@@ -106,10 +106,10 @@ class Array(VMobject):
 
         Returns
         -------
-            The selected node or a new array slice.
+            The selected node, or a new array holding the selected slice.
         """
         if isinstance(key, slice):
-            return Array(self.array[key])
+            return Array([item.value for item in self.array[key]])
         return self.array[key]
 
     def __len__(self) -> int:
