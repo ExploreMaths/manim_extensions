@@ -1,6 +1,7 @@
 # SPDX-FileCopyrightText: 2026 MathItYT
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
+# mypy: disable-error-code="misc,no-untyped-def,var-annotated,assignment,arg-type"
 
 """Utilities for the doc_directive module."""
 
@@ -347,9 +348,9 @@ def _log_rendering_times(*args: Any) -> Any:
         print("\nRendering Summary\n-----------------\n")
 
         max_file_length = max(len(row[0]) for row in data)
-        for key, group in it.groupby(data, key=lambda row: row[0]):
+        for key, raw_group in it.groupby(data, key=lambda row: row[0]):
             key = key.ljust(max_file_length + 1, ".")
-            group = list(group)
+            group = list(raw_group)
             if len(group) == 1:
                 row = group[0]
                 print(f"{key}{row[2].rjust(7, '.')}s {row[1]}")

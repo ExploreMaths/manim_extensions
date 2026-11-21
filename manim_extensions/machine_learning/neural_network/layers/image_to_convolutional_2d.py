@@ -83,7 +83,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     def __init__(
         self, input_layer: ImageLayer, output_layer: Convolutional2DLayer, **kwargs: Any
     ) -> None:
-        super().__init__(input_layer, output_layer, **kwargs)
+        super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
         self.input_layer = input_layer
         self.output_layer = output_layer
 
@@ -104,7 +104,8 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         **kwargs
             Forwarded to the parent layer classes.
         """
-        return super().construct_layer(input_layer, output_layer, **kwargs)
+        super().construct_layer(input_layer, output_layer, **kwargs)
+        return None
 
     def make_forward_pass_animation(
         self, run_time: float = 5, layer_args: dict[Any, Any] = {}, **kwargs: Any
@@ -222,12 +223,14 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             -------
                 The image mobject scaled to the target feature-map size."""
             max_width_height = max(image_mobject.width, image_mobject.height)
-            scale_factor = target_feature_map.untransformed_width / max_width_height
+            scale_factor = (
+                cast(Any, target_feature_map).untransformed_width / max_width_height
+            )
             image_mobject.scale(scale_factor)
 
             return image_mobject
 
-        scale_image = ApplyFunction(scale_image_func, image_mobject)
+        scale_image = ApplyFunction(cast(Any, scale_image_func), image_mobject)
         # Move the image
         move_image = ApplyMethod(image_mobject.move_to, target_feature_map)
         # Compose the animations

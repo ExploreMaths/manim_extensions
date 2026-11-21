@@ -53,7 +53,7 @@ class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
         cast(Any, input_layer).num_feature_maps = cast(
             Any, output_layer
         ).num_feature_maps
-        super().__init__(input_layer, output_layer, **kwargs)
+        super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
         self.passing_flash_color = passing_flash_color
         self.cell_width = cell_width
         self.stroke_width = stroke_width

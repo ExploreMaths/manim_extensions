@@ -181,6 +181,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
             if gaussian == gaussian_distribution:
                 self.gaussian_distributions.remove(gaussian_distribution)
                 return FadeOut(gaussian)
+        return None
 
     def sample_point_location_from_distribution(self) -> Point3D:
         """Samples from the current latent distribution.

@@ -140,13 +140,13 @@ class ActivationFunction(ABC, VGroup):
         # Add the function name
         if self.show_function_name:
             function_name_text = Text(
-                self.function_name, font_size=12, font="sans-serif"
+                self.function_name or "", font_size=12, font="sans-serif"
             )
             function_name_text.next_to(self.axes, UP * 0.5)
             self.add(function_name_text)
 
     @abstractmethod
-    def apply_function(self, x_val: float | None) -> Any:
+    def apply_function(self, x_val: float | None) -> Any:  # type: ignore[override]
         """Evaluates function at given x_val.
 
         Abstract method: concrete subclasses implement the actual

@@ -5,7 +5,7 @@
 """Feed-forward to vector layer connection visualization."""
 
 from __future__ import annotations
-from typing import Any
+from typing import Any, cast
 
 from manim import (
     Animation,
@@ -13,7 +13,6 @@ from manim import (
     Create,
     Dot,
     ManimColor,
-    Mobject,
     RED,
     Succession,
     Wait,
@@ -46,13 +45,13 @@ class FeedForwardToVector(ConnectiveLayer):
 
     def __init__(
         self,
-        input_layer: Mobject,
-        output_layer: Mobject,
+        input_layer: FeedForwardLayer,
+        output_layer: VectorLayer,
         animation_dot_color: ManimColor = RED,
         dot_radius: float = 0.05,
         **kwargs: Any,
     ) -> None:
-        super().__init__(input_layer, output_layer, **kwargs)
+        super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
         self.animation_dot_color = animation_dot_color
         self.dot_radius = dot_radius
 
@@ -76,7 +75,8 @@ class FeedForwardToVector(ConnectiveLayer):
         **kwargs
             Forwarded to the parent layer classes.
         """
-        return super().construct_layer(input_layer, output_layer, **kwargs)
+        super().construct_layer(input_layer, output_layer, **kwargs)
+        return None
 
     def make_forward_pass_animation(
         self, layer_args: dict[Any, Any] = {}, **kwargs: Any
@@ -106,7 +106,7 @@ class FeedForwardToVector(ConnectiveLayer):
             )
             per_node_succession = Succession(
                 Create(new_dot),
-                new_dot.animate.move_to(destination),
+                cast(Animation, new_dot.animate.move_to(destination)),
             )
             animations.append(per_node_succession)
 

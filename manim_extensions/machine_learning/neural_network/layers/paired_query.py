@@ -6,7 +6,7 @@
 """Paired query layer visualization for neural networks."""
 
 from __future__ import annotations
-from typing import Any
+from typing import Any, cast
 
 from manim import (
     Animation,
@@ -18,7 +18,6 @@ from manim import (
     Group,
     ImageMobject,
     RED,
-    VGroup,
     override_animation,
 )
 from .parent_layers import NeuralNetworkLayer
@@ -90,8 +89,8 @@ class PairedQueryLayer(NeuralNetworkLayer):
 
     def __init__(
         self,
-        positive: VGroup,
-        negative: VGroup,
+        positive: Any,
+        negative: Any,
         stroke_width: float = 5,
         font_size: float = 18,
         spacing: float = 0.5,
@@ -126,7 +125,8 @@ class PairedQueryLayer(NeuralNetworkLayer):
         **kwargs
             Forwarded to the parent layer classes.
         """
-        return super().construct_layer(input_layer, output_layer, **kwargs)
+        super().construct_layer(input_layer, output_layer, **kwargs)
+        return None
 
     @classmethod
     def from_paths(
@@ -154,6 +154,8 @@ class PairedQueryLayer(NeuralNetworkLayer):
             The layer built from the supplied image paths.
         """
         # Load images from path
+        positive: Any
+        negative: Any
         if grayscale:
             positive = GrayscaleImageMobject.from_path(positive_path)
             negative = GrayscaleImageMobject.from_path(negative_path)
@@ -174,7 +176,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
             A :class:`~manim.mobject.mobject.Group` instance representing the result."""
         # Handle positive
         positive_group = LabeledColorImage(
-            self.positive,
+            cast(Any, self.positive),
             color=BLUE,
             label="Positive",
             font_size=self.font_size,
@@ -182,7 +184,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
         )
         # Handle negative
         negative_group = LabeledColorImage(
-            self.negative,
+            cast(Any, self.negative),
             color=RED,
             label="Negative",
             font_size=self.font_size,

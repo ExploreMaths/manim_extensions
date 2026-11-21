@@ -286,7 +286,7 @@ def merge_overlapping_polygons(
                 if vertex in edges_v:
                     edges_v.pop(vertex)
             merged_polygon = Polygon(
-                *[tuple(point) for point in poly],
+                *[np.array(point) for point in poly],
                 color=color_key,
                 fill_opacity=0.3,
                 stroke_opacity=1.0,

@@ -5,7 +5,7 @@
 """Math operation layer visualization for neural networks."""
 
 from __future__ import annotations
-from typing import Any
+from typing import Any, cast
 
 from manim import (
     AnimationGroup,
@@ -195,7 +195,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
         if not self.activation_function is None:
             animation_group = AnimationGroup(
                 succession,
-                self.activation_function.make_evaluate_animation(),
+                cast(Any, self.activation_function).make_evaluate_animation(),
                 lag_ratio=0.0,
             )
             return animation_group
@@ -226,7 +226,12 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             The rightmost point of the surrounding shape."""
         return self.surrounding_circle.get_right()
 
-    def move_to(self, mobject_or_point: Mobject) -> Any:
+    def move_to(
+        self,
+        mobject_or_point: Any,
+        aligned_edge: Any = None,
+        coor_mask: Any = None,
+    ) -> Any:
         """Moves the center of the layer to the given mobject or point.
 
         Parameters

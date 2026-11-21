@@ -38,7 +38,7 @@ class ListGroup(Mobject):
         # (Mobject.add bypasses ListGroup's list-semantics `add` override).
         Mobject.add(self, *layers)
 
-    def __getitem__(  # list indexing may return a single item or a slice
+    def __getitem__(  # type: ignore[override]  # list indexing may return a single item or a slice
         self, indices: int | slice
     ) -> Mobject | list[Mobject]:
         """Return an item or a slice of items.
@@ -118,7 +118,7 @@ class ListGroup(Mobject):
 
         return items
 
-    def remove(
+    def remove(  # type: ignore[override]
         self, item: Mobject
     ) -> Mobject:  # intentionally shadows Mobject.remove with list semantics
         """Removes first instance of item.
@@ -151,7 +151,7 @@ class ListGroup(Mobject):
         """
         return self.items[index]
 
-    def add(
+    def add(  # type: ignore[override]
         self, item: Mobject
     ) -> Any:  # intentionally shadows Mobject.add with list semantics
         """Adds to end.
@@ -169,7 +169,7 @@ class ListGroup(Mobject):
         self.items.append(item)
         self.submobjects = self.items
 
-    def replace(
+    def replace(  # type: ignore[override]
         self, index: int, item: Mobject
     ) -> Any:  # intentionally shadows Mobject.replace with list semantics
         """Replaces item at index.
@@ -216,7 +216,7 @@ class ListGroup(Mobject):
         """
         return len(self.items)
 
-    def set_z_index(  # intentionally returns None instead of the group
+    def set_z_index(  # type: ignore[override]  # intentionally returns None instead of the group
         self, z_index_value: int, family: bool = True
     ) -> Any:
         """Sets z index of all values in :class:`~manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup`.

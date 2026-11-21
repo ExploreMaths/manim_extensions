@@ -6,10 +6,9 @@
 """Plotting utilities for neural network visualization."""
 
 from __future__ import annotations
-from typing import TYPE_CHECKING, cast
+from typing import TYPE_CHECKING
 
 import io
-from types import ModuleType
 
 import numpy as np
 from manim import ImageMobject
@@ -37,7 +36,7 @@ def convert_matplotlib_figure_to_image_mobject(
     -------
         Image mobject containing the rendered figure.
     """
-    plt = cast(ModuleType, require("ml", "matplotlib.pyplot"))
+    plt = require("ml", "matplotlib.pyplot")
 
     fig.tight_layout(pad=0)
     # plt.axis('off')

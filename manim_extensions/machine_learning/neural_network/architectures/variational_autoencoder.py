@@ -9,9 +9,10 @@ In this module I define Manim visualizations for Variational Autoencoders
 and Traditional Autoencoders.
 """
 
-from typing import Any
+from typing import Any, cast
 
 from manim import (
+    Animation,
     AnimationGroup,
     BLUE,
     Create,
@@ -114,7 +115,7 @@ class VariationalAutoencoder(Group):
         -------
             The creation animation for the neural network.
         """
-        return Create(self.neural_network)
+        return Create(cast(Any, self.neural_network))
 
     def make_triplet_forward_pass(
         self, triplet: tuple[PixelArray, PixelArray, PixelArray], run_time: float = 1.5
@@ -143,7 +144,7 @@ class VariationalAutoencoder(Group):
         """
         if len(triplet) != 3:
             raise ValueError("A triplet must contain exactly three images.")
-        images = []
+        images: list[Any] = []
         for pixels in triplet:
             pixels = np.asarray(pixels)
             if pixels.ndim == 2:
@@ -159,7 +160,7 @@ class VariationalAutoencoder(Group):
         # Make a wrapper NN with the triplet input. The encoder and decoder
         # layers are rebuilt so the triplet animation does not re-parent the
         # existing network.
-        wrapper_layers = [triplet_layer]
+        wrapper_layers: list[Any] = [triplet_layer]
         wrapper_layers.extend(
             FeedForwardLayer(node_count) for node_count in self.encoder_nodes_per_layer
         )
@@ -170,8 +171,11 @@ class VariationalAutoencoder(Group):
         wrapper_neural_network = NeuralNetwork(wrapper_layers)
         # Make animation
         animation_group = AnimationGroup(
-            Create(wrapper_neural_network),
-            wrapper_neural_network.make_forward_pass_animation(run_time=run_time),
+            Create(cast(Any, wrapper_neural_network)),
+            cast(
+                Animation,
+                wrapper_neural_network.make_forward_pass_animation(run_time=run_time),
+            ),
             lag_ratio=1.0,
         )
 
@@ -198,7 +202,7 @@ class VariationalAutoencoder(Group):
         # Make a wrapper NN with images. The encoder/decoder layers are
         # rebuilt instead of nesting ``self.neural_network``: a network is not
         # a layer, so it has no ``construct_layer`` method to call.
-        wrapper_layers = [ImageLayer(input_image)]
+        wrapper_layers: list[Any] = [ImageLayer(input_image)]
         wrapper_layers.extend(
             FeedForwardLayer(node_count) for node_count in self.encoder_nodes_per_layer
         )
@@ -210,8 +214,8 @@ class VariationalAutoencoder(Group):
         wrapper_neural_network = NeuralNetwork(wrapper_layers)
         # Make animation
         animation_group = AnimationGroup(
-            Create(wrapper_neural_network),
-            wrapper_neural_network.make_forward_pass_animation(),
+            Create(cast(Any, wrapper_neural_network)),
+            cast(Animation, wrapper_neural_network.make_forward_pass_animation()),
             lag_ratio=1.0,
         )
 

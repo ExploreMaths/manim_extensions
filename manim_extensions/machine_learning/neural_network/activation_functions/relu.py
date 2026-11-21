@@ -47,7 +47,7 @@ class ReLUFunction(ActivationFunction):
     ) -> None:
         super().__init__(function_name, x_range, y_range)
 
-    def apply_function(self, x_val: float) -> int | None:
+    def apply_function(self, x_val: float) -> float:  # type: ignore[override]
         """Return max(0, x_val), the ReLU activation applied to the input value.
 
         Parameters
@@ -60,6 +60,6 @@ class ReLUFunction(ActivationFunction):
             The computed integer value. ``None`` if there is no result.
         """
         if x_val < 0:
-            return 0
+            return 0.0
         else:
             return x_val

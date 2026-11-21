@@ -82,4 +82,4 @@ class ManimMLConfig:
 
 # These are accessible from the manim_ml namespace
 #: Shared ManimML configuration singleton exposed from the package namespace.
-config = ManimMLConfig()  # intentionally shadows manim's star-imported config
+config = ManimMLConfig()  # type: ignore[assignment]  # intentionally shadows manim's star-imported config

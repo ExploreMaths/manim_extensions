@@ -5,7 +5,7 @@
 """Max pooling 2D to feed-forward layer connection visualization."""
 
 from __future__ import annotations
-from typing import Any
+from typing import Any, cast
 
 from manim import ManimColor, ORANGE
 from .convolutional_2d_to_feed_forward import Convolutional2DToFeedForward
@@ -40,7 +40,7 @@ class MaxPooling2DToFeedForward(Convolutional2DToFeedForward):
         passing_flash_color: ManimColor = ORANGE,
         **kwargs: Any,
     ) -> None:
-        super().__init__(input_layer, output_layer, **kwargs)
+        super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
 
     def construct_layer(
         self,
@@ -59,4 +59,5 @@ class MaxPooling2DToFeedForward(Convolutional2DToFeedForward):
         **kwargs
             Forwarded to the parent layer classes.
         """
-        return super().construct_layer(input_layer, output_layer, **kwargs)
+        super().construct_layer(input_layer, output_layer, **kwargs)
+        return None

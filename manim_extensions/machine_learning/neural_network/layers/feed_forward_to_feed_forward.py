@@ -19,7 +19,6 @@ from manim import (
     FadeOut,
     Line,
     ManimColor,
-    Mobject,
     MoveAlongPath,
     ShowPassingFlash,
     VGroup,
@@ -64,8 +63,8 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
     def __init__(
         self,
-        input_layer: Mobject,
-        output_layer: Mobject,
+        input_layer: FeedForwardLayer,
+        output_layer: FeedForwardLayer,
         passing_flash: bool = True,
         dot_radius: float = 0.05,
         animation_dot_color: ManimColor = cast(Any, config).color_scheme.active_color,
@@ -74,7 +73,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         camera: Camera | None = None,
         **kwargs: Any,
     ) -> None:
-        super().__init__(input_layer, output_layer, **kwargs)
+        super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
         self.passing_flash = passing_flash
         self.edge_color = edge_color
         self.dot_radius = dot_radius
@@ -107,26 +106,27 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         self.add(self.edges)
         super().construct_layer(input_layer, output_layer, **kwargs)
 
-    def construct_edges(self) -> list[Any]:
+    def construct_edges(self) -> VGroup:
         """Create all connecting lines between input and output layer nodes.
 
         Returns
         -------
             A list of the results."""
         # Go through each node in the two layers and make a connecting line
-        edges = []
-        for node_i in self.input_layer.node_group:
-            for node_j in self.output_layer.node_group:
+        input_layer = cast(FeedForwardLayer, self.input_layer)
+        output_layer = cast(FeedForwardLayer, self.output_layer)
+        edge_lines: list[Any] = []
+        for node_i in input_layer.node_group:
+            for node_j in output_layer.node_group:
                 line = Line(
                     node_i.get_center(),
                     node_j.get_center(),
                     color=self.edge_color,
                     stroke_width=self.edge_width,
                 )
-                edges.append(line)
+                edge_lines.append(line)
 
-        edges = VGroup(*edges)
-        return edges
+        return VGroup(*edge_lines)
 
     @override_animation(FadeOut)
     def _fadeout_animation(self) -> AnimationGroup:
@@ -136,7 +136,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         -------
             The grouped fade-out animation for all edges.
         """
-        animations = []
+        animations: list[Any] = []
 
         for edge in self.edges:
             animations.append(FadeOut(edge))
@@ -151,7 +151,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         run_time: float = 1,
         feed_forward_dropout: float = 0.0,
         **kwargs: Any,
-    ) -> list[Any]:
+    ) -> AnimationGroup:
         """Animation for passing information from one :class:`~manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer` to the next.
 
         Parameters
@@ -170,8 +170,8 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         -------
             A list of the results.
         """
-        path_animations = []
-        dots = []
+        path_animations: list[Any] = []
+        dots: list[Dot] = []
         for edge_index, edge in enumerate(self.edges):
             if (
                 not "edge_indices_to_dropout" in layer_args
@@ -185,6 +185,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
                 # Add to dots group
                 dots.append(dot)
                 # Make the animation
+                anim: Animation
                 if self.passing_flash:
                     copy_edge = edge.copy()
                     anim = ShowPassingFlash(
@@ -197,12 +198,10 @@ class FeedForwardToFeedForward(ConnectiveLayer):
                 path_animations.append(anim)
 
         if not self.passing_flash:
-            dots = VGroup(*dots)
-            self.add(dots)
+            dots_group = VGroup(*dots)
+            self.add(dots_group)
 
-        path_animations = AnimationGroup(*path_animations)
-
-        return path_animations
+        return AnimationGroup(*path_animations)
 
     def modify_edge_colors(
         self,
@@ -269,16 +268,15 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         """
         assert len(widths) > 0
         # Note: 1d-arrays are assumed to be in row major order
-        widths = np.array(widths)
-        widths = cast(Any, widths).flatten()
+        widths_array = cast(Any, np.array(widths)).flatten()
         # Check thickness size
-        assert np.shape(widths)[0] == len(self.edges)
+        assert np.shape(widths_array)[0] == len(self.edges)
         # Make animation
-        animations = []
+        animations: list[Any] = []
 
         for index, edge in enumerate(self.edges):
-            width = widths[index]
-            change_width = edge.animate.set_stroke_width(width)
+            width = widths_array[index]
+            change_width = cast(Animation, edge.animate.set_stroke_width(width))
             animations.append(change_width)
 
         animation_group = AnimationGroup(*animations)

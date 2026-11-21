@@ -344,7 +344,7 @@ class BlankConnective(ConnectiveLayer):
         output_layer: NeuralNetworkLayer,
         **kwargs: Any,
     ) -> None:
-        super().__init__(input_layer, output_layer, **kwargs)
+        super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
 
     def make_forward_pass_animation(
         self, run_time: float = 1.5, layer_args: dict[Any, Any] = {}, **kwargs: Any

@@ -28,8 +28,8 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
         Forwarded to the parent layer classes.
     """
 
-    input_class = Convolutional2DLayer
-    output_class = FeedForwardLayer
+    input_class: Any = Convolutional2DLayer
+    output_class: Any = FeedForwardLayer
 
     def __init__(
         self,
@@ -38,7 +38,7 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
         passing_flash_color: ManimColor = ORANGE,
         **kwargs: Any,
     ) -> None:
-        super().__init__(input_layer, output_layer, **kwargs)
+        super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
         self.passing_flash_color = passing_flash_color
 
     def construct_layer(
@@ -58,7 +58,8 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
         **kwargs
             Forwarded to the parent layer classes.
         """
-        return super().construct_layer(input_layer, output_layer, **kwargs)
+        super().construct_layer(input_layer, output_layer, **kwargs)
+        return None
 
     def make_forward_pass_animation(
         self, layer_args: dict[Any, Any] = {}, run_time: float = 1.5, **kwargs: Any
@@ -81,9 +82,9 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
         """
         animations = []
         # Get input layer final feature map
-        final_feature_map = self.input_layer.feature_maps[-1]
+        final_feature_map = cast(Any, self.input_layer).feature_maps[-1]
         # Get output layer nodes
-        feed_forward_nodes = self.output_layer.node_group
+        feed_forward_nodes = cast(Any, self.output_layer).node_group
         # Go through each corner
         corners = final_feature_map.get_corners_dict().values()
         for corner in corners:

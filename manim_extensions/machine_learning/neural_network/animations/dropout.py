@@ -8,9 +8,12 @@ feed forward layers of a neural network.
 """
 
 from __future__ import annotations
-from typing import TYPE_CHECKING
+
+import numpy as np
+from typing import TYPE_CHECKING, Any, cast
 
 from manim import (
+    Animation,
     AnimationGroup,
     Create,
     FadeIn,
@@ -58,16 +61,16 @@ class XMark(VGroup):
     def __init__(self, stroke_width: float = 1.0, color: ManimColor = GRAY) -> None:
         super().__init__()
         line_one = Line(
-            [-0.1, 0.1, 0],
-            [0.1, -0.1, 0],
+            np.array([-0.1, 0.1, 0]),
+            np.array([0.1, -0.1, 0]),
             stroke_width=1.0,
             stroke_color=color,
             z_index=4,
         )
         self.add(line_one)
         line_two = Line(
-            [-0.1, -0.1, 0],
-            [0.1, 0.1, 0],
+            np.array([-0.1, -0.1, 0]),
+            np.array([0.1, 0.1, 0]),
             stroke_width=1.0,
             stroke_color=color,
             z_index=4,
@@ -78,7 +81,7 @@ class XMark(VGroup):
 def get_edges_to_drop_out(
     layer: FeedForwardToFeedForward,
     layers_to_nodes_to_drop_out: dict[FeedForwardLayer, list[int]],
-) -> tuple:
+) -> tuple[list[Line], list[int]]:
     """Returns edges to drop out for a given :class:`~manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward.FeedForwardToFeedForward` layer.
 
     Parameters
@@ -93,14 +96,14 @@ def get_edges_to_drop_out(
     -------
         A tuple of the results.
     """
-    prev_layer = layer.input_layer
-    next_layer = layer.output_layer
+    prev_layer = cast(FeedForwardLayer, layer.input_layer)
+    next_layer = cast(FeedForwardLayer, layer.output_layer)
     # Get the nodes to dropout in previous layer
     prev_layer_nodes_to_dropout = layers_to_nodes_to_drop_out[prev_layer]
     next_layer_nodes_to_dropout = layers_to_nodes_to_drop_out[next_layer]
     # Compute the edges to dropout
-    edges_to_dropout = []
-    edge_indices_to_dropout = []
+    edges_to_dropout: list[Line] = []
+    edge_indices_to_dropout: list[int] = []
     for edge_index, edge in enumerate(layer.edges):
         prev_node_index = int(edge_index / next_layer.num_nodes)
         next_node_index = edge_index % next_layer.num_nodes
@@ -109,7 +112,7 @@ def get_edges_to_drop_out(
             prev_node_index in prev_layer_nodes_to_dropout
             or next_node_index in next_layer_nodes_to_dropout
         ):
-            edges_to_dropout.append(edge)
+            edges_to_dropout.append(cast(Line, edge))
             edge_indices_to_dropout.append(edge_index)
 
     return edges_to_dropout, edge_indices_to_dropout
@@ -120,7 +123,7 @@ def make_pre_dropout_animation(
     layers_to_nodes_to_drop_out: dict[FeedForwardLayer, list[int]],
     dropped_out_color: ManimColor = GRAY,
     dropped_out_opacity: float = 0.2,
-) -> tuple:
+) -> tuple[AnimationGroup, list[XMark]]:
     """Makes an animation that sets up the NN layer for dropout.
 
     Parameters
@@ -139,7 +142,7 @@ def make_pre_dropout_animation(
     -------
         A tuple of the results.
     """
-    animations = []
+    animations: list[Animation] = []
     # Go through the network and get the FeedForwardLayer instances
     feed_forward_layers = neural_network.filter_layers(
         lambda layer: isinstance(layer, FeedForwardLayer)
@@ -149,13 +152,13 @@ def make_pre_dropout_animation(
         lambda layer: isinstance(layer, FeedForwardToFeedForward)
     )
     # Get the edges to drop out
-    layers_to_edges_to_dropout = {}
+    layers_to_edges_to_dropout: dict[FeedForwardLayer, list[Line]] = {}
     for layer in feed_forward_to_feed_forward_layers:
         layers_to_edges_to_dropout[layer], _ = get_edges_to_drop_out(
             layer, layers_to_nodes_to_drop_out
         )
     # Dim the colors of the edges
-    dim_edge_colors_animations = []
+    dim_edge_colors_animations: list[Animation] = []
     for layer in layers_to_edges_to_dropout.keys():
         edges_to_drop_out = layers_to_edges_to_dropout[layer]
         # Make color dimming animation
@@ -178,8 +181,8 @@ def make_pre_dropout_animation(
         *dim_edge_colors_animations, lag_ratio=0.0
     )
     # Dim the colors of the nodes
-    dim_nodes_animations = []
-    x_marks = []
+    dim_nodes_animations: list[Animation] = []
+    x_marks: list[XMark] = []
     for layer in layers_to_nodes_to_drop_out.keys():
         nodes_to_dropout = layers_to_nodes_to_drop_out[layer]
         # Make an X over each node
@@ -232,20 +235,20 @@ def make_post_dropout_animation(
         lambda layer: isinstance(layer, FeedForwardToFeedForward)
     )
     # Get the edges to drop out
-    layers_to_edges_to_dropout = {}
+    layers_to_edges_to_dropout: dict[FeedForwardLayer, list[Line]] = {}
     for layer in feed_forward_to_feed_forward_layers:
         layers_to_edges_to_dropout[layer], _ = get_edges_to_drop_out(
             layer, layers_to_nodes_to_drop_out
         )
     # Remove the x marks
-    uncreate_animations = []
+    uncreate_animations: list[Animation] = []
     for x_mark in x_marks:
         uncreate_x_mark = Uncreate(x_mark)
         uncreate_animations.append(uncreate_x_mark)
 
     uncreate_x_marks = AnimationGroup(*uncreate_animations, lag_ratio=0.0)
     # Add the edges back
-    create_edge_animations = []
+    create_edge_animations: list[Animation] = []
     for layer in layers_to_edges_to_dropout.keys():
         edges_to_drop_out = layers_to_edges_to_dropout[layer]
         # Make color dimming animation
@@ -277,7 +280,7 @@ def make_forward_pass_with_dropout_animation(
     -------
         The forward pass animation with dropout.
     """
-    layer_args = {}
+    layer_args: dict[Any, Any] = {}
     # Go through the network and get the FeedForwardLayer instances
     feed_forward_layers = neural_network.filter_layers(
         lambda layer: isinstance(layer, FeedForwardLayer)
@@ -293,7 +296,9 @@ def make_forward_pass_with_dropout_animation(
         _, edge_indices = get_edges_to_drop_out(layer, layers_to_nodes_to_drop_out)
         layer_args[layer] = {"edge_indices_to_dropout": edge_indices}
 
-    return neural_network.make_forward_pass_animation(layer_args=layer_args)
+    return cast(
+        Succession, neural_network.make_forward_pass_animation(layer_args=layer_args)
+    )
 
 
 def make_neural_network_dropout_animation(
@@ -362,6 +367,7 @@ def make_neural_network_dropout_animation(
     pre_dropout_animation, x_marks = make_pre_dropout_animation(
         neural_network, layers_to_nodes_to_drop_out
     )
+    forward_pass_animation: Animation
     if do_forward_pass:
         forward_pass_animation = make_forward_pass_with_dropout_animation(
             neural_network, layers_to_nodes_to_drop_out

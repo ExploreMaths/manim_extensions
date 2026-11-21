@@ -163,7 +163,7 @@ class LeafNode(Group):
         # Get image
         image_path = self.class_image_paths[class_index]
         pil_image = Image.open(image_path)
-        node = ImageMobject(pil_image)
+        node = ImageMobject(cast(Any, pil_image))
         node.scale(1.5)
         rectangle = Rectangle(
             width=node.width + 0.05,
@@ -172,7 +172,7 @@ class LeafNode(Group):
             stroke_width=6,
         )
         rectangle.move_to(node.get_center())
-        rectangle.shift([-0.02, 0.02, 0])
+        rectangle.shift(np.array([-0.02, 0.02, 0]))
         self.add(rectangle)
         self.add(node)
 
@@ -283,7 +283,7 @@ class DecisionTreeDiagram(Group):
         self.tree = sklearn_tree
         self.feature_names = feature_names
         self.class_names = class_names
-        self.class_image_paths = class_images_paths
+        self.class_image_paths: list[str] = class_images_paths or []
         self.class_colors = class_colors
         # Make graph container for the tree
         self.tree_group, self.nodes_map, self.edge_map = self._make_tree()
@@ -310,13 +310,15 @@ class DecisionTreeDiagram(Group):
         if is_split_node:
             node_feature = cast(Any, self.tree).feature[node_index]
             node_threshold = cast(Any, self.tree).threshold[node_index]
-            node = SplitNode(self.feature_names[node_feature], node_threshold)
+            node: SplitNode | LeafNode = SplitNode(
+                cast(list[str], self.feature_names)[node_feature], node_threshold
+            )
         else:
             # Get the most abundant class for the given leaf node
             # Make the leaf node object
             tree_class_index = np.argmax(cast(Any, self.tree).value[node_index])
             node = LeafNode(
-                class_index=tree_class_index,
+                class_index=int(tree_class_index),
                 class_colors=self.class_colors,
                 class_image_paths=self.class_image_paths,
                 class_names=self.class_names,
@@ -351,7 +353,9 @@ class DecisionTreeDiagram(Group):
 
         return line
 
-    def _make_tree(self) -> tuple[Group, dict[int, Mobject], dict[str, Line]]:
+    def _make_tree(
+        self,
+    ) -> tuple[Group, dict[int, SplitNode | LeafNode], dict[str, Line]]:
         """Construct the tree diagram.
 
         Returns
@@ -400,7 +404,7 @@ class DecisionTreeDiagram(Group):
                 -((parent_object.height + node_height) / 2 + 0.3) * scale_factor
             )
             node_object.match_x(parent_object).match_y(parent_object).shift(
-                [shift_right_amount, shift_down_amount, 0]
+                np.array([shift_right_amount, shift_down_amount, 0])
             )
             tree_group.add(node_object)
             # make a connection
@@ -460,7 +464,7 @@ class DecisionTreeDiagram(Group):
 
     def _make_expansion_animations(
         self, node_expand_order: list[int]
-    ) -> tuple[list, dict]:
+    ) -> tuple[list[Any], dict[Any, Any]]:
         """Build the animations that expand the tree in the given node order.
 
         Every split node starts as a placeholder leaf node showing its
@@ -477,8 +481,8 @@ class DecisionTreeDiagram(Group):
             ``(animations, split_node_animations)`` — the list of animations
             and a mapping from each split node index to its split animation.
         """
-        animations = []
-        split_node_animations = {}
+        animations: list[Any] = []
+        split_node_animations: dict[Any, Any] = {}
         placeholder_class_nodes = {}
         # Show the root node as its dominant class first.
         root_class_index = int(np.argmax(cast(Any, self.tree).value[0]))
@@ -495,13 +499,13 @@ class DecisionTreeDiagram(Group):
                 # Leaf nodes are revealed when their parent split expands.
                 continue
             # Replace the placeholder class node with the split node.
-            split_animations = []
+            split_animations: list[Animation] = []
             placeholder_node = placeholder_class_nodes.pop(node_index, None)
             if placeholder_node is not None:
                 split_animations.append(FadeOut(placeholder_node))
             split_animations.append(FadeIn(self.nodes_map[node_index]))
             # Create the children and connect them to the split node.
-            children_animations = []
+            children_animations: list[Animation] = []
             for child_index in (left_child_index, right_child_index):
                 edge = self.edge_map[f"{node_index},{child_index}"]
                 child_left_index = self.tree.children_left[child_index]
@@ -553,7 +557,7 @@ class DecisionTreeDiagram(Group):
 
         return Succession(*animations, lag_ratio=1.0)
 
-    def create_bfs_expansion_decision_tree(self, tree: Mobject) -> tuple:
+    def create_bfs_expansion_decision_tree(self, tree: Mobject) -> tuple[Any, ...]:
         """Expands the tree using BFS.
 
         Parameters

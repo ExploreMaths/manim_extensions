@@ -124,8 +124,8 @@ def frames_comparison(
                 test_file_path = None
             real_test = _make_test_comparing_frames(
                 file_path=_control_data_path(
-                    test_file_path,
-                    module_name,
+                    cast(str, test_file_path),
+                    cast(str, module_name),
                     test_name_with_param,
                     setting_test,
                 ),
@@ -164,8 +164,8 @@ def frames_comparison(
     # Case where the decorator is called with and without parentheses.
     # If func is None, callabl(None) returns False
     if callable(func):
-        return decorator_maker(func)
-    return decorator_maker
+        return cast(Callable[..., None], decorator_maker(func))
+    return cast(Callable[..., None], decorator_maker)
 
 
 def _make_test_comparing_frames(
@@ -178,7 +178,7 @@ def _make_test_comparing_frames(
     is_set_test_data_test: bool,
     last_frame: bool,
     show_diff: bool,
-    size_frame: tuple,
+    size_frame: tuple[int, int],
 ) -> Callable[[], None]:
     """Create the real pytest test that will fail if the frames mismatch.
 
@@ -207,7 +207,7 @@ def _make_test_comparing_frames(
     """
 
     if is_set_test_data_test:
-        frames_tester = _ControlDataWriter(file_path, size_frame=size_frame)
+        frames_tester: Any = _ControlDataWriter(file_path, size_frame=size_frame)
     else:
         frames_tester = _FramesTester(file_path, show_diff=show_diff)
 

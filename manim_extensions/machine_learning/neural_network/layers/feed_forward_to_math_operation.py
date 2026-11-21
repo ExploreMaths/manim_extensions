@@ -5,9 +5,9 @@
 """Feed-forward to math operation layer connection visualization."""
 
 from __future__ import annotations
-from typing import Any
+from typing import Any, cast
 
-from manim import ManimColor, Mobject, ORANGE, ShowPassingFlash
+from manim import ManimColor, ORANGE, ShowPassingFlash
 from .feed_forward import FeedForwardLayer
 from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
 from .math_operation_layer import MathOperationLayer
@@ -34,13 +34,13 @@ class FeedForwardToMathOperation(ConnectiveLayer):
 
     def __init__(
         self,
-        input_layer: Mobject,
-        output_layer: Mobject,
+        input_layer: FeedForwardLayer,
+        output_layer: MathOperationLayer,
         active_color: ManimColor = ORANGE,
         **kwargs: Any,
     ) -> None:
         self.active_color = active_color
-        super().__init__(input_layer, output_layer, **kwargs)
+        super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
 
     def construct_layer(
         self,
@@ -66,7 +66,8 @@ class FeedForwardToMathOperation(ConnectiveLayer):
         )
         self.add(self.connection)
 
-        return super().construct_layer(input_layer, output_layer, **kwargs)
+        super().construct_layer(input_layer, output_layer, **kwargs)
+        return None
 
     def make_forward_pass_animation(
         self, layer_args: dict[Any, Any] = {}, **kwargs: Any

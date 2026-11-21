@@ -8,6 +8,8 @@ This module provides the feed forward layer class for neural network visualizati
 """
 
 from __future__ import annotations
+
+import numpy as np
 from typing import Any, cast
 
 from manim import (
@@ -162,9 +164,9 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             self.node_group.add(node_object)
         # Space the nodes
         # Assumes Vertical orientation
-        for node_index, node_object in enumerate(self.node_group):
+        for node_index, node in enumerate(self.node_group):
             location = node_index * self.node_spacing
-            node_object.move_to([0, location, 0])
+            node.move_to(np.array([0, location, 0]))
         # Create Surrounding Rectangle
         self.surrounding_rectangle = SurroundingRectangle(
             self.node_group,
@@ -227,17 +229,19 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
         for index, node in enumerate(self.node_group):
             if not index in dropout_node_indices:
                 nodes_to_highlight.append(node)
-        nodes_to_highlight = VGroup(*nodes_to_highlight)
+        nodes_to_highlight_group = VGroup(*nodes_to_highlight)
         # Make highlight animation
         succession = Succession(
             ApplyMethod(
-                cast(Any, nodes_to_highlight).set_color,
+                cast(Any, nodes_to_highlight_group).set_color,
                 self.animation_dot_color,
                 run_time=0.25,
             ),
             Wait(1.0),
             ApplyMethod(
-                cast(Any, nodes_to_highlight).set_color, self.node_color, run_time=0.25
+                cast(Any, nodes_to_highlight_group).set_color,
+                self.node_color,
+                run_time=0.25,
             ),
         )
 
@@ -278,7 +282,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             if not self.activation_function is None:
                 animation_group = AnimationGroup(
                     succession,
-                    self.activation_function.make_evaluate_animation(),
+                    cast(Any, self.activation_function).make_evaluate_animation(),
                     lag_ratio=0.0,
                 )
                 return animation_group
@@ -340,7 +344,12 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             The rightmost point of the surrounding shape."""
         return self.surrounding_rectangle.get_right()
 
-    def move_to(self, mobject_or_point: Mobject) -> Any:
+    def move_to(
+        self,
+        mobject_or_point: Any,
+        aligned_edge: Any = None,
+        coor_mask: Any = None,
+    ) -> Any:
         """Moves the center of the layer to the given mobject or point.
 
         Parameters

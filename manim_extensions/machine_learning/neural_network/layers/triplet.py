@@ -6,7 +6,7 @@
 """Triplet layer visualization for neural networks."""
 
 from __future__ import annotations
-from typing import Any
+from typing import Any, cast
 
 from manim import (
     Animation,
@@ -18,7 +18,6 @@ from manim import (
     Group,
     ImageMobject,
     RED,
-    VGroup,
     WHITE,
     override_animation,
 )
@@ -49,9 +48,9 @@ class TripletLayer(NeuralNetworkLayer):
 
     def __init__(
         self,
-        anchor: VGroup,
-        positive: VGroup,
-        negative: VGroup,
+        anchor: Any,
+        positive: Any,
+        negative: Any,
         stroke_width: float = 5,
         font_size: float = 22,
         buff: float = 0.2,
@@ -125,6 +124,9 @@ class TripletLayer(NeuralNetworkLayer):
             The layer built from the supplied image paths.
         """
         # Load images from path
+        anchor: Any
+        positive: Any
+        negative: Any
         if grayscale:
             anchor = GrayscaleImageMobject.from_path(anchor_path)
             positive = GrayscaleImageMobject.from_path(positive_path)
@@ -147,7 +149,7 @@ class TripletLayer(NeuralNetworkLayer):
             A :class:`~manim.mobject.mobject.Group` instance representing the result."""
         # Handle anchor
         anchor_group = LabeledColorImage(
-            self.anchor,
+            cast(Any, self.anchor),
             color=WHITE,
             label="Anchor",
             stroke_width=self.stroke_width,
@@ -156,7 +158,7 @@ class TripletLayer(NeuralNetworkLayer):
         )
         # Handle positive
         positive_group = LabeledColorImage(
-            self.positive,
+            cast(Any, self.positive),
             color=GREEN,
             label="Positive",
             stroke_width=self.stroke_width,
@@ -165,7 +167,7 @@ class TripletLayer(NeuralNetworkLayer):
         )
         # Handle negative
         negative_group = LabeledColorImage(
-            self.negative,
+            cast(Any, self.negative),
             color=RED,
             label="Negative",
             stroke_width=self.stroke_width,

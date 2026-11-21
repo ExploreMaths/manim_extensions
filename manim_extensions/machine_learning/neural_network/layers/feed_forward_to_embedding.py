@@ -5,7 +5,7 @@
 """Feed-forward to embedding layer connection visualization."""
 
 from __future__ import annotations
-from typing import Any
+from typing import Any, cast
 
 from manim import (
     Animation,
@@ -14,7 +14,6 @@ from manim import (
     Dot,
     FadeOut,
     ManimColor,
-    Mobject,
     RED,
     Succession,
     VGroup,
@@ -48,13 +47,13 @@ class FeedForwardToEmbedding(ConnectiveLayer):
 
     def __init__(
         self,
-        input_layer: Mobject,
-        output_layer: Mobject,
+        input_layer: FeedForwardLayer,
+        output_layer: EmbeddingLayer,
         animation_dot_color: ManimColor = RED,
         dot_radius: float = 0.03,
         **kwargs: Any,
     ) -> None:
-        super().__init__(input_layer, output_layer, **kwargs)
+        super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
         self.feed_forward_layer = input_layer
         self.embedding_layer = output_layer
         self.animation_dot_color = animation_dot_color
@@ -77,7 +76,8 @@ class FeedForwardToEmbedding(ConnectiveLayer):
         **kwargs
             Forwarded to the parent layer classes.
         """
-        return super().construct_layer(input_layer, output_layer, **kwargs)
+        super().construct_layer(input_layer, output_layer, **kwargs)
+        return None
 
     def make_forward_pass_animation(
         self, layer_args: dict[Any, Any] = {}, run_time: float = 1.5, **kwargs: Any
@@ -102,9 +102,9 @@ class FeedForwardToEmbedding(ConnectiveLayer):
         location = self.embedding_layer.sample_point_location_from_distribution()
         # Set the embedding layer latent distribution
         # Move to location
-        animations = []
+        animations: list[Any] = []
         # Move the dots to the centers of each of the nodes in the FeedForwardLayer
-        dots = []
+        dots: list[Dot] = []
         for node in self.feed_forward_layer.node_group:
             new_dot = Dot(
                 node.get_center(),
@@ -113,20 +113,22 @@ class FeedForwardToEmbedding(ConnectiveLayer):
             )
             per_node_succession = Succession(
                 Create(new_dot),
-                new_dot.animate.move_to(location),
+                cast(Animation, new_dot.animate.move_to(location)),
             )
             animations.append(per_node_succession)
             dots.append(new_dot)
         self.dots = VGroup(*dots)
         self.add(self.dots)
         # Follow up with remove animations
-        remove_animations = []
+        remove_animations: list[Any] = []
         for dot in dots:
             remove_animations.append(FadeOut(dot))
         self.remove(self.dots)
-        remove_animations = AnimationGroup(*remove_animations, run_time=0.2)
-        animations = AnimationGroup(*animations)
-        animation_group = Succession(animations, remove_animations, lag_ratio=1.0)
+        remove_animations_group = AnimationGroup(*remove_animations, run_time=0.2)
+        animations_group = AnimationGroup(*animations)
+        animation_group = Succession(
+            animations_group, remove_animations_group, lag_ratio=1.0
+        )
 
         return animation_group
 

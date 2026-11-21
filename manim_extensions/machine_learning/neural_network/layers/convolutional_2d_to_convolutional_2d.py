@@ -438,8 +438,8 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
         Forwarded to the parent layer classes.
     """
 
-    input_class = Convolutional2DLayer
-    output_class = Convolutional2DLayer
+    input_class: Any = Convolutional2DLayer
+    output_class: Any = Convolutional2DLayer
 
     def __init__(
         self,

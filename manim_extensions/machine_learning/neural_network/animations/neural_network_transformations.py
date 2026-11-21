@@ -7,9 +7,18 @@ Transformations for manipulating a neural network object.
 """
 
 from __future__ import annotations
-from typing import Any, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING, cast
 
-from manim import AnimationGroup, Create, FadeOut, Group, Mobject, UpdateFromFunc, np
+import numpy as np
+from manim import (
+    Animation,
+    AnimationGroup,
+    Create,
+    FadeOut,
+    Group,
+    Mobject,
+    UpdateFromFunc,
+)
 from ..layers.util import get_connective_layer
 
 if TYPE_CHECKING:
@@ -82,7 +91,7 @@ class RemoveLayer(AnimationGroup):
 
         super().__init__(*animations_list, lag_ratio=1.0)
 
-    def get_connective_layers(self) -> tuple:
+    def get_connective_layers(self) -> tuple[Any, ...]:
         """Gets the connective layers before and after self.layer.
 
         Returns
@@ -149,11 +158,11 @@ class RemoveLayer(AnimationGroup):
             A :class:`~manim.animation.composition.AnimationGroup` instance representing the result.
         """
         # Fade out the removed connective layers
-        fade_out_before_connective = AnimationGroup()
+        fade_out_before_connective: Animation = AnimationGroup()
         if not self.before_connective is None:
             self.neural_network.all_layers.remove(self.before_connective)
             fade_out_before_connective = FadeOut(self.before_connective)
-        fade_out_after_connective = AnimationGroup()
+        fade_out_after_connective: Animation = AnimationGroup()
         if not self.after_connective is None:
             self.neural_network.all_layers.remove(self.after_connective)
             fade_out_after_connective = FadeOut(self.after_connective)
@@ -172,8 +181,8 @@ class RemoveLayer(AnimationGroup):
             A :class:`~manim.animation.composition.AnimationGroup` instance representing the result.
         """
         # Animate the movements
-        move_before_layers = AnimationGroup()
-        shift_right_amount = None
+        move_before_layers: Animation = AnimationGroup()
+        shift_right_amount: Any = None
         if not self.before_layer is None:
             # Compute shift amount
             layer_dist = np.abs(
@@ -187,9 +196,11 @@ class RemoveLayer(AnimationGroup):
             layers_before = Group(
                 *self.neural_network.all_layers[: before_layer_index + 1]
             )
-            move_before_layers = layers_before.animate.shift(shift_right_amount)
-        move_after_layers = AnimationGroup()
-        shift_left_amount = None
+            move_before_layers = cast(
+                Animation, layers_before.animate.shift(shift_right_amount)
+            )
+        move_after_layers: Animation = AnimationGroup()
+        shift_left_amount: Any = None
         if not self.after_layer is None:
             layer_dist = np.abs(self.after_layer.get_left() - self.layer.get_center())[
                 0
@@ -200,7 +211,9 @@ class RemoveLayer(AnimationGroup):
                 self.after_layer
             )
             layers_after = Group(*self.neural_network.all_layers[after_layer_index:])
-            move_after_layers = layers_after.animate.shift(shift_left_amount)
+            move_after_layers = cast(
+                Animation, layers_after.animate.shift(shift_left_amount)
+            )
         # Group the move animations
         move_group = AnimationGroup(move_before_layers, move_after_layers)
 
@@ -236,7 +249,9 @@ class RemoveLayer(AnimationGroup):
                     )
                     print(neural_network)
 
-        update_func_anim = UpdateFromFunc(self.neural_network, create_new_connective)
+        update_func_anim = UpdateFromFunc(
+            self.neural_network, cast(Any, create_new_connective)
+        )
 
         return update_func_anim
 
@@ -312,7 +327,7 @@ class InsertLayer(AnimationGroup):
 
         super().__init__(*animations, lag_ratio=1.0)
 
-    def get_connective_layer_widths(self) -> tuple:
+    def get_connective_layer_widths(self) -> tuple[float, float]:
         """Gets the widths of the connective layers.
 
         Returns
@@ -327,15 +342,15 @@ class InsertLayer(AnimationGroup):
         if len(self.layers_after) > 0:
             after_connective = get_connective_layer(self.layer, self.layer_after)
         # Compute the widths
-        before_connective_width = 0
+        before_connective_width: float = 0
         if not before_connective is None:
             before_connective_width = before_connective.width
-        after_connective_width = 0
+        after_connective_width: float = 0
         if not after_connective is None:
             after_connective_width = after_connective.width
         return before_connective_width, after_connective_width
 
-    def remove_connective_layer_animation(self) -> tuple:
+    def remove_connective_layer_animation(self) -> tuple[Any, Animation]:
         """Removes the connective layer before the insertion index.
 
         Returns
@@ -367,7 +382,7 @@ class InsertLayer(AnimationGroup):
         if not self.old_connective_layer is None:
             old_connective_width = self.old_connective_layer.width
         # Before layer shift
-        before_shift_animation = AnimationGroup()
+        before_shift_animation: Animation = AnimationGroup()
         if len(self.layers_before) > 0:
             before_shift = np.array(
                 [
@@ -379,17 +394,19 @@ class InsertLayer(AnimationGroup):
                 ]
             )
             # Shift layers before
-            before_shift_animation = Group(*self.layers_before).animate.shift(
-                before_shift
+            before_shift_animation = cast(
+                Animation, Group(*self.layers_before).animate.shift(before_shift)
             )
         # After layer shift
-        after_shift_animation = AnimationGroup()
+        after_shift_animation: Animation = AnimationGroup()
         if len(self.layers_after) > 0:
             after_shift = np.array(
                 [self.layer.width / 2 + after_connective_width, 0, 0]
             )
             # Shift layers after
-            after_shift_animation = Group(*self.layers_after).animate.shift(after_shift)
+            after_shift_animation = cast(
+                Animation, Group(*self.layers_after).animate.shift(after_shift)
+            )
         # Make animation group
         shift_animations = AnimationGroup(before_shift_animation, after_shift_animation)
 
@@ -402,7 +419,7 @@ class InsertLayer(AnimationGroup):
         -------
             A :class:`~manim.animation.creation.Create` instance representing the result.
         """
-        return Create(self.layer)
+        return Create(cast(Any, self.layer))
 
     def make_create_connective_layers_animation(
         self, before_connective: Mobject | None, after_connective: Mobject | None
@@ -431,7 +448,7 @@ class InsertLayer(AnimationGroup):
         # Insert the layers
         # Make the animation
         animation_group = AnimationGroup(
-            Create(before_connective), Create(after_connective)
+            Create(cast(Any, before_connective)), Create(cast(Any, after_connective))
         )
 
         return animation_group

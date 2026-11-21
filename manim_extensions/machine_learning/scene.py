@@ -34,7 +34,7 @@ class ManimML3DScene(ThreeDScene):
     """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
-        super().__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)  # type: ignore[no-untyped-call]
 
     def play(self, *args: Any, **kwargs: Any) -> Any:
         """Override :meth:`~manim.scene.scene.Scene.play` for ML scenes.

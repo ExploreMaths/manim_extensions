@@ -55,7 +55,7 @@ class Convolutional2DToMaxPooling2D(ConnectiveLayer, ThreeDLayer):
         active_color: ManimColor = ORANGE,
         **kwargs: Any,
     ) -> None:
-        super().__init__(input_layer, output_layer, **kwargs)
+        super().__init__(cast(Any, input_layer), cast(Any, output_layer), **kwargs)
         self.active_color = active_color
 
     def construct_layer(

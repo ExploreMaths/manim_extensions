@@ -5,9 +5,10 @@
 """Embedding of a dataset in feature space together with a decision tree's areas."""
 
 from __future__ import annotations
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 from manim import (
+    Animation,
     AnimationGroup,
     Axes,
     BLUE,
@@ -28,7 +29,7 @@ from manim.typing import MatrixMN, VectorND
 from .decision_tree_surface import DecisionTreeSurface
 
 if TYPE_CHECKING:
-    from sklearn.tree import DecisionTreeClassifier
+    from sklearn.tree import DecisionTreeClassifier  # type: ignore[import-untyped]
 
     from .helpers import SklearnTree
 
@@ -90,7 +91,7 @@ class DecisionTreeEmbedding(VGroup):
         points: MatrixMN,
         classes: VectorND,
         axes: Axes | None = None,
-        class_colors: list | None = None,
+        class_colors: list[Any] | None = None,
         point_radius: float = 0.04,
     ) -> None:
         super().__init__()
@@ -215,7 +216,7 @@ class DecisionTreeEmbedding(VGroup):
             The reverse of
             :meth:`~manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding.create_override`.
         """
-        animations = [
+        animations: list[Animation] = [
             Uncreate(rectangle) for rectangle in self.surface.surface_rectangles
         ]
         animations.append(FadeIn(self.points_group, reverse=True))

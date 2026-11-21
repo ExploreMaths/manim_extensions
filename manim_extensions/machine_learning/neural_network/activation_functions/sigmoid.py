@@ -49,7 +49,7 @@ class SigmoidFunction(ActivationFunction):
     ) -> None:
         super().__init__(function_name, x_range, y_range)
 
-    def apply_function(self, x_val: float) -> float:
+    def apply_function(self, x_val: float) -> float:  # type: ignore[override]
         r"""Return :math:`\frac{1}{1 + e^{-x}}`, the sigmoid of the input value.
 
         Parameters
@@ -61,4 +61,4 @@ class SigmoidFunction(ActivationFunction):
         -------
             The :math:`\frac{1}{1 + e^{-x}}`, the sigmoid of the input value.
         """
-        return 1 / (1 + np.exp(-1 * x_val))
+        return float(1 / (1 + np.exp(-1 * x_val)))

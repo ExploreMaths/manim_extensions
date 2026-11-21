@@ -4,7 +4,7 @@
 
 """Image layer visualization for neural networks."""
 
-from typing import Any
+from typing import Any, cast
 
 from manim import (
     Animation,
@@ -12,7 +12,6 @@ from manim import (
     Create,
     FadeIn,
     ImageMobject,
-    Mobject,
     SurroundingRectangle,
     Wait,
     override_animation,
@@ -96,7 +95,10 @@ class ImageLayer(NeuralNetworkLayer):
         self.show_image_on_create = show_image_on_create
 
     def construct_layer(
-        self, input_layer: Mobject, output_layer: Mobject, **kwargs: Any
+        self,
+        input_layer: NeuralNetworkLayer,
+        output_layer: NeuralNetworkLayer,
+        **kwargs: Any,
     ) -> Any:
         """Construct layer method.
 
@@ -117,7 +119,7 @@ class ImageLayer(NeuralNetworkLayer):
         if len(np.shape(self.numpy_image)) == 2:
             # Assumed Grayscale
             self.num_channels = 1
-            self.image_mobject = GrayscaleImageMobject(
+            self.image_mobject: Any = GrayscaleImageMobject(
                 self.numpy_image, height=self.image_height
             )
         elif len(np.shape(self.numpy_image)) == 3:
@@ -204,7 +206,7 @@ class ImageLayer(NeuralNetworkLayer):
         Returns
         -------
             The rightmost point of the surrounding shape."""
-        return self.image_mobject.get_right()
+        return cast(Point3D, self.image_mobject.get_right())
 
     def scale(self, scale_factor: float, **kwargs: Any) -> Any:
         """Scales the image mobject.
@@ -224,20 +226,20 @@ class ImageLayer(NeuralNetworkLayer):
         """
         self.image_mobject.scale(scale_factor)
 
-    @property
+    @property  # type: ignore[misc]
     def width(self) -> float:
         """Return the width of the image mobject.
 
         Returns
         -------
             The width of the image mobject."""
-        return self.image_mobject.width
+        return float(self.image_mobject.width)
 
-    @property
+    @property  # type: ignore[misc]
     def height(self) -> float:
         """Return the height of the image mobject.
 
         Returns
         -------
             The height of the image mobject."""
-        return self.image_mobject.height
+        return float(self.image_mobject.height)

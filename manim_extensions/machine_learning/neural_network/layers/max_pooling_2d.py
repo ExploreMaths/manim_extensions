@@ -6,6 +6,8 @@
 """Max pooling 2D layer visualization for neural networks."""
 
 from __future__ import annotations
+
+import numpy as np
 from typing import Any, cast
 
 from manim import (
@@ -137,8 +139,9 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
                 The resulting value.
         """
         # Make the output feature maps
+        input_layer_any = cast(Any, input_layer)
         self.feature_maps = self._make_output_feature_maps(
-            input_layer.num_feature_maps, input_layer.feature_map_size
+            input_layer_any.num_feature_maps, input_layer_any.feature_map_size
         )
         self.add(self.feature_maps)
         self.rotate(
@@ -147,13 +150,13 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             axis=cast(Any, config).three_d_config.rotation_axis,
         )
         self.feature_map_size = (
-            input_layer.feature_map_size[0] / self.kernel_size,
-            input_layer.feature_map_size[1] / self.kernel_size,
+            input_layer_any.feature_map_size[0] / self.kernel_size,
+            input_layer_any.feature_map_size[1] / self.kernel_size,
         )
         super().construct_layer(input_layer, output_layer, **kwargs)
 
     def _make_output_feature_maps(
-        self, num_input_feature_maps: int, input_feature_map_size: int
+        self, num_input_feature_maps: int, input_feature_map_size: tuple[int, int]
     ) -> VGroup:
         """Build the output feature map rectangles.
 
@@ -177,21 +180,21 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
         feature_maps = []
         for filter_index in range(num_input_feature_maps):
             rectangle = GriddedRectangle(
-                color=self.color,
+                color=cast(Any, self.color),
                 height=output_feature_map_size[1] * self.cell_width,
                 width=output_feature_map_size[0] * self.cell_width,
-                fill_color=self.color,
+                fill_color=cast(Any, self.color),
                 fill_opacity=0.2,
-                stroke_color=self.color,
+                stroke_color=cast(Any, self.color),
                 stroke_width=self.stroke_width,
                 grid_xstep=self.cell_width,
                 grid_ystep=self.cell_width,
                 grid_stroke_width=self.stroke_width / 2,
-                grid_stroke_color=self.color,
+                grid_stroke_color=cast(Any, self.color),
                 show_grid_lines=self.show_grid_lines,
             )
             # Move the feature map
-            rectangle.move_to([0, 0, filter_index * self.filter_spacing])
+            rectangle.move_to(np.array([0, 0, filter_index * self.filter_spacing]))
             # rectangle.set_z_index(4)
             feature_maps.append(rectangle)
 
