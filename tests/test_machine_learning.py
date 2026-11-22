@@ -467,6 +467,18 @@ class TestThreeChannelImageForwardPass:
         )
         _assert_playable(nn.make_forward_pass_animation())
 
+    def test_float_rgb_image_is_converted_for_rendering(self):
+        # Manim passes the pixel array to Pillow during rendering, and Pillow
+        # rejects the float RGBA array that an unconverted float image yields.
+        layer = ImageLayer(np.zeros((16, 16, 3)), height=1.2)
+        layer.construct_layer(None, None)
+        assert layer.image_mobject.pixel_array.dtype == np.uint8
+
+    def test_normalized_float_rgb_image_is_rescaled(self):
+        layer = ImageLayer(np.ones((16, 16, 3)), height=1.2)
+        layer.construct_layer(None, None)
+        assert layer.image_mobject.pixel_array.max() == 255
+
 
 class TestDecisionTreeUnfoldAnimation:
     """The unfolded tree and its decision surface must build for every traversal."""

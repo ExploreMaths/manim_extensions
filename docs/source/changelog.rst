@@ -54,6 +54,14 @@ Added
 Fixed
 ~~~~~
 
+* Image layers and grayscale image mobjects convert floating-point pixel
+  arrays to ``uint8`` before handing them to Manim, so examples built from
+  ``np.zeros`` no longer fail under Pillow with
+  ``Cannot handle this data type: (1, 1, 4), <f8``.  Images normalized to
+  ``[0, 1]`` are rescaled to ``[0, 255]`` first.
+* ``validate-types`` installs the ``docs`` extra alongside ``all`` because
+  mypy analyses the Sphinx directive helper and needs ``sphinx`` and
+  ``jinja2`` stubs to import it.
 * Type aliases now refer to the configuration classes directly:
   ``SurfaceConfig`` and ``GraphSurfaceConfig`` are defined after their
   classes, so their source no longer needs quoted forward references.  Both

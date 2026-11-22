@@ -25,6 +25,33 @@ from PIL import Image
 from manim.typing import PixelArray
 
 
+def _as_uint8_image(numpy_image: PixelArray) -> PixelArray:
+    """Return image data as a ``uint8`` array suitable for Pillow.
+
+    Floating point images are commonly normalized to ``[0, 1]``; those are
+    rescaled to ``[0, 255]`` before conversion. Integer images are clipped to
+    the valid byte range.
+
+    Parameters
+    ----------
+    numpy_image
+        Image data in grayscale or RGB layout.
+
+    Returns
+    -------
+        The image data as a ``uint8`` array.
+    """
+    array = np.asarray(numpy_image)
+    if array.dtype == np.uint8:
+        return array
+    values = np.asarray(numpy_image, dtype=np.float64)
+    if np.issubdtype(array.dtype, np.floating) and array.size:
+        peak = float(np.nanmax(values))
+        if peak <= 1.0:
+            values = values * 255.0
+    return np.clip(values, 0, 255).astype(np.uint8)
+
+
 class GrayscaleImageMobject(Group):
     """Mobject for creating images in Manim from numpy arrays.
 
@@ -55,7 +82,7 @@ class GrayscaleImageMobject(Group):
         self.numpy_image = numpy_image
         assert len(np.shape(self.numpy_image)) == 2
 
-        input_image = self.numpy_image[None, :, :]
+        input_image = _as_uint8_image(self.numpy_image)[None, :, :]
         # Convert grayscale to rgb version of grayscale
         input_image = np.repeat(input_image, 3, axis=0)
         input_image = np.rollaxis(input_image, 0, start=3)

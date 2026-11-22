@@ -20,7 +20,7 @@ from manim import (
 import numpy as np
 from PIL import Image
 
-from ...utils.mobjects.image import GrayscaleImageMobject
+from ...utils.mobjects.image import GrayscaleImageMobject, _as_uint8_image
 from .parent_layers import NeuralNetworkLayer
 from manim.typing import PixelArray, Point3D
 
@@ -125,9 +125,9 @@ class ImageLayer(NeuralNetworkLayer):
         elif len(np.shape(self.numpy_image)) == 3:
             # Assumed RGB
             self.num_channels = 3
-            self.image_mobject = ImageMobject(self.numpy_image).scale_to_fit_height(
-                self.image_height
-            )
+            self.image_mobject = ImageMobject(
+                _as_uint8_image(self.numpy_image)
+            ).scale_to_fit_height(self.image_height)
         self.add(self.image_mobject)
         super().construct_layer(input_layer, output_layer, **kwargs)
 
