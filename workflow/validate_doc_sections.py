@@ -162,6 +162,10 @@ NON_RENDERABLE_BASES = {
 }
 
 MANIM_DIRECTIVE_RE = re.compile(r"^\s*\.\.\s+manim::\s+\S+", re.MULTILINE)
+# A bare ``pass`` statement inside example code is a placeholder, not a
+# demonstration.  It commonly comes from copying a ``class Foo(Base): pass``
+# skeleton that never exercises the documented class.
+PLACEHOLDER_PASS_RE = re.compile(r"^\s+pass\s*$", re.MULTILINE)
 PARAM_ENTRY_RE = re.compile(r"^(\*{0,2}[\w.]+)\s*:(?!:)\s*(.*)$")
 BARE_ENTRY_RE = re.compile(r"^(\*{0,2}[\w.]+)$")
 SECTION_UNDERLINE_RE = re.compile(r"^\s*-{3,}\s*$")
@@ -1377,6 +1381,38 @@ def check_file(filepath: Path) -> list:
                 }
             )
 
+    def check_placeholder_example_bodies(doc, qualname, lineno):
+        """Reject a bare ``pass`` statement inside an Examples section.
+
+        ``class Demo(Base): pass`` documents nothing: it neither exercises
+        the class nor produces a visible result. Examples must call the
+        documented API (or a concrete implementation) instead.
+        """
+        lines = doc.splitlines()
+        examples = None
+        for idx in range(len(lines) - 1):
+            if lines[idx].strip() == "Examples" and SECTION_UNDERLINE_RE.match(
+                lines[idx + 1].strip() or ""
+            ):
+                examples = idx
+                break
+        if examples is None:
+            return
+        for idx in range(examples + 2, len(lines)):
+            line = lines[idx]
+            if PLACEHOLDER_PASS_RE.match(line):
+                violations.append(
+                    {
+                        "line": lineno + idx,
+                        "qualname": qualname,
+                        "type": "PLACEHOLDER_EXAMPLE_PASS",
+                        "message": "Examples contain a bare 'pass' statement; "
+                        "replace the skeleton with real calls that demonstrate "
+                        "the documented class",
+                    }
+                )
+                return
+
     def check_examples_is_last(doc, qualname, lineno):
         """``Examples`` must be the last section of the docstring."""
         lines = doc.splitlines()
@@ -1428,6 +1464,7 @@ def check_file(filepath: Path) -> list:
         check_section_spacing(module_doc, "<module>", 1, violations)
         check_advisory_sections(module_doc, "<module>", 1)
         check_examples_is_last(module_doc, "<module>", 1)
+        check_placeholder_example_bodies(module_doc, "<module>", 1)
 
     def visit_body(body, prefix, in_class):
         for node in body:
@@ -1527,6 +1564,7 @@ def check_file(filepath: Path) -> list:
         check_section_order(doc, qualname, node.lineno)
         check_advisory_sections(doc, qualname, node.lineno)
         check_examples_is_last(doc, qualname, node.lineno)
+        check_placeholder_example_bodies(doc, qualname, node.lineno)
         check_manim_examples_in_examples(doc, qualname, node.lineno)
         if function_yields(node) and "Yields" not in secs:
             violations.append(
@@ -1621,6 +1659,7 @@ def check_file(filepath: Path) -> list:
         check_section_order(doc, qualname, node.lineno)
         check_advisory_sections(doc, qualname, node.lineno)
         check_examples_is_last(doc, qualname, node.lineno)
+        check_placeholder_example_bodies(doc, qualname, node.lineno)
         check_inline_sections(doc, qualname, node.lineno)
         check_description_style(doc, qualname, node.lineno, violations)
         check_description_indent(doc, qualname, node.lineno, violations)

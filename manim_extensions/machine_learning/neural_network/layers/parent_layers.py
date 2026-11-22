@@ -227,8 +227,12 @@ class ThreeDLayer(ABC):
 
     .. code-block:: python
 
-        class MyThreeDLayer(ThreeDLayer):
-            pass
+        from manim_extensions.machine_learning.neural_network.layers.convolutional_2d import Convolutional2DLayer
+        from manim_extensions.machine_learning.neural_network.layers.parent_layers import ThreeDLayer
+
+        layer = Convolutional2DLayer(1, 3)
+        assert isinstance(layer, ThreeDLayer)
+        layer.construct_layer(None, None)
     """
 
     pass

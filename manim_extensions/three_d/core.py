@@ -573,13 +573,13 @@ class GraphSurfaceScene(ThreeDScene):
     Examples
     --------
     .. manim:: GraphSurfaceDemo
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.three_d.core import GaussianSurfaceScene
 
        class GraphSurfaceDemo(GaussianSurfaceScene, pace="fast"):
-           pass
+           def construct(self):
+               super().construct()
     """
 
     style: SurfaceConfig | None = None
@@ -1145,13 +1145,13 @@ class GaussianSurfaceScene(GraphSurfaceScene):
     Examples
     --------
     .. manim:: GaussianSurfacePreview
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.three_d.core import GaussianSurfaceScene
 
        class GaussianSurfacePreview(GaussianSurfaceScene, pace="fast"):
-           pass
+           def construct(self):
+               super().construct()
     """
 
     config_cls = GaussianSurface
@@ -1287,13 +1287,13 @@ class SaddleSurfaceScene(GraphSurfaceScene):
     Examples
     --------
     .. manim:: SaddleSurfacePreview
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.three_d.core import SaddleSurfaceScene
 
        class SaddleSurfacePreview(SaddleSurfaceScene, pace="fast"):
-           pass
+           def construct(self):
+               super().construct()
     """
 
     config_cls = SaddleSurface
@@ -1439,13 +1439,13 @@ class ParaboloidSurfaceScene(GraphSurfaceScene):
     Examples
     --------
     .. manim:: ParaboloidSurfacePreview
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.three_d.core import ParaboloidSurfaceScene
 
        class ParaboloidSurfacePreview(ParaboloidSurfaceScene, pace="fast"):
-           pass
+           def construct(self):
+               super().construct()
     """
 
     config_cls = ParaboloidSurface
@@ -1554,13 +1554,13 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
     Examples
     --------
     .. manim:: EllipsoidSurfacePreview
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.three_d.core import EllipsoidSurfaceScene
 
        class EllipsoidSurfacePreview(EllipsoidSurfaceScene, pace="fast"):
-           pass
+           def construct(self):
+               super().construct()
     """
 
     uses_flat = False
@@ -1748,13 +1748,13 @@ class TorusSurfaceScene(GraphSurfaceScene):
     Examples
     --------
     .. manim:: TorusSurfacePreview
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.three_d.core import TorusSurfaceScene
 
        class TorusSurfacePreview(TorusSurfaceScene, pace="fast"):
-           pass
+           def construct(self):
+               super().construct()
     """
 
     uses_flat = False
@@ -1943,13 +1943,13 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
     Examples
     --------
     .. manim:: HyperboloidOneSheetPreview
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.three_d.core import HyperboloidOneSheetScene
 
        class HyperboloidOneSheetPreview(HyperboloidOneSheetScene, pace="fast"):
-           pass
+           def construct(self):
+               super().construct()
     """
 
     uses_flat = False

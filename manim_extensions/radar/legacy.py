@@ -128,13 +128,13 @@ class RadarV1Scene(Scene):
     Examples
     --------
     .. manim:: RadarV1Gallery
-       :save_last_frame:
 
        from manim import *
        from manim_extensions.radar.legacy import RadarV1Scene
 
        class RadarV1Gallery(RadarV1Scene):
-           pass
+           def construct(self):
+               super().construct()
     """
 
     style = "classic"

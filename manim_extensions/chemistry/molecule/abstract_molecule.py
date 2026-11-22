@@ -57,12 +57,13 @@ class AbstractMolecule:
 
     .. code-block:: python
 
+        from manim_extensions.chemistry import GraphMolecule
         from manim_extensions.chemistry.molecule.abstract_molecule import AbstractMolecule
 
-        class MyMolecule(AbstractMolecule):
-            pass
-
-        molecule = MyMolecule()
+        molecule = GraphMolecule.molecule_from_file("acetone_2d.mol")
+        assert isinstance(molecule, AbstractMolecule)
+        molecule.scale(1.5)
+        molecule.get_connected_atoms_v_group(1, 2)
     """
 
     group_class: Any = VGroup
