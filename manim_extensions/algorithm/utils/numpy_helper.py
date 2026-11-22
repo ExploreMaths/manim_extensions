@@ -16,6 +16,29 @@ class NumpyHelper:
 
     Examples
     --------
+    .. manim:: NumpyHelperOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.algorithm.utils.numpy_helper import NumpyHelper
+
+       NumpyHelperTarget = NumpyHelper
+
+       class NumpyHelperOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(NumpyHelperTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('NumpyHelper', font_size=36),
+                   Text('module: manim_extensions.algorithm.utils.numpy_helper', font_size=18, color=GREY),
+                   Text('Static helper methods for common NumPy vector operations', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         import numpy as np

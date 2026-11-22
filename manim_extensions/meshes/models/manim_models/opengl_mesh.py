@@ -55,6 +55,29 @@ class FastManimMesh(OpenGLMobject):
 
     Examples
     --------
+    .. manim:: FastManimMeshOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.meshes.models.manim_models.opengl_mesh import FastManimMesh
+
+       FastManimMeshTarget = FastManimMesh
+
+       class FastManimMeshOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(FastManimMeshTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('FastManimMesh', font_size=36),
+                   Text('module: manim_extensions.meshes.models.manim_models.opengl_mesh', font_size=18, color=GREY),
+                   Text('More efficient mesh implementation. Uses custom shaders and stores vertices and faces in a single VAO. Useful for rendering meshes with many vertices / faces. The underlying manim_extensions.meshes.models.data_models.mesh.Mesh can be updated through manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.set_mesh, manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.add_face, manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.remove_face and manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.update_vertex; every update rebuilds the shader arrays', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         from manim_extensions.meshes.models.manim_models.opengl_mesh import FastManimMesh

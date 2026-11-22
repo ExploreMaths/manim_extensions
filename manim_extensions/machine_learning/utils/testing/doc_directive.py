@@ -42,6 +42,29 @@ class SkipManimNode(nodes.Admonition, nodes.Element):
 
     Examples
     --------
+    .. manim:: SkipManimNodeOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.utils.testing.doc_directive import SkipManimNode
+
+       SkipManimNodeTarget = SkipManimNode
+
+       class SkipManimNodeOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(SkipManimNodeTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('SkipManimNode', font_size=36),
+                   Text('module: manim_extensions.machine_learning.utils.testing.doc_directive', font_size=18, color=GREY),
+                   Text('Auxiliary node class that is used when the skip-manim tag is present or .pot files are being built', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         # Internal docutils node used by the documentation extension.
@@ -115,13 +138,35 @@ def process_name_list(option_input: str, reference_type: str) -> list[str]:
 
 
 class ManimDirective(Directive):
-    r"""The manim directive, rendering videos while building
+    """The manim directive, rendering videos while building
     the documentation.
 
     See the module docstring for documentation.
 
     Examples
     --------
+    .. manim:: ManimDirectiveOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.utils.testing.doc_directive import ManimDirective
+
+       ManimDirectiveTarget = ManimDirective
+
+       class ManimDirectiveOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(ManimDirectiveTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('ManimDirective', font_size=36),
+                   Text('module: manim_extensions.machine_learning.utils.testing.doc_directive', font_size=18, color=GREY),
+                   Text('The manim directive, rendering videos while building the documentation', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
     .. code-block:: python
 
         # Internal docutils directive registered as ``.. manim::``.

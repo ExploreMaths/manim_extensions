@@ -27,6 +27,29 @@ class OpenGLSphere(OpenGLSurface):
 
     Examples
     --------
+    .. manim:: OpenGLSphereOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.threeD.utils import OpenGLSphere
+
+       OpenGLSphereTarget = OpenGLSphere
+
+       class OpenGLSphereOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(OpenGLSphereTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('OpenGLSphere', font_size=36),
+                   Text('module: manim_extensions.chemistry.threeD.utils', font_size=18, color=GREY),
+                   Text('A sphere rendered as an OpenGL surface', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         from manim_extensions.chemistry.threeD.utils import OpenGLSphere

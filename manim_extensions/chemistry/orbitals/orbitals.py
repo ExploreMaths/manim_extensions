@@ -29,8 +29,7 @@ else:
 
 
 class OrbitalBase(OpenGLSurface):
-    """
-    Base class for implementing atomic orbitals.
+    """Base class for implementing atomic orbitals.
     Not meant to be used directly even when you can.
 
     Parameters
@@ -57,6 +56,29 @@ class OrbitalBase(OpenGLSurface):
 
     Examples
     --------
+    .. manim:: OrbitalBaseOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.orbitals.orbitals import OrbitalBase
+
+       OrbitalBaseTarget = OrbitalBase
+
+       class OrbitalBaseOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(OrbitalBaseTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('OrbitalBase', font_size=36),
+                   Text('module: manim_extensions.chemistry.orbitals.orbitals', font_size=18, color=GREY),
+                   Text('Base class for implementing atomic orbitals. Not meant to be used directly even when you can', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         from manim_extensions.chemistry.orbitals.orbitals import OrbitalBase
@@ -176,11 +198,33 @@ class OrbitalBase(OpenGLSurface):
 
 
 class OrbitalPositive(OrbitalBase):
-    """
-    Calculates the positive values of the orbital.
+    """Calculates the positive values of the orbital.
 
     Examples
     --------
+    .. manim:: OrbitalPositiveOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.orbitals.orbitals import OrbitalPositive
+
+       OrbitalPositiveTarget = OrbitalPositive
+
+       class OrbitalPositiveOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(OrbitalPositiveTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('OrbitalPositive', font_size=36),
+                   Text('module: manim_extensions.chemistry.orbitals.orbitals', font_size=18, color=GREY),
+                   Text('Calculates the positive values of the orbital', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         from manim_extensions.chemistry.orbitals.orbitals import OrbitalPositive
@@ -210,11 +254,33 @@ class OrbitalPositive(OrbitalBase):
 
 
 class OrbitalNegative(OrbitalBase):
-    """
-    Calculates the negative values of the orbital.
+    """Calculates the negative values of the orbital.
 
     Examples
     --------
+    .. manim:: OrbitalNegativeOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.orbitals.orbitals import OrbitalNegative
+
+       OrbitalNegativeTarget = OrbitalNegative
+
+       class OrbitalNegativeOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(OrbitalNegativeTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('OrbitalNegative', font_size=36),
+                   Text('module: manim_extensions.chemistry.orbitals.orbitals', font_size=18, color=GREY),
+                   Text('Calculates the negative values of the orbital', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         from manim_extensions.chemistry.orbitals.orbitals import OrbitalNegative
@@ -244,8 +310,7 @@ class OrbitalNegative(OrbitalBase):
 
 
 class Orbital(OpenGLSurface):
-    """
-    Uses positive and negative orbitals to create
+    """Uses positive and negative orbitals to create
     an orbital. n value is still not implemented TODO
 
     .. important::
@@ -270,6 +335,29 @@ class Orbital(OpenGLSurface):
 
     Examples
     --------
+    .. manim:: OrbitalOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.orbitals.orbitals import Orbital
+
+       OrbitalTarget = Orbital
+
+       class OrbitalOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(OrbitalTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('Orbital', font_size=36),
+                   Text('module: manim_extensions.chemistry.orbitals.orbitals', font_size=18, color=GREY),
+                   Text('Uses positive and negative orbitals to create an orbital. n value is still not implemented TODO', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         from manim_extensions.chemistry.orbitals.orbitals import Orbital

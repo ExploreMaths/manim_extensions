@@ -56,6 +56,29 @@ class Theme:
 
     Examples
     --------
+    .. manim:: ThemeOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.code_blocks.manim_code_blocks import Theme
+
+       ThemeTarget = Theme
+
+       class ThemeOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(ThemeTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('Theme', font_size=36),
+                   Text('module: manim_extensions.code_blocks.manim_code_blocks', font_size=18, color=GREY),
+                   Text('A theme used to syntax highlight a manim_extensions.code_blocks.manim_code_blocks.CodeBlock', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         from manim_extensions.code_blocks.manim_code_blocks import Theme
@@ -148,6 +171,29 @@ class ProgrammingLanguage(abstract):
 
     Examples
     --------
+    .. manim:: ProgrammingLanguageOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.code_blocks.manim_code_blocks import ProgrammingLanguage
+
+       ProgrammingLanguageTarget = ProgrammingLanguage
+
+       class ProgrammingLanguageOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(ProgrammingLanguageTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('ProgrammingLanguage', font_size=36),
+                   Text('module: manim_extensions.code_blocks.manim_code_blocks', font_size=18, color=GREY),
+                   Text('A programming language used to render CodeBlocks', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         from manim_extensions.code_blocks.manim_code_blocks import ProgrammingLanguage

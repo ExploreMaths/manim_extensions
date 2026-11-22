@@ -28,6 +28,29 @@ class SDFParser(MolParser):
 
     Examples
     --------
+    .. manim:: SDFParserOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.utils.parsers.sdf_parser import SDFParser
+
+       SDFParserTarget = SDFParser
+
+       class SDFParserOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(SDFParserTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('SDFParser', font_size=36),
+                   Text('module: manim_extensions.chemistry.utils.parsers.sdf_parser', font_size=18, color=GREY),
+                   Text('Parses sdf files. The sdf format is very similar to the mol format. It only contains some extra lines. By modifying the read file and removing those extra lines we can use the logic already implemented in manim_extensions.chemistry.utils.parsers.mol_parser.MolParser', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. nbcell::
        :files: acetone_2d.sdf
 
@@ -39,7 +62,6 @@ class SDFParser(MolParser):
     .. nbcell::
 
        pprint(parsed_sdf.molecular_data[0][1])
-
     """
 
     @staticmethod

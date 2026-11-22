@@ -19,6 +19,29 @@ class SingletonLogger:
 
     Examples
     --------
+    .. manim:: SingletonLoggerOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.pymunk.utils.logger_tool import SingletonLogger
+
+       SingletonLoggerTarget = SingletonLogger
+
+       class SingletonLoggerOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(SingletonLoggerTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('SingletonLogger', font_size=36),
+                   Text('module: manim_extensions.pymunk.utils.logger_tool', font_size=18, color=GREY),
+                   Text('Thread-safe singleton logger that provides a single shared logging instance for the manim-pymunk module with a console handler', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         from manim_extensions.pymunk.utils.logger_tool import SingletonLogger

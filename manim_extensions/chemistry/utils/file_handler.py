@@ -30,6 +30,29 @@ class IncorrectFormat(Exception):
 
     Examples
     --------
+    .. manim:: IncorrectFormatOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.utils.file_handler import IncorrectFormat
+
+       IncorrectFormatTarget = IncorrectFormat
+
+       class IncorrectFormatOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(IncorrectFormatTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('IncorrectFormat', font_size=36),
+                   Text('module: manim_extensions.chemistry.utils.file_handler', font_size=18, color=GREY),
+                   Text('Raised when a file has an unsupported or unrecognized format', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         from manim_extensions.chemistry.utils.file_handler import FileHandler, IncorrectFormat
@@ -51,6 +74,29 @@ class FileHandler:
 
     Examples
     --------
+    .. manim:: FileHandlerOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.utils.file_handler import FileHandler
+
+       FileHandlerTarget = FileHandler
+
+       class FileHandlerOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(FileHandlerTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('FileHandler', font_size=36),
+                   Text('module: manim_extensions.chemistry.utils.file_handler', font_size=18, color=GREY),
+                   Text('Handles the parsing of chemistry files selecting the right parser', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         from manim_extensions.chemistry.utils.file_handler import FileHandler

@@ -39,6 +39,29 @@ class ASNTParser(BaseParser):
 
     Examples
     --------
+    .. manim:: ASNTParserOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.utils.parsers.asnt_parser import ASNTParser
+
+       ASNTParserTarget = ASNTParser
+
+       class ASNTParserOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(ASNTParserTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('ASNTParser', font_size=36),
+                   Text('module: manim_extensions.chemistry.utils.parsers.asnt_parser', font_size=18, color=GREY),
+                   Text('Parse ASNT chemical files', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. nbcell::
        :files: acetone_2d.asnt
 
@@ -50,7 +73,6 @@ class ASNTParser(BaseParser):
     .. nbcell::
 
        pprint(parsed_asnt.bonds_data)
-
     """
 
     @staticmethod

@@ -30,6 +30,29 @@ class Element:
 
     Examples
     --------
+    .. manim:: ElementOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.element.element import Element
+
+       ElementTarget = Element
+
+       class ElementOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(ElementTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('Element', font_size=36),
+                   Text('module: manim_extensions.chemistry.element.element', font_size=18, color=GREY),
+                   Text('Chemical element data', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         from manim_extensions.chemistry.element.element import Element
@@ -117,6 +140,29 @@ class GenericElement:
 
     Examples
     --------
+    .. manim:: GenericElementOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.element.element import GenericElement
+
+       GenericElementTarget = GenericElement
+
+       class GenericElementOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(GenericElementTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('GenericElement', font_size=36),
+                   Text('module: manim_extensions.chemistry.element.element', font_size=18, color=GREY),
+                   Text('Data for a chemical element (symbol, name, atomic number, mass, CPK color)', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         from manim_extensions.chemistry.element.element import C

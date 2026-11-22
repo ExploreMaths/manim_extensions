@@ -30,8 +30,7 @@ STEREO_TYPES = {
 
 
 class MCBond:
-    """
-    :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`: Abstraction of a bond in a molecule: Type of bond, from and to atoms.
+    """:class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`: Abstraction of a bond in a molecule: Type of bond, from and to atoms.
 
     Parameters
     ----------
@@ -52,6 +51,29 @@ class MCBond:
 
     Examples
     --------
+    .. manim:: MCBondOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.manim_chemistry_molecule.mc_bond import MCBond
+
+       MCBondTarget = MCBond
+
+       class MCBondOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(MCBondTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('MCBond', font_size=36),
+                   Text('module: manim_extensions.chemistry.manim_chemistry_molecule.mc_bond', font_size=18, color=GREY),
+                   Text('manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond: Abstraction of a bond in a molecule: Type of bond, from and to atoms', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         import numpy as np

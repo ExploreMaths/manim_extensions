@@ -55,6 +55,29 @@ class UpdateIndices(Protocol):
 
     Examples
     --------
+    .. manim:: UpdateIndicesOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.data_structures.m_array import UpdateIndices
+
+       UpdateIndicesTarget = UpdateIndices
+
+       class UpdateIndicesOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(UpdateIndicesTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('UpdateIndices', font_size=36),
+                   Text('module: manim_extensions.data_structures.m_array', font_size=18, color=GREY),
+                   Text('Callable protocol for the index-updating function returned by element removal', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         from manim_extensions.data_structures.m_array import UpdateIndices
@@ -1720,6 +1743,29 @@ class MArrayPointer(VGroup):
 
         Examples
         --------
+        .. manim:: MArrayPointerDirEntryOverview
+           :save_last_frame:
+
+           from manim import *
+           from manim_extensions.data_structures.m_array import MArrayPointer
+
+           MArrayPointerTarget = MArrayPointer.DirEntry
+
+           class MArrayPointerDirEntryOverview(Scene):
+               def construct(self):
+                   public = [n for n in dir(MArrayPointerTarget) if not n.startswith("_")]
+                   card = VGroup(
+                       Text('DirEntry', font_size=36),
+                       Text('module: manim_extensions.data_structures.m_array', font_size=18, color=GREY),
+                       Text('Vector and animation direction used when placing an array element', font_size=22),
+                       Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+                   ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+                   card.scale_to_fit_width(11.5).move_to(ORIGIN)
+                   frame = RoundedRectangle(
+                       width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+                   ).move_to(card)
+                   self.add(frame, card)
+
         .. code-block:: python
 
             entry = {"np": UP, "dir": MArrayDirection.UP}
@@ -2223,6 +2269,29 @@ class MArraySlidingWindow(VGroup):
 
         Examples
         --------
+        .. manim:: MArraySlidingWindowDirEntryOverview
+           :save_last_frame:
+
+           from manim import *
+           from manim_extensions.data_structures.m_array import MArraySlidingWindow
+
+           MArraySlidingWindowTarget = MArraySlidingWindow.DirEntry
+
+           class MArraySlidingWindowDirEntryOverview(Scene):
+               def construct(self):
+                   public = [n for n in dir(MArraySlidingWindowTarget) if not n.startswith("_")]
+                   card = VGroup(
+                       Text('DirEntry', font_size=36),
+                       Text('module: manim_extensions.data_structures.m_array', font_size=18, color=GREY),
+                       Text('Vector and animation direction used when placing an array element', font_size=22),
+                       Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+                   ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+                   card.scale_to_fit_width(11.5).move_to(ORIGIN)
+                   frame = RoundedRectangle(
+                       width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+                   ).move_to(card)
+                   self.add(frame, card)
+
         .. code-block:: python
 
             entry = {"np": DOWN, "dir": MArrayDirection.DOWN}

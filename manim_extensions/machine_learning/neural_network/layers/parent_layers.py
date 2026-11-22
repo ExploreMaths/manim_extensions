@@ -202,6 +202,29 @@ class ThreeDLayer(ABC):
 
     Examples
     --------
+    .. manim:: ThreeDLayerOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.neural_network.layers.parent_layers import ThreeDLayer
+
+       ThreeDLayerTarget = ThreeDLayer
+
+       class ThreeDLayerOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(ThreeDLayerTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('ThreeDLayer', font_size=36),
+                   Text('module: manim_extensions.machine_learning.neural_network.layers.parent_layers', font_size=18, color=GREY),
+                   Text('Abstract class for 3D layers', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         class MyThreeDLayer(ThreeDLayer):

@@ -78,8 +78,7 @@ def gaussian_proposal(x: VectorND, sigma: float = 0.3) -> tuple[VectorND, float]
 
 
 class MultidimensionalGaussianPosterior:
-    r"""
-    N-Dimensional Gaussian distribution with.
+    r"""N-Dimensional Gaussian distribution with.
 
     :math:`mu \sim \text{Normal}(0, 10)`
 
@@ -102,6 +101,29 @@ class MultidimensionalGaussianPosterior:
 
     Examples
     --------
+    .. manim:: MultidimensionalGaussianPosteriorOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.diffusion.mcmc import MultidimensionalGaussianPosterior
+
+       MultidimensionalGaussianPosteriorTarget = MultidimensionalGaussianPosterior
+
+       class MultidimensionalGaussianPosteriorOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(MultidimensionalGaussianPosteriorTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('MultidimensionalGaussianPosterior', font_size=36),
+                   Text('module: manim_extensions.machine_learning.diffusion.mcmc', font_size=18, color=GREY),
+                   Text('N-Dimensional Gaussian distribution with', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         from manim_extensions.machine_learning.diffusion.mcmc import MultidimensionalGaussianPosterior

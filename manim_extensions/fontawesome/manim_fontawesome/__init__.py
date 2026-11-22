@@ -58,6 +58,29 @@ class BrandEnum(Enum):
 
     Examples
     --------
+    .. manim:: BrandEnumOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.fontawesome.manim_fontawesome import BrandEnum
+
+       BrandEnumTarget = BrandEnum
+
+       class BrandEnumOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(BrandEnumTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('BrandEnum', font_size=36),
+                   Text('module: manim_extensions.fontawesome.manim_fontawesome', font_size=18, color=GREY),
+                   Text('Bundled brand-style icon paths', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         from manim_extensions.fontawesome.manim_fontawesome import BrandEnum
@@ -1041,6 +1064,29 @@ class RegularEnum(Enum):
 
     Examples
     --------
+    .. manim:: RegularEnumOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.fontawesome.manim_fontawesome import RegularEnum
+
+       RegularEnumTarget = RegularEnum
+
+       class RegularEnumOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(RegularEnumTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('RegularEnum', font_size=36),
+                   Text('module: manim_extensions.fontawesome.manim_fontawesome', font_size=18, color=GREY),
+                   Text('Bundled regular-style icon paths', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         from manim_extensions.fontawesome.manim_fontawesome import RegularEnum
@@ -1380,6 +1426,29 @@ class SolidEnum(Enum):
 
     Examples
     --------
+    .. manim:: SolidEnumOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.fontawesome.manim_fontawesome import SolidEnum
+
+       SolidEnumTarget = SolidEnum
+
+       class SolidEnumOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(SolidEnumTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('SolidEnum', font_size=36),
+                   Text('module: manim_extensions.fontawesome.manim_fontawesome', font_size=18, color=GREY),
+                   Text('Bundled solid-style icon paths', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         from manim_extensions.fontawesome.manim_fontawesome import SolidEnum

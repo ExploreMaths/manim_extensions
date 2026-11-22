@@ -13,11 +13,11 @@ from typing import Any
 
 #: ASCII-art banner printed by the interactive CLI.
 cli_logo = r"""
-  __  __          _   _ _____ __  __           _    _ _______ ____  __  __       _______          _____ _      _____ 
+  __  __          _   _ _____ __  __           _    _ _______ ____  __  __       _______          _____ _      _____
  |  \/  |   /\   | \ | |_   _|  \/  |     /\  | |  | |__   __/ __ \|  \/  |   /\|__   __|/\      / ____| |    |_   _|
- | \  / |  /  \  |  \| | | | | \  / |    /  \ | |  | |  | | | |  | | \  / |  /  \  | |  /  \    | |    | |      | |  
- | |\/| | / /\ \ | . ` | | | | |\/| |   / /\ \| |  | |  | | | |  | | |\/| | / /\ \ | | / /\ \   | |    | |      | |  
- | |  | |/ ____ \| |\  |_| |_| |  | |  / ____ \ |__| |  | | | |__| | |  | |/ ____ \| |/ ____ \  | |____| |____ _| |_ 
+ | \  / |  /  \  |  \| | | | | \  / |    /  \ | |  | |  | | | |  | | \  / |  /  \  | |  /  \    | |    | |      | |
+ | |\/| | / /\ \ | . ` | | | | |\/| |   / /\ \| |  | |  | | | |  | | |\/| | / /\ \ | | / /\ \   | |    | |      | |
+ | |  | |/ ____ \| |\  |_| |_| |  | |  / ____ \ |__| |  | | | |__| | |  | |/ ____ \| |/ ____ \  | |____| |____ _| |_
  |_|  |_/_/    \_\_| \_|_____|_|  |_| /_/    \_\____/   |_|  \____/|_|  |_/_/    \_\_/_/    \_\  \_____|______|_____|
 
 """
@@ -33,6 +33,29 @@ class ManimAutomataCLI:
 
     Examples
     --------
+    .. manim:: ManimAutomataCLIOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.automata.mobjects.manim_cli import ManimAutomataCLI
+
+       ManimAutomataCLITarget = ManimAutomataCLI
+
+       class ManimAutomataCLIOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(ManimAutomataCLITarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('ManimAutomataCLI', font_size=36),
+                   Text('module: manim_extensions.automata.mobjects.manim_cli', font_size=18, color=GREY),
+                   Text('Interactive command-line assistant for building automata paths', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     The CLI is activated through the ``cli`` flag of an automaton
     constructor; it prints a banner and interactively records an accepting
     path through a non-deterministic automaton:

@@ -37,8 +37,7 @@ from manim.typing import Point3D, Vector3D
 
 
 class ThreeDCylinder(OpenGLSurface):
-    """
-    Absolutely yoinked from :class:`~manim.mobject.three_d.three_dimensions.Cylinder` class and
+    """Absolutely yoinked from :class:`~manim.mobject.three_d.three_dimensions.Cylinder` class and
     adapted to OpenGL rendering.
 
     Parameters
@@ -60,6 +59,29 @@ class ThreeDCylinder(OpenGLSurface):
 
     Examples
     --------
+    .. manim:: ThreeDCylinderOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.threeD.threedbond import ThreeDCylinder
+
+       ThreeDCylinderTarget = ThreeDCylinder
+
+       class ThreeDCylinderOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(ThreeDCylinderTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('ThreeDCylinder', font_size=36),
+                   Text('module: manim_extensions.chemistry.threeD.threedbond', font_size=18, color=GREY),
+                   Text('Absolutely yoinked from manim.mobject.three_d.three_dimensions.Cylinder class and adapted to OpenGL rendering', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         from manim_extensions.chemistry.threeD.threedbond import ThreeDCylinder
@@ -209,8 +231,7 @@ class ThreeDCylinder(OpenGLSurface):
 
 
 class ThreeDLine(ThreeDCylinder):
-    """
-    Absolutely yoinked from :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine` class and
+    """Absolutely yoinked from :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine` class and
     adapted to OpenGL rendering.
 
     Parameters
@@ -228,6 +249,29 @@ class ThreeDLine(ThreeDCylinder):
 
     Examples
     --------
+    .. manim:: ThreeDLineOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.threeD.threedbond import ThreeDLine
+
+       ThreeDLineTarget = ThreeDLine
+
+       class ThreeDLineOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(ThreeDLineTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('ThreeDLine', font_size=36),
+                   Text('module: manim_extensions.chemistry.threeD.threedbond', font_size=18, color=GREY),
+                   Text('Absolutely yoinked from manim_extensions.chemistry.threeD.threedbond.ThreeDLine class and adapted to OpenGL rendering', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         from manim_extensions.chemistry.threeD.threedbond import ThreeDLine
@@ -447,8 +491,7 @@ class ThreeDLine(ThreeDCylinder):
 
 
 class ThreeDBond(OpenGLGroup):
-    """
-    Used to create a tridimensional bond.
+    """Used to create a tridimensional bond.
     Uses an origin atom and a target atom to be drawn.
 
     Parameters
@@ -466,6 +509,29 @@ class ThreeDBond(OpenGLGroup):
 
     Examples
     --------
+    .. manim:: ThreeDBondOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.threeD.threedbond import ThreeDBond
+
+       ThreeDBondTarget = ThreeDBond
+
+       class ThreeDBondOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(ThreeDBondTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('ThreeDBond', font_size=36),
+                   Text('module: manim_extensions.chemistry.threeD.threedbond', font_size=18, color=GREY),
+                   Text('Used to create a tridimensional bond. Uses an origin atom and a target atom to be drawn', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         import numpy as np

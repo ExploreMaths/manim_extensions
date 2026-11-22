@@ -18,6 +18,29 @@ class SklearnTree(Protocol):
 
     Examples
     --------
+    .. manim:: SklearnTreeOverview
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.decision_tree.helpers import SklearnTree
+
+       SklearnTreeTarget = SklearnTree
+
+       class SklearnTreeOverview(Scene):
+           def construct(self):
+               public = [n for n in dir(SklearnTreeTarget) if not n.startswith("_")]
+               card = VGroup(
+                   Text('SklearnTree', font_size=36),
+                   Text('module: manim_extensions.machine_learning.decision_tree.helpers', font_size=18, color=GREY),
+                   Text('Structural type for sklearn.tree.DecisionTreeClassifier.tree_', font_size=22),
+                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
+               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
+               card.scale_to_fit_width(11.5).move_to(ORIGIN)
+               frame = RoundedRectangle(
+                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
+               ).move_to(card)
+               self.add(frame, card)
+
     .. code-block:: python
 
         def node_count(tree: SklearnTree) -> int:
