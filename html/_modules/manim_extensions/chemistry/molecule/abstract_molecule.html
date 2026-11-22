@@ -1532,12 +1532,13 @@
 
 <span class="sd">    .. code-block:: python</span>
 
+<span class="sd">        from manim_extensions.chemistry import GraphMolecule</span>
 <span class="sd">        from manim_extensions.chemistry.molecule.abstract_molecule import AbstractMolecule</span>
 
-<span class="sd">        class MyMolecule(AbstractMolecule):</span>
-<span class="sd">            pass</span>
-
-<span class="sd">        molecule = MyMolecule()</span>
+<span class="sd">        molecule = GraphMolecule.molecule_from_file("acetone_2d.mol")</span>
+<span class="sd">        assert isinstance(molecule, AbstractMolecule)</span>
+<span class="sd">        molecule.scale(1.5)</span>
+<span class="sd">        molecule.get_connected_atoms_v_group(1, 2)</span>
 <span class="sd">    """</span>
 
     <span class="n">group_class</span><span class="p">:</span> <span class="n">Any</span> <span class="o">=</span> <span class="n">VGroup</span>

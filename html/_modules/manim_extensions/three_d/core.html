@@ -2081,13 +2081,13 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    .. manim:: GraphSurfaceDemo</span>
-<span class="sd">       :save_last_frame:</span>
 
 <span class="sd">       from manim import *</span>
 <span class="sd">       from manim_extensions.three_d.core import GaussianSurfaceScene</span>
 
 <span class="sd">       class GraphSurfaceDemo(GaussianSurfaceScene, pace="fast"):</span>
-<span class="sd">           pass</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               super().construct()</span>
 <span class="sd">    """</span>
 
     <span class="n">style</span><span class="p">:</span> <span class="n">SurfaceConfig</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
@@ -2683,13 +2683,13 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    .. manim:: GaussianSurfacePreview</span>
-<span class="sd">       :save_last_frame:</span>
 
 <span class="sd">       from manim import *</span>
 <span class="sd">       from manim_extensions.three_d.core import GaussianSurfaceScene</span>
 
 <span class="sd">       class GaussianSurfacePreview(GaussianSurfaceScene, pace="fast"):</span>
-<span class="sd">           pass</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               super().construct()</span>
 <span class="sd">    """</span>
 
     <span class="n">config_cls</span> <span class="o">=</span> <span class="n">GaussianSurface</span>
@@ -2843,13 +2843,13 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    .. manim:: SaddleSurfacePreview</span>
-<span class="sd">       :save_last_frame:</span>
 
 <span class="sd">       from manim import *</span>
 <span class="sd">       from manim_extensions.three_d.core import SaddleSurfaceScene</span>
 
 <span class="sd">       class SaddleSurfacePreview(SaddleSurfaceScene, pace="fast"):</span>
-<span class="sd">           pass</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               super().construct()</span>
 <span class="sd">    """</span>
 
     <span class="n">config_cls</span> <span class="o">=</span> <span class="n">SaddleSurface</span>
@@ -3007,13 +3007,13 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    .. manim:: ParaboloidSurfacePreview</span>
-<span class="sd">       :save_last_frame:</span>
 
 <span class="sd">       from manim import *</span>
 <span class="sd">       from manim_extensions.three_d.core import ParaboloidSurfaceScene</span>
 
 <span class="sd">       class ParaboloidSurfacePreview(ParaboloidSurfaceScene, pace="fast"):</span>
-<span class="sd">           pass</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               super().construct()</span>
 <span class="sd">    """</span>
 
     <span class="n">config_cls</span> <span class="o">=</span> <span class="n">ParaboloidSurface</span>
@@ -3134,13 +3134,13 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    .. manim:: EllipsoidSurfacePreview</span>
-<span class="sd">       :save_last_frame:</span>
 
 <span class="sd">       from manim import *</span>
 <span class="sd">       from manim_extensions.three_d.core import EllipsoidSurfaceScene</span>
 
 <span class="sd">       class EllipsoidSurfacePreview(EllipsoidSurfaceScene, pace="fast"):</span>
-<span class="sd">           pass</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               super().construct()</span>
 <span class="sd">    """</span>
 
     <span class="n">uses_flat</span> <span class="o">=</span> <span class="kc">False</span>
@@ -3346,13 +3346,13 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    .. manim:: TorusSurfacePreview</span>
-<span class="sd">       :save_last_frame:</span>
 
 <span class="sd">       from manim import *</span>
 <span class="sd">       from manim_extensions.three_d.core import TorusSurfaceScene</span>
 
 <span class="sd">       class TorusSurfacePreview(TorusSurfaceScene, pace="fast"):</span>
-<span class="sd">           pass</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               super().construct()</span>
 <span class="sd">    """</span>
 
     <span class="n">uses_flat</span> <span class="o">=</span> <span class="kc">False</span>
@@ -3559,13 +3559,13 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    .. manim:: HyperboloidOneSheetPreview</span>
-<span class="sd">       :save_last_frame:</span>
 
 <span class="sd">       from manim import *</span>
 <span class="sd">       from manim_extensions.three_d.core import HyperboloidOneSheetScene</span>
 
 <span class="sd">       class HyperboloidOneSheetPreview(HyperboloidOneSheetScene, pace="fast"):</span>
-<span class="sd">           pass</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               super().construct()</span>
 <span class="sd">    """</span>
 
     <span class="n">uses_flat</span> <span class="o">=</span> <span class="kc">False</span>

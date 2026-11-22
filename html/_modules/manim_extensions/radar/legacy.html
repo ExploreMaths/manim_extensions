@@ -1606,13 +1606,13 @@
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    .. manim:: RadarV1Gallery</span>
-<span class="sd">       :save_last_frame:</span>
 
 <span class="sd">       from manim import *</span>
 <span class="sd">       from manim_extensions.radar.legacy import RadarV1Scene</span>
 
 <span class="sd">       class RadarV1Gallery(RadarV1Scene):</span>
-<span class="sd">           pass</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               super().construct()</span>
 <span class="sd">    """</span>
 
     <span class="n">style</span> <span class="o">=</span> <span class="s2">"classic"</span>

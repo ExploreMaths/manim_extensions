@@ -46,7 +46,9 @@ Added
   subclasses of ``Mobject``.  Data-only classes, enums, protocols, CLI
   helpers and OpenGL-only types render an API card in a Manim scene and
   keep their concrete usage below it; ``validate-doc-sections`` rejects any
-  public class whose ``Examples`` section has no Manim block.
+  public class whose ``Examples`` section has no Manim block, and rejects a
+  bare ``pass`` statement inside an example body so skeleton subclasses
+  cannot stand in for a real demonstration.
 * The Manim documentation supplement now has separate ``Constants`` and
   ``Classes`` index pages instead of two sibling sections in one document.
   ``Classes`` keeps its own ``_AnimationBuilder`` entry and hidden toctree.

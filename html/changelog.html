@@ -1524,7 +1524,9 @@ and a <code class="docutils literal notranslate"><span class="pre">..</span> <sp
 subclasses of <code class="docutils literal notranslate"><span class="pre">Mobject</span></code>.  Data-only classes, enums, protocols, CLI
 helpers and OpenGL-only types render an API card in a Manim scene and
 keep their concrete usage below it; <code class="docutils literal notranslate"><span class="pre">validate-doc-sections</span></code> rejects any
-public class whose <code class="docutils literal notranslate"><span class="pre">Examples</span></code> section has no Manim block.</p></li>
+public class whose <code class="docutils literal notranslate"><span class="pre">Examples</span></code> section has no Manim block, and rejects a
+bare <code class="docutils literal notranslate"><span class="pre">pass</span></code> statement inside an example body so skeleton subclasses
+cannot stand in for a real demonstration.</p></li>
 <li><p>The Manim documentation supplement now has separate <code class="docutils literal notranslate"><span class="pre">Constants</span></code> and
 <code class="docutils literal notranslate"><span class="pre">Classes</span></code> index pages instead of two sibling sections in one document.
 <code class="docutils literal notranslate"><span class="pre">Classes</span></code> keeps its own <code class="docutils literal notranslate"><span class="pre">_AnimationBuilder</span></code> entry and hidden toctree.</p></li>
