@@ -1863,9 +1863,27 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: bash</span>
+<span class="sd">    .. manim:: NeuralNetworkEmbeddingPreview</span>
+<span class="sd">       :save_last_frame:</span>
 
-<span class="sd">        python -m manim example.py NeuralNetworkEmbeddingTestScene</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.machine_learning.neural_network import (</span>
+<span class="sd">           EmbeddingLayer,</span>
+<span class="sd">           FeedForwardLayer,</span>
+<span class="sd">           NeuralNetwork,</span>
+<span class="sd">       )</span>
+
+<span class="sd">       class NeuralNetworkEmbeddingPreview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               nn = NeuralNetwork(</span>
+<span class="sd">                   [</span>
+<span class="sd">                       FeedForwardLayer(5),</span>
+<span class="sd">                       EmbeddingLayer(dist_theme="ellipse"),</span>
+<span class="sd">                       FeedForwardLayer(3),</span>
+<span class="sd">                   ]</span>
+<span class="sd">               )</span>
+<span class="sd">               nn.scale(2.5).move_to(ORIGIN)</span>
+<span class="sd">               self.add(nn)</span>
 <span class="sd">    """</span>
 
 <div class="viewcode-block" id="NeuralNetworkEmbeddingTestScene.construct">

@@ -1497,11 +1497,19 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: python</span>
+<span class="sd">    .. manim:: RadarConfigScene</span>
+<span class="sd">       :save_last_frame:</span>
 
-<span class="sd">        from manim_extensions.radar.config import RadarConfig</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.radar.chart import RadarChart</span>
+<span class="sd">       from manim_extensions.radar.config import RadarConfig</span>
 
-<span class="sd">        config = RadarConfig(radius=3.2, levels=6)</span>
+<span class="sd">       class RadarConfigScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               config = RadarConfig(radius=3.0, levels=6)</span>
+<span class="sd">               chart = RadarChart(axes=["A", "B", "C", "D", "E"], values=[2, 4, 3, 5, 1], config=config)</span>
+<span class="sd">               chart.scale_to_fit_height(5.5).move_to(ORIGIN)</span>
+<span class="sd">               self.add(chart)</span>
 <span class="sd">    """</span>
 
     <span class="c1"># ---- geometry --------------------------------------------------------</span>

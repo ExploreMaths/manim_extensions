@@ -2035,10 +2035,20 @@
 
 <span class="sd">            Examples</span>
 <span class="sd">            --------</span>
-<span class="sd">            .. code-block:: python</span>
+<span class="sd">            .. manim:: SpinScene</span>
 
-<span class="sd">                poly = chart.series[0].poly</span>
-<span class="sd">                spin = Spin(poly, delta=PI / 4)</span>
+<span class="sd">               from manim import *</span>
+<span class="sd">               from manim_extensions.radar.poly import PolyRadarChart</span>
+
+<span class="sd">               class SpinScene(ThreeDScene):</span>
+<span class="sd">                   def construct(self):</span>
+<span class="sd">                       chart = PolyRadarChart(</span>
+<span class="sd">                           [str(i) for i in range(12)],</span>
+<span class="sd">                           [3, 5, 7, 4, 6, 8, 5, 9, 4, 6, 7, 5],</span>
+<span class="sd">                           grow=False,</span>
+<span class="sd">                       )</span>
+<span class="sd">                       self.add(chart)</span>
+<span class="sd">                       self.play(chart.spin_to(axis_index=0, run_time=1.0))</span>
 <span class="sd">            """</span>
 
             <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">poly</span><span class="p">:</span> <span class="n">PolyRadarChart</span><span class="p">,</span> <span class="n">delta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">**</span><span class="n">kw</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -2109,10 +2119,20 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: python</span>
+<span class="sd">    .. manim:: PolyMorphScene</span>
 
-<span class="sd">        poly = chart.series[0].poly</span>
-<span class="sd">        morph = PolyMorph(poly, [9, 7, 8])</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.radar.poly import PolyMorph, PolyRadarChart</span>
+
+<span class="sd">       class PolyMorphScene(ThreeDScene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               chart = PolyRadarChart(</span>
+<span class="sd">                   [str(i) for i in range(12)],</span>
+<span class="sd">                   [3, 5, 7, 4, 6, 8, 5, 9, 4, 6, 7, 5],</span>
+<span class="sd">                   grow=False,</span>
+<span class="sd">               )</span>
+<span class="sd">               self.add(chart)</span>
+<span class="sd">               self.play(PolyMorph(chart, [9, 7, 8, 6, 5, 9, 4, 8, 6, 7, 5, 9]))</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

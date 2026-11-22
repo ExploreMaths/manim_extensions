@@ -1509,15 +1509,20 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    ::</span>
+<span class="sd">    .. manim:: CameraRigScene</span>
 
-<span class="sd">        class MyScene(MovingCameraScene):</span>
-<span class="sd">            def construct(self):</span>
-<span class="sd">                chart = RadarChart(...)</span>
-<span class="sd">                rig = CameraRig(self)</span>
-<span class="sd">                self.play(rig.push_in(chart, factor=1.3))</span>
-<span class="sd">                self.play(chart.morph_to(...))</span>
-<span class="sd">                self.play(rig.pull_out())</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.radar.camera import CameraRig</span>
+<span class="sd">       from manim_extensions.radar.chart import RadarChart</span>
+
+<span class="sd">       class CameraRigScene(MovingCameraScene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               chart = RadarChart(axes=["Speed", "Power", "Range", "Comfort", "Safety"], values=[8, 6, 7, 9, 5])</span>
+<span class="sd">               chart.scale_to_fit_height(4.8).move_to(ORIGIN)</span>
+<span class="sd">               self.add(chart)</span>
+<span class="sd">               rig = CameraRig(self)</span>
+<span class="sd">               self.play(rig.push_in(chart, factor=1.25))</span>
+<span class="sd">               self.play(rig.pull_out())</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">MovingCameraScene</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>

@@ -2166,13 +2166,20 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: python</span>
+<span class="sd">    .. manim:: DecisionTreeContainerScene</span>
 
-<span class="sd">        import numpy as np</span>
-<span class="sd">        from sklearn.tree import DecisionTreeClassifier</span>
+<span class="sd">       import numpy as np</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from sklearn.tree import DecisionTreeClassifier</span>
+<span class="sd">       from manim_extensions.machine_learning.decision_tree.decision_tree import DecisionTreeContainer</span>
 
-<span class="sd">        clf = DecisionTreeClassifier(max_depth=2).fit(np.array([[0], [1]]), [0, 1])</span>
-<span class="sd">        container = DecisionTreeContainer(clf.tree_, np.array([[0], [1]]), np.array([0, 1]))</span>
+<span class="sd">       class DecisionTreeContainerScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               points = np.array([[0, 0], [1, 1], [2, 2], [3, 3]])</span>
+<span class="sd">               classes = np.array([0, 0, 1, 1])</span>
+<span class="sd">               clf = DecisionTreeClassifier(max_depth=2).fit(points, classes)</span>
+<span class="sd">               container = DecisionTreeContainer(clf.tree_, points, classes)</span>
+<span class="sd">               self.play(container.make_unfold_tree_animation())</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

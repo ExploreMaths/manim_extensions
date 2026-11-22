@@ -1502,12 +1502,36 @@
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.triplet</span><span class="w"> </span><span class="kn">import</span> <span class="n">TripletLayer</span>
+<div id="tripletlayerscene" class="admonition admonition-manim-example">
 
-<span class="n">triplet</span> <span class="o">=</span> <span class="n">TripletLayer</span><span class="p">(</span><span class="s2">"anchor"</span><span class="p">,</span> <span class="s2">"positive"</span><span class="p">,</span> <span class="s2">"negative"</span><span class="p">)</span>
+<p class="admonition-title">Example: TripletLayerScene <a class="headerlink" href="#tripletlayerscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./TripletLayerScene-094efb61.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.triplet</span><span class="w"> </span><span class="kn">import</span> <span class="n">TripletLayer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.feed_forward</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeedForwardLayer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network</span><span class="w"> </span><span class="kn">import</span> <span class="n">NeuralNetwork</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.utils.mobjects.image</span><span class="w"> </span><span class="kn">import</span> <span class="n">GrayscaleImageMobject</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TripletLayerScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+        <span class="n">image</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span> <span class="mi">8</span><span class="p">:</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="mi">200</span>
+        <span class="n">triplet</span> <span class="o">=</span> <span class="n">TripletLayer</span><span class="p">(</span>
+            <span class="n">GrayscaleImageMobject</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.6</span><span class="p">),</span>
+            <span class="n">GrayscaleImageMobject</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fliplr</span><span class="p">(</span><span class="n">image</span><span class="p">),</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.6</span><span class="p">),</span>
+            <span class="n">GrayscaleImageMobject</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">flipud</span><span class="p">(</span><span class="n">image</span><span class="p">),</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.6</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">nn</span> <span class="o">=</span> <span class="n">NeuralNetwork</span><span class="p">([</span><span class="n">triplet</span><span class="p">,</span> <span class="n">FeedForwardLayer</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span>
+        <span class="n">nn</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Create</span><span class="p">(</span><span class="n">nn</span><span class="p">))</span>
 </pre></div>
 </div>
-<dl class="py method">
+</div><dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.triplet.TripletLayer.construct_layer">
 <span class="sig-name descname"><span class="pre">construct_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_layer</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/triplet.html#TripletLayer.construct_layer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.triplet.TripletLayer.construct_layer" title="Link to this definition">¶</a></dt>
 <dd><p>Build the triplet assets and add them to the layer.</p>

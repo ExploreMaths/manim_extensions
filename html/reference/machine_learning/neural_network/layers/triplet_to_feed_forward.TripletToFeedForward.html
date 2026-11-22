@@ -1513,16 +1513,37 @@
 </dd></dl>
 
 <p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.triplet</span><span class="w"> </span><span class="kn">import</span> <span class="n">TripletLayer</span>
+<div id="triplettofeedforwardscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: TripletToFeedForwardScene <a class="headerlink" href="#triplettofeedforwardscene">¶</a></p><img alt="../../../../_images/TripletToFeedForwardScene-0963a0a6.png" class="align-center" src="../../../../_images/TripletToFeedForwardScene-0963a0a6.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.triplet</span><span class="w"> </span><span class="kn">import</span> <span class="n">TripletLayer</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.feed_forward</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeedForwardLayer</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.triplet_to_feed_forward</span><span class="w"> </span><span class="kn">import</span> <span class="n">TripletToFeedForward</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.utils.mobjects.image</span><span class="w"> </span><span class="kn">import</span> <span class="n">GrayscaleImageMobject</span>
+<span class="n">image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+<span class="n">image</span><span class="p">[</span><span class="mi">8</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span> <span class="mi">8</span><span class="p">:</span><span class="mi">20</span><span class="p">]</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">first</span> <span class="o">=</span> <span class="n">TripletLayer</span><span class="p">(</span>
+    <span class="n">GrayscaleImageMobject</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.6</span><span class="p">),</span>
+    <span class="n">GrayscaleImageMobject</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fliplr</span><span class="p">(</span><span class="n">image</span><span class="p">),</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.6</span><span class="p">),</span>
+    <span class="n">GrayscaleImageMobject</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">flipud</span><span class="p">(</span><span class="n">image</span><span class="p">),</span> <span class="n">height</span><span class="o">=</span><span class="mf">0.6</span><span class="p">),</span>
+<span class="p">)</span>
+<span class="n">second</span> <span class="o">=</span> <span class="n">FeedForwardLayer</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">first</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">second</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">first</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">second</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">connection</span> <span class="o">=</span> <span class="n">TripletToFeedForward</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">)</span>
 
-<span class="n">triplet</span> <span class="o">=</span> <span class="n">TripletLayer</span><span class="p">(</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"p"</span><span class="p">,</span> <span class="s2">"n"</span><span class="p">)</span>
-<span class="n">dense</span> <span class="o">=</span> <span class="n">FeedForwardLayer</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">connection</span> <span class="o">=</span> <span class="n">TripletToFeedForward</span><span class="p">(</span><span class="n">triplet</span><span class="p">,</span> <span class="n">dense</span><span class="p">)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TripletToFeedForwardScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span>
+        <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">5.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
 </pre></div>
 </div>
-<dl class="py method">
+</div><dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.triplet_to_feed_forward.TripletToFeedForward.construct_layer">
 <span class="sig-name descname"><span class="pre">construct_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_layer</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/triplet_to_feed_forward.html#TripletToFeedForward.construct_layer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.triplet_to_feed_forward.TripletToFeedForward.construct_layer" title="Link to this definition">¶</a></dt>
 <dd><p>Forward to the parent construct_layer method.</p>

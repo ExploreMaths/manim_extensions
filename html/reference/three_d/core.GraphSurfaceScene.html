@@ -1526,26 +1526,17 @@ configuration fields such as <code class="docutils literal notranslate"><span cl
 <dd></dd></dl>
 
 <p class="rubric">Examples</p>
-<p>Subclass the scene and implement the four hooks:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.three_d</span><span class="w"> </span><span class="kn">import</span> <span class="n">GraphSurfaceScene</span><span class="p">,</span> <span class="n">SaddleSurface</span>
+<div id="graphsurfacedemo" class="admonition admonition-manim-example">
 
-<span class="k">class</span><span class="w"> </span><span class="nc">CustomSurfaceScene</span><span class="p">(</span><span class="n">GraphSurfaceScene</span><span class="p">):</span>
-    <span class="n">style</span> <span class="o">=</span> <span class="n">SaddleSurface</span><span class="p">()</span>
+<p class="admonition-title">Example: GraphSurfaceDemo <a class="headerlink" href="#graphsurfacedemo">¶</a></p><img alt="../../_images/GraphSurfaceDemo-8ff94341.png" class="align-center" src="../../_images/GraphSurfaceDemo-8ff94341.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.three_d.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">GaussianSurfaceScene</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">):</span>
-        <span class="o">...</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_contours</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">,</span> <span class="n">axes</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">ramp</span><span class="p">,</span> <span class="n">zmin_n</span><span class="p">):</span>
-        <span class="o">...</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_feature</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cfg</span><span class="p">,</span> <span class="n">f</span><span class="p">):</span>
-        <span class="o">...</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">_caption_slots</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">[</span><span class="s2">"title"</span><span class="p">,</span> <span class="s2">"outro"</span><span class="p">]</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">GraphSurfaceDemo</span><span class="p">(</span><span class="n">GaussianSurfaceScene</span><span class="p">,</span> <span class="n">pace</span><span class="o">=</span><span class="s2">"fast"</span><span class="p">):</span>
+    <span class="k">pass</span>
 </pre></div>
 </div>
-<dl class="py method">
+</div><dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.three_d.core.GraphSurfaceScene.__init_subclass__">
 <span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">__init_subclass__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">config_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/three_d/core.html#GraphSurfaceScene.__init_subclass__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.three_d.core.GraphSurfaceScene.__init_subclass__" title="Link to this definition">¶</a></dt>
 <dd><p>Apply configuration keywords written in the class statement.</p>

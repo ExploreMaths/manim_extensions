@@ -1529,22 +1529,22 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    ::</span>
+<span class="sd">    .. manim:: RadarReelScene</span>
+<span class="sd">       :save_last_frame:</span>
 
-<span class="sd">        chart = RadarChart(axes=SIX_AXES, values=[...], title="Six axes")</span>
-<span class="sd">        RadarReel(chart, [d1, d2, d3, d4], hold=0.6, backdrop=True).play_on(self)</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.radar.chart import RadarChart</span>
+<span class="sd">       from manim_extensions.radar.data import RadarData</span>
+<span class="sd">       from manim_extensions.radar.reel import RadarReel</span>
 
-<span class="sd">    A comparison reel passes a list of datasets per step::</span>
-
-<span class="sd">        RadarReel(chart, [</span>
-<span class="sd">            [holder_a, basic_a],</span>
-<span class="sd">            [holder_b, basic_b],</span>
-<span class="sd">        ], hold=0.8).play_on(self)</span>
-
-<span class="sd">    Per-snapshot overrides come from</span>
-<span class="sd">    :class:`~manim_extensions.radar.data.RadarData`: ``hold``, ``transition``,</span>
-<span class="sd">    ``emphasis`` (``"zoom"`` / ``"gap"`` / ``"rim"``) and ``color``. In a</span>
-<span class="sd">    comparison step they are read from the first dataset of the list.</span>
+<span class="sd">       class RadarReelScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               axes = ["Speed", "Power", "Range", "Comfort", "Safety"]</span>
+<span class="sd">               first = RadarData(axes=axes, values=[8, 6, 7, 9, 5], name="A")</span>
+<span class="sd">               second = RadarData(axes=axes, values=[5, 9, 6, 7, 8], name="B")</span>
+<span class="sd">               chart = RadarChart(first)</span>
+<span class="sd">               chart.scale_to_fit_height(4.8).move_to(ORIGIN)</span>
+<span class="sd">               RadarReel(chart, [first, second], hold=0.4, intro=False, outro=False).play_on(self)</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

@@ -1516,15 +1516,26 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: python</span>
+<span class="sd">    .. manim:: FeedForwardToVectorScene</span>
+<span class="sd">       :save_last_frame:</span>
 
-<span class="sd">        from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer</span>
-<span class="sd">        from manim_extensions.machine_learning.neural_network.layers.vector import VectorLayer</span>
-<span class="sd">        from manim_extensions.machine_learning.neural_network.layers.feed_forward_to_vector import FeedForwardToVector</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer</span>
+<span class="sd">       from manim_extensions.machine_learning.neural_network.layers.vector import VectorLayer</span>
+<span class="sd">       from manim_extensions.machine_learning.neural_network.layers.feed_forward_to_vector import FeedForwardToVector</span>
+<span class="sd">       first = FeedForwardLayer(6)</span>
+<span class="sd">       second = VectorLayer(4)</span>
+<span class="sd">       first.shift(LEFT * 4)</span>
+<span class="sd">       second.shift(RIGHT * 4)</span>
+<span class="sd">       first.construct_layer(None, None)</span>
+<span class="sd">       second.construct_layer(None, None)</span>
+<span class="sd">       connection = FeedForwardToVector(first, second)</span>
 
-<span class="sd">        dense = FeedForwardLayer(10)</span>
-<span class="sd">        vector = VectorLayer()</span>
-<span class="sd">        connection = FeedForwardToVector(dense, vector)</span>
+<span class="sd">       class FeedForwardToVectorScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               content = Group(first, second, connection)</span>
+<span class="sd">               content.scale_to_fit_height(5.5).move_to(ORIGIN)</span>
+<span class="sd">               self.add(content)</span>
 <span class="sd">    """</span>
 
     <span class="n">input_class</span> <span class="o">=</span> <span class="n">FeedForwardLayer</span>

@@ -1520,6 +1520,11 @@ stay together, exactly one blank line separates them from the scene class,
 <li><p><code class="docutils literal notranslate"><span class="pre">workflow/validate_example_names.py</span></code> and its <code class="docutils literal notranslate"><span class="pre">validate-example-names</span></code>
 CI job reject <code class="docutils literal notranslate"><span class="pre">Example</span></code>/<code class="docutils literal notranslate"><span class="pre">DocExample</span></code> suffixes, non-PascalCase names,
 and a <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">manim::</span></code> name that does not match the class in its block.</p></li>
+<li><p>Every public class now carries a <code class="docutils literal notranslate"><span class="pre">..</span> <span class="pre">manim::</span></code> example, not only
+subclasses of <code class="docutils literal notranslate"><span class="pre">Mobject</span></code>.  Data-only classes, enums, protocols, CLI
+helpers and OpenGL-only types render an API card in a Manim scene and
+keep their concrete usage below it; <code class="docutils literal notranslate"><span class="pre">validate-doc-sections</span></code> rejects any
+public class whose <code class="docutils literal notranslate"><span class="pre">Examples</span></code> section has no Manim block.</p></li>
 <li><p>The Manim documentation supplement now has separate <code class="docutils literal notranslate"><span class="pre">Constants</span></code> and
 <code class="docutils literal notranslate"><span class="pre">Classes</span></code> index pages instead of two sibling sections in one document.
 <code class="docutils literal notranslate"><span class="pre">Classes</span></code> keeps its own <code class="docutils literal notranslate"><span class="pre">_AnimationBuilder</span></code> entry and hidden toctree.</p></li>
@@ -1528,6 +1533,14 @@ and a <code class="docutils literal notranslate"><span class="pre">..</span> <sp
 <section id="fixed">
 <h3>Fixed<a class="headerlink" href="#fixed" title="Link to this heading">¶</a></h3>
 <ul class="simple">
+<li><p>Image layers and grayscale image mobjects convert floating-point pixel
+arrays to <code class="docutils literal notranslate"><span class="pre">uint8</span></code> before handing them to Manim, so examples built from
+<code class="docutils literal notranslate"><span class="pre">np.zeros</span></code> no longer fail under Pillow with
+<code class="docutils literal notranslate"><span class="pre">Cannot</span> <span class="pre">handle</span> <span class="pre">this</span> <span class="pre">data</span> <span class="pre">type:</span> <span class="pre">(1,</span> <span class="pre">1,</span> <span class="pre">4),</span> <span class="pre">&lt;f8</span></code>.  Images normalized to
+<code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code> are rescaled to <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">255]</span></code> first.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">validate-types</span></code> installs the <code class="docutils literal notranslate"><span class="pre">docs</span></code> extra alongside <code class="docutils literal notranslate"><span class="pre">all</span></code> because
+mypy analyses the Sphinx directive helper and needs <code class="docutils literal notranslate"><span class="pre">sphinx</span></code> and
+<code class="docutils literal notranslate"><span class="pre">jinja2</span></code> stubs to import it.</p></li>
 <li><p>Type aliases now refer to the configuration classes directly:
 <code class="docutils literal notranslate"><span class="pre">SurfaceConfig</span></code> and <code class="docutils literal notranslate"><span class="pre">GraphSurfaceConfig</span></code> are defined after their
 classes, so their source no longer needs quoted forward references.  Both

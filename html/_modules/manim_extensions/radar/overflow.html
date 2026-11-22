@@ -1561,17 +1561,22 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    ::</span>
+<span class="sd">    .. manim:: OverflowRadarScene</span>
 
-<span class="sd">        chart = OverflowRadarChart(</span>
-<span class="sd">            axes=AXES,</span>
-<span class="sd">            values=[8, 6, 14, 9, 5, 8],   # 14 escapes the 10 ring</span>
-<span class="sd">            max_value=10,</span>
-<span class="sd">        )</span>
-<span class="sd">        self.play(chart.burst_in())                       # stab out of the ring</span>
-<span class="sd">        self.play(chart.morph_to([7, 9, 17, 6, 8, 5]))    # burst to new spikes</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.radar.overflow import OverflowRadarChart</span>
 
-<span class="sd">    The second command morphs the chart into a new set of spikes.</span>
+<span class="sd">       class OverflowRadarScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               chart = OverflowRadarChart(</span>
+<span class="sd">                   axes=["A", "B", "C", "D", "E", "F"],</span>
+<span class="sd">                   values=[8, 6, 14, 9, 5, 8],</span>
+<span class="sd">                   max_value=10,</span>
+<span class="sd">               )</span>
+<span class="sd">               chart.scale_to_fit_height(5.2).move_to(ORIGIN)</span>
+<span class="sd">               self.add(chart)</span>
+<span class="sd">               self.play(chart.burst_in())</span>
+<span class="sd">               self.play(chart.morph_to([7, 9, 17, 6, 8, 5]))</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

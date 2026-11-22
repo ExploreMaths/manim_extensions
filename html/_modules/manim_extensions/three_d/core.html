@@ -1787,11 +1787,14 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: python</span>
+<span class="sd">    .. manim:: GaussianSurfaceConfigScene</span>
+<span class="sd">       :save_last_frame:</span>
 
-<span class="sd">        from manim_extensions.three_d.core import GaussianSurface</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.three_d.core import GaussianSurface, GaussianSurfaceScene</span>
 
-<span class="sd">        cfg = GaussianSurface(height=1.4, rings=True, orbit=True)</span>
+<span class="sd">       class GaussianSurfaceConfigScene(GaussianSurfaceScene):</span>
+<span class="sd">           style = GaussianSurface(height=1.4, rings=True, orbit=True, pace='fast')</span>
 <span class="sd">    """</span>
 
     <span class="n">func</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># z=f(x,y); None = built-in Gaussian</span>
@@ -1847,11 +1850,14 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: python</span>
+<span class="sd">    .. manim:: SaddleSurfaceConfigScene</span>
+<span class="sd">       :save_last_frame:</span>
 
-<span class="sd">        from manim_extensions.three_d.core import SaddleSurface</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.three_d.core import SaddleSurface, SaddleSurfaceScene</span>
 
-<span class="sd">        cfg = SaddleSurface(height=1.5, annotate=True)</span>
+<span class="sd">       class SaddleSurfaceConfigScene(SaddleSurfaceScene):</span>
+<span class="sd">           style = SaddleSurface(height=1.5, annotate=True, pace='fast')</span>
 <span class="sd">    """</span>
 
     <span class="n">domain</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">2.2</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">)</span>
@@ -1881,11 +1887,14 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: python</span>
+<span class="sd">    .. manim:: ParaboloidSurfaceConfigScene</span>
+<span class="sd">       :save_last_frame:</span>
 
-<span class="sd">        from manim_extensions.three_d.core import ParaboloidSurface</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.three_d.core import ParaboloidSurface, ParaboloidSurfaceScene</span>
 
-<span class="sd">        cfg = ParaboloidSurface(height=1.5)</span>
+<span class="sd">       class ParaboloidSurfaceConfigScene(ParaboloidSurfaceScene):</span>
+<span class="sd">           style = ParaboloidSurface(height=1.5, annotate=True, pace='fast')</span>
 <span class="sd">    """</span>
 
     <span class="n">domain</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">2.2</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">)</span>
@@ -1915,11 +1924,14 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: python</span>
+<span class="sd">    .. manim:: EllipsoidSurfaceConfigScene</span>
+<span class="sd">       :save_last_frame:</span>
 
-<span class="sd">        from manim_extensions.three_d.core import EllipsoidSurface</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.three_d.core import EllipsoidSurface, EllipsoidSurfaceScene</span>
 
-<span class="sd">        cfg = EllipsoidSurface()</span>
+<span class="sd">       class EllipsoidSurfaceConfigScene(EllipsoidSurfaceScene):</span>
+<span class="sd">           style = EllipsoidSurface(pace='fast')</span>
 <span class="sd">    """</span>
 
     <span class="n">semi_axes</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.4</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># (a, b, c) semi-axes</span>
@@ -1948,11 +1960,14 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: python</span>
+<span class="sd">    .. manim:: TorusSurfaceConfigScene</span>
+<span class="sd">       :save_last_frame:</span>
 
-<span class="sd">        from manim_extensions.three_d.core import TorusSurface</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.three_d.core import TorusSurface, TorusSurfaceScene</span>
 
-<span class="sd">        cfg = TorusSurface()</span>
+<span class="sd">       class TorusSurfaceConfigScene(TorusSurfaceScene):</span>
+<span class="sd">           style = TorusSurface(pace='fast')</span>
 <span class="sd">    """</span>
 
     <span class="n">major_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span>  <span class="c1"># torus radius R (tube-centre circle)</span>
@@ -1982,11 +1997,14 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: python</span>
+<span class="sd">    .. manim:: HyperboloidOneSheetConfigScene</span>
+<span class="sd">       :save_last_frame:</span>
 
-<span class="sd">        from manim_extensions.three_d.core import HyperboloidOneSheet</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.three_d.core import HyperboloidOneSheet, HyperboloidOneSheetScene</span>
 
-<span class="sd">        cfg = HyperboloidOneSheet()</span>
+<span class="sd">       class HyperboloidOneSheetConfigScene(HyperboloidOneSheetScene):</span>
+<span class="sd">           style = HyperboloidOneSheet(pace='fast')</span>
 <span class="sd">    """</span>
 
     <span class="n">waist_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># waist radius a (= b)</span>
@@ -2062,26 +2080,14 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    Subclass the scene and implement the four hooks:</span>
+<span class="sd">    .. manim:: GraphSurfaceDemo</span>
+<span class="sd">       :save_last_frame:</span>
 
-<span class="sd">    .. code-block:: python</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.three_d.core import GaussianSurfaceScene</span>
 
-<span class="sd">        from manim_extensions.three_d import GraphSurfaceScene, SaddleSurface</span>
-
-<span class="sd">        class CustomSurfaceScene(GraphSurfaceScene):</span>
-<span class="sd">            style = SaddleSurface()</span>
-
-<span class="sd">            def _geometry(self, cfg):</span>
-<span class="sd">                ...</span>
-
-<span class="sd">            def _contours(self, cfg, axes, f, ramp, zmin_n):</span>
-<span class="sd">                ...</span>
-
-<span class="sd">            def _feature(self, cfg, f):</span>
-<span class="sd">                ...</span>
-
-<span class="sd">            def _caption_slots(self):</span>
-<span class="sd">                return ["title", "outro"]</span>
+<span class="sd">       class GraphSurfaceDemo(GaussianSurfaceScene, pace="fast"):</span>
+<span class="sd">           pass</span>
 <span class="sd">    """</span>
 
     <span class="n">style</span><span class="p">:</span> <span class="n">SurfaceConfig</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
@@ -2676,9 +2682,14 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: bash</span>
+<span class="sd">    .. manim:: GaussianSurfacePreview</span>
+<span class="sd">       :save_last_frame:</span>
 
-<span class="sd">        python -m manim example.py GaussianSurfaceScene</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.three_d.core import GaussianSurfaceScene</span>
+
+<span class="sd">       class GaussianSurfacePreview(GaussianSurfaceScene, pace="fast"):</span>
+<span class="sd">           pass</span>
 <span class="sd">    """</span>
 
     <span class="n">config_cls</span> <span class="o">=</span> <span class="n">GaussianSurface</span>
@@ -2831,9 +2842,14 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: bash</span>
+<span class="sd">    .. manim:: SaddleSurfacePreview</span>
+<span class="sd">       :save_last_frame:</span>
 
-<span class="sd">        python -m manim example.py SaddleSurfaceScene</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.three_d.core import SaddleSurfaceScene</span>
+
+<span class="sd">       class SaddleSurfacePreview(SaddleSurfaceScene, pace="fast"):</span>
+<span class="sd">           pass</span>
 <span class="sd">    """</span>
 
     <span class="n">config_cls</span> <span class="o">=</span> <span class="n">SaddleSurface</span>
@@ -2990,9 +3006,14 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: bash</span>
+<span class="sd">    .. manim:: ParaboloidSurfacePreview</span>
+<span class="sd">       :save_last_frame:</span>
 
-<span class="sd">        python -m manim example.py ParaboloidSurfaceScene</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.three_d.core import ParaboloidSurfaceScene</span>
+
+<span class="sd">       class ParaboloidSurfacePreview(ParaboloidSurfaceScene, pace="fast"):</span>
+<span class="sd">           pass</span>
 <span class="sd">    """</span>
 
     <span class="n">config_cls</span> <span class="o">=</span> <span class="n">ParaboloidSurface</span>
@@ -3112,9 +3133,14 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: bash</span>
+<span class="sd">    .. manim:: EllipsoidSurfacePreview</span>
+<span class="sd">       :save_last_frame:</span>
 
-<span class="sd">        python -m manim example.py EllipsoidSurfaceScene</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.three_d.core import EllipsoidSurfaceScene</span>
+
+<span class="sd">       class EllipsoidSurfacePreview(EllipsoidSurfaceScene, pace="fast"):</span>
+<span class="sd">           pass</span>
 <span class="sd">    """</span>
 
     <span class="n">uses_flat</span> <span class="o">=</span> <span class="kc">False</span>
@@ -3319,9 +3345,14 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: bash</span>
+<span class="sd">    .. manim:: TorusSurfacePreview</span>
+<span class="sd">       :save_last_frame:</span>
 
-<span class="sd">        python -m manim example.py TorusSurfaceScene</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.three_d.core import TorusSurfaceScene</span>
+
+<span class="sd">       class TorusSurfacePreview(TorusSurfaceScene, pace="fast"):</span>
+<span class="sd">           pass</span>
 <span class="sd">    """</span>
 
     <span class="n">uses_flat</span> <span class="o">=</span> <span class="kc">False</span>
@@ -3527,9 +3558,14 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: bash</span>
+<span class="sd">    .. manim:: HyperboloidOneSheetPreview</span>
+<span class="sd">       :save_last_frame:</span>
 
-<span class="sd">        python -m manim example.py HyperboloidOneSheetScene</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.three_d.core import HyperboloidOneSheetScene</span>
+
+<span class="sd">       class HyperboloidOneSheetPreview(HyperboloidOneSheetScene, pace="fast"):</span>
+<span class="sd">           pass</span>
 <span class="sd">    """</span>
 
     <span class="n">uses_flat</span> <span class="o">=</span> <span class="kc">False</span>

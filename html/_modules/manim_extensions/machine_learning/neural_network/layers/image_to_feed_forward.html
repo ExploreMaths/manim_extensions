@@ -1516,16 +1516,27 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: python</span>
+<span class="sd">    .. manim:: ImageToFeedForwardScene</span>
+<span class="sd">       :save_last_frame:</span>
 
-<span class="sd">        import numpy as np</span>
-<span class="sd">        from manim_extensions.machine_learning.neural_network.layers.image import ImageLayer</span>
-<span class="sd">        from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer</span>
-<span class="sd">        from manim_extensions.machine_learning.neural_network.layers.image_to_feed_forward import ImageToFeedForward</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       import numpy as np</span>
+<span class="sd">       from manim_extensions.machine_learning.neural_network.layers.image import ImageLayer</span>
+<span class="sd">       from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer</span>
+<span class="sd">       from manim_extensions.machine_learning.neural_network.layers.image_to_feed_forward import ImageToFeedForward</span>
+<span class="sd">       first = ImageLayer(np.zeros((16, 16, 3)))</span>
+<span class="sd">       second = FeedForwardLayer(6)</span>
+<span class="sd">       first.shift(LEFT * 4)</span>
+<span class="sd">       second.shift(RIGHT * 4)</span>
+<span class="sd">       first.construct_layer(None, None)</span>
+<span class="sd">       second.construct_layer(None, None)</span>
+<span class="sd">       connection = ImageToFeedForward(first, second)</span>
 
-<span class="sd">        image = ImageLayer(np.zeros((16, 16, 3)))</span>
-<span class="sd">        dense = FeedForwardLayer(10)</span>
-<span class="sd">        connection = ImageToFeedForward(image, dense)</span>
+<span class="sd">       class ImageToFeedForwardScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               content = Group(first, second, connection)</span>
+<span class="sd">               content.scale_to_fit_height(5.5).move_to(ORIGIN)</span>
+<span class="sd">               self.add(content)</span>
 <span class="sd">    """</span>
 
     <span class="n">input_class</span> <span class="o">=</span> <span class="n">ImageLayer</span>

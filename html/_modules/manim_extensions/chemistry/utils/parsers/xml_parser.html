@@ -1499,6 +1499,29 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    .. manim:: XMLParserOverview</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.chemistry.utils.parsers.xml_parser import XMLParser</span>
+
+<span class="sd">       XMLParserTarget = XMLParser</span>
+
+<span class="sd">       class XMLParserOverview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               public = [n for n in dir(XMLParserTarget) if not n.startswith("_")]</span>
+<span class="sd">               card = VGroup(</span>
+<span class="sd">                   Text('XMLParser', font_size=36),</span>
+<span class="sd">                   Text('module: manim_extensions.chemistry.utils.parsers.xml_parser', font_size=18, color=GREY),</span>
+<span class="sd">                   Text('Parses mol files', font_size=22),</span>
+<span class="sd">                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),</span>
+<span class="sd">               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)</span>
+<span class="sd">               card.scale_to_fit_width(11.5).move_to(ORIGIN)</span>
+<span class="sd">               frame = RoundedRectangle(</span>
+<span class="sd">                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D</span>
+<span class="sd">               ).move_to(card)</span>
+<span class="sd">               self.add(frame, card)</span>
+
 <span class="sd">    .. nbcell::</span>
 <span class="sd">       :files: acetone_2d.xml</span>
 

@@ -1527,17 +1527,31 @@ read-outs:</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">chart</span> <span class="o">=</span> <span class="n">OverflowRadarChart</span><span class="p">(</span>
-    <span class="n">axes</span><span class="o">=</span><span class="n">AXES</span><span class="p">,</span>
-    <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>   <span class="c1"># 14 escapes the 10 ring</span>
-    <span class="n">max_value</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">chart</span><span class="o">.</span><span class="n">burst_in</span><span class="p">())</span>                       <span class="c1"># stab out of the ring</span>
-<span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">chart</span><span class="o">.</span><span class="n">morph_to</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">]))</span>    <span class="c1"># burst to new spikes</span>
+<div id="overflowradarscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: OverflowRadarScene <a class="headerlink" href="#overflowradarscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./OverflowRadarScene-d519f881.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.overflow</span><span class="w"> </span><span class="kn">import</span> <span class="n">OverflowRadarChart</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">OverflowRadarScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">chart</span> <span class="o">=</span> <span class="n">OverflowRadarChart</span><span class="p">(</span>
+            <span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">,</span> <span class="s2">"D"</span><span class="p">,</span> <span class="s2">"E"</span><span class="p">,</span> <span class="s2">"F"</span><span class="p">],</span>
+            <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span>
+            <span class="n">max_value</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">chart</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">5.2</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">chart</span><span class="o">.</span><span class="n">burst_in</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">chart</span><span class="o">.</span><span class="n">morph_to</span><span class="p">([</span><span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">17</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">5</span><span class="p">]))</span>
 </pre></div>
 </div>
-<p>The second command morphs the chart into a new set of spikes.</p>
-<dl class="py method">
+</div><dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.radar.overflow.OverflowRadarChart.morph_to">
 <span class="sig-name descname"><span class="pre">morph_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/overflow.html#OverflowRadarChart.morph_to"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.overflow.OverflowRadarChart.morph_to" title="Link to this definition">¶</a></dt>
 <dd><p>Morph with the burst transition unless told otherwise.</p>

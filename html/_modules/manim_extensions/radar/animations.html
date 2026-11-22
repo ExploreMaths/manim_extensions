@@ -1679,7 +1679,17 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    ``self.play(chart.shockwave(color="#E868C8"))``</span>
+<span class="sd">    .. manim:: ShockwaveScene</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.radar.chart import RadarChart</span>
+
+<span class="sd">       class ShockwaveScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               chart = RadarChart(axes=["Speed", "Power", "Range", "Comfort", "Safety"], values=[8, 6, 7, 9, 5])</span>
+<span class="sd">               chart.scale_to_fit_height(3.5).move_to(ORIGIN)</span>
+<span class="sd">               self.add(chart)</span>
+<span class="sd">               self.play(chart.shockwave(color="#E868C8", radius_end=3.2))</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -1799,13 +1809,18 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: python</span>
+<span class="sd">    .. manim:: RadarMorphScene</span>
 
-<span class="sd">        from manim_extensions.radar.chart import RadarChart</span>
-<span class="sd">        from manim_extensions.radar.animations import RadarMorph</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.radar.animations import RadarMorph</span>
+<span class="sd">       from manim_extensions.radar.chart import RadarChart</span>
 
-<span class="sd">        chart = RadarChart(axes=["Speed", "Power", "Range", "Comfort", "Price", "Safety"], values=[8, 6, 7, 9, 5, 8])</span>
-<span class="sd">        morph = RadarMorph(chart, [7, 8, 6, 5, 9, 7])</span>
+<span class="sd">       class RadarMorphScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               chart = RadarChart(axes=["Speed", "Power", "Range", "Comfort", "Safety"], values=[8, 6, 7, 9, 5])</span>
+<span class="sd">               chart.scale_to_fit_height(5.0).move_to(ORIGIN)</span>
+<span class="sd">               self.add(chart)</span>
+<span class="sd">               self.play(RadarMorph(chart, [7, 8, 6, 5, 9]))</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -2246,13 +2261,17 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: python</span>
+<span class="sd">    .. manim:: RadarRevealScene</span>
 
-<span class="sd">        from manim_extensions.radar.chart import RadarChart</span>
-<span class="sd">        from manim_extensions.radar.animations import RadarReveal</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.radar.animations import RadarReveal</span>
+<span class="sd">       from manim_extensions.radar.chart import RadarChart</span>
 
-<span class="sd">        chart = RadarChart(axes=["A", "B", "C"], values=[1, 2, 3])</span>
-<span class="sd">        reveal = RadarReveal(chart)</span>
+<span class="sd">       class RadarRevealScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               chart = RadarChart(axes=["A", "B", "C", "D"], values=[2, 5, 3, 4])</span>
+<span class="sd">               chart.scale_to_fit_height(5.0).move_to(ORIGIN)</span>
+<span class="sd">               self.play(RadarReveal(chart))</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -2376,13 +2395,17 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: python</span>
+<span class="sd">    .. manim:: RadarBurstInScene</span>
 
-<span class="sd">        from manim_extensions.radar.chart import RadarChart</span>
-<span class="sd">        from manim_extensions.radar.animations import RadarBurstIn</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.radar.animations import RadarBurstIn</span>
+<span class="sd">       from manim_extensions.radar.chart import RadarChart</span>
 
-<span class="sd">        chart = RadarChart(axes=["A", "B", "C"], values=[1, 2, 3])</span>
-<span class="sd">        burst = RadarBurstIn(chart)</span>
+<span class="sd">       class RadarBurstInScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               chart = RadarChart(axes=["A", "B", "C", "D"], values=[2, 5, 3, 4])</span>
+<span class="sd">               chart.scale_to_fit_height(5.0).move_to(ORIGIN)</span>
+<span class="sd">               self.play(RadarBurstIn(chart))</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -2499,13 +2522,18 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: python</span>
+<span class="sd">    .. manim:: RadarFadeScene</span>
 
-<span class="sd">        from manim_extensions.radar.chart import RadarChart</span>
-<span class="sd">        from manim_extensions.radar.animations import RadarFade</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.radar.animations import RadarFade</span>
+<span class="sd">       from manim_extensions.radar.chart import RadarChart</span>
 
-<span class="sd">        chart = RadarChart(axes=["A", "B", "C"], values=[1, 2, 3])</span>
-<span class="sd">        fade = RadarFade(chart, to=0.0)</span>
+<span class="sd">       class RadarFadeScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               chart = RadarChart(axes=["Speed", "Power", "Range", "Comfort", "Safety"], values=[8, 6, 7, 9, 5])</span>
+<span class="sd">               chart.scale_to_fit_height(5.0).move_to(ORIGIN)</span>
+<span class="sd">               self.add(chart)</span>
+<span class="sd">               self.play(RadarFade(chart, to=0.0))</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -2580,13 +2608,18 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: python</span>
+<span class="sd">    .. manim:: GlitchFlashScene</span>
 
-<span class="sd">        from manim_extensions.radar.chart import RadarChart</span>
-<span class="sd">        from manim_extensions.radar.animations import GlitchFlash</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.radar.animations import GlitchFlash</span>
+<span class="sd">       from manim_extensions.radar.chart import RadarChart</span>
 
-<span class="sd">        chart = RadarChart(axes=["A", "B", "C"], values=[1, 2, 3])</span>
-<span class="sd">        flash = GlitchFlash(chart)</span>
+<span class="sd">       class GlitchFlashScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               chart = RadarChart(axes=["Speed", "Power", "Range", "Comfort", "Safety"], values=[8, 6, 7, 9, 5])</span>
+<span class="sd">               chart.scale_to_fit_height(5.0).move_to(ORIGIN)</span>
+<span class="sd">               self.add(chart)</span>
+<span class="sd">               self.play(GlitchFlash(chart))</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

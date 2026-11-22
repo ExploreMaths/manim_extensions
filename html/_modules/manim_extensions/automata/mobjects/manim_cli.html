@@ -1486,11 +1486,11 @@
 
 <span class="c1">#: ASCII-art banner printed by the interactive CLI.</span>
 <span class="n">cli_logo</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">"""</span>
-<span class="s2">  __  __          _   _ _____ __  __           _    _ _______ ____  __  __       _______          _____ _      _____ </span>
+<span class="s2">  __  __          _   _ _____ __  __           _    _ _______ ____  __  __       _______          _____ _      _____</span>
 <span class="s2"> |  \/  |   /\   | \ | |_   _|  \/  |     /\  | |  | |__   __/ __ \|  \/  |   /\|__   __|/\      / ____| |    |_   _|</span>
-<span class="s2"> | \  / |  /  \  |  \| | | | | \  / |    /  \ | |  | |  | | | |  | | \  / |  /  \  | |  /  \    | |    | |      | |  </span>
-<span class="s2"> | |\/| | / /\ \ | . ` | | | | |\/| |   / /\ \| |  | |  | | | |  | | |\/| | / /\ \ | | / /\ \   | |    | |      | |  </span>
-<span class="s2"> | |  | |/ ____ \| |\  |_| |_| |  | |  / ____ \ |__| |  | | | |__| | |  | |/ ____ \| |/ ____ \  | |____| |____ _| |_ </span>
+<span class="s2"> | \  / |  /  \  |  \| | | | | \  / |    /  \ | |  | |  | | | |  | | \  / |  /  \  | |  /  \    | |    | |      | |</span>
+<span class="s2"> | |\/| | / /\ \ | . ` | | | | |\/| |   / /\ \| |  | |  | | | |  | | |\/| | / /\ \ | | / /\ \   | |    | |      | |</span>
+<span class="s2"> | |  | |/ ____ \| |\  |_| |_| |  | |  / ____ \ |__| |  | | | |__| | |  | |/ ____ \| |/ ____ \  | |____| |____ _| |_</span>
 <span class="s2"> |_|  |_/_/    \_\_| \_|_____|_|  |_| /_/    \_\____/   |_|  \____/|_|  |_/_/    \_\_/_/    \_\  \_____|______|_____|</span>
 
 <span class="s2">"""</span>
@@ -1508,6 +1508,29 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    .. manim:: ManimAutomataCLIOverview</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.automata.mobjects.manim_cli import ManimAutomataCLI</span>
+
+<span class="sd">       ManimAutomataCLITarget = ManimAutomataCLI</span>
+
+<span class="sd">       class ManimAutomataCLIOverview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               public = [n for n in dir(ManimAutomataCLITarget) if not n.startswith("_")]</span>
+<span class="sd">               card = VGroup(</span>
+<span class="sd">                   Text('ManimAutomataCLI', font_size=36),</span>
+<span class="sd">                   Text('module: manim_extensions.automata.mobjects.manim_cli', font_size=18, color=GREY),</span>
+<span class="sd">                   Text('Interactive command-line assistant for building automata paths', font_size=22),</span>
+<span class="sd">                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),</span>
+<span class="sd">               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)</span>
+<span class="sd">               card.scale_to_fit_width(11.5).move_to(ORIGIN)</span>
+<span class="sd">               frame = RoundedRectangle(</span>
+<span class="sd">                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D</span>
+<span class="sd">               ).move_to(card)</span>
+<span class="sd">               self.add(frame, card)</span>
+
 <span class="sd">    The CLI is activated through the ``cli`` flag of an automaton</span>
 <span class="sd">    constructor; it prints a banner and interactively records an accepting</span>
 <span class="sd">    path through a non-deterministic automaton:</span>

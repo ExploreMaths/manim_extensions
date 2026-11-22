@@ -1569,12 +1569,17 @@
 <dd></dd></dl>
 
 <p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.three_d.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">TorusSurface</span>
+<div id="torussurfaceconfigscene" class="admonition admonition-manim-example">
 
-<span class="n">cfg</span> <span class="o">=</span> <span class="n">TorusSurface</span><span class="p">()</span>
+<p class="admonition-title">Example: TorusSurfaceConfigScene <a class="headerlink" href="#torussurfaceconfigscene">¶</a></p><img alt="../../_images/TorusSurfaceConfigScene-41fd6c64.png" class="align-center" src="../../_images/TorusSurfaceConfigScene-41fd6c64.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.three_d.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">TorusSurface</span><span class="p">,</span> <span class="n">TorusSurfaceScene</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TorusSurfaceConfigScene</span><span class="p">(</span><span class="n">TorusSurfaceScene</span><span class="p">):</span>
+    <span class="n">style</span> <span class="o">=</span> <span class="n">TorusSurface</span><span class="p">(</span><span class="n">pace</span><span class="o">=</span><span class="s1">'fast'</span><span class="p">)</span>
 </pre></div>
 </div>
-<dl class="field-list simple">
+</div><dl class="field-list simple">
 </dl>
 </dd></dl>
 

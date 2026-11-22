@@ -1512,8 +1512,7 @@
 <div class="viewcode-block" id="ThreeDCylinder">
 <a class="viewcode-back" href="../../../../reference/chemistry/threeD/threedbond.ThreeDCylinder.html#manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ThreeDCylinder</span><span class="p">(</span><span class="n">OpenGLSurface</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    Absolutely yoinked from :class:`~manim.mobject.three_d.three_dimensions.Cylinder` class and</span>
+<span class="w">    </span><span class="sd">"""Absolutely yoinked from :class:`~manim.mobject.three_d.three_dimensions.Cylinder` class and</span>
 <span class="sd">    adapted to OpenGL rendering.</span>
 
 <span class="sd">    Parameters</span>
@@ -1535,6 +1534,29 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    .. manim:: ThreeDCylinderOverview</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.chemistry.threeD.threedbond import ThreeDCylinder</span>
+
+<span class="sd">       ThreeDCylinderTarget = ThreeDCylinder</span>
+
+<span class="sd">       class ThreeDCylinderOverview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               public = [n for n in dir(ThreeDCylinderTarget) if not n.startswith("_")]</span>
+<span class="sd">               card = VGroup(</span>
+<span class="sd">                   Text('ThreeDCylinder', font_size=36),</span>
+<span class="sd">                   Text('module: manim_extensions.chemistry.threeD.threedbond', font_size=18, color=GREY),</span>
+<span class="sd">                   Text('Absolutely yoinked from manim.mobject.three_d.three_dimensions.Cylinder class and adapted to OpenGL rendering', font_size=22),</span>
+<span class="sd">                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),</span>
+<span class="sd">               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)</span>
+<span class="sd">               card.scale_to_fit_width(11.5).move_to(ORIGIN)</span>
+<span class="sd">               frame = RoundedRectangle(</span>
+<span class="sd">                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D</span>
+<span class="sd">               ).move_to(card)</span>
+<span class="sd">               self.add(frame, card)</span>
+
 <span class="sd">    .. code-block:: python</span>
 
 <span class="sd">        from manim_extensions.chemistry.threeD.threedbond import ThreeDCylinder</span>
@@ -1702,8 +1724,7 @@
 <div class="viewcode-block" id="ThreeDLine">
 <a class="viewcode-back" href="../../../../reference/chemistry/threeD/threedbond.ThreeDLine.html#manim_extensions.chemistry.threeD.threedbond.ThreeDLine">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ThreeDLine</span><span class="p">(</span><span class="n">ThreeDCylinder</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    Absolutely yoinked from :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine` class and</span>
+<span class="w">    </span><span class="sd">"""Absolutely yoinked from :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDLine` class and</span>
 <span class="sd">    adapted to OpenGL rendering.</span>
 
 <span class="sd">    Parameters</span>
@@ -1721,6 +1742,29 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    .. manim:: ThreeDLineOverview</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.chemistry.threeD.threedbond import ThreeDLine</span>
+
+<span class="sd">       ThreeDLineTarget = ThreeDLine</span>
+
+<span class="sd">       class ThreeDLineOverview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               public = [n for n in dir(ThreeDLineTarget) if not n.startswith("_")]</span>
+<span class="sd">               card = VGroup(</span>
+<span class="sd">                   Text('ThreeDLine', font_size=36),</span>
+<span class="sd">                   Text('module: manim_extensions.chemistry.threeD.threedbond', font_size=18, color=GREY),</span>
+<span class="sd">                   Text('Absolutely yoinked from manim_extensions.chemistry.threeD.threedbond.ThreeDLine class and adapted to OpenGL rendering', font_size=22),</span>
+<span class="sd">                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),</span>
+<span class="sd">               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)</span>
+<span class="sd">               card.scale_to_fit_width(11.5).move_to(ORIGIN)</span>
+<span class="sd">               frame = RoundedRectangle(</span>
+<span class="sd">                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D</span>
+<span class="sd">               ).move_to(card)</span>
+<span class="sd">               self.add(frame, card)</span>
+
 <span class="sd">    .. code-block:: python</span>
 
 <span class="sd">        from manim_extensions.chemistry.threeD.threedbond import ThreeDLine</span>
@@ -1961,8 +2005,7 @@
 <div class="viewcode-block" id="ThreeDBond">
 <a class="viewcode-back" href="../../../../reference/chemistry/threeD/threedbond.ThreeDBond.html#manim_extensions.chemistry.threeD.threedbond.ThreeDBond">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ThreeDBond</span><span class="p">(</span><span class="n">OpenGLGroup</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    Used to create a tridimensional bond.</span>
+<span class="w">    </span><span class="sd">"""Used to create a tridimensional bond.</span>
 <span class="sd">    Uses an origin atom and a target atom to be drawn.</span>
 
 <span class="sd">    Parameters</span>
@@ -1980,6 +2023,29 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    .. manim:: ThreeDBondOverview</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.chemistry.threeD.threedbond import ThreeDBond</span>
+
+<span class="sd">       ThreeDBondTarget = ThreeDBond</span>
+
+<span class="sd">       class ThreeDBondOverview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               public = [n for n in dir(ThreeDBondTarget) if not n.startswith("_")]</span>
+<span class="sd">               card = VGroup(</span>
+<span class="sd">                   Text('ThreeDBond', font_size=36),</span>
+<span class="sd">                   Text('module: manim_extensions.chemistry.threeD.threedbond', font_size=18, color=GREY),</span>
+<span class="sd">                   Text('Used to create a tridimensional bond. Uses an origin atom and a target atom to be drawn', font_size=22),</span>
+<span class="sd">                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),</span>
+<span class="sd">               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)</span>
+<span class="sd">               card.scale_to_fit_width(11.5).move_to(ORIGIN)</span>
+<span class="sd">               frame = RoundedRectangle(</span>
+<span class="sd">                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D</span>
+<span class="sd">               ).move_to(card)</span>
+<span class="sd">               self.add(frame, card)</span>
+
 <span class="sd">    .. code-block:: python</span>
 
 <span class="sd">        import numpy as np</span>

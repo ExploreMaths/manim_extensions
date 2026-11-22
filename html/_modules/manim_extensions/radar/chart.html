@@ -1571,12 +1571,19 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: python</span>
+<span class="sd">    .. manim:: SeriesScene</span>
+<span class="sd">       :save_last_frame:</span>
 
-<span class="sd">        from manim_extensions.radar.chart import RadarChart</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.radar.chart import RadarChart</span>
 
-<span class="sd">        chart = RadarChart(axes=["A", "B", "C"], values=[1, 2, 3])</span>
-<span class="sd">        series = chart.series[0]</span>
+<span class="sd">       class SeriesScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               chart = RadarChart(axes=["Speed", "Power", "Range", "Comfort", "Safety"], values=[8, 6, 7, 9, 5])</span>
+<span class="sd">               chart.scale_to_fit_height(5.0).move_to(ORIGIN)</span>
+<span class="sd">               series = chart._series[0]</span>
+<span class="sd">               assert series.values == [8.0, 6.0, 7.0, 9.0, 5.0]</span>
+<span class="sd">               self.add(chart)</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

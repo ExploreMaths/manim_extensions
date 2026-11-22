@@ -1509,13 +1509,18 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: python</span>
+<span class="sd">    .. manim:: ManimML3DPreview</span>
+<span class="sd">       :save_last_frame:</span>
 
-<span class="sd">        from manim_extensions.machine_learning.scene import ManimML3DScene</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.machine_learning.neural_network.architectures.feed_forward import FeedForwardNeuralNetwork</span>
+<span class="sd">       from manim_extensions.machine_learning.scene import ManimML3DScene</span>
 
-<span class="sd">        class MyScene(ManimML3DScene):</span>
-<span class="sd">            def construct(self):</span>
-<span class="sd">                self.wait()</span>
+<span class="sd">       class ManimML3DPreview(ManimML3DScene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               network = FeedForwardNeuralNetwork([3, 4, 2])</span>
+<span class="sd">               network.scale_to_fit_height(5.0)</span>
+<span class="sd">               self.add(network)</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>

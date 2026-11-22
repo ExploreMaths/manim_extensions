@@ -1506,10 +1506,30 @@
 <dd></dd></dl>
 
 <p class="rubric">Examples</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>manim<span class="w"> </span>example.py<span class="w"> </span>RadarV2Scene
+<div id="radarv2gallery" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: RadarV2Gallery <a class="headerlink" href="#radarv2gallery">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./RadarV2Gallery-7a115683.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.chart</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarChart</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.legacy</span><span class="w"> </span><span class="kn">import</span> <span class="n">replica_datasets</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RadarV2Gallery</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">chart</span> <span class="o">=</span> <span class="n">RadarChart</span><span class="p">(</span>
+            <span class="n">replica_datasets</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">style</span><span class="o">=</span><span class="s2">"neo"</span><span class="p">,</span>
+            <span class="n">theme</span><span class="o">=</span><span class="s2">"midnight"</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">"六维能力 · 雷达图鉴"</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Create</span><span class="p">(</span><span class="n">chart</span><span class="p">))</span>
 </pre></div>
 </div>
-<dl class="field-list simple">
+</div><dl class="field-list simple">
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.radar.legacy.RadarV2Scene.construct">

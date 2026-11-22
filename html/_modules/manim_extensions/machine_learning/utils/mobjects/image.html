@@ -1498,6 +1498,33 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim.typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">PixelArray</span>
 
 
+<span class="k">def</span><span class="w"> </span><span class="nf">_as_uint8_image</span><span class="p">(</span><span class="n">numpy_image</span><span class="p">:</span> <span class="n">PixelArray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PixelArray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Return image data as a ``uint8`` array suitable for Pillow.</span>
+
+<span class="sd">    Floating point images are commonly normalized to ``[0, 1]``; those are</span>
+<span class="sd">    rescaled to ``[0, 255]`` before conversion. Integer images are clipped to</span>
+<span class="sd">    the valid byte range.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    numpy_image</span>
+<span class="sd">        Image data in grayscale or RGB layout.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        The image data as a ``uint8`` array.</span>
+<span class="sd">    """</span>
+    <span class="n">array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">numpy_image</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">array</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">array</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">numpy_image</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">issubdtype</span><span class="p">(</span><span class="n">array</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">floating</span><span class="p">)</span> <span class="ow">and</span> <span class="n">array</span><span class="o">.</span><span class="n">size</span><span class="p">:</span>
+        <span class="n">peak</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">nanmax</span><span class="p">(</span><span class="n">values</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">peak</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">:</span>
+            <span class="n">values</span> <span class="o">=</span> <span class="n">values</span> <span class="o">*</span> <span class="mf">255.0</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">values</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">255</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span>
+
+
 <div class="viewcode-block" id="GrayscaleImageMobject">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/utils/mobjects/image.GrayscaleImageMobject.html#manim_extensions.machine_learning.utils.mobjects.image.GrayscaleImageMobject">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">GrayscaleImageMobject</span><span class="p">(</span><span class="n">Group</span><span class="p">):</span>
@@ -1530,7 +1557,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">numpy_image</span> <span class="o">=</span> <span class="n">numpy_image</span>
         <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">numpy_image</span><span class="p">))</span> <span class="o">==</span> <span class="mi">2</span>
 
-        <span class="n">input_image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">numpy_image</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+        <span class="n">input_image</span> <span class="o">=</span> <span class="n">_as_uint8_image</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">numpy_image</span><span class="p">)[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
         <span class="c1"># Convert grayscale to rgb version of grayscale</span>
         <span class="n">input_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="n">input_image</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
         <span class="n">input_image</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rollaxis</span><span class="p">(</span><span class="n">input_image</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>

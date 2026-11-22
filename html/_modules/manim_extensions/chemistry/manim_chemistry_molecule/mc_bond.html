@@ -1505,8 +1505,7 @@
 <div class="viewcode-block" id="MCBond">
 <a class="viewcode-back" href="../../../../reference/chemistry/manim_chemistry_molecule/mc_bond.MCBond.html#manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">MCBond</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`: Abstraction of a bond in a molecule: Type of bond, from and to atoms.</span>
+<span class="w">    </span><span class="sd">""":class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`: Abstraction of a bond in a molecule: Type of bond, from and to atoms.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1527,6 +1526,29 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    .. manim:: MCBondOverview</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.chemistry.manim_chemistry_molecule.mc_bond import MCBond</span>
+
+<span class="sd">       MCBondTarget = MCBond</span>
+
+<span class="sd">       class MCBondOverview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               public = [n for n in dir(MCBondTarget) if not n.startswith("_")]</span>
+<span class="sd">               card = VGroup(</span>
+<span class="sd">                   Text('MCBond', font_size=36),</span>
+<span class="sd">                   Text('module: manim_extensions.chemistry.manim_chemistry_molecule.mc_bond', font_size=18, color=GREY),</span>
+<span class="sd">                   Text('manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond: Abstraction of a bond in a molecule: Type of bond, from and to atoms', font_size=22),</span>
+<span class="sd">                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),</span>
+<span class="sd">               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)</span>
+<span class="sd">               card.scale_to_fit_width(11.5).move_to(ORIGIN)</span>
+<span class="sd">               frame = RoundedRectangle(</span>
+<span class="sd">                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D</span>
+<span class="sd">               ).move_to(card)</span>
+<span class="sd">               self.add(frame, card)</span>
+
 <span class="sd">    .. code-block:: python</span>
 
 <span class="sd">        import numpy as np</span>

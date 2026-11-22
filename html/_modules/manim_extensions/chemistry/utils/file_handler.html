@@ -1505,6 +1505,29 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    .. manim:: IncorrectFormatOverview</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.chemistry.utils.file_handler import IncorrectFormat</span>
+
+<span class="sd">       IncorrectFormatTarget = IncorrectFormat</span>
+
+<span class="sd">       class IncorrectFormatOverview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               public = [n for n in dir(IncorrectFormatTarget) if not n.startswith("_")]</span>
+<span class="sd">               card = VGroup(</span>
+<span class="sd">                   Text('IncorrectFormat', font_size=36),</span>
+<span class="sd">                   Text('module: manim_extensions.chemistry.utils.file_handler', font_size=18, color=GREY),</span>
+<span class="sd">                   Text('Raised when a file has an unsupported or unrecognized format', font_size=22),</span>
+<span class="sd">                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),</span>
+<span class="sd">               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)</span>
+<span class="sd">               card.scale_to_fit_width(11.5).move_to(ORIGIN)</span>
+<span class="sd">               frame = RoundedRectangle(</span>
+<span class="sd">                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D</span>
+<span class="sd">               ).move_to(card)</span>
+<span class="sd">               self.add(frame, card)</span>
+
 <span class="sd">    .. code-block:: python</span>
 
 <span class="sd">        from manim_extensions.chemistry.utils.file_handler import FileHandler, IncorrectFormat</span>
@@ -1529,6 +1552,29 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    .. manim:: FileHandlerOverview</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.chemistry.utils.file_handler import FileHandler</span>
+
+<span class="sd">       FileHandlerTarget = FileHandler</span>
+
+<span class="sd">       class FileHandlerOverview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               public = [n for n in dir(FileHandlerTarget) if not n.startswith("_")]</span>
+<span class="sd">               card = VGroup(</span>
+<span class="sd">                   Text('FileHandler', font_size=36),</span>
+<span class="sd">                   Text('module: manim_extensions.chemistry.utils.file_handler', font_size=18, color=GREY),</span>
+<span class="sd">                   Text('Handles the parsing of chemistry files selecting the right parser', font_size=22),</span>
+<span class="sd">                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),</span>
+<span class="sd">               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)</span>
+<span class="sd">               card.scale_to_fit_width(11.5).move_to(ORIGIN)</span>
+<span class="sd">               frame = RoundedRectangle(</span>
+<span class="sd">                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D</span>
+<span class="sd">               ).move_to(card)</span>
+<span class="sd">               self.add(frame, card)</span>
+
 <span class="sd">    .. code-block:: python</span>
 
 <span class="sd">        from manim_extensions.chemistry.utils.file_handler import FileHandler</span>

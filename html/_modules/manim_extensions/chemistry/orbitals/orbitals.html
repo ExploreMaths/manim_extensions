@@ -1504,8 +1504,7 @@
 <div class="viewcode-block" id="OrbitalBase">
 <a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.OrbitalBase.html#manim_extensions.chemistry.orbitals.orbitals.OrbitalBase">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">OrbitalBase</span><span class="p">(</span><span class="n">OpenGLSurface</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    Base class for implementing atomic orbitals.</span>
+<span class="w">    </span><span class="sd">"""Base class for implementing atomic orbitals.</span>
 <span class="sd">    Not meant to be used directly even when you can.</span>
 
 <span class="sd">    Parameters</span>
@@ -1532,6 +1531,29 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    .. manim:: OrbitalBaseOverview</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.chemistry.orbitals.orbitals import OrbitalBase</span>
+
+<span class="sd">       OrbitalBaseTarget = OrbitalBase</span>
+
+<span class="sd">       class OrbitalBaseOverview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               public = [n for n in dir(OrbitalBaseTarget) if not n.startswith("_")]</span>
+<span class="sd">               card = VGroup(</span>
+<span class="sd">                   Text('OrbitalBase', font_size=36),</span>
+<span class="sd">                   Text('module: manim_extensions.chemistry.orbitals.orbitals', font_size=18, color=GREY),</span>
+<span class="sd">                   Text('Base class for implementing atomic orbitals. Not meant to be used directly even when you can', font_size=22),</span>
+<span class="sd">                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),</span>
+<span class="sd">               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)</span>
+<span class="sd">               card.scale_to_fit_width(11.5).move_to(ORIGIN)</span>
+<span class="sd">               frame = RoundedRectangle(</span>
+<span class="sd">                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D</span>
+<span class="sd">               ).move_to(card)</span>
+<span class="sd">               self.add(frame, card)</span>
+
 <span class="sd">    .. code-block:: python</span>
 
 <span class="sd">        from manim_extensions.chemistry.orbitals.orbitals import OrbitalBase</span>
@@ -1666,11 +1688,33 @@
 <div class="viewcode-block" id="OrbitalPositive">
 <a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.OrbitalPositive.html#manim_extensions.chemistry.orbitals.orbitals.OrbitalPositive">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">OrbitalPositive</span><span class="p">(</span><span class="n">OrbitalBase</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    Calculates the positive values of the orbital.</span>
+<span class="w">    </span><span class="sd">"""Calculates the positive values of the orbital.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    .. manim:: OrbitalPositiveOverview</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.chemistry.orbitals.orbitals import OrbitalPositive</span>
+
+<span class="sd">       OrbitalPositiveTarget = OrbitalPositive</span>
+
+<span class="sd">       class OrbitalPositiveOverview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               public = [n for n in dir(OrbitalPositiveTarget) if not n.startswith("_")]</span>
+<span class="sd">               card = VGroup(</span>
+<span class="sd">                   Text('OrbitalPositive', font_size=36),</span>
+<span class="sd">                   Text('module: manim_extensions.chemistry.orbitals.orbitals', font_size=18, color=GREY),</span>
+<span class="sd">                   Text('Calculates the positive values of the orbital', font_size=22),</span>
+<span class="sd">                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),</span>
+<span class="sd">               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)</span>
+<span class="sd">               card.scale_to_fit_width(11.5).move_to(ORIGIN)</span>
+<span class="sd">               frame = RoundedRectangle(</span>
+<span class="sd">                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D</span>
+<span class="sd">               ).move_to(card)</span>
+<span class="sd">               self.add(frame, card)</span>
+
 <span class="sd">    .. code-block:: python</span>
 
 <span class="sd">        from manim_extensions.chemistry.orbitals.orbitals import OrbitalPositive</span>
@@ -1706,11 +1750,33 @@
 <div class="viewcode-block" id="OrbitalNegative">
 <a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.OrbitalNegative.html#manim_extensions.chemistry.orbitals.orbitals.OrbitalNegative">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">OrbitalNegative</span><span class="p">(</span><span class="n">OrbitalBase</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    Calculates the negative values of the orbital.</span>
+<span class="w">    </span><span class="sd">"""Calculates the negative values of the orbital.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    .. manim:: OrbitalNegativeOverview</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.chemistry.orbitals.orbitals import OrbitalNegative</span>
+
+<span class="sd">       OrbitalNegativeTarget = OrbitalNegative</span>
+
+<span class="sd">       class OrbitalNegativeOverview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               public = [n for n in dir(OrbitalNegativeTarget) if not n.startswith("_")]</span>
+<span class="sd">               card = VGroup(</span>
+<span class="sd">                   Text('OrbitalNegative', font_size=36),</span>
+<span class="sd">                   Text('module: manim_extensions.chemistry.orbitals.orbitals', font_size=18, color=GREY),</span>
+<span class="sd">                   Text('Calculates the negative values of the orbital', font_size=22),</span>
+<span class="sd">                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),</span>
+<span class="sd">               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)</span>
+<span class="sd">               card.scale_to_fit_width(11.5).move_to(ORIGIN)</span>
+<span class="sd">               frame = RoundedRectangle(</span>
+<span class="sd">                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D</span>
+<span class="sd">               ).move_to(card)</span>
+<span class="sd">               self.add(frame, card)</span>
+
 <span class="sd">    .. code-block:: python</span>
 
 <span class="sd">        from manim_extensions.chemistry.orbitals.orbitals import OrbitalNegative</span>
@@ -1746,8 +1812,7 @@
 <div class="viewcode-block" id="Orbital">
 <a class="viewcode-back" href="../../../../reference/chemistry/orbitals/orbitals.Orbital.html#manim_extensions.chemistry.orbitals.orbitals.Orbital">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Orbital</span><span class="p">(</span><span class="n">OpenGLSurface</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    Uses positive and negative orbitals to create</span>
+<span class="w">    </span><span class="sd">"""Uses positive and negative orbitals to create</span>
 <span class="sd">    an orbital. n value is still not implemented TODO</span>
 
 <span class="sd">    .. important::</span>
@@ -1772,6 +1837,29 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    .. manim:: OrbitalOverview</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.chemistry.orbitals.orbitals import Orbital</span>
+
+<span class="sd">       OrbitalTarget = Orbital</span>
+
+<span class="sd">       class OrbitalOverview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               public = [n for n in dir(OrbitalTarget) if not n.startswith("_")]</span>
+<span class="sd">               card = VGroup(</span>
+<span class="sd">                   Text('Orbital', font_size=36),</span>
+<span class="sd">                   Text('module: manim_extensions.chemistry.orbitals.orbitals', font_size=18, color=GREY),</span>
+<span class="sd">                   Text('Uses positive and negative orbitals to create an orbital. n value is still not implemented TODO', font_size=22),</span>
+<span class="sd">                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),</span>
+<span class="sd">               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)</span>
+<span class="sd">               card.scale_to_fit_width(11.5).move_to(ORIGIN)</span>
+<span class="sd">               frame = RoundedRectangle(</span>
+<span class="sd">                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D</span>
+<span class="sd">               ).move_to(card)</span>
+<span class="sd">               self.add(frame, card)</span>
+
 <span class="sd">    .. code-block:: python</span>
 
 <span class="sd">        from manim_extensions.chemistry.orbitals.orbitals import Orbital</span>

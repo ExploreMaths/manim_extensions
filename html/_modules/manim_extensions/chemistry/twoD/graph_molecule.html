@@ -1574,11 +1574,16 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: python</span>
+<span class="sd">    .. manim:: DoubleLineScene</span>
+<span class="sd">       :save_last_frame:</span>
 
-<span class="sd">        from manim_extensions.chemistry.twoD.graph_molecule import DoubleLine</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.chemistry.twoD.graph_molecule import DoubleLine</span>
 
-<span class="sd">        line = DoubleLine(start=[-1, 0, 0], end=[1, 0, 0])</span>
+<span class="sd">       class DoubleLineScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               line = DoubleLine(start=[-1.5, 0, 0], end=[1.5, 0, 0]).scale(3.0)</span>
+<span class="sd">               self.add(line)</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -1675,11 +1680,16 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: python</span>
+<span class="sd">    .. manim:: TripleLineScene</span>
+<span class="sd">       :save_last_frame:</span>
 
-<span class="sd">        from manim_extensions.chemistry.twoD.graph_molecule import TripleLine</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.chemistry.twoD.graph_molecule import TripleLine</span>
 
-<span class="sd">        line = TripleLine(start=[-1, 0, 0], end=[1, 0, 0])</span>
+<span class="sd">       class TripleLineScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               line = TripleLine(start=[-1.5, 0, 0], end=[1.5, 0, 0]).scale(3.0)</span>
+<span class="sd">               self.add(line)</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

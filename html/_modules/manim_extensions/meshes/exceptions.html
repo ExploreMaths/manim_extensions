@@ -1493,6 +1493,29 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    .. manim:: InvalidMeshExceptionOverview</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.meshes.exceptions import InvalidMeshException</span>
+
+<span class="sd">       InvalidMeshExceptionTarget = InvalidMeshException</span>
+
+<span class="sd">       class InvalidMeshExceptionOverview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               public = [n for n in dir(InvalidMeshExceptionTarget) if not n.startswith("_")]</span>
+<span class="sd">               card = VGroup(</span>
+<span class="sd">                   Text('InvalidMeshException', font_size=36),</span>
+<span class="sd">                   Text('module: manim_extensions.meshes.exceptions', font_size=18, color=GREY),</span>
+<span class="sd">                   Text('something with the mesh is generally wrong', font_size=22),</span>
+<span class="sd">                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),</span>
+<span class="sd">               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)</span>
+<span class="sd">               card.scale_to_fit_width(11.5).move_to(ORIGIN)</span>
+<span class="sd">               frame = RoundedRectangle(</span>
+<span class="sd">                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D</span>
+<span class="sd">               ).move_to(card)</span>
+<span class="sd">               self.add(frame, card)</span>
+
 <span class="sd">    .. nbcell::</span>
 <span class="sd">       :output-language: pytb</span>
 
@@ -1512,6 +1535,29 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    .. manim:: InvalidRequestExceptionOverview</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.meshes.exceptions import InvalidRequestException</span>
+
+<span class="sd">       InvalidRequestExceptionTarget = InvalidRequestException</span>
+
+<span class="sd">       class InvalidRequestExceptionOverview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               public = [n for n in dir(InvalidRequestExceptionTarget) if not n.startswith("_")]</span>
+<span class="sd">               card = VGroup(</span>
+<span class="sd">                   Text('InvalidRequestException', font_size=36),</span>
+<span class="sd">                   Text('module: manim_extensions.meshes.exceptions', font_size=18, color=GREY),</span>
+<span class="sd">                   Text('a request was made that is not defined', font_size=22),</span>
+<span class="sd">                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),</span>
+<span class="sd">               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)</span>
+<span class="sd">               card.scale_to_fit_width(11.5).move_to(ORIGIN)</span>
+<span class="sd">               frame = RoundedRectangle(</span>
+<span class="sd">                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D</span>
+<span class="sd">               ).move_to(card)</span>
+<span class="sd">               self.add(frame, card)</span>
+
 <span class="sd">    .. nbcell::</span>
 <span class="sd">       :output-language: pytb</span>
 
@@ -1532,6 +1578,29 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    .. manim:: MeshIndexExceptionOverview</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.meshes.exceptions import MeshIndexException</span>
+
+<span class="sd">       MeshIndexExceptionTarget = MeshIndexException</span>
+
+<span class="sd">       class MeshIndexExceptionOverview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               public = [n for n in dir(MeshIndexExceptionTarget) if not n.startswith("_")]</span>
+<span class="sd">               card = VGroup(</span>
+<span class="sd">                   Text('MeshIndexException', font_size=36),</span>
+<span class="sd">                   Text('module: manim_extensions.meshes.exceptions', font_size=18, color=GREY),</span>
+<span class="sd">                   Text('Invalid index', font_size=22),</span>
+<span class="sd">                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),</span>
+<span class="sd">               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)</span>
+<span class="sd">               card.scale_to_fit_width(11.5).move_to(ORIGIN)</span>
+<span class="sd">               frame = RoundedRectangle(</span>
+<span class="sd">                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D</span>
+<span class="sd">               ).move_to(card)</span>
+<span class="sd">               self.add(frame, card)</span>
+
 <span class="sd">    .. nbcell::</span>
 <span class="sd">       :output-language: pytb</span>
 
@@ -1553,6 +1622,29 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    .. manim:: InvalidTypeExceptionOverview</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.meshes.exceptions import InvalidTypeException</span>
+
+<span class="sd">       InvalidTypeExceptionTarget = InvalidTypeException</span>
+
+<span class="sd">       class InvalidTypeExceptionOverview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               public = [n for n in dir(InvalidTypeExceptionTarget) if not n.startswith("_")]</span>
+<span class="sd">               card = VGroup(</span>
+<span class="sd">                   Text('InvalidTypeException', font_size=36),</span>
+<span class="sd">                   Text('module: manim_extensions.meshes.exceptions', font_size=18, color=GREY),</span>
+<span class="sd">                   Text('A mesh function did get a faulty type', font_size=22),</span>
+<span class="sd">                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),</span>
+<span class="sd">               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)</span>
+<span class="sd">               card.scale_to_fit_width(11.5).move_to(ORIGIN)</span>
+<span class="sd">               frame = RoundedRectangle(</span>
+<span class="sd">                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D</span>
+<span class="sd">               ).move_to(card)</span>
+<span class="sd">               self.add(frame, card)</span>
+
 <span class="sd">    .. nbcell::</span>
 <span class="sd">       :output-language: pytb</span>
 
@@ -1580,6 +1672,29 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    .. manim:: InvalidMeshDimensionsExceptionOverview</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.meshes.exceptions import InvalidMeshDimensionsException</span>
+
+<span class="sd">       InvalidMeshDimensionsExceptionTarget = InvalidMeshDimensionsException</span>
+
+<span class="sd">       class InvalidMeshDimensionsExceptionOverview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               public = [n for n in dir(InvalidMeshDimensionsExceptionTarget) if not n.startswith("_")]</span>
+<span class="sd">               card = VGroup(</span>
+<span class="sd">                   Text('InvalidMeshDimensionsException', font_size=36),</span>
+<span class="sd">                   Text('module: manim_extensions.meshes.exceptions', font_size=18, color=GREY),</span>
+<span class="sd">                   Text('Something with the Mesh Dimensions is not as expected', font_size=22),</span>
+<span class="sd">                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),</span>
+<span class="sd">               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)</span>
+<span class="sd">               card.scale_to_fit_width(11.5).move_to(ORIGIN)</span>
+<span class="sd">               frame = RoundedRectangle(</span>
+<span class="sd">                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D</span>
+<span class="sd">               ).move_to(card)</span>
+<span class="sd">               self.add(frame, card)</span>
+
 <span class="sd">    Raised when a parameter has the wrong dimensionality, e.g. adding 2-D</span>
 <span class="sd">    vertices to a 3-D mesh:</span>
 
@@ -1625,6 +1740,29 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    .. manim:: InvalidShapeExceptionOverview</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.meshes.exceptions import InvalidShapeException</span>
+
+<span class="sd">       InvalidShapeExceptionTarget = InvalidShapeException</span>
+
+<span class="sd">       class InvalidShapeExceptionOverview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               public = [n for n in dir(InvalidShapeExceptionTarget) if not n.startswith("_")]</span>
+<span class="sd">               card = VGroup(</span>
+<span class="sd">                   Text('InvalidShapeException', font_size=36),</span>
+<span class="sd">                   Text('module: manim_extensions.meshes.exceptions', font_size=18, color=GREY),</span>
+<span class="sd">                   Text('A new parameter has invalid shape', font_size=22),</span>
+<span class="sd">                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),</span>
+<span class="sd">               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)</span>
+<span class="sd">               card.scale_to_fit_width(11.5).move_to(ORIGIN)</span>
+<span class="sd">               frame = RoundedRectangle(</span>
+<span class="sd">                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D</span>
+<span class="sd">               ).move_to(card)</span>
+<span class="sd">               self.add(frame, card)</span>
+
 <span class="sd">    Raised by :meth:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.move_vertices_to`</span>
 <span class="sd">    when the target position list does not match the number of vertices:</span>
 
@@ -1657,6 +1795,29 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    .. manim:: BadParameterExceptionOverview</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.meshes.exceptions import BadParameterException</span>
+
+<span class="sd">       BadParameterExceptionTarget = BadParameterException</span>
+
+<span class="sd">       class BadParameterExceptionOverview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               public = [n for n in dir(BadParameterExceptionTarget) if not n.startswith("_")]</span>
+<span class="sd">               card = VGroup(</span>
+<span class="sd">                   Text('BadParameterException', font_size=36),</span>
+<span class="sd">                   Text('module: manim_extensions.meshes.exceptions', font_size=18, color=GREY),</span>
+<span class="sd">                   Text('Default Class for Parameter Exceptions', font_size=22),</span>
+<span class="sd">                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),</span>
+<span class="sd">               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)</span>
+<span class="sd">               card.scale_to_fit_width(11.5).move_to(ORIGIN)</span>
+<span class="sd">               frame = RoundedRectangle(</span>
+<span class="sd">                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D</span>
+<span class="sd">               ).move_to(card)</span>
+<span class="sd">               self.add(frame, card)</span>
+
 <span class="sd">    .. nbcell::</span>
 <span class="sd">       :output-language: pytb</span>
 
@@ -1677,6 +1838,29 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    .. manim:: FaultyVarArrayExceptionOverview</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.meshes.exceptions import FaultyVarArrayException</span>
+
+<span class="sd">       FaultyVarArrayExceptionTarget = FaultyVarArrayException</span>
+
+<span class="sd">       class FaultyVarArrayExceptionOverview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               public = [n for n in dir(FaultyVarArrayExceptionTarget) if not n.startswith("_")]</span>
+<span class="sd">               card = VGroup(</span>
+<span class="sd">                   Text('FaultyVarArrayException', font_size=36),</span>
+<span class="sd">                   Text('module: manim_extensions.meshes.exceptions', font_size=18, color=GREY),</span>
+<span class="sd">                   Text('The given object is no VarArray', font_size=22),</span>
+<span class="sd">                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),</span>
+<span class="sd">               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)</span>
+<span class="sd">               card.scale_to_fit_width(11.5).move_to(ORIGIN)</span>
+<span class="sd">               frame = RoundedRectangle(</span>
+<span class="sd">                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D</span>
+<span class="sd">               ).move_to(card)</span>
+<span class="sd">               self.add(frame, card)</span>
+
 <span class="sd">    .. nbcell::</span>
 
 <span class="sd">       from manim_extensions.meshes.exceptions import FaultyVarArrayException</span>

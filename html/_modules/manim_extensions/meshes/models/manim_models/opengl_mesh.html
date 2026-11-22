@@ -1530,6 +1530,29 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    .. manim:: FastManimMeshOverview</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.meshes.models.manim_models.opengl_mesh import FastManimMesh</span>
+
+<span class="sd">       FastManimMeshTarget = FastManimMesh</span>
+
+<span class="sd">       class FastManimMeshOverview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               public = [n for n in dir(FastManimMeshTarget) if not n.startswith("_")]</span>
+<span class="sd">               card = VGroup(</span>
+<span class="sd">                   Text('FastManimMesh', font_size=36),</span>
+<span class="sd">                   Text('module: manim_extensions.meshes.models.manim_models.opengl_mesh', font_size=18, color=GREY),</span>
+<span class="sd">                   Text('More efficient mesh implementation. Uses custom shaders and stores vertices and faces in a single VAO. Useful for rendering meshes with many vertices / faces. The underlying manim_extensions.meshes.models.data_models.mesh.Mesh can be updated through manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.set_mesh, manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.add_face, manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.remove_face and manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.update_vertex; every update rebuilds the shader arrays', font_size=22),</span>
+<span class="sd">                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),</span>
+<span class="sd">               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)</span>
+<span class="sd">               card.scale_to_fit_width(11.5).move_to(ORIGIN)</span>
+<span class="sd">               frame = RoundedRectangle(</span>
+<span class="sd">                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D</span>
+<span class="sd">               ).move_to(card)</span>
+<span class="sd">               self.add(frame, card)</span>
+
 <span class="sd">    .. code-block:: python</span>
 
 <span class="sd">        from manim_extensions.meshes.models.manim_models.opengl_mesh import FastManimMesh</span>

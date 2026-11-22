@@ -1507,8 +1507,26 @@
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<p><code class="docutils literal notranslate"><span class="pre">self.play(chart.shockwave(color=&quot;#E868C8&quot;))</span></code></p>
-<dl class="py method">
+<div id="shockwavescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ShockwaveScene <a class="headerlink" href="#shockwavescene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./ShockwaveScene-3505efae.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.chart</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarChart</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ShockwaveScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">chart</span> <span class="o">=</span> <span class="n">RadarChart</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="s2">"Speed"</span><span class="p">,</span> <span class="s2">"Power"</span><span class="p">,</span> <span class="s2">"Range"</span><span class="p">,</span> <span class="s2">"Comfort"</span><span class="p">,</span> <span class="s2">"Safety"</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+        <span class="n">chart</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">3.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">chart</span><span class="o">.</span><span class="n">shockwave</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">"#E868C8"</span><span class="p">,</span> <span class="n">radius_end</span><span class="o">=</span><span class="mf">3.2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div><dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.radar.animations.Shockwave.interpolate_mobject">
 <span class="sig-name descname"><span class="pre">interpolate_mobject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#Shockwave.interpolate_mobject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.Shockwave.interpolate_mobject" title="Link to this definition">¶</a></dt>
 <dd><p>Restyle the ring for the current animation progress.</p>

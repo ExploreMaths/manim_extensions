@@ -1498,11 +1498,19 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: python</span>
+<span class="sd">    .. manim:: RadarThemeScene</span>
+<span class="sd">       :save_last_frame:</span>
 
-<span class="sd">        from manim_extensions.radar.theme import RadarTheme</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.radar.chart import RadarChart</span>
+<span class="sd">       from manim_extensions.radar.theme import RadarTheme</span>
 
-<span class="sd">        theme = RadarTheme(name="custom", background="#070B16")</span>
+<span class="sd">       class RadarThemeScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               theme = RadarTheme(name="custom", background="#070B16", grid="#8B9BB8")</span>
+<span class="sd">               chart = RadarChart(axes=["A", "B", "C", "D", "E"], values=[2, 4, 3, 5, 1], theme=theme)</span>
+<span class="sd">               chart.scale_to_fit_height(5.0).move_to(ORIGIN)</span>
+<span class="sd">               self.add(chart)</span>
 <span class="sd">    """</span>
 
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"custom"</span>

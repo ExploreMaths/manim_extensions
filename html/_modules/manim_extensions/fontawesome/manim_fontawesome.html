@@ -1533,6 +1533,29 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    .. manim:: BrandEnumOverview</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.fontawesome.manim_fontawesome import BrandEnum</span>
+
+<span class="sd">       BrandEnumTarget = BrandEnum</span>
+
+<span class="sd">       class BrandEnumOverview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               public = [n for n in dir(BrandEnumTarget) if not n.startswith("_")]</span>
+<span class="sd">               card = VGroup(</span>
+<span class="sd">                   Text('BrandEnum', font_size=36),</span>
+<span class="sd">                   Text('module: manim_extensions.fontawesome.manim_fontawesome', font_size=18, color=GREY),</span>
+<span class="sd">                   Text('Bundled brand-style icon paths', font_size=22),</span>
+<span class="sd">                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),</span>
+<span class="sd">               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)</span>
+<span class="sd">               card.scale_to_fit_width(11.5).move_to(ORIGIN)</span>
+<span class="sd">               frame = RoundedRectangle(</span>
+<span class="sd">                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D</span>
+<span class="sd">               ).move_to(card)</span>
+<span class="sd">               self.add(frame, card)</span>
+
 <span class="sd">    .. code-block:: python</span>
 
 <span class="sd">        from manim_extensions.fontawesome.manim_fontawesome import BrandEnum</span>
@@ -2519,6 +2542,29 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    .. manim:: RegularEnumOverview</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.fontawesome.manim_fontawesome import RegularEnum</span>
+
+<span class="sd">       RegularEnumTarget = RegularEnum</span>
+
+<span class="sd">       class RegularEnumOverview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               public = [n for n in dir(RegularEnumTarget) if not n.startswith("_")]</span>
+<span class="sd">               card = VGroup(</span>
+<span class="sd">                   Text('RegularEnum', font_size=36),</span>
+<span class="sd">                   Text('module: manim_extensions.fontawesome.manim_fontawesome', font_size=18, color=GREY),</span>
+<span class="sd">                   Text('Bundled regular-style icon paths', font_size=22),</span>
+<span class="sd">                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),</span>
+<span class="sd">               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)</span>
+<span class="sd">               card.scale_to_fit_width(11.5).move_to(ORIGIN)</span>
+<span class="sd">               frame = RoundedRectangle(</span>
+<span class="sd">                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D</span>
+<span class="sd">               ).move_to(card)</span>
+<span class="sd">               self.add(frame, card)</span>
+
 <span class="sd">    .. code-block:: python</span>
 
 <span class="sd">        from manim_extensions.fontawesome.manim_fontawesome import RegularEnum</span>
@@ -2861,6 +2907,29 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
+<span class="sd">    .. manim:: SolidEnumOverview</span>
+<span class="sd">       :save_last_frame:</span>
+
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.fontawesome.manim_fontawesome import SolidEnum</span>
+
+<span class="sd">       SolidEnumTarget = SolidEnum</span>
+
+<span class="sd">       class SolidEnumOverview(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               public = [n for n in dir(SolidEnumTarget) if not n.startswith("_")]</span>
+<span class="sd">               card = VGroup(</span>
+<span class="sd">                   Text('SolidEnum', font_size=36),</span>
+<span class="sd">                   Text('module: manim_extensions.fontawesome.manim_fontawesome', font_size=18, color=GREY),</span>
+<span class="sd">                   Text('Bundled solid-style icon paths', font_size=22),</span>
+<span class="sd">                   Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),</span>
+<span class="sd">               ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)</span>
+<span class="sd">               card.scale_to_fit_width(11.5).move_to(ORIGIN)</span>
+<span class="sd">               frame = RoundedRectangle(</span>
+<span class="sd">                   width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D</span>
+<span class="sd">               ).move_to(card)</span>
+<span class="sd">               self.add(frame, card)</span>
+
 <span class="sd">    .. code-block:: python</span>
 
 <span class="sd">        from manim_extensions.fontawesome.manim_fontawesome import SolidEnum</span>

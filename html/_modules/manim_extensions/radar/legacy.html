@@ -1605,9 +1605,14 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: bash</span>
+<span class="sd">    .. manim:: RadarV1Gallery</span>
+<span class="sd">       :save_last_frame:</span>
 
-<span class="sd">        python -m manim example.py RadarV1Scene</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.radar.legacy import RadarV1Scene</span>
+
+<span class="sd">       class RadarV1Gallery(RadarV1Scene):</span>
+<span class="sd">           pass</span>
 <span class="sd">    """</span>
 
     <span class="n">style</span> <span class="o">=</span> <span class="s2">"classic"</span>
@@ -1645,9 +1650,21 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: bash</span>
+<span class="sd">    .. manim:: RadarV2Gallery</span>
 
-<span class="sd">        python -m manim example.py RadarV2Scene</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.radar.chart import RadarChart</span>
+<span class="sd">       from manim_extensions.radar.legacy import replica_datasets</span>
+
+<span class="sd">       class RadarV2Gallery(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               chart = RadarChart(</span>
+<span class="sd">                   replica_datasets()[0],</span>
+<span class="sd">                   style="neo",</span>
+<span class="sd">                   theme="midnight",</span>
+<span class="sd">                   title="六维能力 · 雷达图鉴",</span>
+<span class="sd">               )</span>
+<span class="sd">               self.play(Create(chart))</span>
 <span class="sd">    """</span>
 
     <span class="n">style</span> <span class="o">=</span> <span class="s2">"neo"</span>

@@ -1522,11 +1522,27 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    .. code-block:: python</span>
+<span class="sd">    .. manim:: TripletLayerScene</span>
 
-<span class="sd">        from manim_extensions.machine_learning.neural_network.layers.triplet import TripletLayer</span>
+<span class="sd">       import numpy as np</span>
+<span class="sd">       from manim import *</span>
+<span class="sd">       from manim_extensions.machine_learning.neural_network.layers.triplet import TripletLayer</span>
+<span class="sd">       from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer</span>
+<span class="sd">       from manim_extensions.machine_learning.neural_network import NeuralNetwork</span>
+<span class="sd">       from manim_extensions.machine_learning.utils.mobjects.image import GrayscaleImageMobject</span>
 
-<span class="sd">        triplet = TripletLayer("anchor", "positive", "negative")</span>
+<span class="sd">       class TripletLayerScene(Scene):</span>
+<span class="sd">           def construct(self):</span>
+<span class="sd">               image = np.zeros((28, 28), dtype=np.uint8)</span>
+<span class="sd">               image[8:20, 8:20] = 200</span>
+<span class="sd">               triplet = TripletLayer(</span>
+<span class="sd">                   GrayscaleImageMobject(image, height=0.6),</span>
+<span class="sd">                   GrayscaleImageMobject(np.fliplr(image), height=0.6),</span>
+<span class="sd">                   GrayscaleImageMobject(np.flipud(image), height=0.6),</span>
+<span class="sd">               )</span>
+<span class="sd">               nn = NeuralNetwork([triplet, FeedForwardLayer(4)])</span>
+<span class="sd">               nn.move_to(ORIGIN)</span>
+<span class="sd">               self.play(Create(nn))</span>
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

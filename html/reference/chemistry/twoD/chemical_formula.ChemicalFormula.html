@@ -1501,12 +1501,19 @@
 </dd>
 </dl>
 <p class="rubric">Examples</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.twoD.chemical_formula</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChemicalFormula</span>
+<div id="chemicalformulascene" class="admonition admonition-manim-example">
 
-<span class="n">formula</span> <span class="o">=</span> <span class="n">ChemicalFormula</span><span class="p">(</span><span class="s2">"H2O"</span><span class="p">)</span>
+<p class="admonition-title">Example: ChemicalFormulaScene <a class="headerlink" href="#chemicalformulascene">¶</a></p><img alt="../../../_images/ChemicalFormulaScene-bad0b3a2.png" class="align-center" src="../../../_images/ChemicalFormulaScene-bad0b3a2.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.twoD.chemical_formula</span><span class="w"> </span><span class="kn">import</span> <span class="n">ChemicalFormula</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ChemicalFormulaScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">formula</span> <span class="o">=</span> <span class="n">ChemicalFormula</span><span class="p">(</span><span class="s2">"H2SO4"</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">formula</span><span class="p">)</span>
 </pre></div>
 </div>
-<dl class="py method">
+</div><dl class="py method">
 <dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.chemical_formula.ChemicalFormula.parse_formula">
 <span class="sig-name descname"><span class="pre">parse_formula</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">formula</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/chemical_formula.html#ChemicalFormula.parse_formula"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.chemical_formula.ChemicalFormula.parse_formula" title="Link to this definition">¶</a></dt>
 <dd><p>Parse a formula string into a dict mapping element symbols to their counts.</p>
