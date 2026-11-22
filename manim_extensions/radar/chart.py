@@ -96,12 +96,19 @@ class Series:
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: SeriesScene
+       :save_last_frame:
 
-        from manim_extensions.radar.chart import RadarChart
+       from manim import *
+       from manim_extensions.radar.chart import RadarChart
 
-        chart = RadarChart(axes=["A", "B", "C"], values=[1, 2, 3])
-        series = chart.series[0]
+       class SeriesScene(Scene):
+           def construct(self):
+               chart = RadarChart(axes=["Speed", "Power", "Range", "Comfort", "Safety"], values=[8, 6, 7, 9, 5])
+               chart.scale_to_fit_height(5.0).move_to(ORIGIN)
+               series = chart._series[0]
+               assert series.values == [8.0, 6.0, 7.0, 9.0, 5.0]
+               self.add(chart)
     """
 
     def __init__(

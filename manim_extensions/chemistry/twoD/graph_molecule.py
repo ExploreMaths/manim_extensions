@@ -93,11 +93,16 @@ class DoubleLine(ArcBetweenPoints):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: DoubleLineScene
+       :save_last_frame:
 
-        from manim_extensions.chemistry.twoD.graph_molecule import DoubleLine
+       from manim import *
+       from manim_extensions.chemistry.twoD.graph_molecule import DoubleLine
 
-        line = DoubleLine(start=[-1, 0, 0], end=[1, 0, 0])
+       class DoubleLineScene(Scene):
+           def construct(self):
+               line = DoubleLine(start=[-1.5, 0, 0], end=[1.5, 0, 0]).scale(3.0)
+               self.add(line)
     """
 
     def __init__(
@@ -182,11 +187,16 @@ class TripleLine(DoubleLine):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: TripleLineScene
+       :save_last_frame:
 
-        from manim_extensions.chemistry.twoD.graph_molecule import TripleLine
+       from manim import *
+       from manim_extensions.chemistry.twoD.graph_molecule import TripleLine
 
-        line = TripleLine(start=[-1, 0, 0], end=[1, 0, 0])
+       class TripleLineScene(Scene):
+           def construct(self):
+               line = TripleLine(start=[-1.5, 0, 0], end=[1.5, 0, 0]).scale(3.0)
+               self.add(line)
     """
 
     def __init__(

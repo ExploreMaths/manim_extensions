@@ -29,15 +29,26 @@ class Convolutional2DToFeedForward(ConnectiveLayer, ThreeDLayer):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: Convolutional2DToFeedForwardScene
+       :save_last_frame:
 
-        from manim_extensions.machine_learning.neural_network.layers.convolutional_2d import Convolutional2DLayer
-        from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
-        from manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_feed_forward import Convolutional2DToFeedForward
+       from manim import *
+       from manim_extensions.machine_learning.neural_network.layers.convolutional_2d import Convolutional2DLayer
+       from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
+       from manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_feed_forward import Convolutional2DToFeedForward
+       first = Convolutional2DLayer(4, 6, 3)
+       second = FeedForwardLayer(6)
+       first.shift(LEFT * 4)
+       second.shift(RIGHT * 4)
+       first.construct_layer(None, None)
+       second.construct_layer(None, None)
+       connection = Convolutional2DToFeedForward(first, second)
 
-        conv = Convolutional2DLayer(4, 6, 3)
-        dense = FeedForwardLayer(10)
-        connection = Convolutional2DToFeedForward(conv, dense)
+       class Convolutional2DToFeedForwardScene(Scene):
+           def construct(self):
+               content = Group(first, second, connection)
+               content.scale_to_fit_height(5.5).move_to(ORIGIN)
+               self.add(content)
     """
 
     input_class: Any = Convolutional2DLayer

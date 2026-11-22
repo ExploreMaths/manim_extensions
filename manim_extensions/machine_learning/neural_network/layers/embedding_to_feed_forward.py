@@ -42,15 +42,26 @@ class EmbeddingToFeedForward(ConnectiveLayer):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: EmbeddingToFeedForwardScene
+       :save_last_frame:
 
-        from manim_extensions.machine_learning.neural_network.layers.embedding import EmbeddingLayer
-        from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
-        from manim_extensions.machine_learning.neural_network.layers.embedding_to_feed_forward import EmbeddingToFeedForward
+       from manim import *
+       from manim_extensions.machine_learning.neural_network.layers.embedding import EmbeddingLayer
+       from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
+       from manim_extensions.machine_learning.neural_network.layers.embedding_to_feed_forward import EmbeddingToFeedForward
+       first = EmbeddingLayer()
+       second = FeedForwardLayer(6)
+       first.shift(LEFT * 4)
+       second.shift(RIGHT * 4)
+       first.construct_layer(None, None)
+       second.construct_layer(None, None)
+       connection = EmbeddingToFeedForward(first, second)
 
-        embedding = EmbeddingLayer()
-        dense = FeedForwardLayer(10)
-        connection = EmbeddingToFeedForward(embedding, dense)
+       class EmbeddingToFeedForwardScene(Scene):
+           def construct(self):
+               content = Group(first, second, connection)
+               content.scale_to_fit_height(5.5).move_to(ORIGIN)
+               self.add(content)
     """
 
     input_class = EmbeddingLayer

@@ -54,22 +54,22 @@ class RadarReel:
 
     Examples
     --------
-    ::
+    .. manim:: RadarReelScene
+       :save_last_frame:
 
-        chart = RadarChart(axes=SIX_AXES, values=[...], title="Six axes")
-        RadarReel(chart, [d1, d2, d3, d4], hold=0.6, backdrop=True).play_on(self)
+       from manim import *
+       from manim_extensions.radar.chart import RadarChart
+       from manim_extensions.radar.data import RadarData
+       from manim_extensions.radar.reel import RadarReel
 
-    A comparison reel passes a list of datasets per step::
-
-        RadarReel(chart, [
-            [holder_a, basic_a],
-            [holder_b, basic_b],
-        ], hold=0.8).play_on(self)
-
-    Per-snapshot overrides come from
-    :class:`~manim_extensions.radar.data.RadarData`: ``hold``, ``transition``,
-    ``emphasis`` (``"zoom"`` / ``"gap"`` / ``"rim"``) and ``color``. In a
-    comparison step they are read from the first dataset of the list.
+       class RadarReelScene(Scene):
+           def construct(self):
+               axes = ["Speed", "Power", "Range", "Comfort", "Safety"]
+               first = RadarData(axes=axes, values=[8, 6, 7, 9, 5], name="A")
+               second = RadarData(axes=axes, values=[5, 9, 6, 7, 8], name="B")
+               chart = RadarChart(first)
+               chart.scale_to_fit_height(4.8).move_to(ORIGIN)
+               RadarReel(chart, [first, second], hold=0.4, intro=False, outro=False).play_on(self)
     """
 
     def __init__(

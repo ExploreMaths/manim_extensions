@@ -691,6 +691,7 @@ class NeuralNetwork(Group):
         self.add(self.title)
 
         self.move_to(prior_center)
+        return self
 
     def filter_layers(self, function: Callable[..., Any]) -> list[Any]:
         """Filters layers of the network given function.

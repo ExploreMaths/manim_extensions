@@ -46,11 +46,16 @@ class ChemicalFormula(MarkupText):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: ChemicalFormulaScene
+       :save_last_frame:
 
-        from manim_extensions.chemistry.twoD.chemical_formula import ChemicalFormula
+       from manim import *
+       from manim_extensions.chemistry.twoD.chemical_formula import ChemicalFormula
 
-        formula = ChemicalFormula("H2O")
+       class ChemicalFormulaScene(Scene):
+           def construct(self):
+               formula = ChemicalFormula("H2SO4").scale(2)
+               self.add(formula)
     """
 
     def __init__(
@@ -296,12 +301,16 @@ class ComplexFormula(MarkupText):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: ComplexFormulaScene
+       :save_last_frame:
 
-        from manim import BLUE, WHITE
-        from manim_extensions.chemistry.twoD.chemical_formula import ComplexFormula
+       from manim import *
+       from manim_extensions.chemistry.twoD.chemical_formula import ComplexFormula
 
-        formula = ComplexFormula({"H2O": WHITE, "NaCl": BLUE})
+       class ComplexFormulaScene(Scene):
+           def construct(self):
+               formula = ComplexFormula({"H2O": WHITE, "NaCl": BLUE}).scale(3.0)
+               self.add(formula)
     """
 
     def __init__(self, formula_dict: dict[Any, Any], *args: Any, **kwargs: Any) -> None:

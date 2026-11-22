@@ -29,11 +29,17 @@ class FeedForwardNeuralNetwork(NeuralNetwork):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: FeedForwardNetworkScene
+       :save_last_frame:
 
-        from manim_extensions.machine_learning.neural_network.architectures.feed_forward import FeedForwardNeuralNetwork
+       from manim import *
+       from manim_extensions.machine_learning.neural_network.architectures.feed_forward import FeedForwardNeuralNetwork
 
-        network = FeedForwardNeuralNetwork([3, 5, 2])
+       class FeedForwardNetworkScene(Scene):
+           def construct(self):
+               network = FeedForwardNeuralNetwork([3, 5, 2])
+               network.scale_to_fit_height(5.0).move_to(ORIGIN)
+               self.add(network)
     """
 
     def __init__(

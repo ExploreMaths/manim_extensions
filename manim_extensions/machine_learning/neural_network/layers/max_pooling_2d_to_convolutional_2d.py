@@ -38,15 +38,28 @@ class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: MaxPooling2DToConvolutional2DScene
+       :save_last_frame:
 
-        from manim_extensions.machine_learning.neural_network.layers.max_pooling_2d import MaxPooling2DLayer
-        from manim_extensions.machine_learning.neural_network.layers.convolutional_2d import Convolutional2DLayer
-        from manim_extensions.machine_learning.neural_network.layers.max_pooling_2d_to_convolutional_2d import MaxPooling2DToConvolutional2D
+       from manim import *
+       from manim_extensions.machine_learning.neural_network.layers.max_pooling_2d import MaxPooling2DLayer
+       from manim_extensions.machine_learning.neural_network.layers.convolutional_2d import Convolutional2DLayer
+       from manim_extensions.machine_learning.neural_network.layers.max_pooling_2d_to_convolutional_2d import MaxPooling2DToConvolutional2D
+       source = Convolutional2DLayer(4, 8, 3)
+       source.construct_layer(None, None)
+       first = MaxPooling2DLayer(kernel_size=2)
+       second = Convolutional2DLayer(4, 4, 3)
+       first.shift(LEFT * 4)
+       second.shift(RIGHT * 4)
+       first.construct_layer(source, None)
+       second.construct_layer(None, None)
+       connection = MaxPooling2DToConvolutional2D(first, second)
 
-        pool = MaxPooling2DLayer(kernel_size=2)
-        conv = Convolutional2DLayer(4, 4, 3)
-        connection = MaxPooling2DToConvolutional2D(pool, conv)
+       class MaxPooling2DToConvolutional2DScene(Scene):
+           def construct(self):
+               content = Group(first, second, connection)
+               content.scale_to_fit_height(5.5).move_to(ORIGIN)
+               self.add(content)
     """
 
     input_class = MaxPooling2DLayer

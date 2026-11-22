@@ -540,10 +540,20 @@ class PolyRadarChart(VGroup):
 
             Examples
             --------
-            .. code-block:: python
+            .. manim:: SpinScene
 
-                poly = chart.series[0].poly
-                spin = Spin(poly, delta=PI / 4)
+               from manim import *
+               from manim_extensions.radar.poly import PolyRadarChart
+
+               class SpinScene(ThreeDScene):
+                   def construct(self):
+                       chart = PolyRadarChart(
+                           [str(i) for i in range(12)],
+                           [3, 5, 7, 4, 6, 8, 5, 9, 4, 6, 7, 5],
+                           grow=False,
+                       )
+                       self.add(chart)
+                       self.play(chart.spin_to(axis_index=0, run_time=1.0))
             """
 
             def __init__(self, poly: PolyRadarChart, delta: float, **kw: Any) -> None:
@@ -607,10 +617,20 @@ class PolyMorph(Animation):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: PolyMorphScene
 
-        poly = chart.series[0].poly
-        morph = PolyMorph(poly, [9, 7, 8])
+       from manim import *
+       from manim_extensions.radar.poly import PolyMorph, PolyRadarChart
+
+       class PolyMorphScene(ThreeDScene):
+           def construct(self):
+               chart = PolyRadarChart(
+                   [str(i) for i in range(12)],
+                   [3, 5, 7, 4, 6, 8, 5, 9, 4, 6, 7, 5],
+                   grow=False,
+               )
+               self.add(chart)
+               self.play(PolyMorph(chart, [9, 7, 8, 6, 5, 9, 4, 8, 6, 7, 5, 9]))
     """
 
     def __init__(

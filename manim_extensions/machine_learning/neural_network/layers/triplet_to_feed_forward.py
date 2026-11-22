@@ -41,15 +41,34 @@ class TripletToFeedForward(ConnectiveLayer):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: TripletToFeedForwardScene
+       :save_last_frame:
 
-        from manim_extensions.machine_learning.neural_network.layers.triplet import TripletLayer
-        from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
-        from manim_extensions.machine_learning.neural_network.layers.triplet_to_feed_forward import TripletToFeedForward
+       import numpy as np
+       from manim import *
+       from manim_extensions.machine_learning.neural_network.layers.triplet import TripletLayer
+       from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
+       from manim_extensions.machine_learning.neural_network.layers.triplet_to_feed_forward import TripletToFeedForward
+       from manim_extensions.machine_learning.utils.mobjects.image import GrayscaleImageMobject
+       image = np.zeros((28, 28), dtype=np.uint8)
+       image[8:20, 8:20] = 200
+       first = TripletLayer(
+           GrayscaleImageMobject(image, height=0.6),
+           GrayscaleImageMobject(np.fliplr(image), height=0.6),
+           GrayscaleImageMobject(np.flipud(image), height=0.6),
+       )
+       second = FeedForwardLayer(6)
+       first.shift(LEFT * 4)
+       second.shift(RIGHT * 4)
+       first.construct_layer(None, None)
+       second.construct_layer(None, None)
+       connection = TripletToFeedForward(first, second)
 
-        triplet = TripletLayer("a", "p", "n")
-        dense = FeedForwardLayer(10)
-        connection = TripletToFeedForward(triplet, dense)
+       class TripletToFeedForwardScene(Scene):
+           def construct(self):
+               content = Group(first, second, connection)
+               content.scale_to_fit_height(5.5).move_to(ORIGIN)
+               self.add(content)
     """
 
     input_class = TripletLayer

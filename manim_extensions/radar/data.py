@@ -51,11 +51,19 @@ class RadarData:
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: RadarDataScene
+       :save_last_frame:
 
-        from manim_extensions.radar.data import RadarData
+       from manim import *
+       from manim_extensions.radar.chart import RadarChart
+       from manim_extensions.radar.data import RadarData
 
-        data = RadarData(axes=["Speed", "Power", "Range"], values=[8, 6, 7])
+       class RadarDataScene(Scene):
+           def construct(self):
+               data = RadarData(axes=["Speed", "Power", "Range"], values=[8, 6, 7])
+               chart = RadarChart(data)
+               chart.scale_to_fit_height(5.0).move_to(ORIGIN)
+               self.add(chart)
     """
 
     axes: Sequence[str]

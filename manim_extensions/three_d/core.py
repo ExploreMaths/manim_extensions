@@ -300,11 +300,14 @@ class GaussianSurface:
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: GaussianSurfaceConfigScene
+       :save_last_frame:
 
-        from manim_extensions.three_d.core import GaussianSurface
+       from manim import *
+       from manim_extensions.three_d.core import GaussianSurface, GaussianSurfaceScene
 
-        cfg = GaussianSurface(height=1.4, rings=True, orbit=True)
+       class GaussianSurfaceConfigScene(GaussianSurfaceScene):
+           style = GaussianSurface(height=1.4, rings=True, orbit=True, pace='fast')
     """
 
     func: Optional[Callable[..., float]] = None  # z=f(x,y); None = built-in Gaussian
@@ -354,11 +357,14 @@ class SaddleSurface:
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: SaddleSurfaceConfigScene
+       :save_last_frame:
 
-        from manim_extensions.three_d.core import SaddleSurface
+       from manim import *
+       from manim_extensions.three_d.core import SaddleSurface, SaddleSurfaceScene
 
-        cfg = SaddleSurface(height=1.5, annotate=True)
+       class SaddleSurfaceConfigScene(SaddleSurfaceScene):
+           style = SaddleSurface(height=1.5, annotate=True, pace='fast')
     """
 
     domain: tuple[float, float] = (-2.2, 2.2)
@@ -385,11 +391,14 @@ class ParaboloidSurface:
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: ParaboloidSurfaceConfigScene
+       :save_last_frame:
 
-        from manim_extensions.three_d.core import ParaboloidSurface
+       from manim import *
+       from manim_extensions.three_d.core import ParaboloidSurface, ParaboloidSurfaceScene
 
-        cfg = ParaboloidSurface(height=1.5)
+       class ParaboloidSurfaceConfigScene(ParaboloidSurfaceScene):
+           style = ParaboloidSurface(height=1.5, annotate=True, pace='fast')
     """
 
     domain: tuple[float, float] = (-2.2, 2.2)
@@ -416,11 +425,14 @@ class EllipsoidSurface:
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: EllipsoidSurfaceConfigScene
+       :save_last_frame:
 
-        from manim_extensions.three_d.core import EllipsoidSurface
+       from manim import *
+       from manim_extensions.three_d.core import EllipsoidSurface, EllipsoidSurfaceScene
 
-        cfg = EllipsoidSurface()
+       class EllipsoidSurfaceConfigScene(EllipsoidSurfaceScene):
+           style = EllipsoidSurface(pace='fast')
     """
 
     semi_axes: tuple[float, float, float] = (2.4, 1.6, 1.2)  # (a, b, c) semi-axes
@@ -446,11 +458,14 @@ class TorusSurface:
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: TorusSurfaceConfigScene
+       :save_last_frame:
 
-        from manim_extensions.three_d.core import TorusSurface
+       from manim import *
+       from manim_extensions.three_d.core import TorusSurface, TorusSurfaceScene
 
-        cfg = TorusSurface()
+       class TorusSurfaceConfigScene(TorusSurfaceScene):
+           style = TorusSurface(pace='fast')
     """
 
     major_radius: float = 2.0  # torus radius R (tube-centre circle)
@@ -477,11 +492,14 @@ class HyperboloidOneSheet:
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: HyperboloidOneSheetConfigScene
+       :save_last_frame:
 
-        from manim_extensions.three_d.core import HyperboloidOneSheet
+       from manim import *
+       from manim_extensions.three_d.core import HyperboloidOneSheet, HyperboloidOneSheetScene
 
-        cfg = HyperboloidOneSheet()
+       class HyperboloidOneSheetConfigScene(HyperboloidOneSheetScene):
+           style = HyperboloidOneSheet(pace='fast')
     """
 
     waist_radius: float = 1.0  # waist radius a (= b)
@@ -554,26 +572,14 @@ class GraphSurfaceScene(ThreeDScene):
 
     Examples
     --------
-    Subclass the scene and implement the four hooks:
+    .. manim:: GraphSurfaceDemo
+       :save_last_frame:
 
-    .. code-block:: python
+       from manim import *
+       from manim_extensions.three_d.core import GaussianSurfaceScene
 
-        from manim_extensions.three_d import GraphSurfaceScene, SaddleSurface
-
-        class CustomSurfaceScene(GraphSurfaceScene):
-            style = SaddleSurface()
-
-            def _geometry(self, cfg):
-                ...
-
-            def _contours(self, cfg, axes, f, ramp, zmin_n):
-                ...
-
-            def _feature(self, cfg, f):
-                ...
-
-            def _caption_slots(self):
-                return ["title", "outro"]
+       class GraphSurfaceDemo(GaussianSurfaceScene, pace="fast"):
+           pass
     """
 
     style: SurfaceConfig | None = None
@@ -1138,9 +1144,14 @@ class GaussianSurfaceScene(GraphSurfaceScene):
 
     Examples
     --------
-    .. code-block:: bash
+    .. manim:: GaussianSurfacePreview
+       :save_last_frame:
 
-        python -m manim example.py GaussianSurfaceScene
+       from manim import *
+       from manim_extensions.three_d.core import GaussianSurfaceScene
+
+       class GaussianSurfacePreview(GaussianSurfaceScene, pace="fast"):
+           pass
     """
 
     config_cls = GaussianSurface
@@ -1275,9 +1286,14 @@ class SaddleSurfaceScene(GraphSurfaceScene):
 
     Examples
     --------
-    .. code-block:: bash
+    .. manim:: SaddleSurfacePreview
+       :save_last_frame:
 
-        python -m manim example.py SaddleSurfaceScene
+       from manim import *
+       from manim_extensions.three_d.core import SaddleSurfaceScene
+
+       class SaddleSurfacePreview(SaddleSurfaceScene, pace="fast"):
+           pass
     """
 
     config_cls = SaddleSurface
@@ -1422,9 +1438,14 @@ class ParaboloidSurfaceScene(GraphSurfaceScene):
 
     Examples
     --------
-    .. code-block:: bash
+    .. manim:: ParaboloidSurfacePreview
+       :save_last_frame:
 
-        python -m manim example.py ParaboloidSurfaceScene
+       from manim import *
+       from manim_extensions.three_d.core import ParaboloidSurfaceScene
+
+       class ParaboloidSurfacePreview(ParaboloidSurfaceScene, pace="fast"):
+           pass
     """
 
     config_cls = ParaboloidSurface
@@ -1532,9 +1553,14 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
 
     Examples
     --------
-    .. code-block:: bash
+    .. manim:: EllipsoidSurfacePreview
+       :save_last_frame:
 
-        python -m manim example.py EllipsoidSurfaceScene
+       from manim import *
+       from manim_extensions.three_d.core import EllipsoidSurfaceScene
+
+       class EllipsoidSurfacePreview(EllipsoidSurfaceScene, pace="fast"):
+           pass
     """
 
     uses_flat = False
@@ -1721,9 +1747,14 @@ class TorusSurfaceScene(GraphSurfaceScene):
 
     Examples
     --------
-    .. code-block:: bash
+    .. manim:: TorusSurfacePreview
+       :save_last_frame:
 
-        python -m manim example.py TorusSurfaceScene
+       from manim import *
+       from manim_extensions.three_d.core import TorusSurfaceScene
+
+       class TorusSurfacePreview(TorusSurfaceScene, pace="fast"):
+           pass
     """
 
     uses_flat = False
@@ -1911,9 +1942,14 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
 
     Examples
     --------
-    .. code-block:: bash
+    .. manim:: HyperboloidOneSheetPreview
+       :save_last_frame:
 
-        python -m manim example.py HyperboloidOneSheetScene
+       from manim import *
+       from manim_extensions.three_d.core import HyperboloidOneSheetScene
+
+       class HyperboloidOneSheetPreview(HyperboloidOneSheetScene, pace="fast"):
+           pass
     """
 
     uses_flat = False

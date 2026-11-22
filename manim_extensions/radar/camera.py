@@ -34,15 +34,20 @@ class CameraRig:
 
     Examples
     --------
-    ::
+    .. manim:: CameraRigScene
 
-        class MyScene(MovingCameraScene):
-            def construct(self):
-                chart = RadarChart(...)
-                rig = CameraRig(self)
-                self.play(rig.push_in(chart, factor=1.3))
-                self.play(chart.morph_to(...))
-                self.play(rig.pull_out())
+       from manim import *
+       from manim_extensions.radar.camera import CameraRig
+       from manim_extensions.radar.chart import RadarChart
+
+       class CameraRigScene(MovingCameraScene):
+           def construct(self):
+               chart = RadarChart(axes=["Speed", "Power", "Range", "Comfort", "Safety"], values=[8, 6, 7, 9, 5])
+               chart.scale_to_fit_height(4.8).move_to(ORIGIN)
+               self.add(chart)
+               rig = CameraRig(self)
+               self.play(rig.push_in(chart, factor=1.25))
+               self.play(rig.pull_out())
     """
 
     def __init__(self, scene: MovingCameraScene) -> None:

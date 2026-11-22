@@ -161,6 +161,76 @@ NON_RENDERABLE_BASES = {
     "OpenGLSurface",
 }
 
+# Public classes whose examples cannot be a ``.. manim::`` scene.
+# The default is the opposite: every renderable class must show a Manim
+# scene, even when it is not a Mobject subclass (animations, Scenes,
+# factories returning Mobjects, and configuration objects demonstrated
+# through their scene).  A class is listed here only when it is pure data,
+# an Enum/Protocol/TypedDict, a CLI/parser/network utility, a docutils node,
+# an exception, or an OpenGL-only mobject that the Cairo docs build cannot
+# render.
+NON_MANIM_CLASSES = {
+    # data containers, enums and protocols
+    "Element",
+    "GenericElement",
+    "MCAtom",
+    "MCBond",
+    "MCMolecule",
+    "AABB",
+    "ColorScheme",
+    "DirEntry",
+    "MArrayDirection",
+    "MArrayElementComp",
+    "ManimMLConfig",
+    "MultidimensionalGaussianPosterior",
+    "PhysicsAttributes",
+    "ProgrammingLanguage",
+    "SklearnTree",
+    "Theme",
+    "UpdateIndices",
+    "BrandEnum",
+    "RegularEnum",
+    "SolidEnum",
+    # CLI, parsers, IO and logging utilities
+    "BaseParser",
+    "ASNTParser",
+    "FileHandler",
+    "IncorrectFormat",
+    "JSONParser",
+    "ManimAutomataCLI",
+    "MolParser",
+    "NumpyHelper",
+    "PubchemAPIManager",
+    "SDFParser",
+    "SingletonLogger",
+    "SkipManimNode",
+    "XMLParser",
+    # abstract bases
+    "AbstractMolecule",
+    "ThreeDLayer",
+    # OpenGL-only mobjects (no Cairo renderer for the docs build)
+    "FastManimMesh",
+    "OpenGLSphere",
+    "Orbital",
+    "OrbitalBase",
+    "OrbitalNegative",
+    "OrbitalPositive",
+    "ThreeDAtom",
+    "ThreeDBond",
+    "ThreeDCylinder",
+    "ThreeDLine",
+    "ThreeDMolecule",
+    # exception classes document their failure with ``nbcell``
+    "BadParameterException",
+    "FaultyVarArrayException",
+    "InvalidMeshDimensionsException",
+    "InvalidMeshException",
+    "InvalidRequestException",
+    "InvalidShapeException",
+    "InvalidTypeException",
+    "MeshIndexException",
+}
+
 PARAM_ENTRY_RE = re.compile(r"^(\*{0,2}[\w.]+)\s*:(?!:)\s*(.*)$")
 BARE_ENTRY_RE = re.compile(r"^(\*{0,2}[\w.]+)$")
 SECTION_UNDERLINE_RE = re.compile(r"^\s*-{3,}\s*$")
@@ -1641,18 +1711,38 @@ def check_file(filepath: Path) -> list:
                     "message": "public class without an 'Examples' section",
                 }
             )
-        if not is_mobject_class(node, local_bases):
+        if (
+            node.name.startswith("_")
+            or ".. manim::" in doc
+            or "Examples" not in section_names(doc)
+        ):
             return
-        if ".. manim::" not in doc:
-            violations.append(
-                {
-                    "line": node.lineno,
-                    "qualname": qualname,
-                    "type": "MISSING_MANIM_EXAMPLE",
-                    "message": "mobject subclass without a '.. manim::' example "
-                    "in the class docstring",
-                }
+        if node.name in NON_MANIM_CLASSES:
+            return
+        if is_mobject_class(node, local_bases) or any(
+            base in {"Scene", "ThreeDScene", "MovingCameraScene", "Animation"}
+            for base in (base_root_name(b) for b in node.bases)
+        ):
+            message = (
+                "renderable class without a '.. manim::' example in the class "
+                "docstring; use a Manim scene, or add the class to "
+                "NON_MANIM_CLASSES with a reason if it cannot be rendered"
             )
+        else:
+            message = (
+                "class example is not a '.. manim::' scene; the docs default to "
+                "Manim for every class that can be demonstrated visually, not "
+                "only Mobject subclasses.  Add the class to NON_MANIM_CLASSES "
+                "only when it is pure data or cannot be rendered"
+            )
+        violations.append(
+            {
+                "line": node.lineno,
+                "qualname": qualname,
+                "type": "MISSING_MANIM_EXAMPLE",
+                "message": message,
+            }
+        )
 
     visit_body(tree.body, "", False)
     return violations

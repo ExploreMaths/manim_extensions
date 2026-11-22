@@ -47,11 +47,27 @@ class TripletLayer(NeuralNetworkLayer):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: TripletLayerScene
 
-        from manim_extensions.machine_learning.neural_network.layers.triplet import TripletLayer
+       import numpy as np
+       from manim import *
+       from manim_extensions.machine_learning.neural_network.layers.triplet import TripletLayer
+       from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
+       from manim_extensions.machine_learning.neural_network import NeuralNetwork
+       from manim_extensions.machine_learning.utils.mobjects.image import GrayscaleImageMobject
 
-        triplet = TripletLayer("anchor", "positive", "negative")
+       class TripletLayerScene(Scene):
+           def construct(self):
+               image = np.zeros((28, 28), dtype=np.uint8)
+               image[8:20, 8:20] = 200
+               triplet = TripletLayer(
+                   GrayscaleImageMobject(image, height=0.6),
+                   GrayscaleImageMobject(np.fliplr(image), height=0.6),
+                   GrayscaleImageMobject(np.flipud(image), height=0.6),
+               )
+               nn = NeuralNetwork([triplet, FeedForwardLayer(4)])
+               nn.move_to(ORIGIN)
+               self.play(Create(nn))
     """
 
     def __init__(

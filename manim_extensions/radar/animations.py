@@ -198,7 +198,17 @@ class Shockwave(Animation):
 
     Examples
     --------
-    ``self.play(chart.shockwave(color="#E868C8"))``
+    .. manim:: ShockwaveScene
+
+       from manim import *
+       from manim_extensions.radar.chart import RadarChart
+
+       class ShockwaveScene(Scene):
+           def construct(self):
+               chart = RadarChart(axes=["Speed", "Power", "Range", "Comfort", "Safety"], values=[8, 6, 7, 9, 5])
+               chart.scale_to_fit_height(3.5).move_to(ORIGIN)
+               self.add(chart)
+               self.play(chart.shockwave(color="#E868C8", radius_end=3.2))
     """
 
     def __init__(
@@ -312,13 +322,18 @@ class RadarMorph(Animation):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: RadarMorphScene
 
-        from manim_extensions.radar.chart import RadarChart
-        from manim_extensions.radar.animations import RadarMorph
+       from manim import *
+       from manim_extensions.radar.animations import RadarMorph
+       from manim_extensions.radar.chart import RadarChart
 
-        chart = RadarChart(axes=["Speed", "Power", "Range", "Comfort", "Price", "Safety"], values=[8, 6, 7, 9, 5, 8])
-        morph = RadarMorph(chart, [7, 8, 6, 5, 9, 7])
+       class RadarMorphScene(Scene):
+           def construct(self):
+               chart = RadarChart(axes=["Speed", "Power", "Range", "Comfort", "Safety"], values=[8, 6, 7, 9, 5])
+               chart.scale_to_fit_height(5.0).move_to(ORIGIN)
+               self.add(chart)
+               self.play(RadarMorph(chart, [7, 8, 6, 5, 9]))
     """
 
     def __init__(
@@ -732,13 +747,17 @@ class RadarReveal(Animation):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: RadarRevealScene
 
-        from manim_extensions.radar.chart import RadarChart
-        from manim_extensions.radar.animations import RadarReveal
+       from manim import *
+       from manim_extensions.radar.animations import RadarReveal
+       from manim_extensions.radar.chart import RadarChart
 
-        chart = RadarChart(axes=["A", "B", "C"], values=[1, 2, 3])
-        reveal = RadarReveal(chart)
+       class RadarRevealScene(Scene):
+           def construct(self):
+               chart = RadarChart(axes=["A", "B", "C", "D"], values=[2, 5, 3, 4])
+               chart.scale_to_fit_height(5.0).move_to(ORIGIN)
+               self.play(RadarReveal(chart))
     """
 
     def __init__(
@@ -847,13 +866,17 @@ class RadarBurstIn(Animation):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: RadarBurstInScene
 
-        from manim_extensions.radar.chart import RadarChart
-        from manim_extensions.radar.animations import RadarBurstIn
+       from manim import *
+       from manim_extensions.radar.animations import RadarBurstIn
+       from manim_extensions.radar.chart import RadarChart
 
-        chart = RadarChart(axes=["A", "B", "C"], values=[1, 2, 3])
-        burst = RadarBurstIn(chart)
+       class RadarBurstInScene(Scene):
+           def construct(self):
+               chart = RadarChart(axes=["A", "B", "C", "D"], values=[2, 5, 3, 4])
+               chart.scale_to_fit_height(5.0).move_to(ORIGIN)
+               self.play(RadarBurstIn(chart))
     """
 
     def __init__(
@@ -955,13 +978,18 @@ class RadarFade(Animation):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: RadarFadeScene
 
-        from manim_extensions.radar.chart import RadarChart
-        from manim_extensions.radar.animations import RadarFade
+       from manim import *
+       from manim_extensions.radar.animations import RadarFade
+       from manim_extensions.radar.chart import RadarChart
 
-        chart = RadarChart(axes=["A", "B", "C"], values=[1, 2, 3])
-        fade = RadarFade(chart, to=0.0)
+       class RadarFadeScene(Scene):
+           def construct(self):
+               chart = RadarChart(axes=["Speed", "Power", "Range", "Comfort", "Safety"], values=[8, 6, 7, 9, 5])
+               chart.scale_to_fit_height(5.0).move_to(ORIGIN)
+               self.add(chart)
+               self.play(RadarFade(chart, to=0.0))
     """
 
     def __init__(
@@ -1024,13 +1052,18 @@ class GlitchFlash(Animation):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: GlitchFlashScene
 
-        from manim_extensions.radar.chart import RadarChart
-        from manim_extensions.radar.animations import GlitchFlash
+       from manim import *
+       from manim_extensions.radar.animations import GlitchFlash
+       from manim_extensions.radar.chart import RadarChart
 
-        chart = RadarChart(axes=["A", "B", "C"], values=[1, 2, 3])
-        flash = GlitchFlash(chart)
+       class GlitchFlashScene(Scene):
+           def construct(self):
+               chart = RadarChart(axes=["Speed", "Power", "Range", "Comfort", "Safety"], values=[8, 6, 7, 9, 5])
+               chart.scale_to_fit_height(5.0).move_to(ORIGIN)
+               self.add(chart)
+               self.play(GlitchFlash(chart))
     """
 
     def __init__(

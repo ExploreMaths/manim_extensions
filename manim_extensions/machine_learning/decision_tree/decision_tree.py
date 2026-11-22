@@ -649,13 +649,20 @@ class DecisionTreeContainer:
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: DecisionTreeContainerScene
 
-        import numpy as np
-        from sklearn.tree import DecisionTreeClassifier
+       import numpy as np
+       from manim import *
+       from sklearn.tree import DecisionTreeClassifier
+       from manim_extensions.machine_learning.decision_tree.decision_tree import DecisionTreeContainer
 
-        clf = DecisionTreeClassifier(max_depth=2).fit(np.array([[0], [1]]), [0, 1])
-        container = DecisionTreeContainer(clf.tree_, np.array([[0], [1]]), np.array([0, 1]))
+       class DecisionTreeContainerScene(Scene):
+           def construct(self):
+               points = np.array([[0, 0], [1, 1], [2, 2], [3, 3]])
+               classes = np.array([0, 0, 1, 1])
+               clf = DecisionTreeClassifier(max_depth=2).fit(points, classes)
+               container = DecisionTreeContainer(clf.tree_, points, classes)
+               self.play(container.make_unfold_tree_animation())
     """
 
     def __init__(

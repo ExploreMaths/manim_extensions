@@ -41,16 +41,27 @@ class FeedForwardToImage(ConnectiveLayer):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: FeedForwardToImageScene
+       :save_last_frame:
 
-        import numpy as np
-        from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
-        from manim_extensions.machine_learning.neural_network.layers.image import ImageLayer
-        from manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image import FeedForwardToImage
+       from manim import *
+       import numpy as np
+       from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
+       from manim_extensions.machine_learning.neural_network.layers.image import ImageLayer
+       from manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image import FeedForwardToImage
+       first = FeedForwardLayer(6)
+       second = ImageLayer(np.zeros((16, 16, 3)))
+       first.shift(LEFT * 4)
+       second.shift(RIGHT * 4)
+       first.construct_layer(None, None)
+       second.construct_layer(None, None)
+       connection = FeedForwardToImage(first, second)
 
-        dense = FeedForwardLayer(10)
-        image = ImageLayer(np.zeros((16, 16, 3)))
-        connection = FeedForwardToImage(dense, image)
+       class FeedForwardToImageScene(Scene):
+           def construct(self):
+               content = Group(first, second, connection)
+               content.scale_to_fit_height(5.5).move_to(ORIGIN)
+               self.add(content)
     """
 
     input_class = FeedForwardLayer

@@ -31,15 +31,29 @@ class MaxPooling2DToFeedForward(Convolutional2DToFeedForward):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: MaxPooling2DToFeedForwardScene
+       :save_last_frame:
 
-        from manim_extensions.machine_learning.neural_network.layers.max_pooling_2d import MaxPooling2DLayer
-        from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
-        from manim_extensions.machine_learning.neural_network.layers.max_pooling_2d_to_feed_forward import MaxPooling2DToFeedForward
+       from manim import *
+       from manim_extensions.machine_learning.neural_network.layers.convolutional_2d import Convolutional2DLayer
+       from manim_extensions.machine_learning.neural_network.layers.max_pooling_2d import MaxPooling2DLayer
+       from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
+       from manim_extensions.machine_learning.neural_network.layers.max_pooling_2d_to_feed_forward import MaxPooling2DToFeedForward
+       source = Convolutional2DLayer(4, 8, 3)
+       source.construct_layer(None, None)
+       first = MaxPooling2DLayer(kernel_size=2)
+       second = FeedForwardLayer(6)
+       first.shift(LEFT * 4)
+       second.shift(RIGHT * 4)
+       first.construct_layer(source, None)
+       second.construct_layer(None, None)
+       connection = MaxPooling2DToFeedForward(first, second)
 
-        pool = MaxPooling2DLayer(kernel_size=2)
-        dense = FeedForwardLayer(10)
-        connection = MaxPooling2DToFeedForward(pool, dense)
+       class MaxPooling2DToFeedForwardScene(Scene):
+           def construct(self):
+               content = Group(first, second, connection)
+               content.scale_to_fit_height(5.5).move_to(ORIGIN)
+               self.add(content)
     """
 
     input_class = MaxPooling2DLayer

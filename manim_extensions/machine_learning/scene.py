@@ -34,13 +34,18 @@ class ManimML3DScene(ThreeDScene):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: ManimML3DPreview
+       :save_last_frame:
 
-        from manim_extensions.machine_learning.scene import ManimML3DScene
+       from manim import *
+       from manim_extensions.machine_learning.neural_network.architectures.feed_forward import FeedForwardNeuralNetwork
+       from manim_extensions.machine_learning.scene import ManimML3DScene
 
-        class MyScene(ManimML3DScene):
-            def construct(self):
-                self.wait()
+       class ManimML3DPreview(ManimML3DScene):
+           def construct(self):
+               network = FeedForwardNeuralNetwork([3, 4, 2])
+               network.scale_to_fit_height(5.0)
+               self.add(network)
     """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:

@@ -22,11 +22,19 @@ class RadarConfig:
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: RadarConfigScene
+       :save_last_frame:
 
-        from manim_extensions.radar.config import RadarConfig
+       from manim import *
+       from manim_extensions.radar.chart import RadarChart
+       from manim_extensions.radar.config import RadarConfig
 
-        config = RadarConfig(radius=3.2, levels=6)
+       class RadarConfigScene(Scene):
+           def construct(self):
+               config = RadarConfig(radius=3.0, levels=6)
+               chart = RadarChart(axes=["A", "B", "C", "D", "E"], values=[2, 4, 3, 5, 1], config=config)
+               chart.scale_to_fit_height(5.5).move_to(ORIGIN)
+               self.add(chart)
     """
 
     # ---- geometry --------------------------------------------------------

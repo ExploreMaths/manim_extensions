@@ -127,9 +127,14 @@ class RadarV1Scene(Scene):
 
     Examples
     --------
-    .. code-block:: bash
+    .. manim:: RadarV1Gallery
+       :save_last_frame:
 
-        python -m manim example.py RadarV1Scene
+       from manim import *
+       from manim_extensions.radar.legacy import RadarV1Scene
+
+       class RadarV1Gallery(RadarV1Scene):
+           pass
     """
 
     style = "classic"
@@ -161,9 +166,21 @@ class RadarV2Scene(Scene):
 
     Examples
     --------
-    .. code-block:: bash
+    .. manim:: RadarV2Gallery
 
-        python -m manim example.py RadarV2Scene
+       from manim import *
+       from manim_extensions.radar.chart import RadarChart
+       from manim_extensions.radar.legacy import replica_datasets
+
+       class RadarV2Gallery(Scene):
+           def construct(self):
+               chart = RadarChart(
+                   replica_datasets()[0],
+                   style="neo",
+                   theme="midnight",
+                   title="六维能力 · 雷达图鉴",
+               )
+               self.play(Create(chart))
     """
 
     style = "neo"

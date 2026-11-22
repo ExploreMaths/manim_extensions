@@ -86,17 +86,22 @@ class OverflowRadarChart(RadarChart):
 
     Examples
     --------
-    ::
+    .. manim:: OverflowRadarScene
 
-        chart = OverflowRadarChart(
-            axes=AXES,
-            values=[8, 6, 14, 9, 5, 8],   # 14 escapes the 10 ring
-            max_value=10,
-        )
-        self.play(chart.burst_in())                       # stab out of the ring
-        self.play(chart.morph_to([7, 9, 17, 6, 8, 5]))    # burst to new spikes
+       from manim import *
+       from manim_extensions.radar.overflow import OverflowRadarChart
 
-    The second command morphs the chart into a new set of spikes.
+       class OverflowRadarScene(Scene):
+           def construct(self):
+               chart = OverflowRadarChart(
+                   axes=["A", "B", "C", "D", "E", "F"],
+                   values=[8, 6, 14, 9, 5, 8],
+                   max_value=10,
+               )
+               chart.scale_to_fit_height(5.2).move_to(ORIGIN)
+               self.add(chart)
+               self.play(chart.burst_in())
+               self.play(chart.morph_to([7, 9, 17, 6, 8, 5]))
     """
 
     def __init__(

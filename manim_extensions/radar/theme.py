@@ -23,11 +23,19 @@ class RadarTheme:
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: RadarThemeScene
+       :save_last_frame:
 
-        from manim_extensions.radar.theme import RadarTheme
+       from manim import *
+       from manim_extensions.radar.chart import RadarChart
+       from manim_extensions.radar.theme import RadarTheme
 
-        theme = RadarTheme(name="custom", background="#070B16")
+       class RadarThemeScene(Scene):
+           def construct(self):
+               theme = RadarTheme(name="custom", background="#070B16", grid="#8B9BB8")
+               chart = RadarChart(axes=["A", "B", "C", "D", "E"], values=[2, 4, 3, 5, 1], theme=theme)
+               chart.scale_to_fit_height(5.0).move_to(ORIGIN)
+               self.add(chart)
     """
 
     name: str = "custom"

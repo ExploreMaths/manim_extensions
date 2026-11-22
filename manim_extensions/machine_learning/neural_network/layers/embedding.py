@@ -361,9 +361,27 @@ class NeuralNetworkEmbeddingTestScene(Scene):
 
     Examples
     --------
-    .. code-block:: bash
+    .. manim:: NeuralNetworkEmbeddingPreview
+       :save_last_frame:
 
-        python -m manim example.py NeuralNetworkEmbeddingTestScene
+       from manim import *
+       from manim_extensions.machine_learning.neural_network import (
+           EmbeddingLayer,
+           FeedForwardLayer,
+           NeuralNetwork,
+       )
+
+       class NeuralNetworkEmbeddingPreview(Scene):
+           def construct(self):
+               nn = NeuralNetwork(
+                   [
+                       FeedForwardLayer(5),
+                       EmbeddingLayer(dist_theme="ellipse"),
+                       FeedForwardLayer(3),
+                   ]
+               )
+               nn.scale(2.5).move_to(ORIGIN)
+               self.add(nn)
     """
 
     def construct(self) -> Any:

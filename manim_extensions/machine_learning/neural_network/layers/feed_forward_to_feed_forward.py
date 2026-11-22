@@ -59,14 +59,25 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
     Examples
     --------
-    .. code-block:: python
+    .. manim:: FeedForwardToFeedForwardScene
+       :save_last_frame:
 
-        from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
-        from manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward import FeedForwardToFeedForward
+       from manim import *
+       from manim_extensions.machine_learning.neural_network.layers.feed_forward import FeedForwardLayer
+       from manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward import FeedForwardToFeedForward
+       first = FeedForwardLayer(5)
+       second = FeedForwardLayer(4)
+       first.shift(LEFT * 4)
+       second.shift(RIGHT * 4)
+       first.construct_layer(None, None)
+       second.construct_layer(None, None)
+       connection = FeedForwardToFeedForward(first, second)
 
-        first = FeedForwardLayer(8)
-        second = FeedForwardLayer(6)
-        connection = FeedForwardToFeedForward(first, second)
+       class FeedForwardToFeedForwardScene(Scene):
+           def construct(self):
+               content = Group(first, second, connection)
+               content.scale_to_fit_height(5.5).move_to(ORIGIN)
+               self.add(content)
     """
 
     input_class = FeedForwardLayer
