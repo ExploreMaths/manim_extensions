@@ -326,28 +326,6 @@ html body a[href^="https://docs.python.org"] .pre:hover {
     color: inherit;
     text-decoration: none;
 }
-
-/* Type alias values (``type NodeValue = str | int | float | None``):
-   the alias signature is a definition, not a parameter description, so
-   standard-library targets keep the normal link colour there.  This
-   restores the pre-845c look for ``str``/``None``/``List`` without
-   re-colouring Python links in parameter and return-type spans. */
-html body dl.py.type > dt.sig a[href^="https://docs.python.org"],
-html body dl.py.type > dt.sig a[href^="https://docs.python.org"] code,
-html body dl.py.type > dt.sig a[href^="https://docs.python.org"] code.xref,
-html body dl.py.type > dt.sig a[href^="https://docs.python.org"] .pre,
-html body dl.py.type > dt.sig a[href^="https://docs.python.org"] .kc {
-    color: var(--color-link);
-    text-decoration: none;
-}
-html body dl.py.type > dt.sig a[href^="https://docs.python.org"]:hover,
-html body dl.py.type > dt.sig a[href^="https://docs.python.org"] code:hover,
-html body dl.py.type > dt.sig a[href^="https://docs.python.org"] code.xref:hover,
-html body dl.py.type > dt.sig a[href^="https://docs.python.org"] .pre:hover,
-html body dl.py.type > dt.sig a[href^="https://docs.python.org"] .kc:hover {
-    color: var(--color-link--hover);
-}
-
 /* Parameter type spans (sphinx-autodoc-typehints wraps the type links of
    a Parameters entry, e.g. "(str)" or "(ParsableManimColor | None)"):
    strip the furo inline-code border and background so types read as
