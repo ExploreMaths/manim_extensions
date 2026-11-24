@@ -7,6 +7,19 @@ manim_models
 
 .. module:: manim_extensions.meshes.models.manim_models
 
+Usage
+-----
+
+Wrap a data mesh in a Manim mobject for drawing.
+
+.. code-block:: python
+
+   from manim import *
+   from manim_extensions.meshes.models.manim_models.basic_mesh import ManimMesh
+   from manim_extensions.meshes.templates import create_pyramid
+
+   mesh = ManimMesh(create_pyramid(triangles_only=True))
+
 Modules
 -------
 

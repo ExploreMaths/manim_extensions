@@ -489,6 +489,21 @@ construction parameters through to the underlying square faces.
 See the `original project <https://github.com/WampyCakes/manim-rubikscube>`_
 for the full spec, examples, and documentation.
 
+Usage
+-----
+
+Add a Rubik's cube to a 3D scene and style it like any other mobject.
+
+.. code-block:: python
+
+   from manim import *
+   from manim_extensions.rubikscube import RubiksCube
+
+   class CubeScene(ThreeDScene):
+       def construct(self):
+           cube = RubiksCube().scale(0.6)
+           self.add(cube)
+
 Modules
 -------
 

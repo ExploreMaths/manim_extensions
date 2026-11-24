@@ -7,6 +7,19 @@ automata_dependencies
 
 .. module:: manim_extensions.automata.mobjects.automata_dependencies
 
+Usage
+-----
+
+Low-level state, transition, and automaton records used by the automata mobjects. Build them directly when you need a custom transition graph.
+
+.. code-block:: python
+
+   from manim_extensions.automata.mobjects.automata_dependencies.automata import (
+       FiniteStateAutomaton,
+   )
+   from manim_extensions.automata.mobjects.automata_dependencies.state import State
+   from manim_extensions.automata.mobjects.automata_dependencies.transition import Transition
+
 Modules
 -------
 

@@ -21,6 +21,21 @@ Classes
    ~future_classes.MOSFETTransistor
    ~future_classes.NPNTransistor
 
+Usage
+-----
+
+These models are scaffold classes for upcoming circuit and chemistry work. Import the concrete class you need rather than relying on package-wide side effects.
+
+.. code-block:: python
+
+   from manim_extensions.chemistry.future_classes import (
+       BatterySchema,
+       Electron,
+       Hole,
+       MOSFETTransistor,
+       NPNTransistor,
+   )
+
 Modules
 -------
 

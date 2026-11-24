@@ -7,6 +7,17 @@ models
 
 .. module:: manim_extensions.meshes.models
 
+Usage
+-----
+
+Data models describe topology; Manim models turn that topology into renderable mobjects.
+
+.. code-block:: python
+
+   from manim_extensions.meshes.models import data_models, manim_models
+   from manim_extensions.meshes.models.data_models.mesh import Mesh
+   from manim_extensions.meshes.models.manim_models.basic_mesh import ManimMesh
+
 Modules
 -------
 

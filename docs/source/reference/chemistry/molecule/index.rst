@@ -14,6 +14,21 @@ Classes
 
    ~molecule.Molecule
 
+Usage
+-----
+
+Load a MOL file and get a ready-to-add molecule mobject.
+
+.. code-block:: python
+
+   from manim import *
+   from manim_extensions.chemistry.molecule import Molecule
+
+   class MoleculeScene(Scene):
+       def construct(self):
+           molecule = Molecule().molecule_from_file("acetone_2d.mol")
+           self.play(FadeIn(molecule))
+
 Modules
 -------
 

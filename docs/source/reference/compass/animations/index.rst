@@ -7,6 +7,22 @@ animations
 
 .. module:: manim_extensions.compass.animations
 
+Usage
+-----
+
+Animate a compass, pencil, and ruler instead of adding them statically. Import the animation class and pass the mobject you built.
+
+.. code-block:: python
+
+   from manim import *
+   from manim_extensions.compass import Compass, PutCompass
+
+   class CompassScene(Scene):
+       def construct(self):
+           compass = Compass().to_edge(LEFT)
+           self.play(PutCompass(compass, ORIGIN, 2 * RIGHT))
+           self.wait()
+
 Modules
 -------
 

@@ -115,6 +115,22 @@ This package is most appropriate for:
 See the `original project page <https://github.com/bmmtstb/manim-meshes>`_
 for details on the mesh model and more advanced examples.
 
+Usage
+-----
+
+Build a mesh from a template and add it to a scene.
+
+.. code-block:: python
+
+   from manim import *
+   from manim_extensions.meshes.models.manim_models.basic_mesh import ManimMesh
+   from manim_extensions.meshes.templates import create_pyramid
+
+   class MeshScene(Scene):
+       def construct(self):
+           mesh = ManimMesh(create_pyramid())
+           self.play(FadeIn(mesh))
+
 Modules
 -------
 

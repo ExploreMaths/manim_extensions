@@ -14,6 +14,17 @@ Classes
 
    ~manim_extensions.chemistry.threeD.utils.OpenGLSphere
 
+Usage
+-----
+
+Parse a chemical file and get the atom/bond dictionaries used by the molecule renderers.
+
+.. code-block:: python
+
+   from manim_extensions.chemistry.utils import FileHandler
+
+   atoms, bonds = FileHandler("acetone_2d.mol").parsed_atoms_bonds_data()
+
 Modules
 -------
 

@@ -14,6 +14,27 @@ Classes
 
    ~neural_network.NeuralNetwork
 
+Usage
+-----
+
+Compose a network from layer objects and run a forward pass.
+
+.. code-block:: python
+
+   from manim import *
+   from manim_extensions.machine_learning.neural_network import (
+       FeedForwardLayer,
+       NeuralNetwork,
+   )
+
+   class NetworkScene(Scene):
+       def construct(self):
+           network = NeuralNetwork(
+               [FeedForwardLayer(4), FeedForwardLayer(6), FeedForwardLayer(3)]
+           )
+           self.add(network)
+           self.play(network.make_forward_pass_animation(run_time=1.0))
+
 Modules
 -------
 

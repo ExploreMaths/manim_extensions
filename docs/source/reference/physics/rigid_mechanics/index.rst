@@ -16,6 +16,16 @@ Classes
    ~rigid_mechanics.Space
    ~rigid_mechanics.SpaceScene
 
+Usage
+-----
+
+Use the rigid-body space inside a scene, or start from the pendulum helper.
+
+.. code-block:: python
+
+   from manim_extensions.physics.rigid_mechanics.rigid_mechanics import Space, SpaceScene
+   from manim_extensions.physics.rigid_mechanics.pendulum import Pendulum
+
 Modules
 -------
 
