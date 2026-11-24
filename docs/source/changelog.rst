@@ -156,6 +156,10 @@ Fixed
 Changed
 ~~~~~~~
 
+* The deterministic finite automaton class is now
+  :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimDeterministicFiniteAutomaton`.
+  The previous ``ManimdeterministicFiniteAutomaton`` spelling was an upstream
+  typo and is no longer exported; no compatibility alias is provided.
 * The six three-dimensional surface factories
   (``gaussian_surface_scene`` and the other ``*_surface_scene`` helpers)
   are removed.  Each surface scene is now configured directly:
