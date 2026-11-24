@@ -14,6 +14,21 @@ Classes
 
    ~bohr_atom.BohrAtom
 
+Usage
+-----
+
+Draw a Bohr atom with a chosen number of protons, neutrons, and electrons.
+
+.. code-block:: python
+
+   from manim import *
+   from manim_extensions.chemistry.bohr_atom import BohrAtom
+
+   class BohrScene(Scene):
+       def construct(self):
+           atom = BohrAtom(e=14, p=14, n=10)
+           self.play(FadeIn(atom))
+
 Modules
 -------
 

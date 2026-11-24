@@ -1483,6 +1483,18 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.pymunk.constraints">
 <span id="constraints"></span><h1>constraints<a class="headerlink" href="#module-manim_extensions.pymunk.constraints" title="Link to this heading">¶</a></h1>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<p>Constraints connect pymunk bodies inside a <a class="reference internal" href="../space/VSpace.html#module-manim_extensions.pymunk.space.VSpace" title="manim_extensions.pymunk.space.VSpace"><code class="xref py py-class docutils literal notranslate"><span class="pre">VSpace</span></code></a>; choose the constraint class that matches the joint you need.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.pymunk.constraints</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">VPinJoint</span><span class="p">,</span>
+    <span class="n">VPivotJoint</span><span class="p">,</span>
+    <span class="n">VRotaryLimitJoint</span><span class="p">,</span>
+    <span class="n">VSimpleMotor</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
 <section id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1585,6 +1597,7 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">constraints</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a></li>
 <li><a class="reference internal" href="#modules">Modules</a></li>
 </ul>
 </li>

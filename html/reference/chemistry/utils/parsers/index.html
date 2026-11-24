@@ -1483,6 +1483,16 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.chemistry.utils.parsers">
 <span id="parsers"></span><h1>parsers<a class="headerlink" href="#module-manim_extensions.chemistry.utils.parsers" title="Link to this heading">¶</a></h1>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<p>Pick the parser for the file format, or use it directly to read atom and bond data.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.utils.parsers</span><span class="w"> </span><span class="kn">import</span> <span class="n">MolParser</span><span class="p">,</span> <span class="n">SDFParser</span>
+
+<span class="n">atoms</span><span class="p">,</span> <span class="n">bonds</span> <span class="o">=</span> <span class="n">MolParser</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">"acetone_2d.mol"</span><span class="p">)</span>
+<span class="n">records</span> <span class="o">=</span> <span class="n">SDFParser</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s2">"molecules.sdf"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 <section id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1570,6 +1580,7 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">parsers</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a></li>
 <li><a class="reference internal" href="#modules">Modules</a></li>
 </ul>
 </li>

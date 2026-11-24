@@ -15,6 +15,21 @@ Classes
 
    ~compass.Compass
 
+Usage
+-----
+
+Create the drawing compass and place it in the scene.
+
+.. code-block:: python
+
+   from manim import *
+   from manim_extensions.compass.compass import Compass
+
+   class CompassScene(Scene):
+       def construct(self):
+           compass = Compass(span=2)
+           self.add(compass)
+
 Modules
 -------
 

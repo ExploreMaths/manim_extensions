@@ -1483,6 +1483,21 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.automata.mobjects">
 <span id="mobjects"></span><h1>mobjects<a class="headerlink" href="#module-manim_extensions.automata.mobjects" title="Link to this heading">¶</a></h1>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<p>Build a deterministic finite automaton from a JFLAP XML file and add it to a scene.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ManimdeterministicFiniteAutomaton</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DFAScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">dfa</span> <span class="o">=</span> <span class="n">ManimdeterministicFiniteAutomaton</span><span class="p">(</span><span class="n">xml_file</span><span class="o">=</span><span class="s2">"dfa.xml"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dfa</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 <section id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1585,6 +1600,7 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">mobjects</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a></li>
 <li><a class="reference internal" href="#modules">Modules</a></li>
 </ul>
 </li>

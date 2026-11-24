@@ -1483,6 +1483,23 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.chemistry.threeD">
 <span id="threed"></span><h1>threeD<a class="headerlink" href="#module-manim_extensions.chemistry.threeD" title="Link to this heading">¶</a></h1>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<p>Render a molecule in 3D. The package requires the OpenGL renderer, and atom/bond dictionaries can come from <a class="reference internal" href="../utils/file_handler.FileHandler.html#manim_extensions.chemistry.utils.file_handler.FileHandler" title="manim_extensions.chemistry.utils.file_handler.FileHandler"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileHandler</span></code></a>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.threeD</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreeDMolecule</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">FileHandler</span>
+
+<span class="n">config</span><span class="o">.</span><span class="n">renderer</span> <span class="o">=</span> <span class="s2">"opengl"</span>
+<span class="n">atoms</span><span class="p">,</span> <span class="n">bonds</span> <span class="o">=</span> <span class="n">FileHandler</span><span class="p">(</span><span class="s2">"acetone_2d.mol"</span><span class="p">)</span><span class="o">.</span><span class="n">parsed_atoms_bonds_data</span><span class="p">()</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ThreeDSceneDemo</span><span class="p">(</span><span class="n">ThreeDScene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">molecule</span> <span class="o">=</span> <span class="n">ThreeDMolecule</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">bonds</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 <section id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1564,6 +1581,7 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">threeD</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a></li>
 <li><a class="reference internal" href="#modules">Modules</a></li>
 </ul>
 </li>

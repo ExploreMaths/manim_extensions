@@ -18,6 +18,33 @@ Classes
    ~mindmap.StandardMap
    ~mindmap.TimeLine
 
+Usage
+-----
+
+Build a mind map from a nested dictionary, then reveal nodes and connectors.
+
+.. code-block:: python
+
+   from manim import *
+   from manim_extensions.mindmap import MindMap
+
+   data = {
+       "node": MathTex(r"\text{Calculus}"),
+       "child": [
+           {"node": MathTex(r"\text{Limits}")},
+           {"node": MathTex(r"\text{Derivatives}")},
+       ],
+   }
+
+   class MindMapScene(Scene):
+       def construct(self):
+           mind_map = MindMap(data)
+           for node in mind_map.dfs_walker():
+               if node.connector:
+                   self.play(Create(node.connector), run_time=0.3)
+               self.play(Create(node.surr_rect), Write(node.vmobject), run_time=0.3)
+           self.wait()
+
 Modules
 -------
 

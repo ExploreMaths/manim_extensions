@@ -6,6 +6,15 @@ utils
 
 .. module:: manim_extensions.pymunk.utils
 
+Usage
+-----
+
+Image, logging, and geometry helpers shared by the pymunk scenes.
+
+.. code-block:: python
+
+   from manim_extensions.pymunk.utils import img_tools, logger_tool, tools_func
+
 Modules
 -------
 

@@ -6,6 +6,18 @@ layers
 
 .. module:: manim_extensions.machine_learning.neural_network.layers
 
+Usage
+-----
+
+Layers are the units passed to :class:`~manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork`.
+
+.. code-block:: python
+
+   from manim import *
+   from manim_extensions.machine_learning.neural_network.layers import FeedForwardLayer
+
+   layer = FeedForwardLayer(5, node_color=BLUE, node_outline_color=WHITE)
+
 Modules
 -------
 

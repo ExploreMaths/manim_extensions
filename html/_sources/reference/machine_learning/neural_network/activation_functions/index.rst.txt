@@ -6,6 +6,24 @@ activation_functions
 
 .. module:: manim_extensions.machine_learning.neural_network.activation_functions
 
+Usage
+-----
+
+Plot an activation function on its own.
+
+.. code-block:: python
+
+   from manim import *
+   from manim_extensions.machine_learning.neural_network.activation_functions import (
+       ReLUFunction,
+       SigmoidFunction,
+   )
+
+   class ActivationScene(Scene):
+       def construct(self):
+           relu = ReLUFunction()
+           self.add(relu)
+
 Modules
 -------
 

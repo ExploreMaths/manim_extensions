@@ -1486,6 +1486,18 @@
 <p>Helper subpackages: <a class="reference internal" href="deps.html#module-manim_extensions.utils.deps" title="manim_extensions.utils.deps"><code class="xref py py-mod docutils literal notranslate"><span class="pre">deps</span></code></a> (lazy optional
 dependency loading) and <a class="reference internal" href="deprecation.html#module-manim_extensions.utils.deprecation" title="manim_extensions.utils.deprecation"><code class="xref py py-mod docutils literal notranslate"><span class="pre">deprecation</span></code></a> (RST-aware
 <a class="reference internal" href="deprecation.html#manim_extensions.utils.deprecation.deprecated" title="manim_extensions.utils.deprecation.deprecated"><code class="xref py py-func docutils literal notranslate"><span class="pre">deprecated()</span></code></a> decorator).</p>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<p>Decorators and optional-dependency helpers used across the package.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.utils.deprecation</span><span class="w"> </span><span class="kn">import</span> <span class="n">deprecated</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.utils.deps</span><span class="w"> </span><span class="kn">import</span> <span class="n">require</span>
+
+<span class="nd">@deprecated</span><span class="p">(</span><span class="s2">"Use new_api instead."</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">old_api</span><span class="p">():</span>
+    <span class="k">return</span> <span class="s2">"legacy"</span>
+</pre></div>
+</div>
+</section>
 <section id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1561,6 +1573,7 @@ dependency loading) and <a class="reference internal" href="deprecation.html#mod
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Utilities</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a></li>
 <li><a class="reference internal" href="#modules">Modules</a></li>
 </ul>
 </li>

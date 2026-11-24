@@ -1498,6 +1498,16 @@
 </table>
 </div>
 </section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<p>Read an element record from the bundled CSV data or construct one directly.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.element</span><span class="w"> </span><span class="kn">import</span> <span class="n">Element</span>
+
+<span class="n">hydrogen</span> <span class="o">=</span> <span class="n">Element</span><span class="o">.</span><span class="n">from_csv_file</span><span class="p">(</span><span class="s2">"element_data.csv"</span><span class="p">,</span> <span class="s2">"H"</span><span class="p">)</span>
+<span class="n">carbon</span> <span class="o">=</span> <span class="n">Element</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s2">"C"</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"Carbon"</span><span class="p">,</span> <span class="n">atomic_number</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="mf">12.011</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 <section id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1571,6 +1581,7 @@
             <ul>
 <li><a class="reference internal" href="#">element</a><ul>
 <li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
 <li><a class="reference internal" href="#modules">Modules</a></li>
 </ul>
 </li>

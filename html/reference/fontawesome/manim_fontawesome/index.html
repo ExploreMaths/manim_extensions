@@ -1521,6 +1521,19 @@
 </dd></dl>
 
 </section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<p>Get a Font Awesome icon as an SVGMobject.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.fontawesome.manim_fontawesome</span><span class="w"> </span><span class="kn">import</span> <span class="n">solid</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">IconScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">rocket</span> <span class="o">=</span> <span class="n">solid</span><span class="o">.</span><span class="n">rocket</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">ORANGE</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">rocket</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 <section id="constants">
 <h2>Constants<a class="headerlink" href="#constants" title="Link to this heading">¶</a></h2>
 <dl class="py data">
@@ -11939,6 +11952,7 @@
 <li><a class="reference internal" href="#manim_extensions.fontawesome.manim_fontawesome._get_svg_object"><code class="docutils literal notranslate"><span class="pre">_get_svg_object()</span></code></a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#usage">Usage</a></li>
 <li><a class="reference internal" href="#constants">Constants</a><ul>
 <li><a class="reference internal" href="#manim_extensions.fontawesome.manim_fontawesome.brand"><code class="docutils literal notranslate"><span class="pre">brand</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.fontawesome.manim_fontawesome.regular"><code class="docutils literal notranslate"><span class="pre">regular</span></code></a></li>

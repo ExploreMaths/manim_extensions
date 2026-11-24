@@ -7,6 +7,19 @@ scene
 
 .. module:: manim_extensions.compass.scene
 
+Usage
+-----
+
+These scene classes provide the moving-camera rig used by the straightedge-and-compass examples.
+
+.. code-block:: python
+
+   from manim_extensions.compass.scene import CompassScene
+
+   class Demo(CompassScene):
+       def construct(self):
+           super().construct()
+
 Modules
 -------
 

@@ -7,6 +7,18 @@ delaunay
 
 .. module:: manim_extensions.meshes.delaunay
 
+Usage
+-----
+
+Delaunay and Voronoi tools operate on point sets; the criterion helpers can be used independently of the mesh renderers.
+
+.. code-block:: python
+
+   from manim_extensions.meshes.delaunay.voronoi import VoronoiDelaunay
+   from manim_extensions.meshes.delaunay.delaunay_criterion import (
+       get_triangle_circum_circle_params,
+   )
+
 Modules
 -------
 

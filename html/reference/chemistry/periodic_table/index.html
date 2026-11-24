@@ -1483,6 +1483,20 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.chemistry.periodic_table">
 <span id="periodic-table"></span><h1>periodic_table<a class="headerlink" href="#module-manim_extensions.chemistry.periodic_table" title="Link to this heading">¶</a></h1>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<p>Build the periodic table from the bundled element CSV.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.periodic_table</span><span class="w"> </span><span class="kn">import</span> <span class="n">PeriodicTable</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TableScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">table</span> <span class="o">=</span> <span class="n">PeriodicTable</span><span class="p">(</span><span class="s2">"element_data.csv"</span><span class="p">)</span>
+        <span class="n">table</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 <section id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1555,6 +1569,7 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">periodic_table</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a></li>
 <li><a class="reference internal" href="#modules">Modules</a></li>
 </ul>
 </li>

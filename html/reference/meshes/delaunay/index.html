@@ -1483,6 +1483,16 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.meshes.delaunay">
 <span id="delaunay"></span><h1>delaunay<a class="headerlink" href="#module-manim_extensions.meshes.delaunay" title="Link to this heading">¶</a></h1>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<p>Delaunay and Voronoi tools operate on point sets; the criterion helpers can be used independently of the mesh renderers.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.delaunay.voronoi</span><span class="w"> </span><span class="kn">import</span> <span class="n">VoronoiDelaunay</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.delaunay.delaunay_criterion</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">get_triangle_circum_circle_params</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
 <section id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1561,6 +1571,7 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">delaunay</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a></li>
 <li><a class="reference internal" href="#modules">Modules</a></li>
 </ul>
 </li>

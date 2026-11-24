@@ -1483,6 +1483,22 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.machine_learning.neural_network.activation_functions">
 <span id="activation-functions"></span><h1>activation_functions<a class="headerlink" href="#module-manim_extensions.machine_learning.neural_network.activation_functions" title="Link to this heading">¶</a></h1>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<p>Plot an activation function on its own.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.activation_functions</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ReLUFunction</span><span class="p">,</span>
+    <span class="n">SigmoidFunction</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ActivationScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">relu</span> <span class="o">=</span> <span class="n">ReLUFunction</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">relu</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 <section id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1593,6 +1609,7 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">activation_functions</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a></li>
 <li><a class="reference internal" href="#modules">Modules</a></li>
 <li><a class="reference internal" href="#functions">Functions</a><ul>
 <li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.activation_functions.get_activation_function_by_name"><code class="docutils literal notranslate"><span class="pre">get_activation_function_by_name()</span></code></a></li>

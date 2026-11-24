@@ -19,6 +19,15 @@ Classes
    ~animations.RemoveNode
    ~animations.ScaleNode
 
+Usage
+-----
+
+Animation groups operate on individual nodes of a built mind map.
+
+.. code-block:: python
+
+   from manim_extensions.mindmap.animations import InsertNode, RemoveNode, LayoutAnimation
+
 Modules
 -------
 

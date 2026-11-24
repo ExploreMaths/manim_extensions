@@ -1484,6 +1484,28 @@
           <section id="module-manim_extensions.chemistry.manim_chemistry_molecule">
 <span id="manim-chemistry-molecule"></span><h1>manim_chemistry_molecule<a class="headerlink" href="#module-manim_extensions.chemistry.manim_chemistry_molecule" title="Link to this heading">¶</a></h1>
 <p>The original <code class="docutils literal notranslate"><span class="pre">MC*</span></code> API, kept for backwards compatibility.</p>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<p>Represent a molecule as atoms and bonds, then feed it to a 2D or 3D renderer.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.manim_chemistry_molecule</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">MCAtom</span><span class="p">,</span>
+    <span class="n">MCBond</span><span class="p">,</span>
+    <span class="n">MCElement</span><span class="p">,</span>
+    <span class="n">MCMolecule</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">carbon</span> <span class="o">=</span> <span class="n">MCElement</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s2">"C"</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"Carbon"</span><span class="p">,</span> <span class="n">atomic_number</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="mf">12.011</span><span class="p">)</span>
+<span class="n">hydrogen</span> <span class="o">=</span> <span class="n">MCElement</span><span class="p">(</span><span class="n">symbol</span><span class="o">=</span><span class="s2">"H"</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"Hydrogen"</span><span class="p">,</span> <span class="n">atomic_number</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">mass</span><span class="o">=</span><span class="mf">1.008</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">MCAtom</span><span class="p">(</span><span class="n">carbon</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">h</span> <span class="o">=</span> <span class="n">MCAtom</span><span class="p">(</span><span class="n">hydrogen</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="p">(</span><span class="mf">1.09</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="n">molecule</span> <span class="o">=</span> <span class="n">MCMolecule</span><span class="p">(</span>
+    <span class="n">atoms</span><span class="o">=</span><span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="n">h</span><span class="p">],</span>
+    <span class="n">bonds</span><span class="o">=</span><span class="p">[</span><span class="n">MCBond</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">from_atom</span><span class="o">=</span><span class="n">c</span><span class="p">,</span> <span class="n">to_atom</span><span class="o">=</span><span class="n">h</span><span class="p">)],</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"methane fragment"</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
 <section id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1565,6 +1587,7 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">manim_chemistry_molecule</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a></li>
 <li><a class="reference internal" href="#modules">Modules</a></li>
 </ul>
 </li>

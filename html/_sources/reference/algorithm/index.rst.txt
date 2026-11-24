@@ -40,6 +40,22 @@ accept external code contributions until it reaches a certain scale, though
 suggestions and requests are welcome in the upstream repository. The package
 targets Manim Community Edition (CE).
 
+Usage
+-----
+
+Build an indexed array and animate a change on one slot.
+
+.. code-block:: python
+
+   from manim import *
+   from manim_extensions.algorithm import Array, Node
+
+   class ArrayScene(Scene):
+       def construct(self):
+           arr = Array([-1, 0, 3], total_width=7)
+           self.add(arr)
+           self.play(Node.Select(arr[1]))
+
 Modules
 -------
 

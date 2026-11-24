@@ -1483,6 +1483,16 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.machine_learning.utils.colorschemes">
 <span id="colorschemes"></span><h1>colorschemes<a class="headerlink" href="#module-manim_extensions.machine_learning.utils.colorschemes" title="Link to this heading">¶</a></h1>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
+<p>Use the shared light or dark palettes instead of hard-coding colours.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.utils.colorschemes</span><span class="w"> </span><span class="kn">import</span> <span class="n">light_mode</span><span class="p">,</span> <span class="n">dark_mode</span>
+
+<span class="n">background</span> <span class="o">=</span> <span class="n">light_mode</span><span class="o">.</span><span class="n">background_color</span>
+<span class="n">primary</span> <span class="o">=</span> <span class="n">dark_mode</span><span class="o">.</span><span class="n">primary_color</span>
+</pre></div>
+</div>
+</section>
 <section id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1555,6 +1565,7 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">colorschemes</a><ul>
+<li><a class="reference internal" href="#usage">Usage</a></li>
 <li><a class="reference internal" href="#modules">Modules</a></li>
 </ul>
 </li>

@@ -7,6 +7,21 @@ gear_mobjects
 
 .. module:: manim_extensions.gearbox.gear_mobjects
 
+Usage
+-----
+
+Create an involute gear by tooth count and module.
+
+.. code-block:: python
+
+   from manim import *
+   from manim_extensions.gearbox.gear_mobjects import Gear
+
+   class GearScene(Scene):
+       def construct(self):
+           gear = Gear(num_of_teeth=24, module=0.2)
+           self.add(gear)
+
 Modules
 -------
 

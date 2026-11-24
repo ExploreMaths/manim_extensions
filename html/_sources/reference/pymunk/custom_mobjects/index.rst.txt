@@ -6,6 +6,15 @@ custom_mobjects
 
 .. module:: manim_extensions.pymunk.custom_mobjects
 
+Usage
+-----
+
+Ready-made physical mobjects for demos: an apple, a gear, and a spring.
+
+.. code-block:: python
+
+   from manim_extensions.pymunk.custom_mobjects import Apple, Gear, VSpring
+
 Modules
 -------
 
