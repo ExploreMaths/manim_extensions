@@ -8,7 +8,7 @@
 """
 
 from __future__ import annotations
-from typing import Any, List, Set
+from typing import Any
 
 # unlinked-class-ok: Array
 
@@ -102,12 +102,12 @@ class Mesh:
     @dangling_face_decorator()
     def __init__(
         self,
-        vertices: Point3D_Array | List[List[float]] | List[tuple[float, ...]],
+        vertices: Point3D_Array | list[list[float]] | list[tuple[float, ...]],
         faces: (
-            MatrixMN | List[VectorND] | List[List[int]] | List[tuple[int, ...]] | None
+            MatrixMN | list[VectorND] | list[list[int]] | list[tuple[int, ...]] | None
         ),
         parts: (
-            MatrixMN | List[VectorND] | List[List[int]] | List[tuple[int, ...]] | None
+            MatrixMN | list[VectorND] | list[list[int]] | list[tuple[int, ...]] | None
         ) = None,
         dangling: bool = False,
     ) -> None:
@@ -438,7 +438,7 @@ class Mesh:
                 vertex_edges.append(edge)
         return vertex_edges
 
-    def get_vertices_from_part_id(self, part_id: int) -> List[int]:
+    def get_vertices_from_part_id(self, part_id: int) -> list[int]:
         """Return the indices of all vertices contained in the given part.
 
         Parameters
@@ -488,7 +488,7 @@ class Mesh:
                 f"Can not Broadcast from {self.dim}-D Mesh to 3D Mesh."
             )
 
-    def find_vertex(self, vertex: Point3D, start: int = 0) -> List[int]:
+    def find_vertex(self, vertex: Point3D, start: int = 0) -> list[int]:
         """Return all vertex indices whose coordinates match ``vertex``.
 
         Parameters
@@ -511,7 +511,7 @@ class Mesh:
             if np.array_equal(vertex, v)
         ]
 
-    def find_face(self, face: VectorND, start: int = 0) -> List[int]:
+    def find_face(self, face: VectorND, start: int = 0) -> list[int]:
         """Return all face indices that match the given face.
 
         Parameters
@@ -527,7 +527,7 @@ class Mesh:
         """
         return find_in_vararray(array=self._faces, item=face, start=start)
 
-    def find_part(self, part: VectorND, start: int = 0) -> List[int]:
+    def find_part(self, part: VectorND, start: int = 0) -> list[int]:
         """Return all part indices whose faces match the given part.
 
         Parts are compared as sets of face indices, so the order in which
@@ -581,7 +581,7 @@ class Mesh:
             )
         self._vertices = np.vstack([self._vertices, new_vertices])
 
-    def remove_vertices(self, indices: VectorND | List[int]) -> Any:
+    def remove_vertices(self, indices: VectorND | list[int]) -> Any:
         """Remove vertices at the given indices and update references.
 
         Parameters
@@ -707,7 +707,7 @@ class Mesh:
 
     @dangling_vert_decorator()
     @dangling_face_decorator()
-    def remove_faces(self, indices: VectorND | List[int]) -> Any:
+    def remove_faces(self, indices: VectorND | list[int]) -> Any:
         """Remove faces at the given indices and update parts.
 
         Parameters
@@ -822,7 +822,7 @@ class Mesh:
             raise InvalidTypeException(f"unknown type for new_part {type(new_parts)}")
 
     @dangling_face_decorator()
-    def remove_parts(self, indices: VectorND | List[int]) -> Any:
+    def remove_parts(self, indices: VectorND | list[int]) -> Any:
         """Remove parts at the given indices.
 
         Parameters
@@ -942,7 +942,7 @@ class Mesh:
             self._register_face_edges(face)
         self._edges = sorted(self._edge_face_counts)
 
-    def split_mesh_into_objects(self) -> "List[Mesh]":
+    def split_mesh_into_objects(self) -> "list[Mesh]":
         """Split the mesh into independent, non-interconnected meshes.
 
         Returns
@@ -951,7 +951,7 @@ class Mesh:
             current mesh is not changed.
         """
 
-        def get_references_from_ids(ids: Set[int], nested: VarArray) -> Set[int]:
+        def get_references_from_ids(ids: set[int], nested: VarArray) -> set[int]:
             """Return the indices of entries in ``nested`` that reference any of ``ids``.
 
             Parameters
@@ -969,7 +969,7 @@ class Mesh:
                 i for i, nest in enumerate(nested) if any(_id in nest for _id in ids)
             }
 
-        def get_ids_from_references(ids: Set[int], referenced: VarArray) -> Set[int]:
+        def get_ids_from_references(ids: set[int], referenced: VarArray) -> set[int]:
             """Return the union of all references made by ``ids`` inside ``referenced``.
 
             Parameters
@@ -987,19 +987,19 @@ class Mesh:
                 return set(np.unique(np.stack([referenced[_id] for _id in ids])))
             return set()
 
-        new_meshes: List[Mesh] = []
-        analyzed_verts: Set[int] = set()
+        new_meshes: list[Mesh] = []
+        analyzed_verts: set[int] = set()
         while any(vert not in analyzed_verts for vert in range(len(self._vertices))):
             # get first value not in analyzed or 0
-            obj_vert_ids: Set[int] = {
+            obj_vert_ids: set[int] = {
                 next(
                     (i for i in range(len(self._vertices)) if i not in analyzed_verts),
                     0,
                 )
             }
-            prev_iter: Set[int] = set()
-            face_ids: Set[int] = set()
-            part_ids: Set[int] = set()
+            prev_iter: set[int] = set()
+            face_ids: set[int] = set()
+            part_ids: set[int] = set()
             while prev_iter != obj_vert_ids:
                 # update prev to stop when no new points were added
                 prev_iter = obj_vert_ids.copy()
@@ -1012,8 +1012,8 @@ class Mesh:
                 obj_vert_ids.update(get_ids_from_references(face_ids, self._faces))
             # create new mesh object and save it to new_meshes
             # make sure to update all the references to zero indexed lists
-            new_ids: List[int] = sorted(list(int(_id) for _id in obj_vert_ids))
-            new_faces: List[int] = sorted(list(face_ids))
+            new_ids: list[int] = sorted(list(int(_id) for _id in obj_vert_ids))
+            new_faces: list[int] = sorted(list(face_ids))
             new_meshes.append(
                 Mesh(
                     vertices=np.vstack([self._vertices[_id] for _id in new_ids]),
@@ -1586,7 +1586,7 @@ class Mesh:
         self.remove_duplicate_parts()
 
     @staticmethod
-    def _face_edges(face: Face) -> List[Edge]:
+    def _face_edges(face: Face) -> list[Edge]:
         """Return the unique sorted edges of one face.
 
         Parameters
@@ -1598,7 +1598,7 @@ class Mesh:
         -------
             The unique edges of the face, each sorted low-to-high.
         """
-        edges: List[Edge] = []
+        edges: list[Edge] = []
         last_vertex = int(face[-1])
         for vertex_idx in face:
             current = int(vertex_idx)

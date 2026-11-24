@@ -7,7 +7,7 @@ This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_mol
 
 """
 
-from typing import Any, Dict, List, Literal, cast
+from typing import Any, Literal, cast
 
 from .mc_atom import MCAtom
 from .mc_bond import MCBond
@@ -70,8 +70,8 @@ class MCMolecule:
 
     def __init__(
         self,
-        atoms: List[MCAtom] | None = None,
-        bonds: List[MCBond] | None = None,
+        atoms: list[MCAtom] | None = None,
+        bonds: list[MCBond] | None = None,
         name: str | None = None,
         elements: MCElement | None = None,
     ) -> None:
@@ -83,8 +83,8 @@ class MCMolecule:
 
     def add_atoms_from_atoms_dict(
         self,
-        atoms_dict: Dict[Any, Any],
-        elements_data_dict: Dict[Any, Any] | None,
+        atoms_dict: dict[Any, Any],
+        elements_data_dict: dict[Any, Any] | None,
     ) -> Any:
         """
         Uses the atoms dict returned by a parser to add the atoms to the molecule.
@@ -125,7 +125,7 @@ class MCMolecule:
             self.atoms.append(mc_atom)
             self.atoms_by_index[atom_index] = mc_atom
 
-    def add_bonds_from_bonds_dict(self, bonds_dict: Dict[Any, Any]) -> Any:
+    def add_bonds_from_bonds_dict(self, bonds_dict: dict[Any, Any]) -> Any:
         """
         Uses the bonds dict returned by a parser to add the bonds to the molecule.
 

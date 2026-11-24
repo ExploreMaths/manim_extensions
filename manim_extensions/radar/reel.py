@@ -11,7 +11,8 @@ keeps its colour across the whole reel.
 """
 
 from __future__ import annotations
-from typing import Iterable, List, Optional, Union
+from collections.abc import Iterable
+from typing import Optional, Union
 
 from dataclasses import replace
 
@@ -102,7 +103,7 @@ class RadarReel:
         items = list(datasets)
         if not items:
             raise ValueError("RadarReel needs at least one dataset")
-        self.steps: List[List[RadarData]] = [
+        self.steps: list[list[RadarData]] = [
             self._normalize_step(item) for item in items
         ]
         if auto_color:
@@ -113,7 +114,7 @@ class RadarReel:
         self.datasets = [d for step in self.steps for d in step]
 
     # ------------------------------------------------------------------
-    def _normalize_step(self, item: RadarInputList) -> List[RadarData]:
+    def _normalize_step(self, item: RadarInputList) -> list[RadarData]:
         """Turn one reel entry into a list of snapshots.
 
         Parameters
@@ -132,7 +133,7 @@ class RadarReel:
             step = list(item)
         else:
             step = [item]
-        out: List[RadarData] = []
+        out: list[RadarData] = []
         for d in step:
             if isinstance(d, RadarData):
                 out.append(d)
@@ -145,8 +146,8 @@ class RadarReel:
         return out
 
     def _with_palette_colors(
-        self, step: List[RadarData], step_index: int
-    ) -> List[RadarData]:
+        self, step: list[RadarData], step_index: int
+    ) -> list[RadarData]:
         """Assign palette colours to unlabelled datasets.
 
         Parameters

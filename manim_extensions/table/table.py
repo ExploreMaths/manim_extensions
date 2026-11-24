@@ -6,7 +6,7 @@
 :class:`~manim_extensions.table.table.Table` - The main database table component.
 """
 
-from typing import Any, List, cast, overload
+from typing import Any, cast, overload
 
 # unlinked-class-ok: Row
 
@@ -173,9 +173,9 @@ class Table(VGroup):
 
     def __init__(
         self,
-        data: List[List[str]] | None = None,
-        header: List[str] | None = None,
-        rows: List[List[str]] | None = None,
+        data: list[list[str]] | None = None,
+        header: list[str] | None = None,
+        rows: list[list[str]] | None = None,
         cell_width: float = 1.5,
         cell_height: float = 0.5,
         font_size: int = 20,
@@ -225,7 +225,7 @@ class Table(VGroup):
         self.add(self.header_row)
 
         # Create data rows
-        self.rows: List[Row] = []
+        self.rows: list[Row] = []
         for i, row_values in enumerate(self.row_values):
             row = Row(
                 values=row_values,
@@ -245,7 +245,7 @@ class Table(VGroup):
             self.rows.append(row)
             self.add(row)
 
-    def calculate_column_widths(self) -> List[float]:
+    def calculate_column_widths(self) -> list[float]:
         """
         Calculate the width of each column based on the longest text content.
 
@@ -355,7 +355,7 @@ class Table(VGroup):
         except ValueError:
             raise ValueError(f"Column '{name}' not found in header")
 
-    def get_header_names(self) -> List[str]:
+    def get_header_names(self) -> list[str]:
         """Return list of column names.
 
         Returns
@@ -389,7 +389,7 @@ class Table(VGroup):
         ...
 
     @overload
-    def __getitem__(self, index: slice) -> List[Row]:
+    def __getitem__(self, index: slice) -> list[Row]:
         """Return the data rows selected by the slice.
 
         Parameters
@@ -403,7 +403,7 @@ class Table(VGroup):
         """
         ...
 
-    def __getitem__(self, index: int | slice) -> Row | List[Row]:
+    def __getitem__(self, index: int | slice) -> Row | list[Row]:
         """Return a data row or a slice of rows.
 
         Parameters
@@ -544,7 +544,7 @@ class Table(VGroup):
     # Mutations (return animations)
     # -------------------------------------------------------------------------
 
-    def add_row(self, values: List[str]) -> tuple[Row, List[TableAnimation]]:
+    def add_row(self, values: list[str]) -> tuple[Row, list[TableAnimation]]:
         """
         Add a new row to the bottom of the table.
 
@@ -578,7 +578,7 @@ class Table(VGroup):
         )
 
         # Check if we need to resize columns (before creating the row)
-        resize_animations: List[TableAnimation] = []
+        resize_animations: list[TableAnimation] = []
         new_widths = self.column_widths  # Default to current widths
 
         if self.auto_fit:
@@ -680,14 +680,14 @@ class Table(VGroup):
         self.add(new_row)
 
         # Combine all animations: resize first, then fade in new row
-        appear_animations: List[TableAnimation] = [
+        appear_animations: list[TableAnimation] = [
             FadeIn(cell) for cell in new_row.cells
         ]
         all_animations = resize_animations + appear_animations
 
         return new_row, all_animations
 
-    def delete_row(self, index: int) -> tuple[Row, List[TableAnimation]]:
+    def delete_row(self, index: int) -> tuple[Row, list[TableAnimation]]:
         """
         Delete a row from the table.
 
@@ -738,7 +738,7 @@ class Table(VGroup):
         actual_height = deleted_row.height
 
         # Start with FadeOut for deleted row
-        all_animations: List[TableAnimation] = [FadeOut(deleted_row)]
+        all_animations: list[TableAnimation] = [FadeOut(deleted_row)]
 
         # Create shift-up animations for remaining rows
         for row in rows_to_shift:
@@ -819,8 +819,8 @@ class Table(VGroup):
         return deleted_row, all_animations
 
     def add_column(
-        self, header: str, values: List[str], index: int | None = None
-    ) -> tuple[VGroup, List[TableAnimation], List[TableAnimation]]:
+        self, header: str, values: list[str], index: int | None = None
+    ) -> tuple[VGroup, list[TableAnimation], list[TableAnimation]]:
         """
         Add a new column to the table.
 
@@ -877,7 +877,7 @@ class Table(VGroup):
 
         # Prepare for updates
         new_cells = []
-        shift_animations: List[TableAnimation] = []
+        shift_animations: list[TableAnimation] = []
 
         # 1. Update Header
         header_cell = Cell(
@@ -938,11 +938,11 @@ class Table(VGroup):
             new_cells.append(cell)
 
         new_column_group = VGroup(*new_cells)
-        appear_animations: List[TableAnimation] = [FadeIn(cell) for cell in new_cells]
+        appear_animations: list[TableAnimation] = [FadeIn(cell) for cell in new_cells]
 
         return new_column_group, shift_animations, appear_animations
 
-    def delete_column(self, index: int) -> tuple[VGroup, List[TableAnimation]]:
+    def delete_column(self, index: int) -> tuple[VGroup, list[TableAnimation]]:
         """
         Delete a column from the table.
 
@@ -976,7 +976,7 @@ class Table(VGroup):
         self.column_widths.pop(index)
 
         deleted_cells = []
-        shift_animations: List[TableAnimation] = []
+        shift_animations: list[TableAnimation] = []
 
         # 1. Header
         header_cell = self.header_row.cells.pop(index)

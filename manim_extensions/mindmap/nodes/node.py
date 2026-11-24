@@ -9,7 +9,8 @@ This module provides node classes for mindmap visualizations.
 """
 
 from __future__ import annotations
-from typing import Any, Dict, Generator, List, cast
+from collections.abc import Generator
+from typing import Any, cast
 
 from manim import (
     BLUE,
@@ -109,19 +110,19 @@ class NodeStyle:
 
     def __init__(
         self,
-        node_style: List[Dict[str, Any]] = [
+        node_style: list[dict[str, Any]] = [
             {"color": RED, "stroke_width": 8},
             {"color": BLUE, "stroke_width": 6},
             {"color": PURE_YELLOW, "stroke_width": 4},
             {"color": GREEN, "stroke_width": 4},
         ],
-        line_style: List[Dict[str, Any]] = [
+        line_style: list[dict[str, Any]] = [
             {"color": RED, "stroke_width": 8},
             {"color": BLUE, "stroke_width": 6},
             {"color": PURE_YELLOW, "stroke_width": 4},
             {"color": GREEN, "stroke_width": 4},
         ],
-        text_style: List[Dict[str, Any]] = [
+        text_style: list[dict[str, Any]] = [
             {"color": RED, "font_size": 64},
             {"color": PURE_YELLOW, "font_size": 56},
             {"color": GREEN, "font_size": 48},
@@ -149,7 +150,7 @@ class NodeStyle:
             self.text_style = [{"color": PURE_YELLOW, "font_size": 36}]
             self.text_num = 1
 
-    def get_node_style(self, level: int) -> Dict[Any, Any]:
+    def get_node_style(self, level: int) -> dict[Any, Any]:
         """
         Return the box style configured for a hierarchy level.
 
@@ -167,7 +168,7 @@ class NodeStyle:
             return self.node_style[level]
         return self.node_style[-1]
 
-    def get_line_style(self, level: int) -> Dict[Any, Any]:
+    def get_line_style(self, level: int) -> dict[Any, Any]:
         """Return the line style for the requested hierarchy level.
 
         Parameters
@@ -184,7 +185,7 @@ class NodeStyle:
             return self.line_style[level]
         return self.line_style[-1]
 
-    def get_text_style(self, level: int) -> Dict[Any, Any]:
+    def get_text_style(self, level: int) -> dict[Any, Any]:
         """Return the text style for the requested hierarchy level.
 
         Parameters
@@ -612,7 +613,7 @@ class Node:
             del self.connector
         return node_mobj
 
-    def get_children(self) -> "List[Node]":
+    def get_children(self) -> "list[Node]":
         """
         Return the direct children of this node.
 
@@ -622,7 +623,7 @@ class Node:
         """
         return self.children
 
-    def get_descendants(self) -> "List[Node]":
+    def get_descendants(self) -> "list[Node]":
         """
         Return all descendants of this node in depth-first order.
 

@@ -109,7 +109,10 @@ def copy_assets(assets: list[ExampleAsset | None], workdir: Path) -> None:
 
 
 def example_digest(
-    class_name: str, code_lines: list[str], assets: list[ExampleAsset | None]
+    class_name: str,
+    code_lines: list[str],
+    assets: list[ExampleAsset | None],
+    renderer: str = "cairo",
 ) -> str:
     """Deterministic short hash of the example source and its sample files."""
     payload = "\n".join(code_lines)
@@ -117,6 +120,8 @@ def example_digest(
         digest = MISSING_DIGEST if asset is None else asset.digest
         name = "" if asset is None else asset.name
         payload += f"\n{name}:{digest}"
+    if renderer != "cairo":
+        payload += f"\nrenderer:{renderer}"
     digest = hashlib.md5(payload.encode()).hexdigest()[:8]
     return f"{class_name}-{digest}"
 

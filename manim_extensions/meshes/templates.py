@@ -6,8 +6,6 @@
 define a few basic mesh-structures to be used as examples or test.
 """
 
-from typing import List
-
 # python imports
 # patched: lazy-import trimesh (meshes extra)
 # patched: implement create_grid for 3D and 4-D meshes
@@ -205,7 +203,7 @@ def create_coplanar_points() -> Mesh:
     return Mesh(vertices=vertices, faces=[])
 
 
-def create_grid(areas: List[tuple[float, float, int]]) -> Mesh:
+def create_grid(areas: list[tuple[float, float, int]]) -> Mesh:
     """Create a regular grid mesh in 1-D, 2-D, 3-D or 4-D.
 
     Parameters

@@ -7,7 +7,7 @@ This module provides the :class:`~manim_extensions.chemistry.twoD.atom.MAtomObje
 
 """
 
-from typing import Any, Dict, cast, Literal
+from typing import Any, cast, Literal
 
 # unlinked-class-ok: Element
 
@@ -94,7 +94,7 @@ class MAtomObject(VGroup):
         element: str = "H",
         explicit_carbons: bool = False,
         explicit_hydrogens: bool = False,
-        bond_to: Dict[int, str] = {},
+        bond_to: dict[int, str] = {},
         representation_type: Literal["complete", "skeleton", "over_bond"] | None = None,
         color: ManimColor | str = WHITE,
         charge: int = 0,

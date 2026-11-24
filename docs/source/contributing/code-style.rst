@@ -57,6 +57,29 @@ Type annotations
   it (mostly ``type-arg`` / ``no-untyped-def`` noise in vendored modules). Run
   it locally as advisory only.
 
+Deprecated ``typing`` aliases
+-----------------------------
+
+**Do not use the PEP 585-deprecated aliases from** ``typing``. They still
+import, so tests alone will not catch them; ``validate-deprecated-typing``
+runs in the ``static`` group and rejects them at the AST level.
+
+* Built-in generics replace the capitalised container aliases:
+  ``list[T]``, ``dict[K, V]``, ``set[T]``, ``tuple[T, ...]``, ``type[T]``,
+  and ``frozenset[T]``.
+* ``collections.abc`` replaces the abstract aliases:
+  ``collections.abc.Callable``, ``Sequence``, ``Iterable``, ``Iterator``,
+  ``Generator``, ``Mapping``, and the rest.
+* ``collections.deque[T]``, ``collections.defaultdict[K, V]``,
+  ``collections.Counter[T]``, and ``re.Pattern[str]`` replace their
+  ``typing`` counterparts.
+* Modern ``typing`` names remain valid: ``Any``, ``Literal``, ``Protocol``,
+  ``TypedDict``, ``TypeVar``, ``ParamSpec``, ``TYPE_CHECKING``, ``cast``,
+  and ``overload``. ``Optional`` and ``Union`` are not deprecated, but new
+  code should prefer ``X | None`` and ``X | Y``.
+* The checker scans the package, tests, scripts, workflow tools, and Sphinx
+  extensions. Comments and docstrings may still discuss the old names.
+
 Imports
 -------
 

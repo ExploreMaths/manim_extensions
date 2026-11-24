@@ -5,7 +5,8 @@
 """3D and 2D Waves module."""
 
 from __future__ import annotations
-from typing import Any, Iterable
+from collections.abc import Iterable
+from typing import Any
 
 # unlinked-class-ok: Source
 

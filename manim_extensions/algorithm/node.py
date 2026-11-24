@@ -6,7 +6,7 @@
 """:class:`~manim_extensions.algorithm.node.Node` data structure for algorithm visualization."""
 
 from __future__ import annotations
-from typing import Any, List, TypeAlias, cast
+from typing import Any, TypeAlias, cast
 
 from manim import (
     Animation,
@@ -473,7 +473,7 @@ class Node(VMobject):
                    self.wait(0.5)
         """
 
-        def __init__(self, *nodes: List[Node], **kwargs: Any) -> None:
+        def __init__(self, *nodes: list[Node], **kwargs: Any) -> None:
             super().__init__(
                 AnimationGroup(
                     *[

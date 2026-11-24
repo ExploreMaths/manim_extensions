@@ -6,7 +6,8 @@
 functions to create delaunay meshes by divide and conquer.
 """
 
-from typing import Any, List, Sequence
+from collections.abc import Sequence
+from typing import Any
 
 from manim import Create, DashedLine, FadeOut, Scene, Uncreate
 
@@ -182,7 +183,7 @@ class DivideAndConquer:
             split_line,
         )
 
-    def triangulate_leq_3(self, vert_indices: List[Any]) -> Any:
+    def triangulate_leq_3(self, vert_indices: list[Any]) -> Any:
         """Triangulate a base case of at most three vertices.
 
         Creates a triangle (or a degenerate segment when only two vertices
@@ -387,8 +388,8 @@ class DivideAndConquer:
 
     def merge_sets(
         self,
-        indices_left: List[Any],
-        indices_right: List[Any],
+        indices_left: list[Any],
+        indices_right: list[Any],
         split_line: DashedLine,
         speed: float = 1.0,
     ) -> list[int]:
@@ -479,7 +480,7 @@ class DivideAndConquer:
         return merged_indices
 
     def _find_base_lr(
-        self, indices_left: List[Any], indices_right: List[Any]
+        self, indices_left: list[Any], indices_right: list[Any]
     ) -> tuple[int, int]:
         """Find the initial base edge connecting the left and right vertex sets.
 
@@ -619,7 +620,7 @@ class DivideAndConquer:
         self._divide_and_conquer_recursive(vert_indices, speed)
 
     def _divide_and_conquer_recursive(
-        self, vert_indices: List[Any], speed: float = 1.0
+        self, vert_indices: list[Any], speed: float = 1.0
     ) -> list[int]:
         """Internal recursive implementation of the divide-and-conquer algorithm.
 

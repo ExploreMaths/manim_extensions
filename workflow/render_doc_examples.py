@@ -205,7 +205,7 @@ def extract_blocks(path: Path):
             opt = OPTION_RE.match(lines[j])
             if opt:
                 name = opt.group(1)
-                if name in ("quality", "files"):
+                if name in ("quality", "files", "renderer"):
                     options[name] = lines[j].split(":", 2)[-1].strip()
                 else:
                     options[name] = True
@@ -242,6 +242,7 @@ def extract_blocks(path: Path):
                 "save_last_frame": "save_last_frame" in options,
                 "save_as_gif": "save_as_gif" in options,
                 "quality": QUALITY_MAP.get(options.get("quality", "")),
+                "renderer": options.get("renderer", "cairo"),
                 "code": code,
                 "source": str(path.relative_to(ROOT)),
             }
@@ -250,9 +251,9 @@ def extract_blocks(path: Path):
     return blocks
 
 
-def output_name(class_name: str, code: str, assets=None) -> str:
+def output_name(class_name: str, code: str, assets=None, renderer="cairo") -> str:
     user_code = normalize_code(code)
-    return example_digest(class_name, user_code, assets or [])
+    return example_digest(class_name, user_code, assets or [], renderer)
 
 
 # The docs build executes every example with manim_directive.py's globals,
@@ -263,8 +264,17 @@ DIRECTIVE_FILE = str(DOCS / "_extensions" / "manim_directive.py")
 
 def render_block(task):
     """Render one example in a subprocess. Returns (key, src, ok, error, quality)."""
-    class_name, code, save_last_frame, save_as_gif, quality, workdir, assets = task
-    output_file = output_name(class_name, code, assets)
+    (
+        class_name,
+        code,
+        save_last_frame,
+        save_as_gif,
+        quality,
+        renderer,
+        workdir,
+        assets,
+    ) = task
+    output_file = output_name(class_name, code, assets, renderer)
     q = quality or "example_quality"
     try:
         import logging
@@ -286,6 +296,7 @@ def render_block(task):
 
         example_config = {
             "frame_rate": frame_rate,
+            "renderer": renderer,
             "pixel_height": pixel_height,
             "pixel_width": pixel_width,
             "save_last_frame": save_last_frame,
@@ -404,7 +415,10 @@ def main() -> int:
             continue
         for block in extract_blocks(path):
             block["output_file"] = output_name(
-                block["class_name"], block["code"], block["assets"]
+                block["class_name"],
+                block["code"],
+                block["assets"],
+                block["renderer"],
             )
             block["effective_quality"] = (
                 block.get("quality")
@@ -431,6 +445,7 @@ def main() -> int:
             entry
             and entry.get("sha256") == block["output_file"]
             and entry.get("quality") == block["effective_quality"]
+            and entry.get("renderer", "cairo") == block["renderer"]
             and entry.get("env_tags", {}) == expected_tags
             and (target_dir / f"{block['output_file']}.{ext}").exists()
         ):
@@ -473,6 +488,7 @@ def main() -> int:
                 block["save_last_frame"],
                 block["save_as_gif"],
                 block["effective_quality"],
+                block["renderer"],
                 str(workdir),
                 block["assets"],
             )
@@ -506,6 +522,7 @@ def main() -> int:
                 "sha256": key,
                 "ext": src.suffix.lstrip("."),
                 "quality": q,
+                "renderer": block["renderer"],
                 "env_tags": {t: ENV_TAGS[t] for t in block["env_tags"]},
             }
 

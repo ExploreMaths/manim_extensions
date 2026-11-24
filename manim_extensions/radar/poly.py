@@ -5,7 +5,8 @@
 """Utilities for the poly module."""
 
 from __future__ import annotations
-from typing import Any, Sequence, cast
+from collections.abc import Sequence
+from typing import Any, cast
 
 # -*- coding: utf-8 -*-
 

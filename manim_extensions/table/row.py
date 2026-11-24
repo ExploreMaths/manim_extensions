@@ -7,7 +7,8 @@ This module provides the :class:`~manim_extensions.table.row.Row` class for tabl
 
 """
 
-from typing import Any, Iterator, List, overload
+from collections.abc import Iterator
+from typing import Any, overload
 
 from manim import RIGHT, VGroup
 from .cell import Cell
@@ -56,8 +57,8 @@ class Row(VGroup):
 
     def __init__(
         self,
-        values: List[str],
-        cell_widths: float | List[float] = 1.5,
+        values: list[str],
+        cell_widths: float | list[float] = 1.5,
         cell_height: float = 0.5,
         font_size: int = 20,
         is_header: bool = False,
@@ -79,7 +80,7 @@ class Row(VGroup):
         self.show_border = show_border
         self.index = index
 
-        self.cells: List[Cell] = []
+        self.cells: list[Cell] = []
         self.create_cells()
 
     def create_cells(self) -> Any:
@@ -122,7 +123,7 @@ class Row(VGroup):
         ...
 
     @overload
-    def __getitem__(self, index: slice) -> List[Cell]:
+    def __getitem__(self, index: slice) -> list[Cell]:
         """Return the cells selected by the slice.
 
         Parameters
@@ -136,7 +137,7 @@ class Row(VGroup):
         """
         ...
 
-    def __getitem__(self, index: int | slice) -> Cell | List[Cell]:
+    def __getitem__(self, index: int | slice) -> Cell | list[Cell]:
         """Return a cell or a slice of cells.
 
         Parameters

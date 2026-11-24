@@ -11,7 +11,8 @@ Both play the same 23-snapshot demo reel that ships with the package.
 """
 
 from __future__ import annotations
-from typing import Optional, Sequence, cast
+from collections.abc import Sequence
+from typing import Optional, cast
 
 from manim import Scene
 

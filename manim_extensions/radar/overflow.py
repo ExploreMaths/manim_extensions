@@ -11,7 +11,8 @@ transitions whose overshoot makes the escape visible.
 """
 
 from __future__ import annotations
-from typing import Any, Optional, Sequence, Union
+from collections.abc import Sequence
+from typing import Any, Optional, Union
 
 from manim import Animation
 

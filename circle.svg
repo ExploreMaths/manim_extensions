@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- SPDX-FileCopyrightText: 2026 ExploreMaths -->
-<!-- SPDX-License-Identifier: MIT -->
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="123pt" height="122pt" viewBox="0 0 123 122" version="1.1">
-<g id="surface19">
+<g id="surface267">
 <path style="fill-rule:nonzero;fill:rgb(34.509804%,76.862745%,86.666667%);fill-opacity:0.4;stroke-width:0.04;stroke-linecap:butt;stroke-linejoin:miter;stroke:rgb(34.509804%,76.862745%,86.666667%);stroke-opacity:1;stroke-miterlimit:10;" d="M 1 0 C 1 0.265242 0.894661 0.519589 0.707096 0.707116 C 0.519596 0.894643 0.265234 0.999992 0 0.999992 C -0.265234 0.999992 -0.519596 0.894643 -0.707096 0.707116 C -0.894661 0.519589 -1 0.265242 -1 0 C -1 -0.265242 -0.894661 -0.519589 -0.707096 -0.707116 C -0.519596 -0.894643 -0.265234 -0.999992 0 -0.999992 C 0.265234 -0.999992 0.519596 -0.894643 0.707096 -0.707116 C 0.894661 -0.519589 1 -0.265242 1 0 Z M 1 0 " transform="matrix(60,0,0,-59.512195,61.5,61)"/>
 </g>
 </svg>

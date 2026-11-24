@@ -8,7 +8,7 @@ This module provides animations for mindmap visualizations.
 
 """
 
-from typing import Any, Dict, List, cast
+from typing import Any, cast
 
 from manim import (
     Animation,
@@ -43,7 +43,7 @@ from ..nodes import Node, bfs_walker, NodeState, NodeStyle
 from manim.typing import Point3D, Vector3D
 
 
-def fadeout_of_subtrees(nodes: List[Node] | None = None) -> FadeOut:
+def fadeout_of_subtrees(nodes: list[Node] | None = None) -> FadeOut:
     r"""FadeOut the given nodes and their subtrees.
 
     Parameters
@@ -90,10 +90,10 @@ def animate_of_create(
     node: Node,
     pos: Point3D,
     direction: Vector3D,
-    line_styles: Dict[Any, Any],
-    node_styles: Dict[Any, Any],
+    line_styles: dict[Any, Any],
+    node_styles: dict[Any, Any],
     layout_type: LayoutType,
-) -> List[Animation]:
+) -> list[Animation]:
     r"""Create-node animation.
 
     Parameters
@@ -171,12 +171,12 @@ def animate_of_display(
     node: Node,
     pos: Point3D,
     direction: Vector3D,
-    line_styles: Dict[Any, Any],
-    node_styles: Dict[Any, Any],
+    line_styles: dict[Any, Any],
+    node_styles: dict[Any, Any],
     layout_type: LayoutType,
     change_dir: bool,
     change_layout: bool,
-) -> List[Animation]:
+) -> list[Animation]:
     r"""Animation for a node already on the scene: update its position and style.
 
     Parameters
@@ -247,12 +247,12 @@ def animate_of_scale(
     node: Node,
     pos: Point3D,
     direction: Vector3D,
-    line_styles: Dict[Any, Any],
-    node_styles: Dict[Any, Any],
+    line_styles: dict[Any, Any],
+    node_styles: dict[Any, Any],
     layout_type: LayoutType,
     change_dir: bool,
     change_layout: bool,
-) -> List[Animation]:
+) -> list[Animation]:
     r"""Animation for a node already on the scene: scale it up or down.
 
     Parameters
@@ -322,12 +322,12 @@ def animate_of_alter(
     node: Node,
     pos: Point3D,
     direction: Vector3D,
-    line_styles: Dict[Any, Any],
-    node_styles: Dict[Any, Any],
+    line_styles: dict[Any, Any],
+    node_styles: dict[Any, Any],
     layout_type: LayoutType,
     change_dir: bool,
     change_layout: bool,
-) -> List[Animation]:
+) -> list[Animation]:
     r"""Animation for a node already on the scene: replace its vmobject.
 
     Parameters
@@ -397,12 +397,12 @@ def animate_of_node(
     node: Node,
     pos: Point3D,
     direction: Vector3D,
-    line_styles: Dict[Any, Any],
-    node_styles: Dict[Any, Any],
+    line_styles: dict[Any, Any],
+    node_styles: dict[Any, Any],
     layout_type: LayoutType,
     change_dir: bool,
     change_layout: bool,
-) -> List[Animation]:
+) -> list[Animation]:
     r"""Return the appropriate animation for node based on its state.
 
     Parameters
@@ -508,11 +508,11 @@ def is_direction_change(root: Node, direction: Vector3D = RIGHT) -> bool:
 
 def animate_of_layout(
     root: Node,
-    remove_nodes: List[Node] | None = None,
+    remove_nodes: list[Node] | None = None,
     layout_type: LayoutType = LayoutType.MindMap,
     layout_config: LayoutConfig = LayoutConfig(),
     node_style: NodeStyle = NodeStyle(),
-) -> List[Animation]:
+) -> list[Animation]:
     r"""Core animation method: run the full Layout algorithm and generate animations.
 
     Parameters
@@ -652,7 +652,7 @@ class AbstractLayoutAnimation(AnimationGroup):
         anims = self.collect_animations()
         super().__init__(*anims, **kwargs)
 
-    def _check_node_state(self) -> List[Node]:
+    def _check_node_state(self) -> list[Node]:
         """Check the state of each node and return the nodes to be removed.
 
         Returns
@@ -729,7 +729,7 @@ class AbstractLayoutAnimation(AnimationGroup):
         """
         raise NotImplementedError
 
-    def get_common_root(self, nodes: List[Node]) -> Node | None:
+    def get_common_root(self, nodes: list[Node]) -> Node | None:
         r"""
         Return the common root shared by the supplied nodes.
 
@@ -881,7 +881,7 @@ class RemoveNode(LayoutAnimation):
     def __init__(
         self,
         scene: Scene,
-        nodes: Node | List[Node],
+        nodes: Node | list[Node],
         layout_type: LayoutType = LayoutType.MindMap,
         layout_config: LayoutConfig = LayoutConfig(),
         node_style: NodeStyle = NodeStyle(),
@@ -984,7 +984,7 @@ class InsertNode(LayoutAnimation):
     def __init__(
         self,
         scene: Scene,
-        father_children: Dict[Node, List[Node]] | None = None,
+        father_children: dict[Node, list[Node]] | None = None,
         layout_type: LayoutType = LayoutType.MindMap,
         layout_config: LayoutConfig = LayoutConfig(),
         node_style: NodeStyle = NodeStyle(),
@@ -1001,7 +1001,7 @@ class InsertNode(LayoutAnimation):
             **kwargs,
         )
 
-    def get_root(self, nodes: List[Node]) -> Node:
+    def get_root(self, nodes: list[Node]) -> Node:
         r"""Return the common root of the given nodes.
 
         Parameters
@@ -1081,7 +1081,7 @@ class ScaleNode(LayoutAnimation):
     def __init__(
         self,
         scene: Scene,
-        node_scale: Dict[Node, float] | None = None,
+        node_scale: dict[Node, float] | None = None,
         layout_type: LayoutType = LayoutType.MindMap,
         layout_config: LayoutConfig = LayoutConfig(),
         node_style: NodeStyle = NodeStyle(),
@@ -1141,7 +1141,7 @@ class AlterNode(LayoutAnimation):
     def __init__(
         self,
         scene: Scene,
-        node_vmobject: Dict[Node, VMobject] | None = None,
+        node_vmobject: dict[Node, VMobject] | None = None,
         layout_type: LayoutType = LayoutType.MindMap,
         layout_config: LayoutConfig = LayoutConfig(),
         node_style: NodeStyle = NodeStyle(),

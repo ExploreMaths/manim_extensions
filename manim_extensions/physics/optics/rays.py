@@ -5,7 +5,8 @@
 """Utilities for the rays module."""
 
 from __future__ import annotations
-from typing import Any, Iterable
+from collections.abc import Iterable
+from typing import Any
 
 r""":class:`~manim_extensions.physics.optics.rays.Ray`\ s of light. Refracted by Lenses."""
 

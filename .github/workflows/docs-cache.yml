@@ -118,9 +118,16 @@ jobs:
             exit 1
           fi
 
+      - name: Install Xvfb for OpenGL examples
+        if: steps.needed.outputs.needed == 'true'
+        run: sudo apt-get install -y xvfb
+
       - name: Render all doc examples
         if: steps.needed.outputs.needed == 'true'
-        run: python workflow/render_doc_examples.py --out media_cache --workers 6 --quality high
+        run: |
+          xvfb-run -a -s "-screen 0 1920x1080x24" \
+            python workflow/render_doc_examples.py \
+            --out media_cache --workers 6 --quality high
 
       - name: Execute nbcell examples (real outputs)
         # Runs every nbcell block and caches the real stdout next to the
@@ -182,7 +189,8 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y \
             ffmpeg fonts-jetbrains-mono fonts-noto-cjk fonts-hosny-amiri \
-            graphviz libcairo2-dev libpango1.0-dev libffi-dev pkg-config
+            graphviz libcairo2-dev libpango1.0-dev libffi-dev pkg-config \
+            xvfb
 
       - name: Verify Arabic font
         run: |
@@ -225,7 +233,8 @@ jobs:
         run: |
           cp /tmp/rtd-cache/_vendored_status_cache*.json docs/source/ 2>/dev/null || true
           cp /tmp/rtd-cache/_nbcell_cache.json docs/source/_extensions/_nbcell_cache.json
-          python -m sphinx -T -j auto -b html -D language=en docs/source _build/html
+          xvfb-run -a -s "-screen 0 1920x1080x24" \
+            python -m sphinx -T -j auto -b html -D language=en docs/source _build/html
 
       - name: Publish prebuilt docs to rtd-html
         id: publish

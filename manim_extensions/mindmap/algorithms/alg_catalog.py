@@ -14,7 +14,8 @@ Layout characteristics:
 """
 
 from __future__ import annotations
-from typing import Any, Callable, List, cast
+from collections.abc import Callable
+from typing import Any, cast
 
 __all__ = ["CatalogLayout"]
 from dataclasses import dataclass, field
@@ -80,7 +81,7 @@ class CatalogNode:
     data: object | None = None
     width: float = 0.0
     height: float = 0.0
-    children: "List[CatalogNode]" = field(default_factory=list)
+    children: "list[CatalogNode]" = field(default_factory=list)
 
     # Layout results
     left: float = 0.0
@@ -197,7 +198,7 @@ class CatalogLayout(Layout):
         return self.margin_root_child if layer_index == 1 else self.margin_vertical
 
     def _update_children(
-        self, nodes: List[CatalogNode], prop: str, offset: float
+        self, nodes: list[CatalogNode], prop: str, offset: float
     ) -> Any:
         """Recursively update a child-node attribute such as left or top.
 
@@ -221,7 +222,7 @@ class CatalogLayout(Layout):
                 self._update_children(node.children, prop, offset)
 
     def _update_children_pro(
-        self, nodes: List[CatalogNode], props: dict[Any, Any]
+        self, nodes: list[CatalogNode], props: dict[Any, Any]
     ) -> Any:
         """Recursively update multiple child-node attributes in one pass.
 

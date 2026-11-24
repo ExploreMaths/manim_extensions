@@ -11,7 +11,8 @@ legend, four per-vertex number modes, focus dimming, a difference highlight
 """
 
 from __future__ import annotations
-from typing import Any, List, Optional, Sequence, TYPE_CHECKING, Union, cast
+from collections.abc import Sequence
+from typing import Any, Optional, TYPE_CHECKING, Union, cast
 
 import math
 from dataclasses import replace
@@ -131,8 +132,8 @@ class Series:
 
         # overflow decorations, owned per dataset (lazily built on first spike)
         self.fx_group: Optional[VGroup] = None  # dash tracks, in the chart's fx layer
-        self.dash_pool: List[Optional[VGroup]] = []  # per axis
-        self.breach: List[Optional[VGroup]] = []  # per axis
+        self.dash_pool: list[Optional[VGroup]] = []  # per axis
+        self.breach: list[Optional[VGroup]] = []  # per axis
         self.big_numbers: dict[Any, Any] = {}  # axis -> unclamped RollingNumber
         self.big_numbers_group: Optional[VGroup] = None
 
@@ -529,7 +530,7 @@ class RadarChart(VGroup):
         self._poly_layers = VGroup()
         self.gap_group: Optional[VGroup] = None
         self._gap_spec: Optional[dict[Any, Any]] = None
-        self._series: List[Series] = []
+        self._series: list[Series] = []
         self.add(self._poly_layers)
 
         # ---- axis names & value numbers ------------------------------------
@@ -748,7 +749,7 @@ class RadarChart(VGroup):
 
     def _legend_pairs(
         self, datasets: Sequence[RadarData]
-    ) -> List[tuple[ManimColor, str]]:
+    ) -> list[tuple[ManimColor, str]]:
         """Build legend rows for the supplied snapshots.
 
         Parameters
@@ -1000,7 +1001,7 @@ class RadarChart(VGroup):
         return self._series[0].data
 
     @property
-    def datasets(self) -> List[RadarData]:
+    def datasets(self) -> list[RadarData]:
         """All displayed snapshots.
 
         Returns
@@ -1510,7 +1511,7 @@ class RadarChart(VGroup):
     # ==================================================================
     # internals
     # ==================================================================
-    def _coerce_dataset_list(self, data: RadarInputList) -> List[RadarData]:
+    def _coerce_dataset_list(self, data: RadarInputList) -> list[RadarData]:
         """Normalise morph input into validated target snapshots.
 
         Parameters
@@ -2283,7 +2284,7 @@ class RadarChart(VGroup):
 
     # ------------------------------------------------------------------
     # legend ---------------------------------------------------------------
-    def _rebuild_legend(self, pairs: List[tuple[Any, ...]]) -> VGroup:
+    def _rebuild_legend(self, pairs: list[tuple[Any, ...]]) -> VGroup:
         """Build legend chips for colour and name pairs.
 
         Parameters
@@ -2300,7 +2301,7 @@ class RadarChart(VGroup):
         if not cfg.legend or len(pairs) < 2:
             return VGroup()
         content = VGroup()
-        chips: List[VGroup] = []
+        chips: list[VGroup] = []
         for color, name in pairs:
             txt = Text(
                 str(name),
@@ -2335,7 +2336,7 @@ class RadarChart(VGroup):
             chips.append(VGroup(pill, inner))
         # greedy wrap so long legends stay inside the frame
         frame_w = manim_config.frame_width * 0.92
-        rows: List[VGroup] = []
+        rows: list[VGroup] = []
         row = VGroup()
         for chip in chips:
             trial = VGroup(*list(row), chip)
@@ -2373,7 +2374,7 @@ class RadarChart(VGroup):
         y = max(cfg.legend_offset * cfg.radius, label_top + 0.42)
         return min(y, frame_limit - 0.42)
 
-    def _begin_legend_swap(self, targets: List[RadarData]) -> None:
+    def _begin_legend_swap(self, targets: list[RadarData]) -> None:
         """Start a crossfade from the current legend to target datasets.
 
         Parameters

@@ -28,6 +28,7 @@ class OpenGLSphere(OpenGLSurface):
     Examples
     --------
     .. manim:: OpenGLSphereOverview
+       :renderer: opengl
        :save_last_frame:
 
        from manim import *
@@ -49,6 +50,18 @@ class OpenGLSphere(OpenGLSurface):
                    width=12.1, height=card.height + 0.5, corner_radius=0.2, color=BLUE_D
                ).move_to(card)
                self.add(frame, card)
+
+    .. manim:: OpenGLSpherePreview
+       :renderer: opengl
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.threeD.utils import OpenGLSphere
+
+       class OpenGLSpherePreview(ThreeDScene):
+           def construct(self):
+               self.set_camera_orientation(phi=70 * DEGREES, theta=30 * DEGREES)
+               self.add(OpenGLSphere(radius=1.2, color=BLUE))
 
     .. code-block:: python
 

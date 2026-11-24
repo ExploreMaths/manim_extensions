@@ -8,7 +8,7 @@ This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_mol
 """
 
 from __future__ import annotations
-from typing import Any, Dict, TYPE_CHECKING, cast
+from typing import Any, TYPE_CHECKING, cast
 
 import numpy as np
 
@@ -231,8 +231,8 @@ class MCAtom:
     @staticmethod
     def construct_from_atom_dict(
         atom_index: int,
-        atom_data_dict: Dict[Any, Any],
-        elements_data_dict: Dict[Any, Any] | None,
+        atom_data_dict: dict[Any, Any],
+        elements_data_dict: dict[Any, Any] | None,
     ) -> "MCAtom":
         """
         Given an atom data dict from a parser, returns an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`.

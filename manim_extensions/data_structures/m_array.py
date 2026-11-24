@@ -5,7 +5,8 @@
 """Contains classes to construct an array."""
 
 from __future__ import annotations
-from typing import Any, Callable, ClassVar, List, Protocol, TypedDict, cast
+from collections.abc import Callable
+from typing import Any, ClassVar, Protocol, TypedDict, cast
 
 from copy import deepcopy
 
@@ -88,7 +89,7 @@ class UpdateIndices(Protocol):
 
     def __call__(
         self, play_anim: bool = ..., play_anim_args: MobProps = ...
-    ) -> List[Animation]:
+    ) -> list[Animation]:
         """Update the indices of elements after a removal.
 
         Parameters
@@ -674,7 +675,7 @@ class MArray(VGroup):
         The distance between :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr_label` and :attr:`~manim_extensions.data_structures.m_array.MArray.__mob_arr`.
     __mob_arr_label_props : :class:`~dict`
         Arguments for :class:`~manim.mobject.text.text_mobject.Text` that represents the array label.
-    __mob_arr : :class:`~typing.List`\[:class:`~manim_extensions.data_structures.m_array.MArrayElement`]
+    __mob_arr : :class:`~list`\[:class:`~manim_extensions.data_structures.m_array.MArrayElement`]
         Represents the array.
     __mob_arr_label : :class:`~manim.mobject.text.text_mobject.Text`
         Represents the array label.
@@ -898,7 +899,7 @@ class MArray(VGroup):
         mob_square_args: MobProps = {},
         mob_value_args: MobProps = {},
         mob_index_args: MobProps = {},
-    ) -> List[Animation]:
+    ) -> list[Animation]:
         r"""Creates and inserts a new element in the array.
 
         Parameters
@@ -989,7 +990,7 @@ class MArray(VGroup):
         Returns
         -------
             Contains :class:`~manim.animation.animation.Animation` played for removal and shifting of element(s).
-        :data:`~typing.Callable`\[[:class:`~bool`], :class:`~typing.List`\[:class:`~manim.animation.animation.Animation`]]
+        :class:`~collections.abc.Callable`\[[:class:`~bool`], :class:`~list`\[:class:`~manim.animation.animation.Animation`]]
             Method that updates the indices of element(s) after the removed element and returns a list of update :class:`~manim.animation.animation.Animation`\ (s).
 
         Raises
@@ -1029,7 +1030,7 @@ class MArray(VGroup):
 
         def update_indices(
             play_anim: bool = True, play_anim_args: MobProps = {}
-        ) -> List[Animation]:
+        ) -> list[Animation]:
             r"""Updates the indices of :class:`~manim_extensions.data_structures.m_array.MArrayElement`\ (s) that occur after the removal.
 
             Parameters
@@ -1119,7 +1120,7 @@ class MArray(VGroup):
             "font_size": 38,
         }
         self.__scene: Scene = scene
-        self.__arr: List[object] = arr
+        self.__arr: list[object] = arr
         self.__label: str = label
         self.__mob_arr = []
         self.__index_offset: int = index_offset
@@ -1257,7 +1258,7 @@ class MArray(VGroup):
 
         return self.__arr
 
-    def fetch_mob_arr(self) -> List[MArrayElement]:
+    def fetch_mob_arr(self) -> list[MArrayElement]:
         """Fetches the mobject array.
 
         Returns
@@ -1533,7 +1534,7 @@ class MArray(VGroup):
         mob_index_args: MobProps = {},
         play_anim: bool = True,
         play_anim_args: MobProps = {},
-    ) -> List[Animation]:
+    ) -> list[Animation]:
         r"""Creates and inserts a new element in the array.
 
         Parameters
@@ -1617,7 +1618,7 @@ class MArray(VGroup):
         Returns
         -------
             Contains :class:`~manim.animation.animation.Animation` played for removal and shifting of element(s).
-        :data:`~typing.Callable`\[[:class:`~bool`], :class:`~typing.List`\[:class:`~manim.animation.animation.Animation`]]
+        :class:`~collections.abc.Callable`\[[:class:`~bool`], :class:`~list`\[:class:`~manim.animation.animation.Animation`]]
             Method that updates the indices of element(s) after the removed element and returns a list of update :class:`~manim.animation.animation.Animation`\ (s).
 
         Raises
@@ -1680,7 +1681,7 @@ class MArrayPointer(VGroup):
     ----------
     __scene : :class:`~manim.scene.scene.Scene`
         The scene where the object is to be rendered.
-    __arr : :class:`~typing.List`\[:class:`~manim_extensions.data_structures.m_array.MArrayElement`]
+    __arr : :class:`~list`\[:class:`~manim_extensions.data_structures.m_array.MArrayElement`]
         The array to which the pointer is attached to.
     __index : :class:`~int`
         The index of the element to which the pointer is attached to.
@@ -1702,7 +1703,7 @@ class MArrayPointer(VGroup):
         Represents the arrow of the element.
     __mob_label : :class:`~manim.mobject.text.text_mobject.Text`
         Represents the label of the element.
-    __updater_pos : :data:`~typing.Callable`\[[], None]
+    __updater_pos : :class:`~collections.abc.Callable`\[[], None]
         The updater function that keeps the pointer intact with the array.
 
     Examples
@@ -2211,7 +2212,7 @@ class MArraySlidingWindow(VGroup):
     ----------
     __scene : :class:`~manim.scene.scene.Scene`
         The scene where the object is to be rendered.
-    __arr : :class:`~typing.List`\[:class:`~manim_extensions.data_structures.m_array.MArrayElement`]
+    __arr : :class:`~list`\[:class:`~manim_extensions.data_structures.m_array.MArrayElement`]
         The array to which the sliding window is to be attached.
     __index : :class:`~int`
         The index of the element to which the sliding window is to be attached.
@@ -2231,7 +2232,7 @@ class MArraySlidingWindow(VGroup):
         Represents the window of the sliding window.
     __mob_label : :class:`~manim.mobject.text.text_mobject.Text`
         Represents the label of the sliding window.
-    __updater_pos : :data:`~typing.Callable`\[[], None]
+    __updater_pos : :class:`~collections.abc.Callable`\[[], None]
         The updater function that keeps the sliding window intact with the array.
 
     Examples

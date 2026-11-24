@@ -9,7 +9,8 @@ This module provides the :class:`~manim_extensions.pymunk.space.VSpace.VSpace` c
 """
 
 from __future__ import annotations
-from typing import Any, Callable, Dict, TYPE_CHECKING, cast
+from collections.abc import Callable
+from typing import Any, TYPE_CHECKING, cast
 
 from manim import Circle, ImageMobject, Line, Mobject, config, subdivide_bezier
 from manim.mobject.opengl.opengl_compatibility import ConvertToOpenGL
@@ -329,18 +330,18 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         self,
         collision_type_a: int,
         begin: (
-            Callable[[pymunk.Arbiter, pymunk.Space, Dict[Any, Any]], bool] | None
+            Callable[[pymunk.Arbiter, pymunk.Space, dict[Any, Any]], bool] | None
         ) = None,
         pre_solve: (
-            Callable[[pymunk.Arbiter, pymunk.Space, Dict[Any, Any]], bool] | None
+            Callable[[pymunk.Arbiter, pymunk.Space, dict[Any, Any]], bool] | None
         ) = None,
         post_solve: (
-            Callable[[pymunk.Arbiter, pymunk.Space, Dict[Any, Any]], None] | None
+            Callable[[pymunk.Arbiter, pymunk.Space, dict[Any, Any]], None] | None
         ) = None,
         separate: (
-            Callable[[pymunk.Arbiter, pymunk.Space, Dict[Any, Any]], None] | None
+            Callable[[pymunk.Arbiter, pymunk.Space, dict[Any, Any]], None] | None
         ) = None,
-        data: Dict[object, object] | None = None,
+        data: dict[object, object] | None = None,
     ) -> object | None:
         """Registers a wildcard collision handler for a specific collision type.
 
@@ -403,18 +404,18 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
         collision_type_a: int,
         collision_type_b: int,
         begin: (
-            Callable[[pymunk.Arbiter, pymunk.Space, Dict[Any, Any]], bool] | None
+            Callable[[pymunk.Arbiter, pymunk.Space, dict[Any, Any]], bool] | None
         ) = None,
         pre_solve: (
-            Callable[[pymunk.Arbiter, pymunk.Space, Dict[Any, Any]], bool] | None
+            Callable[[pymunk.Arbiter, pymunk.Space, dict[Any, Any]], bool] | None
         ) = None,
         post_solve: (
-            Callable[[pymunk.Arbiter, pymunk.Space, Dict[Any, Any]], None] | None
+            Callable[[pymunk.Arbiter, pymunk.Space, dict[Any, Any]], None] | None
         ) = None,
         separate: (
-            Callable[[pymunk.Arbiter, pymunk.Space, Dict[Any, Any]], None] | None
+            Callable[[pymunk.Arbiter, pymunk.Space, dict[Any, Any]], None] | None
         ) = None,
-        data: Dict[object, object] | None = None,
+        data: dict[object, object] | None = None,
     ) -> object | None:
         """Registers a collision handler between two specific collision types.
 

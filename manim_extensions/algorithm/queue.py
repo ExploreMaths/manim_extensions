@@ -5,7 +5,7 @@
 """:class:`~manim_extensions.algorithm.queue.Queue` data structure for algorithm visualization."""
 
 from __future__ import annotations
-from typing import Any, List, cast
+from typing import Any, cast
 
 from manim import (
     Animation,
@@ -69,7 +69,7 @@ class Queue(VMobject):
     def __init__(
         self,
         capacity: int,
-        init_data: List[Node] | None = None,
+        init_data: list[Node] | None = None,
         total_width: int = 12,
         font_size: int = 48,
         box_type: NodeBoxType = Square,
@@ -90,7 +90,7 @@ class Queue(VMobject):
             RIGHT * total_width / 2 + DOWN / 2 * self.item_width,
         ).set_color(bound_color)
         self.add(self.upbound, self.downbound)
-        self.data: List[Node] = []
+        self.data: list[Node] = []
         if init_data:
             for item in init_data:
                 if not isinstance(item, Node):

@@ -120,6 +120,8 @@ workflow/run_checks.py --group static`` scans ``manim_extensions/``,
      - ``python scripts/check_type_annotations.py``
    * - Return annotations on documented public functions with return values
      - ``python scripts/check_return_annotations.py``
+   * - No deprecated PEP 585 ``typing`` aliases
+     - ``python workflow/validate_deprecated_typing.py``
    * - Dependencies audit
      - ``pip-audit --desc on``
 

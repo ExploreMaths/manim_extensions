@@ -75,6 +75,11 @@ directive:
         Controls render quality of the video, in analogy to
         the corresponding command line flags.
 
+    renderer : {'cairo', 'opengl'}
+        Selects the Manim renderer. The default is ``cairo``. OpenGL-only
+        mobjects and scenes need ``:renderer: opengl``; on a headless Linux
+        build this also needs an X server, for example ``xvfb-run``.
+
     save_as_gif
         If this flag is present without argument,
         the scene is rendered as a gif.
@@ -199,6 +204,10 @@ class ManimDirective(Directive):
             arg,
             ("low", "medium", "high", "fourk"),
         ),
+        "renderer": lambda arg: directives.choice(
+            arg,
+            ("cairo", "opengl"),
+        ),
         "save_as_gif": bool,
         "save_last_frame": bool,
         "files": lambda arg: parse_file_list(arg),
@@ -247,6 +256,7 @@ class ManimDirective(Directive):
         section_underline = "-" * len(section_title)
         save_as_gif = "save_as_gif" in self.options
         save_last_frame = "save_last_frame" in self.options
+        renderer = self.options.get("renderer", "cairo")
         assert not (save_as_gif and save_last_frame)
 
         ref_content = (
@@ -327,13 +337,14 @@ class ManimDirective(Directive):
         # patched: hash-based output name (deterministic across builds, see
         # header note) so CI can pre-render examples and RTD can reuse them
         # via the MANIM_MEDIA_CACHE_DIR directory.
-        output_file = example_digest(clsname, user_code, assets)
+        output_file = example_digest(clsname, user_code, assets, renderer)
         config.assets_dir = Path(setup.confdir) / "_static"
         config.progress_bar = "none"
         config.verbosity = "WARNING"
 
         example_config = {
             "frame_rate": frame_rate,
+            "renderer": renderer,
             "no_autoplay": no_autoplay,
             "pixel_height": pixel_height,
             "pixel_width": pixel_width,

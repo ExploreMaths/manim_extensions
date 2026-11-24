@@ -6,7 +6,8 @@
 """Utilities for the core module."""
 
 from __future__ import annotations
-from typing import Any, Callable, Optional, Sequence, Union, cast
+from collections.abc import Callable, Sequence
+from typing import Any, Optional, Union, cast
 
 # -*- coding: utf-8 -*-
 """Three-dimensional geometry and animation presets for Manim.

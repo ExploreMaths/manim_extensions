@@ -5,7 +5,8 @@
 """The deep-space backdrop: radial glow, vignette, nebula blobs and stars."""
 
 from __future__ import annotations
-from typing import Any, Sequence, TYPE_CHECKING, Union, cast
+from collections.abc import Sequence
+from typing import Any, TYPE_CHECKING, Union, cast
 
 import math
 import random

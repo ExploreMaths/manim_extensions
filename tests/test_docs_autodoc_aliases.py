@@ -61,7 +61,8 @@ def test_typing_data_uses_data_role() -> None:
     import manim_extensions.data_structures.m_array as m_array
 
     assert _qualified_alias_target(m_array, "Any") == ("typing.Any", "data")
-    assert _qualified_alias_target(m_array, "List") == ("typing.List", "class")
+    # Builtin generics resolve without an explicit target.
+    assert _qualified_alias_target(m_array, "list") == (None, None)
 
 
 def test_local_alias_keeps_its_own_name() -> None:

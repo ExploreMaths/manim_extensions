@@ -7,7 +7,8 @@ This module provides the Solow growth model diagram.
 
 """
 
-from typing import cast, Any, Callable
+from collections.abc import Callable
+from typing import cast, Any
 
 from manim import (
     AnimationGroup,

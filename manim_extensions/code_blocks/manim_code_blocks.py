@@ -5,7 +5,8 @@
 """Utilities for the manim_code_blocks module."""
 
 from __future__ import annotations
-from typing import Any, Callable, cast
+from collections.abc import Callable
+from typing import Any, cast
 
 # patched: bundled GitHub language colours locally, removed the import-time
 # patched: network request, and made tokenize-all-code a lazy optional extra

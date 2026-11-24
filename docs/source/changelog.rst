@@ -10,6 +10,17 @@ v1.0.7 :bdg-primary-line:`In Development`
 Added
 ~~~~~
 
+* ``workflow/validate_deprecated_typing.py`` and the
+  ``validate-deprecated-typing`` static check reject PEP 585-deprecated
+  aliases such as ``typing.List``, ``typing.Dict`` and
+  ``typing.Callable``. The package now uses ``list``/``dict`` built-ins and
+  ``collections.abc`` for abstract container types; ``Optional`` and
+  ``Union`` remain legal, while new code prefers ``X | None`` and ``X | Y``.
+* ``.. manim::`` accepts ``:renderer: opengl``. The media-render workflow
+  runs Manim under ``xvfb-run``, and the OpenGL media cache key is
+  renderer-specific, so OpenGL examples coexist with Cairo examples without
+  colliding in the docs cache. ``OpenGLSphere`` gains a rendered 3-D
+  preview as the first OpenGL example in the pipeline.
 * ``validate-types`` runs ``mypy`` in strict mode over the whole package,
   including every vendored module.
 * ``workflow/validate_english_text.py`` replaces the docstring-only CJK

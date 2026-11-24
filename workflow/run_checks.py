@@ -44,7 +44,7 @@ import sys
 import tomllib
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Callable
+from collections.abc import Callable
 
 SCRIPT_DIR = Path(__file__).resolve().parent.parent
 DEFAULT_PACKAGE = "manim_extensions"
@@ -165,6 +165,11 @@ CHECKS: dict[str, Check] = {
         "static",
         py("scripts/check_return_annotations.py"),
     ),
+    "validate-deprecated-typing": Check(
+        "validate-deprecated-typing",
+        "static",
+        py("workflow/validate_deprecated_typing.py"),
+    ),
     "validate-math-text": Check(
         "validate-math-text", "text", py("workflow/validate_math_text.py")
     ),
@@ -228,6 +233,7 @@ GROUPS: dict[str, tuple[str, ...]] = {
         "validate-english-text",
         "validate-type-annotations",
         "validate-return-annotations",
+        "validate-deprecated-typing",
     ),
     "package": (
         "validate-manim-directives",

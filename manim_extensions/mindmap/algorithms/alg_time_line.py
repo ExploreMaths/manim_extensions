@@ -5,7 +5,8 @@
 """Timeline layout algorithm - Python implementation."""
 
 from __future__ import annotations
-from typing import Any, Callable, Dict, List, Sequence, cast
+from collections.abc import Callable, Sequence
+from typing import Any, cast
 
 __all__ = [
     "TimeLineLayout",
@@ -71,7 +72,7 @@ class TimelineNode:
     node: object | None = None
     width: float = 0.0
     height: float = 0.0
-    children: "List[TimelineNode]" = field(default_factory=list)
+    children: "list[TimelineNode]" = field(default_factory=list)
     side_dir: LayoutDirection | None = None
 
     # Layout result coordinates
@@ -567,7 +568,7 @@ class TimeLineLayout(Layout):
         loop(node)
         return total_height
 
-    def _get_node_boundaries(self, node: TimelineNode, dir: str) -> Dict[str, float]:
+    def _get_node_boundaries(self, node: TimelineNode, dir: str) -> dict[str, float]:
         """Return the boundary values of a node's subtree.
 
         Parameters
@@ -625,7 +626,7 @@ class TimeLineLayout(Layout):
         return walk_tree(node)
 
     def _update_children(
-        self, children: List[TimelineNode], prop: str, offset: float
+        self, children: list[TimelineNode], prop: str, offset: float
     ) -> Any:
         """Recursively shift a property on each child in a list.
 

@@ -9,7 +9,7 @@ Contains a 3D and a 2D version. Additionally there is the mesh for only
 triangles in triangle_mesh.py.
 """
 
-from typing import Any, List, cast
+from typing import Any, cast
 
 # unlinked-class-ok: Array
 
@@ -966,7 +966,7 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
             self.vertices.add(Dot(v, radius=self.verts_size, color=self.verts_color))
         return self.vertices
 
-    def get_dots(self, indices: list[Any]) -> List[Dot]:
+    def get_dots(self, indices: list[Any]) -> list[Dot]:
         """Return Manim :class:`~manim.mobject.geometry.arc.Dot` objects that track the specified vertices.
 
         Each dot is automatically updated via an updater so that it stays at

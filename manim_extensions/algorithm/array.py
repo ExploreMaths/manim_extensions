@@ -4,7 +4,7 @@
 
 """:class:`~manim_extensions.algorithm.array.Array` data structure for algorithm visualization."""
 
-from typing import Any, List, cast
+from typing import Any, cast
 
 from manim import ManimColor, VMobject
 
@@ -61,7 +61,7 @@ class Array(VMobject):
 
     def __init__(
         self,
-        data: List[NodeValue],
+        data: list[NodeValue],
         total_width: float | None = None,
         box_type: NodeBoxType = NodeConfig.BOX_TYPE,
         box_color: ManimColor = NodeConfig.BOX_COLOR,
@@ -87,7 +87,7 @@ class Array(VMobject):
         self.arrange(buff=0)
 
     @property
-    def values(self) -> List[NodeValue]:
+    def values(self) -> list[NodeValue]:
         """Return the stored values from each node in the array.
 
         Returns

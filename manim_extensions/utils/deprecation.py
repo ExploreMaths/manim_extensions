@@ -12,7 +12,8 @@ readable on the console.
 """
 
 from __future__ import annotations
-from typing import Callable, TypeVar
+from collections.abc import Callable
+from typing import TypeVar
 
 import re
 

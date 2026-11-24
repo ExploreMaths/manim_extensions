@@ -8,7 +8,8 @@ This module provides action classes for sequence diagrams.
 
 """
 
-from typing import Any, Sequence, cast
+from collections.abc import Sequence
+from typing import Any, cast
 
 from collections.abc import Iterator
 

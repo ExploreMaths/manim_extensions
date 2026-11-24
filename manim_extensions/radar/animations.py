@@ -11,7 +11,8 @@ and :class:`~manim_extensions.radar.animations.RadarBurstIn` is the matching ent
 """
 
 from __future__ import annotations
-from typing import Any, Callable, Optional, Sequence, TYPE_CHECKING, cast
+from collections.abc import Callable, Sequence
+from typing import Any, Optional, TYPE_CHECKING, cast
 
 import math
 

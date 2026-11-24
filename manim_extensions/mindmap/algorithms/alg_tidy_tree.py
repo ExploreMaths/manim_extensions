@@ -10,7 +10,7 @@ Algorithm reference: "Improving Walker's Algorithm to Run in Linear Time"
 """
 
 from __future__ import annotations
-from typing import Any, List, cast
+from typing import Any, cast
 
 __all__ = ["TidyTreeLayout"]
 from dataclasses import dataclass, field
@@ -59,7 +59,7 @@ class WrappedTree:
     height: float = 0.0
     level: int = 0  # node depth
     # Children
-    children: "List[WrappedTree]" = field(default_factory=list)
+    children: "list[WrappedTree]" = field(default_factory=list)
     child_number: int = 0
 
     # === Core layout attributes ===

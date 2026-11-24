@@ -8,7 +8,7 @@ This module provides the TikZ template class for rendering TikZ diagrams.
 
 """
 
-from typing import Any, List
+from typing import Any
 
 from manim import TexTemplate
 
@@ -73,9 +73,9 @@ class TikzTemplate(TexTemplate):
 
     def __init__(
         self,
-        packages: List[str] | None = None,
-        libraries: List[str] | None = None,
-        tikzset: List[str] | None = None,
+        packages: list[str] | None = None,
+        libraries: list[str] | None = None,
+        tikzset: list[str] | None = None,
         preamble: str | None = None,
         use_pdf: bool = False,
         **kwargs: Any,

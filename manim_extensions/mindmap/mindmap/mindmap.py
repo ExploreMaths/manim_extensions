@@ -8,7 +8,8 @@ This module provides main mindmap classes for visualizations.
 
 """
 
-from typing import Any, Dict, Sequence
+from collections.abc import Sequence
+from typing import Any
 
 __all__ = ["MindMap", "TimeLine", "StandardMap", "CatalogMap"]
 
@@ -83,7 +84,7 @@ class MindMap(AbstractMap):
 
     def __init__(
         self,
-        map: Dict[Any, Any] = {},
+        map: dict[Any, Any] = {},
         buff: float = 0.2,
         direction: Vector3D = RIGHT,
         level_spacing: float = 1.0,
@@ -191,7 +192,7 @@ class TimeLine(AbstractMap):
 
     def __init__(
         self,
-        map: Dict[Any, Any] = {},
+        map: dict[Any, Any] = {},
         buff: float = 0.2,
         sides: Sequence[Vector3D] = (UP, DOWN),
         level_spacing: float = 1.0,
@@ -298,7 +299,7 @@ class StandardMap(AbstractMap):
 
     def __init__(
         self,
-        map: Dict[Any, Any] = {},
+        map: dict[Any, Any] = {},
         buff: float = 0.2,
         direction: Vector3D = RIGHT,
         level_spacing: float = 1.0,
@@ -409,7 +410,7 @@ class CatalogMap(AbstractMap):
 
     def __init__(
         self,
-        map: Dict[Any, Any] = {},
+        map: dict[Any, Any] = {},
         buff: float = 0.2,
         level_spacing: float = 1.0,
         node_spacing: float = 0.5,

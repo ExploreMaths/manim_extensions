@@ -6,7 +6,8 @@
 A place for all decorators.
 """
 
-from typing import Any, Callable, ParamSpec, TypeVar, cast
+from collections.abc import Callable
+from typing import Any, ParamSpec, TypeVar, cast
 
 import functools
 import warnings

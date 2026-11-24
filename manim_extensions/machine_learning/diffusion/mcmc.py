@@ -8,7 +8,8 @@ Tool for animating Markov Chain Monte Carlo simulations in 2D.
 """
 
 from collections.abc import Sequence
-from typing import Any, Callable, cast
+from collections.abc import Callable
+from typing import Any, cast
 
 # unlinked-class-ok: Ground
 

@@ -5,7 +5,8 @@
 """The data model: one radar snapshot."""
 
 from __future__ import annotations
-from typing import Any, Optional, Sequence, Union
+from collections.abc import Sequence
+from typing import Any, Optional, Union
 
 import math
 from dataclasses import dataclass, field, replace

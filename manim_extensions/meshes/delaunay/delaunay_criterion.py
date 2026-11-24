@@ -6,7 +6,7 @@
 functions to check delaunay criterion.
 """
 
-from typing import Any, List
+from typing import Any
 
 # python imports
 import numpy as np
@@ -86,7 +86,7 @@ def get_circum_circle(
 
 def get_point_indices_violating_delaunay(
     triangle_mesh: TriangleManim2DMesh, face_id: int
-) -> List[int]:
+) -> list[int]:
     """Return the indices of all vertices that violate the Delaunay criterion.
 
     A vertex violates the criterion when it lies inside the circumscribed
@@ -104,7 +104,7 @@ def get_point_indices_violating_delaunay(
         Indices of vertices whose distance to the circumscribed centre
         is strictly less than the circumscribed radius.
     """
-    indices: List[int] = []
+    indices: list[int] = []
     face = triangle_mesh.mesh.faces[face_id]
     center, radius = get_triangle_circum_circle_params(
         *[triangle_mesh.mesh.get_3d_vertices()[i] for i in face]

@@ -5,7 +5,8 @@
 """Fit tangent arcs and chamfers between adjoining Bezier curves."""
 
 from __future__ import annotations
-from typing import Any, Callable, Sequence, cast
+from collections.abc import Callable, Sequence
+from typing import Any, cast
 
 from manim.typing import Vector3D
 import numpy as np

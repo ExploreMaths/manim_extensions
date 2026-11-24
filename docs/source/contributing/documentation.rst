@@ -61,11 +61,19 @@ pure imports, data records, parser calls, namespace maps, decorators and
 other non-visual API surfaces. A short fragment inside a longer walkthrough
 may also stay a code block when it continues the scene defined by the
 preceding example; the walkthrough as a whole must still open with a
-renderable example. Examples that require a non-default renderer unavailable
-in the docs pipeline (for example the OpenGL-only orbital and 3-D molecule
-scenes) stay code blocks and say why in the prose.
+renderable example. Examples that need the OpenGL renderer are supported:
+add ``:renderer: opengl`` to the ``.. manim::`` block. The media-render
+workflow runs Manim inside ``xvfb-run``, so OpenGL examples render without a
+physical display; a local build that renders an uncached OpenGL example also
+needs an X server (``xvfb-run`` on Linux). Only examples that cannot be
+rendered by either pipeline stay code blocks, and the prose must say why.
 
 The ``.. manim::`` directive renders a live example in the docs. Every example **MUST** start with an explicit ``from manim import *``; the directive does not inject imports, and ``validate_manim_directives.py`` fails the build when the line is missing.
+
+``:renderer:`` accepts ``cairo`` (the default) and ``opengl``. Use OpenGL
+only when the mobjects or scene require it, and keep the example renderable
+with ``:save_last_frame:`` where possible so the docs cache carries a still
+image instead of a video.
 
 The same checker enforces the ``:save_last_frame:`` usage rules:
 

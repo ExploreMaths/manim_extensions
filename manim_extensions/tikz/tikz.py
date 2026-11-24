@@ -8,7 +8,7 @@ This module provides TikZ markup to SVG conversion for Manim animations.
 
 """
 
-from typing import Any, List
+from typing import Any
 
 from manim import SVGMobject
 from manim.utils.tex_file_writing import tex_to_svg_file
@@ -77,9 +77,9 @@ class Tikz(SVGMobject):
     def __init__(
         self,
         code: str,
-        packages: List[str] | None = None,
-        libraries: List[str] | None = None,
-        tikzset: List[str] | None = None,
+        packages: list[str] | None = None,
+        libraries: list[str] | None = None,
+        tikzset: list[str] | None = None,
         preamble: str | None = None,
         use_pdf: bool = False,
         **kwargs: Any,
@@ -93,9 +93,9 @@ class Tikz(SVGMobject):
     def convert(
         self,
         code: str,
-        packages: List[str] | None = None,
-        libraries: List[str] | None = None,
-        tikzset: List[str] | None = None,
+        packages: list[str] | None = None,
+        libraries: list[str] | None = None,
+        tikzset: list[str] | None = None,
         preamble: str | None = None,
         use_pdf: bool = False,
     ) -> Path:

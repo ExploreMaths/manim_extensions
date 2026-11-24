@@ -8,7 +8,8 @@ This module provides configuration classes for layout algorithms.
 
 """
 
-from typing import Any, Dict, Sequence, cast
+from collections.abc import Sequence
+from typing import Any, cast
 
 from manim import DOWN, LEFT, RIGHT, UP
 
@@ -220,7 +221,7 @@ class LayoutConfig:
     @catalog.setter
     def catalog(
         self,
-        catalog: Dict[Any, Any] = {
+        catalog: dict[Any, Any] = {
             "node_spacing": 0.5,
             "level_spacing": 0.5,
         },
@@ -251,7 +252,7 @@ class LayoutConfig:
     @mindmap.setter
     def mindmap(
         self,
-        mindmap: Dict[Any, Any] = {
+        mindmap: dict[Any, Any] = {
             "direction": RIGHT,
             "node_spacing": 0.5,
             "level_spacing": 0.5,
@@ -295,7 +296,7 @@ class LayoutConfig:
     @timeline.setter
     def timeline(
         self,
-        timeline: Dict[Any, Any] = {
+        timeline: dict[Any, Any] = {
             "node_spacing": 0.5,
             "level_spacing": 0.5,
             "sides": (UP, DOWN),

@@ -7,7 +7,8 @@ This module provides the base classes for economic diagram visualizations.
 
 """
 
-from typing import Any, Callable, Sequence
+from collections.abc import Callable, Sequence
+from typing import Any
 
 from manim import (
     Animation,

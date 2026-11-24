@@ -5,7 +5,8 @@
 """Testing utilities for frame comparison."""
 
 from __future__ import annotations
-from typing import Any, Callable, cast
+from collections.abc import Callable
+from typing import Any, cast
 
 from manim import CairoRenderer, Scene, ThreeDCamera, ThreeDScene, tempconfig
 from manim._config.utils import ManimConfig

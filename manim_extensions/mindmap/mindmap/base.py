@@ -8,7 +8,8 @@ This module provides base classes for mindmap visualizations.
 
 """
 
-from typing import Any, Generator, cast
+from collections.abc import Generator
+from typing import Any, cast
 
 from manim import (
     Group,

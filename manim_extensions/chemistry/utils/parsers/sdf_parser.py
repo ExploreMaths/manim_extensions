@@ -7,7 +7,7 @@ This module provides the :class:`~manim_extensions.chemistry.utils.parsers.sdf_p
 
 """
 
-from typing import List, cast
+from typing import cast
 
 # unlinked-class-ok: Molecules
 
@@ -65,7 +65,7 @@ class SDFParser(MolParser):
     """
 
     @staticmethod
-    def read_file(filename: FilePath) -> List[List[str]]:
+    def read_file(filename: FilePath) -> list[list[str]]:
         """
         sdf files might contain multiple molecules, so we return a list of list
         of string when reading a file.
@@ -87,8 +87,8 @@ class SDFParser(MolParser):
 
     @staticmethod
     def data_parser(
-        molecules_data: List[List[str]],
-    ) -> List[tuple[AtomsDict, BondsDict]]:
+        molecules_data: list[list[str]],
+    ) -> list[tuple[AtomsDict, BondsDict]]:
         """Parse the molecules of an SDF file into a list of atoms and bonds dicts.
 
         Parameters

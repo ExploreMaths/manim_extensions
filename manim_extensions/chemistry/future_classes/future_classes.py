@@ -8,7 +8,8 @@ This module contains experimental classes that may be implemented in the future.
 """
 
 import numpy as np
-from typing import Any, Callable, cast
+from collections.abc import Callable
+from typing import Any, cast
 
 from functools import wraps
 

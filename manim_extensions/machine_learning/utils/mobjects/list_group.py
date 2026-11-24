@@ -4,7 +4,8 @@
 
 """List group utility for neural network visualization."""
 
-from typing import Any, Iterator
+from collections.abc import Iterator
+from typing import Any
 
 from manim import Mobject
 

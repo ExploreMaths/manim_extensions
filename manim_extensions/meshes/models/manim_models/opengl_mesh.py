@@ -4,7 +4,8 @@
 
 """Faster meshes (WORK IN PROGRESS) by using OpenGL more efficiently."""
 
-from typing import Any, Sequence
+from collections.abc import Sequence
+from typing import Any
 
 from manim.mobject.opengl.opengl_mobject import OpenGLMobject
 

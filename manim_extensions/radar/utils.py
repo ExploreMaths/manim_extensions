@@ -5,7 +5,8 @@
 """Small helpers shared across :mod:`manim_extensions.radar`."""
 
 from __future__ import annotations
-from typing import Any, Iterable, Optional, Sequence
+from collections.abc import Iterable, Sequence
+from typing import Any, Optional
 
 import math
 

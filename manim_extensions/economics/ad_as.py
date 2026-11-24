@@ -7,7 +7,8 @@ This module provides the Aggregate Demand-Aggregate Supply diagram.
 
 """
 
-from typing import Any, Callable, cast
+from collections.abc import Callable
+from typing import Any, cast
 
 from manim import AnimationGroup, BLUE, GREEN, Line, RED, Transform, UP
 from .base import EconDiagram

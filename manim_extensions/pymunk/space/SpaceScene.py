@@ -9,7 +9,8 @@ This module provides the :class:`~manim_extensions.pymunk.space.SpaceScene.Space
 """
 
 from __future__ import annotations
-from typing import Any, Callable, TYPE_CHECKING, cast
+from collections.abc import Callable
+from typing import Any, TYPE_CHECKING, cast
 
 from manim import Mobject, ZoomedScene
 

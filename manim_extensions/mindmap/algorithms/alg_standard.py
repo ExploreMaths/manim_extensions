@@ -5,7 +5,7 @@
 """Standard mind map layout algorithm."""
 
 from __future__ import annotations
-from typing import Any, List, cast
+from typing import Any, cast
 
 # unlinked-class-ok: Source
 
@@ -69,7 +69,7 @@ class TreeNode:
         self.y: float = 0
         self.level: int = 0
         self.is_flip: bool = False
-        self.children: List[TreeNode] = []
+        self.children: list[TreeNode] = []
         self.parent: TreeNode | None = None
 
     def add_child(self, child: "TreeNode") -> Any:

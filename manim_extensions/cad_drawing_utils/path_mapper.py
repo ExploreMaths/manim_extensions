@@ -5,7 +5,8 @@
 """Arc-length, offset, warp and dashed-path helpers for Manim vector paths."""
 
 from __future__ import annotations
-from typing import Any, Callable, Sequence, cast, overload
+from collections.abc import Callable, Sequence
+from typing import Any, cast, overload
 
 import numpy as np
 from manim import (

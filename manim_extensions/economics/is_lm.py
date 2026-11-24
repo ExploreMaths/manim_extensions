@@ -7,7 +7,8 @@ This module provides the IS-LM model diagram.
 
 """
 
-from typing import Any, Callable
+from collections.abc import Callable
+from typing import Any
 
 from manim import AnimationGroup, BLUE, RED
 from .base import EconDiagram
