@@ -466,7 +466,7 @@ class FadeInRandom(LaggedStart):
 
        class FadeInRandomScene(Scene):
            def construct(self):
-               mob = MathTex(r"\frac{a+b}{2} \geq \sqrt{ab}").scale(1.5)
+               mob = Text("Random fade in", weight=BOLD).scale(1.56)
                self.play(FadeInRandom(mob))
                self.wait()
     """
