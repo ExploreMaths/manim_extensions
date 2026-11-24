@@ -19,8 +19,9 @@ Added
 * ``.. manim::`` accepts ``:renderer: opengl``. The media-render workflow
   runs Manim under ``xvfb-run``, and the OpenGL media cache key is
   renderer-specific, so OpenGL examples coexist with Cairo examples without
-  colliding in the docs cache. ``OpenGLSphere`` gains a rendered 3-D
-  preview as the first OpenGL example in the pipeline.
+  colliding in the docs cache.
+  :class:`~manim_extensions.chemistry.threeD.utils.OpenGLSphere` gains a
+  rendered 3-D preview as the first OpenGL example in the pipeline.
 * ``validate-types`` runs ``mypy`` in strict mode over the whole package,
   including every vendored module.
 * ``workflow/validate_english_text.py`` replaces the docstring-only CJK
