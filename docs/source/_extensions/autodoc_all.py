@@ -60,6 +60,7 @@ from __future__ import annotations
 import ast
 import html
 import importlib
+import importlib.util
 import inspect
 import json
 import re
@@ -255,6 +256,126 @@ def _link_quoted_forward_refs(source, module):
         return name if inspect.isclass(target) else match.group(0)
 
     return _QUOTED_NAME_RE.sub(replace, source)
+
+
+_IMPORTED_SOURCES: dict[str, dict[str, str]] = {}
+
+
+def _imported_sources(module) -> dict[str, str]:
+    """Map local names of a module to the dotted paths they are imported from.
+
+    ``py:type`` parses ``:canonical:`` in the page's Python-domain context
+    (the enclosing package, not the alias's defining module), so names such
+    as ``Square`` or ``List`` cannot be resolved from the module itself.
+    Reading the ``from ... import ...`` statements gives the exact source
+    path for typing helpers and Manim aliases, while classes are qualified
+    through ``__module__`` below.
+    """
+    key = getattr(module, "__name__", "")
+    cached = _IMPORTED_SOURCES.get(key)
+    if cached is not None:
+        return cached
+    sources: dict[str, str] = {}
+    path = getattr(module, "__file__", None)
+    if path and str(path).endswith(".py"):
+        try:
+            tree = ast.parse(Path(path).read_text(encoding="utf-8"))
+        except (OSError, SyntaxError, UnicodeDecodeError):
+            tree = None
+        if tree is not None:
+            for node in tree.body:
+                if not isinstance(node, ast.ImportFrom):
+                    continue
+                base = node.module or ""
+                if node.level:
+                    package = getattr(module, "__package__", "") or key
+                    try:
+                        base = importlib.util.resolve_name(
+                            "." * node.level + base, package
+                        )
+                    except (ImportError, ValueError):
+                        continue
+                for alias in node.names:
+                    if alias.name == "*":
+                        continue
+                    local = alias.asname or alias.name
+                    sources[local] = f"{base}.{alias.name}" if base else alias.name
+    _IMPORTED_SOURCES[key] = sources
+    return sources
+
+
+_TYPING_DATA_TYPES = {"_AnyMeta", "_CallableType", "_SpecialForm"}
+
+
+def _qualified_alias_target(module, name: str) -> tuple[str | None, str | None]:
+    """Return the absolute py-domain target and role for an alias token.
+
+    Builtins (``str``, ``type``, ``None`` …) already resolve without a
+    module prefix and are left alone.  A name defined in the alias module
+    maps to that module's own ``py:type`` entry.  Imported classes use their
+    defining module, which is more precise than a re-export (``from manim
+    import Square`` becomes ``manim.mobject.geometry.polygram.Square``).
+    Generic and typing aliases keep the path they were imported from, so
+    ``List``/``Point3D`` point at ``typing``/``manim.typing`` instead of
+    disappearing as unresolved names; ``Any``/``Callable`` resolve through
+    the ``data`` role because that is how Python documents them.
+    """
+    if name == "None":
+        return None, None
+    obj = getattr(module, name, None)
+    if obj is None or inspect.ismodule(obj):
+        return None, None
+    if name in _defined_names(module):
+        kind = "class" if inspect.isclass(obj) else "type"
+        return f"{module.__name__}.{name}", kind
+    imported = _imported_sources(module).get(name)
+    if type(obj).__name__ in _TYPING_DATA_TYPES:
+        return imported, "data"
+    if inspect.isclass(obj):
+        defined_in = getattr(obj, "__module__", "")
+        qualname = getattr(obj, "__qualname__", "")
+        if defined_in and qualname and defined_in != "builtins":
+            return f"{defined_in}.{qualname}", "class"
+    if imported:
+        return imported, "class"
+    dotted = _alias_dotted_name(obj)
+    if dotted:
+        return dotted, "type"
+    return None, None
+
+
+def _qualify_type_alias_xrefs(app, doctree) -> None:
+    """Give imported names inside ``py:type`` canonical values full targets.
+
+    Sphinx's ``PyTypeAlias`` creates pending cross-references for every
+    name in ``:canonical:``, but resolves them against the page's module
+    context rather than the alias's defining module.  Re-targeting the
+    nodes before references are resolved keeps the displayed short name
+    while letting locally defined and imported classes/aliases link.
+    """
+    from sphinx.addnodes import desc_signature, pending_xref
+
+    for sig in doctree.findall(desc_signature):
+        desc = sig.parent
+        if getattr(desc, "get", None) is None or desc.get("objtype") != "type":
+            continue
+        ids = sig.get("ids") or []
+        if not ids:
+            continue
+        module_name, _, _alias_name = ids[0].rpartition(".")
+        try:
+            module = importlib.import_module(module_name)
+        except Exception:
+            continue
+        for xref in sig.findall(pending_xref):
+            target = xref.get("reftarget")
+            if not target or "." in target or target.startswith("~"):
+                continue
+            qualified, reftype = _qualified_alias_target(module, target)
+            if qualified and qualified != target:
+                xref["reftarget"] = qualified
+                if reftype:
+                    xref["reftype"] = reftype
 
 
 def alias_definition(module, name):
@@ -714,6 +835,7 @@ def setup(app):
     app.add_directive("autoall", AutoAllDirective)
     app.add_config_value("autodoc_all_snapshot", DEFAULT_SNAPSHOT, "env")
     _wrap_typehints_formatter(app)
+    app.connect("doctree-read", _qualify_type_alias_xrefs)
     return {
         "version": "1.0",
         "parallel_read_safe": True,
