@@ -326,7 +326,6 @@ html body a[href^="https://docs.python.org"] .pre:hover {
     color: inherit;
     text-decoration: none;
 }
-
 /* Parameter type spans (sphinx-autodoc-typehints wraps the type links of
    a Parameters entry, e.g. "(str)" or "(ParsableManimColor | None)"):
    strip the furo inline-code border and background so types read as

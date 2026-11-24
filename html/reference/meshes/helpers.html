@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/nbcell.css?v=948ffe8f" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=6a604523" />
     <link rel="stylesheet" type="text/css" href="../../_static/styles/furo-extensions.css?v=8dab3a3b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=45f975ee" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=f2138e0c" />
     <link rel="stylesheet" type="text/css" href="../../_static/icon_gallery.css?v=95b93490" />
     <link rel="stylesheet" type="text/css" href="../../_static/constant_values.css?v=8d8b4046" />
     
@@ -1484,7 +1484,7 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>array</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Parts" title="manim_extensions.meshes.types.Parts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Parts</span></code></a></span>) – The list of arrays to search.</p></li>
+<li><p><strong>array</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Faces" title="manim_extensions.meshes.types.Faces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Faces</span></code></a></span>) – The list of arrays to search.</p></li>
 <li><p><strong>item</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – The array to look for.</p></li>
 <li><p><strong>rolling</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – When <code class="docutils literal notranslate"><span class="pre">True</span></code>, compare up to cyclic rotations of <code class="docutils literal notranslate"><span class="pre">item</span></code>.</p></li>
 </ul>
@@ -1505,7 +1505,7 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>array</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Parts" title="manim_extensions.meshes.types.Parts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Parts</span></code></a></span>) – The list of arrays to search.</p></li>
+<li><p><strong>array</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Faces" title="manim_extensions.meshes.types.Faces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Faces</span></code></a></span>) – The list of arrays to search.</p></li>
 <li><p><strong>item</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – The array to look for.</p></li>
 <li><p><strong>rolling</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – When <code class="docutils literal notranslate"><span class="pre">True</span></code>, compare up to cyclic rotations of <code class="docutils literal notranslate"><span class="pre">item</span></code>.</p></li>
 <li><p><strong>start</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index at which to begin the search (useful to skip self-references).</p></li>
@@ -1527,8 +1527,8 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>array1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Parts" title="manim_extensions.meshes.types.Parts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Parts</span></code></a></span>) – First array collection.</p></li>
-<li><p><strong>array2</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Parts" title="manim_extensions.meshes.types.Parts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Parts</span></code></a></span>) – Second array collection.</p></li>
+<li><p><strong>array1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Faces" title="manim_extensions.meshes.types.Faces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Faces</span></code></a></span>) – First array collection.</p></li>
+<li><p><strong>array2</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Faces" title="manim_extensions.meshes.types.Faces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Faces</span></code></a></span>) – Second array collection.</p></li>
 <li><p><strong>rolling</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – When <code class="docutils literal notranslate"><span class="pre">True</span></code>, compare up to cyclic rotations.</p></li>
 </ul>
 </dd>
@@ -1592,7 +1592,7 @@ requirements.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>original</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Parts" title="manim_extensions.meshes.types.Parts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Parts</span></code></a></span>) – The collection of sub-arrays to clean up.</p></li>
+<li><p><strong>original</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="index.html#manim_extensions.meshes.types.Faces" title="manim_extensions.meshes.types.Faces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Faces</span></code></a></span>) – The collection of sub-arrays to clean up.</p></li>
 <li><p><strong>indices</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]</span>) – Indices whose references should be removed.</p></li>
 </ul>
 </dd>
