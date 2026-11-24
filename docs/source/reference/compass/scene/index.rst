@@ -10,7 +10,7 @@ scene
 Usage
 -----
 
-Compass scene classes provide the moving-camera rig used by the `straightedge-compass` examples.
+These scene classes provide the moving-camera rig used by the straightedge-and-compass examples.
 
 .. code-block:: python
 

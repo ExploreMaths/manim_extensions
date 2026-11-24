@@ -10,7 +10,7 @@ nodes
 Usage
 -----
 
-Nodes hold the label, border, and connector used by a mind map.
+Each node holds the label, border, and connector used by a mind map.
 
 .. code-block:: python
 

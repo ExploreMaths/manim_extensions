@@ -10,7 +10,7 @@ algorithms
 Usage
 -----
 
-Layout algorithms consume mind-map nodes and produce positions; most scenes use :class:`~manim_extensions.mindmap.mindmap.MindMap`, which selects a layout for you.
+The layout algorithms consume mind-map nodes and produce positions; most scenes use :class:`~manim_extensions.mindmap.mindmap.MindMap`, which selects a layout for you.
 
 .. code-block:: python
 

@@ -22,7 +22,7 @@ Classes
 Usage
 -----
 
-Node-level animation groups are applied to a built mind map.
+Animation groups operate on individual nodes of a built mind map.
 
 .. code-block:: python
 
