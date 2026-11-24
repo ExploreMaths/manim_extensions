@@ -908,6 +908,7 @@ def add_over_rectangular_surface(
     .. manim:: DotsOverSurface
        :save_last_frame:
 
+       import numpy as np
        from manim import *
        from manim_extensions.chemistry.future_classes.future_classes import (
            add_over_rectangular_surface,
@@ -915,9 +916,11 @@ def add_over_rectangular_surface(
 
        class DotsOverSurface(Scene):
            def construct(self):
+               np.random.seed(42)
                dots = add_over_rectangular_surface(
                    Dot(radius=0.08, color=YELLOW), amount=24, height=2, width=3
                )
+               dots.scale(1.6)
                self.add(dots)
     """
     group = VGroup()
