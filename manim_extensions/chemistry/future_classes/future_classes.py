@@ -858,7 +858,7 @@ def duplicate_and_rearrange(
 
     Examples
     --------
-    .. manim:: DuplicateAndRearrangeExample
+    .. manim:: DuplicateAlongLine
        :save_last_frame:
 
        from manim import *
@@ -866,7 +866,7 @@ def duplicate_and_rearrange(
            duplicate_and_rearrange,
        )
 
-       class DuplicateAndRearrangeExample(Scene):
+       class DuplicateAlongLine(Scene):
            def construct(self):
                source = VGroup(
                    RoundedRectangle(corner_radius=0.2).scale(0.4),
@@ -905,7 +905,7 @@ def add_over_rectangular_surface(
 
     Examples
     --------
-    .. manim:: AddOverRectangularSurfaceExample
+    .. manim:: DotsOverSurface
        :save_last_frame:
 
        from manim import *
@@ -913,7 +913,7 @@ def add_over_rectangular_surface(
            add_over_rectangular_surface,
        )
 
-       class AddOverRectangularSurfaceExample(Scene):
+       class DotsOverSurface(Scene):
            def construct(self):
                dots = add_over_rectangular_surface(
                    Dot(radius=0.08, color=YELLOW), amount=24, height=2, width=3
@@ -980,7 +980,7 @@ def randomly_distributed_in_2d(
 
     Examples
     --------
-    .. manim:: RandomlyDistributedIn2DExample
+    .. manim:: ScatteredDots
        :save_last_frame:
 
        from manim import *
@@ -988,7 +988,7 @@ def randomly_distributed_in_2d(
            randomly_distributed_in_2d,
        )
 
-       class RandomlyDistributedIn2DExample(Scene):
+       class ScatteredDots(Scene):
            def construct(self):
                dots = VGroup(
                    *[Dot(radius=0.08, color=BLUE) for _ in range(20)]
@@ -1031,7 +1031,7 @@ def arrange_copies_in_rectangle(
 
     Examples
     --------
-    .. manim:: ArrangeCopiesInRectangleExample
+    .. manim:: GridOfCopies
        :save_last_frame:
 
        from manim import *
@@ -1039,7 +1039,7 @@ def arrange_copies_in_rectangle(
            arrange_copies_in_rectangle,
        )
 
-       class ArrangeCopiesInRectangleExample(Scene):
+       class GridOfCopies(Scene):
            def construct(self):
                tile = RoundedRectangle(corner_radius=0.2).scale(0.4)
                grid = arrange_copies_in_rectangle(tile, n_copies=2)
@@ -1069,7 +1069,7 @@ def make_subpaths(group: VMobject) -> VMobject:
 
     Examples
     --------
-    .. manim:: MakeSubpathsExample
+    .. manim:: CircleSubpaths
        :save_last_frame:
 
        from manim import *
@@ -1077,7 +1077,7 @@ def make_subpaths(group: VMobject) -> VMobject:
            make_subpaths,
        )
 
-       class MakeSubpathsExample(Scene):
+       class CircleSubpaths(Scene):
            def construct(self):
                group = VGroup(
                    Circle(radius=0.5, color=BLUE),
@@ -1181,7 +1181,7 @@ def concat_mobjects(mobject: Mobject, concats: int, buff: float = 0) -> VGroup:
 
     Examples
     --------
-    .. manim:: ConcatMobjectsExample
+    .. manim:: ConcatenatedTriangles
        :save_last_frame:
 
        from manim import *
@@ -1189,7 +1189,7 @@ def concat_mobjects(mobject: Mobject, concats: int, buff: float = 0) -> VGroup:
            concat_mobjects,
        )
 
-       class ConcatMobjectsExample(Scene):
+       class ConcatenatedTriangles(Scene):
            def construct(self):
                shape = Triangle(color=TEAL).scale(0.5)
                chain = concat_mobjects(shape, concats=4, buff=0.2)

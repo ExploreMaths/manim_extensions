@@ -170,6 +170,11 @@ CHECKS: dict[str, Check] = {
         "static",
         py("workflow/validate_deprecated_typing.py"),
     ),
+    "validate-example-coverage": Check(
+        "validate-example-coverage",
+        "static",
+        py("workflow/validate_example_coverage.py"),
+    ),
     "validate-math-text": Check(
         "validate-math-text", "text", py("workflow/validate_math_text.py")
     ),
@@ -234,6 +239,7 @@ GROUPS: dict[str, tuple[str, ...]] = {
         "validate-type-annotations",
         "validate-return-annotations",
         "validate-deprecated-typing",
+        "validate-example-coverage",
     ),
     "package": (
         "validate-manim-directives",

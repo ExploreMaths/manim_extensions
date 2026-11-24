@@ -22,6 +22,11 @@ Added
   colliding in the docs cache.
   :class:`~manim_extensions.chemistry.threeD.utils.OpenGLSphere` gains a
   rendered 3-D preview as the first OpenGL example in the pipeline.
+* ``validate-example-coverage`` requires every public function returning a
+  visual mobject, animation, scene, or collection of them to document an
+  ``Examples`` section with a ``.. manim::`` block. Methods may use the
+  example in their class. All existing visual functions now satisfy the rule,
+  so the check runs in the ``static`` group without a baseline file.
 * ``validate-types`` runs ``mypy`` in strict mode over the whole package,
   including every vendored module.
 * ``workflow/validate_english_text.py`` replaces the docstring-only CJK

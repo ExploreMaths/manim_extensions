@@ -75,7 +75,14 @@ only when the mobjects or scene require it, and keep the example renderable
 with ``:save_last_frame:`` where possible so the docs cache carries a still
 image instead of a video.
 
-The same checker enforces the ``:save_last_frame:`` usage rules:
+Every public function whose return annotation is visual — a mobject,
+animation, scene, or a collection of them — **MUST** have an ``Examples``
+section with at least one ``.. manim::`` directive. A method may rely on the
+example in its enclosing class, since that example normally exercises the
+method. ``validate-example-coverage`` enforces this rule in the ``static``
+group; new visual functions cannot land without a rendered example.
+
+The manim-directive checker also enforces the ``:save_last_frame:`` usage rules:
 
 .. list-table::
    :header-rows: 1

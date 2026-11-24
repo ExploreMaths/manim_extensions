@@ -31,13 +31,13 @@ def index_paragraph_labels(
 
     Examples
     --------
-    .. manim:: IndexParagraphLabelsExample
+    .. manim:: ParagraphLineIndices
        :save_last_frame:
 
        from manim import *
        from manim_extensions.algorithm.utils.debug import index_paragraph_labels
 
-       class IndexParagraphLabelsExample(Scene):
+       class ParagraphLineIndices(Scene):
            def construct(self):
                paragraph = Paragraph("alpha", "beta", "gamma", line_spacing=1)
                labels = index_paragraph_labels(paragraph, label_height=0.25)

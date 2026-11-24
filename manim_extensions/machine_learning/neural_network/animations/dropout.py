@@ -95,6 +95,39 @@ def get_edges_to_drop_out(
     Returns
     -------
         A tuple of the results.
+
+    Examples
+    --------
+    .. manim:: DropOutEdges
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.machine_learning.neural_network import (
+           FeedForwardLayer,
+           NeuralNetwork,
+       )
+       from manim_extensions.machine_learning.neural_network.animations.dropout import (
+           get_edges_to_drop_out,
+       )
+       from manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward import (
+           FeedForwardToFeedForward,
+       )
+
+       class DropOutEdges(Scene):
+           def construct(self):
+               network = NeuralNetwork([FeedForwardLayer(3), FeedForwardLayer(2)])
+               layers = network.filter_layers(
+                   lambda layer: isinstance(layer, FeedForwardLayer)
+               )
+               mapping = {layers[0]: [0], layers[1]: [1]}
+               connective = network.filter_layers(
+                   lambda layer: isinstance(layer, FeedForwardToFeedForward)
+               )[0]
+               edges, _ = get_edges_to_drop_out(connective, mapping)
+               network.scale(3)
+               for edge in edges:
+                   edge.set_color(RED)
+               self.add(network)
     """
     prev_layer = cast(FeedForwardLayer, layer.input_layer)
     next_layer = cast(FeedForwardLayer, layer.output_layer)
@@ -141,6 +174,32 @@ def make_pre_dropout_animation(
     Returns
     -------
         A tuple of the results.
+
+    Examples
+    --------
+    .. manim:: BeforeDropout
+
+       from manim import *
+       from manim_extensions.machine_learning.neural_network import (
+           FeedForwardLayer,
+           NeuralNetwork,
+       )
+       from manim_extensions.machine_learning.neural_network.animations.dropout import (
+           make_pre_dropout_animation,
+       )
+
+       class BeforeDropout(Scene):
+           def construct(self):
+               network = NeuralNetwork([FeedForwardLayer(3), FeedForwardLayer(2)])
+               layers = network.filter_layers(
+                   lambda layer: isinstance(layer, FeedForwardLayer)
+               )
+               mapping = {layers[0]: [0], layers[1]: [1]}
+               network.scale(3)
+               self.add(network)
+               animation, _ = make_pre_dropout_animation(network, mapping)
+               self.play(animation)
+               self.wait()
     """
     animations: list[Animation] = []
     # Go through the network and get the FeedForwardLayer instances
@@ -225,6 +284,34 @@ def make_post_dropout_animation(
     Returns
     -------
         A :class:`~manim.animation.composition.AnimationGroup` instance representing the result.
+
+    Examples
+    --------
+    .. manim:: AfterDropout
+
+       from manim import *
+       from manim_extensions.machine_learning.neural_network import (
+           FeedForwardLayer,
+           NeuralNetwork,
+       )
+       from manim_extensions.machine_learning.neural_network.animations.dropout import (
+           make_post_dropout_animation,
+           make_pre_dropout_animation,
+       )
+
+       class AfterDropout(Scene):
+           def construct(self):
+               network = NeuralNetwork([FeedForwardLayer(3), FeedForwardLayer(2)])
+               layers = network.filter_layers(
+                   lambda layer: isinstance(layer, FeedForwardLayer)
+               )
+               mapping = {layers[0]: [0], layers[1]: [1]}
+               network.scale(3)
+               self.add(network)
+               pre, marks = make_pre_dropout_animation(network, mapping)
+               self.play(pre)
+               self.play(make_post_dropout_animation(network, mapping, marks))
+               self.wait()
     """
     # Go through the network and get the FeedForwardLayer instances
     feed_forward_layers = neural_network.filter_layers(

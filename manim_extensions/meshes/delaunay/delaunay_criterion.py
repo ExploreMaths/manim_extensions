@@ -73,6 +73,34 @@ def get_circum_circle(
     Returns
     -------
         A Manim circle mobject positioned at the circumscribed centre.
+
+    Examples
+    --------
+    .. manim:: TriangleCircumcircle
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.meshes.delaunay.delaunay_criterion import (
+           get_circum_circle,
+       )
+       from manim_extensions.meshes.models.data_models.mesh import Mesh
+       from manim_extensions.meshes.models.manim_models.triangle_mesh import (
+           TriangleManim2DMesh,
+       )
+
+       class TriangleCircumcircle(Scene):
+           def construct(self):
+               points = [
+                   [0.0, 0.0, 0.0],
+                   [1.0, 0.0, 0.0],
+                   [1.0, 1.0, 0.0],
+                   [0.0, 1.0, 0.0],
+                   [2.0, 1.0, 0.0],
+               ]
+               triangles = [[0, 1, 2], [0, 2, 3], [1, 4, 2]]
+               mesh = TriangleManim2DMesh(Mesh(points, triangles))
+               circle = get_circum_circle(mesh, 0, color=YELLOW)
+               self.add(mesh, circle)
     """
     face = triangle_mesh.mesh.faces[face_idx]
     vertices = [triangle_mesh.mesh.get_3d_vertices()[i] for i in face]

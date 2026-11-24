@@ -38,7 +38,7 @@ def convert_matplotlib_figure_to_image_mobject(
 
     Examples
     --------
-    .. manim:: MatplotlibFigureExample
+    .. manim:: MatplotlibFigure
        :save_last_frame:
 
        import matplotlib.pyplot as plt
@@ -48,7 +48,7 @@ def convert_matplotlib_figure_to_image_mobject(
            convert_matplotlib_figure_to_image_mobject,
        )
 
-       class MatplotlibFigureExample(Scene):
+       class MatplotlibFigure(Scene):
            def construct(self):
                fig, ax = plt.subplots(figsize=(4, 3))
                x = np.linspace(0, 2 * np.pi, 100)

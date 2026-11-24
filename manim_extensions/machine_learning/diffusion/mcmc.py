@@ -267,7 +267,7 @@ def make_dist_image_mobject_from_samples(
 
     Examples
     --------
-    .. manim:: KdeDensityExample
+    .. manim:: GaussianKde
        :save_last_frame:
 
        import numpy as np
@@ -276,7 +276,7 @@ def make_dist_image_mobject_from_samples(
            make_dist_image_mobject_from_samples,
        )
 
-       class KdeDensityExample(Scene):
+       class GaussianKde(Scene):
            def construct(self):
                rng = np.random.default_rng(7)
                samples = rng.normal(loc=(0, 0), scale=(1, 1), size=(400, 2))
