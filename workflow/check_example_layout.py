@@ -265,6 +265,9 @@ def main() -> int:
             f"y={m['overflow_y']:.2f} units"
         )
         print(f"  {kind:12} {class_name} ({source}): {detail}")
+        # Surface each failure as a GitHub annotation so it is visible
+        # without downloading the job log.
+        print(f"::error file={source},title=Layout {kind}::" f"{class_name}: {detail}")
     for class_name, source, err in remaining_errors:
         first = err.strip().splitlines()[-1] if err.strip() else "?"
         print(f"  WARN probe error (not counted) {class_name} ({source}): " f"{first}")
