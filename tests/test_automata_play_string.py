@@ -9,14 +9,14 @@ from manim import Scene
 from manim_extensions.automata.mobjects.manim_automaton import automaton_json
 from manim_extensions.automata.mobjects.manim_automaton_input import ManimAutomataInput
 from manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton import (
-    ManimdeterministicFiniteAutomaton,
+    ManimDeterministicFiniteAutomaton,
 )
 
 
 @pytest.fixture()
 def automaton():
     scene = Scene()
-    machine = ManimdeterministicFiniteAutomaton(json_template=automaton_json)
+    machine = ManimDeterministicFiniteAutomaton(json_template=automaton_json)
     scene.add(machine)
     return scene, machine
 

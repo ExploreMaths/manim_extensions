@@ -5,7 +5,7 @@
 
 import pytest
 
-from manim_extensions.automata.mobjects import ManimdeterministicFiniteAutomaton
+from manim_extensions.automata.mobjects import ManimDeterministicFiniteAutomaton
 
 TEMPLATE = {
     "structure": {
@@ -27,7 +27,7 @@ TEMPLATE = {
 
 @pytest.fixture()
 def automaton():
-    return ManimdeterministicFiniteAutomaton(json_template=TEMPLATE)
+    return ManimDeterministicFiniteAutomaton(json_template=TEMPLATE)
 
 
 def test_automaton_reports_accepting_and_rejecting_states(automaton):

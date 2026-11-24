@@ -33,7 +33,7 @@ CASES = [
         "get_initial_state",
     ),
     (
-        "manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton:ManimdeterministicFiniteAutomaton",
+        "manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton:ManimDeterministicFiniteAutomaton",
         "get_initial_state",
     ),
     (

@@ -13,10 +13,10 @@ Classes
 .. autosummary::
    :nosignatures:
 
-   ~ManimdeterministicFiniteAutomaton
+   ~ManimDeterministicFiniteAutomaton
 
 .. toctree::
    :hidden:
    :maxdepth: 1
 
-   manim_deterministic_finite_state_automaton.ManimdeterministicFiniteAutomaton
+   manim_deterministic_finite_state_automaton.ManimDeterministicFiniteAutomaton

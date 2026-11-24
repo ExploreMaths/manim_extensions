@@ -193,7 +193,7 @@
  "manim_extensions.automata.mobjects.manim_automaton_input.Token",
  "manim_extensions.automata.mobjects.manim_cli.ManimAutomataCLI",
  "manim_extensions.automata.mobjects.manim_cli.cli_logo",
- "manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimdeterministicFiniteAutomaton",
+ "manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimDeterministicFiniteAutomaton",
  "manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton.ManimNondeterministicFiniteAutomaton",
  "manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton.nfa_automaton_json",
  "manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton",

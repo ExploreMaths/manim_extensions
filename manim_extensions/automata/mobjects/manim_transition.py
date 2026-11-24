@@ -70,12 +70,12 @@ class ManimTransition(Transition, VGroup):
        from manim import *
        from manim_extensions.automata.mobjects.manim_animations import ManimAnimations
        from manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton import (
-           ManimdeterministicFiniteAutomaton,
+           ManimDeterministicFiniteAutomaton,
        )
 
        class ManimTransition(Scene):
            def construct(self):
-               dfa = ManimdeterministicFiniteAutomaton()
+               dfa = ManimDeterministicFiniteAutomaton()
                self.add(dfa)
                transition = dfa.transitions[0]
                animations = ManimAnimations()

@@ -8,7 +8,7 @@ from manim import Scene
 
 from manim_extensions.automata.mobjects.manim_automaton import automaton_json
 from manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton import (
-    ManimdeterministicFiniteAutomaton,
+    ManimDeterministicFiniteAutomaton,
 )
 
 
@@ -16,7 +16,7 @@ from manim_extensions.automata.mobjects.manim_deterministic_finite_state_automat
 def cli_machine(monkeypatch, tmp_path):
     monkeypatch.setattr("builtins.input", lambda *args, **kwargs: "0")
     monkeypatch.chdir(tmp_path)
-    machine = ManimdeterministicFiniteAutomaton(json_template=automaton_json, cli=True)
+    machine = ManimDeterministicFiniteAutomaton(json_template=automaton_json, cli=True)
     return machine
 
 

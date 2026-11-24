@@ -5,7 +5,7 @@ import json
 from types import SimpleNamespace
 
 from manim_extensions.automata.mobjects import (
-    ManimdeterministicFiniteAutomaton,
+    ManimDeterministicFiniteAutomaton,
 )
 
 TEMPLATE = {
@@ -26,7 +26,7 @@ TEMPLATE = {
 
 
 def _automaton(**kwargs):
-    return ManimdeterministicFiniteAutomaton(json_template=TEMPLATE, **kwargs)
+    return ManimDeterministicFiniteAutomaton(json_template=TEMPLATE, **kwargs)
 
 
 def test_custom_animations_are_used():

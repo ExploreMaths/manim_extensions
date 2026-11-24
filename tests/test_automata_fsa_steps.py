@@ -8,13 +8,13 @@ from manim import MathTex
 
 from manim_extensions.automata.mobjects.manim_automaton import automaton_json
 from manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton import (
-    ManimdeterministicFiniteAutomaton,
+    ManimDeterministicFiniteAutomaton,
 )
 
 
 @pytest.fixture(scope="module")
 def machine():
-    return ManimdeterministicFiniteAutomaton(json_template=automaton_json)
+    return ManimDeterministicFiniteAutomaton(json_template=automaton_json)
 
 
 def test_every_state_has_a_transition(machine):

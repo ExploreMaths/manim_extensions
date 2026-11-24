@@ -2,8 +2,8 @@
 .. SPDX-FileCopyrightText: 2026 ExploreMaths
 .. SPDX-License-Identifier: MIT
 
-ManimdeterministicFiniteAutomaton
+ManimDeterministicFiniteAutomaton
 =================================
 
-.. autoclass:: manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimdeterministicFiniteAutomaton
+.. autoclass:: manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimDeterministicFiniteAutomaton
    :show-inheritance:

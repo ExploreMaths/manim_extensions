@@ -57,7 +57,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
     .. important::
 
        This is an abstract base class.  Use one of the concrete subclasses
-       :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimdeterministicFiniteAutomaton`,
+       :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimDeterministicFiniteAutomaton`,
        :class:`~manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton.ManimNondeterministicFiniteAutomaton`, or
        :class:`~manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton` instead.
 
@@ -101,12 +101,12 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
            ManimAnimations,
        )
        from manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton import (
-           ManimdeterministicFiniteAutomaton,
+           ManimDeterministicFiniteAutomaton,
        )
 
        class ManimAutomaton(Scene):
            def construct(self):
-               dfa = ManimdeterministicFiniteAutomaton()
+               dfa = ManimDeterministicFiniteAutomaton()
                self.add(dfa)
                dfa.manim_automata_input = dfa.construct_automaton_input("11")
                dfa.set_default_position_of_input_string()

@@ -21,7 +21,7 @@ from .mobjects.manim_automaton_input import *
 
 __all__ = [
     "ManimAutomaton",
-    "ManimdeterministicFiniteAutomaton",
+    "ManimDeterministicFiniteAutomaton",
     "ManimNondeterministicFiniteAutomaton",
     "ManimAnimations",
     "ManimPushDownAutomaton",

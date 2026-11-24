@@ -4,7 +4,7 @@
 
 """Deterministic finite state automaton visualization.
 
-This module provides the :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimdeterministicFiniteAutomaton` class for visualizing DFAs.
+This module provides the :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimDeterministicFiniteAutomaton` class for visualizing DFAs.
 
 """
 
@@ -13,7 +13,7 @@ from typing import Any, cast
 from .manim_automaton import ManimAutomaton
 
 
-class ManimdeterministicFiniteAutomaton(ManimAutomaton):
+class ManimDeterministicFiniteAutomaton(ManimAutomaton):
     """A deterministic finite automaton (DFA) with Manim visualisation.
 
     This subclass of :class:`~manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton` represents a DFA where each
@@ -37,15 +37,15 @@ class ManimdeterministicFiniteAutomaton(ManimAutomaton):
 
     Examples
     --------
-    .. manim:: ManimDeterministicFiniteAutomaton
+    .. manim:: DFAOverviewScene
 
        from manim import *
-       from manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton import ManimdeterministicFiniteAutomaton
+       from manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton import ManimDeterministicFiniteAutomaton
 
-       class ManimDeterministicFiniteAutomaton(MovingCameraScene):
+       class DFAOverviewScene(MovingCameraScene):
            def construct(self):
                # build the DFA from the default JSON template
-               dfa = ManimdeterministicFiniteAutomaton()
+               dfa = ManimDeterministicFiniteAutomaton()
 
                # Adjust camera frame to fit the automaton in the scene
                self.camera.frame_width = dfa.width + 4

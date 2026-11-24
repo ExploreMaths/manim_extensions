@@ -30,7 +30,7 @@ from base Manim in blue.
    manim_extensions.algorithm.array.Array
    manim_extensions.algorithm.queue.Queue
    manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton
-   manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimdeterministicFiniteAutomaton
+   manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimDeterministicFiniteAutomaton
    manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton.ManimNondeterministicFiniteAutomaton
    manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton
    manim_extensions.automata.mobjects.manim_state.ManimState

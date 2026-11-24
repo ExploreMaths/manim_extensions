@@ -840,7 +840,7 @@ Fixed
 * Fixed Sphinx "Title underline too short" warnings in
   ``docs/source/reference/automata/mobjects.rst`` by extending underlines
   for :class:`~manim_extensions.automata.mobjects.manim_transition.ManimTransition`,
-  :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimdeterministicFiniteAutomaton`,
+  :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimDeterministicFiniteAutomaton`,
   and :class:`~manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton.ManimNondeterministicFiniteAutomaton`
   headings.
 

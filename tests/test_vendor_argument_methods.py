@@ -72,27 +72,27 @@ CASES = [
         (1,),
     ),
     (
-        "manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton:ManimdeterministicFiniteAutomaton",
+        "manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton:ManimDeterministicFiniteAutomaton",
         "construct_automaton_input",
         ("text",),
     ),
     (
-        "manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton:ManimdeterministicFiniteAutomaton",
+        "manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton:ManimDeterministicFiniteAutomaton",
         "determine_input",
         (1,),
     ),
     (
-        "manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton:ManimdeterministicFiniteAutomaton",
+        "manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton:ManimDeterministicFiniteAutomaton",
         "get_state",
         (1,),
     ),
     (
-        "manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton:ManimdeterministicFiniteAutomaton",
+        "manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton:ManimDeterministicFiniteAutomaton",
         "get_state_by_id",
         (1,),
     ),
     (
-        "manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton:ManimdeterministicFiniteAutomaton",
+        "manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton:ManimDeterministicFiniteAutomaton",
         "get_transition_by_id",
         (1,),
     ),

@@ -6,7 +6,7 @@
 from manim import Scene
 
 from manim_extensions.automata.mobjects import (
-    ManimdeterministicFiniteAutomaton,
+    ManimDeterministicFiniteAutomaton,
     ManimNondeterministicFiniteAutomaton,
 )
 
@@ -29,7 +29,7 @@ TEMPLATE = {
 
 
 def test_deterministic_automaton_is_built():
-    automaton = ManimdeterministicFiniteAutomaton(json_template=TEMPLATE)
+    automaton = ManimDeterministicFiniteAutomaton(json_template=TEMPLATE)
 
     assert len(automaton.states) == 3
     assert len(automaton.transitions) == 3
@@ -37,7 +37,7 @@ def test_deterministic_automaton_is_built():
 
 
 def test_state_lookups():
-    automaton = ManimdeterministicFiniteAutomaton(json_template=TEMPLATE)
+    automaton = ManimDeterministicFiniteAutomaton(json_template=TEMPLATE)
 
     assert automaton.get_state("q1").name == "q1"
     assert automaton.get_state("missing") is None
@@ -52,7 +52,7 @@ def test_nondeterministic_automaton_is_built():
 
 
 def test_automaton_can_be_added_to_a_scene():
-    automaton = ManimdeterministicFiniteAutomaton(json_template=TEMPLATE)
+    automaton = ManimDeterministicFiniteAutomaton(json_template=TEMPLATE)
     scene = Scene()
     scene.add(automaton)
 
