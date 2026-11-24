@@ -120,8 +120,8 @@ workflow/run_checks.py --group static`` scans ``manim_extensions/``,
      - ``python scripts/check_type_annotations.py``
    * - Return annotations on documented public functions with return values
      - ``python scripts/check_return_annotations.py``
-   * - No deprecated PEP 585 ``typing`` aliases
-     - ``python workflow/validate_deprecated_typing.py``
+   * - No deprecated APIs or PEP 585 ``typing`` aliases
+     - ``python workflow/validate_deprecations.py``
    * - Every public visual function has an Examples + ``.. manim::`` block
      - ``python workflow/validate_example_coverage.py``
    * - Dependencies audit

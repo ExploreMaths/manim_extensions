@@ -10,12 +10,17 @@ v1.0.7 :bdg-primary-line:`In Development`
 Added
 ~~~~~
 
-* ``workflow/validate_deprecated_typing.py`` and the
-  ``validate-deprecated-typing`` static check reject PEP 585-deprecated
-  aliases such as ``typing.List``, ``typing.Dict`` and
-  ``typing.Callable``. The package now uses ``list``/``dict`` built-ins and
-  ``collections.abc`` for abstract container types; ``Optional`` and
-  ``Union`` remain legal, while new code prefers ``X | None`` and ``X | Y``.
+* ``workflow/validate_deprecations.py`` and the ``validate-deprecations``
+  static check reject deprecated APIs across the package, tests, scripts,
+  workflow tools and Sphinx extensions. Deprecations are discovered from
+  runtime metadata rather than a hard-coded name list: PEP 585-deprecated
+  aliases such as ``typing.List``, ``typing.Dict`` and ``typing.Callable``
+  are recognised from their origin and parameter count; deprecated
+  standard-library symbols are recognised from ``__deprecated__``,
+  ``_Deprecated*`` wrappers and import-time ``DeprecationWarning`` messages;
+  and project APIs are recognised from the package's ``@deprecated``
+  decorators. ``Optional`` and ``Union`` remain legal, while new code prefers
+  ``X | None`` and ``X | Y``.
 * ``.. manim::`` accepts ``:renderer: opengl``. The media-render workflow
   runs Manim under ``xvfb-run``, and the OpenGL media cache key is
   renderer-specific, so OpenGL examples coexist with Cairo examples without

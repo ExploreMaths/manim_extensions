@@ -57,12 +57,21 @@ Type annotations
   it (mostly ``type-arg`` / ``no-untyped-def`` noise in vendored modules). Run
   it locally as advisory only.
 
-Deprecated ``typing`` aliases
------------------------------
+Deprecated APIs
+---------------
 
-**Do not use the PEP 585-deprecated aliases from** ``typing``. They still
-import, so tests alone will not catch them; ``validate-deprecated-typing``
-runs in the ``static`` group and rejects them at the AST level.
+**Do not use deprecated APIs, whether they come from** ``typing``, another
+standard-library module, or this project's own public surface. Deprecations
+often still import, so tests alone will not catch them; the
+``validate-deprecations`` check runs in the ``static`` group and rejects them
+at the AST level.
+
+The checker does not keep a list of deprecated names. It discovers them from
+runtime metadata: PEP 585 aliases are identified from their origin and
+parameter count, standard-library objects from ``__deprecated__``, private
+``_Deprecated*`` wrappers and import-time ``DeprecationWarning`` messages, and
+project APIs from the package's ``@deprecated`` decorators. Tests are exempt
+from the project-symbol rule because they exercise the deprecation itself.
 
 * Built-in generics replace the capitalised container aliases:
   ``list[T]``, ``dict[K, V]``, ``set[T]``, ``tuple[T, ...]``, ``type[T]``,

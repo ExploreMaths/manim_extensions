@@ -165,10 +165,10 @@ CHECKS: dict[str, Check] = {
         "static",
         py("scripts/check_return_annotations.py"),
     ),
-    "validate-deprecated-typing": Check(
-        "validate-deprecated-typing",
+    "validate-deprecations": Check(
+        "validate-deprecations",
         "static",
-        py("workflow/validate_deprecated_typing.py"),
+        py("workflow/validate_deprecations.py"),
     ),
     "validate-example-coverage": Check(
         "validate-example-coverage",
@@ -238,7 +238,7 @@ GROUPS: dict[str, tuple[str, ...]] = {
         "validate-english-text",
         "validate-type-annotations",
         "validate-return-annotations",
-        "validate-deprecated-typing",
+        "validate-deprecations",
         "validate-example-coverage",
     ),
     "package": (
