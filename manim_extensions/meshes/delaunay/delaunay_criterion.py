@@ -100,7 +100,8 @@ def get_circum_circle(
                triangles = [[0, 1, 2], [0, 2, 3], [1, 4, 2]]
                mesh = TriangleManim2DMesh(Mesh(points, triangles))
                circle = get_circum_circle(mesh, 0, color=YELLOW)
-               self.add(mesh, circle)
+               group = Group(mesh, circle).scale(3.5)
+               self.add(group)
     """
     face = triangle_mesh.mesh.faces[face_idx]
     vertices = [triangle_mesh.mesh.get_3d_vertices()[i] for i in face]

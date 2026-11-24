@@ -1084,6 +1084,7 @@ def make_subpaths(group: VMobject) -> VMobject:
                    Circle(radius=0.5, color=RED).shift(RIGHT * 2),
                )
                result = make_subpaths(group)
+               result.scale(3)
                self.add(result)
     """
     for mob in group:
@@ -1193,6 +1194,7 @@ def concat_mobjects(mobject: Mobject, concats: int, buff: float = 0) -> VGroup:
            def construct(self):
                shape = Triangle(color=TEAL).scale(0.5)
                chain = concat_mobjects(shape, concats=4, buff=0.2)
+               chain.scale(2.5)
                self.add(chain)
     """
     group = VGroup(cast(Any, mobject.copy()))
