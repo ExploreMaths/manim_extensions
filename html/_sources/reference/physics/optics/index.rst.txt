@@ -12,7 +12,9 @@ Usage
 
 Trace a ray through one or more lenses.
 
-.. code-block:: python
+.. manim:: RayScene
+   :save_last_frame:
+   :ref_classes: Lens Ray
 
    from manim import *
    from manim_extensions.physics.optics.lenses import Lens
@@ -22,7 +24,7 @@ Trace a ray through one or more lenses.
        def construct(self):
            lens = Lens(f=-5, d=1).shift(LEFT * 3)
            ray = Ray(LEFT * 5 + UP, RIGHT, 8, [lens], color=RED)
-           self.add(lens, ray)
+           self.add(VGroup(lens, ray).scale(0.85).move_to(ORIGIN))
 
 Modules
 -------

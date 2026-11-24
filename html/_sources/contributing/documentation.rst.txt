@@ -50,6 +50,21 @@ For intentional non-standard layouts (ASCII art, etc.) use either ``:skip-indent
 Manim Examples (``.. manim::``)
 -------------------------------
 
+**Renderable examples MUST use** ``.. manim::`` **.** A standalone example —
+any snippet that defines a scene, or that could be dropped into one and
+rendered by itself — belongs in a ``.. manim::`` block, never in
+``.. code-block:: python``. This covers the opening example of every
+``Usage`` section and the examples in a guide.
+
+Code blocks are reserved for snippets that cannot be rendered on their own:
+pure imports, data records, parser calls, namespace maps, decorators and
+other non-visual API surfaces. A short fragment inside a longer walkthrough
+may also stay a code block when it continues the scene defined by the
+preceding example; the walkthrough as a whole must still open with a
+renderable example. Examples that require a non-default renderer unavailable
+in the docs pipeline (for example the OpenGL-only orbital and 3-D molecule
+scenes) stay code blocks and say why in the prose.
+
 The ``.. manim::`` directive renders a live example in the docs. Every example **MUST** start with an explicit ``from manim import *``; the directive does not inject imports, and ``validate_manim_directives.py`` fails the build when the line is missing.
 
 The same checker enforces the ``:save_last_frame:`` usage rules:
@@ -65,6 +80,29 @@ The same checker enforces the ``:save_last_frame:`` usage rules:
      - **MUST NOT** have ``:save_last_frame:``
    * - Static with ``:save_last_frame:``
      - Must **not** use ``self.wait()`` (redundant)
+
+Gallery sections
+~~~~~~~~~~~~~~~~
+
+Section index pages such as ``docs/source/examples/index.rst`` **MUST NOT**
+contain hand-written headings for individual examples. Add the ``:section:``
+option to the ``.. manim::`` block instead; the directive then emits a section
+named after the scene, so every example appears in the right-hand
+``On this page`` sidebar and links straight to its block. Pair it with
+``:no_title:`` so the admonition caption does not repeat the section title.
+
+.. code-block:: rst
+
+   .. manim:: BooleanOperations
+      :save_last_frame:
+      :section:
+      :no_title:
+
+      from manim import *
+
+Do not add ``.. _example-*:`` labels or titles above the directive: the scene
+name is the single source of truth, and changing the class name updates the
+sidebar automatically.
 
 Sample files read by an example
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

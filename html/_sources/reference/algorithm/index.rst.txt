@@ -45,7 +45,8 @@ Usage
 
 Build an indexed array and animate a change on one slot.
 
-.. code-block:: python
+.. manim:: ArrayScene
+   :ref_classes: Array Node
 
    from manim import *
    from manim_extensions.algorithm import Array, Node

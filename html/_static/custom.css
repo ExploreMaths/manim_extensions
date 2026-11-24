@@ -550,3 +550,17 @@ dl.py.property > dt.sig a.headerlink {
     width: 0.95rem;
     height: 0.95rem;
 }
+
+/* Gallery examples: keep the generated section heading for the sidebar and
+   anchor, but do not repeat it as a visible title above every demo. */
+.manim-example-section > h2 {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

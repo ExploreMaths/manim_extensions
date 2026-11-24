@@ -12,12 +12,21 @@ Usage
 
 Geometry helpers for arcs, distances, and angle orientation.
 
-.. code-block:: python
+.. manim:: ArcAndDistance
+   :save_last_frame:
+   :ref_classes: get_arc get_distance
 
-   from manim_extensions.compass.utils import get_arc, get_distance
+   from manim import *
+   from manim_extensions.compass import get_arc, get_distance
 
-   arc = get_arc(start=LEFT, end=RIGHT, radius=2)
-   distance = get_distance(LEFT, RIGHT)
+   class ArcAndDistance(Scene):
+       def construct(self):
+           center = LEFT * 2
+           arc = get_arc(center, ORIGIN, PI / 2)
+           line = DashedLine(center, RIGHT * 2)
+           distance = get_distance(center, RIGHT * 2)
+           label = MathTex(f"{distance:.1f}").next_to(line, DOWN)
+           self.add(line, arc, label)
 
 Modules
 -------

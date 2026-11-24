@@ -171,21 +171,15 @@ Feeding an image
 ^^^^^^^^^^^^^^^^
 
 Place an :class:`~manim_extensions.machine_learning.neural_network.layers.image.ImageLayer`
-before the first convolutional layer to animate an image being fed into the
+before the first convolutional layer to show an image being fed into the
 network:
 
-.. note::
-
-   This example loads an image from an external ``digit.jpeg`` file, so it
-   is shown as a runnable script rather than rendered inline.
-
-.. code-block:: python
-
-   import numpy as np
-   from PIL import Image
+.. manim:: ImageLayerScene
+   :save_last_frame:
+   :ref_classes: ImageLayer Convolutional2DLayer FeedForwardLayer NeuralNetwork
 
    from manim import *
-
+   import numpy as np
    from manim_extensions.machine_learning.neural_network import (
        Convolutional2DLayer, FeedForwardLayer, ImageLayer, NeuralNetwork,
    )
@@ -195,9 +189,13 @@ network:
    config.frame_height = 7.0
    config.frame_width = 7.0
 
-   class ImageScene(ThreeDScene):
+   class ImageLayerScene(ThreeDScene):
        def construct(self):
-           numpy_image = np.asarray(Image.open("digit.jpeg"))
+           # Synthesize a digit-like image instead of requiring an external asset
+           yy, xx = np.mgrid[0:28, 0:28]
+           numpy_image = np.where(
+               (yy - 14) ** 2 + (xx - 14) ** 2 < 81, 200, 0
+           ).astype(np.uint8)
            nn = NeuralNetwork([
                    ImageLayer(numpy_image, height=1.5),
                    Convolutional2DLayer(1, 7, 3, filter_spacing=0.32),
@@ -210,7 +208,6 @@ network:
            )
            nn.move_to(ORIGIN)
            self.add(nn)
-           self.play(nn.make_forward_pass_animation())
 
 Max pooling
 ^^^^^^^^^^^

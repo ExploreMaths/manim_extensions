@@ -19,7 +19,8 @@ Usage
 
 Compose a network from layer objects and run a forward pass.
 
-.. code-block:: python
+.. manim:: NetworkScene
+   :ref_classes: FeedForwardLayer NeuralNetwork
 
    from manim import *
    from manim_extensions.machine_learning.neural_network import (
@@ -32,6 +33,7 @@ Compose a network from layer objects and run a forward pass.
            network = NeuralNetwork(
                [FeedForwardLayer(4), FeedForwardLayer(6), FeedForwardLayer(3)]
            )
+           network.scale_to_fit_height(6).move_to(ORIGIN)
            self.add(network)
            self.play(network.make_forward_pass_animation(run_time=1.0))
 

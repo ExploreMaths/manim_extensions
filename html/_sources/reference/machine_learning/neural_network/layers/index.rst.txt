@@ -11,12 +11,20 @@ Usage
 
 Layers are the units passed to :class:`~manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork`.
 
-.. code-block:: python
+.. manim:: FeedForwardLayerOverview
+   :save_last_frame:
+   :ref_classes: FeedForwardLayer
 
    from manim import *
+   from manim_extensions.machine_learning.neural_network import NeuralNetwork
    from manim_extensions.machine_learning.neural_network.layers import FeedForwardLayer
 
-   layer = FeedForwardLayer(5, node_color=BLUE, node_outline_color=WHITE)
+   class FeedForwardLayerOverview(Scene):
+       def construct(self):
+           layer = FeedForwardLayer(5, node_color=BLUE, node_outline_color=WHITE)
+           network = NeuralNetwork([layer])
+           network.scale_to_fit_height(6).move_to(ORIGIN)
+           self.add(network)
 
 Modules
 -------

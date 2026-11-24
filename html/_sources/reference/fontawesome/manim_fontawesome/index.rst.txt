@@ -17,7 +17,8 @@ Usage
 
 Get a Font Awesome icon as an SVGMobject.
 
-.. code-block:: python
+.. manim:: IconScene
+   :save_last_frame:
 
    from manim import *
    from manim_extensions.fontawesome.manim_fontawesome import solid

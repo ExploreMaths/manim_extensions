@@ -12,14 +12,22 @@ Usage
 
 Vector helpers and paragraph-index helpers used by the algorithm mobjects.
 
-.. code-block:: python
+.. manim:: ParagraphIndexLabels
+   :save_last_frame:
+   :ref_classes: NumpyHelper index_paragraph_labels
 
    import numpy as np
-   from manim import Paragraph
+   from manim import *
    from manim_extensions.algorithm.utils import NumpyHelper, index_paragraph_labels
 
-   unit = NumpyHelper.normalize_vector(np.array([3.0, 4.0]))
-   labels = index_paragraph_labels(Paragraph("first line", "second line"))
+   class ParagraphIndexLabels(Scene):
+       def construct(self):
+           paragraph = Paragraph("first line", "second line")
+           labels = index_paragraph_labels(paragraph)
+           unit = NumpyHelper.normalize_vector(np.array([3.0, 4.0]))
+           arrow = Arrow(ORIGIN, RIGHT * 3 * unit[0] + UP * 3 * unit[1], buff=0)
+           arrow.next_to(paragraph, LEFT, buff=0.8)
+           self.add(VGroup(paragraph, labels, arrow).scale(0.8).move_to(ORIGIN))
 
 Modules
 -------

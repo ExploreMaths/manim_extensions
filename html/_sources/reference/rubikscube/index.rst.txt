@@ -494,7 +494,9 @@ Usage
 
 Add a Rubik's cube to a 3D scene and style it like any other mobject.
 
-.. code-block:: python
+.. manim:: CubeScene
+   :save_last_frame:
+   :ref_classes: RubiksCube
 
    from manim import *
    from manim_extensions.rubikscube import RubiksCube

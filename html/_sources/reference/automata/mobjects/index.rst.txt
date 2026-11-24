@@ -12,7 +12,9 @@ Usage
 
 Build a deterministic finite automaton from a JFLAP XML file and add it to a scene.
 
-.. code-block:: python
+.. manim:: DFAScene
+   :save_last_frame:
+   :ref_classes: ManimdeterministicFiniteAutomaton
 
    from manim import *
    from manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton import (
@@ -21,7 +23,8 @@ Build a deterministic finite automaton from a JFLAP XML file and add it to a sce
 
    class DFAScene(Scene):
        def construct(self):
-           dfa = ManimdeterministicFiniteAutomaton(xml_file="dfa.xml")
+           dfa = ManimdeterministicFiniteAutomaton()
+           dfa.scale_to_fit_width(9)
            self.add(dfa)
 
 Modules
