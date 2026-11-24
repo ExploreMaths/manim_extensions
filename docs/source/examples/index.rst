@@ -5,7 +5,13 @@ Example Gallery
 ===============
 
 The examples below use Manim's ``.. manim::`` directive to render the scene
-inline. Each example demonstrates one of the core extension modules.
+inline. Each example is its own section in the sidebar, so you can jump
+straight to the demo you need.
+
+.. _example-labeldot:
+
+LabelDot
+----------------------------------------
 
 .. manim:: LabelDotOverview
    :save_last_frame:
@@ -25,6 +31,11 @@ inline. Each example demonstrates one of the core extension modules.
            )
            self.add(triangle, a, b, c)
 
+.. _example-mathtex-helpers:
+
+MathTex Helpers
+----------------------------------------
+
 .. manim:: MathTexHelpers
    :save_last_frame:
    :ref_classes: MathTexLine MathTexBrace MathTexDoublearrow
@@ -42,6 +53,11 @@ inline. Each example demonstrates one of the core extension modules.
            arrow = MathTexDoublearrow(MathTex(r"\Leftrightarrow"), direction=DOWN).next_to(line, DOWN, buff=1.0)
            self.add(slope, brace, arrow)
 
+.. _example-geometry-helpers:
+
+Geometry Helpers
+----------------------------------------
+
 .. manim:: GeometryHelpers
    :save_last_frame:
    :ref_classes: ExtendedLine PerpendicularLine PerpendicularSign
@@ -56,6 +72,11 @@ inline. Each example demonstrates one of the core extension modules.
            perp = PerpendicularLine(UP * 1.5, base, color=PURE_YELLOW)
            sign = PerpendicularSign(base, perp, length=0.3, color=WHITE)
            self.add(base, ext, perp, sign)
+
+.. _example-vmobject-intersections:
+
+VMobject Intersections
+----------------------------------------
 
 .. manim:: VMobjectIntOverview
    :save_last_frame:
@@ -76,6 +97,11 @@ inline. Each example demonstrates one of the core extension modules.
 
            line = Line(pts[0], pts[1], color=PURE_YELLOW, stroke_width=2)
            self.add(line)
+
+.. _example-text-animations:
+
+Text Animations
+----------------------------------------
 
 .. manim:: TextAnimations
    :ref_classes: TypeWriter WriteRandom FadeOutRandom
@@ -98,6 +124,11 @@ inline. Each example demonstrates one of the core extension modules.
            self.play(WriteRandom(t3))
            self.wait(1)
 
+.. _example-colortext:
+
+ColorText
+----------------------------------------
+
 .. manim:: ColorTextOverview
    :save_last_frame:
    :ref_classes: ColorText
@@ -111,6 +142,11 @@ inline. Each example demonstrates one of the core extension modules.
            t2 = ColorText([80, 200, 255])
            t3 = ColorText([150, 255, 100]).shift(DOWN * 2)
            self.add(t1, t2, t3)
+
+.. _example-file-tree:
+
+File Tree
+----------------------------------------
 
 .. manim:: FileTreeOverview
    :save_last_frame:
@@ -135,6 +171,11 @@ inline. Each example demonstrates one of the core extension modules.
            })
            self.add(tree)
 
+.. _example-tree-diagram:
+
+Tree Diagram
+----------------------------------------
+
 .. manim:: TreeDiagramOverview
    :save_last_frame:
    :ref_classes: TreeDiagram
@@ -155,6 +196,11 @@ inline. Each example demonstrates one of the core extension modules.
            diagram.scale_to_fit_width(9)
            self.add(diagram)
 
+.. _example-highlight-animations:
+
+Highlight Animations
+----------------------------------------
+
 .. manim:: HighlightAnimations
    :ref_classes: PassingRectangle HighLightWithLines
 
@@ -172,6 +218,11 @@ inline. Each example demonstrates one of the core extension modules.
            self.play(HighLightWithLines(mob, color=GREEN))
            self.wait(1)
 
+.. _example-decoration-helpers:
+
+Decoration Helpers
+----------------------------------------
+
 .. manim:: DecorationHelpers
    :save_last_frame:
    :ref_classes: ShadowAround ObjectBorder
@@ -187,6 +238,11 @@ inline. Each example demonstrates one of the core extension modules.
            border = ObjectBorder(t)
            self.add(shadow, c)
            self.add(t, border)
+
+.. _example-trail:
+
+Trail
+----------------------------------------
 
 .. manim:: TrailOverview
    :ref_classes: Trail
@@ -204,6 +260,11 @@ inline. Each example demonstrates one of the core extension modules.
            self.add(trail)
            self.play(Rotating(dot, about_point=ORIGIN, rate_func=linear), run_time=3)
 
+.. _example-chinese-mathtex:
+
+Chinese MathTex
+----------------------------------------
+
 .. manim:: ChineseMathTexOverview
    :save_last_frame:
    :ref_classes: ChineseMathTex
@@ -217,6 +278,11 @@ inline. Each example demonstrates one of the core extension modules.
            tex2 = ChineseMathTex(r"二次方程：x = \frac{-b \pm \sqrt{b^{2}-4ac}}{2a}").shift(DOWN * 1.5)
            self.add(tex1)
            self.add(tex2)
+
+.. _example-3d-vector:
+
+Vectors in 3D
+----------------------------------------
 
 .. manim:: ThreeDVectorOverview
    :save_last_frame:
@@ -243,6 +309,11 @@ inline. Each example demonstrates one of the core extension modules.
            self.add(v1, v2, v3)
            self.add_fixed_in_frame_mobjects(l1, l2, l3)
 
+.. _example-more-animations:
+
+More Animations
+----------------------------------------
+
 .. manim:: MoreAnimations
    :ref_classes: ReversedWrite FadeInRandom GrowRandom LaggedCreation
 
@@ -262,6 +333,11 @@ inline. Each example demonstrates one of the core extension modules.
            self.play(LaggedCreation(box, lag_ratio=0.2))
            self.wait(1)
            Group(*self.mobjects).scale(2.5).move_to(ORIGIN)
+
+.. _example-algorithm:
+
+Algorithm
+----------------------------------------
 
 .. manim:: Algorithm
    :save_last_frame:
@@ -283,6 +359,11 @@ inline. Each example demonstrates one of the core extension modules.
            content = VGroup(nodes, arr, q)
            content.scale_to_fit_height(7).move_to(ORIGIN)
            self.add(content)
+
+.. _example-circuit:
+
+Circuit
+----------------------------------------
 
 .. manim:: CircuitScene
    :save_last_frame:
@@ -306,6 +387,11 @@ inline. Each example demonstrates one of the core extension modules.
            circuit.add_wire(g.get_terminals(), vs.get_terminals("negative"))
            circuit.scale_to_fit_height(6.5).move_to(ORIGIN)
            self.add(circuit)
+
+.. _example-compass:
+
+Compass
+----------------------------------------
 
 .. manim:: CompassScene
    :ref_classes: ExtendedLine CompassScene DrawPath
@@ -351,6 +437,11 @@ inline. Each example demonstrates one of the core extension modules.
            self.put_ruler_aside(run_time=0.5)
            self.wait()
 
+.. _example-data-structures:
+
+Data Structures
+----------------------------------------
+
 .. manim:: DataStructures
    :save_last_frame:
    :ref_classes: MArray MVariable
@@ -363,6 +454,11 @@ inline. Each example demonstrates one of the core extension modules.
            arr = MArray(self, [10, 20, 30, 40, 50], label="arr")
            var = MVariable(self, value="42", index="x").next_to(arr, DOWN, buff=1.5)
            self.add(arr, var)
+
+.. _example-gearbox:
+
+Gearbox
+----------------------------------------
 
 .. manim:: Gearbox
    :save_last_frame:
@@ -388,6 +484,11 @@ inline. Each example demonstrates one of the core extension modules.
            content.move_to(ORIGIN)
            self.add(content)
 
+.. _example-meshes:
+
+Meshes
+----------------------------------------
+
 .. manim:: Meshes
    :save_last_frame:
    :ref_classes: Mesh Manim2DMesh
@@ -408,6 +509,11 @@ inline. Each example demonstrates one of the core extension modules.
            v2 = LabelDot("V_2", [1.5, 3, 0], label_pos=UP, buff=0.1).set_color(PURE_YELLOW)
            self.add(manim_mesh)
            self.add(v0, v1, v2)
+
+.. _example-mind-map:
+
+Mind Map
+----------------------------------------
 
 .. manim:: MindMapScene
    :save_last_frame:
@@ -449,6 +555,11 @@ inline. Each example demonstrates one of the core extension modules.
            mm.scale_to_fit_width(10)
            self.add(mm)
 
+.. _example-sequence-diagram:
+
+Sequence Diagram
+----------------------------------------
+
 .. manim:: SequenceDiagram
    :ref_classes: SeqActor SeqObject SeqAction
 
@@ -475,6 +586,11 @@ inline. Each example demonstrates one of the core extension modules.
            content = Group(*self.mobjects)
            content.scale_to_fit_height(6).move_to(ORIGIN)
 
+.. _example-tikz:
+
+TikZ
+----------------------------------------
+
 .. manim:: TikzScene
    :save_last_frame:
    :ref_classes: Tikz
@@ -495,6 +611,11 @@ inline. Each example demonstrates one of the core extension modules.
            )
            self.add(tikz)
 
+.. _example-physics-optics:
+
+Physics: Optics
+----------------------------------------
+
 .. manim:: PhysicsOptics
    :save_last_frame:
    :ref_classes: Lens Ray
@@ -513,6 +634,11 @@ inline. Each example demonstrates one of the core extension modules.
            )
            self.add(object, lens, rays)
 
+.. _example-physics-waves:
+
+Physics: Waves
+----------------------------------------
+
 .. manim:: PhysicsWaves
    :save_last_frame:
    :ref_classes: StandingWave
@@ -524,6 +650,11 @@ inline. Each example demonstrates one of the core extension modules.
        def construct(self):
            wave = StandingWave()
            self.add(wave)
+
+.. _example-physics-electromagnetism:
+
+Physics: Electromagnetism
+----------------------------------------
 
 .. manim:: PhysicsEM
    :save_last_frame:
@@ -541,6 +672,11 @@ inline. Each example demonstrates one of the core extension modules.
            content.scale_to_fit_width(12).move_to(ORIGIN)
            self.add(content)
 
+.. _example-physics-mechanics:
+
+Physics: Mechanics
+----------------------------------------
+
 .. manim:: PhysicsMechanics
    :save_last_frame:
    :ref_classes: Pendulum
@@ -553,6 +689,11 @@ inline. Each example demonstrates one of the core extension modules.
            p = Pendulum(length=3, initial_theta=0.4)
            p.scale(1.7)
            self.add(p)
+
+.. _example-automata:
+
+Automata
+----------------------------------------
 
 .. manim:: Automata
    :save_last_frame:
@@ -582,3 +723,145 @@ inline. Each example demonstrates one of the core extension modules.
            }
            dfa = ManimdeterministicFiniteAutomaton(json_template=dfa_json)
            self.add(dfa)
+
+.. _example-cad-drawing:
+
+CAD Drawing
+----------------------------------------
+
+Dimensions, hatching, and path tools from the vendored ``cad_drawing_utils``
+package.
+
+.. manim:: CADDrawing
+   :save_last_frame:
+   :ref_classes: LinearDimension HatchLines
+
+   from manim import *
+   from manim_extensions.cad_drawing_utils import LinearDimension, HatchLines
+
+   class CADDrawing(Scene):
+       def construct(self):
+           profile = Polygon(
+               LEFT * 3 + DOWN * 1.5,
+               LEFT * 3 + UP * 1.5,
+               RIGHT * 1 + UP * 2.5,
+               RIGHT * 3 + DOWN * 0.5,
+               color=BLUE,
+               fill_opacity=0.15,
+           )
+           hatch = HatchLines(profile, angle=PI / 4, offset=0.3, color=TEAL)
+           dimension = LinearDimension(
+               LEFT * 3 + DOWN * 2.2,
+               RIGHT * 3 + DOWN * 2.2,
+               text="6",
+               offset=1.1,
+               color=PURE_YELLOW,
+           )
+           content = VGroup(profile, hatch, dimension).scale_to_fit_width(10)
+           content.move_to(ORIGIN)
+           self.add(content)
+
+.. _example-radar-comparison:
+
+Radar Comparison
+----------------------------------------
+
+Compare two datasets on one grid. The vendored ``radar`` package also supports
+morphing between snapshots, focus dimming, and overflow effects.
+
+.. manim:: RadarComparison
+   :save_last_frame:
+   :ref_classes: RadarChart RadarData
+
+   from manim import *
+   from manim_extensions.radar import RadarChart, RadarData
+
+   class RadarComparison(Scene):
+       def construct(self):
+           axes = ["Speed", "Power", "Range", "Comfort", "Safety", "Price"]
+           chart = RadarChart(
+               datasets=[
+                   RadarData(axes=axes, values=[8, 6, 7, 9, 8, 5], name="Model A"),
+                   RadarData(axes=axes, values=[6, 9, 8, 5, 7, 8], name="Model B"),
+               ],
+               legend=True,
+               title="Model comparison",
+               radius=2.2,
+           )
+           self.add(chart)
+
+.. _example-3d-surface:
+
+Surfaces in 3D
+----------------------------------------
+
+A Gaussian surface built from the vendored ``three_d`` configuration API. The
+same package also ships ready-made saddle, paraboloid, ellipsoid, torus, and
+hyperboloid scenes.
+
+.. manim:: ThreeDSurface
+   :save_last_frame:
+   :ref_classes: GaussianSurface
+
+   from manim import *
+   from manim_extensions.three_d import GaussianSurface
+
+   class ThreeDSurface(ThreeDScene):
+       def construct(self):
+           cfg = GaussianSurface(pace="fast", rings=False, annotate=False)
+           f, tex = cfg.resolve()
+           axes = ThreeDAxes(
+               x_range=(-2.6, 2.6),
+               y_range=(-2.6, 2.6),
+               z_range=(0, 1.1),
+               x_length=6,
+               y_length=6,
+               z_length=3,
+           )
+           surface = Surface(
+               lambda u, v: axes.c2p(u, v, f(u, v)),
+               u_range=(-2.6, 2.6),
+               v_range=(-2.6, 2.6),
+               resolution=(36, 36),
+               fill_opacity=0.9,
+           )
+           surface.set_fill_by_value(
+               axes=axes,
+               colorscale=[("#123a6d", 0.0), ("#58C4DD", 0.45), ("#FF862F", 1.0)],
+               axis=2,
+           )
+           self.set_camera_orientation(phi=70 * DEGREES, theta=-55 * DEGREES, zoom=0.9)
+           formula = MathTex(tex, font_size=44).to_corner(UL)
+           self.add_fixed_in_frame_mobjects(formula)
+           self.add(axes, surface, formula)
+
+.. _example-code-blocks:
+
+Code Blocks
+----------------------------------------
+
+Syntax-highlighted code from the vendored ``code_blocks`` package, with a
+language label and theme-aware colours.
+
+.. manim:: CodeBlocks
+   :save_last_frame:
+   :ref_classes: CodeBlock
+
+   from manim import *
+   from manim_extensions.code_blocks import CodeBlock, Python, Cpp
+
+   class CodeBlocks(Scene):
+       def construct(self):
+           py = CodeBlock(
+               'def greet(name):\n    return f"Hello, {name}!"',
+               language=Python,
+               font="DejaVu Sans Mono",
+           )
+           cpp = CodeBlock(
+               "int main() {\n    return 0;\n}",
+               language=Cpp,
+               font="DejaVu Sans Mono",
+           )
+           content = VGroup(py, cpp).arrange(DOWN, aligned_edge=LEFT, buff=0.5)
+           content.scale_to_fit_height(6).move_to(ORIGIN)
+           self.add(content)
