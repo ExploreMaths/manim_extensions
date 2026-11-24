@@ -12,26 +12,19 @@ Usage
 
 These scene classes provide the moving-camera rig used by the straightedge-and-compass examples.
 
-.. code-block:: python
+.. manim:: CompassSceneUsage
 
-   from manim_extensions.compass.scene import CompassScene
+   from manim import *
+   from manim_extensions.compass import CompassScene
 
-   class Demo(CompassScene):
+   class CompassSceneUsage(CompassScene):
        def construct(self):
-           super().construct()
+           self.play(FadeIn(self.compass, self.ruler, self.pencil))
 
-Modules
--------
-
-.. autosummary::
-   :nosignatures:
-
-   ~compass_scene
-   ~ruler_scene
-
-.. toctree::
-   :hidden:
-   :maxdepth: 1
-
-   compass_scene
-   ruler_scene
+           A, B = ORIGIN, 2 * RIGHT
+           self.set_ruler(start=A, end=B)
+           self.draw_line(start=A, end=B)
+           self.put_pencil_away(3 * UR)
+           self.put_ruler_aside(3 * DOWN)
+           self.draw_arc(niddle_point=A, pen_point=B, angle=PI / 2)
+           self.put_compass_aside(4 * LEFT)

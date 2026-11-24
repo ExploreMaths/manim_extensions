@@ -8,14 +8,11 @@ The examples below use Manim's ``.. manim::`` directive to render the scene
 inline. Each example is its own section in the sidebar, so you can jump
 straight to the demo you need.
 
-.. _example-labeldot:
-
-LabelDot
-----------------------------------------
-
 .. manim:: LabelDotOverview
    :save_last_frame:
    :ref_classes: LabelDot
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions import LabelDot
@@ -31,14 +28,11 @@ LabelDot
            )
            self.add(triangle, a, b, c)
 
-.. _example-mathtex-helpers:
-
-MathTex Helpers
-----------------------------------------
-
 .. manim:: MathTexHelpers
    :save_last_frame:
    :ref_classes: MathTexLine MathTexBrace MathTexDoublearrow
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions import MathTexLine, MathTexBrace, MathTexDoublearrow
@@ -53,14 +47,11 @@ MathTex Helpers
            arrow = MathTexDoublearrow(MathTex(r"\Leftrightarrow"), direction=DOWN).next_to(line, DOWN, buff=1.0)
            self.add(slope, brace, arrow)
 
-.. _example-geometry-helpers:
-
-Geometry Helpers
-----------------------------------------
-
 .. manim:: GeometryHelpers
    :save_last_frame:
    :ref_classes: ExtendedLine PerpendicularLine PerpendicularSign
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions import ExtendedLine, PerpendicularLine, PerpendicularSign
@@ -73,15 +64,12 @@ Geometry Helpers
            sign = PerpendicularSign(base, perp, length=0.3, color=WHITE)
            self.add(base, ext, perp, sign)
 
-.. _example-vmobject-intersections:
-
-VMobject Intersections
-----------------------------------------
-
 .. manim:: VMobjectIntOverview
    :save_last_frame:
    :ref_classes: LabelDot
    :ref_functions: vmobject_int
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions import vmobject_int, LabelDot
@@ -98,13 +86,10 @@ VMobject Intersections
            line = Line(pts[0], pts[1], color=PURE_YELLOW, stroke_width=2)
            self.add(line)
 
-.. _example-text-animations:
-
-Text Animations
-----------------------------------------
-
 .. manim:: TextAnimations
    :ref_classes: TypeWriter WriteRandom FadeOutRandom
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions import TypeWriter, WriteRandom, FadeOutRandom
@@ -124,14 +109,11 @@ Text Animations
            self.play(WriteRandom(t3))
            self.wait(1)
 
-.. _example-colortext:
-
-ColorText
-----------------------------------------
-
 .. manim:: ColorTextOverview
    :save_last_frame:
    :ref_classes: ColorText
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions import ColorText
@@ -143,14 +125,11 @@ ColorText
            t3 = ColorText([150, 255, 100]).shift(DOWN * 2)
            self.add(t1, t2, t3)
 
-.. _example-file-tree:
-
-File Tree
-----------------------------------------
-
 .. manim:: FileTreeOverview
    :save_last_frame:
    :ref_classes: FileTree
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions import FileTree
@@ -171,14 +150,11 @@ File Tree
            })
            self.add(tree)
 
-.. _example-tree-diagram:
-
-Tree Diagram
-----------------------------------------
-
 .. manim:: TreeDiagramOverview
    :save_last_frame:
    :ref_classes: TreeDiagram
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions import TreeDiagram
@@ -196,13 +172,10 @@ Tree Diagram
            diagram.scale_to_fit_width(9)
            self.add(diagram)
 
-.. _example-highlight-animations:
-
-Highlight Animations
-----------------------------------------
-
 .. manim:: HighlightAnimations
    :ref_classes: PassingRectangle HighLightWithLines
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions import PassingRectangle, HighLightWithLines
@@ -218,14 +191,11 @@ Highlight Animations
            self.play(HighLightWithLines(mob, color=GREEN))
            self.wait(1)
 
-.. _example-decoration-helpers:
-
-Decoration Helpers
-----------------------------------------
-
 .. manim:: DecorationHelpers
    :save_last_frame:
    :ref_classes: ShadowAround ObjectBorder
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions import ShadowAround, ObjectBorder
@@ -239,13 +209,10 @@ Decoration Helpers
            self.add(shadow, c)
            self.add(t, border)
 
-.. _example-trail:
-
-Trail
-----------------------------------------
-
 .. manim:: TrailOverview
    :ref_classes: Trail
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions import Trail
@@ -260,14 +227,11 @@ Trail
            self.add(trail)
            self.play(Rotating(dot, about_point=ORIGIN, rate_func=linear), run_time=3)
 
-.. _example-chinese-mathtex:
-
-Chinese MathTex
-----------------------------------------
-
 .. manim:: ChineseMathTexOverview
    :save_last_frame:
    :ref_classes: ChineseMathTex
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions import ChineseMathTex
@@ -279,14 +243,11 @@ Chinese MathTex
            self.add(tex1)
            self.add(tex2)
 
-.. _example-3d-vector:
-
-Vectors in 3D
-----------------------------------------
-
 .. manim:: ThreeDVectorOverview
    :save_last_frame:
    :ref_classes: ThreeDVector
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions import ThreeDVector
@@ -309,13 +270,10 @@ Vectors in 3D
            self.add(v1, v2, v3)
            self.add_fixed_in_frame_mobjects(l1, l2, l3)
 
-.. _example-more-animations:
-
-More Animations
-----------------------------------------
-
 .. manim:: MoreAnimations
    :ref_classes: ReversedWrite FadeInRandom GrowRandom LaggedCreation
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions import ReversedWrite, FadeInRandom, GrowRandom, LaggedCreation
@@ -334,14 +292,11 @@ More Animations
            self.wait(1)
            Group(*self.mobjects).scale(2.5).move_to(ORIGIN)
 
-.. _example-algorithm:
-
-Algorithm
-----------------------------------------
-
 .. manim:: Algorithm
    :save_last_frame:
    :ref_classes: manim_extensions.algorithm.node.Node Array Queue
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions.algorithm import Node, Array, Queue
@@ -360,14 +315,11 @@ Algorithm
            content.scale_to_fit_height(7).move_to(ORIGIN)
            self.add(content)
 
-.. _example-circuit:
-
-Circuit
-----------------------------------------
-
 .. manim:: CircuitScene
    :save_last_frame:
    :ref_classes: VoltageSource Resistor Ground Circuit
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions.circuit import VoltageSource, Resistor, Ground
@@ -388,14 +340,11 @@ Circuit
            circuit.scale_to_fit_height(6.5).move_to(ORIGIN)
            self.add(circuit)
 
-.. _example-compass:
-
-Compass
-----------------------------------------
-
 .. manim:: CompassScene
    :ref_classes: ExtendedLine CompassScene DrawPath
    :ref_functions: vmobject_int
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions import vmobject_int, ExtendedLine
@@ -437,14 +386,11 @@ Compass
            self.put_ruler_aside(run_time=0.5)
            self.wait()
 
-.. _example-data-structures:
-
-Data Structures
-----------------------------------------
-
 .. manim:: DataStructures
    :save_last_frame:
    :ref_classes: MArray MVariable
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions.data_structures import MArray, MVariable
@@ -455,14 +401,11 @@ Data Structures
            var = MVariable(self, value="42", index="x").next_to(arr, DOWN, buff=1.5)
            self.add(arr, var)
 
-.. _example-gearbox:
-
-Gearbox
-----------------------------------------
-
 .. manim:: Gearbox
    :save_last_frame:
    :ref_classes: manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear Rack
+   :section:
+   :no_title:
 
    from manim import *
    import numpy as np
@@ -484,14 +427,11 @@ Gearbox
            content.move_to(ORIGIN)
            self.add(content)
 
-.. _example-meshes:
-
-Meshes
-----------------------------------------
-
 .. manim:: Meshes
    :save_last_frame:
    :ref_classes: Mesh Manim2DMesh
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions import LabelDot
@@ -510,14 +450,11 @@ Meshes
            self.add(manim_mesh)
            self.add(v0, v1, v2)
 
-.. _example-mind-map:
-
-Mind Map
-----------------------------------------
-
 .. manim:: MindMapScene
    :save_last_frame:
    :ref_classes: MindMap
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions.mindmap import MindMap
@@ -555,13 +492,10 @@ Mind Map
            mm.scale_to_fit_width(10)
            self.add(mm)
 
-.. _example-sequence-diagram:
-
-Sequence Diagram
-----------------------------------------
-
 .. manim:: SequenceDiagram
    :ref_classes: SeqActor SeqObject SeqAction
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions.sequence_diagram import SeqActor, SeqObject, SeqAction
@@ -586,14 +520,11 @@ Sequence Diagram
            content = Group(*self.mobjects)
            content.scale_to_fit_height(6).move_to(ORIGIN)
 
-.. _example-tikz:
-
-TikZ
-----------------------------------------
-
 .. manim:: TikzScene
    :save_last_frame:
    :ref_classes: Tikz
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions.tikz import Tikz
@@ -611,14 +542,11 @@ TikZ
            )
            self.add(tikz)
 
-.. _example-physics-optics:
-
-Physics: Optics
-----------------------------------------
-
 .. manim:: PhysicsOptics
    :save_last_frame:
    :ref_classes: Lens Ray
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions.physics import Lens, Ray
@@ -634,14 +562,11 @@ Physics: Optics
            )
            self.add(object, lens, rays)
 
-.. _example-physics-waves:
-
-Physics: Waves
-----------------------------------------
-
 .. manim:: PhysicsWaves
    :save_last_frame:
    :ref_classes: StandingWave
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions.physics import StandingWave
@@ -651,14 +576,11 @@ Physics: Waves
            wave = StandingWave()
            self.add(wave)
 
-.. _example-physics-electromagnetism:
-
-Physics: Electromagnetism
-----------------------------------------
-
 .. manim:: PhysicsEM
    :save_last_frame:
    :ref_classes: Charge ElectricField
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions.physics import Charge, ElectricField
@@ -672,14 +594,11 @@ Physics: Electromagnetism
            content.scale_to_fit_width(12).move_to(ORIGIN)
            self.add(content)
 
-.. _example-physics-mechanics:
-
-Physics: Mechanics
-----------------------------------------
-
 .. manim:: PhysicsMechanics
    :save_last_frame:
    :ref_classes: Pendulum
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions.physics import Pendulum
@@ -690,14 +609,11 @@ Physics: Mechanics
            p.scale(1.7)
            self.add(p)
 
-.. _example-automata:
-
-Automata
-----------------------------------------
-
 .. manim:: Automata
    :save_last_frame:
    :ref_classes: ManimdeterministicFiniteAutomaton
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions.automata import ManimdeterministicFiniteAutomaton
@@ -724,17 +640,14 @@ Automata
            dfa = ManimdeterministicFiniteAutomaton(json_template=dfa_json)
            self.add(dfa)
 
-.. _example-cad-drawing:
-
-CAD Drawing
-----------------------------------------
-
-Dimensions, hatching, and path tools from the vendored ``cad_drawing_utils``
-package.
+The next example shows dimensions, hatching, and path tools from the vendored
+``cad_drawing_utils`` package.
 
 .. manim:: CADDrawing
    :save_last_frame:
    :ref_classes: LinearDimension HatchLines
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions.cad_drawing_utils import LinearDimension, HatchLines
@@ -761,17 +674,15 @@ package.
            content.move_to(ORIGIN)
            self.add(content)
 
-.. _example-radar-comparison:
-
-Radar Comparison
-----------------------------------------
-
-Compare two datasets on one grid. The vendored ``radar`` package also supports
-morphing between snapshots, focus dimming, and overflow effects.
+The next example compares two datasets on one grid. The vendored ``radar``
+package also supports morphing between snapshots, focus dimming, and overflow
+effects.
 
 .. manim:: RadarComparison
    :save_last_frame:
    :ref_classes: RadarChart RadarData
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions.radar import RadarChart, RadarData
@@ -790,18 +701,15 @@ morphing between snapshots, focus dimming, and overflow effects.
            )
            self.add(chart)
 
-.. _example-3d-surface:
-
-Surfaces in 3D
-----------------------------------------
-
-A Gaussian surface built from the vendored ``three_d`` configuration API. The
-same package also ships ready-made saddle, paraboloid, ellipsoid, torus, and
-hyperboloid scenes.
+The next example builds a Gaussian surface from the vendored ``three_d``
+configuration API. The same package also ships ready-made saddle, paraboloid,
+ellipsoid, torus, and hyperboloid scenes.
 
 .. manim:: ThreeDSurface
    :save_last_frame:
    :ref_classes: GaussianSurface
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions.three_d import GaussianSurface
@@ -835,17 +743,14 @@ hyperboloid scenes.
            self.add_fixed_in_frame_mobjects(formula)
            self.add(axes, surface, formula)
 
-.. _example-code-blocks:
-
-Code Blocks
-----------------------------------------
-
-Syntax-highlighted code from the vendored ``code_blocks`` package, with a
-language label and theme-aware colours.
+The next example shows syntax-highlighted code from the vendored ``code_blocks``
+package, with a language label and theme-aware colours.
 
 .. manim:: CodeBlocks
    :save_last_frame:
    :ref_classes: CodeBlock
+   :section:
+   :no_title:
 
    from manim import *
    from manim_extensions.code_blocks import CodeBlock, Python, Cpp

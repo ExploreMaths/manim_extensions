@@ -59,6 +59,18 @@ directive:
         If this flag is present without argument,
         the video will not autoplay.
 
+    no_title
+        If this flag is present without argument,
+        the admonition title is hidden. Pair it with ``section`` when the
+        section heading already names the example.
+
+    section
+        If this flag is present without argument, the example starts a new
+        section named after the scene. The heading is added to the local
+        "On this page" sidebar and is the target for direct jumps to the
+        example. The generated heading is visually hidden, so the example
+        title appears only in the sidebar.
+
     quality : {'low', 'medium', 'high', 'fourk'}
         Controls render quality of the video, in analogy to
         the corresponding command line flags.
@@ -182,6 +194,7 @@ class ManimDirective(Directive):
         "hide_source": bool,
         "no_autoplay": bool,
         "no_title": bool,
+        "section": bool,
         "quality": lambda arg: directives.choice(
             arg,
             ("low", "medium", "high", "fourk"),
@@ -229,6 +242,9 @@ class ManimDirective(Directive):
         hide_source = "hide_source" in self.options
         no_autoplay = "no_autoplay" in self.options
         no_title = "no_title" in self.options
+        section = "section" in self.options
+        section_title = clsname
+        section_underline = "-" * len(section_title)
         save_as_gif = "save_as_gif" in self.options
         save_last_frame = "save_last_frame" in self.options
         assert not (save_as_gif and save_last_frame)
@@ -466,6 +482,9 @@ class ManimDirective(Directive):
             filesrc_rel=Path(filesrc).relative_to(setup.confdir).as_posix(),
             no_autoplay=no_autoplay,
             no_title=no_title,
+            section=section,
+            section_title=section_title,
+            section_underline=section_underline,
             output_file=output_file,
             save_last_frame=save_last_frame,
             save_as_gif=save_as_gif,
@@ -552,6 +571,13 @@ def setup(app: Sphinx) -> SetupMetadata:
 
 
 TEMPLATE = r"""
+{% if section %}
+.. rst-class:: manim-example-section
+
+{{ section_title }}
+{{ section_underline }}
+
+{% endif %}
 {% if not hide_source %}
 .. raw:: html
 

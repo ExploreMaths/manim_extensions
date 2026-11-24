@@ -20,7 +20,9 @@ Usage
 
 Create the drawing compass and place it in the scene.
 
-.. code-block:: python
+.. manim:: CompassScene
+   :save_last_frame:
+   :ref_classes: Compass
 
    from manim import *
    from manim_extensions.compass.compass import Compass

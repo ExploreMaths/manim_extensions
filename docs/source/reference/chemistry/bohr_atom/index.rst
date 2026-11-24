@@ -19,7 +19,8 @@ Usage
 
 Draw a Bohr atom with a chosen number of protons, neutrons, and electrons.
 
-.. code-block:: python
+.. manim:: BohrScene
+   :ref_classes: BohrAtom
 
    from manim import *
    from manim_extensions.chemistry.bohr_atom import BohrAtom

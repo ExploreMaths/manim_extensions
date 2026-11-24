@@ -12,7 +12,8 @@ Usage
 
 Animate a compass, pencil, and ruler instead of adding them statically. Import the animation class and pass the mobject you built.
 
-.. code-block:: python
+.. manim:: CompassScene
+   :ref_classes: Compass PutCompass
 
    from manim import *
    from manim_extensions.compass import Compass, PutCompass

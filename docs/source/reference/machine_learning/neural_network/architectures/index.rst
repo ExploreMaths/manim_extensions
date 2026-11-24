@@ -11,7 +11,9 @@ Usage
 
 Instantiate a ready-made architecture and style it inside a scene.
 
-.. code-block:: python
+.. manim:: VAEScene
+   :save_last_frame:
+   :ref_classes: VariationalAutoencoder
 
    from manim import *
    from manim_extensions.machine_learning.neural_network.architectures import (
@@ -21,7 +23,7 @@ Instantiate a ready-made architecture and style it inside a scene.
    class VAEScene(Scene):
        def construct(self):
            vae = VariationalAutoencoder()
-           vae.move_to(ORIGIN)
+           vae.scale_to_fit_width(9).move_to(ORIGIN)
            self.add(vae)
 
 Modules

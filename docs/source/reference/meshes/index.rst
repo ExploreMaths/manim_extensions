@@ -120,7 +120,8 @@ Usage
 
 Build a mesh from a template and add it to a scene.
 
-.. code-block:: python
+.. manim:: MeshScene
+   :ref_classes: ManimMesh
 
    from manim import *
    from manim_extensions.meshes.models.manim_models.basic_mesh import ManimMesh

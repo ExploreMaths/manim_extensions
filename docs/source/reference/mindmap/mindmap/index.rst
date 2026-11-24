@@ -23,7 +23,8 @@ Usage
 
 Build a mind map from a nested dictionary, then reveal nodes and connectors.
 
-.. code-block:: python
+.. manim:: MindMapScene
+   :ref_classes: MindMap
 
    from manim import *
    from manim_extensions.mindmap import MindMap

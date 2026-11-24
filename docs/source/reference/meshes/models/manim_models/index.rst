@@ -12,13 +12,19 @@ Usage
 
 Wrap a data mesh in a Manim mobject for drawing.
 
-.. code-block:: python
+.. manim:: PyramidMesh
+   :save_last_frame:
+   :ref_classes: ManimMesh
 
    from manim import *
    from manim_extensions.meshes.models.manim_models.basic_mesh import ManimMesh
    from manim_extensions.meshes.templates import create_pyramid
 
-   mesh = ManimMesh(create_pyramid(triangles_only=True))
+   class PyramidMesh(Scene):
+       def construct(self):
+           mesh = ManimMesh(create_pyramid(triangles_only=True))
+           mesh.scale_to_fit_height(6)
+           self.add(mesh)
 
 Modules
 -------

@@ -22,19 +22,33 @@ Usage
 
 Pass a fitted scikit-learn tree to the diagram; feature names and class names are optional labels.
 
-.. code-block:: python
+.. manim:: IrisDecisionTree
+   :save_last_frame:
+   :ref_classes: DecisionTreeDiagram
 
+   from manim import *
+   from sklearn.datasets import load_iris
    from sklearn.tree import DecisionTreeClassifier
    from manim_extensions.machine_learning.decision_tree.decision_tree import (
        DecisionTreeDiagram,
    )
 
-   clf = DecisionTreeClassifier(max_depth=2).fit(X, y)
-   diagram = DecisionTreeDiagram(
-       clf.tree_,
-       feature_names=["sepal length", "sepal width"],
-       class_names=["setosa", "versicolor", "virginica"],
-   )
+   class IrisDecisionTree(Scene):
+       def construct(self):
+           iris = load_iris()
+           clf = DecisionTreeClassifier(max_depth=2, random_state=0).fit(
+               iris.data[:, :2], iris.target
+           )
+           diagram = DecisionTreeDiagram(
+               clf.tree_,
+               feature_names=["sepal length", "sepal width"],
+               class_names=[str(name) for name in iris.target_names],
+           )
+           diagram.scale_to_fit_width(10)
+           if diagram.height > 6:
+               diagram.scale_to_fit_height(6)
+           diagram.move_to(ORIGIN)
+           self.add(diagram)
 
 Modules
 -------

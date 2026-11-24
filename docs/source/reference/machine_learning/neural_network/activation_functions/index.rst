@@ -11,7 +11,9 @@ Usage
 
 Plot an activation function on its own.
 
-.. code-block:: python
+.. manim:: ActivationScene
+   :save_last_frame:
+   :ref_classes: ReLUFunction SigmoidFunction
 
    from manim import *
    from manim_extensions.machine_learning.neural_network.activation_functions import (
@@ -22,6 +24,7 @@ Plot an activation function on its own.
    class ActivationScene(Scene):
        def construct(self):
            relu = ReLUFunction()
+           relu.scale(4).move_to(ORIGIN)
            self.add(relu)
 
 Modules

@@ -12,7 +12,9 @@ Usage
 
 Create an involute gear by tooth count and module.
 
-.. code-block:: python
+.. manim:: GearScene
+   :save_last_frame:
+   :ref_classes: Gear
 
    from manim import *
    from manim_extensions.gearbox.gear_mobjects import Gear

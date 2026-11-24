@@ -11,7 +11,9 @@ Usage
 
 Load a MOL file into a flat graph molecule, or build one from atom and bond dictionaries.
 
-.. code-block:: python
+.. manim:: GraphMoleculeScene
+   :files: acetone_2d.mol
+   :ref_classes: GraphMolecule
 
    from manim import *
    from manim_extensions.chemistry.twoD import GraphMolecule
@@ -19,6 +21,7 @@ Load a MOL file into a flat graph molecule, or build one from atom and bond dict
    class GraphMoleculeScene(Scene):
        def construct(self):
            molecule = GraphMolecule.molecule_from_file("acetone_2d.mol")
+           molecule.scale_to_fit_height(6)
            self.play(FadeIn(molecule))
 
 Modules
