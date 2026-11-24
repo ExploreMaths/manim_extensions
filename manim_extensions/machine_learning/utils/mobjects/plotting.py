@@ -35,6 +35,28 @@ def convert_matplotlib_figure_to_image_mobject(
     Returns
     -------
         Image mobject containing the rendered figure.
+
+    Examples
+    --------
+    .. manim:: MatplotlibFigureExample
+       :save_last_frame:
+
+       import matplotlib.pyplot as plt
+       import numpy as np
+       from manim import *
+       from manim_extensions.machine_learning.utils.mobjects.plotting import (
+           convert_matplotlib_figure_to_image_mobject,
+       )
+
+       class MatplotlibFigureExample(Scene):
+           def construct(self):
+               fig, ax = plt.subplots(figsize=(4, 3))
+               x = np.linspace(0, 2 * np.pi, 100)
+               ax.plot(x, np.sin(x), color="tab:blue")
+               ax.set_title("sin(x)")
+               image = convert_matplotlib_figure_to_image_mobject(fig)
+               image.scale_to_fit_height(4)
+               self.add(image)
     """
     plt = require("ml", "matplotlib.pyplot")
 

@@ -264,6 +264,27 @@ def make_dist_image_mobject_from_samples(
     Returns
     -------
         The KDE density plot from 2D samples and return it as an :class:`~manim.mobject.types.image_mobject.ImageMobject`.
+
+    Examples
+    --------
+    .. manim:: KdeDensityExample
+       :save_last_frame:
+
+       import numpy as np
+       from manim import *
+       from manim_extensions.machine_learning.diffusion.mcmc import (
+           make_dist_image_mobject_from_samples,
+       )
+
+       class KdeDensityExample(Scene):
+           def construct(self):
+               rng = np.random.default_rng(7)
+               samples = rng.normal(loc=(0, 0), scale=(1, 1), size=(400, 2))
+               image = make_dist_image_mobject_from_samples(
+                   samples, ylim=(-4, 4), xlim=(-4, 4)
+               )
+               image.scale_to_fit_height(6)
+               self.add(image)
     """
     matplotlib = require("ml", "matplotlib")
     plt = require("ml", "matplotlib.pyplot")

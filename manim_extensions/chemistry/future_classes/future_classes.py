@@ -855,6 +855,25 @@ def duplicate_and_rearrange(
     Returns
     -------
         A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+
+    Examples
+    --------
+    .. manim:: DuplicateAndRearrangeExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.future_classes.future_classes import (
+           duplicate_and_rearrange,
+       )
+
+       class DuplicateAndRearrangeExample(Scene):
+           def construct(self):
+               source = VGroup(
+                   RoundedRectangle(corner_radius=0.2).scale(0.4),
+                   Circle(radius=0.45),
+               )
+               group = duplicate_and_rearrange(source, [LEFT * 4, RIGHT * 4])
+               self.add(group)
     """
     if isinstance(mobs, VGroup):
         group = VGroup(*mobs.copy().submobjects, *mobs.copy().submobjects)
@@ -883,6 +902,23 @@ def add_over_rectangular_surface(
     Returns
     -------
         A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+
+    Examples
+    --------
+    .. manim:: AddOverRectangularSurfaceExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.future_classes.future_classes import (
+           add_over_rectangular_surface,
+       )
+
+       class AddOverRectangularSurfaceExample(Scene):
+           def construct(self):
+               dots = add_over_rectangular_surface(
+                   Dot(radius=0.08, color=YELLOW), amount=24, height=2, width=3
+               )
+               self.add(dots)
     """
     group = VGroup()
     for i in range(amount):
@@ -941,6 +977,24 @@ def randomly_distributed_in_2d(
     Returns
     -------
         The group with its members shifted inside the given rectangle.
+
+    Examples
+    --------
+    .. manim:: RandomlyDistributedIn2DExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.future_classes.future_classes import (
+           randomly_distributed_in_2d,
+       )
+
+       class RandomlyDistributedIn2DExample(Scene):
+           def construct(self):
+               dots = VGroup(
+                   *[Dot(radius=0.08, color=BLUE) for _ in range(20)]
+               ).arrange_in_grid(rows=4, cols=5)
+               randomly_distributed_in_2d(dots, left=2, right=2, down=1, up=1)
+               self.add(dots)
     """
     n_mobs = len(mobs)
     horizontal = np.random.uniform(-left, right, n_mobs)
@@ -974,6 +1028,22 @@ def arrange_copies_in_rectangle(
     Returns
     -------
         A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+
+    Examples
+    --------
+    .. manim:: ArrangeCopiesInRectangleExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.future_classes.future_classes import (
+           arrange_copies_in_rectangle,
+       )
+
+       class ArrangeCopiesInRectangleExample(Scene):
+           def construct(self):
+               tile = RoundedRectangle(corner_radius=0.2).scale(0.4)
+               grid = arrange_copies_in_rectangle(tile, n_copies=2)
+               self.add(grid)
     """
     arrange_in_1d_boundary(cast(Any, mobs), vertical_boundary)
     copies_group = VGroup(cast(Any, mobs))
@@ -996,6 +1066,25 @@ def make_subpaths(group: VMobject) -> VMobject:
     Returns
     -------
         The parent mobject with each group member added as a subpath.
+
+    Examples
+    --------
+    .. manim:: MakeSubpathsExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.future_classes.future_classes import (
+           make_subpaths,
+       )
+
+       class MakeSubpathsExample(Scene):
+           def construct(self):
+               group = VGroup(
+                   Circle(radius=0.5, color=BLUE),
+                   Circle(radius=0.5, color=RED).shift(RIGHT * 2),
+               )
+               result = make_subpaths(group)
+               self.add(result)
     """
     for mob in group:
         group.add_subpath(mob.points)
@@ -1089,6 +1178,22 @@ def concat_mobjects(mobject: Mobject, concats: int, buff: float = 0) -> VGroup:
     Returns
     -------
         A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
+
+    Examples
+    --------
+    .. manim:: ConcatMobjectsExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.chemistry.future_classes.future_classes import (
+           concat_mobjects,
+       )
+
+       class ConcatMobjectsExample(Scene):
+           def construct(self):
+               shape = Triangle(color=TEAL).scale(0.5)
+               chain = concat_mobjects(shape, concats=4, buff=0.2)
+               self.add(chain)
     """
     group = VGroup(cast(Any, mobject.copy()))
     sides = {0: RIGHT, 1: LEFT}

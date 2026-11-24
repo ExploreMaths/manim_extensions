@@ -146,6 +146,20 @@ def round_corners(mob: VMobject, radius: float = 0.2) -> VMobject:
     Returns
     -------
         The same mobject with rounded corners.
+
+    Examples
+    --------
+    .. manim:: RoundCornersExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.cad_drawing_utils import round_corners
+
+       class RoundCornersExample(Scene):
+           def construct(self):
+               square = Square(side_length=3, color=BLUE)
+               rounded = round_corners(square.copy(), radius=0.6)
+               self.add(rounded)
     """
     i = 0
     while i < mob.get_num_curves() and i < 1e5:
@@ -253,6 +267,20 @@ def chamfer_corners(mob: VMobject, offset: float | Sequence[float] = 0.2) -> VMo
     Returns
     -------
         The same mobject with chamfered corners.
+
+    Examples
+    --------
+    .. manim:: ChamferCornersExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.cad_drawing_utils import chamfer_corners
+
+       class ChamferCornersExample(Scene):
+           def construct(self):
+               square = Square(side_length=3, color=GREEN)
+               chamfered = chamfer_corners(square.copy(), offset=0.5)
+               self.add(chamfered)
     """
     i = 0
     while i < mob.get_num_curves() and i < 1e5:

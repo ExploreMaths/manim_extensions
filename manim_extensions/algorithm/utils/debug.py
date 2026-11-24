@@ -28,6 +28,20 @@ def index_paragraph_labels(
     Returns
     -------
         A group of :class:`~manim.mobject.text.numbers.Integer` labels, one per paragraph line.
+
+    Examples
+    --------
+    .. manim:: IndexParagraphLabelsExample
+       :save_last_frame:
+
+       from manim import *
+       from manim_extensions.algorithm.utils.debug import index_paragraph_labels
+
+       class IndexParagraphLabelsExample(Scene):
+           def construct(self):
+               paragraph = Paragraph("alpha", "beta", "gamma", line_spacing=1)
+               labels = index_paragraph_labels(paragraph, label_height=0.25)
+               self.add(paragraph, labels)
     """
     labels = VGroup()
     idx = 0
