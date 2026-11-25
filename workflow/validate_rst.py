@@ -278,7 +278,8 @@ def check_indentation(lines: list[str]) -> list[tuple[int, str]]:
     * Code directive body (``code-block``, ``raw``, ``math``, ...):
       first line +4, subsequent lines are code (not checked).
     * Manim-like directive body (``manim``, ``nbcell``): first line +3,
-      subsequent lines are code (not checked).
+      subsequent lines are code (not checked).  Option lines must also
+      align with the body indent (+3).
     * Literal block (after ``::``): first line +4, subsequent lines are
       code (not checked).
     * Bullet / enumeration list-item continuation: aligned with the
@@ -286,7 +287,8 @@ def check_indentation(lines: list[str]) -> list[tuple[int, str]]:
     * Definition-list description (e.g. numpydoc ``name : type``): +4.
 
     Tables, section underlines, directive option lines (``:option:``)
-    and their multi-line values are exempt.  A block immediately
+    and their multi-line values are exempt, except the manim-like option
+    alignment above.  A block immediately
     following ``.. rst-check: skip-indent`` is exempt from indentation
     checks entirely (use for ASCII art or other intentional layouts).
 
@@ -312,7 +314,7 @@ def check_indentation(lines: list[str]) -> list[tuple[int, str]]:
     # can have prose at any absolute indentation; we only care about
     # *relative* indents inside nested blocks (directive bodies, bullets,
     # definition descriptions, code blocks).
-    stack: list[list] = [[0, None, False, False]]
+    stack: list[list] = [[0, None, False, False, None]]
     # Indent of the first body line of the current code block (once set,
     # deeper lines are treated as code and exempt).
     code_body_indent: int | None = None
@@ -368,6 +370,18 @@ def check_indentation(lines: list[str]) -> list[tuple[int, str]]:
         )
 
         if is_option:
+            option_parent = stack[-1][0]
+            if (
+                stack[-1][4] in MANIM_LIKE_DIRECTIVES
+                and indent != option_parent + expected_delta
+            ):
+                hits.append(
+                    (
+                        i,
+                        f"directive option indent +{indent - option_parent} "
+                        f"(expected +{expected_delta})",
+                    )
+                )
             last_option_indent = indent
             # ``:skip-indent:`` disables indentation checking for the
             # whole directive block it belongs to.
@@ -451,11 +465,11 @@ def check_indentation(lines: list[str]) -> list[tuple[int, str]]:
                 ed, ic = None, True
             else:
                 ed, ic = NORMAL_DELTA, False
-            stack.append([indent, ed, ic, pending_skip])
+            stack.append([indent, ed, ic, pending_skip, name])
             code_body_indent = None
             pending_skip = False
         elif LITERAL_BLOCK_RE.search(stripped):
-            stack.append([indent, CODE_DELTA, True, pending_skip])
+            stack.append([indent, CODE_DELTA, True, pending_skip, "literal"])
             code_body_indent = None
             pending_skip = False
         elif BULLET_RE.match(stripped) or ENUM_RE.match(stripped):
@@ -463,7 +477,7 @@ def check_indentation(lines: list[str]) -> list[tuple[int, str]]:
             # marker (``* item`` -> text at +2, ``1. item`` -> +3).
             m = BULLET_RE.match(stripped) or ENUM_RE.match(stripped)
             marker_width = len(m.group(0))
-            stack.append([indent, marker_width, False, pending_skip])
+            stack.append([indent, marker_width, False, pending_skip, "list"])
             pending_skip = False
         elif indent > parent_indent:
             # A bare line indented deeper than its prose parent.  Treat
@@ -478,7 +492,7 @@ def check_indentation(lines: list[str]) -> list[tuple[int, str]]:
             parent_is_code = bool(stack[-1][2])
             parent_is_root = expected_delta is None
             if not parent_is_code and not parent_is_root:
-                stack.append([indent, CODE_DELTA, False, pending_skip])
+                stack.append([indent, CODE_DELTA, False, pending_skip, None])
                 pending_skip = False
 
     return hits
