@@ -276,6 +276,7 @@ def render_block(task):
     ) = task
     output_file = output_name(class_name, code, assets, renderer)
     q = quality or "example_quality"
+    print(f"Rendering {class_name} ({output_file})", flush=True)
     try:
         import logging
 

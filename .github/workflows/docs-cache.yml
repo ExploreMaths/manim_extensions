@@ -128,7 +128,7 @@ jobs:
         run: |
           xvfb-run -a -s "-screen 0 1920x1080x24" \
             python workflow/render_doc_examples.py \
-            --out media_cache --workers 6 --quality high
+            --out media_cache --workers 4 --quality high
 
       - name: Execute nbcell examples (real outputs)
         # Runs every nbcell block and caches the real stdout next to the
