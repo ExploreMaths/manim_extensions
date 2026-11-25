@@ -49,11 +49,11 @@ jobs:
       group: docs-cache
       cancel-in-progress: true
     runs-on: ubuntu-latest
-    # Cold runs install TeX, ffmpeg and the full extras before rendering. 90
-    # minutes was not enough on a slow runner: the setup completed, then the
-    # job was killed before the render step could finish, leaving rtd-cache
-    # stale and making the next scheduled docs job fail its cache check.
-    timeout-minutes: 180
+    # Cold runs install TeX, ffmpeg and the full extras before rendering.
+    # Keep the full GitHub job limit instead of an arbitrary shorter cutoff:
+    # a killed render leaves rtd-cache stale and makes the next scheduled
+    # docs job fail its cache check.
+    timeout-minutes: 360
     steps:
       - uses: actions/checkout@v4
 

@@ -188,9 +188,9 @@ Changed
   publishes rendered examples to ``rtd-cache``, builds the HTML and pushes it
   to ``rtd-html``, and Read the Docs only copies that output. The contributor
   guide describes the split and the updated validation jobs.
-* The Docs cache workflow allows up to 180 minutes for the example render job,
-  so a cold rebuild can repopulate a stale media cache in one run instead of
-  being cancelled at the previous 90-minute limit.
+* The Docs cache workflow gives the example render job the full 360-minute
+  GitHub job limit, so a cold rebuild can repopulate a stale media cache
+  instead of being cancelled by an arbitrary shorter timeout.
 * The docs build no longer auto-links inline code just because its text
   exactly matches a project class name. Plain code spans stay plain; an
   explicit ``:class:`` role is required when a link is intended, so names
