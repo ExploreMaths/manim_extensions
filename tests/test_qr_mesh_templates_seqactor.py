@@ -7,12 +7,12 @@ import pytest
 from manim import Circle
 
 from manim_extensions.meshes import templates
-from manim_extensions.qr_codes.qr import qr_code
+from manim_extensions.qr_codes.qr import QRCode
 from manim_extensions.sequence_diagram.seq_actor import SeqActor
 
 
-def test_qr_code_returns_a_group():
-    code = qr_code("hello")
+def test_QRCode_returns_a_group():
+    code = QRCode("hello")
 
     assert len(code.submobjects) == 2
 

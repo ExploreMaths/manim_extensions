@@ -1032,7 +1032,7 @@
  "manim_extensions.pymunk.utils.tools_func.get_moment_for_circle",
  "manim_extensions.pymunk.utils.tools_func.get_moment_for_line",
  "manim_extensions.pymunk.utils.tools_func.get_moment_for_poly",
- "manim_extensions.qr_codes.qr.qr_code",
+ "manim_extensions.qr_codes.qr.QRCode",
  "manim_extensions.radar.STYLES",
  "manim_extensions.radar.THEMES",
  "manim_extensions.radar.TRANSITIONS",

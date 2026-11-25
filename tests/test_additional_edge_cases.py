@@ -208,9 +208,9 @@ def test_nerdfont_icon_accepts_named_and_raw_values():
     assert NerdFontIcon(1).text
 
 
-def test_qr_code_with_center_icon():
+def test_QRCode_with_center_icon():
     pytest.importorskip("segno")
-    from manim_extensions.qr_codes import qr_code
+    from manim_extensions.qr_codes import QRCode
 
-    result = qr_code("icon", icon="heart", icon_size=4)
+    result = QRCode("icon", icon="heart", icon_size=4)
     assert result is not None

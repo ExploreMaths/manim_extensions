@@ -69,10 +69,10 @@ def test_highlight_and_unhighlight_with_lines_parts():
     assert not hasattr(mob, "_highlight_with_lines_parts")
 
 
-def test_qr_code_with_tall_icon_uses_height_fit():
-    from manim_extensions.qr_codes.qr import qr_code
+def test_QRCode_with_tall_icon_uses_height_fit():
+    from manim_extensions.qr_codes.qr import QRCode
 
-    code = qr_code("hello", icon=0xF17C)
+    code = QRCode("hello", icon=0xF17C)
     assert code is not None
 
 

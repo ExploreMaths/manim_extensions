@@ -215,6 +215,7 @@ sync points for those packages now exactly match their upstream HEAD. -->
   - **Local patches:**
     - import/doc style normalization
     - `qr.py` uses the vendored `nerdfont` instead of the manim-nerdfont-icons package and lazy-imports segno (`qr` extra)
+    - the `qr_code` factory is converted to a `QRCode(VGroup)` class; no compatibility alias is exported
 
 ## `manim_extensions/radar`
   - **Upstream:** [FTZ-OPUS/manim-radar](https://github.com/FTZ-OPUS/manim-radar)

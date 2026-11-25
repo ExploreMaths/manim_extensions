@@ -45,7 +45,6 @@ CASES = [
     ("manim_extensions.mindmap.nodes.node:bfs_walker", (1,)),
     ("manim_extensions.mindmap.nodes.node:dfs_walker", (1,)),
     ("manim_extensions.physics.rigid_mechanics.rigid_mechanics:get_angle", (1,)),
-    ("manim_extensions.qr_codes.qr:qr_code", (1,)),
     ("manim_extensions.rubikscube.cube_utils:get_axis_from_face", (1,)),
     ("manim_extensions.rubikscube.cube_utils:get_direction_from_face", (1,)),
     ("manim_extensions.utils.deprecation:deprecated", ("text",)),

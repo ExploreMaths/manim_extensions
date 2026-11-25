@@ -171,6 +171,14 @@ Fixed
 Changed
 ~~~~~~~
 
+* The QR code factory is now the :class:`~manim_extensions.qr_codes.qr.QRCode`
+  mobject class.  The refactored version no longer exposes a separate
+  ``qr_code`` function or compatibility alias.  Each instance is a
+  :class:`~manim.mobject.types.vectorized_mobject.VGroup` that directly
+  contains the finder-pattern group, the data-module group and the optional
+  centre icon.  The parameter list and defaults are unchanged; extra keyword
+  arguments are now forwarded to the underlying ``VGroup`` instead of being
+  ignored.  The doc examples now instantiate the class.
 * The deterministic finite automaton class is now
   :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimDeterministicFiniteAutomaton`.
   The previous ``ManimdeterministicFiniteAutomaton`` spelling was an upstream
@@ -684,8 +692,8 @@ Removed
 Fixed
 ~~~~~
 
-* Fixed ``qr_codes/__init__.py`` importing a nonexistent ``QRCode``
-  class and the root ``__init__.py`` importing a nonexistent ``ml``
+* Fixed ``qr_codes/__init__.py`` importing a class that did not exist
+  and the root ``__init__.py`` importing a nonexistent ``ml``
   module — both broke ``import manim_extensions``.
 * Fixed Manim's utils namespace shadowing the package's own utils
   submodules.

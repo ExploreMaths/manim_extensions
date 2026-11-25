@@ -8,17 +8,17 @@ import pytest
 
 
 class TestQrCodes:
-    def test_qr_code_builds_vgroup(self):
-        from manim_extensions.qr_codes import qr_code
+    def test_QRCode_builds_vgroup(self):
+        from manim_extensions.qr_codes import QRCode
 
-        code = qr_code("https://example.com")
+        code = QRCode("https://example.com")
         assert isinstance(code, VGroup)
         assert len(code) > 0
 
-    def test_qr_code_circle_shape(self):
-        from manim_extensions.qr_codes import qr_code
+    def test_QRCode_circle_shape(self):
+        from manim_extensions.qr_codes import QRCode
 
-        code = qr_code("hello", data_shape="circles")
+        code = QRCode("hello", data_shape="circles")
         assert len(code) > 0
 
 

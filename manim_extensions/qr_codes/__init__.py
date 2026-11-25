@@ -7,6 +7,6 @@ This module provides QR code generation functionality for Manim animations.
 
 """
 
-from .qr import qr_code
+from .qr import QRCode
 
-__all__ = ["qr_code"]
+__all__ = ["QRCode"]

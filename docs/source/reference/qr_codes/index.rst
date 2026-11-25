@@ -19,7 +19,9 @@ QR Codes
 icon can be placed in the centre of the code.
 
 The code is bundled inside ``manim_extensions`` as the
-:mod:`~manim_extensions.qr_codes` subpackage.
+:mod:`~manim_extensions.qr_codes` subpackage.  Instantiate
+:class:`~manim_extensions.qr_codes.qr.QRCode` with the payload and optional
+styling arguments.
 
 .. important::
 
@@ -30,27 +32,27 @@ The code is bundled inside ``manim_extensions`` as the
 Usage
 -----
 
-.. manim:: QrCodeWithIcon
+.. manim:: QRCodeWithIcon
    :save_last_frame:
-   :ref_functions: qr_code
+   :ref_classes: QRCode
 
    from manim import *
-   from manim_extensions.qr_codes.qr import qr_code
+   from manim_extensions.qr_codes import QRCode
 
-   class QrCodeWithIcon(Scene):
+   class QRCodeWithIcon(Scene):
        def construct(self):
-           qr_code_without_icon = qr_code("https://fishshell.com")
-           qr_code_with_icon = qr_code(
+           code_without_icon = QRCode("https://fishshell.com")
+           code_with_icon = QRCode(
                payload="https://fishshell.com",
                icon="terminal",
                icon_size=6,
            )
-           qr_code_group = VGroup(
-               qr_code_without_icon,
-               qr_code_with_icon).arrange(RIGHT, buff=0.75)
+           code_group = VGroup(
+               code_without_icon,
+               code_with_icon).arrange(RIGHT, buff=0.75)
            label = Text("https://fishshell.com")
            label.to_edge(UP, buff=0.75)
-           self.add(qr_code_group, label)
+           self.add(code_group, label)
 
 See the `example gallery <https://manim-qr-codes.readthedocs.io/en/latest/example-gallery.html>`_
 of the upstream documentation for more animated examples.
