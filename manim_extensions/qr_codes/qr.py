@@ -95,6 +95,7 @@ class QRCode(VGroup):
                self.add(group, label)
 
     .. manim:: QRCodeShapes
+       :save_last_frame:
 
        from manim import *
        from manim_extensions.qr_codes import QRCode
@@ -103,13 +104,12 @@ class QRCode(VGroup):
            def construct(self):
                rust = QRCode("https://www.rust-lang.org/", icon="language-rust",
                              data_shape="circles")
-               self.play(FadeIn(rust))
-               self.wait(1)
                python = QRCode("https://www.python.org/", icon="language-python",
                                data_shape="circles", corner_color=BLUE,
                                icon_color=YELLOW, icon_size=4)
-               self.play(ReplacementTransform(rust, python))
-               self.wait(1)
+               group = VGroup(rust, python).arrange(RIGHT, buff=0.5)
+               group.scale(0.8)
+               self.add(group)
     """
 
     def __init__(
