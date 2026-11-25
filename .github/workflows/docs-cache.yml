@@ -49,11 +49,8 @@ jobs:
       group: docs-cache
       cancel-in-progress: true
     runs-on: ubuntu-latest
-    # Cold runs install TeX, ffmpeg and the full extras before rendering.
-    # Keep the full GitHub job limit instead of an arbitrary shorter cutoff:
-    # a killed render leaves rtd-cache stale and makes the next scheduled
-    # docs job fail its cache check.
-    timeout-minutes: 360
+    # Rely on GitHub's default 360-minute job limit.  A shorter cutoff can
+    # kill a cold render and leave rtd-cache stale.
     steps:
       - uses: actions/checkout@v4
 
