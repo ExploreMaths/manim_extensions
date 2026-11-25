@@ -28,12 +28,13 @@ tests/__test_media_dir__
 *.csv
 *.mol
 !examples/molecule_files/**/*.mol
-HTMLParsedVMobjectDocExample.html
-HTMLParsedVMobjectDocExample.js
-SVGAnimationUsageExample.html
-SVGAnimationUsageExample.js
-SceneExample.html
-SceneExample.js
+HTMLParsedVMobject*.html
+HTMLParsedVMobject*.js
+SVGAnimation*.html
+SVGAnimation*.js
+SceneExample*.html
+SceneExample*.js
+/circle.svg
 leaf_class_*.png
 
 # Generated locally / fetched from the vendored-status-cache branch
