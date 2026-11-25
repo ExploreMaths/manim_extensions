@@ -78,6 +78,9 @@ Added
 Fixed
 ~~~~~
 
+* The :class:`~manim_extensions.animations.FadeInRandom` example now fades in
+  a ``Text`` object instead of a formula, so the per-glyph random order is
+  visible in the rendered clip.
 * Image layers and grayscale image mobjects convert floating-point pixel
   arrays to ``uint8`` before handing them to Manim, so examples built from
   ``np.zeros`` no longer fail under Pillow with
@@ -185,6 +188,9 @@ Changed
   publishes rendered examples to ``rtd-cache``, builds the HTML and pushes it
   to ``rtd-html``, and Read the Docs only copies that output. The contributor
   guide describes the split and the updated validation jobs.
+* The Docs cache workflow allows up to 180 minutes for the example render job,
+  so a cold rebuild can repopulate a stale media cache in one run instead of
+  being cancelled at the previous 90-minute limit.
 * The docs build no longer auto-links inline code just because its text
   exactly matches a project class name. Plain code spans stay plain; an
   explicit ``:class:`` role is required when a link is intended, so names
