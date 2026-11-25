@@ -54,7 +54,7 @@ class RollingNumber(VGroup):
     Examples
     --------
     .. manim:: RollingNumberScene
-        :save_last_frame:
+       :save_last_frame:
 
        from manim import *
        from manim_extensions.radar.numbers import RollingNumber

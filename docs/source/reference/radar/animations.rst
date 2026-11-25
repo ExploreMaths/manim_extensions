@@ -13,15 +13,13 @@ Classes
 .. autosummary::
    :nosignatures:
 
+   ~Ring
    ~Shockwave
    ~RadarMorph
    ~RadarReveal
    ~RadarBurstIn
    ~RadarFade
    ~GlitchFlash
-
-.. autoclass:: manim_extensions.radar.animations.Ring
-   :show-inheritance:
 
 Constants
 ---------
@@ -33,6 +31,7 @@ Constants
    :hidden:
    :maxdepth: 1
 
+   animations.Ring
    animations.Shockwave
    animations.RadarMorph
    animations.RadarReveal

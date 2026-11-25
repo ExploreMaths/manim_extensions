@@ -70,6 +70,7 @@ class PubchemAPIManager:
         manager = PubchemAPIManager(name="aspirin", three_d=True)
     """
 
+    #: Base URL for the PubChem PUG REST API.
     BASE_URL = "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/"
 
     def __init__(

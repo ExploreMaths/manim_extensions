@@ -99,7 +99,7 @@ class DeepSpace(VGroup):
     Examples
     --------
     .. manim:: DeepSpaceScene
-        :save_last_frame:
+       :save_last_frame:
 
        from manim import *
        from manim_extensions.radar.backdrop import DeepSpace

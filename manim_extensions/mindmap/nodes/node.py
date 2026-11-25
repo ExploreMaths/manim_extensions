@@ -66,10 +66,15 @@ class NodeState(Enum):
                self.add(tree, caption)
     """
 
+    #: Node that has just been inserted.
     INSERT = 0  # newly inserted
+    #: Node that is pending removal.
     REMOVE = 1  # pending removal
+    #: Node that is already displayed.
     DISPLAY = 2  # already displayed
+    #: Node that is pending a scale animation.
     SCALE = 3  # pending scale
+    #: Node whose content is being replaced.
     ALTER = 4  # replace node content
 
 

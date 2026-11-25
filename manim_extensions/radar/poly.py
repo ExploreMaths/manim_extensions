@@ -227,7 +227,7 @@ class PolyRadarChart(VGroup):
     Examples
     --------
     .. manim:: PolyRadarScene
-        :save_last_frame:
+       :save_last_frame:
 
        from manim import *
        from manim_extensions.radar.poly import PolyRadarChart

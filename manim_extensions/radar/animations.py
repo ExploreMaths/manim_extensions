@@ -106,7 +106,7 @@ class Ring(Polygon):
     Examples
     --------
     .. manim:: RingScene
-        :save_last_frame:
+       :save_last_frame:
 
        from manim import *
        from manim_extensions.radar.animations import Ring

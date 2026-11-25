@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Validate that every public module-level constant carries a description.
+"""Validate that every public module and class constant carries a description.
 
 The reference manual documents constants through ``autodoc_all``'s ``data``
 classification under its ``Constants`` sections.  The project convention is
@@ -10,6 +10,11 @@ assignment; ``autodoc_all`` reads those ``#:`` lines as the entry
 description, the same way a docstring documents a class or function.  A
 bare string-literal statement trailing the assignment is also accepted as
 the constant description.
+
+Class-scope constants are checked too: every public all-uppercase class
+assignment needs its own ``#:`` description.  Instance attributes and
+configuration fields whose names are not all-uppercase remain documented by
+the class docstring instead.
 
 Exempt names:
 
@@ -158,6 +163,30 @@ def check_module(module: types.ModuleType) -> list[tuple[int, str]]:
         )
         if not documented:
             missing.append((node.lineno, name))
+    missing.extend(check_class_constants(tree, lines))
+    return missing
+
+
+def check_class_constants(tree: ast.Module, lines: list[str]) -> list[tuple[int, str]]:
+    """Return ``(line, name)`` for public uppercase class constants missing docs."""
+    missing: list[tuple[int, str]] = []
+    for cls in (node for node in ast.walk(tree) if isinstance(node, ast.ClassDef)):
+        for node in cls.body:
+            targets: list[str] = []
+            if isinstance(node, ast.Assign):
+                targets = [t.id for t in node.targets if isinstance(t, ast.Name)]
+            elif isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
+                targets = [node.target.id]
+            else:
+                continue
+            for name in targets:
+                if name.startswith("_") or not name.isupper():
+                    continue
+                documented = preceding_hashdoc(
+                    lines, node.lineno
+                ) or trailing_docstring(cls.body, node)
+                if not documented:
+                    missing.append((node.lineno, f"{cls.name}.{name}"))
     return missing
 
 

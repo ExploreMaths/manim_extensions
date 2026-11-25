@@ -224,6 +224,7 @@ class SpaceScene(Scene):
                self.wait(5)
     """
 
+    #: Default gravity vector applied by the physics space.
     GRAVITY: tuple[float, float] = 0, -9.81
 
     def __init__(

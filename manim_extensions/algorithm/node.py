@@ -78,10 +78,15 @@ class NodeConfig:
                self.add(group)
     """
 
+    #: Default node width.
     WIDTH = 2
+    #: Default mobject type used for node boxes.
     BOX_TYPE = Square
+    #: Default fill color for node boxes.
     BOX_COLOR = WHITE
+    #: Color used for selected nodes.
     SELECT_COLOR = RED
+    #: Fill opacity used when a node is selected.
     SELECT_OPACITY = 0.5
 
 
@@ -110,23 +115,41 @@ class NodeSolt:
                self.add(a, b, edge)
     """
 
+    #: Number of subdivisions along each side of a node.
     SPLIT_PARTS = 12
+    #: Middle subdivision index.
     MID = SPLIT_PARTS // 2
+    #: Slot at the middle of the left edge.
     LEFT_MID = (LEFT, MID)
+    #: Slot at the middle of the right edge.
     RIGHT_MID = (RIGHT, MID)
+    #: Slot at the middle of the top edge.
     UP_MID = (UP, MID)
+    #: Slot at the middle of the bottom edge.
     DOWN_MID = (DOWN, MID)
+    #: Slot at the upper third of the left edge.
     LEFT_UP = (LEFT, SPLIT_PARTS // 3 * 2)
+    #: Slot at the lower third of the left edge.
     LEFT_DOWN = (LEFT, SPLIT_PARTS // 3)
+    #: Slot at the upper third of the right edge.
     RIGHT_UP = (RIGHT, SPLIT_PARTS // 3)
+    #: Slot at the lower third of the right edge.
     RIGHT_DOWN = (RIGHT, SPLIT_PARTS // 3 * 2)
+    #: Slot at the left third of the top edge.
     UP_LEFT = (UP, SPLIT_PARTS // 3)
+    #: Slot at the right third of the top edge.
     UP_RIGHT = (UP, SPLIT_PARTS // 3 * 2)
+    #: Slot at the left third of the bottom edge.
     DOWN_LEFT = (DOWN, SPLIT_PARTS // 3 * 2)
+    #: Slot at the right third of the bottom edge.
     DOWN_RIGHT = (DOWN, SPLIT_PARTS // 3)
+    #: Corner slot at the left end of the top edge.
     CORNER_LU = (LEFT, SPLIT_PARTS)
+    #: Corner slot at the left end of the bottom edge.
     CORNER_LD = (LEFT, 0)
+    #: Corner slot at the right end of the top edge.
     CORNER_RU = (RIGHT, 0)
+    #: Corner slot at the right end of the bottom edge.
     CORNER_RD = (RIGHT, SPLIT_PARTS)
 
 

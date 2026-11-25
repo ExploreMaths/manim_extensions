@@ -93,17 +93,29 @@ def extract_manim_blocks(file_path: Path):
     while i < len(lines):
         line = lines[i]
 
-        m = re.match(r"\s*\.\.\s+manim::\s+(\S+)", line)
+        m = re.match(r"(\s*)\.\.\s+manim::\s+(\S+)", line)
         if m:
-            class_name = m.group(1)
+            base_indent = len(m.group(1))
+            class_name = m.group(2)
             has_save_last_frame = False
+            overindented_options = []
             j = i + 1
             while j < len(lines) and (
                 re.match(r"\s*:[\w_]+:", lines[j]) or lines[j].strip() == ""
             ):
-                opt_match = re.match(r"\s*:(save_last_frame):", lines[j])
+                opt_match = re.match(r"(\s*):([\w_]+):", lines[j])
                 if opt_match:
-                    has_save_last_frame = True
+                    option_indent = len(opt_match.group(1))
+                    if option_indent > base_indent + 3:
+                        overindented_options.append(
+                            {
+                                "line": j + 1,
+                                "option": opt_match.group(2),
+                                "indent": option_indent - base_indent,
+                            }
+                        )
+                    elif opt_match.group(2) == "save_last_frame":
+                        has_save_last_frame = True
                 j += 1
 
             code_lines = []
@@ -127,6 +139,7 @@ def extract_manim_blocks(file_path: Path):
                 {
                     "class_name": class_name,
                     "has_save_last_frame": has_save_last_frame,
+                    "overindented_options": overindented_options,
                     "code": code,
                     "start_line": i + 1,
                 }
@@ -142,6 +155,25 @@ def check_file(file_path: Path):
     blocks = extract_manim_blocks(file_path)
     issues = []
     for block in blocks:
+        if block["overindented_options"]:
+            for option in block["overindented_options"]:
+                issues.append(
+                    {
+                        "type": "OPTION_OVERINDENTED",
+                        "line": option["line"],
+                        "class_name": block["class_name"],
+                        "message": (
+                            f"`:{option['option']}:` is indented "
+                            f"{option['indent']} spaces relative to "
+                            "`.. manim::`; options must be indented exactly "
+                            "3 spaces, otherwise docutils treats the option "
+                            "line as example code (use 3 spaces)"
+                        ),
+                        "code_preview": block["code"][:200],
+                    }
+                )
+            continue
+
         if "from manim import *" not in {
             line.strip() for line in block["code"].splitlines()
         }:

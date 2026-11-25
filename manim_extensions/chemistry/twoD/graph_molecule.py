@@ -308,6 +308,7 @@ class GraphMolecule(Graph, AbstractMolecule):
                self.wait()
     """
 
+    #: Bond order to line mobject mapping used when parsing molecules.
     SUPPORTED_BOND_TYPES: dict[int, type[Line] | type[ArcBetweenPoints]] = {
         1: SimpleLine,
         2: DoubleLine,

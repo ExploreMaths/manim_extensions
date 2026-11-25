@@ -63,7 +63,7 @@ sys.path.insert(0, str(SRC.parent))
 SKIP_PARTS = {"__pycache__", "docbuild", "testing", "custom_mobjects"}
 
 MANIM_DIRECTIVE_RE = re.compile(r"\s*\.\.\s+manim::\s*(\S+)")
-OPTION_RE = re.compile(r"\s*:(\w+):")
+OPTION_RE = re.compile(r"(\s*):([\w_]+):")
 
 QUALITY_MAP = {
     "low": "low_quality",
@@ -199,12 +199,21 @@ def extract_blocks(path: Path):
             i += 1
             continue
         class_name = m.group(1)
+        base_indent = len(lines[i]) - len(lines[i].lstrip())
         options = {}
         j = i + 1
         while j < len(lines) and (OPTION_RE.match(lines[j]) or not lines[j].strip()):
             opt = OPTION_RE.match(lines[j])
             if opt:
-                name = opt.group(1)
+                name = opt.group(2)
+                option_indent = len(opt.group(1))
+                if option_indent > base_indent + 3:
+                    raise ValueError(
+                        f"{path}:{j + 1}: option `:{name}:` is indented "
+                        f"{option_indent - base_indent} spaces relative to "
+                        "`.. manim::`; options must be indented exactly 3 "
+                        "spaces, or docutils treats them as example code"
+                    )
                 if name in ("quality", "files", "renderer"):
                     options[name] = lines[j].split(":", 2)[-1].strip()
                 else:

@@ -299,6 +299,8 @@ API Documentation Coverage
 
 Every **public** name (class, function, constant) exported by the package must appear in the documentation under ``docs/source/reference/``. This is enforced by ``validate_api_coverage.py``.
 
+Every public class and function must have a docstring. Every public module-level constant and all-uppercase class constant must carry a ``#:`` description immediately above its assignment. These rules are enforced by ``validate_docstrings.py`` and ``validate_constant_docstrings.py``.
+
 The docs use a custom ``.. autoall::`` directive that automatically expands into autodoc directives for all public names of a module. When adding a new public module or name, make sure it is reachable from an ``autoall`` block (or an explicit ``autoclass`` / ``autofunction`` / ``autodata``).
 
 A public type alias is not a constant.  Document it in the package page's ``Type Aliases`` section with ``:types: typealias``; ``autoall`` emits a ``py:type`` entry whose target signatures can link to:

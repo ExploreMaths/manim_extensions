@@ -412,31 +412,14 @@ class ManimDirective(Directive):
                     os.chdir(previous_cwd)
                     shutil.rmtree(work_cwd, ignore_errors=True)
             except Exception as e:
-                # A broken example embedded in a docstring should not fail the whole
-                # documentation build: warn about it and fall back to a placeholder
-                # that still shows the source code.
-                logger.warning(
-                    "manim example %r could not be rendered (%s); "
-                    "showing the source code instead. [%s]",
-                    clsname,
-                    e,
-                    self.state.document.settings.env.docname,
-                )
-                placeholder = SkipManimNode()
-                self.state.nested_parse(
-                    StringList(
-                        [
-                            f"**Example ``{clsname}``** — rendering failed; source shown instead.",
-                            "",
-                            ".. code-block:: python",
-                            "",
-                        ]
-                        + ["    " + line for line in self.content]
-                    ),
-                    self.content_offset,
-                    placeholder,
-                )
-                return [placeholder]
+                # Invalid examples must break the documentation build.  A
+                # placeholder hides rendering errors from CI and ships a page
+                # with broken examples, so fail loudly instead.
+                raise RuntimeError(
+                    "manim example "
+                    f"{clsname!r} could not be rendered in "
+                    f"{self.state.document.settings.env.docname}: {e}"
+                ) from e
 
             if not from_cache:
                 _write_rendering_stats(
