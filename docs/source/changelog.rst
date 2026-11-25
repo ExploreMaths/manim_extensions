@@ -81,6 +81,9 @@ Fixed
 * The :class:`~manim_extensions.animations.FadeInRandom` example now fades in
   a ``Text`` object instead of a formula, so the per-glyph random order is
   visible in the rendered clip.
+* Python standard-library type links, including ``None``, now use the
+  inherited text colour in parameter descriptions.  ``None`` no longer keeps
+  a blue link colour while ``str`` and the other builtins stay plain.
 * Image layers and grayscale image mobjects convert floating-point pixel
   arrays to ``uint8`` before handing them to Manim, so examples built from
   ``np.zeros`` no longer fail under Pillow with
