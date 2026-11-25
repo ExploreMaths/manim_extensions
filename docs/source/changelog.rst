@@ -84,6 +84,10 @@ Fixed
 * Python standard-library type links, including ``None``, now use the
   inherited text colour in parameter descriptions.  ``None`` no longer keeps
   a blue link colour while ``str`` and the other builtins stay plain.
+* The QR-code logger reference page now renders the module description
+  instead of an empty page.  The QR-code and Nerd Font docstrings link to the
+  bundled Icon Gallery, and Python docstrings no longer use Sphinx
+  ``:doc:`` roles that editors cannot resolve.
 * Image layers and grayscale image mobjects convert floating-point pixel
   arrays to ``uint8`` before handing them to Manim, so examples built from
   ``np.zeros`` no longer fail under Pillow with

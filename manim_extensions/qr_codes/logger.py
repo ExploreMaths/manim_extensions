@@ -1,11 +1,12 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""
-This module is used to log messages to the console.
+"""Configure readable console logging for the QR-code helpers.
 
-It's main purpose is make the logging output more readable by using the rich library.
-One might argue, that a library should do any styling to the logging output, which I think is a valid for most cases.
+The module installs ``rich.logging.RichHandler`` through
+``logging.basicConfig`` so log records are readable in a terminal.  Logging
+configuration normally belongs to the application; this module preserves the
+vendored upstream behaviour and is not part of the public API.
 """
 
 import logging

@@ -46,8 +46,8 @@ def qr_code(
         adjusted for larger or very small QR codes.
     icon
         A Nerd Font icon to place in the center of the QR code, either an
-        icon name or a Unicode code point. See
-        https://manim-nerdfont-icons.readthedocs.io/en/latest/icon-gallery.html
+        icon name or a Unicode code point. See the `Icon Gallery
+        <https://manim-extensions.readthedocs.io/en/latest/reference/nerdfont/icon_gallery.html>`_
         for available icons.
     icon_color
         The color of the icon.
