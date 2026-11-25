@@ -179,6 +179,28 @@ Changed
   centre icon.  The parameter list and defaults are unchanged; extra keyword
   arguments are now forwarded to the underlying ``VGroup`` instead of being
   ignored.  The doc examples now instantiate the class.
+* Nine visual helper factories are now mobject or animation classes:
+  :class:`~manim_extensions.algorithm.utils.debug.ParagraphLineIndices`
+  (:class:`~manim.mobject.types.vectorized_mobject.VGroup`),
+  :class:`~manim_extensions.chemistry.future_classes.future_classes.DuplicatedAlongLine`,
+  :class:`~manim_extensions.chemistry.future_classes.future_classes.ScatteredCopies`
+  and :class:`~manim_extensions.chemistry.future_classes.future_classes.ConcatenatedMobjects`
+  (also :class:`~manim.mobject.types.vectorized_mobject.VGroup`),
+  :class:`~manim_extensions.machine_learning.diffusion.mcmc.SampleDistributionImage`
+  and :class:`~manim_extensions.machine_learning.utils.mobjects.plotting.MatplotlibFigureImage`
+  (:class:`~manim.mobject.types.image_mobject.ImageMobject`),
+  :class:`~manim_extensions.machine_learning.neural_network.animations.dropout.PostDropoutAnimation`
+  (:class:`~manim.animation.composition.AnimationGroup`),
+  :class:`~manim_extensions.meshes.delaunay.delaunay_criterion.CircumCircle`
+  (:class:`~manim.mobject.geometry.arc.Circle`) and
+  :class:`~manim_extensions.compass.utils.geometry_method.ArcFromCenter`
+  (:class:`~manim.mobject.geometry.arc.Arc`).  The old function names are not
+  kept as compatibility aliases.
+  :class:`~manim_extensions.meshes.delaunay.delaunay_criterion.CircumCircle`
+  keeps its default ``stroke_width=2``, and
+  :class:`~manim_extensions.compass.utils.geometry_method.ArcFromCenter`
+  keeps ``PURE_YELLOW`` as its
+  default colour.
 * The deterministic finite automaton class is now
   :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimDeterministicFiniteAutomaton`.
   The previous ``ManimdeterministicFiniteAutomaton`` spelling was an upstream

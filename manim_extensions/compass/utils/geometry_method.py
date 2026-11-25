@@ -18,19 +18,13 @@ from manim.typing import Point3D, Vector3D
 from manim.utils.color import ParsableManimColor
 
 __all__ = [
-    "get_arc",
+    "ArcFromCenter",
 ]
 import numpy as np
 
 
-def get_arc(
-    niddle_pos: Point3D,
-    pen_pos: Point3D,
-    angle: float,
-    color: ParsableManimColor = PURE_YELLOW,
-    **kwargs: Any,
-) -> Arc:
-    """Construct an arc from its centre and starting point.
+class ArcFromCenter(Arc):
+    """Arc defined by a centre, a starting point and a central angle.
 
     Parameters
     ----------
@@ -42,13 +36,9 @@ def get_arc(
         Central angle of the arc.
     color
         Colour of the arc.
-    kwargs
-        Other keyword arguments for the arc.
-
-    Returns
-    -------
-        The constructed :class:`~manim.mobject.geometry.arc.Arc` instance,
-        centred at ``niddle_pos`` and starting at ``pen_pos``.
+    **kwargs
+        Other keyword arguments forwarded to
+        :class:`~manim.mobject.geometry.arc.Arc`.
 
     Examples
     --------
@@ -56,27 +46,36 @@ def get_arc(
        :save_last_frame:
 
        from manim import *
-       from manim_extensions.compass import get_arc
+       from manim_extensions.compass import ArcFromCenter
 
        class GetArc(Scene):
            def construct(self):
-               arc = get_arc(ORIGIN, 2 * RIGHT, PI / 2)
+               arc = ArcFromCenter(ORIGIN, 2 * RIGHT, PI / 2)
                self.add(
                    Dot(ORIGIN, color=RED),
                    Dot(2 * RIGHT, color=PURE_YELLOW),
                    arc,
                )
     """
-    arc_radius = get_distance(niddle_pos, pen_pos)
-    vec_s = pen_pos - niddle_pos
-    return Arc(
-        arc_center=niddle_pos,
-        radius=arc_radius,
-        start_angle=get_vecs_angle(RIGHT, vec_s),
-        angle=angle,
-        color=color,
-        **kwargs,
-    )
+
+    def __init__(
+        self,
+        niddle_pos: Point3D,
+        pen_pos: Point3D,
+        angle: float,
+        color: ParsableManimColor = PURE_YELLOW,
+        **kwargs: Any,
+    ) -> None:
+        arc_radius = get_distance(niddle_pos, pen_pos)
+        vec_s = pen_pos - niddle_pos
+        super().__init__(
+            arc_center=niddle_pos,
+            radius=arc_radius,
+            start_angle=get_vecs_angle(RIGHT, vec_s),
+            angle=angle,
+            color=color,
+            **kwargs,
+        )
 
 
 def get_distance(

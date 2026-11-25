@@ -34,7 +34,7 @@ from manim import (
     override_animation,
 )
 
-from ..utils.mobjects.plotting import convert_matplotlib_figure_to_image_mobject
+from ..utils.mobjects.plotting import MatplotlibFigureImage
 import numpy as np
 import scipy
 import scipy.stats
@@ -247,10 +247,8 @@ def metropolis_hastings_sampler(
 #################### MCMC Visualization Tools ######################
 
 
-def make_dist_image_mobject_from_samples(
-    samples: Point2D_Array, ylim: Sequence[float] | None, xlim: Sequence[float] | None
-) -> ImageMobject:
-    """Render a KDE density plot from 2D samples and return it as an :class:`~manim.mobject.types.image_mobject.ImageMobject`.
+class SampleDistributionImage(ImageMobject):
+    """KDE density plot rendered from two-dimensional samples.
 
     Parameters
     ----------
@@ -260,10 +258,9 @@ def make_dist_image_mobject_from_samples(
         Limits of the y-axis as ``[ymin, ymax]``.
     xlim
         Limits of the x-axis as ``[xmin, xmax]``.
-
-    Returns
-    -------
-        The KDE density plot from 2D samples and return it as an :class:`~manim.mobject.types.image_mobject.ImageMobject`.
+    **kwargs
+        Keyword arguments forwarded to
+        :class:`~manim.mobject.types.image_mobject.ImageMobject`.
 
     Examples
     --------
@@ -273,43 +270,50 @@ def make_dist_image_mobject_from_samples(
        import numpy as np
        from manim import *
        from manim_extensions.machine_learning.diffusion.mcmc import (
-           make_dist_image_mobject_from_samples,
+           SampleDistributionImage,
        )
 
        class GaussianKde(Scene):
            def construct(self):
                rng = np.random.default_rng(7)
                samples = rng.normal(loc=(0, 0), scale=(1, 1), size=(400, 2))
-               image = make_dist_image_mobject_from_samples(
+               image = SampleDistributionImage(
                    samples, ylim=(-4, 4), xlim=(-4, 4)
                )
                image.scale_to_fit_height(6)
                self.add(image)
     """
-    matplotlib = require("ml", "matplotlib")
-    plt = require("ml", "matplotlib.pyplot")
-    sns = require("ml", "seaborn")
 
-    # Make the plot
-    matplotlib.use("Agg")
-    plt.figure(figsize=(10, 10), dpi=100)
-    print(np.shape(samples[:, 0]))
-    displot = sns.displot(
-        x=samples[:, 0],
-        y=samples[:, 1],
-        cmap="Reds",
-        kind="kde",
-        norm=matplotlib.colors.LogNorm(),
-    )
-    ylim_values = cast(list[Any], ylim)
-    plt.ylim(ylim_values[0], ylim_values[1])
-    xlim_values = cast(list[Any], xlim)
-    plt.xlim(xlim_values[0], xlim_values[1])
-    plt.axis("off")
-    fig = displot.fig
-    image_mobject = convert_matplotlib_figure_to_image_mobject(fig)
+    def __init__(
+        self,
+        samples: Point2D_Array,
+        ylim: Sequence[float] | None,
+        xlim: Sequence[float] | None,
+        **kwargs: Any,
+    ) -> None:
+        matplotlib = require("ml", "matplotlib")
+        plt = require("ml", "matplotlib.pyplot")
+        sns = require("ml", "seaborn")
 
-    return image_mobject
+        # Make the plot
+        matplotlib.use("Agg")
+        plt.figure(figsize=(10, 10), dpi=100)
+        print(np.shape(samples[:, 0]))
+        displot = sns.displot(
+            x=samples[:, 0],
+            y=samples[:, 1],
+            cmap="Reds",
+            kind="kde",
+            norm=matplotlib.colors.LogNorm(),
+        )
+        ylim_values = cast(list[Any], ylim)
+        plt.ylim(ylim_values[0], ylim_values[1])
+        xlim_values = cast(list[Any], xlim)
+        plt.xlim(xlim_values[0], xlim_values[1])
+        plt.axis("off")
+        image = MatplotlibFigureImage(displot.fig)
+        kwargs.setdefault("image_mode", "RGB")
+        super().__init__(image.get_pixel_array(), **kwargs)
 
 
 class MCMCAxes(Group):
@@ -656,7 +660,7 @@ class MCMCAxes(Group):
             current_point = next_point
         # Overall MCMC animation
         # 1. Fade in the distribution
-        image_mobject = make_dist_image_mobject_from_samples(
+        image_mobject = SampleDistributionImage(
             cast(Point2D_Array, true_samples),
             xlim=(self.x_range[0], self.x_range[1]),
             ylim=(self.y_range[0], self.y_range[1]),

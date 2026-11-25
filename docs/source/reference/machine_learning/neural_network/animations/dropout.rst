@@ -12,6 +12,7 @@ Classes
 .. autosummary::
    :nosignatures:
 
+   ~PostDropoutAnimation
    ~XMark
 
 Functions
@@ -24,4 +25,5 @@ Functions
    :hidden:
    :maxdepth: 1
 
+   dropout.PostDropoutAnimation
    dropout.XMark

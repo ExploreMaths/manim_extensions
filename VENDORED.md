@@ -25,6 +25,7 @@ sync points for those packages now exactly match their upstream HEAD. -->
   - **Local patches:**
     - import/doc style normalization (commit `712865f`)
     - documented module-level constants with ``#:`` docstrings
+    - `index_paragraph_labels` is now the `ParagraphLineIndices` class
 
 ## `manim_extensions/animations.py`, `manim_extensions/mobjects.py`
   - **Upstream:** [manim-kindergarten](https://github.com/manim-kindergarten) (manim_sandbox helpers)
@@ -72,6 +73,7 @@ sync points for those packages now exactly match their upstream HEAD. -->
     - `future_classes.py` missing `functools.wraps` import (was masked by a star import)
     - `from_mol_string` accepts the whole MOL block, hydrogen bonds without stereo are drawn as ``SimpleBond``, ``Element`` tolerates disabled electrons, and ``BatterySchema.invert_terminals`` uses the keyword ``rotate`` form
     - documented module-level constants with ``#:`` docstrings
+    - `duplicate_and_rearrange`, `add_over_rectangular_surface` and `concat_mobjects` are now the `DuplicatedAlongLine`, `ScatteredCopies` and `ConcatenatedMobjects` classes
 
 ## `manim_extensions/circuit`
   - **Upstream:** [Mr-FuzzyPenguin/manim-circuit](https://github.com/Mr-FuzzyPenguin/manim-circuit)
@@ -95,6 +97,7 @@ sync points for those packages now exactly match their upstream HEAD. -->
   - **Status:** synced (upstream HEAD, 2026-10-25 re-sync)
   - **Local patches:**
     - import/doc style normalization (commit `712865f`)
+    - `get_arc` is now the `ArcFromCenter` class
     - merged upstream `SingleRulerScene` (`scene/ruler_scene.py`, 2026-10-25 re-sync) with imports normalized to explicit form
 
 ## `manim_extensions/data_structures`
@@ -148,6 +151,7 @@ sync points for those packages now exactly match their upstream HEAD. -->
     - removed stale TODOs and unreachable branches
     - `BlankConnective` now implements the inherited abstract `construct_layer`, so layer pairs without a registered connective fall back to an empty connective instead of raising `TypeError: Can't instantiate abstract class`
     - documented module-level constants with ``#:`` docstrings
+    - `make_dist_image_mobject_from_samples`, `convert_matplotlib_figure_to_image_mobject` and `make_post_dropout_animation` are now the `SampleDistributionImage`, `MatplotlibFigureImage` and `PostDropoutAnimation` classes
 
 ## `manim_extensions/meshes`
   - **Upstream:** [bmmtstb/manim-meshes](https://github.com/bmmtstb/manim-meshes)
@@ -159,6 +163,7 @@ sync points for those packages now exactly match their upstream HEAD. -->
     - implemented 3D and 4-D `templates.create_grid` (a 4-D grid is the tesseract: 16 vertices / 24 faces / 32 edges), `Mesh.apply_flip` / `ManimMesh.flip`, 4-D centre projection (`get_3d_vertices` / `convert_vertices_to_3d`) and 4-D plane rotation (`apply_rotation` / `ManimMesh.rotate`), all of which upstream still raises `NotImplementedError` for
     - `__add__` returns a new mesh instead of mutating `self`, and `__add__` / `__iadd__` / `__eq__` / `__ne__` return `NotImplemented` for non-mesh operands
     - documented module-level constants with ``#:`` docstrings
+    - `get_circum_circle` is now the `CircumCircle` class
 
 ## `manim_extensions/mindmap`
   - **Upstream:** [jj-math/manim-mindmap](https://github.com/jj-math/manim-mindmap)

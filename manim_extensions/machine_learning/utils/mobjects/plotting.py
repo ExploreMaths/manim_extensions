@@ -1,12 +1,12 @@
 # SPDX-FileCopyrightText: 2026 MathItYT
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
-# patched: lazy-import matplotlib (ml extra)
+# patched: lazy-import matplotlib (ml extra), matplotlib figure converter exposed as an ImageMobject subclass
 
 """Plotting utilities for neural network visualization."""
 
 from __future__ import annotations
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
 
 import io
 
@@ -20,10 +20,8 @@ if TYPE_CHECKING:
     from matplotlib.figure import Figure
 
 
-def convert_matplotlib_figure_to_image_mobject(
-    fig: Figure, dpi: int = 200
-) -> ImageMobject:
-    """Takes a matplotlib figure and makes an image mobject from it.
+class MatplotlibFigureImage(ImageMobject):
+    """A matplotlib figure rendered as an image mobject.
 
     Parameters
     ----------
@@ -31,10 +29,9 @@ def convert_matplotlib_figure_to_image_mobject(
         Matplotlib figure.
     dpi
         Resolution of the rendered figure in dots per inch.
-
-    Returns
-    -------
-        Image mobject containing the rendered figure.
+    **kwargs
+        Keyword arguments forwarded to
+        :class:`~manim.mobject.types.image_mobject.ImageMobject`.
 
     Examples
     --------
@@ -45,7 +42,7 @@ def convert_matplotlib_figure_to_image_mobject(
        import numpy as np
        from manim import *
        from manim_extensions.machine_learning.utils.mobjects.plotting import (
-           convert_matplotlib_figure_to_image_mobject,
+           MatplotlibFigureImage,
        )
 
        class MatplotlibFigure(Scene):
@@ -54,22 +51,22 @@ def convert_matplotlib_figure_to_image_mobject(
                x = np.linspace(0, 2 * np.pi, 100)
                ax.plot(x, np.sin(x), color="tab:blue")
                ax.set_title("sin(x)")
-               image = convert_matplotlib_figure_to_image_mobject(fig)
+               image = MatplotlibFigureImage(fig)
                image.scale_to_fit_height(4)
                self.add(image)
     """
-    plt = require("ml", "matplotlib.pyplot")
 
-    fig.tight_layout(pad=0)
-    # plt.axis('off')
-    fig.canvas.draw()
-    # Save data into a buffer
-    image_buffer = io.BytesIO()
-    plt.savefig(image_buffer, format="png", dpi=dpi)
-    # Reopen in PIL and convert to numpy
-    pil_image = Image.open(image_buffer).convert("RGB")
-    image = np.asarray(pil_image)
-    # Convert it to an image mobject
-    image_mobject = ImageMobject(image, image_mode="RGB")
+    def __init__(self, fig: Figure, dpi: int = 200, **kwargs: Any) -> None:
+        plt = require("ml", "matplotlib.pyplot")
 
-    return image_mobject
+        fig.tight_layout(pad=0)
+        # plt.axis('off')
+        fig.canvas.draw()
+        # Save data into a buffer
+        image_buffer = io.BytesIO()
+        plt.savefig(image_buffer, format="png", dpi=dpi)
+        # Reopen with PIL and convert to a NumPy array
+        pil_image = Image.open(image_buffer).convert("RGB")
+        image = np.asarray(pil_image)
+        kwargs.setdefault("image_mode", "RGB")
+        super().__init__(image, **kwargs)

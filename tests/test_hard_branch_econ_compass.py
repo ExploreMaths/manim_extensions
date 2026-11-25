@@ -9,13 +9,13 @@ from manim import ORIGIN, RIGHT, PI, Arc
 
 from manim_extensions.compass import Compass, PutCompass
 from manim_extensions.compass.animations.animation_compass import MoveNiddleTipTo
-from manim_extensions.compass.utils.geometry_method import get_arc
+from manim_extensions.compass.utils.geometry_method import ArcFromCenter
 from manim_extensions.economics.linked import LinkedISLMADAS
 from manim_extensions.economics.solow import SolowDiagram
 
 
-def test_get_arc_matches_endpoints():
-    arc = get_arc(ORIGIN, 2 * RIGHT, PI / 2)
+def test_ArcFromCenter_matches_endpoints():
+    arc = ArcFromCenter(ORIGIN, 2 * RIGHT, PI / 2)
 
     assert isinstance(arc, Arc)
     assert np.isclose(arc.radius, 2.0)

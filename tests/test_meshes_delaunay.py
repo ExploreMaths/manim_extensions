@@ -47,7 +47,7 @@ def test_circum_circle_params():
 
 
 def test_circum_circle_mobject(triangle_mesh):
-    circle = delaunay_criterion.get_circum_circle(triangle_mesh, 0)
+    circle = delaunay_criterion.CircumCircle(triangle_mesh, 0)
 
     assert isinstance(circle, Circle)
 

@@ -55,10 +55,8 @@ def get_triangle_circum_circle_params(
     return center, float(radius)
 
 
-def get_circum_circle(
-    triangle_mesh: TriangleManim2DMesh, face_idx: int, **kwargs: Any
-) -> Circle:
-    """Create a Manim circle visualising the circumscribed circle of a face.
+class CircumCircle(Circle):
+    """Circle around the circumscribed centre of a mesh face.
 
     Parameters
     ----------
@@ -67,12 +65,9 @@ def get_circum_circle(
     face_idx
         Index of the face to draw the circle around.
     **kwargs
-        Additional keyword arguments forwarded to :class:`~manim.mobject.geometry.arc.Circle`
-        (e.g. ``stroke_width``).
-
-    Returns
-    -------
-        A Manim circle mobject positioned at the circumscribed centre.
+        Additional keyword arguments forwarded to
+        :class:`~manim.mobject.geometry.arc.Circle` (for example
+        ``stroke_width``).
 
     Examples
     --------
@@ -81,7 +76,7 @@ def get_circum_circle(
 
        from manim import *
        from manim_extensions.meshes.delaunay.delaunay_criterion import (
-           get_circum_circle,
+           CircumCircle,
        )
        from manim_extensions.meshes.models.data_models.mesh import Mesh
        from manim_extensions.meshes.models.manim_models.triangle_mesh import (
@@ -99,18 +94,21 @@ def get_circum_circle(
                ]
                triangles = [[0, 1, 2], [0, 2, 3], [1, 4, 2]]
                mesh = TriangleManim2DMesh(Mesh(points, triangles))
-               circle = get_circum_circle(mesh, 0, color=YELLOW)
+               circle = CircumCircle(mesh, 0, color=YELLOW)
                group = Group(mesh, circle).scale(3.5)
                self.add(group)
     """
-    face = triangle_mesh.mesh.faces[face_idx]
-    vertices = [triangle_mesh.mesh.get_3d_vertices()[i] for i in face]
-    center, radius = get_triangle_circum_circle_params(*vertices)
-    if "stroke_width" not in kwargs:
-        kwargs["stroke_width"] = 2
-    circ = Circle(radius, **kwargs)
-    circ.shift(center)
-    return circ
+
+    def __init__(
+        self, triangle_mesh: TriangleManim2DMesh, face_idx: int, **kwargs: Any
+    ) -> None:
+        face = triangle_mesh.mesh.faces[face_idx]
+        vertices = [triangle_mesh.mesh.get_3d_vertices()[i] for i in face]
+        center, radius = get_triangle_circum_circle_params(*vertices)
+        if "stroke_width" not in kwargs:
+            kwargs["stroke_width"] = 2
+        super().__init__(radius, **kwargs)
+        self.shift(center)
 
 
 def get_point_indices_violating_delaunay(

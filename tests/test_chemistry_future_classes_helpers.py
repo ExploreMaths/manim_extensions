@@ -8,9 +8,9 @@ import pytest
 from manim import LEFT, RIGHT, Circle, Dot, Square, VGroup, tempconfig
 
 from manim_extensions.chemistry.future_classes.future_classes import (
-    add_over_rectangular_surface,
-    concat_mobjects,
-    duplicate_and_rearrange,
+    ConcatenatedMobjects,
+    DuplicatedAlongLine,
+    ScatteredCopies,
     get_element_by_data,
     make_subpaths,
     randomly_distributed_in_2d,
@@ -23,20 +23,20 @@ def _config():
         yield
 
 
-def test_duplicate_and_rearrange_group():
-    group = duplicate_and_rearrange(VGroup(Dot(), Square()))
+def test_DuplicatedAlongLine_group():
+    group = DuplicatedAlongLine(VGroup(Dot(), Square()))
 
     assert len(group) == 4
 
 
-def test_duplicate_and_rearrange_single_mobject():
-    group = duplicate_and_rearrange(Dot())
+def test_DuplicatedAlongLine_single_mobject():
+    group = DuplicatedAlongLine(Dot())
 
     assert len(group) >= 1
 
 
-def test_add_over_rectangular_surface_returns_group():
-    group = add_over_rectangular_surface(Dot(), amount=3, height=2, width=2)
+def test_ScatteredCopies_returns_group():
+    group = ScatteredCopies(Dot(), amount=3, height=2, width=2)
 
     assert len(group) == 3
 
@@ -66,13 +66,13 @@ def test_make_subpaths_adds_points():
     assert len(group.points) > 0
 
 
-def test_concat_mobjects_alternates_sides():
-    group = concat_mobjects(Square(), concats=3, buff=0.1)
+def test_ConcatenatedMobjects_alternates_sides():
+    group = ConcatenatedMobjects(Square(), concats=3, buff=0.1)
 
     assert len(group) == 4
 
 
-def test_concat_mobjects_zero_copies():
-    group = concat_mobjects(Square(), concats=0)
+def test_ConcatenatedMobjects_zero_copies():
+    group = ConcatenatedMobjects(Square(), concats=0)
 
     assert len(group) == 1

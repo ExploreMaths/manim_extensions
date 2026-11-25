@@ -1,0 +1,9 @@
+.. SPDX-FileCopyrightText: 2022 bmmtstb, 99Vicky
+.. SPDX-FileCopyrightText: 2026 ExploreMaths
+.. SPDX-License-Identifier: MIT
+
+CircumCircle
+============
+
+.. autoclass:: manim_extensions.meshes.delaunay.delaunay_criterion.CircumCircle
+   :show-inheritance:

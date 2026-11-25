@@ -7,8 +7,19 @@ debug
 
 .. module:: manim_extensions.algorithm.utils.debug
 
-Functions
----------
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~ParagraphLineIndices
 
 .. autoall:: manim_extensions.algorithm.utils.debug
-   :types: function
+   :types: class
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   debug.ParagraphLineIndices

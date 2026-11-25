@@ -9,12 +9,10 @@ from typing import Any
 from manim import DOWN, Dot, Integer, Paragraph, VGroup
 
 
-def index_paragraph_labels(
-    paragraph: Paragraph,
-    label_height: float = 0.1,
-    **kwargs: Any,
-) -> VGroup:
-    """Add integer index labels below each paragraph line.
+class ParagraphLineIndices(VGroup):
+    """Integer labels placed below each paragraph line.
+
+    One label is created for every entry that is not a ``Dot``.
 
     Parameters
     ----------
@@ -23,33 +21,34 @@ def index_paragraph_labels(
     label_height
         Height of each label mobject.
     **kwargs
-        Additional keyword arguments forwarded to :class:`~manim.mobject.text.numbers.Integer`.
-
-    Returns
-    -------
-        A group of :class:`~manim.mobject.text.numbers.Integer` labels, one per paragraph line.
+        Additional keyword arguments forwarded to
+        :class:`~manim.mobject.text.numbers.Integer`.
 
     Examples
     --------
-    .. manim:: ParagraphLineIndices
+    .. manim:: ParagraphLineLabels
        :save_last_frame:
 
        from manim import *
-       from manim_extensions.algorithm.utils.debug import index_paragraph_labels
+       from manim_extensions.algorithm.utils import ParagraphLineIndices
 
-       class ParagraphLineIndices(Scene):
+       class ParagraphLineLabels(Scene):
            def construct(self):
                paragraph = Paragraph("alpha", "beta", "gamma", line_spacing=1)
-               labels = index_paragraph_labels(paragraph, label_height=0.25)
+               labels = ParagraphLineIndices(paragraph, label_height=0.25)
                self.add(paragraph, labels)
     """
-    labels = VGroup()
-    idx = 0
-    for i in range(len(paragraph)):
-        if not isinstance(paragraph[i], Dot):
-            label = Integer(i, **kwargs)
-            idx += 1
-            label.height = label_height
-            label.next_to(paragraph[i], DOWN, buff=0)
-            labels.add(label)
-    return labels
+
+    def __init__(
+        self,
+        paragraph: Paragraph,
+        label_height: float = 0.1,
+        **kwargs: Any,
+    ) -> None:
+        super().__init__()
+        for i in range(len(paragraph)):
+            if not isinstance(paragraph[i], Dot):
+                label = Integer(i, **kwargs)
+                label.height = label_height
+                label.next_to(paragraph[i], DOWN, buff=0)
+                self.add(label)

@@ -9,7 +9,7 @@ import pytest
 from manim_extensions.machine_learning.diffusion.mcmc import (
     MultidimensionalGaussianPosterior,
     gaussian_proposal,
-    make_dist_image_mobject_from_samples,
+    SampleDistributionImage,
     metropolis_hastings_sampler,
 )
 
@@ -76,10 +76,10 @@ def test_sampler_stays_near_the_mode():
     assert np.abs(chain[-1]).max() < 12
 
 
-def test_dist_image_mobject_from_samples():
+def test_SampleDistributionImage():
     rng = np.random.default_rng(0)
     samples = rng.normal(size=(50, 2))
 
-    image = make_dist_image_mobject_from_samples(samples, ylim=[-3, 3], xlim=[-3, 3])
+    image = SampleDistributionImage(samples, ylim=[-3, 3], xlim=[-3, 3])
 
     assert image is not None

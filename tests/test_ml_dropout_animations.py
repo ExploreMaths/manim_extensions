@@ -13,7 +13,7 @@ from manim_extensions.machine_learning.neural_network.animations.dropout import 
     get_edges_to_drop_out,
     make_forward_pass_with_dropout_animation,
     make_neural_network_dropout_animation,
-    make_post_dropout_animation,
+    PostDropoutAnimation,
     make_pre_dropout_animation,
 )
 from manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward import (
@@ -54,7 +54,7 @@ def test_post_dropout_animation(network_and_mapping):
     network, mapping = network_and_mapping
     _, marks = make_pre_dropout_animation(network, mapping)
 
-    group = make_post_dropout_animation(network, mapping, marks)
+    group = PostDropoutAnimation(network, mapping, marks)
 
     assert len(group.animations) > 0
 

@@ -14,16 +14,16 @@ Vector helpers and paragraph-index helpers used by the algorithm mobjects.
 
 .. manim:: ParagraphIndexLabels
    :save_last_frame:
-   :ref_classes: NumpyHelper index_paragraph_labels
+   :ref_classes: NumpyHelper ParagraphLineIndices
 
    import numpy as np
    from manim import *
-   from manim_extensions.algorithm.utils import NumpyHelper, index_paragraph_labels
+   from manim_extensions.algorithm.utils import NumpyHelper, ParagraphLineIndices
 
    class ParagraphIndexLabels(Scene):
        def construct(self):
            paragraph = Paragraph("first line", "second line")
-           labels = index_paragraph_labels(paragraph)
+           labels = ParagraphLineIndices(paragraph)
            unit = NumpyHelper.normalize_vector(np.array([3.0, 4.0]))
            arrow = Arrow(ORIGIN, RIGHT * 3 * unit[0] + UP * 3 * unit[1], buff=0)
            arrow.next_to(paragraph, LEFT, buff=0.8)

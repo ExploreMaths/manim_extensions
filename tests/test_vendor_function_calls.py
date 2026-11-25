@@ -16,10 +16,6 @@ CASES = [
     ("manim_extensions.animations:ease_in_out_bounce", (1,)),
     ("manim_extensions.animations:ease_out_bounce", (1,)),
     ("manim_extensions.animations:ease_out_elastic", (1,)),
-    (
-        "manim_extensions.chemistry.future_classes.future_classes:add_over_rectangular_surface",
-        (),
-    ),
     ("manim_extensions.chemistry.future_classes.future_classes:inverse_linear", (1,)),
     ("manim_extensions.chemistry.future_classes.future_classes:inverse_smooth", (1,)),
     ("manim_extensions.chemistry.future_classes.future_classes:zero", (1,)),

@@ -7,8 +7,25 @@ delaunay_criterion
 
 .. module:: manim_extensions.meshes.delaunay.delaunay_criterion
 
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~CircumCircle
+
+.. autoall:: manim_extensions.meshes.delaunay.delaunay_criterion
+   :types: class
+
 Functions
 ---------
 
 .. autoall:: manim_extensions.meshes.delaunay.delaunay_criterion
    :types: function
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   delaunay_criterion.CircumCircle

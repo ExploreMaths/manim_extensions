@@ -840,21 +840,16 @@ def arrange_in_1d_boundary(mobs: VGroup, boundary: list[Any] = [LEFT, RIGHT]) ->
         mob.move_to(positions[index])
 
 
-def duplicate_and_rearrange(
-    mobs: Mobject, boundary: list[Any] = [LEFT, RIGHT]
-) -> VGroup:
-    """Duplicate each mobject and evenly space all copies along a 1D boundary.
+class DuplicatedAlongLine(VGroup):
+    """Copies of a mobject evenly spaced along a one-dimensional boundary.
 
     Parameters
     ----------
     mobs
-        Mobject or :class:`~manim.mobject.types.vectorized_mobject.VGroup` of mobjects to duplicate.
+        Mobject or :class:`~manim.mobject.types.vectorized_mobject.VGroup`
+        of mobjects to duplicate.
     boundary
         Boundary points of the line.
-
-    Returns
-    -------
-        A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
 
     Examples
     --------
@@ -863,7 +858,7 @@ def duplicate_and_rearrange(
 
        from manim import *
        from manim_extensions.chemistry.future_classes.future_classes import (
-           duplicate_and_rearrange,
+           DuplicatedAlongLine,
        )
 
        class DuplicateAlongLine(Scene):
@@ -872,21 +867,21 @@ def duplicate_and_rearrange(
                    RoundedRectangle(corner_radius=0.2).scale(0.4),
                    Circle(radius=0.45),
                )
-               group = duplicate_and_rearrange(source, [LEFT * 4, RIGHT * 4])
+               group = DuplicatedAlongLine(source, [LEFT * 4, RIGHT * 4])
                self.add(group)
     """
-    if isinstance(mobs, VGroup):
-        group = VGroup(*mobs.copy().submobjects, *mobs.copy().submobjects)
-    else:
-        group = VGroup(cast(Any, mobs), cast(Any, mobs))
-    arrange_in_1d_boundary(group, boundary)
-    return group
+
+    def __init__(self, mobs: Mobject, boundary: list[Any] = [LEFT, RIGHT]) -> None:
+        super().__init__()
+        if isinstance(mobs, VGroup):
+            self.add(*mobs.copy().submobjects, *mobs.copy().submobjects)
+        else:
+            self.add(cast(Any, mobs.copy()), cast(Any, mobs.copy()))
+        arrange_in_1d_boundary(self, boundary)
 
 
-def add_over_rectangular_surface(
-    mobtype: Dot = Dot(), amount: int = 10, height: float = 5, width: float = 5
-) -> VGroup:
-    """Randomly distribute 'amount' copies of a mobject over a rectangular area.
+class ScatteredCopies(VGroup):
+    """Randomly distributed copies of a mobject over a rectangular area.
 
     Parameters
     ----------
@@ -899,10 +894,6 @@ def add_over_rectangular_surface(
     width
         Half width of the rectangular area.
 
-    Returns
-    -------
-        A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
-
     Examples
     --------
     .. manim:: DotsOverSurface
@@ -911,31 +902,37 @@ def add_over_rectangular_surface(
        import numpy as np
        from manim import *
        from manim_extensions.chemistry.future_classes.future_classes import (
-           add_over_rectangular_surface,
+           ScatteredCopies,
        )
 
        class DotsOverSurface(Scene):
            def construct(self):
                np.random.seed(42)
-               dots = add_over_rectangular_surface(
+               dots = ScatteredCopies(
                    Dot(radius=0.08, color=YELLOW), amount=24, height=2, width=3
                )
                dots.scale(1.6)
                self.add(dots)
     """
-    group = VGroup()
-    for i in range(amount):
-        group.add(
-            mobtype.copy().shift(
-                (
-                    np.random.randint(int(-50 * width), int(50 * width)) / 100,
-                    np.random.randint(int(-50 * height), int(50 * height)) / 100,
-                    0,
+
+    def __init__(
+        self,
+        mobtype: Dot = Dot(),
+        amount: int = 10,
+        height: float = 5,
+        width: float = 5,
+    ) -> None:
+        super().__init__()
+        for _ in range(amount):
+            self.add(
+                mobtype.copy().shift(
+                    (
+                        np.random.randint(int(-50 * width), int(50 * width)) / 100,
+                        np.random.randint(int(-50 * height), int(50 * height)) / 100,
+                        0,
+                    )
                 )
             )
-        )
-
-    return group
 
 
 def get_element_by_data(element: dict[Any, Any]) -> Element:
@@ -1167,8 +1164,8 @@ def inverse_linear(t: float, inflection: float = 10.0) -> float:
     return 1 - t
 
 
-def concat_mobjects(mobject: Mobject, concats: int, buff: float = 0) -> VGroup:
-    """Create a :class:`~manim.mobject.types.vectorized_mobject.VGroup` by concatenating copies of mobject alternating left and right.
+class ConcatenatedMobjects(VGroup):
+    """Copies of a mobject concatenated left and right.
 
     Parameters
     ----------
@@ -1179,10 +1176,6 @@ def concat_mobjects(mobject: Mobject, concats: int, buff: float = 0) -> VGroup:
     buff
         Buffer between the concatenated mobjects.
 
-    Returns
-    -------
-        A :class:`~manim.mobject.types.vectorized_mobject.VGroup` instance representing the result.
-
     Examples
     --------
     .. manim:: ConcatenatedTriangles
@@ -1190,21 +1183,21 @@ def concat_mobjects(mobject: Mobject, concats: int, buff: float = 0) -> VGroup:
 
        from manim import *
        from manim_extensions.chemistry.future_classes.future_classes import (
-           concat_mobjects,
+           ConcatenatedMobjects,
        )
 
        class ConcatenatedTriangles(Scene):
            def construct(self):
                shape = Triangle(color=TEAL).scale(0.5)
-               chain = concat_mobjects(shape, concats=4, buff=0.2)
+               chain = ConcatenatedMobjects(shape, concats=4, buff=0.2)
                chain.scale(2.5)
                self.add(chain)
     """
-    group = VGroup(cast(Any, mobject.copy()))
-    sides = {0: RIGHT, 1: LEFT}
-    for i in range(concats):
-        side = sides[i % 2]
-        concat_mobject = mobject.copy().next_to(group, side, buff=buff)
-        group.add(cast(Any, concat_mobject))
 
-    return group
+    def __init__(self, mobject: Mobject, concats: int, buff: float = 0) -> None:
+        super().__init__(cast(Any, mobject.copy()))
+        sides = {0: RIGHT, 1: LEFT}
+        for i in range(concats):
+            side = sides[i % 2]
+            concat_mobject = mobject.copy().next_to(self, side, buff=buff)
+            self.add(cast(Any, concat_mobject))

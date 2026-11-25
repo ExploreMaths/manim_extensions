@@ -14,12 +14,15 @@ Classes
 
    ~future_classes.BatterySchema
    ~future_classes.BatterySide
+   ~future_classes.ConcatenatedMobjects
+   ~future_classes.DuplicatedAlongLine
    ~future_classes.Electron
    ~future_classes.Element
    ~future_classes.ElementFrame
    ~future_classes.Hole
    ~future_classes.MOSFETTransistor
    ~future_classes.NPNTransistor
+   ~future_classes.ScatteredCopies
 
 Usage
 -----
