@@ -2255,11 +2255,16 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">reversed_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Whether the arrow points backwards.</span>
+<span class="w">        </span><span class="sd">"""Set whether the arrow points backwards.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        rev</span>
+<span class="sd">            New reversed state.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The current reversed state.</span>
+<span class="sd">            The arrow is flipped when the state changes.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__reversed_arrow</span>
 

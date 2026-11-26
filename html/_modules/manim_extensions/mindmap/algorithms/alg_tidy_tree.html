@@ -1483,8 +1483,7 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
-<span class="sd">"""</span>
-<span class="sd">Non-layered Tidy Tree :class:`~manim_extensions.mindmap.algorithms.layout.Layout` Algorithm (Python Implementation).</span>
+<span class="sd">"""Non-layered Tidy Tree :class:`~manim_extensions.mindmap.algorithms.layout.Layout` Algorithm (Python Implementation).</span>
 <span class="sd">Used to compute node positions for tree structures.</span>
 
 <span class="sd">Algorithm reference: "Improving Walker's Algorithm to Run in Linear Time"</span>
@@ -1534,40 +1533,58 @@
 <span class="sd">    """</span>
 
     <span class="c1"># Reference to the original node</span>
+    <span class="c1">#: Payload carried by this layout node.</span>
     <span class="n">node</span><span class="p">:</span> <span class="nb">object</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="c1"># Basic attributes</span>
+    <span class="c1">#: Horizontal layout coordinate.</span>
     <span class="n">x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="c1">#: Vertical layout coordinate.</span>
     <span class="n">y</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="c1">#: Measured width of the wrapped tree.</span>
     <span class="n">width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="c1">#: Measured height of the wrapped tree.</span>
     <span class="n">height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="c1">#: Depth level of the node.</span>
     <span class="n">level</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># node depth</span>
     <span class="c1"># Children</span>
+    <span class="c1">#: Child nodes in layout order.</span>
     <span class="n">children</span><span class="p">:</span> <span class="s2">"list[WrappedTree]"</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+    <span class="c1">#: Index among sibling nodes.</span>
     <span class="n">child_number</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="c1"># === Core layout attributes ===</span>
+    <span class="c1">#: Preliminary horizontal position before sibling shifts.</span>
     <span class="n">prelim</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="p">(</span>
         <span class="mf">0.0</span>  <span class="c1"># preliminary position of the node relative to its parent, before overlap correction</span>
     <span class="p">)</span>
+    <span class="c1">#: Accumulated offset applied to the whole subtree.</span>
     <span class="n">mod</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>  <span class="c1"># extra shift to apply to the whole subtree rooted at this node</span>
+    <span class="c1">#: Spacing share distributed over later sibling subtrees.</span>
     <span class="n">shift</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>  <span class="c1"># spacing share to distribute over subsequent sibling subtrees</span>
+    <span class="c1">#: Running shift accumulated while threading contours.</span>
     <span class="n">change</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="p">(</span>
         <span class="mf">0.0</span>  <span class="c1"># one-time correction at the end of a distribution chain to eliminate accumulated error</span>
     <span class="p">)</span>
 
     <span class="c1"># === Subtree contour tracking for overlap detection ===</span>
+    <span class="c1">#: Leftmost contour extreme of the subtree.</span>
     <span class="n">extreme_left</span><span class="p">:</span> <span class="s2">"WrappedTree | None"</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># leftmost extreme node</span>
+    <span class="c1">#: Rightmost contour extreme of the subtree.</span>
     <span class="n">extreme_right</span><span class="p">:</span> <span class="s2">"WrappedTree | None"</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># rightmost extreme node</span>
+    <span class="c1">#: Accumulated modifier at the left contour extreme.</span>
     <span class="n">mod_sum_extreme_left</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="p">(</span>
         <span class="mf">0.0</span>  <span class="c1"># sum of mod values along the path from leftmost extreme to root</span>
     <span class="p">)</span>
+    <span class="c1">#: Accumulated modifier at the right contour extreme.</span>
     <span class="n">mod_sum_extreme_right</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="p">(</span>
         <span class="mf">0.0</span>  <span class="c1"># sum of mod values along the path from rightmost extreme to root</span>
     <span class="p">)</span>
 
     <span class="c1"># Threads for contour traversal: when two subtrees have different heights,</span>
     <span class="c1"># the shorter subtree links to a neighbouring subtree's contour when exhausted</span>
+    <span class="c1">#: Thread pointer to the next node on the left contour.</span>
     <span class="n">thread_left</span><span class="p">:</span> <span class="s2">"WrappedTree | None"</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: Thread pointer to the next node on the right contour.</span>
     <span class="n">thread_right</span><span class="p">:</span> <span class="s2">"WrappedTree | None"</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="WrappedTree.from_node">
@@ -1655,8 +1672,11 @@
 <span class="sd">               self.add(entries, arrows, caption)</span>
 <span class="sd">    """</span>
 
+    <span class="c1">#: Low end of the subtree's right contour.</span>
     <span class="n">low</span><span class="p">:</span> <span class="nb">float</span>  <span class="c1"># low end of the subtree's right contour in the orthogonal direction</span>
+    <span class="c1">#: Index of the subtree among its siblings.</span>
     <span class="n">index</span><span class="p">:</span> <span class="nb">int</span>  <span class="c1"># index of the subtree among its siblings</span>
+    <span class="c1">#: Next subtree on the contour.</span>
     <span class="n">nxt</span><span class="p">:</span> <span class="s2">"IYLNode | None"</span> <span class="o">=</span> <span class="p">(</span>
         <span class="kc">None</span>  <span class="c1"># next node in the list (with a strictly larger low value)</span>
     <span class="p">)</span></div>
@@ -1678,8 +1698,8 @@
 <span class="sd">        If ``True``, shifts ``y``; otherwise shifts ``x``.</span>
 
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
 <span class="sd">            The resulting value.</span>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="n">is_horizontal</span><span class="p">:</span>
@@ -1727,8 +1747,8 @@
 <span class="sd">        Whether the layout is horizontal.</span>
 
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
 <span class="sd">            The resulting value.</span>
 <span class="sd">    """</span>
     <span class="n">min_val</span> <span class="o">=</span> <span class="n">get_min</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">is_horizontal</span><span class="p">)</span>
@@ -1754,8 +1774,8 @@
 <span class="sd">        Whether the layout is horizontal.</span>
 
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
 <span class="sd">            The resulting value.</span>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="n">is_horizontal</span><span class="p">:</span>
@@ -1787,8 +1807,8 @@
 <span class="sd">        Spacing between adjacent layers.</span>
 
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
 <span class="sd">            The resulting value.</span>
 <span class="sd">    """</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">parent</span> <span class="o">:=</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">node</span><span class="p">)</span><span class="o">.</span><span class="n">parent</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -1901,7 +1921,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The root node of the completed layout."""</span>
+<span class="sd">            The root node of the completed layout.</span>
+<span class="sd">        """</span>
         <span class="n">layer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">direction</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">level_spacing</span><span class="p">)</span>
         <span class="n">wt</span> <span class="o">=</span> <span class="n">WrappedTree</span><span class="o">.</span><span class="n">from_node</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_horizontal</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">wt</span> <span class="o">=</span> <span class="n">wt</span>
@@ -1923,8 +1944,8 @@
 <span class="sd">            The root of the subtree to process.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">child_number</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -1959,8 +1980,8 @@
 <span class="sd">            The subtree root.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">child_number</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -2004,8 +2025,7 @@
 <div class="viewcode-block" id="TidyTreeLayout.separate">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_tidy_tree.TidyTreeLayout.html#manim_extensions.mindmap.algorithms.alg_tidy_tree.TidyTreeLayout.separate">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">separate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="n">WrappedTree</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">ih</span><span class="p">:</span> <span class="n">IYLNode</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Core of the algorithm: separate the i-th subtree from previous subtrees to avoid overlap.</span>
+<span class="w">        </span><span class="sd">"""Core of the algorithm: separate the i-th subtree from previous subtrees to avoid overlap.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2017,8 +2037,8 @@
 <span class="sd">            Preceding subtrees whose right contour may still collide with the current subtree.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">sr</span><span class="p">:</span> <span class="n">WrappedTree</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span>
@@ -2085,8 +2105,8 @@
 <span class="sd">            The shift distance.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">mod</span> <span class="o">+=</span> <span class="n">dist</span>
@@ -2112,8 +2132,8 @@
 <span class="sd">            The total extra distance to distribute.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">si</span> <span class="o">!=</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
@@ -2195,8 +2215,8 @@
 <span class="sd">            The accumulated modifier sum along the left contour.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">li</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">extreme_left</span>
@@ -2227,8 +2247,8 @@
 <span class="sd">            The accumulated modifier sum along the right contour.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">ri</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">children</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">extreme_right</span>
@@ -2251,8 +2271,8 @@
 <span class="sd">            The subtree root.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">t</span><span class="o">.</span><span class="n">prelim</span> <span class="o">=</span> <span class="p">(</span>
@@ -2276,8 +2296,8 @@
 <span class="sd">            Sum of all ancestor mod values from the root to the current node.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">modsum</span> <span class="o">+=</span> <span class="n">t</span><span class="o">.</span><span class="n">mod</span>
@@ -2302,8 +2322,8 @@
 <span class="sd">            The parent node whose children are updated.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">d</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span>

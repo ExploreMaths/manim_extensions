@@ -1486,7 +1486,6 @@
 <span class="sd">"""Mindmap base classes for Manim.</span>
 
 <span class="sd">This module provides base classes for mindmap visualizations.</span>
-
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Generator</span>
@@ -1658,6 +1657,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">AbstractMap</span><span class="p">(</span><span class="n">Group</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Abstract base class for mind maps, timelines, etc.</span>
 
+<span class="sd">    .. doc-example-covers: bfs_walker, custom_walker, dfs_walker, get_all_mindmap, get_children, get_connector, get_descendants, get_node, get_node_component, get_submindmap</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    layout_method</span>
@@ -1713,8 +1715,8 @@
 <span class="sd">            The root of the subtree to position.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">pos</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">node</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
@@ -1738,7 +1740,6 @@
 <span class="sd">        ------</span>
 <span class="sd">        NotImplementedError</span>
 <span class="sd">            Always, because subclasses must implement this method.</span>
-
 <span class="sd">        """</span>
         <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
 
@@ -1764,8 +1765,7 @@
 <div class="viewcode-block" id="AbstractMap.get_node">
 <a class="viewcode-back" href="../../../../reference/mindmap/mindmap/base.AbstractMap.html#manim_extensions.mindmap.mindmap.base.AbstractMap.get_node">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_node</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ID</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Group</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Return the VMobject and surrounding rectangle for a node ID.</span>
+<span class="w">        </span><span class="sd">"""Return the VMobject and surrounding rectangle for a node ID.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1786,8 +1786,7 @@
 <div class="viewcode-block" id="AbstractMap.get_text">
 <a class="viewcode-back" href="../../../../reference/mindmap/mindmap/base.AbstractMap.html#manim_extensions.mindmap.mindmap.base.AbstractMap.get_text">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ID</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Return the narration text for a node ID.</span>
+<span class="w">        </span><span class="sd">"""Return the narration text for a node ID.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1808,8 +1807,7 @@
 <div class="viewcode-block" id="AbstractMap.get_connector">
 <a class="viewcode-back" href="../../../../reference/mindmap/mindmap/base.AbstractMap.html#manim_extensions.mindmap.mindmap.base.AbstractMap.get_connector">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_connector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ID</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Line</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Return the connector line for a node ID.</span>
+<span class="w">        </span><span class="sd">"""Return the connector line for a node ID.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1984,8 +1982,7 @@
 <div class="viewcode-block" id="AbstractMap.get_descendants">
 <a class="viewcode-back" href="../../../../reference/mindmap/mindmap/base.AbstractMap.html#manim_extensions.mindmap.mindmap.base.AbstractMap.get_descendants">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_descendants</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ID</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Group</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Return all descendants of the node with the given ID.</span>
+<span class="w">        </span><span class="sd">"""Return all descendants of the node with the given ID.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>

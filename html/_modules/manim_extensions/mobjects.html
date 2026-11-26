@@ -1490,7 +1490,6 @@
 <span class="sd">This module provides small reusable building blocks for common educational and</span>
 <span class="sd">visualisation scenes, including labels, braces, dots, and LaTeX-wrapped</span>
 <span class="sd">objects.</span>
-
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
@@ -1598,7 +1597,6 @@
 <span class="sd">                   tex_to_color_map={"base": BLUE, "height": YELLOW},</span>
 <span class="sd">               ).scale(2)</span>
 <span class="sd">               self.add(formula)</span>
-
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -1735,8 +1733,7 @@
 <div class="viewcode-block" id="LabelDot.get_center">
 <a class="viewcode-back" href="../../reference/basic/mobjects.LabelDot.html#manim_extensions.mobjects.LabelDot.get_center">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_center</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Return the center of the underlying dot.</span>
+<span class="w">        </span><span class="sd">"""Return the center of the underlying dot.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1748,8 +1745,7 @@
 <div class="viewcode-block" id="LabelDot.get_boundary_point">
 <a class="viewcode-back" href="../../reference/basic/mobjects.LabelDot.html#manim_extensions.mobjects.LabelDot.get_boundary_point">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_boundary_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3DLike</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Return a point on the dot boundary in the given direction.</span>
+<span class="w">        </span><span class="sd">"""Return a point on the dot boundary in the given direction.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2314,6 +2310,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">FileTree</span><span class="p">(</span><span class="n">Code</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""An ASCII file tree generated from a nested dictionary.</span>
 
+<span class="sd">    .. doc-example-covers: highlight</span>
+
+
 <span class="sd">    Directories are automatically suffixed with ``/``.  Highlighting is</span>
 <span class="sd">    performed by dynamically slicing each line based on physical coordinates,</span>
 <span class="sd">    compatible with Manim 0.19.1 (spaces have no submobjects).</span>
@@ -2558,6 +2557,9 @@
 <span class="w">    </span><span class="sd">"""An :class:`~manim.mobject.types.image_mobject.ImageMobject` that plays a video</span>
 <span class="sd">    file via OpenCV.</span>
 
+<span class="sd">    .. doc-example-covers: pause, play, reset, resume, seek, stop</span>
+
+
 <span class="sd">    The video can be looped, rate-changed, and controlled with ``play``,</span>
 <span class="sd">    ``pause``, ``stop``, ``seek``, and ``reset``.</span>
 
@@ -2649,8 +2651,8 @@
 <span class="sd">            Elapsed time (in seconds) since the last frame.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">cv2</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"video"</span><span class="p">,</span> <span class="s2">"cv2"</span><span class="p">)</span>
@@ -2949,6 +2951,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">Trail</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""A :class:`~manim.mobject.types.vectorized_mobject.VGroup` tracing a fading trail behind a mobject.</span>
 
+<span class="sd">    .. doc-example-covers: create_path</span>
+
+
 <span class="sd">    Wraps ``mob``; once :meth:`~manim_extensions.mobjects.Trail.start_trace` is called, line segments are appended following</span>
 <span class="sd">    the mobject's centre and older segments fade out according to `rate_func`.</span>
 
@@ -3024,8 +3029,8 @@
 <span class="sd">            Minimum displacement required to record a new point.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">pos_new</span> <span class="o">=</span> <span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>
@@ -3076,8 +3081,8 @@
 <span class="sd">            with a custom shape).</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">trail</span><span class="o">.</span><span class="n">become</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">create_path</span><span class="p">())</span></div>

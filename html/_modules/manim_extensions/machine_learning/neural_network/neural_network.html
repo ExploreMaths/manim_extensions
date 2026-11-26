@@ -1538,6 +1538,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">NeuralNetwork</span><span class="p">(</span><span class="n">Group</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Neural Network Visualization Container Class.</span>
 
+<span class="sd">    .. doc-example-covers: make_forward_pass_animation</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    input_layers</span>
@@ -1702,8 +1705,8 @@
 <span class="sd">            Direction the connection arc bends.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">assert</span> <span class="n">connection_style</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">"default"</span><span class="p">]</span>
@@ -1732,8 +1735,8 @@
 <span class="w">        </span><span class="sd">"""Constructs each of the input layers in context</span>
 <span class="sd">        of their adjacent layers..</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">prev_layer</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1778,7 +1781,6 @@
 <span class="sd">        ------</span>
 <span class="sd">        Exception</span>
 <span class="sd">            If an unsupported layout mode is requested.</span>
-
 <span class="sd">        """</span>
         <span class="c1"># Default: Linear layout</span>
         <span class="k">for</span> <span class="n">layer_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_layers</span><span class="p">)):</span>
@@ -2167,8 +2169,8 @@
 <span class="sd">            sub-neural networks from inheriting the parent z-index.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="c1"># Setting family=False stops sub-neural networks from inheriting parent z_index</span>
@@ -2193,8 +2195,8 @@
 <span class="sd">            Additional keyword arguments forwarded to each layer's ``scale``.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">prior_center</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>

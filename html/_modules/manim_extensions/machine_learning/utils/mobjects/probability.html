@@ -1500,6 +1500,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">GaussianDistribution</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Object for drawing a Gaussian distribution.</span>
 
+<span class="sd">    .. doc-example-covers: construct_gaussian_distribution, construct_simple_gaussian_ellipse</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    axes</span>
@@ -1604,9 +1607,7 @@
         <span class="k">def</span><span class="w"> </span><span class="nf">eigsorted</span><span class="p">(</span>
             <span class="n">cov</span><span class="p">:</span> <span class="n">MatrixMN</span><span class="p">,</span>
         <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">VectorND</span><span class="p">,</span> <span class="n">MatrixMN</span><span class="p">]:</span>
-<span class="w">            </span><span class="sd">"""</span>
-<span class="sd">            Eigenvalues and eigenvectors of the covariance matrix.</span>
-<span class="sd">            """</span>
+<span class="w">            </span><span class="sd">"""Eigenvalues and eigenvectors of the covariance matrix."""</span>
             <span class="n">vals</span><span class="p">,</span> <span class="n">vecs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eigh</span><span class="p">(</span><span class="n">cov</span><span class="p">)</span>
             <span class="n">order</span> <span class="o">=</span> <span class="n">vals</span><span class="o">.</span><span class="n">argsort</span><span class="p">()[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
             <span class="k">return</span> <span class="n">vals</span><span class="p">[</span><span class="n">order</span><span class="p">],</span> <span class="n">vecs</span><span class="p">[:,</span> <span class="n">order</span><span class="p">]</span>

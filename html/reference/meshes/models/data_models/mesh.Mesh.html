@@ -2133,15 +2133,14 @@ current mesh is not changed.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>scaling</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Scale factor applied to every vertex.</p></li>
-<li><p><strong>about_point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – <p>If given, the scaling is performed around this point.</p>
-<blockquote>
-<div><p>The resulting value.</p>
-</div></blockquote>
-</p></li>
+<li><p><strong>about_point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – If given, the scaling is performed around this point.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2155,15 +2154,14 @@ current mesh is not changed.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>factor</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Stretch factor.</p></li>
 <li><p><strong>dim</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the dimension to stretch.</p></li>
-<li><p><strong>about_point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – <p>If given, the stretch is performed around this point.</p>
-<blockquote>
-<div><p>The resulting value.</p>
-</div></blockquote>
-</p></li>
+<li><p><strong>about_point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – If given, the stretch is performed around this point.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2369,14 +2367,13 @@ duplicates are removed.</p></li>
 <dd><p>Remove duplicate vertices and update all face references.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>precision</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – <p>Decimal places used when comparing vertices; i.e. equality up to <code class="docutils literal notranslate"><span class="pre">1e-10</span></code>.</p>
-<blockquote>
-<div><p>The resulting value.</p>
-</div></blockquote>
-</p>
+<dd class="field-odd"><p><strong>precision</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Decimal places used when comparing vertices; i.e. equality up to <code class="docutils literal notranslate"><span class="pre">1e-10</span></code>.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2388,14 +2385,12 @@ duplicates are removed.</p></li>
 <p>Faces are considered equal when their vertex indices match
 up to a cyclic permutation (rolling order), not necessarily
 at the exact same positions.</p>
-<blockquote>
-<div><blockquote>
-<div><p>The resulting value.</p>
-</div></blockquote>
-</div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2406,14 +2401,12 @@ at the exact same positions.</p>
 <dd><p>Remove duplicate parts from the mesh.</p>
 <p>Parts are considered equal when they contain the same face indices
 regardless of their order.</p>
-<blockquote>
-<div><blockquote>
-<div><p>The resulting value.</p>
-</div></blockquote>
-</div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -2424,17 +2417,14 @@ regardless of their order.</p>
 <dd><p>Remove all duplicate vertices, faces and parts.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>precision</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – <dl class="simple">
-<dt>Decimal places passed to <a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicate_vertices" title="manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicate_vertices"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_duplicate_vertices()</span></code></a></dt><dd><p>.</p>
-</dd>
-</dl>
-<blockquote>
-<div><p>The resulting value.</p>
-</div></blockquote>
-</p>
+<dd class="field-odd"><p><strong>precision</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Decimal places passed to <a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicate_vertices" title="manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicate_vertices"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_duplicate_vertices()</span></code></a>
+.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
 </dd>
 </dl>
 </dd></dl>

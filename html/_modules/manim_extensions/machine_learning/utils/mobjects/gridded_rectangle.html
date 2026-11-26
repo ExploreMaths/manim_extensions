@@ -1507,6 +1507,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">GriddedRectangle</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Rectangle object with grid lines.</span>
 
+<span class="sd">    .. doc-example-covers: make_grid_lines</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    color</span>
@@ -1724,8 +1727,7 @@
 <div class="viewcode-block" id="GriddedRectangle.get_center">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/utils/mobjects/gridded_rectangle.GriddedRectangle.html#manim_extensions.machine_learning.utils.mobjects.gridded_rectangle.GriddedRectangle.get_center">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_center</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Return the center point of the rectangle.</span>
+<span class="w">        </span><span class="sd">"""Return the center point of the rectangle.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1737,8 +1739,7 @@
 <div class="viewcode-block" id="GriddedRectangle.get_normal_vector">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/utils/mobjects/gridded_rectangle.GriddedRectangle.html#manim_extensions.machine_learning.utils.mobjects.gridded_rectangle.GriddedRectangle.get_normal_vector">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_normal_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Return the out-of-plane normal vector of the rectangle.</span>
+<span class="w">        </span><span class="sd">"""Return the out-of-plane normal vector of the rectangle.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1766,8 +1767,8 @@
 <span class="sd">            Color to apply to the rectangle border and fill.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">color</span> <span class="o">=</span> <span class="n">color</span>

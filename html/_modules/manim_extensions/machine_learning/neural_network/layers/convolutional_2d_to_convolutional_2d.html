@@ -1560,6 +1560,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">Filters</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Group for showing a collection of filters connecting two layers.</span>
 
+<span class="sd">    .. doc-example-covers: make_connective_lines, make_input_feature_map_rectangles, make_output_feature_map_rectangles</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    input_layer</span>
@@ -1848,8 +1851,7 @@
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/convolutional_2d_to_convolutional_2d.Filters.html#manim_extensions.machine_learning.neural_network.layers.convolutional_2d_to_convolutional_2d.Filters._create_override">[docs]</a>
     <span class="nd">@override_animation</span><span class="p">(</span><span class="n">Create</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_create_override</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        NOTE This create override animation</span>
+<span class="w">        </span><span class="sd">"""NOTE This create override animation</span>
 <span class="sd">        is a workaround to make sure that the filter</span>
 <span class="sd">        does not show up in the scene before the create animation.</span>
 
@@ -1874,7 +1876,8 @@
 
 <span class="sd">            Returns</span>
 <span class="sd">            -------</span>
-<span class="sd">                The mobject with its filter rectangles and connective lines added."""</span>
+<span class="sd">                The mobject with its filter rectangles and connective lines added.</span>
+<span class="sd">            """</span>
             <span class="nb">object</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">input_rectangles</span><span class="p">)</span>
             <span class="nb">object</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">connective_lines</span><span class="p">)</span>
             <span class="nb">object</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">output_rectangles</span><span class="p">)</span>
@@ -2262,8 +2265,8 @@
 <span class="sd">            Forwarded to :meth:`~manim.mobject.mobject.Mobject.scale`.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cell_width</span> <span class="o">*=</span> <span class="n">scale_factor</span>

@@ -1483,8 +1483,7 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
-<span class="sd">"""</span>
-<span class="sd">Catalog / organisation-chart layout algorithm - Python implementation.</span>
+<span class="sd">"""Catalog / organisation-chart layout algorithm - Python implementation.</span>
 
 <span class="sd">Layout characteristics:</span>
 
@@ -1561,16 +1560,25 @@
 <span class="sd">               self.add(boxes)</span>
 <span class="sd">    """</span>
 
+    <span class="c1">#: Payload carried by this catalog node.</span>
     <span class="n">data</span><span class="p">:</span> <span class="nb">object</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: Measured width of the catalog node.</span>
     <span class="n">width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="c1">#: Measured height of the catalog node.</span>
     <span class="n">height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="c1">#: Child nodes in layout order.</span>
     <span class="n">children</span><span class="p">:</span> <span class="s2">"list[CatalogNode]"</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
 
     <span class="c1"># Layout results</span>
+    <span class="c1">#: Left coordinate within the catalog layout.</span>
     <span class="n">left</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="c1">#: Top coordinate within the catalog layout.</span>
     <span class="n">top</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="c1">#: Depth layer assigned to the node.</span>
     <span class="n">layer_index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1">#: Parent node, or None for the root.</span>
     <span class="n">parent</span><span class="p">:</span> <span class="s2">"CatalogNode | None"</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: Width reserved for the child subtree.</span>
     <span class="n">children_area_width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
 
 <div class="viewcode-block" id="CatalogNode.from_data">
@@ -1709,8 +1717,8 @@
 <span class="sd">            Amount added to each node coordinate.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
@@ -1734,8 +1742,8 @@
 <span class="sd">            Mapping of attribute names to offset values.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">nodes</span><span class="p">:</span>
@@ -1771,8 +1779,8 @@
 <span class="sd">            Position of the node within its parent children list.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">pre_cb</span><span class="p">:</span>
@@ -1864,8 +1872,8 @@
 <span class="sd">            The horizontal offset to apply.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">parent</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -1894,8 +1902,8 @@
 <span class="sd">            The vertical offset to apply.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">parent</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">node</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">layer_index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># parent is not the root</span>
@@ -1915,12 +1923,11 @@
 <div class="viewcode-block" id="CatalogLayout._compute_base_value">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_catalog.CatalogLayout.html#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._compute_base_value">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_compute_base_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Step 1: create nodes, set the root position, and set the initial top of second-level nodes.</span>
+<span class="w">        </span><span class="sd">"""Step 1: create nodes, set the root position, and set the initial top of second-level nodes.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
 
@@ -1972,15 +1979,14 @@
 <div class="viewcode-block" id="CatalogLayout._compute_left_top_value">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_catalog.CatalogLayout.html#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._compute_left_top_value">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_compute_left_top_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Step 2: compute left and top of child nodes.</span>
+<span class="w">        </span><span class="sd">"""Step 2: compute left and top of child nodes.</span>
 
 <span class="sd">        - Children of the root are arranged horizontally</span>
 <span class="sd">        - Children of non-root nodes are arranged vertically.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
 
@@ -2023,16 +2029,15 @@
 <div class="viewcode-block" id="CatalogLayout._adjust_left_top_value">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_catalog.CatalogLayout.html#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._adjust_left_top_value">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_adjust_left_top_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Step 3: adjust positions (handle subtree width/height offsets).</span>
+<span class="w">        </span><span class="sd">"""Step 3: adjust positions (handle subtree width/height offsets).</span>
 
 <span class="sd">        - Pre-order: for second-level nodes, if their subtree width exceeds their own width, shift following siblings</span>
 <span class="sd">        - Pre-order: for non-root nodes with children, adjust vertical offset</span>
 <span class="sd">        - Post-order: for the root, shift all children horizontally to centre the whole subtree.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
 

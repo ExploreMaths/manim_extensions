@@ -1547,6 +1547,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">ManimMesh</span><span class="p">(</span><span class="n">Group</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ConvertToOpenGL</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""another :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh` implementation, a bit faster + looks better.</span>
 
+<span class="sd">    .. doc-example-covers: add_face, get_edge, get_face, get_vertex, remove_face, setup_edges, setup_faces, setup_vertices</span>
+
+
 <span class="sd">    inspired by manim class</span>
 <span class="sd">    :class:`~manim.mobject.three_d.three_dimensions.Surface`</span>
 
@@ -1913,8 +1916,8 @@
 <span class="sd">            The scene in which the action is performed.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">add_vertices</span><span class="p">(</span><span class="n">new_vertices</span><span class="p">)</span>
@@ -1940,8 +1943,8 @@
 <span class="sd">            New position for the vertex (2-D or 3-D coordinates).</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="c1"># update mesh</span>
@@ -1975,8 +1978,8 @@
 <span class="sd">            A pair of vertex indices defining the edge to update.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_edge</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">get_edge_index</span><span class="p">(</span><span class="n">edge</span><span class="p">))</span>
@@ -2042,8 +2045,8 @@
 <span class="sd">            One or more displacement vectors to apply.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">total_shift</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">vectors</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
@@ -2066,8 +2069,8 @@
 <span class="sd">            Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.scale`.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">about_point</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mesh_center</span><span class="p">()</span>
@@ -2098,7 +2101,6 @@
 <span class="sd">        ------</span>
 <span class="sd">        LookupError</span>
 <span class="sd">            If ``dim`` is greater than or equal to ``self.mesh.dim``.</span>
-
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">dim</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">dim</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">LookupError</span><span class="p">(</span><span class="s2">"dim must lower than ManimMesh.mesh.dim!"</span><span class="p">)</span>
@@ -2148,8 +2150,8 @@
 <span class="sd">            Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.rotate`.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">axis_array</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
@@ -2205,7 +2207,7 @@
 <span class="sd">            :meth:`~manim.mobject.mobject.Mobject.flip`; unused here.</span>
 
 <span class="sd">        Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">axis_array</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">axis</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
@@ -2247,8 +2249,8 @@
 <span class="sd">            May include ``shift_vertex_runtime`` (animation duration in seconds).</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">start</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">vertices</span><span class="p">[</span><span class="n">vertex_idx</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
@@ -2289,8 +2291,8 @@
 <span class="sd">            May include ``shift_vertices_runtime`` (animation duration in seconds).</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">start</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">vertices</span><span class="p">)</span>
@@ -2343,7 +2345,6 @@
 <span class="sd">        ------</span>
 <span class="sd">        InvalidShapeException</span>
 <span class="sd">            If ``new_positions`` does not have the same length as the vertex list.</span>
-
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">new_positions</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">vertices</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">InvalidShapeException</span><span class="p">(</span>
@@ -2380,7 +2381,6 @@
 <span class="sd">        ------</span>
 <span class="sd">        InvalidMeshDimensionsException</span>
 <span class="sd">            If ``pos`` has the wrong dimensionality.</span>
-
 <span class="sd">        """</span>
         <span class="c1"># expect pos and curr_pos / mesh.dim to have the same dimensions</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">mesh</span><span class="o">.</span><span class="n">dim</span> <span class="o">!=</span> <span class="nb">len</span><span class="p">(</span><span class="n">pos</span><span class="p">):</span>
@@ -2419,8 +2419,8 @@
 <span class="sd">            Forwarded to :meth:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.move_vertices_to`.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="c1"># to be able to show the movement, the update needs to be calculated on a dummy mesh first</span>
@@ -2437,6 +2437,9 @@
 <a class="viewcode-back" href="../../../../../reference/meshes/models/manim_models/basic_mesh.Manim2DMesh.html#manim_extensions.meshes.models.manim_models.basic_mesh.Manim2DMesh">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Manim2DMesh</span><span class="p">(</span><span class="n">ManimMesh</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ConvertToOpenGL</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""'2D' mesh implementation.</span>
+
+<span class="sd">    .. doc-example-covers: setup_vertices</span>
+
 
 <span class="sd">    printing Vertices in Manim is currently not supported for 2D vertices. Therefore, while printing the appropriate</span>
 <span class="sd">    3D-vertices are used. Everything else should accept plain 2D values. Therefore, this :class:`~manim_extensions.meshes.models.manim_models.basic_mesh.Manim2DMesh` class should</span>

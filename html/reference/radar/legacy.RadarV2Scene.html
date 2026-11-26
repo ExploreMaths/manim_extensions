@@ -1501,17 +1501,20 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.legacy.RadarV2Scene.style">
 <span class="sig-name descname"><span class="pre">style</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'neo'</span></span></span><a class="headerlink" href="#manim_extensions.radar.legacy.RadarV2Scene.style" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>2.0 chart style preset.</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.legacy.RadarV2Scene.theme">
 <span class="sig-name descname"><span class="pre">theme</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'midnight'</span></span></span><a class="headerlink" href="#manim_extensions.radar.legacy.RadarV2Scene.theme" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>2.0 chart theme preset.</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.radar.legacy.RadarV2Scene.title">
-<span class="sig-name descname"><span class="pre">title</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'六维能力</span> <span class="pre">·</span> <span class="pre">雷达图鉴'</span></span></span><a class="headerlink" href="#manim_extensions.radar.legacy.RadarV2Scene.title" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<span class="sig-name descname"><span class="pre">title</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Six-Axis</span> <span class="pre">Capability</span> <span class="pre">·</span> <span class="pre">Radar</span> <span class="pre">Atlas'</span></span></span><a class="headerlink" href="#manim_extensions.radar.legacy.RadarV2Scene.title" title="Link to this definition">¶</a></dt>
+<dd><p>Default title shown above the 2.0 chart.</p>
+</dd></dl>
 
 <p class="rubric">Examples</p>
 <div id="radarv2gallery" class="admonition admonition-manim-example">
@@ -1521,7 +1524,7 @@
     controls
     loop
     autoplay
-    src="./RadarV2Gallery-7a115683.mp4">
+    src="./RadarV2Gallery-ff7964a0.mp4">
 </video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.chart</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarChart</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.legacy</span><span class="w"> </span><span class="kn">import</span> <span class="n">replica_datasets</span>
@@ -1532,7 +1535,7 @@
             <span class="n">replica_datasets</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span>
             <span class="n">style</span><span class="o">=</span><span class="s2">"neo"</span><span class="p">,</span>
             <span class="n">theme</span><span class="o">=</span><span class="s2">"midnight"</span><span class="p">,</span>
-            <span class="n">title</span><span class="o">=</span><span class="s2">"六维能力 · 雷达图鉴"</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">"Six-Axis Capability · Radar Atlas"</span><span class="p">,</span>
         <span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Create</span><span class="p">(</span><span class="n">chart</span><span class="p">))</span>
 </pre></div>

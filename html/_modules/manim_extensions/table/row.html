@@ -1485,7 +1485,6 @@
 <span class="sd">""":class:`~manim_extensions.table.row.Row` class for Manim tables.</span>
 
 <span class="sd">This module provides the :class:`~manim_extensions.table.row.Row` class for table visualizations.</span>
-
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Iterator</span>
@@ -1498,8 +1497,7 @@
 <div class="viewcode-block" id="Row">
 <a class="viewcode-back" href="../../../reference/table/row.Row.html#manim_extensions.table.row.Row">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Row</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    A row of cells in a table.</span>
+<span class="w">    </span><span class="sd">"""A row of cells in a table.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1595,31 +1593,31 @@
 
     <span class="nd">@overload</span>  <span class="c1"># type: ignore[override]</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Cell</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Return the cell at the given index.</span>
+<span class="w">        </span><span class="sd">"""Return a cell or a slice of cells.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        index</span>
-<span class="sd">            The cell index.</span>
+<span class="sd">            The cell index or slice.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The selected cell.</span>
+<span class="sd">            The selected cell or list of cells.</span>
 <span class="sd">        """</span>
         <span class="o">...</span>
 
     <span class="nd">@overload</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">slice</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Cell</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">"""Return the cells selected by the slice.</span>
+<span class="w">        </span><span class="sd">"""Return a cell or a slice of cells.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        index</span>
-<span class="sd">            The cell slice.</span>
+<span class="sd">            The cell index or slice.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The selected cells.</span>
+<span class="sd">            The selected cell or list of cells.</span>
 <span class="sd">        """</span>
         <span class="o">...</span>
 

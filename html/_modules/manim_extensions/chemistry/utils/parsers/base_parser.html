@@ -1485,7 +1485,6 @@
 <span class="sd">"""Base parser class for chemical file formats.</span>
 
 <span class="sd">This module provides the :class:`~manim_extensions.chemistry.utils.parsers.base_parser.BaseParser` abstract class for parsing chemical files.</span>
-
 <span class="sd">"""</span>
 
 <span class="c1"># unlinked-class-ok: Molecule</span>
@@ -1576,8 +1575,7 @@
     <span class="nd">@staticmethod</span>
     <span class="nd">@abstractmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">read_file</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="n">FilePath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Reads the file and converts it to a string.</span>
+<span class="w">        </span><span class="sd">"""Reads the file and converts it to a string.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1626,8 +1624,7 @@
 <div class="viewcode-block" id="BaseParser.parse_file_data">
 <a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/base_parser.BaseParser.html#manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.parse_file_data">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">parse_file_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ParsedData</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Receives the file data as a string and uses the string_parser.</span>
+<span class="w">        </span><span class="sd">"""Receives the file data as a string and uses the string_parser.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1638,8 +1635,7 @@
 
     <span class="nd">@property</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">molecule_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ParsedData</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Molecule data: the parsed atoms data and bonds data.</span>
+<span class="w">        </span><span class="sd">"""Molecule data: the parsed atoms data and bonds data.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>

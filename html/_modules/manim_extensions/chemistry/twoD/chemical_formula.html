@@ -1485,7 +1485,6 @@
 <span class="sd">"""Chemical formula representation for Manim chemistry.</span>
 
 <span class="sd">This module provides the :class:`~manim_extensions.chemistry.twoD.chemical_formula.ChemicalFormula` class for rendering chemical formulas.</span>
-
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
@@ -1509,8 +1508,7 @@
 <div class="viewcode-block" id="ChemicalFormula">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.ChemicalFormula.html#manim_extensions.chemistry.twoD.chemical_formula.ChemicalFormula">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ChemicalFormula</span><span class="p">(</span><span class="n">MarkupText</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    Mostly useful for simple compounds like binary salts or oxoanions.</span>
+<span class="w">    </span><span class="sd">"""Mostly useful for simple compounds like binary salts or oxoanions.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1665,6 +1663,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">NamedFormula</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A chemical formula together with its name.</span>
 
+<span class="sd">    .. doc-example-covers: make_name</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    metal_name</span>
@@ -1749,8 +1750,7 @@
 <div class="viewcode-block" id="NamedFormula.make_name">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.NamedFormula.html#manim_extensions.chemistry.twoD.chemical_formula.NamedFormula.make_name">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MarkupText</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Not all languages use the same naming structure.</span>
+<span class="w">        </span><span class="sd">"""Not all languages use the same naming structure.</span>
 <span class="sd">        For example, in english NaCl is Sodium (Na) Chloride (Cl)</span>
 <span class="sd">        while in spanish it is Cloruro (Cl) Sódico (Na). Reimplement it</span>
 <span class="sd">        as you need.</span>
@@ -1786,8 +1786,7 @@
 <div class="viewcode-block" id="ComplexFormula">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.ComplexFormula.html#manim_extensions.chemistry.twoD.chemical_formula.ComplexFormula">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ComplexFormula</span><span class="p">(</span><span class="n">MarkupText</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    Allows the creation of more complex molecular formulas</span>
+<span class="w">    </span><span class="sd">"""Allows the creation of more complex molecular formulas</span>
 <span class="sd">    using a dictionary. The key is the string to be written</span>
 <span class="sd">    and the value is a color.</span>
 
@@ -1889,8 +1888,7 @@
 <div class="viewcode-block" id="NamedComplexFormula">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/chemical_formula.NamedComplexFormula.html#manim_extensions.chemistry.twoD.chemical_formula.NamedComplexFormula">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NamedComplexFormula</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    Complex formula build with two dicts.</span>
+<span class="w">    </span><span class="sd">"""Complex formula build with two dicts.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1950,7 +1948,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The resulting string."""</span>
+<span class="sd">            The resulting string.</span>
+<span class="sd">        """</span>
         <span class="n">markup</span> <span class="o">=</span> <span class="s2">""</span>
         <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">color</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">name_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">markup</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"&lt;span fgcolor='</span><span class="si">{</span><span class="n">color</span><span class="si">}</span><span class="s2">'&gt;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> &lt;/span&gt;"</span>

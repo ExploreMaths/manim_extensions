@@ -1485,7 +1485,6 @@
 <span class="sd">"""Manim chemistry molecule representation.</span>
 
 <span class="sd">This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule` class for representing molecules.</span>
-
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">cast</span>
@@ -1571,8 +1570,7 @@
         <span class="n">atoms_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
         <span class="n">elements_data_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Uses the atoms dict returned by a parser to add the atoms to the molecule.</span>
+<span class="w">        </span><span class="sd">"""Uses the atoms dict returned by a parser to add the atoms to the molecule.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1591,7 +1589,6 @@
 <span class="sd">        ------</span>
 <span class="sd">        Exception</span>
 <span class="sd">            Raised when ``atoms_dict`` is not a dict of atom data dicts.</span>
-
 <span class="sd">        """</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
@@ -1614,8 +1611,7 @@
 <div class="viewcode-block" id="MCMolecule.add_bonds_from_bonds_dict">
 <a class="viewcode-back" href="../../../../reference/chemistry/manim_chemistry_molecule/mc_molecule.MCMolecule.html#manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule.add_bonds_from_bonds_dict">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_bonds_from_bonds_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bonds_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Uses the bonds dict returned by a parser to add the bonds to the molecule.</span>
+<span class="w">        </span><span class="sd">"""Uses the bonds dict returned by a parser to add the bonds to the molecule.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1631,7 +1627,6 @@
 <span class="sd">        ------</span>
 <span class="sd">        Exception</span>
 <span class="sd">            Raised when ``bonds_dict`` is not a dict of bond data dicts.</span>
-
 <span class="sd">        """</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bonds</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bonds</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
@@ -1651,8 +1646,7 @@
 <div class="viewcode-block" id="MCMolecule.add_connections_between_atoms">
 <a class="viewcode-back" href="../../../../reference/chemistry/manim_chemistry_molecule/mc_molecule.MCMolecule.html#manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule.add_connections_between_atoms">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_connections_between_atoms</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
-<span class="sd">        Uses the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`\ s to add connections between :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`\ s.</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""Uses the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`\ s to add connections between :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`\ s.</span>
 
 
 <span class="sd">        Returns</span>
@@ -1663,7 +1657,6 @@
 <span class="sd">        ------</span>
 <span class="sd">        Exception</span>
 <span class="sd">            Raised when the bonds list is not a list of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`\ s.</span>
-
 <span class="sd">        """</span>
 
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bonds</span> <span class="ow">and</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bonds</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
@@ -1686,8 +1679,7 @@
         <span class="n">ignore_all_hydrogens</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">elements_data_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"MCMolecule"</span><span class="p">:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
-<span class="sd">        Given data with the format provided by a parser, constructs a :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`,</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""Given data with the format provided by a parser, constructs a :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`,</span>
 <span class="sd">        the corresponding :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`\ s and :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`\ s and stablishes the connections between</span>
 <span class="sd">        :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`\ s and bonds.</span>
 
@@ -1736,8 +1728,7 @@
         <span class="n">ignore_all_hydrogens</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">elements_data_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"MCMolecule"</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Returns an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule` given a file path.</span>
+<span class="w">        </span><span class="sd">"""Returns an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule` given a file path.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1780,8 +1771,7 @@
         <span class="n">ignore_all_hydrogens</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">elements_data_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
-<span class="sd">        Similar to ``construct_from_file`` but returning a list of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`\ s.</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""Similar to ``construct_from_file`` but returning a list of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`\ s.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1829,8 +1819,7 @@
         <span class="n">ignore_all_hydrogens</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">elements_data_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"MCMolecule"</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Reads a string and returns a molecule.</span>
+<span class="w">        </span><span class="sd">"""Reads a string and returns a molecule.</span>
 
 <span class="sd">        Supported formats are:</span>
 
@@ -1894,8 +1883,7 @@
         <span class="n">ignore_all_hydrogens</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
         <span class="n">elements_data_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
-<span class="sd">        Similar to ``construct_from_string`` but returning a list of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`\ s.</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""Similar to ``construct_from_string`` but returning a list of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`\ s.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1984,8 +1972,8 @@
 <span class="sd">            Indices of the atoms to remove.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">atoms_to_be_removed</span><span class="p">:</span>

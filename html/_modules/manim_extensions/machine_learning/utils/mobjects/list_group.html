@@ -1496,6 +1496,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">ListGroup</span><span class="p">(</span><span class="n">Mobject</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Indexable Group with traditional list operations.</span>
 
+<span class="sd">    .. doc-example-covers: get, remove, remove_at_index, remove_at_indices</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    layers</span>
@@ -1556,8 +1559,8 @@
 <span class="sd">            Item to insert into the group.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
@@ -1666,8 +1669,8 @@
 <span class="sd">            Item to append to the end of the group.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
@@ -1689,8 +1692,8 @@
 <span class="sd">            Item to store at the given index.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
@@ -1700,8 +1703,7 @@
 <div class="viewcode-block" id="ListGroup.index_of">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/utils/mobjects/list_group.ListGroup.html#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.index_of">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">index_of</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Return the index of an item, or ``-1`` when it is absent.</span>
+<span class="w">        </span><span class="sd">"""Return the index of an item, or ``-1`` when it is absent.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1745,8 +1747,8 @@
 <span class="sd">            Whether to also set the z-index of submobjects.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">items</span><span class="p">:</span>

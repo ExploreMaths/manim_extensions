@@ -1566,8 +1566,8 @@
 <span class="sd">            The child node to add.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">children</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
@@ -1629,8 +1629,7 @@
 <div class="viewcode-block" id="sync_copy_bfs">
 <a class="viewcode-back" href="../../../../reference/mindmap/algorithms/alg_standard.html#manim_extensions.mindmap.algorithms.alg_standard.sync_copy_bfs">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">sync_copy_bfs</span><span class="p">(</span><span class="n">src</span><span class="p">:</span> <span class="n">TreeNode</span><span class="p">,</span> <span class="n">dst</span><span class="p">:</span> <span class="nb">object</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    Synchronously traverse two trees and copy data from src to dst.</span>
+<span class="w">    </span><span class="sd">"""Synchronously traverse two trees and copy data from src to dst.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1649,7 +1648,6 @@
 <span class="sd">    ValueError</span>
 <span class="sd">        Raised when the two trees have mismatched structures: one node is</span>
 <span class="sd">        missing, or two corresponding nodes have different child counts.</span>
-
 <span class="sd">    """</span>
     <span class="n">queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([(</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">)])</span>
 
@@ -1795,7 +1793,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The root node of the completed layout."""</span>
+<span class="sd">            The root node of the completed layout.</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_split</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
             <span class="n">TreeNode</span><span class="p">,</span>
@@ -1836,8 +1835,8 @@
 <span class="sd">            Vertical offset.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">node</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="n">x</span>

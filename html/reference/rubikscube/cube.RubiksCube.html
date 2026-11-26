@@ -1518,7 +1518,8 @@ down-to-up.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.rubikscube.cube.RubiksCube.indices">
 <span class="sig-name descname"><span class="pre">indices</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><span class="pre">ndarray</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{}</span></span></span><a class="headerlink" href="#manim_extensions.rubikscube.cube.RubiksCube.indices" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Maps cubie coordinates to vertex indices in the generated mesh.</p>
+</dd></dl>
 
 <p class="rubric">Examples</p>
 <div id="rubikscubescene" class="admonition admonition-manim-example">
@@ -1690,14 +1691,13 @@ bounding box of all cubie points.</p>
 <dd><p>Apply a colour state to each cube face.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>positions</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – <p>A sequence of face letters specifying the cube state.</p>
-<blockquote>
-<div><p>The resulting value.</p>
-</div></blockquote>
-</p>
+<dd class="field-odd"><p><strong>positions</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – A sequence of face letters specifying the cube state.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1728,15 +1728,14 @@ bounding box of all cubie points.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>position</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – The cubie position along the cube axis.</p></li>
 <li><p><strong>offset</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – The offset metadata used to translate the cubie.</p></li>
-<li><p><strong>tile</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="cubie.Cubie.html#manim_extensions.rubikscube.cubie.Cubie" title="manim_extensions.rubikscube.cubie.Cubie"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cubie</span></code></a></span>) – <p>The cubie to transform.</p>
-<blockquote>
-<div><p>The resulting value.</p>
-</div></blockquote>
-</p></li>
+<li><p><strong>tile</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="cubie.Cubie.html#manim_extensions.rubikscube.cubie.Cubie" title="manim_extensions.rubikscube.cubie.Cubie"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cubie</span></code></a></span>) – The cubie to transform.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1782,14 +1781,13 @@ bounding box of all cubie points.</p>
 <dd><p>Rebuild the cube index mapping from a set of cubies.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>cubies</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></span>) – <p>The cubies whose positions should be reindexed.</p>
-<blockquote>
-<div><p>The resulting value.</p>
-</div></blockquote>
-</p>
+<dd class="field-odd"><p><strong>cubies</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></span>) – The cubies whose positions should be reindexed.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
 </dd>
 </dl>
 </dd></dl>

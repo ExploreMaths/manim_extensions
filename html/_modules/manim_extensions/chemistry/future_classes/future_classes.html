@@ -1485,7 +1485,6 @@
 <span class="sd">"""Future classes for Manim chemistry.</span>
 
 <span class="sd">This module contains experimental classes that may be implemented in the future.</span>
-
 <span class="sd">"""</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -1603,6 +1602,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">Element</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A chemical element with a labeled central atom surrounded by electrons and holes.</span>
 
+<span class="sd">    .. doc-example-covers: arrange_particles, get_electrons, get_holes, get_particles, get_subelectron_holes, make_subelectron_holes</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    element</span>
@@ -1680,7 +1682,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The labeled dot representing the central atom at the element radius."""</span>
+<span class="sd">            The labeled dot representing the central atom at the element radius.</span>
+<span class="sd">        """</span>
         <span class="n">label</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">element_label</span><span class="p">)</span>
         <span class="n">base_radius</span> <span class="o">=</span> <span class="mf">0.4</span> <span class="o">+</span> <span class="nb">max</span><span class="p">(</span><span class="n">label</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">label</span><span class="o">.</span><span class="n">height</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
 
@@ -1751,7 +1754,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The group containing the distributed electrons and holes."""</span>
+<span class="sd">            The group containing the distributed electrons and holes.</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">particles</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">particles</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">particles</span><span class="o">.</span><span class="n">shift</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)))</span>
@@ -1789,7 +1793,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The group of subelectron holes."""</span>
+<span class="sd">            The group of subelectron holes.</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">subelectron_holes_group</span></div>
 </div>
 
@@ -1851,6 +1856,9 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/future_classes/future_classes.NPNTransistor.html#manim_extensions.chemistry.future_classes.future_classes.NPNTransistor">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NPNTransistor</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""An NPN transistor diagram with n and p regions, electrons and holes.</span>
+
+<span class="sd">    .. doc-example-covers: make_particles</span>
+
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1943,6 +1951,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">BatterySchema</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A battery schema attached to a mobject.</span>
 
+<span class="sd">    .. doc-example-covers: corner_schema, horizontal_schema, select_schema</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    mob</span>
@@ -1994,7 +2005,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The start and end positions of the schema for the configured layout."""</span>
+<span class="sd">            The start and end positions of the schema for the configured layout.</span>
+<span class="sd">        """</span>
         <span class="n">options_dict</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">"horizontal"</span><span class="p">:</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mob</span><span class="o">.</span><span class="n">get_left</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">mob</span><span class="o">.</span><span class="n">get_right</span><span class="p">()],</span>
             <span class="s2">"corner"</span><span class="p">:</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">mob</span><span class="o">.</span><span class="n">get_left</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">mob</span><span class="o">.</span><span class="n">get_top</span><span class="p">()],</span>
@@ -2139,7 +2151,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The object itself, for method chaining."""</span>
+<span class="sd">            The object itself, for method chaining.</span>
+<span class="sd">        """</span>
         <span class="n">terminals</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">plus_terminal</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">minus_terminal</span><span class="p">)</span>
 
         <span class="c1"># patched: the positional about_point argument is gone in current manim.</span>
@@ -2154,6 +2167,9 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/future_classes/future_classes.MOSFETTransistor.html#manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">MOSFETTransistor</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A MOSFET transistor diagram with optional holes and battery.</span>
+
+<span class="sd">    .. doc-example-covers: add_battery, add_battery_sides, add_battery_terminals, add_holes, make_main_board, make_n_region</span>
+
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -2211,7 +2227,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The main red rectangular board of the MOSFET transistor."""</span>
+<span class="sd">            The main red rectangular board of the MOSFET transistor.</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">fill_opacity</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">RED</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span></div>
 
 
@@ -2368,7 +2385,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The same instance, allowing calls to be chained."""</span>
+<span class="sd">            The same instance, allowing calls to be chained.</span>
+<span class="sd">        """</span>
         <span class="n">terminal_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">terminal</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>
         <span class="n">anchor_points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">anchor</span><span class="o">.</span><span class="n">get_top</span><span class="p">()</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
         <span class="n">intermediate_point</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">anchor_points</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">terminal_points</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">0</span><span class="p">))</span>
@@ -2396,8 +2414,8 @@
 <span class="sd">        Boundary points of the line.</span>
 
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
 <span class="sd">            The resulting value.</span>
 <span class="sd">    """</span>
     <span class="n">divisions</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mobs</span><span class="p">)</span>

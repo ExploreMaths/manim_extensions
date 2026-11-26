@@ -1522,16 +1522,17 @@
 <span class="sd">               self.add(chart)</span>
 <span class="sd">    """</span>
 
+    <span class="c1">#: Human-readable theme name</span>
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"custom"</span>
-    <span class="c1">#: flat background colour used by :class:`~manim_extensions.radar.backdrop.DeepSpace`</span>
+    <span class="c1">#: Flat background colour used by :class:`~manim_extensions.radar.backdrop.DeepSpace`</span>
     <span class="n">background</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"#070B16"</span>
-    <span class="c1">#: colour of the soft radial glow in the middle of the backdrop</span>
+    <span class="c1">#: Colour of the soft radial glow in the middle of the backdrop</span>
     <span class="n">glow</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"#1A2547"</span>
-    <span class="c1">#: colour of the corner vignette layers</span>
+    <span class="c1">#: Colour of the corner vignette layers</span>
     <span class="n">vignette</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"#03040A"</span>
-    <span class="c1">#: grid (rings) colour</span>
+    <span class="c1">#: Grid (rings) colour</span>
     <span class="n">grid</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"#8B9BB8"</span>
-    <span class="c1">#: colour of each axis spoke / axis label (cycles if fewer than axes)</span>
+    <span class="c1">#: Colour of each axis spoke / axis label (cycles if fewer than axes)</span>
     <span class="n">axis_colors</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
         <span class="s2">"#4DD0E1"</span><span class="p">,</span>
         <span class="s2">"#FFB74D"</span><span class="p">,</span>
@@ -1540,7 +1541,7 @@
         <span class="s2">"#64B5F6"</span><span class="p">,</span>
         <span class="s2">"#CE93D8"</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="c1">#: colours used for datasets that do not carry an explicit ``color``</span>
+    <span class="c1">#: Colours used for datasets that do not carry an explicit ``color``</span>
     <span class="n">palette</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
         <span class="s2">"#17B8BA"</span><span class="p">,</span>
         <span class="s2">"#B89AF0"</span><span class="p">,</span>
@@ -1555,16 +1556,17 @@
         <span class="s2">"#30C8C0"</span><span class="p">,</span>
         <span class="s2">"#D878C8"</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="c1">#: colour of the axis value numbers</span>
+    <span class="c1">#: Colour of the axis value numbers</span>
     <span class="n">number</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"#FFFFFF"</span>
-    <span class="c1">#: gradient used for the header title</span>
+    <span class="c1">#: Gradient used for the header title</span>
     <span class="n">title_gradient</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"#9FB2CC"</span><span class="p">,</span> <span class="s2">"#EAF2FF"</span><span class="p">)</span>
-    <span class="c1">#: gradient used for the dataset nameplate</span>
+    <span class="c1">#: Gradient used for the dataset nameplate</span>
     <span class="n">name_gradient</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"#FFD166"</span><span class="p">,</span> <span class="s2">"#F59E62"</span><span class="p">)</span>
-    <span class="c1">#: double outline colours (``rim`` emphasis)</span>
+    <span class="c1">#: Colour of the outer rim stroke</span>
     <span class="n">rim_outer</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"#FF9C3C"</span>
+    <span class="c1">#: Colour of the inner rim stroke</span>
     <span class="n">rim_inner</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"#3CC8FF"</span>
-    <span class="c1">#: accent colours for the occasional coloured star</span>
+    <span class="c1">#: Accent colours for the occasional coloured star</span>
     <span class="n">star_accents</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
         <span class="s2">"#FFD54F"</span><span class="p">,</span>
         <span class="s2">"#4DD0E1"</span><span class="p">,</span>
@@ -1573,9 +1575,9 @@
         <span class="s2">"#CE93D8"</span><span class="p">,</span>
         <span class="s2">"#FFB74D"</span><span class="p">,</span>
     <span class="p">)</span>
-    <span class="c1">#: chromatic split colours used by the glitch transition</span>
+    <span class="c1">#: Chromatic split colours used by the glitch transition</span>
     <span class="n">glitch_split</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"#FF7A00"</span><span class="p">,</span> <span class="s2">"#00CFFF"</span><span class="p">)</span>
-    <span class="c1">#: how much dataset colours are pushed towards white (0 = none)</span>
+    <span class="c1">#: How much dataset colours are pushed towards white (0 = none)</span>
     <span class="n">brighten</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.08</span>
 
     <span class="c1"># ---- helpers ---------------------------------------------------------</span>

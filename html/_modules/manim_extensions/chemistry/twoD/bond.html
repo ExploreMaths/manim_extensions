@@ -1485,7 +1485,6 @@
 <span class="sd">"""2D bond representation for Manim chemistry.</span>
 
 <span class="sd">This module provides bond classes for representing chemical bonds in 2D.</span>
-
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">cast</span>
@@ -1596,8 +1595,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">subtype</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"complete"</span><span class="p">,</span> <span class="s2">"skeleton"</span><span class="p">,</span> <span class="s2">"over_bond"</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Defines the subtype based on atoms' representations.</span>
+<span class="w">        </span><span class="sd">"""Defines the subtype based on atoms' representations.</span>
 
 <span class="sd">        Input options:</span>
 
@@ -1660,7 +1658,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            A tuple of the results."""</span>
+<span class="sd">            A tuple of the results.</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span></div>
 
 
@@ -1761,8 +1760,7 @@
 <div class="viewcode-block" id="BaseMBondObject.no_subtype">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.no_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">no_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Provide the geometry used when no bond subtype is selected.</span>
+<span class="w">        </span><span class="sd">"""Provide the geometry used when no bond subtype is selected.</span>
 
 <span class="sd">        Bond subclasses override this hook and return their concrete mobject.</span>
 
@@ -1772,8 +1770,8 @@
 <span class="sd">            Direction from the from-atom to the to-atom; derived from the</span>
 <span class="sd">            atoms when omitted.</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">pass</span></div>
@@ -1782,8 +1780,7 @@
 <div class="viewcode-block" id="BaseMBondObject.shorter_subtype">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.shorter_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Provide the geometry used when the bond is drawn shorter on both ends.</span>
+<span class="w">        </span><span class="sd">"""Provide the geometry used when the bond is drawn shorter on both ends.</span>
 
 <span class="sd">        Bond subclasses override this hook and return their concrete mobject.</span>
 
@@ -1793,8 +1790,8 @@
 <span class="sd">            Direction from the from-atom to the to-atom; derived from the</span>
 <span class="sd">            atoms when omitted.</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">pass</span></div>
@@ -1803,8 +1800,7 @@
 <div class="viewcode-block" id="BaseMBondObject.shorter_from_subtype">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.shorter_from_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_from_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Provide the geometry used when the bond is shortened at the from-atom end.</span>
+<span class="w">        </span><span class="sd">"""Provide the geometry used when the bond is shortened at the from-atom end.</span>
 
 <span class="sd">        Bond subclasses override this hook and return their concrete mobject.</span>
 
@@ -1814,8 +1810,8 @@
 <span class="sd">            Direction from the from-atom to the to-atom; derived from the</span>
 <span class="sd">            atoms when omitted.</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">pass</span></div>
@@ -1824,8 +1820,7 @@
 <div class="viewcode-block" id="BaseMBondObject.shorter_to_subtype">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.shorter_to_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shorter_to_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Provide the geometry used when the bond is shortened at the to-atom end.</span>
+<span class="w">        </span><span class="sd">"""Provide the geometry used when the bond is shortened at the to-atom end.</span>
 
 <span class="sd">        Bond subclasses override this hook and return their concrete mobject.</span>
 
@@ -1835,8 +1830,8 @@
 <span class="sd">            Direction from the from-atom to the to-atom; derived from the</span>
 <span class="sd">            atoms when omitted.</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">pass</span></div>
@@ -1845,8 +1840,7 @@
 <div class="viewcode-block" id="BaseMBondObject.longer_subtype">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.longer_subtype">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">longer_subtype</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Provide the geometry used when the bond is drawn longer.</span>
+<span class="w">        </span><span class="sd">"""Provide the geometry used when the bond is drawn longer.</span>
 
 <span class="sd">        Bond subclasses override this hook and return their concrete mobject.</span>
 
@@ -1856,8 +1850,8 @@
 <span class="sd">            Direction from the from-atom to the to-atom; derived from the</span>
 <span class="sd">            atoms when omitted.</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">pass</span></div>
@@ -1866,8 +1860,7 @@
 <div class="viewcode-block" id="BaseMBondObject.create_line">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.create_line">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">create_line</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Assemble the bond's line components for the selected subtype.</span>
+<span class="w">        </span><span class="sd">"""Assemble the bond's line components for the selected subtype.</span>
 
 <span class="sd">        Bond subclasses override this hook and return their concrete mobject.</span>
 
@@ -1877,8 +1870,8 @@
 <span class="sd">            Direction from the from-atom to the to-atom; derived from the</span>
 <span class="sd">            atoms when omitted.</span>
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">pass</span></div>
@@ -1887,8 +1880,7 @@
 <div class="viewcode-block" id="BaseMBondObject.get_vector">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.BaseMBondObject.html#manim_extensions.chemistry.twoD.bond.BaseMBondObject.get_vector">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        All bonds should contain at least a :class:`~manim.mobject.geometry.line.Line`. This line can return the corresponding vector.</span>
+<span class="w">        </span><span class="sd">"""All bonds should contain at least a :class:`~manim.mobject.geometry.line.Line`. This line can return the corresponding vector.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1912,6 +1904,9 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.SimpleBond.html#manim_extensions.chemistry.twoD.bond.SimpleBond">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SimpleBond</span><span class="p">(</span><span class="n">BaseMBondObject</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A single-line chemical bond between two atoms.</span>
+
+<span class="sd">    .. doc-example-covers: create_line, longer_subtype, no_subtype, shorter_from_subtype, shorter_subtype, shorter_to_subtype</span>
+
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -2019,7 +2014,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The bond line based on the configured subtype."""</span>
+<span class="sd">            The bond line based on the configured subtype.</span>
+<span class="sd">        """</span>
         <span class="n">direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">coords</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">coords</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">subtype</span><span class="p">:</span>
@@ -2042,6 +2038,9 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DoubleBond.html#manim_extensions.chemistry.twoD.bond.DoubleBond">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">DoubleBond</span><span class="p">(</span><span class="n">BaseMBondObject</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A double bond between two atoms.</span>
+
+<span class="sd">    .. doc-example-covers: create_line, no_subtype, shorter_from_subtype, shorter_subtype, shorter_to_subtype</span>
+
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -2242,8 +2241,7 @@
 <div class="viewcode-block" id="DoubleBond.get_vector">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DoubleBond.html#manim_extensions.chemistry.twoD.bond.DoubleBond.get_vector">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        This contains a VGroup with two lines, we just get the vector from one of them.</span>
+<span class="w">        </span><span class="sd">"""This contains a VGroup with two lines, we just get the vector from one of them.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -2264,8 +2262,7 @@
 <div class="viewcode-block" id="DoubleBond.get_surroundings">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DoubleBond.html#manim_extensions.chemistry.twoD.bond.DoubleBond.get_surroundings">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_surroundings</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">bool</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Checks the number of bonds of C atoms.</span>
+<span class="w">        </span><span class="sd">"""Checks the number of bonds of C atoms.</span>
 
 <span class="sd">        Returns False if the C has a structure like central C in acetone:</span>
 
@@ -2279,7 +2276,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            A tuple of the results."""</span>
+<span class="sd">            A tuple of the results.</span>
+<span class="sd">        """</span>
         <span class="n">from_surroundings</span><span class="p">,</span> <span class="n">to_surroundings</span> <span class="o">=</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">bond_to</span><span class="p">:</span>
             <span class="n">from_surroundings</span> <span class="o">=</span> <span class="p">(</span>
@@ -2304,7 +2302,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The double bond VGroup based on the configured subtype."""</span>
+<span class="sd">            The double bond VGroup based on the configured subtype.</span>
+<span class="sd">        """</span>
         <span class="n">from_surroundings</span><span class="p">,</span> <span class="n">to_surroundings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_surroundings</span><span class="p">()</span>
         <span class="n">direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">coords</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">coords</span>
 
@@ -2335,6 +2334,9 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.TripleBond.html#manim_extensions.chemistry.twoD.bond.TripleBond">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">TripleBond</span><span class="p">(</span><span class="n">BaseMBondObject</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A triple bond between two atoms.</span>
+
+<span class="sd">    .. doc-example-covers: create_line, no_subtype, shorter_from_subtype, shorter_subtype, shorter_to_subtype</span>
+
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -2506,8 +2508,8 @@
 <span class="sd">            Base line the parallel lines are copied from.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">bond</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">base_line</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
@@ -2532,7 +2534,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The triple bond VGroup based on the configured subtype."""</span>
+<span class="sd">            The triple bond VGroup based on the configured subtype.</span>
+<span class="sd">        """</span>
         <span class="n">direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">from_atom</span><span class="o">.</span><span class="n">coords</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_atom</span><span class="o">.</span><span class="n">coords</span>
 
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">subtype</span><span class="p">:</span>
@@ -2551,8 +2554,7 @@
 <div class="viewcode-block" id="TripleBond.get_vector">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.TripleBond.html#manim_extensions.chemistry.twoD.bond.TripleBond.get_vector">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        This contains a VGroup with two lines, we just get the vector from one of them.</span>
+<span class="w">        </span><span class="sd">"""This contains a VGroup with two lines, we just get the vector from one of them.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -2576,6 +2578,9 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.PlainCramBond.html#manim_extensions.chemistry.twoD.bond.PlainCramBond">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PlainCramBond</span><span class="p">(</span><span class="n">BaseMBondObject</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A filled triangular wedge bond representing stereochemistry (coming out of the page).</span>
+
+<span class="sd">    .. doc-example-covers: create_line, no_subtype</span>
+
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -2731,7 +2736,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The plain cram bond polygon based on the configured subtype."""</span>
+<span class="sd">            The plain cram bond polygon based on the configured subtype.</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">subtype</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">no_subtype</span><span class="p">()</span>
 
@@ -2774,6 +2780,9 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DashedCramBond.html#manim_extensions.chemistry.twoD.bond.DashedCramBond">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">DashedCramBond</span><span class="p">(</span><span class="n">BaseMBondObject</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A dashed wedge bond representing stereochemistry (going into the page).</span>
+
+<span class="sd">    .. doc-example-covers: add_dashed_cram_bond, create_line, longer_subtype, no_subtype, shorter_from_subtype, shorter_subtype, shorter_to_subtype</span>
+
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -2937,7 +2946,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The dashed cram bond VGroup based on the configured subtype."""</span>
+<span class="sd">            The dashed cram bond VGroup based on the configured subtype.</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">subtype</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">no_subtype</span><span class="p">()</span>
 
@@ -2955,8 +2965,7 @@
 <div class="viewcode-block" id="DashedCramBond.get_vector">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/bond.DashedCramBond.html#manim_extensions.chemistry.twoD.bond.DashedCramBond.get_vector">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        This contains a VGroup with two lines, we just get the vector from one of them.</span>
+<span class="w">        </span><span class="sd">"""This contains a VGroup with two lines, we just get the vector from one of them.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>

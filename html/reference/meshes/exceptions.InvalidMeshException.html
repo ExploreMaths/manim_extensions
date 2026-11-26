@@ -1539,7 +1539,7 @@ e.g. vertices with mixed dimensionality:</p>
 </div>
 <div class="output_area docutils container">
 <div class="highlight-pytb notranslate"><div class="highlight"><pre><span></span><span class="gt">Traceback (most recent call last):</span>
-  File <span class="nb">"manim_extensions/meshes/models/data_models/mesh.py"</span>, line <span class="m">126</span>, in <span class="n">__init__</span>
+  File <span class="nb">"manim_extensions/meshes/models/data_models/mesh.py"</span>, line <span class="m">124</span>, in <span class="n">__init__</span>
 <span class="w">    </span><span class="n">conv_vertices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
 <span class="w">                    </span><span class="pm">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
 <span class="gr">ValueError</span>: <span class="n">setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.</span>
@@ -1548,13 +1548,13 @@ e.g. vertices with mixed dimensionality:</p>
 
 <span class="gt">Traceback (most recent call last):</span>
   File <span class="nb">"&lt;string&gt;"</span>, line <span class="m">2</span>, in <span class="n">&lt;module&gt;</span>
-  File <span class="nb">"manim_extensions/meshes/decorators.py"</span>, line <span class="m">54</span>, in <span class="n">wrapper_func</span>
+  File <span class="nb">"manim_extensions/meshes/decorators.py"</span>, line <span class="m">52</span>, in <span class="n">wrapper_func</span>
 <span class="w">    </span><span class="n">return_value</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 <span class="w">                   </span><span class="pm">^^^^^^^^^^^^^^^^^^^^^</span>
-  File <span class="nb">"manim_extensions/meshes/decorators.py"</span>, line <span class="m">102</span>, in <span class="n">wrapper_func</span>
+  File <span class="nb">"manim_extensions/meshes/decorators.py"</span>, line <span class="m">100</span>, in <span class="n">wrapper_func</span>
 <span class="w">    </span><span class="n">return_value</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 <span class="w">                   </span><span class="pm">^^^^^^^^^^^^^^^^^^^^^</span>
-  File <span class="nb">"manim_extensions/meshes/models/data_models/mesh.py"</span>, line <span class="m">134</span>, in <span class="n">__init__</span>
+  File <span class="nb">"manim_extensions/meshes/models/data_models/mesh.py"</span>, line <span class="m">132</span>, in <span class="n">__init__</span>
 <span class="w">    </span><span class="k">raise</span> <span class="n">InvalidMeshException</span><span class="p">(</span>
 <span class="gr">manim_extensions.meshes.exceptions.InvalidMeshException</span>: <span class="n">Dimensional mismatch for vertices. All vertices should have the same number of dimensions.</span>
 </pre></div>

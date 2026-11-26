@@ -1510,6 +1510,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">PairedQueryLayer</span><span class="p">(</span><span class="n">NeuralNetworkLayer</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A layer showing a positive and a negative query example side by side.</span>
 
+<span class="sd">    .. doc-example-covers: make_assets, make_forward_pass_animation</span>
+
+
 <span class="sd">    The pair is framed and labelled as one input row; spacing, stroke width</span>
 <span class="sd">    and font size are configurable so the layer can align with neighbouring</span>
 <span class="sd">    network layers.</span>
@@ -1659,12 +1662,12 @@
 <div class="viewcode-block" id="PairedQueryLayer.make_assets">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/paired_query.PairedQueryLayer.html#manim_extensions.machine_learning.neural_network.layers.paired_query.PairedQueryLayer.make_assets">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_assets</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Group</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Constructs the assets needed for a query layer.</span>
+<span class="w">        </span><span class="sd">"""Constructs the assets needed for a query layer.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            A :class:`~manim.mobject.mobject.Group` instance representing the result."""</span>
+<span class="sd">            A :class:`~manim.mobject.mobject.Group` instance representing the result.</span>
+<span class="sd">        """</span>
         <span class="c1"># Handle positive</span>
         <span class="n">positive_group</span> <span class="o">=</span> <span class="n">LabeledColorImage</span><span class="p">(</span>
             <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">positive</span><span class="p">),</span>

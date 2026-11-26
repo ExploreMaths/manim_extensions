@@ -1598,6 +1598,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">MArrayElement</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A class that represents an array element.</span>
 
+<span class="sd">    .. doc-example-covers: animate_mob_index, animate_mob_label, animate_mob_square, animate_mob_value, fetch_mob, fetch_mob_index, fetch_mob_label, fetch_mob_square, fetch_mob_value, update_mob_index, update_mob_label, update_mob_value</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    scene</span>
@@ -1680,7 +1683,6 @@
 <span class="sd">               content = VGroup(first, second)</span>
 <span class="sd">               content.scale_to_fit_width(6).move_to(ORIGIN)</span>
 <span class="sd">               self.add(content)</span>
-
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">__init_props</span><span class="p">(</span>
@@ -2147,6 +2149,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">MArray</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""A class that represents an array.</span>
 
+<span class="sd">    .. doc-example-covers: animate_elem_index, animate_elem_square, animate_elem_value, append_elem, fetch_mob_arr_label, update_elem_index, update_elem_value, update_mob_arr_label</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    scene</span>
@@ -2266,7 +2271,6 @@
 <span class="sd">                   index=2, removal_anim=ShowPassingFlash, update_anim=Write</span>
 <span class="sd">               )</span>
 <span class="sd">               self.wait(0.5)</span>
-
 <span class="sd">    """</span>
 
     <span class="n">__mob_arr</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">MArrayElement</span><span class="p">]</span>
@@ -3228,6 +3232,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">MArrayPointer</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""A class that represents a pointer.</span>
 
+<span class="sd">    .. doc-example-covers: animate_mob_arrow, animate_mob_label, fetch_mob_arrow, fetch_mob_label, update_mob_label</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    scene</span>
@@ -3309,7 +3316,6 @@
 <span class="sd">               self.wait(0.5)</span>
 <span class="sd">               ptr.attach_to_elem(0)</span>
 <span class="sd">               self.wait(0.5)</span>
-
 <span class="sd">    """</span>
 
     <span class="n">__pointer_pos</span><span class="p">:</span> <span class="n">MArrayDirection</span>
@@ -3794,6 +3800,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">MArraySlidingWindow</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""A class that represents a sliding window.</span>
 
+<span class="sd">    .. doc-example-covers: animate_mob_label, animate_mob_window, fetch_mob_label, fetch_mob_window, update_mob_label</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    scene</span>
@@ -3871,7 +3880,6 @@
 <span class="sd">               self.wait(0.5)</span>
 <span class="sd">               # un-create the window so the animation loops seamlessly</span>
 <span class="sd">               self.play(Uncreate(window))</span>
-
 <span class="sd">    """</span>
 
 <div class="viewcode-block" id="MArraySlidingWindow.DirEntry">

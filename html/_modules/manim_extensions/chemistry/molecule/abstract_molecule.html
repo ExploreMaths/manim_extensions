@@ -1485,7 +1485,6 @@
 <span class="sd">"""Abstract molecule base class for Manim chemistry.</span>
 
 <span class="sd">This module provides the :class:`~manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule` class as a template for all molecule implementations.</span>
-
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Literal</span><span class="p">,</span> <span class="n">cast</span>
@@ -1505,6 +1504,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">AbstractMolecule</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Abstract molecule class used as a template to create</span>
 <span class="sd">    all the other molecule classes.</span>
+
+<span class="sd">    .. doc-example-covers: multiple_molecules_from_file, multiple_molecules_from_string</span>
+
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1565,8 +1567,7 @@
         <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"AbstractMolecule"</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Reads a string and returns a single molecule from the parsed data.</span>
+<span class="w">        </span><span class="sd">"""Reads a string and returns a single molecule from the parsed data.</span>
 
 
 <span class="sd">        Parameters</span>
@@ -1612,8 +1613,7 @@
         <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OpenGLGroup</span> <span class="o">|</span> <span class="n">VGroup</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Reads a file and returns a collection of molecules from that file as a OpenGLGroup or :class:`~manim.mobject.types.vectorized_mobject.VGroup`.</span>
+<span class="w">        </span><span class="sd">"""Reads a file and returns a collection of molecules from that file as a OpenGLGroup or :class:`~manim.mobject.types.vectorized_mobject.VGroup`.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1669,8 +1669,7 @@
         <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"AbstractMolecule"</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Reads a string and returns a single molecule from the parsed data.</span>
+<span class="w">        </span><span class="sd">"""Reads a string and returns a single molecule from the parsed data.</span>
 
 
 <span class="sd">        Parameters</span>
@@ -1721,8 +1720,7 @@
         <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">OpenGLGroup</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Reads a file and returns a collection of molecules from that file as a OpenGLGroup.</span>
+<span class="w">        </span><span class="sd">"""Reads a file and returns a collection of molecules from that file as a OpenGLGroup.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1783,8 +1781,7 @@
         <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
         <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"AbstractMolecule"</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Generates a :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule` from an identifier using PubChem API.</span>
+<span class="w">        </span><span class="sd">"""Generates a :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule` from an identifier using PubChem API.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1828,8 +1825,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">mc_molecule_to_atoms_and_bonds</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span> <span class="n">mc_molecule</span><span class="p">:</span> <span class="n">MCMolecule</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Transforms the structure of a mc_molecule to a (vertices, edges) tuple.</span>
+<span class="w">        </span><span class="sd">"""Transforms the structure of a mc_molecule to a (vertices, edges) tuple.</span>
 
 <span class="sd">        The tuple has the following structure:</span>
 

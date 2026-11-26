@@ -1486,7 +1486,6 @@
 <span class="sd">"""Sequence diagram actor for Manim.</span>
 
 <span class="sd">This module provides actor class for sequence diagrams.</span>
-
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
@@ -1516,6 +1515,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">SeqActor</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Single actor in a sequence diagram with a time line.</span>
 
+<span class="sd">    .. doc-example-covers: time_elapse</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">        name</span>
@@ -1541,6 +1543,7 @@
 <span class="sd">               self.wait()</span>
 <span class="sd">    """</span>
 
+    <span class="c1">#: Registry of actors created during the current scene build.</span>
     <span class="n">all_actors</span><span class="p">:</span> <span class="s2">"list[SeqActor]"</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -1569,8 +1572,7 @@
 <a class="viewcode-back" href="../../../reference/sequence_diagram/seq_actor.SeqActor.html#manim_extensions.sequence_diagram.seq_actor.SeqActor.get_deepest_actor">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_deepest_actor</span><span class="p">(</span><span class="bp">cls</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"SeqActor | None"</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Return the actor with the greatest time depth, or ``None`` when no actor exists.</span>
+<span class="w">        </span><span class="sd">"""Return the actor with the greatest time depth, or ``None`` when no actor exists.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>

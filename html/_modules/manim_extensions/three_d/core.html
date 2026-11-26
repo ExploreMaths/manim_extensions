@@ -1806,27 +1806,45 @@
 <span class="sd">           style = GaussianSurface(height=1.4, rings=True, orbit=True, pace='fast')</span>
 <span class="sd">    """</span>
 
+    <span class="c1">#: Surface function; None selects the built-in shape.</span>
     <span class="n">func</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Callable</span><span class="p">[</span><span class="o">...</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># z=f(x,y); None = built-in Gaussian</span>
+    <span class="c1">#: LaTeX label for the surface function.</span>
     <span class="n">func_tex</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
         <span class="kc">None</span>  <span class="c1"># corner formula; None = custom function without a displayed formula</span>
     <span class="p">)</span>
+    <span class="c1">#: Parameter domain covered by the surface.</span>
     <span class="n">domain</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">2.6</span><span class="p">,</span> <span class="mf">2.6</span><span class="p">)</span>  <span class="c1"># x/y domain</span>
+    <span class="c1">#: Mesh resolution along each parametric direction.</span>
     <span class="n">resolution</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">)</span>  <span class="c1"># surface mesh density</span>
+    <span class="c1">#: Colour ramp used for the surface.</span>
     <span class="n">colors</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="p">(</span>
         <span class="s2">"rainbow"</span>  <span class="c1"># RAMPS theme name or [(hex, 0-1), ...]</span>
     <span class="p">)</span>
+    <span class="c1">#: Vertical scale applied to the normalised shape.</span>
     <span class="n">height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># peak auto-normalised to this height</span>
+    <span class="c1">#: Whether to draw the coordinate axes.</span>
     <span class="n">axes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="c1">#: Whether to draw contour rings.</span>
     <span class="n">rings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># floor contours (radial approximation)</span>
+    <span class="c1">#: Whether to add the 360-degree camera orbit.</span>
     <span class="n">orbit</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># 360° orbit</span>
+    <span class="c1">#: Whether to show the underside of the surface.</span>
     <span class="n">flip</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># flip to show the underside</span>
+    <span class="c1">#: Whether to add the geometric callout label.</span>
     <span class="n">annotate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># peak label</span>
+    <span class="c1">#: Optional captions aligned with the animation slots.</span>
     <span class="n">captions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># captions aligned by slot; omit for none</span>
+    <span class="c1">#: Optional content duration in seconds; None uses the pace preset.</span>
     <span class="n">duration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># content budget in seconds; None = use pace</span>
+    <span class="c1">#: Animation pace preset: fast, normal, or full.</span>
     <span class="n">pace</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"full"</span>  <span class="c1"># fast=10 / normal=24 / full=45</span>
+    <span class="c1">#: Background colour of the scene.</span>
     <span class="n">background</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"#050810"</span>
+    <span class="c1">#: Camera elevation angle in degrees.</span>
     <span class="n">camera_phi</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">72.0</span>
+    <span class="c1">#: Camera azimuth angle in degrees.</span>
     <span class="n">camera_theta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">-</span><span class="mf">55.0</span>
+    <span class="c1">#: Camera zoom factor.</span>
     <span class="n">zoom</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.95</span>
 
 <div class="viewcode-block" id="GaussianSurface.resolve">
@@ -1869,21 +1887,37 @@
 <span class="sd">           style = SaddleSurface(height=1.5, annotate=True, pace='fast')</span>
 <span class="sd">    """</span>
 
+    <span class="c1">#: Parameter domain covered by the surface.</span>
     <span class="n">domain</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">2.2</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">)</span>
+    <span class="c1">#: Mesh resolution along each parametric direction.</span>
     <span class="n">resolution</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">44</span><span class="p">,</span> <span class="mi">44</span><span class="p">)</span>
+    <span class="c1">#: Colour ramp used for the surface.</span>
     <span class="n">colors</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="s2">"rainbow"</span>
+    <span class="c1">#: Vertical scale applied to the normalised shape.</span>
     <span class="n">height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.2</span>  <span class="c1"># normalise: ridge = +H, valley = -H (symmetric)</span>
+    <span class="c1">#: Whether to draw the coordinate axes.</span>
     <span class="n">axes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="c1">#: Whether to draw contour rings.</span>
     <span class="n">rings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># hyperbola-family contours + asymptotes (floor)</span>
+    <span class="c1">#: Whether to add the 360-degree camera orbit.</span>
     <span class="n">orbit</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="c1">#: Whether to show the underside of the surface.</span>
     <span class="n">flip</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="c1">#: Whether to add the geometric callout label.</span>
     <span class="n">annotate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># saddle label (projected HUD label)</span>
+    <span class="c1">#: Optional captions aligned with the animation slots.</span>
     <span class="n">captions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: Optional content duration in seconds; None uses the pace preset.</span>
     <span class="n">duration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: Animation pace preset: fast, normal, or full.</span>
     <span class="n">pace</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"full"</span>
+    <span class="c1">#: Background colour of the scene.</span>
     <span class="n">background</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"#050810"</span>
+    <span class="c1">#: Camera elevation angle in degrees.</span>
     <span class="n">camera_phi</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">70.0</span>
+    <span class="c1">#: Camera azimuth angle in degrees.</span>
     <span class="n">camera_theta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">-</span><span class="mf">50.0</span>
+    <span class="c1">#: Camera zoom factor.</span>
     <span class="n">zoom</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.95</span></div>
 
 
@@ -1906,21 +1940,37 @@
 <span class="sd">           style = ParaboloidSurface(height=1.5, annotate=True, pace='fast')</span>
 <span class="sd">    """</span>
 
+    <span class="c1">#: Parameter domain covered by the surface.</span>
     <span class="n">domain</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">2.2</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">)</span>
+    <span class="c1">#: Mesh resolution along each parametric direction.</span>
     <span class="n">resolution</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">44</span><span class="p">,</span> <span class="mi">44</span><span class="p">)</span>
+    <span class="c1">#: Colour ramp used for the surface.</span>
     <span class="n">colors</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="s2">"rainbow"</span>
+    <span class="c1">#: Vertical scale applied to the normalised shape.</span>
     <span class="n">height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.2</span>  <span class="c1"># normalise: rim = H, bottom = 0</span>
+    <span class="c1">#: Whether to draw the coordinate axes.</span>
     <span class="n">axes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="c1">#: Whether to draw contour rings.</span>
     <span class="n">rings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># surface-attached concentric contours (follow the flip)</span>
+    <span class="c1">#: Whether to add the 360-degree camera orbit.</span>
     <span class="n">orbit</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="c1">#: Whether to show the underside of the surface.</span>
     <span class="n">flip</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="c1">#: Whether to add the geometric callout label.</span>
     <span class="n">annotate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># top label (projected HUD label)</span>
+    <span class="c1">#: Optional captions aligned with the animation slots.</span>
     <span class="n">captions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: Optional content duration in seconds; None uses the pace preset.</span>
     <span class="n">duration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: Animation pace preset: fast, normal, or full.</span>
     <span class="n">pace</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"full"</span>
+    <span class="c1">#: Background colour of the scene.</span>
     <span class="n">background</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"#050810"</span>
+    <span class="c1">#: Camera elevation angle in degrees.</span>
     <span class="n">camera_phi</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">70.0</span>
+    <span class="c1">#: Camera azimuth angle in degrees.</span>
     <span class="n">camera_theta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">-</span><span class="mf">50.0</span>
+    <span class="c1">#: Camera zoom factor.</span>
     <span class="n">zoom</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.95</span></div>
 
 
@@ -1943,20 +1993,35 @@
 <span class="sd">           style = EllipsoidSurface(pace='fast')</span>
 <span class="sd">    """</span>
 
+    <span class="c1">#: Semi-axis lengths (a, b, c) of the ellipsoid.</span>
     <span class="n">semi_axes</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mf">2.4</span><span class="p">,</span> <span class="mf">1.6</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">)</span>  <span class="c1"># (a, b, c) semi-axes</span>
+    <span class="c1">#: Mesh resolution along each parametric direction.</span>
     <span class="n">resolution</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">44</span><span class="p">,</span> <span class="mi">56</span><span class="p">)</span>  <span class="c1"># latitude/longitude mesh density</span>
+    <span class="c1">#: Colour ramp used for the surface.</span>
     <span class="n">colors</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="s2">"rainbow"</span>
+    <span class="c1">#: Whether to draw the coordinate axes.</span>
     <span class="n">axes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="c1">#: Whether to draw contour rings.</span>
     <span class="n">rings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># surface-attached horizontal ellipses (follow the flip)</span>
+    <span class="c1">#: Whether to add the 360-degree camera orbit.</span>
     <span class="n">orbit</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="c1">#: Whether to show the underside of the surface.</span>
     <span class="n">flip</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># closed-surface flip = rotate to the back</span>
+    <span class="c1">#: Whether to add the geometric callout label.</span>
     <span class="n">annotate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># top vertex label (3D label)</span>
+    <span class="c1">#: Optional captions aligned with the animation slots.</span>
     <span class="n">captions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: Optional content duration in seconds; None uses the pace preset.</span>
     <span class="n">duration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: Animation pace preset: fast, normal, or full.</span>
     <span class="n">pace</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"full"</span>
+    <span class="c1">#: Background colour of the scene.</span>
     <span class="n">background</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"#050810"</span>
+    <span class="c1">#: Camera elevation angle in degrees.</span>
     <span class="n">camera_phi</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">70.0</span>
+    <span class="c1">#: Camera azimuth angle in degrees.</span>
     <span class="n">camera_theta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">-</span><span class="mf">50.0</span>
+    <span class="c1">#: Camera zoom factor.</span>
     <span class="n">zoom</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.95</span></div>
 
 
@@ -1979,21 +2044,37 @@
 <span class="sd">           style = TorusSurface(pace='fast')</span>
 <span class="sd">    """</span>
 
+    <span class="c1">#: Major radius of the torus.</span>
     <span class="n">major_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">2.0</span>  <span class="c1"># torus radius R (tube-centre circle)</span>
+    <span class="c1">#: Minor radius of the torus tube.</span>
     <span class="n">minor_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span>  <span class="c1"># tube radius r</span>
+    <span class="c1">#: Mesh resolution along each parametric direction.</span>
     <span class="n">resolution</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">56</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>  <span class="c1"># (major θ, tube φ) mesh density</span>
+    <span class="c1">#: Colour ramp used for the surface.</span>
     <span class="n">colors</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="s2">"rainbow"</span>
+    <span class="c1">#: Whether to draw the coordinate axes.</span>
     <span class="n">axes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="c1">#: Whether to draw contour rings.</span>
     <span class="n">rings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># surface-attached paired horizontal rings (follow the flip)</span>
+    <span class="c1">#: Whether to add the 360-degree camera orbit.</span>
     <span class="n">orbit</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="c1">#: Whether to show the underside of the surface.</span>
     <span class="n">flip</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="c1">#: Whether to add the geometric callout label.</span>
     <span class="n">annotate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># highest-point label (3D label + antenna)</span>
+    <span class="c1">#: Optional captions aligned with the animation slots.</span>
     <span class="n">captions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: Optional content duration in seconds; None uses the pace preset.</span>
     <span class="n">duration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: Animation pace preset: fast, normal, or full.</span>
     <span class="n">pace</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"full"</span>
+    <span class="c1">#: Background colour of the scene.</span>
     <span class="n">background</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"#050810"</span>
+    <span class="c1">#: Camera elevation angle in degrees.</span>
     <span class="n">camera_phi</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">70.0</span>
+    <span class="c1">#: Camera azimuth angle in degrees.</span>
     <span class="n">camera_theta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">-</span><span class="mf">50.0</span>
+    <span class="c1">#: Camera zoom factor.</span>
     <span class="n">zoom</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.95</span></div>
 
 
@@ -2016,23 +2097,39 @@
 <span class="sd">           style = HyperboloidOneSheet(pace='fast')</span>
 <span class="sd">    """</span>
 
+    <span class="c1">#: Waist radius of the hyperboloid.</span>
     <span class="n">waist_radius</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># waist radius a (= b)</span>
+    <span class="c1">#: Vertical half-extent of the hyperboloid.</span>
     <span class="n">z_extent</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span>  <span class="c1"># upper/lower truncation ±h</span>
+    <span class="c1">#: Mesh resolution along each parametric direction.</span>
     <span class="n">resolution</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">36</span><span class="p">,</span> <span class="mi">48</span><span class="p">)</span>  <span class="c1"># (z, circumferential) mesh density</span>
+    <span class="c1">#: Colour ramp used for the surface.</span>
     <span class="n">colors</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="s2">"rainbow"</span>
+    <span class="c1">#: Whether to draw the coordinate axes.</span>
     <span class="n">axes</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="c1">#: Whether to draw contour rings.</span>
     <span class="n">rings</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="p">(</span>
         <span class="kc">True</span>  <span class="c1"># surface-attached horizontal circle family (including the waist; follows the flip)</span>
     <span class="p">)</span>
+    <span class="c1">#: Whether to add the 360-degree camera orbit.</span>
     <span class="n">orbit</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="c1">#: Whether to show the underside of the surface.</span>
     <span class="n">flip</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="c1">#: Whether to add the geometric callout label.</span>
     <span class="n">annotate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>  <span class="c1"># waist front label (HUD label, no dashed line)</span>
+    <span class="c1">#: Optional captions aligned with the animation slots.</span>
     <span class="n">captions</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: Optional content duration in seconds; None uses the pace preset.</span>
     <span class="n">duration</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: Animation pace preset: fast, normal, or full.</span>
     <span class="n">pace</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"full"</span>
+    <span class="c1">#: Background colour of the scene.</span>
     <span class="n">background</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">"#050810"</span>
+    <span class="c1">#: Camera elevation angle in degrees.</span>
     <span class="n">camera_phi</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">70.0</span>
+    <span class="c1">#: Camera azimuth angle in degrees.</span>
     <span class="n">camera_theta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="o">-</span><span class="mf">50.0</span>
+    <span class="c1">#: Camera zoom factor.</span>
     <span class="n">zoom</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.95</span></div>
 
 
@@ -2099,8 +2196,11 @@
 <span class="sd">               super().construct()</span>
 <span class="sd">    """</span>
 
+    <span class="c1">#: Render style forwarded to the surface configuration.</span>
     <span class="n">style</span><span class="p">:</span> <span class="n">SurfaceConfig</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: Configuration class used to normalise ``config`` mappings.</span>
     <span class="n">config_cls</span><span class="p">:</span> <span class="n">SurfaceConfigClass</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: Whether this surface scene uses a flat parameterisation.</span>
     <span class="n">uses_flat</span> <span class="o">=</span> <span class="kc">True</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>
@@ -2701,6 +2801,7 @@
 <span class="sd">               super().construct()</span>
 <span class="sd">    """</span>
 
+    <span class="c1">#: Configuration dataclass used for mapping-style keyword arguments.</span>
     <span class="n">config_cls</span> <span class="o">=</span> <span class="n">GaussianSurface</span>
 
 <div class="viewcode-block" id="GaussianSurfaceScene._geometry">
@@ -2861,6 +2962,7 @@
 <span class="sd">               super().construct()</span>
 <span class="sd">    """</span>
 
+    <span class="c1">#: Configuration dataclass used for mapping-style keyword arguments.</span>
     <span class="n">config_cls</span> <span class="o">=</span> <span class="n">SaddleSurface</span>
 
 <div class="viewcode-block" id="SaddleSurfaceScene._geometry">
@@ -3025,6 +3127,7 @@
 <span class="sd">               super().construct()</span>
 <span class="sd">    """</span>
 
+    <span class="c1">#: Configuration dataclass used for mapping-style keyword arguments.</span>
     <span class="n">config_cls</span> <span class="o">=</span> <span class="n">ParaboloidSurface</span>
 
 <div class="viewcode-block" id="ParaboloidSurfaceScene._geometry">
@@ -3152,8 +3255,10 @@
 <span class="sd">               super().construct()</span>
 <span class="sd">    """</span>
 
+    <span class="c1">#: Whether this surface scene uses a flat parameterisation.</span>
     <span class="n">uses_flat</span> <span class="o">=</span> <span class="kc">False</span>
 
+    <span class="c1">#: Configuration dataclass used for mapping-style keyword arguments.</span>
     <span class="n">config_cls</span> <span class="o">=</span> <span class="n">EllipsoidSurface</span>
 
 <div class="viewcode-block" id="EllipsoidSurfaceScene._geometry">
@@ -3364,8 +3469,10 @@
 <span class="sd">               super().construct()</span>
 <span class="sd">    """</span>
 
+    <span class="c1">#: Whether this surface scene uses a flat parameterisation.</span>
     <span class="n">uses_flat</span> <span class="o">=</span> <span class="kc">False</span>
 
+    <span class="c1">#: Configuration dataclass used for mapping-style keyword arguments.</span>
     <span class="n">config_cls</span> <span class="o">=</span> <span class="n">TorusSurface</span>
 
 <div class="viewcode-block" id="TorusSurfaceScene._geometry">
@@ -3577,8 +3684,10 @@
 <span class="sd">               super().construct()</span>
 <span class="sd">    """</span>
 
+    <span class="c1">#: Whether this surface scene uses a flat parameterisation.</span>
     <span class="n">uses_flat</span> <span class="o">=</span> <span class="kc">False</span>
 
+    <span class="c1">#: Configuration dataclass used for mapping-style keyword arguments.</span>
     <span class="n">config_cls</span> <span class="o">=</span> <span class="n">HyperboloidOneSheet</span>
 
 <div class="viewcode-block" id="HyperboloidOneSheetScene._geometry">

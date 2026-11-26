@@ -1511,8 +1511,7 @@
 <div class="viewcode-block" id="NetworkConnection">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/utils/mobjects/connections.NetworkConnection.html#manim_extensions.machine_learning.utils.mobjects.connections.NetworkConnection">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NetworkConnection</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    This class allows for creating connections</span>
+<span class="w">    </span><span class="sd">"""This class allows for creating connections</span>
 <span class="sd">    between locations in a network.</span>
 
 <span class="sd">    Parameters</span>
@@ -1553,6 +1552,7 @@
 <span class="sd">               self.add(content)</span>
 <span class="sd">    """</span>
 
+    <span class="c1">#: Maps direction names such as ``"up"`` to unit vectors.</span>
     <span class="n">direction_vector_map</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Vector3D</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">"up"</span><span class="p">:</span> <span class="n">UP</span><span class="p">,</span>
         <span class="s2">"down"</span><span class="p">:</span> <span class="n">DOWN</span><span class="p">,</span>

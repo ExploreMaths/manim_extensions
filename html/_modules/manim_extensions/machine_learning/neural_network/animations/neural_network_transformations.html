@@ -1483,9 +1483,7 @@
 <span class="c1"># SPDX-FileCopyrightText: 2026 ExploreMaths</span>
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 
-<span class="sd">"""</span>
-<span class="sd">Transformations for manipulating a neural network object.</span>
-<span class="sd">"""</span>
+<span class="sd">"""Transformations for manipulating a neural network object."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">cast</span>
@@ -1509,8 +1507,10 @@
 <div class="viewcode-block" id="RemoveLayer">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/animations/neural_network_transformations.RemoveLayer.html#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.RemoveLayer">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">RemoveLayer</span><span class="p">(</span><span class="n">AnimationGroup</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    Animation for removing a layer from a neural network.</span>
+<span class="w">    </span><span class="sd">"""Animation for removing a layer from a neural network.</span>
+
+<span class="sd">    .. doc-example-covers: make_move_animation, make_remove_animation, make_remove_connective_layers_animation</span>
+
 
 <span class="sd">    .. note::</span>
 
@@ -1729,8 +1729,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">anim_count</span> <span class="o">=</span> <span class="mi">0</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">create_new_connective</span><span class="p">(</span><span class="n">neural_network</span><span class="p">:</span> <span class="n">NeuralNetwork</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">            </span><span class="sd">"""</span>
-<span class="sd">            Creates new connective layer.</span>
+<span class="w">            </span><span class="sd">"""Creates new connective layer.</span>
 
 <span class="sd">            This is a closure that creates a new connective layer and animates it.</span>
 <span class="sd">            """</span>
@@ -1762,6 +1761,9 @@
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/animations/neural_network_transformations.InsertLayer.html#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.InsertLayer">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">InsertLayer</span><span class="p">(</span><span class="n">AnimationGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Animation for inserting layer at given index.</span>
+
+<span class="sd">    .. doc-example-covers: make_create_connective_layers_animation, make_move_layers_animation, remove_connective_layer_animation</span>
+
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1838,7 +1840,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            A tuple of the results."""</span>
+<span class="sd">            A tuple of the results.</span>
+<span class="sd">        """</span>
         <span class="c1"># Make the layers</span>
         <span class="n">before_connective</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="n">after_connective</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1864,7 +1867,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            A tuple of the results."""</span>
+<span class="sd">            A tuple of the results.</span>
+<span class="sd">        """</span>
         <span class="c1"># Check if connective layer before exists</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layers_before</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">removed_connective</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layers_before</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>

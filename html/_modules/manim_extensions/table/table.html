@@ -1483,9 +1483,7 @@
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="c1"># patched: document module-level constants</span>
 
-<span class="sd">"""</span>
-<span class="sd">:class:`~manim_extensions.table.table.Table` - The main database table component.</span>
-<span class="sd">"""</span>
+<span class="sd">""":class:`~manim_extensions.table.table.Table` - The main database table component."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span><span class="p">,</span> <span class="n">overload</span>
 
@@ -1506,8 +1504,10 @@
 <div class="viewcode-block" id="Table">
 <a class="viewcode-back" href="../../../reference/table/table.Table.html#manim_extensions.table.table.Table">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Table</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    A database table visualization for Manim Community Edition (manim CE).</span>
+<span class="w">    </span><span class="sd">"""A database table visualization for Manim Community Edition (manim CE).</span>
+
+<span class="sd">    .. doc-example-covers: add_column, add_row, delete_column, delete_row, get_column, get_column_by_name, set_column_background_color, set_column_border_color, set_column_font_color, set_header_background_color, set_header_font_color</span>
+
 
 <span class="sd">    The table can be created in two ways:</span>
 
@@ -1731,8 +1731,7 @@
 <div class="viewcode-block" id="Table.calculate_column_widths">
 <a class="viewcode-back" href="../../../reference/table/table.Table.html#manim_extensions.table.table.Table.calculate_column_widths">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">calculate_column_widths</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Calculate the width of each column based on the longest text content.</span>
+<span class="w">        </span><span class="sd">"""Calculate the width of each column based on the longest text content.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -1764,8 +1763,7 @@
 <div class="viewcode-block" id="Table.get_cell">
 <a class="viewcode-back" href="../../../reference/table/table.Table.html#manim_extensions.table.table.Table.get_cell">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_cell</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">col</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Cell</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Get a specific cell by row and column index.</span>
+<span class="w">        </span><span class="sd">"""Get a specific cell by row and column index.</span>
 <span class="sd">        Row 0 is the header row.</span>
 
 <span class="sd">        Parameters</span>
@@ -1787,8 +1785,7 @@
 <div class="viewcode-block" id="Table.get_row">
 <a class="viewcode-back" href="../../../reference/table/table.Table.html#manim_extensions.table.table.Table.get_row">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Row</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Get a row by index. Index 0 returns the header row.</span>
+<span class="w">        </span><span class="sd">"""Get a row by index. Index 0 returns the header row.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1807,8 +1804,7 @@
 <div class="viewcode-block" id="Table.get_column">
 <a class="viewcode-back" href="../../../reference/table/table.Table.html#manim_extensions.table.table.Table.get_column">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_column</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Get all cells in a column as a :class:`~manim.mobject.types.vectorized_mobject.VGroup`.</span>
+<span class="w">        </span><span class="sd">"""Get all cells in a column as a :class:`~manim.mobject.types.vectorized_mobject.VGroup`.</span>
 <span class="sd">        Includes the header cell.</span>
 
 <span class="sd">        Parameters</span>
@@ -1829,8 +1825,7 @@
 <div class="viewcode-block" id="Table.get_column_by_name">
 <a class="viewcode-back" href="../../../reference/table/table.Table.html#manim_extensions.table.table.Table.get_column_by_name">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_column_by_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Get a column by its header name.</span>
+<span class="w">        </span><span class="sd">"""Get a column by its header name.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1879,31 +1874,31 @@
 
     <span class="nd">@overload</span>  <span class="c1"># type: ignore[override]</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Row</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""Return the data row at the given index.</span>
+<span class="w">        </span><span class="sd">"""Return a data row or a slice of rows.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        index</span>
-<span class="sd">            Row index.</span>
+<span class="sd">            Row index or slice, excluding the header.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The selected row.</span>
+<span class="sd">            The selected row or list of rows.</span>
 <span class="sd">        """</span>
         <span class="o">...</span>
 
     <span class="nd">@overload</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">slice</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Row</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">"""Return the data rows selected by the slice.</span>
+<span class="w">        </span><span class="sd">"""Return a data row or a slice of rows.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
 <span class="sd">        index</span>
-<span class="sd">            Row slice.</span>
+<span class="sd">            Row index or slice, excluding the header.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The selected rows.</span>
+<span class="sd">            The selected row or list of rows.</span>
 <span class="sd">        """</span>
         <span class="o">...</span>
 
@@ -1933,8 +1928,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">set_column_font_color</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">col</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span><span class="p">,</span> <span class="n">include_header</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Table"</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Set the font color for all cells in a column.</span>
+<span class="w">        </span><span class="sd">"""Set the font color for all cells in a column.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1965,8 +1959,7 @@
         <span class="n">opacity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span>
         <span class="n">include_header</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Table"</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Set the background color for all cells in a column.</span>
+<span class="w">        </span><span class="sd">"""Set the background color for all cells in a column.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1995,8 +1988,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">set_column_border_color</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">col</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span><span class="p">,</span> <span class="n">include_header</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Table"</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Set the border color for all cells in a column.</span>
+<span class="w">        </span><span class="sd">"""Set the border color for all cells in a column.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2023,8 +2015,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">set_header_background_color</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span><span class="p">,</span> <span class="n">opacity</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.5</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Table"</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Set the background color for all header cells.</span>
+<span class="w">        </span><span class="sd">"""Set the background color for all header cells.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2045,8 +2036,7 @@
 <div class="viewcode-block" id="Table.set_header_font_color">
 <a class="viewcode-back" href="../../../reference/table/table.Table.html#manim_extensions.table.table.Table.set_header_font_color">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_header_font_color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Table"</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Set the font color for all header cells.</span>
+<span class="w">        </span><span class="sd">"""Set the font color for all header cells.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2069,8 +2059,7 @@
 <div class="viewcode-block" id="Table.add_row">
 <a class="viewcode-back" href="../../../reference/table/table.Table.html#manim_extensions.table.table.Table.add_row">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Row</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">TableAnimation</span><span class="p">]]:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Add a new row to the bottom of the table.</span>
+<span class="w">        </span><span class="sd">"""Add a new row to the bottom of the table.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2215,8 +2204,7 @@
 <div class="viewcode-block" id="Table.delete_row">
 <a class="viewcode-back" href="../../../reference/table/table.Table.html#manim_extensions.table.table.Table.delete_row">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">delete_row</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Row</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">TableAnimation</span><span class="p">]]:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Delete a row from the table.</span>
+<span class="w">        </span><span class="sd">"""Delete a row from the table.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2351,8 +2339,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">add_column</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">header</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">VGroup</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">TableAnimation</span><span class="p">],</span> <span class="nb">list</span><span class="p">[</span><span class="n">TableAnimation</span><span class="p">]]:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Add a new column to the table.</span>
+<span class="w">        </span><span class="sd">"""Add a new column to the table.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -2476,8 +2463,7 @@
 <div class="viewcode-block" id="Table.delete_column">
 <a class="viewcode-back" href="../../../reference/table/table.Table.html#manim_extensions.table.table.Table.delete_column">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">delete_column</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">VGroup</span><span class="p">,</span> <span class="nb">list</span><span class="p">[</span><span class="n">TableAnimation</span><span class="p">]]:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Delete a column from the table.</span>
+<span class="w">        </span><span class="sd">"""Delete a column from the table.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>

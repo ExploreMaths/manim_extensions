@@ -1552,14 +1552,21 @@
 <span class="sd">               self.add(boxes)</span>
 <span class="sd">    """</span>
 
+    <span class="c1">#: Payload carried by this layout node.</span>
     <span class="n">node</span><span class="p">:</span> <span class="nb">object</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: Measured width of the timeline node.</span>
     <span class="n">width</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="c1">#: Measured height of the timeline node.</span>
     <span class="n">height</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="c1">#: Child nodes in layout order.</span>
     <span class="n">children</span><span class="p">:</span> <span class="s2">"list[TimelineNode]"</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+    <span class="c1">#: Direction in which the node's subtree is placed.</span>
     <span class="n">side_dir</span><span class="p">:</span> <span class="n">LayoutDirection</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="c1"># Layout result coordinates</span>
+    <span class="c1">#: Horizontal layout coordinate.</span>
     <span class="n">x</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="c1">#: Vertical layout coordinate.</span>
     <span class="n">y</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.0</span>
 
     <span class="c1"># Internal runtime attributes (do not set manually)</span>
@@ -1637,8 +1644,8 @@
 <span class="sd">        The index of ``node`` within its parent's children list.</span>
 
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
 <span class="sd">            The resulting value.</span>
 <span class="sd">    """</span>
     <span class="c1"># Pre-order callback</span>
@@ -1968,8 +1975,8 @@
 <span class="sd">            The root node whose children are examined.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">children_list</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span>
@@ -2004,8 +2011,8 @@
 <span class="sd">            The vertical offset to apply to younger siblings.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">_parent</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">node</span><span class="o">.</span><span class="n">_parent</span><span class="o">.</span><span class="n">_is_root</span><span class="p">:</span>
@@ -2161,8 +2168,8 @@
 <span class="sd">            The offset to add to the current value.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
@@ -2187,8 +2194,8 @@
 <span class="sd">            The root of the (sub)tree whose coordinates should be applied.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">node</span><span class="p">:</span>

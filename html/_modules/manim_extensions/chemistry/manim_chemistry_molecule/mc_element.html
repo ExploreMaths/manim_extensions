@@ -1486,7 +1486,6 @@
 <span class="sd">"""Manim chemistry element representation.</span>
 
 <span class="sd">This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_element.MCElement` dataclass for representing chemical elements.</span>
-
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
@@ -1528,13 +1527,21 @@
 <span class="sd">               self.wait()</span>
 <span class="sd">    """</span>
 
+    <span class="c1">#: Chemical symbol.</span>
     <span class="n">symbol</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: Element name.</span>
     <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: Atomic number.</span>
     <span class="n">atomic_number</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: Relative atomic mass.</span>
     <span class="n">mass</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: Primary display colour.</span>
     <span class="n">color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: CPK colour used for the element.</span>
     <span class="n">cpk_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: Jmol colour used for the element.</span>
     <span class="n">jmol_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1">#: PubChem colour used for the element.</span>
     <span class="n">pubchem_color</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 

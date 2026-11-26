@@ -1484,9 +1484,7 @@
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="c1"># patched: implement apply_flip, 4-D projection, 4-D rotation, and the operator protocol</span>
 
-<span class="sd">"""</span>
-<span class="sd">:class:`~manim_extensions.meshes.models.data_models.mesh.Mesh` structure.</span>
-<span class="sd">"""</span>
+<span class="sd">""":class:`~manim_extensions.meshes.models.data_models.mesh.Mesh` structure."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
@@ -1989,7 +1987,6 @@
 <span class="sd">        InvalidRequestException</span>
 <span class="sd">            If the current dimensionality is greater than 4, or if a 4-D</span>
 <span class="sd">            vertex lies at or beyond the projection centre.</span>
-
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_vertices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pad</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_vertices</span><span class="p">,</span> <span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">3</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim</span><span class="p">)))</span>
@@ -2095,7 +2092,6 @@
 <span class="sd">            If ``new_vertices`` is not a :class:`~numpy.ndarray`.</span>
 <span class="sd">        InvalidMeshDimensionsException</span>
 <span class="sd">            If the shape of ``new_vertices`` does not match the mesh dimension.</span>
-
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">new_vertices</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">InvalidMeshException</span><span class="p">(</span><span class="sa">f</span><span class="s2">"new_vertices has invalid type </span><span class="si">{</span><span class="n">new_vertices</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
@@ -2126,7 +2122,6 @@
 <span class="sd">        ------</span>
 <span class="sd">        MeshIndexException</span>
 <span class="sd">            If any index is out of range.</span>
-
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_vertices</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">idx</span> <span class="ow">or</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">MeshIndexException</span><span class="p">(</span><span class="s2">"Vertex index out of range"</span><span class="p">)</span>
@@ -2167,7 +2162,6 @@
 <span class="sd">            If ``new_vert`` has an unexpected shape.</span>
 <span class="sd">        InvalidMeshException</span>
 <span class="sd">            If the coordinate dimension does not match the mesh.</span>
-
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_vertices</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">idx</span> <span class="ow">or</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">MeshIndexException</span><span class="p">(</span>
@@ -2217,7 +2211,6 @@
 <span class="sd">        MeshIndexException</span>
 <span class="sd">            If a vertex index in ``new_faces`` is out of range or not</span>
 <span class="sd">            defined.</span>
-
 <span class="sd">        """</span>
         <span class="c1"># type-check whole array</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">is_twice_nested_iterable</span><span class="p">(</span><span class="n">new_faces</span><span class="p">):</span>
@@ -2261,7 +2254,6 @@
 <span class="sd">        ------</span>
 <span class="sd">        MeshIndexException</span>
 <span class="sd">            If any index is out of range.</span>
-
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_faces</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">idx</span> <span class="ow">or</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">MeshIndexException</span><span class="p">(</span><span class="s2">"Face index out of range"</span><span class="p">)</span>
@@ -2301,7 +2293,6 @@
 <span class="sd">            If ``idx`` or any vertex index in ``new_face`` is out of range.</span>
 <span class="sd">        InvalidTypeException</span>
 <span class="sd">            If ``new_face`` has an unexpected shape.</span>
-
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_faces</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">idx</span> <span class="ow">or</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">MeshIndexException</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Face index </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2"> out of range."</span><span class="p">)</span>
@@ -2343,7 +2334,6 @@
 <span class="sd">            If ``new_parts`` has an unsupported type.</span>
 <span class="sd">        MeshIndexException</span>
 <span class="sd">            If a face index in ``new_parts`` is out of range.</span>
-
 <span class="sd">        """</span>
         <span class="c1"># validate array type</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">is_twice_nested_iterable</span><span class="p">(</span><span class="n">new_parts</span><span class="p">,</span> <span class="n">min_lens</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)):</span>
@@ -2385,7 +2375,6 @@
 <span class="sd">        ------</span>
 <span class="sd">        MeshIndexException</span>
 <span class="sd">            If any index is out of range.</span>
-
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parts</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">idx</span> <span class="ow">or</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">idx</span> <span class="ow">in</span> <span class="n">indices</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">MeshIndexException</span><span class="p">(</span><span class="s2">"Part index out of range"</span><span class="p">)</span>
@@ -2419,7 +2408,6 @@
 <span class="sd">            If ``idx`` or any face index in ``new_part`` is out of range.</span>
 <span class="sd">        InvalidTypeException</span>
 <span class="sd">            If ``new_part`` has an unexpected shape.</span>
-
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_parts</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">idx</span> <span class="ow">or</span> <span class="n">idx</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">MeshIndexException</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Part index </span><span class="si">{</span><span class="n">idx</span><span class="si">}</span><span class="s2"> out of range."</span><span class="p">)</span>
@@ -2463,7 +2451,6 @@
 <span class="sd">        MeshIndexException</span>
 <span class="sd">            If a face or part index would be out of bounds after the</span>
 <span class="sd">            merge.</span>
-
 <span class="sd">        """</span>
         <span class="c1"># Mesh has to be a correct mesh therefore many checks can be omitted</span>
         <span class="c1"># check if vertices have the same dimension</span>
@@ -2641,8 +2628,8 @@
 <span class="sd">            If given, the scaling is performed around this point.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">about_point</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -2670,8 +2657,8 @@
 <span class="sd">            If given, the stretch is performed around this point.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">about_point</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -2704,7 +2691,6 @@
 <span class="sd">            If ``translation`` is not a :class:`~numpy.ndarray`.</span>
 <span class="sd">        InvalidMeshDimensionsException</span>
 <span class="sd">            If the length of ``translation`` does not match the mesh dimension.</span>
-
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">translation</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">InvalidTypeException</span><span class="p">(</span>
@@ -2743,7 +2729,6 @@
 <span class="sd">            If ``translation`` is not a :class:`~numpy.ndarray`.</span>
 <span class="sd">        InvalidMeshDimensionsException</span>
 <span class="sd">            If the length of ``translation`` does not match the mesh dimension.</span>
-
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="mi">0</span> <span class="o">&gt;</span> <span class="n">v_id</span> <span class="ow">or</span> <span class="n">v_id</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_vertices</span><span class="p">):</span>
             <span class="k">raise</span> <span class="n">MeshIndexException</span><span class="p">(</span>
@@ -2796,7 +2781,6 @@
 <span class="sd">        InvalidRequestException</span>
 <span class="sd">            If the mesh dimension is above 4, or if the 4-D rotation plane is</span>
 <span class="sd">            not given by two linearly independent vectors.</span>
-
 <span class="sd">        """</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">rotation_matrix</span><span class="p">(</span>
@@ -2947,7 +2931,6 @@
 <span class="sd">            If the mesh dimension is greater than 4.</span>
 <span class="sd">        InvalidMeshDimensionsException</span>
 <span class="sd">            If a 4-D mesh is flipped without a 4-D ``axis``.</span>
-
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">dim</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">:</span>
             <span class="k">raise</span> <span class="n">InvalidRequestException</span><span class="p">(</span>
@@ -3084,8 +3067,8 @@
 <span class="sd">            Decimal places used when comparing vertices; i.e. equality up to ``1e-10``.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">old_vertices</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_vertices</span><span class="p">)</span>
@@ -3119,8 +3102,8 @@
 <span class="sd">        at the exact same positions.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">to_delete</span> <span class="o">=</span> <span class="p">[]</span>
@@ -3148,8 +3131,8 @@
 <span class="sd">        regardless of their order.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">to_delete</span> <span class="o">=</span> <span class="p">[]</span>
@@ -3176,8 +3159,8 @@
 <span class="sd">            .</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">remove_duplicate_vertices</span><span class="p">(</span><span class="n">precision</span><span class="o">=</span><span class="n">precision</span><span class="p">)</span>

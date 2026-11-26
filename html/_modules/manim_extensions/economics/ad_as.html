@@ -1485,7 +1485,6 @@
 <span class="sd">"""AD-AS diagram for Manim.</span>
 
 <span class="sd">This module provides the Aggregate Demand-Aggregate Supply diagram.</span>
-
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
@@ -1502,6 +1501,9 @@
 <a class="viewcode-back" href="../../../reference/economics/ad_as.ADASDiagram.html#manim_extensions.economics.ad_as.ADASDiagram">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ADASDiagram</span><span class="p">(</span><span class="n">EconDiagram</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""Aggregate Demand — Aggregate Supply diagram.</span>
+
+<span class="sd">    .. doc-example-covers: long_run_adjust, shift_ad, shift_lras, shift_sras</span>
+
 
 <span class="sd">    AD is derived from the quantity theory of money: :math:`MV = PY`, so</span>
 <span class="sd">    :math:`P = MV/Y`.</span>
@@ -1878,8 +1880,8 @@
 <span class="sd">            Whether the adjustment draws guide arrows.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">clear</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">clear_arrows</span><span class="p">()</span>

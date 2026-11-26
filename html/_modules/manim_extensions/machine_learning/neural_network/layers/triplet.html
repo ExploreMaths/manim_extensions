@@ -1511,6 +1511,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">TripletLayer</span><span class="p">(</span><span class="n">NeuralNetworkLayer</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Shows triplet images.</span>
 
+<span class="sd">    .. doc-example-covers: make_assets, make_forward_pass_animation</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    anchor</span>
@@ -1592,8 +1595,8 @@
 <span class="sd">            Forwarded to the parent layer classes.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="c1"># Make the assets</span>
@@ -1656,12 +1659,12 @@
 <div class="viewcode-block" id="TripletLayer.make_assets">
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/triplet.TripletLayer.html#manim_extensions.machine_learning.neural_network.layers.triplet.TripletLayer.make_assets">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_assets</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Group</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Constructs the assets needed for a triplet layer.</span>
+<span class="w">        </span><span class="sd">"""Constructs the assets needed for a triplet layer.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            A :class:`~manim.mobject.mobject.Group` instance representing the result."""</span>
+<span class="sd">            A :class:`~manim.mobject.mobject.Group` instance representing the result.</span>
+<span class="sd">        """</span>
         <span class="c1"># Handle anchor</span>
         <span class="n">anchor_group</span> <span class="o">=</span> <span class="n">LabeledColorImage</span><span class="p">(</span>
             <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">anchor</span><span class="p">),</span>

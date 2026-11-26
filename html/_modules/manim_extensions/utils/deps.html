@@ -1500,19 +1500,42 @@
 
 
 <span class="nd">@overload</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">require</span><span class="p">(</span><span class="n">extra</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModuleType</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""Import a single optional dependency, raising a helpful error naming the extra.</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">require</span><span class="p">(</span><span class="n">extra</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ModuleType</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Import optional dependencies, raising a helpful error naming the extra.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    extra</span>
-<span class="sd">        Name of the ``[project.optional-dependencies]`` extra.</span>
-<span class="sd">    name</span>
-<span class="sd">        Name of the optional package to import.</span>
+<span class="sd">        Name of the ``[project.optional-dependencies]`` extra that provides</span>
+<span class="sd">        the packages (e.g. ``"physics"``).</span>
+<span class="sd">    name1</span>
+<span class="sd">        First optional package to import, when importing several at once.</span>
+<span class="sd">    name2</span>
+<span class="sd">        Second optional package to import, when importing several at once.</span>
+<span class="sd">    *names</span>
+<span class="sd">        Names of any further optional packages to import (e.g. ``"pymunk"``).</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        The imported module.</span>
+<span class="sd">        The imported module when a single name is given, otherwise a tuple</span>
+<span class="sd">        with the imported modules in the order of ``names``.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ImportError</span>
+<span class="sd">        If one of the packages is not installed.  The error message names</span>
+<span class="sd">        the missing package and the ``pip install`` extra that provides it.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. nbcell::</span>
+
+<span class="sd">       from manim_extensions.utils.deps import require</span>
+
+<span class="sd">       try:</span>
+<span class="sd">           require("physics", "not_installed_package")</span>
+<span class="sd">       except ImportError as error:</span>
+<span class="sd">           print(error)</span>
 <span class="sd">    """</span>
     <span class="o">...</span>
 
@@ -1521,22 +1544,41 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">require</span><span class="p">(</span>
     <span class="n">extra</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name1</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">name2</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="n">names</span><span class="p">:</span> <span class="nb">str</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">ModuleType</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">"""Import several optional dependencies, raising a helpful error naming the extra.</span>
+<span class="w">    </span><span class="sd">"""Import optional dependencies, raising a helpful error naming the extra.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    extra</span>
-<span class="sd">        Name of the ``[project.optional-dependencies]`` extra.</span>
+<span class="sd">        Name of the ``[project.optional-dependencies]`` extra that provides</span>
+<span class="sd">        the packages (e.g. ``"physics"``).</span>
 <span class="sd">    name1</span>
-<span class="sd">        First optional package to import.</span>
+<span class="sd">        First optional package to import, when importing several at once.</span>
 <span class="sd">    name2</span>
-<span class="sd">        Second optional package to import.</span>
+<span class="sd">        Second optional package to import, when importing several at once.</span>
 <span class="sd">    *names</span>
-<span class="sd">        Names of any further optional packages to import.</span>
+<span class="sd">        Names of any further optional packages to import (e.g. ``"pymunk"``).</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
-<span class="sd">        The imported modules in the order of ``names``.</span>
+<span class="sd">        The imported module when a single name is given, otherwise a tuple</span>
+<span class="sd">        with the imported modules in the order of ``names``.</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    ImportError</span>
+<span class="sd">        If one of the packages is not installed.  The error message names</span>
+<span class="sd">        the missing package and the ``pip install`` extra that provides it.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    .. nbcell::</span>
+
+<span class="sd">       from manim_extensions.utils.deps import require</span>
+
+<span class="sd">       try:</span>
+<span class="sd">           require("physics", "not_installed_package")</span>
+<span class="sd">       except ImportError as error:</span>
+<span class="sd">           print(error)</span>
 <span class="sd">    """</span>
     <span class="o">...</span>
 

@@ -1487,7 +1487,6 @@
 <span class="sd">"""Parent layer classes for neural network visualizations.</span>
 
 <span class="sd">This module provides abstract base classes for neural network layer visualizations.</span>
-
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
@@ -1512,6 +1511,9 @@
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/parent_layers.NeuralNetworkLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NeuralNetworkLayer</span><span class="p">(</span><span class="n">ABC</span><span class="p">,</span> <span class="n">Group</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Abstract Neural Network Layer class.</span>
+
+<span class="sd">    .. doc-example-covers: make_forward_pass_animation</span>
+
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1578,8 +1580,8 @@
 <span class="sd">            surrounding rectangle around the layer.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="s2">"debug_mode"</span> <span class="ow">in</span> <span class="n">kwargs</span> <span class="ow">and</span> <span class="n">kwargs</span><span class="p">[</span><span class="s2">"debug_mode"</span><span class="p">]:</span>
@@ -1637,6 +1639,9 @@
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/parent_layers.VGroupNeuralNetworkLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.VGroupNeuralNetworkLayer">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">VGroupNeuralNetworkLayer</span><span class="p">(</span><span class="n">NeuralNetworkLayer</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Neural network layer variant based on :class:`~manim.mobject.types.vectorized_mobject.VGroup`.</span>
+
+<span class="sd">    .. doc-example-covers: make_forward_pass_animation</span>
+
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1752,6 +1757,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">ConnectiveLayer</span><span class="p">(</span><span class="n">VGroupNeuralNetworkLayer</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Forward pass animation for a given pair of layers.</span>
 
+<span class="sd">    .. doc-example-covers: make_forward_pass_animation</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    input_layer</span>
@@ -1860,6 +1868,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">BlankConnective</span><span class="p">(</span><span class="n">ConnectiveLayer</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Connective layer to be used when the given pair of layers is undefined.</span>
 
+<span class="sd">    .. doc-example-covers: make_forward_pass_animation</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    input_layer</span>
@@ -1947,8 +1958,8 @@
 <span class="sd">            Ignored.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">return</span> <span class="kc">None</span></div>

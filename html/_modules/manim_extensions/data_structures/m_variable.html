@@ -1498,6 +1498,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">MVariable</span><span class="p">(</span><span class="n">MArrayElement</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""A class that represents a variable.</span>
 
+<span class="sd">    .. doc-example-covers: update_index, update_label, update_value</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    scene</span>
@@ -1550,7 +1553,6 @@
 <span class="sd">               var.scale_to_fit_width(6).move_to(ORIGIN)</span>
 <span class="sd">               # fade the variable back out so the animation loops seamlessly</span>
 <span class="sd">               self.play(FadeOut(var))</span>
-
 <span class="sd">    """</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

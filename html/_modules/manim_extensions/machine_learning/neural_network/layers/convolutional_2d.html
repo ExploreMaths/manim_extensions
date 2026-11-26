@@ -1649,7 +1649,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            A mapping from corner names to their dots."""</span>
+<span class="sd">            A mapping from corner names to their dots.</span>
+<span class="sd">        """</span>
         <span class="c1"># Sort points through clockwise rotation of a vector in the xy plane</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">exterior_rectangle</span><span class="o">.</span><span class="n">get_corners_dict</span><span class="p">()</span></div>
 </div>
@@ -1660,6 +1661,9 @@
 <a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/convolutional_2d.Convolutional2DLayer.html#manim_extensions.machine_learning.neural_network.layers.convolutional_2d.Convolutional2DLayer">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Convolutional2DLayer</span><span class="p">(</span><span class="n">VGroupNeuralNetworkLayer</span><span class="p">,</span> <span class="n">ThreeDLayer</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Handles rendering a convolutional layer for a nn.</span>
+
+<span class="sd">    .. doc-example-covers: construct_feature_maps, make_forward_pass_animation</span>
+
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1811,8 +1815,8 @@
 <span class="sd">            Forwarded to the parent layer classes.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="c1"># Make the feature maps</span>
@@ -1965,8 +1969,8 @@
 <span class="sd">            Forwarded to :meth:`~manim.mobject.mobject.Mobject.scale`.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">cell_width</span> <span class="o">*=</span> <span class="n">scale_factor</span>
@@ -1983,7 +1987,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The center point of the surrounding shape."""</span>
+<span class="sd">            The center point of the surrounding shape.</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_maps</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span></div>
 
 
@@ -1994,7 +1999,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The width of the surrounding shape."""</span>
+<span class="sd">            The width of the surrounding shape.</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_maps</span><span class="o">.</span><span class="n">length_over_dim</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span></div>
 
 
@@ -2005,7 +2011,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The height of the surrounding shape."""</span>
+<span class="sd">            The height of the surrounding shape.</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_maps</span><span class="o">.</span><span class="n">length_over_dim</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span></div>
 
 
@@ -2031,8 +2038,8 @@
 <span class="sd">            :meth:`~manim.mobject.mobject.Mobject.move_to`.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">layer_center</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">feature_maps</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span>

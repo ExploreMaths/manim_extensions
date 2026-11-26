@@ -1517,6 +1517,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">EmbeddingLayer</span><span class="p">(</span><span class="n">VGroupNeuralNetworkLayer</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">""":class:`~manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork` embedding object that can show probability distributions.</span>
 
+<span class="sd">    .. doc-example-covers: construct_gaussian_point_cloud, make_forward_pass_animation</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    point_radius</span>
@@ -1604,8 +1607,8 @@
 <span class="sd">            Forwarded to the parent layer classes.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">axes</span> <span class="o">=</span> <span class="n">Axes</span><span class="p">(</span>
@@ -1682,7 +1685,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            A point sampled from the current latent distribution."""</span>
+<span class="sd">            A point sampled from the current latent distribution.</span>
+<span class="sd">        """</span>
         <span class="n">mean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">latent_distribution</span><span class="o">.</span><span class="n">mean</span>
         <span class="n">cov</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">latent_distribution</span><span class="o">.</span><span class="n">cov</span>
         <span class="n">point</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">cov</span><span class="p">)</span>
@@ -1699,7 +1703,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The mean location of the latent distribution in the axes frame."""</span>
+<span class="sd">            The mean location of the latent distribution in the axes frame.</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span><span class="o">.</span><span class="n">coords_to_point</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">latent_distribution</span><span class="o">.</span><span class="n">mean</span><span class="p">)</span></div>
 
 

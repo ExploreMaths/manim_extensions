@@ -1484,9 +1484,7 @@
 <span class="c1"># SPDX-License-Identifier: MIT</span>
 <span class="c1"># patched: lazy-import matplotlib/seaborn (ml extra)</span>
 
-<span class="sd">"""</span>
-<span class="sd">Tool for animating Markov Chain Monte Carlo simulations in 2D.</span>
-<span class="sd">"""</span>
+<span class="sd">"""Tool for animating Markov Chain Monte Carlo simulations in 2D."""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Sequence</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">collections.abc</span><span class="w"> </span><span class="kn">import</span> <span class="n">Callable</span>
@@ -1532,8 +1530,7 @@
 <div class="viewcode-block" id="gaussian_proposal">
 <a class="viewcode-back" href="../../../../reference/machine_learning/diffusion/mcmc.html#manim_extensions.machine_learning.diffusion.mcmc.gaussian_proposal">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">gaussian_proposal</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">,</span> <span class="n">sigma</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">VectorND</span><span class="p">,</span> <span class="nb">float</span><span class="p">]:</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    Gaussian proposal distribution.</span>
+<span class="w">    </span><span class="sd">"""Gaussian proposal distribution.</span>
 
 <span class="sd">    Draw new parameters from Gaussian distribution with</span>
 <span class="sd">    mean at current position and standard deviation sigma.</span>
@@ -1817,6 +1814,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">MCMCAxes</span><span class="p">(</span><span class="n">Group</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Container object for visualizing MCMC on a 2D axis.</span>
 
+<span class="sd">    .. doc-example-covers: make_transition_animation, show_ground_truth_gaussian, visualize_gaussian_proposal_about_point</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    dot_color</span>
@@ -2092,8 +2092,7 @@
         <span class="n">true_samples</span><span class="p">:</span> <span class="n">Point2D_Array</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
         <span class="n">sampling_kwargs</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Succession</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Makes an animation for visualizing a 2D markov chain using</span>
+<span class="w">        </span><span class="sd">"""Makes an animation for visualizing a 2D markov chain using</span>
 <span class="sd">        metropolis hastings samplings.</span>
 
 <span class="sd">        Parameters</span>

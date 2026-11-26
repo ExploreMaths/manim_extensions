@@ -1728,8 +1728,10 @@
 <div class="viewcode-block" id="CodeBlock">
 <a class="viewcode-back" href="../../../reference/code_blocks/manim_code_blocks.CodeBlock.html#manim_extensions.code_blocks.manim_code_blocks.CodeBlock">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">CodeBlock</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    A block of code. By default code blocks are rendered as :class:`~manim.mobject.text.text_mobject.MarkupText` objects with `BackgroundRectangles` behind them. Furthermore, a title with the name and color of the language is rendered above the code block on the left-hand side. Syntax highlighting is done using `TextMates` by extracting `.tmLanguage.json` files from `microsoft/vscode`. See https://github.com/microsoft/vscode/tree/main/extensions.</span>
+<span class="w">    </span><span class="sd">"""A block of code. By default code blocks are rendered as :class:`~manim.mobject.text.text_mobject.MarkupText` objects with `BackgroundRectangles` behind them. Furthermore, a title with the name and color of the language is rendered above the code block on the left-hand side. Syntax highlighting is done using `TextMates` by extracting `.tmLanguage.json` files from `microsoft/vscode`. See https://github.com/microsoft/vscode/tree/main/extensions.</span>
+
+<span class="sd">    .. doc-example-covers: uncreate</span>
+
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1877,8 +1879,7 @@
 <div class="viewcode-block" id="CodeBlock.create">
 <a class="viewcode-back" href="../../../reference/code_blocks/manim_code_blocks.CodeBlock.html#manim_extensions.code_blocks.manim_code_blocks.CodeBlock.create">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">create</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
-<span class="w">        </span><span class="sa">r</span><span class="sd">"""</span>
-<span class="sd">        Return a tuple of animations for creating the code block. Use such as:\n</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">"""Return a tuple of animations for creating the code block. Use such as:\n</span>
 <span class="sd">        ```</span>
 <span class="sd">        python = CodeBlock('print("Hello World!")', language = Python)</span>
 <span class="sd">        self.play(*python.create())</span>
@@ -1912,8 +1913,7 @@
 <div class="viewcode-block" id="CodeBlock.uncreate">
 <a class="viewcode-back" href="../../../reference/code_blocks/manim_code_blocks.CodeBlock.html#manim_extensions.code_blocks.manim_code_blocks.CodeBlock.uncreate">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">uncreate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Animation</span><span class="p">,</span> <span class="o">...</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Return a tuple of animations for uncreating the code block. Use such as:</span>
+<span class="w">        </span><span class="sd">"""Return a tuple of animations for uncreating the code block. Use such as:</span>
 <span class="sd">        ```</span>
 <span class="sd">        python = CodeBlock('print("Hello World!")', language = Python)</span>
 <span class="sd">        self.play(*python.uncreate())</span>

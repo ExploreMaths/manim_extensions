@@ -1486,7 +1486,6 @@
 <span class="sd">""":class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear` mobject for Manim.</span>
 
 <span class="sd">This module provides gear and rack visualizations.</span>
-
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
@@ -1541,8 +1540,7 @@
     <span class="n">rad_offs</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
     <span class="n">tan_offs</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="n">Point3D_Array</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    Returns the x-y-z values of the involute function.</span>
+<span class="w">    </span><span class="sd">"""Returns the x-y-z values of the involute function.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1719,8 +1717,7 @@
 <div class="viewcode-block" id="involute_height_func">
 <a class="viewcode-back" href="../../../../reference/gearbox/gear_mobjects/gear_mobject.html#manim_extensions.gearbox.gear_mobjects.gear_mobject.involute_height_func">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">involute_height_func</span><span class="p">(</span><span class="n">k</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">VectorND</span><span class="p">,</span> <span class="n">r</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    Returns the radial height of the involute compared to the base circle.</span>
+<span class="w">    </span><span class="sd">"""Returns the radial height of the involute compared to the base circle.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1766,8 +1763,7 @@
 <div class="viewcode-block" id="involute_point_gen">
 <a class="viewcode-back" href="../../../../reference/gearbox/gear_mobjects/gear_mobject.html#manim_extensions.gearbox.gear_mobjects.gear_mobject.involute_point_gen">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">involute_point_gen</span><span class="p">(</span><span class="n">t</span><span class="p">:</span> <span class="n">VectorND</span><span class="p">,</span> <span class="n">r</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D_Array</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    Returns a list of points to be for cubic bezier approximation of the involute curve.</span>
+<span class="w">    </span><span class="sd">"""Returns a list of points to be for cubic bezier approximation of the involute curve.</span>
 <span class="sd">    Output is compatible with :class:`~manim.mobject.mobject.Mobject`.points.</span>
 <span class="sd">    Input t is a list where the involute shall be evaluated, it can be unevenly spaced.</span>
 <span class="sd">    Anchors are added automatically.</span>
@@ -2371,7 +2367,6 @@
 <span class="sd">                   )</span>
 <span class="sd">                   # both gears rotate by exactly one tooth pitch, so the</span>
 <span class="sd">                   # first and last frames match and the animation loops seamlessly</span>
-
 <span class="sd">        """</span>
 
         <span class="c1"># -- Rack branch -----------------------------------------------------------</span>

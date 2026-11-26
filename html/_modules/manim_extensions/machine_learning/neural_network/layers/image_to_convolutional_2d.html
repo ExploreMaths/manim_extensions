@@ -1715,7 +1715,8 @@
 
 <span class="sd">            Returns</span>
 <span class="sd">            -------</span>
-<span class="sd">                The image mobject scaled to the target feature-map size."""</span>
+<span class="sd">                The image mobject scaled to the target feature-map size.</span>
+<span class="sd">            """</span>
             <span class="n">max_width_height</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">image_mobject</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">image_mobject</span><span class="o">.</span><span class="n">height</span><span class="p">)</span>
             <span class="n">scale_factor</span> <span class="o">=</span> <span class="p">(</span>
                 <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">target_feature_map</span><span class="p">)</span><span class="o">.</span><span class="n">untransformed_width</span> <span class="o">/</span> <span class="n">max_width_height</span>
@@ -1763,8 +1764,8 @@
 <span class="sd">            Forwarded to :meth:`~manim.mobject.mobject.Mobject.scale`.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div>

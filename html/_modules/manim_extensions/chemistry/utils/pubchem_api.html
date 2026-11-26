@@ -1486,7 +1486,6 @@
 <span class="sd">"""PubChem API manager for Manim chemistry.</span>
 
 <span class="sd">This module provides the :class:`~manim_extensions.chemistry.utils.pubchem_api.PubchemAPIManager` class for fetching molecular data from PubChem.</span>
-
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
@@ -1630,7 +1629,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The PubChem record fetched by compound ID, as a string."""</span>
+<span class="sd">            The PubChem record fetched by compound ID, as a string.</span>
+<span class="sd">        """</span>
         <span class="n">requests</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"chemistry"</span><span class="p">,</span> <span class="s2">"requests"</span><span class="p">)</span>
         <span class="n">request_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">PubchemAPIManager</span><span class="o">.</span><span class="n">BASE_URL</span><span class="si">}</span><span class="s2">/cid/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">cid</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">format</span><span class="si">}</span><span class="s2">"</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">three_d</span><span class="p">:</span>
@@ -1647,7 +1647,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The PubChem record fetched by common name, as a string."""</span>
+<span class="sd">            The PubChem record fetched by common name, as a string.</span>
+<span class="sd">        """</span>
         <span class="n">requests</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"chemistry"</span><span class="p">,</span> <span class="s2">"requests"</span><span class="p">)</span>
         <span class="n">request_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">PubchemAPIManager</span><span class="o">.</span><span class="n">BASE_URL</span><span class="si">}</span><span class="s2">/name/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">format</span><span class="si">}</span><span class="s2">"</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">three_d</span><span class="p">:</span>
@@ -1664,7 +1665,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The PubChem record fetched from a SMILES string."""</span>
+<span class="sd">            The PubChem record fetched from a SMILES string.</span>
+<span class="sd">        """</span>
         <span class="n">requests</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"chemistry"</span><span class="p">,</span> <span class="s2">"requests"</span><span class="p">)</span>
         <span class="n">request_url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">PubchemAPIManager</span><span class="o">.</span><span class="n">BASE_URL</span><span class="si">}</span><span class="s2">/smiles/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">smiles</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">format</span><span class="si">}</span><span class="s2">"</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">three_d</span><span class="p">:</span>
@@ -1686,7 +1688,8 @@
 <span class="sd">        Raises</span>
 <span class="sd">        ------</span>
 <span class="sd">        Exception</span>
-<span class="sd">            If the compound cannot be found or the PubChem API fails."""</span>
+<span class="sd">            If the compound cannot be found or the PubChem API fails.</span>
+<span class="sd">        """</span>
         <span class="n">requests</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"chemistry"</span><span class="p">,</span> <span class="s2">"requests"</span><span class="p">)</span>
         <span class="n">identifier</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">inchi</span>
         <span class="k">if</span> <span class="n">cast</span><span class="p">(</span><span class="n">Any</span><span class="p">,</span> <span class="n">identifier</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"InChI="</span><span class="p">):</span>

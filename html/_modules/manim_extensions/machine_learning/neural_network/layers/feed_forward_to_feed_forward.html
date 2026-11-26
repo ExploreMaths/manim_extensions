@@ -1520,6 +1520,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">FeedForwardToFeedForward</span><span class="p">(</span><span class="n">ConnectiveLayer</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Layer for connecting FeedForward layer to :class:`~manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer`.</span>
 
+<span class="sd">    .. doc-example-covers: construct_edges, make_forward_pass_animation, modify_edge_stroke_widths</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    input_layer</span>
@@ -1606,8 +1609,8 @@
 <span class="sd">            Forwarded to the parent layer classes.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">edges</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">construct_edges</span><span class="p">()</span>
@@ -1622,7 +1625,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            A list of the results."""</span>
+<span class="sd">            A list of the results.</span>
+<span class="sd">        """</span>
         <span class="c1"># Go through each node in the two layers and make a connecting line</span>
         <span class="n">input_layer</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">FeedForwardLayer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">input_layer</span><span class="p">)</span>
         <span class="n">output_layer</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="n">FeedForwardLayer</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">output_layer</span><span class="p">)</span>
@@ -1753,7 +1757,6 @@
 <span class="sd">        ------</span>
 <span class="sd">        ValueError</span>
 <span class="sd">            If neither ``colors`` nor ``magnitudes`` is provided.</span>
-
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="n">colors</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>

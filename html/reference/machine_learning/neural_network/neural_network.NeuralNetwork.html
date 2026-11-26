@@ -1584,15 +1584,14 @@ with default names, a dict is returned unchanged.</p>
 <li><p><strong>end_mobject_or_name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The layer the connection ends at, or its name in the network.</p></li>
 <li><p><strong>connection_style</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Style of the connection; currently only “default” is supported.</p></li>
 <li><p><strong>connection_position</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Unused position hint reserved for future use.</p></li>
-<li><p><strong>arc_direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – <p>Direction the connection arc bends.</p>
-<blockquote>
-<div><p>The resulting value.</p>
-</div></blockquote>
-</p></li>
+<li><p><strong>arc_direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Direction the connection arc bends.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1602,14 +1601,12 @@ with default names, a dict is returned unchanged.</p>
 <span class="sig-name descname"><span class="pre">_construct_input_layers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/neural_network/neural_network.html#NeuralNetwork._construct_input_layers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork._construct_input_layers" title="Link to this definition">¶</a></dt>
 <dd><p>Constructs each of the input layers in context
 of their adjacent layers..</p>
-<blockquote>
-<div><blockquote>
-<div><p>The resulting value.</p>
-</div></blockquote>
-</div></blockquote>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1783,18 +1780,15 @@ already been created.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>z_index_value</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The z-index to set on each layer.</p></li>
-<li><p><strong>family</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – <dl class="simple">
-<dt>Kept for signature compatibility; setting <code class="docutils literal notranslate"><span class="pre">family=False</span></code> stops</dt><dd><p>sub-neural networks from inheriting the parent z-index.</p>
-</dd>
-</dl>
-<blockquote>
-<div><p>The resulting value.</p>
-</div></blockquote>
-</p></li>
+<li><p><strong>family</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Kept for signature compatibility; setting <code class="docutils literal notranslate"><span class="pre">family=False</span></code> stops
+sub-neural networks from inheriting the parent z-index.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1809,15 +1803,14 @@ with scaled spacing, keeping the network centered.</p>
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>scale_factor</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The scaling factor.</p></li>
-<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – <p>Additional keyword arguments forwarded to each layer’s <code class="docutils literal notranslate"><span class="pre">scale</span></code>.</p>
-<blockquote>
-<div><p>The resulting value.</p>
-</div></blockquote>
-</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to each layer’s <code class="docutils literal notranslate"><span class="pre">scale</span></code>.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
 </dd>
 </dl>
 </dd></dl>

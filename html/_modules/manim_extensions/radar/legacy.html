@@ -1511,7 +1511,14 @@
 <span class="p">]</span>
 
 <span class="c1">#: Axis names used by the bundled demo reel.</span>
-<span class="n">REPLICA_AXES</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"理论贡献"</span><span class="p">,</span> <span class="s2">"实践贡献"</span><span class="p">,</span> <span class="s2">"群众路线"</span><span class="p">,</span> <span class="s2">"个人品德"</span><span class="p">,</span> <span class="s2">"国际主义"</span><span class="p">,</span> <span class="s2">"历史影响"</span><span class="p">)</span>
+<span class="n">REPLICA_AXES</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">"Theory"</span><span class="p">,</span>
+    <span class="s2">"Practice"</span><span class="p">,</span>
+    <span class="s2">"Mass Line"</span><span class="p">,</span>
+    <span class="s2">"Character"</span><span class="p">,</span>
+    <span class="s2">"Internationalism"</span><span class="p">,</span>
+    <span class="s2">"Historical Impact"</span><span class="p">,</span>
+<span class="p">)</span>
 
 <span class="c1">#: Full-scale value of the demo reel (values above it render as ``10+``).</span>
 <span class="n">REPLICA_MAX</span> <span class="o">=</span> <span class="mf">10.0</span>
@@ -1624,8 +1631,11 @@
 <span class="sd">               super().construct()</span>
 <span class="sd">    """</span>
 
+    <span class="c1">#: 1.0 chart style preset.</span>
     <span class="n">style</span> <span class="o">=</span> <span class="s2">"classic"</span>
+    <span class="c1">#: 2.0 chart theme preset.</span>
     <span class="n">theme</span> <span class="o">=</span> <span class="s2">"midnight"</span>
+    <span class="c1">#: Optional chart title; ``None`` keeps the generated nameplate text.</span>
     <span class="n">title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="RadarV1Scene.construct">
@@ -1671,14 +1681,17 @@
 <span class="sd">                   replica_datasets()[0],</span>
 <span class="sd">                   style="neo",</span>
 <span class="sd">                   theme="midnight",</span>
-<span class="sd">                   title="六维能力 · 雷达图鉴",</span>
+<span class="sd">                   title="Six-Axis Capability · Radar Atlas",</span>
 <span class="sd">               )</span>
 <span class="sd">               self.play(Create(chart))</span>
 <span class="sd">    """</span>
 
+    <span class="c1">#: 2.0 chart style preset.</span>
     <span class="n">style</span> <span class="o">=</span> <span class="s2">"neo"</span>
+    <span class="c1">#: 2.0 chart theme preset.</span>
     <span class="n">theme</span> <span class="o">=</span> <span class="s2">"midnight"</span>
-    <span class="n">title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"六维能力 · 雷达图鉴"</span>
+    <span class="c1">#: Default title shown above the 2.0 chart.</span>
+    <span class="n">title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="s2">"Six-Axis Capability · Radar Atlas"</span>
 
 <div class="viewcode-block" id="RadarV2Scene.construct">
 <a class="viewcode-back" href="../../../reference/radar/legacy.RadarV2Scene.html#manim_extensions.radar.legacy.RadarV2Scene.construct">[docs]</a>

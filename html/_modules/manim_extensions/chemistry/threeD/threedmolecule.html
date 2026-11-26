@@ -1485,7 +1485,6 @@
 <span class="sd">"""3D molecule representation for Manim chemistry.</span>
 
 <span class="sd">This module provides the :class:`~manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule` class for rendering molecules in 3D.</span>
-
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
@@ -1505,6 +1504,9 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/threeD/threedmolecule.ThreeDMolecule.html#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ThreeDMolecule</span><span class="p">(</span><span class="n">OpenGLGroup</span><span class="p">,</span> <span class="n">AbstractMolecule</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Draws a 3D :class:`~manim_extensions.chemistry.molecule.molecule.Molecule`.</span>
+
+<span class="sd">    .. doc-example-covers: get_atoms_from_csv, get_bonds</span>
+
 
 <span class="sd">    Requires using opengl renderer.</span>
 
@@ -1646,7 +1648,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            A OpenGLGroup instance representing the result."""</span>
+<span class="sd">            A OpenGLGroup instance representing the result.</span>
+<span class="sd">        """</span>
         <span class="n">elements_data_dict</span> <span class="o">=</span> <span class="p">{}</span>
         <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms_dict</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
             <span class="n">elements_data_dict</span><span class="p">[</span><span class="n">atom</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"element"</span><span class="p">)</span><span class="o">.</span><span class="n">symbol</span><span class="p">]</span> <span class="o">=</span> <span class="n">atom</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"element"</span><span class="p">)</span>
@@ -1673,7 +1676,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            A OpenGLGroup instance representing the result."""</span>
+<span class="sd">            A OpenGLGroup instance representing the result.</span>
+<span class="sd">        """</span>
         <span class="n">bonds</span> <span class="o">=</span> <span class="n">OpenGLGroup</span><span class="p">()</span>
         <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">bonds_list</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">bonds_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="n">from_atom</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">atoms</span><span class="p">[</span><span class="n">index</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
@@ -1697,8 +1701,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">mc_molecule_to_atoms_and_bonds</span><span class="p">(</span>
         <span class="n">mc_molecule</span><span class="p">:</span> <span class="n">MCMolecule</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Transforms the structure of a mc_molecule to an (atoms, bonds) tuple.</span>
+<span class="w">        </span><span class="sd">"""Transforms the structure of a mc_molecule to an (atoms, bonds) tuple.</span>
 
 <span class="sd">        The tuple has the following structure:</span>
 

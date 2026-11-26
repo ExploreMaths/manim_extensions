@@ -1486,7 +1486,6 @@
 <span class="sd">""":class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` class for automata visualizations.</span>
 
 <span class="sd">This module provides transition visualization for automata.</span>
-
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">__future__</span><span class="w"> </span><span class="kn">import</span> <span class="n">annotations</span>
@@ -1523,6 +1522,9 @@
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_transition.ManimTransition.html#manim_extensions.automata.mobjects.manim_transition.ManimTransition">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ManimTransition</span><span class="p">(</span><span class="n">Transition</span><span class="p">,</span> <span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A visual transition arrow for automata diagrams.</span>
+
+<span class="sd">    .. doc-example-covers: animate_transition</span>
+
 
 <span class="sd">    The object combines a Manim arrow with labels representing the read symbols</span>
 <span class="sd">    of a finite-state transition.</span>
@@ -1681,8 +1683,8 @@
 <span class="sd">            End point on the state circle.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">arrow</span> <span class="o">=</span> <span class="n">CurvedArrow</span><span class="p">(</span><span class="n">point2</span><span class="p">,</span> <span class="n">point1</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="mf">1.5</span> <span class="o">*</span> <span class="n">PI</span><span class="p">)</span>
@@ -1702,8 +1704,7 @@
     <span class="k">def</span><span class="w"> </span><span class="nf">calculate_direction_of_arrow_label</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">normal_vector_choice</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Return the normal direction used to offset the transition label.</span>
+<span class="w">        </span><span class="sd">"""Return the normal direction used to offset the transition label.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1746,8 +1747,8 @@
 <span class="sd">            Padding distance used to separate multiple labels stacked around the arrow.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="c1"># Obtain coordinates for the centre of the line</span>
@@ -1788,14 +1789,13 @@
 <div class="viewcode-block" id="ManimTransition.convert_straight_arrow_to_curved_arrow">
 <a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_transition.ManimTransition.html#manim_extensions.automata.mobjects.manim_transition.ManimTransition.convert_straight_arrow_to_curved_arrow">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">convert_straight_arrow_to_curved_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Converts a straight arrow transition to a curved arrow transition.</span>
+<span class="w">        </span><span class="sd">"""Converts a straight arrow transition to a curved arrow transition.</span>
 <span class="sd">        This method is primarily used when there are two opposing transitions</span>
 <span class="sd">        between two states.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="c1"># remove existing manim arrow</span>
@@ -1822,8 +1822,8 @@
 <span class="sd">            Extra offset applied to stacked labels near the arc.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="n">temp_arrow</span> <span class="o">=</span> <span class="n">Arrow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">transition_from</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">transition_to</span><span class="p">)</span>

@@ -1496,6 +1496,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">BohrAtom</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Creates a Bohr like diagram.</span>
 
+<span class="sd">    .. doc-example-covers: arrange_electrons, electrons_group, get_electrons, get_nuclei, get_orbitals, nuclei_groups, orbitals_group</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    e</span>
@@ -1574,7 +1577,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The number of orbital levels needed to hold all electrons."""</span>
+<span class="sd">            The number of orbital levels needed to hold all electrons.</span>
+<span class="sd">        """</span>
         <span class="n">TOTAL_ELECTRONS_PER_LEVEL</span> <span class="o">=</span> <span class="p">{</span>
             <span class="c1"># Electrons that fit in total: Level</span>
             <span class="mi">2</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
@@ -1705,7 +1709,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The orbitals VGroup (first child of the atom group)."""</span>
+<span class="sd">            The orbitals VGroup (first child of the atom group).</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">VGroup</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></div>
 
 
@@ -1716,7 +1721,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The electrons VGroup (second child of the atom group)."""</span>
+<span class="sd">            The electrons VGroup (second child of the atom group).</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">VGroup</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span></div>
 
 
@@ -1727,7 +1733,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The nuclei VGroup (third child of the atom group)."""</span>
+<span class="sd">            The nuclei VGroup (third child of the atom group).</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">VGroup</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span></div>
 </div>
 

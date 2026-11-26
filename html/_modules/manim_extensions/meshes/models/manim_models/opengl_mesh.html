@@ -1569,10 +1569,12 @@
 <span class="sd">        fast_mesh = FastManimMesh(mesh)</span>
 <span class="sd">    """</span>
 
+    <span class="c1">#: Vertex attribute names, dtypes and component counts for the shader.</span>
     <span class="n">shader_dtype</span> <span class="o">=</span> <span class="p">[</span>
         <span class="p">(</span><span class="s2">"point"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="p">(</span><span class="mi">3</span><span class="p">,)),</span>
         <span class="p">(</span><span class="s2">"color"</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">,</span> <span class="p">(</span><span class="mi">4</span><span class="p">,)),</span>
     <span class="p">]</span>
+    <span class="c1">#: Shader resource folder shipped with the package.</span>
     <span class="n">shader_folder</span> <span class="o">=</span> <span class="s2">"mesh"</span>
 
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span>

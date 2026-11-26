@@ -1711,8 +1711,8 @@
 <span class="sd">        each row is ``[left, right, bottom, top, class_index]``.</span>
 
 
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
 <span class="sd">            The resulting value.</span>
 <span class="sd">    """</span>
     <span class="n">plt</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">"ml"</span><span class="p">,</span> <span class="s2">"matplotlib.pyplot"</span><span class="p">)</span>
@@ -1830,6 +1830,9 @@
 <a class="viewcode-back" href="../../../../reference/machine_learning/decision_tree/decision_tree_surface.IrisDatasetPlot.html#manim_extensions.machine_learning.decision_tree.decision_tree_surface.IrisDatasetPlot">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">IrisDatasetPlot</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Plot of the first two features of the Iris dataset.</span>
+
+<span class="sd">    .. doc-example-covers: create_animation</span>
+
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -2048,6 +2051,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">DecisionTreeSurface</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Colored decision surface of a fitted decision tree.</span>
 
+<span class="sd">    .. doc-example-covers: create_override, make_split_to_animation_map, uncreate_override</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    tree_clf</span>
@@ -2105,7 +2111,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            A list of the results."""</span>
+<span class="sd">            A list of the results.</span>
+<span class="sd">        """</span>
         <span class="c1"># compute data bounds</span>
         <span class="n">left</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amin</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">-</span> <span class="mf">0.2</span>
         <span class="n">right</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">amax</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="mf">0.2</span>

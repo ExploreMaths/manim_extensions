@@ -1485,7 +1485,6 @@
 <span class="sd">"""2D atom representation for Manim chemistry.</span>
 
 <span class="sd">This module provides the :class:`~manim_extensions.chemistry.twoD.atom.MAtomObject` class for representing atoms in 2D chemical structures.</span>
-
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span><span class="p">,</span> <span class="n">Literal</span>
@@ -1501,6 +1500,9 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/atom.MAtomObject.html#manim_extensions.chemistry.twoD.atom.MAtomObject">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">MAtomObject</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A 2D visual representation of an atom in a chemical molecule.</span>
+
+<span class="sd">    .. doc-example-covers: add_atom</span>
+
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1622,8 +1624,7 @@
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">representation_type</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"complete"</span><span class="p">,</span> <span class="s2">"skeleton"</span><span class="p">,</span> <span class="s2">"over_bond"</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Determine the atom label representation from the requested type.</span>
+<span class="w">        </span><span class="sd">"""Determine the atom label representation from the requested type.</span>
 
 <span class="sd">        Input options:</span>
 
@@ -1669,12 +1670,12 @@
 <div class="viewcode-block" id="MAtomObject.add_atom">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/atom.MAtomObject.html#manim_extensions.chemistry.twoD.atom.MAtomObject.add_atom">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_atom</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MarkupText</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        Adds an atom depending on the representation.</span>
+<span class="w">        </span><span class="sd">"""Adds an atom depending on the representation.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The created atom label, or ``None`` when the representation has no label."""</span>
+<span class="sd">            The created atom label, or ``None`` when the representation has no label.</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">representation</span> <span class="o">!=</span> <span class="s2">"skeleton"</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">MarkupText</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">element</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.8</span><span class="p">)</span>
         <span class="k">return</span> <span class="kc">None</span></div>
@@ -1687,7 +1688,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            Whether the operation succeeded."""</span>
+<span class="sd">            Whether the operation succeeded.</span>
+<span class="sd">        """</span>
         <span class="n">minimum_bonds</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"O"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"S"</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s2">"N"</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s2">"P"</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
         <span class="n">minimum_bond</span> <span class="o">=</span> <span class="n">minimum_bonds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">element</span><span class="p">)</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">bond_to</span> <span class="ow">and</span> <span class="n">minimum_bond</span><span class="p">:</span>
@@ -1759,7 +1761,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The copy of this atom with explicit hydrogens enabled."""</span>
+<span class="sd">            The copy of this atom with explicit hydrogens enabled.</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">explicit_hydrogens</span> <span class="o">=</span> <span class="kc">True</span>
 
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">make_copy</span><span class="p">()</span></div>
@@ -1768,8 +1771,7 @@
 <div class="viewcode-block" id="MAtomObject.set_atom_color">
 <a class="viewcode-back" href="../../../../reference/chemistry/twoD/atom.MAtomObject.html#manim_extensions.chemistry.twoD.atom.MAtomObject.set_atom_color">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_atom_color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ManimColor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
-<span class="w">        </span><span class="sd">"""</span>
-<span class="sd">        TODO: Add the color depending on cpk convention</span>
+<span class="w">        </span><span class="sd">"""TODO: Add the color depending on cpk convention</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -1777,8 +1779,8 @@
 <span class="sd">            New color of the atom.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">pass</span></div>

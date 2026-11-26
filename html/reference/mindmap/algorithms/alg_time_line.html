@@ -1538,22 +1538,26 @@
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_time_line.TimelineNode.node">
 <span class="sig-name descname"><span class="pre">node</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><span class="pre">object</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></span><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_time_line.TimelineNode.node" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Payload carried by this layout node.</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_time_line.TimelineNode.side_dir">
 <span class="sig-name descname"><span class="pre">side_dir</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="layout_config.LayoutDirection.html#manim_extensions.mindmap.algorithms.layout_config.LayoutDirection" title="manim_extensions.mindmap.algorithms.layout_config.LayoutDirection"><span class="pre">LayoutDirection</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></span><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_time_line.TimelineNode.side_dir" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Direction in which the node’s subtree is placed.</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_time_line.TimelineNode.x">
 <span class="sig-name descname"><span class="pre">x</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></span><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_time_line.TimelineNode.x" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Horizontal layout coordinate.</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_time_line.TimelineNode.y">
 <span class="sig-name descname"><span class="pre">y</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0</span></span></span><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_time_line.TimelineNode.y" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Vertical layout coordinate.</p>
+</dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_time_line.TimelineNode._is_root">
@@ -1648,15 +1652,14 @@ skipped.</p>
 <code class="docutils literal notranslate"><span class="pre">(node,</span> <span class="pre">parent,</span> <span class="pre">is_root,</span> <span class="pre">layer_index,</span> <span class="pre">index)</span> <span class="pre">-&gt;</span> <span class="pre">None</span></code>.</p></li>
 <li><p><strong>is_root</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether <code class="docutils literal notranslate"><span class="pre">node</span></code> is the root of the traversal.</p></li>
 <li><p><strong>layer_index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – The depth of the current node (root is 0).</p></li>
-<li><p><strong>index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – <p>The index of <code class="docutils literal notranslate"><span class="pre">node</span></code> within its parent’s children list.</p>
-<blockquote>
-<div><p>The resulting value.</p>
-</div></blockquote>
-</p></li>
+<li><p><strong>index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – The index of <code class="docutils literal notranslate"><span class="pre">node</span></code> within its parent’s children list.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
 <dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
 </dd>
 </dl>
 </dd></dl>

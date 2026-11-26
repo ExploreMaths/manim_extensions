@@ -1511,6 +1511,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">ImageLayer</span><span class="p">(</span><span class="n">NeuralNetworkLayer</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Single Image Layer for Neural Network.</span>
 
+<span class="sd">    .. doc-example-covers: make_forward_pass_animation</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    numpy_image</span>
@@ -1597,8 +1600,8 @@
 <span class="sd">            Forwarded to the parent layer classes.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">numpy_image</span><span class="p">))</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
@@ -1702,7 +1705,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The rightmost point of the surrounding shape."""</span>
+<span class="sd">            The rightmost point of the surrounding shape.</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="n">cast</span><span class="p">(</span><span class="n">Point3D</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_mobject</span><span class="o">.</span><span class="n">get_right</span><span class="p">())</span></div>
 
 
@@ -1720,8 +1724,8 @@
 <span class="sd">            :meth:`~manim.mobject.mobject.Mobject.scale`.</span>
 
 
-<span class="sd">            Returns</span>
-<span class="sd">            -------</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
 <span class="sd">                The resulting value.</span>
 <span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">image_mobject</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">scale_factor</span><span class="p">)</span></div>
@@ -1733,7 +1737,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The width of the image mobject."""</span>
+<span class="sd">            The width of the image mobject.</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_mobject</span><span class="o">.</span><span class="n">width</span><span class="p">)</span>
 
     <span class="nd">@property</span>  <span class="c1"># type: ignore[misc]</span>
@@ -1742,7 +1747,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The height of the image mobject."""</span>
+<span class="sd">            The height of the image mobject.</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">image_mobject</span><span class="o">.</span><span class="n">height</span><span class="p">)</span></div>
 
 </pre></div>

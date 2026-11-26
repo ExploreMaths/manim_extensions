@@ -1486,7 +1486,6 @@
 <span class="sd">"""Periodic table visualization objects for Manim chemistry.</span>
 
 <span class="sd">This module provides the :class:`~manim_extensions.chemistry.periodic_table.table_objects.MElementObject` class for rendering periodic table elements.</span>
-
 <span class="sd">"""</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">cast</span>
@@ -1518,6 +1517,9 @@
 <a class="viewcode-back" href="../../../../reference/chemistry/periodic_table/table_objects.MElementObject.html#manim_extensions.chemistry.periodic_table.table_objects.MElementObject">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">MElementObject</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A visual representation of a single periodic table element.</span>
+
+<span class="sd">    .. doc-example-covers: create_frame_base, create_frame_with_text, max_height_ratio</span>
+
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1647,7 +1649,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            The gradient-filled rectangle forming the element tile background."""</span>
+<span class="sd">            The gradient-filled rectangle forming the element tile background.</span>
+<span class="sd">        """</span>
         <span class="n">frame_rectangle</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">Rectangle</span><span class="p">(</span>
                 <span class="n">height</span><span class="o">=</span><span class="mf">2.8</span><span class="p">,</span>
@@ -1753,6 +1756,9 @@
 <span class="k">class</span><span class="w"> </span><span class="nc">PeriodicTable</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Draws a periodic table using the data using a configuration from a csv file.</span>
 
+<span class="sd">    .. doc-example-covers: add_elements</span>
+
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    data_file</span>
@@ -1787,7 +1793,6 @@
 <span class="sd">               table = PeriodicTable(data_file="element_data.csv")</span>
 <span class="sd">               table.scale(1.3)</span>
 <span class="sd">               self.add(table)</span>
-
 <span class="sd">    """</span>
 
     <span class="c1"># TODO Change to english database</span>
@@ -1831,7 +1836,8 @@
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
-<span class="sd">            A dictionary of the results."""</span>
+<span class="sd">            A dictionary of the results.</span>
+<span class="sd">        """</span>
         <span class="c1"># TODO: Think of a better way of doing this. However, it works and looks good</span>
         <span class="n">positions</span> <span class="o">=</span> <span class="p">{</span>
             <span class="mi">1</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
