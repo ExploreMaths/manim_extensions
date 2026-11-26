@@ -49,10 +49,32 @@ def test_visual_function_without_example(project_root: Path) -> None:
     assert "`example`" in violations[0]
 
 
-def test_method_covered_by_class(project_root: Path) -> None:
+def test_class_example_does_not_implicitly_cover_method(
+    project_root: Path,
+) -> None:
     source = '''
 class Widget:
     """A widget.
+
+    Examples
+    --------
+    .. manim:: WidgetExample
+    """
+
+    def build(self) -> "VGroup":
+        pass
+'''
+    violations = _scan(project_root, source)
+    assert len(violations) == 1
+    assert "`Widget.build`" in violations[0]
+
+
+def test_method_explicitly_covered_by_class(project_root: Path) -> None:
+    source = '''
+class Widget:
+    """A widget.
+
+    .. doc-example-covers: build
 
     Examples
     --------
