@@ -4,7 +4,7 @@
 table
 =====
 
-.. module:: manim_extensions.table.table
+.. automodule:: manim_extensions.table.table
 
 Classes
 -------

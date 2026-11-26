@@ -4,7 +4,7 @@
 manim_fontawesome
 =================
 
-.. module:: manim_extensions.fontawesome.manim_fontawesome
+.. automodule:: manim_extensions.fontawesome.manim_fontawesome
 
 Functions
 ---------

@@ -1491,6 +1491,64 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton">
 <span id="manim-deterministic-finite-state-automaton"></span><h1>manim_deterministic_finite_state_automaton<a class="headerlink" href="#module-manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton" title="Link to this heading">¶</a></h1>
+<p>Deterministic finite state automaton visualization.</p>
+<p>This module provides the <a class="reference internal" href="manim_deterministic_finite_state_automaton.ManimDeterministicFiniteAutomaton.html#manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimDeterministicFiniteAutomaton" title="manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimDeterministicFiniteAutomaton"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimDeterministicFiniteAutomaton</span></code></a> class for visualizing DFAs.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimDeterministicFiniteAutomaton">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.</span></span><span class="sig-name descname"><span class="pre">ManimDeterministicFiniteAutomaton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_template</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xml_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">camera_follow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">animation_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cli</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_deterministic_finite_state_automaton.html#ManimDeterministicFiniteAutomaton"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimDeterministicFiniteAutomaton" title="Link to this definition">¶</a></dt>
+<dd><p>A deterministic finite automaton (DFA) with Manim visualisation.</p>
+<p>This subclass of <a class="reference internal" href="manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton" title="manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimAutomaton</span></code></a> represents a DFA where each
+state has exactly one outgoing transition for every input symbol.  It
+can be constructed from a JSON template or an XML file (JFLAP format).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>json_template</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – JSON dictionary describing the automaton states and transitions.</p></li>
+<li><p><strong>xml_file</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Path to an XML file (e.g. JFLAP format) describing the automaton.</p></li>
+<li><p><strong>camera_follow</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the camera follows the active state during playback.</p></li>
+<li><p><strong>animation_style</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Style configuration for state and transition animations.</p></li>
+<li><p><strong>cli</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, launch the interactive CLI for building NDA paths.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Key words arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="dfaoverviewscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: DFAOverviewScene <a class="headerlink" href="#dfaoverviewscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./DFAOverviewScene-00f52ae3.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimDeterministicFiniteAutomaton</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DFAOverviewScene</span><span class="p">(</span><span class="n">MovingCameraScene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># build the DFA from the default JSON template</span>
+        <span class="n">dfa</span> <span class="o">=</span> <span class="n">ManimDeterministicFiniteAutomaton</span><span class="p">()</span>
+
+        <span class="c1"># Adjust camera frame to fit the automaton in the scene</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">frame_width</span> <span class="o">=</span> <span class="n">dfa</span><span class="o">.</span><span class="n">width</span> <span class="o">+</span> <span class="mi">4</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">frame_height</span> <span class="o">=</span> <span class="n">dfa</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mi">4</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">dfa</span><span class="p">)</span>
+
+        <span class="c1"># Create an mobject version of the input for the automaton</span>
+        <span class="n">automaton_input</span> <span class="o">=</span> <span class="n">dfa</span><span class="o">.</span><span class="n">construct_automaton_input</span><span class="p">(</span><span class="s2">"11"</span><span class="p">)</span>
+        <span class="n">automaton_input</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">dfa</span><span class="p">,</span> <span class="n">UP</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
+            <span class="n">DrawBorderThenFill</span><span class="p">(</span><span class="n">dfa</span><span class="p">),</span>
+            <span class="n">FadeIn</span><span class="p">(</span><span class="n">automaton_input</span><span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Play all the animations generated from play_string()</span>
+        <span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">dfa</span><span class="o">.</span><span class="n">play_string</span><span class="p">(</span><span class="n">automaton_input</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="o">*</span><span class="n">sequence</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1621,8 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">manim_deterministic_finite_state_automaton</a><ul>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimDeterministicFiniteAutomaton"><code class="docutils literal notranslate"><span class="pre">ManimDeterministicFiniteAutomaton</span></code></a>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

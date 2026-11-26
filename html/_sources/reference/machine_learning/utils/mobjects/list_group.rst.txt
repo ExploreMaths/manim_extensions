@@ -4,7 +4,7 @@
 list_group
 ==========
 
-.. module:: manim_extensions.machine_learning.utils.mobjects.list_group
+.. automodule:: manim_extensions.machine_learning.utils.mobjects.list_group
 
 Classes
 -------

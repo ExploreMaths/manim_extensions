@@ -4,7 +4,7 @@
 feed_forward_to_math_operation
 ==============================
 
-.. module:: manim_extensions.machine_learning.neural_network.layers.feed_forward_to_math_operation
+.. automodule:: manim_extensions.machine_learning.neural_network.layers.feed_forward_to_math_operation
 
 Classes
 -------

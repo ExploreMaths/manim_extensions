@@ -5,7 +5,7 @@
 state
 =====
 
-.. module:: manim_extensions.automata.mobjects.automata_dependencies.state
+.. automodule:: manim_extensions.automata.mobjects.automata_dependencies.state
 
 Classes
 -------

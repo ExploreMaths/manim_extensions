@@ -1491,6 +1491,203 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.chemistry.utils.parsers.base_parser">
 <span id="base-parser"></span><h1>base_parser<a class="headerlink" href="#module-manim_extensions.chemistry.utils.parsers.base_parser" title="Link to this heading">¶</a></h1>
+<p>Base parser class for chemical file formats.</p>
+<p>This module provides the <a class="reference internal" href="base_parser.BaseParser.html#manim_extensions.chemistry.utils.parsers.base_parser.BaseParser" title="manim_extensions.chemistry.utils.parsers.base_parser.BaseParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseParser</span></code></a> abstract class for parsing chemical files.</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.base_parser.FilePath">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.utils.parsers.base_parser.</span></span><span class="sig-name descname"><span class="pre">FilePath</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">str</span> <span class="pre">|</span> <span class="pre">bytes</span> <span class="pre">|</span> <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike"><span class="pre">os.PathLike</span></a><span class="pre">[str]</span> <span class="pre">|</span> <a class="reference external" href="https://docs.python.org/3/library/os.html#os.PathLike"><span class="pre">os.PathLike</span></a><span class="pre">[bytes]</span></span><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.base_parser.FilePath" title="Link to this definition">¶</a></dt>
+<dd><p>a string, raw bytes or a PathLike.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Path-like value accepted by the parsers</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.base_parser.AtomsDict">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.utils.parsers.base_parser.</span></span><span class="sig-name descname"><span class="pre">AtomsDict</span></span><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.base_parser.AtomsDict" title="Link to this definition">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">{atom_index:</span> <span class="pre">{property:</span> <span class="pre">value}}</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Parsed atoms data</p>
+</dd>
+</dl>
+<p>alias of <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>]]</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.base_parser.BondsDict">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.utils.parsers.base_parser.</span></span><span class="sig-name descname"><span class="pre">BondsDict</span></span><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.base_parser.BondsDict" title="Link to this definition">¶</a></dt>
+<dd><p><code class="docutils literal notranslate"><span class="pre">{bond_index:</span> <span class="pre">{property:</span> <span class="pre">value}}</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Parsed bonds data</p>
+</dd>
+</dl>
+<p>alias of <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>]]</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.base_parser.MoleculeData">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.utils.parsers.base_parser.</span></span><span class="sig-name descname"><span class="pre">MoleculeData</span></span><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.base_parser.MoleculeData" title="Link to this definition">¶</a></dt>
+<dd><p>Parsed data of a single molecule.</p>
+<p>alias of <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>]], <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>]]]</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.base_parser.ParsedData">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.utils.parsers.base_parser.</span></span><span class="sig-name descname"><span class="pre">ParsedData</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">tuple[dict[int,</span> <span class="pre">dict[str,</span> <span class="pre">object]],</span> <span class="pre">dict[int,</span> <span class="pre">dict[str,</span> <span class="pre">object]]]</span> <span class="pre">|</span> <span class="pre">list[tuple[dict[int,</span> <span class="pre">dict[str,</span> <span class="pre">object]],</span> <span class="pre">dict[int,</span> <span class="pre">dict[str,</span> <span class="pre">object]]]]</span></span><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.base_parser.ParsedData" title="Link to this definition">¶</a></dt>
+<dd><p>Parsed data of one or more molecules.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.base_parser.BaseParser">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.utils.parsers.base_parser.</span></span><span class="sig-name descname"><span class="pre">BaseParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/chemistry/utils/parsers/base_parser.html#BaseParser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.base_parser.BaseParser" title="Link to this definition">¶</a></dt>
+<dd><p>Initializes the parser given a file name.</p>
+<p>This is a base class that must be extended on child classes.</p>
+<p>The purposes of the parser classes are:</p>
+<ul class="simple">
+<li><p>Read a file with chemical data.</p></li>
+<li><p>Parse the file to extract the atoms and bonds data.</p></li>
+<li><p>Return a dictionary with the atoms and bonds data.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.base_parser.FilePath" title="manim_extensions.chemistry.utils.parsers.base_parser.FilePath"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FilePath</span></code></a></span>) – Path to the file to parse.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="baseparseroverview" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: BaseParserOverview <a class="headerlink" href="#baseparseroverview">¶</a></p><img alt="../../../../_images/BaseParserOverview-b82064b2.png" class="align-center" src="../../../../_images/BaseParserOverview-b82064b2.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.utils.parsers.base_parser</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseParser</span>
+
+<span class="n">BaseParserTarget</span> <span class="o">=</span> <span class="n">BaseParser</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">BaseParserOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">BaseParserTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
+        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'BaseParser'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.chemistry.utils.parsers.base_parser'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'Initializes the parser given a file name'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.utils.parsers.base_parser</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseParser</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MyParser</span><span class="p">(</span><span class="n">BaseParser</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">parse</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{},</span> <span class="p">{}</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.read_file">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">read_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/chemistry/utils/parsers/base_parser.html#BaseParser.read_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.read_file" title="Link to this definition">¶</a></dt>
+<dd><p>Reads the file and converts it to a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.base_parser.FilePath" title="manim_extensions.chemistry.utils.parsers.base_parser.FilePath"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FilePath</span></code></a></span>) – Path to the file to parse.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>String with the file data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.data_parser">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">data_parser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/chemistry/utils/parsers/base_parser.html#BaseParser.data_parser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.data_parser" title="Link to this definition">¶</a></dt>
+<dd><p>Parses the atoms and bonds data and returns a tuple of dictionaries with each data.</p>
+<p>The atom data follows the structure:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">&lt;</span><span class="n">atom_index</span><span class="o">&gt;</span><span class="p">:</span> <span class="p">{</span><span class="s2">"element"</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">atom_element</span><span class="o">&gt;</span><span class="p">,</span> <span class="s2">"position"</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">x_pos</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">y_pos</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">z_pos</span><span class="o">&gt;</span><span class="p">]}}</span>
+</pre></div>
+</div>
+<p>The bond data follows the structure:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">&lt;</span><span class="n">bond_index</span><span class="o">&gt;</span><span class="p">:</span> <span class="p">{</span><span class="s2">"from_atom_index"</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">from_atom_index</span><span class="o">&gt;</span><span class="p">,</span> <span class="s2">"to_atom_index"</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">to_atom_index</span><span class="o">&gt;</span><span class="p">,</span> <span class="s2">"bond_type"</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">bond_type</span><span class="o">&gt;</span><span class="p">}}</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Raw file data as returned by <a class="reference internal" href="base_parser.BaseParser.html#manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.read_file" title="manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.read_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">read_file()</span></code></a>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.base_parser.ParsedData" title="manim_extensions.chemistry.utils.parsers.base_parser.ParsedData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParsedData</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Parsed <code class="docutils literal notranslate"><span class="pre">(atoms_data,</span> <span class="pre">bonds_data)</span></code> tuple, or a list of such
+tuples for multi-molecule formats.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.parse_file_data">
+<span class="sig-name descname"><span class="pre">parse_file_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/chemistry/utils/parsers/base_parser.html#BaseParser.parse_file_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.parse_file_data" title="Link to this definition">¶</a></dt>
+<dd><p>Receives the file data as a string and uses the string_parser.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.base_parser.ParsedData" title="manim_extensions.chemistry.utils.parsers.base_parser.ParsedData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParsedData</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>(atom_data, bond_data)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.molecule_data">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">molecule_data</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.base_parser.ParsedData" title="manim_extensions.chemistry.utils.parsers.base_parser.ParsedData"><span class="pre">ParsedData</span></a></span><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.molecule_data" title="Link to this definition">¶</a></dt>
+<dd><p>the parsed atoms data and bonds data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The parsed atoms data and bonds data.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#Exception" title="(in Python v3.15)"><strong>Exception</strong></a> – Raised when the atoms data, bonds data, and molecular data are
+    all missing or invalid.</p>
+</dd>
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Molecule data</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.atoms">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">atoms</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.base_parser.AtomsDict" title="manim_extensions.chemistry.utils.parsers.base_parser.AtomsDict"><span class="pre">AtomsDict</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.atoms" title="Link to this definition">¶</a></dt>
+<dd><p>Parsed atoms data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The parsed atoms data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.bonds">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">bonds</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.base_parser.BondsDict" title="manim_extensions.chemistry.utils.parsers.base_parser.BondsDict"><span class="pre">BondsDict</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.bonds" title="Link to this definition">¶</a></dt>
+<dd><p>Parsed bonds data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The parsed bonds data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1760,24 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">base_parser</a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.base_parser.FilePath"><code class="docutils literal notranslate"><span class="pre">FilePath</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.base_parser.AtomsDict"><code class="docutils literal notranslate"><span class="pre">AtomsDict</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.base_parser.BondsDict"><code class="docutils literal notranslate"><span class="pre">BondsDict</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.base_parser.MoleculeData"><code class="docutils literal notranslate"><span class="pre">MoleculeData</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.base_parser.ParsedData"><code class="docutils literal notranslate"><span class="pre">ParsedData</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.base_parser.BaseParser"><code class="docutils literal notranslate"><span class="pre">BaseParser</span></code></a><ul>
+
+
+
+
+<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.read_file"><code class="docutils literal notranslate"><span class="pre">BaseParser.read_file()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.data_parser"><code class="docutils literal notranslate"><span class="pre">BaseParser.data_parser()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.parse_file_data"><code class="docutils literal notranslate"><span class="pre">BaseParser.parse_file_data()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.molecule_data"><code class="docutils literal notranslate"><span class="pre">BaseParser.molecule_data</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.atoms"><code class="docutils literal notranslate"><span class="pre">BaseParser.atoms</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.base_parser.BaseParser.bonds"><code class="docutils literal notranslate"><span class="pre">BaseParser.bonds</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

@@ -1491,11 +1491,54 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.fontawesome.manim_fontawesome">
 <span id="manim-fontawesome"></span><h1>manim_fontawesome<a class="headerlink" href="#module-manim_extensions.fontawesome.manim_fontawesome" title="Link to this heading">¶</a></h1>
-<section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<p>Utilities for the package module.</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="manim_extensions.fontawesome.manim_fontawesome.brand">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.fontawesome.manim_fontawesome.</span></span><span class="sig-name descname"><span class="pre">brand</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;</span><a class="reference internal" href="Brand.html#manim_extensions.fontawesome.manim_fontawesome.Brand"><span class="pre">manim_extensions.fontawesome.manim_fontawesome.Brand</span></a> <span class="pre">object&gt;</span></span><a class="headerlink" href="#manim_extensions.fontawesome.manim_fontawesome.brand" title="Link to this definition">¶</a></dt>
+<dd><p>Enum of brand-style icon names mapped to their SVG paths.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="manim_extensions.fontawesome.manim_fontawesome.regular">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.fontawesome.manim_fontawesome.</span></span><span class="sig-name descname"><span class="pre">regular</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;</span><a class="reference internal" href="Regular.html#manim_extensions.fontawesome.manim_fontawesome.Regular"><span class="pre">manim_extensions.fontawesome.manim_fontawesome.Regular</span></a> <span class="pre">object&gt;</span></span><a class="headerlink" href="#manim_extensions.fontawesome.manim_fontawesome.regular" title="Link to this definition">¶</a></dt>
+<dd><p>Enum of regular-style icon names mapped to their SVG paths.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="manim_extensions.fontawesome.manim_fontawesome.solid">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.fontawesome.manim_fontawesome.</span></span><span class="sig-name descname"><span class="pre">solid</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;</span><a class="reference internal" href="Solid.html#manim_extensions.fontawesome.manim_fontawesome.Solid"><span class="pre">manim_extensions.fontawesome.manim_fontawesome.Solid</span></a> <span class="pre">object&gt;</span></span><a class="headerlink" href="#manim_extensions.fontawesome.manim_fontawesome.solid" title="Link to this definition">¶</a></dt>
+<dd><p>Enum of solid-style icon names mapped to their SVG paths.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="manim_extensions.fontawesome.manim_fontawesome.FONT_AWESOME_VERSION">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.fontawesome.manim_fontawesome.</span></span><span class="sig-name descname"><span class="pre">FONT_AWESOME_VERSION</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'6.5.1'</span></span><a class="headerlink" href="#manim_extensions.fontawesome.manim_fontawesome.FONT_AWESOME_VERSION" title="Link to this definition">¶</a></dt>
+<dd><p>Font Awesome release bundled with the package.</p>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.fontawesome.manim_fontawesome.list_icons">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.fontawesome.manim_fontawesome.</span></span><span class="sig-name descname"><span class="pre">list_icons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'solid'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/fontawesome/manim_fontawesome.html#list_icons"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.fontawesome.manim_fontawesome.list_icons" title="Link to this definition">¶</a></dt>
+<dd><p>Return the names of every bundled icon for <code class="docutils literal notranslate"><span class="pre">style</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>style</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – One of <code class="docutils literal notranslate"><span class="pre">&quot;solid&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;regular&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;brand&quot;</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Icon names in definition order; use <code class="docutils literal notranslate"><span class="pre">getattr(solid,</span> <span class="pre">name)</span></code>
+(or the matching namespace) to obtain the icon mobject.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.fontawesome.manim_fontawesome.</span></span><span class="sig-name descname"><span class="pre">list_icons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'solid'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/fontawesome/manim_fontawesome.html#list_icons"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
 <dd><p>Return the names of every bundled icon for <code class="docutils literal notranslate"><span class="pre">style</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1548,26 +1591,26 @@
 <section id="constants">
 <h2>Constants<a class="headerlink" href="#constants" title="Link to this heading">¶</a></h2>
 <dl class="py data">
-<dt class="sig sig-object py" id="manim_extensions.fontawesome.manim_fontawesome.brand">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.fontawesome.manim_fontawesome.</span></span><span class="sig-name descname"><span class="pre">brand</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;</span><a class="reference internal" href="Brand.html#manim_extensions.fontawesome.manim_fontawesome.Brand"><span class="pre">manim_extensions.fontawesome.manim_fontawesome.Brand</span></a> <span class="pre">object&gt;</span></span><a class="headerlink" href="#manim_extensions.fontawesome.manim_fontawesome.brand" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id1">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.fontawesome.manim_fontawesome.</span></span><span class="sig-name descname"><span class="pre">brand</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;</span><a class="reference internal" href="Brand.html#manim_extensions.fontawesome.manim_fontawesome.Brand"><span class="pre">manim_extensions.fontawesome.manim_fontawesome.Brand</span></a> <span class="pre">object&gt;</span></span><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
 <dd><p>Enum of brand-style icon names mapped to their SVG paths.</p>
 </dd></dl>
 
 <dl class="py data">
-<dt class="sig sig-object py" id="manim_extensions.fontawesome.manim_fontawesome.regular">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.fontawesome.manim_fontawesome.</span></span><span class="sig-name descname"><span class="pre">regular</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;</span><a class="reference internal" href="Regular.html#manim_extensions.fontawesome.manim_fontawesome.Regular"><span class="pre">manim_extensions.fontawesome.manim_fontawesome.Regular</span></a> <span class="pre">object&gt;</span></span><a class="headerlink" href="#manim_extensions.fontawesome.manim_fontawesome.regular" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id2">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.fontawesome.manim_fontawesome.</span></span><span class="sig-name descname"><span class="pre">regular</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;</span><a class="reference internal" href="Regular.html#manim_extensions.fontawesome.manim_fontawesome.Regular"><span class="pre">manim_extensions.fontawesome.manim_fontawesome.Regular</span></a> <span class="pre">object&gt;</span></span><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
 <dd><p>Enum of regular-style icon names mapped to their SVG paths.</p>
 </dd></dl>
 
 <dl class="py data">
-<dt class="sig sig-object py" id="manim_extensions.fontawesome.manim_fontawesome.solid">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.fontawesome.manim_fontawesome.</span></span><span class="sig-name descname"><span class="pre">solid</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;</span><a class="reference internal" href="Solid.html#manim_extensions.fontawesome.manim_fontawesome.Solid"><span class="pre">manim_extensions.fontawesome.manim_fontawesome.Solid</span></a> <span class="pre">object&gt;</span></span><a class="headerlink" href="#manim_extensions.fontawesome.manim_fontawesome.solid" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id3">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.fontawesome.manim_fontawesome.</span></span><span class="sig-name descname"><span class="pre">solid</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;</span><a class="reference internal" href="Solid.html#manim_extensions.fontawesome.manim_fontawesome.Solid"><span class="pre">manim_extensions.fontawesome.manim_fontawesome.Solid</span></a> <span class="pre">object&gt;</span></span><a class="headerlink" href="#id3" title="Link to this definition">¶</a></dt>
 <dd><p>Enum of solid-style icon names mapped to their SVG paths.</p>
 </dd></dl>
 
 <dl class="py data">
-<dt class="sig sig-object py" id="manim_extensions.fontawesome.manim_fontawesome.FONT_AWESOME_VERSION">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.fontawesome.manim_fontawesome.</span></span><span class="sig-name descname"><span class="pre">FONT_AWESOME_VERSION</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'6.5.1'</span></span><a class="headerlink" href="#manim_extensions.fontawesome.manim_fontawesome.FONT_AWESOME_VERSION" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id4">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.fontawesome.manim_fontawesome.</span></span><span class="sig-name descname"><span class="pre">FONT_AWESOME_VERSION</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'6.5.1'</span></span><a class="headerlink" href="#id4" title="Link to this definition">¶</a></dt>
 <dd><p>Font Awesome release bundled with the package.</p>
 </dd></dl>
 
@@ -11958,17 +12001,22 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">manim_fontawesome</a><ul>
-<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#manim_extensions.fontawesome.manim_fontawesome.brand"><code class="docutils literal notranslate"><span class="pre">brand</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.fontawesome.manim_fontawesome.regular"><code class="docutils literal notranslate"><span class="pre">regular</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.fontawesome.manim_fontawesome.solid"><code class="docutils literal notranslate"><span class="pre">solid</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.fontawesome.manim_fontawesome.FONT_AWESOME_VERSION"><code class="docutils literal notranslate"><span class="pre">FONT_AWESOME_VERSION</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.fontawesome.manim_fontawesome.list_icons"><code class="docutils literal notranslate"><span class="pre">list_icons()</span></code></a></li>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">list_icons()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.fontawesome.manim_fontawesome._get_svg_object"><code class="docutils literal notranslate"><span class="pre">_get_svg_object()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#usage">Usage</a></li>
 <li><a class="reference internal" href="#constants">Constants</a><ul>
-<li><a class="reference internal" href="#manim_extensions.fontawesome.manim_fontawesome.brand"><code class="docutils literal notranslate"><span class="pre">brand</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.fontawesome.manim_fontawesome.regular"><code class="docutils literal notranslate"><span class="pre">regular</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.fontawesome.manim_fontawesome.solid"><code class="docutils literal notranslate"><span class="pre">solid</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.fontawesome.manim_fontawesome.FONT_AWESOME_VERSION"><code class="docutils literal notranslate"><span class="pre">FONT_AWESOME_VERSION</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">brand</span></code></a></li>
+<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">regular</span></code></a></li>
+<li><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">solid</span></code></a></li>
+<li><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">FONT_AWESOME_VERSION</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.fontawesome.manim_fontawesome.svg_dir"><code class="docutils literal notranslate"><span class="pre">svg_dir</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.fontawesome.manim_fontawesome.brand_dir"><code class="docutils literal notranslate"><span class="pre">brand_dir</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.fontawesome.manim_fontawesome.regular_dir"><code class="docutils literal notranslate"><span class="pre">regular_dir</span></code></a></li>

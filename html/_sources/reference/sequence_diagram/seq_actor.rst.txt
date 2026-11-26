@@ -5,7 +5,7 @@
 seq_actor
 =========
 
-.. module:: manim_extensions.sequence_diagram.seq_actor
+.. automodule:: manim_extensions.sequence_diagram.seq_actor
 
 Classes
 -------

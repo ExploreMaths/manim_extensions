@@ -4,7 +4,7 @@
 cli
 ===
 
-.. module:: manim_extensions.chemistry.cli
+.. automodule:: manim_extensions.chemistry.cli
 
 The chemistry subpackage ships a small `Click
 <https://click.palletsprojects.com/>`_-based command-line client for

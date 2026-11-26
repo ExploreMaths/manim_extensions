@@ -5,7 +5,7 @@
 geometry_method
 ===============
 
-.. module:: manim_extensions.compass.utils.geometry_method
+.. automodule:: manim_extensions.compass.utils.geometry_method
 
 Classes
 -------

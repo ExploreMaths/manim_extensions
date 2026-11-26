@@ -1491,6 +1491,110 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.algorithm.utils.numpy_helper">
 <span id="numpy-helper"></span><h1>numpy_helper<a class="headerlink" href="#module-manim_extensions.algorithm.utils.numpy_helper" title="Link to this heading">¶</a></h1>
+<p>NumPy helper utilities for algorithm visualization.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.utils.numpy_helper.NumpyHelper">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.algorithm.utils.numpy_helper.</span></span><span class="sig-name descname"><span class="pre">NumpyHelper</span></span><a class="reference internal" href="../../../_modules/manim_extensions/algorithm/utils/numpy_helper.html#NumpyHelper"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.utils.numpy_helper.NumpyHelper" title="Link to this definition">¶</a></dt>
+<dd><p>Static helper methods for common NumPy vector operations.</p>
+<p>Provides utilities for normalizing vectors and comparing
+vector equality and direction within numerical tolerance.</p>
+<p class="rubric">Examples</p>
+<div id="numpyhelperoverview" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: NumpyHelperOverview <a class="headerlink" href="#numpyhelperoverview">¶</a></p><img alt="../../../_images/NumpyHelperOverview-c2034696.png" class="align-center" src="../../../_images/NumpyHelperOverview-c2034696.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.utils.numpy_helper</span><span class="w"> </span><span class="kn">import</span> <span class="n">NumpyHelper</span>
+
+<span class="n">NumpyHelperTarget</span> <span class="o">=</span> <span class="n">NumpyHelper</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">NumpyHelperOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">NumpyHelperTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
+        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'NumpyHelper'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.algorithm.utils.numpy_helper'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'Static helper methods for common NumPy vector operations'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.utils.numpy_helper</span><span class="w"> </span><span class="kn">import</span> <span class="n">NumpyHelper</span>
+
+<span class="n">unit</span> <span class="o">=</span> <span class="n">NumpyHelper</span><span class="o">.</span><span class="n">normalize_vector</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.0</span><span class="p">,</span> <span class="mf">4.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]))</span>
+<span class="n">same</span> <span class="o">=</span> <span class="n">NumpyHelper</span><span class="o">.</span><span class="n">is_equal_vector</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">unit</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.utils.numpy_helper.NumpyHelper.normalize_vector">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">normalize_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/algorithm/utils/numpy_helper.html#NumpyHelper.normalize_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.utils.numpy_helper.NumpyHelper.normalize_vector" title="Link to this definition">¶</a></dt>
+<dd><p>Normalise a vector to unit length.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>v</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Input vector (NumPy array).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Unit-length vector.  If the norm of <code class="docutils literal notranslate"><span class="pre">v</span></code> is zero, the original
+vector is returned unchanged.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.utils.numpy_helper.NumpyHelper.is_equal_vector">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">is_equal_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/algorithm/utils/numpy_helper.html#NumpyHelper.is_equal_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.utils.numpy_helper.NumpyHelper.is_equal_vector" title="Link to this definition">¶</a></dt>
+<dd><p>Check whether two vectors are equal within tolerance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – First vector.</p></li>
+<li><p><strong>v2</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Second vector.</p></li>
+<li><p><strong>rtol</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Relative tolerance.</p></li>
+<li><p><strong>atol</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Absolute tolerance.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether <code class="docutils literal notranslate"><span class="pre">v1</span></code> and <code class="docutils literal notranslate"><span class="pre">v2</span></code> are element-wise close.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.utils.numpy_helper.NumpyHelper.is_same_direction">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">is_same_direction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rtol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/algorithm/utils/numpy_helper.html#NumpyHelper.is_same_direction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.utils.numpy_helper.NumpyHelper.is_same_direction" title="Link to this definition">¶</a></dt>
+<dd><p>Check whether two vectors point in the same direction.</p>
+<p>Both vectors are normalized before comparison.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – First vector.</p></li>
+<li><p><strong>v2</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Second vector.</p></li>
+<li><p><strong>rtol</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Relative tolerance.</p></li>
+<li><p><strong>atol</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Absolute tolerance.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether the normalized vectors are equal within tolerance.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1667,12 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">numpy_helper</a><ul>
+<li><a class="reference internal" href="#manim_extensions.algorithm.utils.numpy_helper.NumpyHelper"><code class="docutils literal notranslate"><span class="pre">NumpyHelper</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.algorithm.utils.numpy_helper.NumpyHelper.normalize_vector"><code class="docutils literal notranslate"><span class="pre">NumpyHelper.normalize_vector()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.utils.numpy_helper.NumpyHelper.is_equal_vector"><code class="docutils literal notranslate"><span class="pre">NumpyHelper.is_equal_vector()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.utils.numpy_helper.NumpyHelper.is_same_direction"><code class="docutils literal notranslate"><span class="pre">NumpyHelper.is_same_direction()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

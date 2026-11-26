@@ -5,7 +5,7 @@
 mobjects
 ========
 
-.. module:: manim_extensions.circuit.mobjects
+.. automodule:: manim_extensions.circuit.mobjects
 
 Classes
 -------

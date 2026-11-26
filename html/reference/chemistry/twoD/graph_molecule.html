@@ -1489,8 +1489,925 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="module-manim_extensions.chemistry.twoD.graph_molecule">
+          <style>div.nbinput.container div.prompt,div.nboutput.container div.prompt{width:8ch}div.nbcell-files.container{padding-left:8ch}</style><section id="module-manim_extensions.chemistry.twoD.graph_molecule">
 <span id="graph-molecule"></span><h1>graph_molecule<a class="headerlink" href="#module-manim_extensions.chemistry.twoD.graph_molecule" title="Link to this heading">¶</a></h1>
+<p>Graph-based molecule representation for Manim chemistry.</p>
+<p>This module provides graph-based molecule visualization classes.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.SimpleLine">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.twoD.graph_molecule.</span></span><span class="sig-name descname"><span class="pre">SimpleLine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#SimpleLine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.SimpleLine" title="Link to this definition">¶</a></dt>
+<dd><p>A line with a <code class="docutils literal notranslate"><span class="pre">sheen_direction</span></code> attribute, used as a single bond.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>args</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional positional arguments passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a>.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="simplelinescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: SimpleLineScene <a class="headerlink" href="#simplelinescene">¶</a></p><img alt="../../../_images/SimpleLineScene-eace34df.png" class="align-center" src="../../../_images/SimpleLineScene-eace34df.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.twoD.graph_molecule</span><span class="w"> </span><span class="kn">import</span> <span class="n">SimpleLine</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SimpleLineScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">SimpleLine</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">RIGHT</span><span class="p">)</span>
+        <span class="n">line</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">4.7</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.SimpleLine._get_unit_vector">
+<span class="sig-name descname"><span class="pre">_get_unit_vector</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#SimpleLine._get_unit_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.SimpleLine._get_unit_vector" title="Link to this definition">¶</a></dt>
+<dd><p>Return the unit vector from the start to the end point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Normalised direction vector.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.DoubleLine">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.twoD.graph_molecule.</span></span><span class="sig-name descname"><span class="pre">DoubleLine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(-1.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PI</span> <span class="pre">/</span> <span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#DoubleLine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.DoubleLine" title="Link to this definition">¶</a></dt>
+<dd><p>Two arcs between the same points, used as a double bond.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Starting point of the arcs.</p></li>
+<li><p><strong>end</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Ending point of the arcs.</p></li>
+<li><p><strong>angle</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Angle of the arcs.</p></li>
+<li><p><strong>radius</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Radius of the arcs.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.ArcBetweenPoints.html#manim.mobject.geometry.arc.ArcBetweenPoints" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArcBetweenPoints</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="doublelinescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: DoubleLineScene <a class="headerlink" href="#doublelinescene">¶</a></p><img alt="../../../_images/DoubleLineScene-66c92113.png" class="align-center" src="../../../_images/DoubleLineScene-66c92113.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.twoD.graph_molecule</span><span class="w"> </span><span class="kn">import</span> <span class="n">DoubleLine</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DoubleLineScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">DoubleLine</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">end</span><span class="o">=</span><span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.DoubleLine._get_unit_vector">
+<span class="sig-name descname"><span class="pre">_get_unit_vector</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#DoubleLine._get_unit_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.DoubleLine._get_unit_vector" title="Link to this definition">¶</a></dt>
+<dd><p>Return the unit vector from the start to the end point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Normalised direction vector.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.DoubleLine.get_vector">
+<span class="sig-name descname"><span class="pre">get_vector</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#DoubleLine.get_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.DoubleLine.get_vector" title="Link to this definition">¶</a></dt>
+<dd><p>Return the unit direction vector of the double bond.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The direction vector of the bond.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.DoubleLine.set_points_by_ends">
+<span class="sig-name descname"><span class="pre">set_points_by_ends</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#DoubleLine.set_points_by_ends"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.DoubleLine.set_points_by_ends" title="Link to this definition">¶</a></dt>
+<dd><p>Reposition both arcs of the double bond to span from start to end.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – New starting point of the double bond.</p></li>
+<li><p><strong>end</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – New ending point of the double bond.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to
+<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line.put_start_and_end_on" title="(in Manim)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">put_start_and_end_on()</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The arcs now span from <code class="docutils literal notranslate"><span class="pre">start</span></code> to <code class="docutils literal notranslate"><span class="pre">end</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.TripleLine">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.twoD.graph_molecule.</span></span><span class="sig-name descname"><span class="pre">TripleLine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(-1.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(1.0,</span> <span class="pre">0.0,</span> <span class="pre">0.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PI</span> <span class="pre">/</span> <span class="pre">4</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#TripleLine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.TripleLine" title="Link to this definition">¶</a></dt>
+<dd><p>A double line with an added middle line, used as a triple bond.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Starting point of the lines.</p></li>
+<li><p><strong>end</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Ending point of the lines.</p></li>
+<li><p><strong>angle</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Angle of the arcs.</p></li>
+<li><p><strong>args</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional positional arguments passed to <code class="xref py py-class docutils literal notranslate"><span class="pre">DoubleLine</span></code>.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to <code class="xref py py-class docutils literal notranslate"><span class="pre">DoubleLine</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="triplelinescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: TripleLineScene <a class="headerlink" href="#triplelinescene">¶</a></p><img alt="../../../_images/TripleLineScene-916594e3.png" class="align-center" src="../../../_images/TripleLineScene-916594e3.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.twoD.graph_molecule</span><span class="w"> </span><span class="kn">import</span> <span class="n">TripleLine</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TripleLineScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">TripleLine</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">end</span><span class="o">=</span><span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.twoD.graph_molecule.</span></span><span class="sig-name descname"><span class="pre">GraphMolecule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertices_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edges_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numeric_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.BLACK"><span class="pre">BLACK</span></a></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#GraphMolecule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule" title="Link to this definition">¶</a></dt>
+<dd><p>Represents a molecule like a <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.graph.Graph.html#manim.mobject.graph.Graph" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Graph</span></code></a> from Manim.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vertices_dict</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Dictionary mapping vertex indices to <a class="reference internal" href="../manim_chemistry_molecule/mc_atom.MCAtom.html#manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom" title="manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom"><code class="xref py py-class docutils literal notranslate"><span class="pre">MCAtom</span></code></a> objects.</p></li>
+<li><p><strong>edges_dict</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Dictionary mapping edge tuples to <a class="reference internal" href="../manim_chemistry_molecule/mc_bond.MCBond.html#manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond" title="manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond"><code class="xref py py-class docutils literal notranslate"><span class="pre">MCBond</span></code></a> objects.</p></li>
+<li><p><strong>label</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to add a label with the element symbol to each atom.</p></li>
+<li><p><strong>numeric_label</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to add a numeric label to each atom.</p></li>
+<li><p><strong>label_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color of the atom labels.</p></li>
+<li><p><strong>args</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional positional arguments passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.graph.Graph.html#manim.mobject.graph.Graph" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Graph</span></code></a>.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.graph.Graph.html#manim.mobject.graph.Graph" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Graph</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Attributes</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.SUPPORTED_BOND_TYPES">
+<span class="sig-name descname"><span class="pre">SUPPORTED_BOND_TYPES</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#type" title="(in Python v3.15)"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><span class="pre">Line</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#type" title="(in Python v3.15)"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.ArcBetweenPoints.html#manim.mobject.geometry.arc.ArcBetweenPoints" title="(in Manim)"><span class="pre">ArcBetweenPoints</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{1:</span> <span class="pre">SimpleLine,</span> <span class="pre">2:</span> <span class="pre">DoubleLine,</span> <span class="pre">3:</span> <span class="pre">TripleLine}</span></span></span><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.SUPPORTED_BOND_TYPES" title="Link to this definition">¶</a></dt>
+<dd><p>Bond order to line mobject mapping used when parsing molecules.</p>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<div id="graphmoleculefromfile" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: GraphMoleculeFromFile <a class="headerlink" href="#graphmoleculefromfile">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./GraphMoleculeFromFile-861b42c7.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry</span><span class="w"> </span><span class="kn">import</span> <span class="n">GraphMolecule</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">GraphMoleculeFromFile</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">molecule</span> <span class="o">=</span> <span class="n">GraphMolecule</span><span class="o">.</span><span class="n">molecule_from_file</span><span class="p">(</span><span class="s2">"acetone_2d.mol"</span><span class="p">)</span>
+        <span class="n">molecule</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Write</span><span class="p">(</span><span class="n">molecule</span><span class="p">))</span>
+        <span class="n">carbons</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">get_connected_atoms_v_group</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Indicate</span><span class="p">(</span><span class="n">carbons</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="manim-example-files">
+<div class="manim-file-row">
+  <span class="manim-file-badge" style="background:#2b8a3e">mol</span>
+  <span class="manim-file-meta">
+    <span class="manim-file-name">acetone_2d.mol</span>
+    <span class="manim-file-size">345 B</span>
+  </span>
+  <span class="manim-file-actions">
+    <a class="manim-file-action" href="https://github.com/ExploreMaths/manim_extensions/raw/main/examples/molecule_files/mol_files/acetone_2d.mol" title="Download this file" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v9.2"/><path d="M8.4 10.4 12 14l3.6-3.6"/><path d="M5.2 16.4v1.8c0 .9.8 1.7 1.7 1.7h10.2c.9 0 1.7-.8 1.7-1.7v-1.8"/></svg></a>
+  </span>
+</div>
+</div></div><div id="graphmoleculefromfilewithhydrogens" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: GraphMoleculeFromFileWithHydrogens <a class="headerlink" href="#graphmoleculefromfilewithhydrogens">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./GraphMoleculeFromFileWithHydrogens-54a47369.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry</span><span class="w"> </span><span class="kn">import</span> <span class="n">GraphMolecule</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">GraphMoleculeFromFileWithHydrogens</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">without_h</span> <span class="o">=</span> <span class="n">GraphMolecule</span><span class="o">.</span><span class="n">molecule_from_file</span><span class="p">(</span><span class="s2">"acetone_2d.mol"</span><span class="p">)</span>
+        <span class="n">with_h</span> <span class="o">=</span> <span class="n">GraphMolecule</span><span class="o">.</span><span class="n">molecule_from_file</span><span class="p">(</span>
+            <span class="s2">"acetone_2d.mol"</span><span class="p">,</span> <span class="n">ignore_hydrogens</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Write</span><span class="p">(</span><span class="n">without_h</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Write</span><span class="p">(</span><span class="n">with_h</span><span class="p">))</span>
+        <span class="n">hydrogens</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="o">*</span><span class="p">[</span><span class="n">with_h</span><span class="o">.</span><span class="n">vertices</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">11</span><span class="p">)]</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Indicate</span><span class="p">(</span><span class="n">hydrogens</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="manim-example-files">
+<div class="manim-file-row">
+  <span class="manim-file-badge" style="background:#2b8a3e">mol</span>
+  <span class="manim-file-meta">
+    <span class="manim-file-name">acetone_2d.mol</span>
+    <span class="manim-file-size">345 B</span>
+  </span>
+  <span class="manim-file-actions">
+    <a class="manim-file-action" href="https://github.com/ExploreMaths/manim_extensions/raw/main/examples/molecule_files/mol_files/acetone_2d.mol" title="Download this file" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v9.2"/><path d="M8.4 10.4 12 14l3.6-3.6"/><path d="M5.2 16.4v1.8c0 .9.8 1.7 1.7 1.7h10.2c.9 0 1.7-.8 1.7-1.7v-1.8"/></svg></a>
+  </span>
+</div>
+</div></div><div id="graphmoleculefromstring" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: GraphMoleculeFromString <a class="headerlink" href="#graphmoleculefromstring">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./GraphMoleculeFromString-75e2af34.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry</span><span class="w"> </span><span class="kn">import</span> <span class="n">GraphMolecule</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">GraphMoleculeFromString</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">molecule</span> <span class="o">=</span> <span class="n">GraphMolecule</span><span class="o">.</span><span class="n">molecule_from_string</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">"acetone_2d.mol"</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">(),</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"mol"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Write</span><span class="p">(</span><span class="n">molecule</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Indicate</span><span class="p">(</span><span class="n">molecule</span><span class="o">.</span><span class="n">vertices</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">mobjects</span><span class="p">)</span>
+        <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">4.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="manim-example-files">
+<div class="manim-file-row">
+  <span class="manim-file-badge" style="background:#2b8a3e">mol</span>
+  <span class="manim-file-meta">
+    <span class="manim-file-name">acetone_2d.mol</span>
+    <span class="manim-file-size">345 B</span>
+  </span>
+  <span class="manim-file-actions">
+    <a class="manim-file-action" href="https://github.com/ExploreMaths/manim_extensions/raw/main/examples/molecule_files/mol_files/acetone_2d.mol" title="Download this file" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v9.2"/><path d="M8.4 10.4 12 14l3.6-3.6"/><path d="M5.2 16.4v1.8c0 .9.8 1.7 1.7 1.7h10.2c.9 0 1.7-.8 1.7-1.7v-1.8"/></svg></a>
+  </span>
+</div>
+</div></div><div id="graphmoleculefromstringthreed" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: GraphMoleculeFromStringThreeD <a class="headerlink" href="#graphmoleculefromstringthreed">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./GraphMoleculeFromStringThreeD-8a9ade67.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry</span><span class="w"> </span><span class="kn">import</span> <span class="n">GraphMolecule</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">GraphMoleculeFromStringThreeD</span><span class="p">(</span><span class="n">ThreeDScene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_camera_orientation</span><span class="p">(</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="n">molecule</span> <span class="o">=</span> <span class="n">GraphMolecule</span><span class="o">.</span><span class="n">molecule_from_string</span><span class="p">(</span>
+            <span class="n">Path</span><span class="p">(</span><span class="s2">"acetone_2d.mol"</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">(),</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"mol"</span><span class="p">,</span> <span class="n">ignore_hydrogens</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+        <span class="n">molecule</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">3.4</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Write</span><span class="p">(</span><span class="n">molecule</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Rotate</span><span class="p">(</span><span class="n">molecule</span><span class="p">,</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="n">RIGHT</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="manim-example-files">
+<div class="manim-file-row">
+  <span class="manim-file-badge" style="background:#2b8a3e">mol</span>
+  <span class="manim-file-meta">
+    <span class="manim-file-name">acetone_2d.mol</span>
+    <span class="manim-file-size">345 B</span>
+  </span>
+  <span class="manim-file-actions">
+    <a class="manim-file-action" href="https://github.com/ExploreMaths/manim_extensions/raw/main/examples/molecule_files/mol_files/acetone_2d.mol" title="Download this file" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v9.2"/><path d="M8.4 10.4 12 14l3.6-3.6"/><path d="M5.2 16.4v1.8c0 .9.8 1.7 1.7 1.7h10.2c.9 0 1.7-.8 1.7-1.7v-1.8"/></svg></a>
+  </span>
+</div>
+</div></div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule._populate_edge_dict">
+<span class="sig-name descname"><span class="pre">_populate_edge_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#GraphMolecule._populate_edge_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule._populate_edge_dict" title="Link to this definition">¶</a></dt>
+<dd><p>Create a bond mobject for every edge.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>edges</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Hashable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hashable</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Hashable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hashable</span></code></a>]]</span>) – Pairs of vertex indices that should be connected.</p></li>
+<li><p><strong>edge_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#type" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a>]</span>) – Mobject class used to build each bond.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.select_bond_from_edge">
+<span class="sig-name descname"><span class="pre">select_bond_from_edge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edge</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#GraphMolecule.select_bond_from_edge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.select_bond_from_edge" title="Link to this definition">¶</a></dt>
+<dd><p>Return the bond class for a given edge tuple based on its bond type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>edge</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Hashable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hashable</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Hashable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hashable</span></code></a>]</span>) – Edge tuple of the molecule.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#type" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a>] | <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#type" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.ArcBetweenPoints.html#manim.mobject.geometry.arc.ArcBetweenPoints" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArcBetweenPoints</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The bond class for a given edge tuple based on its bond type.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.select_bond_type">
+<span class="sig-name descname"><span class="pre">select_bond_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bond_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#GraphMolecule.select_bond_type"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.select_bond_type" title="Link to this definition">¶</a></dt>
+<dd><p>Return the bond mobject class for the given bond order (1=single, 2=double, 3=triple).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>bond_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Type of the bond: 1 for single, 2 for double, 3 for triple.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#type" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a>] | <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#type" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.ArcBetweenPoints.html#manim.mobject.geometry.arc.ArcBetweenPoints" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArcBetweenPoints</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The bond mobject class for the given bond order (1=single, 2=double, 3=triple).</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#Exception" title="(in Python v3.15)"><strong>Exception</strong></a> – Raised when <code class="docutils literal notranslate"><span class="pre">bond_type</span></code> is not one of 1, 2, or 3.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.make_layout">
+<span class="sig-name descname"><span class="pre">make_layout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertices_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#GraphMolecule.make_layout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.make_layout" title="Link to this definition">¶</a></dt>
+<dd><p>Build a layout dict mapping each atom index to its 3D coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>vertices_dict</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Dictionary mapping vertex indices to their atoms.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The layout dict mapping each atom index to its 3D coordinates.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.make_vertex_config">
+<span class="sig-name descname"><span class="pre">make_vertex_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertices_dict</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#GraphMolecule.make_vertex_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.make_vertex_config" title="Link to this definition">¶</a></dt>
+<dd><p>Build a vertex config dict with element colors and dot radius.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>vertices_dict</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Dictionary mapping vertex indices to their atoms.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A dictionary of the results.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.make_edge_config">
+<span class="sig-name descname"><span class="pre">make_edge_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edges</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#GraphMolecule.make_edge_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.make_edge_config" title="Link to this definition">¶</a></dt>
+<dd><p>Build an edge config dict with gradient colors derived from bonded atom colors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>edges</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Dictionary mapping edge tuples to their bonds.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A dictionary of the results.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.make_labels">
+<span class="sig-name descname"><span class="pre">make_labels</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertices_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numeric_label</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_color</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#GraphMolecule.make_labels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.make_labels" title="Link to this definition">¶</a></dt>
+<dd><p>Create label text mobjects for each atom, either numeric or element symbols.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vertices_dict</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Dictionary mapping vertex indices to their atoms.</p></li>
+<li><p><strong>numeric_label</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to add a numeric label to each atom.</p></li>
+<li><p><strong>label_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color of the atom labels.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.text.text_mobject.Text.html#manim.mobject.text.text_mobject.Text" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Text</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The label text mobjects for each atom, either numeric or element symbols.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.depth_first_search">
+<span class="sig-name descname"><span class="pre">depth_first_search</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visited_atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connected_atoms</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#GraphMolecule.depth_first_search"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.depth_first_search" title="Link to this definition">¶</a></dt>
+<dd><p>Recursive depht-first search to find connected atoms.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Only works properly for non cyclic structures. If you use
+an atom from a cycle as the starting point, it will take the whole cycle.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>graph</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://networkx.org/documentation/stable/reference/classes/graph.html#networkx.Graph" title="(in NetworkX v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Graph</span></code></a></span>) – Graph of the molecule.</p></li>
+<li><p><strong>atom</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the atom to search from.</p></li>
+<li><p><strong>visited_atoms</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#set" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">set</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Set of already visited atom indices.</p></li>
+<li><p><strong>connected_atoms</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Accumulated list of connected atom indices.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of the connected atom indices.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_connected_atoms">
+<span class="sig-name descname"><span class="pre">get_connected_atoms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">from_atom_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_atom_index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#GraphMolecule.get_connected_atoms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_connected_atoms" title="Link to this definition">¶</a></dt>
+<dd><p>Given two atoms index, returns the connected atoms to the second atom
+after the bond between the first atom and the second one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>from_atom_index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the atom on one side of the bond.</p></li>
+<li><p><strong>to_atom_index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the atom on the other side of the bond.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of the connected atom indices.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#Exception" title="(in Python v3.15)"><strong>Exception</strong></a> – Raised when there is no bond between <code class="docutils literal notranslate"><span class="pre">from_atom_index</span></code> and
+    <code class="docutils literal notranslate"><span class="pre">to_atom_index</span></code>.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Index: <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">1</span> <span class="pre">2</span> <span class="pre">3</span> <span class="pre">4</span> <span class="pre">5</span></code></p>
+<p>Atoms: <code class="docutils literal notranslate"><span class="pre">C-O-C-N-C-H</span></code></p>
+<p>This function applied to atoms <code class="docutils literal notranslate"><span class="pre">2</span></code> (C) and <code class="docutils literal notranslate"><span class="pre">3</span></code> (N), would return
+<code class="docutils literal notranslate"><span class="pre">[3,</span> <span class="pre">4,</span> <span class="pre">5]</span></code>, the indices of atoms N, C and H.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_atoms_vgroup_from_index">
+<span class="sig-name descname"><span class="pre">get_atoms_vgroup_from_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms_indices</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#GraphMolecule.get_atoms_vgroup_from_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_atoms_vgroup_from_index" title="Link to this definition">¶</a></dt>
+<dd><p>Return a <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> of vertex mobjects for the given atom indices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>atoms_indices</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>) – Atom indices to get the vertex mobjects for.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_connected_atoms_v_group">
+<span class="sig-name descname"><span class="pre">get_connected_atoms_v_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">from_atom_index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_atom_index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#GraphMolecule.get_connected_atoms_v_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_connected_atoms_v_group" title="Link to this definition">¶</a></dt>
+<dd><p>Return a VGroup of all atoms connected to to_atom_index beyond the bond from from_atom_index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>from_atom_index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the atom on one side of the bond.</p></li>
+<li><p><strong>to_atom_index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the atom on the other side of the bond.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>VGroup of the connected atoms.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_bonds_from_atoms_indices">
+<span class="sig-name descname"><span class="pre">get_bonds_from_atoms_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connected_atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">excluded_atom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#GraphMolecule.get_bonds_from_atoms_indices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_bonds_from_atoms_indices" title="Link to this definition">¶</a></dt>
+<dd><p>Given a list of atoms, returns the bonds related to those atoms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>connected_atoms</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – List of atom indices to get the bonds from.</p></li>
+<li><p><strong>excluded_atom</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Atom index to exclude from the bonds.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of the bond tuples related to the atoms.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_bonds_vgroup_from_index">
+<span class="sig-name descname"><span class="pre">get_bonds_vgroup_from_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connected_atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">excluded_atom</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#GraphMolecule.get_bonds_vgroup_from_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_bonds_vgroup_from_index" title="Link to this definition">¶</a></dt>
+<dd><p>Return a <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> of bond mobjects connected to the given atoms, excluding one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>connected_atoms</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – List of atom indices to get the bonds from.</p></li>
+<li><p><strong>excluded_atom</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Atom index to exclude from the bonds.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_connected_atoms_and_bonds_group_from_index">
+<span class="sig-name descname"><span class="pre">get_connected_atoms_and_bonds_group_from_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">connected_atoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">excluded_atom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#GraphMolecule.get_connected_atoms_and_bonds_group_from_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_connected_atoms_and_bonds_group_from_index" title="Link to this definition">¶</a></dt>
+<dd><p>Return a combined VGroup of connected atoms and their bonds, excluding one atom.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>connected_atoms</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – List of connected atom indices.</p></li>
+<li><p><strong>excluded_atom</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Atom index to exclude from the bonds.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_connected_atoms_and_bonds">
+<span class="sig-name descname"><span class="pre">get_connected_atoms_and_bonds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">from_atom</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_atom</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#GraphMolecule.get_connected_atoms_and_bonds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_connected_atoms_and_bonds" title="Link to this definition">¶</a></dt>
+<dd><p>Return a <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> of all atoms and bonds on the to_atom side of a given bond.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>from_atom</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the atom on one side of the bond.</p></li>
+<li><p><strong>to_atom</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the atom on the other side of the bond.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>VGroup with the connected atoms and their bonds.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_atom_position_by_index">
+<span class="sig-name descname"><span class="pre">find_atom_position_by_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#GraphMolecule.find_atom_position_by_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_atom_position_by_index" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the position of a single atom given its index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>atom_index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the atom inside the <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VDict.html#manim.mobject.types.vectorized_mobject.VDict" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VDict</span></code></a>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../../algorithm/array.Array.html#manim_extensions.algorithm.array.Array" title="manim_extensions.algorithm.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a> with the [x, y, z] coordinates of the atom.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#KeyError" title="(in Python v3.15)"><strong>KeyError</strong></a> – Raised when <code class="docutils literal notranslate"><span class="pre">atom_index</span></code> is not a valid atom index.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#Exception" title="(in Python v3.15)"><strong>Exception</strong></a> – Re-raised when the atom lookup fails otherwise.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [1]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">molecule</span> <span class="o">=</span> <span class="n">GraphMolecule</span><span class="o">.</span><span class="n">molecule_from_file</span><span class="p">(</span><span class="s2">"dimethylpropane.mol"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">molecule</span><span class="o">.</span><span class="n">find_atom_position_by_index</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbcell-files docutils container">
+<div class="manim-example-files">
+<div class="manim-file-row">
+  <span class="manim-file-badge" style="background:#2b8a3e">mol</span>
+  <span class="manim-file-meta">
+    <span class="manim-file-name">dimethylpropane.mol</span>
+    <span class="manim-file-size">1.6 KB</span>
+  </span>
+  <span class="manim-file-actions">
+    <a class="manim-file-action" href="https://github.com/ExploreMaths/manim_extensions/raw/main/examples/molecule_files/mol_files/dimethylpropane.mol" title="Download this file" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v9.2"/><path d="M8.4 10.4 12 14l3.6-3.6"/><path d="M5.2 16.4v1.8c0 .9.8 1.7 1.7 1.7h10.2c.9 0 1.7-.8 1.7-1.7v-1.8"/></svg></a>
+  </span>
+</div>
+</div></div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>Out[1]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[ 0.2253  -0.0829   0.28435]
+</pre></div>
+</div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_atoms_position_by_index">
+<span class="sig-name descname"><span class="pre">find_atoms_position_by_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms_index_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#GraphMolecule.find_atoms_position_by_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_atoms_position_by_index" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the position of multiple atoms given their indices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>atoms_index_list</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – List of atoms indices to be gotten.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of the atoms positions.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [2]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pprint</span><span class="w"> </span><span class="kn">import</span> <span class="n">pprint</span>
+
+<span class="n">molecule</span> <span class="o">=</span> <span class="n">GraphMolecule</span><span class="o">.</span><span class="n">molecule_from_file</span><span class="p">(</span><span class="s2">"dimethylpropane.mol"</span><span class="p">)</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">molecule</span><span class="o">.</span><span class="n">find_atoms_position_by_index</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbcell-files docutils container">
+<div class="manim-example-files">
+<div class="manim-file-row">
+  <span class="manim-file-badge" style="background:#2b8a3e">mol</span>
+  <span class="manim-file-meta">
+    <span class="manim-file-name">dimethylpropane.mol</span>
+    <span class="manim-file-size">1.6 KB</span>
+  </span>
+  <span class="manim-file-actions">
+    <a class="manim-file-action" href="https://github.com/ExploreMaths/manim_extensions/raw/main/examples/molecule_files/mol_files/dimethylpropane.mol" title="Download this file" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v9.2"/><path d="M8.4 10.4 12 14l3.6-3.6"/><path d="M5.2 16.4v1.8c0 .9.8 1.7 1.7 1.7h10.2c.9 0 1.7-.8 1.7-1.7v-1.8"/></svg></a>
+  </span>
+</div>
+</div></div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>Out[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[array([ 0.2253 , -0.0829 ,  0.28435]),
+ array([-1.1214 ,  0.2898 ,  0.92075]),
+ array([1.1214 , 1.162  , 0.21665])]
+</pre></div>
+</div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_bond_center_by_index">
+<span class="sig-name descname"><span class="pre">find_bond_center_by_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bond_index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#GraphMolecule.find_bond_center_by_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_bond_center_by_index" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the [x, y, z] coordinates of a bond given a bond tuple.
+The bond tuple corresponds to the indices of the atoms in the bond.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>bond_index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Hashable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hashable</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Hashable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hashable</span></code></a>]</span>) – Index of the bond.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[x, y, z] coordinates of bond center.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#KeyError" title="(in Python v3.15)"><strong>KeyError</strong></a> – Raised when <code class="docutils literal notranslate"><span class="pre">bond_tuple</span></code> is not a valid bond index.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#Exception" title="(in Python v3.15)"><strong>Exception</strong></a> – Re-raised when the bond lookup fails otherwise.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [3]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">molecule</span> <span class="o">=</span> <span class="n">GraphMolecule</span><span class="o">.</span><span class="n">molecule_from_file</span><span class="p">(</span><span class="s2">"dimethylpropane.mol"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">molecule</span><span class="o">.</span><span class="n">find_bond_center_by_index</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nbcell-files docutils container">
+<div class="manim-example-files">
+<div class="manim-file-row">
+  <span class="manim-file-badge" style="background:#2b8a3e">mol</span>
+  <span class="manim-file-meta">
+    <span class="manim-file-name">dimethylpropane.mol</span>
+    <span class="manim-file-size">1.6 KB</span>
+  </span>
+  <span class="manim-file-actions">
+    <a class="manim-file-action" href="https://github.com/ExploreMaths/manim_extensions/raw/main/examples/molecule_files/mol_files/dimethylpropane.mol" title="Download this file" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v9.2"/><path d="M8.4 10.4 12 14l3.6-3.6"/><path d="M5.2 16.4v1.8c0 .9.8 1.7 1.7 1.7h10.2c.9 0 1.7-.8 1.7-1.7v-1.8"/></svg></a>
+  </span>
+</div>
+</div></div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>Out[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[-0.44805  0.10345  0.60255]
+</pre></div>
+</div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_position_along_bond_axis">
+<span class="sig-name descname"><span class="pre">find_position_along_bond_axis</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bond_tuple</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position_buff</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#GraphMolecule.find_position_along_bond_axis"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_position_along_bond_axis" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a position along the bond axis given a bond index and depending on a position_buff.
+A value of 1 will return one end of the bond. A value of -1 will return the other end.
+All values in between return positions at some point of the middle of the bond, being 0 the center.
+Values bigger or lower that 1 and -1 will return positions outside the bond.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bond_tuple</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Hashable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hashable</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Hashable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Hashable</span></code></a>]</span>) – Tuple of the bond.</p></li>
+<li><p><strong>position_buff</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Position buff.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>[x, y, z] coordinates of the final position selected.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#KeyError" title="(in Python v3.15)"><strong>KeyError</strong></a> – Raised when <code class="docutils literal notranslate"><span class="pre">bond_tuple</span></code> is not a valid bond index.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_bonds_center_by_index">
+<span class="sig-name descname"><span class="pre">find_bonds_center_by_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bonds_tuples_list</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#GraphMolecule.find_bonds_center_by_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_bonds_center_by_index" title="Link to this definition">¶</a></dt>
+<dd><p>Returns the position of multiple bonds given their indices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>bonds_tuples_list</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – List of bonds indices to be gotten.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of the bonds positions.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [4]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pprint</span><span class="w"> </span><span class="kn">import</span> <span class="n">pprint</span>
+
+<span class="n">molecule</span> <span class="o">=</span> <span class="n">GraphMolecule</span><span class="o">.</span><span class="n">molecule_from_file</span><span class="p">(</span><span class="s2">"dimethylpropane.mol"</span><span class="p">)</span>
+<span class="n">pprint</span><span class="p">(</span>
+    <span class="n">molecule</span><span class="o">.</span><span class="n">find_bonds_center_by_index</span><span class="p">([(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbcell-files docutils container">
+<div class="manim-example-files">
+<div class="manim-file-row">
+  <span class="manim-file-badge" style="background:#2b8a3e">mol</span>
+  <span class="manim-file-meta">
+    <span class="manim-file-name">dimethylpropane.mol</span>
+    <span class="manim-file-size">1.6 KB</span>
+  </span>
+  <span class="manim-file-actions">
+    <a class="manim-file-action" href="https://github.com/ExploreMaths/manim_extensions/raw/main/examples/molecule_files/mol_files/dimethylpropane.mol" title="Download this file" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v9.2"/><path d="M8.4 10.4 12 14l3.6-3.6"/><path d="M5.2 16.4v1.8c0 .9.8 1.7 1.7 1.7h10.2c.9 0 1.7-.8 1.7-1.7v-1.8"/></svg></a>
+  </span>
+</div>
+</div></div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>Out[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[array([-0.44805,  0.10345,  0.60255]),
+ array([0.67335, 0.53955, 0.2505 ]),
+ array([ 0.10735, -0.35215, -0.4248 ])]
+</pre></div>
+</div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_all_atoms_positions">
+<span class="sig-name descname"><span class="pre">find_all_atoms_positions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#GraphMolecule.find_all_atoms_positions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_all_atoms_positions" title="Link to this definition">¶</a></dt>
+<dd><p>Return a dict mapping every atom index to its current position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary mapping atom indices to their positions.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_all_bonds_centers">
+<span class="sig-name descname"><span class="pre">find_all_bonds_centers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#GraphMolecule.find_all_bonds_centers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_all_bonds_centers" title="Link to this definition">¶</a></dt>
+<dd><p>Return a dict mapping every bond tuple to its center position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary mapping bond tuples to their center positions.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.mc_molecule_to_atoms_and_bonds">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">mc_molecule_to_atoms_and_bonds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mc_molecule</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/graph_molecule.html#GraphMolecule.mc_molecule_to_atoms_and_bonds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.mc_molecule_to_atoms_and_bonds" title="Link to this definition">¶</a></dt>
+<dd><p>Transforms the structure of a mc_molecule to a (vertices, edges) tuple.</p>
+<p>The tuple has the following structure:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Vertices: {&lt;atom_index&gt;: MCAtom}
+Edges: {(&lt;from_atom_index&gt;, &lt;to_atom_index&gt;): MCBond}
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mc_molecule</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../manim_chemistry_molecule/mc_molecule.MCMolecule.html#manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule" title="manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">MCMolecule</span></code></a></span>) – The origin <a class="reference internal" href="../manim_chemistry_molecule/mc_molecule.MCMolecule.html#manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule" title="manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">MCMolecule</span></code></a>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>See above.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1572,6 +2489,55 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">graph_molecule</a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.SimpleLine"><code class="docutils literal notranslate"><span class="pre">SimpleLine</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.SimpleLine._get_unit_vector"><code class="docutils literal notranslate"><span class="pre">SimpleLine._get_unit_vector()</span></code></a></li>
+
+
+
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.DoubleLine"><code class="docutils literal notranslate"><span class="pre">DoubleLine</span></code></a><ul>
+
+
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.DoubleLine._get_unit_vector"><code class="docutils literal notranslate"><span class="pre">DoubleLine._get_unit_vector()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.DoubleLine.get_vector"><code class="docutils literal notranslate"><span class="pre">DoubleLine.get_vector()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.DoubleLine.set_points_by_ends"><code class="docutils literal notranslate"><span class="pre">DoubleLine.set_points_by_ends()</span></code></a></li>
+
+
+
+
+
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.TripleLine"><code class="docutils literal notranslate"><span class="pre">TripleLine</span></code></a>
+</li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule"><code class="docutils literal notranslate"><span class="pre">GraphMolecule</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.SUPPORTED_BOND_TYPES"><code class="docutils literal notranslate"><span class="pre">GraphMolecule.SUPPORTED_BOND_TYPES</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule._populate_edge_dict"><code class="docutils literal notranslate"><span class="pre">GraphMolecule._populate_edge_dict()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.select_bond_from_edge"><code class="docutils literal notranslate"><span class="pre">GraphMolecule.select_bond_from_edge()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.select_bond_type"><code class="docutils literal notranslate"><span class="pre">GraphMolecule.select_bond_type()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.make_layout"><code class="docutils literal notranslate"><span class="pre">GraphMolecule.make_layout()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.make_vertex_config"><code class="docutils literal notranslate"><span class="pre">GraphMolecule.make_vertex_config()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.make_edge_config"><code class="docutils literal notranslate"><span class="pre">GraphMolecule.make_edge_config()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.make_labels"><code class="docutils literal notranslate"><span class="pre">GraphMolecule.make_labels()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.depth_first_search"><code class="docutils literal notranslate"><span class="pre">GraphMolecule.depth_first_search()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_connected_atoms"><code class="docutils literal notranslate"><span class="pre">GraphMolecule.get_connected_atoms()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_atoms_vgroup_from_index"><code class="docutils literal notranslate"><span class="pre">GraphMolecule.get_atoms_vgroup_from_index()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_connected_atoms_v_group"><code class="docutils literal notranslate"><span class="pre">GraphMolecule.get_connected_atoms_v_group()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_bonds_from_atoms_indices"><code class="docutils literal notranslate"><span class="pre">GraphMolecule.get_bonds_from_atoms_indices()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_bonds_vgroup_from_index"><code class="docutils literal notranslate"><span class="pre">GraphMolecule.get_bonds_vgroup_from_index()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_connected_atoms_and_bonds_group_from_index"><code class="docutils literal notranslate"><span class="pre">GraphMolecule.get_connected_atoms_and_bonds_group_from_index()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_connected_atoms_and_bonds"><code class="docutils literal notranslate"><span class="pre">GraphMolecule.get_connected_atoms_and_bonds()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_atom_position_by_index"><code class="docutils literal notranslate"><span class="pre">GraphMolecule.find_atom_position_by_index()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_atoms_position_by_index"><code class="docutils literal notranslate"><span class="pre">GraphMolecule.find_atoms_position_by_index()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_bond_center_by_index"><code class="docutils literal notranslate"><span class="pre">GraphMolecule.find_bond_center_by_index()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_position_along_bond_axis"><code class="docutils literal notranslate"><span class="pre">GraphMolecule.find_position_along_bond_axis()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_bonds_center_by_index"><code class="docutils literal notranslate"><span class="pre">GraphMolecule.find_bonds_center_by_index()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_all_atoms_positions"><code class="docutils literal notranslate"><span class="pre">GraphMolecule.find_all_atoms_positions()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_all_bonds_centers"><code class="docutils literal notranslate"><span class="pre">GraphMolecule.find_all_bonds_centers()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.mc_molecule_to_atoms_and_bonds"><code class="docutils literal notranslate"><span class="pre">GraphMolecule.mc_molecule_to_atoms_and_bonds()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

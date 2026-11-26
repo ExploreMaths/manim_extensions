@@ -4,7 +4,7 @@
 gear
 ====
 
-.. module:: manim_extensions.pymunk.custom_mobjects.gear
+.. automodule:: manim_extensions.pymunk.custom_mobjects.gear
 
 Classes
 -------

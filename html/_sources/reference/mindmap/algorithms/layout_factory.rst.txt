@@ -5,7 +5,7 @@
 layout_factory
 ==============
 
-.. module:: manim_extensions.mindmap.algorithms.layout_factory
+.. automodule:: manim_extensions.mindmap.algorithms.layout_factory
 
 Classes
 -------

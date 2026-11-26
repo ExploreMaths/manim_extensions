@@ -5,7 +5,7 @@
 optics
 ======
 
-.. module:: manim_extensions.physics.optics
+.. automodule:: manim_extensions.physics.optics
 
 Usage
 -----

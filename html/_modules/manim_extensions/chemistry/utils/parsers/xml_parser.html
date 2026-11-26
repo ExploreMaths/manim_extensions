@@ -1500,7 +1500,7 @@
 
 
 <div class="viewcode-block" id="XMLParser">
-<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/xml_parser.XMLParser.html#manim_extensions.chemistry.utils.parsers.xml_parser.XMLParser">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/xml_parser.XMLParser.html#manim_extensions.chemistry.XMLParser">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">XMLParser</span><span class="p">(</span><span class="n">BaseParser</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Parses mol files.</span>
 
@@ -1543,7 +1543,7 @@
 <span class="sd">    """</span>
 
 <div class="viewcode-block" id="XMLParser.read_file">
-<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/xml_parser.XMLParser.html#manim_extensions.chemistry.utils.parsers.xml_parser.XMLParser.read_file">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/xml_parser.XMLParser.html#manim_extensions.chemistry.XMLParser.read_file">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">read_file</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="n">FilePath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Read an XML file and return its content as a string.</span>
@@ -1564,7 +1564,7 @@
 
 
 <div class="viewcode-block" id="XMLParser.data_parser">
-<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/xml_parser.XMLParser.html#manim_extensions.chemistry.utils.parsers.xml_parser.XMLParser.data_parser">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/xml_parser.XMLParser.html#manim_extensions.chemistry.XMLParser.data_parser">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">data_parser</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MoleculeData</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Parses the atoms and bonds data and returns a tuple of dictionaries with each data.</span>
@@ -1604,7 +1604,7 @@
 
 
 <div class="viewcode-block" id="XMLParser.parse_molecule_data">
-<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/xml_parser.XMLParser.html#manim_extensions.chemistry.utils.parsers.xml_parser.XMLParser.parse_molecule_data">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/xml_parser.XMLParser.html#manim_extensions.chemistry.XMLParser.parse_molecule_data">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">parse_molecule_data</span><span class="p">(</span><span class="n">molecule_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">MoleculeData</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Parse a single molecule entry into atoms and bonds dicts.</span>
@@ -1625,7 +1625,7 @@
 
 
 <div class="viewcode-block" id="XMLParser.extract_atoms_data">
-<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/xml_parser.XMLParser.html#manim_extensions.chemistry.utils.parsers.xml_parser.XMLParser.extract_atoms_data">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/xml_parser.XMLParser.html#manim_extensions.chemistry.XMLParser.extract_atoms_data">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">extract_atoms_data</span><span class="p">(</span><span class="n">molecule_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">AtomsDict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Extract the atoms data from a single molecule entry.</span>
@@ -1716,7 +1716,7 @@
 
 
 <div class="viewcode-block" id="XMLParser.extract_bonds_data">
-<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/xml_parser.XMLParser.html#manim_extensions.chemistry.utils.parsers.xml_parser.XMLParser.extract_bonds_data">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/xml_parser.XMLParser.html#manim_extensions.chemistry.XMLParser.extract_bonds_data">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">extract_bonds_data</span><span class="p">(</span><span class="n">molecule_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">BondsDict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Extract the bonds data from a single molecule entry.</span>

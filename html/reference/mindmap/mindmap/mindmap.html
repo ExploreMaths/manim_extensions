@@ -1491,6 +1491,255 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.mindmap.mindmap.mindmap">
 <span id="mindmap"></span><h1>mindmap<a class="headerlink" href="#module-manim_extensions.mindmap.mindmap.mindmap" title="Link to this heading">¶</a></h1>
+<p>Mindmap main classes for Manim.</p>
+<p>This module provides main mindmap classes for visualizations.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.mindmap.mindmap.MindMap">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.mindmap.mindmap.mindmap.</span></span><span class="sig-name descname"><span class="pre">MindMap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">map</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/directions.html#manim.constants.RIGHT"><span class="pre">RIGHT</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">level_spacing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_spacing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">NodeStyle(node_style=[{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">8},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">6},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">4}],</span> <span class="pre">line_style=[{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">8},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">6},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">4}],</span> <span class="pre">text_style=[{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.RED"><span class="pre">RED</span></a><span class="pre">,</span> <span class="pre">'font_size':</span> <span class="pre">64},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.PURE_YELLOW"><span class="pre">PURE_YELLOW</span></a><span class="pre">,</span> <span class="pre">'font_size':</span> <span class="pre">56},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.GREEN"><span class="pre">GREEN</span></a><span class="pre">,</span> <span class="pre">'font_size':</span> <span class="pre">48},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'font_size':</span> <span class="pre">36}])</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/mindmap/mindmap.html#MindMap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.mindmap.mindmap.MindMap" title="Link to this definition">¶</a></dt>
+<dd><p>Mind map class: parses mind-map data in the following format and builds
+the corresponding mind-map object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>map</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Mind-map data.</p></li>
+<li><p><strong>buff</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Padding between node content and node border.</p></li>
+<li><p><strong>direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span>) – <a class="reference internal" href="../nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node" title="manim_extensions.mindmap.nodes.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a> layout direction.</p></li>
+<li><p><strong>level_spacing</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Spacing between layers.</p></li>
+<li><p><strong>node_spacing</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Spacing between nodes.</p></li>
+<li><p><strong>node_style</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../nodes/node.NodeStyle.html#manim_extensions.mindmap.nodes.node.NodeStyle" title="manim_extensions.mindmap.nodes.node.NodeStyle"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeStyle</span></code></a></span>) – <a class="reference internal" href="../nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node" title="manim_extensions.mindmap.nodes.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a> style.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="mindmapscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: MindMapScene <a class="headerlink" href="#mindmapscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./MindMapScene-4679b0b1.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap</span><span class="w"> </span><span class="kn">import</span> <span class="n">MindMap</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MindMapScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">'node'</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\text</span><span class="si">{Calculus}</span><span class="s2">"</span><span class="p">),</span>
+            <span class="s1">'text'</span><span class="p">:</span> <span class="s1">'narration text for TTS'</span><span class="p">,</span>
+            <span class="s1">'child'</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s1">'node'</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\text</span><span class="si">{Limits}</span><span class="s2">"</span><span class="p">)},</span>
+                <span class="p">{</span><span class="s1">'node'</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\text</span><span class="si">{Derivatives}</span><span class="s2">"</span><span class="p">)},</span>
+                <span class="p">{</span><span class="s1">'node'</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\text</span><span class="si">{Integrals}</span><span class="s2">"</span><span class="p">),</span>
+                 <span class="s1">'child'</span><span class="p">:</span> <span class="p">[</span>
+                     <span class="p">{</span><span class="s1">'node'</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\int x\,dx"</span><span class="p">)},</span>
+                     <span class="p">{</span><span class="s1">'node'</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\int x^2\,dx"</span><span class="p">)},</span>
+                 <span class="p">]},</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+        <span class="n">mind_map</span> <span class="o">=</span> <span class="n">MindMap</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">mind_map</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">mind_map</span><span class="o">.</span><span class="n">dfs_walker</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">connector</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Create</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">connector</span><span class="p">),</span> <span class="n">run_time</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Create</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">surr_rect</span><span class="p">),</span> <span class="n">Write</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">vmobject</span><span class="p">),</span>
+                      <span class="n">run_time</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+        <span class="n">children</span> <span class="o">=</span> <span class="n">mind_map</span><span class="o">.</span><span class="n">get_children</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">Wiggle</span><span class="p">(</span><span class="n">child</span><span class="p">)</span> <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">children</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.mindmap.mindmap.MindMap._set_connectors">
+<span class="sig-name descname"><span class="pre">_set_connectors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/mindmap/mindmap.html#MindMap._set_connectors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.mindmap.mindmap.MindMap._set_connectors" title="Link to this definition">¶</a></dt>
+<dd><p>Create a connector from each node to its parent in the active layout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.mindmap.mindmap.TimeLine">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.mindmap.mindmap.mindmap.</span></span><span class="sig-name descname"><span class="pre">TimeLine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">map</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sides</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(</span><a class="reference internal" href="../../../constants/directions.html#manim.constants.UP"><span class="pre">UP</span></a><span class="pre">,</span> <a class="reference internal" href="../../../constants/directions.html#manim.constants.DOWN"><span class="pre">DOWN</span></a><span class="pre">)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level_spacing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_spacing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">NodeStyle(node_style=[{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">8},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">6},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">4}],</span> <span class="pre">line_style=[{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">8},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">6},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">4}],</span> <span class="pre">text_style=[{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.RED"><span class="pre">RED</span></a><span class="pre">,</span> <span class="pre">'font_size':</span> <span class="pre">64},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.PURE_YELLOW"><span class="pre">PURE_YELLOW</span></a><span class="pre">,</span> <span class="pre">'font_size':</span> <span class="pre">56},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.GREEN"><span class="pre">GREEN</span></a><span class="pre">,</span> <span class="pre">'font_size':</span> <span class="pre">48},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'font_size':</span> <span class="pre">36}])</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/mindmap/mindmap.html#TimeLine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.mindmap.mindmap.TimeLine" title="Link to this definition">¶</a></dt>
+<dd><p>Timeline: data format is the same as <a class="reference internal" href="mindmap.MindMap.html#manim_extensions.mindmap.mindmap.mindmap.MindMap" title="manim_extensions.mindmap.mindmap.mindmap.MindMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">MindMap</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>map</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Timeline data.</p></li>
+<li><p><strong>buff</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Padding between node content and node border.</p></li>
+<li><p><strong>sides</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a>]</span>) – <a class="reference internal" href="../nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node" title="manim_extensions.mindmap.nodes.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a> layout direction; growth direction of subtrees rooted at
+second-level nodes.</p></li>
+<li><p><strong>level_spacing</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Spacing between layers.</p></li>
+<li><p><strong>node_spacing</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Spacing between nodes.</p></li>
+<li><p><strong>node_style</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../nodes/node.NodeStyle.html#manim_extensions.mindmap.nodes.node.NodeStyle" title="manim_extensions.mindmap.nodes.node.NodeStyle"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeStyle</span></code></a></span>) – <a class="reference internal" href="../nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node" title="manim_extensions.mindmap.nodes.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a> style.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="timelinescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: TimeLineScene <a class="headerlink" href="#timelinescene">¶</a></p><img alt="../../../_images/TimeLineScene-a032dd09.png" class="align-center" src="../../../_images/TimeLineScene-a032dd09.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap</span><span class="w"> </span><span class="kn">import</span> <span class="n">TimeLine</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TimeLineScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">'node'</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\text</span><span class="si">{History}</span><span class="s2">"</span><span class="p">),</span>
+            <span class="s1">'child'</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s1">'node'</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="s2">"2022"</span><span class="p">)},</span>
+                <span class="p">{</span><span class="s1">'node'</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="s2">"2023"</span><span class="p">)},</span>
+                <span class="p">{</span><span class="s1">'node'</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="s2">"2024"</span><span class="p">)},</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+        <span class="n">timeline</span> <span class="o">=</span> <span class="n">TimeLine</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">timeline</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">timeline</span><span class="p">)</span>
+        <span class="n">timeline</span><span class="o">.</span><span class="n">get_node</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">YELLOW</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.mindmap.mindmap.TimeLine._set_connectors">
+<span class="sig-name descname"><span class="pre">_set_connectors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/mindmap/mindmap.html#TimeLine._set_connectors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.mindmap.mindmap.TimeLine._set_connectors" title="Link to this definition">¶</a></dt>
+<dd><p>Create a connector from each node to its parent in the active layout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.mindmap.mindmap.StandardMap">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.mindmap.mindmap.mindmap.</span></span><span class="sig-name descname"><span class="pre">StandardMap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">map</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/directions.html#manim.constants.RIGHT"><span class="pre">RIGHT</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">level_spacing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_spacing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">NodeStyle(node_style=[{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">8},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">6},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">4}],</span> <span class="pre">line_style=[{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">8},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">6},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">4}],</span> <span class="pre">text_style=[{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.RED"><span class="pre">RED</span></a><span class="pre">,</span> <span class="pre">'font_size':</span> <span class="pre">64},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.PURE_YELLOW"><span class="pre">PURE_YELLOW</span></a><span class="pre">,</span> <span class="pre">'font_size':</span> <span class="pre">56},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.GREEN"><span class="pre">GREEN</span></a><span class="pre">,</span> <span class="pre">'font_size':</span> <span class="pre">48},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'font_size':</span> <span class="pre">36}])</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/mindmap/mindmap.html#StandardMap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.mindmap.mindmap.StandardMap" title="Link to this definition">¶</a></dt>
+<dd><p>Two-sided mind map: data format is the same as <a class="reference internal" href="mindmap.MindMap.html#manim_extensions.mindmap.mindmap.mindmap.MindMap" title="manim_extensions.mindmap.mindmap.mindmap.MindMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">MindMap</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>map</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Mind-map data.</p></li>
+<li><p><strong>buff</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Padding between node content and node border.</p></li>
+<li><p><strong>direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span>) – <a class="reference internal" href="../algorithms/layout.Layout.html#manim_extensions.mindmap.algorithms.layout.Layout" title="manim_extensions.mindmap.algorithms.layout.Layout"><code class="xref py py-class docutils literal notranslate"><span class="pre">Layout</span></code></a> direction.</p></li>
+<li><p><strong>level_spacing</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Spacing between layers.</p></li>
+<li><p><strong>node_spacing</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Spacing between nodes.</p></li>
+<li><p><strong>node_style</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../nodes/node.NodeStyle.html#manim_extensions.mindmap.nodes.node.NodeStyle" title="manim_extensions.mindmap.nodes.node.NodeStyle"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeStyle</span></code></a></span>) – <a class="reference internal" href="../nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node" title="manim_extensions.mindmap.nodes.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a> style.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="standardmapscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: StandardMapScene <a class="headerlink" href="#standardmapscene">¶</a></p><img alt="../../../_images/StandardMapScene-252bfb67.png" class="align-center" src="../../../_images/StandardMapScene-252bfb67.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandardMap</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">StandardMapScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">'node'</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\text</span><span class="si">{Root}</span><span class="s2">"</span><span class="p">),</span>
+            <span class="s1">'child'</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s1">'node'</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\text</span><span class="si">{Left}</span><span class="s2">"</span><span class="p">),</span>
+                 <span class="s1">'child'</span><span class="p">:</span> <span class="p">[</span>
+                     <span class="p">{</span><span class="s1">'node'</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\text</span><span class="si">{L}</span><span class="s2">_1"</span><span class="p">)},</span>
+                     <span class="p">{</span><span class="s1">'node'</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\text</span><span class="si">{L}</span><span class="s2">_2"</span><span class="p">)},</span>
+                 <span class="p">]},</span>
+                <span class="p">{</span><span class="s1">'node'</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\text</span><span class="si">{Right}</span><span class="s2">"</span><span class="p">)},</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+        <span class="n">mind_map</span> <span class="o">=</span> <span class="n">StandardMap</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">mind_map</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">mind_map</span><span class="p">)</span>
+        <span class="n">mind_map</span><span class="o">.</span><span class="n">get_children</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">YELLOW</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.mindmap.mindmap.StandardMap._set_connectors">
+<span class="sig-name descname"><span class="pre">_set_connectors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/mindmap/mindmap.html#StandardMap._set_connectors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.mindmap.mindmap.StandardMap._set_connectors" title="Link to this definition">¶</a></dt>
+<dd><p>Create a connector from each node to its parent in the active layout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.mindmap.mindmap.CatalogMap">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.mindmap.mindmap.mindmap.</span></span><span class="sig-name descname"><span class="pre">CatalogMap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">map</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level_spacing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_spacing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">NodeStyle(node_style=[{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">8},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">6},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">4}],</span> <span class="pre">line_style=[{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">8},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">6},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">4}],</span> <span class="pre">text_style=[{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.RED"><span class="pre">RED</span></a><span class="pre">,</span> <span class="pre">'font_size':</span> <span class="pre">64},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.PURE_YELLOW"><span class="pre">PURE_YELLOW</span></a><span class="pre">,</span> <span class="pre">'font_size':</span> <span class="pre">56},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.GREEN"><span class="pre">GREEN</span></a><span class="pre">,</span> <span class="pre">'font_size':</span> <span class="pre">48},</span> <span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a><span class="pre">,</span> <span class="pre">'font_size':</span> <span class="pre">36}])</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/mindmap/mindmap.html#CatalogMap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.mindmap.mindmap.CatalogMap" title="Link to this definition">¶</a></dt>
+<dd><p>Catalog / organisation-chart: data format is the same as <a class="reference internal" href="mindmap.MindMap.html#manim_extensions.mindmap.mindmap.mindmap.MindMap" title="manim_extensions.mindmap.mindmap.mindmap.MindMap"><code class="xref py py-class docutils literal notranslate"><span class="pre">MindMap</span></code></a>,
+layout direction is downwards.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>map</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Catalog data.</p></li>
+<li><p><strong>buff</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Padding between node content and node border.</p></li>
+<li><p><strong>level_spacing</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Spacing between layers.</p></li>
+<li><p><strong>node_spacing</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Spacing between nodes.</p></li>
+<li><p><strong>node_style</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../nodes/node.NodeStyle.html#manim_extensions.mindmap.nodes.node.NodeStyle" title="manim_extensions.mindmap.nodes.node.NodeStyle"><code class="xref py py-class docutils literal notranslate"><span class="pre">NodeStyle</span></code></a></span>) – <a class="reference internal" href="../nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node" title="manim_extensions.mindmap.nodes.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a> style.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="catalogmapscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: CatalogMapScene <a class="headerlink" href="#catalogmapscene">¶</a></p><img alt="../../../_images/CatalogMapScene-d3660763.png" class="align-center" src="../../../_images/CatalogMapScene-d3660763.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap</span><span class="w"> </span><span class="kn">import</span> <span class="n">CatalogMap</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CatalogMapScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">'node'</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\text</span><span class="si">{Company}</span><span class="s2">"</span><span class="p">),</span>
+            <span class="s1">'child'</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s1">'node'</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\text</span><span class="si">{Engineering}</span><span class="s2">"</span><span class="p">),</span>
+                 <span class="s1">'child'</span><span class="p">:</span> <span class="p">[</span>
+                     <span class="p">{</span><span class="s1">'node'</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\text</span><span class="si">{Dev}</span><span class="s2">"</span><span class="p">)},</span>
+                     <span class="p">{</span><span class="s1">'node'</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\text</span><span class="si">{QA}</span><span class="s2">"</span><span class="p">)},</span>
+                 <span class="p">]},</span>
+                <span class="p">{</span><span class="s1">'node'</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\text</span><span class="si">{Sales}</span><span class="s2">"</span><span class="p">)},</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+        <span class="n">catalog</span> <span class="o">=</span> <span class="n">CatalogMap</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">catalog</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">catalog</span><span class="o">.</span><span class="n">height</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="p">:</span>
+            <span class="n">catalog</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+        <span class="n">catalog</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">catalog</span><span class="p">)</span>
+        <span class="n">catalog</span><span class="o">.</span><span class="n">get_descendants</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">set_color</span><span class="p">(</span><span class="n">YELLOW</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.mindmap.mindmap.CatalogMap._set_connectors">
+<span class="sig-name descname"><span class="pre">_set_connectors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/mindmap/mindmap.html#CatalogMap._set_connectors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.mindmap.mindmap.CatalogMap._set_connectors" title="Link to this definition">¶</a></dt>
+<dd><p>Create a connector from each node to its parent in the active layout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1572,6 +1821,34 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">mindmap</a><ul>
+<li><a class="reference internal" href="#manim_extensions.mindmap.mindmap.mindmap.MindMap"><code class="docutils literal notranslate"><span class="pre">MindMap</span></code></a><ul>
+
+<li><a class="reference internal" href="#manim_extensions.mindmap.mindmap.mindmap.MindMap._set_connectors"><code class="docutils literal notranslate"><span class="pre">MindMap._set_connectors()</span></code></a></li>
+
+
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.mindmap.mindmap.TimeLine"><code class="docutils literal notranslate"><span class="pre">TimeLine</span></code></a><ul>
+
+<li><a class="reference internal" href="#manim_extensions.mindmap.mindmap.mindmap.TimeLine._set_connectors"><code class="docutils literal notranslate"><span class="pre">TimeLine._set_connectors()</span></code></a></li>
+
+
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.mindmap.mindmap.StandardMap"><code class="docutils literal notranslate"><span class="pre">StandardMap</span></code></a><ul>
+
+<li><a class="reference internal" href="#manim_extensions.mindmap.mindmap.mindmap.StandardMap._set_connectors"><code class="docutils literal notranslate"><span class="pre">StandardMap._set_connectors()</span></code></a></li>
+
+
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.mindmap.mindmap.CatalogMap"><code class="docutils literal notranslate"><span class="pre">CatalogMap</span></code></a><ul>
+
+<li><a class="reference internal" href="#manim_extensions.mindmap.mindmap.mindmap.CatalogMap._set_connectors"><code class="docutils literal notranslate"><span class="pre">CatalogMap._set_connectors()</span></code></a></li>
+
+
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

@@ -5,7 +5,7 @@
 tikz
 ====
 
-.. module:: manim_extensions.tikz.tikz
+.. automodule:: manim_extensions.tikz.tikz
 
 Classes
 -------

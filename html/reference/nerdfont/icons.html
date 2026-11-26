@@ -1491,6 +1491,71 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.nerdfont.icons">
 <span id="icons"></span><h1>icons<a class="headerlink" href="#module-manim_extensions.nerdfont.icons" title="Link to this heading">¶</a></h1>
+<p>Utilities for the icons module.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="manim_extensions.nerdfont.icons._font_path">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.nerdfont.icons.</span></span><span class="sig-name descname"><span class="pre">_font_path</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/nerdfont/icons.html#_font_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.nerdfont.icons._font_path" title="Link to this definition">¶</a></dt>
+<dd><p>Return the bundled Nerd Font file path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Absolute path of the font file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="manim_extensions.nerdfont.icons._install_font_linux">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.nerdfont.icons.</span></span><span class="sig-name descname"><span class="pre">_install_font_linux</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/nerdfont/icons.html#_install_font_linux"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.nerdfont.icons._install_font_linux" title="Link to this definition">¶</a></dt>
+<dd><p>Install the TTF into the fontconfig user font dir (Linux only).</p>
+<p>Idempotent and best-effort: a missing <code class="docutils literal notranslate"><span class="pre">fc-cache</span></code> binary or an
+unwritable home directory is silently ignored (<code class="docutils literal notranslate"><span class="pre">register_font</span></code>
+remains sufficient on Windows/macOS and older pango).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.nerdfont.icons.NerdFontIcon">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.nerdfont.icons.</span></span><span class="sig-name descname"><span class="pre">NerdFontIcon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">icon</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/nerdfont/icons.html#NerdFontIcon"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.nerdfont.icons.NerdFontIcon" title="Link to this definition">¶</a></dt>
+<dd><p>A Nerd Font icon mobject rendered with the Symbols Nerd Font Mono font.</p>
+<p>See the <a class="reference external" href="https://manim-extensions.readthedocs.io/en/latest/reference/nerdfont/icon_gallery.html">Icon Gallery</a>
+for an exhaustive list of available icons.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>icon</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The icon to be displayed: an integer Unicode code point, or a
+string giving either an icon name from the Nerd Font icon set
+(resolved via <cite>icons_dict</cite>)
+or literal text to render.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments to be passed to the
+<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.text.text_mobject.Text.html#manim.mobject.text.text_mobject.Text" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Text</span></code></a> constructor.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="nerdfonticonscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: NerdFontIconScene <a class="headerlink" href="#nerdfonticonscene">¶</a></p><img alt="../../_images/NerdFontIconScene-8cc78528.png" class="align-center" src="../../_images/NerdFontIconScene-8cc78528.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.nerdfont</span><span class="w"> </span><span class="kn">import</span> <span class="n">NerdFontIcon</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">NerdFontIconScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">icon</span> <span class="o">=</span> <span class="n">NerdFontIcon</span><span class="p">(</span><span class="s2">"heart"</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">icon</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1628,10 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">icons</a><ul>
+<li><a class="reference internal" href="#manim_extensions.nerdfont.icons._font_path"><code class="docutils literal notranslate"><span class="pre">_font_path()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.nerdfont.icons._install_font_linux"><code class="docutils literal notranslate"><span class="pre">_install_font_linux()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.nerdfont.icons.NerdFontIcon"><code class="docutils literal notranslate"><span class="pre">NerdFontIcon</span></code></a>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

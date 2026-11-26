@@ -5,7 +5,7 @@
 wave
 ====
 
-.. module:: manim_extensions.physics.wave
+.. automodule:: manim_extensions.physics.wave
 
 Classes
 -------

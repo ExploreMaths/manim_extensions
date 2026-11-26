@@ -1491,6 +1491,488 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.chemistry.threeD.threedbond">
 <span id="threedbond"></span><h1>threedbond<a class="headerlink" href="#module-manim_extensions.chemistry.threeD.threedbond" title="Link to this heading">¶</a></h1>
+<p>3D bond representation for Manim chemistry.</p>
+<p>This module provides 3D bond classes for rendering chemical bonds in three dimensions.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.threeD.threedbond.</span></span><span class="sig-name descname"><span class="pre">ThreeDCylinder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/axes.html#manim.constants.Z_AXIS"><span class="pre">Z_AXIS</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">v_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0,</span> <a class="reference internal" href="../../../constants/numeric.html#manim.constants.TAU"><span class="pre">TAU</span></a><span class="pre">]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_ends</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(24,</span> <span class="pre">24)</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedbond.html#ThreeDCylinder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder" title="Link to this definition">¶</a></dt>
+<dd><p>Absolutely yoinked from <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.three_d.three_dimensions.Cylinder.html#manim.mobject.three_d.three_dimensions.Cylinder" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cylinder</span></code></a> class and
+adapted to OpenGL rendering.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>radius</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Radius of the cylinder.</p></li>
+<li><p><strong>height</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Height of the cylinder.</p></li>
+<li><p><strong>direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span>) – Direction the cylinder is aligned to.</p></li>
+<li><p><strong>v_range</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Range of the v parameter of the surface.</p></li>
+<li><p><strong>show_ends</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to show the end caps of the cylinder.</p></li>
+<li><p><strong>resolution</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#Ellipsis" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code></a>]</span>) – Resolution of the surface.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to OpenGLSurface.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="threedcylinderoverview" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ThreeDCylinderOverview <a class="headerlink" href="#threedcylinderoverview">¶</a></p><img alt="../../../_images/ThreeDCylinderOverview-cee90223.png" class="align-center" src="../../../_images/ThreeDCylinderOverview-cee90223.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.threeD.threedbond</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreeDCylinder</span>
+
+<span class="n">ThreeDCylinderTarget</span> <span class="o">=</span> <span class="n">ThreeDCylinder</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ThreeDCylinderOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">ThreeDCylinderTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
+        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'ThreeDCylinder'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.chemistry.threeD.threedbond'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'Absolutely yoinked from manim.mobject.three_d.three_dimensions.Cylinder class and adapted to OpenGL rendering'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.threeD.threedbond</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreeDCylinder</span>
+
+<span class="n">cylinder</span> <span class="o">=</span> <span class="n">ThreeDCylinder</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder.uv_func">
+<span class="sig-name descname"><span class="pre">uv_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedbond.html#ThreeDCylinder.uv_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder.uv_func" title="Link to this definition">¶</a></dt>
+<dd><p>Compute cylinder surface point from axial u and angular v parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Axial parameter of the cylinder surface.</p></li>
+<li><p><strong>v</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Angular parameter of the cylinder surface.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>3D point on the cylinder surface.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder.add_bases">
+<span class="sig-name descname"><span class="pre">add_bases</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedbond.html#ThreeDCylinder.add_bases"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder.add_bases" title="Link to this definition">¶</a></dt>
+<dd><p>Adds the end caps of the cylinder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder._rotate_to_direction">
+<span class="sig-name descname"><span class="pre">_rotate_to_direction</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedbond.html#ThreeDCylinder._rotate_to_direction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder._rotate_to_direction" title="Link to this definition">¶</a></dt>
+<dd><p>Orient the bond along its target direction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder.set_direction">
+<span class="sig-name descname"><span class="pre">set_direction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedbond.html#ThreeDCylinder.set_direction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder.set_direction" title="Link to this definition">¶</a></dt>
+<dd><p>Align the cylinder to point along the given direction vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span>) – Direction the cylinder is aligned to.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder.get_direction">
+<span class="sig-name descname"><span class="pre">get_direction</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedbond.html#ThreeDCylinder.get_direction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder.get_direction" title="Link to this definition">¶</a></dt>
+<dd><p>Return the current direction vector of the cylinder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Direction the cylinder is aligned to.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedbond.ThreeDLine">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.threeD.threedbond.</span></span><span class="sig-name descname"><span class="pre">ThreeDLine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/directions.html#manim.constants.LEFT"><span class="pre">LEFT</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/directions.html#manim.constants.RIGHT"><span class="pre">RIGHT</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">thickness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedbond.html#ThreeDLine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDLine" title="Link to this definition">¶</a></dt>
+<dd><p>Absolutely yoinked from <a class="reference internal" href="threedbond.ThreeDLine.html#manim_extensions.chemistry.threeD.threedbond.ThreeDLine" title="manim_extensions.chemistry.threeD.threedbond.ThreeDLine"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreeDLine</span></code></a> class and
+adapted to OpenGL rendering.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Starting point of the line.</p></li>
+<li><p><strong>end</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Ending point of the line.</p></li>
+<li><p><strong>thickness</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Thickness (radius) of the line.</p></li>
+<li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Color of the line.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to <a class="reference internal" href="threedbond.ThreeDCylinder.html#manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder" title="manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreeDCylinder</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="threedlineoverview" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ThreeDLineOverview <a class="headerlink" href="#threedlineoverview">¶</a></p><img alt="../../../_images/ThreeDLineOverview-d69a6a3e.png" class="align-center" src="../../../_images/ThreeDLineOverview-d69a6a3e.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.threeD.threedbond</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreeDLine</span>
+
+<span class="n">ThreeDLineTarget</span> <span class="o">=</span> <span class="n">ThreeDLine</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ThreeDLineOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">ThreeDLineTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
+        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'ThreeDLine'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.chemistry.threeD.threedbond'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'Absolutely yoinked from manim_extensions.chemistry.threeD.threedbond.ThreeDLine class and adapted to OpenGL rendering'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.threeD.threedbond</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreeDLine</span>
+
+<span class="n">line</span> <span class="o">=</span> <span class="n">ThreeDLine</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">end</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">thickness</span><span class="o">=</span><span class="mf">0.08</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedbond.ThreeDLine.set_start_and_end_attrs">
+<span class="sig-name descname"><span class="pre">set_start_and_end_attrs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedbond.html#ThreeDLine.set_start_and_end_attrs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDLine.set_start_and_end_attrs" title="Link to this definition">¶</a></dt>
+<dd><p>Sets the start and end points of the line.</p>
+<p>If either <code class="docutils literal notranslate"><span class="pre">start</span></code> or <code class="docutils literal notranslate"><span class="pre">end</span></code> are <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a>,
+this gives their centers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Starting point or <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a>.</p></li>
+<li><p><strong>end</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Ending point or <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a>.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to
+<a class="reference internal" href="threedbond.ThreeDCylinder.html#manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder" title="manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreeDCylinder</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedbond.ThreeDLine.pointify">
+<span class="sig-name descname"><span class="pre">pointify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mob_or_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedbond.html#ThreeDLine.pointify"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDLine.pointify" title="Link to this definition">¶</a></dt>
+<dd><p>Gets a point representing the center of the <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mob_or_point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a> or point whose center should be returned.</p></li>
+<li><p><strong>direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – If an edge of a <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a> should be returned, the direction of the edge.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Center of the <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a> or point, or edge if direction is given.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedbond.ThreeDLine.get_start">
+<span class="sig-name descname"><span class="pre">get_start</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedbond.html#ThreeDLine.get_start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDLine.get_start" title="Link to this definition">¶</a></dt>
+<dd><p>Return the starting point of the bond.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Starting point of the <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.three_d.three_dimensions.Line3D.html#manim.mobject.three_d.three_dimensions.Line3D" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line3D</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedbond.ThreeDLine.get_end">
+<span class="sig-name descname"><span class="pre">get_end</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedbond.html#ThreeDLine.get_end"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDLine.get_end" title="Link to this definition">¶</a></dt>
+<dd><p>Return the ending point of the bond.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Ending point of the <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.three_d.three_dimensions.Line3D.html#manim.mobject.three_d.three_dimensions.Line3D" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line3D</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedbond.ThreeDLine.parallel_to">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">parallel_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/directions.html#manim.constants.ORIGIN"><span class="pre">ORIGIN</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedbond.html#ThreeDLine.parallel_to"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDLine.parallel_to" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a line parallel to another line going through
+a given point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>line</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.three_d.three_dimensions.Line3D.html#manim.mobject.three_d.three_dimensions.Line3D" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line3D</span></code></a></span>) – The line to be parallel to.</p></li>
+<li><p><strong>point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – The point to pass through.</p></li>
+<li><p><strong>length</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Length of the parallel line.</p></li>
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional parameters to be passed to the class.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="threedbond.ThreeDLine.html#manim_extensions.chemistry.threeD.threedbond.ThreeDLine" title="manim_extensions.chemistry.threeD.threedbond.ThreeDLine"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreeDLine</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Line parallel to <code class="docutils literal notranslate"><span class="pre">line</span></code>.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="parallelline" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ParallelLine <a class="headerlink" href="#parallelline">¶</a></p><img alt="../../../_images/ParallelLine-44dc1c4d.png" class="align-center" src="../../../_images/ParallelLine-44dc1c4d.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.threeD.threedbond</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreeDLine</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ParallelLine</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">ThreeDLine</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="c1"># ThreeDLine needs the OpenGL renderer to be drawn directly;</span>
+        <span class="c1"># here its resulting geometry is shown with regular mobjects.</span>
+        <span class="n">parallel</span> <span class="o">=</span> <span class="n">ThreeDLine</span><span class="o">.</span><span class="n">parallel_to</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="n">UP</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Line</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dot</span><span class="p">(</span><span class="n">UP</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">YELLOW</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Line</span><span class="p">(</span><span class="n">parallel</span><span class="o">.</span><span class="n">get_start</span><span class="p">(),</span> <span class="n">parallel</span><span class="o">.</span><span class="n">get_end</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">))</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedbond.ThreeDLine.perpendicular_to">
+<span class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">perpendicular_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/directions.html#manim.constants.ORIGIN"><span class="pre">ORIGIN</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedbond.html#ThreeDLine.perpendicular_to"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDLine.perpendicular_to" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a line perpendicular to another line going through
+a given point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>line</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.three_d.three_dimensions.Line3D.html#manim.mobject.three_d.three_dimensions.Line3D" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line3D</span></code></a></span>) – The line to be perpendicular to.</p></li>
+<li><p><strong>point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – The point to pass through.</p></li>
+<li><p><strong>length</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Length of the perpendicular line.</p></li>
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional parameters to be passed to the class.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="threedbond.ThreeDLine.html#manim_extensions.chemistry.threeD.threedbond.ThreeDLine" title="manim_extensions.chemistry.threeD.threedbond.ThreeDLine"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreeDLine</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Line perpendicular to <code class="docutils literal notranslate"><span class="pre">line</span></code>.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – Raised when the point lies on the line, so no perpendicular
+    direction exists.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="perpline" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: PerpLine <a class="headerlink" href="#perpline">¶</a></p><img alt="../../../_images/PerpLine-1544865a.png" class="align-center" src="../../../_images/PerpLine-1544865a.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.threeD.threedbond</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreeDLine</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PerpLine</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">ThreeDLine</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="c1"># ThreeDLine needs the OpenGL renderer to be drawn directly;</span>
+        <span class="c1"># here its resulting geometry is shown with regular mobjects.</span>
+        <span class="n">perpendicular</span> <span class="o">=</span> <span class="n">ThreeDLine</span><span class="o">.</span><span class="n">perpendicular_to</span><span class="p">(</span>
+            <span class="n">line</span><span class="p">,</span> <span class="n">point</span><span class="o">=</span><span class="n">UP</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Line</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dot</span><span class="p">(</span><span class="n">UP</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">YELLOW</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Line</span><span class="p">(</span><span class="n">perpendicular</span><span class="o">.</span><span class="n">get_start</span><span class="p">(),</span> <span class="n">perpendicular</span><span class="o">.</span><span class="n">get_end</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">))</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedbond.ThreeDBond">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.threeD.threedbond.</span></span><span class="sig-name descname"><span class="pre">ThreeDBond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">from_atom</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">to_atom</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_type</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">mobjects</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedbond.html#ThreeDBond"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDBond" title="Link to this definition">¶</a></dt>
+<dd><p>Used to create a tridimensional bond.
+Uses an origin atom and a target atom to be drawn.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>from_atom</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="threedatom.ThreeDAtom.html#manim_extensions.chemistry.threeD.threedatom.ThreeDAtom" title="manim_extensions.chemistry.threeD.threedatom.ThreeDAtom"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreeDAtom</span></code></a></span>) – The atom the bond starts from.</p></li>
+<li><p><strong>to_atom</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="threedatom.ThreeDAtom.html#manim_extensions.chemistry.threeD.threedatom.ThreeDAtom" title="manim_extensions.chemistry.threeD.threedatom.ThreeDAtom"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreeDAtom</span></code></a></span>) – The atom the bond ends at.</p></li>
+<li><p><strong>bond_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Type of the bond: 1 for single, 2 (also 5, 7) for double, 3 for triple.</p></li>
+<li><p><strong>mobjects</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional mobjects to add to the group.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to OpenGLGroup.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="threedbondoverview" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ThreeDBondOverview <a class="headerlink" href="#threedbondoverview">¶</a></p><img alt="../../../_images/ThreeDBondOverview-c72a6f33.png" class="align-center" src="../../../_images/ThreeDBondOverview-c72a6f33.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.threeD.threedbond</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreeDBond</span>
+
+<span class="n">ThreeDBondTarget</span> <span class="o">=</span> <span class="n">ThreeDBond</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ThreeDBondOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">ThreeDBondTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
+        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'ThreeDBond'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.chemistry.threeD.threedbond'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'Used to create a tridimensional bond. Uses an origin atom and a target atom to be drawn'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.threeD.threedatom</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreeDAtom</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.threeD.threedbond</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreeDBond</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.utils.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_element</span>
+
+<span class="n">carbon</span> <span class="o">=</span> <span class="n">ThreeDAtom</span><span class="p">(</span><span class="n">get_element</span><span class="p">(</span><span class="s2">"C"</span><span class="p">),</span> <span class="n">coords</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]))</span>
+<span class="n">oxygen</span> <span class="o">=</span> <span class="n">ThreeDAtom</span><span class="p">(</span><span class="n">get_element</span><span class="p">(</span><span class="s2">"O"</span><span class="p">),</span> <span class="n">coords</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">]))</span>
+<span class="n">bond</span> <span class="o">=</span> <span class="n">ThreeDBond</span><span class="p">(</span><span class="n">from_atom</span><span class="o">=</span><span class="n">carbon</span><span class="p">,</span> <span class="n">to_atom</span><span class="o">=</span><span class="n">oxygen</span><span class="p">,</span> <span class="n">bond_type</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedbond.ThreeDBond.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedbond.html#ThreeDBond.__str__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDBond.__str__" title="Link to this definition">¶</a></dt>
+<dd><p>Return a description of the bonded atoms.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A human-readable description of the two bonded atoms.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedbond.ThreeDBond.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedbond.html#ThreeDBond.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDBond.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return the same description as <code class="docutils literal notranslate"><span class="pre">__str__</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A human-readable description of the two bonded atoms.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedbond.ThreeDBond.add_single_bond">
+<span class="sig-name descname"><span class="pre">add_single_bond</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedbond.html#ThreeDBond.add_single_bond"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDBond.add_single_bond" title="Link to this definition">¶</a></dt>
+<dd><p>Create a single bond as two half-cylinders colored by each connected atom.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpenGLGroup</span></code></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A OpenGLGroup instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedbond.ThreeDBond.add_double_bond">
+<span class="sig-name descname"><span class="pre">add_double_bond</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedbond.html#ThreeDBond.add_double_bond"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDBond.add_double_bond" title="Link to this definition">¶</a></dt>
+<dd><p>Create a double bond with two parallel single-bond cylinders offset perpendicularly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpenGLGroup</span></code></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A OpenGLGroup instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedbond.ThreeDBond.add_triple_bond">
+<span class="sig-name descname"><span class="pre">add_triple_bond</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedbond.html#ThreeDBond.add_triple_bond"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDBond.add_triple_bond" title="Link to this definition">¶</a></dt>
+<dd><p>Create a triple bond with three parallel single-bond cylinders offset perpendicularly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpenGLGroup</span></code></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A OpenGLGroup instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedbond.ThreeDBond.get_perpendicular_unit_vector">
+<span class="sig-name descname"><span class="pre">get_perpendicular_unit_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedbond.html#ThreeDBond.get_perpendicular_unit_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDBond.get_perpendicular_unit_vector" title="Link to this definition">¶</a></dt>
+<dd><p>Return a unit vector perpendicular to the bond direction in the xy plane.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point_a</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Starting point of the bond.</p></li>
+<li><p><strong>point_b</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Ending point of the bond.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The unit vector perpendicular to the bond direction in the xy plane.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1569,6 +2051,32 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">threedbond</a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder"><code class="docutils literal notranslate"><span class="pre">ThreeDCylinder</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder.uv_func"><code class="docutils literal notranslate"><span class="pre">ThreeDCylinder.uv_func()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder.add_bases"><code class="docutils literal notranslate"><span class="pre">ThreeDCylinder.add_bases()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder._rotate_to_direction"><code class="docutils literal notranslate"><span class="pre">ThreeDCylinder._rotate_to_direction()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder.set_direction"><code class="docutils literal notranslate"><span class="pre">ThreeDCylinder.set_direction()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder.get_direction"><code class="docutils literal notranslate"><span class="pre">ThreeDCylinder.get_direction()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDLine"><code class="docutils literal notranslate"><span class="pre">ThreeDLine</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDLine.set_start_and_end_attrs"><code class="docutils literal notranslate"><span class="pre">ThreeDLine.set_start_and_end_attrs()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDLine.pointify"><code class="docutils literal notranslate"><span class="pre">ThreeDLine.pointify()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDLine.get_start"><code class="docutils literal notranslate"><span class="pre">ThreeDLine.get_start()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDLine.get_end"><code class="docutils literal notranslate"><span class="pre">ThreeDLine.get_end()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDLine.parallel_to"><code class="docutils literal notranslate"><span class="pre">ThreeDLine.parallel_to()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDLine.perpendicular_to"><code class="docutils literal notranslate"><span class="pre">ThreeDLine.perpendicular_to()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDBond"><code class="docutils literal notranslate"><span class="pre">ThreeDBond</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDBond.__str__"><code class="docutils literal notranslate"><span class="pre">ThreeDBond.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDBond.__repr__"><code class="docutils literal notranslate"><span class="pre">ThreeDBond.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDBond.add_single_bond"><code class="docutils literal notranslate"><span class="pre">ThreeDBond.add_single_bond()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDBond.add_double_bond"><code class="docutils literal notranslate"><span class="pre">ThreeDBond.add_double_bond()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDBond.add_triple_bond"><code class="docutils literal notranslate"><span class="pre">ThreeDBond.add_triple_bond()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedbond.ThreeDBond.get_perpendicular_unit_vector"><code class="docutils literal notranslate"><span class="pre">ThreeDBond.get_perpendicular_unit_vector()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

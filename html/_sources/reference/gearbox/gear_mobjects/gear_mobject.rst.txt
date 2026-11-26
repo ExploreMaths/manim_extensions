@@ -5,7 +5,7 @@
 gear_mobject
 ============
 
-.. module:: manim_extensions.gearbox.gear_mobjects.gear_mobject
+.. automodule:: manim_extensions.gearbox.gear_mobjects.gear_mobject
 
 Classes
 -------

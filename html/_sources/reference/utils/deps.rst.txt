@@ -4,7 +4,7 @@
 deps
 ====
 
-.. module:: manim_extensions.utils.deps
+.. automodule:: manim_extensions.utils.deps
 
 Functions
 ---------

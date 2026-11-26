@@ -5,7 +5,7 @@
 legacy
 ======
 
-.. module:: manim_extensions.radar.legacy
+.. automodule:: manim_extensions.radar.legacy
 
 Classes
 -------

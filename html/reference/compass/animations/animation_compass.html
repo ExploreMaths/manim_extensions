@@ -1491,6 +1491,236 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.compass.animations.animation_compass">
 <span id="animation-compass"></span><h1>animation_compass<a class="headerlink" href="#module-manim_extensions.compass.animations.animation_compass" title="Link to this heading">¶</a></h1>
+<p>Compass animations for Manim.</p>
+<p>This module provides animations for compass manipulations.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.compass.animations.animation_compass.DrawArc">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.compass.animations.animation_compass.</span></span><span class="sig-name descname"><span class="pre">DrawArc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/animations/animation_compass.html#DrawArc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.animations.animation_compass.DrawArc" title="Link to this definition">¶</a></dt>
+<dd><p>Compass-and-straightedge animation: draw an arc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>compass</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../compass/compass.Compass.html#manim_extensions.compass.compass.compass.Compass" title="manim_extensions.compass.compass.compass.Compass"><code class="xref py py-class docutils literal notranslate"><span class="pre">Compass</span></code></a></span>) – The compass.</p></li>
+<li><p><strong>arc</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.Arc.html#manim.mobject.geometry.arc.Arc" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Arc</span></code></a></span>) – The arc to draw.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="drawarcscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: DrawArcScene <a class="headerlink" href="#drawarcscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./DrawArcScene-7000f45b.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.compass</span><span class="w"> </span><span class="kn">import</span> <span class="n">Compass</span><span class="p">,</span> <span class="n">DrawArc</span><span class="p">,</span> <span class="n">PutCompass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DrawArcScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">compass</span> <span class="o">=</span> <span class="n">Compass</span><span class="p">()</span><span class="o">.</span><span class="n">to_edge</span><span class="p">(</span><span class="n">LEFT</span><span class="p">)</span>
+        <span class="n">center</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">)</span>
+        <span class="n">arc</span> <span class="o">=</span> <span class="n">Arc</span><span class="p">(</span><span class="n">arc_center</span><span class="o">=</span><span class="n">ORIGIN</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">center</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">PutCompass</span><span class="p">(</span><span class="n">compass</span><span class="p">,</span> <span class="n">ORIGIN</span><span class="p">,</span> <span class="mf">1.5</span> <span class="o">*</span> <span class="n">RIGHT</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">DrawArc</span><span class="p">(</span><span class="n">compass</span><span class="p">,</span> <span class="n">arc</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.compass.animations.animation_compass.MoveNiddleTipTo">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.compass.animations.animation_compass.</span></span><span class="sig-name descname"><span class="pre">MoveNiddleTipTo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/animations/animation_compass.html#MoveNiddleTipTo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.animations.animation_compass.MoveNiddleTipTo" title="Link to this definition">¶</a></dt>
+<dd><p>Compass-and-straightedge animation: move the compass so that its needle tip is placed at point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>compass</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../compass/compass.Compass.html#manim_extensions.compass.compass.compass.Compass" title="manim_extensions.compass.compass.compass.Compass"><code class="xref py py-class docutils literal notranslate"><span class="pre">Compass</span></code></a></span>) – The compass.</p></li>
+<li><p><strong>point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – The target point.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.transform.ApplyMethod.html#manim.animation.transform.ApplyMethod" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ApplyMethod</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="moveneedletip" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: MoveNeedleTip <a class="headerlink" href="#moveneedletip">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./MoveNeedleTip-b5a981db.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.compass</span><span class="w"> </span><span class="kn">import</span> <span class="n">Compass</span><span class="p">,</span> <span class="n">MoveNiddleTipTo</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MoveNeedleTip</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">compass</span> <span class="o">=</span> <span class="n">Compass</span><span class="p">()</span><span class="o">.</span><span class="n">to_edge</span><span class="p">(</span><span class="n">LEFT</span><span class="p">)</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">MoveNiddleTipTo</span><span class="p">(</span><span class="n">compass</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">RIGHT</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.compass.animations.animation_compass.RotateCompass">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.compass.animations.animation_compass.</span></span><span class="sig-name descname"><span class="pre">RotateCompass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/animations/animation_compass.html#RotateCompass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.animations.animation_compass.RotateCompass" title="Link to this definition">¶</a></dt>
+<dd><p>Compass-and-straightedge animation: rotate the compass around its needle tip by angle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>compass</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../compass/compass.Compass.html#manim_extensions.compass.compass.compass.Compass" title="manim_extensions.compass.compass.compass.Compass"><code class="xref py py-class docutils literal notranslate"><span class="pre">Compass</span></code></a></span>) – The compass.</p></li>
+<li><p><strong>angle</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – The rotation angle.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.rotation.Rotate.html#manim.animation.rotation.Rotate" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rotate</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="rotatecompassscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: RotateCompassScene <a class="headerlink" href="#rotatecompassscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./RotateCompassScene-636c87ab.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.compass</span><span class="w"> </span><span class="kn">import</span> <span class="n">Compass</span><span class="p">,</span> <span class="n">RotateCompass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RotateCompassScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">compass</span> <span class="o">=</span> <span class="n">Compass</span><span class="p">()</span><span class="o">.</span><span class="n">move_niddle_tip_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">pivot</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">compass</span><span class="p">,</span> <span class="n">pivot</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">RotateCompass</span><span class="p">(</span><span class="n">compass</span><span class="p">,</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.compass.animations.animation_compass.SplitCompass">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.compass.animations.animation_compass.</span></span><span class="sig-name descname"><span class="pre">SplitCompass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/animations/animation_compass.html#SplitCompass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.animations.animation_compass.SplitCompass" title="Link to this definition">¶</a></dt>
+<dd><p>Compass-and-straightedge animation: rotate the two legs of the compass.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>compass</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../compass/compass.Compass.html#manim_extensions.compass.compass.compass.Compass" title="manim_extensions.compass.compass.compass.Compass"><code class="xref py py-class docutils literal notranslate"><span class="pre">Compass</span></code></a></span>) – The compass.</p></li>
+<li><p><strong>span</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – The distance between the two compass tips.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="splitcompassscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: SplitCompassScene <a class="headerlink" href="#splitcompassscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./SplitCompassScene-1b0f72c1.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.compass</span><span class="w"> </span><span class="kn">import</span> <span class="n">Compass</span><span class="p">,</span> <span class="n">SplitCompass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SplitCompassScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">compass</span> <span class="o">=</span> <span class="n">Compass</span><span class="p">()</span><span class="o">.</span><span class="n">to_edge</span><span class="p">(</span><span class="n">LEFT</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">SplitCompass</span><span class="p">(</span><span class="n">compass</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="n">span</span> <span class="o">=</span> <span class="n">DashedLine</span><span class="p">(</span>
+            <span class="n">compass</span><span class="o">.</span><span class="n">get_niddle_tip</span><span class="p">(),</span> <span class="n">compass</span><span class="o">.</span><span class="n">get_pen_tip</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="n">RED</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">span</span><span class="p">,</span> <span class="n">MathTex</span><span class="p">(</span><span class="s2">"2"</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">span</span><span class="p">,</span> <span class="n">UP</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.compass.animations.animation_compass.PutCompass">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.compass.animations.animation_compass.</span></span><span class="sig-name descname"><span class="pre">PutCompass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/animations/animation_compass.html#PutCompass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.animations.animation_compass.PutCompass" title="Link to this definition">¶</a></dt>
+<dd><p>Compass-and-straightedge animation: place the compass’s niddle_tip and pen_tip at the given positions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>compass</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../compass/compass.Compass.html#manim_extensions.compass.compass.compass.Compass" title="manim_extensions.compass.compass.compass.Compass"><code class="xref py py-class docutils literal notranslate"><span class="pre">Compass</span></code></a></span>) – The compass.</p></li>
+<li><p><strong>niddle_pos</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Position for niddle_tip.</p></li>
+<li><p><strong>pen_pos</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Position for pen_tip.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.transform.ApplyMethod.html#manim.animation.transform.ApplyMethod" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ApplyMethod</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – Raised when the distance between <code class="docutils literal notranslate"><span class="pre">niddle_pos</span></code> and <code class="docutils literal notranslate"><span class="pre">pen_pos</span></code>
+    exceeds the compass’s drawing range (twice its leg length).</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="putcompassscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: PutCompassScene <a class="headerlink" href="#putcompassscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./PutCompassScene-ece58ea5.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.compass</span><span class="w"> </span><span class="kn">import</span> <span class="n">Compass</span><span class="p">,</span> <span class="n">PutCompass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PutCompassScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">compass</span> <span class="o">=</span> <span class="n">Compass</span><span class="p">()</span><span class="o">.</span><span class="n">to_edge</span><span class="p">(</span><span class="n">LEFT</span><span class="p">)</span>
+        <span class="n">targets</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Dot</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">),</span> <span class="n">Dot</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">PURE_YELLOW</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">targets</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">PutCompass</span><span class="p">(</span><span class="n">compass</span><span class="p">,</span> <span class="n">ORIGIN</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">RIGHT</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.compass.animations.animation_compass.PutCompassAway">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.compass.animations.animation_compass.</span></span><span class="sig-name descname"><span class="pre">PutCompassAway</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/animations/animation_compass.html#PutCompassAway"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.animations.animation_compass.PutCompassAway" title="Link to this definition">¶</a></dt>
+<dd><p>Compass-and-straightedge animation: put the compass aside at point, with the two tips separated by span_buff.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>compass</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../compass/compass.Compass.html#manim_extensions.compass.compass.compass.Compass" title="manim_extensions.compass.compass.compass.Compass"><code class="xref py py-class docutils literal notranslate"><span class="pre">Compass</span></code></a></span>) – The compass.</p></li>
+<li><p><strong>point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Position to place the compass.</p></li>
+<li><p><strong>span_buff</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Distance between the two tips when placed aside.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.transform.ApplyMethod.html#manim.animation.transform.ApplyMethod" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ApplyMethod</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="putcompassawayscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: PutCompassAwayScene <a class="headerlink" href="#putcompassawayscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./PutCompassAwayScene-8adefb60.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.compass</span><span class="w"> </span><span class="kn">import</span> <span class="n">Compass</span><span class="p">,</span> <span class="n">DrawArc</span><span class="p">,</span> <span class="n">PutCompassAway</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PutCompassAwayScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">compass</span> <span class="o">=</span> <span class="n">Compass</span><span class="p">()</span><span class="o">.</span><span class="n">move_niddle_tip_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">arc</span> <span class="o">=</span> <span class="n">Arc</span><span class="p">(</span><span class="n">arc_center</span><span class="o">=</span><span class="n">ORIGIN</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">angle</span><span class="o">=</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">DrawArc</span><span class="p">(</span><span class="n">compass</span><span class="p">,</span> <span class="n">arc</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">PutCompassAway</span><span class="p">(</span><span class="n">compass</span><span class="p">,</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">RIGHT</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1578,6 +1808,12 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">animation_compass</a><ul>
+<li><a class="reference internal" href="#manim_extensions.compass.animations.animation_compass.DrawArc"><code class="docutils literal notranslate"><span class="pre">DrawArc</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.compass.animations.animation_compass.MoveNiddleTipTo"><code class="docutils literal notranslate"><span class="pre">MoveNiddleTipTo</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.compass.animations.animation_compass.RotateCompass"><code class="docutils literal notranslate"><span class="pre">RotateCompass</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.compass.animations.animation_compass.SplitCompass"><code class="docutils literal notranslate"><span class="pre">SplitCompass</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.compass.animations.animation_compass.PutCompass"><code class="docutils literal notranslate"><span class="pre">PutCompass</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.compass.animations.animation_compass.PutCompassAway"><code class="docutils literal notranslate"><span class="pre">PutCompassAway</span></code></a></li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

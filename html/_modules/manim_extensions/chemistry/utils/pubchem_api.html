@@ -1501,7 +1501,7 @@
 
 
 <div class="viewcode-block" id="PubchemAPIManager">
-<a class="viewcode-back" href="../../../../reference/chemistry/utils/pubchem_api.PubchemAPIManager.html#manim_extensions.chemistry.utils.pubchem_api.PubchemAPIManager">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/utils/pubchem_api.PubchemAPIManager.html#manim_extensions.chemistry.PubchemAPIManager">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">PubchemAPIManager</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Manages the requests to the PubChem API to retrieve molecular data.</span>
 
@@ -1576,7 +1576,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="nb">format</span>
 
 <div class="viewcode-block" id="PubchemAPIManager.handle_request">
-<a class="viewcode-back" href="../../../../reference/chemistry/utils/pubchem_api.PubchemAPIManager.html#manim_extensions.chemistry.utils.pubchem_api.PubchemAPIManager.handle_request">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/utils/pubchem_api.PubchemAPIManager.html#manim_extensions.chemistry.PubchemAPIManager.handle_request">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">handle_request</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">:</span> <span class="n">requests</span><span class="o">.</span><span class="n">models</span><span class="o">.</span><span class="n">Response</span><span class="p">,</span> <span class="n">identifier</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
@@ -1623,7 +1623,7 @@
 
 
 <div class="viewcode-block" id="PubchemAPIManager.from_cid">
-<a class="viewcode-back" href="../../../../reference/chemistry/utils/pubchem_api.PubchemAPIManager.html#manim_extensions.chemistry.utils.pubchem_api.PubchemAPIManager.from_cid">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/utils/pubchem_api.PubchemAPIManager.html#manim_extensions.chemistry.PubchemAPIManager.from_cid">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_cid</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Fetch molecule data from PubChem using the compound ID (CID).</span>
 
@@ -1641,7 +1641,7 @@
 
 
 <div class="viewcode-block" id="PubchemAPIManager.from_name">
-<a class="viewcode-back" href="../../../../reference/chemistry/utils/pubchem_api.PubchemAPIManager.html#manim_extensions.chemistry.utils.pubchem_api.PubchemAPIManager.from_name">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/utils/pubchem_api.PubchemAPIManager.html#manim_extensions.chemistry.PubchemAPIManager.from_name">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Fetch molecule data from PubChem using the common name.</span>
 
@@ -1659,7 +1659,7 @@
 
 
 <div class="viewcode-block" id="PubchemAPIManager.from_smiles">
-<a class="viewcode-back" href="../../../../reference/chemistry/utils/pubchem_api.PubchemAPIManager.html#manim_extensions.chemistry.utils.pubchem_api.PubchemAPIManager.from_smiles">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/utils/pubchem_api.PubchemAPIManager.html#manim_extensions.chemistry.PubchemAPIManager.from_smiles">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_smiles</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Fetch molecule data from PubChem using a SMILES string.</span>
 
@@ -1677,7 +1677,7 @@
 
 
 <div class="viewcode-block" id="PubchemAPIManager.from_inchi">
-<a class="viewcode-back" href="../../../../reference/chemistry/utils/pubchem_api.PubchemAPIManager.html#manim_extensions.chemistry.utils.pubchem_api.PubchemAPIManager.from_inchi">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/utils/pubchem_api.PubchemAPIManager.html#manim_extensions.chemistry.PubchemAPIManager.from_inchi">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_inchi</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Fetch molecule data from PubChem using an InChI or InChIKey.</span>
 
@@ -1716,7 +1716,7 @@
 
 
 <div class="viewcode-block" id="PubchemAPIManager.get_molecule">
-<a class="viewcode-back" href="../../../../reference/chemistry/utils/pubchem_api.PubchemAPIManager.html#manim_extensions.chemistry.utils.pubchem_api.PubchemAPIManager.get_molecule">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/utils/pubchem_api.PubchemAPIManager.html#manim_extensions.chemistry.PubchemAPIManager.get_molecule">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_molecule</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Dispatch to the correct ``from_*`` method based on the set identifier.</span>
 

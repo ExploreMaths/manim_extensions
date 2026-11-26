@@ -5,7 +5,7 @@
 Circuit
 =======
 
-.. module:: manim_extensions.circuit
+.. automodule:: manim_extensions.circuit
 
 .. vendored-status:: Mr-FuzzyPenguin/manim-circuit
 

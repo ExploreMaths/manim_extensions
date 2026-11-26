@@ -1491,6 +1491,216 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.chemistry.twoD.atom">
 <span id="atom"></span><h1>atom<a class="headerlink" href="#module-manim_extensions.chemistry.twoD.atom" title="Link to this heading">¶</a></h1>
+<p>2D atom representation for Manim chemistry.</p>
+<p>This module provides the <a class="reference internal" href="atom.MAtomObject.html#manim_extensions.chemistry.twoD.atom.MAtomObject" title="manim_extensions.chemistry.twoD.atom.MAtomObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">MAtomObject</span></code></a> class for representing atoms in 2D chemical structures.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.atom.MAtomObject">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.twoD.atom.</span></span><span class="sig-name descname"><span class="pre">MAtomObject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coords</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.array</span><span class="pre">([0,</span> <span class="pre">0,</span> <span class="pre">0])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">element</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'H'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">explicit_carbons</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">explicit_hydrogens</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bond_to</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">representation_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">charge</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">planar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/atom.html#MAtomObject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.atom.MAtomObject" title="Link to this definition">¶</a></dt>
+<dd><p>A 2D visual representation of an atom in a chemical molecule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>coords</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Position of the atom.</p></li>
+<li><p><strong>element</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Chemical symbol of the element.</p></li>
+<li><p><strong>explicit_carbons</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, carbon atoms display their element symbol.</p></li>
+<li><p><strong>explicit_hydrogens</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, hydrogen atoms display their element symbol.</p></li>
+<li><p><strong>bond_to</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – Mapping of bonded atom indices to their elements.</p></li>
+<li><p><strong>representation_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code></a>[<span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'complete'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'skeleton'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'over_bond'</span></span></code></span>]]</span>) – <p>Representation of the atom label.</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">'complete'</span></code></p></td>
+<td><p>Always show the element symbol.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">'skeleton'</span></code></p></td>
+<td><p>Hide the element symbol.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">'over_bond'</span></code></p></td>
+<td><p>Show the symbol above the bond.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>When None it is inferred from the element.</p>
+</p></li>
+<li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Color of the atom label.</p></li>
+<li><p><strong>charge</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Formal charge of the atom.</p></li>
+<li><p><strong>index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the atom in the molecule.</p></li>
+<li><p><strong>planar</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, forces the z coordinate of <code class="docutils literal notranslate"><span class="pre">coords</span></code> to zero.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to
+<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="matomobjectscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: MAtomObjectScene <a class="headerlink" href="#matomobjectscene">¶</a></p><img alt="../../../_images/MAtomObjectScene-8a59fb6d.png" class="align-center" src="../../../_images/MAtomObjectScene-8a59fb6d.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.twoD.atom</span><span class="w"> </span><span class="kn">import</span> <span class="n">MAtomObject</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MAtomObjectScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">MAtomObject</span><span class="p">(</span><span class="n">element</span><span class="o">=</span><span class="s2">"O"</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.atom.MAtomObject.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/atom.html#MAtomObject.__str__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.atom.MAtomObject.__str__" title="Link to this definition">¶</a></dt>
+<dd><p>Return a description of the atom.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A human-readable description naming the atom’s element.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.atom.MAtomObject.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/atom.html#MAtomObject.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.atom.MAtomObject.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return the same description as <code class="docutils literal notranslate"><span class="pre">__str__</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A human-readable description naming the atom’s element.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.atom.MAtomObject.set_representation">
+<span class="sig-name descname"><span class="pre">set_representation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">representation_type</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/atom.html#MAtomObject.set_representation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.atom.MAtomObject.set_representation" title="Link to this definition">¶</a></dt>
+<dd><p>Determine the atom label representation from the requested type.</p>
+<p>Input options:</p>
+<div class="table-wrapper docutils container">
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">'complete'</span></code></p></td>
+<td><p>Adds the element symbol.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">'skeleton'</span></code></p></td>
+<td><p>Does not add the symbol.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">'over_bond'</span></code></p></td>
+<td><p>Adds the symbol above the bond.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>representation_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code></a>[<span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'complete'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'skeleton'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'over_bond'</span></span></code></span>]]</span>) – Requested representation; when falsy it is inferred from the
+element.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.atom.MAtomObject.add_atom">
+<span class="sig-name descname"><span class="pre">add_atom</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/atom.html#MAtomObject.add_atom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.atom.MAtomObject.add_atom" title="Link to this definition">¶</a></dt>
+<dd><p>Adds an atom depending on the representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.text.text_mobject.MarkupText.html#manim.mobject.text.text_mobject.MarkupText" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MarkupText</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The created atom label, or <code class="docutils literal notranslate"><span class="pre">None</span></code> when the representation has no label.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.atom.MAtomObject.bonds_fulfilled">
+<span class="sig-name descname"><span class="pre">bonds_fulfilled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/atom.html#MAtomObject.bonds_fulfilled"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.atom.MAtomObject.bonds_fulfilled" title="Link to this definition">¶</a></dt>
+<dd><p>Check if the atom has its expected minimum number of bonds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether the operation succeeded.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.atom.MAtomObject.make_copy">
+<span class="sig-name descname"><span class="pre">make_copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/atom.html#MAtomObject.make_copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.atom.MAtomObject.make_copy" title="Link to this definition">¶</a></dt>
+<dd><p>Create a copy of this atom preserving all properties and coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="atom.MAtomObject.html#manim_extensions.chemistry.twoD.atom.MAtomObject" title="manim_extensions.chemistry.twoD.atom.MAtomObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">MAtomObject</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference internal" href="atom.MAtomObject.html#manim_extensions.chemistry.twoD.atom.MAtomObject" title="manim_extensions.chemistry.twoD.atom.MAtomObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">MAtomObject</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.atom.MAtomObject.rename_atom">
+<span class="sig-name descname"><span class="pre">rename_atom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_element</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bonds_direction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/atom.html#MAtomObject.rename_atom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.atom.MAtomObject.rename_atom" title="Link to this definition">¶</a></dt>
+<dd><p>Replace this atom’s element with new_element and adjust position by bond direction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>new_element</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Element symbol of the new atom.</p></li>
+<li><p><strong>bonds_direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Direction of the bond, used to shift the renamed atom.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="atom.MAtomObject.html#manim_extensions.chemistry.twoD.atom.MAtomObject" title="manim_extensions.chemistry.twoD.atom.MAtomObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">MAtomObject</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The same atom after renaming.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.atom.MAtomObject.copy_with_explicit_hydrogens">
+<span class="sig-name descname"><span class="pre">copy_with_explicit_hydrogens</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/atom.html#MAtomObject.copy_with_explicit_hydrogens"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.atom.MAtomObject.copy_with_explicit_hydrogens" title="Link to this definition">¶</a></dt>
+<dd><p>Return a copy of this atom with explicit hydrogens enabled.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="atom.MAtomObject.html#manim_extensions.chemistry.twoD.atom.MAtomObject" title="manim_extensions.chemistry.twoD.atom.MAtomObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">MAtomObject</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The copy of this atom with explicit hydrogens enabled.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.atom.MAtomObject.set_atom_color">
+<span class="sig-name descname"><span class="pre">set_atom_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/atom.html#MAtomObject.set_atom_color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.atom.MAtomObject.set_atom_color" title="Link to this definition">¶</a></dt>
+<dd><p>TODO: Add the color depending on cpk convention</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – New color of the atom.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1773,19 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">atom</a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.atom.MAtomObject"><code class="docutils literal notranslate"><span class="pre">MAtomObject</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.atom.MAtomObject.__str__"><code class="docutils literal notranslate"><span class="pre">MAtomObject.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.atom.MAtomObject.__repr__"><code class="docutils literal notranslate"><span class="pre">MAtomObject.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.atom.MAtomObject.set_representation"><code class="docutils literal notranslate"><span class="pre">MAtomObject.set_representation()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.atom.MAtomObject.add_atom"><code class="docutils literal notranslate"><span class="pre">MAtomObject.add_atom()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.atom.MAtomObject.bonds_fulfilled"><code class="docutils literal notranslate"><span class="pre">MAtomObject.bonds_fulfilled()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.atom.MAtomObject.make_copy"><code class="docutils literal notranslate"><span class="pre">MAtomObject.make_copy()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.atom.MAtomObject.rename_atom"><code class="docutils literal notranslate"><span class="pre">MAtomObject.rename_atom()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.atom.MAtomObject.copy_with_explicit_hydrogens"><code class="docutils literal notranslate"><span class="pre">MAtomObject.copy_with_explicit_hydrogens()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.atom.MAtomObject.set_atom_color"><code class="docutils literal notranslate"><span class="pre">MAtomObject.set_atom_color()</span></code></a></li>
+
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

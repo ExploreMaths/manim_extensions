@@ -1491,6 +1491,166 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.scenes">
 <span id="scenes"></span><h1>Scenes<a class="headerlink" href="#module-manim_extensions.scenes" title="Link to this heading">¶</a></h1>
+<p>Scene classes for Manim.</p>
+<p>The module currently provides
+<a class="reference internal" href="scenes.ConstantStrokeWidthScene.html#manim_extensions.scenes.ConstantStrokeWidthScene" title="manim_extensions.scenes.ConstantStrokeWidthScene"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConstantStrokeWidthScene</span></code></a>, a
+<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.moving_camera_scene.MovingCameraScene.html#manim.scene.moving_camera_scene.MovingCameraScene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MovingCameraScene</span></code></a> subclass that keeps the apparent thickness of
+strokes constant while the camera zooms.  Using this scene adds a
+<code class="docutils literal notranslate"><span class="pre">fixed_stroke_width</span></code> parameter to stroke-bearing mobjects so that they can opt
+out of that compensation.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.scenes.ConstantStrokeWidthScene">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.scenes.</span></span><span class="sig-name descname"><span class="pre">ConstantStrokeWidthScene</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/scenes.html#ConstantStrokeWidthScene"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.scenes.ConstantStrokeWidthScene" title="Link to this definition">¶</a></dt>
+<dd><p>A scene whose strokes keep a constant on-screen width while zooming.</p>
+<p>Zooming the camera in multiplies the on-screen thickness of every stroke
+by the zoom factor, whichever renderer is used.  This scene compensates for
+that by scaling the <code class="docutils literal notranslate"><span class="pre">stroke_width</span></code> of every mobject inversely to the
+camera’s frame height, once per frame.  The on-screen (visual) width
+therefore stays the same, while the underlying <code class="docutils literal notranslate"><span class="pre">stroke_width</span></code> value
+changes together with the zoom level.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The compensation is exact for flat content lying in the plane of the
+camera.  With a perspective camera, strokes at different depths are still
+affected by the perspective projection, because the focal distance scales
+together with the frame height.</p>
+<p>Mobjects fixed in the frame with <code class="docutils literal notranslate"><span class="pre">fix_in_frame</span></code> are not adjusted,
+since their apparent size does not depend on the
+camera.  To opt out per mobject, set its <code class="docutils literal notranslate"><span class="pre">fixed_stroke_width</span></code>
+parameter to <code class="docutils literal notranslate"><span class="pre">True</span></code> (<code class="docutils literal notranslate"><span class="pre">mobject.fixed_stroke_width</span> <span class="pre">=</span> <span class="pre">True</span></code> or
+<code class="docutils literal notranslate"><span class="pre">mobject.set(fixed_stroke_width=True)</span></code>); such mobjects keep their
+<code class="docutils literal notranslate"><span class="pre">stroke_width</span></code> and therefore change appearance together with the zoom.
+The parameter is installed on the stroke-bearing mobject classes as soon as
+a <a class="reference internal" href="scenes.ConstantStrokeWidthScene.html#manim_extensions.scenes.ConstantStrokeWidthScene" title="manim_extensions.scenes.ConstantStrokeWidthScene"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConstantStrokeWidthScene</span></code></a> is used, so it
+does not need to be set before adding the mobject to the scene.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>*args</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Positional arguments forwarded to
+<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.moving_camera_scene.MovingCameraScene.html#manim.scene.moving_camera_scene.MovingCameraScene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MovingCameraScene</span></code></a>.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Keyword arguments forwarded to
+<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.moving_camera_scene.MovingCameraScene.html#manim.scene.moving_camera_scene.MovingCameraScene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MovingCameraScene</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>The camera zooms in by a factor of three and back out again.  The upper
+line keeps its on-screen width, the lower one opts out with
+<code class="docutils literal notranslate"><span class="pre">fixed_stroke_width=True</span></code> and is drawn three times as thick:</p>
+<div id="constantstrokewidth" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ConstantStrokeWidth <a class="headerlink" href="#constantstrokewidth">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./ConstantStrokeWidth-1ae9fdcd.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.scenes</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConstantStrokeWidthScene</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ConstantStrokeWidth</span><span class="p">(</span><span class="n">ConstantStrokeWidthScene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">line1</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">stroke_width</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mf">0.3</span> <span class="o">*</span> <span class="n">UP</span><span class="p">)</span>
+        <span class="n">line2</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">stroke_width</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">fixed_stroke_width</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="mf">0.3</span> <span class="o">*</span> <span class="n">DOWN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">line1</span><span class="p">,</span> <span class="n">line2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">),</span> <span class="n">run_time</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">run_time</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.scenes.ConstantStrokeWidthScene._install_stroke_width_parameter">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">_install_stroke_width_parameter</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/scenes.html#ConstantStrokeWidthScene._install_stroke_width_parameter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.scenes.ConstantStrokeWidthScene._install_stroke_width_parameter" title="Link to this definition">¶</a></dt>
+<dd><p>Patch mobject constructors to accept <code class="docutils literal notranslate"><span class="pre">fixed_stroke_width</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.scenes.ConstantStrokeWidthScene._camera_stroke_scale">
+<span class="sig-name descname"><span class="pre">_camera_stroke_scale</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/scenes.html#ConstantStrokeWidthScene._camera_stroke_scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.scenes.ConstantStrokeWidthScene._camera_stroke_scale" title="Link to this definition">¶</a></dt>
+<dd><p>Return the factor by which strokes must be scaled at the current zoom.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The stroke scaling factor for the camera height.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.scenes.ConstantStrokeWidthScene._scale_stroke_width">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">_scale_stroke_width</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">member</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">factor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/scenes.html#ConstantStrokeWidthScene._scale_stroke_width"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.scenes.ConstantStrokeWidthScene._scale_stroke_width" title="Link to this definition">¶</a></dt>
+<dd><p>Scale the stroke width of one mobject member.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>member</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a> | <code class="xref py py-class docutils literal notranslate"><span class="pre">OpenGLMobject</span></code></span>) – Mobject whose stroke is adjusted.</p></li>
+<li><p><strong>factor</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Multiplier applied to the stroke width.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.scenes.ConstantStrokeWidthScene._scale_family_stroke_widths">
+<span class="sig-name descname"><span class="pre">_scale_family_stroke_widths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">factor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/scenes.html#ConstantStrokeWidthScene._scale_family_stroke_widths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.scenes.ConstantStrokeWidthScene._scale_family_stroke_widths" title="Link to this definition">¶</a></dt>
+<dd><p>Scale stroke widths across the whole mobject family.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mobject</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a> | <code class="xref py py-class docutils literal notranslate"><span class="pre">OpenGLMobject</span></code></span>) – Root of the family whose strokes are adjusted.</p></li>
+<li><p><strong>factor</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Multiplier applied to every stroke width.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.scenes.ConstantStrokeWidthScene._update_stroke_scale">
+<span class="sig-name descname"><span class="pre">_update_stroke_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/scenes.html#ConstantStrokeWidthScene._update_stroke_scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.scenes.ConstantStrokeWidthScene._update_stroke_scale" title="Link to this definition">¶</a></dt>
+<dd><p>Rescale all strokes after a camera zoom change.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dt</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Time elapsed since the previous updater call.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.scenes.ConstantStrokeWidthScene.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">mobjects</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/scenes.html#ConstantStrokeWidthScene.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.scenes.ConstantStrokeWidthScene.add" title="Link to this definition">¶</a></dt>
+<dd><p>Add mobjects and scale their strokes to the current zoom level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>*mobjects</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a> | <code class="xref py py-class docutils literal notranslate"><span class="pre">OpenGLMobject</span></code></span>) – The mobjects to add to the scene.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="scenes.ConstantStrokeWidthScene.html#manim_extensions.scenes.ConstantStrokeWidthScene" title="manim_extensions.scenes.ConstantStrokeWidthScene"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConstantStrokeWidthScene</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The scene itself, to allow chaining.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <p>This module provides scene classes that extend Manim’s built-in
 <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a> with additional behaviour.</p>
 <div class="graphviz"><object data="../../_images/inheritance-ad80ba521d372976b64c095a80f81d28c93e031c.svg" type="image/svg+xml" class="inheritance graphviz">
@@ -1567,6 +1727,15 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Scenes</a><ul>
+<li><a class="reference internal" href="#manim_extensions.scenes.ConstantStrokeWidthScene"><code class="docutils literal notranslate"><span class="pre">ConstantStrokeWidthScene</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.scenes.ConstantStrokeWidthScene._install_stroke_width_parameter"><code class="docutils literal notranslate"><span class="pre">ConstantStrokeWidthScene._install_stroke_width_parameter()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.scenes.ConstantStrokeWidthScene._camera_stroke_scale"><code class="docutils literal notranslate"><span class="pre">ConstantStrokeWidthScene._camera_stroke_scale()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.scenes.ConstantStrokeWidthScene._scale_stroke_width"><code class="docutils literal notranslate"><span class="pre">ConstantStrokeWidthScene._scale_stroke_width()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.scenes.ConstantStrokeWidthScene._scale_family_stroke_widths"><code class="docutils literal notranslate"><span class="pre">ConstantStrokeWidthScene._scale_family_stroke_widths()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.scenes.ConstantStrokeWidthScene._update_stroke_scale"><code class="docutils literal notranslate"><span class="pre">ConstantStrokeWidthScene._update_stroke_scale()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.scenes.ConstantStrokeWidthScene.add"><code class="docutils literal notranslate"><span class="pre">ConstantStrokeWidthScene.add()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

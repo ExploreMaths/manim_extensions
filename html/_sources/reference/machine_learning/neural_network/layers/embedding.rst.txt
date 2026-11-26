@@ -4,7 +4,7 @@
 embedding
 =========
 
-.. module:: manim_extensions.machine_learning.neural_network.layers.embedding
+.. automodule:: manim_extensions.machine_learning.neural_network.layers.embedding
 
 Classes
 -------

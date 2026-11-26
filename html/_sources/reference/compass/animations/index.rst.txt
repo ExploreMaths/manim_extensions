@@ -5,7 +5,7 @@
 animations
 ==========
 
-.. module:: manim_extensions.compass.animations
+.. automodule:: manim_extensions.compass.animations
 
 Usage
 -----

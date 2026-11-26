@@ -5,7 +5,7 @@
 pendulum
 ========
 
-.. module:: manim_extensions.physics.rigid_mechanics.pendulum
+.. automodule:: manim_extensions.physics.rigid_mechanics.pendulum
 
 Classes
 -------

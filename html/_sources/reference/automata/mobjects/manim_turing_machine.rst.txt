@@ -5,7 +5,7 @@
 manim_turing_machine
 ====================
 
-.. module:: manim_extensions.automata.mobjects.manim_turing_machine
+.. automodule:: manim_extensions.automata.mobjects.manim_turing_machine
 
 Classes
 -------

@@ -4,7 +4,7 @@
 feed_forward_to_vector
 ======================
 
-.. module:: manim_extensions.machine_learning.neural_network.layers.feed_forward_to_vector
+.. automodule:: manim_extensions.machine_learning.neural_network.layers.feed_forward_to_vector
 
 Classes
 -------

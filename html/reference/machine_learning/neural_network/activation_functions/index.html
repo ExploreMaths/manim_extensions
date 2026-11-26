@@ -1491,6 +1491,33 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.machine_learning.neural_network.activation_functions">
 <span id="activation-functions"></span><h1>activation_functions<a class="headerlink" href="#module-manim_extensions.machine_learning.neural_network.activation_functions" title="Link to this heading">¶</a></h1>
+<p>Activation functions for neural network visualization.</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.activation_functions.name_to_activation_function_map">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.activation_functions.</span></span><span class="sig-name descname"><span class="pre">name_to_activation_function_map</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'ReLU':</span> <a class="reference internal" href="relu.ReLUFunction.html#manim_extensions.machine_learning.neural_network.activation_functions.relu.ReLUFunction"><span class="pre">ReLUFunction</span></a><span class="pre">,</span> <span class="pre">'Sigmoid':</span> <a class="reference internal" href="sigmoid.SigmoidFunction.html#manim_extensions.machine_learning.neural_network.activation_functions.sigmoid.SigmoidFunction"><span class="pre">SigmoidFunction</span></a><span class="pre">}</span></span><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.activation_functions.name_to_activation_function_map" title="Link to this definition">¶</a></dt>
+<dd><p>Mapping from activation function name to its class.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.activation_functions.get_activation_function_by_name">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.activation_functions.</span></span><span class="sig-name descname"><span class="pre">get_activation_function_by_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/activation_functions.html#get_activation_function_by_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.activation_functions.get_activation_function_by_name" title="Link to this definition">¶</a></dt>
+<dd><p>Return the activation function class matching the given name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Name of the activation function (<code class="docutils literal notranslate"><span class="pre">&quot;ReLU&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;Sigmoid&quot;</span></code>).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#type" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>[<a class="reference internal" href="activation_function.ActivationFunction.html#manim_extensions.machine_learning.neural_network.activation_functions.activation_function.ActivationFunction" title="manim_extensions.machine_learning.neural_network.activation_functions.activation_function.ActivationFunction"><code class="xref py py-class docutils literal notranslate"><span class="pre">ActivationFunction</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The activation function class registered under <code class="docutils literal notranslate"><span class="pre">name</span></code>.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#AssertionError" title="(in Python v3.15)"><strong>AssertionError</strong></a> – Raised when <code class="docutils literal notranslate"><span class="pre">name</span></code> is not a registered activation function.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <p>Plot an activation function on its own.</p>
@@ -1533,8 +1560,8 @@
 <section id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
 <dl class="py function">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.activation_functions.get_activation_function_by_name">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.activation_functions.</span></span><span class="sig-name descname"><span class="pre">get_activation_function_by_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/activation_functions.html#get_activation_function_by_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.activation_functions.get_activation_function_by_name" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.activation_functions.</span></span><span class="sig-name descname"><span class="pre">get_activation_function_by_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/activation_functions.html#get_activation_function_by_name"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
 <dd><p>Return the activation function class matching the given name.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1556,8 +1583,8 @@
 <section id="constants">
 <h2>Constants<a class="headerlink" href="#constants" title="Link to this heading">¶</a></h2>
 <dl class="py data">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.activation_functions.name_to_activation_function_map">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.activation_functions.</span></span><span class="sig-name descname"><span class="pre">name_to_activation_function_map</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'ReLU':</span> <a class="reference internal" href="relu.ReLUFunction.html#manim_extensions.machine_learning.neural_network.activation_functions.relu.ReLUFunction"><span class="pre">ReLUFunction</span></a><span class="pre">,</span> <span class="pre">'Sigmoid':</span> <a class="reference internal" href="sigmoid.SigmoidFunction.html#manim_extensions.machine_learning.neural_network.activation_functions.sigmoid.SigmoidFunction"><span class="pre">SigmoidFunction</span></a><span class="pre">}</span></span><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.activation_functions.name_to_activation_function_map" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id1">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.activation_functions.</span></span><span class="sig-name descname"><span class="pre">name_to_activation_function_map</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'ReLU':</span> <a class="reference internal" href="relu.ReLUFunction.html#manim_extensions.machine_learning.neural_network.activation_functions.relu.ReLUFunction"><span class="pre">ReLUFunction</span></a><span class="pre">,</span> <span class="pre">'Sigmoid':</span> <a class="reference internal" href="sigmoid.SigmoidFunction.html#manim_extensions.machine_learning.neural_network.activation_functions.sigmoid.SigmoidFunction"><span class="pre">SigmoidFunction</span></a><span class="pre">}</span></span><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
 <dd><p>Mapping from activation function name to its class.</p>
 </dd></dl>
 
@@ -1622,14 +1649,16 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">activation_functions</a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.activation_functions.name_to_activation_function_map"><code class="docutils literal notranslate"><span class="pre">name_to_activation_function_map</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.activation_functions.get_activation_function_by_name"><code class="docutils literal notranslate"><span class="pre">get_activation_function_by_name()</span></code></a></li>
 <li><a class="reference internal" href="#usage">Usage</a></li>
 <li><a class="reference internal" href="#modules">Modules</a></li>
 <li><a class="reference internal" href="#functions">Functions</a><ul>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.activation_functions.get_activation_function_by_name"><code class="docutils literal notranslate"><span class="pre">get_activation_function_by_name()</span></code></a></li>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">get_activation_function_by_name()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#constants">Constants</a><ul>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.activation_functions.name_to_activation_function_map"><code class="docutils literal notranslate"><span class="pre">name_to_activation_function_map</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">name_to_activation_function_map</span></code></a></li>
 </ul>
 </li>
 </ul>

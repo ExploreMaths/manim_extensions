@@ -1491,6 +1491,102 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.rubikscube.cube_animations">
 <span id="cube-animations"></span><h1>cube_animations<a class="headerlink" href="#module-manim_extensions.rubikscube.cube_animations" title="Link to this heading">¶</a></h1>
+<p>Rubik’s Cube animations for Manim.</p>
+<p>This module provides animations for Rubik’s Cube manipulations.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.rubikscube.cube_animations.CubeMove">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.rubikscube.cube_animations.</span></span><span class="sig-name descname"><span class="pre">CubeMove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/rubikscube/cube_animations.html#CubeMove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.rubikscube.cube_animations.CubeMove" title="Link to this definition">¶</a></dt>
+<dd><p>Animate a single face turn on a <a class="reference internal" href="cube.RubiksCube.html#manim_extensions.rubikscube.cube.RubiksCube" title="manim_extensions.rubikscube.cube.RubiksCube"><code class="xref py py-class docutils literal notranslate"><span class="pre">RubiksCube</span></code></a>.</p>
+<p><a class="reference internal" href="cube_animations.CubeMove.html#manim_extensions.rubikscube.cube_animations.CubeMove" title="manim_extensions.rubikscube.cube_animations.CubeMove"><code class="xref py py-class docutils literal notranslate"><span class="pre">CubeMove</span></code></a> is a <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a> subclass
+that rotates the cubies of one face around the appropriate axis by
+<code class="docutils literal notranslate"><span class="pre">90°</span></code> or <code class="docutils literal notranslate"><span class="pre">180°</span></code>, clockwise or counter-clockwise depending on the
+face notation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mobject</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The cube to animate.</p></li>
+<li><p><strong>face</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Face notation (<code class="docutils literal notranslate"><span class="pre">R</span></code>, <code class="docutils literal notranslate"><span class="pre">L</span></code>, <code class="docutils literal notranslate"><span class="pre">U</span></code>, <code class="docutils literal notranslate"><span class="pre">D</span></code>, <code class="docutils literal notranslate"><span class="pre">F</span></code>, <code class="docutils literal notranslate"><span class="pre">B</span></code>) with
+optional <code class="docutils literal notranslate"><span class="pre">2</span></code> for a double turn and/or <code class="docutils literal notranslate"><span class="pre">'</span></code> for counter-clockwise.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="cuberotation" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: CubeRotation <a class="headerlink" href="#cuberotation">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./CubeRotation-6a97313c.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.rubikscube</span><span class="w"> </span><span class="kn">import</span> <span class="n">RubiksCube</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.rubikscube.cube_animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">CubeMove</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CubeRotation</span><span class="p">(</span><span class="n">ThreeDScene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">cube</span> <span class="o">=</span> <span class="n">RubiksCube</span><span class="p">()</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.6</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">move_camera</span><span class="p">(</span><span class="n">phi</span><span class="o">=</span><span class="mi">50</span> <span class="o">*</span> <span class="n">DEGREES</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mi">160</span> <span class="o">*</span> <span class="n">DEGREES</span><span class="p">,</span>
+                         <span class="n">frame_center</span><span class="o">=</span><span class="n">cube</span><span class="o">.</span><span class="n">get_center</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">cube</span><span class="p">))</span>
+        <span class="c1"># CubeMove() takes the cube and the face to rotate. The possible</span>
+        <span class="c1"># faces are F, B, U, D, L, and R. An inverse move is preceded by a</span>
+        <span class="c1"># single quote ('), a double move is followed by "2". If a move is</span>
+        <span class="c1"># too fast or too slow, run_time can be provided (in seconds):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">CubeMove</span><span class="p">(</span><span class="n">cube</span><span class="p">,</span> <span class="s2">"F"</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">CubeMove</span><span class="p">(</span><span class="n">cube</span><span class="p">,</span> <span class="s2">"U2"</span><span class="p">),</span> <span class="n">run_time</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">CubeMove</span><span class="p">(</span><span class="n">cube</span><span class="p">,</span> <span class="s2">"R'"</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.rubikscube.cube_animations.CubeMove.create_starting_mobject">
+<span class="sig-name descname"><span class="pre">create_starting_mobject</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/rubikscube/cube_animations.html#CubeMove.create_starting_mobject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.rubikscube.cube_animations.CubeMove.create_starting_mobject" title="Link to this definition">¶</a></dt>
+<dd><p>Create a copy of the cube as the starting state for the animation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="cube.RubiksCube.html#manim_extensions.rubikscube.cube.RubiksCube" title="manim_extensions.rubikscube.cube.RubiksCube"><code class="xref py py-class docutils literal notranslate"><span class="pre">RubiksCube</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A copy of the cube with indices initialised if needed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.rubikscube.cube_animations.CubeMove.interpolate_mobject">
+<span class="sig-name descname"><span class="pre">interpolate_mobject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/rubikscube/cube_animations.html#CubeMove.interpolate_mobject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.rubikscube.cube_animations.CubeMove.interpolate_mobject" title="Link to this definition">¶</a></dt>
+<dd><p>Interpolate the cube rotation at progress <code class="docutils literal notranslate"><span class="pre">alpha</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>alpha</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Animation progress between <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.rubikscube.cube_animations.CubeMove.finish">
+<span class="sig-name descname"><span class="pre">finish</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/rubikscube/cube_animations.html#CubeMove.finish"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.rubikscube.cube_animations.CubeMove.finish" title="Link to this definition">¶</a></dt>
+<dd><p>Finalise the cube move and update face indices after animation completes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1659,12 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">cube_animations</a><ul>
+<li><a class="reference internal" href="#manim_extensions.rubikscube.cube_animations.CubeMove"><code class="docutils literal notranslate"><span class="pre">CubeMove</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.rubikscube.cube_animations.CubeMove.create_starting_mobject"><code class="docutils literal notranslate"><span class="pre">CubeMove.create_starting_mobject()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.rubikscube.cube_animations.CubeMove.interpolate_mobject"><code class="docutils literal notranslate"><span class="pre">CubeMove.interpolate_mobject()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.rubikscube.cube_animations.CubeMove.finish"><code class="docutils literal notranslate"><span class="pre">CubeMove.finish()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

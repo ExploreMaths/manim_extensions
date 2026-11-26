@@ -4,7 +4,7 @@
 feed_forward
 ============
 
-.. module:: manim_extensions.machine_learning.neural_network.layers.feed_forward
+.. automodule:: manim_extensions.machine_learning.neural_network.layers.feed_forward
 
 Classes
 -------

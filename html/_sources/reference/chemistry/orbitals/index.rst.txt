@@ -4,7 +4,7 @@
 orbitals
 ========
 
-.. module:: manim_extensions.chemistry.orbitals
+.. automodule:: manim_extensions.chemistry.orbitals
 
 Classes
 -------

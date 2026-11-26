@@ -1491,20 +1491,65 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.physics.optics.lenses">
 <span id="lenses"></span><h1>lenses<a class="headerlink" href="#module-manim_extensions.physics.optics.lenses" title="Link to this heading">¶</a></h1>
-<section id="classes">
-<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
-<div class="table-wrapper autosummary longtable docutils container">
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="lenses.Lens.html#manim_extensions.physics.optics.lenses.Lens" title="manim_extensions.physics.optics.lenses.Lens"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Lens</span></code></a></p></td>
-<td><p>Thin lens with spherical surfaces for ray-tracing visualisation.</p></td>
-</tr>
-</tbody>
-</table>
+<p>Utilities for the lenses module.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.physics.optics.lenses.Lens">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.optics.lenses.</span></span><span class="sig-name descname"><span class="pre">Lens</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.52</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/optics/lenses.html#Lens"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.optics.lenses.Lens" title="Link to this definition">¶</a></dt>
+<dd><p>Thin lens with spherical surfaces for ray-tracing visualisation.</p>
+<p>The lens shape is constructed from the intersection or difference of two
+circles, depending on whether the focal length is positive (convex) or
+negative (concave).  The refractive index controls the curvature.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The current focal-length calculation does not precisely match the
+physical point of focus.  This is a known limitation that may be
+addressed in a future release.</p>
 </div>
-</section>
-<section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Focal length.  Positive values produce a convex lens, negative
+values produce a concave lens.</p></li>
+<li><p><strong>d</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – <a class="reference internal" href="lenses.Lens.html#manim_extensions.physics.optics.lenses.Lens" title="manim_extensions.physics.optics.lenses.Lens"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lens</span></code></a> thickness.</p></li>
+<li><p><strong>n</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Refractive index of the lens material.
+(glass).</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional parameters forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="lensscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: LensScene <a class="headerlink" href="#lensscene">¶</a></p><img alt="../../../_images/LensScene-dd4a8a13.png" class="align-center" src="../../../_images/LensScene-dd4a8a13.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.physics.optics.lenses</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lens</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">LensScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">convex</span> <span class="o">=</span> <span class="n">Lens</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">fill_opacity</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">)</span>
+        <span class="n">concave</span> <span class="o">=</span> <span class="n">Lens</span><span class="p">(</span><span class="n">f</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">fill_opacity</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREEN</span><span class="p">)</span>
+        <span class="n">concave</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">convex</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+            <span class="n">convex</span><span class="p">,</span>
+            <span class="n">concave</span><span class="p">,</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"f = 2 (convex)"</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">28</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">convex</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"f = -2 (concave)"</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">28</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">concave</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">),</span>
+        <span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py property">
+<dt class="sig sig-object py" id="manim_extensions.physics.optics.lenses.Lens.c">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">c</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><span class="pre">Point3D</span></a></span><a class="headerlink" href="#manim_extensions.physics.optics.lenses.Lens.c" title="Link to this definition">¶</a></dt>
+<dd><p>Return the centers of curvature of the two spherical surfaces.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The center points of the two circles used to construct the lens.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.physics.optics.lenses.snell">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.optics.lenses.</span></span><span class="sig-name descname"><span class="pre">snell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i_ang</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/optics/lenses.html#snell"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.optics.lenses.snell" title="Link to this definition">¶</a></dt>
@@ -1548,6 +1593,80 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.physics.optics.lenses.intersection">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.optics.lenses.</span></span><span class="sig-name descname"><span class="pre">intersection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vmob1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmob2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/optics/lenses.html#intersection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.optics.lenses.intersection" title="Link to this definition">¶</a></dt>
+<dd><p>Compute the intersection points of two VMobject curves.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vmob1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a></span>) – First curve.</p></li>
+<li><p><strong>vmob2</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a></span>) – Second curve.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Array of 3-D intersection coordinates (possibly empty).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="lenses.Lens.html#manim_extensions.physics.optics.lenses.Lens" title="manim_extensions.physics.optics.lenses.Lens"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Lens</span></code></a></p></td>
+<td><p>Thin lens with spherical surfaces for ray-tracing visualisation.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.optics.lenses.</span></span><span class="sig-name descname"><span class="pre">snell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">i_ang</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/optics/lenses.html#snell"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dd><p>Apply Snell’s law: compute the refracted angle from the incident angle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>i_ang</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Incident angle in radians.</p></li>
+<li><p><strong>n</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Refractive index ratio <code class="docutils literal notranslate"><span class="pre">n2</span> <span class="pre">/</span> <span class="pre">n1</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Refracted angle in radians.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.optics.lenses.</span></span><span class="sig-name descname"><span class="pre">antisnell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r_ang</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/optics/lenses.html#antisnell"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
+<dd><p>Inverse Snell’s law: compute the incident angle from the refracted angle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>r_ang</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Refracted angle in radians.</p></li>
+<li><p><strong>n</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Refractive index ratio <code class="docutils literal notranslate"><span class="pre">n2</span> <span class="pre">/</span> <span class="pre">n1</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Incident angle in radians.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.optics.lenses.</span></span><span class="sig-name descname"><span class="pre">intersection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vmob1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmob2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/optics/lenses.html#intersection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
 <dd><p>Compute the intersection points of two VMobject curves.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1626,11 +1745,19 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">lenses</a><ul>
-<li><a class="reference internal" href="#classes">Classes</a></li>
-<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#manim_extensions.physics.optics.lenses.Lens"><code class="docutils literal notranslate"><span class="pre">Lens</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.physics.optics.lenses.Lens.c"><code class="docutils literal notranslate"><span class="pre">Lens.c</span></code></a></li>
+
+</ul>
+</li>
 <li><a class="reference internal" href="#manim_extensions.physics.optics.lenses.snell"><code class="docutils literal notranslate"><span class="pre">snell()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.physics.optics.lenses.antisnell"><code class="docutils literal notranslate"><span class="pre">antisnell()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.physics.optics.lenses.intersection"><code class="docutils literal notranslate"><span class="pre">intersection()</span></code></a></li>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">snell()</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">antisnell()</span></code></a></li>
+<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">intersection()</span></code></a></li>
 </ul>
 </li>
 </ul>

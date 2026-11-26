@@ -1491,6 +1491,335 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.mindmap.algorithms.alg_catalog">
 <span id="alg-catalog"></span><h1>alg_catalog<a class="headerlink" href="#module-manim_extensions.mindmap.algorithms.alg_catalog" title="Link to this heading">¶</a></h1>
+<p>Catalog / organisation-chart layout algorithm - Python implementation.</p>
+<p>Layout characteristics:</p>
+<ul class="simple">
+<li><p>Root node is centred</p></li>
+<li><p>Second-level nodes are arranged horizontally below the root</p></li>
+<li><p>Third-level and deeper nodes are arranged vertically below their parent (vertical tree)</p></li>
+<li><p>Sibling offsets are automatically adjusted to avoid overlaps.</p></li>
+</ul>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.mindmap.algorithms.alg_catalog.</span></span><span class="sig-name descname"><span class="pre">CatalogLayout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">root</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_spacing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level_spacing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/alg_catalog.html#CatalogLayout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout" title="Link to this definition">¶</a></dt>
+<dd><p>Organisation-chart layout algorithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>root</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></span>) – The root node.</p></li>
+<li><p><strong>node_spacing</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Vertical distance from root to second-level nodes, and horizontal spacing among second-level nodes.</p></li>
+<li><p><strong>level_spacing</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Vertical spacing among third-level and deeper nodes.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="cataloglayoutscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: CatalogLayoutScene <a class="headerlink" href="#cataloglayoutscene">¶</a></p><img alt="../../../_images/CatalogLayoutScene-9c3a1040.png" class="align-center" src="../../../_images/CatalogLayoutScene-9c3a1040.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap.algorithms.alg_standard</span><span class="w"> </span><span class="kn">import</span> <span class="n">TreeNode</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap.algorithms.alg_catalog</span><span class="w"> </span><span class="kn">import</span> <span class="n">CatalogLayout</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CatalogLayoutScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">TreeNode</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">1.6</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+            <span class="n">child</span> <span class="o">=</span> <span class="n">TreeNode</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">1.4</span><span class="p">)</span>
+            <span class="n">child</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">TreeNode</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">1.2</span><span class="p">))</span>
+            <span class="n">root</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">CatalogLayout</span><span class="p">(</span><span class="n">root</span><span class="p">)</span><span class="o">.</span><span class="n">layout</span><span class="p">()</span>
+        <span class="n">boxes</span><span class="p">,</span> <span class="n">links</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(),</span> <span class="n">Group</span><span class="p">()</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">draw</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+            <span class="n">box</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="n">node</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">node</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">)</span>
+            <span class="n">box</span><span class="o">.</span><span class="n">move_to</span><span class="p">([</span><span class="n">node</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+            <span class="n">boxes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
+                <span class="n">links</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Line</span><span class="p">(</span>
+                    <span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="n">child</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">child</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+                    <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">,</span> <span class="n">stroke_width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                <span class="p">))</span>
+                <span class="n">draw</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+        <span class="n">draw</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+        <span class="n">tree</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="n">links</span><span class="p">,</span> <span class="n">boxes</span><span class="p">)</span>
+        <span class="n">tree</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">6.5</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">tree</span><span class="o">.</span><span class="n">width</span> <span class="o">&gt;</span> <span class="mi">12</span><span class="p">:</span>
+            <span class="n">tree</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+        <span class="n">tree</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._get_margin_x">
+<span class="sig-name descname"><span class="pre">_get_margin_x</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/alg_catalog.html#CatalogLayout._get_margin_x"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._get_margin_x" title="Link to this definition">¶</a></dt>
+<dd><p>Horizontal spacing used for node placement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>layer_index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Layer depth whose spacing rule should be selected.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The horizontal spacing for that layer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._get_margin_y">
+<span class="sig-name descname"><span class="pre">_get_margin_y</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/alg_catalog.html#CatalogLayout._get_margin_y"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._get_margin_y" title="Link to this definition">¶</a></dt>
+<dd><p>Vertical spacing used between layers in the catalog layout.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>layer_index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Layer depth whose vertical spacing rule should be selected.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The vertical spacing for that layer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._update_children">
+<span class="sig-name descname"><span class="pre">_update_children</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/alg_catalog.html#CatalogLayout._update_children"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._update_children" title="Link to this definition">¶</a></dt>
+<dd><p>Recursively update a child-node attribute such as left or top.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nodes</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogNode" title="manim_extensions.mindmap.algorithms.alg_catalog.CatalogNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">CatalogNode</span></code></a>]</span>) – Child nodes to shift together.</p></li>
+<li><p><strong>prop</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Attribute name to update, such as left or top.</p></li>
+<li><p><strong>offset</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Amount added to each node coordinate.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._update_children_pro">
+<span class="sig-name descname"><span class="pre">_update_children_pro</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nodes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">props</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/alg_catalog.html#CatalogLayout._update_children_pro"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._update_children_pro" title="Link to this definition">¶</a></dt>
+<dd><p>Recursively update multiple child-node attributes in one pass.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nodes</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogNode" title="manim_extensions.mindmap.algorithms.alg_catalog.CatalogNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">CatalogNode</span></code></a>]</span>) – Child nodes whose attributes should be adjusted.</p></li>
+<li><p><strong>props</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Mapping of attribute names to offset values.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._walk">
+<span class="sig-name descname"><span class="pre">_walk</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pre_cb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">post_cb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/alg_catalog.html#CatalogLayout._walk"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._walk" title="Link to this definition">¶</a></dt>
+<dd><p>Traverse the tree while running pre-order and post-order callbacks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogNode" title="manim_extensions.mindmap.algorithms.alg_catalog.CatalogNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">CatalogNode</span></code></a></span>) – Current node in the tree traversal.</p></li>
+<li><p><strong>pre_cb</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/constants.html#Ellipsis" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Callback invoked before visiting each child subtree.</p></li>
+<li><p><strong>post_cb</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/constants.html#Ellipsis" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Callback invoked after visiting each child subtree.</p></li>
+<li><p><strong>layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Current depth of the node in the tree.</p></li>
+<li><p><strong>index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Position of the node within its parent children list.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._get_node_boundaries_horizontal">
+<span class="sig-name descname"><span class="pre">_get_node_boundaries_horizontal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/alg_catalog.html#CatalogLayout._get_node_boundaries_horizontal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._get_node_boundaries_horizontal" title="Link to this definition">¶</a></dt>
+<dd><p>Return the horizontal boundaries of a node and all descendants.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogNode" title="manim_extensions.mindmap.algorithms.alg_catalog.CatalogNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">CatalogNode</span></code></a></span>) – Root node of the subtree whose horizontal bounds should be computed.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The left and right boundaries of the subtree.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._get_node_area_width">
+<span class="sig-name descname"><span class="pre">_get_node_area_width</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/alg_catalog.html#CatalogLayout._get_node_area_width"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._get_node_area_width" title="Link to this definition">¶</a></dt>
+<dd><p>Return the maximum horizontal span of a subtree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogNode" title="manim_extensions.mindmap.algorithms.alg_catalog.CatalogNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">CatalogNode</span></code></a></span>) – Root node of the subtree whose width should be measured.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The maximum horizontal span of the subtree.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._get_node_area_height">
+<span class="sig-name descname"><span class="pre">_get_node_area_height</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/alg_catalog.html#CatalogLayout._get_node_area_height"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._get_node_area_height" title="Link to this definition">¶</a></dt>
+<dd><p>Recursively compute the total height of a node’s subtree.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>node</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogNode" title="manim_extensions.mindmap.algorithms.alg_catalog.CatalogNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">CatalogNode</span></code></a></span>) – The root of the subtree.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The cumulative area height.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._update_brothers_left">
+<span class="sig-name descname"><span class="pre">_update_brothers_left</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_width</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/alg_catalog.html#CatalogLayout._update_brothers_left"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._update_brothers_left" title="Link to this definition">¶</a></dt>
+<dd><p>Shift elder sibling nodes to the right by <code class="docutils literal notranslate"><span class="pre">add_width</span></code>.</p>
+<p>Also propagates the adjustment upward to the parent’s siblings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogNode" title="manim_extensions.mindmap.algorithms.alg_catalog.CatalogNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">CatalogNode</span></code></a></span>) – The node whose younger siblings must shift.</p></li>
+<li><p><strong>add_width</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The horizontal offset to apply.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._update_brothers_top">
+<span class="sig-name descname"><span class="pre">_update_brothers_top</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">node</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_height</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/alg_catalog.html#CatalogLayout._update_brothers_top"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._update_brothers_top" title="Link to this definition">¶</a></dt>
+<dd><p>Shift elder sibling nodes downward by <code class="docutils literal notranslate"><span class="pre">add_height</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogNode" title="manim_extensions.mindmap.algorithms.alg_catalog.CatalogNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">CatalogNode</span></code></a></span>) – The node whose younger siblings must shift.</p></li>
+<li><p><strong>add_height</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The vertical offset to apply.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._compute_base_value">
+<span class="sig-name descname"><span class="pre">_compute_base_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/alg_catalog.html#CatalogLayout._compute_base_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._compute_base_value" title="Link to this definition">¶</a></dt>
+<dd><p>Step 1: create nodes, set the root position, and set the initial top of second-level nodes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._compute_left_top_value">
+<span class="sig-name descname"><span class="pre">_compute_left_top_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/alg_catalog.html#CatalogLayout._compute_left_top_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._compute_left_top_value" title="Link to this definition">¶</a></dt>
+<dd><p>Step 2: compute left and top of child nodes.</p>
+<ul class="simple">
+<li><p>Children of the root are arranged horizontally</p></li>
+<li><p>Children of non-root nodes are arranged vertically.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._adjust_left_top_value">
+<span class="sig-name descname"><span class="pre">_adjust_left_top_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/alg_catalog.html#CatalogLayout._adjust_left_top_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._adjust_left_top_value" title="Link to this definition">¶</a></dt>
+<dd><p>Step 3: adjust positions (handle subtree width/height offsets).</p>
+<ul class="simple">
+<li><p>Pre-order: for second-level nodes, if their subtree width exceeds their own width, shift following siblings</p></li>
+<li><p>Pre-order: for non-root nodes with children, adjust vertical offset</p></li>
+<li><p>Post-order: for the root, shift all children horizontally to centre the whole subtree.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._applay_coords">
+<span class="sig-name descname"><span class="pre">_applay_coords</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/alg_catalog.html#CatalogLayout._applay_coords"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._applay_coords" title="Link to this definition">¶</a></dt>
+<dd><p>Apply the computed results to the original nodes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout.layout">
+<span class="sig-name descname"><span class="pre">layout</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/alg_catalog.html#CatalogLayout.layout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout.layout" title="Link to this definition">¶</a></dt>
+<dd><p>Run the full layout and return the root node (with coordinates filled in).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The root node of the original tree, with <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">level</span></code> attributes filled in.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1684,6 +2013,24 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">alg_catalog</a><ul>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout"><code class="docutils literal notranslate"><span class="pre">CatalogLayout</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._get_margin_x"><code class="docutils literal notranslate"><span class="pre">CatalogLayout._get_margin_x()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._get_margin_y"><code class="docutils literal notranslate"><span class="pre">CatalogLayout._get_margin_y()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._update_children"><code class="docutils literal notranslate"><span class="pre">CatalogLayout._update_children()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._update_children_pro"><code class="docutils literal notranslate"><span class="pre">CatalogLayout._update_children_pro()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._walk"><code class="docutils literal notranslate"><span class="pre">CatalogLayout._walk()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._get_node_boundaries_horizontal"><code class="docutils literal notranslate"><span class="pre">CatalogLayout._get_node_boundaries_horizontal()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._get_node_area_width"><code class="docutils literal notranslate"><span class="pre">CatalogLayout._get_node_area_width()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._get_node_area_height"><code class="docutils literal notranslate"><span class="pre">CatalogLayout._get_node_area_height()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._update_brothers_left"><code class="docutils literal notranslate"><span class="pre">CatalogLayout._update_brothers_left()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._update_brothers_top"><code class="docutils literal notranslate"><span class="pre">CatalogLayout._update_brothers_top()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._compute_base_value"><code class="docutils literal notranslate"><span class="pre">CatalogLayout._compute_base_value()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._compute_left_top_value"><code class="docutils literal notranslate"><span class="pre">CatalogLayout._compute_left_top_value()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._adjust_left_top_value"><code class="docutils literal notranslate"><span class="pre">CatalogLayout._adjust_left_top_value()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout._applay_coords"><code class="docutils literal notranslate"><span class="pre">CatalogLayout._applay_coords()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogLayout.layout"><code class="docutils literal notranslate"><span class="pre">CatalogLayout.layout()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a><ul>
 <li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogNode"><code class="docutils literal notranslate"><span class="pre">CatalogNode</span></code></a><ul>
 <li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_catalog.CatalogNode.data"><code class="docutils literal notranslate"><span class="pre">CatalogNode.data</span></code></a></li>

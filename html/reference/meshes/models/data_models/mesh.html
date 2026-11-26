@@ -1491,6 +1491,1017 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.meshes.models.data_models.mesh">
 <span id="mesh"></span><h1>mesh<a class="headerlink" href="#module-manim_extensions.meshes.models.data_models.mesh" title="Link to this heading">¶</a></h1>
+<p><a class="reference internal" href="mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh" title="manim_extensions.meshes.models.data_models.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a> structure.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.models.data_models.mesh.</span></span><span class="sig-name descname"><span class="pre">Mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">faces</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dangling</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh" title="Link to this definition">¶</a></dt>
+<dd><p>Basic mesh structure based on vertices and faces. For 3D objects parts is additionally used.</p>
+<p>Faces and parts are stored as <a class="reference internal" href="../../index.html#manim_extensions.meshes.types.VarArray" title="manim_extensions.meshes.types.VarArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">VarArray</span></code></a> objects so that
+each entry may contain a variable number of elements (e.g. a mix
+of triangles and quadrilaterals).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vertices</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Vertices" title="manim_extensions.meshes.types.Vertices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vertices</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]] | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#Ellipsis" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code></a>]]</span>) – List of vertices, all with the same dimensionality
+(shape <code class="docutils literal notranslate"><span class="pre">[N,</span> <span class="pre">d]</span></code>).</p></li>
+<li><p><strong>faces</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>] | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]] | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#Ellipsis" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code></a>]] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – List of faces, each face being a list of vertex indices.
+Entries may have different lengths.</p></li>
+<li><p><strong>parts</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>] | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]] | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#Ellipsis" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code></a>]] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – List of parts (3D objects), each part being a list of face
+indices. Cannot be set when <code class="docutils literal notranslate"><span class="pre">faces</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+<li><p><strong>dangling</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, check and warn about dangling vertices and faces
+after initialisation.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="meshscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: MeshScene <a class="headerlink" href="#meshscene">¶</a></p><img alt="../../../../_images/MeshScene-b7c95983.png" class="align-center" src="../../../../_images/MeshScene-b7c95983.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.models.data_models.mesh</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mesh</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MeshScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">vertices</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]</span>
+        <span class="n">faces</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
+        <span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="n">faces</span><span class="p">)</span>
+        <span class="c1"># the edges are derived from the faces automatically</span>
+        <span class="n">dots</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">Dot</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">mesh</span><span class="o">.</span><span class="n">get_3d_vertices</span><span class="p">()])</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="p">[</span>
+            <span class="n">Line</span><span class="p">(</span><span class="n">dots</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">dots</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">mesh</span><span class="o">.</span><span class="n">edges</span>
+        <span class="p">])</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">dots</span><span class="p">)</span>
+        <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.__add__">
+<span class="sig-name descname"><span class="pre">__add__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.__add__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.__add__" title="Link to this definition">¶</a></dt>
+<dd><p>Concatenate <code class="docutils literal notranslate"><span class="pre">other</span></code> mesh with this mesh (<code class="docutils literal notranslate"><span class="pre">mesh</span> <span class="pre">+</span> <span class="pre">other</span></code>).</p>
+<p>A new mesh is returned and <code class="docutils literal notranslate"><span class="pre">self</span></code> stays unchanged; use
+<code class="docutils literal notranslate"><span class="pre">mesh</span> <span class="pre">+=</span> <span class="pre">other</span></code> to merge in place.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh" title="manim_extensions.meshes.models.data_models.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a></span>) – Another mesh to merge with this one.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh" title="manim_extensions.meshes.models.data_models.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new mesh containing the vertices, faces and parts of both.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.__iadd__">
+<span class="sig-name descname"><span class="pre">__iadd__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.__iadd__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.__iadd__" title="Link to this definition">¶</a></dt>
+<dd><p>Concatenate <code class="docutils literal notranslate"><span class="pre">other</span></code> mesh in-place (<code class="docutils literal notranslate"><span class="pre">mesh</span> <span class="pre">+=</span> <span class="pre">other</span></code>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh" title="manim_extensions.meshes.models.data_models.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a></span>) – Another mesh to merge into this one.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh" title="manim_extensions.meshes.models.data_models.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The modified mesh instance.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.__eq__">
+<span class="sig-name descname"><span class="pre">__eq__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.__eq__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.__eq__" title="Link to this definition">¶</a></dt>
+<dd><p>Check whether two meshes are equal.</p>
+<p>Two meshes are considered equal when their vertex coordinates
+match exactly and their face/part references resolve to the
+same coordinates (allowing cyclic permutations).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></span>) – Another mesh to compare against.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether the meshes are equal; a non-mesh comparison is left to
+Python.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.__ne__">
+<span class="sig-name descname"><span class="pre">__ne__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.__ne__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.__ne__" title="Link to this definition">¶</a></dt>
+<dd><p>Check whether two meshes are not equal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></span>) – Another mesh to compare against.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether the meshes differ; a non-mesh comparison is left to
+Python.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.vertices">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">vertices</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="p"><span class="pre">~</span></span><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Vertices" title="manim_extensions.meshes.types.Vertices"><span class="pre">Vertices</span></a></span><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.vertices" title="Link to this definition">¶</a></dt>
+<dd><p>get private property _vertices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The vertex coordinate array.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.faces">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">faces</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="p"><span class="pre">~</span></span><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Faces" title="manim_extensions.meshes.types.Faces"><span class="pre">Faces</span></a></span><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.faces" title="Link to this definition">¶</a></dt>
+<dd><p>get private property _faces.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The list of faces referencing vertex indices.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.parts">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">parts</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="p"><span class="pre">~</span></span><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Parts" title="manim_extensions.meshes.types.Parts"><span class="pre">Parts</span></a></span><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.parts" title="Link to this definition">¶</a></dt>
+<dd><p>get private property _parts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The list of parts referencing face indices.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.edges">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">edges</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="p"><span class="pre">~</span></span><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Edges" title="manim_extensions.meshes.types.Edges"><span class="pre">Edges</span></a></span><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.edges" title="Link to this definition">¶</a></dt>
+<dd><p>get private property _edges.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The sorted list of edges as vertex index tuples.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh._project_4d">
+<span class="sig-name descname"><span class="pre">_project_4d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">perspective</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh._project_4d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh._project_4d" title="Link to this definition">¶</a></dt>
+<dd><p>Project 4-D vertices to 3-D with a central projection.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">w</span></code> coordinate acts as the distance to the projection centre,
+so vertices with a larger <code class="docutils literal notranslate"><span class="pre">w</span></code> are drawn larger, which is what
+makes a rotating tesseract readable.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>perspective</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Distance of the projection centre along <code class="docutils literal notranslate"><span class="pre">w</span></code>.  Defaults to the
+vertex dimensionality.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Vertices" title="manim_extensions.meshes.types.Vertices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vertices</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The projected three-dimensional vertex coordinates.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../exceptions.InvalidRequestException.html#manim_extensions.meshes.exceptions.InvalidRequestException" title="manim_extensions.meshes.exceptions.InvalidRequestException"><strong>InvalidRequestException</strong></a> – If a vertex reaches or passes the projection centre.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.get_3d_vertices">
+<span class="sig-name descname"><span class="pre">get_3d_vertices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">perspective</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.get_3d_vertices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.get_3d_vertices" title="Link to this definition">¶</a></dt>
+<dd><p>Get 3D vertices, for 1D, 2D, 3D and 4D meshes, to be able to draw them using the manim functions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>perspective</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Distance of the projection centre for a 4-D mesh.  Ignored for
+lower dimensions; defaults to the mesh dimensionality.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Vertices" title="manim_extensions.meshes.types.Vertices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vertices</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The vertex coordinates padded (or projected) to three dimensions.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../exceptions.InvalidRequestException.html#manim_extensions.meshes.exceptions.InvalidRequestException" title="manim_extensions.meshes.exceptions.InvalidRequestException"><strong>InvalidRequestException</strong></a> – If the mesh dimension is greater than 4, or if a 4-D vertex lies
+    at or beyond the projection centre.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.get_edge_index">
+<span class="sig-name descname"><span class="pre">get_edge_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">edge</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.get_edge_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.get_edge_index" title="Link to this definition">¶</a></dt>
+<dd><p>Return the index of the given edge in the internal edge list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>edge</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Edge" title="manim_extensions.meshes.types.Edge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Edge</span></code></a></span>) – A sorted <code class="docutils literal notranslate"><span class="pre">(v_a,</span> <span class="pre">v_b)</span></code> tuple representing the edge.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Index of the edge, or raises if not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.get_vertex_edges">
+<span class="sig-name descname"><span class="pre">get_vertex_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertex_idx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.get_vertex_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.get_vertex_edges" title="Link to this definition">¶</a></dt>
+<dd><p>Return all edges that contain the given vertex.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>vertex_idx</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the vertex.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Edges" title="manim_extensions.meshes.types.Edges"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Edges</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of edges incident to <code class="docutils literal notranslate"><span class="pre">vertex_idx</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.get_vertices_from_part_id">
+<span class="sig-name descname"><span class="pre">get_vertices_from_part_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.get_vertices_from_part_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.get_vertices_from_part_id" title="Link to this definition">¶</a></dt>
+<dd><p>Return the indices of all vertices contained in the given part.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>part_id</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the part.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Vertex indices belonging to the part.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.convert_vertices_to_3d">
+<span class="sig-name descname"><span class="pre">convert_vertices_to_3d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">perspective</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.convert_vertices_to_3d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.convert_vertices_to_3d" title="Link to this definition">¶</a></dt>
+<dd><p>transforms currents mesh vertices permanently to be 3D, works if dim is &lt; 3.</p>
+<p>A 4-D mesh is projected onto three dimensions first, so the mesh
+dimensionality becomes 3 afterwards.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>perspective</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Distance of the projection centre for a 4-D mesh.  Ignored for
+lower dimensions; defaults to the mesh dimensionality.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../exceptions.InvalidRequestException.html#manim_extensions.meshes.exceptions.InvalidRequestException" title="manim_extensions.meshes.exceptions.InvalidRequestException"><strong>InvalidRequestException</strong></a> – If the current dimensionality is greater than 4, or if a 4-D
+    vertex lies at or beyond the projection centre.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.find_vertex">
+<span class="sig-name descname"><span class="pre">find_vertex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertex</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.find_vertex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.find_vertex" title="Link to this definition">¶</a></dt>
+<dd><p>Return all vertex indices whose coordinates match <code class="docutils literal notranslate"><span class="pre">vertex</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vertex</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Coordinates to search for.</p></li>
+<li><p><strong>start</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index from which the search starts.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Matching vertex indices.  Returns an empty list if the
+coordinate dimension does not match.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.find_face">
+<span class="sig-name descname"><span class="pre">find_face</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">face</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.find_face"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.find_face" title="Link to this definition">¶</a></dt>
+<dd><p>Return all face indices that match the given face.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>face</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Face vertex indices to search for.</p></li>
+<li><p><strong>start</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index from which the search starts.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Matching face indices.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.find_part">
+<span class="sig-name descname"><span class="pre">find_part</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">part</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.find_part"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.find_part" title="Link to this definition">¶</a></dt>
+<dd><p>Return all part indices whose faces match the given part.</p>
+<p>Parts are compared as sets of face indices, so the order in which
+the faces are listed does not matter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>part</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Part face indices to search for.</p></li>
+<li><p><strong>start</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index from which the search starts.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Matching part indices.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.add_vertices">
+<span class="sig-name descname"><span class="pre">add_vertices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_vertices</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.add_vertices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.add_vertices" title="Link to this definition">¶</a></dt>
+<dd><p>Append new vertices to the mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>new_vertices</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Vertices" title="manim_extensions.meshes.types.Vertices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vertices</span></code></a></span>) – Array of vertex coordinates to add.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../exceptions.InvalidMeshException.html#manim_extensions.meshes.exceptions.InvalidMeshException" title="manim_extensions.meshes.exceptions.InvalidMeshException"><strong>InvalidMeshException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">new_vertices</span></code> is not a <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>.</p></li>
+<li><p><a class="reference internal" href="../../exceptions.InvalidMeshDimensionsException.html#manim_extensions.meshes.exceptions.InvalidMeshDimensionsException" title="manim_extensions.meshes.exceptions.InvalidMeshDimensionsException"><strong>InvalidMeshDimensionsException</strong></a> – If the shape of <code class="docutils literal notranslate"><span class="pre">new_vertices</span></code> does not match the mesh dimension.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.remove_vertices">
+<span class="sig-name descname"><span class="pre">remove_vertices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.remove_vertices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.remove_vertices" title="Link to this definition">¶</a></dt>
+<dd><p>Remove vertices at the given indices and update references.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>indices</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>) – Indices of the vertices to remove.  Negative indexing is not
+supported.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../exceptions.MeshIndexException.html#manim_extensions.meshes.exceptions.MeshIndexException" title="manim_extensions.meshes.exceptions.MeshIndexException"><strong>MeshIndexException</strong></a> – If any index is out of range.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.update_vertex">
+<span class="sig-name descname"><span class="pre">update_vertex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_vert</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.update_vertex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.update_vertex" title="Link to this definition">¶</a></dt>
+<dd><p>Update the coordinates of a single vertex.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>idx</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the vertex to update.  Negative indexing is not supported.</p></li>
+<li><p><strong>new_vert</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Vertex" title="manim_extensions.meshes.types.Vertex"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vertex</span></code></a></span>) – New coordinates for the vertex.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../exceptions.MeshIndexException.html#manim_extensions.meshes.exceptions.MeshIndexException" title="manim_extensions.meshes.exceptions.MeshIndexException"><strong>MeshIndexException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">idx</span></code> is out of range.</p></li>
+<li><p><a class="reference internal" href="../../exceptions.InvalidTypeException.html#manim_extensions.meshes.exceptions.InvalidTypeException" title="manim_extensions.meshes.exceptions.InvalidTypeException"><strong>InvalidTypeException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">new_vert</span></code> has an unexpected shape.</p></li>
+<li><p><a class="reference internal" href="../../exceptions.InvalidMeshException.html#manim_extensions.meshes.exceptions.InvalidMeshException" title="manim_extensions.meshes.exceptions.InvalidMeshException"><strong>InvalidMeshException</strong></a> – If the coordinate dimension does not match the mesh.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.add_faces">
+<span class="sig-name descname"><span class="pre">add_faces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_faces</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.add_faces"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.add_faces" title="Link to this definition">¶</a></dt>
+<dd><p>Append new faces to the mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>new_faces</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Faces" title="manim_extensions.meshes.types.Faces"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Faces</span></code></a></span>) – Faces to add.  Each face is an iterable of vertex indices.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../exceptions.InvalidMeshException.html#manim_extensions.meshes.exceptions.InvalidMeshException" title="manim_extensions.meshes.exceptions.InvalidMeshException"><strong>InvalidMeshException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">new_faces</span></code> is not a twice-nested iterable or contains
+    out-of-range vertex indices.</p></li>
+<li><p><a class="reference internal" href="../../exceptions.InvalidTypeException.html#manim_extensions.meshes.exceptions.InvalidTypeException" title="manim_extensions.meshes.exceptions.InvalidTypeException"><strong>InvalidTypeException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">new_faces</span></code> has an unsupported type.</p></li>
+<li><p><a class="reference internal" href="../../exceptions.MeshIndexException.html#manim_extensions.meshes.exceptions.MeshIndexException" title="manim_extensions.meshes.exceptions.MeshIndexException"><strong>MeshIndexException</strong></a> – If a vertex index in <code class="docutils literal notranslate"><span class="pre">new_faces</span></code> is out of range or not
+    defined.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.remove_faces">
+<span class="sig-name descname"><span class="pre">remove_faces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.remove_faces"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.remove_faces" title="Link to this definition">¶</a></dt>
+<dd><p>Remove faces at the given indices and update parts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>indices</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>) – Indices of the faces to remove.  Negative indexing is not
+supported.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../exceptions.MeshIndexException.html#manim_extensions.meshes.exceptions.MeshIndexException" title="manim_extensions.meshes.exceptions.MeshIndexException"><strong>MeshIndexException</strong></a> – If any index is out of range.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.update_face">
+<span class="sig-name descname"><span class="pre">update_face</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_face</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.update_face"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.update_face" title="Link to this definition">¶</a></dt>
+<dd><p>Update the vertices of a single face.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>idx</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the face to update.  Negative indexing is not supported.</p></li>
+<li><p><strong>new_face</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Face" title="manim_extensions.meshes.types.Face"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Face</span></code></a></span>) – New vertex indices for the face.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../exceptions.MeshIndexException.html#manim_extensions.meshes.exceptions.MeshIndexException" title="manim_extensions.meshes.exceptions.MeshIndexException"><strong>MeshIndexException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">idx</span></code> or any vertex index in <code class="docutils literal notranslate"><span class="pre">new_face</span></code> is out of range.</p></li>
+<li><p><a class="reference internal" href="../../exceptions.InvalidTypeException.html#manim_extensions.meshes.exceptions.InvalidTypeException" title="manim_extensions.meshes.exceptions.InvalidTypeException"><strong>InvalidTypeException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">new_face</span></code> has an unexpected shape.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.add_parts">
+<span class="sig-name descname"><span class="pre">add_parts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_parts</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.add_parts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.add_parts" title="Link to this definition">¶</a></dt>
+<dd><p>Append new parts to the mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>new_parts</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Parts" title="manim_extensions.meshes.types.Parts"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Parts</span></code></a></span>) – Parts to add.  Each part is an iterable of face indices.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../exceptions.InvalidMeshException.html#manim_extensions.meshes.exceptions.InvalidMeshException" title="manim_extensions.meshes.exceptions.InvalidMeshException"><strong>InvalidMeshException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">new_parts</span></code> is not a twice-nested iterable or contains
+    out-of-range face indices.</p></li>
+<li><p><a class="reference internal" href="../../exceptions.InvalidTypeException.html#manim_extensions.meshes.exceptions.InvalidTypeException" title="manim_extensions.meshes.exceptions.InvalidTypeException"><strong>InvalidTypeException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">new_parts</span></code> has an unsupported type.</p></li>
+<li><p><a class="reference internal" href="../../exceptions.MeshIndexException.html#manim_extensions.meshes.exceptions.MeshIndexException" title="manim_extensions.meshes.exceptions.MeshIndexException"><strong>MeshIndexException</strong></a> – If a face index in <code class="docutils literal notranslate"><span class="pre">new_parts</span></code> is out of range.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.remove_parts">
+<span class="sig-name descname"><span class="pre">remove_parts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.remove_parts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.remove_parts" title="Link to this definition">¶</a></dt>
+<dd><p>Remove parts at the given indices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>indices</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>) – Indices of the parts to remove.  Negative indexing is not
+supported.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../exceptions.MeshIndexException.html#manim_extensions.meshes.exceptions.MeshIndexException" title="manim_extensions.meshes.exceptions.MeshIndexException"><strong>MeshIndexException</strong></a> – If any index is out of range.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.update_part">
+<span class="sig-name descname"><span class="pre">update_part</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">new_part</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.update_part"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.update_part" title="Link to this definition">¶</a></dt>
+<dd><p>Update the faces of a single part.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>idx</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the part to update.  Negative indexing is not supported.</p></li>
+<li><p><strong>new_part</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Part" title="manim_extensions.meshes.types.Part"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Part</span></code></a></span>) – New face indices for the part.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../exceptions.MeshIndexException.html#manim_extensions.meshes.exceptions.MeshIndexException" title="manim_extensions.meshes.exceptions.MeshIndexException"><strong>MeshIndexException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">idx</span></code> or any face index in <code class="docutils literal notranslate"><span class="pre">new_part</span></code> is out of range.</p></li>
+<li><p><a class="reference internal" href="../../exceptions.InvalidTypeException.html#manim_extensions.meshes.exceptions.InvalidTypeException" title="manim_extensions.meshes.exceptions.InvalidTypeException"><strong>InvalidTypeException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">new_part</span></code> has an unexpected shape.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.add_to_mesh">
+<span class="sig-name descname"><span class="pre">add_to_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.add_to_mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.add_to_mesh" title="Link to this definition">¶</a></dt>
+<dd><p>Merge another mesh into this one by shifting its indices.</p>
+<p>The vertices, faces and parts of <code class="docutils literal notranslate"><span class="pre">other</span></code> are appended with
+shifted indices so that references remain consistent.  Use
+negative indices to reference the original mesh from the
+appended one (e.g. <code class="docutils literal notranslate"><span class="pre">-1</span></code> refers to the last old vertex).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>other</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh" title="manim_extensions.meshes.models.data_models.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a></span>) – Another mesh to merge into this one.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../exceptions.InvalidMeshException.html#manim_extensions.meshes.exceptions.InvalidMeshException" title="manim_extensions.meshes.exceptions.InvalidMeshException"><strong>InvalidMeshException</strong></a> – If the meshes have different vertex dimensionalities or
+    the shifted indices would be out of range.</p></li>
+<li><p><a class="reference internal" href="../../exceptions.MeshIndexException.html#manim_extensions.meshes.exceptions.MeshIndexException" title="manim_extensions.meshes.exceptions.MeshIndexException"><strong>MeshIndexException</strong></a> – If a face or part index would be out of bounds after the
+    merge.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.split_mesh_into_objects">
+<span class="sig-name descname"><span class="pre">split_mesh_into_objects</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.split_mesh_into_objects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.split_mesh_into_objects" title="Link to this definition">¶</a></dt>
+<dd><p>Split the mesh into independent, non-interconnected meshes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference internal" href="mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh" title="manim_extensions.meshes.models.data_models.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of meshes with updated indices and references; the
+current mesh is not changed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.dangling_vert_check">
+<span class="sig-name descname"><span class="pre">dangling_vert_check</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.dangling_vert_check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.dangling_vert_check" title="Link to this definition">¶</a></dt>
+<dd><p>check whether there are any dangling nodes - vertices that are not part of a face.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether vertices exist that are not part of any face.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.dangling_face_check">
+<span class="sig-name descname"><span class="pre">dangling_face_check</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.dangling_face_check"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.dangling_face_check" title="Link to this definition">¶</a></dt>
+<dd><p>check whether there are any dangling faces - faces that are not part of a part.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether faces exist that are not part of any part.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.scale_mesh">
+<span class="sig-name descname"><span class="pre">scale_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scaling</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">about_point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.scale_mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.scale_mesh" title="Link to this definition">¶</a></dt>
+<dd><p>Scale all vertices by a uniform factor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scaling</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Scale factor applied to every vertex.</p></li>
+<li><p><strong>about_point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – If given, the scaling is performed around this point.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.stretch_mesh">
+<span class="sig-name descname"><span class="pre">stretch_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">factor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">about_point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.stretch_mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.stretch_mesh" title="Link to this definition">¶</a></dt>
+<dd><p>Stretch all vertices along a single dimension.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>factor</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Stretch factor.</p></li>
+<li><p><strong>dim</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the dimension to stretch.</p></li>
+<li><p><strong>about_point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – If given, the stretch is performed around this point.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.translate_mesh">
+<span class="sig-name descname"><span class="pre">translate_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">translation</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.translate_mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.translate_mesh" title="Link to this definition">¶</a></dt>
+<dd><p>Translate (shift) all vertices by the given vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>translation</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span>) – Translation vector.  Its length must equal the mesh
+dimension.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../exceptions.InvalidTypeException.html#manim_extensions.meshes.exceptions.InvalidTypeException" title="manim_extensions.meshes.exceptions.InvalidTypeException"><strong>InvalidTypeException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">translation</span></code> is not a <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>.</p></li>
+<li><p><a class="reference internal" href="../../exceptions.InvalidMeshDimensionsException.html#manim_extensions.meshes.exceptions.InvalidMeshDimensionsException" title="manim_extensions.meshes.exceptions.InvalidMeshDimensionsException"><strong>InvalidMeshDimensionsException</strong></a> – If the length of <code class="docutils literal notranslate"><span class="pre">translation</span></code> does not match the mesh dimension.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.translate_vertex">
+<span class="sig-name descname"><span class="pre">translate_vertex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">translation</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.translate_vertex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.translate_vertex" title="Link to this definition">¶</a></dt>
+<dd><p>Translate a single vertex by the given vector.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v_id</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the vertex to translate.</p></li>
+<li><p><strong>translation</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span>) – Translation vector.  Its length must equal the mesh
+dimension.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../exceptions.MeshIndexException.html#manim_extensions.meshes.exceptions.MeshIndexException" title="manim_extensions.meshes.exceptions.MeshIndexException"><strong>MeshIndexException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">v_id</span></code> is out of range.</p></li>
+<li><p><a class="reference internal" href="../../exceptions.InvalidTypeException.html#manim_extensions.meshes.exceptions.InvalidTypeException" title="manim_extensions.meshes.exceptions.InvalidTypeException"><strong>InvalidTypeException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">translation</span></code> is not a <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>.</p></li>
+<li><p><a class="reference internal" href="../../exceptions.InvalidMeshDimensionsException.html#manim_extensions.meshes.exceptions.InvalidMeshDimensionsException" title="manim_extensions.meshes.exceptions.InvalidMeshDimensionsException"><strong>InvalidMeshDimensionsException</strong></a> – If the length of <code class="docutils literal notranslate"><span class="pre">translation</span></code> does not match the mesh dimension.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.apply_rotation">
+<span class="sig-name descname"><span class="pre">apply_rotation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.array</span><span class="pre">([0,</span> <span class="pre">0,</span> <span class="pre">1])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">about_point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.apply_rotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.apply_rotation" title="Link to this definition">¶</a></dt>
+<dd><p>Rotate all vertices around a given axis.</p>
+<p>For 2-D meshes the rotation is performed around the implicit z-axis,
+for 3-D meshes around <code class="docutils literal notranslate"><span class="pre">axis</span></code>.  A 4-D rotation happens inside a
+plane rather than around a single axis, so pass two linearly
+independent 4-D vectors as <code class="docutils literal notranslate"><span class="pre">axis</span></code> (for example
+<code class="docutils literal notranslate"><span class="pre">np.array([[0,</span> <span class="pre">0,</span> <span class="pre">0,</span> <span class="pre">1],</span> <span class="pre">[0,</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">0]])</span></code> rotates in the zw-plane).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>angle</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Rotation angle in radians.</p></li>
+<li><p><strong>axis</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span>) – Rotation axis (used for 3-D), or two vectors spanning the
+rotation plane (used for 4-D).</p></li>
+<li><p><strong>about_point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – If given, the rotation is performed around this point.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../exceptions.InvalidRequestException.html#manim_extensions.meshes.exceptions.InvalidRequestException" title="manim_extensions.meshes.exceptions.InvalidRequestException"><strong>InvalidRequestException</strong></a> – If the mesh dimension is above 4, or if the 4-D rotation plane is
+    not given by two linearly independent vectors.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh._rotation_plane_4d">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">_rotation_plane_4d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh._rotation_plane_4d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh._rotation_plane_4d" title="Link to this definition">¶</a></dt>
+<dd><p>Return an orthonormal basis of the 4-D rotation plane.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>axis</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></span>) – Two linearly independent 4-D vectors spanning the plane.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Two orthonormal 4-D basis vectors.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="../../exceptions.InvalidRequestException.html#manim_extensions.meshes.exceptions.InvalidRequestException" title="manim_extensions.meshes.exceptions.InvalidRequestException"><strong>InvalidRequestException</strong></a> – If the plane is not given by two non-zero, linearly independent
+    4-D vectors.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh._apply_rotation_4d">
+<span class="sig-name descname"><span class="pre">_apply_rotation_4d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh._apply_rotation_4d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh._apply_rotation_4d" title="Link to this definition">¶</a></dt>
+<dd><p>Rotate the 4-D vertices inside the plane spanned by <code class="docutils literal notranslate"><span class="pre">axis</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>angle</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Rotation angle in radians.</p></li>
+<li><p><strong>axis</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></span>) – Two linearly independent 4-D vectors spanning the plane.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.apply_flip">
+<span class="sig-name descname"><span class="pre">apply_flip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.array</span><span class="pre">([0,</span> <span class="pre">1,</span> <span class="pre">0])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">about_point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.apply_flip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.apply_flip" title="Link to this definition">¶</a></dt>
+<dd><p>Flip all vertices across the plane orthogonal to <code class="docutils literal notranslate"><span class="pre">axis</span></code>.</p>
+<p>This mirrors <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject.flip" title="(in Manim)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">flip()</span></code></a>, which is
+implemented as a rotation by <span class="math notranslate nohighlight">\(\pi\)</span> radians around <code class="docutils literal notranslate"><span class="pre">axis</span></code>.
+For 2-D meshes only the component of <code class="docutils literal notranslate"><span class="pre">axis</span></code> lying in the mesh
+plane is used, so flipping about an out-of-plane axis degenerates
+to a point reflection.  In 4-D the mesh is rotated by
+<span class="math notranslate nohighlight">\(\pi\)</span> around a 4-D <code class="docutils literal notranslate"><span class="pre">axis</span></code>, so the axis component is kept
+and the other three are negated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>axis</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span>) – Axis orthogonal to the mirror plane.</p></li>
+<li><p><strong>about_point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – If given, the flip is performed around this point.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../exceptions.InvalidRequestException.html#manim_extensions.meshes.exceptions.InvalidRequestException" title="manim_extensions.meshes.exceptions.InvalidRequestException"><strong>InvalidRequestException</strong></a> – If the mesh dimension is greater than 4.</p></li>
+<li><p><a class="reference internal" href="../../exceptions.InvalidMeshDimensionsException.html#manim_extensions.meshes.exceptions.InvalidMeshDimensionsException" title="manim_extensions.meshes.exceptions.InvalidMeshDimensionsException"><strong>InvalidMeshDimensionsException</strong></a> – If a 4-D mesh is flipped without a 4-D <code class="docutils literal notranslate"><span class="pre">axis</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.snap_to_grid">
+<span class="sig-name descname"><span class="pre">snap_to_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">grid_sizes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">steps</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">update_verts</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.snap_to_grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.snap_to_grid" title="Link to this definition">¶</a></dt>
+<dd><p>Snap vertices to grid positions when they are sufficiently close.</p>
+<p>For example, a value of <code class="docutils literal notranslate"><span class="pre">0.999</span></code> or <code class="docutils literal notranslate"><span class="pre">1.001</span></code> would be shifted
+towards <code class="docutils literal notranslate"><span class="pre">1.000</span></code> when the grid size is <code class="docutils literal notranslate"><span class="pre">1</span></code>, while <code class="docutils literal notranslate"><span class="pre">0.699</span></code>
+would <em>not</em> be shifted to <code class="docutils literal notranslate"><span class="pre">0.700</span></code> unless the grid size changes.
+To snap only one dimension, set the threshold to <code class="docutils literal notranslate"><span class="pre">0</span></code> on all
+other axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>grid_sizes</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#Ellipsis" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code></a>]</span>) – Grid resolution in every axis direction (length must equal
+<cite>dim</cite>).</p></li>
+<li><p><strong>threshold</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#Ellipsis" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code></a>]</span>) – Maximum allowed movement per axis to snap into the next grid
+position (length must equal <cite>dim</cite>).</p></li>
+<li><p><strong>steps</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Number of intermediate steps to the grid position (useful for
+animations).  Must be positive.</p></li>
+<li><p><strong>update_verts</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, <cite>_vertices</cite> is updated in-place and
+duplicates are removed.</p></li>
+<li><p><strong>precision</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Decimal places used for rounding the result.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Vertices" title="manim_extensions.meshes.types.Vertices"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vertices</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>New vertex positions after snapping.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="../../exceptions.InvalidMeshDimensionsException.html#manim_extensions.meshes.exceptions.InvalidMeshDimensionsException" title="manim_extensions.meshes.exceptions.InvalidMeshDimensionsException"><strong>InvalidMeshDimensionsException</strong></a> – If the lengths of <code class="docutils literal notranslate"><span class="pre">grid_sizes</span></code> or <code class="docutils literal notranslate"><span class="pre">threshold</span></code> do not match
+    the mesh dimension.</p></li>
+<li><p><a class="reference internal" href="../../exceptions.InvalidRequestException.html#manim_extensions.meshes.exceptions.InvalidRequestException" title="manim_extensions.meshes.exceptions.InvalidRequestException"><strong>InvalidRequestException</strong></a> – If <code class="docutils literal notranslate"><span class="pre">grid_sizes</span></code> contains non-positive values, any threshold
+    is <span class="math notranslate nohighlight">\(\geq\)</span> half the corresponding grid size, all thresholds are zero,
+    or <code class="docutils literal notranslate"><span class="pre">steps</span></code> is not positive.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicate_vertices">
+<span class="sig-name descname"><span class="pre">remove_duplicate_vertices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.remove_duplicate_vertices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicate_vertices" title="Link to this definition">¶</a></dt>
+<dd><p>Remove duplicate vertices and update all face references.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>precision</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Decimal places used when comparing vertices; i.e. equality up to <code class="docutils literal notranslate"><span class="pre">1e-10</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicate_faces">
+<span class="sig-name descname"><span class="pre">remove_duplicate_faces</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.remove_duplicate_faces"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicate_faces" title="Link to this definition">¶</a></dt>
+<dd><p>Remove duplicate faces and update part references.</p>
+<p>Faces are considered equal when their vertex indices match
+up to a cyclic permutation (rolling order), not necessarily
+at the exact same positions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicate_parts">
+<span class="sig-name descname"><span class="pre">remove_duplicate_parts</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.remove_duplicate_parts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicate_parts" title="Link to this definition">¶</a></dt>
+<dd><p>Remove duplicate parts from the mesh.</p>
+<p>Parts are considered equal when they contain the same face indices
+regardless of their order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicates">
+<span class="sig-name descname"><span class="pre">remove_duplicates</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.remove_duplicates"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicates" title="Link to this definition">¶</a></dt>
+<dd><p>Remove all duplicate vertices, faces and parts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>precision</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Decimal places passed to <a class="reference internal" href="mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicate_vertices" title="manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicate_vertices"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_duplicate_vertices()</span></code></a>
+.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh._face_edges">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">_face_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">face</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh._face_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh._face_edges" title="Link to this definition">¶</a></dt>
+<dd><p>Return the unique sorted edges of one face.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>face</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Face" title="manim_extensions.meshes.types.Face"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Face</span></code></a></span>) – Face whose consecutive vertex pairs are converted to edges.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Edge" title="manim_extensions.meshes.types.Edge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Edge</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The unique edges of the face, each sorted low-to-high.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh._register_face_edges">
+<span class="sig-name descname"><span class="pre">_register_face_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">face</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh._register_face_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh._register_face_edges" title="Link to this definition">¶</a></dt>
+<dd><p>Increment the reference count of every edge in a face.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>face</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Face" title="manim_extensions.meshes.types.Face"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Face</span></code></a></span>) – Face whose edges are added to the cache.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh._unregister_face_edges">
+<span class="sig-name descname"><span class="pre">_unregister_face_edges</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">face</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh._unregister_face_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh._unregister_face_edges" title="Link to this definition">¶</a></dt>
+<dd><p>Decrement the reference count of every edge in a face.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>face</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Face" title="manim_extensions.meshes.types.Face"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Face</span></code></a></span>) – Face whose edges are removed from the cache.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh._rebuild_edge_cache">
+<span class="sig-name descname"><span class="pre">_rebuild_edge_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh._rebuild_edge_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh._rebuild_edge_cache" title="Link to this definition">¶</a></dt>
+<dd><p>Rebuild the edge reference counts from all current faces.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.data_models.mesh.Mesh.extract_edges">
+<span class="sig-name descname"><span class="pre">extract_edges</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/data_models/mesh.html#Mesh.extract_edges"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.extract_edges" title="Link to this definition">¶</a></dt>
+<dd><p>returns all edges of the mesh as List of sorted 2-tuples of vertex indices, e.g. [(1,2), (2,3)].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../../index.html#manim_extensions.meshes.types.Edges" title="manim_extensions.meshes.types.Edges"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Edges</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>All edges of the mesh as a sorted list of 2-tuples of vertex indices.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>The manim-side renderers (<a class="reference internal" href="../manim_models/basic_mesh.ManimMesh.html#manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh" title="manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimMesh</span></code></a>, <a class="reference internal" href="../manim_models/basic_mesh.Manim2DMesh.html#manim_extensions.meshes.models.manim_models.basic_mesh.Manim2DMesh" title="manim_extensions.meshes.models.manim_models.basic_mesh.Manim2DMesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Manim2DMesh</span></code></a>, <a class="reference internal" href="../manim_models/triangle_mesh.TriangleManim2DMesh.html#manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh" title="manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">TriangleManim2DMesh</span></code></a>
@@ -1570,6 +2581,57 @@ this environment.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">mesh</a><ul>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh"><code class="docutils literal notranslate"><span class="pre">Mesh</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.__add__"><code class="docutils literal notranslate"><span class="pre">Mesh.__add__()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.__iadd__"><code class="docutils literal notranslate"><span class="pre">Mesh.__iadd__()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.__eq__"><code class="docutils literal notranslate"><span class="pre">Mesh.__eq__()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.__ne__"><code class="docutils literal notranslate"><span class="pre">Mesh.__ne__()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.vertices"><code class="docutils literal notranslate"><span class="pre">Mesh.vertices</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.faces"><code class="docutils literal notranslate"><span class="pre">Mesh.faces</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.parts"><code class="docutils literal notranslate"><span class="pre">Mesh.parts</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.edges"><code class="docutils literal notranslate"><span class="pre">Mesh.edges</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh._project_4d"><code class="docutils literal notranslate"><span class="pre">Mesh._project_4d()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.get_3d_vertices"><code class="docutils literal notranslate"><span class="pre">Mesh.get_3d_vertices()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.get_edge_index"><code class="docutils literal notranslate"><span class="pre">Mesh.get_edge_index()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.get_vertex_edges"><code class="docutils literal notranslate"><span class="pre">Mesh.get_vertex_edges()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.get_vertices_from_part_id"><code class="docutils literal notranslate"><span class="pre">Mesh.get_vertices_from_part_id()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.convert_vertices_to_3d"><code class="docutils literal notranslate"><span class="pre">Mesh.convert_vertices_to_3d()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.find_vertex"><code class="docutils literal notranslate"><span class="pre">Mesh.find_vertex()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.find_face"><code class="docutils literal notranslate"><span class="pre">Mesh.find_face()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.find_part"><code class="docutils literal notranslate"><span class="pre">Mesh.find_part()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.add_vertices"><code class="docutils literal notranslate"><span class="pre">Mesh.add_vertices()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.remove_vertices"><code class="docutils literal notranslate"><span class="pre">Mesh.remove_vertices()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.update_vertex"><code class="docutils literal notranslate"><span class="pre">Mesh.update_vertex()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.add_faces"><code class="docutils literal notranslate"><span class="pre">Mesh.add_faces()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.remove_faces"><code class="docutils literal notranslate"><span class="pre">Mesh.remove_faces()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.update_face"><code class="docutils literal notranslate"><span class="pre">Mesh.update_face()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.add_parts"><code class="docutils literal notranslate"><span class="pre">Mesh.add_parts()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.remove_parts"><code class="docutils literal notranslate"><span class="pre">Mesh.remove_parts()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.update_part"><code class="docutils literal notranslate"><span class="pre">Mesh.update_part()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.add_to_mesh"><code class="docutils literal notranslate"><span class="pre">Mesh.add_to_mesh()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.split_mesh_into_objects"><code class="docutils literal notranslate"><span class="pre">Mesh.split_mesh_into_objects()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.dangling_vert_check"><code class="docutils literal notranslate"><span class="pre">Mesh.dangling_vert_check()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.dangling_face_check"><code class="docutils literal notranslate"><span class="pre">Mesh.dangling_face_check()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.scale_mesh"><code class="docutils literal notranslate"><span class="pre">Mesh.scale_mesh()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.stretch_mesh"><code class="docutils literal notranslate"><span class="pre">Mesh.stretch_mesh()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.translate_mesh"><code class="docutils literal notranslate"><span class="pre">Mesh.translate_mesh()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.translate_vertex"><code class="docutils literal notranslate"><span class="pre">Mesh.translate_vertex()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.apply_rotation"><code class="docutils literal notranslate"><span class="pre">Mesh.apply_rotation()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh._rotation_plane_4d"><code class="docutils literal notranslate"><span class="pre">Mesh._rotation_plane_4d()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh._apply_rotation_4d"><code class="docutils literal notranslate"><span class="pre">Mesh._apply_rotation_4d()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.apply_flip"><code class="docutils literal notranslate"><span class="pre">Mesh.apply_flip()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.snap_to_grid"><code class="docutils literal notranslate"><span class="pre">Mesh.snap_to_grid()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicate_vertices"><code class="docutils literal notranslate"><span class="pre">Mesh.remove_duplicate_vertices()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicate_faces"><code class="docutils literal notranslate"><span class="pre">Mesh.remove_duplicate_faces()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicate_parts"><code class="docutils literal notranslate"><span class="pre">Mesh.remove_duplicate_parts()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicates"><code class="docutils literal notranslate"><span class="pre">Mesh.remove_duplicates()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh._face_edges"><code class="docutils literal notranslate"><span class="pre">Mesh._face_edges()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh._register_face_edges"><code class="docutils literal notranslate"><span class="pre">Mesh._register_face_edges()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh._unregister_face_edges"><code class="docutils literal notranslate"><span class="pre">Mesh._unregister_face_edges()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh._rebuild_edge_cache"><code class="docutils literal notranslate"><span class="pre">Mesh._rebuild_edge_cache()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.data_models.mesh.Mesh.extract_edges"><code class="docutils literal notranslate"><span class="pre">Mesh.extract_edges()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>
@@ -1589,6 +2651,7 @@ this environment.</p>
     <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../../_static/copybutton.js?v=61a6639c"></script>
     <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../../../_static/design-tabs.js?v=fcb327ea"></script>
+    <script defer="defer" src="../../../../_static/mathjax/tex-mml-svg.js?v=f093f569"></script>
     <script src="../../../../_static/responsiveSvg.js?v=f16afd2d"></script>
     <script src="../../../../_static/attributes-single.js?v=cee42560"></script>
     <script src="../../../../_static/icon_gallery.js?v=86f39e20"></script>

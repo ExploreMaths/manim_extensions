@@ -4,7 +4,7 @@
 VGearJoint
 ==========
 
-.. module:: manim_extensions.pymunk.constraints.VGearJoint
+.. automodule:: manim_extensions.pymunk.constraints.VGearJoint
 
 Classes
 -------

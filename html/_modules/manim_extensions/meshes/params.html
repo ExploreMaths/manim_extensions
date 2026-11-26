@@ -1563,6 +1563,8 @@
 
 
 
+<div class="viewcode-block" id="__getattr__">
+<a class="viewcode-back" href="../../../reference/meshes/params.html#manim_extensions.meshes.params.__getattr__">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="fm">__getattr__</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DefaultParameters</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Lazily provide ``OGLM`` without importing moderngl at module load.</span>
 
@@ -1584,7 +1586,8 @@
     <span class="c1"># module does not require the optional moderngl dependency.</span>
     <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">"OGLM"</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">_build_oglm</span><span class="p">()</span>
-    <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"module </span><span class="si">{</span><span class="vm">__name__</span><span class="si">!r}</span><span class="s2"> has no attribute </span><span class="si">{</span><span class="n">name</span><span class="si">!r}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"module </span><span class="si">{</span><span class="vm">__name__</span><span class="si">!r}</span><span class="s2"> has no attribute </span><span class="si">{</span><span class="n">name</span><span class="si">!r}</span><span class="s2">"</span><span class="p">)</span></div>
+
 
 
 <div class="viewcode-block" id="get_param_or_default">

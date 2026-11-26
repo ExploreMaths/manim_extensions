@@ -1491,6 +1491,269 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.automata.mobjects.manim_transition">
 <span id="manim-transition"></span><h1>manim_transition<a class="headerlink" href="#module-manim_extensions.automata.mobjects.manim_transition" title="Link to this heading">¶</a></h1>
+<p><a class="reference internal" href="automata_dependencies/transition.Transition.html#manim_extensions.automata.mobjects.automata_dependencies.transition.Transition" title="manim_extensions.automata.mobjects.automata_dependencies.transition.Transition"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transition</span></code></a> class for automata visualizations.</p>
+<p>This module provides transition visualization for automata.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_transition.ManimTransition">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.automata.mobjects.manim_transition.</span></span><span class="sig-name descname"><span class="pre">ManimTransition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transition_from</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transition_to</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">read_symbols</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent_automaton</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">animation_style</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_transition.html#ManimTransition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_transition.ManimTransition" title="Link to this definition">¶</a></dt>
+<dd><p>A visual transition arrow for automata diagrams.</p>
+<p>The object combines a Manim arrow with labels representing the read symbols
+of a finite-state transition.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>transition_from</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="manim_state.ManimState.html#manim_extensions.automata.mobjects.manim_state.ManimState" title="manim_extensions.automata.mobjects.manim_state.ManimState"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimState</span></code></a></span>) – <a class="reference internal" href="automata_dependencies/state.State.html#manim_extensions.automata.mobjects.automata_dependencies.state.State" title="manim_extensions.automata.mobjects.automata_dependencies.state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a> at which the transition starts.</p></li>
+<li><p><strong>transition_to</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="manim_state.ManimState.html#manim_extensions.automata.mobjects.manim_state.ManimState" title="manim_extensions.automata.mobjects.manim_state.ManimState"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimState</span></code></a></span>) – <a class="reference internal" href="automata_dependencies/state.State.html#manim_extensions.automata.mobjects.automata_dependencies.state.State" title="manim_extensions.automata.mobjects.automata_dependencies.state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a> at which the transition ends.</p></li>
+<li><p><strong>read_symbols</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – Symbols associated with the transition.</p></li>
+<li><p><strong>parent_automaton</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton" title="manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimAutomaton</span></code></a></span>) – Parent automaton owning the transition.</p></li>
+<li><p><strong>animation_style</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>]</span>) – Styling configuration used for animation playback.</p></li>
+<li><p><strong>font_size</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Font size for the read-symbol labels.</p></li>
+<li><p><strong>buffer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Spacing buffer for label positioning.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional parameters for <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="manimtransition" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ManimTransition <a class="headerlink" href="#manimtransition">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./ManimTransition-d76960d0.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.manim_animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimAnimations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ManimDeterministicFiniteAutomaton</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ManimTransition</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">dfa</span> <span class="o">=</span> <span class="n">ManimDeterministicFiniteAutomaton</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dfa</span><span class="p">)</span>
+        <span class="n">transition</span> <span class="o">=</span> <span class="n">dfa</span><span class="o">.</span><span class="n">transitions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">animations</span> <span class="o">=</span> <span class="n">ManimAnimations</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">animations</span><span class="o">.</span><span class="n">animate_highlight_transition</span><span class="p">(</span><span class="n">transition</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">animations</span><span class="o">.</span><span class="n">animate_transition_to_default_color</span><span class="p">(</span><span class="n">transition</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">transition</span><span class="o">.</span><span class="n">animate_transition</span><span class="p">(</span><span class="kc">True</span><span class="p">))</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_transition.ManimTransition.animate_transition">
+<span class="sig-name descname"><span class="pre">animate_transition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transition_result</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_transition.html#ManimTransition.animate_transition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_transition.ManimTransition.animate_transition" title="Link to this definition">¶</a></dt>
+<dd><p>Animate the transition using the configured style.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>transition_result</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether the transition is accepted by the automaton.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The animation of the transition arrow.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_transition.ManimTransition.calculate_circle_vertices">
+<span class="sig-name descname"><span class="pre">calculate_circle_vertices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_transition.html#ManimTransition.calculate_circle_vertices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_transition.ManimTransition.calculate_circle_vertices" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate two vertices on the source state’s circle for arrow endpoints.</p>
+<p>The vertices are placed at angles <span class="math notranslate nohighlight">\(\pi/4\)</span> and <span class="math notranslate nohighlight">\(3\pi/4\)</span>
+on the circle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>, <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The two vertex points <code class="docutils literal notranslate"><span class="pre">(p1,</span> <span class="pre">p2)</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_transition.ManimTransition.create_reflexive_arrow">
+<span class="sig-name descname"><span class="pre">create_reflexive_arrow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_transition.html#ManimTransition.create_reflexive_arrow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_transition.ManimTransition.create_reflexive_arrow" title="Link to this definition">¶</a></dt>
+<dd><p>Create a curved reflexive arrow from the source state back to itself.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>point1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Start point on the state circle.</p></li>
+<li><p><strong>point2</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – End point on the state circle.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_transition.ManimTransition.calculate_direction_of_arrow_label">
+<span class="sig-name descname"><span class="pre">calculate_direction_of_arrow_label</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">normal_vector_choice</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_transition.html#ManimTransition.calculate_direction_of_arrow_label"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_transition.ManimTransition.calculate_direction_of_arrow_label" title="Link to this definition">¶</a></dt>
+<dd><p>Return the normal direction used to offset the transition label.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>normal_vector_choice</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Side of the transition line on which the symbol label should be placed.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The normal direction used to offset the arrow label.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_transition.ManimTransition.position_text">
+<span class="sig-name descname"><span class="pre">position_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buffer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_transition.html#ManimTransition.position_text"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_transition.ManimTransition.position_text" title="Link to this definition">¶</a></dt>
+<dd><p>Place each read-symbol label next to the transition arrow.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>buffer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Padding distance used to separate multiple labels stacked around the arrow.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_transition.ManimTransition.convert_straight_arrow_to_curved_arrow">
+<span class="sig-name descname"><span class="pre">convert_straight_arrow_to_curved_arrow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_transition.html#ManimTransition.convert_straight_arrow_to_curved_arrow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_transition.ManimTransition.convert_straight_arrow_to_curved_arrow" title="Link to this definition">¶</a></dt>
+<dd><p>Converts a straight arrow transition to a curved arrow transition.
+This method is primarily used when there are two opposing transitions
+between two states.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_transition.ManimTransition.construct_curved_arrow">
+<span class="sig-name descname"><span class="pre">construct_curved_arrow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_transition.html#ManimTransition.construct_curved_arrow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_transition.ManimTransition.construct_curved_arrow" title="Link to this definition">¶</a></dt>
+<dd><p>Construct a curved arrow and position its read-symbol labels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>buffer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Extra offset applied to stacked labels near the arc.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_transition.ManimTransition.check_transition_read_symbols">
+<span class="sig-name descname"><span class="pre">check_transition_read_symbols</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_transition.html#ManimTransition.check_transition_read_symbols"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_transition.ManimTransition.check_transition_read_symbols" title="Link to this definition">¶</a></dt>
+<dd><p>Return whether the transition contains a read symbol matching the provided token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>token</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.text.tex_mobject.MathTex.html#manim.mobject.text.tex_mobject.MathTex" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MathTex</span></code></a></span>) – <a class="reference internal" href="manim_automaton_input.Token.html#manim_extensions.automata.mobjects.manim_automaton_input.Token" title="manim_extensions.automata.mobjects.manim_automaton_input.Token"><code class="xref py py-class docutils literal notranslate"><span class="pre">Token</span></code></a> whose LaTeX representation is compared against the transition labels.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether a read symbol matches the token.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_transition.ManimTransition.rotate_symbols_parallel_to_arrow">
+<span class="sig-name descname"><span class="pre">rotate_symbols_parallel_to_arrow</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_transition.html#ManimTransition.rotate_symbols_parallel_to_arrow"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_transition.ManimTransition.rotate_symbols_parallel_to_arrow" title="Link to this definition">¶</a></dt>
+<dd><p>Rotate all read symbols so they are aligned parallel to the arrow.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_transition.ManimTransition.calculate_slope_of_line">
+<span class="sig-name descname"><span class="pre">calculate_slope_of_line</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_transition.html#ManimTransition.calculate_slope_of_line"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_transition.ManimTransition.calculate_slope_of_line" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the slope of the arrow line.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The slope (<code class="docutils literal notranslate"><span class="pre">dy/dx</span></code>) of the arrow, or <code class="docutils literal notranslate"><span class="pre">0</span></code> if the arrow is
+degenerate (reflexive case).</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_transition.ManimPushDownAutomatonTransition">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.automata.mobjects.manim_transition.</span></span><span class="sig-name descname"><span class="pre">ManimPushDownAutomatonTransition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transition_from</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transition_to</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rules</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parent_automaton</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">animation_style</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_transition.html#ManimPushDownAutomatonTransition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_transition.ManimPushDownAutomatonTransition" title="Link to this definition">¶</a></dt>
+<dd><p>Visual transition arrow for pushdown automata.</p>
+<p>Extends <a class="reference internal" href="manim_transition.ManimTransition.html#manim_extensions.automata.mobjects.manim_transition.ManimTransition" title="manim_extensions.automata.mobjects.manim_transition.ManimTransition"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimTransition</span></code></a> to support stack-operation rules in
+addition to input symbols.  When the source and target states are
+identical, a reflexive loop is drawn; when a reverse transition already
+exists, both arrows are rendered as curved paths.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>transition_from</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="manim_state.ManimState.html#manim_extensions.automata.mobjects.manim_state.ManimState" title="manim_extensions.automata.mobjects.manim_state.ManimState"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimState</span></code></a></span>) – <a class="reference internal" href="../../circuit/utils.Source.html#manim_extensions.circuit.utils.Source" title="manim_extensions.circuit.utils.Source"><code class="xref py py-class docutils literal notranslate"><span class="pre">Source</span></code></a> state of the transition.</p></li>
+<li><p><strong>transition_to</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="manim_state.ManimState.html#manim_extensions.automata.mobjects.manim_state.ManimState" title="manim_extensions.automata.mobjects.manim_state.ManimState"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimState</span></code></a></span>) – Target state of the transition.</p></li>
+<li><p><strong>rules</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Pushdown automaton rules associated with this transition.</p></li>
+<li><p><strong>parent_automaton</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton" title="manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimAutomaton</span></code></a></span>) – The owning automaton instance.</p></li>
+<li><p><strong>animation_style</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>]</span>) – Animation configuration.</p></li>
+<li><p><strong>font_size</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Font size for the rule labels.</p></li>
+<li><p><strong>buffer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Spacing buffer for label positioning.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="manimpushdownautomatontransition" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ManimPushDownAutomatonTransition <a class="headerlink" href="#manimpushdownautomatontransition">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./ManimPushDownAutomatonTransition-35571672.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.manim_animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimAnimations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.manim_pushdown_automaton</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimPushDownAutomaton</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ManimPushDownAutomatonTransition</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pda</span> <span class="o">=</span> <span class="n">ManimPushDownAutomaton</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">pda</span><span class="p">)</span>
+        <span class="n">transition</span> <span class="o">=</span> <span class="n">pda</span><span class="o">.</span><span class="n">transitions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">animations</span> <span class="o">=</span> <span class="n">ManimAnimations</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">animations</span><span class="o">.</span><span class="n">animate_highlight_transition</span><span class="p">(</span><span class="n">transition</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">animations</span><span class="o">.</span><span class="n">animate_transition_to_default_color</span><span class="p">(</span><span class="n">transition</span><span class="p">))</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1566,6 +1829,24 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">manim_transition</a><ul>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_transition.ManimTransition"><code class="docutils literal notranslate"><span class="pre">ManimTransition</span></code></a><ul>
+
+
+
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_transition.ManimTransition.animate_transition"><code class="docutils literal notranslate"><span class="pre">ManimTransition.animate_transition()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_transition.ManimTransition.calculate_circle_vertices"><code class="docutils literal notranslate"><span class="pre">ManimTransition.calculate_circle_vertices()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_transition.ManimTransition.create_reflexive_arrow"><code class="docutils literal notranslate"><span class="pre">ManimTransition.create_reflexive_arrow()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_transition.ManimTransition.calculate_direction_of_arrow_label"><code class="docutils literal notranslate"><span class="pre">ManimTransition.calculate_direction_of_arrow_label()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_transition.ManimTransition.position_text"><code class="docutils literal notranslate"><span class="pre">ManimTransition.position_text()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_transition.ManimTransition.convert_straight_arrow_to_curved_arrow"><code class="docutils literal notranslate"><span class="pre">ManimTransition.convert_straight_arrow_to_curved_arrow()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_transition.ManimTransition.construct_curved_arrow"><code class="docutils literal notranslate"><span class="pre">ManimTransition.construct_curved_arrow()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_transition.ManimTransition.check_transition_read_symbols"><code class="docutils literal notranslate"><span class="pre">ManimTransition.check_transition_read_symbols()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_transition.ManimTransition.rotate_symbols_parallel_to_arrow"><code class="docutils literal notranslate"><span class="pre">ManimTransition.rotate_symbols_parallel_to_arrow()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_transition.ManimTransition.calculate_slope_of_line"><code class="docutils literal notranslate"><span class="pre">ManimTransition.calculate_slope_of_line()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_transition.ManimPushDownAutomatonTransition"><code class="docutils literal notranslate"><span class="pre">ManimPushDownAutomatonTransition</span></code></a>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>
@@ -1585,6 +1866,7 @@
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=61a6639c"></script>
     <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../../_static/design-tabs.js?v=fcb327ea"></script>
+    <script defer="defer" src="../../../_static/mathjax/tex-mml-svg.js?v=f093f569"></script>
     <script src="../../../_static/responsiveSvg.js?v=f16afd2d"></script>
     <script src="../../../_static/attributes-single.js?v=cee42560"></script>
     <script src="../../../_static/icon_gallery.js?v=86f39e20"></script>

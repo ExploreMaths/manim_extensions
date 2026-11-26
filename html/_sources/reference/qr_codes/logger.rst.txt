@@ -5,4 +5,4 @@ logger
 ======
 
 .. automodule:: manim_extensions.qr_codes.logger
-   :members:
+

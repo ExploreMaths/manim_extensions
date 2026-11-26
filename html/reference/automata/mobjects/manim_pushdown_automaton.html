@@ -1491,6 +1491,240 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.automata.mobjects.manim_pushdown_automaton">
 <span id="manim-pushdown-automaton"></span><h1>manim_pushdown_automaton<a class="headerlink" href="#module-manim_extensions.automata.mobjects.manim_pushdown_automaton" title="Link to this heading">¶</a></h1>
+<p>Contains pushdown automaton.</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_pushdown_automaton.pushdown_automaton_json">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.automata.mobjects.manim_pushdown_automaton.</span></span><span class="sig-name descname"><span class="pre">pushdown_automaton_json</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'structure':</span> <span class="pre">{'automaton':</span> <span class="pre">{'state':</span> <span class="pre">[{'&#64;id':</span> <span class="pre">'0',</span> <span class="pre">'&#64;name':</span> <span class="pre">'q0',</span> <span class="pre">'initial':</span> <span class="pre">None,</span> <span class="pre">'x':</span> <span class="pre">'84.0',</span> <span class="pre">'y':</span> <span class="pre">'122.0'},</span> <span class="pre">{'&#64;id':</span> <span class="pre">'1',</span> <span class="pre">'&#64;name':</span> <span class="pre">'q1',</span> <span class="pre">'x':</span> <span class="pre">'218.0',</span> <span class="pre">'y':</span> <span class="pre">'175.0'},</span> <span class="pre">{'&#64;id':</span> <span class="pre">'2',</span> <span class="pre">'&#64;name':</span> <span class="pre">'q2',</span> <span class="pre">'final':</span> <span class="pre">None,</span> <span class="pre">'x':</span> <span class="pre">'386.0',</span> <span class="pre">'y':</span> <span class="pre">'131.0'},</span> <span class="pre">{'&#64;id':</span> <span class="pre">'3',</span> <span class="pre">'&#64;name':</span> <span class="pre">'q3',</span> <span class="pre">'x':</span> <span class="pre">'227.0',</span> <span class="pre">'y':</span> <span class="pre">'36.0'}],</span> <span class="pre">'transition':</span> <span class="pre">[{'from':</span> <span class="pre">'0',</span> <span class="pre">'pop':</span> <span class="pre">'Z',</span> <span class="pre">'push':</span> <span class="pre">'XZ',</span> <span class="pre">'read':</span> <span class="pre">'0',</span> <span class="pre">'to':</span> <span class="pre">'1'},</span> <span class="pre">{'from':</span> <span class="pre">'0',</span> <span class="pre">'pop':</span> <span class="pre">'Z',</span> <span class="pre">'push':</span> <span class="pre">'XZ',</span> <span class="pre">'read':</span> <span class="pre">'1',</span> <span class="pre">'to':</span> <span class="pre">'1'},</span> <span class="pre">{'from':</span> <span class="pre">'2',</span> <span class="pre">'pop':</span> <span class="pre">'X',</span> <span class="pre">'push':</span> <span class="pre">'',</span> <span class="pre">'read':</span> <span class="pre">'0',</span> <span class="pre">'to':</span> <span class="pre">'3'},</span> <span class="pre">{'from':</span> <span class="pre">'1',</span> <span class="pre">'pop':</span> <span class="pre">'X',</span> <span class="pre">'push':</span> <span class="pre">'XX',</span> <span class="pre">'read':</span> <span class="pre">'1',</span> <span class="pre">'to':</span> <span class="pre">'2'},</span> <span class="pre">{'from':</span> <span class="pre">'3',</span> <span class="pre">'pop':</span> <span class="pre">'X',</span> <span class="pre">'push':</span> <span class="pre">'',</span> <span class="pre">'read':</span> <span class="pre">'1',</span> <span class="pre">'to':</span> <span class="pre">'0'},</span> <span class="pre">{'from':</span> <span class="pre">'3',</span> <span class="pre">'pop':</span> <span class="pre">'X',</span> <span class="pre">'push':</span> <span class="pre">'',</span> <span class="pre">'read':</span> <span class="pre">'0',</span> <span class="pre">'to':</span> <span class="pre">'0'}]},</span> <span class="pre">'type':</span> <span class="pre">'pda'}}</span></span><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_pushdown_automaton.pushdown_automaton_json" title="Link to this definition">¶</a></dt>
+<dd><p>Example pushdown automaton definition.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.automata.mobjects.manim_pushdown_automaton.</span></span><span class="sig-name descname"><span class="pre">ManimPushDownAutomaton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_template</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xml_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">camera_follow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">animation_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_pushdown_automaton.html#ManimPushDownAutomaton"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton" title="Link to this definition">¶</a></dt>
+<dd><p>Pushdown automaton that also tracks a stack during simulation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>json_template</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – JSON dictionary describing the automaton states and transitions.</p></li>
+<li><p><strong>xml_file</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Path to an XML file (e.g. JFLAP format) describing the automaton.</p></li>
+<li><p><strong>camera_follow</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the camera follows the active state during playback.</p></li>
+<li><p><strong>animation_style</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Style configuration for state and transition animations.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Key words arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="manimpushdownautomatonscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ManimPushDownAutomatonScene <a class="headerlink" href="#manimpushdownautomatonscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./ManimPushDownAutomatonScene-adb4eaef.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.manim_pushdown_automaton</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimPushDownAutomaton</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ManimPushDownAutomatonScene</span><span class="p">(</span><span class="n">MovingCameraScene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># build the PDA from the default JSON template</span>
+        <span class="n">pda</span> <span class="o">=</span> <span class="n">ManimPushDownAutomaton</span><span class="p">()</span>
+
+        <span class="c1"># Adjust camera frame to fit the automaton in the scene</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">frame_width</span> <span class="o">=</span> <span class="n">pda</span><span class="o">.</span><span class="n">width</span> <span class="o">+</span> <span class="mi">4</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">frame_height</span> <span class="o">=</span> <span class="n">pda</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mi">4</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">frame</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">pda</span><span class="p">)</span>
+
+        <span class="c1"># Create an mobject version of the input for the automaton</span>
+        <span class="n">automaton_input</span> <span class="o">=</span> <span class="n">pda</span><span class="o">.</span><span class="n">construct_automaton_input</span><span class="p">(</span><span class="s2">"01"</span><span class="p">)</span>
+        <span class="n">automaton_input</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">pda</span><span class="p">,</span> <span class="n">UP</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
+            <span class="n">DrawBorderThenFill</span><span class="p">(</span><span class="n">pda</span><span class="p">),</span>
+            <span class="n">FadeIn</span><span class="p">(</span><span class="n">automaton_input</span><span class="p">),</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Play all the animations generated from play_string()</span>
+        <span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">pda</span><span class="o">.</span><span class="n">play_string</span><span class="p">(</span><span class="n">automaton_input</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="o">*</span><span class="n">sequence</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+        <span class="c1"># the stack can also be manipulated directly</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">stack_label</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">Text</span><span class="p">(</span><span class="s2">"Stack: "</span> <span class="o">+</span> <span class="s2">" "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pda</span><span class="o">.</span><span class="n">stack</span><span class="p">),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">stack_label</span><span class="p">()</span><span class="o">.</span><span class="n">to_corner</span><span class="p">(</span><span class="n">UR</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">label</span><span class="p">))</span>
+        <span class="n">pda</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s2">"X"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Transform</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">stack_label</span><span class="p">()</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">label</span><span class="p">)))</span>
+        <span class="n">pda</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Transform</span><span class="p">(</span><span class="n">label</span><span class="p">,</span> <span class="n">stack_label</span><span class="p">()</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">label</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.construct_transitions">
+<span class="sig-name descname"><span class="pre">construct_transitions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transitions</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_pushdown_automaton.html#ManimPushDownAutomaton.construct_transitions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.construct_transitions" title="Link to this definition">¶</a></dt>
+<dd><p>Build pushdown-automaton transitions from XML or JSON definitions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>transitions</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>]]</span>) – <a class="reference internal" href="automata_dependencies/transition.Transition.html#manim_extensions.automata.mobjects.automata_dependencies.transition.Transition" title="manim_extensions.automata.mobjects.automata_dependencies.transition.Transition"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transition</span></code></a>s processed by this operation.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.construct_transition">
+<span class="sig-name descname"><span class="pre">construct_transition</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transition_from</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transition_to</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rules</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_pushdown_automaton.html#ManimPushDownAutomaton.construct_transition"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.construct_transition" title="Link to this definition">¶</a></dt>
+<dd><p>Create and attach a pushdown transition between two states.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>transition_from</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="manim_state.ManimState.html#manim_extensions.automata.mobjects.manim_state.ManimState" title="manim_extensions.automata.mobjects.manim_state.ManimState"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimState</span></code></a></span>) – Source state of the transition.</p></li>
+<li><p><strong>transition_to</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="manim_state.ManimState.html#manim_extensions.automata.mobjects.manim_state.ManimState" title="manim_extensions.automata.mobjects.manim_state.ManimState"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimState</span></code></a></span>) – Target state of the transition.</p></li>
+<li><p><strong>rules</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Pushdown rules (input symbol, pop symbol, push symbol)
+associated with this transition.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.push">
+<span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">push_item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_pushdown_automaton.html#ManimPushDownAutomaton.push"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.push" title="Link to this definition">¶</a></dt>
+<dd><p>Push a token onto the automaton stack.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>push_item</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Symbol to push onto the stack.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The stack contents after the push.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.pop">
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_pushdown_automaton.html#ManimPushDownAutomaton.pop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.pop" title="Link to this definition">¶</a></dt>
+<dd><p>Remove and return the top stack symbol.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The popped symbol, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if the stack is empty.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.play_string">
+<span class="sig-name descname"><span class="pre">play_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">automaton_path_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_pushdown_automaton.html#ManimPushDownAutomaton.play_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.play_string" title="Link to this definition">¶</a></dt>
+<dd><p>Animate the pushdown automaton processing an input string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <a class="reference internal" href="manim_automaton_input.ManimAutomataInput.html#manim_extensions.automata.mobjects.manim_automaton_input.ManimAutomataInput" title="manim_extensions.automata.mobjects.manim_automaton_input.ManimAutomataInput"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimAutomataInput</span></code></a></span>) – The input string or pre-constructed input mobject.</p></li>
+<li><p><strong>automaton_path_name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Optional path name for the automaton traversal.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>One entry per step; each entry is a list of animations that can
+be played with <code class="docutils literal notranslate"><span class="pre">self.play(*entry)</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.automaton_step">
+<span class="sig-name descname"><span class="pre">automaton_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_pointer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_pushdown_automaton.html#ManimPushDownAutomaton.automaton_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.automaton_step" title="Link to this definition">¶</a></dt>
+<dd><p>Perform one step of the pushdown automaton on the given token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>token</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The input token to process.</p></li>
+<li><p><strong>state_pointer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="automata_dependencies/state.State.html#manim_extensions.automata.mobjects.automata_dependencies.state.State" title="manim_extensions.automata.mobjects.automata_dependencies.state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a></span>) – The current state.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference internal" href="automata_dependencies/state.State.html#manim_extensions.automata.mobjects.automata_dependencies.state.State" title="manim_extensions.automata.mobjects.automata_dependencies.state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference internal" href="manim_transition.ManimTransition.html#manim_extensions.automata.mobjects.manim_transition.ManimTransition" title="manim_extensions.automata.mobjects.manim_transition.ManimTransition"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimTransition</span></code></a>]]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">(accepted,</span> <span class="pre">next_states,</span> <span class="pre">transitions)</span></code> indicating whether the
+token was accepted, the reachable next states, and the
+corresponding transitions.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_pushdown_automaton.PushDownAutomatonRule">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.automata.mobjects.manim_pushdown_automaton.</span></span><span class="sig-name descname"><span class="pre">PushDownAutomatonRule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">read_symbol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pop</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">push</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">empty_transition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'\\epsilon'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_pushdown_automaton.html#PushDownAutomatonRule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_pushdown_automaton.PushDownAutomatonRule" title="Link to this definition">¶</a></dt>
+<dd><p>A single pushdown-automaton transition rule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>read_symbol</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Input symbol consumed by this rule.</p></li>
+<li><p><strong>pop</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Symbol popped from the stack.</p></li>
+<li><p><strong>push</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Symbol pushed onto the stack.</p></li>
+<li><p><strong>empty_transition</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Symbol used when <code class="docutils literal notranslate"><span class="pre">read_symbol</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="pushdownautomatonrulescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: PushDownAutomatonRuleScene <a class="headerlink" href="#pushdownautomatonrulescene">¶</a></p><img alt="../../../_images/PushDownAutomatonRuleScene-707b616b.png" class="align-center" src="../../../_images/PushDownAutomatonRuleScene-707b616b.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.manim_pushdown_automaton</span><span class="w"> </span><span class="kn">import</span> <span class="n">PushDownAutomatonRule</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PushDownAutomatonRuleScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">rule</span> <span class="o">=</span> <span class="n">PushDownAutomatonRule</span><span class="p">(</span><span class="s2">"a"</span><span class="p">,</span> <span class="s2">"X"</span><span class="p">,</span> <span class="s2">"XY"</span><span class="p">)</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">arrow</span> <span class="o">=</span> <span class="n">Arrow</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">MathTex</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">rule</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+            <span class="n">start</span><span class="p">,</span>
+            <span class="n">end</span><span class="p">,</span>
+            <span class="n">arrow</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">arrow</span><span class="o">.</span><span class="n">get_center</span><span class="p">(),</span> <span class="n">UP</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.2</span><span class="p">),</span>
+        <span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_pushdown_automaton.PushDownAutomatonRule.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_pushdown_automaton.html#PushDownAutomatonRule.__str__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_pushdown_automaton.PushDownAutomatonRule.__str__" title="Link to this definition">¶</a></dt>
+<dd><p>Return the transition in read, pop, and push notation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The textual transition.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1509,8 +1743,8 @@
 <section id="constants">
 <h2>Constants<a class="headerlink" href="#constants" title="Link to this heading">¶</a></h2>
 <dl class="py data">
-<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_pushdown_automaton.pushdown_automaton_json">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.automata.mobjects.manim_pushdown_automaton.</span></span><span class="sig-name descname"><span class="pre">pushdown_automaton_json</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'structure':</span> <span class="pre">{'automaton':</span> <span class="pre">{'state':</span> <span class="pre">[{'&#64;id':</span> <span class="pre">'0',</span> <span class="pre">'&#64;name':</span> <span class="pre">'q0',</span> <span class="pre">'initial':</span> <span class="pre">None,</span> <span class="pre">'x':</span> <span class="pre">'84.0',</span> <span class="pre">'y':</span> <span class="pre">'122.0'},</span> <span class="pre">{'&#64;id':</span> <span class="pre">'1',</span> <span class="pre">'&#64;name':</span> <span class="pre">'q1',</span> <span class="pre">'x':</span> <span class="pre">'218.0',</span> <span class="pre">'y':</span> <span class="pre">'175.0'},</span> <span class="pre">{'&#64;id':</span> <span class="pre">'2',</span> <span class="pre">'&#64;name':</span> <span class="pre">'q2',</span> <span class="pre">'final':</span> <span class="pre">None,</span> <span class="pre">'x':</span> <span class="pre">'386.0',</span> <span class="pre">'y':</span> <span class="pre">'131.0'},</span> <span class="pre">{'&#64;id':</span> <span class="pre">'3',</span> <span class="pre">'&#64;name':</span> <span class="pre">'q3',</span> <span class="pre">'x':</span> <span class="pre">'227.0',</span> <span class="pre">'y':</span> <span class="pre">'36.0'}],</span> <span class="pre">'transition':</span> <span class="pre">[{'from':</span> <span class="pre">'0',</span> <span class="pre">'pop':</span> <span class="pre">'Z',</span> <span class="pre">'push':</span> <span class="pre">'XZ',</span> <span class="pre">'read':</span> <span class="pre">'0',</span> <span class="pre">'to':</span> <span class="pre">'1'},</span> <span class="pre">{'from':</span> <span class="pre">'0',</span> <span class="pre">'pop':</span> <span class="pre">'Z',</span> <span class="pre">'push':</span> <span class="pre">'XZ',</span> <span class="pre">'read':</span> <span class="pre">'1',</span> <span class="pre">'to':</span> <span class="pre">'1'},</span> <span class="pre">{'from':</span> <span class="pre">'2',</span> <span class="pre">'pop':</span> <span class="pre">'X',</span> <span class="pre">'push':</span> <span class="pre">'',</span> <span class="pre">'read':</span> <span class="pre">'0',</span> <span class="pre">'to':</span> <span class="pre">'3'},</span> <span class="pre">{'from':</span> <span class="pre">'1',</span> <span class="pre">'pop':</span> <span class="pre">'X',</span> <span class="pre">'push':</span> <span class="pre">'XX',</span> <span class="pre">'read':</span> <span class="pre">'1',</span> <span class="pre">'to':</span> <span class="pre">'2'},</span> <span class="pre">{'from':</span> <span class="pre">'3',</span> <span class="pre">'pop':</span> <span class="pre">'X',</span> <span class="pre">'push':</span> <span class="pre">'',</span> <span class="pre">'read':</span> <span class="pre">'1',</span> <span class="pre">'to':</span> <span class="pre">'0'},</span> <span class="pre">{'from':</span> <span class="pre">'3',</span> <span class="pre">'pop':</span> <span class="pre">'X',</span> <span class="pre">'push':</span> <span class="pre">'',</span> <span class="pre">'read':</span> <span class="pre">'0',</span> <span class="pre">'to':</span> <span class="pre">'0'}]},</span> <span class="pre">'type':</span> <span class="pre">'pda'}}</span></span><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_pushdown_automaton.pushdown_automaton_json" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.automata.mobjects.manim_pushdown_automaton.</span></span><span class="sig-name descname"><span class="pre">pushdown_automaton_json</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'structure':</span> <span class="pre">{'automaton':</span> <span class="pre">{'state':</span> <span class="pre">[{'&#64;id':</span> <span class="pre">'0',</span> <span class="pre">'&#64;name':</span> <span class="pre">'q0',</span> <span class="pre">'initial':</span> <span class="pre">None,</span> <span class="pre">'x':</span> <span class="pre">'84.0',</span> <span class="pre">'y':</span> <span class="pre">'122.0'},</span> <span class="pre">{'&#64;id':</span> <span class="pre">'1',</span> <span class="pre">'&#64;name':</span> <span class="pre">'q1',</span> <span class="pre">'x':</span> <span class="pre">'218.0',</span> <span class="pre">'y':</span> <span class="pre">'175.0'},</span> <span class="pre">{'&#64;id':</span> <span class="pre">'2',</span> <span class="pre">'&#64;name':</span> <span class="pre">'q2',</span> <span class="pre">'final':</span> <span class="pre">None,</span> <span class="pre">'x':</span> <span class="pre">'386.0',</span> <span class="pre">'y':</span> <span class="pre">'131.0'},</span> <span class="pre">{'&#64;id':</span> <span class="pre">'3',</span> <span class="pre">'&#64;name':</span> <span class="pre">'q3',</span> <span class="pre">'x':</span> <span class="pre">'227.0',</span> <span class="pre">'y':</span> <span class="pre">'36.0'}],</span> <span class="pre">'transition':</span> <span class="pre">[{'from':</span> <span class="pre">'0',</span> <span class="pre">'pop':</span> <span class="pre">'Z',</span> <span class="pre">'push':</span> <span class="pre">'XZ',</span> <span class="pre">'read':</span> <span class="pre">'0',</span> <span class="pre">'to':</span> <span class="pre">'1'},</span> <span class="pre">{'from':</span> <span class="pre">'0',</span> <span class="pre">'pop':</span> <span class="pre">'Z',</span> <span class="pre">'push':</span> <span class="pre">'XZ',</span> <span class="pre">'read':</span> <span class="pre">'1',</span> <span class="pre">'to':</span> <span class="pre">'1'},</span> <span class="pre">{'from':</span> <span class="pre">'2',</span> <span class="pre">'pop':</span> <span class="pre">'X',</span> <span class="pre">'push':</span> <span class="pre">'',</span> <span class="pre">'read':</span> <span class="pre">'0',</span> <span class="pre">'to':</span> <span class="pre">'3'},</span> <span class="pre">{'from':</span> <span class="pre">'1',</span> <span class="pre">'pop':</span> <span class="pre">'X',</span> <span class="pre">'push':</span> <span class="pre">'XX',</span> <span class="pre">'read':</span> <span class="pre">'1',</span> <span class="pre">'to':</span> <span class="pre">'2'},</span> <span class="pre">{'from':</span> <span class="pre">'3',</span> <span class="pre">'pop':</span> <span class="pre">'X',</span> <span class="pre">'push':</span> <span class="pre">'',</span> <span class="pre">'read':</span> <span class="pre">'1',</span> <span class="pre">'to':</span> <span class="pre">'0'},</span> <span class="pre">{'from':</span> <span class="pre">'3',</span> <span class="pre">'pop':</span> <span class="pre">'X',</span> <span class="pre">'push':</span> <span class="pre">'',</span> <span class="pre">'read':</span> <span class="pre">'0',</span> <span class="pre">'to':</span> <span class="pre">'0'}]},</span> <span class="pre">'type':</span> <span class="pre">'pda'}}</span></span><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
 <dd><p>Example pushdown automaton definition.</p>
 </dd></dl>
 
@@ -1575,9 +1809,27 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">manim_pushdown_automaton</a><ul>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_pushdown_automaton.pushdown_automaton_json"><code class="docutils literal notranslate"><span class="pre">pushdown_automaton_json</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton"><code class="docutils literal notranslate"><span class="pre">ManimPushDownAutomaton</span></code></a><ul>
+
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.construct_transitions"><code class="docutils literal notranslate"><span class="pre">ManimPushDownAutomaton.construct_transitions()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.construct_transition"><code class="docutils literal notranslate"><span class="pre">ManimPushDownAutomaton.construct_transition()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.push"><code class="docutils literal notranslate"><span class="pre">ManimPushDownAutomaton.push()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.pop"><code class="docutils literal notranslate"><span class="pre">ManimPushDownAutomaton.pop()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.play_string"><code class="docutils literal notranslate"><span class="pre">ManimPushDownAutomaton.play_string()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_pushdown_automaton.ManimPushDownAutomaton.automaton_step"><code class="docutils literal notranslate"><span class="pre">ManimPushDownAutomaton.automaton_step()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_pushdown_automaton.PushDownAutomatonRule"><code class="docutils literal notranslate"><span class="pre">PushDownAutomatonRule</span></code></a><ul>
+
+
+
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_pushdown_automaton.PushDownAutomatonRule.__str__"><code class="docutils literal notranslate"><span class="pre">PushDownAutomatonRule.__str__()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 <li><a class="reference internal" href="#constants">Constants</a><ul>
-<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_pushdown_automaton.pushdown_automaton_json"><code class="docutils literal notranslate"><span class="pre">pushdown_automaton_json</span></code></a></li>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">pushdown_automaton_json</span></code></a></li>
 </ul>
 </li>
 </ul>

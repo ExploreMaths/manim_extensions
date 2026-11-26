@@ -1530,7 +1530,7 @@
 
 
 <div class="viewcode-block" id="ManimAutomaton">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.ManimAutomaton">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">ManimAutomaton</span><span class="p">(</span><span class="n">FiniteStateAutomaton</span><span class="p">,</span> <span class="n">VGroup</span><span class="p">,</span> <span class="n">abc</span><span class="o">.</span><span class="n">ABC</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Graphical finite-state automaton for animating state transitions.</span>
 
@@ -1653,7 +1653,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">()</span>
 
 <div class="viewcode-block" id="ManimAutomaton.add_manim_state">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.add_manim_state">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.ManimAutomaton.add_manim_state">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_manim_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">manim_state</span><span class="p">:</span> <span class="n">ManimState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Add an existing :class:`~manim_extensions.automata.mobjects.manim_state.ManimState` mobject to the automaton's VGroup.</span>
 
@@ -1673,7 +1673,7 @@
 
 
 <div class="viewcode-block" id="ManimAutomaton.construct_state">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.construct_state">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.ManimAutomaton.construct_state">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">construct_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span> <span class="n">scaling</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create a :class:`~manim_extensions.automata.mobjects.manim_state.ManimState` from a state dict and append it to self.states.</span>
 
@@ -1718,7 +1718,7 @@
 
 
 <div class="viewcode-block" id="ManimAutomaton.construct_states">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.construct_states">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.ManimAutomaton.construct_states">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">construct_states</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">states</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build all :class:`~manim_extensions.automata.mobjects.manim_state.ManimState` objects from a list of state dicts with auto-scaling.</span>
 
@@ -1767,7 +1767,7 @@
 
 
 <div class="viewcode-block" id="ManimAutomaton.construct_transitions">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.construct_transitions">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.ManimAutomaton.construct_transitions">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">construct_transitions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">transitions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build :class:`~manim_extensions.automata.mobjects.manim_transition.ManimTransition` objects from transition dicts, grouping read symbols by state pair.</span>
 
@@ -1817,7 +1817,7 @@
 
 
 <div class="viewcode-block" id="ManimAutomaton.construct_transition">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.construct_transition">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.ManimAutomaton.construct_transition">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">construct_transition</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">transition_from</span><span class="p">:</span> <span class="n">ManimState</span><span class="p">,</span>
@@ -1853,7 +1853,7 @@
 
 
 <div class="viewcode-block" id="ManimAutomaton.construct_automaton_input">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.construct_automaton_input">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.ManimAutomaton.construct_automaton_input">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">construct_automaton_input</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_string</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ManimAutomataInput</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create a :class:`~manim_extensions.automata.mobjects.manim_automaton_input.ManimAutomataInput` mobject from an input string.</span>
 
@@ -1870,7 +1870,7 @@
 
 
 <div class="viewcode-block" id="ManimAutomaton.set_default_position_of_input_string">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.set_default_position_of_input_string">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.ManimAutomaton.set_default_position_of_input_string">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_default_position_of_input_string</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Position the input string mobject centered above the automaton.</span>
 
@@ -1887,7 +1887,7 @@
 
 
 <div class="viewcode-block" id="ManimAutomaton.check_automaton_result">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.check_automaton_result">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.ManimAutomaton.check_automaton_result">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">check_automaton_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state_pointers</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">State</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return True if any state in state_pointers is a final (accepting) state.</span>
 
@@ -1907,7 +1907,7 @@
 
 
 <div class="viewcode-block" id="ManimAutomaton.determine_input">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.determine_input">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.ManimAutomaton.determine_input">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">determine_input</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">ManimAutomataInput</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ManimAutomataInput</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
@@ -1934,7 +1934,7 @@
 
 
 <div class="viewcode-block" id="ManimAutomaton.run_sequence">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.run_sequence">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.ManimAutomaton.run_sequence">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">run_sequence</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">token</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">MathTex</span><span class="p">,</span>
@@ -2014,7 +2014,7 @@
 
 
 <div class="viewcode-block" id="ManimAutomaton.run_input_through_automaton">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.run_input_through_automaton">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.ManimAutomaton.run_input_through_automaton">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">run_input_through_automaton</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">ManimAutomataInput</span><span class="p">,</span> <span class="n">automaton_path_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
@@ -2096,7 +2096,7 @@
 
 
 <div class="viewcode-block" id="ManimAutomaton.generate_next_state_options">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.generate_next_state_options">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.ManimAutomaton.generate_next_state_options">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">generate_next_state_options</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">state_pointer</span><span class="p">:</span> <span class="n">State</span><span class="p">,</span>
@@ -2124,7 +2124,7 @@
 
 
 <div class="viewcode-block" id="ManimAutomaton.export_recorded_path_to_file">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.export_recorded_path_to_file">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.ManimAutomaton.export_recorded_path_to_file">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">export_recorded_path_to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Save the recorded NDA path as JSON to recorded_path.txt.</span>
 
@@ -2137,7 +2137,7 @@
 
 
 <div class="viewcode-block" id="ManimAutomaton.load_recorded_path_from_file">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.load_recorded_path_from_file">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.ManimAutomaton.load_recorded_path_from_file">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">load_recorded_path_from_file</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
@@ -2162,7 +2162,7 @@
 
 
 <div class="viewcode-block" id="ManimAutomaton.play_string">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.play_string">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.ManimAutomaton.play_string">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">play_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">input</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">ManimAutomataInput</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Run ``input`` through the automaton and return the animations.</span>
 
@@ -2208,7 +2208,7 @@
 
 
 <div class="viewcode-block" id="ManimAutomaton.generate_history_animations">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.generate_history_animations">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.ManimAutomaton.generate_history_animations">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">generate_history_animations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">history</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Given a history of events of each iteration of the input ran through the manim automaton,</span>
 <span class="sd">        generate all of the manim animations to visualise the process of the input going through the</span>
@@ -2271,7 +2271,7 @@
 
 
 <div class="viewcode-block" id="ManimAutomaton.animate_step_history">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.animate_step_history">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.ManimAutomaton.animate_step_history">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">animate_step_history</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">step_history</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Generate Manim animations for a single step's history entry.</span>
 
@@ -2304,7 +2304,7 @@
 
 
 <div class="viewcode-block" id="ManimAutomaton.highlight_initial_state">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.highlight_initial_state">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.ManimAutomaton.highlight_initial_state">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">highlight_initial_state</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">initial_state</span><span class="p">:</span> <span class="n">ManimState</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return animations to highlight the initial state and set its subscript to 1.</span>
 
@@ -2330,7 +2330,7 @@
 
 
 <div class="viewcode-block" id="ManimAutomaton.generate_accept_animations">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.generate_accept_animations">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.ManimAutomaton.generate_accept_animations">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">generate_accept_animations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return animations that transform the input text into green "ACCEPTED".</span>
 
@@ -2351,7 +2351,7 @@
 
 
 <div class="viewcode-block" id="ManimAutomaton.generate_reject_animations">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.generate_reject_animations">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.ManimAutomaton.generate_reject_animations">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">generate_reject_animations</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return animations that transform the input text into red "REJECTED".</span>
 
@@ -2372,7 +2372,7 @@
 
 
 <div class="viewcode-block" id="ManimAutomaton.step">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.step">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.ManimAutomaton.step">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">step</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">manim_transitions</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ManimTransition</span><span class="p">],</span>
@@ -2462,7 +2462,7 @@
 
 
 <div class="viewcode-block" id="ManimAutomaton.animate_subscripts">
-<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.animate_subscripts">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/automata/mobjects/manim_automaton.ManimAutomaton.html#manim_extensions.automata.ManimAutomaton.animate_subscripts">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">animate_subscripts</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">iteration_history</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>

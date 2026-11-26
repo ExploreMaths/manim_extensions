@@ -5,7 +5,7 @@
 basic_mesh
 ==========
 
-.. module:: manim_extensions.meshes.models.manim_models.basic_mesh
+.. automodule:: manim_extensions.meshes.models.manim_models.basic_mesh
 
 Classes
 -------

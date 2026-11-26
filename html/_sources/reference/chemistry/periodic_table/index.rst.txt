@@ -4,7 +4,7 @@
 periodic_table
 ==============
 
-.. module:: manim_extensions.chemistry.periodic_table
+.. automodule:: manim_extensions.chemistry.periodic_table
 
 Usage
 -----

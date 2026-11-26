@@ -4,7 +4,7 @@
 json_parser
 ===========
 
-.. module:: manim_extensions.chemistry.utils.parsers.json_parser
+.. automodule:: manim_extensions.chemistry.utils.parsers.json_parser
 
 Classes
 -------

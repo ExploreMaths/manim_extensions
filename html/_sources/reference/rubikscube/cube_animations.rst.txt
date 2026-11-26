@@ -5,7 +5,7 @@
 cube_animations
 ===============
 
-.. module:: manim_extensions.rubikscube.cube_animations
+.. automodule:: manim_extensions.rubikscube.cube_animations
 
 Classes
 -------

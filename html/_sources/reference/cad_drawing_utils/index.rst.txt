@@ -5,7 +5,7 @@
 CAD Drawing Utilities
 =====================
 
-.. module:: manim_extensions.cad_drawing_utils
+.. automodule:: manim_extensions.cad_drawing_utils
 
 .. vendored-status:: GarryBGoode/Manim_CAD_Drawing_utils
 

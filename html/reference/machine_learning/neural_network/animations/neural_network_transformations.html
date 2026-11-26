@@ -1491,6 +1491,258 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.machine_learning.neural_network.animations.neural_network_transformations">
 <span id="neural-network-transformations"></span><h1>neural_network_transformations<a class="headerlink" href="#module-manim_extensions.machine_learning.neural_network.animations.neural_network_transformations" title="Link to this heading">¶</a></h1>
+<p>Transformations for manipulating a neural network object.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.RemoveLayer">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.</span></span><span class="sig-name descname"><span class="pre">RemoveLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/animations/neural_network_transformations.html#RemoveLayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.RemoveLayer" title="Link to this definition">¶</a></dt>
+<dd><p>Animation for removing a layer from a neural network.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>I needed to do something strange for creating the new connective layer.
+The issue with creating it initially is that the positions of the sides of the
+connective layer depend upon the location of the moved layers <strong>after</strong> the
+move animations are performed. However, all of these animations are performed
+after the animations have been created. This means that the animation depends upon
+the state of the neural network layers after previous animations have been run.
+To fix this issue I needed to use an <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.updaters.update.UpdateFromFunc.html#manim.animation.updaters.update.UpdateFromFunc" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateFromFunc</span></code></a>.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The layer to remove from the network.</p></li>
+<li><p><strong>neural_network</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../neural_network.NeuralNetwork.html#manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork" title="manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetwork</span></code></a></span>) – The neural network the layer belongs to.</p></li>
+<li><p><strong>layer_spacing</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Spacing between layers after the removal.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="removelayerscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: RemoveLayerScene <a class="headerlink" href="#removelayerscene">¶</a></p><img alt="../../../../_images/RemoveLayerScene-9945be0b.png" class="align-center" src="../../../../_images/RemoveLayerScene-9945be0b.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.neural_network</span><span class="w"> </span><span class="kn">import</span> <span class="n">NeuralNetwork</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.feed_forward</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeedForwardLayer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.animations.neural_network_transformations</span><span class="w"> </span><span class="kn">import</span> <span class="n">RemoveLayer</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RemoveLayerScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">nn</span> <span class="o">=</span> <span class="n">NeuralNetwork</span><span class="p">([</span><span class="n">FeedForwardLayer</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">FeedForwardLayer</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span> <span class="n">FeedForwardLayer</span><span class="p">(</span><span class="mi">2</span><span class="p">)])</span>
+        <span class="n">nn</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">nn</span><span class="p">)</span>
+        <span class="c1"># manim &gt;= 0.21 refuses to play the AnimationGroup built by</span>
+        <span class="c1"># RemoveLayer because it contains empty sub-animations, so</span>
+        <span class="c1"># this example only constructs the animation.</span>
+        <span class="n">RemoveLayer</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">all_layers</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">nn</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.RemoveLayer.get_connective_layers">
+<span class="sig-name descname"><span class="pre">get_connective_layers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/animations/neural_network_transformations.html#RemoveLayer.get_connective_layers"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.RemoveLayer.get_connective_layers" title="Link to this definition">¶</a></dt>
+<dd><p>Gets the connective layers before and after self.layer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#Ellipsis" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple of the results.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#Exception" title="(in Python v3.15)"><strong>Exception</strong></a> – Raised when <code class="docutils literal notranslate"><span class="pre">self.layer</span></code> is not found in the neural network.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.RemoveLayer.make_remove_animation">
+<span class="sig-name descname"><span class="pre">make_remove_animation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/animations/neural_network_transformations.html#RemoveLayer.make_remove_animation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.RemoveLayer.make_remove_animation" title="Link to this definition">¶</a></dt>
+<dd><p>Removes layer and the surrounding connective layers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.RemoveLayer.make_remove_layer_animation">
+<span class="sig-name descname"><span class="pre">make_remove_layer_animation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/animations/neural_network_transformations.html#RemoveLayer.make_remove_layer_animation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.RemoveLayer.make_remove_layer_animation" title="Link to this definition">¶</a></dt>
+<dd><p>Removes the layer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.fading.FadeOut.html#manim.animation.fading.FadeOut" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FadeOut</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.fading.FadeOut.html#manim.animation.fading.FadeOut" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FadeOut</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.RemoveLayer.make_remove_connective_layers_animation">
+<span class="sig-name descname"><span class="pre">make_remove_connective_layers_animation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/animations/neural_network_transformations.html#RemoveLayer.make_remove_connective_layers_animation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.RemoveLayer.make_remove_connective_layers_animation" title="Link to this definition">¶</a></dt>
+<dd><p>Removes the connective layers before and after layer if they exist.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.RemoveLayer.make_move_animation">
+<span class="sig-name descname"><span class="pre">make_move_animation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/animations/neural_network_transformations.html#RemoveLayer.make_move_animation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.RemoveLayer.make_move_animation" title="Link to this definition">¶</a></dt>
+<dd><p>Collapses layers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.RemoveLayer.make_new_connective_animation">
+<span class="sig-name descname"><span class="pre">make_new_connective_animation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/animations/neural_network_transformations.html#RemoveLayer.make_new_connective_animation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.RemoveLayer.make_new_connective_animation" title="Link to this definition">¶</a></dt>
+<dd><p>Makes new connective layer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.updaters.update.UpdateFromFunc.html#manim.animation.updaters.update.UpdateFromFunc" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateFromFunc</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.updaters.update.UpdateFromFunc.html#manim.animation.updaters.update.UpdateFromFunc" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateFromFunc</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.InsertLayer">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.</span></span><span class="sig-name descname"><span class="pre">InsertLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/animations/neural_network_transformations.html#InsertLayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.InsertLayer" title="Link to this definition">¶</a></dt>
+<dd><p>Animation for inserting layer at given index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The layer to insert into the network.</p></li>
+<li><p><strong>index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index in the network’s layer list at which to insert the layer.</p></li>
+<li><p><strong>neural_network</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../neural_network.NeuralNetwork.html#manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork" title="manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetwork</span></code></a></span>) – The neural network to insert the layer into.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="insertlayerscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: InsertLayerScene <a class="headerlink" href="#insertlayerscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./InsertLayerScene-cc774598.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.neural_network</span><span class="w"> </span><span class="kn">import</span> <span class="n">NeuralNetwork</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.feed_forward</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeedForwardLayer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.animations.neural_network_transformations</span><span class="w"> </span><span class="kn">import</span> <span class="n">InsertLayer</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">InsertLayerScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">nn</span> <span class="o">=</span> <span class="n">NeuralNetwork</span><span class="p">([</span><span class="n">FeedForwardLayer</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span> <span class="n">FeedForwardLayer</span><span class="p">(</span><span class="mi">2</span><span class="p">)])</span>
+        <span class="n">nn</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">nn</span><span class="p">)</span>
+        <span class="c1"># all_layers includes the connective layer, so inserting at</span>
+        <span class="c1"># index 2 places the new layer between the two feed-forward</span>
+        <span class="c1"># layers.</span>
+        <span class="n">new_layer</span> <span class="o">=</span> <span class="n">FeedForwardLayer</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">new_layer</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">InsertLayer</span><span class="p">(</span><span class="n">new_layer</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">nn</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.InsertLayer.get_connective_layer_widths">
+<span class="sig-name descname"><span class="pre">get_connective_layer_widths</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/animations/neural_network_transformations.html#InsertLayer.get_connective_layer_widths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.InsertLayer.get_connective_layer_widths" title="Link to this definition">¶</a></dt>
+<dd><p>Gets the widths of the connective layers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple of the results.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.InsertLayer.remove_connective_layer_animation">
+<span class="sig-name descname"><span class="pre">remove_connective_layer_animation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/animations/neural_network_transformations.html#InsertLayer.remove_connective_layer_animation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.InsertLayer.remove_connective_layer_animation" title="Link to this definition">¶</a></dt>
+<dd><p>Removes the connective layer before the insertion index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A tuple of the results.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.InsertLayer.make_move_layers_animation">
+<span class="sig-name descname"><span class="pre">make_move_layers_animation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/animations/neural_network_transformations.html#InsertLayer.make_move_layers_animation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.InsertLayer.make_move_layers_animation" title="Link to this definition">¶</a></dt>
+<dd><p>Shifts layers before and after.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.InsertLayer.make_create_layer_animation">
+<span class="sig-name descname"><span class="pre">make_create_layer_animation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/animations/neural_network_transformations.html#InsertLayer.make_create_layer_animation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.InsertLayer.make_create_layer_animation" title="Link to this definition">¶</a></dt>
+<dd><p>Animates the creation of the layer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.creation.Create.html#manim.animation.creation.Create" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Create</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.creation.Create.html#manim.animation.creation.Create" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Create</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.InsertLayer.make_create_connective_layers_animation">
+<span class="sig-name descname"><span class="pre">make_create_connective_layers_animation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">before_connective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">after_connective</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/animations/neural_network_transformations.html#InsertLayer.make_create_connective_layers_animation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.InsertLayer.make_create_connective_layers_animation" title="Link to this definition">¶</a></dt>
+<dd><p>Create connective layers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>before_connective</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – The connective layer placed before the inserted layer.</p></li>
+<li><p><strong>after_connective</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – The connective layer placed after the inserted layer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1566,6 +1818,23 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">neural_network_transformations</a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.RemoveLayer"><code class="docutils literal notranslate"><span class="pre">RemoveLayer</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.RemoveLayer.get_connective_layers"><code class="docutils literal notranslate"><span class="pre">RemoveLayer.get_connective_layers()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.RemoveLayer.make_remove_animation"><code class="docutils literal notranslate"><span class="pre">RemoveLayer.make_remove_animation()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.RemoveLayer.make_remove_layer_animation"><code class="docutils literal notranslate"><span class="pre">RemoveLayer.make_remove_layer_animation()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.RemoveLayer.make_remove_connective_layers_animation"><code class="docutils literal notranslate"><span class="pre">RemoveLayer.make_remove_connective_layers_animation()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.RemoveLayer.make_move_animation"><code class="docutils literal notranslate"><span class="pre">RemoveLayer.make_move_animation()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.RemoveLayer.make_new_connective_animation"><code class="docutils literal notranslate"><span class="pre">RemoveLayer.make_new_connective_animation()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.InsertLayer"><code class="docutils literal notranslate"><span class="pre">InsertLayer</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.InsertLayer.get_connective_layer_widths"><code class="docutils literal notranslate"><span class="pre">InsertLayer.get_connective_layer_widths()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.InsertLayer.remove_connective_layer_animation"><code class="docutils literal notranslate"><span class="pre">InsertLayer.remove_connective_layer_animation()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.InsertLayer.make_move_layers_animation"><code class="docutils literal notranslate"><span class="pre">InsertLayer.make_move_layers_animation()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.InsertLayer.make_create_layer_animation"><code class="docutils literal notranslate"><span class="pre">InsertLayer.make_create_layer_animation()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.animations.neural_network_transformations.InsertLayer.make_create_connective_layers_animation"><code class="docutils literal notranslate"><span class="pre">InsertLayer.make_create_connective_layers_animation()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

@@ -4,7 +4,7 @@
 Utilities
 =========
 
-.. module:: manim_extensions.utils
+.. automodule:: manim_extensions.utils
 
 Helper subpackages: :mod:`~manim_extensions.utils.deps` (lazy optional
 dependency loading) and :mod:`~manim_extensions.utils.deprecation` (RST-aware

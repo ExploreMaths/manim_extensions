@@ -5,7 +5,7 @@
 animation_compass
 =================
 
-.. module:: manim_extensions.compass.animations.animation_compass
+.. automodule:: manim_extensions.compass.animations.animation_compass
 
 Classes
 -------

@@ -4,7 +4,7 @@
 Nerd Font Icons
 ===============
 
-.. module:: manim_extensions.nerdfont
+.. automodule:: manim_extensions.nerdfont
 
 .. vendored-status:: Alexander-Nasuta/manim-nerdfont-icons
 

@@ -4,7 +4,7 @@
 probability
 ===========
 
-.. module:: manim_extensions.machine_learning.utils.mobjects.probability
+.. automodule:: manim_extensions.machine_learning.utils.mobjects.probability
 
 Classes
 -------

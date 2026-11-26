@@ -5,7 +5,7 @@
 round_corners
 =============
 
-.. module:: manim_extensions.cad_drawing_utils.round_corners
+.. automodule:: manim_extensions.cad_drawing_utils.round_corners
 
 Functions
 ---------

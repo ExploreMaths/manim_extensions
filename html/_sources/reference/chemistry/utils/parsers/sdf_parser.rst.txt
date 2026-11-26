@@ -4,7 +4,7 @@
 sdf_parser
 ==========
 
-.. module:: manim_extensions.chemistry.utils.parsers.sdf_parser
+.. automodule:: manim_extensions.chemistry.utils.parsers.sdf_parser
 
 Classes
 -------

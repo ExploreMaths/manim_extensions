@@ -5,7 +5,7 @@
 node
 ====
 
-.. module:: manim_extensions.mindmap.nodes.node
+.. automodule:: manim_extensions.mindmap.nodes.node
 
 Classes
 -------

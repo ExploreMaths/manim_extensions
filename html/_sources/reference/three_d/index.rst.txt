@@ -5,7 +5,7 @@
 Three-Dimensional Surface Scenes
 ================================
 
-.. module:: manim_extensions.three_d
+.. automodule:: manim_extensions.three_d
 
 .. vendored-status:: FTZ-OPUS/manim-3d
 

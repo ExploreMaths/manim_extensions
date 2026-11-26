@@ -1533,7 +1533,7 @@
 
 
 <div class="viewcode-block" id="UpdateIndices">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.html#manim_extensions.data_structures.m_array.UpdateIndices">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.html#manim_extensions.data_structures.UpdateIndices">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">UpdateIndices</span><span class="p">(</span><span class="n">Protocol</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Callable protocol for the index-updating function returned by element removal.</span>
 
@@ -1571,7 +1571,7 @@
 <span class="sd">    """</span>
 
 <div class="viewcode-block" id="UpdateIndices.__call__">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.html#manim_extensions.data_structures.m_array.UpdateIndices.__call__">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.html#manim_extensions.data_structures.UpdateIndices.__call__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="fm">__call__</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">play_anim</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="o">...</span><span class="p">,</span> <span class="n">play_anim_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="o">...</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Animation</span><span class="p">]:</span>
@@ -1594,7 +1594,7 @@
 
 
 <div class="viewcode-block" id="MArrayElement">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.m_array.MArrayElement">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.MArrayElement">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">MArrayElement</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A class that represents an array element.</span>
 
@@ -1822,7 +1822,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__mob_label</span><span class="p">)</span>
 
 <div class="viewcode-block" id="MArrayElement.__deepcopy__">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.m_array.MArrayElement.__deepcopy__">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.MArrayElement.__deepcopy__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">"MArrayElement"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Deep-copy the object while excluding scene references.</span>
 
@@ -1874,7 +1874,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__init_mobs</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="n">next_to_mob</span><span class="p">,</span> <span class="n">next_to_dir</span><span class="p">)</span>
 
 <div class="viewcode-block" id="MArrayElement.fetch_mob_square">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.m_array.MArrayElement.fetch_mob_square">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.MArrayElement.fetch_mob_square">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">fetch_mob_square</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Square</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Fetches the square mobject.</span>
 
@@ -1887,7 +1887,7 @@
 
 
 <div class="viewcode-block" id="MArrayElement.fetch_mob_value">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.m_array.MArrayElement.fetch_mob_value">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.MArrayElement.fetch_mob_value">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">fetch_mob_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Text</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Fetches the value mobject.</span>
 
@@ -1900,7 +1900,7 @@
 
 
 <div class="viewcode-block" id="MArrayElement.fetch_mob_index">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.m_array.MArrayElement.fetch_mob_index">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.MArrayElement.fetch_mob_index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">fetch_mob_index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Text</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Fetches the index mobject.</span>
 
@@ -1913,7 +1913,7 @@
 
 
 <div class="viewcode-block" id="MArrayElement.fetch_mob_label">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.m_array.MArrayElement.fetch_mob_label">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.MArrayElement.fetch_mob_label">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">fetch_mob_label</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Text</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Fetches the label mobject.</span>
 
@@ -1926,7 +1926,7 @@
 
 
 <div class="viewcode-block" id="MArrayElement.fetch_mob">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.m_array.MArrayElement.fetch_mob">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.MArrayElement.fetch_mob">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">fetch_mob</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob_target</span><span class="p">:</span> <span class="n">MArrayElementComp</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mobject</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Fetches the mobject based on the specified enum.</span>
 
@@ -1953,7 +1953,7 @@
 
 
 <div class="viewcode-block" id="MArrayElement.update_mob_value">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.m_array.MArrayElement.update_mob_value">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.MArrayElement.update_mob_value">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">update_mob_value</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">mob_value_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{},</span>
@@ -1999,7 +1999,7 @@
 
 
 <div class="viewcode-block" id="MArrayElement.update_mob_index">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.m_array.MArrayElement.update_mob_index">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.MArrayElement.update_mob_index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">update_mob_index</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">mob_index_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{},</span>
@@ -2045,7 +2045,7 @@
 
 
 <div class="viewcode-block" id="MArrayElement.update_mob_label">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.m_array.MArrayElement.update_mob_label">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.MArrayElement.update_mob_label">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">update_mob_label</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">mob_label_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{},</span>
@@ -2091,7 +2091,7 @@
 
 
 <div class="viewcode-block" id="MArrayElement.animate_mob_square">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.m_array.MArrayElement.animate_mob_square">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.MArrayElement.animate_mob_square">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">animate_mob_square</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_AnimationBuilder</span> <span class="o">|</span> <span class="n">Square</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Invokes the animate property over square mobject.</span>
 
@@ -2104,7 +2104,7 @@
 
 
 <div class="viewcode-block" id="MArrayElement.animate_mob_value">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.m_array.MArrayElement.animate_mob_value">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.MArrayElement.animate_mob_value">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">animate_mob_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_AnimationBuilder</span> <span class="o">|</span> <span class="n">Text</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Invokes the animate property over value mobject.</span>
 
@@ -2117,7 +2117,7 @@
 
 
 <div class="viewcode-block" id="MArrayElement.animate_mob_index">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.m_array.MArrayElement.animate_mob_index">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.MArrayElement.animate_mob_index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">animate_mob_index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_AnimationBuilder</span> <span class="o">|</span> <span class="n">Text</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Invokes the animate property over index mobject.</span>
 
@@ -2130,7 +2130,7 @@
 
 
 <div class="viewcode-block" id="MArrayElement.animate_mob_label">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.m_array.MArrayElement.animate_mob_label">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayElement.html#manim_extensions.data_structures.MArrayElement.animate_mob_label">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">animate_mob_label</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_AnimationBuilder</span> <span class="o">|</span> <span class="n">Text</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Invokes the animate property over label mobject.</span>
 
@@ -2145,7 +2145,7 @@
 
 
 <div class="viewcode-block" id="MArray">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.m_array.MArray">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.MArray">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">MArray</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""A class that represents an array.</span>
 
@@ -2712,7 +2712,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__mob_arr_label</span><span class="p">)</span>
 
 <div class="viewcode-block" id="MArray.__deepcopy__">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.m_array.MArray.__deepcopy__">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.MArray.__deepcopy__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">"MArray"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Deep-copy the object while excluding scene references.</span>
 
@@ -2787,7 +2787,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__init_mobs</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 
 <div class="viewcode-block" id="MArray.fetch_arr">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.m_array.MArray.fetch_arr">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.MArray.fetch_arr">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">fetch_arr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">object</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Fetches the original array.</span>
 
@@ -2800,7 +2800,7 @@
 
 
 <div class="viewcode-block" id="MArray.fetch_mob_arr">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.m_array.MArray.fetch_mob_arr">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.MArray.fetch_mob_arr">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">fetch_mob_arr</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">MArrayElement</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Fetches the mobject array.</span>
 
@@ -2813,7 +2813,7 @@
 
 
 <div class="viewcode-block" id="MArray.fetch_mob_arr_label">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.m_array.MArray.fetch_mob_arr_label">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.MArray.fetch_mob_arr_label">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">fetch_mob_arr_label</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Text</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Fetches the label mobject of the array.</span>
 
@@ -2826,7 +2826,7 @@
 
 
 <div class="viewcode-block" id="MArray.fetch_arr_dir">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.m_array.MArray.fetch_arr_dir">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.MArray.fetch_arr_dir">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">fetch_arr_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">MArrayDirection</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Fetches the growth direction enum of the array.</span>
 
@@ -2839,7 +2839,7 @@
 
 
 <div class="viewcode-block" id="MArray.update_elem_value">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.m_array.MArray.update_elem_value">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.MArray.update_elem_value">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">update_elem_value</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -2890,7 +2890,7 @@
 
 
 <div class="viewcode-block" id="MArray.update_elem_index">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.m_array.MArray.update_elem_index">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.MArray.update_elem_index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">update_elem_index</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -2940,7 +2940,7 @@
 
 
 <div class="viewcode-block" id="MArray.update_mob_arr_label">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.m_array.MArray.update_mob_arr_label">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.MArray.update_mob_arr_label">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">update_mob_arr_label</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -2991,7 +2991,7 @@
 
 
 <div class="viewcode-block" id="MArray.animate_elem">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.m_array.MArray.animate_elem">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.MArray.animate_elem">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">animate_elem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_AnimationBuilder</span> <span class="o">|</span> <span class="n">MArrayElement</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Invokes the animate property over element mobject specified.</span>
 
@@ -3017,7 +3017,7 @@
 
 
 <div class="viewcode-block" id="MArray.animate_elem_square">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.m_array.MArray.animate_elem_square">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.MArray.animate_elem_square">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">animate_elem_square</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_AnimationBuilder</span> <span class="o">|</span> <span class="n">Square</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Invokes the animate property over square mobject of the specified element.</span>
 
@@ -3043,7 +3043,7 @@
 
 
 <div class="viewcode-block" id="MArray.animate_elem_value">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.m_array.MArray.animate_elem_value">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.MArray.animate_elem_value">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">animate_elem_value</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_AnimationBuilder</span> <span class="o">|</span> <span class="n">Text</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Invokes the animate property over value mobject of the specified element.</span>
 
@@ -3069,7 +3069,7 @@
 
 
 <div class="viewcode-block" id="MArray.animate_elem_index">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.m_array.MArray.animate_elem_index">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.MArray.animate_elem_index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">animate_elem_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_AnimationBuilder</span> <span class="o">|</span> <span class="n">Text</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Invokes the animate property over index mobject of the specified element.</span>
 
@@ -3095,7 +3095,7 @@
 
 
 <div class="viewcode-block" id="MArray.append_elem">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.m_array.MArray.append_elem">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.MArray.append_elem">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">append_elem</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">value</span><span class="p">:</span> <span class="nb">object</span><span class="p">,</span>
@@ -3155,7 +3155,7 @@
 
 
 <div class="viewcode-block" id="MArray.remove_elem">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.m_array.MArray.remove_elem">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArray.html#manim_extensions.data_structures.MArray.remove_elem">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">remove_elem</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
@@ -3228,7 +3228,7 @@
 
 
 <div class="viewcode-block" id="MArrayPointer">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.m_array.MArrayPointer">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.MArrayPointer">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">MArrayPointer</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""A class that represents a pointer.</span>
 
@@ -3322,7 +3322,7 @@
     <span class="n">__updater_pos</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Mobject</span><span class="p">],</span> <span class="kc">None</span><span class="p">]</span>
 
 <div class="viewcode-block" id="MArrayPointer.DirEntry">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.m_array.MArrayPointer.DirEntry">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.MArrayPointer.DirEntry">[docs]</a>
     <span class="k">class</span><span class="w"> </span><span class="nc">DirEntry</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""Vector and animation direction used when placing an array element.</span>
 
@@ -3562,7 +3562,7 @@
         <span class="p">)</span>
 
 <div class="viewcode-block" id="MArrayPointer.__deepcopy__">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.m_array.MArrayPointer.__deepcopy__">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.MArrayPointer.__deepcopy__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">"MArrayPointer"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Deep-copy the object while excluding scene references.</span>
 
@@ -3615,7 +3615,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__add_updater</span><span class="p">()</span>
 
 <div class="viewcode-block" id="MArrayPointer.fetch_mob_arrow">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.m_array.MArrayPointer.fetch_mob_arrow">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.MArrayPointer.fetch_mob_arrow">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">fetch_mob_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Arrow</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Fetches the arrow mobject of the pointer.</span>
 
@@ -3628,7 +3628,7 @@
 
 
 <div class="viewcode-block" id="MArrayPointer.fetch_mob_label">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.m_array.MArrayPointer.fetch_mob_label">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.MArrayPointer.fetch_mob_label">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">fetch_mob_label</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Text</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Fetches the label mobject of the pointer.</span>
 
@@ -3641,7 +3641,7 @@
 
 
 <div class="viewcode-block" id="MArrayPointer.fetch_index">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.m_array.MArrayPointer.fetch_index">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.MArrayPointer.fetch_index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">fetch_index</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Fetches the index that the pointer is attached to.</span>
 
@@ -3654,7 +3654,7 @@
 
 
 <div class="viewcode-block" id="MArrayPointer.update_mob_label">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.m_array.MArrayPointer.update_mob_label">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.MArrayPointer.update_mob_label">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">update_mob_label</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -3705,7 +3705,7 @@
 
 
 <div class="viewcode-block" id="MArrayPointer.animate_mob_arrow">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.m_array.MArrayPointer.animate_mob_arrow">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.MArrayPointer.animate_mob_arrow">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">animate_mob_arrow</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_AnimationBuilder</span> <span class="o">|</span> <span class="n">Arrow</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Invokes the animate property over arrow mobject.</span>
 
@@ -3718,7 +3718,7 @@
 
 
 <div class="viewcode-block" id="MArrayPointer.animate_mob_label">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.m_array.MArrayPointer.animate_mob_label">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.MArrayPointer.animate_mob_label">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">animate_mob_label</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_AnimationBuilder</span> <span class="o">|</span> <span class="n">Text</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Invokes the animate property over label mobject.</span>
 
@@ -3731,7 +3731,7 @@
 
 
 <div class="viewcode-block" id="MArrayPointer.shift_to_elem">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.m_array.MArrayPointer.shift_to_elem">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.MArrayPointer.shift_to_elem">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shift_to_elem</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">play_anim</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">play_anim_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ApplyMethod</span><span class="p">:</span>
@@ -3771,7 +3771,7 @@
 
 
 <div class="viewcode-block" id="MArrayPointer.attach_to_elem">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.m_array.MArrayPointer.attach_to_elem">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArrayPointer.html#manim_extensions.data_structures.MArrayPointer.attach_to_elem">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">attach_to_elem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Attaches pointer to the specified element.</span>
 
@@ -3796,7 +3796,7 @@
 
 
 <div class="viewcode-block" id="MArraySlidingWindow">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.m_array.MArraySlidingWindow">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.MArraySlidingWindow">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">MArraySlidingWindow</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""A class that represents a sliding window.</span>
 
@@ -3883,7 +3883,7 @@
 <span class="sd">    """</span>
 
 <div class="viewcode-block" id="MArraySlidingWindow.DirEntry">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.m_array.MArraySlidingWindow.DirEntry">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.MArraySlidingWindow.DirEntry">[docs]</a>
     <span class="k">class</span><span class="w"> </span><span class="nc">DirEntry</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">"""Vector and animation direction used when placing an array element.</span>
 
@@ -4150,7 +4150,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__pos_mobs</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">)</span>
 
 <div class="viewcode-block" id="MArraySlidingWindow.__deepcopy__">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.m_array.MArraySlidingWindow.__deepcopy__">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.MArraySlidingWindow.__deepcopy__">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Mobject</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">"MArraySlidingWindow"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Deep-copy the object while excluding scene references.</span>
 
@@ -4200,7 +4200,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">__add_updater</span><span class="p">()</span>
 
 <div class="viewcode-block" id="MArraySlidingWindow.fetch_mob_window">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.m_array.MArraySlidingWindow.fetch_mob_window">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.MArraySlidingWindow.fetch_mob_window">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">fetch_mob_window</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Rectangle</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Fetches the window mobject of the sliding window.</span>
 
@@ -4213,7 +4213,7 @@
 
 
 <div class="viewcode-block" id="MArraySlidingWindow.fetch_mob_label">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.m_array.MArraySlidingWindow.fetch_mob_label">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.MArraySlidingWindow.fetch_mob_label">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">fetch_mob_label</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Text</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Fetches the label mobject of the sliding window.</span>
 
@@ -4226,7 +4226,7 @@
 
 
 <div class="viewcode-block" id="MArraySlidingWindow.update_mob_label">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.m_array.MArraySlidingWindow.update_mob_label">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.MArraySlidingWindow.update_mob_label">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">update_mob_label</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">label</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -4277,7 +4277,7 @@
 
 
 <div class="viewcode-block" id="MArraySlidingWindow.animate_mob_window">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.m_array.MArraySlidingWindow.animate_mob_window">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.MArraySlidingWindow.animate_mob_window">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">animate_mob_window</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_AnimationBuilder</span> <span class="o">|</span> <span class="n">Rectangle</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Invokes the animate property over window mobject.</span>
 
@@ -4290,7 +4290,7 @@
 
 
 <div class="viewcode-block" id="MArraySlidingWindow.animate_mob_label">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.m_array.MArraySlidingWindow.animate_mob_label">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.MArraySlidingWindow.animate_mob_label">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">animate_mob_label</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_AnimationBuilder</span> <span class="o">|</span> <span class="n">Text</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Invokes the animate property over label mobject.</span>
 
@@ -4303,7 +4303,7 @@
 
 
 <div class="viewcode-block" id="MArraySlidingWindow.shift_to_elem">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.m_array.MArraySlidingWindow.shift_to_elem">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.MArraySlidingWindow.shift_to_elem">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shift_to_elem</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">play_anim</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">play_anim_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ApplyFunction</span><span class="p">:</span>
@@ -4339,7 +4339,7 @@
 
 
 <div class="viewcode-block" id="MArraySlidingWindow.attach_to_elem">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.m_array.MArraySlidingWindow.attach_to_elem">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.MArraySlidingWindow.attach_to_elem">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">attach_to_elem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Attaches pointer to the specified element.</span>
 
@@ -4365,7 +4365,7 @@
 
 
 <div class="viewcode-block" id="MArraySlidingWindow.resize_window">
-<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.m_array.MArraySlidingWindow.resize_window">[docs]</a>
+<a class="viewcode-back" href="../../../reference/data_structures/m_array.MArraySlidingWindow.html#manim_extensions.data_structures.MArraySlidingWindow.resize_window">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">resize_window</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">play_anim</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">play_anim_args</span><span class="p">:</span> <span class="n">MobProps</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ApplyFunction</span><span class="p">:</span>

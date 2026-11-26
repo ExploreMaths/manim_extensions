@@ -1491,12 +1491,78 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.machine_learning">
 <span id="machine-learning"></span><h1>Machine Learning<a class="headerlink" href="#module-manim_extensions.machine_learning" title="Link to this heading">¶</a></h1>
+<p>Machine learning visualizations for Manim.</p>
+<p>This module provides various machine learning related visualizations
+including neural networks, decision trees, and diffusion models.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.ManimMLConfig">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.</span></span><span class="sig-name descname"><span class="pre">ManimMLConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">default_color_scheme</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="utils/colorschemes/colorschemes.html#id0"><span class="pre">dark_mode</span></a></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/machine_learning.html#ManimMLConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.ManimMLConfig" title="Link to this definition">¶</a></dt>
+<dd><p>Global configuration for the machine learning visualizations.</p>
+<p>Holds the active <a class="reference internal" href="utils/colorschemes/colorschemes.ColorScheme.html#manim_extensions.machine_learning.utils.colorschemes.colorschemes.ColorScheme" title="manim_extensions.machine_learning.utils.colorschemes.colorschemes.ColorScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">ColorScheme</span></code></a> and the default 3D camera
+orientation used by neural-network scenes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>default_color_scheme</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="utils/colorschemes/colorschemes.ColorScheme.html#manim_extensions.machine_learning.utils.colorschemes.colorschemes.ColorScheme" title="manim_extensions.machine_learning.utils.colorschemes.colorschemes.ColorScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">ColorScheme</span></code></a></span>) – Colour scheme applied to the machine learning visualisations.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="manimmlconfigoverview" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ManimMLConfigOverview <a class="headerlink" href="#manimmlconfigoverview">¶</a></p><img alt="../../_images/ManimMLConfigOverview-96076caa.png" class="align-center" src="../../_images/ManimMLConfigOverview-96076caa.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimMLConfig</span>
+
+<span class="n">ManimMLConfigTarget</span> <span class="o">=</span> <span class="n">ManimMLConfig</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ManimMLConfigOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">ManimMLConfigTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
+        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'ManimMLConfig'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.machine_learning'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'Global configuration for the machine learning visualizations'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimMLConfig</span>
+
+<span class="n">config</span> <span class="o">=</span> <span class="n">ManimMLConfig</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="py property">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.ManimMLConfig.color_scheme">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">color_scheme</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="utils/colorschemes/colorschemes.ColorScheme.html#manim_extensions.machine_learning.utils.colorschemes.colorschemes.ColorScheme" title="manim_extensions.machine_learning.utils.colorschemes.colorschemes.ColorScheme"><span class="pre">ColorScheme</span></a></span><a class="headerlink" href="#manim_extensions.machine_learning.ManimMLConfig.color_scheme" title="Link to this definition">¶</a></dt>
+<dd><p>Return the active color scheme.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The scheme currently applied to the config.</p>
+</dd>
+<dt class="field-even">Setter accepts<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="utils/colorschemes/colorschemes.ColorScheme.html#manim_extensions.machine_learning.utils.colorschemes.colorschemes.ColorScheme" title="manim_extensions.machine_learning.utils.colorschemes.colorschemes.ColorScheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">ColorScheme</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.config">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.</span></span><span class="sig-name descname"><span class="pre">config</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;</span><a class="reference internal" href="index.html#manim_extensions.machine_learning.ManimMLConfig"><span class="pre">manim_extensions.machine_learning.ManimMLConfig</span></a> <span class="pre">object&gt;</span></span><a class="headerlink" href="#manim_extensions.machine_learning.config" title="Link to this definition">¶</a></dt>
+<dd><p>Shared ManimML configuration singleton exposed from the package namespace.</p>
+</dd></dl>
+
 <div class="vendored-status note admonition">
 <p class="admonition-title">Vendoring status: <code class="docutils literal notranslate"><span class="pre">ManimML</span></code></p>
 <ul class="simple">
 <li><p>Vendored copy: synced at <code class="docutils literal notranslate"><span class="pre">5e8f7cb69f23919f9ec7e880fb22c1ca2f841c08</span></code>.</p></li>
 <li><p>Currently vendored upstream commit: <a class="literal reference external" href="https://github.com/helblazer811/ManimML/commit/5e8f7cb69f23919f9ec7e880fb22c1ca2f841c08">5e8f7cb</a> (2023-11-04).</p></li>
-<li><p>Upstream data cached on 2026-11-26 11:45 (UTC+8).</p></li>
+<li><p>Upstream data cached on 2026-11-26 13:58 (UTC+8).</p></li>
 <li><p>Latest upstream release: <code class="docutils literal notranslate"><span class="pre">v0.0.20</span></code> (2023-03-22).</p></li>
 <li><p>The vendored copy is up to date with upstream.</p></li>
 </ul>
@@ -1530,7 +1596,7 @@ and more.</p></li>
 – decision-tree diagram from a scikit-learn tree.</p></li>
 <li><p><a class="reference internal" href="decision_tree/decision_tree_embedding.DecisionTreeEmbedding.html#manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding" title="manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding"><code class="xref py py-class docutils literal notranslate"><span class="pre">DecisionTreeEmbedding</span></code></a>
 – dataset points on axes together with the decision areas of the tree.</p></li>
-<li><p><a class="reference internal" href="ManimMLConfig.html#manim_extensions.machine_learning.ManimMLConfig" title="manim_extensions.machine_learning.ManimMLConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimMLConfig</span></code></a> – global
+<li><p><a class="reference internal" href="#manim_extensions.machine_learning.ManimMLConfig" title="manim_extensions.machine_learning.ManimMLConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimMLConfig</span></code></a> – global
 colour-scheme and 3-D rotation configuration.</p></li>
 <li><p>Most neural-network layers and <a class="reference internal" href="neural_network/neural_network.NeuralNetwork.html#manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork" title="manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetwork</span></code></a>
 itself are importable from a single namespace,
@@ -1751,7 +1817,7 @@ maps:</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">make_forward_pass_animation</span><span class="p">())</span>
 </pre></div>
 </div>
-<p>References: <a class="reference internal" href="neural_network/layers/convolutional_2d.Convolutional2DLayer.html#manim_extensions.machine_learning.neural_network.layers.convolutional_2d.Convolutional2DLayer" title="manim_extensions.machine_learning.neural_network.layers.convolutional_2d.Convolutional2DLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Convolutional2DLayer</span></code></a> <a class="reference internal" href="neural_network/layers/max_pooling_2d.MaxPooling2DLayer.html#manim_extensions.machine_learning.neural_network.layers.max_pooling_2d.MaxPooling2DLayer" title="manim_extensions.machine_learning.neural_network.layers.max_pooling_2d.MaxPooling2DLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">MaxPooling2DLayer</span></code></a> <a class="reference internal" href="neural_network/neural_network.NeuralNetwork.html#manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork" title="manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetwork</span></code></a></p>
+<p>References: <a class="reference internal" href="neural_network/layers/convolutional_2d.Convolutional2DLayer.html#manim_extensions.machine_learning.neural_network.layers.convolutional_2d.Convolutional2DLayer" title="manim_extensions.machine_learning.neural_network.layers.convolutional_2d.Convolutional2DLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Convolutional2DLayer</span></code></a> <a class="reference internal" href="neural_network/layers/index.html#manim_extensions.machine_learning.neural_network.layers.MaxPooling2DLayer" title="manim_extensions.machine_learning.neural_network.layers.MaxPooling2DLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">MaxPooling2DLayer</span></code></a> <a class="reference internal" href="neural_network/neural_network.NeuralNetwork.html#manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork" title="manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetwork</span></code></a></p>
 </div></section>
 <section id="activation-functions">
 <h3>Activation functions<a class="headerlink" href="#activation-functions" title="Link to this heading">¶</a></h3>
@@ -1794,7 +1860,7 @@ maps:</p>
 </div></section>
 <section id="dropout">
 <h3>Dropout<a class="headerlink" href="#dropout" title="Link to this heading">¶</a></h3>
-<p><a class="reference internal" href="neural_network/animations/dropout.html#manim_extensions.machine_learning.neural_network.animations.dropout.make_neural_network_dropout_animation" title="manim_extensions.machine_learning.neural_network.animations.dropout.make_neural_network_dropout_animation"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_neural_network_dropout_animation()</span></code></a>
+<p><a class="reference internal" href="neural_network/animations/dropout.html#id3" title="manim_extensions.machine_learning.neural_network.animations.dropout.make_neural_network_dropout_animation"><code class="xref py py-func docutils literal notranslate"><span class="pre">make_neural_network_dropout_animation()</span></code></a>
 drops feed-forward-layer nodes, optionally runs the forward pass, and then
 reverts the network to its pre-dropout appearance:</p>
 <div id="dropoutscene" class="admonition admonition-manim-example">
@@ -1843,8 +1909,8 @@ reverts the network to its pre-dropout appearance:</p>
 </div></section>
 <section id="style-and-configuration">
 <h3>Style and configuration<a class="headerlink" href="#style-and-configuration" title="Link to this heading">¶</a></h3>
-<p><a class="reference internal" href="ManimMLConfig.html#manim_extensions.machine_learning.ManimMLConfig" title="manim_extensions.machine_learning.ManimMLConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimMLConfig</span></code></a> holds the active
-colour scheme (<a class="reference internal" href="utils/colorschemes/colorschemes.html#manim_extensions.machine_learning.utils.colorschemes.colorschemes.dark_mode" title="manim_extensions.machine_learning.utils.colorschemes.colorschemes.dark_mode"><code class="xref py py-data docutils literal notranslate"><span class="pre">dark_mode</span></code></a> / <a class="reference internal" href="utils/colorschemes/colorschemes.html#manim_extensions.machine_learning.utils.colorschemes.colorschemes.light_mode" title="manim_extensions.machine_learning.utils.colorschemes.colorschemes.light_mode"><code class="xref py py-data docutils literal notranslate"><span class="pre">light_mode</span></code></a>) and the default 3-D camera
+<p><a class="reference internal" href="#manim_extensions.machine_learning.ManimMLConfig" title="manim_extensions.machine_learning.ManimMLConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimMLConfig</span></code></a> holds the active
+colour scheme (<a class="reference internal" href="utils/colorschemes/colorschemes.html#id0" title="manim_extensions.machine_learning.utils.colorschemes.colorschemes.dark_mode"><code class="xref py py-data docutils literal notranslate"><span class="pre">dark_mode</span></code></a> / <a class="reference internal" href="utils/colorschemes/colorschemes.html#id1" title="manim_extensions.machine_learning.utils.colorschemes.colorschemes.light_mode"><code class="xref py py-data docutils literal notranslate"><span class="pre">light_mode</span></code></a>) and the default 3-D camera
 orientation used by neural-network scenes. Layer styling parameters such as
 node radius, node spacing, and colours are set on the layer constructors.
 Upstream design notes describe each layer as owning its visual content; more
@@ -1883,7 +1949,7 @@ examples.</p>
 <div class="table-wrapper autosummary longtable docutils container">
 <table class="autosummary longtable docutils align-default">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="ManimMLConfig.html#manim_extensions.machine_learning.ManimMLConfig" title="manim_extensions.machine_learning.ManimMLConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ManimMLConfig</span></code></a></p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#manim_extensions.machine_learning.ManimMLConfig" title="manim_extensions.machine_learning.ManimMLConfig"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ManimMLConfig</span></code></a></p></td>
 <td><p>Global configuration for the machine learning visualizations.</p></td>
 </tr>
 </tbody>
@@ -1950,6 +2016,11 @@ examples.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Machine Learning</a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.ManimMLConfig"><code class="docutils literal notranslate"><span class="pre">ManimMLConfig</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.ManimMLConfig.color_scheme"><code class="docutils literal notranslate"><span class="pre">ManimMLConfig.color_scheme</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.config"><code class="docutils literal notranslate"><span class="pre">config</span></code></a></li>
 <li><a class="reference internal" href="#features">Features</a></li>
 <li><a class="reference internal" href="#usage">Usage</a><ul>
 <li><a class="reference internal" href="#feed-forward-networks">Feed-forward networks</a></li>

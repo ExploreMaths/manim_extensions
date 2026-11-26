@@ -5,7 +5,7 @@
 Sequence diagram
 ================
 
-.. module:: manim_extensions.sequence_diagram
+.. automodule:: manim_extensions.sequence_diagram
 
 .. vendored-status:: foxnewsnetwork/manim-sequence-diagram
 

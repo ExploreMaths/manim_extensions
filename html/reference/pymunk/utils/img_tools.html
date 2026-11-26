@@ -1491,8 +1491,9 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.pymunk.utils.img_tools">
 <span id="img-tools"></span><h1>img_tools<a class="headerlink" href="#module-manim_extensions.pymunk.utils.img_tools" title="Link to this heading">¶</a></h1>
-<section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<p>Image-to-shape utilities for Pymunk physics.</p>
+<p>This module provides functions for converting images into Pymunk collision
+shapes. Both transparent-background and solid-color images are handled.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.pymunk.utils.img_tools.get_normalized_convex_polygons">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.pymunk.utils.img_tools.</span></span><span class="sig-name descname"><span class="pre">get_normalized_convex_polygons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pixel_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_px_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_cell_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_manim_w</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_manim_h</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">14.22</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/utils/img_tools.html#get_normalized_convex_polygons"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.pymunk.utils.img_tools.get_normalized_convex_polygons" title="Link to this definition">¶</a></dt>
@@ -1539,6 +1540,76 @@ list of vertex coordinates.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.pymunk.utils.img_tools.map_polygons_to_manim">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.pymunk.utils.img_tools.</span></span><span class="sig-name descname"><span class="pre">map_polygons_to_manim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">polygons</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_px_w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_px_h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_manim_w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_manim_h</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/utils/img_tools.html#map_polygons_to_manim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.pymunk.utils.img_tools.map_polygons_to_manim" title="Link to this definition">¶</a></dt>
+<dd><p>Map pixel-coordinate polygons into Manim coordinates.</p>
+<p>Performs the coordinate transform from image pixel space into Manim’s
+Cartesian scene coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>polygons</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]]</span>) – List of polygons in pixel coordinates.</p></li>
+<li><p><strong>img_px_w</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Image width in pixels.</p></li>
+<li><p><strong>img_px_h</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Image height in pixels.</p></li>
+<li><p><strong>img_manim_w</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Manim frame width.</p></li>
+<li><p><strong>img_manim_h</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Manim frame height.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of polygons in Manim coordinates.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.pymunk.utils.img_tools.</span></span><span class="sig-name descname"><span class="pre">get_normalized_convex_polygons</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pixel_array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">base_px_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">512</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_cell_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_manim_w</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_manim_h</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">14.22</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/utils/img_tools.html#get_normalized_convex_polygons"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dd><p>Extract normalized convex polygons from a pixel array.</p>
+<p>Uses the marching-squares algorithm with convex decomposition to extract
+collision-ready convex polygons from an image. Automatically distinguishes
+transparent-background from solid-color images.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pixel_array</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int64" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int64</span></code></a>]</span>) – Input image pixel array of shape <code class="docutils literal notranslate"><span class="pre">[H,</span> <span class="pre">W,</span> <span class="pre">C]</span></code>.</p></li>
+<li><p><strong>base_px_width</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – <dl class="simple">
+<dt>Base width for downsampling.</dt><dd><p>Controls sampling precision.</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>target_cell_size</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – <dl class="simple">
+<dt>Target cell size for the marching-squares grid.</dt><dd><p>Controls grid density.</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>img_manim_w</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – <dl class="simple">
+<dt>Manim frame width.</dt><dd><p>Used for coordinate mapping.</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>img_manim_h</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – <dl class="simple">
+<dt>Manim frame height.</dt><dd><p>Used for coordinate mapping.</p>
+</dd>
+</dl>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of convex polygons in Manim coordinates, each polygon being a
+list of vertex coordinates.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.pymunk.utils.img_tools.</span></span><span class="sig-name descname"><span class="pre">map_polygons_to_manim</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">polygons</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_px_w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_px_h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_manim_w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">img_manim_h</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/utils/img_tools.html#map_polygons_to_manim"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
 <dd><p>Map pixel-coordinate polygons into Manim coordinates.</p>
 <p>Performs the coordinate transform from image pixel space into Manim’s
 Cartesian scene coordinates.</p>
@@ -1620,9 +1691,11 @@ Cartesian scene coordinates.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">img_tools</a><ul>
-<li><a class="reference internal" href="#functions">Functions</a><ul>
 <li><a class="reference internal" href="#manim_extensions.pymunk.utils.img_tools.get_normalized_convex_polygons"><code class="docutils literal notranslate"><span class="pre">get_normalized_convex_polygons()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.pymunk.utils.img_tools.map_polygons_to_manim"><code class="docutils literal notranslate"><span class="pre">map_polygons_to_manim()</span></code></a></li>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">get_normalized_convex_polygons()</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">map_polygons_to_manim()</span></code></a></li>
 </ul>
 </li>
 </ul>

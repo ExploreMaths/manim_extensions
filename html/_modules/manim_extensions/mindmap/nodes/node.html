@@ -1519,7 +1519,7 @@
 
 
 <div class="viewcode-block" id="NodeState">
-<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.NodeState.html#manim_extensions.mindmap.nodes.node.NodeState">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.NodeState.html#manim_extensions.mindmap.NodeState">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NodeState</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">""":class:`~manim_extensions.mindmap.nodes.node.Node` state.</span>
 
@@ -1562,7 +1562,7 @@
 
 
 <div class="viewcode-block" id="NodeStyle">
-<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.NodeStyle.html#manim_extensions.mindmap.nodes.node.NodeStyle">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.NodeStyle.html#manim_extensions.mindmap.NodeStyle">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NodeStyle</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Overall layout parameters and a list of node-style dicts indexed by node level.</span>
 
@@ -1641,7 +1641,7 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">text_num</span> <span class="o">=</span> <span class="mi">1</span>
 
 <div class="viewcode-block" id="NodeStyle.get_node_style">
-<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.NodeStyle.html#manim_extensions.mindmap.nodes.node.NodeStyle.get_node_style">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.NodeStyle.html#manim_extensions.mindmap.NodeStyle.get_node_style">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_node_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return the box style configured for a hierarchy level.</span>
 
@@ -1661,7 +1661,7 @@
 
 
 <div class="viewcode-block" id="NodeStyle.get_line_style">
-<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.NodeStyle.html#manim_extensions.mindmap.nodes.node.NodeStyle.get_line_style">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.NodeStyle.html#manim_extensions.mindmap.NodeStyle.get_line_style">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_line_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return the line style for the requested hierarchy level.</span>
 
@@ -1681,7 +1681,7 @@
 
 
 <div class="viewcode-block" id="NodeStyle.get_text_style">
-<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.NodeStyle.html#manim_extensions.mindmap.nodes.node.NodeStyle.get_text_style">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.NodeStyle.html#manim_extensions.mindmap.NodeStyle.get_text_style">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_text_style</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">level</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return the text style for the requested hierarchy level.</span>
 
@@ -1703,7 +1703,7 @@
 
 
 <div class="viewcode-block" id="dfs_walker">
-<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.html#manim_extensions.mindmap.nodes.node.dfs_walker">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.html#manim_extensions.mindmap.dfs_walker">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">dfs_walker</span><span class="p">(</span><span class="n">root</span><span class="p">:</span> <span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="s2">"Node"</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">"""Yield the tree in depth-first pre-order using a stack.</span>
 
@@ -1728,7 +1728,7 @@
 
 
 <div class="viewcode-block" id="bfs_walker">
-<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.html#manim_extensions.mindmap.nodes.node.bfs_walker">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.html#manim_extensions.mindmap.bfs_walker">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">bfs_walker</span><span class="p">(</span><span class="n">root</span><span class="p">:</span> <span class="n">Node</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Generator</span><span class="p">[</span><span class="s2">"Node"</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">"""Yield the tree in breadth-first level order using a queue.</span>
 
@@ -1753,7 +1753,7 @@
 
 
 <div class="viewcode-block" id="Node">
-<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.Node">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Node</span><span class="p">:</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""Tree-node class.</span>
 
@@ -1826,7 +1826,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">connector_style</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="Node.scale">
-<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.scale">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.Node.scale">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">scale</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale_factor</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Scale the node around its current center.</span>
 
@@ -1847,7 +1847,7 @@
 
 
 <div class="viewcode-block" id="Node.add_child">
-<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.add_child">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.Node.add_child">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">:</span> <span class="s2">"Node"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Attach a child node to the current node.</span>
 
@@ -1869,7 +1869,7 @@
 
 
 <div class="viewcode-block" id="Node.remove_child">
-<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.remove_child">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.Node.remove_child">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">remove_child</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">child</span><span class="p">:</span> <span class="s2">"Node"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Mark a child node for removal from the current node.</span>
 
@@ -1894,7 +1894,7 @@
 
 
 <div class="viewcode-block" id="Node.alter_content">
-<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.alter_content">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.Node.alter_content">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">alter_content</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vmobject</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Replace the displayed content of the node.</span>
 
@@ -1915,7 +1915,7 @@
 
 
 <div class="viewcode-block" id="Node._get_mindmap_connector">
-<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node._get_mindmap_connector">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.Node._get_mindmap_connector">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_mindmap_connector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Line</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the connector line for a mind-map node.</span>
 
@@ -1952,7 +1952,7 @@
 
 
 <div class="viewcode-block" id="Node._get_timeline_connector">
-<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node._get_timeline_connector">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.Node._get_timeline_connector">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_timeline_connector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Line</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the connector line for a timeline node.</span>
 
@@ -1993,7 +1993,7 @@
 
 
 <div class="viewcode-block" id="Node._get_catalog_connector">
-<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node._get_catalog_connector">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.Node._get_catalog_connector">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_catalog_connector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Line</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the connector line for a catalog node.</span>
 
@@ -2029,7 +2029,7 @@
 
 
 <div class="viewcode-block" id="Node.get_connector">
-<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.get_connector">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.Node.get_connector">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_connector</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">layout_type</span><span class="p">:</span> <span class="n">LayoutType</span><span class="p">,</span>
@@ -2066,7 +2066,7 @@
 
 
 <div class="viewcode-block" id="Node.set_connector">
-<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.set_connector">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.Node.set_connector">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_connector</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">layout_type</span><span class="p">:</span> <span class="n">LayoutType</span><span class="p">,</span> <span class="n">direction</span><span class="p">:</span> <span class="n">Vector3D</span> <span class="o">=</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
@@ -2095,7 +2095,7 @@
 
 
 <div class="viewcode-block" id="Node.change_connector">
-<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.change_connector">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.Node.change_connector">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">change_connector</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">change_dir</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span>
@@ -2138,7 +2138,7 @@
 
 
 <div class="viewcode-block" id="Node.get_node_and_line_without_updater">
-<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.get_node_and_line_without_updater">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.Node.get_node_and_line_without_updater">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_node_and_line_without_updater</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Group</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the node and its connector, removing the connector updater.</span>
 
@@ -2156,7 +2156,7 @@
 
 
 <div class="viewcode-block" id="Node.get_children">
-<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.get_children">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.Node.get_children">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_children</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"list[Node]"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the direct children of this node.</span>
 
@@ -2168,7 +2168,7 @@
 
 
 <div class="viewcode-block" id="Node.get_descendants">
-<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.get_descendants">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.Node.get_descendants">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_descendants</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"list[Node]"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return all descendants of this node in depth-first order.</span>
 
@@ -2201,7 +2201,7 @@
 
 
 <div class="viewcode-block" id="Node.get_children_mobjects">
-<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.get_children_mobjects">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.Node.get_children_mobjects">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_children_mobjects</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Group</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return mobjects for all child nodes.</span>
 
@@ -2216,7 +2216,7 @@
 
 
 <div class="viewcode-block" id="Node.get_descendants_mobjects">
-<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.get_descendants_mobjects">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.Node.get_descendants_mobjects">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_descendants_mobjects</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Group</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return mobjects for all descendant nodes.</span>
 
@@ -2251,7 +2251,7 @@
 
 
 <div class="viewcode-block" id="Node.get_root">
-<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node.get_root">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/mindmap/nodes/node.Node.html#manim_extensions.mindmap.Node.get_root">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_root</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"Node"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the root of the tree containing this node.</span>
 

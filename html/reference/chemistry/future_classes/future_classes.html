@@ -1491,50 +1491,527 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.chemistry.future_classes.future_classes">
 <span id="future-classes"></span><h1>future_classes<a class="headerlink" href="#module-manim_extensions.chemistry.future_classes.future_classes" title="Link to this heading">¶</a></h1>
-<section id="classes">
-<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
-<div class="table-wrapper autosummary longtable docutils container">
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="future_classes.BatterySchema.html#manim_extensions.chemistry.future_classes.future_classes.BatterySchema" title="manim_extensions.chemistry.future_classes.future_classes.BatterySchema"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BatterySchema</span></code></a></p></td>
-<td><p>A battery schema attached to a mobject.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="future_classes.BatterySide.html#manim_extensions.chemistry.future_classes.future_classes.BatterySide" title="manim_extensions.chemistry.future_classes.future_classes.BatterySide"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BatterySide</span></code></a></p></td>
-<td><p>A line connecting a battery terminal to an anchor mobject.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="future_classes.ConcatenatedMobjects.html#manim_extensions.chemistry.future_classes.future_classes.ConcatenatedMobjects" title="manim_extensions.chemistry.future_classes.future_classes.ConcatenatedMobjects"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConcatenatedMobjects</span></code></a></p></td>
-<td><p>Copies of a mobject concatenated left and right.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="future_classes.DuplicatedAlongLine.html#manim_extensions.chemistry.future_classes.future_classes.DuplicatedAlongLine" title="manim_extensions.chemistry.future_classes.future_classes.DuplicatedAlongLine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DuplicatedAlongLine</span></code></a></p></td>
-<td><p>Copies of a mobject evenly spaced along a one-dimensional boundary.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="future_classes.Electron.html#manim_extensions.chemistry.future_classes.future_classes.Electron" title="manim_extensions.chemistry.future_classes.future_classes.Electron"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Electron</span></code></a></p></td>
-<td><p>A filled circle representing an electron.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="future_classes.Element.html#manim_extensions.chemistry.future_classes.future_classes.Element" title="manim_extensions.chemistry.future_classes.future_classes.Element"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Element</span></code></a></p></td>
-<td><p>A chemical element with a labeled central atom surrounded by electrons and holes.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="future_classes.ElementFrame.html#manim_extensions.chemistry.future_classes.future_classes.ElementFrame" title="manim_extensions.chemistry.future_classes.future_classes.ElementFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ElementFrame</span></code></a></p></td>
-<td><p>A frame displaying an element symbol and its name.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="future_classes.Hole.html#manim_extensions.chemistry.future_classes.future_classes.Hole" title="manim_extensions.chemistry.future_classes.future_classes.Hole"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Hole</span></code></a></p></td>
-<td><p>A dashed circle representing a hole (absence of an electron).</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="future_classes.MOSFETTransistor.html#manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor" title="manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MOSFETTransistor</span></code></a></p></td>
-<td><p>A MOSFET transistor diagram with optional holes and battery.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="future_classes.NPNTransistor.html#manim_extensions.chemistry.future_classes.future_classes.NPNTransistor" title="manim_extensions.chemistry.future_classes.future_classes.NPNTransistor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NPNTransistor</span></code></a></p></td>
-<td><p>An NPN transistor diagram with n and p regions, electrons and holes.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="future_classes.ScatteredCopies.html#manim_extensions.chemistry.future_classes.future_classes.ScatteredCopies" title="manim_extensions.chemistry.future_classes.future_classes.ScatteredCopies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ScatteredCopies</span></code></a></p></td>
-<td><p>Randomly distributed copies of a mobject over a rectangular area.</p></td>
-</tr>
-</tbody>
-</table>
+<p>Future classes for Manim chemistry.</p>
+<p>This module contains experimental classes that may be implemented in the future.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.Hole">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.future_classes.future_classes.</span></span><span class="sig-name descname"><span class="pre">Hole</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#Hole"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.Hole" title="Link to this definition">¶</a></dt>
+<dd><p>A dashed circle representing a hole (absence of an electron).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>radius</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Radius of the hole circle.</p></li>
+<li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color of the hole circle.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="holescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: HoleScene <a class="headerlink" href="#holescene">¶</a></p><img alt="../../../_images/HoleScene-26911a45.png" class="align-center" src="../../../_images/HoleScene-26911a45.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.future_classes.future_classes</span><span class="w"> </span><span class="kn">import</span> <span class="n">Hole</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">HoleScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Hole</span><span class="p">()</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>
+</pre></div>
 </div>
-</section>
-<section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.Electron">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.future_classes.future_classes.</span></span><span class="sig-name descname"><span class="pre">Electron</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.BLUE_E"><span class="pre">BLUE_E</span></a></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#Electron"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.Electron" title="Link to this definition">¶</a></dt>
+<dd><p>A filled circle representing an electron.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>radius</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Radius of the electron circle.</p></li>
+<li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color of the electron circle.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="electronscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ElectronScene <a class="headerlink" href="#electronscene">¶</a></p><img alt="../../../_images/ElectronScene-c26e1435.png" class="align-center" src="../../../_images/ElectronScene-c26e1435.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.future_classes.future_classes</span><span class="w"> </span><span class="kn">import</span> <span class="n">Electron</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ElectronScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Electron</span><span class="p">()</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">7</span><span class="p">))</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.Element">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.future_classes.future_classes.</span></span><span class="sig-name descname"><span class="pre">Element</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'H'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.ORANGE"><span class="pre">ORANGE</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">label_color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.BLACK"><span class="pre">BLACK</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">n_electrons</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_holes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_electrons</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_holes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subelectron_holes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#Element"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.Element" title="Link to this definition">¶</a></dt>
+<dd><p>A chemical element with a labeled central atom surrounded by electrons and holes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Symbol of the chemical element.</p></li>
+<li><p><strong>radius</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Radius of the element group.</p></li>
+<li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Fill color of the central atom.</p></li>
+<li><p><strong>label_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Color of the element symbol label.</p></li>
+<li><p><strong>n_electrons</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Number of electrons around the atom.</p></li>
+<li><p><strong>n_holes</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Number of holes around the atom.</p></li>
+<li><p><strong>add_electrons</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to add electrons to the element.</p></li>
+<li><p><strong>add_holes</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to add holes to the element.</p></li>
+<li><p><strong>subelectron_holes</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to add holes at the positions of the electrons.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="elementscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ElementScene <a class="headerlink" href="#elementscene">¶</a></p><img alt="../../../_images/ElementScene-a09fe1bb.png" class="align-center" src="../../../_images/ElementScene-a09fe1bb.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.future_classes.future_classes</span><span class="w"> </span><span class="kn">import</span> <span class="n">Element</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ElementScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Element</span><span class="p">(</span><span class="n">element</span><span class="o">=</span><span class="s2">"Si"</span><span class="p">,</span> <span class="n">n_electrons</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">n_holes</span><span class="o">=</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.Element.central_atom">
+<span class="sig-name descname"><span class="pre">central_atom</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#Element.central_atom"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.Element.central_atom" title="Link to this definition">¶</a></dt>
+<dd><p>Create a labeled dot representing the central atom scaled to the element radius.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.LabeledDot.html#manim.mobject.geometry.arc.LabeledDot" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">LabeledDot</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The labeled dot representing the central atom at the element radius.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.Element.get_electrons">
+<span class="sig-name descname"><span class="pre">get_electrons</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#Element.get_electrons"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.Element.get_electrons" title="Link to this definition">¶</a></dt>
+<dd><p>Return a <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> of electron mobjects, or None if electrons are disabled.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> instance representing the result, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if there is no result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.Element.get_holes">
+<span class="sig-name descname"><span class="pre">get_holes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#Element.get_holes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.Element.get_holes" title="Link to this definition">¶</a></dt>
+<dd><p>Return a <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> of hole mobjects, or None if holes are disabled.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> instance representing the result, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if there is no result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.Element.get_particles">
+<span class="sig-name descname"><span class="pre">get_particles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#Element.get_particles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.Element.get_particles" title="Link to this definition">¶</a></dt>
+<dd><p>Return a combined VGroup of all electrons and holes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.Element.arrange_particles">
+<span class="sig-name descname"><span class="pre">arrange_particles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#Element.arrange_particles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.Element.arrange_particles" title="Link to this definition">¶</a></dt>
+<dd><p>Evenly distribute electrons and holes in a circle around the central atom.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The group containing the distributed electrons and holes.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.Element.make_subelectron_holes">
+<span class="sig-name descname"><span class="pre">make_subelectron_holes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#Element.make_subelectron_holes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.Element.make_subelectron_holes" title="Link to this definition">¶</a></dt>
+<dd><p>Create holes positioned at each electron location for visual effect.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> instance representing the result, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if there is no result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.Element.get_subelectron_holes">
+<span class="sig-name descname"><span class="pre">get_subelectron_holes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#Element.get_subelectron_holes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.Element.get_subelectron_holes" title="Link to this definition">¶</a></dt>
+<dd><p>Return the <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> of subelectron holes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The group of subelectron holes.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.ElementFrame">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.future_classes.future_classes.</span></span><span class="sig-name descname"><span class="pre">ElementFrame</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="pre">element_symbol=&quot;H&quot;,</span> <span class="pre">element_name=&quot;Hidrógeno&quot;,,</span> <span class="pre">frame_colors=[BLUE,</span> <span class="pre">BLUE_B],</span> <span class="pre">**kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#ElementFrame"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.ElementFrame" title="Link to this definition">¶</a></dt>
+<dd><p>A frame displaying an element symbol and its name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>element_symbol</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Symbol of the chemical element.</p></li>
+<li><p><strong>element_name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Name of the chemical element.</p></li>
+<li><p><strong>frame_colors</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Colors used for the frame gradient.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="elementframescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ElementFrameScene <a class="headerlink" href="#elementframescene">¶</a></p><img alt="../../../_images/ElementFrameScene-491ec210.png" class="align-center" src="../../../_images/ElementFrameScene-491ec210.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.future_classes.future_classes</span><span class="w"> </span><span class="kn">import</span> <span class="n">ElementFrame</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ElementFrameScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ElementFrame</span><span class="p">(</span><span class="n">element_symbol</span><span class="o">=</span><span class="s2">"H"</span><span class="p">,</span> <span class="n">element_name</span><span class="o">=</span><span class="s2">"Hydrogen"</span><span class="p">))</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.NPNTransistor">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.future_classes.future_classes.</span></span><span class="sig-name descname"><span class="pre">NPNTransistor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">regions_opacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.8</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#NPNTransistor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.NPNTransistor" title="Link to this definition">¶</a></dt>
+<dd><p>An NPN transistor diagram with n and p regions, electrons and holes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>regions_opacity</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Opacity of the transistor regions.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="npntransistorscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: NPNTransistorScene <a class="headerlink" href="#npntransistorscene">¶</a></p><img alt="../../../_images/NPNTransistorScene-23186d8c.png" class="align-center" src="../../../_images/NPNTransistorScene-23186d8c.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.future_classes.future_classes</span><span class="w"> </span><span class="kn">import</span> <span class="n">NPNTransistor</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">NPNTransistorScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">NPNTransistor</span><span class="p">())</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.NPNTransistor.make_particles">
+<span class="sig-name descname"><span class="pre">make_particles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">particle_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_copies</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertical_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[0.8</span> <span class="pre">*</span> <a class="reference internal" href="../../../constants/directions.html#manim.constants.UP"><span class="pre">UP</span></a><span class="pre">,</span> <span class="pre">0.8</span> <span class="pre">*</span> <a class="reference internal" href="../../../constants/directions.html#manim.constants.DOWN"><span class="pre">DOWN</span></a><span class="pre">]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">horizontal_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[</span><a class="reference internal" href="../../../constants/directions.html#manim.constants.LEFT"><span class="pre">LEFT</span></a><span class="pre">,</span> <a class="reference internal" href="../../../constants/directions.html#manim.constants.RIGHT"><span class="pre">RIGHT</span></a><span class="pre">]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#NPNTransistor.make_particles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.NPNTransistor.make_particles" title="Link to this definition">¶</a></dt>
+<dd><p>Create a <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> of scaled particle mobjects arranged in a rectangular grid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>particle_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#type" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a>]</span>) – Mobject class of the particles to create.</p></li>
+<li><p><strong>n_copies</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Number of copies to arrange horizontally.</p></li>
+<li><p><strong>vertical_boundary</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Vertical boundary points of the arrangement.</p></li>
+<li><p><strong>horizontal_boundary</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Horizontal boundary points of the arrangement.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.BatterySchema">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.future_classes.future_classes.</span></span><span class="sig-name descname"><span class="pre">BatterySchema</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mob</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Square()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">schema_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'horizontal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverted_terminals</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#BatterySchema"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.BatterySchema" title="Link to this definition">¶</a></dt>
+<dd><p>A battery schema attached to a mobject.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mob</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The mobject the battery schema is attached to.</p></li>
+<li><p><strong>schema_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Type of the schema, either <code class="docutils literal notranslate"><span class="pre">&quot;horizontal&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;corner&quot;</span></code>.</p></li>
+<li><p><strong>inverted_terminals</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to invert the positive and negative terminals.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="batteryschemascene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: BatterySchemaScene <a class="headerlink" href="#batteryschemascene">¶</a></p><img alt="../../../_images/BatterySchemaScene-e729f6e1.png" class="align-center" src="../../../_images/BatterySchemaScene-e729f6e1.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.future_classes.future_classes</span><span class="w"> </span><span class="kn">import</span> <span class="n">BatterySchema</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">BatterySchemaScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">BatterySchema</span><span class="p">())</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.BatterySchema.get_start_finish_positions">
+<span class="sig-name descname"><span class="pre">get_start_finish_positions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#BatterySchema.get_start_finish_positions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.BatterySchema.get_start_finish_positions" title="Link to this definition">¶</a></dt>
+<dd><p>Return start and end positions of the schema based on layout type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The start and end positions of the schema for the configured layout.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.BatterySchema.horizontal_schema">
+<span class="sig-name descname"><span class="pre">horizontal_schema</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#BatterySchema.horizontal_schema"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.BatterySchema.horizontal_schema" title="Link to this definition">¶</a></dt>
+<dd><p>Build a horizontal battery schema with terminals below the mobject.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.BatterySchema.corner_schema">
+<span class="sig-name descname"><span class="pre">corner_schema</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#BatterySchema.corner_schema"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.BatterySchema.corner_schema" title="Link to this definition">¶</a></dt>
+<dd><p>Build a corner battery schema wrapping around the left and top sides.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.BatterySchema.select_schema">
+<span class="sig-name descname"><span class="pre">select_schema</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#BatterySchema.select_schema"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.BatterySchema.select_schema" title="Link to this definition">¶</a></dt>
+<dd><p>Return the schema <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> corresponding to the configured layout type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The schema <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> corresponding to the configured layout type.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.BatterySchema.invert_terminals">
+<span class="sig-name descname"><span class="pre">invert_terminals</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#BatterySchema.invert_terminals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.BatterySchema.invert_terminals" title="Link to this definition">¶</a></dt>
+<dd><p>Swap the positive and negative battery terminal positions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="future_classes.BatterySchema.html#manim_extensions.chemistry.future_classes.future_classes.BatterySchema" title="manim_extensions.chemistry.future_classes.future_classes.BatterySchema"><code class="xref py py-class docutils literal notranslate"><span class="pre">BatterySchema</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The object itself, for method chaining.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.future_classes.future_classes.</span></span><span class="sig-name descname"><span class="pre">MOSFETTransistor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">show_holes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_battery</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#MOSFETTransistor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor" title="Link to this definition">¶</a></dt>
+<dd><p>A MOSFET transistor diagram with optional holes and battery.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>show_holes</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to show holes in the transistor.</p></li>
+<li><p><strong>show_battery</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to show the battery terminals.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="mosfettransistorscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: MOSFETTransistorScene <a class="headerlink" href="#mosfettransistorscene">¶</a></p><img alt="../../../_images/MOSFETTransistorScene-6cabac9c.png" class="align-center" src="../../../_images/MOSFETTransistorScene-6cabac9c.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.future_classes.future_classes</span><span class="w"> </span><span class="kn">import</span> <span class="n">MOSFETTransistor</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MOSFETTransistorScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">MOSFETTransistor</span><span class="p">())</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor.make_main_board">
+<span class="sig-name descname"><span class="pre">make_main_board</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#MOSFETTransistor.make_main_board"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor.make_main_board" title="Link to this definition">¶</a></dt>
+<dd><p>Create the main red rectangular board of the MOSFET transistor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.polygram.Rectangle.html#manim.mobject.geometry.polygram.Rectangle" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rectangle</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The main red rectangular board of the MOSFET transistor.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor.make_n_region">
+<span class="sig-name descname"><span class="pre">make_n_region</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">side</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/directions.html#manim.constants.LEFT"><span class="pre">LEFT</span></a></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#MOSFETTransistor.make_n_region"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor.make_n_region" title="Link to this definition">¶</a></dt>
+<dd><p>Create a blue n-region rectangle on the given side of the main board.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>side</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span>) – Direction of the n-region relative to the main board.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.polygram.Rectangle.html#manim.mobject.geometry.polygram.Rectangle" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Rectangle</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The blue n-region rectangle on the requested side of the main board.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor.add_holes">
+<span class="sig-name descname"><span class="pre">add_holes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#MOSFETTransistor.add_holes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor.add_holes" title="Link to this definition">¶</a></dt>
+<dd><p>Create a <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> of holes distributed across the board, or empty if disabled.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor.add_battery_terminals">
+<span class="sig-name descname"><span class="pre">add_battery_terminals</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#MOSFETTransistor.add_battery_terminals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor.add_battery_terminals" title="Link to this definition">¶</a></dt>
+<dd><p>Create positive and negative battery terminal lines above the main board.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor.add_battery_sides">
+<span class="sig-name descname"><span class="pre">add_battery_sides</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#MOSFETTransistor.add_battery_sides"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor.add_battery_sides" title="Link to this definition">¶</a></dt>
+<dd><p>Create elbow-shaped <a class="reference internal" href="future_classes.BatterySide.html#manim_extensions.chemistry.future_classes.future_classes.BatterySide" title="manim_extensions.chemistry.future_classes.future_classes.BatterySide"><code class="xref py py-class docutils literal notranslate"><span class="pre">BatterySide</span></code></a> connectors from terminals to n-regions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor.add_battery">
+<span class="sig-name descname"><span class="pre">add_battery</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#MOSFETTransistor.add_battery"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor.add_battery" title="Link to this definition">¶</a></dt>
+<dd><p>Return the assembled battery VGroup if show_battery is enabled, else empty.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.BatterySide">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.future_classes.future_classes.</span></span><span class="sig-name descname"><span class="pre">BatterySide</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">terminal</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchor</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#BatterySide"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.BatterySide" title="Link to this definition">¶</a></dt>
+<dd><p>A line connecting a battery terminal to an anchor mobject.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>terminal</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The battery terminal to connect from.</p></li>
+<li><p><strong>anchor</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The mobject to connect the terminal to.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="batterysidescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: BatterySideScene <a class="headerlink" href="#batterysidescene">¶</a></p><img alt="../../../_images/BatterySideScene-f4b5c0db.png" class="align-center" src="../../../_images/BatterySideScene-f4b5c0db.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.future_classes.future_classes</span><span class="w"> </span><span class="kn">import</span> <span class="n">BatterySide</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">BatterySideScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">terminal</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">LEFT</span><span class="p">)</span>
+        <span class="n">anchor</span> <span class="o">=</span> <span class="n">Square</span><span class="p">(</span><span class="n">side_length</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">RIGHT</span><span class="p">)</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="n">terminal</span><span class="p">,</span> <span class="n">anchor</span><span class="p">,</span> <span class="n">BatterySide</span><span class="p">(</span><span class="n">terminal</span><span class="p">,</span> <span class="n">anchor</span><span class="p">))</span>
+        <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.BatterySide.make_points">
+<span class="sig-name descname"><span class="pre">make_points</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#BatterySide.make_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.BatterySide.make_points" title="Link to this definition">¶</a></dt>
+<dd><p>Set the corner path points connecting the terminal to the anchor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="future_classes.BatterySide.html#manim_extensions.chemistry.future_classes.future_classes.BatterySide" title="manim_extensions.chemistry.future_classes.future_classes.BatterySide"><code class="xref py py-class docutils literal notranslate"><span class="pre">BatterySide</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The same instance, allowing calls to be chained.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.arrange_in_1d_boundary">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.future_classes.future_classes.</span></span><span class="sig-name descname"><span class="pre">arrange_in_1d_boundary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[</span><a class="reference internal" href="../../../constants/directions.html#manim.constants.LEFT"><span class="pre">LEFT</span></a><span class="pre">,</span> <a class="reference internal" href="../../../constants/directions.html#manim.constants.RIGHT"><span class="pre">RIGHT</span></a><span class="pre">]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#arrange_in_1d_boundary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.arrange_in_1d_boundary" title="Link to this definition">¶</a></dt>
@@ -1554,6 +2031,76 @@
 </dd>
 </dl>
 </dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.DuplicatedAlongLine">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.future_classes.future_classes.</span></span><span class="sig-name descname"><span class="pre">DuplicatedAlongLine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[</span><a class="reference internal" href="../../../constants/directions.html#manim.constants.LEFT"><span class="pre">LEFT</span></a><span class="pre">,</span> <a class="reference internal" href="../../../constants/directions.html#manim.constants.RIGHT"><span class="pre">RIGHT</span></a><span class="pre">]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#DuplicatedAlongLine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.DuplicatedAlongLine" title="Link to this definition">¶</a></dt>
+<dd><p>Copies of a mobject evenly spaced along a one-dimensional boundary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mobs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – Mobject or <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a>
+of mobjects to duplicate.</p></li>
+<li><p><strong>boundary</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Boundary points of the line.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="duplicatealongline" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: DuplicateAlongLine <a class="headerlink" href="#duplicatealongline">¶</a></p><img alt="../../../_images/DuplicateAlongLine-9ff9d7fe.png" class="align-center" src="../../../_images/DuplicateAlongLine-9ff9d7fe.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.future_classes.future_classes</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">DuplicatedAlongLine</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DuplicateAlongLine</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">source</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">RoundedRectangle</span><span class="p">(</span><span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.4</span><span class="p">),</span>
+            <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">0.45</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">group</span> <span class="o">=</span> <span class="n">DuplicatedAlongLine</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="p">[</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">4</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.ScatteredCopies">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.future_classes.future_classes.</span></span><span class="sig-name descname"><span class="pre">ScatteredCopies</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobtype</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Dot()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#ScatteredCopies"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.ScatteredCopies" title="Link to this definition">¶</a></dt>
+<dd><p>Randomly distributed copies of a mobject over a rectangular area.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mobtype</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.Dot.html#manim.mobject.geometry.arc.Dot" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a></span>) – Mobject to copy and distribute.</p></li>
+<li><p><strong>amount</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Number of copies to distribute.</p></li>
+<li><p><strong>height</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Half height of the rectangular area.</p></li>
+<li><p><strong>width</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Half width of the rectangular area.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="dotsoversurface" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: DotsOverSurface <a class="headerlink" href="#dotsoversurface">¶</a></p><img alt="../../../_images/DotsOverSurface-f0dc38b1.png" class="align-center" src="../../../_images/DotsOverSurface-f0dc38b1.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.future_classes.future_classes</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ScatteredCopies</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DotsOverSurface</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+        <span class="n">dots</span> <span class="o">=</span> <span class="n">ScatteredCopies</span><span class="p">(</span>
+            <span class="n">Dot</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">YELLOW</span><span class="p">),</span> <span class="n">amount</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">3</span>
+        <span class="p">)</span>
+        <span class="n">dots</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">1.6</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dots</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.get_element_by_data">
@@ -1770,6 +2317,317 @@ easing functions.</p></li>
 </dl>
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.future_classes.future_classes.ConcatenatedMobjects">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.future_classes.future_classes.</span></span><span class="sig-name descname"><span class="pre">ConcatenatedMobjects</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">concats</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#ConcatenatedMobjects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.future_classes.future_classes.ConcatenatedMobjects" title="Link to this definition">¶</a></dt>
+<dd><p>Copies of a mobject concatenated left and right.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mobject</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – Mobject to concatenate.</p></li>
+<li><p><strong>concats</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Number of copies to concatenate.</p></li>
+<li><p><strong>buff</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Buffer between the concatenated mobjects.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="concatenatedtriangles" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ConcatenatedTriangles <a class="headerlink" href="#concatenatedtriangles">¶</a></p><img alt="../../../_images/ConcatenatedTriangles-f48a96df.png" class="align-center" src="../../../_images/ConcatenatedTriangles-f48a96df.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.future_classes.future_classes</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">ConcatenatedMobjects</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ConcatenatedTriangles</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="n">Triangle</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">TEAL</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">chain</span> <span class="o">=</span> <span class="n">ConcatenatedMobjects</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">concats</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+        <span class="n">chain</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">chain</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="future_classes.BatterySchema.html#manim_extensions.chemistry.future_classes.future_classes.BatterySchema" title="manim_extensions.chemistry.future_classes.future_classes.BatterySchema"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BatterySchema</span></code></a></p></td>
+<td><p>A battery schema attached to a mobject.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="future_classes.BatterySide.html#manim_extensions.chemistry.future_classes.future_classes.BatterySide" title="manim_extensions.chemistry.future_classes.future_classes.BatterySide"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BatterySide</span></code></a></p></td>
+<td><p>A line connecting a battery terminal to an anchor mobject.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="future_classes.ConcatenatedMobjects.html#manim_extensions.chemistry.future_classes.future_classes.ConcatenatedMobjects" title="manim_extensions.chemistry.future_classes.future_classes.ConcatenatedMobjects"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConcatenatedMobjects</span></code></a></p></td>
+<td><p>Copies of a mobject concatenated left and right.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="future_classes.DuplicatedAlongLine.html#manim_extensions.chemistry.future_classes.future_classes.DuplicatedAlongLine" title="manim_extensions.chemistry.future_classes.future_classes.DuplicatedAlongLine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DuplicatedAlongLine</span></code></a></p></td>
+<td><p>Copies of a mobject evenly spaced along a one-dimensional boundary.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="future_classes.Electron.html#manim_extensions.chemistry.future_classes.future_classes.Electron" title="manim_extensions.chemistry.future_classes.future_classes.Electron"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Electron</span></code></a></p></td>
+<td><p>A filled circle representing an electron.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="future_classes.Element.html#manim_extensions.chemistry.future_classes.future_classes.Element" title="manim_extensions.chemistry.future_classes.future_classes.Element"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Element</span></code></a></p></td>
+<td><p>A chemical element with a labeled central atom surrounded by electrons and holes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="future_classes.ElementFrame.html#manim_extensions.chemistry.future_classes.future_classes.ElementFrame" title="manim_extensions.chemistry.future_classes.future_classes.ElementFrame"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ElementFrame</span></code></a></p></td>
+<td><p>A frame displaying an element symbol and its name.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="future_classes.Hole.html#manim_extensions.chemistry.future_classes.future_classes.Hole" title="manim_extensions.chemistry.future_classes.future_classes.Hole"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Hole</span></code></a></p></td>
+<td><p>A dashed circle representing a hole (absence of an electron).</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="future_classes.MOSFETTransistor.html#manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor" title="manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MOSFETTransistor</span></code></a></p></td>
+<td><p>A MOSFET transistor diagram with optional holes and battery.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="future_classes.NPNTransistor.html#manim_extensions.chemistry.future_classes.future_classes.NPNTransistor" title="manim_extensions.chemistry.future_classes.future_classes.NPNTransistor"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NPNTransistor</span></code></a></p></td>
+<td><p>An NPN transistor diagram with n and p regions, electrons and holes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="future_classes.ScatteredCopies.html#manim_extensions.chemistry.future_classes.future_classes.ScatteredCopies" title="manim_extensions.chemistry.future_classes.future_classes.ScatteredCopies"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ScatteredCopies</span></code></a></p></td>
+<td><p>Randomly distributed copies of a mobject over a rectangular area.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.future_classes.future_classes.</span></span><span class="sig-name descname"><span class="pre">arrange_in_1d_boundary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[</span><a class="reference internal" href="../../../constants/directions.html#manim.constants.LEFT"><span class="pre">LEFT</span></a><span class="pre">,</span> <a class="reference internal" href="../../../constants/directions.html#manim.constants.RIGHT"><span class="pre">RIGHT</span></a><span class="pre">]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#arrange_in_1d_boundary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dd><p>Evenly distribute mobjects along a 1D line between two boundary points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mobs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span>) – Mobjects to distribute along the line.</p></li>
+<li><p><strong>boundary</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Boundary points of the line.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.future_classes.future_classes.</span></span><span class="sig-name descname"><span class="pre">get_element_by_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#get_element_by_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
+<dd><p>Create an <a class="reference internal" href="future_classes.Element.html#manim_extensions.chemistry.future_classes.future_classes.Element" title="manim_extensions.chemistry.future_classes.future_classes.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> mobject from a dictionary of element properties.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>element</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Dictionary with the keys <code class="docutils literal notranslate"><span class="pre">&quot;symbol&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;color&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;electrons&quot;</span></code>
+and <code class="docutils literal notranslate"><span class="pre">&quot;holes&quot;</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="future_classes.Element.html#manim_extensions.chemistry.future_classes.future_classes.Element" title="manim_extensions.chemistry.future_classes.future_classes.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <a class="reference internal" href="future_classes.Element.html#manim_extensions.chemistry.future_classes.future_classes.Element" title="manim_extensions.chemistry.future_classes.future_classes.Element"><code class="xref py py-class docutils literal notranslate"><span class="pre">Element</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.future_classes.future_classes.</span></span><span class="sig-name descname"><span class="pre">randomly_distributed_in_2d</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">left</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">down</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">up</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#randomly_distributed_in_2d"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
+<dd><p>Randomly shift mobjects within the specified 2D bounding rectangle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mobs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span>) – Mobjects to shift.</p></li>
+<li><p><strong>left</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Left bound of the horizontal shift.</p></li>
+<li><p><strong>right</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Right bound of the horizontal shift.</p></li>
+<li><p><strong>down</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Lower bound of the vertical shift.</p></li>
+<li><p><strong>up</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Upper bound of the vertical shift.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The group with its members shifted inside the given rectangle.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="scattereddots" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ScatteredDots <a class="headerlink" href="#scattereddots">¶</a></p><img alt="../../../_images/ScatteredDots-2e37c587.png" class="align-center" src="../../../_images/ScatteredDots-2e37c587.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.future_classes.future_classes</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">randomly_distributed_in_2d</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ScatteredDots</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">dots</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="o">*</span><span class="p">[</span><span class="n">Dot</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">0.08</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)]</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange_in_grid</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">randomly_distributed_in_2d</span><span class="p">(</span><span class="n">dots</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">down</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">up</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">dots</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.future_classes.future_classes.</span></span><span class="sig-name descname"><span class="pre">arrange_copies_in_rectangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_copies</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertical_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[</span><a class="reference internal" href="../../../constants/directions.html#manim.constants.UP"><span class="pre">UP</span></a><span class="pre">,</span> <a class="reference internal" href="../../../constants/directions.html#manim.constants.DOWN"><span class="pre">DOWN</span></a><span class="pre">]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">horizontal_boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[</span><a class="reference internal" href="../../../constants/directions.html#manim.constants.LEFT"><span class="pre">LEFT</span></a><span class="pre">,</span> <a class="reference internal" href="../../../constants/directions.html#manim.constants.RIGHT"><span class="pre">RIGHT</span></a><span class="pre">]</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#arrange_copies_in_rectangle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition">¶</a></dt>
+<dd><p>Create n_copies of mobs and arrange them in a rectangular grid pattern.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mobs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – Mobjects to copy and arrange.</p></li>
+<li><p><strong>n_copies</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Number of copies to arrange.</p></li>
+<li><p><strong>vertical_boundary</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Vertical boundary points of the arrangement.</p></li>
+<li><p><strong>horizontal_boundary</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Horizontal boundary points of the arrangement.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="gridofcopies" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: GridOfCopies <a class="headerlink" href="#gridofcopies">¶</a></p><img alt="../../../_images/GridOfCopies-c1ce2e74.png" class="align-center" src="../../../_images/GridOfCopies-c1ce2e74.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.future_classes.future_classes</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">arrange_copies_in_rectangle</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">GridOfCopies</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">tile</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span><span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.4</span><span class="p">)</span>
+        <span class="n">grid</span> <span class="o">=</span> <span class="n">arrange_copies_in_rectangle</span><span class="p">(</span><span class="n">tile</span><span class="p">,</span> <span class="n">n_copies</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.future_classes.future_classes.</span></span><span class="sig-name descname"><span class="pre">make_subpaths</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">group</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#make_subpaths"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id4" title="Link to this definition">¶</a></dt>
+<dd><p>Add each mobject in the group as a subpath of the parent group.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>group</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a></span>) – Group whose mobjects are added as subpaths.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The parent mobject with each group member added as a subpath.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="circlesubpaths" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: CircleSubpaths <a class="headerlink" href="#circlesubpaths">¶</a></p><img alt="../../../_images/CircleSubpaths-776da9a7.png" class="align-center" src="../../../_images/CircleSubpaths-776da9a7.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.future_classes.future_classes</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">make_subpaths</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CircleSubpaths</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">group</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+            <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">make_subpaths</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.future_classes.future_classes.</span></span><span class="sig-name descname"><span class="pre">zero</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#zero"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id5" title="Link to this definition">¶</a></dt>
+<dd><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated: </span><code class="docutils literal notranslate"><span class="pre">zero</span></code> is deprecated; use <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.rate_functions.html#manim.utils.rate_functions.zero" title="(in Manim)"><code class="xref py py-func docutils literal notranslate"><span class="pre">manim.utils.rate_functions.zero()</span></code></a> instead.</p>
+</div>
+<p>Decorator that clamps a function to return 0 outside the <span class="math notranslate nohighlight">\([0, 1]\)</span> domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>function</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/constants.html#Ellipsis" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Function to clamp outside the [0, 1] domain.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/constants.html#Ellipsis" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The decorated callable.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.future_classes.future_classes.</span></span><span class="sig-name descname"><span class="pre">_zero</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id6" title="Link to this definition">¶</a></dt>
+<dd><div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated: </span>zero is deprecated; use manim.utils.rate_functions.zero instead.</p>
+</div>
+<p>Decorator that clamps a function to return 0 outside the <span class="math notranslate nohighlight">\([0, 1]\)</span> domain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>function</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/constants.html#Ellipsis" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Function to clamp outside the [0, 1] domain.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/constants.html#Ellipsis" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">...</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The decorated callable.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.future_classes.future_classes.</span></span><span class="sig-name descname"><span class="pre">inverse_smooth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inflection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#inverse_smooth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id7" title="Link to this definition">¶</a></dt>
+<dd><p>Return the inverse of the smooth easing function (1 - t smoothed).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Input value of the easing function.</p></li>
+<li><p><strong>inflection</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Inflection parameter passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.rate_functions.html#manim.utils.rate_functions.smooth" title="(in Manim)"><code class="xref py py-func docutils literal notranslate"><span class="pre">smooth()</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The inverse of the smooth easing function (1 - t smoothed).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id8">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.future_classes.future_classes.</span></span><span class="sig-name descname"><span class="pre">inverse_linear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inflection</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/future_classes/future_classes.html#inverse_linear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id8" title="Link to this definition">¶</a></dt>
+<dd><p>Return the linear inverse value 1 - t.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>t</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Input value of the easing function.</p></li>
+<li><p><strong>inflection</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Unused, kept for signature compatibility with the other inverse
+easing functions.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The linear inverse value 1 - t.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -1831,9 +2689,54 @@ easing functions.</p></li>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">future_classes</a><ul>
-<li><a class="reference internal" href="#classes">Classes</a></li>
-<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.Hole"><code class="docutils literal notranslate"><span class="pre">Hole</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.Electron"><code class="docutils literal notranslate"><span class="pre">Electron</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.Element"><code class="docutils literal notranslate"><span class="pre">Element</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.Element.central_atom"><code class="docutils literal notranslate"><span class="pre">Element.central_atom()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.Element.get_electrons"><code class="docutils literal notranslate"><span class="pre">Element.get_electrons()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.Element.get_holes"><code class="docutils literal notranslate"><span class="pre">Element.get_holes()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.Element.get_particles"><code class="docutils literal notranslate"><span class="pre">Element.get_particles()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.Element.arrange_particles"><code class="docutils literal notranslate"><span class="pre">Element.arrange_particles()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.Element.make_subelectron_holes"><code class="docutils literal notranslate"><span class="pre">Element.make_subelectron_holes()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.Element.get_subelectron_holes"><code class="docutils literal notranslate"><span class="pre">Element.get_subelectron_holes()</span></code></a></li>
+
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.ElementFrame"><code class="docutils literal notranslate"><span class="pre">ElementFrame</span></code></a>
+</li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.NPNTransistor"><code class="docutils literal notranslate"><span class="pre">NPNTransistor</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.NPNTransistor.make_particles"><code class="docutils literal notranslate"><span class="pre">NPNTransistor.make_particles()</span></code></a></li>
+
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.BatterySchema"><code class="docutils literal notranslate"><span class="pre">BatterySchema</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.BatterySchema.get_start_finish_positions"><code class="docutils literal notranslate"><span class="pre">BatterySchema.get_start_finish_positions()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.BatterySchema.horizontal_schema"><code class="docutils literal notranslate"><span class="pre">BatterySchema.horizontal_schema()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.BatterySchema.corner_schema"><code class="docutils literal notranslate"><span class="pre">BatterySchema.corner_schema()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.BatterySchema.select_schema"><code class="docutils literal notranslate"><span class="pre">BatterySchema.select_schema()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.BatterySchema.invert_terminals"><code class="docutils literal notranslate"><span class="pre">BatterySchema.invert_terminals()</span></code></a></li>
+
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor"><code class="docutils literal notranslate"><span class="pre">MOSFETTransistor</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor.make_main_board"><code class="docutils literal notranslate"><span class="pre">MOSFETTransistor.make_main_board()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor.make_n_region"><code class="docutils literal notranslate"><span class="pre">MOSFETTransistor.make_n_region()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor.add_holes"><code class="docutils literal notranslate"><span class="pre">MOSFETTransistor.add_holes()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor.add_battery_terminals"><code class="docutils literal notranslate"><span class="pre">MOSFETTransistor.add_battery_terminals()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor.add_battery_sides"><code class="docutils literal notranslate"><span class="pre">MOSFETTransistor.add_battery_sides()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.MOSFETTransistor.add_battery"><code class="docutils literal notranslate"><span class="pre">MOSFETTransistor.add_battery()</span></code></a></li>
+
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.BatterySide"><code class="docutils literal notranslate"><span class="pre">BatterySide</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.BatterySide.make_points"><code class="docutils literal notranslate"><span class="pre">BatterySide.make_points()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.arrange_in_1d_boundary"><code class="docutils literal notranslate"><span class="pre">arrange_in_1d_boundary()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.DuplicatedAlongLine"><code class="docutils literal notranslate"><span class="pre">DuplicatedAlongLine</span></code></a>
+</li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.ScatteredCopies"><code class="docutils literal notranslate"><span class="pre">ScatteredCopies</span></code></a>
+</li>
 <li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.get_element_by_data"><code class="docutils literal notranslate"><span class="pre">get_element_by_data()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.randomly_distributed_in_2d"><code class="docutils literal notranslate"><span class="pre">randomly_distributed_in_2d()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.arrange_copies_in_rectangle"><code class="docutils literal notranslate"><span class="pre">arrange_copies_in_rectangle()</span></code></a></li>
@@ -1842,6 +2745,19 @@ easing functions.</p></li>
 <li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes._zero"><code class="docutils literal notranslate"><span class="pre">_zero()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.inverse_smooth"><code class="docutils literal notranslate"><span class="pre">inverse_smooth()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.inverse_linear"><code class="docutils literal notranslate"><span class="pre">inverse_linear()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.future_classes.future_classes.ConcatenatedMobjects"><code class="docutils literal notranslate"><span class="pre">ConcatenatedMobjects</span></code></a>
+</li>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">arrange_in_1d_boundary()</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">get_element_by_data()</span></code></a></li>
+<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">randomly_distributed_in_2d()</span></code></a></li>
+<li><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">arrange_copies_in_rectangle()</span></code></a></li>
+<li><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">make_subpaths()</span></code></a></li>
+<li><a class="reference internal" href="#id5"><code class="docutils literal notranslate"><span class="pre">zero()</span></code></a></li>
+<li><a class="reference internal" href="#id6"><code class="docutils literal notranslate"><span class="pre">_zero()</span></code></a></li>
+<li><a class="reference internal" href="#id7"><code class="docutils literal notranslate"><span class="pre">inverse_smooth()</span></code></a></li>
+<li><a class="reference internal" href="#id8"><code class="docutils literal notranslate"><span class="pre">inverse_linear()</span></code></a></li>
 </ul>
 </li>
 </ul>

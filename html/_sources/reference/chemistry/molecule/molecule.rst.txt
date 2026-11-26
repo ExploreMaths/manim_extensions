@@ -4,7 +4,7 @@
 molecule
 ========
 
-.. module:: manim_extensions.chemistry.molecule.molecule
+.. automodule:: manim_extensions.chemistry.molecule.molecule
 
 Classes
 -------

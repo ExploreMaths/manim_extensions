@@ -1491,6 +1491,126 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.table.row">
 <span id="row"></span><h1>row<a class="headerlink" href="#module-manim_extensions.table.row" title="Link to this heading">¶</a></h1>
+<p><a class="reference internal" href="row.Row.html#manim_extensions.table.row.Row" title="manim_extensions.table.row.Row"><code class="xref py py-class docutils literal notranslate"><span class="pre">Row</span></code></a> class for Manim tables.</p>
+<p>This module provides the <a class="reference internal" href="row.Row.html#manim_extensions.table.row.Row" title="manim_extensions.table.row.Row"><code class="xref py py-class docutils literal notranslate"><span class="pre">Row</span></code></a> class for table visualizations.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.table.row.Row">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.table.row.</span></span><span class="sig-name descname"><span class="pre">Row</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_widths</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cell_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_border</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/table/row.html#Row"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.table.row.Row" title="Link to this definition">¶</a></dt>
+<dd><p>A row of cells in a table.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – List of string values for each cell.</p></li>
+<li><p><strong>cell_widths</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Either a single width for all cells, or a list of widths per column.</p></li>
+<li><p><strong>cell_height</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Height of each cell.</p></li>
+<li><p><strong>font_size</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Font size for cell text.</p></li>
+<li><p><strong>is_header</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, renders cells as header cells (bold, thicker border).</p></li>
+<li><p><strong>show_border</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, cells have visible borders.</p></li>
+<li><p><strong>index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – <a class="reference internal" href="row.Row.html#manim_extensions.table.row.Row" title="manim_extensions.table.row.Row"><code class="xref py py-class docutils literal notranslate"><span class="pre">Row</span></code></a> index in the parent table (useful for animations).</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional arguments passed to
+<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="rowscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: RowScene <a class="headerlink" href="#rowscene">¶</a></p><img alt="../../_images/RowScene-cd7e4eb4.png" class="align-center" src="../../_images/RowScene-cd7e4eb4.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.table</span><span class="w"> </span><span class="kn">import</span> <span class="n">Row</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RowScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="n">Row</span><span class="p">([</span><span class="s2">"Alice"</span><span class="p">,</span> <span class="s2">"25"</span><span class="p">,</span> <span class="s2">"Paris"</span><span class="p">])</span>
+        <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">set_font_color</span><span class="p">(</span><span class="n">RED</span><span class="p">)</span>
+        <span class="n">row</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.table.row.Row.create_cells">
+<span class="sig-name descname"><span class="pre">create_cells</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/table/row.html#Row.create_cells"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.table.row.Row.create_cells" title="Link to this definition">¶</a></dt>
+<dd><p>Create and position all cells in this row.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.table.row.Row.__getitem__">
+<span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/table/row.html#Row.__getitem__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.table.row.Row.__getitem__" title="Link to this definition">¶</a></dt>
+<dd><p>Return a cell or a slice of cells.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Overloads<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) → <span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="cell.Cell.html#manim_extensions.table.cell.Cell" title="manim_extensions.table.cell.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a></span></p></li>
+<li><p><strong>index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#slice" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">slice</span></code></a></span>) → <span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference internal" href="cell.Cell.html#manim_extensions.table.cell.Cell" title="manim_extensions.table.cell.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a>]</span></p></li>
+</ul>
+</dd>
+<dt class="field-even">Parameters<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#slice" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">slice</span></code></a></span>) – The cell index or slice.</p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The selected cell or list of cells.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="cell.Cell.html#manim_extensions.table.cell.Cell" title="manim_extensions.table.cell.Cell"><em>Cell</em></a> | <a class="reference internal" href="../fontawesome/manim_fontawesome/index.html#manim_extensions.fontawesome.manim_fontawesome.SolidEnum.list" title="manim_extensions.fontawesome.manim_fontawesome.SolidEnum.list">list</a>[<a class="reference internal" href="cell.Cell.html#manim_extensions.table.cell.Cell" title="manim_extensions.table.cell.Cell"><em>Cell</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.table.row.Row.__len__">
+<span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/table/row.html#Row.__len__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.table.row.Row.__len__" title="Link to this definition">¶</a></dt>
+<dd><p>Return the number of cells in this row.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The cell count.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.table.row.Row.__iter__">
+<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/table/row.html#Row.__iter__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.table.row.Row.__iter__" title="Link to this definition">¶</a></dt>
+<dd><p>Iterate over the cells.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterator</span></code></a>[<a class="reference internal" href="cell.Cell.html#manim_extensions.table.cell.Cell" title="manim_extensions.table.cell.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An iterator over the cells.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.table.row.Row.get_cell">
+<span class="sig-name descname"><span class="pre">get_cell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/table/row.html#Row.get_cell"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.table.row.Row.get_cell" title="Link to this definition">¶</a></dt>
+<dd><p>Get a cell by index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the cell within the row (0-indexed).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="cell.Cell.html#manim_extensions.table.cell.Cell" title="manim_extensions.table.cell.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The cell at the given index.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1683,16 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">row</a><ul>
+<li><a class="reference internal" href="#manim_extensions.table.row.Row"><code class="docutils literal notranslate"><span class="pre">Row</span></code></a><ul>
+
+<li><a class="reference internal" href="#manim_extensions.table.row.Row.create_cells"><code class="docutils literal notranslate"><span class="pre">Row.create_cells()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.table.row.Row.__getitem__"><code class="docutils literal notranslate"><span class="pre">Row.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.table.row.Row.__len__"><code class="docutils literal notranslate"><span class="pre">Row.__len__()</span></code></a></li>
+
+<li><a class="reference internal" href="#manim_extensions.table.row.Row.__iter__"><code class="docutils literal notranslate"><span class="pre">Row.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.table.row.Row.get_cell"><code class="docutils literal notranslate"><span class="pre">Row.get_cell()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

@@ -4,7 +4,7 @@
 Weighted Line
 =============
 
-.. module:: manim_extensions.weighted_line
+.. automodule:: manim_extensions.weighted_line
 
 .. vendored-status:: mutable-learning/manim-weighted-line
 

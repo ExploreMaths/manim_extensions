@@ -4,7 +4,7 @@
 threedmolecule
 ==============
 
-.. module:: manim_extensions.chemistry.threeD.threedmolecule
+.. automodule:: manim_extensions.chemistry.threeD.threedmolecule
 
 Classes
 -------

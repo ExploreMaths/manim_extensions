@@ -5,7 +5,7 @@
 voronoi
 =======
 
-.. module:: manim_extensions.meshes.delaunay.voronoi
+.. automodule:: manim_extensions.meshes.delaunay.voronoi
 
 Classes
 -------

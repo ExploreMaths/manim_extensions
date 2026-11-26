@@ -5,7 +5,7 @@
 svg
 ===
 
-.. module:: manim_extensions.mobject_svg.svg
+.. automodule:: manim_extensions.mobject_svg.svg
 
 .. autoall:: manim_extensions.mobject_svg.svg
    :types: function

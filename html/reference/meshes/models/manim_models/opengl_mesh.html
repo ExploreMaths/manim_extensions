@@ -1491,6 +1491,265 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.meshes.models.manim_models.opengl_mesh">
 <span id="opengl-mesh"></span><h1>opengl_mesh<a class="headerlink" href="#module-manim_extensions.meshes.models.manim_models.opengl_mesh" title="Link to this heading">¶</a></h1>
+<p>Faster meshes (WORK IN PROGRESS) by using OpenGL more efficiently.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.models.manim_models.opengl_mesh.</span></span><span class="sig-name descname"><span class="pre">FastManimMesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">shader_folder</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/manim_models/opengl_mesh.html#FastManimMesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh" title="Link to this definition">¶</a></dt>
+<dd><p>More efficient mesh implementation.
+Uses custom shaders and stores vertices and faces in a single VAO.
+Useful for rendering meshes with many vertices / faces. The underlying
+<a class="reference internal" href="../data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh" title="manim_extensions.meshes.models.data_models.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a> can be
+updated through
+<a class="reference internal" href="opengl_mesh.FastManimMesh.html#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.set_mesh" title="manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.set_mesh"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_mesh()</span></code></a>,
+<a class="reference internal" href="opengl_mesh.FastManimMesh.html#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.add_face" title="manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.add_face"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_face()</span></code></a>,
+<a class="reference internal" href="opengl_mesh.FastManimMesh.html#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.remove_face" title="manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.remove_face"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_face()</span></code></a>
+and
+<a class="reference internal" href="opengl_mesh.FastManimMesh.html#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.update_vertex" title="manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.update_vertex"><code class="xref py py-meth docutils literal notranslate"><span class="pre">update_vertex()</span></code></a>;
+every update rebuilds the shader arrays.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Requires manipulating the manim lib:
+copy the directory <code class="docutils literal notranslate"><span class="pre">mesh</span></code> (under <code class="docutils literal notranslate"><span class="pre">manim_extensions/meshes/shaders/</span></code>)
+to <code class="docutils literal notranslate"><span class="pre">manim/renderer/shaders/</span></code>.</p>
+</div>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>The mesh must only consist of triangles.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mesh</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh" title="manim_extensions.meshes.models.data_models.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a></span>) – The mesh data model. Must consist only of triangles.</p></li>
+<li><p><strong>shader_folder</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Path to the shader folder. (uses <code class="docutils literal notranslate"><span class="pre">&quot;mesh&quot;</span></code>).</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to OpenGLMobject.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Attributes</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.shader_dtype">
+<span class="sig-name descname"><span class="pre">shader_dtype</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.ClassVar" title="(in Python v3.15)"><span class="pre">ClassVar</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#type" title="(in Python v3.15)"><span class="pre">type</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.generic" title="(in NumPy v2.5)"><span class="pre">generic</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[('point',</span> <span class="pre">np.float32</span><span class="pre">,</span> <span class="pre">(3,)),</span> <span class="pre">('color',</span> <span class="pre">np.float32</span><span class="pre">,</span> <span class="pre">(4,))]</span></span></span><a class="headerlink" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.shader_dtype" title="Link to this definition">¶</a></dt>
+<dd><p>Vertex attribute names, dtypes and component counts for the shader.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.shader_folder">
+<span class="sig-name descname"><span class="pre">shader_folder</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.ClassVar" title="(in Python v3.15)"><span class="pre">ClassVar</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'mesh'</span></span></span><a class="headerlink" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.shader_folder" title="Link to this definition">¶</a></dt>
+<dd><p>Shader resource folder shipped with the package.</p>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<div id="fastmanimmeshoverview" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: FastManimMeshOverview <a class="headerlink" href="#fastmanimmeshoverview">¶</a></p><img alt="../../../../_images/FastManimMeshOverview-c0e10a85.png" class="align-center" src="../../../../_images/FastManimMeshOverview-c0e10a85.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.models.manim_models.opengl_mesh</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastManimMesh</span>
+
+<span class="n">FastManimMeshTarget</span> <span class="o">=</span> <span class="n">FastManimMesh</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">FastManimMeshOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">FastManimMeshTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
+        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'FastManimMesh'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.meshes.models.manim_models.opengl_mesh'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'More efficient mesh implementation. Uses custom shaders and stores vertices and faces in a single VAO. Useful for rendering meshes with many vertices / faces. The underlying manim_extensions.meshes.models.data_models.mesh.Mesh can be updated through manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.set_mesh, manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.add_face, manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.remove_face and manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.update_vertex; every update rebuilds the shader arrays'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.models.manim_models.opengl_mesh</span><span class="w"> </span><span class="kn">import</span> <span class="n">FastManimMesh</span>
+
+<span class="n">fast_mesh</span> <span class="o">=</span> <span class="n">FastManimMesh</span><span class="p">(</span><span class="n">mesh</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh._validate_mesh">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">_validate_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/manim_models/opengl_mesh.html#FastManimMesh._validate_mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh._validate_mesh" title="Link to this definition">¶</a></dt>
+<dd><p>Raise when the mesh is not composed exclusively of triangles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mesh</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh" title="manim_extensions.meshes.models.data_models.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a></span>) – The mesh data model to validate.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If any face does not have exactly three vertices.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh._flatten_triangles">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">_flatten_triangles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/manim_models/opengl_mesh.html#FastManimMesh._flatten_triangles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh._flatten_triangles" title="Link to this definition">¶</a></dt>
+<dd><p>Return the flat triangle index array for the shader.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mesh</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh" title="manim_extensions.meshes.models.data_models.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a></span>) – Triangle mesh whose faces are concatenated.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A one-dimensional array of vertex indices, empty for no faces.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.init_points">
+<span class="sig-name descname"><span class="pre">init_points</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/manim_models/opengl_mesh.html#FastManimMesh.init_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.init_points" title="Link to this definition">¶</a></dt>
+<dd><p>Set the mesh vertices as the mobject’s points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.refresh_from_mesh">
+<span class="sig-name descname"><span class="pre">refresh_from_mesh</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/manim_models/opengl_mesh.html#FastManimMesh.refresh_from_mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.refresh_from_mesh" title="Link to this definition">¶</a></dt>
+<dd><p>Rebuild points and triangle indices after changing <code class="docutils literal notranslate"><span class="pre">mesh</span></code> in place.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.set_mesh">
+<span class="sig-name descname"><span class="pre">set_mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mesh</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/manim_models/opengl_mesh.html#FastManimMesh.set_mesh"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.set_mesh" title="Link to this definition">¶</a></dt>
+<dd><p>Replace the displayed mesh and rebuild the shader arrays.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mesh</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh" title="manim_extensions.meshes.models.data_models.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a></span>) – Triangle-only mesh to display.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.add_face">
+<span class="sig-name descname"><span class="pre">add_face</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">face</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/manim_models/opengl_mesh.html#FastManimMesh.add_face"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.add_face" title="Link to this definition">¶</a></dt>
+<dd><p>Append a triangular face and refresh the displayed geometry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>face</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Three vertex indices forming the new face.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">face</span></code> does not contain exactly three indices.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.remove_face">
+<span class="sig-name descname"><span class="pre">remove_face</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/manim_models/opengl_mesh.html#FastManimMesh.remove_face"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.remove_face" title="Link to this definition">¶</a></dt>
+<dd><p>Remove a triangular face by index and refresh the geometry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>idx</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the face to remove.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.update_vertex">
+<span class="sig-name descname"><span class="pre">update_vertex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertex</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/manim_models/opengl_mesh.html#FastManimMesh.update_vertex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.update_vertex" title="Link to this definition">¶</a></dt>
+<dd><p>Update one vertex and refresh the displayed geometry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>idx</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the vertex to update.</p></li>
+<li><p><strong>vertex</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – New vertex coordinates.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.get_triangle_indices">
+<span class="sig-name descname"><span class="pre">get_triangle_indices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/manim_models/opengl_mesh.html#FastManimMesh.get_triangle_indices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.get_triangle_indices" title="Link to this definition">¶</a></dt>
+<dd><p>Return the flat array of triangle indices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Triangle vertex indices concatenated into a 1-D array.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.get_shader_data">
+<span class="sig-name descname"><span class="pre">get_shader_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/manim_models/opengl_mesh.html#FastManimMesh.get_shader_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.get_shader_data" title="Link to this definition">¶</a></dt>
+<dd><p>Build the shader data array from the mobject’s points and colours.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A structured array with the shader dtype.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.fill_in_shader_color_info">
+<span class="sig-name descname"><span class="pre">fill_in_shader_color_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shader_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/manim_models/opengl_mesh.html#FastManimMesh.fill_in_shader_color_info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.fill_in_shader_color_info" title="Link to this definition">¶</a></dt>
+<dd><p>Write colour information into the shader data array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>shader_data</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></span>) – The structured shader data array to modify.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The updated shader data array.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.get_shader_vert_indices">
+<span class="sig-name descname"><span class="pre">get_shader_vert_indices</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/meshes/models/manim_models/opengl_mesh.html#FastManimMesh.get_shader_vert_indices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.get_shader_vert_indices" title="Link to this definition">¶</a></dt>
+<dd><p>Return the triangle indices used for shader rendering.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The same array as <a class="reference internal" href="opengl_mesh.FastManimMesh.html#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.get_triangle_indices" title="manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.get_triangle_indices"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_triangle_indices()</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1822,23 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">opengl_mesh</a><ul>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh"><code class="docutils literal notranslate"><span class="pre">FastManimMesh</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.shader_dtype"><code class="docutils literal notranslate"><span class="pre">FastManimMesh.shader_dtype</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.shader_folder"><code class="docutils literal notranslate"><span class="pre">FastManimMesh.shader_folder</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh._validate_mesh"><code class="docutils literal notranslate"><span class="pre">FastManimMesh._validate_mesh()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh._flatten_triangles"><code class="docutils literal notranslate"><span class="pre">FastManimMesh._flatten_triangles()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.init_points"><code class="docutils literal notranslate"><span class="pre">FastManimMesh.init_points()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.refresh_from_mesh"><code class="docutils literal notranslate"><span class="pre">FastManimMesh.refresh_from_mesh()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.set_mesh"><code class="docutils literal notranslate"><span class="pre">FastManimMesh.set_mesh()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.add_face"><code class="docutils literal notranslate"><span class="pre">FastManimMesh.add_face()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.remove_face"><code class="docutils literal notranslate"><span class="pre">FastManimMesh.remove_face()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.update_vertex"><code class="docutils literal notranslate"><span class="pre">FastManimMesh.update_vertex()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.get_triangle_indices"><code class="docutils literal notranslate"><span class="pre">FastManimMesh.get_triangle_indices()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.get_shader_data"><code class="docutils literal notranslate"><span class="pre">FastManimMesh.get_shader_data()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.fill_in_shader_color_info"><code class="docutils literal notranslate"><span class="pre">FastManimMesh.fill_in_shader_color_info()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.models.manim_models.opengl_mesh.FastManimMesh.get_shader_vert_indices"><code class="docutils literal notranslate"><span class="pre">FastManimMesh.get_shader_vert_indices()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

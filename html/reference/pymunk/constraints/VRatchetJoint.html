@@ -1491,6 +1491,116 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.pymunk.constraints.VRatchetJoint">
 <span id="vratchetjoint"></span><h1>VRatchetJoint<a class="headerlink" href="#module-manim_extensions.pymunk.constraints.VRatchetJoint" title="Link to this heading">¶</a></h1>
+<p>Ratchet joint constraint for Pymunk.</p>
+<p>This module provides the <a class="reference internal" href="VRatchetJoint.VRatchetJoint.html#manim_extensions.pymunk.constraints.VRatchetJoint.VRatchetJoint" title="manim_extensions.pymunk.constraints.VRatchetJoint.VRatchetJoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">VRatchetJoint</span></code></a> class for creating ratchet joint constraints.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.pymunk.constraints.VRatchetJoint.VRatchetJoint">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.pymunk.constraints.VRatchetJoint.</span></span><span class="sig-name descname"><span class="pre">VRatchetJoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a_mob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_mob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ratchet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PI</span> <span class="pre">/</span> <span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indicator_line_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Arrow</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indicator_line_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.BLUE"><span class="pre">BLUE</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">2}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indicator_line_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connect_line_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connect_line_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.YELLOW"><span class="pre">YELLOW</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">2}</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/constraints/VRatchetJoint.html#VRatchetJoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.pymunk.constraints.VRatchetJoint.VRatchetJoint" title="Link to this definition">¶</a></dt>
+<dd><p>Initializes a Ratchet Joint constraint between two Mobjects.</p>
+<p>A Ratchet Joint acts like a rotary pawl, allowing relative rotation
+only in discrete increments and in one direction. It is perfect for
+simulating winding mechanisms, clockwork, or unidirectional gears.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a_mob</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The first Mobject (the base or reference body).</p></li>
+<li><p><strong>b_mob</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The second Mobject (the body subject to the ratchet effect).</p></li>
+<li><p><strong>phase</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The initial angular offset of the ratchet teeth.</p></li>
+<li><p><strong>ratchet</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The angular distance between each “tooth” (in radians). For example,
+PI/2 means the joint locks at every 90-degree interval.</p></li>
+<li><p><strong>indicator_line_class</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#type" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – The Manim class used to visualize the current rotation or ratchet direction.</p></li>
+<li><p><strong>indicator_line_config</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Configuration dictionary for the styling of the indicator arrow.</p></li>
+<li><p><strong>indicator_line_length</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The visual length of the indicator line.</p></li>
+<li><p><strong>connect_line_class</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#type" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – The Manim class used to draw a line between the centers of the two
+objects. Set to None to disable.</p></li>
+<li><p><strong>connect_line_config</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Configuration dictionary for the styling of the connection line.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent <a class="reference internal" href="constraint.VConstraint.html#manim_extensions.pymunk.constraints.constraint.VConstraint" title="manim_extensions.pymunk.constraints.constraint.VConstraint"><code class="xref py py-class docutils literal notranslate"><span class="pre">VConstraint</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="vratchetjointscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: VRatchetJointScene <a class="headerlink" href="#vratchetjointscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./VRatchetJointScene-d634cc7c.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.pymunk</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">VRatchetJointScene</span><span class="p">(</span><span class="n">SpaceScene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># the driven square can only advance in PI-sized ratchet steps</span>
+        <span class="n">pivot_1</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="n">UP</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">pivot_2</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="n">UP</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="n">wheel_1</span> <span class="o">=</span> <span class="n">Square</span><span class="p">()</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">pivot_1</span><span class="p">)</span>
+        <span class="n">wheel_2</span> <span class="o">=</span> <span class="n">Square</span><span class="p">()</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">pivot_2</span><span class="p">)</span>
+        <span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">VPinJoint</span><span class="p">(</span><span class="n">pivot_1</span><span class="p">,</span> <span class="n">wheel_1</span><span class="p">),</span>
+            <span class="n">VPinJoint</span><span class="p">(</span><span class="n">pivot_2</span><span class="p">,</span> <span class="n">wheel_2</span><span class="p">),</span>
+            <span class="n">VRatchetJoint</span><span class="p">(</span><span class="n">wheel_1</span><span class="p">,</span> <span class="n">wheel_2</span><span class="p">,</span> <span class="n">phase</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ratchet</span><span class="o">=</span><span class="n">PI</span><span class="p">),</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">pivot_1</span><span class="p">),</span> <span class="n">FadeIn</span><span class="p">(</span><span class="n">pivot_2</span><span class="p">),</span> <span class="n">FadeIn</span><span class="p">(</span><span class="n">wheel_1</span><span class="p">),</span> <span class="n">FadeIn</span><span class="p">(</span><span class="n">wheel_2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_static_body</span><span class="p">(</span><span class="n">pivot_1</span><span class="p">,</span> <span class="n">pivot_2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_dynamic_body</span><span class="p">(</span><span class="n">wheel_1</span><span class="p">,</span> <span class="n">angular_velocity</span><span class="o">=</span><span class="n">PI</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_dynamic_body</span><span class="p">(</span><span class="n">wheel_2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_shapes_filter</span><span class="p">(</span><span class="n">pivot_1</span><span class="p">,</span> <span class="n">pivot_2</span><span class="p">,</span> <span class="n">wheel_1</span><span class="p">,</span> <span class="n">wheel_2</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_constraints</span><span class="p">(</span><span class="o">*</span><span class="n">constraints</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.pymunk.constraints.VRatchetJoint.VRatchetJoint.__check_data">
+<span class="sig-name descname"><span class="pre">__check_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#manim_extensions.pymunk.constraints.VRatchetJoint.VRatchetJoint.__check_data" title="Link to this definition">¶</a></dt>
+<dd><p>Verify the validity of constraint parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If a mobject is missing or both mobjects share the same
+    location.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.pymunk.constraints.VRatchetJoint.VRatchetJoint.install">
+<span class="sig-name descname"><span class="pre">install</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">space</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/constraints/VRatchetJoint.html#VRatchetJoint.install"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.pymunk.constraints.VRatchetJoint.VRatchetJoint.install" title="Link to this definition">¶</a></dt>
+<dd><p>Create the Pymunk RatchetJoint constraint, initialize visual
+indicator arrows and connecting line, add to the space, and
+register the per-frame updater.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>space</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://www.pymunk.org/en/latest/pymunk.html#pymunk.Space" title="(in Pymunk)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Space</span></code></a></span>) – The Pymunk space to add the constraint to.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.pymunk.constraints.VRatchetJoint.VRatchetJoint.mob_updater">
+<span class="sig-name descname"><span class="pre">mob_updater</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/constraints/VRatchetJoint.html#VRatchetJoint.mob_updater"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.pymunk.constraints.VRatchetJoint.VRatchetJoint.mob_updater" title="Link to this definition">¶</a></dt>
+<dd><p>Visual control updater.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mob</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The constraint mobject being updated.</p></li>
+<li><p><strong>dt</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Time step since the last frame, in seconds.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1673,16 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">VRatchetJoint</a><ul>
+<li><a class="reference internal" href="#manim_extensions.pymunk.constraints.VRatchetJoint.VRatchetJoint"><code class="docutils literal notranslate"><span class="pre">VRatchetJoint</span></code></a><ul>
+
+<li><a class="reference internal" href="#manim_extensions.pymunk.constraints.VRatchetJoint.VRatchetJoint.__check_data"><code class="docutils literal notranslate"><span class="pre">VRatchetJoint.__check_data()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.pymunk.constraints.VRatchetJoint.VRatchetJoint.install"><code class="docutils literal notranslate"><span class="pre">VRatchetJoint.install()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.pymunk.constraints.VRatchetJoint.VRatchetJoint.mob_updater"><code class="docutils literal notranslate"><span class="pre">VRatchetJoint.mob_updater()</span></code></a></li>
+
+
+
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

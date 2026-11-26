@@ -1491,6 +1491,376 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.economics.ad_as">
 <span id="ad-as"></span><h1>ad_as<a class="headerlink" href="#module-manim_extensions.economics.ad_as" title="Link to this heading">¶</a></h1>
+<p>AD-AS diagram for Manim.</p>
+<p>This module provides the Aggregate Demand-Aggregate Supply diagram.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.economics.ad_as.ADASDiagram">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.economics.ad_as.</span></span><span class="sig-name descname"><span class="pre">ADASDiagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sras_price</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sras_slope</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lras_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_equilibrium</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sras_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lras_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numbered_eq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/ad_as.html#ADASDiagram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.ad_as.ADASDiagram" title="Link to this definition">¶</a></dt>
+<dd><p>Aggregate Demand — Aggregate Supply diagram.</p>
+<p>AD is derived from the quantity theory of money: <span class="math notranslate nohighlight">\(MV = PY\)</span>, so
+<span class="math notranslate nohighlight">\(P = MV/Y\)</span>.</p>
+<p>SRAS comes in two flavours controlled by <code class="docutils literal notranslate"><span class="pre">sras_slope</span></code>:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">sras_slope=None</span></code> — flat/horizontal Keynesian SRAS at
+<code class="docutils literal notranslate"><span class="pre">sras_price</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sras_slope=&lt;positive</span> <span class="pre">number&gt;</span></code> — upward-sloping SRAS using the
+Mankiw formulation <span class="math notranslate nohighlight">\(P = P^{e} + \text{slope} \cdot (Y - \bar{Y})\)</span>.</p>
+<p>Here <span class="math notranslate nohighlight">\(P^{e}\)</span> is the expected price level (<code class="docutils literal notranslate"><span class="pre">sras_price</span></code>),
+<span class="math notranslate nohighlight">\(\bar{Y}\)</span> is potential output (<code class="docutils literal notranslate"><span class="pre">lras_y</span></code>), and <code class="docutils literal notranslate"><span class="pre">slope</span></code>
+captures the cost structure <span class="math notranslate nohighlight">\((1-s)a/s\)</span>.  Shifts in SRAS
+correspond to changes in <span class="math notranslate nohighlight">\(P^{e}\)</span>: when firms revise
+expectations the curve shifts up/down while keeping the same slope.</p>
+</li>
+</ul>
+<p>LRAS is a vertical line at potential output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Money supply.</p></li>
+<li><p><strong>v</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Velocity of money.</p></li>
+<li><p><strong>sras_price</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Short-run price level / expected price <span class="math notranslate nohighlight">\(P^{e}\)</span>.</p></li>
+<li><p><strong>sras_slope</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – SRAS slope.  <code class="docutils literal notranslate"><span class="pre">None</span></code> → flat.  Positive → upward-sloping
+<span class="math notranslate nohighlight">\(P = P^{e} + \text{slope} \cdot (Y - \bar{Y})\)</span>.</p></li>
+<li><p><strong>lras_y</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Potential output / natural rate of output.</p></li>
+<li><p><strong>show_equilibrium</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, mark the AD–SRAS intersection as the equilibrium.</p></li>
+<li><p><strong>sras_only</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, draw only the SRAS curve (no LRAS line).</p></li>
+<li><p><strong>lras_only</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, draw only the LRAS line (no SRAS curve).</p></li>
+<li><p><strong>numbered_eq</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, number the equilibrium coordinates.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to <a class="reference internal" href="base.EconDiagram.html#manim_extensions.economics.base.EconDiagram" title="manim_extensions.economics.base.EconDiagram"><code class="xref py py-class docutils literal notranslate"><span class="pre">EconDiagram</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="adasdiagramscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ADASDiagramScene <a class="headerlink" href="#adasdiagramscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./ADASDiagramScene-099e08ee.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.economics</span><span class="w"> </span><span class="kn">import</span> <span class="n">ADASDiagram</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ADASDiagramScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">diagram</span> <span class="o">=</span> <span class="n">ADASDiagram</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sras_price</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">lras_y</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Create</span><span class="p">(</span><span class="n">diagram</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+
+        <span class="n">label</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="s2">"Positive demand shock: M up"</span><span class="p">,</span>
+                     <span class="n">font_size</span><span class="o">=</span><span class="mi">28</span><span class="p">)</span><span class="o">.</span><span class="n">to_edge</span><span class="p">(</span><span class="n">UP</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Write</span><span class="p">(</span><span class="n">label</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">anim</span> <span class="ow">in</span> <span class="n">diagram</span><span class="o">.</span><span class="n">positive_demand_shock</span><span class="p">(</span><span class="n">m</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">show_arrows</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">anim</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.ad_as.ADASDiagram._make_ad_func">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">_make_ad_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/ad_as.html#ADASDiagram._make_ad_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.ad_as.ADASDiagram._make_ad_func" title="Link to this definition">¶</a></dt>
+<dd><p>Build the aggregate demand curve.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Money supply.</p></li>
+<li><p><strong>v</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Velocity of money.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A function mapping output to the aggregate price level.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.ad_as.ADASDiagram._ad_x_min">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">_ad_x_min</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_max</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/ad_as.html#ADASDiagram._ad_x_min"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.ad_as.ADASDiagram._ad_x_min" title="Link to this definition">¶</a></dt>
+<dd><p>Return the smallest output level that keeps AD on screen.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Money supply.</p></li>
+<li><p><strong>v</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Velocity of money.</p></li>
+<li><p><strong>y_max</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Upper limit of the visible price range.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The smallest output level that keeps the curve visible.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.ad_as.ADASDiagram._make_sras_func">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">_make_sras_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slope</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_bar</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/ad_as.html#ADASDiagram._make_sras_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.ad_as.ADASDiagram._make_sras_func" title="Link to this definition">¶</a></dt>
+<dd><p>Build the short-run aggregate supply curve.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>price</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Price level, or the expected price when the curve slopes.</p></li>
+<li><p><strong>slope</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Slope of the curve; a flat curve is produced when omitted.</p></li>
+<li><p><strong>y_bar</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Potential output used as the slope pivot.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A function mapping output to the short-run price level.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="manim_extensions.economics.ad_as.ADASDiagram._lr_price">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">_lr_price</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><a class="headerlink" href="#manim_extensions.economics.ad_as.ADASDiagram._lr_price" title="Link to this definition">¶</a></dt>
+<dd><p>Long-run equilibrium expected price <span class="math notranslate nohighlight">\(P^{e}\)</span>.</p>
+<p>In long-run equilibrium expectations are correct:
+<span class="math notranslate nohighlight">\(P^{e} = P = MV/\bar{Y}\)</span>.  For the sloped SRAS
+<span class="math notranslate nohighlight">\(P = P^{e} + \text{slope} \cdot (Y - \bar{Y})\)</span>, at
+<span class="math notranslate nohighlight">\(Y = \bar{Y}\)</span> the deviation term vanishes, so
+<span class="math notranslate nohighlight">\(P^{e} = MV/\bar{Y}\)</span> regardless of slope.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The long-run equilibrium expected price level.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.ad_as.ADASDiagram.shift_ad">
+<span class="sig-name descname"><span class="pre">shift_ad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_arrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/ad_as.html#ADASDiagram.shift_ad"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.ad_as.ADASDiagram.shift_ad" title="Link to this definition">¶</a></dt>
+<dd><p>Animate AD shifting due to changes in M and/or V.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – New money supply. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, keeps the current value.</p></li>
+<li><p><strong>v</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – New velocity of money. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, keeps the current value.</p></li>
+<li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the shift animation.</p></li>
+<li><p><strong>show_arrows</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, draw arrows on the axes showing the direction of
+equilibrium change.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The curve-shift animation, together with the share update
+if shares are visible.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.ad_as.ADASDiagram.shift_sras">
+<span class="sig-name descname"><span class="pre">shift_sras</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sras_price</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sras_slope</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_arrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/ad_as.html#ADASDiagram.shift_sras"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.ad_as.ADASDiagram.shift_sras" title="Link to this definition">¶</a></dt>
+<dd><p>Animate SRAS shifting to a new expected price <span class="math notranslate nohighlight">\(P^{e}\)</span> and/or slope.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sras_price</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – New expected price level <span class="math notranslate nohighlight">\(P^{e}\)</span>. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, keeps the current
+value.</p></li>
+<li><p><strong>sras_slope</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – New SRAS slope; <code class="docutils literal notranslate"><span class="pre">None</span></code> keeps the curve flat. If <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+keeps the current value.</p></li>
+<li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the shift animation.</p></li>
+<li><p><strong>show_arrows</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, draw arrows on the axes showing the direction of
+equilibrium change.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The curve-shift animation, together with the share update
+if shares are visible.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.ad_as.ADASDiagram.shift_lras">
+<span class="sig-name descname"><span class="pre">shift_lras</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/ad_as.html#ADASDiagram.shift_lras"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.ad_as.ADASDiagram.shift_lras" title="Link to this definition">¶</a></dt>
+<dd><p>Animate LRAS moving to a new potential output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>new_y</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – New potential output (natural rate of output).</p></li>
+<li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the shift animation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The animation shifting the LRAS line.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.ad_as.ADASDiagram.long_run_adjust">
+<span class="sig-name descname"><span class="pre">long_run_adjust</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">_LR_RUN_TIME</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_arrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/ad_as.html#ADASDiagram.long_run_adjust"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.ad_as.ADASDiagram.long_run_adjust" title="Link to this definition">¶</a></dt>
+<dd><p>SRAS slowly shifts to restore long-run equilibrium.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the adjustment animation.
+seconds.</p></li>
+<li><p><strong>show_arrows</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – <p>If True, draw arrows on the axes showing the direction of
+equilibrium change.</p>
+<p>After a shock moves output away from LRAS, SRAS gradually adjusts
+to <span class="math notranslate nohighlight">\(P = MV / Y_{\text{potential}}\)</span>, bringing the economy
+back to potential output.  The animation is slow (2s) to show the
+gradual adjustment.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The animation shifting the SRAS curve back toward long-run
+equilibrium.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.ad_as.ADASDiagram._append_long_run">
+<span class="sig-name descname"><span class="pre">_append_long_run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">anims</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr_run_time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_arrows</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/ad_as.html#ADASDiagram._append_long_run"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.ad_as.ADASDiagram._append_long_run" title="Link to this definition">¶</a></dt>
+<dd><p>Append the long-run adjustment to an animation list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>anims</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Animation list that is extended in place.</p></li>
+<li><p><strong>lr_run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the long-run adjustment.</p></li>
+<li><p><strong>show_arrows</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether the adjustment draws guide arrows.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.ad_as.ADASDiagram.positive_demand_shock">
+<span class="sig-name descname"><span class="pre">positive_demand_shock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">long_run</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr_run_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">_LR_RUN_TIME</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_arrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/ad_as.html#ADASDiagram.positive_demand_shock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.ad_as.ADASDiagram.positive_demand_shock" title="Link to this definition">¶</a></dt>
+<dd><p>Positive demand shock (e.g. increase in M or V).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – New money supply. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, keeps the current value.</p></li>
+<li><p><strong>v</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – New velocity of money. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, keeps the current value.</p></li>
+<li><p><strong>long_run</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, append the long-run adjustment of SRAS.</p></li>
+<li><p><strong>lr_run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the long-run adjustment animation. seconds.</p></li>
+<li><p><strong>show_arrows</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – <p>If True, draw arrows on the axes showing the direction of
+equilibrium change.</p>
+<p>Short run: AD shifts right → output rises above potential, price unchanged.</p>
+<p>Long run: SRAS slowly shifts up → output returns to potential at higher price.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of animations to play in sequence.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.ad_as.ADASDiagram.negative_demand_shock">
+<span class="sig-name descname"><span class="pre">negative_demand_shock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">long_run</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr_run_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">_LR_RUN_TIME</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_arrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/ad_as.html#ADASDiagram.negative_demand_shock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.ad_as.ADASDiagram.negative_demand_shock" title="Link to this definition">¶</a></dt>
+<dd><p>Negative demand shock (e.g. decrease in M or V).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – New money supply. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, keeps the current value.</p></li>
+<li><p><strong>v</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – New velocity of money. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, keeps the current value.</p></li>
+<li><p><strong>long_run</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, append the long-run adjustment of SRAS.</p></li>
+<li><p><strong>lr_run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the long-run adjustment animation. seconds.</p></li>
+<li><p><strong>show_arrows</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – <p>If True, draw arrows on the axes showing the direction of
+equilibrium change.</p>
+<p>Short run: AD shifts left → output falls below potential, price unchanged.</p>
+<p>Long run: SRAS slowly shifts down → output returns to potential at lower price.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of animations to play in sequence.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.ad_as.ADASDiagram.adverse_supply_shock">
+<span class="sig-name descname"><span class="pre">adverse_supply_shock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sras_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">long_run</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr_run_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">_LR_RUN_TIME</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_arrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/ad_as.html#ADASDiagram.adverse_supply_shock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.ad_as.ADASDiagram.adverse_supply_shock" title="Link to this definition">¶</a></dt>
+<dd><p>Adverse supply shock (e.g. oil price spike, cost push).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sras_price</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – New expected price level <span class="math notranslate nohighlight">\(P^{e}\)</span> for SRAS (higher than current).</p></li>
+<li><p><strong>long_run</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, append the long-run self-correction of SRAS.</p></li>
+<li><p><strong>lr_run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the long-run adjustment animation. seconds.</p></li>
+<li><p><strong>show_arrows</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – <p>If True, draw arrows on the axes showing the direction of
+equilibrium change.</p>
+<p>Short run: SRAS shifts up → price rises, output falls (stagflation).</p>
+<p>Long run: SRAS slowly shifts back down as economy self-corrects.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of animations to play in sequence.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.ad_as.ADASDiagram.positive_supply_shock">
+<span class="sig-name descname"><span class="pre">positive_supply_shock</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sras_price</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">long_run</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lr_run_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">_LR_RUN_TIME</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_arrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/ad_as.html#ADASDiagram.positive_supply_shock"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.ad_as.ADASDiagram.positive_supply_shock" title="Link to this definition">¶</a></dt>
+<dd><p>Animate an expansionary supply shock by shifting SRAS to a lower price level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sras_price</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – New expected price level <span class="math notranslate nohighlight">\(P^{e}\)</span> for SRAS (lower than current).</p></li>
+<li><p><strong>long_run</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, append the long-run self-correction of SRAS.</p></li>
+<li><p><strong>lr_run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the long-run adjustment animation. seconds.</p></li>
+<li><p><strong>show_arrows</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – <p>If True, draw arrows on the axes showing the direction of
+equilibrium change.</p>
+<p>Short run: SRAS shifts down → price falls, output rises.</p>
+<p>Long run: SRAS slowly shifts back up as economy self-corrects.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of animations to play in sequence.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1933,22 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">ad_as</a><ul>
+<li><a class="reference internal" href="#manim_extensions.economics.ad_as.ADASDiagram"><code class="docutils literal notranslate"><span class="pre">ADASDiagram</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.economics.ad_as.ADASDiagram._make_ad_func"><code class="docutils literal notranslate"><span class="pre">ADASDiagram._make_ad_func()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.ad_as.ADASDiagram._ad_x_min"><code class="docutils literal notranslate"><span class="pre">ADASDiagram._ad_x_min()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.ad_as.ADASDiagram._make_sras_func"><code class="docutils literal notranslate"><span class="pre">ADASDiagram._make_sras_func()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.ad_as.ADASDiagram._lr_price"><code class="docutils literal notranslate"><span class="pre">ADASDiagram._lr_price</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.ad_as.ADASDiagram.shift_ad"><code class="docutils literal notranslate"><span class="pre">ADASDiagram.shift_ad()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.ad_as.ADASDiagram.shift_sras"><code class="docutils literal notranslate"><span class="pre">ADASDiagram.shift_sras()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.ad_as.ADASDiagram.shift_lras"><code class="docutils literal notranslate"><span class="pre">ADASDiagram.shift_lras()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.ad_as.ADASDiagram.long_run_adjust"><code class="docutils literal notranslate"><span class="pre">ADASDiagram.long_run_adjust()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.ad_as.ADASDiagram._append_long_run"><code class="docutils literal notranslate"><span class="pre">ADASDiagram._append_long_run()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.ad_as.ADASDiagram.positive_demand_shock"><code class="docutils literal notranslate"><span class="pre">ADASDiagram.positive_demand_shock()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.ad_as.ADASDiagram.negative_demand_shock"><code class="docutils literal notranslate"><span class="pre">ADASDiagram.negative_demand_shock()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.ad_as.ADASDiagram.adverse_supply_shock"><code class="docutils literal notranslate"><span class="pre">ADASDiagram.adverse_supply_shock()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.ad_as.ADASDiagram.positive_supply_shock"><code class="docutils literal notranslate"><span class="pre">ADASDiagram.positive_supply_shock()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>
@@ -1582,6 +1968,7 @@
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=61a6639c"></script>
     <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../_static/design-tabs.js?v=fcb327ea"></script>
+    <script defer="defer" src="../../_static/mathjax/tex-mml-svg.js?v=f093f569"></script>
     <script src="../../_static/responsiveSvg.js?v=f16afd2d"></script>
     <script src="../../_static/attributes-single.js?v=cee42560"></script>
     <script src="../../_static/icon_gallery.js?v=86f39e20"></script>

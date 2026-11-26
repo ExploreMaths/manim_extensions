@@ -1489,8 +1489,513 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="module-manim_extensions.meshes.exceptions">
+          <style>div.nbinput.container div.prompt,div.nboutput.container div.prompt{width:8ch}div.nbcell-files.container{padding-left:8ch}</style><section id="module-manim_extensions.meshes.exceptions">
 <span id="exceptions"></span><h1>exceptions<a class="headerlink" href="#module-manim_extensions.meshes.exceptions" title="Link to this heading">¶</a></h1>
+<p>Exceptions raised while validating mesh topology and geometry.</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="manim_extensions.meshes.exceptions.InvalidMeshException">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.exceptions.</span></span><span class="sig-name descname"><span class="pre">InvalidMeshException</span></span><a class="reference internal" href="../../_modules/manim_extensions/meshes/exceptions.html#InvalidMeshException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.exceptions.InvalidMeshException" title="Link to this definition">¶</a></dt>
+<dd><p>something with the mesh is generally wrong.</p>
+<p>Raised by <a class="reference internal" href="models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh" title="manim_extensions.meshes.models.data_models.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a>
+(and related helpers) whenever the supplied mesh data is inconsistent,
+e.g. vertices with mixed dimensionality:</p>
+<p class="rubric">Examples</p>
+<div id="invalidmeshexceptionoverview" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: InvalidMeshExceptionOverview <a class="headerlink" href="#invalidmeshexceptionoverview">¶</a></p><img alt="../../_images/InvalidMeshExceptionOverview-97203eb8.png" class="align-center" src="../../_images/InvalidMeshExceptionOverview-97203eb8.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">InvalidMeshException</span>
+
+<span class="n">InvalidMeshExceptionTarget</span> <span class="o">=</span> <span class="n">InvalidMeshException</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">InvalidMeshExceptionOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">InvalidMeshExceptionTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
+        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'InvalidMeshException'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.meshes.exceptions'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'something with the mesh is generally wrong'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [1]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.models.data_models.mesh</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mesh</span>
+<span class="n">Mesh</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>Out[1]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight-pytb notranslate"><div class="highlight"><pre><span></span><span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"manim_extensions/meshes/models/data_models/mesh.py"</span>, line <span class="m">124</span>, in <span class="n">__init__</span>
+<span class="w">    </span><span class="n">conv_vertices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="w">                    </span><span class="pm">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+<span class="gr">ValueError</span>: <span class="n">setting an array element with a sequence. The requested array has an inhomogeneous shape after 1 dimensions. The detected shape was (2,) + inhomogeneous part.</span>
+
+<span class="gt">The above exception was the direct cause of the following exception:</span>
+
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"&lt;string&gt;"</span>, line <span class="m">2</span>, in <span class="n">&lt;module&gt;</span>
+  File <span class="nb">"manim_extensions/meshes/decorators.py"</span>, line <span class="m">52</span>, in <span class="n">wrapper_func</span>
+<span class="w">    </span><span class="n">return_value</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="w">                   </span><span class="pm">^^^^^^^^^^^^^^^^^^^^^</span>
+  File <span class="nb">"manim_extensions/meshes/decorators.py"</span>, line <span class="m">100</span>, in <span class="n">wrapper_func</span>
+<span class="w">    </span><span class="n">return_value</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="w">                   </span><span class="pm">^^^^^^^^^^^^^^^^^^^^^</span>
+  File <span class="nb">"manim_extensions/meshes/models/data_models/mesh.py"</span>, line <span class="m">132</span>, in <span class="n">__init__</span>
+<span class="w">    </span><span class="k">raise</span> <span class="n">InvalidMeshException</span><span class="p">(</span>
+<span class="gr">manim_extensions.meshes.exceptions.InvalidMeshException</span>: <span class="n">Dimensional mismatch for vertices. All vertices should have the same number of dimensions.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="manim_extensions.meshes.exceptions.InvalidRequestException">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.exceptions.</span></span><span class="sig-name descname"><span class="pre">InvalidRequestException</span></span><a class="reference internal" href="../../_modules/manim_extensions/meshes/exceptions.html#InvalidRequestException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.exceptions.InvalidRequestException" title="Link to this definition">¶</a></dt>
+<dd><p>a request was made that is not defined.</p>
+<p>Raised when a mesh operation cannot be fulfilled as requested, e.g.
+projecting a five-dimensional mesh to three dimensions:</p>
+<p class="rubric">Examples</p>
+<div id="invalidrequestexceptionoverview" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: InvalidRequestExceptionOverview <a class="headerlink" href="#invalidrequestexceptionoverview">¶</a></p><img alt="../../_images/InvalidRequestExceptionOverview-db324d9b.png" class="align-center" src="../../_images/InvalidRequestExceptionOverview-db324d9b.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">InvalidRequestException</span>
+
+<span class="n">InvalidRequestExceptionTarget</span> <span class="o">=</span> <span class="n">InvalidRequestException</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">InvalidRequestExceptionOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">InvalidRequestExceptionTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
+        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'InvalidRequestException'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.meshes.exceptions'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'a request was made that is not defined'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [2]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.models.data_models.mesh</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mesh</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)),</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">get_3d_vertices</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>Out[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight-pytb notranslate"><div class="highlight"><pre><span></span><span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"&lt;string&gt;"</span>, line <span class="m">4</span>, in <span class="n">&lt;module&gt;</span>
+  File <span class="nb">"manim_extensions/meshes/models/data_models/mesh.py"</span>, line <span class="m">402</span>, in <span class="n">get_3d_vertices</span>
+<span class="w">    </span><span class="k">raise</span> <span class="n">InvalidRequestException</span><span class="p">(</span>
+<span class="gr">manim_extensions.meshes.exceptions.InvalidRequestException</span>: <span class="n">Can not Broadcast from 5-D Mesh to 3D Mesh.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="manim_extensions.meshes.exceptions.MeshIndexException">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.exceptions.</span></span><span class="sig-name descname"><span class="pre">MeshIndexException</span></span><a class="reference internal" href="../../_modules/manim_extensions/meshes/exceptions.html#MeshIndexException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.exceptions.MeshIndexException" title="Link to this definition">¶</a></dt>
+<dd><p>Invalid index.</p>
+<p>Raised when a vertex, face, or part index is out of range, e.g.</p>
+<p class="rubric">Examples</p>
+<div id="meshindexexceptionoverview" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: MeshIndexExceptionOverview <a class="headerlink" href="#meshindexexceptionoverview">¶</a></p><img alt="../../_images/MeshIndexExceptionOverview-f6888b60.png" class="align-center" src="../../_images/MeshIndexExceptionOverview-f6888b60.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">MeshIndexException</span>
+
+<span class="n">MeshIndexExceptionTarget</span> <span class="o">=</span> <span class="n">MeshIndexException</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MeshIndexExceptionOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">MeshIndexExceptionTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
+        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'MeshIndexException'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.meshes.exceptions'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'Invalid index'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [3]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.models.data_models.mesh</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mesh</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]),</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">update_vertex</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>Out[3]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight-pytb notranslate"><div class="highlight"><pre><span></span><span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"&lt;string&gt;"</span>, line <span class="m">4</span>, in <span class="n">&lt;module&gt;</span>
+  File <span class="nb">"manim_extensions/meshes/models/data_models/mesh.py"</span>, line <span class="m">637</span>, in <span class="n">update_vertex</span>
+<span class="w">    </span><span class="k">raise</span> <span class="n">MeshIndexException</span><span class="p">(</span>
+<span class="gr">manim_extensions.meshes.exceptions.MeshIndexException</span>: <span class="n">Vertex index 5 out of range for vertices of length 2</span>
+</pre></div>
+</div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="manim_extensions.meshes.exceptions.InvalidTypeException">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.exceptions.</span></span><span class="sig-name descname"><span class="pre">InvalidTypeException</span></span><a class="reference internal" href="../../_modules/manim_extensions/meshes/exceptions.html#InvalidTypeException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.exceptions.InvalidTypeException" title="Link to this definition">¶</a></dt>
+<dd><p>A mesh function did get a faulty type.</p>
+<p>Raised when a parameter has the right container type but an unexpected
+shape, e.g. a 2-D array where a 1-D vertex position is expected:</p>
+<p class="rubric">Examples</p>
+<div id="invalidtypeexceptionoverview" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: InvalidTypeExceptionOverview <a class="headerlink" href="#invalidtypeexceptionoverview">¶</a></p><img alt="../../_images/InvalidTypeExceptionOverview-a6e77c97.png" class="align-center" src="../../_images/InvalidTypeExceptionOverview-a6e77c97.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">InvalidTypeException</span>
+
+<span class="n">InvalidTypeExceptionTarget</span> <span class="o">=</span> <span class="n">InvalidTypeException</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">InvalidTypeExceptionOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">InvalidTypeExceptionTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
+        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'InvalidTypeException'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.meshes.exceptions'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'A mesh function did get a faulty type'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [4]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.models.data_models.mesh</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mesh</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]),</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">update_vertex</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]]))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>Out[4]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight-pytb notranslate"><div class="highlight"><pre><span></span><span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"&lt;string&gt;"</span>, line <span class="m">4</span>, in <span class="n">&lt;module&gt;</span>
+  File <span class="nb">"manim_extensions/meshes/models/data_models/mesh.py"</span>, line <span class="m">641</span>, in <span class="n">update_vertex</span>
+<span class="w">    </span><span class="k">raise</span> <span class="n">InvalidTypeException</span><span class="p">(</span>
+<span class="gr">manim_extensions.meshes.exceptions.InvalidTypeException</span>: <span class="n">Vertex [[1 1 1]] has incorrect shape, expected 1D-like array.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="manim_extensions.meshes.exceptions.InvalidMeshDimensionsException">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.exceptions.</span></span><span class="sig-name descname"><span class="pre">InvalidMeshDimensionsException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">actual</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/meshes/exceptions.html#InvalidMeshDimensionsException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.exceptions.InvalidMeshDimensionsException" title="Link to this definition">¶</a></dt>
+<dd><p>Something with the Mesh Dimensions is not as expected.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>actual</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – The actual dimension value that was found.</p></li>
+<li><p><strong>expected</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – The expected dimension value.</p></li>
+<li><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Optional name of the parameter whose dimensions are invalid.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="invalidmeshdimensionsexceptionoverview" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: InvalidMeshDimensionsExceptionOverview <a class="headerlink" href="#invalidmeshdimensionsexceptionoverview">¶</a></p><img alt="../../_images/InvalidMeshDimensionsExceptionOverview-26d757c4.png" class="align-center" src="../../_images/InvalidMeshDimensionsExceptionOverview-26d757c4.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">InvalidMeshDimensionsException</span>
+
+<span class="n">InvalidMeshDimensionsExceptionTarget</span> <span class="o">=</span> <span class="n">InvalidMeshDimensionsException</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">InvalidMeshDimensionsExceptionOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">InvalidMeshDimensionsExceptionTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
+        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'InvalidMeshDimensionsException'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.meshes.exceptions'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'Something with the Mesh Dimensions is not as expected'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><p>Raised when a parameter has the wrong dimensionality, e.g. adding 2-D
+vertices to a 3-D mesh:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [5]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.models.data_models.mesh</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mesh</span>
+<span class="n">mesh</span> <span class="o">=</span> <span class="n">Mesh</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]),</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">mesh</span><span class="o">.</span><span class="n">add_vertices</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]]))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>Out[5]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight-pytb notranslate"><div class="highlight"><pre><span></span><span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"&lt;string&gt;"</span>, line <span class="m">4</span>, in <span class="n">&lt;module&gt;</span>
+  File <span class="nb">"manim_extensions/meshes/decorators.py"</span>, line <span class="m">52</span>, in <span class="n">wrapper_func</span>
+<span class="w">    </span><span class="n">return_value</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<span class="w">                   </span><span class="pm">^^^^^^^^^^^^^^^^^^^^^</span>
+  File <span class="nb">"manim_extensions/meshes/models/data_models/mesh.py"</span>, line <span class="m">575</span>, in <span class="n">add_vertices</span>
+<span class="w">    </span><span class="k">raise</span> <span class="n">InvalidMeshDimensionsException</span><span class="p">(</span>
+<span class="gr">manim_extensions.meshes.exceptions.InvalidMeshDimensionsException</span>: <span class="n">Dimensions of new_vertices is expected to be ('N', 3) but was (1, 2).</span>
+</pre></div>
+</div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="manim_extensions.meshes.exceptions.InvalidShapeException">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.exceptions.</span></span><span class="sig-name descname"><span class="pre">InvalidShapeException</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">actual</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">expected</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/meshes/exceptions.html#InvalidShapeException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.exceptions.InvalidShapeException" title="Link to this definition">¶</a></dt>
+<dd><p>A new parameter has invalid shape.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Name of the parameter with the invalid shape.</p></li>
+<li><p><strong>actual</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – The actual size that was found.</p></li>
+<li><p><strong>expected</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – The expected size.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="invalidshapeexceptionoverview" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: InvalidShapeExceptionOverview <a class="headerlink" href="#invalidshapeexceptionoverview">¶</a></p><img alt="../../_images/InvalidShapeExceptionOverview-b3c77e23.png" class="align-center" src="../../_images/InvalidShapeExceptionOverview-b3c77e23.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">InvalidShapeException</span>
+
+<span class="n">InvalidShapeExceptionTarget</span> <span class="o">=</span> <span class="n">InvalidShapeException</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">InvalidShapeExceptionOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">InvalidShapeExceptionTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
+        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'InvalidShapeException'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.meshes.exceptions'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'A new parameter has invalid shape'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><p>Raised by <a class="reference internal" href="models/manim_models/basic_mesh.ManimMesh.html#manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.move_vertices_to" title="manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.move_vertices_to"><code class="xref py py-meth docutils literal notranslate"><span class="pre">move_vertices_to()</span></code></a>
+when the target position list does not match the number of vertices:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [6]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="n">Scene</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.models.data_models.mesh</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mesh</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.models.manim_models.basic_mesh</span><span class="w"> </span><span class="kn">import</span> <span class="n">Manim2DMesh</span>
+<span class="n">mm</span> <span class="o">=</span> <span class="n">Manim2DMesh</span><span class="p">(</span><span class="n">Mesh</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]],</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]))</span>
+<span class="n">mm</span><span class="o">.</span><span class="n">move_vertices_to</span><span class="p">(</span><span class="n">Scene</span><span class="p">(),</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>Out[6]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight-pytb notranslate"><div class="highlight"><pre><span></span><span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"&lt;string&gt;"</span>, line <span class="m">6</span>, in <span class="n">&lt;module&gt;</span>
+  File <span class="nb">"manim_extensions/meshes/models/manim_models/basic_mesh.py"</span>, line <span class="m">799</span>, in <span class="n">move_vertices_to</span>
+<span class="w">    </span><span class="k">raise</span> <span class="n">InvalidShapeException</span><span class="p">(</span>
+<span class="gr">manim_extensions.meshes.exceptions.InvalidShapeException</span>: <span class="n">Size of new_positions is expected to be 3 but was 2.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="manim_extensions.meshes.exceptions.BadParameterException">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.exceptions.</span></span><span class="sig-name descname"><span class="pre">BadParameterException</span></span><a class="reference internal" href="../../_modules/manim_extensions/meshes/exceptions.html#BadParameterException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.exceptions.BadParameterException" title="Link to this definition">¶</a></dt>
+<dd><p>Default Class for Parameter Exceptions.</p>
+<p>Raised by <a class="reference internal" href="params.html#id1" title="manim_extensions.meshes.params.get_param_or_default"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_param_or_default()</span></code></a>
+when a user-supplied mesh display parameter cannot be cast to the
+expected type:</p>
+<p class="rubric">Examples</p>
+<div id="badparameterexceptionoverview" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: BadParameterExceptionOverview <a class="headerlink" href="#badparameterexceptionoverview">¶</a></p><img alt="../../_images/BadParameterExceptionOverview-91d1a51e.png" class="align-center" src="../../_images/BadParameterExceptionOverview-91d1a51e.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">BadParameterException</span>
+
+<span class="n">BadParameterExceptionTarget</span> <span class="o">=</span> <span class="n">BadParameterException</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">BadParameterExceptionOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">BadParameterExceptionTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
+        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'BadParameterException'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.meshes.exceptions'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'Default Class for Parameter Exceptions'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [7]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.params</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_param_or_default</span><span class="p">,</span> <span class="n">BM2DM</span>
+<span class="n">get_param_or_default</span><span class="p">(</span><span class="s2">"edges_width"</span><span class="p">,</span> <span class="p">{</span><span class="s2">"edges_width"</span><span class="p">:</span> <span class="s2">"not a number"</span><span class="p">},</span> <span class="n">BM2DM</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>Out[7]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight-pytb notranslate"><div class="highlight"><pre><span></span><span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"manim_extensions/meshes/params.py"</span>, line <span class="m">143</span>, in <span class="n">get_param_or_default</span>
+<span class="w">    </span><span class="n">ManimColor</span> <span class="o">|</span> <span class="nb">bool</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">int</span><span class="p">,</span> <span class="n">default</span><span class="p">[</span><span class="n">value</span><span class="p">][</span><span class="mi">0</span><span class="p">](</span><span class="n">params</span><span class="p">[</span><span class="n">value</span><span class="p">])</span>
+<span class="w">                                     </span><span class="pm">^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^</span>
+<span class="gr">ValueError</span>: <span class="n">could not convert string to float: 'not a number'</span>
+
+<span class="gt">The above exception was the direct cause of the following exception:</span>
+
+<span class="gt">Traceback (most recent call last):</span>
+  File <span class="nb">"&lt;string&gt;"</span>, line <span class="m">2</span>, in <span class="n">&lt;module&gt;</span>
+  File <span class="nb">"manim_extensions/meshes/params.py"</span>, line <span class="m">146</span>, in <span class="n">get_param_or_default</span>
+<span class="w">    </span><span class="k">raise</span> <span class="n">BadParameterException</span><span class="p">(</span>
+<span class="gr">manim_extensions.meshes.exceptions.BadParameterException</span>: <span class="n">Value edges_width does not have correct type &lt;class 'float'&gt; and can not be cast.</span>
+</pre></div>
+</div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="manim_extensions.meshes.exceptions.FaultyVarArrayException">
+<span class="property"><span class="k"><span class="pre">exception</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.exceptions.</span></span><span class="sig-name descname"><span class="pre">FaultyVarArrayException</span></span><a class="reference internal" href="../../_modules/manim_extensions/meshes/exceptions.html#FaultyVarArrayException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.exceptions.FaultyVarArrayException" title="Link to this definition">¶</a></dt>
+<dd><p>The given object is no VarArray.</p>
+<p>Base class for errors raised when an object that should be a
+<a class="reference internal" href="index.html#manim_extensions.meshes.types.VarArray" title="manim_extensions.meshes.types.VarArray"><code class="xref py py-class docutils literal notranslate"><span class="pre">VarArray</span></code></a> (faces, parts, edges)
+has an incompatible structure:</p>
+<p class="rubric">Examples</p>
+<div id="faultyvararrayexceptionoverview" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: FaultyVarArrayExceptionOverview <a class="headerlink" href="#faultyvararrayexceptionoverview">¶</a></p><img alt="../../_images/FaultyVarArrayExceptionOverview-cced69e6.png" class="align-center" src="../../_images/FaultyVarArrayExceptionOverview-cced69e6.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">FaultyVarArrayException</span>
+
+<span class="n">FaultyVarArrayExceptionTarget</span> <span class="o">=</span> <span class="n">FaultyVarArrayException</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">FaultyVarArrayExceptionOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">FaultyVarArrayExceptionTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
+        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'FaultyVarArrayException'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.meshes.exceptions'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'The given object is no VarArray'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [8]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.exceptions</span><span class="w"> </span><span class="kn">import</span> <span class="n">FaultyVarArrayException</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="n">FaultyVarArrayException</span><span class="p">(</span><span class="s2">"The given object is no VarArray"</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">FaultyVarArrayException</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>Out[8]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The given object is no VarArray
+</pre></div>
+</div>
+</div>
+</div>
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1584,6 +2089,14 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">exceptions</a><ul>
+<li><a class="reference internal" href="#manim_extensions.meshes.exceptions.InvalidMeshException"><code class="docutils literal notranslate"><span class="pre">InvalidMeshException</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.exceptions.InvalidRequestException"><code class="docutils literal notranslate"><span class="pre">InvalidRequestException</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.exceptions.MeshIndexException"><code class="docutils literal notranslate"><span class="pre">MeshIndexException</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.exceptions.InvalidTypeException"><code class="docutils literal notranslate"><span class="pre">InvalidTypeException</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.exceptions.InvalidMeshDimensionsException"><code class="docutils literal notranslate"><span class="pre">InvalidMeshDimensionsException</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.exceptions.InvalidShapeException"><code class="docutils literal notranslate"><span class="pre">InvalidShapeException</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.exceptions.BadParameterException"><code class="docutils literal notranslate"><span class="pre">BadParameterException</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.exceptions.FaultyVarArrayException"><code class="docutils literal notranslate"><span class="pre">FaultyVarArrayException</span></code></a></li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

@@ -1491,22 +1491,32 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.meshes.delaunay.delaunay_criterion">
 <span id="delaunay-criterion"></span><h1>delaunay_criterion<a class="headerlink" href="#module-manim_extensions.meshes.delaunay.delaunay_criterion" title="Link to this heading">¶</a></h1>
-<section id="classes">
-<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
-<div class="table-wrapper autosummary longtable docutils container">
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="delaunay_criterion.CircumCircle.html#manim_extensions.meshes.delaunay.delaunay_criterion.CircumCircle" title="manim_extensions.meshes.delaunay.delaunay_criterion.CircumCircle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CircumCircle</span></code></a></p></td>
-<td><p>Circle around the circumscribed centre of a mesh face.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
+<p>functions to check delaunay criterion.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="manim_extensions.meshes.delaunay.delaunay_criterion.get_triangle_circum_circle_params">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.delaunay.delaunay_criterion.</span></span><span class="sig-name descname"><span class="pre">get_triangle_circum_circle_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/meshes/delaunay/delaunay_criterion.html#get_triangle_circum_circle_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.delaunay.delaunay_criterion.get_triangle_circum_circle_params" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the circumscribed circle of a triangle defined by three points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pt1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – First corner point of the triangle.</p></li>
+<li><p><strong>pt2</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Second corner point of the triangle.</p></li>
+<li><p><strong>pt3</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Third corner point of the triangle.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Centre point and radius of the circumscribed circle.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="py class">
 <dt class="sig sig-object py" id="manim_extensions.meshes.delaunay.delaunay_criterion.CircumCircle">
 <span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.delaunay.delaunay_criterion.</span></span><span class="sig-name descname"><span class="pre">CircumCircle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">triangle_mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">face_idx</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/meshes/delaunay/delaunay_criterion.html#CircumCircle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.delaunay.delaunay_criterion.CircumCircle" title="Link to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.Circle.html#manim.mobject.geometry.arc.Circle" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circle</span></code></a></p>
-<p>Circle around the circumscribed centre of a mesh face.</p>
+<dd><p>Circle around the circumscribed centre of a mesh face.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
@@ -1549,30 +1559,6 @@
 </div>
 </div></dd></dl>
 
-</section>
-<section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
-<dl class="py function">
-<dt class="sig sig-object py" id="manim_extensions.meshes.delaunay.delaunay_criterion.get_triangle_circum_circle_params">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.delaunay.delaunay_criterion.</span></span><span class="sig-name descname"><span class="pre">get_triangle_circum_circle_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/meshes/delaunay/delaunay_criterion.html#get_triangle_circum_circle_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.delaunay.delaunay_criterion.get_triangle_circum_circle_params" title="Link to this definition">¶</a></dt>
-<dd><p>Calculate the circumscribed circle of a triangle defined by three points.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>pt1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – First corner point of the triangle.</p></li>
-<li><p><strong>pt2</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Second corner point of the triangle.</p></li>
-<li><p><strong>pt3</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Third corner point of the triangle.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>Centre point and radius of the circumscribed circle.</p>
-</dd>
-</dl>
-</dd></dl>
-
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.meshes.delaunay.delaunay_criterion.get_point_indices_violating_delaunay">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.delaunay.delaunay_criterion.</span></span><span class="sig-name descname"><span class="pre">get_point_indices_violating_delaunay</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">triangle_mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">face_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/meshes/delaunay/delaunay_criterion.html#get_point_indices_violating_delaunay"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.delaunay.delaunay_criterion.get_point_indices_violating_delaunay" title="Link to this definition">¶</a></dt>
@@ -1599,6 +1585,159 @@ is strictly less than the circumscribed radius.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.meshes.delaunay.delaunay_criterion.is_point_violating_delaunay">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.delaunay.delaunay_criterion.</span></span><span class="sig-name descname"><span class="pre">is_point_violating_delaunay</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">triangle_mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertex_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">face_idx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/meshes/delaunay/delaunay_criterion.html#is_point_violating_delaunay"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.delaunay.delaunay_criterion.is_point_violating_delaunay" title="Link to this definition">¶</a></dt>
+<dd><p>Check whether a vertex violates the Delaunay criterion for a given face.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>triangle_mesh</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../models/manim_models/triangle_mesh.TriangleManim2DMesh.html#manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh" title="manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">TriangleManim2DMesh</span></code></a></span>) – The triangle mesh.</p></li>
+<li><p><strong>vertex_idx</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the vertex to test.</p></li>
+<li><p><strong>face_idx</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the face (triangle) whose circumscribed circle is tested.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether the vertex lies strictly inside the circumscribed circle of
+the triangle.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="delaunay_criterion.CircumCircle.html#manim_extensions.meshes.delaunay.delaunay_criterion.CircumCircle" title="manim_extensions.meshes.delaunay.delaunay_criterion.CircumCircle"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CircumCircle</span></code></a></p></td>
+<td><p>Circle around the circumscribed centre of a mesh face.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="id0">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.delaunay.delaunay_criterion.</span></span><span class="sig-name descname"><span class="pre">CircumCircle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">triangle_mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">face_idx</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/meshes/delaunay/delaunay_criterion.html#CircumCircle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.Circle.html#manim.mobject.geometry.arc.Circle" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circle</span></code></a></p>
+<p>Circle around the circumscribed centre of a mesh face.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>triangle_mesh</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../models/manim_models/triangle_mesh.TriangleManim2DMesh.html#manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh" title="manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">TriangleManim2DMesh</span></code></a></span>) – The triangle mesh containing the face.</p></li>
+<li><p><strong>face_idx</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the face to draw the circle around.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to
+<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.Circle.html#manim.mobject.geometry.arc.Circle" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circle</span></code></a> (for example
+<code class="docutils literal notranslate"><span class="pre">stroke_width</span></code>).</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Attributes</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-name descname"><span class="pre">_bezier_t_values</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">npt.NDArray</span><span class="p"><span class="pre">[</span></span><span class="pre">np.float64</span><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-name descname"><span class="pre">tip_length</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-name descname"><span class="pre">tip_style</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a></span><a class="headerlink" href="#id3" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-name descname"><span class="pre">arc_center</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Point3D</span></span><a class="headerlink" href="#id4" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-name descname"><span class="pre">_failed_to_get_center</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><a class="headerlink" href="#id5" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Examples</p>
+<div id="trianglecircumcircle" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: TriangleCircumcircle <a class="headerlink" href="#trianglecircumcircle">¶</a></p><img alt="../../../_images/TriangleCircumcircle-b3c30752.png" class="align-center" src="../../../_images/TriangleCircumcircle-b3c30752.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.delaunay.delaunay_criterion</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">CircumCircle</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.models.data_models.mesh</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mesh</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.models.manim_models.triangle_mesh</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">TriangleManim2DMesh</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TriangleCircumcircle</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+            <span class="p">[</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span>
+        <span class="p">]</span>
+        <span class="n">triangles</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">]]</span>
+        <span class="n">mesh</span> <span class="o">=</span> <span class="n">TriangleManim2DMesh</span><span class="p">(</span><span class="n">Mesh</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">triangles</span><span class="p">))</span>
+        <span class="n">circle</span> <span class="o">=</span> <span class="n">CircumCircle</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">YELLOW</span><span class="p">)</span>
+        <span class="n">group</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="n">mesh</span><span class="p">,</span> <span class="n">circle</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">3.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.delaunay.delaunay_criterion.</span></span><span class="sig-name descname"><span class="pre">get_triangle_circum_circle_params</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pt1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pt3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/meshes/delaunay/delaunay_criterion.html#get_triangle_circum_circle_params"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id6" title="Link to this definition">¶</a></dt>
+<dd><p>Calculate the circumscribed circle of a triangle defined by three points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pt1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – First corner point of the triangle.</p></li>
+<li><p><strong>pt2</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Second corner point of the triangle.</p></li>
+<li><p><strong>pt3</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Third corner point of the triangle.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Centre point and radius of the circumscribed circle.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id7">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.delaunay.delaunay_criterion.</span></span><span class="sig-name descname"><span class="pre">get_point_indices_violating_delaunay</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">triangle_mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">face_id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/meshes/delaunay/delaunay_criterion.html#get_point_indices_violating_delaunay"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id7" title="Link to this definition">¶</a></dt>
+<dd><p>Return the indices of all vertices that violate the Delaunay criterion.</p>
+<p>A vertex violates the criterion when it lies inside the circumscribed
+circle of the triangle identified by <code class="docutils literal notranslate"><span class="pre">face_id</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>triangle_mesh</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../models/manim_models/triangle_mesh.TriangleManim2DMesh.html#manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh" title="manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">TriangleManim2DMesh</span></code></a></span>) – The triangle mesh.</p></li>
+<li><p><strong>face_id</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the face (triangle) to test.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Indices of vertices whose distance to the circumscribed centre
+is strictly less than the circumscribed radius.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id8">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.delaunay.delaunay_criterion.</span></span><span class="sig-name descname"><span class="pre">is_point_violating_delaunay</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">triangle_mesh</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vertex_idx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">face_idx</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/meshes/delaunay/delaunay_criterion.html#is_point_violating_delaunay"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id8" title="Link to this definition">¶</a></dt>
 <dd><p>Check whether a vertex violates the Delaunay criterion for a given face.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1679,15 +1818,26 @@ the triangle.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">delaunay_criterion</a><ul>
-<li><a class="reference internal" href="#classes">Classes</a><ul>
+<li><a class="reference internal" href="#manim_extensions.meshes.delaunay.delaunay_criterion.get_triangle_circum_circle_params"><code class="docutils literal notranslate"><span class="pre">get_triangle_circum_circle_params()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.meshes.delaunay.delaunay_criterion.CircumCircle"><code class="docutils literal notranslate"><span class="pre">CircumCircle</span></code></a>
+</li>
+<li><a class="reference internal" href="#manim_extensions.meshes.delaunay.delaunay_criterion.get_point_indices_violating_delaunay"><code class="docutils literal notranslate"><span class="pre">get_point_indices_violating_delaunay()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.meshes.delaunay.delaunay_criterion.is_point_violating_delaunay"><code class="docutils literal notranslate"><span class="pre">is_point_violating_delaunay()</span></code></a></li>
+<li><a class="reference internal" href="#classes">Classes</a><ul>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">CircumCircle</span></code></a><ul>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">CircumCircle._bezier_t_values</span></code></a></li>
+<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">CircumCircle.tip_length</span></code></a></li>
+<li><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">CircumCircle.tip_style</span></code></a></li>
+<li><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">CircumCircle.arc_center</span></code></a></li>
+<li><a class="reference internal" href="#id5"><code class="docutils literal notranslate"><span class="pre">CircumCircle._failed_to_get_center</span></code></a></li>
+</ul>
 </li>
 </ul>
 </li>
 <li><a class="reference internal" href="#functions">Functions</a><ul>
-<li><a class="reference internal" href="#manim_extensions.meshes.delaunay.delaunay_criterion.get_triangle_circum_circle_params"><code class="docutils literal notranslate"><span class="pre">get_triangle_circum_circle_params()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.meshes.delaunay.delaunay_criterion.get_point_indices_violating_delaunay"><code class="docutils literal notranslate"><span class="pre">get_point_indices_violating_delaunay()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.meshes.delaunay.delaunay_criterion.is_point_violating_delaunay"><code class="docutils literal notranslate"><span class="pre">is_point_violating_delaunay()</span></code></a></li>
+<li><a class="reference internal" href="#id6"><code class="docutils literal notranslate"><span class="pre">get_triangle_circum_circle_params()</span></code></a></li>
+<li><a class="reference internal" href="#id7"><code class="docutils literal notranslate"><span class="pre">get_point_indices_violating_delaunay()</span></code></a></li>
+<li><a class="reference internal" href="#id8"><code class="docutils literal notranslate"><span class="pre">is_point_violating_delaunay()</span></code></a></li>
 </ul>
 </li>
 </ul>

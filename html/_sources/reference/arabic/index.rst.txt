@@ -4,7 +4,7 @@
 Arabic
 ======
 
-.. module:: manim_extensions.arabic
+.. automodule:: manim_extensions.arabic
 
 .. vendored-status:: razekmh/manim-arabic
 

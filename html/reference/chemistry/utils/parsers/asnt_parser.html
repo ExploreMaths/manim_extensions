@@ -1489,8 +1489,172 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="module-manim_extensions.chemistry.utils.parsers.asnt_parser">
+          <style>div.nbinput.container div.prompt,div.nboutput.container div.prompt{width:8ch}div.nbcell-files.container{padding-left:8ch}</style><section id="module-manim_extensions.chemistry.utils.parsers.asnt_parser">
 <span id="asnt-parser"></span><h1>asnt_parser<a class="headerlink" href="#module-manim_extensions.chemistry.utils.parsers.asnt_parser" title="Link to this heading">¶</a></h1>
+<p>ASNT format parser for chemical files.</p>
+<p>This module provides the <a class="reference internal" href="asnt_parser.ASNTParser.html#manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser" title="manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">ASNTParser</span></code></a> class for parsing ASNT format chemical files.</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.asnt_parser.BOND_TYPE_MAPPING">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.utils.parsers.asnt_parser.</span></span><span class="sig-name descname"><span class="pre">BOND_TYPE_MAPPING</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'double':</span> <span class="pre">2,</span> <span class="pre">'simple':</span> <span class="pre">1,</span> <span class="pre">'triple':</span> <span class="pre">3}</span></span><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.asnt_parser.BOND_TYPE_MAPPING" title="Link to this definition">¶</a></dt>
+<dd><p>Mapping from bond type name to bond order.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.utils.parsers.asnt_parser.</span></span><span class="sig-name descname"><span class="pre">ASNTParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/chemistry/utils/parsers/asnt_parser.html#ASNTParser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser" title="Link to this definition">¶</a></dt>
+<dd><p>Parse ASNT chemical files.</p>
+<p>ASNT resembles JSON, but its irregular structure makes parsing awkward.
+Only single-molecule files are supported.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The upstream author’s original wording, kept verbatim:</p>
+<p>“The ASNT format is weird. It’s like a JSON wannabe but ugly.
+Parsing it has been a pain for the last 5 hours and I wish to
+never encounter it again. It will only support a single molecule
+files and fuck it. Yes, fuck it goes to the commit.”</p>
+</div>
+<p class="rubric">Examples</p>
+<div id="asntparseroverview" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ASNTParserOverview <a class="headerlink" href="#asntparseroverview">¶</a></p><img alt="../../../../_images/ASNTParserOverview-b360b50b.png" class="align-center" src="../../../../_images/ASNTParserOverview-b360b50b.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.utils.parsers.asnt_parser</span><span class="w"> </span><span class="kn">import</span> <span class="n">ASNTParser</span>
+
+<span class="n">ASNTParserTarget</span> <span class="o">=</span> <span class="n">ASNTParser</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ASNTParserOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">ASNTParserTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
+        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'ASNTParser'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.chemistry.utils.parsers.asnt_parser'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'Parse ASNT chemical files'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [1]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pprint</span><span class="w"> </span><span class="kn">import</span> <span class="n">pprint</span>
+
+<span class="n">parsed_asnt</span> <span class="o">=</span> <span class="n">ASNTParser</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">"acetone_2d.asnt"</span><span class="p">)</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">parsed_asnt</span><span class="o">.</span><span class="n">atoms_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbcell-files docutils container">
+<div class="manim-example-files">
+<div class="manim-file-row">
+  <span class="manim-file-badge" style="background:#2b8a3e">asnt</span>
+  <span class="manim-file-meta">
+    <span class="manim-file-name">acetone_2d.asnt</span>
+    <span class="manim-file-size">198 B</span>
+  </span>
+  <span class="manim-file-actions">
+    <a class="manim-file-action" href="https://github.com/ExploreMaths/manim_extensions/raw/main/examples/molecule_files/acetone_2d.asnt" title="Download this file" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v9.2"/><path d="M8.4 10.4 12 14l3.6-3.6"/><path d="M5.2 16.4v1.8c0 .9.8 1.7 1.7 1.7h10.2c.9 0 1.7-.8 1.7-1.7v-1.8"/></svg></a>
+  </span>
+</div>
+</div></div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>Out[1]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{1: {'coords': array([2, 2, 0]), 'element': 'C'},
+ 2: {'coords': array([2, 2, 0]), 'element': 'O'}}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [2]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pprint</span><span class="p">(</span><span class="n">parsed_asnt</span><span class="o">.</span><span class="n">bonds_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>Out[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{0: {'bond_type': 1, 'from_atom_index': 1, 'to_atom_index': 2},
+ 1: {'bond_type': 1, 'from_atom_index': 2, 'to_atom_index': 1}}
+</pre></div>
+</div>
+</div>
+</div>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser.read_file">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">read_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/chemistry/utils/parsers/asnt_parser.html#ASNTParser.read_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser.read_file" title="Link to this definition">¶</a></dt>
+<dd><p>Read an ASNT file and return its lines as a list of strings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="base_parser.html#manim_extensions.chemistry.utils.parsers.base_parser.FilePath" title="manim_extensions.chemistry.utils.parsers.base_parser.FilePath"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FilePath</span></code></a></span>) – Path to the ASNT file to parse.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Lines of the ASNT file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser.replace_stuff">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">replace_stuff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">line</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/chemistry/utils/parsers/asnt_parser.html#ASNTParser.replace_stuff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser.replace_stuff" title="Link to this definition">¶</a></dt>
+<dd><p>Makes replacements of strings given the shitty structure of this format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>line</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Line being read at that moment.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Line with replaced strings.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser.data_parser">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">data_parser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/chemistry/utils/parsers/asnt_parser.html#ASNTParser.data_parser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser.data_parser" title="Link to this definition">¶</a></dt>
+<dd><p>Parses the atoms and bonds data and returns a tuple of dictionaries with each data.</p>
+<p>The atom data follows the structure:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">&lt;</span><span class="n">atom_index</span><span class="o">&gt;</span><span class="p">:</span> <span class="p">{</span><span class="s2">"element"</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">atom_element</span><span class="o">&gt;</span><span class="p">,</span> <span class="s2">"position"</span><span class="p">:</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">x_pos</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">y_pos</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">z_pos</span><span class="o">&gt;</span><span class="p">]}}</span>
+</pre></div>
+</div>
+<p>The bond data follows the structure:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="o">&lt;</span><span class="n">bond_index</span><span class="o">&gt;</span><span class="p">:</span> <span class="p">{</span><span class="s2">"from_atom_index"</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">from_atom_index</span><span class="o">&gt;</span><span class="p">,</span> <span class="s2">"to_atom_index"</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">to_atom_index</span><span class="o">&gt;</span><span class="p">,</span> <span class="s2">"bond_type"</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">bond_type</span><span class="o">&gt;</span><span class="p">}}</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Lines of the ASNT file as returned by <a class="reference internal" href="asnt_parser.ASNTParser.html#manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser.read_file" title="manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser.read_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">read_file()</span></code></a>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="base_parser.html#manim_extensions.chemistry.utils.parsers.base_parser.ParsedData" title="manim_extensions.chemistry.utils.parsers.base_parser.ParsedData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParsedData</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">(atoms_data,</span> <span class="pre">bonds_data)</span></code> tuple of dictionaries.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1506,8 +1670,8 @@
 <section id="constants">
 <h2>Constants<a class="headerlink" href="#constants" title="Link to this heading">¶</a></h2>
 <dl class="py data">
-<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.asnt_parser.BOND_TYPE_MAPPING">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.utils.parsers.asnt_parser.</span></span><span class="sig-name descname"><span class="pre">BOND_TYPE_MAPPING</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'double':</span> <span class="pre">2,</span> <span class="pre">'simple':</span> <span class="pre">1,</span> <span class="pre">'triple':</span> <span class="pre">3}</span></span><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.asnt_parser.BOND_TYPE_MAPPING" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.utils.parsers.asnt_parser.</span></span><span class="sig-name descname"><span class="pre">BOND_TYPE_MAPPING</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'double':</span> <span class="pre">2,</span> <span class="pre">'simple':</span> <span class="pre">1,</span> <span class="pre">'triple':</span> <span class="pre">3}</span></span><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
 <dd><p>Mapping from bond type name to bond order.</p>
 </dd></dl>
 
@@ -1572,9 +1736,16 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">asnt_parser</a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.asnt_parser.BOND_TYPE_MAPPING"><code class="docutils literal notranslate"><span class="pre">BOND_TYPE_MAPPING</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser"><code class="docutils literal notranslate"><span class="pre">ASNTParser</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser.read_file"><code class="docutils literal notranslate"><span class="pre">ASNTParser.read_file()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser.replace_stuff"><code class="docutils literal notranslate"><span class="pre">ASNTParser.replace_stuff()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser.data_parser"><code class="docutils literal notranslate"><span class="pre">ASNTParser.data_parser()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 <li><a class="reference internal" href="#constants">Constants</a><ul>
-<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.asnt_parser.BOND_TYPE_MAPPING"><code class="docutils literal notranslate"><span class="pre">BOND_TYPE_MAPPING</span></code></a></li>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">BOND_TYPE_MAPPING</span></code></a></li>
 </ul>
 </li>
 </ul>

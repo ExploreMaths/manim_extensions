@@ -4,7 +4,7 @@
 future_classes
 ==============
 
-.. module:: manim_extensions.chemistry.future_classes.future_classes
+.. automodule:: manim_extensions.chemistry.future_classes.future_classes
 
 Classes
 -------

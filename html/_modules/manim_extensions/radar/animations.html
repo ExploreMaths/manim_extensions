@@ -1656,7 +1656,7 @@
 <span class="c1"># shockwave</span>
 <span class="c1"># ---------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="Shockwave">
-<a class="viewcode-back" href="../../../reference/radar/animations.Shockwave.html#manim_extensions.radar.animations.Shockwave">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.Shockwave">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">Shockwave</span><span class="p">(</span><span class="n">Animation</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""An expanding (or imploding) ring.</span>
 
@@ -1732,7 +1732,7 @@
         <span class="p">)</span>
 
 <div class="viewcode-block" id="Shockwave.interpolate_mobject">
-<a class="viewcode-back" href="../../../reference/radar/animations.Shockwave.html#manim_extensions.radar.animations.Shockwave.interpolate_mobject">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.Shockwave.interpolate_mobject">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">interpolate_mobject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Restyle the ring for the current animation progress.</span>
 
@@ -1755,7 +1755,7 @@
 <span class="c1"># the morph</span>
 <span class="c1"># ---------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="RadarMorph">
-<a class="viewcode-back" href="../../../reference/radar/animations.RadarMorph.html#manim_extensions.radar.animations.RadarMorph">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.RadarMorph">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">RadarMorph</span><span class="p">(</span><span class="n">Animation</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Morph a :class:`~manim_extensions.radar.chart.RadarChart` into another snapshot.</span>
 
@@ -1898,7 +1898,7 @@
 
     <span class="c1"># ------------------------------------------------------------------</span>
 <div class="viewcode-block" id="RadarMorph.begin">
-<a class="viewcode-back" href="../../../reference/radar/animations.RadarMorph.html#manim_extensions.radar.animations.RadarMorph.begin">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.RadarMorph.begin">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">begin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Capture the starting state and prepare the animation targets."""</span>
         <span class="n">chart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chart</span>
@@ -1990,7 +1990,7 @@
 
 
 <div class="viewcode-block" id="RadarMorph._prepare_camera">
-<a class="viewcode-back" href="../../../reference/radar/animations.RadarMorph.html#manim_extensions.radar.animations.RadarMorph._prepare_camera">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.RadarMorph._prepare_camera">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_prepare_camera</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">"""Compute the automatic micro-push target for a burst morph.</span>
 
@@ -2042,7 +2042,7 @@
 
 
 <div class="viewcode-block" id="RadarMorph._update_camera">
-<a class="viewcode-back" href="../../../reference/radar/animations.RadarMorph.html#manim_extensions.radar.animations.RadarMorph._update_camera">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.RadarMorph._update_camera">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_update_camera</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Advance the automatic camera push during a burst morph.</span>
 
@@ -2077,7 +2077,7 @@
 
 
 <div class="viewcode-block" id="RadarMorph._restore_camera">
-<a class="viewcode-back" href="../../../reference/radar/animations.RadarMorph.html#manim_extensions.radar.animations.RadarMorph._restore_camera">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.RadarMorph._restore_camera">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_restore_camera</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Force the camera home if a morph ended mid-push."""</span>
         <span class="n">cam</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cam</span>
@@ -2090,7 +2090,7 @@
 
     <span class="c1"># ------------------------------------------------------------------</span>
 <div class="viewcode-block" id="RadarMorph.interpolate_mobject">
-<a class="viewcode-back" href="../../../reference/radar/animations.RadarMorph.html#manim_extensions.radar.animations.RadarMorph.interpolate_mobject">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.RadarMorph.interpolate_mobject">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">interpolate_mobject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Blend values, colours, rims, opacity and effects for one frame.</span>
 
@@ -2183,7 +2183,7 @@
 
     <span class="c1"># ------------------------------------------------------------------</span>
 <div class="viewcode-block" id="RadarMorph.finish">
-<a class="viewcode-back" href="../../../reference/radar/animations.RadarMorph.html#manim_extensions.radar.animations.RadarMorph.finish">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.RadarMorph.finish">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Write the final values back and release temporary effects."""</span>
         <span class="n">chart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chart</span>
@@ -2217,7 +2217,7 @@
 
 
 <div class="viewcode-block" id="RadarMorph.clean_up_from_scene">
-<a class="viewcode-back" href="../../../reference/radar/animations.RadarMorph.html#manim_extensions.radar.animations.RadarMorph.clean_up_from_scene">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.RadarMorph.clean_up_from_scene">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">clean_up_from_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Remove temporary morph effects from the scene.</span>
 
@@ -2231,7 +2231,7 @@
 
 
 <div class="viewcode-block" id="RadarMorph._drop_ring">
-<a class="viewcode-back" href="../../../reference/radar/animations.RadarMorph.html#manim_extensions.radar.animations.RadarMorph._drop_ring">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.RadarMorph._drop_ring">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_drop_ring</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Remove the transient shockwave ring from the chart, if present."""</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ring</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -2248,7 +2248,7 @@
 <span class="c1"># intro / outro</span>
 <span class="c1"># ---------------------------------------------------------------------------</span>
 <div class="viewcode-block" id="RadarReveal">
-<a class="viewcode-back" href="../../../reference/radar/animations.RadarReveal.html#manim_extensions.radar.animations.RadarReveal">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.RadarReveal">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">RadarReveal</span><span class="p">(</span><span class="n">Animation</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Grow the chart out of its centre while fading in every dataset.</span>
 
@@ -2304,7 +2304,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="n">run_time</span><span class="p">,</span> <span class="n">rate_func</span><span class="o">=</span><span class="n">rate_func</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="RadarReveal.begin">
-<a class="viewcode-back" href="../../../reference/radar/animations.RadarReveal.html#manim_extensions.radar.animations.RadarReveal.begin">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.RadarReveal.begin">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">begin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Capture the starting state and prepare the animation targets."""</span>
         <span class="n">chart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chart</span>
@@ -2322,7 +2322,7 @@
 
 
 <div class="viewcode-block" id="RadarReveal.interpolate_mobject">
-<a class="viewcode-back" href="../../../reference/radar/animations.RadarReveal.html#manim_extensions.radar.animations.RadarReveal.interpolate_mobject">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.RadarReveal.interpolate_mobject">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">interpolate_mobject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Advance the animation for the given progress.</span>
 
@@ -2345,7 +2345,7 @@
 
 
 <div class="viewcode-block" id="RadarReveal.finish">
-<a class="viewcode-back" href="../../../reference/radar/animations.RadarReveal.html#manim_extensions.radar.animations.RadarReveal.finish">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.RadarReveal.finish">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Write the final values back and release temporary effects."""</span>
         <span class="n">chart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chart</span>
@@ -2359,7 +2359,7 @@
 
 
 <div class="viewcode-block" id="RadarReveal.clean_up_from_scene">
-<a class="viewcode-back" href="../../../reference/radar/animations.RadarReveal.html#manim_extensions.radar.animations.RadarReveal.clean_up_from_scene">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.RadarReveal.clean_up_from_scene">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">clean_up_from_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Remove temporary rings and call the base cleanup.</span>
 
@@ -2380,7 +2380,7 @@
 
 
 <div class="viewcode-block" id="RadarBurstIn">
-<a class="viewcode-back" href="../../../reference/radar/animations.RadarBurstIn.html#manim_extensions.radar.animations.RadarBurstIn">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.RadarBurstIn">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">RadarBurstIn</span><span class="p">(</span><span class="n">Animation</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""The overflow entrance: values stab *past* their target, then settle.</span>
 
@@ -2435,7 +2435,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="n">run_time</span><span class="p">,</span> <span class="n">rate_func</span><span class="o">=</span><span class="n">rate_func</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="RadarBurstIn.begin">
-<a class="viewcode-back" href="../../../reference/radar/animations.RadarBurstIn.html#manim_extensions.radar.animations.RadarBurstIn.begin">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.RadarBurstIn.begin">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">begin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Capture the starting state and prepare the animation targets."""</span>
         <span class="n">chart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chart</span>
@@ -2453,7 +2453,7 @@
 
 
 <div class="viewcode-block" id="RadarBurstIn.interpolate_mobject">
-<a class="viewcode-back" href="../../../reference/radar/animations.RadarBurstIn.html#manim_extensions.radar.animations.RadarBurstIn.interpolate_mobject">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.RadarBurstIn.interpolate_mobject">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">interpolate_mobject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Advance the animation for the given progress.</span>
 
@@ -2476,7 +2476,7 @@
 
 
 <div class="viewcode-block" id="RadarBurstIn.finish">
-<a class="viewcode-back" href="../../../reference/radar/animations.RadarBurstIn.html#manim_extensions.radar.animations.RadarBurstIn.finish">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.RadarBurstIn.finish">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Write the final values back and release temporary effects."""</span>
         <span class="n">chart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chart</span>
@@ -2490,7 +2490,7 @@
 
 
 <div class="viewcode-block" id="RadarBurstIn.clean_up_from_scene">
-<a class="viewcode-back" href="../../../reference/radar/animations.RadarBurstIn.html#manim_extensions.radar.animations.RadarBurstIn.clean_up_from_scene">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.RadarBurstIn.clean_up_from_scene">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">clean_up_from_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Remove temporary rings and call the base cleanup.</span>
 
@@ -2511,7 +2511,7 @@
 
 
 <div class="viewcode-block" id="RadarFade">
-<a class="viewcode-back" href="../../../reference/radar/animations.RadarFade.html#manim_extensions.radar.animations.RadarFade">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.RadarFade">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">RadarFade</span><span class="p">(</span><span class="n">Animation</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Fade the whole chart, including every painted layer.</span>
 
@@ -2559,14 +2559,14 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="n">run_time</span><span class="p">,</span> <span class="n">rate_func</span><span class="o">=</span><span class="n">rate_func</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="RadarFade.begin">
-<a class="viewcode-back" href="../../../reference/radar/animations.RadarFade.html#manim_extensions.radar.animations.RadarFade.begin">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.RadarFade.begin">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">begin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Capture the starting state and prepare the animation targets."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">start</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">chart</span><span class="o">.</span><span class="n">_opacity</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="RadarFade.interpolate_mobject">
-<a class="viewcode-back" href="../../../reference/radar/animations.RadarFade.html#manim_extensions.radar.animations.RadarFade.interpolate_mobject">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.RadarFade.interpolate_mobject">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">interpolate_mobject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Advance the animation for the given progress.</span>
 
@@ -2580,7 +2580,7 @@
 
 
 <div class="viewcode-block" id="RadarFade.finish">
-<a class="viewcode-back" href="../../../reference/radar/animations.RadarFade.html#manim_extensions.radar.animations.RadarFade.finish">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.RadarFade.finish">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Write the final values back and release temporary effects."""</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">chart</span><span class="o">.</span><span class="n">_opacity</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to</span></div>
@@ -2589,7 +2589,7 @@
 
 
 <div class="viewcode-block" id="GlitchFlash">
-<a class="viewcode-back" href="../../../reference/radar/animations.GlitchFlash.html#manim_extensions.radar.animations.GlitchFlash">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.GlitchFlash">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">GlitchFlash</span><span class="p">(</span><span class="n">Animation</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Chromatic split and scan bars for a glitch-style entrance.</span>
 
@@ -2648,7 +2648,7 @@
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="n">run_time</span><span class="p">,</span> <span class="n">rate_func</span><span class="o">=</span><span class="n">rate_func</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
 
 <div class="viewcode-block" id="GlitchFlash.begin">
-<a class="viewcode-back" href="../../../reference/radar/animations.GlitchFlash.html#manim_extensions.radar.animations.GlitchFlash.begin">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.GlitchFlash.begin">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">begin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Capture the starting state and prepare the animation targets."""</span>
         <span class="n">chart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chart</span>
@@ -2680,7 +2680,7 @@
 
 
 <div class="viewcode-block" id="GlitchFlash.interpolate_mobject">
-<a class="viewcode-back" href="../../../reference/radar/animations.GlitchFlash.html#manim_extensions.radar.animations.GlitchFlash.interpolate_mobject">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.GlitchFlash.interpolate_mobject">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">interpolate_mobject</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Advance the animation for the given progress.</span>
 
@@ -2705,7 +2705,7 @@
 
 
 <div class="viewcode-block" id="GlitchFlash.finish">
-<a class="viewcode-back" href="../../../reference/radar/animations.GlitchFlash.html#manim_extensions.radar.animations.GlitchFlash.finish">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.GlitchFlash.finish">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">finish</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Write the final values back and release temporary effects."""</span>
         <span class="n">chart</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">chart</span>
@@ -2717,7 +2717,7 @@
 
 
 <div class="viewcode-block" id="GlitchFlash.clean_up_from_scene">
-<a class="viewcode-back" href="../../../reference/radar/animations.GlitchFlash.html#manim_extensions.radar.animations.GlitchFlash.clean_up_from_scene">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.animations.GlitchFlash.clean_up_from_scene">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">clean_up_from_scene</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Remove temporary rings and call the base cleanup.</span>
 

@@ -5,7 +5,7 @@
 Code Blocks
 ===========
 
-.. module:: manim_extensions.code_blocks
+.. automodule:: manim_extensions.code_blocks
 
 .. vendored-status:: CasualCodersProjects/manim-code-blocks
 

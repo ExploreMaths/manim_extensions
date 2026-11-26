@@ -5,7 +5,7 @@
 Radar Charts
 ============
 
-.. module:: manim_extensions.radar
+.. automodule:: manim_extensions.radar
 
 .. vendored-status:: FTZ-OPUS/manim-radar
 

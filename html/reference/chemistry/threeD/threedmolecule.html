@@ -1491,6 +1491,203 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.chemistry.threeD.threedmolecule">
 <span id="threedmolecule"></span><h1>threedmolecule<a class="headerlink" href="#module-manim_extensions.chemistry.threeD.threedmolecule" title="Link to this heading">¶</a></h1>
+<p>3D molecule representation for Manim chemistry.</p>
+<p>This module provides the <a class="reference internal" href="threedmolecule.ThreeDMolecule.html#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule" title="manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreeDMolecule</span></code></a> class for rendering molecules in 3D.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.threeD.threedmolecule.</span></span><span class="sig-name descname"><span class="pre">ThreeDMolecule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bonds_dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_csv</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_bonds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">add_atoms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">mobjects</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedmolecule.html#ThreeDMolecule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule" title="Link to this definition">¶</a></dt>
+<dd><p>Draws a 3D <a class="reference internal" href="../molecule/molecule.Molecule.html#manim_extensions.chemistry.molecule.molecule.Molecule" title="manim_extensions.chemistry.molecule.molecule.Molecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Molecule</span></code></a>.</p>
+<p>Requires using opengl renderer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>atoms_dict</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Dictionary with the atom data of the molecule.</p></li>
+<li><p><strong>bonds_dict</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Dictionary with the bond data of the molecule.</p></li>
+<li><p><strong>source_csv</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Path to a csv file with element data.</p></li>
+<li><p><strong>add_bonds</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to add the bonds to the molecule.</p></li>
+<li><p><strong>add_atoms</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to add the atoms to the molecule.</p></li>
+<li><p><strong>mobjects</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional mobjects to add to the group.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to OpenGLGroup.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Attributes</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule.group_class">
+<span class="sig-name descname"><span class="pre">group_class</span></span><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule.group_class" title="Link to this definition">¶</a></dt>
+<dd><p>alias of <code class="xref py py-class docutils literal notranslate"><span class="pre">OpenGLGroup</span></code></p>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<div id="threedmoleculeoverview" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ThreeDMoleculeOverview <a class="headerlink" href="#threedmoleculeoverview">¶</a></p><img alt="../../../_images/ThreeDMoleculeOverview-f9e82442.png" class="align-center" src="../../../_images/ThreeDMoleculeOverview-f9e82442.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.threeD.threedmolecule</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreeDMolecule</span>
+
+<span class="n">ThreeDMoleculeTarget</span> <span class="o">=</span> <span class="n">ThreeDMolecule</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ThreeDMoleculeOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">ThreeDMoleculeTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
+        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'ThreeDMolecule'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.chemistry.threeD.threedmolecule'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'Draws a 3D manim_extensions.chemistry.molecule.molecule.Molecule'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_chemistry</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ThreeDMoleculeFromFile</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">renderer</span> <span class="o">=</span> <span class="s2">"opengl"</span>
+        <span class="n">molecule</span> <span class="o">=</span> <span class="n">GraphMolecule</span><span class="o">.</span><span class="n">molecule_from_file</span><span class="p">(</span>
+            <span class="s2">"examples/molecule_files/mol_files/acetone_3d.mol"</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Write</span><span class="p">(</span><span class="n">molecule</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_chemistry</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ThreeDMoleculeFromFileWithHydrogens</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">renderer</span> <span class="o">=</span> <span class="s2">"opengl"</span>
+        <span class="n">molecule</span> <span class="o">=</span> <span class="n">ThreeDMolecule</span><span class="o">.</span><span class="n">molecule_from_file</span><span class="p">(</span>
+            <span class="s2">"examples/molecule_files/mol_files/acetone_3d.mol"</span><span class="p">,</span>
+            <span class="n">ignore_hydrogens</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Write</span><span class="p">(</span><span class="n">molecule</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_chemistry</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ThreeDMoleculeFromPubChem</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">renderer</span> <span class="o">=</span> <span class="s2">"opengl"</span>
+        <span class="n">molecule</span> <span class="o">=</span> <span class="n">ThreeDMolecule</span><span class="o">.</span><span class="n">molecule_from_pubchem</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"acetone"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Write</span><span class="p">(</span><span class="n">molecule</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_chemistry</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ThreeDMoleculeFromPubChemThreeD</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">config</span><span class="o">.</span><span class="n">renderer</span> <span class="o">=</span> <span class="s2">"opengl"</span>
+        <span class="n">molecule</span> <span class="o">=</span> <span class="n">ThreeDMolecule</span><span class="o">.</span><span class="n">molecule_from_pubchem</span><span class="p">(</span>
+            <span class="n">name</span><span class="o">=</span><span class="s2">"acetone"</span><span class="p">,</span>
+            <span class="n">three_d</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">ignore_hydrogens</span><span class="o">=</span><span class="kc">False</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Write</span><span class="p">(</span><span class="n">molecule</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule.get_atoms_from_csv">
+<span class="sig-name descname"><span class="pre">get_atoms_from_csv</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedmolecule.html#ThreeDMolecule.get_atoms_from_csv"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule.get_atoms_from_csv" title="Link to this definition">¶</a></dt>
+<dd><p>Build <a class="reference internal" href="threedatom.ThreeDAtom.html#manim_extensions.chemistry.threeD.threedatom.ThreeDAtom" title="manim_extensions.chemistry.threeD.threedatom.ThreeDAtom"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreeDAtom</span></code></a> objects from the atoms dict, optionally loading element data from CSV.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpenGLGroup</span></code></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A OpenGLGroup instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule.get_bonds">
+<span class="sig-name descname"><span class="pre">get_bonds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedmolecule.html#ThreeDMolecule.get_bonds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule.get_bonds" title="Link to this definition">¶</a></dt>
+<dd><p>Build <a class="reference internal" href="threedbond.ThreeDBond.html#manim_extensions.chemistry.threeD.threedbond.ThreeDBond" title="manim_extensions.chemistry.threeD.threedbond.ThreeDBond"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreeDBond</span></code></a> objects connecting atoms based on the bonds dict.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpenGLGroup</span></code></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A OpenGLGroup instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule.mc_molecule_to_atoms_and_bonds">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">mc_molecule_to_atoms_and_bonds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mc_molecule</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedmolecule.html#ThreeDMolecule.mc_molecule_to_atoms_and_bonds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule.mc_molecule_to_atoms_and_bonds" title="Link to this definition">¶</a></dt>
+<dd><p>Transforms the structure of a mc_molecule to an (atoms, bonds) tuple.</p>
+<p>The tuple has the following structure:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Vertices: {&lt;atom_index&gt;: MCAtom}
+Edges: {(&lt;from_atom_index&gt;, &lt;to_atom_index&gt;): MCBond}
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mc_molecule</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../manim_chemistry_molecule/mc_molecule.MCMolecule.html#manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule" title="manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">MCMolecule</span></code></a></span>) – The origin <a class="reference internal" href="../manim_chemistry_molecule/mc_molecule.MCMolecule.html#manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule" title="manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">MCMolecule</span></code></a>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>See above.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule.from_mol_file">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">from_mol_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_csv</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedmolecule.html#ThreeDMolecule.from_mol_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule.from_mol_file" title="Link to this definition">¶</a></dt>
+<dd><p>Create a <a class="reference internal" href="threedmolecule.ThreeDMolecule.html#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule" title="manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreeDMolecule</span></code></a> by parsing a .mol file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Path to the .mol file.</p></li>
+<li><p><strong>source_csv</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Path to a csv file with element data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="threedmolecule.ThreeDMolecule.html#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule" title="manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreeDMolecule</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <a class="reference internal" href="threedmolecule.ThreeDMolecule.html#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule" title="manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreeDMolecule</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule.from_mol_string">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">from_mol_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mol_string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_csv</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/threeD/threedmolecule.html#ThreeDMolecule.from_mol_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule.from_mol_string" title="Link to this definition">¶</a></dt>
+<dd><p>Create a <a class="reference internal" href="threedmolecule.ThreeDMolecule.html#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule" title="manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreeDMolecule</span></code></a> by parsing a mol-format string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mol_string</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – String with the molecule data in mol format.</p></li>
+<li><p><strong>source_csv</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Path to a csv file with element data.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="threedmolecule.ThreeDMolecule.html#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule" title="manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreeDMolecule</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <a class="reference internal" href="threedmolecule.ThreeDMolecule.html#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule" title="manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreeDMolecule</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1760,15 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">threedmolecule</a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule"><code class="docutils literal notranslate"><span class="pre">ThreeDMolecule</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule.group_class"><code class="docutils literal notranslate"><span class="pre">ThreeDMolecule.group_class</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule.get_atoms_from_csv"><code class="docutils literal notranslate"><span class="pre">ThreeDMolecule.get_atoms_from_csv()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule.get_bonds"><code class="docutils literal notranslate"><span class="pre">ThreeDMolecule.get_bonds()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule.mc_molecule_to_atoms_and_bonds"><code class="docutils literal notranslate"><span class="pre">ThreeDMolecule.mc_molecule_to_atoms_and_bonds()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule.from_mol_file"><code class="docutils literal notranslate"><span class="pre">ThreeDMolecule.from_mol_file()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule.from_mol_string"><code class="docutils literal notranslate"><span class="pre">ThreeDMolecule.from_mol_string()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

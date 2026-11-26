@@ -1491,6 +1491,47 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.pymunk.custom_mobjects.gear">
 <span id="gear"></span><h1>gear<a class="headerlink" href="#module-manim_extensions.pymunk.custom_mobjects.gear" title="Link to this heading">¶</a></h1>
+<p><a class="reference internal" href="gear.Gear.html#manim_extensions.pymunk.custom_mobjects.gear.Gear" title="manim_extensions.pymunk.custom_mobjects.gear.Gear"><code class="xref py py-class docutils literal notranslate"><span class="pre">Gear</span></code></a> Mobject for Pymunk physics simulations.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.pymunk.custom_mobjects.gear.Gear">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.pymunk.custom_mobjects.gear.</span></span><span class="sig-name descname"><span class="pre">Gear</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">num_teeth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tooth_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roundness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hole_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/custom_mobjects/gear.html#Gear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.pymunk.custom_mobjects.gear.Gear" title="Link to this definition">¶</a></dt>
+<dd><p>A gear-shaped Mobject with teeth and an optional center hole.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_teeth</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – The number of teeth distributed around the gear.</p></li>
+<li><p><strong>radius</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The radius of the base disc of the gear.</p></li>
+<li><p><strong>tooth_height</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The height of each tooth, measured from the base disc outward.</p></li>
+<li><p><strong>width_factor</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The ratio of tooth width to the space available for a single tooth.
+(half tooth, half gap).</p></li>
+<li><p><strong>roundness</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The corner rounding radius applied to each tooth. Set to <code class="docutils literal notranslate"><span class="pre">0</span></code> for
+sharp corners.</p></li>
+<li><p><strong>hole_radius</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The radius of the hole cut out of the gear’s center. Set to <code class="docutils literal notranslate"><span class="pre">0</span></code> for
+a solid gear.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="pymunkgear" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: PymunkGear <a class="headerlink" href="#pymunkgear">¶</a></p><img alt="../../../_images/PymunkGear-49eb64a7.png" class="align-center" src="../../../_images/PymunkGear-49eb64a7.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.pymunk</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PymunkGear</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">gears</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Gear</span><span class="p">(</span><span class="n">num_teeth</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+            <span class="n">Gear</span><span class="p">(</span><span class="n">num_teeth</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">tooth_height</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREEN</span><span class="p">),</span>
+            <span class="n">Gear</span><span class="p">(</span><span class="n">num_teeth</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">radius</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">hole_radius</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">gears</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">gears</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1604,7 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">gear</a><ul>
+<li><a class="reference internal" href="#manim_extensions.pymunk.custom_mobjects.gear.Gear"><code class="docutils literal notranslate"><span class="pre">Gear</span></code></a></li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

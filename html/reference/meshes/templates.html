@@ -1491,8 +1491,7 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.meshes.templates">
 <span id="templates"></span><h1>templates<a class="headerlink" href="#module-manim_extensions.meshes.templates" title="Link to this heading">¶</a></h1>
-<section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<p>define a few basic mesh-structures to be used as examples or test.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.meshes.templates.create_triangle">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.templates.</span></span><span class="sig-name descname"><span class="pre">create_triangle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/meshes/templates.html#create_triangle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.meshes.templates.create_triangle" title="Link to this definition">¶</a></dt>
@@ -1666,6 +1665,181 @@ or <code class="docutils literal notranslate"><span class="pre">&quot;tail_toppe
 </dl>
 </dd></dl>
 
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.templates.</span></span><span class="sig-name descname"><span class="pre">create_triangle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/meshes/templates.html#create_triangle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dd><p>create most basic triangle mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh" title="manim_extensions.meshes.models.data_models.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The triangle mesh.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.templates.</span></span><span class="sig-name descname"><span class="pre">create_pyramid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">triangles_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/meshes/templates.html#create_pyramid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
+<dd><p>Create a basic 3D pyramid mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>triangles_only</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – When <code class="docutils literal notranslate"><span class="pre">True</span></code>, faces are triangulated; otherwise the square base is
+kept as a single quad face.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh" title="manim_extensions.meshes.models.data_models.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The pyramid mesh.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.templates.</span></span><span class="sig-name descname"><span class="pre">create_cube</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">triangles_only</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/meshes/templates.html#create_cube"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
+<dd><p>Create an equal-sided cube mesh.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>triangles_only</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – When <code class="docutils literal notranslate"><span class="pre">True</span></code>, each face is split into two triangles; otherwise
+quad faces are preserved.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh" title="manim_extensions.meshes.models.data_models.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The cube mesh.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.templates.</span></span><span class="sig-name descname"><span class="pre">create_coplanar_triangles</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/meshes/templates.html#create_coplanar_triangles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition">¶</a></dt>
+<dd><p>create a basic 2D mesh consisting of triangles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh" title="manim_extensions.meshes.models.data_models.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 2D mesh consisting of triangles.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.templates.</span></span><span class="sig-name descname"><span class="pre">create_coplanar_points</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/meshes/templates.html#create_coplanar_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id4" title="Link to this definition">¶</a></dt>
+<dd><p>create a basic 2D mesh without faces ~&gt; exemplary 2D point cloud / set.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh" title="manim_extensions.meshes.models.data_models.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 2D point cloud mesh without faces.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.templates.</span></span><span class="sig-name descname"><span class="pre">create_grid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">areas</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/meshes/templates.html#create_grid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id5" title="Link to this definition">¶</a></dt>
+<dd><p>Create a regular grid mesh in 1-D, 2-D, 3-D or 4-D.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>areas</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]]</span>) – One tuple per dimension: <code class="docutils literal notranslate"><span class="pre">(min,</span> <span class="pre">max,</span> <span class="pre">point_count)</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh" title="manim_extensions.meshes.models.data_models.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A grid mesh with vertices placed at the generated grid points and
+quad faces connecting them (2-D and up) or no faces (1-D).  The
+faces of a 3-D grid form the closed surface of the box spanned by
+the grid, with outward-facing vertex order.  A 4-D grid is a
+tesseract lattice whose faces are the squares of every cubic cell;
+draw it with
+<a class="reference internal" href="models/manim_models/basic_mesh.ManimMesh.html#manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh" title="manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimMesh</span></code></a>,
+which projects it onto three dimensions.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="exceptions.InvalidRequestException.html#manim_extensions.meshes.exceptions.InvalidRequestException" title="manim_extensions.meshes.exceptions.InvalidRequestException"><strong>InvalidRequestException</strong></a> – If more than 4 dimensions are requested.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="gridtemplate" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: GridTemplate <a class="headerlink" href="#gridtemplate">¶</a></p><img alt="../../_images/GridTemplate-f5d52828.png" class="align-center" src="../../_images/GridTemplate-f5d52828.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.templates</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_grid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.models.manim_models.basic_mesh</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimMesh</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">GridTemplate</span><span class="p">(</span><span class="n">ThreeDScene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_camera_orientation</span><span class="p">(</span><span class="n">phi</span><span class="o">=</span><span class="mi">70</span> <span class="o">*</span> <span class="n">DEGREES</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mi">30</span> <span class="o">*</span> <span class="n">DEGREES</span><span class="p">)</span>
+        <span class="n">grid</span> <span class="o">=</span> <span class="n">ManimMesh</span><span class="p">(</span><span class="n">create_grid</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]))</span>
+        <span class="n">grid</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><p>A 4-D grid is projected onto three dimensions, so the tesseract can be
+drawn directly:</p>
+<div id="gridtemplate4d" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: GridTemplate4D <a class="headerlink" href="#gridtemplate4d">¶</a></p><img alt="../../_images/GridTemplate4D-e5cdaad1.png" class="align-center" src="../../_images/GridTemplate4D-e5cdaad1.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.templates</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_grid</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.meshes.models.manim_models.basic_mesh</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimMesh</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">GridTemplate4D</span><span class="p">(</span><span class="n">ThreeDScene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_camera_orientation</span><span class="p">(</span><span class="n">phi</span><span class="o">=</span><span class="mi">70</span> <span class="o">*</span> <span class="n">DEGREES</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mi">30</span> <span class="o">*</span> <span class="n">DEGREES</span><span class="p">)</span>
+        <span class="n">grid</span> <span class="o">=</span> <span class="n">ManimMesh</span><span class="p">(</span>
+            <span class="n">create_grid</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)]</span> <span class="o">*</span> <span class="mi">4</span><span class="p">),</span>
+            <span class="n">display_faces</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">edges_color</span><span class="o">=</span><span class="n">WHITE</span><span class="p">,</span>
+            <span class="n">edges_width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">grid</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id6">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.meshes.templates.</span></span><span class="sig-name descname"><span class="pre">create_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/meshes/templates.html#create_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id6" title="Link to this definition">¶</a></dt>
+<dd><p>Load a model file from the <code class="docutils literal notranslate"><span class="pre">data/models/</span></code> directory.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Very large meshes (&gt; 32 GB RAM, &gt; 30 min) may not be displayable
+with the BasicMesh class.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a></span>) – Full path to the model file (supports <code class="docutils literal notranslate"><span class="pre">.ply</span></code> and <code class="docutils literal notranslate"><span class="pre">.stl</span></code>).</p></li>
+<li><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Shorthand for built-in models: <code class="docutils literal notranslate"><span class="pre">&quot;armadillo&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;suzanne&quot;</span></code>,
+or <code class="docutils literal notranslate"><span class="pre">&quot;tail_topper&quot;</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="models/data_models/mesh.Mesh.html#manim_extensions.meshes.models.data_models.mesh.Mesh" title="manim_extensions.meshes.models.data_models.mesh.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The loaded mesh.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#FileNotFoundError" title="(in Python v3.15)"><strong>FileNotFoundError</strong></a> – If neither <code class="docutils literal notranslate"><span class="pre">filepath</span></code> nor <code class="docutils literal notranslate"><span class="pre">name</span></code> is provided, or if <code class="docutils literal notranslate"><span class="pre">name</span></code> is
+    not a recognised built-in model.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 </section>
 
@@ -1725,7 +1899,6 @@ or <code class="docutils literal notranslate"><span class="pre">&quot;tail_toppe
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">templates</a><ul>
-<li><a class="reference internal" href="#functions">Functions</a><ul>
 <li><a class="reference internal" href="#manim_extensions.meshes.templates.create_triangle"><code class="docutils literal notranslate"><span class="pre">create_triangle()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.meshes.templates.create_pyramid"><code class="docutils literal notranslate"><span class="pre">create_pyramid()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.meshes.templates.create_cube"><code class="docutils literal notranslate"><span class="pre">create_cube()</span></code></a></li>
@@ -1733,6 +1906,14 @@ or <code class="docutils literal notranslate"><span class="pre">&quot;tail_toppe
 <li><a class="reference internal" href="#manim_extensions.meshes.templates.create_coplanar_points"><code class="docutils literal notranslate"><span class="pre">create_coplanar_points()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.meshes.templates.create_grid"><code class="docutils literal notranslate"><span class="pre">create_grid()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.meshes.templates.create_model"><code class="docutils literal notranslate"><span class="pre">create_model()</span></code></a></li>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">create_triangle()</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">create_pyramid()</span></code></a></li>
+<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">create_cube()</span></code></a></li>
+<li><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">create_coplanar_triangles()</span></code></a></li>
+<li><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">create_coplanar_points()</span></code></a></li>
+<li><a class="reference internal" href="#id5"><code class="docutils literal notranslate"><span class="pre">create_grid()</span></code></a></li>
+<li><a class="reference internal" href="#id6"><code class="docutils literal notranslate"><span class="pre">create_model()</span></code></a></li>
 </ul>
 </li>
 </ul>

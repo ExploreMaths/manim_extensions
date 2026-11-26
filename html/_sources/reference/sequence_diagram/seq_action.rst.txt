@@ -5,7 +5,7 @@
 seq_action
 ==========
 
-.. module:: manim_extensions.sequence_diagram.seq_action
+.. automodule:: manim_extensions.sequence_diagram.seq_action
 
 Classes
 -------

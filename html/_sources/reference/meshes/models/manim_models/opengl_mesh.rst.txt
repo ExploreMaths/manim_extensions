@@ -5,7 +5,7 @@
 opengl_mesh
 ===========
 
-.. module:: manim_extensions.meshes.models.manim_models.opengl_mesh
+.. automodule:: manim_extensions.meshes.models.manim_models.opengl_mesh
 
 Classes
 -------

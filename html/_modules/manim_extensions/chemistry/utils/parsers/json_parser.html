@@ -1628,7 +1628,7 @@
 
 
 <div class="viewcode-block" id="JSONParser">
-<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/json_parser.JSONParser.html#manim_extensions.chemistry.utils.parsers.json_parser.JSONParser">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/json_parser.JSONParser.html#manim_extensions.chemistry.JSONParser">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">JSONParser</span><span class="p">(</span><span class="n">BaseParser</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Parses JSON files.</span>
 
@@ -1671,7 +1671,7 @@
 <span class="sd">    """</span>
 
 <div class="viewcode-block" id="JSONParser.read_file">
-<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/json_parser.JSONParser.html#manim_extensions.chemistry.utils.parsers.json_parser.JSONParser.read_file">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/json_parser.JSONParser.html#manim_extensions.chemistry.JSONParser.read_file">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">read_file</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="n">FilePath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Reads the file and converts it to a string.</span>
@@ -1692,7 +1692,7 @@
 
 
 <div class="viewcode-block" id="JSONParser.data_parser">
-<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/json_parser.JSONParser.html#manim_extensions.chemistry.utils.parsers.json_parser.JSONParser.data_parser">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/json_parser.JSONParser.html#manim_extensions.chemistry.JSONParser.data_parser">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">data_parser</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ParsedData</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Parses the atoms and bonds data and returns a tuple of dictionaries with each data.</span>
@@ -1743,7 +1743,7 @@
 
 
 <div class="viewcode-block" id="JSONParser.parse_single_molecule_data">
-<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/json_parser.JSONParser.html#manim_extensions.chemistry.utils.parsers.json_parser.JSONParser.parse_single_molecule_data">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/json_parser.JSONParser.html#manim_extensions.chemistry.JSONParser.parse_single_molecule_data">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">parse_single_molecule_data</span><span class="p">(</span><span class="n">molecule_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">MoleculeData</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Parse a single molecule entry into atoms and bonds dicts.</span>
@@ -1764,7 +1764,7 @@
 
 
 <div class="viewcode-block" id="JSONParser.extract_atoms_data">
-<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/json_parser.JSONParser.html#manim_extensions.chemistry.utils.parsers.json_parser.JSONParser.extract_atoms_data">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/json_parser.JSONParser.html#manim_extensions.chemistry.JSONParser.extract_atoms_data">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">extract_atoms_data</span><span class="p">(</span><span class="n">molecule_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">AtomsDict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Extract the atoms data from a single molecule entry.</span>
@@ -1839,7 +1839,7 @@
 
 
 <div class="viewcode-block" id="JSONParser.extract_bonds_data">
-<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/json_parser.JSONParser.html#manim_extensions.chemistry.utils.parsers.json_parser.JSONParser.extract_bonds_data">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/json_parser.JSONParser.html#manim_extensions.chemistry.JSONParser.extract_bonds_data">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">extract_bonds_data</span><span class="p">(</span><span class="n">molecule_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">BondsDict</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Extract the bonds data from a single molecule entry.</span>
@@ -1881,7 +1881,7 @@
 
 
 <div class="viewcode-block" id="JSONParser.clean_elements_data">
-<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/json_parser.JSONParser.html#manim_extensions.chemistry.utils.parsers.json_parser.JSONParser.clean_elements_data">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/chemistry/utils/parsers/json_parser.JSONParser.html#manim_extensions.chemistry.JSONParser.clean_elements_data">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">clean_elements_data</span><span class="p">(</span><span class="n">atoms_elements_raw</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Convert atomic numbers to element symbols.</span>

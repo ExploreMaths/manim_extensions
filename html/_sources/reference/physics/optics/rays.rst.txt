@@ -5,7 +5,7 @@
 rays
 ====
 
-.. module:: manim_extensions.physics.optics.rays
+.. automodule:: manim_extensions.physics.optics.rays
 
 Classes
 -------

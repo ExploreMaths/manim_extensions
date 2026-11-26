@@ -1491,6 +1491,201 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.table.cell">
 <span id="cell"></span><h1>cell<a class="headerlink" href="#module-manim_extensions.table.cell" title="Link to this heading">¶</a></h1>
+<p><a class="reference internal" href="cell.Cell.html#manim_extensions.table.cell.Cell" title="manim_extensions.table.cell.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a> class for Manim tables.</p>
+<p>This module provides the <a class="reference internal" href="cell.Cell.html#manim_extensions.table.cell.Cell" title="manim_extensions.table.cell.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a> class for table visualizations.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.table.cell.Cell">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.table.cell.</span></span><span class="sig-name descname"><span class="pre">Cell</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">is_header</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_border</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/table/cell.html#Cell"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.table.cell.Cell" title="Link to this definition">¶</a></dt>
+<dd><p>A single cell in a table, containing text and optional border lines.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The text content of the cell.</p></li>
+<li><p><strong>width</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Width of the cell.</p></li>
+<li><p><strong>height</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Height of the cell.</p></li>
+<li><p><strong>font_size</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Font size for the text.</p></li>
+<li><p><strong>is_header</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, renders the text in bold with a thicker border.</p></li>
+<li><p><strong>show_border</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, draws border lines around the cell.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional arguments passed to
+<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="cellscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: CellScene <a class="headerlink" href="#cellscene">¶</a></p><img alt="../../_images/CellScene-6616f880.png" class="align-center" src="../../_images/CellScene-6616f880.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.table</span><span class="w"> </span><span class="kn">import</span> <span class="n">Cell</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CellScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">cell</span> <span class="o">=</span> <span class="n">Cell</span><span class="p">(</span><span class="s2">"Hello"</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">3.5</span><span class="p">)</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">set_background_color</span><span class="p">(</span><span class="n">BLUE</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+        <span class="n">cell</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">2.6</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.table.cell.Cell.create_border">
+<span class="sig-name descname"><span class="pre">create_border</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stroke_width</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/table/cell.html#Cell.create_border"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.table.cell.Cell.create_border" title="Link to this definition">¶</a></dt>
+<dd><p>Create the four border lines of the cell.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>stroke_width</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Width of the border lines. Header cells use a thicker
+stroke (<code class="docutils literal notranslate"><span class="pre">2</span></code>) than regular cells (<code class="docutils literal notranslate"><span class="pre">0.5</span></code>).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The four border lines (top, right, bottom, left) of the cell.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.table.cell.Cell.get_value">
+<span class="sig-name descname"><span class="pre">get_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/table/cell.html#Cell.get_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.table.cell.Cell.get_value" title="Link to this definition">¶</a></dt>
+<dd><p>Return the text value of this cell.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The text content of the cell.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.table.cell.Cell.set_value">
+<span class="sig-name descname"><span class="pre">set_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/table/cell.html#Cell.set_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.table.cell.Cell.set_value" title="Link to this definition">¶</a></dt>
+<dd><p>Change the text value of this cell.</p>
+<p>The new text keeps the font size (and the bold weight for
+header cells) of the old text and is placed where the old text
+was.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>new_value</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The new text content.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.text.text_mobject.Text.html#manim.mobject.text.text_mobject.Text" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Text</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The new text mobject (useful for animations like
+<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.transform.Transform.html#manim.animation.transform.Transform" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transform</span></code></a>).</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Instant change:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cell</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="s2">"new text"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Animated change:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">old_text</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="n">new_text</span> <span class="o">=</span> <span class="n">cell</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="s2">"new text"</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Transform</span><span class="p">(</span><span class="n">old_text</span><span class="p">,</span> <span class="n">new_text</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.table.cell.Cell.get_resized_copy">
+<span class="sig-name descname"><span class="pre">get_resized_copy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_width</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/table/cell.html#Cell.get_resized_copy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.table.cell.Cell.get_resized_copy" title="Link to this definition">¶</a></dt>
+<dd><p>Create a copy of this cell with a new width.
+The copy is positioned at the same center as this cell.
+Preserves font color, background color, border color, and current scale.
+Useful for animating width changes with <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.transform.Transform.html#manim.animation.transform.Transform" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transform</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>new_width</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The new width for the cell (in unscaled units).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="cell.Cell.html#manim_extensions.table.cell.Cell" title="manim_extensions.table.cell.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new cell with the same value and styling but different
+width, scaled to match the current cell’s scale.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.table.cell.Cell.resize_width">
+<span class="sig-name descname"><span class="pre">resize_width</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">new_width</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/table/cell.html#Cell.resize_width"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.table.cell.Cell.resize_width" title="Link to this definition">¶</a></dt>
+<dd><p>Resize this cell to a new width (instant, no animation).
+Updates border lines in place.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>new_width</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The new width.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.table.cell.Cell.set_font_color">
+<span class="sig-name descname"><span class="pre">set_font_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/table/cell.html#Cell.set_font_color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.table.cell.Cell.set_font_color" title="Link to this definition">¶</a></dt>
+<dd><p>Set the font/text color of this cell.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.html#manim.utils.color.core.ParsableManimColor" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParsableManimColor</span></code></a></span>) – A Manim color (e.g., RED, BLUE, “#FF0000”).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="cell.Cell.html#manim_extensions.table.cell.Cell" title="manim_extensions.table.cell.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This cell, for method chaining.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.table.cell.Cell.set_border_color">
+<span class="sig-name descname"><span class="pre">set_border_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/table/cell.html#Cell.set_border_color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.table.cell.Cell.set_border_color" title="Link to this definition">¶</a></dt>
+<dd><p>Set the border line color of this cell.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.html#manim.utils.color.core.ParsableManimColor" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParsableManimColor</span></code></a></span>) – A Manim color (e.g., RED, BLUE, “#FF0000”).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="cell.Cell.html#manim_extensions.table.cell.Cell" title="manim_extensions.table.cell.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This cell, for method chaining.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.table.cell.Cell.set_background_color">
+<span class="sig-name descname"><span class="pre">set_background_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/table/cell.html#Cell.set_background_color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.table.cell.Cell.set_background_color" title="Link to this definition">¶</a></dt>
+<dd><p>Set a background fill color for this cell.
+Creates a filled rectangle behind the text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.html#manim.utils.color.core.ParsableManimColor" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParsableManimColor</span></code></a></span>) – A Manim color (e.g., RED, BLUE, “#FF0000”).</p></li>
+<li><p><strong>opacity</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Opacity of the background (0 to 1).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="cell.Cell.html#manim_extensions.table.cell.Cell" title="manim_extensions.table.cell.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cell</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>This cell, for method chaining.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1758,18 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">cell</a><ul>
+<li><a class="reference internal" href="#manim_extensions.table.cell.Cell"><code class="docutils literal notranslate"><span class="pre">Cell</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.table.cell.Cell.create_border"><code class="docutils literal notranslate"><span class="pre">Cell.create_border()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.table.cell.Cell.get_value"><code class="docutils literal notranslate"><span class="pre">Cell.get_value()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.table.cell.Cell.set_value"><code class="docutils literal notranslate"><span class="pre">Cell.set_value()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.table.cell.Cell.get_resized_copy"><code class="docutils literal notranslate"><span class="pre">Cell.get_resized_copy()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.table.cell.Cell.resize_width"><code class="docutils literal notranslate"><span class="pre">Cell.resize_width()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.table.cell.Cell.set_font_color"><code class="docutils literal notranslate"><span class="pre">Cell.set_font_color()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.table.cell.Cell.set_border_color"><code class="docutils literal notranslate"><span class="pre">Cell.set_border_color()</span></code></a></li>
+
+<li><a class="reference internal" href="#manim_extensions.table.cell.Cell.set_background_color"><code class="docutils literal notranslate"><span class="pre">Cell.set_background_color()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

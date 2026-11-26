@@ -5,7 +5,7 @@
 reel
 ====
 
-.. module:: manim_extensions.radar.reel
+.. automodule:: manim_extensions.radar.reel
 
 Classes
 -------

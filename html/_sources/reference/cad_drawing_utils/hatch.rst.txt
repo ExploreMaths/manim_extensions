@@ -5,7 +5,7 @@
 hatch
 =====
 
-.. module:: manim_extensions.cad_drawing_utils.hatch
+.. automodule:: manim_extensions.cad_drawing_utils.hatch
 
 Classes
 -------

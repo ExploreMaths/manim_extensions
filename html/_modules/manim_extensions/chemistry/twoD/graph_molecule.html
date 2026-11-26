@@ -1515,7 +1515,7 @@
 
 
 <div class="viewcode-block" id="SimpleLine">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.SimpleLine.html#manim_extensions.chemistry.twoD.graph_molecule.SimpleLine">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.SimpleLine.html#manim_extensions.chemistry.SimpleLine">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SimpleLine</span><span class="p">(</span><span class="n">Line</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A line with a ``sheen_direction`` attribute, used as a single bond.</span>
 
@@ -1546,7 +1546,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">sheen_direction</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_unit_vector</span><span class="p">()</span>
 
 <div class="viewcode-block" id="SimpleLine._get_unit_vector">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.SimpleLine.html#manim_extensions.chemistry.twoD.graph_molecule.SimpleLine._get_unit_vector">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.SimpleLine.html#manim_extensions.chemistry.SimpleLine._get_unit_vector">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_unit_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the unit vector from the start to the end point.</span>
 
@@ -1562,7 +1562,7 @@
 
 
 <div class="viewcode-block" id="DoubleLine">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.DoubleLine.html#manim_extensions.chemistry.twoD.graph_molecule.DoubleLine">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.DoubleLine.html#manim_extensions.chemistry.DoubleLine">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">DoubleLine</span><span class="p">(</span><span class="n">ArcBetweenPoints</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Two arcs between the same points, used as a double bond.</span>
 
@@ -1616,7 +1616,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">other_arc</span><span class="p">)</span>
 
 <div class="viewcode-block" id="DoubleLine._get_unit_vector">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.DoubleLine.html#manim_extensions.chemistry.twoD.graph_molecule.DoubleLine._get_unit_vector">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.DoubleLine.html#manim_extensions.chemistry.DoubleLine._get_unit_vector">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_get_unit_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the unit vector from the start to the end point.</span>
 
@@ -1630,7 +1630,7 @@
 
 
 <div class="viewcode-block" id="DoubleLine.get_vector">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.DoubleLine.html#manim_extensions.chemistry.twoD.graph_molecule.DoubleLine.get_vector">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.DoubleLine.html#manim_extensions.chemistry.DoubleLine.get_vector">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the unit direction vector of the double bond.</span>
 
@@ -1642,7 +1642,7 @@
 
 
 <div class="viewcode-block" id="DoubleLine.set_points_by_ends">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.DoubleLine.html#manim_extensions.chemistry.twoD.graph_molecule.DoubleLine.set_points_by_ends">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.DoubleLine.html#manim_extensions.chemistry.DoubleLine.set_points_by_ends">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_points_by_ends</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">end</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
@@ -1668,7 +1668,7 @@
 
 
 <div class="viewcode-block" id="TripleLine">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.TripleLine.html#manim_extensions.chemistry.twoD.graph_molecule.TripleLine">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.TripleLine.html#manim_extensions.chemistry.TripleLine">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">TripleLine</span><span class="p">(</span><span class="n">DoubleLine</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A double line with an added middle line, used as a triple bond.</span>
 
@@ -1717,7 +1717,7 @@
 
 
 <div class="viewcode-block" id="GraphMolecule">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.GraphMolecule">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">GraphMolecule</span><span class="p">(</span><span class="n">Graph</span><span class="p">,</span> <span class="n">AbstractMolecule</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""Represents a molecule like a :class:`~manim.mobject.graph.Graph` from Manim.</span>
 
@@ -1852,7 +1852,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">bonds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">edges</span>
 
 <div class="viewcode-block" id="GraphMolecule._populate_edge_dict">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule._populate_edge_dict">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.GraphMolecule._populate_edge_dict">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_populate_edge_dict</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">edges</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">]],</span> <span class="n">edge_type</span><span class="p">:</span> <span class="nb">type</span><span class="p">[</span><span class="n">Mobject</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -1879,7 +1879,7 @@
 
 
 <div class="viewcode-block" id="GraphMolecule.select_bond_from_edge">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.select_bond_from_edge">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.GraphMolecule.select_bond_from_edge">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">select_bond_from_edge</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">edge</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">type</span><span class="p">[</span><span class="n">Line</span><span class="p">]</span> <span class="o">|</span> <span class="nb">type</span><span class="p">[</span><span class="n">ArcBetweenPoints</span><span class="p">]:</span>
@@ -1899,7 +1899,7 @@
 
 
 <div class="viewcode-block" id="GraphMolecule.select_bond_type">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.select_bond_type">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.GraphMolecule.select_bond_type">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">select_bond_type</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bond_type</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">type</span><span class="p">[</span><span class="n">Line</span><span class="p">]</span> <span class="o">|</span> <span class="nb">type</span><span class="p">[</span><span class="n">ArcBetweenPoints</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return the bond mobject class for the given bond order (1=single, 2=double, 3=triple).</span>
 
@@ -1928,7 +1928,7 @@
 
 
 <div class="viewcode-block" id="GraphMolecule.make_layout">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.make_layout">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.GraphMolecule.make_layout">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_layout</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertices_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="n">Point3D</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Build a layout dict mapping each atom index to its 3D coordinates.</span>
 
@@ -1945,7 +1945,7 @@
 
 
 <div class="viewcode-block" id="GraphMolecule.make_vertex_config">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.make_vertex_config">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.GraphMolecule.make_vertex_config">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_vertex_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vertices_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Build a vertex config dict with element colors and dot radius.</span>
 
@@ -1969,7 +1969,7 @@
 
 
 <div class="viewcode-block" id="GraphMolecule.make_edge_config">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.make_edge_config">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.GraphMolecule.make_edge_config">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_edge_config</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">edges</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Build an edge config dict with gradient colors derived from bonded atom colors.</span>
 
@@ -1998,7 +1998,7 @@
 
 
 <div class="viewcode-block" id="GraphMolecule.make_labels">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.make_labels">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.GraphMolecule.make_labels">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_labels</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">vertices_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">],</span>
@@ -2032,7 +2032,7 @@
 
 
 <div class="viewcode-block" id="GraphMolecule.depth_first_search">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.depth_first_search">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.GraphMolecule.depth_first_search">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">depth_first_search</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">graph</span><span class="p">:</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span>
@@ -2078,7 +2078,7 @@
 
 
 <div class="viewcode-block" id="GraphMolecule.get_connected_atoms">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_connected_atoms">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.GraphMolecule.get_connected_atoms">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_connected_atoms</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">from_atom_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">to_atom_index</span><span class="p">:</span> <span class="nb">int</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
@@ -2128,7 +2128,7 @@
 
 
 <div class="viewcode-block" id="GraphMolecule.get_atoms_vgroup_from_index">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_atoms_vgroup_from_index">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.GraphMolecule.get_atoms_vgroup_from_index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_atoms_vgroup_from_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms_indices</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a :class:`~manim.mobject.types.vectorized_mobject.VGroup` of vertex mobjects for the given atom indices.</span>
 
@@ -2147,7 +2147,7 @@
 
 
 <div class="viewcode-block" id="GraphMolecule.get_connected_atoms_v_group">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_connected_atoms_v_group">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.GraphMolecule.get_connected_atoms_v_group">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_connected_atoms_v_group</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">from_atom_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">to_atom_index</span><span class="p">:</span> <span class="nb">int</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
@@ -2171,7 +2171,7 @@
 
 
 <div class="viewcode-block" id="GraphMolecule.get_bonds_from_atoms_indices">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_bonds_from_atoms_indices">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.GraphMolecule.get_bonds_from_atoms_indices">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_bonds_from_atoms_indices</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">connected_atoms</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">excluded_atom</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
@@ -2198,7 +2198,7 @@
 
 
 <div class="viewcode-block" id="GraphMolecule.get_bonds_vgroup_from_index">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_bonds_vgroup_from_index">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.GraphMolecule.get_bonds_vgroup_from_index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_bonds_vgroup_from_index</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">connected_atoms</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">excluded_atom</span><span class="p">:</span> <span class="nb">int</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
@@ -2220,7 +2220,7 @@
 
 
 <div class="viewcode-block" id="GraphMolecule.get_connected_atoms_and_bonds_group_from_index">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_connected_atoms_and_bonds_group_from_index">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.GraphMolecule.get_connected_atoms_and_bonds_group_from_index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_connected_atoms_and_bonds_group_from_index</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">connected_atoms</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">excluded_atom</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
@@ -2246,7 +2246,7 @@
 
 
 <div class="viewcode-block" id="GraphMolecule.get_connected_atoms_and_bonds">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.get_connected_atoms_and_bonds">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.GraphMolecule.get_connected_atoms_and_bonds">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_connected_atoms_and_bonds</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">from_atom</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">to_atom</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a :class:`~manim.mobject.types.vectorized_mobject.VGroup` of all atoms and bonds on the to_atom side of a given bond.</span>
 
@@ -2270,7 +2270,7 @@
 
 
 <div class="viewcode-block" id="GraphMolecule.find_atom_position_by_index">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_atom_position_by_index">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.GraphMolecule.find_atom_position_by_index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find_atom_position_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atom_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Returns the position of a single atom given its index.</span>
 
@@ -2312,7 +2312,7 @@
 
 
 <div class="viewcode-block" id="GraphMolecule.find_atoms_position_by_index">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_atoms_position_by_index">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.GraphMolecule.find_atoms_position_by_index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find_atoms_position_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms_index_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Returns the position of multiple atoms given their indices.</span>
 
@@ -2345,7 +2345,7 @@
 
 
 <div class="viewcode-block" id="GraphMolecule.find_bond_center_by_index">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_bond_center_by_index">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.GraphMolecule.find_bond_center_by_index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find_bond_center_by_index</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">bond_index</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
@@ -2389,7 +2389,7 @@
 
 
 <div class="viewcode-block" id="GraphMolecule.find_position_along_bond_axis">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_position_along_bond_axis">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.GraphMolecule.find_position_along_bond_axis">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find_position_along_bond_axis</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">bond_tuple</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">Hashable</span><span class="p">,</span> <span class="n">Hashable</span><span class="p">],</span> <span class="n">position_buff</span><span class="p">:</span> <span class="nb">float</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
@@ -2430,7 +2430,7 @@
 
 
 <div class="viewcode-block" id="GraphMolecule.find_bonds_center_by_index">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_bonds_center_by_index">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.GraphMolecule.find_bonds_center_by_index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find_bonds_center_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bonds_tuples_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Returns the position of multiple bonds given their indices.</span>
 
@@ -2465,7 +2465,7 @@
 
 
 <div class="viewcode-block" id="GraphMolecule.find_all_atoms_positions">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_all_atoms_positions">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.GraphMolecule.find_all_atoms_positions">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find_all_atoms_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return a dict mapping every atom index to its current position.</span>
 
@@ -2483,7 +2483,7 @@
 
 
 <div class="viewcode-block" id="GraphMolecule.find_all_bonds_centers">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.find_all_bonds_centers">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.GraphMolecule.find_all_bonds_centers">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find_all_bonds_centers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return a dict mapping every bond tuple to its center position.</span>
 
@@ -2501,7 +2501,7 @@
 
 
 <div class="viewcode-block" id="GraphMolecule.mc_molecule_to_atoms_and_bonds">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule.mc_molecule_to_atoms_and_bonds">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.GraphMolecule.mc_molecule_to_atoms_and_bonds">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">mc_molecule_to_atoms_and_bonds</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span> <span class="n">mc_molecule</span><span class="p">:</span> <span class="n">MCMolecule</span>

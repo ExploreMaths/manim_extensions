@@ -4,7 +4,7 @@
 base
 ====
 
-.. module:: manim_extensions.economics.base
+.. automodule:: manim_extensions.economics.base
 
 The shared diagram base class and geometry helpers used by all economics
 diagrams.

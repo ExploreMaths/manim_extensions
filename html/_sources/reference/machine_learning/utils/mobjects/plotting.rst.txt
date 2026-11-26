@@ -4,7 +4,7 @@
 plotting
 ========
 
-.. module:: manim_extensions.machine_learning.utils.mobjects.plotting
+.. automodule:: manim_extensions.machine_learning.utils.mobjects.plotting
 
 Classes
 -------

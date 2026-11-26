@@ -1489,8 +1489,230 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="module-manim_extensions.chemistry.utils.parsers.mol_parser">
+          <style>div.nbinput.container div.prompt,div.nboutput.container div.prompt{width:8ch}div.nbcell-files.container{padding-left:8ch}</style><section id="module-manim_extensions.chemistry.utils.parsers.mol_parser">
 <span id="mol-parser"></span><h1>mol_parser<a class="headerlink" href="#module-manim_extensions.chemistry.utils.parsers.mol_parser" title="Link to this heading">¶</a></h1>
+<p>MOL format parser for chemical files.</p>
+<p>This module provides the <a class="reference internal" href="mol_parser.MolParser.html#manim_extensions.chemistry.utils.parsers.mol_parser.MolParser" title="manim_extensions.chemistry.utils.parsers.mol_parser.MolParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">MolParser</span></code></a> class for parsing MOL format chemical files.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.mol_parser.MolParser">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.utils.parsers.mol_parser.</span></span><span class="sig-name descname"><span class="pre">MolParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/chemistry/utils/parsers/mol_parser.html#MolParser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.mol_parser.MolParser" title="Link to this definition">¶</a></dt>
+<dd><p>Parses mol files.</p>
+<p class="rubric">Examples</p>
+<div id="molparseroverview" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: MolParserOverview <a class="headerlink" href="#molparseroverview">¶</a></p><img alt="../../../../_images/MolParserOverview-e4165fea.png" class="align-center" src="../../../../_images/MolParserOverview-e4165fea.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.utils.parsers.mol_parser</span><span class="w"> </span><span class="kn">import</span> <span class="n">MolParser</span>
+
+<span class="n">MolParserTarget</span> <span class="o">=</span> <span class="n">MolParser</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MolParserOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">MolParserTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
+        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'MolParser'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.chemistry.utils.parsers.mol_parser'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'Parses mol files'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [1]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pprint</span><span class="w"> </span><span class="kn">import</span> <span class="n">pprint</span>
+
+<span class="n">parsed_mol</span> <span class="o">=</span> <span class="n">MolParser</span><span class="p">(</span>
+    <span class="n">filename</span><span class="o">=</span><span class="s2">"acetone_2d.mol"</span>
+<span class="p">)</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">parsed_mol</span><span class="o">.</span><span class="n">atoms_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbcell-files docutils container">
+<div class="manim-example-files">
+<div class="manim-file-row">
+  <span class="manim-file-badge" style="background:#2b8a3e">mol</span>
+  <span class="manim-file-meta">
+    <span class="manim-file-name">acetone_2d.mol</span>
+    <span class="manim-file-size">345 B</span>
+  </span>
+  <span class="manim-file-actions">
+    <a class="manim-file-action" href="https://github.com/ExploreMaths/manim_extensions/raw/main/examples/molecule_files/mol_files/acetone_2d.mol" title="Download this file" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v9.2"/><path d="M8.4 10.4 12 14l3.6-3.6"/><path d="M5.2 16.4v1.8c0 .9.8 1.7 1.7 1.7h10.2c.9 0 1.7-.8 1.7-1.7v-1.8"/></svg></a>
+  </span>
+</div>
+</div></div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>Out[1]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{1: {'bond_to': {2: 'C'},
+     'coords': array([3.732, 0.75 , 0.   ]),
+     'element': 'O'},
+ 2: {'bond_to': {1: 'O', 3: 'C', 4: 'C'},
+     'coords': array([2.866, 0.25 , 0.   ]),
+     'element': 'C'},
+ 3: {'bond_to': {2: 'C', 5: 'H', 6: 'H', 7: 'H'},
+     'coords': array([2.  , 0.75, 0.  ]),
+     'element': 'C'},
+ 4: {'bond_to': {2: 'C', 8: 'H', 9: 'H', 10: 'H'},
+     'coords': array([ 2.866, -0.75 ,  0.   ]),
+     'element': 'C'},
+ 5: {'bond_to': {3: 'C'},
+     'coords': array([2.31  , 1.2869, 0.    ]),
+     'element': 'H'},
+ 6: {'bond_to': {3: 'C'},
+     'coords': array([1.4631, 1.06  , 0.    ]),
+     'element': 'H'},
+ 7: {'bond_to': {3: 'C'},
+     'coords': array([1.69  , 0.2131, 0.    ]),
+     'element': 'H'},
+ 8: {'bond_to': {4: 'C'},
+     'coords': array([ 2.246, -0.75 ,  0.   ]),
+     'element': 'H'},
+ 9: {'bond_to': {4: 'C'},
+     'coords': array([ 2.866, -1.37 ,  0.   ]),
+     'element': 'H'},
+ 10: {'bond_to': {4: 'C'},
+      'coords': array([ 3.486, -0.75 ,  0.   ]),
+      'element': 'H'}}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [2]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pprint</span><span class="p">(</span><span class="n">parsed_mol</span><span class="o">.</span><span class="n">bonds_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>Out[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{1: {'bond_type': '2',
+     'from_atom_index': 2,
+     'reacting_center_status': None,
+     'stereo': None,
+     'to_atom_index': 1,
+     'topology': None},
+ 2: {'bond_type': '1',
+     'from_atom_index': 3,
+     'reacting_center_status': None,
+     'stereo': None,
+     'to_atom_index': 2,
+     'topology': None},
+ 3: {'bond_type': '1',
+     'from_atom_index': 4,
+     'reacting_center_status': None,
+     'stereo': None,
+     'to_atom_index': 2,
+     'topology': None},
+ 4: {'bond_type': '1',
+     'from_atom_index': 5,
+     'reacting_center_status': None,
+     'stereo': None,
+     'to_atom_index': 3,
+     'topology': None},
+ 5: {'bond_type': '1',
+     'from_atom_index': 6,
+     'reacting_center_status': None,
+     'stereo': None,
+     'to_atom_index': 3,
+     'topology': None},
+ 6: {'bond_type': '1',
+     'from_atom_index': 7,
+     'reacting_center_status': None,
+     'stereo': None,
+     'to_atom_index': 3,
+     'topology': None},
+ 7: {'bond_type': '1',
+     'from_atom_index': 8,
+     'reacting_center_status': None,
+     'stereo': None,
+     'to_atom_index': 4,
+     'topology': None},
+ 8: {'bond_type': '1',
+     'from_atom_index': 9,
+     'reacting_center_status': None,
+     'stereo': None,
+     'to_atom_index': 4,
+     'topology': None},
+ 9: {'bond_type': '1',
+     'from_atom_index': 10,
+     'reacting_center_status': None,
+     'stereo': None,
+     'to_atom_index': 4,
+     'topology': None}}
+</pre></div>
+</div>
+</div>
+</div>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.mol_parser.MolParser.read_file">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">read_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/chemistry/utils/parsers/mol_parser.html#MolParser.read_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.mol_parser.MolParser.read_file" title="Link to this definition">¶</a></dt>
+<dd><p>Read a MOL file and return its lines.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="base_parser.html#manim_extensions.chemistry.utils.parsers.base_parser.FilePath" title="manim_extensions.chemistry.utils.parsers.base_parser.FilePath"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FilePath</span></code></a></span>) – Path to the MOL file to parse.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Lines of the MOL file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.mol_parser.MolParser.parse_from_string">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">parse_from_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/chemistry/utils/parsers/mol_parser.html#MolParser.parse_from_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.mol_parser.MolParser.parse_from_string" title="Link to this definition">¶</a></dt>
+<dd><p>Parse MOL data passed directly as a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>string</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Raw MOL data (the contents of a <code class="docutils literal notranslate"><span class="pre">.mol</span></code> file).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference internal" href="base_parser.html#manim_extensions.chemistry.utils.parsers.base_parser.AtomsDict" title="manim_extensions.chemistry.utils.parsers.base_parser.AtomsDict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AtomsDict</span></code></a>, <a class="reference internal" href="base_parser.html#manim_extensions.chemistry.utils.parsers.base_parser.BondsDict" title="manim_extensions.chemistry.utils.parsers.base_parser.BondsDict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BondsDict</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">(atoms_data,</span> <span class="pre">bonds_data)</span></code> tuple of dictionaries.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.mol_parser.MolParser.data_parser">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">data_parser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/chemistry/utils/parsers/mol_parser.html#MolParser.data_parser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.mol_parser.MolParser.data_parser" title="Link to this definition">¶</a></dt>
+<dd><p>Parse the lines of a MOL file into atoms and bonds dicts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Lines of the MOL file as returned by <a class="reference internal" href="mol_parser.MolParser.html#manim_extensions.chemistry.utils.parsers.mol_parser.MolParser.read_file" title="manim_extensions.chemistry.utils.parsers.mol_parser.MolParser.read_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">read_file()</span></code></a>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="base_parser.html#manim_extensions.chemistry.utils.parsers.base_parser.ParsedData" title="manim_extensions.chemistry.utils.parsers.base_parser.ParsedData"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParsedData</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">(atoms_data,</span> <span class="pre">bonds_data)</span></code> tuple of dictionaries.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1785,12 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">mol_parser</a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.mol_parser.MolParser"><code class="docutils literal notranslate"><span class="pre">MolParser</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.mol_parser.MolParser.read_file"><code class="docutils literal notranslate"><span class="pre">MolParser.read_file()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.mol_parser.MolParser.parse_from_string"><code class="docutils literal notranslate"><span class="pre">MolParser.parse_from_string()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.mol_parser.MolParser.data_parser"><code class="docutils literal notranslate"><span class="pre">MolParser.data_parser()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

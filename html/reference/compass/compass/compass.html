@@ -1491,6 +1491,345 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.compass.compass.compass">
 <span id="compass"></span><h1>compass<a class="headerlink" href="#module-manim_extensions.compass.compass.compass" title="Link to this heading">¶</a></h1>
+<p><a class="reference internal" href="compass.Compass.html#manim_extensions.compass.compass.compass.Compass" title="manim_extensions.compass.compass.compass.Compass"><code class="xref py py-class docutils literal notranslate"><span class="pre">Compass</span></code></a> class for Manim.</p>
+<p>This module provides compass visualization for geometry.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.compass.compass.compass.Compass">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.compass.compass.compass.</span></span><span class="sig-name descname"><span class="pre">Compass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">span</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">head_color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">niddle_color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.RED"><span class="pre">RED</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">pen_color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.PURE_YELLOW"><span class="pre">PURE_YELLOW</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">stroke_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">leg_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">leg_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/compass/compass.html#Compass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.compass.compass.Compass" title="Link to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="compass.Compass.html#manim_extensions.compass.compass.compass.Compass" title="manim_extensions.compass.compass.compass.Compass"><code class="xref py py-class docutils literal notranslate"><span class="pre">Compass</span></code></a> mobject.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>span</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Span of the compass legs.</p></li>
+<li><p><strong>head_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.html#manim.utils.color.core.ParsableManimColor" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParsableManimColor</span></code></a></span>) – Color of the compass head.</p></li>
+<li><p><strong>niddle_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.html#manim.utils.color.core.ParsableManimColor" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParsableManimColor</span></code></a></span>) – Color of the compass needle.</p></li>
+<li><p><strong>pen_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.html#manim.utils.color.core.ParsableManimColor" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParsableManimColor</span></code></a></span>) – Color of the compass pen.</p></li>
+<li><p><strong>stroke_width</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Stroke width of the compass lines.</p></li>
+<li><p><strong>leg_length</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Length of the compass legs.</p></li>
+<li><p><strong>leg_width</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Width of the compass legs.</p></li>
+<li><p><strong>r</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Radius of the compass head circle.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="compassscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: CompassScene <a class="headerlink" href="#compassscene">¶</a></p><img alt="../../../_images/CompassScene-a78aa91c.png" class="align-center" src="../../../_images/CompassScene-a78aa91c.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.compass</span><span class="w"> </span><span class="kn">import</span> <span class="n">Compass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CompassScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">narrow</span> <span class="o">=</span> <span class="n">Compass</span><span class="p">(</span><span class="n">span</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">wide</span> <span class="o">=</span> <span class="n">Compass</span><span class="p">(</span>
+            <span class="n">span</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">head_color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">,</span> <span class="n">niddle_color</span><span class="o">=</span><span class="n">GREEN</span><span class="p">,</span> <span class="n">pen_color</span><span class="o">=</span><span class="n">ORANGE</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">narrow</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">narrow</span><span class="p">,</span> <span class="n">wide</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.compass.compass.compass.Compass._init_compass">
+<span class="sig-name descname"><span class="pre">_init_compass</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/compass/compass.html#Compass._init_compass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.compass.compass.Compass._init_compass" title="Link to this definition">¶</a></dt>
+<dd><p>Build the compass geometry (head, legs, and tip) from parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="compass.Compass.html#manim_extensions.compass.compass.compass.Compass" title="manim_extensions.compass.compass.compass.Compass"><code class="xref py py-class docutils literal notranslate"><span class="pre">Compass</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The modified self.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.compass.compass.compass.Compass.get_niddle_tip">
+<span class="sig-name descname"><span class="pre">get_niddle_tip</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/compass/compass.html#Compass.get_niddle_tip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.compass.compass.Compass.get_niddle_tip" title="Link to this definition">¶</a></dt>
+<dd><p>Return the coordinates of the compass needle tip.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The coordinates of the needle tip.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.compass.compass.compass.Compass.get_pen_tip">
+<span class="sig-name descname"><span class="pre">get_pen_tip</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/compass/compass.html#Compass.get_pen_tip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.compass.compass.Compass.get_pen_tip" title="Link to this definition">¶</a></dt>
+<dd><p>Return the coordinates of the pen tip.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The coordinates of the pen tip.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.compass.compass.compass.Compass.get_niddle2pen_vec">
+<span class="sig-name descname"><span class="pre">get_niddle2pen_vec</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/compass/compass.html#Compass.get_niddle2pen_vec"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.compass.compass.Compass.get_niddle2pen_vec" title="Link to this definition">¶</a></dt>
+<dd><p>Return the unit vector from the needle tip to the pen tip.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Unit vector pointing from the needle tip to the pen tip.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.compass.compass.compass.Compass.get_span">
+<span class="sig-name descname"><span class="pre">get_span</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/compass/compass.html#Compass.get_span"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.compass.compass.Compass.get_span" title="Link to this definition">¶</a></dt>
+<dd><p>Return the compass span: distance between pen tip and needle tip.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The distance between the pen tip and the needle tip.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.compass.compass.compass.Compass.move_niddle_tip_to">
+<span class="sig-name descname"><span class="pre">move_niddle_tip_to</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/compass/compass.html#Compass.move_niddle_tip_to"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.compass.compass.Compass.move_niddle_tip_to" title="Link to this definition">¶</a></dt>
+<dd><p>Move the compass as a whole so that the needle tip is at pos.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pos</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Target position for the compass needle tip.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="compass.Compass.html#manim_extensions.compass.compass.compass.Compass" title="manim_extensions.compass.compass.compass.Compass"><code class="xref py py-class docutils literal notranslate"><span class="pre">Compass</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The shifted self.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="compassmoveneedletip" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: CompassMoveNeedleTip <a class="headerlink" href="#compassmoveneedletip">¶</a></p><img alt="../../../_images/CompassMoveNeedleTip-53ee1023.png" class="align-center" src="../../../_images/CompassMoveNeedleTip-53ee1023.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.compass</span><span class="w"> </span><span class="kn">import</span> <span class="n">Compass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CompassMoveNeedleTip</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">)</span>
+        <span class="n">compass</span> <span class="o">=</span> <span class="n">Compass</span><span class="p">()</span><span class="o">.</span><span class="n">move_niddle_tip_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">compass</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.compass.compass.compass.Compass.rotate_about_niddle_tip">
+<span class="sig-name descname"><span class="pre">rotate_about_niddle_tip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PI</span> <span class="pre">/</span> <span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/compass/compass.html#Compass.rotate_about_niddle_tip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.compass.compass.Compass.rotate_about_niddle_tip" title="Link to this definition">¶</a></dt>
+<dd><p>Rotate the compass as a whole around the needle tip by angle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>angle</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Rotation angle in radians about the needle tip.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="compass.Compass.html#manim_extensions.compass.compass.compass.Compass" title="manim_extensions.compass.compass.compass.Compass"><code class="xref py py-class docutils literal notranslate"><span class="pre">Compass</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The rotated self.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="rotateaboutneedletip" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: RotateAboutNeedleTip <a class="headerlink" href="#rotateaboutneedletip">¶</a></p><img alt="../../../_images/RotateAboutNeedleTip-f0849e33.png" class="align-center" src="../../../_images/RotateAboutNeedleTip-f0849e33.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.compass</span><span class="w"> </span><span class="kn">import</span> <span class="n">Compass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RotateAboutNeedleTip</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pivot</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">)</span>
+        <span class="n">compass</span> <span class="o">=</span> <span class="n">Compass</span><span class="p">()</span><span class="o">.</span><span class="n">move_niddle_tip_to</span><span class="p">(</span>
+            <span class="n">ORIGIN</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">rotate_about_niddle_tip</span><span class="p">(</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">pivot</span><span class="p">,</span> <span class="n">compass</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.compass.compass.compass.Compass.reverse_tip">
+<span class="sig-name descname"><span class="pre">reverse_tip</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/compass/compass.html#Compass.reverse_tip"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.compass.compass.Compass.reverse_tip" title="Link to this definition">¶</a></dt>
+<dd><p>Mirror-flip the needle tip and pen tip.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="compass.Compass.html#manim_extensions.compass.compass.compass.Compass" title="manim_extensions.compass.compass.compass.Compass"><code class="xref py py-class docutils literal notranslate"><span class="pre">Compass</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The flipped self.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="reversetip" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ReverseTip <a class="headerlink" href="#reversetip">¶</a></p><img alt="../../../_images/ReverseTip-c76ed32e.png" class="align-center" src="../../../_images/ReverseTip-c76ed32e.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.compass</span><span class="w"> </span><span class="kn">import</span> <span class="n">Compass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ReverseTip</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">before</span> <span class="o">=</span> <span class="n">Compass</span><span class="p">()</span>
+        <span class="n">after</span> <span class="o">=</span> <span class="n">Compass</span><span class="p">()</span><span class="o">.</span><span class="n">reverse_tip</span><span class="p">()</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">before</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">before</span><span class="p">,</span> <span class="n">after</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.compass.compass.compass.Compass.split_copass_with_gain_angle">
+<span class="sig-name descname"><span class="pre">split_copass_with_gain_angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/compass/compass.html#Compass.split_copass_with_gain_angle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.compass.compass.Compass.split_copass_with_gain_angle" title="Link to this definition">¶</a></dt>
+<dd><p>Open the two compass legs by an additional angle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>angle</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Extra angular opening applied to the compass legs.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="compass.Compass.html#manim_extensions.compass.compass.compass.Compass" title="manim_extensions.compass.compass.compass.Compass"><code class="xref py py-class docutils literal notranslate"><span class="pre">Compass</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The opened self.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="splitcompasswithgainangle" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: SplitCompassWithGainAngle <a class="headerlink" href="#splitcompasswithgainangle">¶</a></p><img alt="../../../_images/SplitCompassWithGainAngle-2e9d4ee7.png" class="align-center" src="../../../_images/SplitCompassWithGainAngle-2e9d4ee7.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.compass</span><span class="w"> </span><span class="kn">import</span> <span class="n">Compass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SplitCompassWithGainAngle</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">closed</span> <span class="o">=</span> <span class="n">Compass</span><span class="p">()</span>
+        <span class="n">opened</span> <span class="o">=</span> <span class="n">Compass</span><span class="p">()</span><span class="o">.</span><span class="n">split_copass_with_gain_angle</span><span class="p">(</span>
+            <span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">closed</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">closed</span><span class="p">,</span> <span class="n">opened</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.compass.compass.compass.Compass.split_compass_with_niddle_tip_fixed">
+<span class="sig-name descname"><span class="pre">split_compass_with_niddle_tip_fixed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niddle_tip_pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/compass/compass.html#Compass.split_compass_with_niddle_tip_fixed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.compass.compass.Compass.split_compass_with_niddle_tip_fixed" title="Link to this definition">¶</a></dt>
+<dd><p>Keep the needle tip fixed and open the two compass legs by angle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>angle</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Extra angular opening applied while the needle tip stays fixed.</p></li>
+<li><p><strong>niddle_tip_pos</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Fixed position to keep the compass needle tip at.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="compass.Compass.html#manim_extensions.compass.compass.compass.Compass" title="manim_extensions.compass.compass.compass.Compass"><code class="xref py py-class docutils literal notranslate"><span class="pre">Compass</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The opened self with the needle tip fixed.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="splitcompasswithneedletipfixed" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: SplitCompassWithNeedleTipFixed <a class="headerlink" href="#splitcompasswithneedletipfixed">¶</a></p><img alt="../../../_images/SplitCompassWithNeedleTipFixed-becc1ffe.png" class="align-center" src="../../../_images/SplitCompassWithNeedleTipFixed-becc1ffe.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.compass</span><span class="w"> </span><span class="kn">import</span> <span class="n">Compass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SplitCompassWithNeedleTipFixed</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pivot</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">)</span>
+        <span class="n">compass</span> <span class="o">=</span> <span class="n">Compass</span><span class="p">()</span><span class="o">.</span><span class="n">split_compass_with_niddle_tip_fixed</span><span class="p">(</span>
+            <span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="n">ORIGIN</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">pivot</span><span class="p">,</span> <span class="n">compass</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.compass.compass.compass.Compass.get_compass_rotate_angle_direction">
+<span class="sig-name descname"><span class="pre">get_compass_rotate_angle_direction</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/compass/compass.html#Compass.get_compass_rotate_angle_direction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.compass.compass.Compass.get_compass_rotate_angle_direction" title="Link to this definition">¶</a></dt>
+<dd><p>Return whether the two compass legs are counter-clockwise from each other.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Whether the pen tip direction is counter-clockwise from the
+needle tip direction about the head centre.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.compass.compass.compass.Compass.get_compass_rotate_angle_with_span">
+<span class="sig-name descname"><span class="pre">get_compass_rotate_angle_with_span</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">span</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/compass/compass.html#Compass.get_compass_rotate_angle_with_span"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.compass.compass.Compass.get_compass_rotate_angle_with_span" title="Link to this definition">¶</a></dt>
+<dd><p>Return the angle between the two legs when the compass is opened to span.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>span</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Span parameter for this operation.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The signed angle (in radians) by which the legs must be rotated to
+open the compass from its current span to <code class="docutils literal notranslate"><span class="pre">span</span></code>; negative if the
+pen tip is counter-clockwise from the needle tip.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.compass.compass.compass.Compass.set_compass">
+<span class="sig-name descname"><span class="pre">set_compass</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">span_angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotate_angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">niddle_tip_pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/compass/compass/compass.html#Compass.set_compass"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.compass.compass.compass.Compass.set_compass" title="Link to this definition">¶</a></dt>
+<dd><p>Set the compass span, rotation angle, and needle tip position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>span_angle</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Span angle parameter for this operation.</p></li>
+<li><p><strong>rotate_angle</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Rotate angle parameter for this operation.</p></li>
+<li><p><strong>niddle_tip_pos</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Niddle tip pos processed by this operation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="compass.Compass.html#manim_extensions.compass.compass.compass.Compass" title="manim_extensions.compass.compass.compass.Compass"><code class="xref py py-class docutils literal notranslate"><span class="pre">Compass</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The repositioned self.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="setcompass" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: SetCompass <a class="headerlink" href="#setcompass">¶</a></p><img alt="../../../_images/SetCompass-72c9094a.png" class="align-center" src="../../../_images/SetCompass-72c9094a.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.compass</span><span class="w"> </span><span class="kn">import</span> <span class="n">Compass</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SetCompass</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pivot</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">)</span>
+        <span class="n">compass</span> <span class="o">=</span> <span class="n">Compass</span><span class="p">()</span><span class="o">.</span><span class="n">set_compass</span><span class="p">(</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">6</span><span class="p">,</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span> <span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">pivot</span><span class="p">,</span> <span class="n">compass</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1902,23 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">compass</a><ul>
+<li><a class="reference internal" href="#manim_extensions.compass.compass.compass.Compass"><code class="docutils literal notranslate"><span class="pre">Compass</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.compass.compass.compass.Compass._init_compass"><code class="docutils literal notranslate"><span class="pre">Compass._init_compass()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.compass.compass.compass.Compass.get_niddle_tip"><code class="docutils literal notranslate"><span class="pre">Compass.get_niddle_tip()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.compass.compass.compass.Compass.get_pen_tip"><code class="docutils literal notranslate"><span class="pre">Compass.get_pen_tip()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.compass.compass.compass.Compass.get_niddle2pen_vec"><code class="docutils literal notranslate"><span class="pre">Compass.get_niddle2pen_vec()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.compass.compass.compass.Compass.get_span"><code class="docutils literal notranslate"><span class="pre">Compass.get_span()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.compass.compass.compass.Compass.move_niddle_tip_to"><code class="docutils literal notranslate"><span class="pre">Compass.move_niddle_tip_to()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.compass.compass.compass.Compass.rotate_about_niddle_tip"><code class="docutils literal notranslate"><span class="pre">Compass.rotate_about_niddle_tip()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.compass.compass.compass.Compass.reverse_tip"><code class="docutils literal notranslate"><span class="pre">Compass.reverse_tip()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.compass.compass.compass.Compass.split_copass_with_gain_angle"><code class="docutils literal notranslate"><span class="pre">Compass.split_copass_with_gain_angle()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.compass.compass.compass.Compass.split_compass_with_niddle_tip_fixed"><code class="docutils literal notranslate"><span class="pre">Compass.split_compass_with_niddle_tip_fixed()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.compass.compass.compass.Compass.get_compass_rotate_angle_direction"><code class="docutils literal notranslate"><span class="pre">Compass.get_compass_rotate_angle_direction()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.compass.compass.compass.Compass.get_compass_rotate_angle_with_span"><code class="docutils literal notranslate"><span class="pre">Compass.get_compass_rotate_angle_with_span()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.compass.compass.compass.Compass.set_compass"><code class="docutils literal notranslate"><span class="pre">Compass.set_compass()</span></code></a></li>
+
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

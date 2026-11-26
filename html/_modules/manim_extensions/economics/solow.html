@@ -1518,7 +1518,7 @@
 
 
 <div class="viewcode-block" id="SolowDiagram">
-<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.solow.SolowDiagram">[docs]</a>
+<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.SolowDiagram">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">SolowDiagram</span><span class="p">(</span><span class="n">EconDiagram</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""Solow growth model diagram.</span>
 
@@ -1635,7 +1635,7 @@
             <span class="p">)</span>
 
 <div class="viewcode-block" id="SolowDiagram._make_prod_func">
-<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.solow.SolowDiagram._make_prod_func">[docs]</a>
+<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.SolowDiagram._make_prod_func">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_make_prod_func</span><span class="p">(</span><span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">""":math:`y = k^\alpha`</span>
@@ -1653,7 +1653,7 @@
 
 
 <div class="viewcode-block" id="SolowDiagram._make_savings_func">
-<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.solow.SolowDiagram._make_savings_func">[docs]</a>
+<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.SolowDiagram._make_savings_func">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_make_savings_func</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">alpha</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Callable</span><span class="p">[[</span><span class="nb">float</span><span class="p">],</span> <span class="nb">float</span><span class="p">]:</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">""":math:`sf(k) = s \cdot k^\alpha`</span>
@@ -1673,7 +1673,7 @@
 
 
 <div class="viewcode-block" id="SolowDiagram._make_breakeven_func">
-<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.solow.SolowDiagram._make_breakeven_func">[docs]</a>
+<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.SolowDiagram._make_breakeven_func">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_make_breakeven_func</span><span class="p">(</span>
         <span class="n">delta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">g</span><span class="p">:</span> <span class="nb">float</span>
@@ -1708,7 +1708,7 @@
         <span class="k">return</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s2">"_shares_group"</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_shares_group</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="SolowDiagram._shift_with_shares">
-<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.solow.SolowDiagram._shift_with_shares">[docs]</a>
+<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.SolowDiagram._shift_with_shares">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_shift_with_shares</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">curve_anim</span><span class="p">:</span> <span class="n">AnimationGroup</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnimationGroup</span><span class="p">:</span>
@@ -1741,7 +1741,7 @@
 
 
 <div class="viewcode-block" id="SolowDiagram.shift_savings">
-<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.solow.SolowDiagram.shift_savings">[docs]</a>
+<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.SolowDiagram.shift_savings">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shift_savings</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">show_arrows</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AnimationGroup</span><span class="p">:</span>
@@ -1777,7 +1777,7 @@
 
 
 <div class="viewcode-block" id="SolowDiagram.shift_breakeven">
-<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.solow.SolowDiagram.shift_breakeven">[docs]</a>
+<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.SolowDiagram.shift_breakeven">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shift_breakeven</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">delta</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1828,7 +1828,7 @@
     <span class="c1"># ---- Common shocks ----</span>
 
 <div class="viewcode-block" id="SolowDiagram.increase_savings">
-<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.solow.SolowDiagram.increase_savings">[docs]</a>
+<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.SolowDiagram.increase_savings">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">increase_savings</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">show_arrows</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">AnimationGroup</span><span class="p">]:</span>
@@ -1850,7 +1850,7 @@
 
 
 <div class="viewcode-block" id="SolowDiagram.decrease_savings">
-<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.solow.SolowDiagram.decrease_savings">[docs]</a>
+<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.SolowDiagram.decrease_savings">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">decrease_savings</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">show_arrows</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">AnimationGroup</span><span class="p">]:</span>
@@ -1872,7 +1872,7 @@
 
 
 <div class="viewcode-block" id="SolowDiagram.population_growth">
-<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.solow.SolowDiagram.population_growth">[docs]</a>
+<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.SolowDiagram.population_growth">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">population_growth</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span> <span class="n">show_arrows</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">AnimationGroup</span><span class="p">]:</span>
@@ -1894,7 +1894,7 @@
 
 
 <div class="viewcode-block" id="SolowDiagram.increase_depreciation">
-<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.solow.SolowDiagram.increase_depreciation">[docs]</a>
+<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.SolowDiagram.increase_depreciation">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">increase_depreciation</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">delta</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">show_arrows</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">AnimationGroup</span><span class="p">]:</span>
@@ -1918,7 +1918,7 @@
     <span class="c1"># ---- Consumption / Investment shares ----</span>
 
 <div class="viewcode-block" id="SolowDiagram._steady_state_k">
-<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.solow.SolowDiagram._steady_state_k">[docs]</a>
+<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.SolowDiagram._steady_state_k">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_steady_state_k</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">"""Compute steady-state capital: :math:`sf(k^*) = (\delta+n+g)k^*`.</span>
 
@@ -1934,7 +1934,7 @@
 
 
 <div class="viewcode-block" id="SolowDiagram._build_shares">
-<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.solow.SolowDiagram._build_shares">[docs]</a>
+<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.SolowDiagram._build_shares">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_build_shares</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">c_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">ORANGE</span><span class="p">,</span> <span class="n">i_color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">YELLOW</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
@@ -1979,7 +1979,7 @@
 
 
 <div class="viewcode-block" id="SolowDiagram.show_shares">
-<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.solow.SolowDiagram.show_shares">[docs]</a>
+<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.SolowDiagram.show_shares">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">show_shares</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">k</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -2026,7 +2026,7 @@
 
 
 <div class="viewcode-block" id="SolowDiagram.hide_shares">
-<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.solow.SolowDiagram.hide_shares">[docs]</a>
+<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.SolowDiagram.hide_shares">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">hide_shares</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FadeOut</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Remove the share annotations.</span>
 
@@ -2043,7 +2043,7 @@
 
 
 <div class="viewcode-block" id="SolowDiagram.animate_shares_along">
-<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.solow.SolowDiagram.animate_shares_along">[docs]</a>
+<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.SolowDiagram.animate_shares_along">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">animate_shares_along</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">k_start</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
@@ -2095,7 +2095,7 @@
     <span class="c1"># ---- Golden rule ----</span>
 
 <div class="viewcode-block" id="SolowDiagram._golden_rule_k">
-<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.solow.SolowDiagram._golden_rule_k">[docs]</a>
+<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.SolowDiagram._golden_rule_k">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_golden_rule_k</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">"""Compute golden-rule capital: :math:`MPK = \delta + n + g`.</span>
 
@@ -2110,7 +2110,7 @@
 
 
 <div class="viewcode-block" id="SolowDiagram.show_golden_rule">
-<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.solow.SolowDiagram.show_golden_rule">[docs]</a>
+<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.SolowDiagram.show_golden_rule">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">show_golden_rule</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ManimColor</span> <span class="o">=</span> <span class="n">PURPLE</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FadeIn</span><span class="p">:</span>
@@ -2153,7 +2153,7 @@
 
 
 <div class="viewcode-block" id="SolowDiagram.hide_golden_rule">
-<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.solow.SolowDiagram.hide_golden_rule">[docs]</a>
+<a class="viewcode-back" href="../../../reference/economics/solow.SolowDiagram.html#manim_extensions.economics.SolowDiagram.hide_golden_rule">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">hide_golden_rule</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">FadeOut</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Remove the golden-rule marker.</span>
 

@@ -5,7 +5,7 @@
 manim_models
 ============
 
-.. module:: manim_extensions.meshes.models.manim_models
+.. automodule:: manim_extensions.meshes.models.manim_models
 
 Usage
 -----

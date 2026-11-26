@@ -5,7 +5,7 @@
 Rubik's Cube
 ============
 
-.. module:: manim_extensions.rubikscube
+.. automodule:: manim_extensions.rubikscube
 
 .. vendored-status:: WampyCakes/manim-rubikscube
 

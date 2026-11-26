@@ -4,7 +4,7 @@
 threedatom
 ==========
 
-.. module:: manim_extensions.chemistry.threeD.threedatom
+.. automodule:: manim_extensions.chemistry.threeD.threedatom
 
 Classes
 -------

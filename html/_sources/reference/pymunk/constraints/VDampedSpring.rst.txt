@@ -4,7 +4,7 @@
 VDampedSpring
 =============
 
-.. module:: manim_extensions.pymunk.constraints.VDampedSpring
+.. automodule:: manim_extensions.pymunk.constraints.VDampedSpring
 
 Classes
 -------

@@ -5,7 +5,7 @@
 Algorithm
 =========
 
-.. module:: manim_extensions.algorithm
+.. automodule:: manim_extensions.algorithm
 
 .. vendored-status:: sinianluoye/manim-algorithm
 

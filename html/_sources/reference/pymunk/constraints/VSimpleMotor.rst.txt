@@ -4,7 +4,7 @@
 VSimpleMotor
 ============
 
-.. module:: manim_extensions.pymunk.constraints.VSimpleMotor
+.. automodule:: manim_extensions.pymunk.constraints.VSimpleMotor
 
 Classes
 -------

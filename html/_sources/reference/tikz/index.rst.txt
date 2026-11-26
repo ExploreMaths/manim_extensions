@@ -5,7 +5,7 @@
 TikZ
 ====
 
-.. module:: manim_extensions.tikz
+.. automodule:: manim_extensions.tikz
 
 .. vendored-status:: ralphieraccoon/manim-tikz
 

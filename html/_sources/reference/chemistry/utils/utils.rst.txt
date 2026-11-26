@@ -4,7 +4,7 @@
 utils
 =====
 
-.. module:: manim_extensions.chemistry.utils.utils
+.. automodule:: manim_extensions.chemistry.utils.utils
 
 Functions
 ---------

@@ -5,7 +5,7 @@
 path_mapper
 ===========
 
-.. module:: manim_extensions.cad_drawing_utils.path_mapper
+.. automodule:: manim_extensions.cad_drawing_utils.path_mapper
 
 Classes
 -------

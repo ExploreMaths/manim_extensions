@@ -4,7 +4,7 @@
 deprecation
 ===========
 
-.. module:: manim_extensions.utils.deprecation
+.. automodule:: manim_extensions.utils.deprecation
 
 Functions
 ---------

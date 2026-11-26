@@ -1491,16 +1491,12 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.geometry">
 <span id="geometry"></span><h1>Geometry<a class="headerlink" href="#module-manim_extensions.geometry" title="Link to this heading">¶</a></h1>
-<p>This module contains geometric calculation functions that operate directly on
-Manim mobjects without creating any on-screen mobjects themselves.
-<a class="reference internal" href="#manim_extensions.geometry.vmobject_int" title="manim_extensions.geometry.vmobject_int"><code class="xref py py-func docutils literal notranslate"><span class="pre">vmobject_int()</span></code></a> works with <em>any</em> two
-<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a> instances — circles,
-lines, arcs, polygons, parametric curves, text, groups, and so on — by
-intersecting their cubic Bézier outlines, so it needs no special cases for
-particular mobject types.  They are useful for analytic geometry tasks inside
-a <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a>.</p>
-<section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<p>Geometric helper functions for Manim scenes.</p>
+<p>This module provides intersection routines that operate directly on Manim
+mobjects.  <a class="reference internal" href="#id0" title="manim_extensions.geometry.vmobject_int"><code class="xref py py-func docutils literal notranslate"><span class="pre">vmobject_int()</span></code></a> works with any two
+<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a> instances (circles,
+lines, arcs, polygons, parametric curves, text, groups, …) by intersecting
+their cubic Bézier outlines, so no type-specific cases are needed.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.geometry.vmobject_int">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.geometry.</span></span><span class="sig-name descname"><span class="pre">vmobject_int</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vmob1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmob2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flatness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">32</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/geometry.html#vmobject_int"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.geometry.vmobject_int" title="Link to this definition">¶</a></dt>
@@ -1635,6 +1631,150 @@ on the line segment where the circle is tangent to the line.</p>
 </div>
 </div></dd></dl>
 
+<p>This module contains geometric calculation functions that operate directly on
+Manim mobjects without creating any on-screen mobjects themselves.
+<a class="reference internal" href="#id0" title="manim_extensions.geometry.vmobject_int"><code class="xref py py-func docutils literal notranslate"><span class="pre">vmobject_int()</span></code></a> works with <em>any</em> two
+<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a> instances — circles,
+lines, arcs, polygons, parametric curves, text, groups, and so on — by
+intersecting their cubic Bézier outlines, so it needs no special cases for
+particular mobject types.  They are useful for analytic geometry tasks inside
+a <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a>.</p>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.geometry.</span></span><span class="sig-name descname"><span class="pre">vmobject_int</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vmob1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vmob2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flatness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">32</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/geometry.html#vmobject_int"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dd><p>Compute all intersection points of two arbitrary VMobjects.</p>
+<p>Every <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a> stores its
+outline as a sequence of cubic Bézier curves, so this function treats the
+two inputs uniformly as families of cubic Bézier curves and intersects
+them <em>without</em> any type-specific special cases.  The algorithm is:</p>
+<ul class="simple">
+<li><p>the Bézier tree of each mobject (including submobjects) is collected,
+skipping <code class="docutils literal notranslate"><span class="pre">NaN</span></code> path-break markers;</p></li>
+<li><p>each curve pair is recursively subdivided with de Casteljau’s
+algorithm, always splitting the less flat curve;</p></li>
+<li><p>pairs whose control-point bounding boxes do not overlap are pruned
+immediately — a Bézier curve is always contained in the convex hull
+(and hence the bounding box) of its control points, so this never
+discards a real intersection;</p></li>
+<li><p>once both sub-curves deviate from their chords by less than
+<code class="docutils literal notranslate"><span class="pre">flatness</span></code>, they are treated as line segments and a closest-point
+test (with a distance tolerance accounting for the approximation
+error) decides whether the true curves meet;</p></li>
+<li><p>coincident, overlapping curve pieces report the endpoints of their
+common interval instead of infinitely many points.</p></li>
+</ul>
+<p>Tangencies, crossings at curve joins and intersections in 3-D are all
+handled by the same subdivision loop.  When the same mobject is passed
+for both arguments the function reports its self-intersections (shared
+path-join anchors are filtered out).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vmob1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a></span>) – The first vectorised mobject.</p></li>
+<li><p><strong>vmob2</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a></span>) – The second vectorised mobject.</p></li>
+<li><p><strong>tolerance</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Distance below which two points are considered the same intersection,
+and the base acceptance distance for the flat segment closest-point
+test.</p></li>
+<li><p><strong>flatness</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Maximum allowed deviation of a Bézier sub-curve’s control points
+from its chord before the sub-curve is treated as a straight
+segment.  Smaller values yield more accurate intersection points
+at the cost of more subdivision.</p></li>
+<li><p><strong>max_depth</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Maximum number of recursive subdivision levels.  Guarantees
+termination for pathological configurations such as tangencies.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>All intersection points as 3-D arrays.  An empty list is returned
+when the mobjects do not meet.  If the two outlines overlap along
+a curve segment, the endpoints of the overlapping region are
+returned.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="vmobjectintscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: VMobjectIntScene <a class="headerlink" href="#vmobjectintscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./VMobjectIntScene-512c0a5a.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">vmobject_int</span><span class="p">,</span> <span class="n">LabelDot</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">VMobjectIntScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">circle</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">)</span>
+        <span class="n">curve</span> <span class="o">=</span> <span class="n">ParametricFunction</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="p">[</span><span class="n">t</span><span class="p">,</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">t</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+            <span class="n">t_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">],</span>
+            <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">pts</span> <span class="o">=</span> <span class="n">vmobject_int</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="n">curve</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Create</span><span class="p">(</span><span class="n">circle</span><span class="p">),</span> <span class="n">Create</span><span class="p">(</span><span class="n">curve</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
+            <span class="n">LaggedStart</span><span class="p">(</span>
+                <span class="o">*</span><span class="p">[</span>
+                    <span class="n">GrowFromCenter</span><span class="p">(</span><span class="n">LabelDot</span><span class="p">(</span><span class="sa">f</span><span class="s2">"P_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">label_pos</span><span class="o">=</span><span class="n">UP</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.15</span><span class="p">))</span>
+                    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pts</span><span class="p">)</span>
+                <span class="p">],</span>
+                <span class="n">lag_ratio</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.geometry.</span></span><span class="sig-name descname"><span class="pre">tangent_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">line_end</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/geometry.html#tangent_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
+<dd><p>Compute the tangent point of a circle through two points and a line.</p>
+<p>Given two points <code class="docutils literal notranslate"><span class="pre">p1</span></code> and <code class="docutils literal notranslate"><span class="pre">p2</span></code> that lie on a circle, and a line segment
+defined by <code class="docutils literal notranslate"><span class="pre">line_start</span></code> and <code class="docutils literal notranslate"><span class="pre">line_end</span></code>, this function finds the point
+on the line segment where the circle is tangent to the line.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – First point on the circle, as <span class="math notranslate nohighlight">\((x, y)\)</span> or <span class="math notranslate nohighlight">\((x, y, z)\)</span>.</p></li>
+<li><p><strong>p2</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Second point on the circle, as <span class="math notranslate nohighlight">\((x, y)\)</span> or <span class="math notranslate nohighlight">\((x, y, z)\)</span>.</p></li>
+<li><p><strong>line_start</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Start point of the line segment, as <span class="math notranslate nohighlight">\((x, y)\)</span> or <span class="math notranslate nohighlight">\((x, y, z)\)</span>.</p></li>
+<li><p><strong>line_end</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – End point of the line segment, as <span class="math notranslate nohighlight">\((x, y)\)</span> or <span class="math notranslate nohighlight">\((x, y, z)\)</span>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The tangent point <span class="math notranslate nohighlight">\((x, y, 0)\)</span> as a <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>, or
+<code class="docutils literal notranslate"><span class="pre">None</span></code> if no valid tangent point exists.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="tangentpointscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: TangentPointScene <a class="headerlink" href="#tangentpointscene">¶</a></p><img alt="../../_images/TangentPointScene-f430838a.png" class="align-center" src="../../_images/TangentPointScene-f430838a.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions</span><span class="w"> </span><span class="kn">import</span> <span class="n">tangent_point</span><span class="p">,</span> <span class="n">LabelDot</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TangentPointScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">line</span> <span class="o">=</span> <span class="n">Line</span><span class="p">([</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">)</span>
+        <span class="n">tangent</span> <span class="o">=</span> <span class="n">tangent_point</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">line</span><span class="o">.</span><span class="n">get_start</span><span class="p">(),</span> <span class="n">line</span><span class="o">.</span><span class="n">get_end</span><span class="p">())</span>
+        <span class="n">circle</span> <span class="o">=</span> <span class="n">Circle</span><span class="o">.</span><span class="n">from_three_points</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">tangent</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">)</span>
+        <span class="n">radius</span> <span class="o">=</span> <span class="n">DashedLine</span><span class="p">(</span><span class="n">circle</span><span class="o">.</span><span class="n">get_center</span><span class="p">(),</span> <span class="n">tangent</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">YELLOW</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">circle</span><span class="p">,</span> <span class="n">Dot</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span> <span class="n">Dot</span><span class="p">(</span><span class="n">p2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="n">LabelDot</span><span class="p">(</span><span class="s2">"T"</span><span class="p">,</span> <span class="n">tangent</span><span class="p">,</span> <span class="n">label_pos</span><span class="o">=</span><span class="n">UP</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.15</span><span class="p">))</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
 </section>
 </section>
 
@@ -1694,9 +1834,11 @@ on the line segment where the circle is tangent to the line.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Geometry</a><ul>
-<li><a class="reference internal" href="#functions">Functions</a><ul>
 <li><a class="reference internal" href="#manim_extensions.geometry.vmobject_int"><code class="docutils literal notranslate"><span class="pre">vmobject_int()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.geometry.tangent_point"><code class="docutils literal notranslate"><span class="pre">tangent_point()</span></code></a></li>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">vmobject_int()</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">tangent_point()</span></code></a></li>
 </ul>
 </li>
 </ul>

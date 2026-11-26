@@ -5,7 +5,7 @@
 core
 ====
 
-.. module:: manim_extensions.three_d.core
+.. automodule:: manim_extensions.three_d.core
 
 Classes
 -------

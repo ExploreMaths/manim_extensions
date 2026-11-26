@@ -5,7 +5,7 @@
 params
 ======
 
-.. module:: manim_extensions.meshes.params
+.. automodule:: manim_extensions.meshes.params
 
 Functions
 ---------

@@ -1491,6 +1491,592 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.radar.animations">
 <span id="animations"></span><h1>animations<a class="headerlink" href="#module-manim_extensions.radar.animations" title="Link to this heading">¶</a></h1>
+<p>All animations: the morph, the intro/outro and the transition effects.</p>
+<p>New in 0.1.1: <a class="reference internal" href="animations.RadarMorph.html#manim_extensions.radar.animations.RadarMorph" title="manim_extensions.radar.animations.RadarMorph"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarMorph</span></code></a> morphs <em>lists</em> of datasets (comparison
+mode) with an optional per-dataset <code class="docutils literal notranslate"><span class="pre">stagger</span></code>, the <code class="docutils literal notranslate"><span class="pre">&quot;burst&quot;</span></code> transition
+stabs values past their target (for <a class="reference internal" href="overflow.OverflowRadarChart.html#manim_extensions.radar.overflow.OverflowRadarChart" title="manim_extensions.radar.overflow.OverflowRadarChart"><code class="xref py py-class docutils literal notranslate"><span class="pre">OverflowRadarChart</span></code></a>),
+and <a class="reference internal" href="animations.RadarBurstIn.html#manim_extensions.radar.animations.RadarBurstIn" title="manim_extensions.radar.animations.RadarBurstIn"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarBurstIn</span></code></a> is the matching entrance.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.RadarMorph">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.radar.animations.</span></span><span class="sig-name descname"><span class="pre">RadarMorph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#RadarMorph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.RadarMorph" title="Link to this definition">¶</a></dt>
+<dd><p>Morph a <a class="reference internal" href="chart.RadarChart.html#manim_extensions.radar.chart.RadarChart" title="manim_extensions.radar.chart.RadarChart"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarChart</span></code></a> into another snapshot.</p>
+<p>Values, full scale, colours, emphasis outlines and opacity are
+interpolated in a single pass. The shape can first “dip” and then roll up
+to the target (the signature move of style <code class="docutils literal notranslate"><span class="pre">neo</span></code>), snap in integer
+steps (<code class="docutils literal notranslate"><span class="pre">classic</span></code>), or stab past the target and settle back
+(<code class="docutils literal notranslate"><span class="pre">&quot;burst&quot;</span></code>, the signature move of the overflow chart).</p>
+<p><code class="docutils literal notranslate"><span class="pre">target</span></code> may be a single snapshot or a <strong>list</strong> of snapshots — a list
+morphs every dataset of a comparison at once, optionally with a
+per-dataset <code class="docutils literal notranslate"><span class="pre">stagger</span></code> delay.</p>
+<p>Usually you do not instantiate this directly — call
+<a class="reference internal" href="chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.morph_to" title="manim_extensions.radar.chart.RadarChart.morph_to"><code class="xref py py-meth docutils literal notranslate"><span class="pre">morph_to()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chart</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="chart.RadarChart.html#manim_extensions.radar.chart.RadarChart" title="manim_extensions.radar.chart.RadarChart"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarChart</span></code></a></span>) – Chart to morph.</p></li>
+<li><p><strong>target</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference internal" href="data.RadarData.html#manim_extensions.radar.data.RadarData" title="manim_extensions.radar.data.RadarData"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarData</span></code></a>]</span>) – Destination snapshot, or a list of snapshots for comparison mode.</p></li>
+<li><p><strong>transition</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – Named transition preset.</p></li>
+<li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Duration; defaults to the chart configuration.</p></li>
+<li><p><strong>rate_func</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Easing function.</p></li>
+<li><p><strong>dip</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>]</span>) – Whether values dip before rising.</p></li>
+<li><p><strong>dip_ratio</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Relative depth of the dip.</p></li>
+<li><p><strong>shockwave</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>]</span>) – Whether to emit a shockwave ring.</p></li>
+<li><p><strong>shock_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int64" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int64</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>], <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>], <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span>]</span>) – Colour of that ring.</p></li>
+<li><p><strong>stepped</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>]</span>) – Whether values move in integer steps.</p></li>
+<li><p><strong>dim</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>]</span>) – Whether to dim the grid during the morph.</p></li>
+<li><p><strong>glitch</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>]</span>) – Whether to add a chromatic glitch.</p></li>
+<li><p><strong>burst</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>]</span>) – Whether to overshoot the target before settling.</p></li>
+<li><p><strong>colors</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether target colours are blended into the chart.</p></li>
+<li><p><strong>rim</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Optional rim strength override.</p></li>
+<li><p><strong>opacity</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Optional chart opacity target.</p></li>
+<li><p><strong>fade_name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether the nameplate crossfades to the target name.</p></li>
+<li><p><strong>name_shift</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Vertical travel of the nameplate crossfade.</p></li>
+<li><p><strong>stagger</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Per-dataset delay in comparison mode.</p></li>
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Further keyword arguments forwarded to
+<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="radarmorphscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: RadarMorphScene <a class="headerlink" href="#radarmorphscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./RadarMorphScene-ab61e7de.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarMorph</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.chart</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarChart</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RadarMorphScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">chart</span> <span class="o">=</span> <span class="n">RadarChart</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="s2">"Speed"</span><span class="p">,</span> <span class="s2">"Power"</span><span class="p">,</span> <span class="s2">"Range"</span><span class="p">,</span> <span class="s2">"Comfort"</span><span class="p">,</span> <span class="s2">"Safety"</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+        <span class="n">chart</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">RadarMorph</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">9</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.RadarMorph.begin">
+<span class="sig-name descname"><span class="pre">begin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#RadarMorph.begin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.RadarMorph.begin" title="Link to this definition">¶</a></dt>
+<dd><p>Capture the starting state and prepare the animation targets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.RadarMorph._prepare_camera">
+<span class="sig-name descname"><span class="pre">_prepare_camera</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#RadarMorph._prepare_camera"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.RadarMorph._prepare_camera" title="Link to this definition">¶</a></dt>
+<dd><p>Compute the automatic micro-push target for a burst morph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Camera target when a rig is attached and a spike overflows,
+otherwise <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.RadarMorph._update_camera">
+<span class="sig-name descname"><span class="pre">_update_camera</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#RadarMorph._update_camera"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.RadarMorph._update_camera" title="Link to this definition">¶</a></dt>
+<dd><p>Advance the automatic camera push during a burst morph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>alpha</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Raw animation progress in the range 0 to 1.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.RadarMorph._restore_camera">
+<span class="sig-name descname"><span class="pre">_restore_camera</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#RadarMorph._restore_camera"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.RadarMorph._restore_camera" title="Link to this definition">¶</a></dt>
+<dd><p>Force the camera home if a morph ended mid-push.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.RadarMorph.interpolate_mobject">
+<span class="sig-name descname"><span class="pre">interpolate_mobject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#RadarMorph.interpolate_mobject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.RadarMorph.interpolate_mobject" title="Link to this definition">¶</a></dt>
+<dd><p>Blend values, colours, rims, opacity and effects for one frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>alpha</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Raw animation progress in the range 0 to 1.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.RadarMorph.finish">
+<span class="sig-name descname"><span class="pre">finish</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#RadarMorph.finish"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.RadarMorph.finish" title="Link to this definition">¶</a></dt>
+<dd><p>Write the final values back and release temporary effects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.RadarMorph.clean_up_from_scene">
+<span class="sig-name descname"><span class="pre">clean_up_from_scene</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scene</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#RadarMorph.clean_up_from_scene"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.RadarMorph.clean_up_from_scene" title="Link to this definition">¶</a></dt>
+<dd><p>Remove temporary morph effects from the scene.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>scene</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a></span>) – Scene being cleaned up.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.RadarMorph._drop_ring">
+<span class="sig-name descname"><span class="pre">_drop_ring</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#RadarMorph._drop_ring"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.RadarMorph._drop_ring" title="Link to this definition">¶</a></dt>
+<dd><p>Remove the transient shockwave ring from the chart, if present.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.RadarReveal">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.radar.animations.</span></span><span class="sig-name descname"><span class="pre">RadarReveal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#RadarReveal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.RadarReveal" title="Link to this definition">¶</a></dt>
+<dd><p>Grow the chart out of its centre while fading in every dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chart</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="chart.RadarChart.html#manim_extensions.radar.chart.RadarChart" title="manim_extensions.radar.chart.RadarChart"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarChart</span></code></a></span>) – Chart to reveal.</p></li>
+<li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the animation.</p></li>
+<li><p><strong>rate_func</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Easing function.</p></li>
+<li><p><strong>from_values</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]</span>) – Initial values for dataset 0; others start at zero.</p></li>
+<li><p><strong>with_shockwave</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>]</span>) – Whether to emit a shockwave ring during the reveal.</p></li>
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Further keyword arguments forwarded to
+<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="radarrevealscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: RadarRevealScene <a class="headerlink" href="#radarrevealscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./RadarRevealScene-eedaa9a6.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarReveal</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.chart</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarChart</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RadarRevealScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">chart</span> <span class="o">=</span> <span class="n">RadarChart</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">,</span> <span class="s2">"D"</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+        <span class="n">chart</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">RadarReveal</span><span class="p">(</span><span class="n">chart</span><span class="p">))</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.RadarReveal.begin">
+<span class="sig-name descname"><span class="pre">begin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#RadarReveal.begin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.RadarReveal.begin" title="Link to this definition">¶</a></dt>
+<dd><p>Capture the starting state and prepare the animation targets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.RadarReveal.interpolate_mobject">
+<span class="sig-name descname"><span class="pre">interpolate_mobject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#RadarReveal.interpolate_mobject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.RadarReveal.interpolate_mobject" title="Link to this definition">¶</a></dt>
+<dd><p>Advance the animation for the given progress.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>alpha</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Raw animation progress in the range 0 to 1.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.RadarReveal.finish">
+<span class="sig-name descname"><span class="pre">finish</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#RadarReveal.finish"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.RadarReveal.finish" title="Link to this definition">¶</a></dt>
+<dd><p>Write the final values back and release temporary effects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.RadarReveal.clean_up_from_scene">
+<span class="sig-name descname"><span class="pre">clean_up_from_scene</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scene</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#RadarReveal.clean_up_from_scene"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.RadarReveal.clean_up_from_scene" title="Link to this definition">¶</a></dt>
+<dd><p>Remove temporary rings and call the base cleanup.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>scene</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a></span>) – Scene being cleaned up.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.RadarBurstIn">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.radar.animations.</span></span><span class="sig-name descname"><span class="pre">RadarBurstIn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#RadarBurstIn"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.RadarBurstIn" title="Link to this definition">¶</a></dt>
+<dd><p>The overflow entrance: values stab <em>past</em> their target, then settle.</p>
+<p>Typical use on an <a class="reference internal" href="overflow.OverflowRadarChart.html#manim_extensions.radar.overflow.OverflowRadarChart" title="manim_extensions.radar.overflow.OverflowRadarChart"><code class="xref py py-class docutils literal notranslate"><span class="pre">OverflowRadarChart</span></code></a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">chart</span><span class="o">.</span><span class="n">burst_in</span><span class="p">())</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chart</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="chart.RadarChart.html#manim_extensions.radar.chart.RadarChart" title="manim_extensions.radar.chart.RadarChart"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarChart</span></code></a></span>) – Overflow chart to reveal.</p></li>
+<li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the animation.</p></li>
+<li><p><strong>rate_func</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Easing function.</p></li>
+<li><p><strong>with_shockwave</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>]</span>) – Whether to emit a shockwave ring during the entrance.</p></li>
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Further keyword arguments forwarded to
+<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="radarburstinscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: RadarBurstInScene <a class="headerlink" href="#radarburstinscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./RadarBurstInScene-a2a2edea.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarBurstIn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.chart</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarChart</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RadarBurstInScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">chart</span> <span class="o">=</span> <span class="n">RadarChart</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">,</span> <span class="s2">"D"</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+        <span class="n">chart</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">RadarBurstIn</span><span class="p">(</span><span class="n">chart</span><span class="p">))</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.RadarBurstIn.begin">
+<span class="sig-name descname"><span class="pre">begin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#RadarBurstIn.begin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.RadarBurstIn.begin" title="Link to this definition">¶</a></dt>
+<dd><p>Capture the starting state and prepare the animation targets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.RadarBurstIn.interpolate_mobject">
+<span class="sig-name descname"><span class="pre">interpolate_mobject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#RadarBurstIn.interpolate_mobject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.RadarBurstIn.interpolate_mobject" title="Link to this definition">¶</a></dt>
+<dd><p>Advance the animation for the given progress.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>alpha</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Raw animation progress in the range 0 to 1.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.RadarBurstIn.finish">
+<span class="sig-name descname"><span class="pre">finish</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#RadarBurstIn.finish"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.RadarBurstIn.finish" title="Link to this definition">¶</a></dt>
+<dd><p>Write the final values back and release temporary effects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.RadarBurstIn.clean_up_from_scene">
+<span class="sig-name descname"><span class="pre">clean_up_from_scene</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scene</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#RadarBurstIn.clean_up_from_scene"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.RadarBurstIn.clean_up_from_scene" title="Link to this definition">¶</a></dt>
+<dd><p>Remove temporary rings and call the base cleanup.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>scene</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a></span>) – Scene being cleaned up.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.RadarFade">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.radar.animations.</span></span><span class="sig-name descname"><span class="pre">RadarFade</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#RadarFade"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.RadarFade" title="Link to this definition">¶</a></dt>
+<dd><p>Fade the whole chart, including every painted layer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chart</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="chart.RadarChart.html#manim_extensions.radar.chart.RadarChart" title="manim_extensions.radar.chart.RadarChart"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarChart</span></code></a></span>) – Chart to fade.</p></li>
+<li><p><strong>to</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Target opacity in the range 0 to 1.</p></li>
+<li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the animation.</p></li>
+<li><p><strong>rate_func</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Easing function.</p></li>
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Further keyword arguments forwarded to
+<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="radarfadescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: RadarFadeScene <a class="headerlink" href="#radarfadescene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./RadarFadeScene-1cd3d9e4.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarFade</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.chart</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarChart</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RadarFadeScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">chart</span> <span class="o">=</span> <span class="n">RadarChart</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="s2">"Speed"</span><span class="p">,</span> <span class="s2">"Power"</span><span class="p">,</span> <span class="s2">"Range"</span><span class="p">,</span> <span class="s2">"Comfort"</span><span class="p">,</span> <span class="s2">"Safety"</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+        <span class="n">chart</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">RadarFade</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="mf">0.0</span><span class="p">))</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.RadarFade.begin">
+<span class="sig-name descname"><span class="pre">begin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#RadarFade.begin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.RadarFade.begin" title="Link to this definition">¶</a></dt>
+<dd><p>Capture the starting state and prepare the animation targets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.RadarFade.interpolate_mobject">
+<span class="sig-name descname"><span class="pre">interpolate_mobject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#RadarFade.interpolate_mobject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.RadarFade.interpolate_mobject" title="Link to this definition">¶</a></dt>
+<dd><p>Advance the animation for the given progress.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>alpha</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Raw animation progress in the range 0 to 1.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.RadarFade.finish">
+<span class="sig-name descname"><span class="pre">finish</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#RadarFade.finish"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.RadarFade.finish" title="Link to this definition">¶</a></dt>
+<dd><p>Write the final values back and release temporary effects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.Shockwave">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.radar.animations.</span></span><span class="sig-name descname"><span class="pre">Shockwave</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#Shockwave"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.Shockwave" title="Link to this definition">¶</a></dt>
+<dd><p>An expanding (or imploding) ring.</p>
+<p>Cheap on its own, and a great way to cover a shape change.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>center</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>]</span>) – Centre of the ring; defaults to the origin.</p></li>
+<li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.html#manim.utils.color.core.ParsableManimColor" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ParsableManimColor</span></code></a></span>) – Stroke colour.</p></li>
+<li><p><strong>radius_start</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Initial ring radius.</p></li>
+<li><p><strong>radius_end</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Final ring radius.</p></li>
+<li><p><strong>width_start</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Initial stroke width.</p></li>
+<li><p><strong>width_end</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Final stroke width.</p></li>
+<li><p><strong>expand</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether the ring grows instead of collapsing.</p></li>
+<li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the animation.</p></li>
+<li><p><strong>rate_func</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Easing function.</p></li>
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Further keyword arguments forwarded to
+<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="shockwavescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ShockwaveScene <a class="headerlink" href="#shockwavescene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./ShockwaveScene-3505efae.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.chart</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarChart</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ShockwaveScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">chart</span> <span class="o">=</span> <span class="n">RadarChart</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="s2">"Speed"</span><span class="p">,</span> <span class="s2">"Power"</span><span class="p">,</span> <span class="s2">"Range"</span><span class="p">,</span> <span class="s2">"Comfort"</span><span class="p">,</span> <span class="s2">"Safety"</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+        <span class="n">chart</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">3.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">chart</span><span class="o">.</span><span class="n">shockwave</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">"#E868C8"</span><span class="p">,</span> <span class="n">radius_end</span><span class="o">=</span><span class="mf">3.2</span><span class="p">))</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.Shockwave.interpolate_mobject">
+<span class="sig-name descname"><span class="pre">interpolate_mobject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#Shockwave.interpolate_mobject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.Shockwave.interpolate_mobject" title="Link to this definition">¶</a></dt>
+<dd><p>Restyle the ring for the current animation progress.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>alpha</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Raw animation progress in the range 0 to 1.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.GlitchFlash">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.radar.animations.</span></span><span class="sig-name descname"><span class="pre">GlitchFlash</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#GlitchFlash"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.GlitchFlash" title="Link to this definition">¶</a></dt>
+<dd><p>Chromatic split and scan bars for a glitch-style entrance.</p>
+<p>Typical use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">chart</span><span class="o">.</span><span class="n">disappear</span><span class="p">())</span>   <span class="c1"># fade to black</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">chart</span><span class="o">.</span><span class="n">glitch_in</span><span class="p">())</span>   <span class="c1"># snap back on</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>chart</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="chart.RadarChart.html#manim_extensions.radar.chart.RadarChart" title="manim_extensions.radar.chart.RadarChart"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarChart</span></code></a></span>) – Chart to bring back.</p></li>
+<li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the animation.</p></li>
+<li><p><strong>rate_func</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Easing function.</p></li>
+<li><p><strong>bars</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to draw horizontal scan bars.</p></li>
+<li><p><strong>flickers</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Number of opacity flickers during the entrance.</p></li>
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Further keyword arguments forwarded to
+<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="glitchflashscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: GlitchFlashScene <a class="headerlink" href="#glitchflashscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./GlitchFlashScene-e3aa026b.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">GlitchFlash</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.chart</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarChart</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">GlitchFlashScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">chart</span> <span class="o">=</span> <span class="n">RadarChart</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="s2">"Speed"</span><span class="p">,</span> <span class="s2">"Power"</span><span class="p">,</span> <span class="s2">"Range"</span><span class="p">,</span> <span class="s2">"Comfort"</span><span class="p">,</span> <span class="s2">"Safety"</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+        <span class="n">chart</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">GlitchFlash</span><span class="p">(</span><span class="n">chart</span><span class="p">))</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.GlitchFlash.begin">
+<span class="sig-name descname"><span class="pre">begin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#GlitchFlash.begin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.GlitchFlash.begin" title="Link to this definition">¶</a></dt>
+<dd><p>Capture the starting state and prepare the animation targets.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.GlitchFlash.interpolate_mobject">
+<span class="sig-name descname"><span class="pre">interpolate_mobject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#GlitchFlash.interpolate_mobject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.GlitchFlash.interpolate_mobject" title="Link to this definition">¶</a></dt>
+<dd><p>Advance the animation for the given progress.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>alpha</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Raw animation progress in the range 0 to 1.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.GlitchFlash.finish">
+<span class="sig-name descname"><span class="pre">finish</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#GlitchFlash.finish"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.GlitchFlash.finish" title="Link to this definition">¶</a></dt>
+<dd><p>Write the final values back and release temporary effects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.GlitchFlash.clean_up_from_scene">
+<span class="sig-name descname"><span class="pre">clean_up_from_scene</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scene</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/animations.html#GlitchFlash.clean_up_from_scene"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.animations.GlitchFlash.clean_up_from_scene" title="Link to this definition">¶</a></dt>
+<dd><p>Remove temporary rings and call the base cleanup.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>scene</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a></span>) – Scene being cleaned up.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="manim_extensions.radar.animations.TRANSITIONS">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.radar.animations.</span></span><span class="sig-name descname"><span class="pre">TRANSITIONS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'burst':</span> <span class="pre">{'burst':</span> <span class="pre">True,</span> <span class="pre">'dip':</span> <span class="pre">True,</span> <span class="pre">'shockwave':</span> <span class="pre">True},</span> <span class="pre">'dip':</span> <span class="pre">{'dip':</span> <span class="pre">True,</span> <span class="pre">'shockwave':</span> <span class="pre">False},</span> <span class="pre">'glitch':</span> <span class="pre">{'dip':</span> <span class="pre">True,</span> <span class="pre">'glitch':</span> <span class="pre">True,</span> <span class="pre">'shockwave':</span> <span class="pre">False},</span> <span class="pre">'shockwave':</span> <span class="pre">{'dip':</span> <span class="pre">True,</span> <span class="pre">'shockwave':</span> <span class="pre">True},</span> <span class="pre">'smooth':</span> <span class="pre">{'dip':</span> <span class="pre">False,</span> <span class="pre">'shockwave':</span> <span class="pre">False},</span> <span class="pre">'stepped':</span> <span class="pre">{'dip':</span> <span class="pre">True,</span> <span class="pre">'shockwave':</span> <span class="pre">False,</span> <span class="pre">'stepped':</span> <span class="pre">True},</span> <span class="pre">'zoom':</span> <span class="pre">{'dim':</span> <span class="pre">True,</span> <span class="pre">'dip':</span> <span class="pre">True,</span> <span class="pre">'shockwave':</span> <span class="pre">True}}</span></span><a class="headerlink" href="#manim_extensions.radar.animations.TRANSITIONS" title="Link to this definition">¶</a></dt>
+<dd><p>Named transition presets understood by <a class="reference internal" href="chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.morph_to" title="manim_extensions.radar.chart.RadarChart.morph_to"><code class="xref py py-meth docutils literal notranslate"><span class="pre">morph_to()</span></code></a>.</p>
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1524,8 +2110,8 @@
 <section id="constants">
 <h2>Constants<a class="headerlink" href="#constants" title="Link to this heading">¶</a></h2>
 <dl class="py data">
-<dt class="sig sig-object py" id="manim_extensions.radar.animations.TRANSITIONS">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.radar.animations.</span></span><span class="sig-name descname"><span class="pre">TRANSITIONS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'burst':</span> <span class="pre">{'burst':</span> <span class="pre">True,</span> <span class="pre">'dip':</span> <span class="pre">True,</span> <span class="pre">'shockwave':</span> <span class="pre">True},</span> <span class="pre">'dip':</span> <span class="pre">{'dip':</span> <span class="pre">True,</span> <span class="pre">'shockwave':</span> <span class="pre">False},</span> <span class="pre">'glitch':</span> <span class="pre">{'dip':</span> <span class="pre">True,</span> <span class="pre">'glitch':</span> <span class="pre">True,</span> <span class="pre">'shockwave':</span> <span class="pre">False},</span> <span class="pre">'shockwave':</span> <span class="pre">{'dip':</span> <span class="pre">True,</span> <span class="pre">'shockwave':</span> <span class="pre">True},</span> <span class="pre">'smooth':</span> <span class="pre">{'dip':</span> <span class="pre">False,</span> <span class="pre">'shockwave':</span> <span class="pre">False},</span> <span class="pre">'stepped':</span> <span class="pre">{'dip':</span> <span class="pre">True,</span> <span class="pre">'shockwave':</span> <span class="pre">False,</span> <span class="pre">'stepped':</span> <span class="pre">True},</span> <span class="pre">'zoom':</span> <span class="pre">{'dim':</span> <span class="pre">True,</span> <span class="pre">'dip':</span> <span class="pre">True,</span> <span class="pre">'shockwave':</span> <span class="pre">True}}</span></span><a class="headerlink" href="#manim_extensions.radar.animations.TRANSITIONS" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.radar.animations.</span></span><span class="sig-name descname"><span class="pre">TRANSITIONS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'burst':</span> <span class="pre">{'burst':</span> <span class="pre">True,</span> <span class="pre">'dip':</span> <span class="pre">True,</span> <span class="pre">'shockwave':</span> <span class="pre">True},</span> <span class="pre">'dip':</span> <span class="pre">{'dip':</span> <span class="pre">True,</span> <span class="pre">'shockwave':</span> <span class="pre">False},</span> <span class="pre">'glitch':</span> <span class="pre">{'dip':</span> <span class="pre">True,</span> <span class="pre">'glitch':</span> <span class="pre">True,</span> <span class="pre">'shockwave':</span> <span class="pre">False},</span> <span class="pre">'shockwave':</span> <span class="pre">{'dip':</span> <span class="pre">True,</span> <span class="pre">'shockwave':</span> <span class="pre">True},</span> <span class="pre">'smooth':</span> <span class="pre">{'dip':</span> <span class="pre">False,</span> <span class="pre">'shockwave':</span> <span class="pre">False},</span> <span class="pre">'stepped':</span> <span class="pre">{'dip':</span> <span class="pre">True,</span> <span class="pre">'shockwave':</span> <span class="pre">False,</span> <span class="pre">'stepped':</span> <span class="pre">True},</span> <span class="pre">'zoom':</span> <span class="pre">{'dim':</span> <span class="pre">True,</span> <span class="pre">'dip':</span> <span class="pre">True,</span> <span class="pre">'shockwave':</span> <span class="pre">True}}</span></span><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
 <dd><p>Named transition presets understood by <a class="reference internal" href="chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.morph_to" title="manim_extensions.radar.chart.RadarChart.morph_to"><code class="xref py py-meth docutils literal notranslate"><span class="pre">morph_to()</span></code></a>.</p>
 </dd></dl>
 
@@ -1590,9 +2176,58 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">animations</a><ul>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.RadarMorph"><code class="docutils literal notranslate"><span class="pre">RadarMorph</span></code></a><ul>
+
+
+
+<li><a class="reference internal" href="#manim_extensions.radar.animations.RadarMorph.begin"><code class="docutils literal notranslate"><span class="pre">RadarMorph.begin()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.RadarMorph._prepare_camera"><code class="docutils literal notranslate"><span class="pre">RadarMorph._prepare_camera()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.RadarMorph._update_camera"><code class="docutils literal notranslate"><span class="pre">RadarMorph._update_camera()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.RadarMorph._restore_camera"><code class="docutils literal notranslate"><span class="pre">RadarMorph._restore_camera()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.RadarMorph.interpolate_mobject"><code class="docutils literal notranslate"><span class="pre">RadarMorph.interpolate_mobject()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.RadarMorph.finish"><code class="docutils literal notranslate"><span class="pre">RadarMorph.finish()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.RadarMorph.clean_up_from_scene"><code class="docutils literal notranslate"><span class="pre">RadarMorph.clean_up_from_scene()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.RadarMorph._drop_ring"><code class="docutils literal notranslate"><span class="pre">RadarMorph._drop_ring()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.RadarReveal"><code class="docutils literal notranslate"><span class="pre">RadarReveal</span></code></a><ul>
+
+<li><a class="reference internal" href="#manim_extensions.radar.animations.RadarReveal.begin"><code class="docutils literal notranslate"><span class="pre">RadarReveal.begin()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.RadarReveal.interpolate_mobject"><code class="docutils literal notranslate"><span class="pre">RadarReveal.interpolate_mobject()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.RadarReveal.finish"><code class="docutils literal notranslate"><span class="pre">RadarReveal.finish()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.RadarReveal.clean_up_from_scene"><code class="docutils literal notranslate"><span class="pre">RadarReveal.clean_up_from_scene()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.RadarBurstIn"><code class="docutils literal notranslate"><span class="pre">RadarBurstIn</span></code></a><ul>
+
+<li><a class="reference internal" href="#manim_extensions.radar.animations.RadarBurstIn.begin"><code class="docutils literal notranslate"><span class="pre">RadarBurstIn.begin()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.RadarBurstIn.interpolate_mobject"><code class="docutils literal notranslate"><span class="pre">RadarBurstIn.interpolate_mobject()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.RadarBurstIn.finish"><code class="docutils literal notranslate"><span class="pre">RadarBurstIn.finish()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.RadarBurstIn.clean_up_from_scene"><code class="docutils literal notranslate"><span class="pre">RadarBurstIn.clean_up_from_scene()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.RadarFade"><code class="docutils literal notranslate"><span class="pre">RadarFade</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.RadarFade.begin"><code class="docutils literal notranslate"><span class="pre">RadarFade.begin()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.RadarFade.interpolate_mobject"><code class="docutils literal notranslate"><span class="pre">RadarFade.interpolate_mobject()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.RadarFade.finish"><code class="docutils literal notranslate"><span class="pre">RadarFade.finish()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.Shockwave"><code class="docutils literal notranslate"><span class="pre">Shockwave</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.Shockwave.interpolate_mobject"><code class="docutils literal notranslate"><span class="pre">Shockwave.interpolate_mobject()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.GlitchFlash"><code class="docutils literal notranslate"><span class="pre">GlitchFlash</span></code></a><ul>
+
+<li><a class="reference internal" href="#manim_extensions.radar.animations.GlitchFlash.begin"><code class="docutils literal notranslate"><span class="pre">GlitchFlash.begin()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.GlitchFlash.interpolate_mobject"><code class="docutils literal notranslate"><span class="pre">GlitchFlash.interpolate_mobject()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.GlitchFlash.finish"><code class="docutils literal notranslate"><span class="pre">GlitchFlash.finish()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.GlitchFlash.clean_up_from_scene"><code class="docutils literal notranslate"><span class="pre">GlitchFlash.clean_up_from_scene()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.radar.animations.TRANSITIONS"><code class="docutils literal notranslate"><span class="pre">TRANSITIONS</span></code></a></li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 <li><a class="reference internal" href="#constants">Constants</a><ul>
-<li><a class="reference internal" href="#manim_extensions.radar.animations.TRANSITIONS"><code class="docutils literal notranslate"><span class="pre">TRANSITIONS</span></code></a></li>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">TRANSITIONS</span></code></a></li>
 </ul>
 </li>
 </ul>

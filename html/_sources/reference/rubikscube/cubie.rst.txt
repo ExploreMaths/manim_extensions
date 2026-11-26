@@ -5,7 +5,7 @@
 cubie
 =====
 
-.. module:: manim_extensions.rubikscube.cubie
+.. automodule:: manim_extensions.rubikscube.cubie
 
 Classes
 -------

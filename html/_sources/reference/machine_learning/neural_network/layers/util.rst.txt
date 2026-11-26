@@ -4,7 +4,7 @@
 util
 ====
 
-.. module:: manim_extensions.machine_learning.neural_network.layers.util
+.. automodule:: manim_extensions.machine_learning.neural_network.layers.util
 
 Functions
 ---------

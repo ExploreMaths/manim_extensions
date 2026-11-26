@@ -5,7 +5,7 @@
 utils
 =====
 
-.. module:: manim_extensions.algorithm.utils
+.. automodule:: manim_extensions.algorithm.utils
 
 Usage
 -----

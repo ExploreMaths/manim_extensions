@@ -4,7 +4,7 @@
 bohr_atom
 =========
 
-.. module:: manim_extensions.chemistry.bohr_atom.bohr_atom
+.. automodule:: manim_extensions.chemistry.bohr_atom.bohr_atom
 
 Classes
 -------

@@ -4,7 +4,7 @@
 img_tools
 =========
 
-.. module:: manim_extensions.pymunk.utils.img_tools
+.. automodule:: manim_extensions.pymunk.utils.img_tools
 
 Functions
 ---------

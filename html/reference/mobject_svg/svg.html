@@ -1491,6 +1491,12 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.mobject_svg.svg">
 <span id="svg"></span><h1>svg<a class="headerlink" href="#module-manim_extensions.mobject_svg.svg" title="Link to this heading">¶</a></h1>
+<p>Render manim mobjects into SVG files through a Cairo surface.</p>
+<p>Vendored from <code class="docutils literal notranslate"><span class="pre">manim-mobject-svg</span></code> 0.5.0. The public entry points are
+<a class="reference internal" href="#id0" title="manim_extensions.mobject_svg.svg.create_svg_from_vmobject"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_svg_from_vmobject()</span></code></a> and
+<a class="reference internal" href="#id1" title="manim_extensions.mobject_svg.svg.create_svg_from_vgroup"><code class="xref py py-func docutils literal notranslate"><span class="pre">create_svg_from_vgroup()</span></code></a>; the
+module-level helpers mirror the upstream implementation so relative
+subpaths, gradients and stroke/fill ordering keep working.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.mobject_svg.svg.create_svg_from_vmobject">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.mobject_svg.svg.</span></span><span class="sig-name descname"><span class="pre">create_svg_from_vmobject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vmobject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">crop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/mobject_svg/svg.html#create_svg_from_vmobject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mobject_svg.svg.create_svg_from_vmobject" title="Link to this definition">¶</a></dt>
@@ -1516,6 +1522,50 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.mobject_svg.svg.create_svg_from_vgroup">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.mobject_svg.svg.</span></span><span class="sig-name descname"><span class="pre">create_svg_from_vgroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vgroup</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">crop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/mobject_svg/svg.html#create_svg_from_vgroup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mobject_svg.svg.create_svg_from_vgroup" title="Link to this definition">¶</a></dt>
+<dd><p>Create an SVG file from a VGroup.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vgroup</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span>) – The VGroup to render.</p></li>
+<li><p><strong>file_name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Path of the SVG file; a temporary file is created when omitted.</p></li>
+<li><p><strong>crop</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to crop the SVG to the VGroup’s size.</p></li>
+<li><p><strong>padding</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Padding added around the crop, in manim units.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The path of the written SVG file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.mobject_svg.svg.</span></span><span class="sig-name descname"><span class="pre">create_svg_from_vmobject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vmobject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">crop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/mobject_svg/svg.html#create_svg_from_vmobject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dd><p>Create an SVG file from a VMobject.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vmobject</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a></span>) – The VMobject to render.</p></li>
+<li><p><strong>file_name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Path of the SVG file; a temporary file is created when omitted.</p></li>
+<li><p><strong>crop</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to crop the SVG to the VMobject’s size.</p></li>
+<li><p><strong>padding</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Padding added around the crop, in manim units.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Path</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The path of the written SVG file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.mobject_svg.svg.</span></span><span class="sig-name descname"><span class="pre">create_svg_from_vgroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vgroup</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">file_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">crop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/mobject_svg/svg.html#create_svg_from_vgroup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
 <dd><p>Create an SVG file from a VGroup.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1760,6 +1810,8 @@ and is overwritten when the caller writes the SVG.</p>
 <li><a class="reference internal" href="#">svg</a><ul>
 <li><a class="reference internal" href="#manim_extensions.mobject_svg.svg.create_svg_from_vmobject"><code class="docutils literal notranslate"><span class="pre">create_svg_from_vmobject()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.mobject_svg.svg.create_svg_from_vgroup"><code class="docutils literal notranslate"><span class="pre">create_svg_from_vgroup()</span></code></a></li>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">create_svg_from_vmobject()</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">create_svg_from_vgroup()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.mobject_svg.svg._get_cairo_context"><code class="docutils literal notranslate"><span class="pre">_get_cairo_context()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.mobject_svg.svg._transform_points_pre_display"><code class="docutils literal notranslate"><span class="pre">_transform_points_pre_display()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.mobject_svg.svg._get_stroke_rgbas"><code class="docutils literal notranslate"><span class="pre">_get_stroke_rgbas()</span></code></a></li>

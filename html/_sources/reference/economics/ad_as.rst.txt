@@ -4,7 +4,7 @@
 ad_as
 =====
 
-.. module:: manim_extensions.economics.ad_as
+.. automodule:: manim_extensions.economics.ad_as
 
 Classes
 -------

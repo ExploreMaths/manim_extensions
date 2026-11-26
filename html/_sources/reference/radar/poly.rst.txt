@@ -5,7 +5,7 @@
 poly
 ====
 
-.. module:: manim_extensions.radar.poly
+.. automodule:: manim_extensions.radar.poly
 
 Classes
 -------

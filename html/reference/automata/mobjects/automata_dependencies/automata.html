@@ -1491,6 +1491,290 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.automata.mobjects.automata_dependencies.automata">
 <span id="automata"></span><h1>automata<a class="headerlink" href="#module-manim_extensions.automata.mobjects.automata_dependencies.automata" title="Link to this heading">¶</a></h1>
+<p>Automata data structures.</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.automata_dependencies.automata.automaton_json">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.automata.mobjects.automata_dependencies.automata.</span></span><span class="sig-name descname"><span class="pre">automaton_json</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'structure':</span> <span class="pre">{'automaton':</span> <span class="pre">{'state':</span> <span class="pre">[{'&#64;id':</span> <span class="pre">'0',</span> <span class="pre">'&#64;name':</span> <span class="pre">'q0',</span> <span class="pre">'initial':</span> <span class="pre">None,</span> <span class="pre">'x':</span> <span class="pre">'84.0',</span> <span class="pre">'y':</span> <span class="pre">'122.0'},</span> <span class="pre">{'&#64;id':</span> <span class="pre">'1',</span> <span class="pre">'&#64;name':</span> <span class="pre">'q1',</span> <span class="pre">'x':</span> <span class="pre">'218.0',</span> <span class="pre">'y':</span> <span class="pre">'175.0'},</span> <span class="pre">{'&#64;id':</span> <span class="pre">'2',</span> <span class="pre">'&#64;name':</span> <span class="pre">'q2',</span> <span class="pre">'final':</span> <span class="pre">None,</span> <span class="pre">'x':</span> <span class="pre">'386.0',</span> <span class="pre">'y':</span> <span class="pre">'131.0'},</span> <span class="pre">{'&#64;id':</span> <span class="pre">'3',</span> <span class="pre">'&#64;name':</span> <span class="pre">'q3',</span> <span class="pre">'x':</span> <span class="pre">'227.0',</span> <span class="pre">'y':</span> <span class="pre">'36.0'}],</span> <span class="pre">'transition':</span> <span class="pre">[{'from':</span> <span class="pre">'0',</span> <span class="pre">'read':</span> <span class="pre">'0',</span> <span class="pre">'to':</span> <span class="pre">'1'},</span> <span class="pre">{'from':</span> <span class="pre">'0',</span> <span class="pre">'read':</span> <span class="pre">'1',</span> <span class="pre">'to':</span> <span class="pre">'1'},</span> <span class="pre">{'from':</span> <span class="pre">'2',</span> <span class="pre">'read':</span> <span class="pre">'0',</span> <span class="pre">'to':</span> <span class="pre">'3'},</span> <span class="pre">{'from':</span> <span class="pre">'1',</span> <span class="pre">'read':</span> <span class="pre">'1',</span> <span class="pre">'to':</span> <span class="pre">'2'},</span> <span class="pre">{'from':</span> <span class="pre">'3',</span> <span class="pre">'read':</span> <span class="pre">'1',</span> <span class="pre">'to':</span> <span class="pre">'0'},</span> <span class="pre">{'from':</span> <span class="pre">'3',</span> <span class="pre">'read':</span> <span class="pre">'0',</span> <span class="pre">'to':</span> <span class="pre">'0'}]},</span> <span class="pre">'type':</span> <span class="pre">'fa'}}</span></span><a class="headerlink" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.automaton_json" title="Link to this definition">¶</a></dt>
+<dd><p>Example finite automaton definition parsed from its JSON representation.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.automata.mobjects.automata_dependencies.automata.</span></span><span class="sig-name descname"><span class="pre">FiniteStateAutomaton</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_template</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/automata/mobjects/automata_dependencies/automata.html#FiniteStateAutomaton"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton" title="Link to this definition">¶</a></dt>
+<dd><p>Formal finite-state automaton model.</p>
+<p>This class manages the underlying data structures for states and
+transitions, and provides methods for simulating input strings through
+the automaton.  It can be constructed from a JSON dictionary or parsed
+from an XML file (e.g. JFLAP format).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>json_template</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – JSON dictionary describing the automaton states and transitions.</p>
+</dd>
+</dl>
+<p class="rubric">Attributes</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.id_iter">
+<span class="sig-name descname"><span class="pre">id_iter</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">itertools.count</span><span class="pre">()</span></span></span><a class="headerlink" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.id_iter" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Examples</p>
+<div id="finitestateautomatonscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: FiniteStateAutomatonScene <a class="headerlink" href="#finitestateautomatonscene">¶</a></p><img alt="../../../../_images/FiniteStateAutomatonScene-f1d9f0ff.png" class="align-center" src="../../../../_images/FiniteStateAutomatonScene-f1d9f0ff.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.automata_dependencies.automata</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">FiniteStateAutomaton</span><span class="p">,</span>
+    <span class="n">automaton_json</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">FiniteStateAutomatonScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">fa</span> <span class="o">=</span> <span class="n">FiniteStateAutomaton</span><span class="p">(</span><span class="n">automaton_json</span><span class="p">)</span>
+        <span class="n">nodes</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">state</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">fa</span><span class="o">.</span><span class="n">states</span><span class="p">):</span>
+            <span class="n">angle</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">TAU</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">fa</span><span class="o">.</span><span class="n">states</span><span class="p">)</span>
+            <span class="n">circle</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="mf">2.2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span> <span class="mi">0</span><span class="p">]))</span>
+            <span class="n">nodes</span><span class="p">[</span><span class="n">state</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">circle</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="n">Text</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">circle</span><span class="p">))</span>
+        <span class="n">drawn</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">fa</span><span class="o">.</span><span class="n">transitions</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">transition_from</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">transition_to</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">drawn</span><span class="p">:</span>
+                <span class="n">drawn</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Arrow</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="n">key</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">nodes</span><span class="p">[</span><span class="n">key</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.55</span><span class="p">))</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">fa</span><span class="o">.</span><span class="n">states</span><span class="p">)</span><span class="si">}</span><span class="s2"> states, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">fa</span><span class="o">.</span><span class="n">transitions</span><span class="p">)</span><span class="si">}</span><span class="s2"> transitions, get_state_by_id(2) = </span><span class="si">{</span><span class="n">fa</span><span class="o">.</span><span class="n">get_state_by_id</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="n">font_size</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">to_edge</span><span class="p">(</span><span class="n">DOWN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.process_xml">
+<span class="sig-name descname"><span class="pre">process_xml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">xml_file</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/automata/mobjects/automata_dependencies/automata.html#FiniteStateAutomaton.process_xml"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.process_xml" title="Link to this definition">¶</a></dt>
+<dd><p>Construct the automaton from an XML file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>xml_file</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Path to the XML file describing the automaton.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.construct_from_json">
+<span class="sig-name descname"><span class="pre">construct_from_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">json_dictionary</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/automata/mobjects/automata_dependencies/automata.html#FiniteStateAutomaton.construct_from_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.construct_from_json" title="Link to this definition">¶</a></dt>
+<dd><p>Construct the automaton from a JSON-like dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>json_dictionary</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Structured automaton data containing the state and transition lists.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.construct_states">
+<span class="sig-name descname"><span class="pre">construct_states</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">states</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/automata/mobjects/automata_dependencies/automata.html#FiniteStateAutomaton.construct_states"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.construct_states" title="Link to this definition">¶</a></dt>
+<dd><p>Construct state objects from a list of state dictionaries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>states</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>]]</span>) – <a class="reference internal" href="state.State.html#manim_extensions.automata.mobjects.automata_dependencies.state.State" title="manim_extensions.automata.mobjects.automata_dependencies.state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a> definitions from JSON or XML parsing.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.construct_transitions">
+<span class="sig-name descname"><span class="pre">construct_transitions</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">transitions</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/automata/mobjects/automata_dependencies/automata.html#FiniteStateAutomaton.construct_transitions"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.construct_transitions" title="Link to this definition">¶</a></dt>
+<dd><p>Construct transition objects from a list of transition dictionaries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>transitions</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>]]</span>) – <a class="reference internal" href="transition.Transition.html#manim_extensions.automata.mobjects.automata_dependencies.transition.Transition" title="manim_extensions.automata.mobjects.automata_dependencies.transition.Transition"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transition</span></code></a> definitions from JSON or XML parsing.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.get_initial_state">
+<span class="sig-name descname"><span class="pre">get_initial_state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/automata/mobjects/automata_dependencies/automata.html#FiniteStateAutomaton.get_initial_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.get_initial_state" title="Link to this definition">¶</a></dt>
+<dd><p>Return the state marked as the initial state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="state.State.html#manim_extensions.automata.mobjects.automata_dependencies.state.State" title="manim_extensions.automata.mobjects.automata_dependencies.state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The initial state, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if no state is marked as initial.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.get_state">
+<span class="sig-name descname"><span class="pre">get_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/automata/mobjects/automata_dependencies/automata.html#FiniteStateAutomaton.get_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.get_state" title="Link to this definition">¶</a></dt>
+<dd><p>Return the state with the provided name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Name of the state to retrieve.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="state.State.html#manim_extensions.automata.mobjects.automata_dependencies.state.State" title="manim_extensions.automata.mobjects.automata_dependencies.state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The matching state, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.get_state_by_id">
+<span class="sig-name descname"><span class="pre">get_state_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/automata/mobjects/automata_dependencies/automata.html#FiniteStateAutomaton.get_state_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.get_state_by_id" title="Link to this definition">¶</a></dt>
+<dd><p>Return the state with the provided identifier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Identifier of the state to retrieve.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="state.State.html#manim_extensions.automata.mobjects.automata_dependencies.state.State" title="manim_extensions.automata.mobjects.automata_dependencies.state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The matching state, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.automaton_step">
+<span class="sig-name descname"><span class="pre">automaton_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_pointer</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/automata/mobjects/automata_dependencies/automata.html#FiniteStateAutomaton.automaton_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.automaton_step" title="Link to this definition">¶</a></dt>
+<dd><p>Advance the automaton by one token from the current state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>token</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Input token to consume.</p></li>
+<li><p><strong>state_pointer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="state.State.html#manim_extensions.automata.mobjects.automata_dependencies.state.State" title="manim_extensions.automata.mobjects.automata_dependencies.state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a></span>) – Current state from which the step is evaluated.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference internal" href="state.State.html#manim_extensions.automata.mobjects.automata_dependencies.state.State" title="manim_extensions.automata.mobjects.automata_dependencies.state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">(accepted,</span> <span class="pre">next_states,</span> <span class="pre">transitions)</span></code> indicating whether the
+token was accepted, the reachable next states, and the matching
+transitions.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.get_transition_by_id">
+<span class="sig-name descname"><span class="pre">get_transition_by_id</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/automata/mobjects/automata_dependencies/automata.html#FiniteStateAutomaton.get_transition_by_id"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.get_transition_by_id" title="Link to this definition">¶</a></dt>
+<dd><p>Return the transition with the given identifier.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>id</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – The transition’s unique id.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="transition.Transition.html#manim_extensions.automata.mobjects.automata_dependencies.transition.Transition" title="manim_extensions.automata.mobjects.automata_dependencies.transition.Transition"><code class="xref py py-class docutils literal notranslate"><span class="pre">Transition</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The matching transition, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if not found.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.automata_dependencies.automata.PushDownAutomaton">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.automata.mobjects.automata_dependencies.automata.</span></span><span class="sig-name descname"><span class="pre">PushDownAutomaton</span></span><a class="reference internal" href="../../../../_modules/manim_extensions/automata/mobjects/automata_dependencies/automata.html#PushDownAutomaton"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.PushDownAutomaton" title="Link to this definition">¶</a></dt>
+<dd><p>Formal pushdown automaton model.</p>
+<p>Extends <a class="reference internal" href="automata.FiniteStateAutomaton.html#manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton" title="manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton"><code class="xref py py-class docutils literal notranslate"><span class="pre">FiniteStateAutomaton</span></code></a> with stack-based computation.
+Pushdown automata can be constructed from JSON templates or XML files
+and support non-deterministic branching via the CLI builder.</p>
+<p class="rubric">Examples</p>
+<div id="pushdownautomatonscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: PushDownAutomatonScene <a class="headerlink" href="#pushdownautomatonscene">¶</a></p><img alt="../../../../_images/PushDownAutomatonScene-a579c25a.png" class="align-center" src="../../../../_images/PushDownAutomatonScene-a579c25a.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.automata_dependencies.automata</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">PushDownAutomaton</span><span class="p">,</span>
+    <span class="n">automaton_json</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PushDownAutomatonScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pda</span> <span class="o">=</span> <span class="n">PushDownAutomaton</span><span class="p">()</span>
+        <span class="n">pda</span><span class="o">.</span><span class="n">construct_from_json</span><span class="p">(</span><span class="n">automaton_json</span><span class="p">)</span>
+        <span class="n">nodes</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">state</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pda</span><span class="o">.</span><span class="n">states</span><span class="p">):</span>
+            <span class="n">angle</span> <span class="o">=</span> <span class="n">i</span> <span class="o">*</span> <span class="n">TAU</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">pda</span><span class="o">.</span><span class="n">states</span><span class="p">)</span>
+            <span class="n">circle</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="mf">2.2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">angle</span><span class="p">),</span> <span class="mi">0</span><span class="p">]))</span>
+            <span class="n">nodes</span><span class="p">[</span><span class="n">state</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">circle</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">circle</span><span class="p">,</span> <span class="n">Text</span><span class="p">(</span><span class="n">state</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">circle</span><span class="p">))</span>
+        <span class="n">drawn</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">pda</span><span class="o">.</span><span class="n">transitions</span><span class="p">:</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">transition_from</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">transition_to</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">drawn</span><span class="p">:</span>
+                <span class="n">drawn</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Arrow</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="n">key</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="n">nodes</span><span class="p">[</span><span class="n">key</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.55</span><span class="p">))</span>
+        <span class="n">q1</span> <span class="o">=</span> <span class="n">pda</span><span class="o">.</span><span class="n">get_state</span><span class="p">(</span><span class="s2">"q1"</span><span class="p">)</span>
+        <span class="n">outgoing</span> <span class="o">=</span> <span class="p">[</span><span class="n">t</span><span class="o">.</span><span class="n">id</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">q1</span><span class="o">.</span><span class="n">transitions</span><span class="p">]</span>
+        <span class="n">info</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">pda</span><span class="o">.</span><span class="n">states</span><span class="p">)</span><span class="si">}</span><span class="s2"> states, </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">pda</span><span class="o">.</span><span class="n">transitions</span><span class="p">)</span><span class="si">}</span><span class="s2"> transitions, q1 outgoing transition ids=</span><span class="si">{</span><span class="n">outgoing</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="n">font_size</span><span class="o">=</span><span class="mi">24</span><span class="p">,</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">to_edge</span><span class="p">(</span><span class="n">DOWN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">info</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.automata_dependencies.automata.PushDownAutomaton.automaton_step">
+<span class="sig-name descname"><span class="pre">automaton_step</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">state_pointer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deterministic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/automata/mobjects/automata_dependencies/automata.html#PushDownAutomaton.automaton_step"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.PushDownAutomaton.automaton_step" title="Link to this definition">¶</a></dt>
+<dd><p>Perform one step of the automaton on the given token.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>token</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The input token to process.</p></li>
+<li><p><strong>state_pointer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="state.State.html#manim_extensions.automata.mobjects.automata_dependencies.state.State" title="manim_extensions.automata.mobjects.automata_dependencies.state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a></span>) – The current state.</p></li>
+<li><p><strong>deterministic</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, return as soon as the first matching transition is found.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference internal" href="state.State.html#manim_extensions.automata.mobjects.automata_dependencies.state.State" title="manim_extensions.automata.mobjects.automata_dependencies.state.State"><code class="xref py py-class docutils literal notranslate"><span class="pre">State</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">(accepted,</span> <span class="pre">next_states,</span> <span class="pre">transition_ids)</span></code> indicating whether the
+token was accepted, the reachable next states, and the matching
+transition ids.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1509,8 +1793,8 @@
 <section id="constants">
 <h2>Constants<a class="headerlink" href="#constants" title="Link to this heading">¶</a></h2>
 <dl class="py data">
-<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.automata_dependencies.automata.automaton_json">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.automata.mobjects.automata_dependencies.automata.</span></span><span class="sig-name descname"><span class="pre">automaton_json</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'structure':</span> <span class="pre">{'automaton':</span> <span class="pre">{'state':</span> <span class="pre">[{'&#64;id':</span> <span class="pre">'0',</span> <span class="pre">'&#64;name':</span> <span class="pre">'q0',</span> <span class="pre">'initial':</span> <span class="pre">None,</span> <span class="pre">'x':</span> <span class="pre">'84.0',</span> <span class="pre">'y':</span> <span class="pre">'122.0'},</span> <span class="pre">{'&#64;id':</span> <span class="pre">'1',</span> <span class="pre">'&#64;name':</span> <span class="pre">'q1',</span> <span class="pre">'x':</span> <span class="pre">'218.0',</span> <span class="pre">'y':</span> <span class="pre">'175.0'},</span> <span class="pre">{'&#64;id':</span> <span class="pre">'2',</span> <span class="pre">'&#64;name':</span> <span class="pre">'q2',</span> <span class="pre">'final':</span> <span class="pre">None,</span> <span class="pre">'x':</span> <span class="pre">'386.0',</span> <span class="pre">'y':</span> <span class="pre">'131.0'},</span> <span class="pre">{'&#64;id':</span> <span class="pre">'3',</span> <span class="pre">'&#64;name':</span> <span class="pre">'q3',</span> <span class="pre">'x':</span> <span class="pre">'227.0',</span> <span class="pre">'y':</span> <span class="pre">'36.0'}],</span> <span class="pre">'transition':</span> <span class="pre">[{'from':</span> <span class="pre">'0',</span> <span class="pre">'read':</span> <span class="pre">'0',</span> <span class="pre">'to':</span> <span class="pre">'1'},</span> <span class="pre">{'from':</span> <span class="pre">'0',</span> <span class="pre">'read':</span> <span class="pre">'1',</span> <span class="pre">'to':</span> <span class="pre">'1'},</span> <span class="pre">{'from':</span> <span class="pre">'2',</span> <span class="pre">'read':</span> <span class="pre">'0',</span> <span class="pre">'to':</span> <span class="pre">'3'},</span> <span class="pre">{'from':</span> <span class="pre">'1',</span> <span class="pre">'read':</span> <span class="pre">'1',</span> <span class="pre">'to':</span> <span class="pre">'2'},</span> <span class="pre">{'from':</span> <span class="pre">'3',</span> <span class="pre">'read':</span> <span class="pre">'1',</span> <span class="pre">'to':</span> <span class="pre">'0'},</span> <span class="pre">{'from':</span> <span class="pre">'3',</span> <span class="pre">'read':</span> <span class="pre">'0',</span> <span class="pre">'to':</span> <span class="pre">'0'}]},</span> <span class="pre">'type':</span> <span class="pre">'fa'}}</span></span><a class="headerlink" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.automaton_json" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.automata.mobjects.automata_dependencies.automata.</span></span><span class="sig-name descname"><span class="pre">automaton_json</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'structure':</span> <span class="pre">{'automaton':</span> <span class="pre">{'state':</span> <span class="pre">[{'&#64;id':</span> <span class="pre">'0',</span> <span class="pre">'&#64;name':</span> <span class="pre">'q0',</span> <span class="pre">'initial':</span> <span class="pre">None,</span> <span class="pre">'x':</span> <span class="pre">'84.0',</span> <span class="pre">'y':</span> <span class="pre">'122.0'},</span> <span class="pre">{'&#64;id':</span> <span class="pre">'1',</span> <span class="pre">'&#64;name':</span> <span class="pre">'q1',</span> <span class="pre">'x':</span> <span class="pre">'218.0',</span> <span class="pre">'y':</span> <span class="pre">'175.0'},</span> <span class="pre">{'&#64;id':</span> <span class="pre">'2',</span> <span class="pre">'&#64;name':</span> <span class="pre">'q2',</span> <span class="pre">'final':</span> <span class="pre">None,</span> <span class="pre">'x':</span> <span class="pre">'386.0',</span> <span class="pre">'y':</span> <span class="pre">'131.0'},</span> <span class="pre">{'&#64;id':</span> <span class="pre">'3',</span> <span class="pre">'&#64;name':</span> <span class="pre">'q3',</span> <span class="pre">'x':</span> <span class="pre">'227.0',</span> <span class="pre">'y':</span> <span class="pre">'36.0'}],</span> <span class="pre">'transition':</span> <span class="pre">[{'from':</span> <span class="pre">'0',</span> <span class="pre">'read':</span> <span class="pre">'0',</span> <span class="pre">'to':</span> <span class="pre">'1'},</span> <span class="pre">{'from':</span> <span class="pre">'0',</span> <span class="pre">'read':</span> <span class="pre">'1',</span> <span class="pre">'to':</span> <span class="pre">'1'},</span> <span class="pre">{'from':</span> <span class="pre">'2',</span> <span class="pre">'read':</span> <span class="pre">'0',</span> <span class="pre">'to':</span> <span class="pre">'3'},</span> <span class="pre">{'from':</span> <span class="pre">'1',</span> <span class="pre">'read':</span> <span class="pre">'1',</span> <span class="pre">'to':</span> <span class="pre">'2'},</span> <span class="pre">{'from':</span> <span class="pre">'3',</span> <span class="pre">'read':</span> <span class="pre">'1',</span> <span class="pre">'to':</span> <span class="pre">'0'},</span> <span class="pre">{'from':</span> <span class="pre">'3',</span> <span class="pre">'read':</span> <span class="pre">'0',</span> <span class="pre">'to':</span> <span class="pre">'0'}]},</span> <span class="pre">'type':</span> <span class="pre">'fa'}}</span></span><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
 <dd><p>Example finite automaton definition parsed from its JSON representation.</p>
 </dd></dl>
 
@@ -1575,9 +1859,29 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">automata</a><ul>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.automaton_json"><code class="docutils literal notranslate"><span class="pre">automaton_json</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton"><code class="docutils literal notranslate"><span class="pre">FiniteStateAutomaton</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.id_iter"><code class="docutils literal notranslate"><span class="pre">FiniteStateAutomaton.id_iter</span></code></a></li>
+
+
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.process_xml"><code class="docutils literal notranslate"><span class="pre">FiniteStateAutomaton.process_xml()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.construct_from_json"><code class="docutils literal notranslate"><span class="pre">FiniteStateAutomaton.construct_from_json()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.construct_states"><code class="docutils literal notranslate"><span class="pre">FiniteStateAutomaton.construct_states()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.construct_transitions"><code class="docutils literal notranslate"><span class="pre">FiniteStateAutomaton.construct_transitions()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.get_initial_state"><code class="docutils literal notranslate"><span class="pre">FiniteStateAutomaton.get_initial_state()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.get_state"><code class="docutils literal notranslate"><span class="pre">FiniteStateAutomaton.get_state()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.get_state_by_id"><code class="docutils literal notranslate"><span class="pre">FiniteStateAutomaton.get_state_by_id()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.automaton_step"><code class="docutils literal notranslate"><span class="pre">FiniteStateAutomaton.automaton_step()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.FiniteStateAutomaton.get_transition_by_id"><code class="docutils literal notranslate"><span class="pre">FiniteStateAutomaton.get_transition_by_id()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.PushDownAutomaton"><code class="docutils literal notranslate"><span class="pre">PushDownAutomaton</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.PushDownAutomaton.automaton_step"><code class="docutils literal notranslate"><span class="pre">PushDownAutomaton.automaton_step()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 <li><a class="reference internal" href="#constants">Constants</a><ul>
-<li><a class="reference internal" href="#manim_extensions.automata.mobjects.automata_dependencies.automata.automaton_json"><code class="docutils literal notranslate"><span class="pre">automaton_json</span></code></a></li>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">automaton_json</span></code></a></li>
 </ul>
 </li>
 </ul>

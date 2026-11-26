@@ -1516,7 +1516,7 @@
 
 
 <div class="viewcode-block" id="_get_cairo_context">
-<a class="viewcode-back" href="../../../reference/mobject_svg/svg.html#manim_extensions.mobject_svg.svg._get_cairo_context">[docs]</a>
+<a class="viewcode-back" href="../../../reference/mobject_svg/svg.html#manim_extensions.mobject_svg._get_cairo_context">[docs]</a>
 <span class="nd">@contextmanager</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">_get_cairo_context</span><span class="p">(</span>
     <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span><span class="p">,</span>
@@ -1574,7 +1574,7 @@
 
 
 <div class="viewcode-block" id="_transform_points_pre_display">
-<a class="viewcode-back" href="../../../reference/mobject_svg/svg.html#manim_extensions.mobject_svg.svg._transform_points_pre_display">[docs]</a>
+<a class="viewcode-back" href="../../../reference/mobject_svg/svg.html#manim_extensions.mobject_svg._transform_points_pre_display">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">_transform_points_pre_display</span><span class="p">(</span><span class="n">points</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Return display-ready points, replacing non-finite values with zeros.</span>
 
@@ -1595,7 +1595,7 @@
 
 
 <div class="viewcode-block" id="_get_stroke_rgbas">
-<a class="viewcode-back" href="../../../reference/mobject_svg/svg.html#manim_extensions.mobject_svg.svg._get_stroke_rgbas">[docs]</a>
+<a class="viewcode-back" href="../../../reference/mobject_svg/svg.html#manim_extensions.mobject_svg._get_stroke_rgbas">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">_get_stroke_rgbas</span><span class="p">(</span><span class="n">vmobject</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">,</span> <span class="n">background</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Return the stroke rgbas used by ``vmobject``.</span>
 
@@ -1615,7 +1615,7 @@
 
 
 <div class="viewcode-block" id="_set_cairo_context_color">
-<a class="viewcode-back" href="../../../reference/mobject_svg/svg.html#manim_extensions.mobject_svg.svg._set_cairo_context_color">[docs]</a>
+<a class="viewcode-back" href="../../../reference/mobject_svg/svg.html#manim_extensions.mobject_svg._set_cairo_context_color">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">_set_cairo_context_color</span><span class="p">(</span>
     <span class="n">ctx</span><span class="p">:</span> <span class="n">cairo</span><span class="o">.</span><span class="n">Context</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
     <span class="n">rgbas</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
@@ -1654,7 +1654,7 @@
 
 
 <div class="viewcode-block" id="_apply_stroke">
-<a class="viewcode-back" href="../../../reference/mobject_svg/svg.html#manim_extensions.mobject_svg.svg._apply_stroke">[docs]</a>
+<a class="viewcode-back" href="../../../reference/mobject_svg/svg.html#manim_extensions.mobject_svg._apply_stroke">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">_apply_stroke</span><span class="p">(</span>
     <span class="n">ctx</span><span class="p">:</span> <span class="n">cairo</span><span class="o">.</span><span class="n">Context</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">vmobject</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">,</span> <span class="n">background</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
@@ -1697,7 +1697,7 @@
 
 
 <div class="viewcode-block" id="_apply_fill">
-<a class="viewcode-back" href="../../../reference/mobject_svg/svg.html#manim_extensions.mobject_svg.svg._apply_fill">[docs]</a>
+<a class="viewcode-back" href="../../../reference/mobject_svg/svg.html#manim_extensions.mobject_svg._apply_fill">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">_apply_fill</span><span class="p">(</span><span class="n">ctx</span><span class="p">:</span> <span class="n">cairo</span><span class="o">.</span><span class="n">Context</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">vmobject</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Fill the current cairo path with the vmobject's fill colours.</span>
 
@@ -1723,7 +1723,7 @@
 
 
 <div class="viewcode-block" id="_temporary_svg_path">
-<a class="viewcode-back" href="../../../reference/mobject_svg/svg.html#manim_extensions.mobject_svg.svg._temporary_svg_path">[docs]</a>
+<a class="viewcode-back" href="../../../reference/mobject_svg/svg.html#manim_extensions.mobject_svg._temporary_svg_path">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">_temporary_svg_path</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">Path</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Return a unique temporary path for an SVG file.</span>
 
@@ -1738,7 +1738,7 @@
 
 
 <div class="viewcode-block" id="_create_svg_from_vmobject_internal">
-<a class="viewcode-back" href="../../../reference/mobject_svg/svg.html#manim_extensions.mobject_svg.svg._create_svg_from_vmobject_internal">[docs]</a>
+<a class="viewcode-back" href="../../../reference/mobject_svg/svg.html#manim_extensions.mobject_svg._create_svg_from_vmobject_internal">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">_create_svg_from_vmobject_internal</span><span class="p">(</span>
     <span class="n">vmobject</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">,</span> <span class="n">ctx</span><span class="p">:</span> <span class="n">cairo</span><span class="o">.</span><span class="n">Context</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
@@ -1780,7 +1780,7 @@
 
 
 <div class="viewcode-block" id="create_svg_from_vmobject">
-<a class="viewcode-back" href="../../../reference/mobject_svg/svg.html#manim_extensions.mobject_svg.svg.create_svg_from_vmobject">[docs]</a>
+<a class="viewcode-back" href="../../../reference/mobject_svg/svg.html#manim_extensions.mobject_svg.create_svg_from_vmobject">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">create_svg_from_vmobject</span><span class="p">(</span>
     <span class="n">vmobject</span><span class="p">:</span> <span class="n">VMobject</span><span class="p">,</span>
     <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1821,7 +1821,7 @@
 
 
 <div class="viewcode-block" id="create_svg_from_vgroup">
-<a class="viewcode-back" href="../../../reference/mobject_svg/svg.html#manim_extensions.mobject_svg.svg.create_svg_from_vgroup">[docs]</a>
+<a class="viewcode-back" href="../../../reference/mobject_svg/svg.html#manim_extensions.mobject_svg.create_svg_from_vgroup">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">create_svg_from_vgroup</span><span class="p">(</span>
     <span class="n">vgroup</span><span class="p">:</span> <span class="n">VGroup</span><span class="p">,</span>
     <span class="n">file_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>

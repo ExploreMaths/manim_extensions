@@ -1491,6 +1491,130 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.rubikscube.cubie">
 <span id="cubie"></span><h1>cubie<a class="headerlink" href="#module-manim_extensions.rubikscube.cubie" title="Link to this heading">¶</a></h1>
+<p>Individual cubie used by the Rubik’s Cube mobject.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.rubikscube.cubie.Cubie">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.rubikscube.cubie.</span></span><span class="sig-name descname"><span class="pre">Cubie</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">colors</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/rubikscube/cubie.html#Cubie"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.rubikscube.cubie.Cubie" title="Link to this definition">¶</a></dt>
+<dd><p>One small cube element composing a larger Rubik’s Cube.</p>
+<p>Each cubie carries the six face tiles used to represent the cube state and
+owns its own 3D orientation within the parent <a class="reference internal" href="cube.RubiksCube.html#manim_extensions.rubikscube.cube.RubiksCube" title="manim_extensions.rubikscube.cube.RubiksCube"><code class="xref py py-class docutils literal notranslate"><span class="pre">RubiksCube</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – X coordinate of the cubie within the cube grid.</p></li>
+<li><p><strong>y</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Y coordinate of the cubie within the cube grid.</p></li>
+<li><p><strong>z</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Z coordinate of the cubie within the cube grid.</p></li>
+<li><p><strong>dim</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Dimension of the parent cube (e.g. 3 for a 3x3x3 cube).</p></li>
+<li><p><strong>colors</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Face colours in the order Up, Right, Front, Down, Left, Back.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="cubie" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: Cubie <a class="headerlink" href="#cubie">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./Cubie-13dd10cd.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.rubikscube</span><span class="w"> </span><span class="kn">import</span> <span class="n">RubiksCube</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Cubie</span><span class="p">(</span><span class="n">ThreeDScene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">cube</span> <span class="o">=</span> <span class="n">RubiksCube</span><span class="p">()</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.6</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">move_camera</span><span class="p">(</span><span class="n">phi</span><span class="o">=</span><span class="mi">50</span> <span class="o">*</span> <span class="n">DEGREES</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="mi">160</span> <span class="o">*</span> <span class="n">DEGREES</span><span class="p">,</span>
+                         <span class="n">frame_center</span><span class="o">=</span><span class="n">cube</span><span class="o">.</span><span class="n">get_center</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">cube</span><span class="p">))</span>
+        <span class="n">corner</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">cubies</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Indicate</span><span class="p">(</span><span class="n">corner</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Indicate</span><span class="p">(</span><span class="n">corner</span><span class="o">.</span><span class="n">get_face</span><span class="p">(</span><span class="s2">"U"</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.rubikscube.cubie.Cubie.get_position">
+<span class="sig-name descname"><span class="pre">get_position</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/rubikscube/cubie.html#Cubie.get_position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.rubikscube.cubie.Cubie.get_position" title="Link to this definition">¶</a></dt>
+<dd><p>Return the cubie’s current position in 3-D space.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The <span class="math notranslate nohighlight">\((x, y, z)\)</span> position of the cubie.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.rubikscube.cubie.Cubie.get_rounded_center">
+<span class="sig-name descname"><span class="pre">get_rounded_center</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/rubikscube/cubie.html#Cubie.get_rounded_center"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.rubikscube.cubie.Cubie.get_rounded_center" title="Link to this definition">¶</a></dt>
+<dd><p>Return the cubie’s position with coordinates rounded to 3 decimal places.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The rounded <span class="math notranslate nohighlight">\((x, y, z)\)</span> coordinates.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.rubikscube.cubie.Cubie.generate_points">
+<span class="sig-name descname"><span class="pre">generate_points</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/rubikscube/cubie.html#Cubie.generate_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.rubikscube.cubie.Cubie.generate_points" title="Link to this definition">¶</a></dt>
+<dd><p>Construct the six square faces that correspond to this cubie.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.rubikscube.cubie.Cubie.get_face">
+<span class="sig-name descname"><span class="pre">get_face</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">face</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/rubikscube/cubie.html#Cubie.get_face"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.rubikscube.cubie.Cubie.get_face" title="Link to this definition">¶</a></dt>
+<dd><p>Return the face tile corresponding to a cube label.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>face</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code></a>[<span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'F'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'B'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'U'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'D'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'L'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'R'</span></span></code></span>]</span>) – Single-character face label: <code class="docutils literal notranslate"><span class="pre">'F'</span></code> (front), <code class="docutils literal notranslate"><span class="pre">'B'</span></code> (back),
+<code class="docutils literal notranslate"><span class="pre">'R'</span></code> (right), <code class="docutils literal notranslate"><span class="pre">'L'</span></code> (left), <code class="docutils literal notranslate"><span class="pre">'U'</span></code> (up), <code class="docutils literal notranslate"><span class="pre">'D'</span></code> (down).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.polygram.Square.html#manim.mobject.geometry.polygram.Square" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Square</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The face tile mobject for the given label.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.rubikscube.cubie.Cubie.init_colors">
+<span class="sig-name descname"><span class="pre">init_colors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/rubikscube/cubie.html#Cubie.init_colors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.rubikscube.cubie.Cubie.init_colors" title="Link to this definition">¶</a></dt>
+<dd><p>Apply fill, stroke, and background-stroke colours to the cubie.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>*args</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Positional arguments forwarded to the colour helpers.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Keyword arguments forwarded to the colour helpers.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="cubie.Cubie.html#manim_extensions.rubikscube.cubie.Cubie" title="manim_extensions.rubikscube.cubie.Cubie"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cubie</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1687,15 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">cubie</a><ul>
+<li><a class="reference internal" href="#manim_extensions.rubikscube.cubie.Cubie"><code class="docutils literal notranslate"><span class="pre">Cubie</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.rubikscube.cubie.Cubie.get_position"><code class="docutils literal notranslate"><span class="pre">Cubie.get_position()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.rubikscube.cubie.Cubie.get_rounded_center"><code class="docutils literal notranslate"><span class="pre">Cubie.get_rounded_center()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.rubikscube.cubie.Cubie.generate_points"><code class="docutils literal notranslate"><span class="pre">Cubie.generate_points()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.rubikscube.cubie.Cubie.get_face"><code class="docutils literal notranslate"><span class="pre">Cubie.get_face()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.rubikscube.cubie.Cubie.init_colors"><code class="docutils literal notranslate"><span class="pre">Cubie.init_colors()</span></code></a></li>
+
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>
@@ -1582,6 +1715,7 @@
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=61a6639c"></script>
     <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../_static/design-tabs.js?v=fcb327ea"></script>
+    <script defer="defer" src="../../_static/mathjax/tex-mml-svg.js?v=f093f569"></script>
     <script src="../../_static/responsiveSvg.js?v=f16afd2d"></script>
     <script src="../../_static/attributes-single.js?v=cee42560"></script>
     <script src="../../_static/icon_gallery.js?v=86f39e20"></script>

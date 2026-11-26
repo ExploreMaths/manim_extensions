@@ -4,7 +4,7 @@
 atom
 ====
 
-.. module:: manim_extensions.chemistry.twoD.atom
+.. automodule:: manim_extensions.chemistry.twoD.atom
 
 Classes
 -------

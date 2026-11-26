@@ -1491,20 +1491,175 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.radar.theme">
 <span id="theme"></span><h1>theme<a class="headerlink" href="#module-manim_extensions.radar.theme" title="Link to this heading">¶</a></h1>
-<section id="classes">
-<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
-<div class="table-wrapper autosummary longtable docutils container">
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="theme.RadarTheme.html#manim_extensions.radar.theme.RadarTheme" title="manim_extensions.radar.theme.RadarTheme"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RadarTheme</span></code></a></p></td>
-<td><p>A palette for one radar look.</p></td>
-</tr>
-</tbody>
-</table>
+<p>Colour themes for <a class="reference internal" href="chart.RadarChart.html#manim_extensions.radar.chart.RadarChart" title="manim_extensions.radar.chart.RadarChart"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarChart</span></code></a>.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.radar.theme.RadarTheme">
+<span class="property"><span class="pre">dataclass</span> </span><span class="sig-prename descclassname"><span class="pre">manim_extensions.radar.theme.</span></span><span class="sig-name descname"><span class="pre">RadarTheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'custom'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#070B16'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">glow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#1A2547'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vignette</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#03040A'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">grid</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#8B9BB8'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis_colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('#4DD0E1',</span> <span class="pre">'#</span><span class="pre">FFB74D</span><span class="pre">',</span> <span class="pre">'#</span><span class="pre">F06292</span><span class="pre">',</span> <span class="pre">'#</span><span class="pre">FFD54F</span><span class="pre">',</span> <span class="pre">'#64B5F6',</span> <span class="pre">'#</span><span class="pre">CE93D8</span><span class="pre">')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">palette</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('#17B8BA',</span> <span class="pre">'#</span><span class="pre">B89AF0</span><span class="pre">',</span> <span class="pre">'#</span><span class="pre">E868C8</span><span class="pre">',</span> <span class="pre">'#</span><span class="pre">E8944A</span><span class="pre">',</span> <span class="pre">'#4A90D9',</span> <span class="pre">'#8F86E8',</span> <span class="pre">'#1FA8C8',</span> <span class="pre">'#40C878',</span> <span class="pre">'#</span><span class="pre">C8C830</span><span class="pre">',</span> <span class="pre">'#</span><span class="pre">E07A4A</span><span class="pre">',</span> <span class="pre">'#30C8C0',</span> <span class="pre">'#</span><span class="pre">D878C8</span><span class="pre">')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">number</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#FFFFFF'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">title_gradient</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('#9FB2CC',</span> <span class="pre">'#</span><span class="pre">EAF2FF</span><span class="pre">')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name_gradient</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('#</span><span class="pre">FFD166</span><span class="pre">',</span> <span class="pre">'#</span><span class="pre">F59E62</span><span class="pre">')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rim_outer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#FF9C3C'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rim_inner</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'#3CC8FF'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">star_accents</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('#</span><span class="pre">FFD54F</span><span class="pre">',</span> <span class="pre">'#4DD0E1',</span> <span class="pre">'#</span><span class="pre">F06292</span><span class="pre">',</span> <span class="pre">'#64B5F6',</span> <span class="pre">'#</span><span class="pre">CE93D8</span><span class="pre">',</span> <span class="pre">'#</span><span class="pre">FFB74D</span><span class="pre">')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">glitch_split</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('#</span><span class="pre">FF7A00</span><span class="pre">',</span> <span class="pre">'#00CFFF')</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brighten</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.08</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/theme.html#RadarTheme"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.theme.RadarTheme" title="Link to this definition">¶</a></dt>
+<dd><p>A palette for one radar look.</p>
+<p>Everything colour related lives here, so swapping a theme restyles the whole
+chart (grid, axes, data polygon, labels, decorations) in one go.</p>
+<p class="rubric">Attributes</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.radar.theme.RadarTheme.background">
+<span class="sig-name descname"><span class="pre">background</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'#070B16'</span></span></span><a class="headerlink" href="#manim_extensions.radar.theme.RadarTheme.background" title="Link to this definition">¶</a></dt>
+<dd><p>Flat background colour used by <a class="reference internal" href="backdrop.DeepSpace.html#manim_extensions.radar.backdrop.DeepSpace" title="manim_extensions.radar.backdrop.DeepSpace"><code class="xref py py-class docutils literal notranslate"><span class="pre">DeepSpace</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.radar.theme.RadarTheme.glow">
+<span class="sig-name descname"><span class="pre">glow</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'#1A2547'</span></span></span><a class="headerlink" href="#manim_extensions.radar.theme.RadarTheme.glow" title="Link to this definition">¶</a></dt>
+<dd><p>Colour of the soft radial glow in the middle of the backdrop</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.radar.theme.RadarTheme.vignette">
+<span class="sig-name descname"><span class="pre">vignette</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'#03040A'</span></span></span><a class="headerlink" href="#manim_extensions.radar.theme.RadarTheme.vignette" title="Link to this definition">¶</a></dt>
+<dd><p>Colour of the corner vignette layers</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.radar.theme.RadarTheme.grid">
+<span class="sig-name descname"><span class="pre">grid</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'#8B9BB8'</span></span></span><a class="headerlink" href="#manim_extensions.radar.theme.RadarTheme.grid" title="Link to this definition">¶</a></dt>
+<dd><p>Grid (rings) colour</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.radar.theme.RadarTheme.axis_colors">
+<span class="sig-name descname"><span class="pre">axis_colors</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">('#4DD0E1',</span> <span class="pre">'#</span><span class="pre">FFB74D</span><span class="pre">',</span> <span class="pre">'#</span><span class="pre">F06292</span><span class="pre">',</span> <span class="pre">'#</span><span class="pre">FFD54F</span><span class="pre">',</span> <span class="pre">'#64B5F6',</span> <span class="pre">'#</span><span class="pre">CE93D8</span><span class="pre">')</span></span></span><a class="headerlink" href="#manim_extensions.radar.theme.RadarTheme.axis_colors" title="Link to this definition">¶</a></dt>
+<dd><p>Colour of each axis spoke / axis label (cycles if fewer than axes)</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.radar.theme.RadarTheme.palette">
+<span class="sig-name descname"><span class="pre">palette</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">('#17B8BA',</span> <span class="pre">'#</span><span class="pre">B89AF0</span><span class="pre">',</span> <span class="pre">'#</span><span class="pre">E868C8</span><span class="pre">',</span> <span class="pre">'#</span><span class="pre">E8944A</span><span class="pre">',</span> <span class="pre">'#4A90D9',</span> <span class="pre">'#8F86E8',</span> <span class="pre">'#1FA8C8',</span> <span class="pre">'#40C878',</span> <span class="pre">'#</span><span class="pre">C8C830</span><span class="pre">',</span> <span class="pre">'#</span><span class="pre">E07A4A</span><span class="pre">',</span> <span class="pre">'#30C8C0',</span> <span class="pre">'#</span><span class="pre">D878C8</span><span class="pre">')</span></span></span><a class="headerlink" href="#manim_extensions.radar.theme.RadarTheme.palette" title="Link to this definition">¶</a></dt>
+<dd><p>Colours used for datasets that do not carry an explicit <code class="docutils literal notranslate"><span class="pre">color</span></code></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.radar.theme.RadarTheme.number">
+<span class="sig-name descname"><span class="pre">number</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'#FFFFFF'</span></span></span><a class="headerlink" href="#manim_extensions.radar.theme.RadarTheme.number" title="Link to this definition">¶</a></dt>
+<dd><p>Colour of the axis value numbers</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.radar.theme.RadarTheme.title_gradient">
+<span class="sig-name descname"><span class="pre">title_gradient</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">('#9FB2CC',</span> <span class="pre">'#</span><span class="pre">EAF2FF</span><span class="pre">')</span></span></span><a class="headerlink" href="#manim_extensions.radar.theme.RadarTheme.title_gradient" title="Link to this definition">¶</a></dt>
+<dd><p>Gradient used for the header title</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.radar.theme.RadarTheme.name_gradient">
+<span class="sig-name descname"><span class="pre">name_gradient</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">('#</span><span class="pre">FFD166</span><span class="pre">',</span> <span class="pre">'#</span><span class="pre">F59E62</span><span class="pre">')</span></span></span><a class="headerlink" href="#manim_extensions.radar.theme.RadarTheme.name_gradient" title="Link to this definition">¶</a></dt>
+<dd><p>Gradient used for the dataset nameplate</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.radar.theme.RadarTheme.rim_outer">
+<span class="sig-name descname"><span class="pre">rim_outer</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'#FF9C3C'</span></span></span><a class="headerlink" href="#manim_extensions.radar.theme.RadarTheme.rim_outer" title="Link to this definition">¶</a></dt>
+<dd><p>Colour of the outer rim stroke</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.radar.theme.RadarTheme.rim_inner">
+<span class="sig-name descname"><span class="pre">rim_inner</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'#3CC8FF'</span></span></span><a class="headerlink" href="#manim_extensions.radar.theme.RadarTheme.rim_inner" title="Link to this definition">¶</a></dt>
+<dd><p>Colour of the inner rim stroke</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.radar.theme.RadarTheme.star_accents">
+<span class="sig-name descname"><span class="pre">star_accents</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">('#</span><span class="pre">FFD54F</span><span class="pre">',</span> <span class="pre">'#4DD0E1',</span> <span class="pre">'#</span><span class="pre">F06292</span><span class="pre">',</span> <span class="pre">'#64B5F6',</span> <span class="pre">'#</span><span class="pre">CE93D8</span><span class="pre">',</span> <span class="pre">'#</span><span class="pre">FFB74D</span><span class="pre">')</span></span></span><a class="headerlink" href="#manim_extensions.radar.theme.RadarTheme.star_accents" title="Link to this definition">¶</a></dt>
+<dd><p>Accent colours for the occasional coloured star</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.radar.theme.RadarTheme.glitch_split">
+<span class="sig-name descname"><span class="pre">glitch_split</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><span class="pre">Sequence</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">('#</span><span class="pre">FF7A00</span><span class="pre">',</span> <span class="pre">'#00CFFF')</span></span></span><a class="headerlink" href="#manim_extensions.radar.theme.RadarTheme.glitch_split" title="Link to this definition">¶</a></dt>
+<dd><p>Chromatic split colours used by the glitch transition</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.radar.theme.RadarTheme.brighten">
+<span class="sig-name descname"><span class="pre">brighten</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.08</span></span></span><a class="headerlink" href="#manim_extensions.radar.theme.RadarTheme.brighten" title="Link to this definition">¶</a></dt>
+<dd><p>How much dataset colours are pushed towards white (0 = none)</p>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<div id="radarthemescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: RadarThemeScene <a class="headerlink" href="#radarthemescene">¶</a></p><img alt="../../_images/RadarThemeScene-6d2aafcb.png" class="align-center" src="../../_images/RadarThemeScene-6d2aafcb.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.chart</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarChart</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.theme</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarTheme</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RadarThemeScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">theme</span> <span class="o">=</span> <span class="n">RadarTheme</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">"custom"</span><span class="p">,</span> <span class="n">background</span><span class="o">=</span><span class="s2">"#070B16"</span><span class="p">,</span> <span class="n">grid</span><span class="o">=</span><span class="s2">"#8B9BB8"</span><span class="p">)</span>
+        <span class="n">chart</span> <span class="o">=</span> <span class="n">RadarChart</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="s2">"A"</span><span class="p">,</span> <span class="s2">"B"</span><span class="p">,</span> <span class="s2">"C"</span><span class="p">,</span> <span class="s2">"D"</span><span class="p">,</span> <span class="s2">"E"</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">theme</span><span class="o">=</span><span class="n">theme</span><span class="p">)</span>
+        <span class="n">chart</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
+</pre></div>
 </div>
-</section>
-<section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+</div><dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.theme.RadarTheme.axis_color">
+<span class="sig-name descname"><span class="pre">axis_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/theme.html#RadarTheme.axis_color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.theme.RadarTheme.axis_color" title="Link to this definition">¶</a></dt>
+<dd><p>Return the colour assigned to one axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Axis index; wraps around the axis colour list.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The axis colour.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.theme.RadarTheme.dataset_color">
+<span class="sig-name descname"><span class="pre">dataset_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/theme.html#RadarTheme.dataset_color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.theme.RadarTheme.dataset_color" title="Link to this definition">¶</a></dt>
+<dd><p>Return the colour assigned to one dataset.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Dataset index; wraps around the palette.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The dataset colour.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.theme.RadarTheme.evolved">
+<span class="sig-name descname"><span class="pre">evolved</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">changes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/theme.html#RadarTheme.evolved"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.theme.RadarTheme.evolved" title="Link to this definition">¶</a></dt>
+<dd><p>Return a copy of this theme with selected fields replaced.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>changes</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Dataclass fields to override.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="theme.RadarTheme.html#manim_extensions.radar.theme.RadarTheme" title="manim_extensions.radar.theme.RadarTheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarTheme</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new theme instance.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="manim_extensions.radar.theme.THEMES">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.radar.theme.</span></span><span class="sig-name descname"><span class="pre">THEMES</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="theme.RadarTheme.html#manim_extensions.radar.theme.RadarTheme" title="manim_extensions.radar.theme.RadarTheme"><span class="pre">RadarTheme</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'aurora':</span> <span class="pre">RadarTheme</span><span class="pre">(name='aurora',</span> <span class="pre">background='#04121A',</span> <span class="pre">glow='#0E2A33',</span> <span class="pre">vignette='#010A0E',</span> <span class="pre">grid='#7FB2AE',</span> <span class="pre">axis_colors=('#5EEAD4',</span> <span class="pre">'#A3E635',</span> <span class="pre">'#38BDF8',</span> <span class="pre">'#FDE68A',</span> <span class="pre">'#F0ABFC',</span> <span class="pre">'#7DD3FC'),</span> <span class="pre">palette=('#2DD4BF',</span> <span class="pre">'#84CC16',</span> <span class="pre">'#38BDF8',</span> <span class="pre">'#A78BFA',</span> <span class="pre">'#FBBF24',</span> <span class="pre">'#F472B6'),</span> <span class="pre">number='#FFFFFF',</span> <span class="pre">title_gradient=('#9FB2CC',</span> <span class="pre">'#EAF2FF'),</span> <span class="pre">name_gradient=('#FFD166',</span> <span class="pre">'#F59E62'),</span> <span class="pre">rim_outer='#FF9C3C',</span> <span class="pre">rim_inner='#3CC8FF',</span> <span class="pre">star_accents=('#FFD54F',</span> <span class="pre">'#4DD0E1',</span> <span class="pre">'#F06292',</span> <span class="pre">'#64B5F6',</span> <span class="pre">'#CE93D8',</span> <span class="pre">'#FFB74D'),</span> <span class="pre">glitch_split=('#FF7A00',</span> <span class="pre">'#00CFFF'),</span> <span class="pre">brighten=0.08),</span> <span class="pre">'ember':</span> <span class="pre">RadarTheme</span><span class="pre">(name='ember',</span> <span class="pre">background='#140806',</span> <span class="pre">glow='#33150E',</span> <span class="pre">vignette='#0A0403',</span> <span class="pre">grid='#D8A48F',</span> <span class="pre">axis_colors=('#FF8A65',</span> <span class="pre">'#FFD54F',</span> <span class="pre">'#F06292',</span> <span class="pre">'#FFB74D',</span> <span class="pre">'#E57373',</span> <span class="pre">'#BCAAA4'),</span> <span class="pre">palette=('#FF7043',</span> <span class="pre">'#FFCA28',</span> <span class="pre">'#EF5350',</span> <span class="pre">'#FFA726',</span> <span class="pre">'#8D6E63',</span> <span class="pre">'#F4511E'),</span> <span class="pre">number='#FFFFFF',</span> <span class="pre">title_gradient=('#9FB2CC',</span> <span class="pre">'#EAF2FF'),</span> <span class="pre">name_gradient=('#FFD166',</span> <span class="pre">'#F59E62'),</span> <span class="pre">rim_outer='#FF9C3C',</span> <span class="pre">rim_inner='#3CC8FF',</span> <span class="pre">star_accents=('#FFD54F',</span> <span class="pre">'#4DD0E1',</span> <span class="pre">'#F06292',</span> <span class="pre">'#64B5F6',</span> <span class="pre">'#CE93D8',</span> <span class="pre">'#FFB74D'),</span> <span class="pre">glitch_split=('#FF7A00',</span> <span class="pre">'#00CFFF'),</span> <span class="pre">brighten=0.08),</span> <span class="pre">'midnight':</span> <span class="pre">RadarTheme</span><span class="pre">(name='midnight',</span> <span class="pre">background='#070B16',</span> <span class="pre">glow='#1A2547',</span> <span class="pre">vignette='#03040A',</span> <span class="pre">grid='#8B9BB8',</span> <span class="pre">axis_colors=('#4DD0E1',</span> <span class="pre">'#FFB74D',</span> <span class="pre">'#F06292',</span> <span class="pre">'#FFD54F',</span> <span class="pre">'#64B5F6',</span> <span class="pre">'#CE93D8'),</span> <span class="pre">palette=('#17B8BA',</span> <span class="pre">'#B89AF0',</span> <span class="pre">'#E868C8',</span> <span class="pre">'#E8944A',</span> <span class="pre">'#4A90D9',</span> <span class="pre">'#8F86E8',</span> <span class="pre">'#1FA8C8',</span> <span class="pre">'#40C878',</span> <span class="pre">'#C8C830',</span> <span class="pre">'#E07A4A',</span> <span class="pre">'#30C8C0',</span> <span class="pre">'#D878C8'),</span> <span class="pre">number='#FFFFFF',</span> <span class="pre">title_gradient=('#9FB2CC',</span> <span class="pre">'#EAF2FF'),</span> <span class="pre">name_gradient=('#FFD166',</span> <span class="pre">'#F59E62'),</span> <span class="pre">rim_outer='#FF9C3C',</span> <span class="pre">rim_inner='#3CC8FF',</span> <span class="pre">star_accents=('#FFD54F',</span> <span class="pre">'#4DD0E1',</span> <span class="pre">'#F06292',</span> <span class="pre">'#64B5F6',</span> <span class="pre">'#CE93D8',</span> <span class="pre">'#FFB74D'),</span> <span class="pre">glitch_split=('#FF7A00',</span> <span class="pre">'#00CFFF'),</span> <span class="pre">brighten=0.08),</span> <span class="pre">'paper':</span> <span class="pre">RadarTheme</span><span class="pre">(name='paper',</span> <span class="pre">background='#F7F5F0',</span> <span class="pre">glow='#FFFFFF',</span> <span class="pre">vignette='#DCD7CC',</span> <span class="pre">grid='#5B6472',</span> <span class="pre">axis_colors=('#0F766E',</span> <span class="pre">'#B45309',</span> <span class="pre">'#BE185D',</span> <span class="pre">'#A16207',</span> <span class="pre">'#1D4ED8',</span> <span class="pre">'#6D28D9'),</span> <span class="pre">palette=('#0F766E',</span> <span class="pre">'#B45309',</span> <span class="pre">'#BE185D',</span> <span class="pre">'#1D4ED8',</span> <span class="pre">'#6D28D9',</span> <span class="pre">'#15803D'),</span> <span class="pre">number='#1F2937',</span> <span class="pre">title_gradient=('#334155',</span> <span class="pre">'#0F172A'),</span> <span class="pre">name_gradient=('#B45309',</span> <span class="pre">'#92400E'),</span> <span class="pre">rim_outer='#EA580C',</span> <span class="pre">rim_inner='#0369A1',</span> <span class="pre">star_accents=('#0F766E',</span> <span class="pre">'#B45309',</span> <span class="pre">'#BE185D',</span> <span class="pre">'#1D4ED8'),</span> <span class="pre">glitch_split=('#FF7A00',</span> <span class="pre">'#00CFFF'),</span> <span class="pre">brighten=0.0),</span> <span class="pre">'violet':</span> <span class="pre">RadarTheme</span><span class="pre">(name='violet',</span> <span class="pre">background='#0B0716',</span> <span class="pre">glow='#221A3D',</span> <span class="pre">vignette='#05030C',</span> <span class="pre">grid='#A79BC8',</span> <span class="pre">axis_colors=('#C4B5FD',</span> <span class="pre">'#F0ABFC',</span> <span class="pre">'#7DD3FC',</span> <span class="pre">'#FDE68A',</span> <span class="pre">'#5EEAD4',</span> <span class="pre">'#FDA4AF'),</span> <span class="pre">palette=('#A78BFA',</span> <span class="pre">'#E879F9',</span> <span class="pre">'#60A5FA',</span> <span class="pre">'#FBBF24',</span> <span class="pre">'#34D399',</span> <span class="pre">'#FB7185'),</span> <span class="pre">number='#FFFFFF',</span> <span class="pre">title_gradient=('#9FB2CC',</span> <span class="pre">'#EAF2FF'),</span> <span class="pre">name_gradient=('#FFD166',</span> <span class="pre">'#F59E62'),</span> <span class="pre">rim_outer='#FF9C3C',</span> <span class="pre">rim_inner='#3CC8FF',</span> <span class="pre">star_accents=('#FFD54F',</span> <span class="pre">'#4DD0E1',</span> <span class="pre">'#F06292',</span> <span class="pre">'#64B5F6',</span> <span class="pre">'#CE93D8',</span> <span class="pre">'#FFB74D'),</span> <span class="pre">glitch_split=('#FF7A00',</span> <span class="pre">'#00CFFF'),</span> <span class="pre">brighten=0.08)}</span></span><a class="headerlink" href="#manim_extensions.radar.theme.THEMES" title="Link to this definition">¶</a></dt>
+<dd><p>Bundled radar colour themes keyed by theme name.</p>
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.radar.theme.theme_names">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.radar.theme.</span></span><span class="sig-name descname"><span class="pre">theme_names</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/theme.html#theme_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.theme.theme_names" title="Link to this definition">¶</a></dt>
@@ -1542,17 +1697,68 @@
 </dl>
 </dd></dl>
 
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="theme.RadarTheme.html#manim_extensions.radar.theme.RadarTheme" title="manim_extensions.radar.theme.RadarTheme"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RadarTheme</span></code></a></p></td>
+<td><p>A palette for one radar look.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.radar.theme.</span></span><span class="sig-name descname"><span class="pre">theme_names</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/theme.html#theme_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dd><p>List all bundled theme names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The names in registration order.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.radar.theme.</span></span><span class="sig-name descname"><span class="pre">get_theme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theme</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/theme.html#get_theme"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
+<dd><p>Resolve a theme name, theme object, or <code class="docutils literal notranslate"><span class="pre">None</span></code> to a theme.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>theme</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference internal" href="theme.RadarTheme.html#manim_extensions.radar.theme.RadarTheme" title="manim_extensions.radar.theme.RadarTheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarTheme</span></code></a>, <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span>]</span>) – The theme name, existing theme, or <code class="docutils literal notranslate"><span class="pre">None</span></code> for the default theme.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="theme.RadarTheme.html#manim_extensions.radar.theme.RadarTheme" title="manim_extensions.radar.theme.RadarTheme"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarTheme</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resolved theme.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#KeyError" title="(in Python v3.15)"><strong>KeyError</strong></a> – If the theme name is unknown.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#TypeError" title="(in Python v3.15)"><strong>TypeError</strong></a> – If the value is neither a string, a theme, nor <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 <section id="constants">
 <h2>Constants<a class="headerlink" href="#constants" title="Link to this heading">¶</a></h2>
 <dl class="py data">
-<dt class="sig sig-object py" id="manim_extensions.radar.theme.THEMES">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.radar.theme.</span></span><span class="sig-name descname"><span class="pre">THEMES</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="theme.RadarTheme.html#manim_extensions.radar.theme.RadarTheme" title="manim_extensions.radar.theme.RadarTheme"><span class="pre">RadarTheme</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">dict</span> <span class="pre">with</span> <span class="pre">5</span> <span class="pre">entries</span></span><a class="headerlink" href="#manim_extensions.radar.theme.THEMES" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id2">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.radar.theme.</span></span><span class="sig-name descname"><span class="pre">THEMES</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="theme.RadarTheme.html#manim_extensions.radar.theme.RadarTheme" title="manim_extensions.radar.theme.RadarTheme"><span class="pre">RadarTheme</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">dict</span> <span class="pre">with</span> <span class="pre">5</span> <span class="pre">entries</span></span><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
 <dd><p>Bundled radar colour themes keyed by theme name.</p>
 <div class="constant-value-payload" hidden>
   <span class="constant-value-full-value">
     <span class="constant-value-eq">=</span>
-    <span class="constant-value-repr-text">{'midnight': <a class="reference internal" href="theme.RadarTheme.html#manim_extensions.radar.theme.RadarTheme">RadarTheme</a>(name='midnight', background='#070B16', glow='#1A2547', vignette='#03040A', grid='#8B9BB8', axis_colors=('#4DD0E1', '#FFB74D', '#F06292', '#FFD54F', '#64B5F6', '#CE93D8'), palette=('#17B8BA', '#B89AF0', '#E868C8', '#E8944A', '#4A90D9', '#8F86E8', '#1FA8C8', '#40C878', '#C8C830', '#E07A4A', '#30C8C0', '#D878C8'), number='#FFFFFF', title_gradient=('#9FB2CC', '#EAF2FF'), name_gradient=('#FFD166', '#F59E62'), rim_outer='#FF9C3C', rim_inner='#3CC8FF', star_accents=('#FFD54F', '#4DD0E1', '#F06292', '#64B5F6', '#CE93D8', '#FFB74D'), glitch_split=('#FF7A00', '#00CFFF'), brighten=0.08), 'aurora': <a class="reference internal" href="theme.RadarTheme.html#manim_extensions.radar.theme.RadarTheme">RadarTheme</a>(name='aurora', background='#04121A', glow='#0E2A33', vignette='#010A0E', grid='#7FB2AE', axis_colors=('#5EEAD4', '#A3E635', '#38BDF8', '#FDE68A', '#F0ABFC', '#7DD3FC'), palette=('#2DD4BF', '#84CC16', '#38BDF8', '#A78BFA', '#FBBF24', '#F472B6'), number='#FFFFFF', title_gradient=('#9FB2CC', '#EAF2FF'), name_gradient=('#FFD166', '#F59E62'), rim_outer='#FF9C3C', rim_inner='#3CC8FF', star_accents=('#FFD54F', '#4DD0E1', '#F06292', '#64B5F6', '#CE93D8', '#FFB74D'), glitch_split=('#FF7A00', '#00CFFF'), brighten=0.08), 'ember': <a class="reference internal" href="theme.RadarTheme.html#manim_extensions.radar.theme.RadarTheme">RadarTheme</a>(name='ember', background='#140806', glow='#33150E', vignette='#0A0403', grid='#D8A48F', axis_colors=('#FF8A65', '#FFD54F', '#F06292', '#FFB74D', '#E57373', '#BCAAA4'), palette=('#FF7043', '#FFCA28', '#EF5350', '#FFA726', '#8D6E63', '#F4511E'), number='#FFFFFF', title_gradient=('#9FB2CC', '#EAF2FF'), name_gradient=('#FFD166', '#F59E62'), rim_outer='#FF9C3C', rim_inner='#3CC8FF', star_accents=('#FFD54F', '#4DD0E1', '#F06292', '#64B5F6', '#CE93D8', '#FFB74D'), glitch_split=('#FF7A00', '#00CFFF'), brighten=0.08), 'violet': <a class="reference internal" href="theme.RadarTheme.html#manim_extensions.radar.theme.RadarTheme">RadarTheme</a>(name='violet', background='#0B0716', glow='#221A3D', vignette='#05030C', grid='#A79BC8', axis_colors=('#C4B5FD', '#F0ABFC', '#7DD3FC', '#FDE68A', '#5EEAD4', '#FDA4AF'), palette=('#A78BFA', '#E879F9', '#60A5FA', '#FBBF24', '#34D399', '#FB7185'), number='#FFFFFF', title_gradient=('#9FB2CC', '#EAF2FF'), name_gradient=('#FFD166', '#F59E62'), rim_outer='#FF9C3C', rim_inner='#3CC8FF', star_accents=('#FFD54F', '#4DD0E1', '#F06292', '#64B5F6', '#CE93D8', '#FFB74D'), glitch_split=('#FF7A00', '#00CFFF'), brighten=0.08), 'paper': <a class="reference internal" href="theme.RadarTheme.html#manim_extensions.radar.theme.RadarTheme">RadarTheme</a>(name='paper', background='#F7F5F0', glow='#FFFFFF', vignette='#DCD7CC', grid='#5B6472', axis_colors=('#0F766E', '#B45309', '#BE185D', '#A16207', '#1D4ED8', '#6D28D9'), palette=('#0F766E', '#B45309', '#BE185D', '#1D4ED8', '#6D28D9', '#15803D'), number='#1F2937', title_gradient=('#334155', '#0F172A'), name_gradient=('#B45309', '#92400E'), rim_outer='#EA580C', rim_inner='#0369A1', star_accents=('#0F766E', '#B45309', '#BE185D', '#1D4ED8'), glitch_split=('#FF7A00', '#00CFFF'), brighten=0.0)}</span>
+    <span class="constant-value-repr-text">{'midnight': RadarTheme(name='midnight', background='#070B16', glow='#1A2547', vignette='#03040A', grid='#8B9BB8', axis_colors=('#4DD0E1', '#FFB74D', '#F06292', '#FFD54F', '#64B5F6', '#CE93D8'), palette=('#17B8BA', '#B89AF0', '#E868C8', '#E8944A', '#4A90D9', '#8F86E8', '#1FA8C8', '#40C878', '#C8C830', '#E07A4A', '#30C8C0', '#D878C8'), number='#FFFFFF', title_gradient=('#9FB2CC', '#EAF2FF'), name_gradient=('#FFD166', '#F59E62'), rim_outer='#FF9C3C', rim_inner='#3CC8FF', star_accents=('#FFD54F', '#4DD0E1', '#F06292', '#64B5F6', '#CE93D8', '#FFB74D'), glitch_split=('#FF7A00', '#00CFFF'), brighten=0.08), 'aurora': RadarTheme(name='aurora', background='#04121A', glow='#0E2A33', vignette='#010A0E', grid='#7FB2AE', axis_colors=('#5EEAD4', '#A3E635', '#38BDF8', '#FDE68A', '#F0ABFC', '#7DD3FC'), palette=('#2DD4BF', '#84CC16', '#38BDF8', '#A78BFA', '#FBBF24', '#F472B6'), number='#FFFFFF', title_gradient=('#9FB2CC', '#EAF2FF'), name_gradient=('#FFD166', '#F59E62'), rim_outer='#FF9C3C', rim_inner='#3CC8FF', star_accents=('#FFD54F', '#4DD0E1', '#F06292', '#64B5F6', '#CE93D8', '#FFB74D'), glitch_split=('#FF7A00', '#00CFFF'), brighten=0.08), 'ember': RadarTheme(name='ember', background='#140806', glow='#33150E', vignette='#0A0403', grid='#D8A48F', axis_colors=('#FF8A65', '#FFD54F', '#F06292', '#FFB74D', '#E57373', '#BCAAA4'), palette=('#FF7043', '#FFCA28', '#EF5350', '#FFA726', '#8D6E63', '#F4511E'), number='#FFFFFF', title_gradient=('#9FB2CC', '#EAF2FF'), name_gradient=('#FFD166', '#F59E62'), rim_outer='#FF9C3C', rim_inner='#3CC8FF', star_accents=('#FFD54F', '#4DD0E1', '#F06292', '#64B5F6', '#CE93D8', '#FFB74D'), glitch_split=('#FF7A00', '#00CFFF'), brighten=0.08), 'violet': RadarTheme(name='violet', background='#0B0716', glow='#221A3D', vignette='#05030C', grid='#A79BC8', axis_colors=('#C4B5FD', '#F0ABFC', '#7DD3FC', '#FDE68A', '#5EEAD4', '#FDA4AF'), palette=('#A78BFA', '#E879F9', '#60A5FA', '#FBBF24', '#34D399', '#FB7185'), number='#FFFFFF', title_gradient=('#9FB2CC', '#EAF2FF'), name_gradient=('#FFD166', '#F59E62'), rim_outer='#FF9C3C', rim_inner='#3CC8FF', star_accents=('#FFD54F', '#4DD0E1', '#F06292', '#64B5F6', '#CE93D8', '#FFB74D'), glitch_split=('#FF7A00', '#00CFFF'), brighten=0.08), 'paper': RadarTheme(name='paper', background='#F7F5F0', glow='#FFFFFF', vignette='#DCD7CC', grid='#5B6472', axis_colors=('#0F766E', '#B45309', '#BE185D', '#A16207', '#1D4ED8', '#6D28D9'), palette=('#0F766E', '#B45309', '#BE185D', '#1D4ED8', '#6D28D9', '#15803D'), number='#1F2937', title_gradient=('#334155', '#0F172A'), name_gradient=('#B45309', '#92400E'), rim_outer='#EA580C', rim_inner='#0369A1', star_accents=('#0F766E', '#B45309', '#BE185D', '#1D4ED8'), glitch_split=('#FF7A00', '#00CFFF'), brighten=0.0)}</span>
   </span>
 </div></dd></dl>
 
@@ -1617,14 +1823,37 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">theme</a><ul>
-<li><a class="reference internal" href="#classes">Classes</a></li>
-<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#manim_extensions.radar.theme.RadarTheme"><code class="docutils literal notranslate"><span class="pre">RadarTheme</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.radar.theme.RadarTheme.background"><code class="docutils literal notranslate"><span class="pre">RadarTheme.background</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.theme.RadarTheme.glow"><code class="docutils literal notranslate"><span class="pre">RadarTheme.glow</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.theme.RadarTheme.vignette"><code class="docutils literal notranslate"><span class="pre">RadarTheme.vignette</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.theme.RadarTheme.grid"><code class="docutils literal notranslate"><span class="pre">RadarTheme.grid</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.theme.RadarTheme.axis_colors"><code class="docutils literal notranslate"><span class="pre">RadarTheme.axis_colors</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.theme.RadarTheme.palette"><code class="docutils literal notranslate"><span class="pre">RadarTheme.palette</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.theme.RadarTheme.number"><code class="docutils literal notranslate"><span class="pre">RadarTheme.number</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.theme.RadarTheme.title_gradient"><code class="docutils literal notranslate"><span class="pre">RadarTheme.title_gradient</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.theme.RadarTheme.name_gradient"><code class="docutils literal notranslate"><span class="pre">RadarTheme.name_gradient</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.theme.RadarTheme.rim_outer"><code class="docutils literal notranslate"><span class="pre">RadarTheme.rim_outer</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.theme.RadarTheme.rim_inner"><code class="docutils literal notranslate"><span class="pre">RadarTheme.rim_inner</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.theme.RadarTheme.star_accents"><code class="docutils literal notranslate"><span class="pre">RadarTheme.star_accents</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.theme.RadarTheme.glitch_split"><code class="docutils literal notranslate"><span class="pre">RadarTheme.glitch_split</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.theme.RadarTheme.brighten"><code class="docutils literal notranslate"><span class="pre">RadarTheme.brighten</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.theme.RadarTheme.axis_color"><code class="docutils literal notranslate"><span class="pre">RadarTheme.axis_color()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.theme.RadarTheme.dataset_color"><code class="docutils literal notranslate"><span class="pre">RadarTheme.dataset_color()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.theme.RadarTheme.evolved"><code class="docutils literal notranslate"><span class="pre">RadarTheme.evolved()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.radar.theme.THEMES"><code class="docutils literal notranslate"><span class="pre">THEMES</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.radar.theme.theme_names"><code class="docutils literal notranslate"><span class="pre">theme_names()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.radar.theme.get_theme"><code class="docutils literal notranslate"><span class="pre">get_theme()</span></code></a></li>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">theme_names()</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">get_theme()</span></code></a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#constants">Constants</a><ul>
-<li><a class="reference internal" href="#manim_extensions.radar.theme.THEMES"><code class="docutils literal notranslate"><span class="pre">THEMES</span></code></a></li>
+<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">THEMES</span></code></a></li>
 </ul>
 </li>
 </ul>

@@ -1489,8 +1489,151 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="module-manim_extensions.chemistry.utils.parsers.sdf_parser">
+          <style>div.nbinput.container div.prompt,div.nboutput.container div.prompt{width:8ch}div.nbcell-files.container{padding-left:8ch}</style><section id="module-manim_extensions.chemistry.utils.parsers.sdf_parser">
 <span id="sdf-parser"></span><h1>sdf_parser<a class="headerlink" href="#module-manim_extensions.chemistry.utils.parsers.sdf_parser" title="Link to this heading">¶</a></h1>
+<p>SDF format parser for chemical files.</p>
+<p>This module provides the <a class="reference internal" href="sdf_parser.SDFParser.html#manim_extensions.chemistry.utils.parsers.sdf_parser.SDFParser" title="manim_extensions.chemistry.utils.parsers.sdf_parser.SDFParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">SDFParser</span></code></a> class for parsing SDF format chemical files.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.sdf_parser.SDFParser">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.utils.parsers.sdf_parser.</span></span><span class="sig-name descname"><span class="pre">SDFParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/chemistry/utils/parsers/sdf_parser.html#SDFParser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.sdf_parser.SDFParser" title="Link to this definition">¶</a></dt>
+<dd><p>Parses sdf files.
+The sdf format is very similar to the mol format. It only contains some
+extra lines. By modifying the read file and removing those extra lines we
+can use the logic already implemented in <a class="reference internal" href="mol_parser.MolParser.html#manim_extensions.chemistry.utils.parsers.mol_parser.MolParser" title="manim_extensions.chemistry.utils.parsers.mol_parser.MolParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">MolParser</span></code></a>.</p>
+<p>The main difference between an sdf file and a mol file is an sdf file
+supports having multiple molecules, so we are returning a list of molecules
+instead of a single molecule.</p>
+<p class="rubric">Examples</p>
+<div id="sdfparseroverview" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: SDFParserOverview <a class="headerlink" href="#sdfparseroverview">¶</a></p><img alt="../../../../_images/SDFParserOverview-da7d0081.png" class="align-center" src="../../../../_images/SDFParserOverview-da7d0081.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry.utils.parsers.sdf_parser</span><span class="w"> </span><span class="kn">import</span> <span class="n">SDFParser</span>
+
+<span class="n">SDFParserTarget</span> <span class="o">=</span> <span class="n">SDFParser</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SDFParserOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">SDFParserTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
+        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'SDFParser'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.chemistry.utils.parsers.sdf_parser'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'Parses sdf files. The sdf format is very similar to the mol format. It only contains some extra lines. By modifying the read file and removing those extra lines we can use the logic already implemented in manim_extensions.chemistry.utils.parsers.mol_parser.MolParser'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [1]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pprint</span><span class="w"> </span><span class="kn">import</span> <span class="n">pprint</span>
+
+<span class="n">parsed_sdf</span> <span class="o">=</span> <span class="n">SDFParser</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="s2">"acetone_2d.sdf"</span><span class="p">)</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">parsed_sdf</span><span class="o">.</span><span class="n">molecular_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbcell-files docutils container">
+<div class="manim-example-files">
+<div class="manim-file-row">
+  <span class="manim-file-badge" style="background:#2b8a3e">sdf</span>
+  <span class="manim-file-meta">
+    <span class="manim-file-name">acetone_2d.sdf</span>
+    <span class="manim-file-size">320 B</span>
+  </span>
+  <span class="manim-file-actions">
+    <a class="manim-file-action" href="https://github.com/ExploreMaths/manim_extensions/raw/main/examples/molecule_files/acetone_2d.sdf" title="Download this file" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v9.2"/><path d="M8.4 10.4 12 14l3.6-3.6"/><path d="M5.2 16.4v1.8c0 .9.8 1.7 1.7 1.7h10.2c.9 0 1.7-.8 1.7-1.7v-1.8"/></svg></a>
+  </span>
+</div>
+</div></div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>Out[1]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{1: {'bond_to': {2: 'O', 3: 'C'},
+     'coords': array([0., 0., 0.]),
+     'element': 'C'},
+ 2: {'bond_to': {1: 'C'}, 'coords': array([1.5, 0. , 0. ]), 'element': 'O'},
+ 3: {'bond_to': {1: 'C'}, 'coords': array([-1.,  1.,  0.]), 'element': 'C'}}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [2]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pprint</span><span class="p">(</span><span class="n">parsed_sdf</span><span class="o">.</span><span class="n">molecular_data</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>Out[2]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{1: {'bond_type': '2',
+     'from_atom_index': 2,
+     'reacting_center_status': None,
+     'stereo': 0,
+     'to_atom_index': 1,
+     'topology': None},
+ 2: {'bond_type': '1',
+     'from_atom_index': 3,
+     'reacting_center_status': None,
+     'stereo': 0,
+     'to_atom_index': 1,
+     'topology': None}}
+</pre></div>
+</div>
+</div>
+</div>
+<dl class="field-list simple">
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.sdf_parser.SDFParser.read_file">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">read_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/chemistry/utils/parsers/sdf_parser.html#SDFParser.read_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.sdf_parser.SDFParser.read_file" title="Link to this definition">¶</a></dt>
+<dd><p>sdf files might contain multiple molecules, so we return a list of list
+of string when reading a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>filename</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="base_parser.html#manim_extensions.chemistry.utils.parsers.base_parser.FilePath" title="manim_extensions.chemistry.utils.parsers.base_parser.FilePath"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FilePath</span></code></a></span>) – Path of the sdf file.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List with all the molecules data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.utils.parsers.sdf_parser.SDFParser.data_parser">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">data_parser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">molecules_data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/chemistry/utils/parsers/sdf_parser.html#SDFParser.data_parser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.utils.parsers.sdf_parser.SDFParser.data_parser" title="Link to this definition">¶</a></dt>
+<dd><p>Parse the molecules of an SDF file into a list of atoms and bonds dicts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>molecules_data</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]</span>) – Molecules of the SDF file as returned by <a class="reference internal" href="sdf_parser.SDFParser.html#manim_extensions.chemistry.utils.parsers.sdf_parser.SDFParser.read_file" title="manim_extensions.chemistry.utils.parsers.sdf_parser.SDFParser.read_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">read_file()</span></code></a>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference internal" href="base_parser.html#manim_extensions.chemistry.utils.parsers.base_parser.AtomsDict" title="manim_extensions.chemistry.utils.parsers.base_parser.AtomsDict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AtomsDict</span></code></a>, <a class="reference internal" href="base_parser.html#manim_extensions.chemistry.utils.parsers.base_parser.BondsDict" title="manim_extensions.chemistry.utils.parsers.base_parser.BondsDict"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BondsDict</span></code></a>]]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of <code class="docutils literal notranslate"><span class="pre">(atoms_data,</span> <span class="pre">bonds_data)</span></code> tuples, one per molecule.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1706,11 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">sdf_parser</a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.sdf_parser.SDFParser"><code class="docutils literal notranslate"><span class="pre">SDFParser</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.sdf_parser.SDFParser.read_file"><code class="docutils literal notranslate"><span class="pre">SDFParser.read_file()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.utils.parsers.sdf_parser.SDFParser.data_parser"><code class="docutils literal notranslate"><span class="pre">SDFParser.data_parser()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

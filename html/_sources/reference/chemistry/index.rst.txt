@@ -4,7 +4,7 @@
 Chemistry
 =========
 
-.. module:: manim_extensions.chemistry
+.. automodule:: manim_extensions.chemistry
 
 .. vendored-status:: UnMolDeQuimica/manim-Chemistry
 

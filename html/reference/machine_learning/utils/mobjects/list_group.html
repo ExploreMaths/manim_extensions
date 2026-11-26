@@ -1491,6 +1491,272 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.machine_learning.utils.mobjects.list_group">
 <span id="list-group"></span><h1>list_group<a class="headerlink" href="#module-manim_extensions.machine_learning.utils.mobjects.list_group" title="Link to this heading">¶</a></h1>
+<p>List group utility for neural network visualization.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.utils.mobjects.list_group.</span></span><span class="sig-name descname"><span class="pre">ListGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">layers</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/list_group.html#ListGroup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup" title="Link to this definition">¶</a></dt>
+<dd><p>Indexable Group with traditional list operations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>layers</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – Initial items stored in the group.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="listgroupscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ListGroupScene <a class="headerlink" href="#listgroupscene">¶</a></p><img alt="../../../../_images/ListGroupScene-cfc2ca2d.png" class="align-center" src="../../../../_images/ListGroupScene-cfc2ca2d.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.utils.mobjects.list_group</span><span class="w"> </span><span class="kn">import</span> <span class="n">ListGroup</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ListGroupScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">ListGroup</span><span class="p">(</span><span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">0.3</span><span class="p">),</span> <span class="n">Square</span><span class="p">(</span><span class="n">side_length</span><span class="o">=</span><span class="mf">0.6</span><span class="p">),</span>
+                           <span class="n">Triangle</span><span class="p">())</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.__getitem__">
+<span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/list_group.html#ListGroup.__getitem__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.__getitem__" title="Link to this definition">¶</a></dt>
+<dd><p>Return an item or a slice of items.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>indices</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#slice" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">slice</span></code></a></span>) – Item index or slice.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The selected mobject or list of mobjects.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.insert">
+<span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/list_group.html#ListGroup.insert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.insert" title="Link to this definition">¶</a></dt>
+<dd><p>Inserts item at index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index at which to insert the item.</p></li>
+<li><p><strong>item</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – Item to insert into the group.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.remove_at_index">
+<span class="sig-name descname"><span class="pre">remove_at_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/list_group.html#ListGroup.remove_at_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.remove_at_index" title="Link to this definition">¶</a></dt>
+<dd><p>Removes item at index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the item to remove.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The removed item.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#Exception" title="(in Python v3.15)"><strong>Exception</strong></a> – Raised when <code class="docutils literal notranslate"><span class="pre">index</span></code> is out of range.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.remove_at_indices">
+<span class="sig-name descname"><span class="pre">remove_at_indices</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">indices</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/list_group.html#ListGroup.remove_at_indices"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.remove_at_indices" title="Link to this definition">¶</a></dt>
+<dd><p>Removes items at indices.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>indices</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>) – Indices of the items to remove.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The removed items, in the order of the given indices.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.remove">
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/list_group.html#ListGroup.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.remove" title="Link to this definition">¶</a></dt>
+<dd><p>Removes first instance of item.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>item</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – Item to remove from the group.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The removed item.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.get">
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/list_group.html#ListGroup.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.get" title="Link to this definition">¶</a></dt>
+<dd><p>Gets item at index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the item to retrieve.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The item stored at the given index.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.add">
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/list_group.html#ListGroup.add"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.add" title="Link to this definition">¶</a></dt>
+<dd><p>Adds to end.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>item</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – Item to append to the end of the group.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.replace">
+<span class="sig-name descname"><span class="pre">replace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/list_group.html#ListGroup.replace"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.replace" title="Link to this definition">¶</a></dt>
+<dd><p>Replaces item at index.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the item to replace.</p></li>
+<li><p><strong>item</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – Item to store at the given index.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.index_of">
+<span class="sig-name descname"><span class="pre">index_of</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/list_group.html#ListGroup.index_of"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.index_of" title="Link to this definition">¶</a></dt>
+<dd><p>Return the index of an item, or <code class="docutils literal notranslate"><span class="pre">-1</span></code> when it is absent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>item</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – Item to look up in the group.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Index of the item, or -1 if it is not in the group.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.__len__">
+<span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/list_group.html#ListGroup.__len__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.__len__" title="Link to this definition">¶</a></dt>
+<dd><p>Return the number of items.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The item count.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.set_z_index">
+<span class="sig-name descname"><span class="pre">set_z_index</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">z_index_value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">family</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/list_group.html#ListGroup.set_z_index"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.set_z_index" title="Link to this definition">¶</a></dt>
+<dd><p>Sets z index of all values in <a class="reference internal" href="list_group.ListGroup.html#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup" title="manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup"><code class="xref py py-class docutils literal notranslate"><span class="pre">ListGroup</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>z_index_value</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Z-index to apply to all items in the group.</p></li>
+<li><p><strong>family</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to also set the z-index of submobjects.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.__iter__">
+<span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/list_group.html#ListGroup.__iter__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.__iter__" title="Link to this definition">¶</a></dt>
+<dd><p>Reset the cursor and return this group as an iterator.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterator</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>This group as an iterator.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.__next__">
+<span class="sig-name descname"><span class="pre">__next__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/list_group.html#ListGroup.__next__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.__next__" title="Link to this definition">¶</a></dt>
+<dd><p>Return the next item or raise <code class="docutils literal notranslate"><span class="pre">StopIteration</span></code> at the end.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The next mobject.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#StopIteration" title="(in Python v3.15)"><strong>StopIteration</strong></a> – When every item has been consumed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/list_group.html#ListGroup.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return a representation listing the contained items.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The group representation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1829,23 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">list_group</a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup"><code class="docutils literal notranslate"><span class="pre">ListGroup</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.__getitem__"><code class="docutils literal notranslate"><span class="pre">ListGroup.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.insert"><code class="docutils literal notranslate"><span class="pre">ListGroup.insert()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.remove_at_index"><code class="docutils literal notranslate"><span class="pre">ListGroup.remove_at_index()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.remove_at_indices"><code class="docutils literal notranslate"><span class="pre">ListGroup.remove_at_indices()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.remove"><code class="docutils literal notranslate"><span class="pre">ListGroup.remove()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.get"><code class="docutils literal notranslate"><span class="pre">ListGroup.get()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.add"><code class="docutils literal notranslate"><span class="pre">ListGroup.add()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.replace"><code class="docutils literal notranslate"><span class="pre">ListGroup.replace()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.index_of"><code class="docutils literal notranslate"><span class="pre">ListGroup.index_of()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.__len__"><code class="docutils literal notranslate"><span class="pre">ListGroup.__len__()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.set_z_index"><code class="docutils literal notranslate"><span class="pre">ListGroup.set_z_index()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.__iter__"><code class="docutils literal notranslate"><span class="pre">ListGroup.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.__next__"><code class="docutils literal notranslate"><span class="pre">ListGroup.__next__()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup.__repr__"><code class="docutils literal notranslate"><span class="pre">ListGroup.__repr__()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

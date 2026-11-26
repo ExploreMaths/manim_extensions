@@ -5,7 +5,7 @@
 Animations
 ==========
 
-.. module:: manim_extensions.animations
+.. automodule:: manim_extensions.animations
 
 This module provides custom animations and animation helpers that can be played
 inside a :class:`~manim.scene.scene.Scene`.

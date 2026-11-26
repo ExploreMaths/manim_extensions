@@ -5,7 +5,7 @@
 array
 =====
 
-.. module:: manim_extensions.algorithm.array
+.. automodule:: manim_extensions.algorithm.array
 
 Indexed containers that display algorithm state.
 

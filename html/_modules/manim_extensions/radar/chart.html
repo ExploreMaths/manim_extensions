@@ -1719,7 +1719,7 @@
 
 
 <div class="viewcode-block" id="RadarChart">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">RadarChart</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""An animated radar (spider) chart that morphs into other radar charts.</span>
 
@@ -2103,7 +2103,7 @@
     <span class="c1"># dataset plumbing</span>
     <span class="c1"># ==================================================================</span>
 <div class="viewcode-block" id="RadarChart._coerce_item">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._coerce_item">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._coerce_item">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_coerce_item</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">RadarInput</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RadarData</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Convert one constructor-level dataset into a validated snapshot.</span>
 
@@ -2148,7 +2148,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._install_datasets">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._install_datasets">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._install_datasets">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_install_datasets</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">items</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Rebuild the visible series from a sequence of snapshots.</span>
 
@@ -2243,7 +2243,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._legend_pairs">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._legend_pairs">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._legend_pairs">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_legend_pairs</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">datasets</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">RadarData</span><span class="p">]</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">ManimColor</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]:</span>
@@ -2270,7 +2270,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._drop_series">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._drop_series">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._drop_series">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_drop_series</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Discard one series and every mobject owned by it.</span>
 
@@ -2298,7 +2298,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._ensure_series_count">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._ensure_series_count">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._ensure_series_count">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_ensure_series_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">count</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">datasets</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">RadarData</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Grow the series list so a morph can fade new datasets in.</span>
 
@@ -2336,7 +2336,7 @@
     <span class="c1"># comparison API (new in 0.1.1)</span>
     <span class="c1"># ------------------------------------------------------------------</span>
 <div class="viewcode-block" id="RadarChart.compare">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.compare">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart.compare">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">compare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">datasets</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"RadarChart"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Show several datasets on this grid at once without animating.</span>
 
@@ -2378,7 +2378,7 @@
     <span class="n">set_datasets</span> <span class="o">=</span> <span class="n">compare</span>
 
 <div class="viewcode-block" id="RadarChart.focus">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.focus">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart.focus">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">focus</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"RadarChart"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Highlight one dataset and dim the others.</span>
 
@@ -2407,7 +2407,7 @@
 
 
 <div class="viewcode-block" id="RadarChart.unfocus">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.unfocus">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart.unfocus">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">unfocus</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"RadarChart"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Undo :meth:`~manim_extensions.radar.chart.RadarChart.focus` and restore full strength for every dataset.</span>
 
@@ -2423,7 +2423,7 @@
 
 
 <div class="viewcode-block" id="RadarChart.highlight_gap">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.highlight_gap">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart.highlight_gap">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">highlight_gap</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">a</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span>
@@ -2488,7 +2488,7 @@
 
 
 <div class="viewcode-block" id="RadarChart.clear_gap">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.clear_gap">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart.clear_gap">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">clear_gap</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"RadarChart"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Remove the difference highlight.</span>
 
@@ -2564,7 +2564,7 @@
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_n</span>
 
 <div class="viewcode-block" id="RadarChart.get_center">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.get_center">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart.get_center">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_center</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the grid centre rather than the lopsided bounding-box centre.</span>
 
@@ -2594,7 +2594,7 @@
     <span class="c1"># imperative setters (driven by the animations, usable directly too)</span>
     <span class="c1"># ==================================================================</span>
 <div class="viewcode-block" id="RadarChart.set_values">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.set_values">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart.set_values">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_values</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">],</span> <span class="n">scale</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"RadarChart"</span><span class="p">:</span>
@@ -2627,7 +2627,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._sync_number_scale">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._sync_number_scale">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._sync_number_scale">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_sync_number_scale</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Keep every odometer in sync with the current full scale."""</span>
         <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">value_numbers</span><span class="p">:</span>
@@ -2640,7 +2640,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._sync_level_labels">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._sync_level_labels">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._sync_level_labels">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_sync_level_labels</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Re-label the grid rings after the full scale changed."""</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">level_labels</span><span class="p">):</span>
@@ -2660,7 +2660,7 @@
 
 
 <div class="viewcode-block" id="RadarChart.set_main_color">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.set_main_color">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart.set_main_color">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_main_color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">ParsableManimColor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"RadarChart"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Snap the first dataset's polygon colour without animating.</span>
 
@@ -2679,7 +2679,7 @@
 
 
 <div class="viewcode-block" id="RadarChart.set_rim">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.set_rim">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart.set_rim">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_rim</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"RadarChart"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Set the emphasis rim of the first dataset.</span>
 
@@ -2698,7 +2698,7 @@
 
 
 <div class="viewcode-block" id="RadarChart.set_glitch">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.set_glitch">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart.set_glitch">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_glitch</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"RadarChart"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Set the chromatic-split amount used by the glitch transition.</span>
 
@@ -2717,7 +2717,7 @@
 
 
 <div class="viewcode-block" id="RadarChart.set_opacity">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.set_opacity">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart.set_opacity">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_opacity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">opacity</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">family</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"RadarChart"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Set the global opacity of the chart.</span>
 
@@ -2741,7 +2741,7 @@
 
 
 <div class="viewcode-block" id="RadarChart.set_radius">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.set_radius">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart.set_radius">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"RadarChart"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Resize the chart and rebuild its cached local geometry.</span>
 
@@ -2765,7 +2765,7 @@
     <span class="c1"># camera helpers (new in 0.1.1)</span>
     <span class="c1"># ==================================================================</span>
 <div class="viewcode-block" id="RadarChart.push_in">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.push_in">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart.push_in">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">push_in</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.35</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_AnimationBuilder</span><span class="p">:</span>
@@ -2797,7 +2797,7 @@
 
 
 <div class="viewcode-block" id="RadarChart.pull_out">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.pull_out">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart.pull_out">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">pull_out</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">factor</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.35</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_AnimationBuilder</span><span class="p">:</span>
@@ -2826,7 +2826,7 @@
 
 
 <div class="viewcode-block" id="RadarChart.attach_camera">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.attach_camera">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart.attach_camera">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">attach_camera</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rig</span><span class="p">:</span> <span class="n">CameraRig</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"RadarChart"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Attach a camera rig for coupled camera moves.</span>
 
@@ -2850,7 +2850,7 @@
     <span class="c1"># animations</span>
     <span class="c1"># ==================================================================</span>
 <div class="viewcode-block" id="RadarChart.morph_to">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.morph_to">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart.morph_to">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">morph_to</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">data</span><span class="p">:</span> <span class="n">RadarInputList</span><span class="p">,</span>
@@ -2899,7 +2899,7 @@
 
 
 <div class="viewcode-block" id="RadarChart.reveal">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.reveal">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart.reveal">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">reveal</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.9</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build the intro animation that grows out of the centre.</span>
 
@@ -2921,7 +2921,7 @@
 
 
 <div class="viewcode-block" id="RadarChart.disappear">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.disappear">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart.disappear">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">disappear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.8</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build the outro animation that fades the whole chart out.</span>
 
@@ -2943,7 +2943,7 @@
 
 
 <div class="viewcode-block" id="RadarChart.glitch_in">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.glitch_in">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart.glitch_in">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">glitch_in</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.75</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build a glitchy entrance animation.</span>
 
@@ -2965,7 +2965,7 @@
 
 
 <div class="viewcode-block" id="RadarChart.shockwave">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.shockwave">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart.shockwave">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">shockwave</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build a single shockwave ring centred on the chart.</span>
 
@@ -2986,7 +2986,7 @@
 
     <span class="c1"># ------------------------------------------------------------------</span>
 <div class="viewcode-block" id="RadarChart._place_rainbow_web">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._place_rainbow_web">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._place_rainbow_web">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_place_rainbow_web</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Position each rainbow web segment in world space."""</span>
 
@@ -3010,7 +3010,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._corner">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._corner">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._corner">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_corner</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""World position of one grid corner.</span>
 
@@ -3035,7 +3035,7 @@
 
 
 <div class="viewcode-block" id="RadarChart.trace_web">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.trace_web">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart.trace_web">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">trace_web</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Trace the rainbow web before revealing the data.</span>
 
@@ -3061,7 +3061,7 @@
     <span class="c1"># scene helpers</span>
     <span class="c1"># ==================================================================</span>
 <div class="viewcode-block" id="RadarChart.attach_backdrop">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.attach_backdrop">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart.attach_backdrop">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">attach_backdrop</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">scene</span><span class="p">:</span> <span class="n">Scene</span><span class="p">,</span> <span class="n">theme</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">RadarTheme</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mobject</span><span class="p">:</span>
@@ -3094,7 +3094,7 @@
     <span class="c1"># internals</span>
     <span class="c1"># ==================================================================</span>
 <div class="viewcode-block" id="RadarChart._coerce_dataset_list">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._coerce_dataset_list">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._coerce_dataset_list">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_coerce_dataset_list</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">RadarInputList</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">RadarData</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Normalise morph input into validated target snapshots.</span>
 
@@ -3134,7 +3134,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._coerce_data">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._coerce_data">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._coerce_data">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_coerce_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">:</span> <span class="n">RadarInput</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RadarData</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Convert one morph target into a snapshot.</span>
 
@@ -3160,7 +3160,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._resolve_color">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._resolve_color">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._resolve_color">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_resolve_color</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ManimColor</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Resolve the colour for one dataset.</span>
 
@@ -3181,7 +3181,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._make_name_text">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._make_name_text">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._make_name_text">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_make_name_text</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Text</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create the styled nameplate for a dataset.</span>
 
@@ -3210,7 +3210,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._make_title">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._make_title">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._make_title">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_make_title</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Text</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create the styled chart title.</span>
 
@@ -3239,7 +3239,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._polar_local">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._polar_local">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._polar_local">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_polar_local</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">angle</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Convert polar coordinates into the chart's local frame.</span>
 
@@ -3260,7 +3260,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._rebuild_local_geometry">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._rebuild_local_geometry">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._rebuild_local_geometry">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_rebuild_local_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Refresh cached local shapes (rings, spokes, label anchors, sweep)."""</span>
         <span class="n">cfg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">config</span>
@@ -3307,7 +3307,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._wedge_local">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._wedge_local">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._wedge_local">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_wedge_local</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">radius</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">angle_deg</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">segments</span><span class="p">:</span> <span class="nb">int</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
@@ -3338,7 +3338,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._set_sweep_local">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._set_sweep_local">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._set_sweep_local">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_set_sweep_local</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">points</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Cache the local sweep polygon.</span>
 
@@ -3352,7 +3352,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._polygon_local_for">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._polygon_local_for">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._polygon_local_for">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_polygon_local_for</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">series</span><span class="p">:</span> <span class="n">Series</span><span class="p">,</span> <span class="n">scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build one dataset's closed polygon in the local frame.</span>
 
@@ -3380,7 +3380,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._polygon_local">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._polygon_local">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._polygon_local">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_polygon_local</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build the first dataset's polygon in the local frame.</span>
 
@@ -3398,7 +3398,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._frame">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._frame">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._frame">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_frame</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return the current local frame basis.</span>
 
@@ -3414,7 +3414,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._to_world">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._to_world">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._to_world">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_to_world</span><span class="p">(</span>
         <span class="n">local</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
@@ -3443,7 +3443,7 @@
 
     <span class="c1"># ------------------------------------------------------------------</span>
 <div class="viewcode-block" id="RadarChart._refresh">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._refresh">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._refresh">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_refresh</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">dt</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Recompute every piece of geometry for the current frame.</span>
 
@@ -3607,7 +3607,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._slot_y">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._slot_y">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._slot_y">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_slot_y</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">mob</span><span class="p">:</span> <span class="n">Mobject</span><span class="p">,</span> <span class="n">offset</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">label_top</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_limit</span><span class="p">:</span> <span class="nb">float</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">float</span><span class="p">,</span> <span class="nb">bool</span><span class="p">]:</span>
@@ -3642,7 +3642,7 @@
 
     <span class="c1"># ------------------------------------------------------------------</span>
 <div class="viewcode-block" id="RadarChart._paint_series">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._paint_series">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._paint_series">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_paint_series</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">s</span><span class="p">:</span> <span class="n">Series</span><span class="p">,</span>
@@ -3806,7 +3806,7 @@
     <span class="c1"># ------------------------------------------------------------------</span>
     <span class="c1"># comparison numbers --------------------------------------------------</span>
 <div class="viewcode-block" id="RadarChart._ensure_series_numbers">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._ensure_series_numbers">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._ensure_series_numbers">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_ensure_series_numbers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return, creating if needed, per-axis read-outs for one dataset.</span>
 
@@ -3844,7 +3844,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._vertex_align">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._vertex_align">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._vertex_align">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_vertex_align</span><span class="p">(</span><span class="n">direction</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Choose glyph alignment for a read-out pointing along a direction.</span>
@@ -3868,7 +3868,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._paint_compare_numbers">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._paint_compare_numbers">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._paint_compare_numbers">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_paint_compare_numbers</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">unit</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">op</span><span class="p">:</span> <span class="nb">float</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -3924,7 +3924,7 @@
     <span class="c1"># ------------------------------------------------------------------</span>
     <span class="c1"># legend ---------------------------------------------------------------</span>
 <div class="viewcode-block" id="RadarChart._rebuild_legend">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._rebuild_legend">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._rebuild_legend">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_rebuild_legend</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pairs</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="o">...</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build legend chips for colour and name pairs.</span>
 
@@ -3998,7 +3998,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._legend_row_y">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._legend_row_y">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._legend_row_y">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_legend_row_y</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label_top</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">frame_limit</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Choose the legend's vertical position.</span>
 
@@ -4020,7 +4020,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._begin_legend_swap">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._begin_legend_swap">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._begin_legend_swap">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_begin_legend_swap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">targets</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">RadarData</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Start a crossfade from the current legend to target datasets.</span>
 
@@ -4050,7 +4050,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._begin_legend_fadeout">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._begin_legend_fadeout">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._begin_legend_fadeout">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_begin_legend_fadeout</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Fade the legend out (morphing a comparison back to one dataset)."""</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_legend_content</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -4062,7 +4062,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._legend_swap_progress">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._legend_swap_progress">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._legend_swap_progress">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_legend_swap_progress</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Advance the legend crossfade to a given progress.</span>
 
@@ -4081,7 +4081,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._end_legend_swap">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._end_legend_swap">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._end_legend_swap">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_end_legend_swap</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Finish the legend crossfade and drop the outgoing content."""</span>
 
@@ -4095,7 +4095,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._paint_legend">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._paint_legend">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._paint_legend">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_paint_legend</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">a</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
@@ -4172,7 +4172,7 @@
     <span class="c1"># ------------------------------------------------------------------</span>
     <span class="c1"># difference lobes -------------------------------------------------</span>
 <div class="viewcode-block" id="RadarChart._seg_intersect">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._seg_intersect">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._seg_intersect">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_seg_intersect</span><span class="p">(</span>
         <span class="n">p0</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">p1</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">q0</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">q1</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span>
@@ -4206,7 +4206,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._paint_gap">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._paint_gap">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._paint_gap">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_paint_gap</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">op</span><span class="p">:</span> <span class="nb">float</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -4289,7 +4289,7 @@
     <span class="c1"># overflow (OverflowRadarChart) — every dataset gets the full treatment</span>
     <span class="c1"># ------------------------------------------------------------------</span>
 <div class="viewcode-block" id="RadarChart._ensure_series_fx">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._ensure_series_fx">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._ensure_series_fx">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_ensure_series_fx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="n">Series</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the overflow effects container for one dataset.</span>
 
@@ -4310,7 +4310,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._ensure_dash_pool">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._ensure_dash_pool">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._ensure_dash_pool">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_ensure_dash_pool</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="n">Series</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return dashed-track slots for a dataset and axis.</span>
 
@@ -4339,7 +4339,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._ensure_breach">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._ensure_breach">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._ensure_breach">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_ensure_breach</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="n">Series</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the ring-breach glow for a dataset and axis.</span>
 
@@ -4376,7 +4376,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._ensure_overflow_number">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._ensure_overflow_number">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._ensure_overflow_number">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_ensure_overflow_number</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">series_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RollingNumber</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the unclamped read-out for a dataset and axis.</span>
 
@@ -4415,7 +4415,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._paint_overflow">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._paint_overflow">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._paint_overflow">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_paint_overflow</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">a</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">u</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">unit</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">op</span><span class="p">:</span> <span class="nb">float</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
@@ -4521,7 +4521,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._hide_overflow">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._hide_overflow">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._hide_overflow">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_hide_overflow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="n">Series</span><span class="p">,</span> <span class="n">j</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Switch off a dataset's overflow decorations on one axis.</span>
 
@@ -4549,7 +4549,7 @@
     <span class="c1"># nameplate plumbing used by RadarMorph</span>
     <span class="c1"># ==================================================================</span>
 <div class="viewcode-block" id="RadarChart._begin_name_swap">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._begin_name_swap">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._begin_name_swap">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_begin_name_swap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">shift</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.30</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Start a crossfade from the current nameplate to a new name.</span>
 
@@ -4578,7 +4578,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._swap_name_progress">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._swap_name_progress">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._swap_name_progress">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_swap_name_progress</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">t</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">shift</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">0.30</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Advance a nameplate crossfade to a given progress.</span>
 
@@ -4599,7 +4599,7 @@
 
 
 <div class="viewcode-block" id="RadarChart._end_name_swap">
-<a class="viewcode-back" href="../../../reference/radar/chart.RadarChart.html#manim_extensions.radar.chart.RadarChart._end_name_swap">[docs]</a>
+<a class="viewcode-back" href="../../../reference/radar/index.html#manim_extensions.radar.chart.RadarChart._end_name_swap">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">_end_name_swap</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Finish a nameplate crossfade, dropping the outgoing text."""</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_name_old</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>

@@ -1506,7 +1506,7 @@
 
 
 <div class="viewcode-block" id="IncorrectFormat">
-<a class="viewcode-back" href="../../../../reference/chemistry/utils/file_handler.IncorrectFormat.html#manim_extensions.chemistry.utils.file_handler.IncorrectFormat">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/utils/file_handler.IncorrectFormat.html#manim_extensions.chemistry.IncorrectFormat">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">IncorrectFormat</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Raised when a file has an unsupported or unrecognized format.</span>
 
@@ -1548,7 +1548,7 @@
 
 
 <div class="viewcode-block" id="FileHandler">
-<a class="viewcode-back" href="../../../../reference/chemistry/utils/file_handler.FileHandler.html#manim_extensions.chemistry.utils.file_handler.FileHandler">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/utils/index.html#manim_extensions.chemistry.FileHandler">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">FileHandler</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">"""Handles the parsing of chemistry files selecting the right parser.</span>
 
@@ -1605,7 +1605,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">parser</span> <span class="o">=</span> <span class="n">parser_class</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="n">file_path</span><span class="p">)</span>
 
 <div class="viewcode-block" id="FileHandler.get_file_extension">
-<a class="viewcode-back" href="../../../../reference/chemistry/utils/file_handler.FileHandler.html#manim_extensions.chemistry.utils.file_handler.FileHandler.get_file_extension">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/utils/index.html#manim_extensions.chemistry.FileHandler.get_file_extension">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_file_extension</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="nb">bytes</span> <span class="o">|</span> <span class="n">os</span><span class="o">.</span><span class="n">PathLike</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the lowercase file extension without the leading dot.</span>
@@ -1623,7 +1623,7 @@
 
 
 <div class="viewcode-block" id="FileHandler.parsed_atoms_bonds_data">
-<a class="viewcode-back" href="../../../../reference/chemistry/utils/file_handler.FileHandler.html#manim_extensions.chemistry.utils.file_handler.FileHandler.parsed_atoms_bonds_data">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/utils/index.html#manim_extensions.chemistry.FileHandler.parsed_atoms_bonds_data">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">parsed_atoms_bonds_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ParsedData</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return the parsed atom and bond dictionaries.</span>
 
@@ -1635,7 +1635,7 @@
 
 
 <div class="viewcode-block" id="FileHandler.parse_from_string">
-<a class="viewcode-back" href="../../../../reference/chemistry/utils/file_handler.FileHandler.html#manim_extensions.chemistry.utils.file_handler.FileHandler.parse_from_string">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/utils/index.html#manim_extensions.chemistry.FileHandler.parse_from_string">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">parse_from_string</span><span class="p">(</span>
         <span class="n">string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">format</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">"mol"</span><span class="p">,</span> <span class="s2">"sdf"</span><span class="p">,</span> <span class="s2">"asnt"</span><span class="p">,</span> <span class="s2">"json"</span><span class="p">,</span> <span class="s2">"xml"</span><span class="p">]</span>

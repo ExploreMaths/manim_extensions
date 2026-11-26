@@ -5,7 +5,7 @@
 mindmap
 =======
 
-.. module:: manim_extensions.mindmap.mindmap
+.. automodule:: manim_extensions.mindmap.mindmap
 
 Classes
 -------

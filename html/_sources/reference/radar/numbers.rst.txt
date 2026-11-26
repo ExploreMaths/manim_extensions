@@ -5,7 +5,7 @@
 numbers
 =======
 
-.. module:: manim_extensions.radar.numbers
+.. automodule:: manim_extensions.radar.numbers
 
 Classes
 -------

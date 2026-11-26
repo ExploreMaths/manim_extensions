@@ -1530,7 +1530,7 @@
 
 
 <div class="viewcode-block" id="MMoleculeObject">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.MMoleculeObject">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">MMoleculeObject</span><span class="p">(</span><span class="n">VGroup</span><span class="p">,</span> <span class="n">AbstractMolecule</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""Represents a molecule in a similar fashion as it is done in academia.</span>
 
@@ -1628,7 +1628,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
 
 <div class="viewcode-block" id="MMoleculeObject.get_atoms">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.get_atoms">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.MMoleculeObject.get_atoms">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_atoms</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">VDict</span><span class="p">,</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">MAtomObject</span><span class="p">]]:</span>
 <span class="w">        </span><span class="sd">"""Build :class:`~manim_extensions.chemistry.twoD.atom.MAtomObject` instances from the atoms dict and return them as :class:`~manim.mobject.types.vectorized_mobject.VDict` + index dict.</span>
 
@@ -1655,7 +1655,7 @@
 
 
 <div class="viewcode-block" id="MMoleculeObject.get_bonds">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.get_bonds">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.MMoleculeObject.get_bonds">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_bonds</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VGroup</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Build bond mobjects (single/double/triple/cram) from the bonds dict and return a VGroup.</span>
 
@@ -1797,7 +1797,7 @@
 
 
 <div class="viewcode-block" id="MMoleculeObject.add_atom_numbering">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.add_atom_numbering">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.MMoleculeObject.add_atom_numbering">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_atom_numbering</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"MMoleculeObject"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Add numeric index labels next to each atom and return self.</span>
 
@@ -1829,7 +1829,7 @@
 
 
 <div class="viewcode-block" id="MMoleculeObject.add_bond_numbering">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.add_bond_numbering">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.MMoleculeObject.add_bond_numbering">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_bond_numbering</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"MMoleculeObject"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Add numeric index labels next to each bond and return self.</span>
 
@@ -1860,7 +1860,7 @@
 
 
 <div class="viewcode-block" id="MMoleculeObject.rotate_bond">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.rotate_bond">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.MMoleculeObject.rotate_bond">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">rotate_bond</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rotate_bonds</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">"MMoleculeObject"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Rotate specified bonds 180 degrees around their own axis and return self.</span>
 
@@ -1885,7 +1885,7 @@
 
 
 <div class="viewcode-block" id="MMoleculeObject.complete_missing_hydrogens">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.complete_missing_hydrogens">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.MMoleculeObject.complete_missing_hydrogens">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">complete_missing_hydrogens</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Append implicit hydrogen labels to atoms that don't fulfill their minimum bond count.</span>
 
@@ -1937,7 +1937,7 @@
 
 
 <div class="viewcode-block" id="MMoleculeObject.from_mol_file">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.from_mol_file">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.MMoleculeObject.from_mol_file">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_mol_file</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"MMoleculeObject"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Create an :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject` by parsing a .mol file.</span>
@@ -1959,7 +1959,7 @@
 
 
 <div class="viewcode-block" id="MMoleculeObject.from_mol_string">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.from_mol_string">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.MMoleculeObject.from_mol_string">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_mol_string</span><span class="p">(</span>
         <span class="n">mol_string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
@@ -1986,7 +1986,7 @@
 
 
 <div class="viewcode-block" id="MMoleculeObject.from_sdf_file">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.from_sdf_file">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.MMoleculeObject.from_sdf_file">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_sdf_file</span><span class="p">(</span>
         <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
@@ -2014,7 +2014,7 @@
 
 
 <div class="viewcode-block" id="MMoleculeObject.from_sdf_string">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.from_sdf_string">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.MMoleculeObject.from_sdf_string">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_sdf_string</span><span class="p">(</span>
         <span class="n">sdf_string</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
@@ -2042,7 +2042,7 @@
 
 
 <div class="viewcode-block" id="MMoleculeObject.find_atom_position_by_index">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.find_atom_position_by_index">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.MMoleculeObject.find_atom_position_by_index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find_atom_position_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atom_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Returns the position of a single atom given its index.</span>
 
@@ -2084,7 +2084,7 @@
 
 
 <div class="viewcode-block" id="MMoleculeObject.find_atoms_position_by_index">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.find_atoms_position_by_index">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.MMoleculeObject.find_atoms_position_by_index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find_atoms_position_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms_index_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Returns the position of multiple atoms given their indices.</span>
 
@@ -2117,7 +2117,7 @@
 
 
 <div class="viewcode-block" id="MMoleculeObject.find_bond_center_by_index">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.find_bond_center_by_index">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.MMoleculeObject.find_bond_center_by_index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find_bond_center_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bond_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Returns the [x, y, z] coordinates of a bond given a bond index.</span>
 
@@ -2158,7 +2158,7 @@
 
 
 <div class="viewcode-block" id="MMoleculeObject.find_position_along_bond_axis">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.find_position_along_bond_axis">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.MMoleculeObject.find_position_along_bond_axis">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find_position_along_bond_axis</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">bond_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">position_buff</span><span class="p">:</span> <span class="nb">float</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
@@ -2201,7 +2201,7 @@
 
 
 <div class="viewcode-block" id="MMoleculeObject.find_bonds_center_by_index">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.find_bonds_center_by_index">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.MMoleculeObject.find_bonds_center_by_index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find_bonds_center_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bonds_index_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Returns the position of multiple bonds given their indices.</span>
 
@@ -2234,7 +2234,7 @@
 
 
 <div class="viewcode-block" id="MMoleculeObject.find_all_atoms_positions">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.find_all_atoms_positions">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.MMoleculeObject.find_all_atoms_positions">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find_all_atoms_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return a dict mapping every atom index to its current position.</span>
 
@@ -2252,7 +2252,7 @@
 
 
 <div class="viewcode-block" id="MMoleculeObject.find_all_bonds_centers">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.find_all_bonds_centers">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.MMoleculeObject.find_all_bonds_centers">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find_all_bonds_centers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return a dict mapping every bond index to its center position.</span>
 
@@ -2270,7 +2270,7 @@
 
 
 <div class="viewcode-block" id="MMoleculeObject.mc_molecule_to_atoms_and_bonds">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject.mc_molecule_to_atoms_and_bonds">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.MMoleculeObject.mc_molecule_to_atoms_and_bonds">[docs]</a>
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">mc_molecule_to_atoms_and_bonds</span><span class="p">(</span>
         <span class="bp">cls</span><span class="p">,</span> <span class="n">mc_molecule</span><span class="p">:</span> <span class="n">MCMolecule</span>
@@ -2338,7 +2338,7 @@
 
 
 <div class="viewcode-block" id="NamedMolecule">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.twoD.molecule.NamedMolecule">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.NamedMolecule">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">NamedMolecule</span><span class="p">(</span><span class="n">VGroup</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">"""A molecule together with its name.</span>
 
@@ -2415,7 +2415,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">bonds</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">molecule</span><span class="o">.</span><span class="n">bonds</span>
 
 <div class="viewcode-block" id="NamedMolecule.from_mol_file">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.twoD.molecule.NamedMolecule.from_mol_file">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.NamedMolecule.from_mol_file">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_mol_file</span><span class="p">(</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -2469,7 +2469,7 @@
 
 
 <div class="viewcode-block" id="NamedMolecule.from_mol_string">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.twoD.molecule.NamedMolecule.from_mol_string">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.NamedMolecule.from_mol_string">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_mol_string</span><span class="p">(</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -2519,7 +2519,7 @@
 
 
 <div class="viewcode-block" id="NamedMolecule.from_sdf_file">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.twoD.molecule.NamedMolecule.from_sdf_file">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.NamedMolecule.from_sdf_file">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_sdf_file</span><span class="p">(</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -2575,7 +2575,7 @@
 
 
 <div class="viewcode-block" id="NamedMolecule.from_sdf_string">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.twoD.molecule.NamedMolecule.from_sdf_string">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.NamedMolecule.from_sdf_string">[docs]</a>
     <span class="nd">@staticmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">from_sdf_string</span><span class="p">(</span>
         <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -2631,7 +2631,7 @@
 
 
 <div class="viewcode-block" id="NamedMolecule.rotate_bond">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.twoD.molecule.NamedMolecule.rotate_bond">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.NamedMolecule.rotate_bond">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">rotate_bond</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bonds</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="s2">"NamedMolecule"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Rotate specified bonds on the inner molecule and return self.</span>
 
@@ -2650,7 +2650,7 @@
 
 
 <div class="viewcode-block" id="NamedMolecule.add_bond_numbering">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.twoD.molecule.NamedMolecule.add_bond_numbering">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.NamedMolecule.add_bond_numbering">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_bond_numbering</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"NamedMolecule"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Add bond numbering to the inner molecule and return self.</span>
 
@@ -2665,7 +2665,7 @@
 
 
 <div class="viewcode-block" id="NamedMolecule.add_atom_numbering">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.twoD.molecule.NamedMolecule.add_atom_numbering">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.NamedMolecule.add_atom_numbering">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">add_atom_numbering</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s2">"NamedMolecule"</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Add atom numbering to the inner molecule and return self.</span>
 
@@ -2681,7 +2681,7 @@
 
 
 <div class="viewcode-block" id="NamedMolecule.find_atom_position_by_index">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.twoD.molecule.NamedMolecule.find_atom_position_by_index">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.NamedMolecule.find_atom_position_by_index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find_atom_position_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atom_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Returns the position of a single atom given its index.</span>
 
@@ -2723,7 +2723,7 @@
 
 
 <div class="viewcode-block" id="NamedMolecule.find_atoms_position_by_index">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.twoD.molecule.NamedMolecule.find_atoms_position_by_index">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.NamedMolecule.find_atoms_position_by_index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find_atoms_position_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">atoms_index_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Returns the position of multiple atoms given their indices.</span>
 
@@ -2756,7 +2756,7 @@
 
 
 <div class="viewcode-block" id="NamedMolecule.find_bond_center_by_index">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.twoD.molecule.NamedMolecule.find_bond_center_by_index">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.NamedMolecule.find_bond_center_by_index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find_bond_center_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bond_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Returns the [x, y, z] coordinates of a bond given a bond index.</span>
 
@@ -2800,7 +2800,7 @@
 
 
 <div class="viewcode-block" id="NamedMolecule.find_position_along_bond_axis">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.twoD.molecule.NamedMolecule.find_position_along_bond_axis">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.NamedMolecule.find_position_along_bond_axis">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find_position_along_bond_axis</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">bond_index</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">position_buff</span><span class="p">:</span> <span class="nb">float</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Point3D</span><span class="p">:</span>
@@ -2843,7 +2843,7 @@
 
 
 <div class="viewcode-block" id="NamedMolecule.find_bonds_center_by_index">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.twoD.molecule.NamedMolecule.find_bonds_center_by_index">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.NamedMolecule.find_bonds_center_by_index">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find_bonds_center_by_index</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bonds_index_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Returns the position of multiple bonds given their indices.</span>
 
@@ -2876,7 +2876,7 @@
 
 
 <div class="viewcode-block" id="NamedMolecule.find_all_atoms_positions">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.twoD.molecule.NamedMolecule.find_all_atoms_positions">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.NamedMolecule.find_all_atoms_positions">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find_all_atoms_positions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return a dict mapping every atom index to its current position.</span>
 
@@ -2894,7 +2894,7 @@
 
 
 <div class="viewcode-block" id="NamedMolecule.find_all_bonds_centers">
-<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.twoD.molecule.NamedMolecule.find_all_bonds_centers">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/chemistry/twoD/molecule.NamedMolecule.html#manim_extensions.chemistry.NamedMolecule.find_all_bonds_centers">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">find_all_bonds_centers</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">"""Return a dict mapping every bond index to its center position.</span>
 

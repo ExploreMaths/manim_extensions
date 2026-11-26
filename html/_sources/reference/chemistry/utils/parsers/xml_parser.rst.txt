@@ -4,7 +4,7 @@
 xml_parser
 ==========
 
-.. module:: manim_extensions.chemistry.utils.parsers.xml_parser
+.. automodule:: manim_extensions.chemistry.utils.parsers.xml_parser
 
 Classes
 -------

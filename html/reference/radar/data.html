@@ -1491,6 +1491,256 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.radar.data">
 <span id="data"></span><h1>data<a class="headerlink" href="#module-manim_extensions.radar.data" title="Link to this heading">¶</a></h1>
+<p>The data model: one radar snapshot.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.radar.data.RadarData">
+<span class="property"><span class="pre">dataclass</span> </span><span class="sig-prename descclassname"><span class="pre">manim_extensions.radar.data.</span></span><span class="sig-name descname"><span class="pre">RadarData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">emphasis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transition</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">note</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">meta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">dict()</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/data.html#RadarData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.data.RadarData" title="Link to this definition">¶</a></dt>
+<dd><p>One radar snapshot: the axis names plus the value on each axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>axes</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – Axis labels, e.g. <code class="docutils literal notranslate"><span class="pre">(&quot;Speed&quot;,</span> <span class="pre">&quot;Power&quot;,</span> <span class="pre">&quot;Range&quot;)</span></code>. Length must match
+<code class="docutils literal notranslate"><span class="pre">values</span></code> and be at least 3.</p></li>
+<li><p><strong>values</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Value per axis, all <code class="docutils literal notranslate"><span class="pre">&gt;=</span> <span class="pre">0</span></code>.</p></li>
+<li><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – Optional dataset name, drawn as a nameplate above the chart and morphed
+on every transition.</p></li>
+<li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – Main colour of the polygon. <code class="docutils literal notranslate"><span class="pre">None</span></code> -&gt; cycle through the theme palette.</p></li>
+<li><p><strong>max_value</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Full-scale value of this snapshot. Defaults to <code class="docutils literal notranslate"><span class="pre">max(values)</span></code> rounded
+up; values above it are shown with <code class="docutils literal notranslate"><span class="pre">config.overflow_suffix</span></code> (<code class="docutils literal notranslate"><span class="pre">&quot;10+&quot;</span></code>).</p></li>
+<li><p><strong>rim</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Draw the orange/cyan double outline (emphasis).</p></li>
+<li><p><strong>emphasis</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – <code class="docutils literal notranslate"><span class="pre">None</span></code> | <code class="docutils literal notranslate"><span class="pre">&quot;zoom&quot;</span></code> (heavy zoom transition into this snapshot) |
+<code class="docutils literal notranslate"><span class="pre">&quot;gap&quot;</span></code> (fade to black, then glitch back in) | <code class="docutils literal notranslate"><span class="pre">&quot;rim&quot;</span></code> (same as
+<code class="docutils literal notranslate"><span class="pre">rim=True</span></code>, handy in inline lists).</p></li>
+<li><p><strong>hold</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Seconds to hold after morphing to this snapshot (<a class="reference internal" href="reel.RadarReel.html#manim_extensions.radar.reel.RadarReel" title="manim_extensions.radar.reel.RadarReel"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarReel</span></code></a> only).</p></li>
+<li><p><strong>transition</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – Per-snapshot transition override, see <a class="reference internal" href="chart.RadarChart.html#manim_extensions.radar.chart.RadarChart.morph_to" title="manim_extensions.radar.chart.RadarChart.morph_to"><code class="xref py py-meth docutils literal notranslate"><span class="pre">morph_to()</span></code></a>.</p></li>
+<li><p><strong>note</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – Free-form text (ignored by the chart itself, useful for the reel).</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Attributes</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.radar.data.RadarData.max_value">
+<span class="sig-name descname"><span class="pre">max_value</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></span><a class="headerlink" href="#manim_extensions.radar.data.RadarData.max_value" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.radar.data.RadarData.rim">
+<span class="sig-name descname"><span class="pre">rim</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></span><a class="headerlink" href="#manim_extensions.radar.data.RadarData.rim" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.radar.data.RadarData.emphasis">
+<span class="sig-name descname"><span class="pre">emphasis</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></span><a class="headerlink" href="#manim_extensions.radar.data.RadarData.emphasis" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.radar.data.RadarData.hold">
+<span class="sig-name descname"><span class="pre">hold</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></span><a class="headerlink" href="#manim_extensions.radar.data.RadarData.hold" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.radar.data.RadarData.transition">
+<span class="sig-name descname"><span class="pre">transition</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></span><a class="headerlink" href="#manim_extensions.radar.data.RadarData.transition" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.radar.data.RadarData.note">
+<span class="sig-name descname"><span class="pre">note</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></span><a class="headerlink" href="#manim_extensions.radar.data.RadarData.note" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Examples</p>
+<div id="radardatascene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: RadarDataScene <a class="headerlink" href="#radardatascene">¶</a></p><img alt="../../_images/RadarDataScene-d0e8a91d.png" class="align-center" src="../../_images/RadarDataScene-d0e8a91d.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.chart</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarChart</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarData</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RadarDataScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">RadarData</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="p">[</span><span class="s2">"Speed"</span><span class="p">,</span> <span class="s2">"Power"</span><span class="p">,</span> <span class="s2">"Range"</span><span class="p">],</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+        <span class="n">chart</span> <span class="o">=</span> <span class="n">RadarChart</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">chart</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">5.0</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">chart</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.data.RadarData.__post_init__">
+<span class="sig-name descname"><span class="pre">__post_init__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/data.html#RadarData.__post_init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.data.RadarData.__post_init__" title="Link to this definition">¶</a></dt>
+<dd><p>Validate the snapshot and freeze its sequences.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If axes and values differ in length, fewer than three axes are
+    supplied, a value is negative, the emphasis name is unknown, or
+    the full scale is not positive.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="manim_extensions.radar.data.RadarData.n_axes">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">n_axes</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span><a class="headerlink" href="#manim_extensions.radar.data.RadarData.n_axes" title="Link to this definition">¶</a></dt>
+<dd><p>Return the number of axes in this snapshot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Number of axis labels.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="manim_extensions.radar.data.RadarData.overflow_suffix">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">overflow_suffix</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a></span><a class="headerlink" href="#manim_extensions.radar.data.RadarData.overflow_suffix" title="Link to this definition">¶</a></dt>
+<dd><p>Report whether any value exceeds the full scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">&quot;+&quot;</span></code> when a value overflows, otherwise an empty string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="manim_extensions.radar.data.RadarData.full_scale">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">full_scale</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><a class="headerlink" href="#manim_extensions.radar.data.RadarData.full_scale" title="Link to this definition">¶</a></dt>
+<dd><p>Return the full-scale value of this snapshot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">max_value</span></code> when supplied, otherwise the ceiling of the largest</p></li>
+<li><p><em>value with a floor of one.</em></p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.data.RadarData.scale_for">
+<span class="sig-name descname"><span class="pre">scale_for</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">levels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/data.html#RadarData.scale_for"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.data.RadarData.scale_for" title="Link to this definition">¶</a></dt>
+<dd><p>Snap the full scale so grid labels are round numbers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>levels</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Number of grid rings; the scale becomes a multiple of this value.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A scale that labels every ring with an integer.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.data.RadarData.ratios">
+<span class="sig-name descname"><span class="pre">ratios</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/data.html#RadarData.ratios"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.data.RadarData.ratios" title="Link to this definition">¶</a></dt>
+<dd><p>Express values as fractions of the full scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>scale</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Optional explicit scale; defaults to <a class="reference internal" href="data.RadarData.html#manim_extensions.radar.data.RadarData.full_scale" title="manim_extensions.radar.data.RadarData.full_scale"><code class="xref py py-attr docutils literal notranslate"><span class="pre">full_scale</span></code></a>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>One fraction per axis, where 1.0 is the outer ring.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.data.RadarData.radius_values">
+<span class="sig-name descname"><span class="pre">radius_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/data.html#RadarData.radius_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.data.RadarData.radius_values" title="Link to this definition">¶</a></dt>
+<dd><p>Convert values to scene-unit radii.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>radius</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Scene-unit radius of the outer ring.</p></li>
+<li><p><strong>scale</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Optional explicit scale; defaults to <a class="reference internal" href="data.RadarData.html#manim_extensions.radar.data.RadarData.full_scale" title="manim_extensions.radar.data.RadarData.full_scale"><code class="xref py py-attr docutils literal notranslate"><span class="pre">full_scale</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>One radius per axis.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.data.RadarData.color_or">
+<span class="sig-name descname"><span class="pre">color_or</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fallback</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/data.html#RadarData.color_or"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.data.RadarData.color_or" title="Link to this definition">¶</a></dt>
+<dd><p>Resolve the polygon colour for this snapshot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fallback</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a>]</span>) – Colour used when <code class="xref py py-attr docutils literal notranslate"><span class="pre">color</span></code> is unset.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The snapshot colour or the fallback as a Manim colour.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.data.RadarData.with_values">
+<span class="sig-name descname"><span class="pre">with_values</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">changes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/data.html#RadarData.with_values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.data.RadarData.with_values" title="Link to this definition">¶</a></dt>
+<dd><p>Copy this snapshot with new values and optional other changes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>values</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Replacement values, one per axis.</p></li>
+<li><p><strong>changes</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional dataclass fields to replace.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="data.RadarData.html#manim_extensions.radar.data.RadarData" title="manim_extensions.radar.data.RadarData"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarData</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new validated snapshot.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.data.RadarData.renamed">
+<span class="sig-name descname"><span class="pre">renamed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/data.html#RadarData.renamed"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.data.RadarData.renamed" title="Link to this definition">¶</a></dt>
+<dd><p>Copy this snapshot with another dataset name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Optional</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]</span>) – Replacement name, or <code class="docutils literal notranslate"><span class="pre">None</span></code> to clear it.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="data.RadarData.html#manim_extensions.radar.data.RadarData" title="manim_extensions.radar.data.RadarData"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarData</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A new validated snapshot.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.radar.data.RadarData.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/data.html#RadarData.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.data.RadarData.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return a compact debug representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A short string naming the axis count, optional name and values.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1813,29 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">data</a><ul>
+<li><a class="reference internal" href="#manim_extensions.radar.data.RadarData"><code class="docutils literal notranslate"><span class="pre">RadarData</span></code></a><ul>
+
+
+<li><a class="reference internal" href="#manim_extensions.radar.data.RadarData.max_value"><code class="docutils literal notranslate"><span class="pre">RadarData.max_value</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.data.RadarData.rim"><code class="docutils literal notranslate"><span class="pre">RadarData.rim</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.data.RadarData.emphasis"><code class="docutils literal notranslate"><span class="pre">RadarData.emphasis</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.data.RadarData.hold"><code class="docutils literal notranslate"><span class="pre">RadarData.hold</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.data.RadarData.transition"><code class="docutils literal notranslate"><span class="pre">RadarData.transition</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.data.RadarData.note"><code class="docutils literal notranslate"><span class="pre">RadarData.note</span></code></a></li>
+
+<li><a class="reference internal" href="#manim_extensions.radar.data.RadarData.__post_init__"><code class="docutils literal notranslate"><span class="pre">RadarData.__post_init__()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.data.RadarData.n_axes"><code class="docutils literal notranslate"><span class="pre">RadarData.n_axes</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.data.RadarData.overflow_suffix"><code class="docutils literal notranslate"><span class="pre">RadarData.overflow_suffix</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.data.RadarData.full_scale"><code class="docutils literal notranslate"><span class="pre">RadarData.full_scale</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.data.RadarData.scale_for"><code class="docutils literal notranslate"><span class="pre">RadarData.scale_for()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.data.RadarData.ratios"><code class="docutils literal notranslate"><span class="pre">RadarData.ratios()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.data.RadarData.radius_values"><code class="docutils literal notranslate"><span class="pre">RadarData.radius_values()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.data.RadarData.color_or"><code class="docutils literal notranslate"><span class="pre">RadarData.color_or()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.data.RadarData.with_values"><code class="docutils literal notranslate"><span class="pre">RadarData.with_values()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.data.RadarData.renamed"><code class="docutils literal notranslate"><span class="pre">RadarData.renamed()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.radar.data.RadarData.__repr__"><code class="docutils literal notranslate"><span class="pre">RadarData.__repr__()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

@@ -1491,12 +1491,1038 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.physics">
 <span id="physics"></span><h1>Physics<a class="headerlink" href="#module-manim_extensions.physics" title="Link to this heading">¶</a></h1>
+<p>Physics utilities for Manim scenes.</p>
+<p>This package contains tools for optics, electromagnetism, rigid mechanics, and
+wave visualisations, all designed to be used directly in scene code.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.physics.Charge">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.</span></span><span class="sig-name descname"><span class="pre">Charge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">magnitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../constants/directions.html#manim.constants.ORIGIN"><span class="pre">ORIGIN</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">add_glow</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/electromagnetism/electrostatics.html#Charge"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.Charge" title="Link to this definition">¶</a></dt>
+<dd><p>Visual representation of an electrostatic charge.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>magnitude</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Charge strength; positive values are red, negative values are blue.</p></li>
+<li><p><strong>point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Location of the charge in the scene.</p></li>
+<li><p><strong>add_glow</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to draw a soft glow around the charge.</p></li>
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional arguments passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="chargescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ChargeScene <a class="headerlink" href="#chargescene">¶</a></p><img alt="../../_images/ChargeScene-9209cd8b.png" class="align-center" src="../../_images/ChargeScene-9209cd8b.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.physics.electromagnetism.electrostatics</span><span class="w"> </span><span class="kn">import</span> <span class="n">Charge</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ChargeScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">positive</span> <span class="o">=</span> <span class="n">Charge</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">LEFT</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">UP</span><span class="p">)</span>
+        <span class="n">negative</span> <span class="o">=</span> <span class="n">Charge</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">UP</span><span class="p">)</span>
+        <span class="n">plain</span> <span class="o">=</span> <span class="n">Charge</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">DOWN</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">add_glow</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="n">positive</span><span class="p">,</span> <span class="n">negative</span><span class="p">,</span> <span class="n">plain</span><span class="p">)</span>
+        <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">6.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">positive</span><span class="p">,</span> <span class="n">negative</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">plain</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.physics.ElectricField">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.</span></span><span class="sig-name descname"><span class="pre">ElectricField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">charges</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/electromagnetism/electrostatics.html#ElectricField"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.ElectricField" title="Link to this definition">¶</a></dt>
+<dd><p>Vector field generated by one or more electrostatic charges.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>charges</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="electromagnetism/electrostatics.Charge.html#manim_extensions.physics.electromagnetism.electrostatics.Charge" title="manim_extensions.physics.electromagnetism.electrostatics.Charge"><code class="xref py py-class docutils literal notranslate"><span class="pre">Charge</span></code></a></span>) – The charges affecting the electric field.</p></li>
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional parameters to be passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.vector_field.ArrowVectorField.html#manim.mobject.vector_field.ArrowVectorField" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrowVectorField</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="electricfieldscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ElectricFieldScene <a class="headerlink" href="#electricfieldscene">¶</a></p><img alt="../../_images/ElectricFieldScene-a57b889c.png" class="align-center" src="../../_images/ElectricFieldScene-a57b889c.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.physics.electromagnetism.electrostatics</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Charge</span><span class="p">,</span> <span class="n">ElectricField</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ElectricFieldScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">charge1</span> <span class="o">=</span> <span class="n">Charge</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">LEFT</span> <span class="o">+</span> <span class="n">DOWN</span><span class="p">)</span>
+        <span class="n">charge2</span> <span class="o">=</span> <span class="n">Charge</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">RIGHT</span> <span class="o">+</span> <span class="n">DOWN</span><span class="p">)</span>
+        <span class="n">charge3</span> <span class="o">=</span> <span class="n">Charge</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">UP</span><span class="p">)</span>
+        <span class="n">field</span> <span class="o">=</span> <span class="n">ElectricField</span><span class="p">(</span><span class="n">charge1</span><span class="p">,</span> <span class="n">charge2</span><span class="p">,</span> <span class="n">charge3</span><span class="p">)</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="n">charge1</span><span class="p">,</span> <span class="n">charge2</span><span class="p">,</span> <span class="n">charge3</span><span class="p">,</span> <span class="n">field</span><span class="p">)</span>
+        <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">6.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.ElectricField._field_func">
+<span class="sig-name descname"><span class="pre">_field_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">magnitudes</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/electromagnetism/electrostatics.html#ElectricField._field_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.ElectricField._field_func" title="Link to this definition">¶</a></dt>
+<dd><p>Compute the electric field vector at a point using Coulomb’s law.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Field point at which the electric field is evaluated.</p></li>
+<li><p><strong>positions</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>]</span>) – Positions of the source charges.</p></li>
+<li><p><strong>magnitudes</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Charge magnitudes (in arbitrary units) for each source charge.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The net electric field vector at point <code class="docutils literal notranslate"><span class="pre">p</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.physics.Lens">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.</span></span><span class="sig-name descname"><span class="pre">Lens</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.52</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/optics/lenses.html#Lens"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.Lens" title="Link to this definition">¶</a></dt>
+<dd><p>Thin lens with spherical surfaces for ray-tracing visualisation.</p>
+<p>The lens shape is constructed from the intersection or difference of two
+circles, depending on whether the focal length is positive (convex) or
+negative (concave).  The refractive index controls the curvature.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The current focal-length calculation does not precisely match the
+physical point of focus.  This is a known limitation that may be
+addressed in a future release.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Focal length.  Positive values produce a convex lens, negative
+values produce a concave lens.</p></li>
+<li><p><strong>d</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – <a class="reference internal" href="optics/lenses.Lens.html#manim_extensions.physics.optics.lenses.Lens" title="manim_extensions.physics.optics.lenses.Lens"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lens</span></code></a> thickness.</p></li>
+<li><p><strong>n</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Refractive index of the lens material.
+(glass).</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional parameters forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="lensscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: LensScene <a class="headerlink" href="#lensscene">¶</a></p><img alt="../../_images/LensScene-dd4a8a13.png" class="align-center" src="../../_images/LensScene-dd4a8a13.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.physics.optics.lenses</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lens</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">LensScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">convex</span> <span class="o">=</span> <span class="n">Lens</span><span class="p">(</span><span class="n">f</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">fill_opacity</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">)</span>
+        <span class="n">concave</span> <span class="o">=</span> <span class="n">Lens</span><span class="p">(</span><span class="n">f</span><span class="o">=-</span><span class="mi">2</span><span class="p">,</span> <span class="n">d</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">fill_opacity</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREEN</span><span class="p">)</span>
+        <span class="n">concave</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">convex</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+            <span class="n">convex</span><span class="p">,</span>
+            <span class="n">concave</span><span class="p">,</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"f = 2 (convex)"</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">28</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">convex</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"f = -2 (concave)"</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">28</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">concave</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">),</span>
+        <span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py property">
+<dt class="sig sig-object py" id="manim_extensions.physics.Lens.c">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">c</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><span class="pre">Point3D</span></a></span><a class="headerlink" href="#manim_extensions.physics.Lens.c" title="Link to this definition">¶</a></dt>
+<dd><p>Return the centers of curvature of the two spherical surfaces.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The center points of the two circles used to construct the lens.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.physics.LinearWave">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.</span></span><span class="sig-name descname"><span class="pre">LinearWave</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wavelength</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(-5,</span> <span class="pre">5)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(-5,</span> <span class="pre">5)</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/wave.html#LinearWave"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.LinearWave" title="Link to this definition">¶</a></dt>
+<dd><p>A wave surface propagating in one spatial direction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wavelength</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The wavelength of the wave.</p></li>
+<li><p><strong>period</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The period of the wave oscillation.</p></li>
+<li><p><strong>amplitude</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The amplitude of the wave displacement.</p></li>
+<li><p><strong>x_range</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – The x-domain range used to construct the surface.</p></li>
+<li><p><strong>y_range</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – The y-domain range used to construct the surface.</p></li>
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.three_d.three_dimensions.Surface.html#manim.mobject.three_d.three_dimensions.Surface" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Surface</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="linearwavescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: LinearWaveScene <a class="headerlink" href="#linearwavescene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./LinearWaveScene-c909ae46.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.physics.wave</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearWave</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">LinearWaveScene</span><span class="p">(</span><span class="n">ThreeDScene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_camera_orientation</span><span class="p">(</span><span class="mi">60</span> <span class="o">*</span> <span class="n">DEGREES</span><span class="p">,</span> <span class="o">-</span><span class="mi">45</span> <span class="o">*</span> <span class="n">DEGREES</span><span class="p">)</span>
+        <span class="n">wave</span> <span class="o">=</span> <span class="n">LinearWave</span><span class="p">(</span><span class="n">x_range</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">y_range</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">wave</span><span class="p">))</span>
+        <span class="n">wave</span><span class="o">.</span><span class="n">start_wave</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+        <span class="n">wave</span><span class="o">.</span><span class="n">stop_wave</span><span class="p">()</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.LinearWave._wave_z">
+<span class="sig-name descname"><span class="pre">_wave_z</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sources</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/wave.html#LinearWave._wave_z"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.LinearWave._wave_z" title="Link to this definition">¶</a></dt>
+<dd><p>Compute the height of the linear wave at position <code class="docutils literal notranslate"><span class="pre">(u,</span> <span class="pre">v)</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The x-coordinate in the wave field.</p></li>
+<li><p><strong>v</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The y-coordinate in the wave field (unused for linear waves).</p></li>
+<li><p><strong>sources</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>]</span>) – Source points (unused for linear waves).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The wave height.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.physics.MagneticField">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.</span></span><span class="sig-name descname"><span class="pre">MagneticField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">wires</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/electromagnetism/magnetostatics.html#MagneticField"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.MagneticField" title="Link to this definition">¶</a></dt>
+<dd><p>A magnetic field.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wires</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="electromagnetism/magnetostatics.Wire.html#manim_extensions.physics.electromagnetism.magnetostatics.Wire" title="manim_extensions.physics.electromagnetism.magnetostatics.Wire"><code class="xref py py-class docutils literal notranslate"><span class="pre">Wire</span></code></a></span>) – All wires contributing to the total field.</p></li>
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional parameters to be passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.vector_field.ArrowVectorField.html#manim.mobject.vector_field.ArrowVectorField" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArrowVectorField</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="magneticfieldscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: MagneticFieldScene <a class="headerlink" href="#magneticfieldscene">¶</a></p><img alt="../../_images/MagneticFieldScene-ed71ce80.png" class="align-center" src="../../_images/MagneticFieldScene-ed71ce80.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.physics</span><span class="w"> </span><span class="kn">import</span> <span class="n">MagneticField</span><span class="p">,</span> <span class="n">Wire</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MagneticFieldScene</span><span class="p">(</span><span class="n">ThreeDScene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">wire</span> <span class="o">=</span> <span class="n">Wire</span><span class="p">(</span><span class="n">Circle</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">UP</span><span class="p">),</span> <span class="n">current</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">mag_field</span> <span class="o">=</span> <span class="n">MagneticField</span><span class="p">(</span>
+            <span class="n">wire</span><span class="p">,</span>
+            <span class="n">x_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+            <span class="n">y_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_camera_orientation</span><span class="p">(</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">3</span><span class="p">,</span> <span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">wire</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">mag_field</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.MagneticField._field_func">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">_field_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">currents</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/electromagnetism/magnetostatics.html#MagneticField._field_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.MagneticField._field_func" title="Link to this definition">¶</a></dt>
+<dd><p>Compute the magnetic field vector at a point using the Biot-Savart law.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>p</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Field point at which the magnetic field is evaluated.</p></li>
+<li><p><strong>dls</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>, <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>]]]</span>) – One list of line segments per wire; each segment is a pair of
+consecutive points along that wire.</p></li>
+<li><p><strong>currents</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Current magnitudes (in Amperes) flowing through each wire.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The magnetic field vector at point <code class="docutils literal notranslate"><span class="pre">p</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.physics.MultiPendulum">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.</span></span><span class="sig-name descname"><span class="pre">MultiPendulum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">bobs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pivot_point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">UP</span> <span class="pre">*</span> <span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rod_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bob_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'radius':</span> <span class="pre">0.1,</span> <span class="pre">'color':</span> <a class="reference internal" href="../../constants/colors.html#manim.utils.color.manim_colors.ORANGE"><span class="pre">ORANGE</span></a><span class="pre">,</span> <span class="pre">'fill_opacity':</span> <span class="pre">1}</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/rigid_mechanics/pendulum.html#MultiPendulum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.MultiPendulum" title="Link to this definition">¶</a></dt>
+<dd><p>A multi-segment pendulum driven by pymunk physics.</p>
+<p>The pendulum is constructed from one or more bobs connected by rigid
+rods to a fixed pivot point.  When <cite>start_swinging()</cite> is called the
+bobs are turned into pymunk rigid bodies and the scene’s simulation
+updater drives the motion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bobs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Positions of the pendulum bobs from the pivot outward.</p></li>
+<li><p><strong>pivot_point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Position of the fixed pivot.</p></li>
+<li><p><strong>rod_style</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Keyword arguments forwarded to the <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a>
+constructor used for each rod.</p></li>
+<li><p><strong>bob_style</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Keyword arguments forwarded to the <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.Circle.html#manim.mobject.geometry.arc.Circle" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circle</span></code></a>
+constructor used for each bob.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional parameters for <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="multipendulumscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: MultiPendulumScene <a class="headerlink" href="#multipendulumscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./MultiPendulumScene-a7624995.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.physics.rigid_mechanics.pendulum</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">MultiPendulum</span><span class="p">,</span> <span class="n">SpaceScene</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MultiPendulumScene</span><span class="p">(</span><span class="n">SpaceScene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pendulum</span> <span class="o">=</span> <span class="n">MultiPendulum</span><span class="p">(</span><span class="n">RIGHT</span><span class="p">,</span> <span class="n">LEFT</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">pendulum</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">make_rigid_body</span><span class="p">(</span><span class="o">*</span><span class="n">pendulum</span><span class="o">.</span><span class="n">bobs</span><span class="p">)</span>
+        <span class="n">pendulum</span><span class="o">.</span><span class="n">start_swinging</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+            <span class="n">TracedPath</span><span class="p">(</span>
+                <span class="n">pendulum</span><span class="o">.</span><span class="n">bobs</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">get_center</span><span class="p">,</span>
+                <span class="n">stroke_color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.MultiPendulum._make_joints">
+<span class="sig-name descname"><span class="pre">_make_joints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mob1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mob2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spacescene</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/rigid_mechanics/pendulum.html#MultiPendulum._make_joints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.MultiPendulum._make_joints" title="Link to this definition">¶</a></dt>
+<dd><p>Create a pymont pin joint between two bodies (or a body and a fixed point).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mob1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – First body mobject (must have a <code class="docutils literal notranslate"><span class="pre">body</span></code> attribute).</p></li>
+<li><p><strong>mob2</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a> | <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Second body mobject, or a fixed point in space.</p></li>
+<li><p><strong>spacescene</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="rigid_mechanics/rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene" title="manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpaceScene</span></code></a></span>) – The physics scene to which the joint is added.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.MultiPendulum._redraw_rods">
+<span class="sig-name descname"><span class="pre">_redraw_rods</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pins</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">i</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/rigid_mechanics/pendulum.html#MultiPendulum._redraw_rods"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.MultiPendulum._redraw_rods" title="Link to this definition">¶</a></dt>
+<dd><p>Update a rod line to connect the positions of two consecutive pins.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mob</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a></span>) – The rod line mobject to update.</p></li>
+<li><p><strong>pins</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – List of pin joints or positions.</p></li>
+<li><p><strong>i</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the first pin; the rod connects <code class="docutils literal notranslate"><span class="pre">pins[i]</span></code> to <code class="docutils literal notranslate"><span class="pre">pins[i+1]</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.MultiPendulum.start_swinging">
+<span class="sig-name descname"><span class="pre">start_swinging</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/rigid_mechanics/pendulum.html#MultiPendulum.start_swinging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.MultiPendulum.start_swinging" title="Link to this definition">¶</a></dt>
+<dd><p>Creates pymunk joints between bobs and starts the physics simulation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.MultiPendulum.end_swinging">
+<span class="sig-name descname"><span class="pre">end_swinging</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/rigid_mechanics/pendulum.html#MultiPendulum.end_swinging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.MultiPendulum.end_swinging" title="Link to this definition">¶</a></dt>
+<dd><p>Stop swinging.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.physics.Pendulum">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.</span></span><span class="sig-name descname"><span class="pre">Pendulum</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial_theta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pivot_point</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">UP</span> <span class="pre">*</span> <span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rod_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bob_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'radius':</span> <span class="pre">0.25,</span> <span class="pre">'color':</span> <a class="reference internal" href="../../constants/colors.html#manim.utils.color.manim_colors.ORANGE"><span class="pre">ORANGE</span></a><span class="pre">,</span> <span class="pre">'fill_opacity':</span> <span class="pre">1}</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/rigid_mechanics/pendulum.html#Pendulum"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.Pendulum" title="Link to this definition">¶</a></dt>
+<dd><p>A simple single-bob pendulum driven by pymunk physics.</p>
+<p>This is a convenience subclass of <a class="reference internal" href="rigid_mechanics/pendulum.MultiPendulum.html#manim_extensions.physics.rigid_mechanics.pendulum.MultiPendulum" title="manim_extensions.physics.rigid_mechanics.pendulum.MultiPendulum"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultiPendulum</span></code></a> that creates a
+single-bob pendulum from a length and initial deflection angle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>length</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Length of the pendulum rod.</p></li>
+<li><p><strong>initial_theta</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Initial angle of deviation from the vertical, in radians.</p></li>
+<li><p><strong>pivot_point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Position of the fixed pivot.</p></li>
+<li><p><strong>rod_style</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Forwarded to the <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a> constructor.</p></li>
+<li><p><strong>bob_style</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Forwarded to the <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.Circle.html#manim.mobject.geometry.arc.Circle" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circle</span></code></a> constructor.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional parameters for <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="pendulumscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: PendulumScene <a class="headerlink" href="#pendulumscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./PendulumScene-3cda87f8.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.physics.rigid_mechanics.pendulum</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">Pendulum</span><span class="p">,</span> <span class="n">SpaceScene</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PendulumScene</span><span class="p">(</span><span class="n">SpaceScene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">pendulums</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="o">*</span><span class="p">[</span><span class="n">Pendulum</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">)]</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">pendulums</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">pendulum</span> <span class="ow">in</span> <span class="n">pendulums</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">make_rigid_body</span><span class="p">(</span><span class="o">*</span><span class="n">pendulum</span><span class="o">.</span><span class="n">bobs</span><span class="p">)</span>
+            <span class="n">pendulum</span><span class="o">.</span><span class="n">start_swinging</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.physics.RadialWave">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.</span></span><span class="sig-name descname"><span class="pre">RadialWave</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">sources</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelength</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(-5,</span> <span class="pre">5)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(-5,</span> <span class="pre">5)</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/wave.html#RadialWave"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.RadialWave" title="Link to this definition">¶</a></dt>
+<dd><p>Wave surface that radiates from one or more point sources.</p>
+<p>The surface height is driven by a sinusoidal disturbance pattern based on the
+source positions and the current time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sources</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – The source points that generate the wave disturbance.</p></li>
+<li><p><strong>wavelength</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The wavelength of the wave.</p></li>
+<li><p><strong>period</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The period of the wave oscillation.</p></li>
+<li><p><strong>amplitude</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The amplitude of the wave displacement.</p></li>
+<li><p><strong>x_range</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – The x-domain range used to construct the surface.</p></li>
+<li><p><strong>y_range</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – The y-domain range used to construct the surface.</p></li>
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.three_d.three_dimensions.Surface.html#manim.mobject.three_d.three_dimensions.Surface" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Surface</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="radialwavescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: RadialWaveScene <a class="headerlink" href="#radialwavescene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./RadialWaveScene-082432ba.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.physics.wave</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadialWave</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RadialWaveScene</span><span class="p">(</span><span class="n">ThreeDScene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_camera_orientation</span><span class="p">(</span><span class="mi">60</span> <span class="o">*</span> <span class="n">DEGREES</span><span class="p">,</span> <span class="o">-</span><span class="mi">45</span> <span class="o">*</span> <span class="n">DEGREES</span><span class="p">)</span>
+        <span class="n">wave</span> <span class="o">=</span> <span class="n">RadialWave</span><span class="p">(</span>
+            <span class="n">LEFT</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">DOWN</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>  <span class="c1"># Two sources of waves</span>
+            <span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">DOWN</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="n">checkerboard_colors</span><span class="o">=</span><span class="p">[</span><span class="n">BLUE_D</span><span class="p">],</span>
+            <span class="n">stroke_width</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">x_range</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+            <span class="n">y_range</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">wave</span><span class="p">))</span>
+        <span class="n">wave</span><span class="o">.</span><span class="n">start_wave</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+        <span class="n">wave</span><span class="o">.</span><span class="n">stop_wave</span><span class="p">()</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.RadialWave._wave_z">
+<span class="sig-name descname"><span class="pre">_wave_z</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sources</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/wave.html#RadialWave._wave_z"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.RadialWave._wave_z" title="Link to this definition">¶</a></dt>
+<dd><p>Compute the wave height at position <code class="docutils literal notranslate"><span class="pre">(u,</span> <span class="pre">v)</span></code> summed over all sources.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The x-coordinate in the wave field.</p></li>
+<li><p><strong>v</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The y-coordinate in the wave field.</p></li>
+<li><p><strong>sources</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>]</span>) – Source points that contribute to the disturbance.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The cumulative wave height.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.RadialWave._update_wave">
+<span class="sig-name descname"><span class="pre">_update_wave</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/wave.html#RadialWave._update_wave"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.RadialWave._update_wave" title="Link to this definition">¶</a></dt>
+<dd><p>Advance the wave simulation by <code class="docutils literal notranslate"><span class="pre">dt</span></code> seconds and refresh the surface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mob</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The surface mobject being updated.</p></li>
+<li><p><strong>dt</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The time step since the last update.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.RadialWave.start_wave">
+<span class="sig-name descname"><span class="pre">start_wave</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/wave.html#RadialWave.start_wave"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.RadialWave.start_wave" title="Link to this definition">¶</a></dt>
+<dd><p>Animate the wave propagation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.RadialWave.stop_wave">
+<span class="sig-name descname"><span class="pre">stop_wave</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/wave.html#RadialWave.stop_wave"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.RadialWave.stop_wave" title="Link to this definition">¶</a></dt>
+<dd><p>Stop animating the wave propagation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.physics.Ray">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.</span></span><span class="sig-name descname"><span class="pre">Ray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/optics/rays.html#Ray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.Ray" title="Link to this definition">¶</a></dt>
+<dd><p>A light ray that can be refracted through lenses.</p>
+<p>A <a class="reference internal" href="optics/rays.Ray.html#manim_extensions.physics.optics.rays.Ray" title="manim_extensions.physics.optics.rays.Ray"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ray</span></code></a> extends <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a> with
+refraction logic based on Snell’s law.  When a list of <a class="reference internal" href="optics/lenses.Lens.html#manim_extensions.physics.optics.lenses.Lens" title="manim_extensions.physics.optics.lenses.Lens"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lens</span></code></a>
+objects is passed to the constructor or <a class="reference internal" href="optics/rays.Ray.html#manim_extensions.physics.optics.rays.Ray.propagate" title="manim_extensions.physics.optics.rays.Ray.propagate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">propagate()</span></code></a>, the ray
+automatically bends as it passes through each lens surface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Starting point of the ray.</p></li>
+<li><p><strong>direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Direction vector of the ray.</p></li>
+<li><p><strong>init_length</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Initial length of the ray.</p></li>
+<li><p><strong>propagate</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference internal" href="optics/lenses.Lens.html#manim_extensions.physics.optics.lenses.Lens" title="manim_extensions.physics.optics.lenses.Lens"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lens</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Lenses to propagate the ray through immediately upon construction.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="rayscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: RayScene <a class="headerlink" href="#rayscene">¶</a></p><img alt="../../_images/RayScene-d96c7b67.png" class="align-center" src="../../_images/RayScene-d96c7b67.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.physics.optics.lenses</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lens</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.physics.optics.rays</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ray</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RayScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">lens_style</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"fill_opacity"</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s2">"color"</span><span class="p">:</span> <span class="n">BLUE</span><span class="p">}</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">Lens</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">lens_style</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">LEFT</span><span class="p">)</span>
+        <span class="n">a2</span> <span class="o">=</span> <span class="n">Lens</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">lens_style</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">RIGHT</span><span class="p">)</span>
+        <span class="n">rays</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">Ray</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">+</span> <span class="n">UP</span> <span class="o">*</span> <span class="n">i</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">a2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="o">*</span><span class="n">rays</span><span class="p">)</span>
+        <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">content</span><span class="o">.</span><span class="n">height</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="p">:</span>
+            <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+        <span class="n">content</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.Ray.propagate">
+<span class="sig-name descname"><span class="pre">propagate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">lenses</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/optics/rays.html#Ray.propagate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.Ray.propagate" title="Link to this definition">¶</a></dt>
+<dd><p>Let the ray propagate through the list
+of lenses passed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>lenses</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="optics/lenses.Lens.html#manim_extensions.physics.optics.lenses.Lens" title="manim_extensions.physics.optics.lenses.Lens"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lens</span></code></a></span>) – All the lenses for the ray to propagate through.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.Ray._sort_lens">
+<span class="sig-name descname"><span class="pre">_sort_lens</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lenses</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/optics/rays.html#Ray._sort_lens"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.Ray._sort_lens" title="Link to this definition">¶</a></dt>
+<dd><p>Sort lenses by distance from the ray’s start to the intersection point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>lenses</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference internal" href="optics/lenses.Lens.html#manim_extensions.physics.optics.lenses.Lens" title="manim_extensions.physics.optics.lenses.Lens"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lens</span></code></a>]</span>) – Lenses to sort.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference internal" href="optics/lenses.Lens.html#manim_extensions.physics.optics.lenses.Lens" title="manim_extensions.physics.optics.lenses.Lens"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lens</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Lenses ordered by increasing distance from the ray start.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.Ray._sort_intersections">
+<span class="sig-name descname"><span class="pre">_sort_intersections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intersections</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/optics/rays.html#Ray._sort_intersections"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.Ray._sort_intersections" title="Link to this definition">¶</a></dt>
+<dd><p>Sort intersection points by distance from the ray’s current end point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>intersections</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>]</span>) – Intersection coordinates to sort.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Intersections ordered by increasing distance from the ray end.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.physics.Space">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.</span></span><span class="sig-name descname"><span class="pre">Space</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gravity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">-9.81)</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#Space"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.Space" title="Link to this definition">¶</a></dt>
+<dd><p>Physics space that manages a pymunk simulation.</p>
+<p>The <a class="reference internal" href="rigid_mechanics/rigid_mechanics.Space.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space" title="manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space"><code class="xref py py-class docutils literal notranslate"><span class="pre">Space</span></code></a> object wraps a <a class="reference external" href="https://www.pymunk.org/en/latest/pymunk.html#pymunk.Space" title="(in Pymunk)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Space</span></code></a> and is automatically
+added to every <a class="reference internal" href="rigid_mechanics/rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene" title="manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpaceScene</span></code></a>.  It owns the gravity configuration and
+the simulation step that is called each frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>gravity</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Gravity vector <span class="math notranslate nohighlight">\((x, y)\)</span>.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="space" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: Space <a class="headerlink" href="#space">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./Space-b5b7b30d.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.physics.rigid_mechanics.rigid_mechanics</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">SpaceScene</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Space</span><span class="p">(</span><span class="n">SpaceScene</span><span class="p">):</span>
+    <span class="n">GRAVITY</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ground</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">7</span><span class="p">,</span> <span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">7</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">DOWN</span> <span class="o">*</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="n">ball</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">(</span><span class="n">radius</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">stroke_color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">,</span>
+                      <span class="n">fill_color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">,</span> <span class="n">fill_opacity</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">ball</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">ground</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span> <span class="o">+</span> <span class="n">UP</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">ground</span><span class="p">),</span> <span class="n">FadeIn</span><span class="p">(</span><span class="n">ball</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">make_static_body</span><span class="p">(</span><span class="n">ground</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">make_rigid_body</span><span class="p">(</span><span class="n">ball</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">space</span><span class="o">.</span><span class="n">gravity</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">Group</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">mobjects</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.2</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.physics.SpaceScene">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.</span></span><span class="sig-name descname"><span class="pre">SpaceScene</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">renderer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#SpaceScene"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.SpaceScene" title="Link to this definition">¶</a></dt>
+<dd><p>Scene with built-in pymunk rigid-body physics.</p>
+<p><a class="reference internal" href="rigid_mechanics/rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene" title="manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene"><code class="xref py py-class docutils literal notranslate"><span class="pre">SpaceScene</span></code></a> is the base scene class for all rigid-mechanics
+animations.  It creates a <a class="reference internal" href="rigid_mechanics/rigid_mechanics.Space.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space" title="manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space"><code class="xref py py-class docutils literal notranslate"><span class="pre">Space</span></code></a> instance and sets up the
+simulation updater so that any mobject registered via
+<a class="reference internal" href="rigid_mechanics/rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_rigid_body" title="manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_rigid_body"><code class="xref py py-meth docutils literal notranslate"><span class="pre">make_rigid_body()</span></code></a> or <a class="reference internal" href="rigid_mechanics/rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_rigid_body" title="manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.make_rigid_body"><code class="xref py py-meth docutils literal notranslate"><span class="pre">make_rigid_body()</span></code></a> participates in the
+physics simulation.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The gravity vector can be customised by overriding the class
+attribute <a class="reference internal" href="rigid_mechanics/rigid_mechanics.SpaceScene.html#manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.GRAVITY" title="manim_extensions.physics.rigid_mechanics.rigid_mechanics.SpaceScene.GRAVITY"><code class="xref py py-attr docutils literal notranslate"><span class="pre">GRAVITY</span></code></a> before instantiation.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>renderer</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">CairoRenderer</span></code> | <code class="xref py py-class docutils literal notranslate"><span class="pre">OpenGLRenderer</span></code> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Renderer name forwarded to the parent <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a>.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Attributes</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.physics.SpaceScene.GRAVITY">
+<span class="sig-name descname"><span class="pre">GRAVITY</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(0,</span> <span class="pre">-9.81)</span></span><a class="headerlink" href="#manim_extensions.physics.SpaceScene.GRAVITY" title="Link to this definition">¶</a></dt>
+<dd><p>Default gravity vector applied by the physics space.</p>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<div id="spacesceneusage" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: SpaceSceneUsage <a class="headerlink" href="#spacesceneusage">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./SpaceSceneUsage-a626c955.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.physics.rigid_mechanics.rigid_mechanics</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">SpaceScene</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SpaceSceneUsage</span><span class="p">(</span><span class="n">SpaceScene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">circle</span> <span class="o">=</span> <span class="n">Circle</span><span class="p">()</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">UP</span><span class="p">)</span>
+        <span class="n">circle</span><span class="o">.</span><span class="n">set_fill</span><span class="p">(</span><span class="n">RED</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">circle</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">DOWN</span> <span class="o">+</span> <span class="n">RIGHT</span><span class="p">)</span>
+        <span class="n">rect</span> <span class="o">=</span> <span class="n">Square</span><span class="p">()</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">UP</span><span class="p">)</span>
+        <span class="n">rect</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="n">rect</span><span class="o">.</span><span class="n">set_fill</span><span class="p">(</span><span class="n">YELLOW_A</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">rect</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">UP</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">rect</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">ground</span> <span class="o">=</span> <span class="n">Line</span><span class="p">([</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="n">wall1</span> <span class="o">=</span> <span class="n">Line</span><span class="p">([</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="n">wall2</span> <span class="o">=</span> <span class="n">Line</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+        <span class="n">walls</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="n">ground</span><span class="p">,</span> <span class="n">wall1</span><span class="p">,</span> <span class="n">wall2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
+            <span class="n">DrawBorderThenFill</span><span class="p">(</span><span class="n">circle</span><span class="p">),</span>
+            <span class="n">DrawBorderThenFill</span><span class="p">(</span><span class="n">rect</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">walls</span><span class="p">)</span>
+        <span class="c1"># Mobjects will move with gravity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">make_rigid_body</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span> <span class="n">circle</span><span class="p">)</span>
+        <span class="c1"># Mobjects will stay in place</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">make_static_body</span><span class="p">(</span><span class="n">walls</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.SpaceScene.setup">
+<span class="sig-name descname"><span class="pre">setup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#SpaceScene.setup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.SpaceScene.setup" title="Link to this definition">¶</a></dt>
+<dd><p>Add the physics space to the scene and advance it every frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.SpaceScene.add_body">
+<span class="sig-name descname"><span class="pre">add_body</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">body</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#SpaceScene.add_body"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.SpaceScene.add_body" title="Link to this definition">¶</a></dt>
+<dd><p>Register a pymunk body’s shape in the physics space.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>body</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – A mobject whose <code class="docutils literal notranslate"><span class="pre">body</span></code> and <code class="docutils literal notranslate"><span class="pre">shape</span></code> attributes are pymunk
+objects to be added to the simulation space.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.SpaceScene.make_rigid_body">
+<span class="sig-name descname"><span class="pre">make_rigid_body</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">mobs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elasticity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.8</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">friction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#SpaceScene.make_rigid_body"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.SpaceScene.make_rigid_body" title="Link to this definition">¶</a></dt>
+<dd><p>Make any mobject movable by gravity.
+Equivalent to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a>’s <code class="docutils literal notranslate"><span class="pre">add</span></code> function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mobs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The mobs to be made rigid.</p></li>
+<li><p><strong>elasticity</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Elasticity of the mobjects.</p></li>
+<li><p><strong>density</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Density of the mobjects.</p></li>
+<li><p><strong>friction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Friction of the mobjects in regards to
+interacting with other rigid and static objects.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.SpaceScene.make_static_body">
+<span class="sig-name descname"><span class="pre">make_static_body</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">mobs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">elasticity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">friction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.8</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#SpaceScene.make_static_body"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.SpaceScene.make_static_body" title="Link to this definition">¶</a></dt>
+<dd><p>Make any mobject interactable by rigid objects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mobs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The mobs to be made static.</p></li>
+<li><p><strong>elasticity</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Elasticity of the mobjects.</p></li>
+<li><p><strong>friction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Friction of the mobjects in regards to
+interacting with rigid objects.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.SpaceScene.stop_rigidity">
+<span class="sig-name descname"><span class="pre">stop_rigidity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">mobs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#SpaceScene.stop_rigidity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.SpaceScene.stop_rigidity" title="Link to this definition">¶</a></dt>
+<dd><p>Stop the mobjects rigidity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mobs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – Mobs processed by this operation.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.physics.StandingWave">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.</span></span><span class="sig-name descname"><span class="pre">StandingWave</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">period</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">amplitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/wave.html#StandingWave"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.StandingWave" title="Link to this definition">¶</a></dt>
+<dd><p>A 2D standing wave formed by the superposition of opposing waves.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – The harmonic number of the standing wave.</p></li>
+<li><p><strong>length</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The spatial length of the wave domain.</p></li>
+<li><p><strong>period</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The time taken for one oscillation cycle.</p></li>
+<li><p><strong>amplitude</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The maximum vertical displacement of the wave.</p></li>
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.graphing.functions.ParametricFunction.html#manim.mobject.graphing.functions.ParametricFunction" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ParametricFunction</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="standingwavescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: StandingWaveScene <a class="headerlink" href="#standingwavescene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./StandingWaveScene-0154d4d7.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.physics.wave</span><span class="w"> </span><span class="kn">import</span> <span class="n">StandingWave</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">StandingWaveScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">wave1</span> <span class="o">=</span> <span class="n">StandingWave</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">wave2</span> <span class="o">=</span> <span class="n">StandingWave</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">wave3</span> <span class="o">=</span> <span class="n">StandingWave</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">wave4</span> <span class="o">=</span> <span class="n">StandingWave</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">waves</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="n">wave1</span><span class="p">,</span> <span class="n">wave2</span><span class="p">,</span> <span class="n">wave3</span><span class="p">,</span> <span class="n">wave4</span><span class="p">)</span>
+        <span class="n">waves</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">waves</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">wave</span> <span class="ow">in</span> <span class="n">waves</span><span class="p">:</span>
+            <span class="n">wave</span><span class="o">.</span><span class="n">start_wave</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.StandingWave._update_wave">
+<span class="sig-name descname"><span class="pre">_update_wave</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/wave.html#StandingWave._update_wave"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.StandingWave._update_wave" title="Link to this definition">¶</a></dt>
+<dd><p>Advance the standing-wave simulation and refresh the curve.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mob</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The parametric curve object being updated.</p></li>
+<li><p><strong>dt</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The time step since the last update.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.StandingWave.start_wave">
+<span class="sig-name descname"><span class="pre">start_wave</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/wave.html#StandingWave.start_wave"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.StandingWave.start_wave" title="Link to this definition">¶</a></dt>
+<dd><p>Begin the standing-wave animation and store its current center.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.StandingWave.stop_wave">
+<span class="sig-name descname"><span class="pre">stop_wave</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/wave.html#StandingWave.stop_wave"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.StandingWave.stop_wave" title="Link to this definition">¶</a></dt>
+<dd><p>Stop the standing-wave animation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.physics.Wire">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.</span></span><span class="sig-name descname"><span class="pre">Wire</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stroke</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">current</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">16</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/electromagnetism/magnetostatics.html#Wire"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.Wire" title="Link to this definition">¶</a></dt>
+<dd><p>An abstract class denoting a current carrying wire to produce a
+<a class="reference internal" href="electromagnetism/magnetostatics.MagneticField.html#manim_extensions.physics.electromagnetism.magnetostatics.MagneticField" title="manim_extensions.physics.electromagnetism.magnetostatics.MagneticField"><code class="xref py py-class docutils literal notranslate"><span class="pre">MagneticField</span></code></a>.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>See <a class="reference internal" href="electromagnetism/magnetostatics.MagneticField.html#manim_extensions.physics.electromagnetism.magnetostatics.MagneticField" title="manim_extensions.physics.electromagnetism.magnetostatics.MagneticField"><code class="xref py py-class docutils literal notranslate"><span class="pre">MagneticField</span></code></a> for examples.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>stroke</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a></span>) – The original wire <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a>. The resulting wire takes its form.</p></li>
+<li><p><strong>current</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The magnitude of current flowing in the wire.</p></li>
+<li><p><strong>samples</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – The number of segments of the wire used to create the
+<a class="reference internal" href="electromagnetism/magnetostatics.MagneticField.html#manim_extensions.physics.electromagnetism.magnetostatics.MagneticField" title="manim_extensions.physics.electromagnetism.magnetostatics.MagneticField"><code class="xref py py-class docutils literal notranslate"><span class="pre">MagneticField</span></code></a>.</p></li>
+<li><p><strong>kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional parameters passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="wirescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: WireScene <a class="headerlink" href="#wirescene">¶</a></p><img alt="../../_images/WireScene-523c13c8.png" class="align-center" src="../../_images/WireScene-523c13c8.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.physics.electromagnetism.magnetostatics</span><span class="w"> </span><span class="kn">import</span> <span class="n">Wire</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">WireScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">loop</span> <span class="o">=</span> <span class="n">Wire</span><span class="p">(</span><span class="n">Circle</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">2</span><span class="p">,</span> <span class="n">UP</span><span class="p">),</span> <span class="n">current</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="s2">"current = 2 A"</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">loop</span><span class="p">,</span> <span class="n">UP</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">loop</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="manim_extensions.physics.get_angle">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.</span></span><span class="sig-name descname"><span class="pre">get_angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mob</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#get_angle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.get_angle" title="Link to this definition">¶</a></dt>
+<dd><p>Obtains the angle of the body from the mobject.
+Used internally for updaters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mob</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a></span>) – The mobject to manipulate.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="manim_extensions.physics.get_shape">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.</span></span><span class="sig-name descname"><span class="pre">get_shape</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mob</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/physics/rigid_mechanics/rigid_mechanics.html#get_shape"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.get_shape" title="Link to this definition">¶</a></dt>
+<dd><p>Obtains the shape of the body from the mobject.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mob</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a></span>) – The mobject to manipulate.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <div class="vendored-status note admonition">
 <p class="admonition-title">Vendoring status: <code class="docutils literal notranslate"><span class="pre">manim-physics</span></code></p>
 <ul class="simple">
 <li><p>Vendored copy: synced at <code class="docutils literal notranslate"><span class="pre">d37580e07ac67d06c8dfbb78804b8a0256d1502b</span></code>.</p></li>
 <li><p>Currently vendored upstream commit: <a class="literal reference external" href="https://github.com/Matheart/manim-physics/commit/d37580e07ac67d06c8dfbb78804b8a0256d1502b">d37580e</a> (2026-10-15).</p></li>
-<li><p>Upstream data cached on 2026-11-26 11:45 (UTC+8).</p></li>
+<li><p>Upstream data cached on 2026-11-26 13:58 (UTC+8).</p></li>
 <li><p>The vendored copy is up to date with upstream.</p></li>
 </ul>
 </div>
@@ -1545,7 +2571,7 @@ through):</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">lens</span><span class="p">,</span> <span class="n">ray</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>References: <a class="reference internal" href="optics/lenses.Lens.html#manim_extensions.physics.optics.lenses.Lens" title="manim_extensions.physics.optics.lenses.Lens"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lens</span></code></a> <a class="reference internal" href="optics/rays.Ray.html#manim_extensions.physics.optics.rays.Ray" title="manim_extensions.physics.optics.rays.Ray"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ray</span></code></a></p>
+<p>References: <a class="reference internal" href="#manim_extensions.physics.Lens" title="manim_extensions.physics.Lens"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lens</span></code></a> <a class="reference internal" href="#manim_extensions.physics.Ray" title="manim_extensions.physics.Ray"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ray</span></code></a></p>
 </div></section>
 <section id="waves">
 <h3>Waves<a class="headerlink" href="#waves" title="Link to this heading">¶</a></h3>
@@ -1569,7 +2595,7 @@ surfaces. <a class="reference internal" href="wave.LinearWave.html#manim_extensi
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">StandingWave</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">period</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">amplitude</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">UP</span> <span class="o">*</span> <span class="mf">1.2</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>References: <a class="reference internal" href="wave.LinearWave.html#manim_extensions.physics.wave.LinearWave" title="manim_extensions.physics.wave.LinearWave"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinearWave</span></code></a> <a class="reference internal" href="wave.StandingWave.html#manim_extensions.physics.wave.StandingWave" title="manim_extensions.physics.wave.StandingWave"><code class="xref py py-class docutils literal notranslate"><span class="pre">StandingWave</span></code></a></p>
+<p>References: <a class="reference internal" href="#manim_extensions.physics.LinearWave" title="manim_extensions.physics.LinearWave"><code class="xref py py-class docutils literal notranslate"><span class="pre">LinearWave</span></code></a> <a class="reference internal" href="#manim_extensions.physics.StandingWave" title="manim_extensions.physics.StandingWave"><code class="xref py py-class docutils literal notranslate"><span class="pre">StandingWave</span></code></a></p>
 </div></section>
 <section id="rigid-mechanics">
 <h3>Rigid mechanics<a class="headerlink" href="#rigid-mechanics" title="Link to this heading">¶</a></h3>
@@ -1591,7 +2617,7 @@ surfaces. <a class="reference internal" href="wave.LinearWave.html#manim_extensi
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">pendulum</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>References: <a class="reference internal" href="rigid_mechanics/pendulum.Pendulum.html#manim_extensions.physics.rigid_mechanics.pendulum.Pendulum" title="manim_extensions.physics.rigid_mechanics.pendulum.Pendulum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pendulum</span></code></a></p>
+<p>References: <a class="reference internal" href="#manim_extensions.physics.Pendulum" title="manim_extensions.physics.Pendulum"><code class="xref py py-class docutils literal notranslate"><span class="pre">Pendulum</span></code></a></p>
 </div></section>
 <section id="electromagnetism">
 <h3>Electromagnetism<a class="headerlink" href="#electromagnetism" title="Link to this heading">¶</a></h3>
@@ -1622,7 +2648,7 @@ draw a current-carrying
         <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">charge</span><span class="p">,</span> <span class="n">ElectricField</span><span class="p">(</span><span class="n">charge</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.5</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>References: <a class="reference internal" href="electromagnetism/electrostatics.Charge.html#manim_extensions.physics.electromagnetism.electrostatics.Charge" title="manim_extensions.physics.electromagnetism.electrostatics.Charge"><code class="xref py py-class docutils literal notranslate"><span class="pre">Charge</span></code></a> <a class="reference internal" href="electromagnetism/electrostatics.ElectricField.html#manim_extensions.physics.electromagnetism.electrostatics.ElectricField" title="manim_extensions.physics.electromagnetism.electrostatics.ElectricField"><code class="xref py py-class docutils literal notranslate"><span class="pre">ElectricField</span></code></a> <a class="reference internal" href="electromagnetism/magnetostatics.Wire.html#manim_extensions.physics.electromagnetism.magnetostatics.Wire" title="manim_extensions.physics.electromagnetism.magnetostatics.Wire"><code class="xref py py-class docutils literal notranslate"><span class="pre">Wire</span></code></a> <a class="reference internal" href="electromagnetism/magnetostatics.MagneticField.html#manim_extensions.physics.electromagnetism.magnetostatics.MagneticField" title="manim_extensions.physics.electromagnetism.magnetostatics.MagneticField"><code class="xref py py-class docutils literal notranslate"><span class="pre">MagneticField</span></code></a></p>
+<p>References: <a class="reference internal" href="#manim_extensions.physics.Charge" title="manim_extensions.physics.Charge"><code class="xref py py-class docutils literal notranslate"><span class="pre">Charge</span></code></a> <a class="reference internal" href="#manim_extensions.physics.ElectricField" title="manim_extensions.physics.ElectricField"><code class="xref py py-class docutils literal notranslate"><span class="pre">ElectricField</span></code></a> <a class="reference internal" href="#manim_extensions.physics.Wire" title="manim_extensions.physics.Wire"><code class="xref py py-class docutils literal notranslate"><span class="pre">Wire</span></code></a> <a class="reference internal" href="#manim_extensions.physics.MagneticField" title="manim_extensions.physics.MagneticField"><code class="xref py py-class docutils literal notranslate"><span class="pre">MagneticField</span></code></a></p>
 </div></section>
 </section>
 <section id="modules">
@@ -1706,6 +2732,89 @@ draw a current-carrying
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Physics</a><ul>
+<li><a class="reference internal" href="#manim_extensions.physics.Charge"><code class="docutils literal notranslate"><span class="pre">Charge</span></code></a>
+</li>
+<li><a class="reference internal" href="#manim_extensions.physics.ElectricField"><code class="docutils literal notranslate"><span class="pre">ElectricField</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.physics.ElectricField._field_func"><code class="docutils literal notranslate"><span class="pre">ElectricField._field_func()</span></code></a></li>
+
+
+
+
+
+
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.physics.Lens"><code class="docutils literal notranslate"><span class="pre">Lens</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.physics.Lens.c"><code class="docutils literal notranslate"><span class="pre">Lens.c</span></code></a></li>
+
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.physics.LinearWave"><code class="docutils literal notranslate"><span class="pre">LinearWave</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.physics.LinearWave._wave_z"><code class="docutils literal notranslate"><span class="pre">LinearWave._wave_z()</span></code></a></li>
+
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.physics.MagneticField"><code class="docutils literal notranslate"><span class="pre">MagneticField</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.physics.MagneticField._field_func"><code class="docutils literal notranslate"><span class="pre">MagneticField._field_func()</span></code></a></li>
+
+
+
+
+
+
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.physics.MultiPendulum"><code class="docutils literal notranslate"><span class="pre">MultiPendulum</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.physics.MultiPendulum._make_joints"><code class="docutils literal notranslate"><span class="pre">MultiPendulum._make_joints()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.physics.MultiPendulum._redraw_rods"><code class="docutils literal notranslate"><span class="pre">MultiPendulum._redraw_rods()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.physics.MultiPendulum.start_swinging"><code class="docutils literal notranslate"><span class="pre">MultiPendulum.start_swinging()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.physics.MultiPendulum.end_swinging"><code class="docutils literal notranslate"><span class="pre">MultiPendulum.end_swinging()</span></code></a></li>
+
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.physics.Pendulum"><code class="docutils literal notranslate"><span class="pre">Pendulum</span></code></a>
+</li>
+<li><a class="reference internal" href="#manim_extensions.physics.RadialWave"><code class="docutils literal notranslate"><span class="pre">RadialWave</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.physics.RadialWave._wave_z"><code class="docutils literal notranslate"><span class="pre">RadialWave._wave_z()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.physics.RadialWave._update_wave"><code class="docutils literal notranslate"><span class="pre">RadialWave._update_wave()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.physics.RadialWave.start_wave"><code class="docutils literal notranslate"><span class="pre">RadialWave.start_wave()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.physics.RadialWave.stop_wave"><code class="docutils literal notranslate"><span class="pre">RadialWave.stop_wave()</span></code></a></li>
+
+
+
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.physics.Ray"><code class="docutils literal notranslate"><span class="pre">Ray</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.physics.Ray.propagate"><code class="docutils literal notranslate"><span class="pre">Ray.propagate()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.physics.Ray._sort_lens"><code class="docutils literal notranslate"><span class="pre">Ray._sort_lens()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.physics.Ray._sort_intersections"><code class="docutils literal notranslate"><span class="pre">Ray._sort_intersections()</span></code></a></li>
+
+
+
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.physics.Space"><code class="docutils literal notranslate"><span class="pre">Space</span></code></a>
+</li>
+<li><a class="reference internal" href="#manim_extensions.physics.SpaceScene"><code class="docutils literal notranslate"><span class="pre">SpaceScene</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.physics.SpaceScene.GRAVITY"><code class="docutils literal notranslate"><span class="pre">SpaceScene.GRAVITY</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.physics.SpaceScene.setup"><code class="docutils literal notranslate"><span class="pre">SpaceScene.setup()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.physics.SpaceScene.add_body"><code class="docutils literal notranslate"><span class="pre">SpaceScene.add_body()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.physics.SpaceScene.make_rigid_body"><code class="docutils literal notranslate"><span class="pre">SpaceScene.make_rigid_body()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.physics.SpaceScene.make_static_body"><code class="docutils literal notranslate"><span class="pre">SpaceScene.make_static_body()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.physics.SpaceScene.stop_rigidity"><code class="docutils literal notranslate"><span class="pre">SpaceScene.stop_rigidity()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.physics.StandingWave"><code class="docutils literal notranslate"><span class="pre">StandingWave</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.physics.StandingWave._update_wave"><code class="docutils literal notranslate"><span class="pre">StandingWave._update_wave()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.physics.StandingWave.start_wave"><code class="docutils literal notranslate"><span class="pre">StandingWave.start_wave()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.physics.StandingWave.stop_wave"><code class="docutils literal notranslate"><span class="pre">StandingWave.stop_wave()</span></code></a></li>
+
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.physics.Wire"><code class="docutils literal notranslate"><span class="pre">Wire</span></code></a>
+</li>
+<li><a class="reference internal" href="#manim_extensions.physics.get_angle"><code class="docutils literal notranslate"><span class="pre">get_angle()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.physics.get_shape"><code class="docutils literal notranslate"><span class="pre">get_shape()</span></code></a></li>
 <li><a class="reference internal" href="#features">Features</a></li>
 <li><a class="reference internal" href="#usage">Usage</a><ul>
 <li><a class="reference internal" href="#optics">Optics</a></li>
@@ -1733,6 +2842,7 @@ draw a current-carrying
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=61a6639c"></script>
     <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../_static/design-tabs.js?v=fcb327ea"></script>
+    <script defer="defer" src="../../_static/mathjax/tex-mml-svg.js?v=f093f569"></script>
     <script src="../../_static/responsiveSvg.js?v=f16afd2d"></script>
     <script src="../../_static/attributes-single.js?v=cee42560"></script>
     <script src="../../_static/icon_gallery.js?v=86f39e20"></script>

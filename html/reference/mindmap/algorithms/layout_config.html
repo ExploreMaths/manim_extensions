@@ -1491,6 +1491,237 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.mindmap.algorithms.layout_config">
 <span id="layout-config"></span><h1>layout_config<a class="headerlink" href="#module-manim_extensions.mindmap.algorithms.layout_config" title="Link to this heading">¶</a></h1>
+<p><a class="reference internal" href="layout.Layout.html#manim_extensions.mindmap.algorithms.layout.Layout" title="manim_extensions.mindmap.algorithms.layout.Layout"><code class="xref py py-class docutils literal notranslate"><span class="pre">Layout</span></code></a> configuration for mindmap algorithms.</p>
+<p>This module provides configuration classes for layout algorithms.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.layout_config.LayoutConfig">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.mindmap.algorithms.layout_config.</span></span><span class="sig-name descname"><span class="pre">LayoutConfig</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/directions.html#manim.constants.RIGHT"><span class="pre">RIGHT</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">node_spacing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">level_spacing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sides</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(</span><a class="reference internal" href="../../../constants/directions.html#manim.constants.UP"><span class="pre">UP</span></a><span class="pre">,</span> <a class="reference internal" href="../../../constants/directions.html#manim.constants.DOWN"><span class="pre">DOWN</span></a><span class="pre">)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/layout_config.html#LayoutConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutConfig" title="Link to this definition">¶</a></dt>
+<dd><p>Configuration options for mind-map layouts.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span>) – <a class="reference internal" href="layout.Layout.html#manim_extensions.mindmap.algorithms.layout.Layout" title="manim_extensions.mindmap.algorithms.layout.Layout"><code class="xref py py-class docutils literal notranslate"><span class="pre">Layout</span></code></a> direction.</p></li>
+<li><p><strong>node_spacing</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Spacing between nodes.</p></li>
+<li><p><strong>level_spacing</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Spacing between layers.</p></li>
+<li><p><strong>sides</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a> | <a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a>]</span>) – Sides used for alternating timeline layouts; a single value means single-sided.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – Raised when <code class="docutils literal notranslate"><span class="pre">direction</span></code> is not one of UP, DOWN, LEFT,
+    RIGHT, or when a side is not one of UP, DOWN.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="layoutconfigscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: LayoutConfigScene <a class="headerlink" href="#layoutconfigscene">¶</a></p><img alt="../../../_images/LayoutConfigScene-d03937c3.png" class="align-center" src="../../../_images/LayoutConfigScene-d03937c3.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap</span><span class="w"> </span><span class="kn">import</span> <span class="n">bfs_walker</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap.mindmap.base</span><span class="w"> </span><span class="kn">import</span> <span class="n">generate_tree</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap.algorithms.layout_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">LayoutConfig</span><span class="p">,</span> <span class="n">LayoutType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap.algorithms.layout_factory</span><span class="w"> </span><span class="kn">import</span> <span class="n">LayoutFactory</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">LayoutConfigScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">config</span> <span class="o">=</span> <span class="n">LayoutConfig</span><span class="p">(</span><span class="n">direction</span><span class="o">=</span><span class="n">UP</span><span class="p">,</span> <span class="n">node_spacing</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">level_spacing</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"node"</span><span class="p">:</span> <span class="n">Tex</span><span class="p">(</span><span class="s2">"Root"</span><span class="p">),</span>
+            <span class="s2">"child"</span><span class="p">:</span> <span class="p">[{</span><span class="s2">"node"</span><span class="p">:</span> <span class="n">Tex</span><span class="p">(</span><span class="s2">"A"</span><span class="p">)},</span> <span class="p">{</span><span class="s2">"node"</span><span class="p">:</span> <span class="n">Tex</span><span class="p">(</span><span class="s2">"B"</span><span class="p">)}],</span>
+        <span class="p">}</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">generate_tree</span><span class="p">(</span><span class="n">Map</span><span class="o">=</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">LayoutFactory</span><span class="o">.</span><span class="n">create_layout</span><span class="p">(</span>
+            <span class="n">LayoutType</span><span class="o">.</span><span class="n">MindMap</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">config</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">layout</span><span class="p">()</span>
+        <span class="n">mobjects</span> <span class="o">=</span> <span class="n">Group</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">bfs_walker</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">vmobject</span><span class="o">.</span><span class="n">move_to</span><span class="p">([</span><span class="n">node</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">surr_rect</span><span class="o">.</span><span class="n">move_to</span><span class="p">([</span><span class="n">node</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+            <span class="n">mobjects</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">vmobject</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">surr_rect</span><span class="p">)</span>
+        <span class="n">mobjects</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">mobjects</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.layout_config.LayoutConfig.get_layout_direction">
+<span class="sig-name descname"><span class="pre">get_layout_direction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/layout_config.html#LayoutConfig.get_layout_direction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutConfig.get_layout_direction" title="Link to this definition">¶</a></dt>
+<dd><p>Convert a direction vector to a <a class="reference internal" href="layout_config.LayoutDirection.html#manim_extensions.mindmap.algorithms.layout_config.LayoutDirection" title="manim_extensions.mindmap.algorithms.layout_config.LayoutDirection"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutDirection</span></code></a> enum.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span>) – The direction of the operation.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="layout_config.LayoutDirection.html#manim_extensions.mindmap.algorithms.layout_config.LayoutDirection" title="manim_extensions.mindmap.algorithms.layout_config.LayoutDirection"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutDirection</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The layout direction enum matching <code class="docutils literal notranslate"><span class="pre">direction</span></code>.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – Raised when <code class="docutils literal notranslate"><span class="pre">direction</span></code> is not one of UP, DOWN, LEFT or RIGHT.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.layout_config.LayoutConfig.catalog">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">catalog</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutConfig.catalog" title="Link to this definition">¶</a></dt>
+<dd><p>Return the catalog layout settings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A mapping with <code class="docutils literal notranslate"><span class="pre">node_spacing</span></code> and <code class="docutils literal notranslate"><span class="pre">level_spacing</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.layout_config.LayoutConfig.mindmap">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">mindmap</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutConfig.mindmap" title="Link to this definition">¶</a></dt>
+<dd><p>Return the mind map layout settings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p>A mapping with <code class="docutils literal notranslate"><span class="pre">direction</span></code>, <code class="docutils literal notranslate"><span class="pre">node_spacing</span></code> and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">level_spacing</span></code>.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.layout_config.LayoutConfig.timeline">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">timeline</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutConfig.timeline" title="Link to this definition">¶</a></dt>
+<dd><p>Return the timeline layout settings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A mapping with <code class="docutils literal notranslate"><span class="pre">node_spacing</span></code>, <code class="docutils literal notranslate"><span class="pre">level_spacing</span></code> and <code class="docutils literal notranslate"><span class="pre">sides</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.layout_config.LayoutDirection">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.mindmap.algorithms.layout_config.</span></span><span class="sig-name descname"><span class="pre">LayoutDirection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/layout_config.html#LayoutDirection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutDirection" title="Link to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="layout.Layout.html#manim_extensions.mindmap.algorithms.layout.Layout" title="manim_extensions.mindmap.algorithms.layout.Layout"><code class="xref py py-class docutils literal notranslate"><span class="pre">Layout</span></code></a> direction.</p>
+<p class="rubric">Attributes</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.layout_config.LayoutDirection.LeftToRight">
+<span class="sig-name descname"><span class="pre">LeftToRight</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'left</span> <span class="pre">to</span> <span class="pre">right'</span></span></span><a class="headerlink" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutDirection.LeftToRight" title="Link to this definition">¶</a></dt>
+<dd><p>Lay out branches from left to right.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.layout_config.LayoutDirection.RightToLeft">
+<span class="sig-name descname"><span class="pre">RightToLeft</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'right</span> <span class="pre">to</span> <span class="pre">left'</span></span></span><a class="headerlink" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutDirection.RightToLeft" title="Link to this definition">¶</a></dt>
+<dd><p>Lay out branches from right to left.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.layout_config.LayoutDirection.TopToBottom">
+<span class="sig-name descname"><span class="pre">TopToBottom</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'top</span> <span class="pre">to</span> <span class="pre">bottom'</span></span></span><a class="headerlink" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutDirection.TopToBottom" title="Link to this definition">¶</a></dt>
+<dd><p>Lay out branches from top to bottom.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.layout_config.LayoutDirection.BottomToTop">
+<span class="sig-name descname"><span class="pre">BottomToTop</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'bottom</span> <span class="pre">to</span> <span class="pre">top'</span></span></span><a class="headerlink" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutDirection.BottomToTop" title="Link to this definition">¶</a></dt>
+<dd><p>Lay out branches from bottom to top.</p>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<div id="layoutdirectionscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: LayoutDirectionScene <a class="headerlink" href="#layoutdirectionscene">¶</a></p><img alt="../../../_images/LayoutDirectionScene-7bda9b38.png" class="align-center" src="../../../_images/LayoutDirectionScene-7bda9b38.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap.algorithms.layout_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">LayoutDirection</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">LayoutDirectionScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">directions</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">(</span><span class="n">RIGHT</span><span class="p">,</span> <span class="n">LayoutDirection</span><span class="o">.</span><span class="n">LeftToRight</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">LayoutDirection</span><span class="o">.</span><span class="n">RightToLeft</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">LayoutDirection</span><span class="o">.</span><span class="n">TopToBottom</span><span class="p">),</span>
+            <span class="p">(</span><span class="n">UP</span><span class="p">,</span> <span class="n">LayoutDirection</span><span class="o">.</span><span class="n">BottomToTop</span><span class="p">),</span>
+        <span class="p">]</span>
+        <span class="n">panels</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">vector</span><span class="p">,</span> <span class="n">direction</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
+            <span class="n">arrow</span> <span class="o">=</span> <span class="n">Arrow</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">,</span> <span class="mf">1.2</span> <span class="o">*</span> <span class="n">vector</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stroke_width</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="n">direction</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+            <span class="n">label</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">arrow</span><span class="p">,</span> <span class="n">vector</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+            <span class="n">panels</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">VGroup</span><span class="p">(</span><span class="n">arrow</span><span class="p">,</span> <span class="n">label</span><span class="p">))</span>
+        <span class="n">panels</span><span class="o">.</span><span class="n">arrange_in_grid</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="p">(</span><span class="mf">1.5</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">panels</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.layout_config.LayoutType">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.mindmap.algorithms.layout_config.</span></span><span class="sig-name descname"><span class="pre">LayoutType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/layout_config.html#LayoutType"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutType" title="Link to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="layout.Layout.html#manim_extensions.mindmap.algorithms.layout.Layout" title="manim_extensions.mindmap.algorithms.layout.Layout"><code class="xref py py-class docutils literal notranslate"><span class="pre">Layout</span></code></a> algorithm.</p>
+<p class="rubric">Attributes</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.layout_config.LayoutType.MindMap">
+<span class="sig-name descname"><span class="pre">MindMap</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'tidytree'</span></span></span><a class="headerlink" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutType.MindMap" title="Link to this definition">¶</a></dt>
+<dd><p>Tidy-tree layout used for mind maps.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.layout_config.LayoutType.TimeLine">
+<span class="sig-name descname"><span class="pre">TimeLine</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'timeline'</span></span></span><a class="headerlink" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutType.TimeLine" title="Link to this definition">¶</a></dt>
+<dd><p>Timeline layout used for chronological maps.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.layout_config.LayoutType.Standard">
+<span class="sig-name descname"><span class="pre">Standard</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'standard'</span></span></span><a class="headerlink" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutType.Standard" title="Link to this definition">¶</a></dt>
+<dd><p>Standard hierarchical layout.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.layout_config.LayoutType.Catalog">
+<span class="sig-name descname"><span class="pre">Catalog</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'catalog'</span></span></span><a class="headerlink" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutType.Catalog" title="Link to this definition">¶</a></dt>
+<dd><p>Catalogue layout for grouped entries.</p>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<div id="layouttypescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: LayoutTypeScene <a class="headerlink" href="#layouttypescene">¶</a></p><img alt="../../../_images/LayoutTypeScene-2114a893.png" class="align-center" src="../../../_images/LayoutTypeScene-2114a893.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap</span><span class="w"> </span><span class="kn">import</span> <span class="n">CatalogMap</span><span class="p">,</span> <span class="n">MindMap</span><span class="p">,</span> <span class="n">StandardMap</span><span class="p">,</span> <span class="n">TimeLine</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap.algorithms.layout_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">LayoutType</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">LayoutTypeScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">"node"</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="sa">r</span><span class="s2">"\text</span><span class="si">{Root}</span><span class="s2">"</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">48</span><span class="p">),</span>
+            <span class="s2">"child"</span><span class="p">:</span> <span class="p">[</span>
+                <span class="p">{</span><span class="s2">"node"</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="sa">r</span><span class="s2">"A"</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">44</span><span class="p">)},</span>
+                <span class="p">{</span><span class="s2">"node"</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="sa">r</span><span class="s2">"B"</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">44</span><span class="p">)},</span>
+                <span class="p">{</span><span class="s2">"node"</span><span class="p">:</span> <span class="n">MathTex</span><span class="p">(</span><span class="sa">r</span><span class="s2">"C"</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">44</span><span class="p">)},</span>
+            <span class="p">],</span>
+        <span class="p">}</span>
+        <span class="n">maps</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span>
+            <span class="n">MindMap</span><span class="p">(</span><span class="n">data</span><span class="p">),</span>
+            <span class="n">TimeLine</span><span class="p">(</span><span class="n">data</span><span class="p">),</span>
+            <span class="n">StandardMap</span><span class="p">(</span><span class="n">data</span><span class="p">),</span>
+            <span class="n">CatalogMap</span><span class="p">(</span><span class="n">data</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="k">for</span> <span class="n">mind_map</span> <span class="ow">in</span> <span class="n">maps</span><span class="p">:</span>
+            <span class="n">mind_map</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">5.2</span><span class="p">)</span>
+        <span class="n">maps</span><span class="o">.</span><span class="n">arrange_in_grid</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">))</span>
+        <span class="n">maps</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">6.8</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">maps</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">mind_map</span><span class="p">,</span> <span class="n">layout_type</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">maps</span><span class="p">,</span> <span class="n">LayoutType</span><span class="p">):</span>
+            <span class="n">label</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="n">layout_type</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">24</span><span class="p">)</span>
+            <span class="n">label</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">mind_map</span><span class="p">,</span> <span class="n">UP</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.15</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1569,6 +1800,27 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">layout_config</a><ul>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutConfig"><code class="docutils literal notranslate"><span class="pre">LayoutConfig</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutConfig.get_layout_direction"><code class="docutils literal notranslate"><span class="pre">LayoutConfig.get_layout_direction()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutConfig.catalog"><code class="docutils literal notranslate"><span class="pre">LayoutConfig.catalog</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutConfig.mindmap"><code class="docutils literal notranslate"><span class="pre">LayoutConfig.mindmap</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutConfig.timeline"><code class="docutils literal notranslate"><span class="pre">LayoutConfig.timeline</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutDirection"><code class="docutils literal notranslate"><span class="pre">LayoutDirection</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutDirection.LeftToRight"><code class="docutils literal notranslate"><span class="pre">LayoutDirection.LeftToRight</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutDirection.RightToLeft"><code class="docutils literal notranslate"><span class="pre">LayoutDirection.RightToLeft</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutDirection.TopToBottom"><code class="docutils literal notranslate"><span class="pre">LayoutDirection.TopToBottom</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutDirection.BottomToTop"><code class="docutils literal notranslate"><span class="pre">LayoutDirection.BottomToTop</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutType"><code class="docutils literal notranslate"><span class="pre">LayoutType</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutType.MindMap"><code class="docutils literal notranslate"><span class="pre">LayoutType.MindMap</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutType.TimeLine"><code class="docutils literal notranslate"><span class="pre">LayoutType.TimeLine</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutType.Standard"><code class="docutils literal notranslate"><span class="pre">LayoutType.Standard</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.layout_config.LayoutType.Catalog"><code class="docutils literal notranslate"><span class="pre">LayoutType.Catalog</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

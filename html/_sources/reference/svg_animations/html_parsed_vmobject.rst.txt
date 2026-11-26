@@ -4,7 +4,7 @@
 html_parsed_vmobject
 ====================
 
-.. module:: manim_extensions.svg_animations.html_parsed_vmobject
+.. automodule:: manim_extensions.svg_animations.html_parsed_vmobject
 
 Classes
 -------

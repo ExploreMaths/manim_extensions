@@ -4,7 +4,7 @@
 decision_tree_surface
 =====================
 
-.. module:: manim_extensions.machine_learning.decision_tree.decision_tree_surface
+.. automodule:: manim_extensions.machine_learning.decision_tree.decision_tree_surface
 
 Classes
 -------

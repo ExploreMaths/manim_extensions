@@ -5,7 +5,7 @@
 ruler_scene
 ===========
 
-.. module:: manim_extensions.compass.scene.ruler_scene
+.. automodule:: manim_extensions.compass.scene.ruler_scene
 
 Classes
 -------

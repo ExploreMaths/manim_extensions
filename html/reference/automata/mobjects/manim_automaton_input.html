@@ -1491,6 +1491,113 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.automata.mobjects.manim_automaton_input">
 <span id="manim-automaton-input"></span><h1>manim_automaton_input<a class="headerlink" href="#module-manim_extensions.automata.mobjects.manim_automaton_input" title="Link to this heading">¶</a></h1>
+<p>Input representation for automata visualization.</p>
+<p>This module provides the <a class="reference internal" href="manim_automaton_input.ManimAutomataInput.html#manim_extensions.automata.mobjects.manim_automaton_input.ManimAutomataInput" title="manim_extensions.automata.mobjects.manim_automaton_input.ManimAutomataInput"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimAutomataInput</span></code></a> class for representing input strings in automata.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_automaton_input.ManimAutomataInput">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.automata.mobjects.manim_automaton_input.</span></span><span class="sig-name descname"><span class="pre">ManimAutomataInput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_string</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">animation_style</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_automaton_input.html#ManimAutomataInput"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_automaton_input.ManimAutomataInput" title="Link to this definition">¶</a></dt>
+<dd><p>Graphical representation of an input string used in automata animations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_string</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The string to display as input tokens.</p></li>
+<li><p><strong>animation_style</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>]</span>) – Styling configuration used to animate token highlighting.</p></li>
+<li><p><strong>font_size</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Font size used for each token.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="manimautomatainputscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ManimAutomataInputScene <a class="headerlink" href="#manimautomatainputscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./ManimAutomataInputScene-d851fba8.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.manim_animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimAnimations</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.manim_automaton_input</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimAutomataInput</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ManimAutomataInputScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">inp</span> <span class="o">=</span> <span class="n">ManimAutomataInput</span><span class="p">(</span><span class="s2">"0101"</span><span class="p">,</span> <span class="n">animation_style</span><span class="o">=</span><span class="p">{})</span>
+        <span class="n">inp</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">inp</span><span class="p">)</span>
+        <span class="n">animations</span> <span class="o">=</span> <span class="n">ManimAnimations</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">token</span> <span class="ow">in</span> <span class="n">inp</span><span class="o">.</span><span class="n">tokens</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">animations</span><span class="o">.</span><span class="n">animate_highlight_input_token</span><span class="p">(</span><span class="n">token</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">animations</span><span class="o">.</span><span class="n">animate_input_token_spent</span><span class="p">(</span><span class="n">token</span><span class="p">))</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_automaton_input.ManimAutomataInput.highlight_token">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">highlight_token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">animation_style</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_automaton_input.html#ManimAutomataInput.highlight_token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_automaton_input.ManimAutomataInput.highlight_token" title="Link to this definition">¶</a></dt>
+<dd><p>Highlight a token using the configured animation style.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>token</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.text.tex_mobject.MathTex.html#manim.mobject.text.tex_mobject.MathTex" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MathTex</span></code></a></span>) – The token to highlight.</p></li>
+<li><p><strong>animation_style</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a>]</span>) – Animation configuration containing the highlight function and color.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The animation highlighting the token.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_automaton_input.Token">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.automata.mobjects.manim_automaton_input.</span></span><span class="sig-name descname"><span class="pre">Token</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">token_symbol</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spacing</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/automata/mobjects/manim_automaton_input.html#Token"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_automaton_input.Token" title="Link to this definition">¶</a></dt>
+<dd><p>A single input token rendered as maths text.</p>
+<p>Each token has a unique numeric identifier and stores its horizontal
+spacing offset so that tokens can be laid out sequentially.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>token_symbol</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – The character or symbol to display.</p></li>
+<li><p><strong>spacing</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Horizontal offset applied when positioning the token.</p></li>
+<li><p><strong>font_size</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Font size for the token text.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.text.tex_mobject.MathTex.html#manim.mobject.text.tex_mobject.MathTex" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">MathTex</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Attributes</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_automaton_input.Token.id_iter">
+<span class="sig-name descname"><span class="pre">id_iter</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">itertools.count</span><span class="pre">()</span></span></span><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_automaton_input.Token.id_iter" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Examples</p>
+<div id="tokenscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: TokenScene <a class="headerlink" href="#tokenscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./TokenScene-99f39eb8.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata.mobjects.manim_automaton_input</span><span class="w"> </span><span class="kn">import</span> <span class="n">Token</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TokenScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">tokens</span> <span class="o">=</span> <span class="p">[</span><span class="n">Token</span><span class="p">(</span><span class="n">symbol</span><span class="p">,</span> <span class="n">spacing</span><span class="p">)</span> <span class="k">for</span> <span class="n">spacing</span><span class="p">,</span> <span class="n">symbol</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="s2">"010"</span><span class="p">)]</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="n">tokens</span><span class="p">)</span>
+        <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">2.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeToColor</span><span class="p">(</span><span class="n">tokens</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">PURE_YELLOW</span><span class="p">))</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1566,6 +1673,20 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">manim_automaton_input</a><ul>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_automaton_input.ManimAutomataInput"><code class="docutils literal notranslate"><span class="pre">ManimAutomataInput</span></code></a><ul>
+
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_automaton_input.ManimAutomataInput.highlight_token"><code class="docutils literal notranslate"><span class="pre">ManimAutomataInput.highlight_token()</span></code></a></li>
+
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_automaton_input.Token"><code class="docutils literal notranslate"><span class="pre">Token</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_automaton_input.Token.id_iter"><code class="docutils literal notranslate"><span class="pre">Token.id_iter</span></code></a></li>
+
+
+
+
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

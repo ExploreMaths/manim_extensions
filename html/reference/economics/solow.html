@@ -1491,6 +1491,453 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.economics.solow">
 <span id="solow"></span><h1>solow<a class="headerlink" href="#module-manim_extensions.economics.solow" title="Link to this heading">¶</a></h1>
+<p>Solow growth model diagram for Manim.</p>
+<p>This module provides the Solow growth model diagram.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.economics.solow.SolowDiagram">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.economics.solow.</span></span><span class="sig-name descname"><span class="pre">SolowDiagram</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_equilibrium</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">numbered_eq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_production</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/solow.html#SolowDiagram"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.solow.SolowDiagram" title="Link to this definition">¶</a></dt>
+<dd><p>Solow growth model diagram.</p>
+<p>Production function: <span class="math notranslate nohighlight">\(y = k^{\alpha}\)</span>
+Savings/investment: <span class="math notranslate nohighlight">\(sf(k) = s \cdot k^{\alpha}\)</span>
+Break-even investment: <span class="math notranslate nohighlight">\((\delta + n + g) \cdot k\)</span></p>
+<p>Steady state where <span class="math notranslate nohighlight">\(sf(k^*) = (\delta + n + g) \cdot k^*\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Savings rate.</p></li>
+<li><p><strong>alpha</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Capital share / production function exponent.</p></li>
+<li><p><strong>delta</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Depreciation rate.</p></li>
+<li><p><strong>n</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Population growth rate.</p></li>
+<li><p><strong>g</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Technological growth rate.</p></li>
+<li><p><strong>show_equilibrium</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, mark the steady-state equilibrium.</p></li>
+<li><p><strong>numbered_eq</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, label equilibria with subscripts that increment on each shift.</p></li>
+<li><p><strong>show_production</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, also draw the production function <span class="math notranslate nohighlight">\(f(k)\)</span>.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments passed to <a class="reference internal" href="base.EconDiagram.html#manim_extensions.economics.base.EconDiagram" title="manim_extensions.economics.base.EconDiagram"><code class="xref py py-class docutils literal notranslate"><span class="pre">EconDiagram</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Attributes</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.economics.solow.SolowDiagram._shares_group">
+<span class="sig-name descname"><span class="pre">_shares_group</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><span class="pre">VGroup</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></span><a class="headerlink" href="#manim_extensions.economics.solow.SolowDiagram._shares_group" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.economics.solow.SolowDiagram._golden_group">
+<span class="sig-name descname"><span class="pre">_golden_group</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><span class="pre">VGroup</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></span><a class="headerlink" href="#manim_extensions.economics.solow.SolowDiagram._golden_group" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p class="rubric">Examples</p>
+<div id="solowdiagramscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: SolowDiagramScene <a class="headerlink" href="#solowdiagramscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./SolowDiagramScene-2d72e19b.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.economics</span><span class="w"> </span><span class="kn">import</span> <span class="n">SolowDiagram</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SolowDiagramScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">diagram</span> <span class="o">=</span> <span class="n">SolowDiagram</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+                               <span class="n">n</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">g</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">show_production</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Create</span><span class="p">(</span><span class="n">diagram</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+
+        <span class="n">label</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="s2">"Increase in savings rate: s up"</span><span class="p">,</span>
+                     <span class="n">font_size</span><span class="o">=</span><span class="mi">28</span><span class="p">)</span><span class="o">.</span><span class="n">to_edge</span><span class="p">(</span><span class="n">UP</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Write</span><span class="p">(</span><span class="n">label</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">anim</span> <span class="ow">in</span> <span class="n">diagram</span><span class="o">.</span><span class="n">increase_savings</span><span class="p">(</span><span class="n">s</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">show_arrows</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">anim</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">diagram</span><span class="o">.</span><span class="n">show_shares</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.solow.SolowDiagram._make_prod_func">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">_make_prod_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/solow.html#SolowDiagram._make_prod_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.solow.SolowDiagram._make_prod_func" title="Link to this definition">¶</a></dt>
+<dd><p><span class="math notranslate nohighlight">\(y = k^\alpha\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>alpha</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Capital share in the production function.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A function mapping capital to output.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.solow.SolowDiagram._make_savings_func">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">_make_savings_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/solow.html#SolowDiagram._make_savings_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.solow.SolowDiagram._make_savings_func" title="Link to this definition">¶</a></dt>
+<dd><p><span class="math notranslate nohighlight">\(sf(k) = s \cdot k^\alpha\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Savings rate.</p></li>
+<li><p><strong>alpha</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Capital share in the production function.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A function mapping capital to savings per worker.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.solow.SolowDiagram._make_breakeven_func">
+<span class="property"><span class="k"><span class="pre">static</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">_make_breakeven_func</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/solow.html#SolowDiagram._make_breakeven_func"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.solow.SolowDiagram._make_breakeven_func" title="Link to this definition">¶</a></dt>
+<dd><p><span class="math notranslate nohighlight">\((\delta + n + g) \cdot k\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>delta</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Depreciation rate.</p></li>
+<li><p><strong>n</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Population growth rate; <code class="docutils literal notranslate"><span class="pre">None</span></code> is treated as zero.</p></li>
+<li><p><strong>g</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Technological growth rate.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A function mapping capital to break-even investment.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="manim_extensions.economics.solow.SolowDiagram._shares_visible">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">_shares_visible</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><a class="headerlink" href="#manim_extensions.economics.solow.SolowDiagram._shares_visible" title="Link to this definition">¶</a></dt>
+<dd><p>Return whether the share annotation is currently shown.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Whether the share annotation is present.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.solow.SolowDiagram._shift_with_shares">
+<span class="sig-name descname"><span class="pre">_shift_with_shares</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">curve_anim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_time</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/solow.html#SolowDiagram._shift_with_shares"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.solow.SolowDiagram._shift_with_shares" title="Link to this definition">¶</a></dt>
+<dd><p>Bundle a curve shift with a shares update when shares are visible.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>curve_anim</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a></span>) – Animation that shifts the curve.</p></li>
+<li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the shares replacement.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The curve animation alone, or a group that also replaces the share
+annotation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.solow.SolowDiagram.shift_savings">
+<span class="sig-name descname"><span class="pre">shift_savings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_arrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/solow.html#SolowDiagram.shift_savings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.solow.SolowDiagram.shift_savings" title="Link to this definition">¶</a></dt>
+<dd><p>Animate savings curve shifting due to change in savings rate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – New savings rate. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, keeps the current value.</p></li>
+<li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the shift animation.</p></li>
+<li><p><strong>show_arrows</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – <p>If True, draw arrows on the axes showing the direction of
+equilibrium change.</p>
+<p>If shares are visible, they update automatically.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The curve-shift animation, together with the share update
+if shares are visible.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.solow.SolowDiagram.shift_breakeven">
+<span class="sig-name descname"><span class="pre">shift_breakeven</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_arrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/solow.html#SolowDiagram.shift_breakeven"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.solow.SolowDiagram.shift_breakeven" title="Link to this definition">¶</a></dt>
+<dd><p>Animate break-even line shifting due to changes in <span class="math notranslate nohighlight">\(\delta\)</span>, <span class="math notranslate nohighlight">\(n\)</span>, or <span class="math notranslate nohighlight">\(g\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>delta</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – New depreciation rate. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, keeps the current value.</p></li>
+<li><p><strong>n</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – New population growth rate. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, keeps the current
+value.</p></li>
+<li><p><strong>g</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – New technological growth rate. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, keeps the current
+value.</p></li>
+<li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the shift animation.</p></li>
+<li><p><strong>show_arrows</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – <p>If True, draw arrows on the axes showing the direction of
+equilibrium change.</p>
+<p>If shares are visible, they update automatically.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The curve-shift animation, together with the share update
+if shares are visible.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.solow.SolowDiagram.increase_savings">
+<span class="sig-name descname"><span class="pre">increase_savings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_arrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/solow.html#SolowDiagram.increase_savings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.solow.SolowDiagram.increase_savings" title="Link to this definition">¶</a></dt>
+<dd><p>Higher savings rate → sf(k) shifts up → higher steady-state k.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – New savings rate (higher than current).</p></li>
+<li><p><strong>show_arrows</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, draw arrows on the axes showing the direction of
+equilibrium change.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of animations to play in sequence.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.solow.SolowDiagram.decrease_savings">
+<span class="sig-name descname"><span class="pre">decrease_savings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_arrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/solow.html#SolowDiagram.decrease_savings"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.solow.SolowDiagram.decrease_savings" title="Link to this definition">¶</a></dt>
+<dd><p>Lower savings rate → sf(k) shifts down → lower steady-state k.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>s</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – New savings rate (lower than current).</p></li>
+<li><p><strong>show_arrows</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, draw arrows on the axes showing the direction of
+equilibrium change.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of animations to play in sequence.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.solow.SolowDiagram.population_growth">
+<span class="sig-name descname"><span class="pre">population_growth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_arrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/solow.html#SolowDiagram.population_growth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.solow.SolowDiagram.population_growth" title="Link to this definition">¶</a></dt>
+<dd><p>Higher population growth → break-even steeper → lower steady-state k.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – New population growth rate (higher than current).</p></li>
+<li><p><strong>show_arrows</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, draw arrows on the axes showing the direction of
+equilibrium change.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of animations to play in sequence.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.solow.SolowDiagram.increase_depreciation">
+<span class="sig-name descname"><span class="pre">increase_depreciation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">delta</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_arrows</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/solow.html#SolowDiagram.increase_depreciation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.solow.SolowDiagram.increase_depreciation" title="Link to this definition">¶</a></dt>
+<dd><p>Higher depreciation → break-even steeper → lower steady-state k.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>delta</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – New depreciation rate (higher than current).</p></li>
+<li><p><strong>show_arrows</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If True, draw arrows on the axes showing the direction of
+equilibrium change.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of animations to play in sequence.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.solow.SolowDiagram._steady_state_k">
+<span class="sig-name descname"><span class="pre">_steady_state_k</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/solow.html#SolowDiagram._steady_state_k"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.solow.SolowDiagram._steady_state_k" title="Link to this definition">¶</a></dt>
+<dd><p>Compute steady-state capital: <span class="math notranslate nohighlight">\(sf(k^*) = (\delta+n+g)k^*\)</span>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The steady-state capital level, or <code class="docutils literal notranslate"><span class="pre">None</span></code> without an intersection.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.solow.SolowDiagram._build_shares">
+<span class="sig-name descname"><span class="pre">_build_shares</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../constants/colors.html#manim.utils.color.manim_colors.ORANGE"><span class="pre">ORANGE</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">i_color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../constants/colors.html#manim.utils.color.manim_colors.YELLOW"><span class="pre">YELLOW</span></a></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/solow.html#SolowDiagram._build_shares"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.solow.SolowDiagram._build_shares" title="Link to this definition">¶</a></dt>
+<dd><p>Build the share annotation group at a capital level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Capital level where the annotation is drawn.</p></li>
+<li><p><strong>c_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Colour of the consumption brace.</p></li>
+<li><p><strong>i_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Colour of the investment brace.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The group with the stem, braces, and share labels.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.solow.SolowDiagram.show_shares">
+<span class="sig-name descname"><span class="pre">show_shares</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../constants/colors.html#manim.utils.color.manim_colors.ORANGE"><span class="pre">ORANGE</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">i_color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../constants/colors.html#manim.utils.color.manim_colors.YELLOW"><span class="pre">YELLOW</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">run_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/solow.html#SolowDiagram.show_shares"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.solow.SolowDiagram.show_shares" title="Link to this definition">¶</a></dt>
+<dd><p>Show or update consumption/investment share annotations.</p>
+<p>Call again after a shift to animate the braces to the new position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Capital level.</p></li>
+<li><p><strong>c_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color for consumption brace/label.</p></li>
+<li><p><strong>i_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color for investment brace/label.</p></li>
+<li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the animation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.fading.FadeIn.html#manim.animation.fading.FadeIn" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FadeIn</span></code></a> | <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.transform.ReplacementTransform.html#manim.animation.transform.ReplacementTransform" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ReplacementTransform</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The animation revealing the consumption/investment shares, or
+<code class="docutils literal notranslate"><span class="pre">None</span></code> if there is no steady-state capital.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.solow.SolowDiagram.hide_shares">
+<span class="sig-name descname"><span class="pre">hide_shares</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/solow.html#SolowDiagram.hide_shares"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.solow.SolowDiagram.hide_shares" title="Link to this definition">¶</a></dt>
+<dd><p>Remove the share annotations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.fading.FadeOut.html#manim.animation.fading.FadeOut" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FadeOut</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.fading.FadeOut.html#manim.animation.fading.FadeOut" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FadeOut</span></code></a> animation removing the shares, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if the
+shares are not visible.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.solow.SolowDiagram.animate_shares_along">
+<span class="sig-name descname"><span class="pre">animate_shares_along</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k_start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">k_end</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c_color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../constants/colors.html#manim.utils.color.manim_colors.ORANGE"><span class="pre">ORANGE</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">i_color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../constants/colors.html#manim.utils.color.manim_colors.YELLOW"><span class="pre">YELLOW</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">run_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/solow.html#SolowDiagram.animate_shares_along"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.solow.SolowDiagram.animate_shares_along" title="Link to this definition">¶</a></dt>
+<dd><p>Animate the c/i share braces sliding from <code class="docutils literal notranslate"><span class="pre">k_start</span></code> to <code class="docutils literal notranslate"><span class="pre">k_end</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>k_start</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Capital level where the animation starts.</p></li>
+<li><p><strong>k_end</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Capital level where the animation ends.</p></li>
+<li><p><strong>c_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color for consumption brace/label.</p></li>
+<li><p><strong>i_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color for investment brace/label.</p></li>
+<li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the animation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.updaters.update.UpdateFromAlphaFunc.html#manim.animation.updaters.update.UpdateFromAlphaFunc" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">UpdateFromAlphaFunc</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The animation sliding the consumption/investment shares along
+the capital axis.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.solow.SolowDiagram._golden_rule_k">
+<span class="sig-name descname"><span class="pre">_golden_rule_k</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/solow.html#SolowDiagram._golden_rule_k"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.solow.SolowDiagram._golden_rule_k" title="Link to this definition">¶</a></dt>
+<dd><p>Compute golden-rule capital: <span class="math notranslate nohighlight">\(MPK = \delta + n + g\)</span>.</p>
+<p><span class="math notranslate nohighlight">\(f'(k) = \alpha k^{\alpha-1} = \delta+n+g \to k_{\mathrm{gold}} = (\alpha/(\delta+n+g))^{1/(1-\alpha)}\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The golden-rule capital level.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.solow.SolowDiagram.show_golden_rule">
+<span class="sig-name descname"><span class="pre">show_golden_rule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../constants/colors.html#manim.utils.color.manim_colors.PURPLE"><span class="pre">PURPLE</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">run_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/solow.html#SolowDiagram.show_golden_rule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.solow.SolowDiagram.show_golden_rule" title="Link to this definition">¶</a></dt>
+<dd><p>Mark the golden-rule capital level where consumption is maximized.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color of the golden-rule line and labels.</p></li>
+<li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – <p>Duration of the <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.fading.FadeIn.html#manim.animation.fading.FadeIn" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FadeIn</span></code></a> animation.</p>
+<p>Draws a vertical dashed line at <code class="docutils literal notranslate"><span class="pre">k_gold</span></code> with a label. The golden rule
+is where <span class="math notranslate nohighlight">\(MPK = \delta + n + g\)</span>, giving the savings rate that
+maximizes steady-state consumption.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.fading.FadeIn.html#manim.animation.fading.FadeIn" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FadeIn</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.fading.FadeIn.html#manim.animation.fading.FadeIn" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FadeIn</span></code></a> animation of the golden-rule line and labels.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.economics.solow.SolowDiagram.hide_golden_rule">
+<span class="sig-name descname"><span class="pre">hide_golden_rule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/economics/solow.html#SolowDiagram.hide_golden_rule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.economics.solow.SolowDiagram.hide_golden_rule" title="Link to this definition">¶</a></dt>
+<dd><p>Remove the golden-rule marker.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.fading.FadeOut.html#manim.animation.fading.FadeOut" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FadeOut</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.fading.FadeOut.html#manim.animation.fading.FadeOut" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FadeOut</span></code></a> animation removing the marker, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if the
+marker is not present.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +2010,30 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">solow</a><ul>
+<li><a class="reference internal" href="#manim_extensions.economics.solow.SolowDiagram"><code class="docutils literal notranslate"><span class="pre">SolowDiagram</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.economics.solow.SolowDiagram._shares_group"><code class="docutils literal notranslate"><span class="pre">SolowDiagram._shares_group</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.solow.SolowDiagram._golden_group"><code class="docutils literal notranslate"><span class="pre">SolowDiagram._golden_group</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.solow.SolowDiagram._make_prod_func"><code class="docutils literal notranslate"><span class="pre">SolowDiagram._make_prod_func()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.solow.SolowDiagram._make_savings_func"><code class="docutils literal notranslate"><span class="pre">SolowDiagram._make_savings_func()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.solow.SolowDiagram._make_breakeven_func"><code class="docutils literal notranslate"><span class="pre">SolowDiagram._make_breakeven_func()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.solow.SolowDiagram._shares_visible"><code class="docutils literal notranslate"><span class="pre">SolowDiagram._shares_visible</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.solow.SolowDiagram._shift_with_shares"><code class="docutils literal notranslate"><span class="pre">SolowDiagram._shift_with_shares()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.solow.SolowDiagram.shift_savings"><code class="docutils literal notranslate"><span class="pre">SolowDiagram.shift_savings()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.solow.SolowDiagram.shift_breakeven"><code class="docutils literal notranslate"><span class="pre">SolowDiagram.shift_breakeven()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.solow.SolowDiagram.increase_savings"><code class="docutils literal notranslate"><span class="pre">SolowDiagram.increase_savings()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.solow.SolowDiagram.decrease_savings"><code class="docutils literal notranslate"><span class="pre">SolowDiagram.decrease_savings()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.solow.SolowDiagram.population_growth"><code class="docutils literal notranslate"><span class="pre">SolowDiagram.population_growth()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.solow.SolowDiagram.increase_depreciation"><code class="docutils literal notranslate"><span class="pre">SolowDiagram.increase_depreciation()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.solow.SolowDiagram._steady_state_k"><code class="docutils literal notranslate"><span class="pre">SolowDiagram._steady_state_k()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.solow.SolowDiagram._build_shares"><code class="docutils literal notranslate"><span class="pre">SolowDiagram._build_shares()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.solow.SolowDiagram.show_shares"><code class="docutils literal notranslate"><span class="pre">SolowDiagram.show_shares()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.solow.SolowDiagram.hide_shares"><code class="docutils literal notranslate"><span class="pre">SolowDiagram.hide_shares()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.solow.SolowDiagram.animate_shares_along"><code class="docutils literal notranslate"><span class="pre">SolowDiagram.animate_shares_along()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.solow.SolowDiagram._golden_rule_k"><code class="docutils literal notranslate"><span class="pre">SolowDiagram._golden_rule_k()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.solow.SolowDiagram.show_golden_rule"><code class="docutils literal notranslate"><span class="pre">SolowDiagram.show_golden_rule()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.economics.solow.SolowDiagram.hide_golden_rule"><code class="docutils literal notranslate"><span class="pre">SolowDiagram.hide_golden_rule()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>
@@ -1582,6 +2053,7 @@
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=61a6639c"></script>
     <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../_static/design-tabs.js?v=fcb327ea"></script>
+    <script defer="defer" src="../../_static/mathjax/tex-mml-svg.js?v=f093f569"></script>
     <script src="../../_static/responsiveSvg.js?v=f16afd2d"></script>
     <script src="../../_static/attributes-single.js?v=cee42560"></script>
     <script src="../../_static/icon_gallery.js?v=86f39e20"></script>

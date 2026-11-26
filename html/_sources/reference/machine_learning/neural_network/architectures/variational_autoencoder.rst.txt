@@ -4,7 +4,7 @@
 variational_autoencoder
 =======================
 
-.. module:: manim_extensions.machine_learning.neural_network.architectures.variational_autoencoder
+.. automodule:: manim_extensions.machine_learning.neural_network.architectures.variational_autoencoder
 
 Classes
 -------

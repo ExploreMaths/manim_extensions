@@ -1491,6 +1491,146 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.machine_learning.decision_tree.decision_tree_embedding">
 <span id="decision-tree-embedding"></span><h1>decision_tree_embedding<a class="headerlink" href="#module-manim_extensions.machine_learning.decision_tree.decision_tree_embedding" title="Link to this heading">¶</a></h1>
+<p>Embedding of a dataset in feature space together with a decision tree’s areas.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.decision_tree.decision_tree_embedding.</span></span><span class="sig-name descname"><span class="pre">DecisionTreeEmbedding</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sklearn_tree</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">points</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">classes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">class_colors</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.04</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_embedding.html#DecisionTreeEmbedding"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding" title="Link to this definition">¶</a></dt>
+<dd><p>Two-dimensional embedding of a dataset plus the decision areas of a fitted tree.</p>
+<p>The data points are drawn on a pair of axes and the feature space is
+painted with the classification areas produced by the tree, so a split
+can be read together with the region it carves out.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sklearn_tree</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Union</span></code></a>[<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn.tree.DecisionTreeClassifier" title="(in scikit-learn v1.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code></a>, <a class="reference internal" href="helpers.SklearnTree.html#manim_extensions.machine_learning.decision_tree.helpers.SklearnTree" title="manim_extensions.machine_learning.decision_tree.helpers.SklearnTree"><code class="xref py py-class docutils literal notranslate"><span class="pre">SklearnTree</span></code></a>]</span>) – Fitted tree, either a
+<a class="reference external" href="https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html#sklearn.tree.DecisionTreeClassifier" title="(in scikit-learn v1.9)"><code class="xref py py-class docutils literal notranslate"><span class="pre">DecisionTreeClassifier</span></code></a> or its <code class="docutils literal notranslate"><span class="pre">tree_</span></code>
+attribute.</p></li>
+<li><p><strong>points</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Data points of the embedding the tree is fitted on.</p></li>
+<li><p><strong>classes</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Class label of each point in <code class="docutils literal notranslate"><span class="pre">points</span></code>.</p></li>
+<li><p><strong>axes</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.graphing.coordinate_systems.Axes.html#manim.mobject.graphing.coordinate_systems.Axes" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Axes</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Axes to place the embedding on. Axes sized to the data bounds are
+created when omitted.</p></li>
+<li><p><strong>class_colors</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Color per class, used for both the points and the decision areas.</p></li>
+<li><p><strong>point_radius</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Radius of the dot drawn for each data point.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – Raised when <code class="docutils literal notranslate"><span class="pre">points</span></code> is empty or when there are more classes
+    than colors.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="decisiontreeembeddingscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: DecisionTreeEmbeddingScene <a class="headerlink" href="#decisiontreeembeddingscene">¶</a></p><img alt="../../../_images/DecisionTreeEmbeddingScene-8ad14a06.png" class="align-center" src="../../../_images/DecisionTreeEmbeddingScene-8ad14a06.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_iris</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.tree</span><span class="w"> </span><span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.decision_tree.decision_tree_embedding</span><span class="w"> </span><span class="kn">import</span> <span class="n">DecisionTreeEmbedding</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DecisionTreeEmbeddingScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">iris</span> <span class="o">=</span> <span class="n">load_iris</span><span class="p">()</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">tree_clf</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">tree_clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+        <span class="n">embedding</span> <span class="o">=</span> <span class="n">DecisionTreeEmbedding</span><span class="p">(</span><span class="n">tree_clf</span><span class="p">,</span> <span class="n">points</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">embedding</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding.get_points_defining_boundary">
+<span class="sig-name descname"><span class="pre">get_points_defining_boundary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_embedding.html#DecisionTreeEmbedding.get_points_defining_boundary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding.get_points_defining_boundary" title="Link to this definition">¶</a></dt>
+<dd><p>Return every point of the embedding, used when computing its bounds.</p>
+<p>The default implementation stacks the boundary points of each
+submobject, which fails because the axes, the dots, and the decision
+areas have different point counts, so all points are returned instead.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>All points of the embedding.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding._make_axes">
+<span class="sig-name descname"><span class="pre">_make_axes</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_embedding.html#DecisionTreeEmbedding._make_axes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding._make_axes" title="Link to this definition">¶</a></dt>
+<dd><p>Make axes covering the data bounds with a small margin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.graphing.coordinate_systems.Axes.html#manim.mobject.graphing.coordinate_systems.Axes" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Axes</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Axes sized to the embedding.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding._make_points">
+<span class="sig-name descname"><span class="pre">_make_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point_radius</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_embedding.html#DecisionTreeEmbedding._make_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding._make_points" title="Link to this definition">¶</a></dt>
+<dd><p>Make one colored dot per data point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>point_radius</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Radius of each dot.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The dots of the embedding.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding.make_split_to_animation_map">
+<span class="sig-name descname"><span class="pre">make_split_to_animation_map</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_embedding.html#DecisionTreeEmbedding.make_split_to_animation_map"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding.make_split_to_animation_map" title="Link to this definition">¶</a></dt>
+<dd><p>Map each split node to the animation revealing the areas below it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Mapping from split node index to the animation of its decision
+areas.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding.create_override">
+<span class="sig-name descname"><span class="pre">create_override</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_embedding.html#DecisionTreeEmbedding.create_override"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding.create_override" title="Link to this definition">¶</a></dt>
+<dd><p>Reveal the axes, the data points, and every decision area at once.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The create animation of the whole embedding.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding.uncreate_override">
+<span class="sig-name descname"><span class="pre">uncreate_override</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/decision_tree/decision_tree_embedding.html#DecisionTreeEmbedding.uncreate_override"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding.uncreate_override" title="Link to this definition">¶</a></dt>
+<dd><p>Remove the decision areas, the data points, and the axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The reverse of
+<a class="reference internal" href="decision_tree_embedding.DecisionTreeEmbedding.html#manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding.create_override" title="manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding.create_override"><code class="xref py py-meth docutils literal notranslate"><span class="pre">create_override()</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1703,16 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">decision_tree_embedding</a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding"><code class="docutils literal notranslate"><span class="pre">DecisionTreeEmbedding</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding.get_points_defining_boundary"><code class="docutils literal notranslate"><span class="pre">DecisionTreeEmbedding.get_points_defining_boundary()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding._make_axes"><code class="docutils literal notranslate"><span class="pre">DecisionTreeEmbedding._make_axes()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding._make_points"><code class="docutils literal notranslate"><span class="pre">DecisionTreeEmbedding._make_points()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding.make_split_to_animation_map"><code class="docutils literal notranslate"><span class="pre">DecisionTreeEmbedding.make_split_to_animation_map()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding.create_override"><code class="docutils literal notranslate"><span class="pre">DecisionTreeEmbedding.create_override()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.decision_tree.decision_tree_embedding.DecisionTreeEmbedding.uncreate_override"><code class="docutils literal notranslate"><span class="pre">DecisionTreeEmbedding.uncreate_override()</span></code></a></li>
+
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

@@ -5,7 +5,7 @@
 utils
 =====
 
-.. module:: manim_extensions.circuit.utils
+.. automodule:: manim_extensions.circuit.utils
 
 Classes
 -------

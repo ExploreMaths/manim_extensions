@@ -4,7 +4,7 @@
 math_operation_layer
 ====================
 
-.. module:: manim_extensions.machine_learning.neural_network.layers.math_operation_layer
+.. automodule:: manim_extensions.machine_learning.neural_network.layers.math_operation_layer
 
 Classes
 -------

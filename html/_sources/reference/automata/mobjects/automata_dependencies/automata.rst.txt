@@ -5,7 +5,7 @@
 automata
 ========
 
-.. module:: manim_extensions.automata.mobjects.automata_dependencies.automata
+.. automodule:: manim_extensions.automata.mobjects.automata_dependencies.automata
 
 Classes
 -------

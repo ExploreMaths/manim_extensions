@@ -1491,6 +1491,137 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.chemistry.twoD.animations">
 <span id="animations"></span><h1>animations<a class="headerlink" href="#module-manim_extensions.chemistry.twoD.animations" title="Link to this heading">¶</a></h1>
+<p>Animation utilities for 2D chemistry molecules.</p>
+<p>This module provides the <a class="reference internal" href="animations.GMAnimationBuilder.html#manim_extensions.chemistry.twoD.animations.GMAnimationBuilder" title="manim_extensions.chemistry.twoD.animations.GMAnimationBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">GMAnimationBuilder</span></code></a> class for building molecule animations.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.animations.GMAnimationBuilder">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.twoD.animations.</span></span><span class="sig-name descname"><span class="pre">GMAnimationBuilder</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">molecule</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atoms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bonds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/animations.html#GMAnimationBuilder"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.animations.GMAnimationBuilder" title="Link to this definition">¶</a></dt>
+<dd><p>Builds animations for a <a class="reference internal" href="graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule" title="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">GraphMolecule</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>molecule</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule" title="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">GraphMolecule</span></code></a></span>) – The molecule the animations are built for.</p></li>
+<li><p><strong>atoms</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – The atoms to animate.</p></li>
+<li><p><strong>bonds</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – The bonds to animate.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="gmanimationbuilderscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: GMAnimationBuilderScene <a class="headerlink" href="#gmanimationbuilderscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./GMAnimationBuilderScene-f1f18a03.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry</span><span class="w"> </span><span class="kn">import</span> <span class="n">GMAnimationBuilder</span><span class="p">,</span> <span class="n">GraphMolecule</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">GMAnimationBuilderScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">molecule</span> <span class="o">=</span> <span class="n">GraphMolecule</span><span class="o">.</span><span class="n">molecule_from_file</span><span class="p">(</span>
+            <span class="s2">"dimethylpropane.mol"</span><span class="p">,</span>
+            <span class="n">label</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">numeric_label</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">ignore_hydrogens</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">atoms_and_bonds</span> <span class="o">=</span> <span class="n">molecule</span><span class="o">.</span><span class="n">get_connected_atoms_and_bonds</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="n">animation_builder</span> <span class="o">=</span> <span class="n">GMAnimationBuilder</span><span class="p">(</span>
+            <span class="n">molecule</span><span class="o">=</span><span class="n">molecule</span><span class="p">,</span>
+            <span class="n">atoms</span><span class="o">=</span><span class="n">atoms_and_bonds</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">bonds</span><span class="o">=</span><span class="n">atoms_and_bonds</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Write</span><span class="p">(</span><span class="n">molecule</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">animation_builder</span><span class="o">.</span><span class="n">rotate_atoms_about_bond</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
+            <span class="n">animation_builder</span><span class="o">.</span><span class="n">change_color</span><span class="p">(</span>
+                <span class="n">atoms_color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">,</span> <span class="n">bonds_color</span><span class="o">=</span><span class="n">RED</span><span class="p">,</span> <span class="n">label_color</span><span class="o">=</span><span class="n">PINK</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="manim-example-files">
+<div class="manim-file-row">
+  <span class="manim-file-badge" style="background:#2b8a3e">mol</span>
+  <span class="manim-file-meta">
+    <span class="manim-file-name">dimethylpropane.mol</span>
+    <span class="manim-file-size">1.6 KB</span>
+  </span>
+  <span class="manim-file-actions">
+    <a class="manim-file-action" href="https://github.com/ExploreMaths/manim_extensions/raw/main/examples/molecule_files/mol_files/dimethylpropane.mol" title="Download this file" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v9.2"/><path d="M8.4 10.4 12 14l3.6-3.6"/><path d="M5.2 16.4v1.8c0 .9.8 1.7 1.7 1.7h10.2c.9 0 1.7-.8 1.7-1.7v-1.8"/></svg></a>
+  </span>
+</div>
+</div></div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.animations.GMAnimationBuilder.bonds_from_atoms">
+<span class="sig-name descname"><span class="pre">bonds_from_atoms</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/animations.html#GMAnimationBuilder.bonds_from_atoms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.animations.GMAnimationBuilder.bonds_from_atoms" title="Link to this definition">¶</a></dt>
+<dd><p>Find and return the bond edge connecting two atom indices in the molecule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>atom_a</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of one of the atoms of the bond.</p></li>
+<li><p><strong>atom_b</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the other atom of the bond.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The bond edge connecting the two atom indices.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#Exception" title="(in Python v3.15)"><strong>Exception</strong></a> – Raised when no bond exists between <code class="docutils literal notranslate"><span class="pre">atom_a</span></code> and <code class="docutils literal notranslate"><span class="pre">atom_b</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.animations.GMAnimationBuilder.rotate_atoms_about_bond">
+<span class="sig-name descname"><span class="pre">rotate_atoms_about_bond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atom_a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">atom_b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">PI</span> <span class="pre">/</span> <span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/animations.html#GMAnimationBuilder.rotate_atoms_about_bond"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.animations.GMAnimationBuilder.rotate_atoms_about_bond" title="Link to this definition">¶</a></dt>
+<dd><p>Return animations rotating atoms around the bond axis between atom_a and atom_b.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>atom_a</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of one of the atoms of the bond.</p></li>
+<li><p><strong>atom_b</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Index of the other atom of the bond.</p></li>
+<li><p><strong>angle</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Angle of the rotation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The animations rotating the atoms around the bond axis.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.twoD.animations.GMAnimationBuilder.change_color">
+<span class="sig-name descname"><span class="pre">change_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atoms_color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.BLACK"><span class="pre">BLACK</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">bonds_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/twoD/animations.html#GMAnimationBuilder.change_color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.twoD.animations.GMAnimationBuilder.change_color" title="Link to this definition">¶</a></dt>
+<dd><p>Return color-change animations for atoms, bonds and optionally atom labels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>atoms_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – New color of the atoms.</p></li>
+<li><p><strong>bonds_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – New color of the bonds. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, bonds keep their color.</p></li>
+<li><p><strong>label_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – New color of the atom labels. If <code class="docutils literal notranslate"><span class="pre">None</span></code>, labels keep their
+color.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of the results.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1694,12 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">animations</a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.animations.GMAnimationBuilder"><code class="docutils literal notranslate"><span class="pre">GMAnimationBuilder</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.animations.GMAnimationBuilder.bonds_from_atoms"><code class="docutils literal notranslate"><span class="pre">GMAnimationBuilder.bonds_from_atoms()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.animations.GMAnimationBuilder.rotate_atoms_about_bond"><code class="docutils literal notranslate"><span class="pre">GMAnimationBuilder.rotate_atoms_about_bond()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.twoD.animations.GMAnimationBuilder.change_color"><code class="docutils literal notranslate"><span class="pre">GMAnimationBuilder.change_color()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

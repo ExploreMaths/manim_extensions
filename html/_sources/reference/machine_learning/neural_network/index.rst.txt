@@ -4,7 +4,7 @@
 neural_network
 ==============
 
-.. module:: manim_extensions.machine_learning.neural_network
+.. automodule:: manim_extensions.machine_learning.neural_network
 
 Classes
 -------

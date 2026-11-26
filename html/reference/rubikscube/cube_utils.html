@@ -1491,8 +1491,8 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.rubikscube.cube_utils">
 <span id="cube-utils"></span><h1>cube_utils<a class="headerlink" href="#module-manim_extensions.rubikscube.cube_utils" title="Link to this heading">¶</a></h1>
-<section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<p>Utility functions for Rubik’s Cube.</p>
+<p>This module provides utility functions for Rubik’s Cube operations.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.rubikscube.cube_utils.get_axis_from_face">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.rubikscube.cube_utils.</span></span><span class="sig-name descname"><span class="pre">get_axis_from_face</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">face</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/rubikscube/cube_utils.html#get_axis_from_face"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.rubikscube.cube_utils.get_axis_from_face" title="Link to this definition">¶</a></dt>
@@ -1622,6 +1622,137 @@ cube’s surface.</p>
 </dl>
 </dd></dl>
 
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.rubikscube.cube_utils.</span></span><span class="sig-name descname"><span class="pre">get_axis_from_face</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">face</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/rubikscube/cube_utils.html#get_axis_from_face"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dd><p>Return the rotation axis corresponding to a Rubik’s cube face.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>face</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code></a>[<span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'F'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'B'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'U'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'D'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'L'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'R'</span></span></code></span>]</span>) – Face identifier. One of <code class="docutils literal notranslate"><span class="pre">&quot;F&quot;</span></code> (front), <code class="docutils literal notranslate"><span class="pre">&quot;B&quot;</span></code> (back), <code class="docutils literal notranslate"><span class="pre">&quot;U&quot;</span></code> (up),
+<code class="docutils literal notranslate"><span class="pre">&quot;D&quot;</span></code> (down), <code class="docutils literal notranslate"><span class="pre">&quot;L&quot;</span></code> (left), or <code class="docutils literal notranslate"><span class="pre">&quot;R&quot;</span></code> (right).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3D</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The axis vector (<code class="docutils literal notranslate"><span class="pre">X_AXIS</span></code>, <code class="docutils literal notranslate"><span class="pre">Y_AXIS</span></code>, or <code class="docutils literal notranslate"><span class="pre">Z_AXIS</span></code>) about which the
+specified face rotates.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.rubikscube.cube_utils.</span></span><span class="sig-name descname"><span class="pre">get_direction_from_face</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">face</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/rubikscube/cube_utils.html#get_direction_from_face"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
+<dd><p>Return the rotation direction for a given face.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>face</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code></a>[<span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'F'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'B'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'U'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'D'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'L'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'R'</span></span></code></span>]</span>) – Face identifier (<code class="docutils literal notranslate"><span class="pre">&quot;F&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;B&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;U&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;D&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;L&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;R&quot;</span></code>).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">1</span></code> for clockwise, <code class="docutils literal notranslate"><span class="pre">-1</span></code> for counter-clockwise rotation
+when viewed from the face’s perspective.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.rubikscube.cube_utils.</span></span><span class="sig-name descname"><span class="pre">get_cubie_colors_from_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">state</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/rubikscube/cube_utils.html#get_cubie_colors_from_state"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
+<dd><p>Split a facelet state string into one colour list per cube face.</p>
+<p>The state string uses the standard facelet notation accepted by
+<a class="reference internal" href="cube.RubiksCube.html#manim_extensions.rubikscube.cube.RubiksCube.set_state" title="manim_extensions.rubikscube.cube.RubiksCube.set_state"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_state()</span></code></a>: the
+faces appear in the order Up, Right, Front, Down, Left, Back, each
+contributing <code class="docutils literal notranslate"><span class="pre">dim</span> <span class="pre">**</span> <span class="pre">2</span></code> colour characters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>state</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Cube state string (e.g. from <code class="docutils literal notranslate"><span class="pre">kociemba</span></code>).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>]]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Six lists of colour characters in Up, Right, Front, Down, Left,
+Back order.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – Raised when the length of <em>state</em> is not a multiple of six or is
+    empty.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.rubikscube.cube_utils.</span></span><span class="sig-name descname"><span class="pre">get_all_states</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cube</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/rubikscube/cube_utils.html#get_all_states"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id3" title="Link to this definition">¶</a></dt>
+<dd><p>Return the current facelet state of the cube.</p>
+<p>The faces are read in the same order and orientation used by
+<a class="reference internal" href="cube.RubiksCube.html#manim_extensions.rubikscube.cube.RubiksCube.set_state" title="manim_extensions.rubikscube.cube.RubiksCube.set_state"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_state()</span></code></a>, so the
+returned string round-trips through that method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cube</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="cube.RubiksCube.html#manim_extensions.rubikscube.cube.RubiksCube" title="manim_extensions.rubikscube.cube.RubiksCube"><code class="xref py py-class docutils literal notranslate"><span class="pre">RubiksCube</span></code></a></span>) – The cube whose state is queried.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Concatenated facelet string of all six faces.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – Raised when a sticker colour does not match any of the cube colours.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.rubikscube.cube_utils.</span></span><span class="sig-name descname"><span class="pre">get_type_of_cubie</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/rubikscube/cube_utils.html#get_type_of_cubie"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id4" title="Link to this definition">¶</a></dt>
+<dd><p>Classify a cubie by its position within the cube.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dim</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Size of the cube (e.g. <code class="docutils literal notranslate"><span class="pre">3</span></code> for a standard 3x3x3 cube).</p></li>
+<li><p><strong>position</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>) – <span class="math notranslate nohighlight">\((x, y, z)\)</span> Coordinates of the cubie.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>One of <code class="docutils literal notranslate"><span class="pre">&quot;corner&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;edge&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;center&quot;</span></code> depending on the
+cubie’s location.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id5">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.rubikscube.cube_utils.</span></span><span class="sig-name descname"><span class="pre">get_faces_of_cubie</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/rubikscube/cube_utils.html#get_faces_of_cubie"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id5" title="Link to this definition">¶</a></dt>
+<dd><p>Return the outward-facing directions for a cubie at a given position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dim</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Size of the cube (e.g. <code class="docutils literal notranslate"><span class="pre">3</span></code> for a standard 3x3x3 cube).</p></li>
+<li><p><strong>position</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>]</span>) – <span class="math notranslate nohighlight">\((x, y, z)\)</span> Coordinates of the cubie.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A list of direction vectors (e.g. LEFT, RIGHT, UP, DOWN,
+<code class="docutils literal notranslate"><span class="pre">IN</span></code>, <code class="docutils literal notranslate"><span class="pre">OUT</span></code>) indicating which faces of the cubie are exposed on the
+cube’s surface.</p>
+</dd>
+</dl>
+</dd></dl>
+
 </section>
 </section>
 
@@ -1681,13 +1812,19 @@ cube’s surface.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">cube_utils</a><ul>
-<li><a class="reference internal" href="#functions">Functions</a><ul>
 <li><a class="reference internal" href="#manim_extensions.rubikscube.cube_utils.get_axis_from_face"><code class="docutils literal notranslate"><span class="pre">get_axis_from_face()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.rubikscube.cube_utils.get_direction_from_face"><code class="docutils literal notranslate"><span class="pre">get_direction_from_face()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.rubikscube.cube_utils.get_cubie_colors_from_state"><code class="docutils literal notranslate"><span class="pre">get_cubie_colors_from_state()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.rubikscube.cube_utils.get_all_states"><code class="docutils literal notranslate"><span class="pre">get_all_states()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.rubikscube.cube_utils.get_type_of_cubie"><code class="docutils literal notranslate"><span class="pre">get_type_of_cubie()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.rubikscube.cube_utils.get_faces_of_cubie"><code class="docutils literal notranslate"><span class="pre">get_faces_of_cubie()</span></code></a></li>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">get_axis_from_face()</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">get_direction_from_face()</span></code></a></li>
+<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">get_cubie_colors_from_state()</span></code></a></li>
+<li><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">get_all_states()</span></code></a></li>
+<li><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">get_type_of_cubie()</span></code></a></li>
+<li><a class="reference internal" href="#id5"><code class="docutils literal notranslate"><span class="pre">get_faces_of_cubie()</span></code></a></li>
 </ul>
 </li>
 </ul>

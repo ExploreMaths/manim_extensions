@@ -1491,6 +1491,61 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.mindmap.algorithms.layout">
 <span id="layout"></span><h1>layout<a class="headerlink" href="#module-manim_extensions.mindmap.algorithms.layout" title="Link to this heading">¶</a></h1>
+<p><a class="reference internal" href="layout.Layout.html#manim_extensions.mindmap.algorithms.layout.Layout" title="manim_extensions.mindmap.algorithms.layout.Layout"><code class="xref py py-class docutils literal notranslate"><span class="pre">Layout</span></code></a> base class for mindmap algorithms.</p>
+<p>This module provides base class for layout algorithms.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.layout.Layout">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.mindmap.algorithms.layout.</span></span><span class="sig-name descname"><span class="pre">Layout</span></span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/layout.html#Layout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.layout.Layout" title="Link to this definition">¶</a></dt>
+<dd><p>Base class for layout algorithms.</p>
+<p class="rubric">Examples</p>
+<div id="layoutscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: LayoutScene <a class="headerlink" href="#layoutscene">¶</a></p><img alt="../../../_images/LayoutScene-7db3189f.png" class="align-center" src="../../../_images/LayoutScene-7db3189f.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span><span class="p">,</span> <span class="n">bfs_walker</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap.algorithms.layout</span><span class="w"> </span><span class="kn">import</span> <span class="n">Layout</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">LayoutScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">class</span><span class="w"> </span><span class="nc">HorizontalLayout</span><span class="p">(</span><span class="n">Layout</span><span class="p">):</span>
+            <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="n">root</span>
+            <span class="k">def</span><span class="w"> </span><span class="nf">layout</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bfs_walker</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)):</span>
+                    <span class="n">node</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mf">2.5</span> <span class="o">*</span> <span class="n">i</span> <span class="o">-</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">0</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">Text</span><span class="p">(</span><span class="s2">"Root"</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">32</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">WHITE</span><span class="p">)</span>
+        <span class="n">root</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">Node</span><span class="p">(</span><span class="n">Text</span><span class="p">(</span><span class="s2">"A"</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">32</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">))</span>
+        <span class="n">root</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">Node</span><span class="p">(</span><span class="n">Text</span><span class="p">(</span><span class="s2">"B"</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">32</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">GREEN</span><span class="p">))</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">HorizontalLayout</span><span class="p">(</span><span class="n">root</span><span class="p">)</span><span class="o">.</span><span class="n">layout</span><span class="p">()</span>
+        <span class="n">mobjects</span> <span class="o">=</span> <span class="n">Group</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">bfs_walker</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">vmobject</span><span class="o">.</span><span class="n">move_to</span><span class="p">([</span><span class="n">node</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">surr_rect</span><span class="o">.</span><span class="n">move_to</span><span class="p">([</span><span class="n">node</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+            <span class="n">mobjects</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">vmobject</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">surr_rect</span><span class="p">)</span>
+        <span class="n">mobjects</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">mobjects</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.layout.Layout.layout">
+<span class="sig-name descname"><span class="pre">layout</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/layout.html#Layout.layout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.layout.Layout.layout" title="Link to this definition">¶</a></dt>
+<dd><p>Run the layout computation and return the root node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The root node, with the layout coordinates filled in.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#NotImplementedError" title="(in Python v3.15)"><strong>NotImplementedError</strong></a> – Always raised; subclasses must implement the layout computation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1618,10 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">layout</a><ul>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.layout.Layout"><code class="docutils literal notranslate"><span class="pre">Layout</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.layout.Layout.layout"><code class="docutils literal notranslate"><span class="pre">Layout.layout()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

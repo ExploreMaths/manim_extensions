@@ -5,7 +5,7 @@
 mesh
 ====
 
-.. module:: manim_extensions.meshes.models.data_models.mesh
+.. automodule:: manim_extensions.meshes.models.data_models.mesh
 
 .. important::
 

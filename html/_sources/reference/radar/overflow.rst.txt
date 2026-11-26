@@ -5,7 +5,7 @@
 overflow
 ========
 
-.. module:: manim_extensions.radar.overflow
+.. automodule:: manim_extensions.radar.overflow
 
 Classes
 -------

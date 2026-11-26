@@ -4,7 +4,7 @@
 animations
 ==========
 
-.. module:: manim_extensions.machine_learning.neural_network.animations
+.. automodule:: manim_extensions.machine_learning.neural_network.animations
 
 Usage
 -----

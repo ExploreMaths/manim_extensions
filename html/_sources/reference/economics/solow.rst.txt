@@ -4,7 +4,7 @@
 solow
 =====
 
-.. module:: manim_extensions.economics.solow
+.. automodule:: manim_extensions.economics.solow
 
 Classes
 -------

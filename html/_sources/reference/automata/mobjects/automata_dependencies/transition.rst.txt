@@ -5,7 +5,7 @@
 transition
 ==========
 
-.. module:: manim_extensions.automata.mobjects.automata_dependencies.transition
+.. automodule:: manim_extensions.automata.mobjects.automata_dependencies.transition
 
 Classes
 -------

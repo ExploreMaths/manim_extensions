@@ -1491,26 +1491,7 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.machine_learning.diffusion.mcmc">
 <span id="mcmc"></span><h1>mcmc<a class="headerlink" href="#module-manim_extensions.machine_learning.diffusion.mcmc" title="Link to this heading">¶</a></h1>
-<section id="classes">
-<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
-<div class="table-wrapper autosummary longtable docutils container">
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="mcmc.MCMCAxes.html#manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes" title="manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MCMCAxes</span></code></a></p></td>
-<td><p>Container object for visualizing MCMC on a 2D axis.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="mcmc.MultidimensionalGaussianPosterior.html#manim_extensions.machine_learning.diffusion.mcmc.MultidimensionalGaussianPosterior" title="manim_extensions.machine_learning.diffusion.mcmc.MultidimensionalGaussianPosterior"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultidimensionalGaussianPosterior</span></code></a></p></td>
-<td><p>N-Dimensional Gaussian distribution with.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="mcmc.SampleDistributionImage.html#manim_extensions.machine_learning.diffusion.mcmc.SampleDistributionImage" title="manim_extensions.machine_learning.diffusion.mcmc.SampleDistributionImage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SampleDistributionImage</span></code></a></p></td>
-<td><p>KDE density plot rendered from two-dimensional samples.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<p>Tool for animating Markov Chain Monte Carlo simulations in 2D.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.machine_learning.diffusion.mcmc.gaussian_proposal">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.diffusion.mcmc.</span></span><span class="sig-name descname"><span class="pre">gaussian_proposal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/diffusion/mcmc.html#gaussian_proposal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.diffusion.mcmc.gaussian_proposal" title="Link to this definition">¶</a></dt>
@@ -1536,9 +1517,383 @@ of proposal densities is 1.</p>
 </dl>
 </dd></dl>
 
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.diffusion.mcmc.MultidimensionalGaussianPosterior">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.diffusion.mcmc.</span></span><span class="sig-name descname"><span class="pre">MultidimensionalGaussianPosterior</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ndim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12345</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mu</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">var</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/diffusion/mcmc.html#MultidimensionalGaussianPosterior"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.diffusion.mcmc.MultidimensionalGaussianPosterior" title="Link to this definition">¶</a></dt>
+<dd><p>N-Dimensional Gaussian distribution with.</p>
+<p><span class="math notranslate nohighlight">\(mu \sim \text{Normal}(0, 10)\)</span></p>
+<p><span class="math notranslate nohighlight">\(var \sim \text{LogNormal}(0, 1.5)\)</span></p>
+<p>Prior on mean is <span class="math notranslate nohighlight">\(U(-500, 500)\)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ndim</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Dimension of the distribution.</p></li>
+<li><p><strong>seed</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Random seed.</p></li>
+<li><p><strong>scale</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Scale of the prior on the mean.</p></li>
+<li><p><strong>mu</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Mean of the distribution; drawn from the prior if None.</p></li>
+<li><p><strong>var</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Variance of the distribution; drawn from the prior if None.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="multidimensionalgaussianposterioroverview" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: MultidimensionalGaussianPosteriorOverview <a class="headerlink" href="#multidimensionalgaussianposterioroverview">¶</a></p><img alt="../../../_images/MultidimensionalGaussianPosteriorOverview-61e12a08.png" class="align-center" src="../../../_images/MultidimensionalGaussianPosteriorOverview-61e12a08.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.diffusion.mcmc</span><span class="w"> </span><span class="kn">import</span> <span class="n">MultidimensionalGaussianPosterior</span>
+
+<span class="n">MultidimensionalGaussianPosteriorTarget</span> <span class="o">=</span> <span class="n">MultidimensionalGaussianPosterior</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MultidimensionalGaussianPosteriorOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">MultidimensionalGaussianPosteriorTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
+        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'MultidimensionalGaussianPosterior'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.machine_learning.diffusion.mcmc'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'N-Dimensional Gaussian distribution with'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.diffusion.mcmc</span><span class="w"> </span><span class="kn">import</span> <span class="n">MultidimensionalGaussianPosterior</span>
+
+<span class="n">posterior</span> <span class="o">=</span> <span class="n">MultidimensionalGaussianPosterior</span><span class="p">(</span><span class="n">ndim</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.diffusion.mcmc.MultidimensionalGaussianPosterior.__call__">
+<span class="sig-name descname"><span class="pre">__call__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/diffusion/mcmc.html#MultidimensionalGaussianPosterior.__call__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.diffusion.mcmc.MultidimensionalGaussianPosterior.__call__" title="Link to this definition">¶</a></dt>
+<dd><p>Evaluate the log density of the posterior.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Point at which to evaluate the density.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The log posterior density at <code class="docutils literal notranslate"><span class="pre">x</span></code>, or a large negative value when the
+point falls outside the supported range.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.machine_learning.diffusion.mcmc.metropolis_hastings_sampler">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.diffusion.mcmc.</span></span><span class="sig-name descname"><span class="pre">metropolis_hastings_sampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_prob_fn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">MultidimensionalGaussianPosterior()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop_fn</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="mcmc.html#manim_extensions.machine_learning.diffusion.mcmc.gaussian_proposal"><span class="pre">gaussian_proposal</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">initial_location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.array</span><span class="pre">([0,</span> <span class="pre">0])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warm_up</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampling_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/diffusion/mcmc.html#metropolis_hastings_sampler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.diffusion.mcmc.metropolis_hastings_sampler" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.diffusion.mcmc.</span></span><span class="sig-name descname"><span class="pre">metropolis_hastings_sampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_prob_fn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">MultidimensionalGaussianPosterior()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop_fn</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="mcmc.html#id0"><span class="pre">gaussian_proposal</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">initial_location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.array</span><span class="pre">([0,</span> <span class="pre">0])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warm_up</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampling_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/diffusion/mcmc.html#metropolis_hastings_sampler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.diffusion.mcmc.metropolis_hastings_sampler" title="Link to this definition">¶</a></dt>
+<dd><p>Samples using a Metropolis-Hastings sampler.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>log_prob_fn</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Function to compute log-posterior.</p></li>
+<li><p><strong>prop_fn</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]</span>) – Function to compute proposal location.</p></li>
+<li><p><strong>initial_location</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Initial location for the chain.</p></li>
+<li><p><strong>iterations</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Number of iterations of the markov chain.</p></li>
+<li><p><strong>warm_up</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Number of warm up iterations.</p></li>
+<li><p><strong>ndim</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Dimension of the state space.</p></li>
+<li><p><strong>sampling_seed</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Random seed for the sampler.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>, <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ndarray</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Numpy array of 2D samples of length <code class="docutils literal notranslate"><span class="pre">iterations</span></code>.
+Numpy array of 2D warm up samples of length <code class="docutils literal notranslate"><span class="pre">warm_up</span></code>.
+Numpy array of the candidate samples for each time step.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.diffusion.mcmc.SampleDistributionImage">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.diffusion.mcmc.</span></span><span class="sig-name descname"><span class="pre">SampleDistributionImage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">samples</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/diffusion/mcmc.html#SampleDistributionImage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.diffusion.mcmc.SampleDistributionImage" title="Link to this definition">¶</a></dt>
+<dd><p>KDE density plot rendered from two-dimensional samples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>samples</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – 2D array of samples used to estimate the KDE density plot.</p></li>
+<li><p><strong>ylim</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Limits of the y-axis as <code class="docutils literal notranslate"><span class="pre">[ymin,</span> <span class="pre">ymax]</span></code>.</p></li>
+<li><p><strong>xlim</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sequence</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Limits of the x-axis as <code class="docutils literal notranslate"><span class="pre">[xmin,</span> <span class="pre">xmax]</span></code>.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Keyword arguments forwarded to
+<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.image_mobject.ImageMobject.html#manim.mobject.types.image_mobject.ImageMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageMobject</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="gaussiankde" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: GaussianKde <a class="headerlink" href="#gaussiankde">¶</a></p><img alt="../../../_images/GaussianKde-7cd23e11.png" class="align-center" src="../../../_images/GaussianKde-7cd23e11.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.diffusion.mcmc</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">SampleDistributionImage</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">GaussianKde</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+        <span class="n">samples</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">scale</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="n">image</span> <span class="o">=</span> <span class="n">SampleDistributionImage</span><span class="p">(</span>
+            <span class="n">samples</span><span class="p">,</span> <span class="n">ylim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">xlim</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">image</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">image</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.diffusion.mcmc.</span></span><span class="sig-name descname"><span class="pre">MCMCAxes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dot_color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.BLUE"><span class="pre">BLUE</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">dot_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.02</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">accept_line_color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.GREEN"><span class="pre">GREEN</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">reject_line_color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.RED"><span class="pre">RED</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">line_color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.BLUE"><span class="pre">BLUE</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">line_stroke_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[-3,</span> <span class="pre">3]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[-3,</span> <span class="pre">3]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/diffusion/mcmc.html#MCMCAxes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes" title="Link to this definition">¶</a></dt>
+<dd><p>Container object for visualizing MCMC on a 2D axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dot_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color of the dots marking chain samples.</p></li>
+<li><p><strong>dot_radius</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Radius of the dots marking chain samples.</p></li>
+<li><p><strong>accept_line_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color of the lines for accepted transitions.</p></li>
+<li><p><strong>reject_line_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color of the lines for rejected transitions.</p></li>
+<li><p><strong>line_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color of the transition lines.</p></li>
+<li><p><strong>line_stroke_width</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Stroke width of the transition lines.</p></li>
+<li><p><strong>x_range</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Range of the x-axis.</p></li>
+<li><p><strong>y_range</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Range of the y-axis.</p></li>
+<li><p><strong>x_length</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Length of the x-axis.</p></li>
+<li><p><strong>y_length</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Length of the y-axis.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="mcmcaxesscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: MCMCAxesScene <a class="headerlink" href="#mcmcaxesscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./MCMCAxesScene-2ab5a4b0.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.stats</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.diffusion.mcmc</span><span class="w"> </span><span class="kn">import</span> <span class="n">MCMCAxes</span>
+<span class="c1"># Square layout used by the upstream ManimML example</span>
+<span class="n">config</span><span class="o">.</span><span class="n">pixel_height</span> <span class="o">=</span> <span class="mi">720</span>
+<span class="n">config</span><span class="o">.</span><span class="n">pixel_width</span> <span class="o">=</span> <span class="mi">720</span>
+<span class="n">config</span><span class="o">.</span><span class="n">frame_height</span> <span class="o">=</span> <span class="mf">7.0</span>
+<span class="n">config</span><span class="o">.</span><span class="n">frame_width</span> <span class="o">=</span> <span class="mf">7.0</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MCMCAxesScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Gaussian mixture likelihood</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">log_prob_fn</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+            <span class="n">big_gaussian_pdf</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span>
+                <span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">],</span> <span class="n">cov</span><span class="o">=</span><span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="n">little_gaussian_pdf</span> <span class="o">=</span> <span class="n">scipy</span><span class="o">.</span><span class="n">stats</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span>
+                <span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="mf">2.3</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">],</span> <span class="n">cov</span><span class="o">=</span><span class="p">[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]</span>
+            <span class="p">)</span><span class="o">.</span><span class="n">pdf</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">big_gaussian_pdf</span> <span class="o">+</span> <span class="n">little_gaussian_pdf</span><span class="p">)</span>
+
+        <span class="c1"># Generate true samples from both components</span>
+        <span class="n">big_gaussian_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span>
+            <span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">],</span>
+            <span class="n">cov</span><span class="o">=</span><span class="p">[[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]],</span>
+            <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">little_gaussian_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span>
+            <span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="mf">2.3</span><span class="p">,</span> <span class="mf">1.9</span><span class="p">],</span>
+            <span class="n">cov</span><span class="o">=</span><span class="p">[[</span><span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]],</span>
+            <span class="n">size</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">true_samples</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span>
+            <span class="p">(</span><span class="n">big_gaussian_samples</span><span class="p">,</span> <span class="n">little_gaussian_samples</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">axes</span> <span class="o">=</span> <span class="n">MCMCAxes</span><span class="p">(</span>
+            <span class="n">x_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+            <span class="n">y_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+            <span class="n">x_length</span><span class="o">=</span><span class="mf">7.0</span><span class="p">,</span>
+            <span class="n">y_length</span><span class="o">=</span><span class="mf">7.0</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">axes</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Create</span><span class="p">(</span><span class="n">axes</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span>
+            <span class="n">axes</span><span class="o">.</span><span class="n">visualize_metropolis_hastings_chain_sampling</span><span class="p">(</span>
+                <span class="n">log_prob_fn</span><span class="o">=</span><span class="n">log_prob_fn</span><span class="p">,</span>
+                <span class="n">true_samples</span><span class="o">=</span><span class="n">true_samples</span><span class="p">,</span>
+                <span class="n">sampling_kwargs</span><span class="o">=</span><span class="p">{</span>
+                    <span class="s2">"iterations"</span><span class="p">:</span> <span class="mi">800</span><span class="p">,</span>
+                    <span class="s2">"warm_up"</span><span class="p">:</span> <span class="mi">50</span><span class="p">,</span>
+                    <span class="s2">"initial_location"</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">3.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">]),</span>
+                    <span class="s2">"sampling_seed"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+                <span class="p">},</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes._create_override">
+<span class="sig-name descname"><span class="pre">_create_override</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/diffusion/mcmc.html#MCMCAxes._create_override"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes._create_override" title="Link to this definition">¶</a></dt>
+<dd><p>Create the axes with a guarded animation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Keyword arguments forwarded to the creation animation.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The animation group that draws the axes.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes.visualize_gaussian_proposal_about_point">
+<span class="sig-name descname"><span class="pre">visualize_gaussian_proposal_about_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/diffusion/mcmc.html#MCMCAxes.visualize_gaussian_proposal_about_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes.visualize_gaussian_proposal_about_point" title="Link to this definition">¶</a></dt>
+<dd><p>Creates a Gaussian distribution about a certain point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mean</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Mean of proposal distribution.</p></li>
+<li><p><strong>cov</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Covariance matrix of proposal distribution.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Animation of creating the proposal Gaussian distribution.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes.make_transition_animation">
+<span class="sig-name descname"><span class="pre">make_transition_animation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">candidate_point</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_dots</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">run_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/diffusion/mcmc.html#MCMCAxes.make_transition_animation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes.make_transition_animation" title="Link to this definition">¶</a></dt>
+<dd><p>Makes an transition animation for a single point on a Markov Chain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – Start point of the transition.</p></li>
+<li><p><strong>end_point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – End point of the transition.</p></li>
+<li><p><strong>candidate_point</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – Candidate point proposed for the transition.</p></li>
+<li><p><strong>show_dots</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether or not to show the dots.</p></li>
+<li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the transition animation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a>, <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Animation of the transition from start to end.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes.show_ground_truth_gaussian">
+<span class="sig-name descname"><span class="pre">show_ground_truth_gaussian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distribution</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/diffusion/mcmc.html#MCMCAxes.show_ground_truth_gaussian"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes.show_ground_truth_gaussian" title="Link to this definition">¶</a></dt>
+<dd><p>Create and display the ground-truth Gaussian distribution as a semi-transparent ellipse.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>distribution</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="mcmc.MultidimensionalGaussianPosterior.html#manim_extensions.machine_learning.diffusion.mcmc.MultidimensionalGaussianPosterior" title="manim_extensions.machine_learning.diffusion.mcmc.MultidimensionalGaussianPosterior"><code class="xref py py-class docutils literal notranslate"><span class="pre">MultidimensionalGaussianPosterior</span></code></a></span>) – Gaussian distribution with <code class="docutils literal notranslate"><span class="pre">mu</span></code> and <code class="docutils literal notranslate"><span class="pre">var</span></code> attributes used to
+construct the displayed ellipse.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes.visualize_metropolis_hastings_chain_sampling">
+<span class="sig-name descname"><span class="pre">visualize_metropolis_hastings_chain_sampling</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_prob_fn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">MultidimensionalGaussianPosterior()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop_fn</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="mcmc.html#id0"><span class="pre">gaussian_proposal</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">show_dots</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">true_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampling_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/diffusion/mcmc.html#MCMCAxes.visualize_metropolis_hastings_chain_sampling"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes.visualize_metropolis_hastings_chain_sampling" title="Link to this definition">¶</a></dt>
+<dd><p>Makes an animation for visualizing a 2D markov chain using
+metropolis hastings samplings.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>axes</strong> – Manim 2D axes to plot the chain on.</p></li>
+<li><p><strong>log_prob_fn</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – Function to compute log-posterior.</p></li>
+<li><p><strong>prop_fn</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]]</span>) – Function to compute proposal location.</p></li>
+<li><p><strong>initial_location</strong> – Initial location for the markov chain.</p></li>
+<li><p><strong>show_dots</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether or not to show the dots on the screen.</p></li>
+<li><p><strong>iterations</strong> – Number of iterations of the markov chain.</p></li>
+<li><p><strong>true_samples</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Ground-truth samples used to render the KDE density background.</p></li>
+<li><p><strong>sampling_kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Additional keyword arguments forwarded to
+metropolis_hastings_sampler.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.Succession.html#manim.animation.composition.Succession" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Succession</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Animation for creating the markov chain.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="mcmc.MCMCAxes.html#manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes" title="manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MCMCAxes</span></code></a></p></td>
+<td><p>Container object for visualizing MCMC on a 2D axis.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="mcmc.MultidimensionalGaussianPosterior.html#manim_extensions.machine_learning.diffusion.mcmc.MultidimensionalGaussianPosterior" title="manim_extensions.machine_learning.diffusion.mcmc.MultidimensionalGaussianPosterior"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MultidimensionalGaussianPosterior</span></code></a></p></td>
+<td><p>N-Dimensional Gaussian distribution with.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="mcmc.SampleDistributionImage.html#manim_extensions.machine_learning.diffusion.mcmc.SampleDistributionImage" title="manim_extensions.machine_learning.diffusion.mcmc.SampleDistributionImage"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SampleDistributionImage</span></code></a></p></td>
+<td><p>KDE density plot rendered from two-dimensional samples.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.diffusion.mcmc.</span></span><span class="sig-name descname"><span class="pre">gaussian_proposal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/diffusion/mcmc.html#gaussian_proposal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dd><p>Gaussian proposal distribution.</p>
+<p>Draw new parameters from Gaussian distribution with
+mean at current position and standard deviation sigma.</p>
+<p>Since the mean is the current position and the standard
+deviation is fixed. This proposal is symmetric so the ratio
+of proposal densities is 1.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Point to center proposal around.</p></li>
+<li><p><strong>sigma</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Standard deviation of gaussian for proposal.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The proposed point.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.diffusion.mcmc.</span></span><span class="sig-name descname"><span class="pre">metropolis_hastings_sampler</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_prob_fn</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">MultidimensionalGaussianPosterior()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prop_fn</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="mcmc.html#id0"><span class="pre">gaussian_proposal</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">initial_location</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">np.array</span><span class="pre">([0,</span> <span class="pre">0])</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">iterations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">warm_up</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ndim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sampling_seed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/machine_learning/diffusion/mcmc.html#metropolis_hastings_sampler"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
 <dd><p>Samples using a Metropolis-Hastings sampler.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -1624,10 +1979,26 @@ Numpy array of the candidate samples for each time step.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">mcmc</a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.diffusion.mcmc.gaussian_proposal"><code class="docutils literal notranslate"><span class="pre">gaussian_proposal()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.diffusion.mcmc.MultidimensionalGaussianPosterior"><code class="docutils literal notranslate"><span class="pre">MultidimensionalGaussianPosterior</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.diffusion.mcmc.MultidimensionalGaussianPosterior.__call__"><code class="docutils literal notranslate"><span class="pre">MultidimensionalGaussianPosterior.__call__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.diffusion.mcmc.metropolis_hastings_sampler"><code class="docutils literal notranslate"><span class="pre">metropolis_hastings_sampler()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.diffusion.mcmc.SampleDistributionImage"><code class="docutils literal notranslate"><span class="pre">SampleDistributionImage</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes"><code class="docutils literal notranslate"><span class="pre">MCMCAxes</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes._create_override"><code class="docutils literal notranslate"><span class="pre">MCMCAxes._create_override()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes.visualize_gaussian_proposal_about_point"><code class="docutils literal notranslate"><span class="pre">MCMCAxes.visualize_gaussian_proposal_about_point()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes.make_transition_animation"><code class="docutils literal notranslate"><span class="pre">MCMCAxes.make_transition_animation()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes.show_ground_truth_gaussian"><code class="docutils literal notranslate"><span class="pre">MCMCAxes.show_ground_truth_gaussian()</span></code></a></li>
+
+<li><a class="reference internal" href="#manim_extensions.machine_learning.diffusion.mcmc.MCMCAxes.visualize_metropolis_hastings_chain_sampling"><code class="docutils literal notranslate"><span class="pre">MCMCAxes.visualize_metropolis_hastings_chain_sampling()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 <li><a class="reference internal" href="#functions">Functions</a><ul>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.diffusion.mcmc.gaussian_proposal"><code class="docutils literal notranslate"><span class="pre">gaussian_proposal()</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.machine_learning.diffusion.mcmc.metropolis_hastings_sampler"><code class="docutils literal notranslate"><span class="pre">metropolis_hastings_sampler()</span></code></a></li>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">gaussian_proposal()</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">metropolis_hastings_sampler()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -1648,6 +2019,7 @@ Numpy array of the candidate samples for each time step.</p>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=61a6639c"></script>
     <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="../../../_static/design-tabs.js?v=fcb327ea"></script>
+    <script defer="defer" src="../../../_static/mathjax/tex-mml-svg.js?v=f093f569"></script>
     <script src="../../../_static/responsiveSvg.js?v=f16afd2d"></script>
     <script src="../../../_static/attributes-single.js?v=cee42560"></script>
     <script src="../../../_static/icon_gallery.js?v=86f39e20"></script>

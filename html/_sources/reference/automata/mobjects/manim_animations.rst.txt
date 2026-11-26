@@ -5,7 +5,7 @@
 manim_animations
 ================
 
-.. module:: manim_extensions.automata.mobjects.manim_animations
+.. automodule:: manim_extensions.automata.mobjects.manim_animations
 
 Classes
 -------

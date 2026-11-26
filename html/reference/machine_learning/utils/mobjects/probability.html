@@ -1491,6 +1491,114 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.machine_learning.utils.mobjects.probability">
 <span id="probability"></span><h1>probability<a class="headerlink" href="#module-manim_extensions.machine_learning.utils.mobjects.probability" title="Link to this heading">¶</a></h1>
+<p>Probability distribution utilities for neural network visualization.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.probability.GaussianDistribution">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.utils.mobjects.probability.</span></span><span class="sig-name descname"><span class="pre">GaussianDistribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cov</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dist_theme</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'gaussian'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../../constants/colors.html#manim.utils.color.manim_colors.ORANGE"><span class="pre">ORANGE</span></a></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/probability.html#GaussianDistribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.probability.GaussianDistribution" title="Link to this definition">¶</a></dt>
+<dd><p>Object for drawing a Gaussian distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>axes</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.graphing.coordinate_systems.Axes.html#manim.mobject.graphing.coordinate_systems.Axes" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Axes</span></code></a></span>) – Manim axes the distribution is drawn in.</p></li>
+<li><p><strong>mean</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Mean of the distribution.</p></li>
+<li><p><strong>cov</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Covariance matrix of the distribution.</p></li>
+<li><p><strong>dist_theme</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Drawing style; “gaussian” draws confidence ellipses and “ellipse” a
+single ellipse.</p></li>
+<li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color of the ellipses.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent class.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="gaussiandistributionscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: GaussianDistributionScene <a class="headerlink" href="#gaussiandistributionscene">¶</a></p><img alt="../../../../_images/GaussianDistributionScene-6a7bb978.png" class="align-center" src="../../../../_images/GaussianDistributionScene-6a7bb978.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.utils.mobjects.probability</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">GaussianDistribution</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">GaussianDistributionScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">axes</span> <span class="o">=</span> <span class="n">Axes</span><span class="p">(</span>
+            <span class="n">x_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+            <span class="n">y_range</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+            <span class="n">x_length</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+            <span class="n">y_length</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+            <span class="n">tips</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">gaussian</span> <span class="o">=</span> <span class="n">GaussianDistribution</span><span class="p">(</span>
+            <span class="n">axes</span><span class="p">,</span>
+            <span class="n">mean</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">]),</span>
+            <span class="n">cov</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.2</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">]]),</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">axes</span><span class="p">,</span> <span class="n">gaussian</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.probability.GaussianDistribution.compute_covariance_rotation_and_scale">
+<span class="sig-name descname"><span class="pre">compute_covariance_rotation_and_scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">covariance</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/probability.html#GaussianDistribution.compute_covariance_rotation_and_scale"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.probability.GaussianDistribution.compute_covariance_rotation_and_scale" title="Link to this definition">¶</a></dt>
+<dd><p>Compute the rotation angle and axes of the covariance ellipse.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>covariance</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – 2D covariance matrix of the Gaussian distribution.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Rotation angle, width, and height of the covariance ellipse
+in frame coordinates.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.probability.GaussianDistribution.construct_gaussian_distribution">
+<span class="sig-name descname"><span class="pre">construct_gaussian_distribution</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">covariance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../../constants/colors.html#manim.utils.color.manim_colors.ORANGE"><span class="pre">ORANGE</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">num_ellipses</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">4</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/probability.html#GaussianDistribution.construct_gaussian_distribution"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.probability.GaussianDistribution.construct_gaussian_distribution" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a 2d Gaussian distribution object with given mean and covariance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mean</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Mean of the Gaussian distribution.</p></li>
+<li><p><strong>covariance</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Covariance matrix of the Gaussian distribution.</p></li>
+<li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color of the ellipses.</p></li>
+<li><p><strong>num_ellipses</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Number of concentric confidence ellipses.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Group of concentric ellipses visualizing the distribution.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.probability.GaussianDistribution.construct_simple_gaussian_ellipse">
+<span class="sig-name descname"><span class="pre">construct_simple_gaussian_ellipse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">covariance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../../constants/colors.html#manim.utils.color.manim_colors.ORANGE"><span class="pre">ORANGE</span></a></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/probability.html#GaussianDistribution.construct_simple_gaussian_ellipse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.probability.GaussianDistribution.construct_simple_gaussian_ellipse" title="Link to this definition">¶</a></dt>
+<dd><p>Returns a 2d Gaussian distribution object with given mean and covariance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mean</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Mean of the Gaussian distribution.</p></li>
+<li><p><strong>covariance</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Covariance matrix of the Gaussian distribution.</p></li>
+<li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color of the ellipse.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Group containing the single ellipse visualizing the distribution.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1671,13 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">probability</a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.probability.GaussianDistribution"><code class="docutils literal notranslate"><span class="pre">GaussianDistribution</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.probability.GaussianDistribution.compute_covariance_rotation_and_scale"><code class="docutils literal notranslate"><span class="pre">GaussianDistribution.compute_covariance_rotation_and_scale()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.probability.GaussianDistribution.construct_gaussian_distribution"><code class="docutils literal notranslate"><span class="pre">GaussianDistribution.construct_gaussian_distribution()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.probability.GaussianDistribution.construct_simple_gaussian_ellipse"><code class="docutils literal notranslate"><span class="pre">GaussianDistribution.construct_simple_gaussian_ellipse()</span></code></a></li>
+
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

@@ -5,7 +5,7 @@
 layout
 ======
 
-.. module:: manim_extensions.mindmap.algorithms.layout
+.. automodule:: manim_extensions.mindmap.algorithms.layout
 
 Classes
 -------

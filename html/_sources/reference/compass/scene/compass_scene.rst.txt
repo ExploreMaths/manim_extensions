@@ -5,7 +5,7 @@
 compass_scene
 =============
 
-.. module:: manim_extensions.compass.scene.compass_scene
+.. automodule:: manim_extensions.compass.scene.compass_scene
 
 Classes
 -------

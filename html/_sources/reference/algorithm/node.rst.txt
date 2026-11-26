@@ -5,7 +5,7 @@
 node
 ====
 
-.. module:: manim_extensions.algorithm.node
+.. automodule:: manim_extensions.algorithm.node
 
 :class:`~manim_extensions.algorithm.node.Node`-like visual blocks for algorithm state display.
 

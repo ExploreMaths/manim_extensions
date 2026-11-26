@@ -1491,12 +1491,899 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.algorithm">
 <span id="algorithm"></span><h1>Algorithm<a class="headerlink" href="#module-manim_extensions.algorithm" title="Link to this heading">¶</a></h1>
+<p>Algorithm visualisation helpers.</p>
+<p>This package provides structural helpers for visualising algorithmic concepts,
+including nodes, arrays, queues, and code-like blocks in Manim scenes.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.Array">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.algorithm.</span></span><span class="sig-name descname"><span class="pre">Array</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">box_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">NodeConfig.BOX_TYPE</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">box_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">NodeConfig.BOX_COLOR</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/array.html#Array"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.Array" title="Link to this definition">¶</a></dt>
+<dd><p>A horizontal array of nodes rendered as a single Manim mobject.</p>
+<p>The array keeps a fixed number of entries and displays each item as a
+<a class="reference internal" href="node.Node.html#manim_extensions.algorithm.node.Node" title="manim_extensions.algorithm.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a> with consistent sizing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference internal" href="node.html#manim_extensions.algorithm.node.NodeValue" title="manim_extensions.algorithm.node.NodeValue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NodeValue</span></code></a>]</span>) – Values to display in the array.</p></li>
+<li><p><strong>total_width</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Total width of the array. If omitted, it is derived from the configured
+node width times the number of elements.</p></li>
+<li><p><strong>box_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="node.html#manim_extensions.algorithm.node.NodeBoxType" title="manim_extensions.algorithm.node.NodeBoxType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NodeBoxType</span></code></a></span>) – Shape of each node box.</p></li>
+<li><p><strong>box_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Fill color used for each node.</p></li>
+<li><p><strong>text_scale</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Scale applied to each node label.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional arguments passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="arrayscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ArrayScene <a class="headerlink" href="#arrayscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./ArrayScene-78b85a8e.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.array</span><span class="w"> </span><span class="kn">import</span> <span class="n">Array</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ArrayScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mf">43.12</span><span class="p">,</span> <span class="s2">" "</span><span class="p">,</span> <span class="s2">"abc"</span><span class="p">]</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">total_width</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+        <span class="n">circle_arr</span> <span class="o">=</span> <span class="n">Array</span><span class="p">(</span>
+            <span class="n">data</span><span class="p">,</span> <span class="n">total_width</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">box_type</span><span class="o">=</span><span class="n">Circle</span><span class="p">,</span>
+            <span class="n">box_color</span><span class="o">=</span><span class="n">PURE_YELLOW</span><span class="p">,</span> <span class="n">text_scale</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">circle_arr</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">Unselect</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">SwapAndOverWrite</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">arr</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">UpdateValue</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">123</span><span class="p">))</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">node</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py property">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.Array.values">
+<span class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">values</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="node.html#manim_extensions.algorithm.node.NodeValue" title="manim_extensions.algorithm.node.NodeValue"><span class="pre">NodeValue</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#manim_extensions.algorithm.Array.values" title="Link to this definition">¶</a></dt>
+<dd><p>Return the stored values from each node in the array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The value of every node in the array, in order.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.Array.__getitem__">
+<span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/array.html#Array.__getitem__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.Array.__getitem__" title="Link to this definition">¶</a></dt>
+<dd><p>Return the node at <code class="docutils literal notranslate"><span class="pre">key</span></code> or a slice of nodes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>key</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#slice" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">slice</span></code></a></span>) – The index or slice selecting the target node or nodes.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="node.Node.html#manim_extensions.algorithm.node.Node" title="manim_extensions.algorithm.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a> | <a class="reference internal" href="array.Array.html#manim_extensions.algorithm.array.Array" title="manim_extensions.algorithm.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The selected node, or a new array holding the selected slice.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.Array.__len__">
+<span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/array.html#Array.__len__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.Array.__len__" title="Link to this definition">¶</a></dt>
+<dd><p>Return the number of stored elements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The element count.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.Node">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.algorithm.</span></span><span class="sig-name descname"><span class="pre">Node</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">NodeConfig.WIDTH</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">box_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">NodeConfig.BOX_TYPE</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">box_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">NodeConfig.BOX_COLOR</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/node.html#Node"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.Node" title="Link to this definition">¶</a></dt>
+<dd><p>A visual node used in algorithm animations.</p>
+<p>The node is rendered as a box with an optional value label and can be used as
+a building block for arrays, trees, graphs, and queue-like visualisations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="node.html#manim_extensions.algorithm.node.NodeValue" title="manim_extensions.algorithm.node.NodeValue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NodeValue</span></code></a></span>) – Value displayed inside the node. If the value is empty, a zero-radius dot
+is displayed as a placeholder.</p></li>
+<li><p><strong>width</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Width of the node box.</p></li>
+<li><p><strong>text_scale</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Scale factor applied to the displayed text.</p></li>
+<li><p><strong>box_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="node.html#manim_extensions.algorithm.node.NodeBoxType" title="manim_extensions.algorithm.node.NodeBoxType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NodeBoxType</span></code></a></span>) – Shape used for the node box. Must be <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.polygram.Square.html#manim.mobject.geometry.polygram.Square" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Square</span></code></a> or <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.Circle.html#manim.mobject.geometry.arc.Circle" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circle</span></code></a>.</p></li>
+<li><p><strong>box_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Fill color of the node box.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – Raised when the provided <code class="docutils literal notranslate"><span class="pre">box_type</span></code> is not <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.polygram.Square.html#manim.mobject.geometry.polygram.Square" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Square</span></code></a> or <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.Circle.html#manim.mobject.geometry.arc.Circle" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circle</span></code></a>.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="nodescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: NodeScene <a class="headerlink" href="#nodescene">¶</a></p><img alt="../../_images/NodeScene-fa1b54e4.png" class="align-center" src="../../_images/NodeScene-fa1b54e4.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">NodeScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">square_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"42"</span><span class="p">)</span>
+        <span class="n">circle_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span>
+            <span class="s2">"?"</span><span class="p">,</span> <span class="n">box_type</span><span class="o">=</span><span class="n">Circle</span><span class="p">,</span> <span class="n">box_color</span><span class="o">=</span><span class="n">PURE_YELLOW</span><span class="p">,</span> <span class="n">text_scale</span><span class="o">=</span><span class="mf">1.5</span>
+        <span class="p">)</span>
+        <span class="n">small_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"x"</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">empty_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">box_color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">)</span>
+        <span class="n">group</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">square_node</span><span class="p">,</span> <span class="n">circle_node</span><span class="p">,</span> <span class="n">small_node</span><span class="p">,</span> <span class="n">empty_node</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.Node.set_box">
+<span class="sig-name descname"><span class="pre">set_box</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">box_type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/node.html#Node.set_box"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.Node.set_box" title="Link to this definition">¶</a></dt>
+<dd><p>Set the shape and fill colour of the node’s box.</p>
+<p>If the node already has a box it is removed first; the new box
+is then added and coloured.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>box_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="node.html#manim_extensions.algorithm.node.NodeBoxType" title="manim_extensions.algorithm.node.NodeBoxType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NodeBoxType</span></code></a></span>) – Box shape, either <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.polygram.Square.html#manim.mobject.geometry.polygram.Square" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Square</span></code></a>
+or <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.Circle.html#manim.mobject.geometry.arc.Circle" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circle</span></code></a>.</p></li>
+<li><p><strong>width</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Width of the box (diameter for <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.Circle.html#manim.mobject.geometry.arc.Circle" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circle</span></code></a>).</p></li>
+<li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Fill colour applied to the box.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="node.Node.html#manim_extensions.algorithm.node.Node" title="manim_extensions.algorithm.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The modified node instance.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">box_type</span></code> is not <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.polygram.Square.html#manim.mobject.geometry.polygram.Square" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Square</span></code></a> or <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.Circle.html#manim.mobject.geometry.arc.Circle" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circle</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.Node.get_box">
+<span class="sig-name descname"><span class="pre">get_box</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/node.html#Node.get_box"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.Node.get_box" title="Link to this definition">¶</a></dt>
+<dd><p>Return the underlying visual box for the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The box mobject of the node, either a
+<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.polygram.Square.html#manim.mobject.geometry.polygram.Square" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Square</span></code></a> or a
+<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.Circle.html#manim.mobject.geometry.arc.Circle" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circle</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.Node.set_value">
+<span class="sig-name descname"><span class="pre">set_value</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/node.html#Node.set_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.Node.set_value" title="Link to this definition">¶</a></dt>
+<dd><p>Replace the node’s displayed content and update the internal value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="node.html#manim_extensions.algorithm.node.NodeValue" title="manim_extensions.algorithm.node.NodeValue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NodeValue</span></code></a></span>) – The value to display inside the node.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="node.Node.html#manim_extensions.algorithm.node.Node" title="manim_extensions.algorithm.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The modified node instance.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.Node.get_value">
+<span class="sig-name descname"><span class="pre">get_value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/node.html#Node.get_value"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.Node.get_value" title="Link to this definition">¶</a></dt>
+<dd><p>Return the underlying data value of the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="node.html#manim_extensions.algorithm.node.NodeValue" title="manim_extensions.algorithm.node.NodeValue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NodeValue</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The value stored in the node.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.Node.set_fill">
+<span class="sig-name descname"><span class="pre">set_fill</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">opacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">family</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/node.html#Node.set_fill"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.Node.set_fill" title="Link to this definition">¶</a></dt>
+<dd><p>Set the fill color and transparency for the node box.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <a class="reference external" href="https://numpy.org/doc/stable/reference/typing.html#numpy.typing.NDArray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NDArray</span></code></a>[<a class="reference external" href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.int64" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int64</span></code></a>] | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>] | <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>] | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a>] | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – The fill color to apply.</p></li>
+<li><p><strong>opacity</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – The desired opacity to use.</p></li>
+<li><p><strong>family</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to apply the fill to the whole family of mobjects.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="node.Node.html#manim_extensions.algorithm.node.Node" title="manim_extensions.algorithm.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The modified node instance.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.Node.get_fill_color">
+<span class="sig-name descname"><span class="pre">get_fill_color</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/node.html#Node.get_fill_color"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.Node.get_fill_color" title="Link to this definition">¶</a></dt>
+<dd><p>Return the fill color of the node box.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The fill color of the node box.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.Node.get_fill_opacity">
+<span class="sig-name descname"><span class="pre">get_fill_opacity</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/node.html#Node.get_fill_opacity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.Node.get_fill_opacity" title="Link to this definition">¶</a></dt>
+<dd><p>Return the fill opacity of the node box.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.ManimColorDType" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColorDType</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The fill opacity of the node box.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.Node.get_slot">
+<span class="sig-name descname"><span class="pre">get_slot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">index</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/node.html#Node.get_slot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.Node.get_slot" title="Link to this definition">¶</a></dt>
+<dd><p>Return a point on the node’s boundary at the given slot index.</p>
+<p>The slot numbering scheme divides each edge of the box into
+<a class="reference internal" href="node.NodeSolt.html#manim_extensions.algorithm.node.NodeSolt.SPLIT_PARTS" title="manim_extensions.algorithm.node.NodeSolt.SPLIT_PARTS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SPLIT_PARTS</span></code></a> (12) equal segments, numbered
+clockwise from <code class="docutils literal notranslate"><span class="pre">0</span></code> to <a class="reference internal" href="node.NodeSolt.html#manim_extensions.algorithm.node.NodeSolt.SPLIT_PARTS" title="manim_extensions.algorithm.node.NodeSolt.SPLIT_PARTS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SPLIT_PARTS</span></code></a>.  For circular boxes
+the same mapping is applied to the corresponding quarter-arc.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3DLike" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3DLike</span></code></a></span>) – One of LEFT, RIGHT, UP, or DOWN.</p></li>
+<li><p><strong>index</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Slot number in the range <code class="docutils literal notranslate"><span class="pre">0</span></code> to <a class="reference internal" href="node.NodeSolt.html#manim_extensions.algorithm.node.NodeSolt.SPLIT_PARTS" title="manim_extensions.algorithm.node.NodeSolt.SPLIT_PARTS"><code class="xref py py-attr docutils literal notranslate"><span class="pre">SPLIT_PARTS</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The point on the node’s boundary at the requested slot.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If <code class="docutils literal notranslate"><span class="pre">direction</span></code> is not one of the four principal directions
+    or if the box type is not supported.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.Node.__str__">
+<span class="sig-name descname"><span class="pre">__str__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/node.html#Node.__str__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.Node.__str__" title="Link to this definition">¶</a></dt>
+<dd><p>Return a compact readable representation of the node.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The textual node representation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.Node.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/node.html#Node.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.Node.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return the same representation as <code class="docutils literal notranslate"><span class="pre">__str__</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The textual node representation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.Node.Select">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Select</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/node.html#Node.Select"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.Node.Select" title="Link to this definition">¶</a></dt>
+<dd><p>Highlight one or more nodes by changing their fill color.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>*nodes</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="node.Node.html#manim_extensions.algorithm.node.Node" title="manim_extensions.algorithm.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a></span>) – One or more <a class="reference internal" href="../mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node" title="manim_extensions.mindmap.nodes.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a> instances to highlight.</p></li>
+<li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Fill color used for highlighting. (<code class="docutils literal notranslate"><a class="reference internal" href="../../constants/colors.html#manim.utils.color.manim_colors.RED"><span class="pre">RED</span></a></code>).</p></li>
+<li><p><strong>opacity</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Opacity applied to the highlight color. (<code class="docutils literal notranslate"><span class="pre">0.5</span></code>).</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.Succession.html#manim.animation.composition.Succession" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Succession</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="select" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: Select <a class="headerlink" href="#select">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./Select-ed470237.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Select</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">nodes</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">Node</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">)])</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">nodes</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">nodes</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">PURE_YELLOW</span><span class="p">,</span> <span class="n">opacity</span><span class="o">=</span><span class="mf">0.6</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.Node.Unselect">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Unselect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/node.html#Node.Unselect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.Node.Unselect" title="Link to this definition">¶</a></dt>
+<dd><p>Clear the highlight from one or more nodes.</p>
+<p>The animation restores the original fill color of each selected node
+by setting its opacity back to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>*nodes</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference internal" href="node.Node.html#manim_extensions.algorithm.node.Node" title="manim_extensions.algorithm.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a>]</span>) – One or more <a class="reference internal" href="../mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node" title="manim_extensions.mindmap.nodes.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a> instances to unselect.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.Succession.html#manim.animation.composition.Succession" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Succession</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="unselect" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: Unselect <a class="headerlink" href="#unselect">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./Unselect-fac87c78.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Unselect</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"1"</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"2"</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">Unselect</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">Unselect</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.Node.UpdateValue">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">UpdateValue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/node.html#Node.UpdateValue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.Node.UpdateValue" title="Link to this definition">¶</a></dt>
+<dd><p>Replace the value shown by a node through an animation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="node.Node.html#manim_extensions.algorithm.node.Node" title="manim_extensions.algorithm.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a></span>) – The node whose value will be updated.</p></li>
+<li><p><strong>value</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="node.html#manim_extensions.algorithm.node.NodeValue" title="manim_extensions.algorithm.node.NodeValue"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NodeValue</span></code></a></span>) – New value to display inside the node.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.Succession.html#manim.animation.composition.Succession" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Succession</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="updatevalue" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: UpdateValue <a class="headerlink" href="#updatevalue">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./UpdateValue-c87d0539.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">UpdateValue</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"0"</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">UpdateValue</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.Node.MoveAndOverWrite">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">MoveAndOverWrite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/node.html#Node.MoveAndOverWrite"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.Node.MoveAndOverWrite" title="Link to this definition">¶</a></dt>
+<dd><p>Move a node into place and overwrite the destination value.</p>
+<p>The animation moves <code class="docutils literal notranslate"><span class="pre">node</span></code> to the position of <code class="docutils literal notranslate"><span class="pre">target</span></code>, then
+replaces the target’s displayed value with the source’s value and
+fades the source node out.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="node.Node.html#manim_extensions.algorithm.node.Node" title="manim_extensions.algorithm.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a></span>) – The node that will be moved and whose value will be copied.</p></li>
+<li><p><strong>target</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="node.Node.html#manim_extensions.algorithm.node.Node" title="manim_extensions.algorithm.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a></span>) – The destination node that will receive the new value.</p></li>
+<li><p><strong>select_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – If provided, highlights the moving node during the animation.</p></li>
+<li><p><strong>select_opacity</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Opacity of the selection highlight.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.Succession.html#manim.animation.composition.Succession" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Succession</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="moveandoverwrite" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: MoveAndOverWrite <a class="headerlink" href="#moveandoverwrite">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./MoveAndOverWrite-7e9cdd69.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MoveAndOverWrite</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"1"</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"2"</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">MoveAndOverWrite</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">select_color</span><span class="o">=</span><span class="n">PURE_YELLOW</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.Node.CopyAndOverWrite">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">CopyAndOverWrite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/node.html#Node.CopyAndOverWrite"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.Node.CopyAndOverWrite" title="Link to this definition">¶</a></dt>
+<dd><p>Copy a node into a target location and overwrite its value.</p>
+<p>Unlike <a class="reference internal" href="node.Node.html#manim_extensions.algorithm.node.Node.MoveAndOverWrite" title="manim_extensions.algorithm.node.Node.MoveAndOverWrite"><code class="xref py py-class docutils literal notranslate"><span class="pre">MoveAndOverWrite</span></code></a>, the source node remains in place:
+a copy is created, animated to the target, and then used to
+overwrite the target’s value before fading out.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="node.Node.html#manim_extensions.algorithm.node.Node" title="manim_extensions.algorithm.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a></span>) – The node whose value will be copied.</p></li>
+<li><p><strong>target</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="node.Node.html#manim_extensions.algorithm.node.Node" title="manim_extensions.algorithm.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a></span>) – The destination node that will receive the new value.</p></li>
+<li><p><strong>select_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – If provided, highlights the copied node during the animation.</p></li>
+<li><p><strong>select_opacity</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Opacity of the selection highlight.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.Succession.html#manim.animation.composition.Succession" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Succession</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="copyandoverwrite" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: CopyAndOverWrite <a class="headerlink" href="#copyandoverwrite">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./CopyAndOverWrite-073418fc.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CopyAndOverWrite</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"1"</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"2"</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">CopyAndOverWrite</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.Node.SwapAndOverWrite">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">SwapAndOverWrite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/node.html#Node.SwapAndOverWrite"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.Node.SwapAndOverWrite" title="Link to this definition">¶</a></dt>
+<dd><p>Swap the values of two nodes while preserving the animation sequence.</p>
+<p>Creates temporary copies of both nodes, swaps them visually, and
+then updates the original nodes with the swapped values before
+fading the copies out.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>node1</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="node.Node.html#manim_extensions.algorithm.node.Node" title="manim_extensions.algorithm.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a></span>) – First node to swap.</p></li>
+<li><p><strong>node2</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="node.Node.html#manim_extensions.algorithm.node.Node" title="manim_extensions.algorithm.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a></span>) – Second node to swap.</p></li>
+<li><p><strong>select_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – If provided, highlights the temporary copies during the swap.</p></li>
+<li><p><strong>select_opacity</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Opacity of the selection highlight.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.Succession.html#manim.animation.composition.Succession" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Succession</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="swapandoverwrite" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: SwapAndOverWrite <a class="headerlink" href="#swapandoverwrite">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./SwapAndOverWrite-80580cfd.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">SwapAndOverWrite</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"1"</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"2"</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">SwapAndOverWrite</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">SwapAndOverWrite</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeConfig">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.algorithm.</span></span><span class="sig-name descname"><span class="pre">NodeConfig</span></span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/node.html#NodeConfig"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.NodeConfig" title="Link to this definition">¶</a></dt>
+<dd><p>Default visual settings shared by algorithm nodes.</p>
+<p>These class attributes hold the default visual configuration that every
+<a class="reference internal" href="../mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node" title="manim_extensions.mindmap.nodes.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a> (and the data structures built on top of it) reads when an
+argument is not supplied explicitly.  Changing an attribute here changes the
+default appearance of <em>all</em> subsequently created nodes, which is the natural
+way to switch the overall look of an algorithm scene.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="../mindmap/nodes/node.Node.html#manim_extensions.mindmap.nodes.node.Node" title="manim_extensions.mindmap.nodes.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a></p>
+</div>
+<p class="rubric">Attributes</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeConfig.WIDTH">
+<span class="sig-name descname"><span class="pre">WIDTH</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></span><a class="headerlink" href="#manim_extensions.algorithm.NodeConfig.WIDTH" title="Link to this definition">¶</a></dt>
+<dd><p>Default node width.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeConfig.BOX_TYPE">
+<span class="sig-name descname"><span class="pre">BOX_TYPE</span></span><a class="headerlink" href="#manim_extensions.algorithm.NodeConfig.BOX_TYPE" title="Link to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.polygram.Square.html#manim.mobject.geometry.polygram.Square" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Square</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeConfig.BOX_COLOR">
+<span class="sig-name descname"><span class="pre">BOX_COLOR</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ManimColor('#FFFFFF')</span></span><a class="headerlink" href="#manim_extensions.algorithm.NodeConfig.BOX_COLOR" title="Link to this definition">¶</a></dt>
+<dd><p>Default fill color for node boxes.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeConfig.SELECT_COLOR">
+<span class="sig-name descname"><span class="pre">SELECT_COLOR</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">ManimColor('#FC6255')</span></span><a class="headerlink" href="#manim_extensions.algorithm.NodeConfig.SELECT_COLOR" title="Link to this definition">¶</a></dt>
+<dd><p>Color used for selected nodes.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeConfig.SELECT_OPACITY">
+<span class="sig-name descname"><span class="pre">SELECT_OPACITY</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0.5</span></span><a class="headerlink" href="#manim_extensions.algorithm.NodeConfig.SELECT_OPACITY" title="Link to this definition">¶</a></dt>
+<dd><p>Fill opacity used when a node is selected.</p>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<div id="nodeconfigscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: NodeConfigScene <a class="headerlink" href="#nodeconfigscene">¶</a></p><img alt="../../_images/NodeConfigScene-4b736051.png" class="align-center" src="../../_images/NodeConfigScene-4b736051.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span><span class="p">,</span> <span class="n">NodeConfig</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">NodeConfigScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">default_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"default"</span><span class="p">)</span>
+        <span class="n">NodeConfig</span><span class="o">.</span><span class="n">WIDTH</span> <span class="o">=</span> <span class="mf">1.5</span>
+        <span class="n">NodeConfig</span><span class="o">.</span><span class="n">BOX_COLOR</span> <span class="o">=</span> <span class="n">BLUE</span>
+        <span class="n">changed_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"changed defaults"</span><span class="p">)</span>
+        <span class="n">NodeConfig</span><span class="o">.</span><span class="n">WIDTH</span> <span class="o">=</span> <span class="mi">2</span>
+        <span class="n">NodeConfig</span><span class="o">.</span><span class="n">BOX_COLOR</span> <span class="o">=</span> <span class="n">WHITE</span>
+        <span class="n">selected_node</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span>
+            <span class="s2">"selected"</span><span class="p">,</span> <span class="n">box_color</span><span class="o">=</span><span class="n">NodeConfig</span><span class="o">.</span><span class="n">SELECT_COLOR</span>
+        <span class="p">)</span>
+        <span class="n">group</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">default_node</span><span class="p">,</span> <span class="n">changed_node</span><span class="p">,</span> <span class="n">selected_node</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">group</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeSolt">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.algorithm.</span></span><span class="sig-name descname"><span class="pre">NodeSolt</span></span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/node.html#NodeSolt"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.NodeSolt" title="Link to this definition">¶</a></dt>
+<dd><p>Convenience container for slot positions around a node.</p>
+<p class="rubric">Attributes</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeSolt.SPLIT_PARTS">
+<span class="sig-name descname"><span class="pre">SPLIT_PARTS</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">12</span></span><a class="headerlink" href="#manim_extensions.algorithm.NodeSolt.SPLIT_PARTS" title="Link to this definition">¶</a></dt>
+<dd><p>Number of subdivisions along each side of a node.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeSolt.MID">
+<span class="sig-name descname"><span class="pre">MID</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></span><a class="headerlink" href="#manim_extensions.algorithm.NodeSolt.MID" title="Link to this definition">¶</a></dt>
+<dd><p>Middle subdivision index.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeSolt.LEFT_MID">
+<span class="sig-name descname"><span class="pre">LEFT_MID</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(array([-1.,</span>&#160; <span class="pre">0.,</span>&#160; <span class="pre">0.]),</span> <span class="pre">6)</span></span><a class="headerlink" href="#manim_extensions.algorithm.NodeSolt.LEFT_MID" title="Link to this definition">¶</a></dt>
+<dd><p>Slot at the middle of the left edge.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeSolt.RIGHT_MID">
+<span class="sig-name descname"><span class="pre">RIGHT_MID</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(array([1.,</span> <span class="pre">0.,</span> <span class="pre">0.]),</span> <span class="pre">6)</span></span><a class="headerlink" href="#manim_extensions.algorithm.NodeSolt.RIGHT_MID" title="Link to this definition">¶</a></dt>
+<dd><p>Slot at the middle of the right edge.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeSolt.UP_MID">
+<span class="sig-name descname"><span class="pre">UP_MID</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(array([0.,</span> <span class="pre">1.,</span> <span class="pre">0.]),</span> <span class="pre">6)</span></span><a class="headerlink" href="#manim_extensions.algorithm.NodeSolt.UP_MID" title="Link to this definition">¶</a></dt>
+<dd><p>Slot at the middle of the top edge.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeSolt.DOWN_MID">
+<span class="sig-name descname"><span class="pre">DOWN_MID</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(array([</span> <span class="pre">0.,</span> <span class="pre">-1.,</span>&#160; <span class="pre">0.]),</span> <span class="pre">6)</span></span><a class="headerlink" href="#manim_extensions.algorithm.NodeSolt.DOWN_MID" title="Link to this definition">¶</a></dt>
+<dd><p>Slot at the middle of the bottom edge.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeSolt.LEFT_UP">
+<span class="sig-name descname"><span class="pre">LEFT_UP</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(array([-1.,</span>&#160; <span class="pre">0.,</span>&#160; <span class="pre">0.]),</span> <span class="pre">8)</span></span><a class="headerlink" href="#manim_extensions.algorithm.NodeSolt.LEFT_UP" title="Link to this definition">¶</a></dt>
+<dd><p>Slot at the upper third of the left edge.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeSolt.LEFT_DOWN">
+<span class="sig-name descname"><span class="pre">LEFT_DOWN</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(array([-1.,</span>&#160; <span class="pre">0.,</span>&#160; <span class="pre">0.]),</span> <span class="pre">4)</span></span><a class="headerlink" href="#manim_extensions.algorithm.NodeSolt.LEFT_DOWN" title="Link to this definition">¶</a></dt>
+<dd><p>Slot at the lower third of the left edge.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeSolt.RIGHT_UP">
+<span class="sig-name descname"><span class="pre">RIGHT_UP</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(array([1.,</span> <span class="pre">0.,</span> <span class="pre">0.]),</span> <span class="pre">4)</span></span><a class="headerlink" href="#manim_extensions.algorithm.NodeSolt.RIGHT_UP" title="Link to this definition">¶</a></dt>
+<dd><p>Slot at the upper third of the right edge.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeSolt.RIGHT_DOWN">
+<span class="sig-name descname"><span class="pre">RIGHT_DOWN</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(array([1.,</span> <span class="pre">0.,</span> <span class="pre">0.]),</span> <span class="pre">8)</span></span><a class="headerlink" href="#manim_extensions.algorithm.NodeSolt.RIGHT_DOWN" title="Link to this definition">¶</a></dt>
+<dd><p>Slot at the lower third of the right edge.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeSolt.UP_LEFT">
+<span class="sig-name descname"><span class="pre">UP_LEFT</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(array([0.,</span> <span class="pre">1.,</span> <span class="pre">0.]),</span> <span class="pre">4)</span></span><a class="headerlink" href="#manim_extensions.algorithm.NodeSolt.UP_LEFT" title="Link to this definition">¶</a></dt>
+<dd><p>Slot at the left third of the top edge.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeSolt.UP_RIGHT">
+<span class="sig-name descname"><span class="pre">UP_RIGHT</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(array([0.,</span> <span class="pre">1.,</span> <span class="pre">0.]),</span> <span class="pre">8)</span></span><a class="headerlink" href="#manim_extensions.algorithm.NodeSolt.UP_RIGHT" title="Link to this definition">¶</a></dt>
+<dd><p>Slot at the right third of the top edge.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeSolt.DOWN_LEFT">
+<span class="sig-name descname"><span class="pre">DOWN_LEFT</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(array([</span> <span class="pre">0.,</span> <span class="pre">-1.,</span>&#160; <span class="pre">0.]),</span> <span class="pre">8)</span></span><a class="headerlink" href="#manim_extensions.algorithm.NodeSolt.DOWN_LEFT" title="Link to this definition">¶</a></dt>
+<dd><p>Slot at the left third of the bottom edge.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeSolt.DOWN_RIGHT">
+<span class="sig-name descname"><span class="pre">DOWN_RIGHT</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(array([</span> <span class="pre">0.,</span> <span class="pre">-1.,</span>&#160; <span class="pre">0.]),</span> <span class="pre">4)</span></span><a class="headerlink" href="#manim_extensions.algorithm.NodeSolt.DOWN_RIGHT" title="Link to this definition">¶</a></dt>
+<dd><p>Slot at the right third of the bottom edge.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeSolt.CORNER_LU">
+<span class="sig-name descname"><span class="pre">CORNER_LU</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(array([-1.,</span>&#160; <span class="pre">0.,</span>&#160; <span class="pre">0.]),</span> <span class="pre">12)</span></span><a class="headerlink" href="#manim_extensions.algorithm.NodeSolt.CORNER_LU" title="Link to this definition">¶</a></dt>
+<dd><p>Corner slot at the left end of the top edge.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeSolt.CORNER_LD">
+<span class="sig-name descname"><span class="pre">CORNER_LD</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(array([-1.,</span>&#160; <span class="pre">0.,</span>&#160; <span class="pre">0.]),</span> <span class="pre">0)</span></span><a class="headerlink" href="#manim_extensions.algorithm.NodeSolt.CORNER_LD" title="Link to this definition">¶</a></dt>
+<dd><p>Corner slot at the left end of the bottom edge.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeSolt.CORNER_RU">
+<span class="sig-name descname"><span class="pre">CORNER_RU</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(array([1.,</span> <span class="pre">0.,</span> <span class="pre">0.]),</span> <span class="pre">0)</span></span><a class="headerlink" href="#manim_extensions.algorithm.NodeSolt.CORNER_RU" title="Link to this definition">¶</a></dt>
+<dd><p>Corner slot at the right end of the top edge.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.NodeSolt.CORNER_RD">
+<span class="sig-name descname"><span class="pre">CORNER_RD</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">(array([1.,</span> <span class="pre">0.,</span> <span class="pre">0.]),</span> <span class="pre">12)</span></span><a class="headerlink" href="#manim_extensions.algorithm.NodeSolt.CORNER_RD" title="Link to this definition">¶</a></dt>
+<dd><p>Corner slot at the right end of the bottom edge.</p>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<div id="nodeslot" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: NodeSlot <a class="headerlink" href="#nodeslot">¶</a></p><img alt="../../_images/NodeSlot-71e0d50e.png" class="align-center" src="../../_images/NodeSlot-71e0d50e.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span><span class="p">,</span> <span class="n">NodeSolt</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">NodeSlot</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"A"</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"B"</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">2.5</span><span class="p">)</span>
+        <span class="n">start_dir</span><span class="p">,</span> <span class="n">start_index</span> <span class="o">=</span> <span class="n">NodeSolt</span><span class="o">.</span><span class="n">RIGHT_MID</span>
+        <span class="n">end_dir</span><span class="p">,</span> <span class="n">end_index</span> <span class="o">=</span> <span class="n">NodeSolt</span><span class="o">.</span><span class="n">LEFT_MID</span>
+        <span class="n">edge</span> <span class="o">=</span> <span class="n">Arrow</span><span class="p">(</span>
+            <span class="n">a</span><span class="o">.</span><span class="n">get_slot</span><span class="p">(</span><span class="n">start_dir</span><span class="p">,</span> <span class="n">start_index</span><span class="p">),</span>
+            <span class="n">b</span><span class="o">.</span><span class="n">get_slot</span><span class="p">(</span><span class="n">end_dir</span><span class="p">,</span> <span class="n">end_index</span><span class="p">),</span>
+            <span class="n">buff</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">edge</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.Queue">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.algorithm.</span></span><span class="sig-name descname"><span class="pre">Queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">capacity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">total_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">12</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">48</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">box_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Square</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bound_color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../constants/colors.html#manim.utils.color.manim_colors.RED"><span class="pre">RED</span></a></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/queue.html#Queue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.Queue" title="Link to this definition">¶</a></dt>
+<dd><p>Visual queue data structure for algorithm demonstrations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>capacity</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Maximum number of entries that may be stored.</p></li>
+<li><p><strong>init_data</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference internal" href="node.Node.html#manim_extensions.algorithm.node.Node" title="manim_extensions.algorithm.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Initial values to render inside the queue.</p></li>
+<li><p><strong>total_width</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Total width occupied by the queue visualisation.</p></li>
+<li><p><strong>font_size</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Text size used for embedded nodes.</p></li>
+<li><p><strong>box_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="node.html#manim_extensions.algorithm.node.NodeBoxType" title="manim_extensions.algorithm.node.NodeBoxType"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NodeBoxType</span></code></a></span>) – Shape used for each node box.</p></li>
+<li><p><strong>bound_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color applied to the queue boundaries.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional arguments passed to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="queuescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: QueueScene <a class="headerlink" href="#queuescene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./QueueScene-d54ab762.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.queue</span><span class="w"> </span><span class="kn">import</span> <span class="n">Queue</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">QueueScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">(</span><span class="n">capacity</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">init_data</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">total_width</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Queue</span><span class="o">.</span><span class="n">Enqueue</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"4"</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Queue</span><span class="o">.</span><span class="n">Dequeue</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.Queue.Enqueue">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Enqueue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/queue.html#Queue.Enqueue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.Queue.Enqueue" title="Link to this definition">¶</a></dt>
+<dd><p>Animate an item entering the queue from the right edge.</p>
+<p>The item slides along the queue’s interior until it reaches the
+slot right after the last occupied position, and is then appended
+to the queue’s internal data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>queue</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="queue.Queue.html#manim_extensions.algorithm.queue.Queue" title="manim_extensions.algorithm.queue.Queue"><code class="xref py py-class docutils literal notranslate"><span class="pre">Queue</span></code></a></span>) – The queue that will receive the new item.</p></li>
+<li><p><strong>item</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="node.Node.html#manim_extensions.algorithm.node.Node" title="manim_extensions.algorithm.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a></span>) – The node to enqueue. It is placed to the right of the queue
+before the animation starts.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.Succession.html#manim.animation.composition.Succession" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Succession</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="enqueue" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: Enqueue <a class="headerlink" href="#enqueue">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./Enqueue-d79d53d2.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.queue</span><span class="w"> </span><span class="kn">import</span> <span class="n">Queue</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.node</span><span class="w"> </span><span class="kn">import</span> <span class="n">Node</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Enqueue</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">(</span><span class="n">capacity</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">init_data</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">total_width</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Queue</span><span class="o">.</span><span class="n">Enqueue</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"2"</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Queue</span><span class="o">.</span><span class="n">Enqueue</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">Node</span><span class="p">(</span><span class="s2">"3"</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.algorithm.Queue.Dequeue">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">Dequeue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mobject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_override</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/algorithm/queue.html#Queue.Dequeue"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.algorithm.Queue.Dequeue" title="Link to this definition">¶</a></dt>
+<dd><p>Animate the front item leaving the queue.</p>
+<p>The front node slides out from the left side while the remaining
+items shift one position to the left to fill the gap. When no
+target position is provided the item fades out after leaving the
+queue; otherwise it is moved to <code class="docutils literal notranslate"><span class="pre">target_pos</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>queue</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="queue.Queue.html#manim_extensions.algorithm.queue.Queue" title="manim_extensions.algorithm.queue.Queue"><code class="xref py py-class docutils literal notranslate"><span class="pre">Queue</span></code></a></span>) – The queue from which the front item will be removed.</p></li>
+<li><p><strong>target_pos</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Destination point for the dequeued item. When omitted the
+item simply leaves the queue and fades out.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.Succession.html#manim.animation.composition.Succession" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Succession</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="dequeue" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: Dequeue <a class="headerlink" href="#dequeue">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./Dequeue-c7a80b5f.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.algorithm.queue</span><span class="w"> </span><span class="kn">import</span> <span class="n">Queue</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Dequeue</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">(</span><span class="n">capacity</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">init_data</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span> <span class="n">total_width</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Queue</span><span class="o">.</span><span class="n">Dequeue</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">target_pos</span><span class="o">=</span><span class="n">DOWN</span> <span class="o">*</span> <span class="mf">2.5</span> <span class="o">+</span> <span class="n">LEFT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+</dd></dl>
+
 <div class="vendored-status note admonition">
 <p class="admonition-title">Vendoring status: <code class="docutils literal notranslate"><span class="pre">manim-algorithm</span></code></p>
 <ul class="simple">
 <li><p>Vendored copy: synced at <code class="docutils literal notranslate"><span class="pre">5d69236739e80facf3a98540a58785e901784a77</span></code>.</p></li>
 <li><p>Currently vendored upstream commit: <a class="literal reference external" href="https://github.com/sinianluoye/manim-algorithm/commit/5d69236739e80facf3a98540a58785e901784a77">5d69236</a> (2024-10-06).</p></li>
-<li><p>Upstream data cached on 2026-11-26 11:45 (UTC+8).</p></li>
+<li><p>Upstream data cached on 2026-11-26 13:58 (UTC+8).</p></li>
 <li><p>Latest upstream release: <code class="docutils literal notranslate"><span class="pre">v0.0.4</span></code> (2024-08-10).</p></li>
 <li><p>The vendored copy is up to date with upstream.</p></li>
 </ul>
@@ -1548,7 +2435,7 @@ targets Manim Community Edition (CE).</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">Select</span><span class="p">(</span><span class="n">arr</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
 </pre></div>
 </div>
-<p>References: <a class="reference internal" href="array.Array.html#manim_extensions.algorithm.array.Array" title="manim_extensions.algorithm.array.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a> <a class="reference internal" href="node.Node.html#manim_extensions.algorithm.node.Node" title="manim_extensions.algorithm.node.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a></p>
+<p>References: <a class="reference internal" href="#manim_extensions.algorithm.Array" title="manim_extensions.algorithm.Array"><code class="xref py py-class docutils literal notranslate"><span class="pre">Array</span></code></a> <a class="reference internal" href="#manim_extensions.algorithm.Node" title="manim_extensions.algorithm.Node"><code class="xref py py-class docutils literal notranslate"><span class="pre">Node</span></code></a></p>
 </div></section>
 <section id="modules">
 <h2>Modules<a class="headerlink" href="#modules" title="Link to this heading">¶</a></h2>
@@ -1646,6 +2533,67 @@ targets Manim Community Edition (CE).</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Algorithm</a><ul>
+<li><a class="reference internal" href="#manim_extensions.algorithm.Array"><code class="docutils literal notranslate"><span class="pre">Array</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.algorithm.Array.values"><code class="docutils literal notranslate"><span class="pre">Array.values</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.Array.__getitem__"><code class="docutils literal notranslate"><span class="pre">Array.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.Array.__len__"><code class="docutils literal notranslate"><span class="pre">Array.__len__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.Node"><code class="docutils literal notranslate"><span class="pre">Node</span></code></a><ul>
+
+
+<li><a class="reference internal" href="#manim_extensions.algorithm.Node.set_box"><code class="docutils literal notranslate"><span class="pre">Node.set_box()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.Node.get_box"><code class="docutils literal notranslate"><span class="pre">Node.get_box()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.Node.set_value"><code class="docutils literal notranslate"><span class="pre">Node.set_value()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.Node.get_value"><code class="docutils literal notranslate"><span class="pre">Node.get_value()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.Node.set_fill"><code class="docutils literal notranslate"><span class="pre">Node.set_fill()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.Node.get_fill_color"><code class="docutils literal notranslate"><span class="pre">Node.get_fill_color()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.Node.get_fill_opacity"><code class="docutils literal notranslate"><span class="pre">Node.get_fill_opacity()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.Node.get_slot"><code class="docutils literal notranslate"><span class="pre">Node.get_slot()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.Node.__str__"><code class="docutils literal notranslate"><span class="pre">Node.__str__()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.Node.__repr__"><code class="docutils literal notranslate"><span class="pre">Node.__repr__()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.Node.Select"><code class="docutils literal notranslate"><span class="pre">Node.Select</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.Node.Unselect"><code class="docutils literal notranslate"><span class="pre">Node.Unselect</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.Node.UpdateValue"><code class="docutils literal notranslate"><span class="pre">Node.UpdateValue</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.Node.MoveAndOverWrite"><code class="docutils literal notranslate"><span class="pre">Node.MoveAndOverWrite</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.Node.CopyAndOverWrite"><code class="docutils literal notranslate"><span class="pre">Node.CopyAndOverWrite</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.Node.SwapAndOverWrite"><code class="docutils literal notranslate"><span class="pre">Node.SwapAndOverWrite</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeConfig"><code class="docutils literal notranslate"><span class="pre">NodeConfig</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeConfig.WIDTH"><code class="docutils literal notranslate"><span class="pre">NodeConfig.WIDTH</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeConfig.BOX_TYPE"><code class="docutils literal notranslate"><span class="pre">NodeConfig.BOX_TYPE</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeConfig.BOX_COLOR"><code class="docutils literal notranslate"><span class="pre">NodeConfig.BOX_COLOR</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeConfig.SELECT_COLOR"><code class="docutils literal notranslate"><span class="pre">NodeConfig.SELECT_COLOR</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeConfig.SELECT_OPACITY"><code class="docutils literal notranslate"><span class="pre">NodeConfig.SELECT_OPACITY</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeSolt"><code class="docutils literal notranslate"><span class="pre">NodeSolt</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeSolt.SPLIT_PARTS"><code class="docutils literal notranslate"><span class="pre">NodeSolt.SPLIT_PARTS</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeSolt.MID"><code class="docutils literal notranslate"><span class="pre">NodeSolt.MID</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeSolt.LEFT_MID"><code class="docutils literal notranslate"><span class="pre">NodeSolt.LEFT_MID</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeSolt.RIGHT_MID"><code class="docutils literal notranslate"><span class="pre">NodeSolt.RIGHT_MID</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeSolt.UP_MID"><code class="docutils literal notranslate"><span class="pre">NodeSolt.UP_MID</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeSolt.DOWN_MID"><code class="docutils literal notranslate"><span class="pre">NodeSolt.DOWN_MID</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeSolt.LEFT_UP"><code class="docutils literal notranslate"><span class="pre">NodeSolt.LEFT_UP</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeSolt.LEFT_DOWN"><code class="docutils literal notranslate"><span class="pre">NodeSolt.LEFT_DOWN</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeSolt.RIGHT_UP"><code class="docutils literal notranslate"><span class="pre">NodeSolt.RIGHT_UP</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeSolt.RIGHT_DOWN"><code class="docutils literal notranslate"><span class="pre">NodeSolt.RIGHT_DOWN</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeSolt.UP_LEFT"><code class="docutils literal notranslate"><span class="pre">NodeSolt.UP_LEFT</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeSolt.UP_RIGHT"><code class="docutils literal notranslate"><span class="pre">NodeSolt.UP_RIGHT</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeSolt.DOWN_LEFT"><code class="docutils literal notranslate"><span class="pre">NodeSolt.DOWN_LEFT</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeSolt.DOWN_RIGHT"><code class="docutils literal notranslate"><span class="pre">NodeSolt.DOWN_RIGHT</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeSolt.CORNER_LU"><code class="docutils literal notranslate"><span class="pre">NodeSolt.CORNER_LU</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeSolt.CORNER_LD"><code class="docutils literal notranslate"><span class="pre">NodeSolt.CORNER_LD</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeSolt.CORNER_RU"><code class="docutils literal notranslate"><span class="pre">NodeSolt.CORNER_RU</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.NodeSolt.CORNER_RD"><code class="docutils literal notranslate"><span class="pre">NodeSolt.CORNER_RD</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.Queue"><code class="docutils literal notranslate"><span class="pre">Queue</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.algorithm.Queue.Enqueue"><code class="docutils literal notranslate"><span class="pre">Queue.Enqueue</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.algorithm.Queue.Dequeue"><code class="docutils literal notranslate"><span class="pre">Queue.Dequeue</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#features">Features</a></li>
 <li><a class="reference internal" href="#status">Status</a></li>
 <li><a class="reference internal" href="#usage">Usage</a></li>

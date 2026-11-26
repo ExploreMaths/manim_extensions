@@ -4,7 +4,7 @@
 Machine Learning
 ================
 
-.. module:: manim_extensions.machine_learning
+.. automodule:: manim_extensions.machine_learning
 
 .. vendored-status:: helblazer811/ManimML
 

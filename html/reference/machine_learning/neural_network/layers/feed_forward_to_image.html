@@ -1491,6 +1491,114 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image">
 <span id="feed-forward-to-image"></span><h1>feed_forward_to_image<a class="headerlink" href="#module-manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image" title="Link to this heading">¶</a></h1>
+<p>Feed-forward to image layer connection visualization.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image.FeedForwardToImage">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image.</span></span><span class="sig-name descname"><span class="pre">FeedForwardToImage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">animation_dot_color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../../constants/colors.html#manim.utils.color.manim_colors.RED"><span class="pre">RED</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">dot_radius</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.05</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/feed_forward_to_image.html#FeedForwardToImage"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image.FeedForwardToImage" title="Link to this definition">¶</a></dt>
+<dd><p>Connective layer between a feed-forward layer and an image layer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="feed_forward.FeedForwardLayer.html#manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer" title="manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">FeedForwardLayer</span></code></a></span>) – The input feed-forward layer.</p></li>
+<li><p><strong>output_layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="image.ImageLayer.html#manim_extensions.machine_learning.neural_network.layers.image.ImageLayer" title="manim_extensions.machine_learning.neural_network.layers.image.ImageLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageLayer</span></code></a></span>) – The output image layer.</p></li>
+<li><p><strong>animation_dot_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color of the dots in the forward pass animation.</p></li>
+<li><p><strong>dot_radius</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Radius of the dots in the forward pass animation.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to <a class="reference internal" href="parent_layers.ConnectiveLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer" title="manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConnectiveLayer</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Attributes</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image.FeedForwardToImage.input_class">
+<span class="sig-name descname"><span class="pre">input_class</span></span><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image.FeedForwardToImage.input_class" title="Link to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="feed_forward.FeedForwardLayer.html#manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer" title="manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">FeedForwardLayer</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image.FeedForwardToImage.output_class">
+<span class="sig-name descname"><span class="pre">output_class</span></span><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image.FeedForwardToImage.output_class" title="Link to this definition">¶</a></dt>
+<dd><p>alias of <a class="reference internal" href="image.ImageLayer.html#manim_extensions.machine_learning.neural_network.layers.image.ImageLayer" title="manim_extensions.machine_learning.neural_network.layers.image.ImageLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">ImageLayer</span></code></a></p>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<div id="feedforwardtoimagescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: FeedForwardToImageScene <a class="headerlink" href="#feedforwardtoimagescene">¶</a></p><img alt="../../../../_images/FeedForwardToImageScene-8c0cab71.png" class="align-center" src="../../../../_images/FeedForwardToImageScene-8c0cab71.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.feed_forward</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeedForwardLayer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.image</span><span class="w"> </span><span class="kn">import</span> <span class="n">ImageLayer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeedForwardToImage</span>
+<span class="n">first</span> <span class="o">=</span> <span class="n">FeedForwardLayer</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">second</span> <span class="o">=</span> <span class="n">ImageLayer</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">16</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">3</span><span class="p">)))</span>
+<span class="n">first</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">second</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">first</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">second</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="n">connection</span> <span class="o">=</span> <span class="n">FeedForwardToImage</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">FeedForwardToImageScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">second</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span>
+        <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mf">5.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image.FeedForwardToImage.construct_layer">
+<span class="sig-name descname"><span class="pre">construct_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_layer</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/feed_forward_to_image.html#FeedForwardToImage.construct_layer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image.FeedForwardToImage.construct_layer" title="Link to this definition">¶</a></dt>
+<dd><p>Forward to the parent construct_layer method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="parent_layers.NeuralNetworkLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer" title="manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetworkLayer</span></code></a></span>) – The layer preceding this connective layer in the network.</p></li>
+<li><p><strong>output_layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="parent_layers.NeuralNetworkLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer" title="manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetworkLayer</span></code></a></span>) – The layer following this connective layer in the network.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent layer classes.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image.FeedForwardToImage.make_forward_pass_animation">
+<span class="sig-name descname"><span class="pre">make_forward_pass_animation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">layer_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/feed_forward_to_image.html#FeedForwardToImage.make_forward_pass_animation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image.FeedForwardToImage.make_forward_pass_animation" title="Link to this definition">¶</a></dt>
+<dd><p>Makes dots diverge from the given location and move to the feed forward nodes decoder.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>layer_args</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Additional arguments passed to the connected layers when making
+their forward pass animations.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent layer classes.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.AnimationGroup.html#manim.animation.composition.AnimationGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">AnimationGroup</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image.FeedForwardToImage._create_override">
+<span class="sig-name descname"><span class="pre">_create_override</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/feed_forward_to_image.html#FeedForwardToImage._create_override"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image.FeedForwardToImage._create_override" title="Link to this definition">¶</a></dt>
+<dd><p>Return a zero-duration wait for an invisible layer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A zero-duration wait animation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1671,15 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">feed_forward_to_image</a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image.FeedForwardToImage"><code class="docutils literal notranslate"><span class="pre">FeedForwardToImage</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image.FeedForwardToImage.input_class"><code class="docutils literal notranslate"><span class="pre">FeedForwardToImage.input_class</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image.FeedForwardToImage.output_class"><code class="docutils literal notranslate"><span class="pre">FeedForwardToImage.output_class</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image.FeedForwardToImage.construct_layer"><code class="docutils literal notranslate"><span class="pre">FeedForwardToImage.construct_layer()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image.FeedForwardToImage.make_forward_pass_animation"><code class="docutils literal notranslate"><span class="pre">FeedForwardToImage.make_forward_pass_animation()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.feed_forward_to_image.FeedForwardToImage._create_override"><code class="docutils literal notranslate"><span class="pre">FeedForwardToImage._create_override()</span></code></a></li>
+
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

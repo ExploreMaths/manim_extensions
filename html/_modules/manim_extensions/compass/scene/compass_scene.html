@@ -1528,7 +1528,7 @@
 
 
 <div class="viewcode-block" id="CompassScene">
-<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.scene.compass_scene.CompassScene">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.CompassScene">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">CompassScene</span><span class="p">(</span><span class="n">MovingCameraScene</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""A scene equipped with a compass, ruler, and pencil. Mainly implements</span>
 <span class="sd">    compass placement, arc drawing, and ruler/pencil animations.</span>
@@ -1560,7 +1560,7 @@
 <span class="sd">    """</span>
 
 <div class="viewcode-block" id="CompassScene.setup">
-<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.scene.compass_scene.CompassScene.setup">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.CompassScene.setup">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Arrange the compass, ruler and pencil around the canvas edges.</span>
 
@@ -1574,7 +1574,7 @@
 
 
 <div class="viewcode-block" id="CompassScene.compass_move_niddle_tip_to">
-<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.scene.compass_scene.CompassScene.compass_move_niddle_tip_to">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.CompassScene.compass_move_niddle_tip_to">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">compass_move_niddle_tip_to</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="n">ORIGIN</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
@@ -1600,7 +1600,7 @@
 
 
 <div class="viewcode-block" id="CompassScene.rotate_compass_about_niddle_tip">
-<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.scene.compass_scene.CompassScene.rotate_compass_about_niddle_tip">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.CompassScene.rotate_compass_about_niddle_tip">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">rotate_compass_about_niddle_tip</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">angle_or_arc</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="n">Arc</span><span class="p">,</span>
@@ -1647,7 +1647,7 @@
 
 
 <div class="viewcode-block" id="CompassScene.compass_split_span">
-<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.scene.compass_scene.CompassScene.compass_split_span">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.CompassScene.compass_split_span">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">compass_split_span</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">span</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Open both compass legs so the distance between tips equals ``span``.</span>
 
@@ -1669,7 +1669,7 @@
 
 
 <div class="viewcode-block" id="CompassScene.split_cmpass_span">
-<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.scene.compass_scene.CompassScene.split_cmpass_span">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.CompassScene.split_cmpass_span">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">split_cmpass_span</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">span</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Adjust the pen tip while holding the needle fixed to reach a span.</span>
 
@@ -1695,7 +1695,7 @@
 
 
 <div class="viewcode-block" id="CompassScene.set_compass">
-<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.scene.compass_scene.CompassScene.set_compass">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.CompassScene.set_compass">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_compass</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">niddle_pos</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1729,7 +1729,7 @@
 
 
 <div class="viewcode-block" id="CompassScene.draw_arc">
-<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.scene.compass_scene.CompassScene.draw_arc">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.CompassScene.draw_arc">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">draw_arc</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">niddle_point</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="n">ORIGIN</span><span class="p">,</span>
@@ -1789,7 +1789,7 @@
 
 
 <div class="viewcode-block" id="CompassScene.flip_compass">
-<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.scene.compass_scene.CompassScene.flip_compass">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.CompassScene.flip_compass">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">flip_compass</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Flip the compass, swapping the needle and pen tips.</span>
 
@@ -1807,7 +1807,7 @@
 
 
 <div class="viewcode-block" id="CompassScene.put_compass_aside">
-<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.scene.compass_scene.CompassScene.put_compass_aside">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.CompassScene.put_compass_aside">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">put_compass_aside</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">aside_pos</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="n">RIGHT</span><span class="p">,</span>
@@ -1840,7 +1840,7 @@
 
 
 <div class="viewcode-block" id="CompassScene.set_ruler">
-<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.scene.compass_scene.CompassScene.set_ruler">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.CompassScene.set_ruler">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_ruler</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">start</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1883,7 +1883,7 @@
 
 
 <div class="viewcode-block" id="CompassScene.set_pencil">
-<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.scene.compass_scene.CompassScene.set_pencil">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.CompassScene.set_pencil">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_pencil</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Point3D</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Move the pencil nib to the specified position.</span>
 
@@ -1907,7 +1907,7 @@
 
 
 <div class="viewcode-block" id="CompassScene.draw_line">
-<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.scene.compass_scene.CompassScene.draw_line">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.CompassScene.draw_line">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">draw_line</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">start</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -1952,7 +1952,7 @@
 
 
 <div class="viewcode-block" id="CompassScene.put_pencil_away">
-<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.scene.compass_scene.CompassScene.put_pencil_away">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.CompassScene.put_pencil_away">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">put_pencil_away</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">DOWN</span><span class="p">,</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Translate the pencil as a whole to the specified position.</span>
 
@@ -1973,7 +1973,7 @@
 
 
 <div class="viewcode-block" id="CompassScene.put_ruler_aside">
-<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.scene.compass_scene.CompassScene.put_ruler_aside">[docs]</a>
+<a class="viewcode-back" href="../../../../reference/compass/scene/compass_scene.CompassScene.html#manim_extensions.compass.CompassScene.put_ruler_aside">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">put_ruler_aside</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">aside_pos</span><span class="p">:</span> <span class="n">Point3D</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">DOWN</span><span class="p">,</span>

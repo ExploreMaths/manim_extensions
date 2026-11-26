@@ -1491,6 +1491,86 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.arabic.text">
 <span id="text"></span><h1>text<a class="headerlink" href="#module-manim_extensions.arabic.text" title="Link to this heading">¶</a></h1>
+<p>Utilities for rendering Arabic text in Manim using XeLaTeX.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="manim_extensions.arabic.text._resolve_arabic_font">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.arabic.text.</span></span><span class="sig-name descname"><span class="pre">_resolve_arabic_font</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">font_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/arabic/text.html#_resolve_arabic_font"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.arabic.text._resolve_arabic_font" title="Link to this definition">¶</a></dt>
+<dd><p>Pick an installed Arabic font.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>font_name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Font name to use, or <code class="docutils literal notranslate"><span class="pre">None</span></code> to resolve the first installed font
+from <cite>_FONT_CANDIDATES</cite> via fontconfig.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The chosen font name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.arabic.text.ArabicTemplate">
+<span class="property"><span class="pre">dataclass</span> </span><span class="sig-prename descclassname"><span class="pre">manim_extensions.arabic.text.</span></span><span class="sig-name descname"><span class="pre">ArabicTemplate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">font_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/arabic/text.html#ArabicTemplate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.arabic.text.ArabicTemplate" title="Link to this definition">¶</a></dt>
+<dd><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.tex.TexTemplate.html#manim.utils.tex.TexTemplate" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">TexTemplate</span></code></a> configured for Arabic text rendering using XeLaTeX.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>font_name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Name of the Arabic-supporting font to use. <code class="docutils literal notranslate"><span class="pre">None</span></code> picks the first
+installed font from a built-in candidate list (“Al Bayan”, “Geeza Pro”,
+“Amiri”, “Scheherazade”, “Noto Naskh Arabic”, “Arial Unicode MS”) via
+fontconfig; pass a name explicitly to override.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="arabictemplatescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ArabicTemplateScene <a class="headerlink" href="#arabictemplatescene">¶</a></p><img alt="../../_images/ArabicTemplateScene-90dae3f7.png" class="align-center" src="../../_images/ArabicTemplateScene-90dae3f7.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.arabic</span><span class="w"> </span><span class="kn">import</span> <span class="n">ArabicTemplate</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ArabicTemplateScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">template</span> <span class="o">=</span> <span class="n">ArabicTemplate</span><span class="p">()</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">Tex</span><span class="p">(</span><span class="s2">"مرحبا"</span><span class="p">,</span> <span class="n">tex_template</span><span class="o">=</span><span class="n">template</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">48</span><span class="p">)</span>
+        <span class="n">label</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.arabic.text.ArabicText">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.arabic.text.</span></span><span class="sig-name descname"><span class="pre">ArabicText</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'arabicblue'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">34</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">font_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/arabic/text.html#ArabicText"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.arabic.text.ArabicText" title="Link to this definition">¶</a></dt>
+<dd><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.text.tex_mobject.Tex.html#manim.mobject.text.tex_mobject.Tex" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tex</span></code></a> object rendered with Arabic text.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Arabic text to render.</p></li>
+<li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – LaTeX color name (arabicblue, arabicgreen, arabicred, or any xcolor).</p></li>
+<li><p><strong>font_size</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Font size in points.</p></li>
+<li><p><strong>font_name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Arabic font name. <code class="docutils literal notranslate"><span class="pre">None</span></code> picks the first installed font from a
+built-in candidate list; see
+<a class="reference internal" href="text.ArabicTemplate.html#manim_extensions.arabic.text.ArabicTemplate" title="manim_extensions.arabic.text.ArabicTemplate"><code class="xref py py-class docutils literal notranslate"><span class="pre">ArabicTemplate</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="arabictextscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ArabicTextScene <a class="headerlink" href="#arabictextscene">¶</a></p><img alt="../../_images/ArabicTextScene-c6e2e12b.png" class="align-center" src="../../_images/ArabicTextScene-c6e2e12b.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.arabic</span><span class="w"> </span><span class="kn">import</span> <span class="n">ArabicText</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ArabicTextScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">ArabicText</span><span class="p">(</span><span class="s2">"مرحبا"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"arabicblue"</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">48</span><span class="p">)</span>
+        <span class="n">label</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
 <p>Arabic-capable text mobjects and the Tex template behind them. These live in
 the <a class="reference internal" href="#module-manim_extensions.arabic.text" title="manim_extensions.arabic.text"><code class="xref py py-mod docutils literal notranslate"><span class="pre">text</span></code></a> submodule.</p>
 <section id="classes">
@@ -1568,6 +1648,10 @@ the <a class="reference internal" href="#module-manim_extensions.arabic.text" ti
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">text</a><ul>
+<li><a class="reference internal" href="#manim_extensions.arabic.text._resolve_arabic_font"><code class="docutils literal notranslate"><span class="pre">_resolve_arabic_font()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.arabic.text.ArabicTemplate"><code class="docutils literal notranslate"><span class="pre">ArabicTemplate</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.arabic.text.ArabicText"><code class="docutils literal notranslate"><span class="pre">ArabicText</span></code></a>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

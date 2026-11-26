@@ -4,7 +4,7 @@
 pubchem_api
 ===========
 
-.. module:: manim_extensions.chemistry.utils.pubchem_api
+.. automodule:: manim_extensions.chemistry.utils.pubchem_api
 
 Classes
 -------

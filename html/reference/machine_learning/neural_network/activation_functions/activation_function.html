@@ -1491,6 +1491,100 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.machine_learning.neural_network.activation_functions.activation_function">
 <span id="activation-function"></span><h1>activation_function<a class="headerlink" href="#module-manim_extensions.machine_learning.neural_network.activation_functions.activation_function" title="Link to this heading">¶</a></h1>
+<p>Base class for activation function visualization.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.activation_functions.activation_function.ActivationFunction">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.activation_functions.activation_function.</span></span><span class="sig-name descname"><span class="pre">ActivationFunction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">function_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[-1,</span> <span class="pre">1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[-1,</span> <span class="pre">1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_function_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">cast(Any,</span> <span class="pre">config).</span><span class="pre">color_scheme.active_color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">cast(Any,</span> <span class="pre">config).</span><span class="pre">color_scheme.primary_color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rectangle_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">cast(Any,</span> <span class="pre">config).</span><span class="pre">color_scheme.secondary_color</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/activation_functions/activation_function.html#ActivationFunction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.activation_functions.activation_function.ActivationFunction" title="Link to this definition">¶</a></dt>
+<dd><p>Abstract parent class for defining activation functions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>function_name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Name displayed next to the plot.</p></li>
+<li><p><strong>x_range</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Range of the x-axis.</p></li>
+<li><p><strong>y_range</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Range of the y-axis.</p></li>
+<li><p><strong>x_length</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Length of the x-axis.</p></li>
+<li><p><strong>y_length</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Length of the y-axis.</p></li>
+<li><p><strong>show_function_name</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to display the function name.</p></li>
+<li><p><strong>active_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color used when highlighting the function.</p></li>
+<li><p><strong>plot_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color of the function plot.</p></li>
+<li><p><strong>rectangle_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color of the surrounding rectangle and axes.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="activationfunctionscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ActivationFunctionScene <a class="headerlink" href="#activationfunctionscene">¶</a></p><img alt="../../../../_images/ActivationFunctionScene-20c28d10.png" class="align-center" src="../../../../_images/ActivationFunctionScene-20c28d10.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.activation_functions.activation_function</span><span class="w"> </span><span class="kn">import</span> <span class="n">ActivationFunction</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.activation_functions.relu</span><span class="w"> </span><span class="kn">import</span> <span class="n">ReLUFunction</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ActivationFunctionScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># ActivationFunction is abstract; ReLUFunction is a concrete</span>
+        <span class="c1"># subclass.</span>
+        <span class="n">activation</span> <span class="o">=</span> <span class="n">ReLUFunction</span><span class="p">()</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">activation</span><span class="p">,</span> <span class="n">ActivationFunction</span><span class="p">)</span>
+        <span class="n">activation</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+        <span class="n">activation</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">activation</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.activation_functions.activation_function.ActivationFunction.construct_activation_function">
+<span class="sig-name descname"><span class="pre">construct_activation_function</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/activation_functions/activation_function.html#ActivationFunction.construct_activation_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.activation_functions.activation_function.ActivationFunction.construct_activation_function" title="Link to this definition">¶</a></dt>
+<dd><p>Build the axes, curve and labels for the activation function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.activation_functions.activation_function.ActivationFunction.apply_function">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">apply_function</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_val</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/activation_functions/activation_function.html#ActivationFunction.apply_function"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.activation_functions.activation_function.ActivationFunction.apply_function" title="Link to this definition">¶</a></dt>
+<dd><p>Evaluates function at given x_val.</p>
+<p>Abstract method: concrete subclasses implement the actual
+activation function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x_val</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Input value at which to evaluate the function. If <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+a random value within <code class="docutils literal notranslate"><span class="pre">x_range</span></code> is used instead.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.activation_functions.activation_function.ActivationFunction.make_evaluate_animation">
+<span class="sig-name descname"><span class="pre">make_evaluate_animation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/activation_functions/activation_function.html#ActivationFunction.make_evaluate_animation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.activation_functions.activation_function.ActivationFunction.make_evaluate_animation" title="Link to this definition">¶</a></dt>
+<dd><p>Evaluates the function at a random point in the x_range.</p>
+<p>The graph and its surrounding rectangle are highlighted and a dot
+marks the evaluated point for the duration of the animation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x_val</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Input value at which to evaluate the function.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.Succession.html#manim.animation.composition.Succession" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Succession</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.composition.Succession.html#manim.animation.composition.Succession" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Succession</span></code></a> instance representing the result.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1657,12 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">activation_function</a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.activation_functions.activation_function.ActivationFunction"><code class="docutils literal notranslate"><span class="pre">ActivationFunction</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.activation_functions.activation_function.ActivationFunction.construct_activation_function"><code class="docutils literal notranslate"><span class="pre">ActivationFunction.construct_activation_function()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.activation_functions.activation_function.ActivationFunction.apply_function"><code class="docutils literal notranslate"><span class="pre">ActivationFunction.apply_function()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.activation_functions.activation_function.ActivationFunction.make_evaluate_animation"><code class="docutils literal notranslate"><span class="pre">ActivationFunction.make_evaluate_animation()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

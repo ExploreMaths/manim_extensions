@@ -1491,20 +1491,9 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.svg_animations.html_parsed_vmobject">
 <span id="html-parsed-vmobject"></span><h1>html_parsed_vmobject<a class="headerlink" href="#module-manim_extensions.svg_animations.html_parsed_vmobject" title="Link to this heading">¶</a></h1>
-<section id="classes">
-<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
-<div class="table-wrapper autosummary longtable docutils container">
-<table class="autosummary longtable docutils align-default">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="html_parsed_vmobject.HTMLParsedVMobject.html#manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject" title="manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HTMLParsedVMobject</span></code></a></p></td>
-<td><p>Wrap a <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a> and stream its rendered SVG into an HTML page.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</section>
-<section id="constants">
-<h2>Constants<a class="headerlink" href="#constants" title="Link to this heading">¶</a></h2>
+<p>HTML parsed SVG vmobjects for Manim.</p>
+<p>This module provides functionality to parse SVG files and create
+animated Manim objects from them.</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="manim_extensions.svg_animations.html_parsed_vmobject.HTML_STRUCTURE">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.svg_animations.html_parsed_vmobject.</span></span><span class="sig-name descname"><span class="pre">HTML_STRUCTURE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'&lt;!DOCTYPE</span> <span class="pre">html&gt;\n&lt;html</span> <span class="pre">lang=&quot;en&quot;&gt;\n&lt;head&gt;\n</span>&#160;&#160;&#160; <span class="pre">&lt;meta</span> <span class="pre">charset=&quot;UTF-8&quot;&gt;\n</span>&#160;&#160;&#160; <span class="pre">&lt;meta</span> <span class="pre">http-equiv=&quot;X-UA-Compatible&quot;</span> <span class="pre">content=&quot;IE=edge&quot;&gt;\n</span>&#160;&#160;&#160; <span class="pre">&lt;meta</span> <span class="pre">name=&quot;viewport&quot;</span> <span class="pre">content=&quot;width=device-width,</span> <span class="pre">initial-scale=1.0&quot;&gt;\n</span>&#160;&#160;&#160; <span class="pre">&lt;title&gt;%s&lt;/title&gt;\n&lt;/head&gt;\n&lt;body&gt;\n</span>&#160;&#160;&#160; <span class="pre">&lt;svg</span> <span class="pre">id=&quot;%s&quot;</span> <span class="pre">width=&quot;%s&quot;</span> <span class="pre">viewBox=&quot;0</span> <span class="pre">0</span> <span class="pre">%d</span> <span class="pre">%d&quot;</span> <span class="pre">style=&quot;background-color:%s;&quot;&gt;&lt;/svg&gt;\n</span>&#160;&#160;&#160; <span class="pre">%s\n</span>&#160;&#160;&#160; <span class="pre">&lt;script</span> <span class="pre">src=&quot;%s&quot;&gt;&lt;/script&gt;\n&lt;/body&gt;\n&lt;/html&gt;'</span></span><a class="headerlink" href="#manim_extensions.svg_animations.html_parsed_vmobject.HTML_STRUCTURE" title="Link to this definition">¶</a></dt>
@@ -1532,6 +1521,211 @@
 <dl class="py data">
 <dt class="sig sig-object py" id="manim_extensions.svg_animations.html_parsed_vmobject.JAVASCRIPT_INTERACTIVE_STRUCTURE">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.svg_animations.html_parsed_vmobject.</span></span><span class="sig-name descname"><span class="pre">JAVASCRIPT_INTERACTIVE_STRUCTURE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'var</span> <span class="pre">combsDict</span> <span class="pre">=</span> <span class="pre">{%s};\nvar</span> <span class="pre">comb</span> <span class="pre">=</span> <span class="pre">[%s];\nfunction</span> <span class="pre">update(i,</span> <span class="pre">val)</span> <span class="pre">{\nif</span> <span class="pre">(!rendered)</span> <span class="pre">{\n</span>&#160;&#160;&#160; <span class="pre">return\n}\nvar</span> <span class="pre">keys</span> <span class="pre">=</span> <span class="pre">Object.keys</span><span class="pre">(combsDict);\nvar</span> <span class="pre">ithElements</span> <span class="pre">=</span> <span class="pre">[];\nfor</span> <span class="pre">(let</span> <span class="pre">arr</span> <span class="pre">of</span> <span class="pre">keys)</span> <span class="pre">{\n</span>&#160;&#160;&#160; <span class="pre">if</span> <span class="pre">(</span><span class="pre">Array.isArray</span><span class="pre">(arr[i]))</span> <span class="pre">{</span>&#160;&#160; <span class="pre">\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">ithElements.push</span><span class="pre">(arr[i]);\n</span>&#160;&#160;&#160; <span class="pre">}\n</span>&#160;&#160;&#160; <span class="pre">else</span> <span class="pre">{\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">ithElements.push</span><span class="pre">(arr);\n</span>&#160;&#160;&#160; <span class="pre">}\n}\nvar</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">val;\nvar</span> <span class="pre">closest</span> <span class="pre">=</span> <span class="pre">ithElements.sort</span><span class="pre">(</span> <span class="pre">(a,</span> <span class="pre">b)</span> <span class="pre">=&gt;</span> <span class="pre">Math.abs</span><span class="pre">(x</span> <span class="pre">-</span> <span class="pre">a)</span> <span class="pre">-</span> <span class="pre">Math.abs</span><span class="pre">(x</span> <span class="pre">-</span> <span class="pre">b))[0];\ncomb[i]</span> <span class="pre">=</span> <span class="pre">closest;\ncombsDict[comb]();\n}\n'</span></span><a class="headerlink" href="#manim_extensions.svg_animations.html_parsed_vmobject.JAVASCRIPT_INTERACTIVE_STRUCTURE" title="Link to this definition">¶</a></dt>
+<dd><p>JavaScript template for interactive SVG scenes.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="manim_extensions.svg_animations.html_parsed_vmobject._ensure_to_svg_plugin">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.svg_animations.html_parsed_vmobject.</span></span><span class="sig-name descname"><span class="pre">_ensure_to_svg_plugin</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/svg_animations/html_parsed_vmobject.html#_ensure_to_svg_plugin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.svg_animations.html_parsed_vmobject._ensure_to_svg_plugin" title="Link to this definition">¶</a></dt>
+<dd><p>Import the vendored manim-mobject-svg code, which registers VMobject.to_svg().</p>
+<p>The import is done lazily so that <a class="reference internal" href="index.html#module-manim_extensions.svg_animations" title="manim_extensions.svg_animations"><code class="xref py py-mod docutils literal notranslate"><span class="pre">svg_animations</span></code></a>
+stays cheap to import when <a class="reference internal" href="html_parsed_vmobject.HTMLParsedVMobject.html#manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject" title="manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject"><code class="xref py py-class docutils literal notranslate"><span class="pre">HTMLParsedVMobject</span></code></a> is unused.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.svg_animations.html_parsed_vmobject.</span></span><span class="sig-name descname"><span class="pre">HTMLParsedVMobject</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vmobject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scene</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'500px'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">basic_html</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/svg_animations/html_parsed_vmobject.html#HTMLParsedVMobject"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject" title="Link to this definition">¶</a></dt>
+<dd><p>Wrap a <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a> and stream its rendered SVG into an HTML page.</p>
+<p>While the scene runs, the vmobject is continuously exported to an SVG
+file and the corresponding JavaScript/SVG updates are injected into a
+generated HTML page, so the object can be viewed and interacted with in
+a web browser.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>vmobject</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a></span>) – The Manim object to export and animate in the HTML output.</p></li>
+<li><p><strong>scene</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.scene.scene.Scene.html#manim.scene.scene.Scene" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Scene</span></code></a></span>) – The scene in which <code class="docutils literal notranslate"><span class="pre">vmobject</span></code> lives. Its camera state and
+background color are used for the HTML output, and the per-frame
+updater is registered on it.</p></li>
+<li><p><strong>width</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Width of the embedded SVG element, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;500px&quot;</span></code>.</p></li>
+<li><p><strong>basic_html</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, generate a minimal HTML wrapper without the full page
+structure and script tag.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>Render the scene with the <code class="docutils literal notranslate"><span class="pre">--disable_caching</span></code> flag. Besides the MP4,
+an HTML and a JS file are written next to the scene file; open the HTML
+file in a browser and call <code class="docutils literal notranslate"><span class="pre">renderHTMLParsedVMobjectScene()</span></code> from
+the developer console to see the SVG animation.</p>
+<div id="htmlparsedvmobjectscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: HTMLParsedVMobjectScene <a class="headerlink" href="#htmlparsedvmobjectscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./HTMLParsedVMobjectScene-3aec364a.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.svg_animations</span><span class="w"> </span><span class="kn">import</span> <span class="n">HTMLParsedVMobject</span>
+<span class="n">VMobject</span><span class="o">.</span><span class="n">set_default</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="n">BLACK</span><span class="p">)</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">HTMLParsedVMobjectScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">camera</span><span class="o">.</span><span class="n">background_color</span> <span class="o">=</span> <span class="n">WHITE</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">Axes</span><span class="p">()</span><span class="o">.</span><span class="n">add_coordinates</span><span class="p">()</span>
+        <span class="n">labels</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_axis_labels</span><span class="p">(</span><span class="s2">"x"</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">)</span>
+        <span class="n">vg</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+        <span class="n">parsed</span> <span class="o">=</span> <span class="n">HTMLParsedVMobject</span><span class="p">(</span><span class="n">vg</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Write</span><span class="p">(</span><span class="n">VGroup</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">labels</span><span class="p">)))</span>
+        <span class="n">graph</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">,</span> <span class="n">x_range</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">),</span> <span class="mi">7</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">)</span>
+        <span class="n">vg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Create</span><span class="p">(</span><span class="n">graph</span><span class="p">))</span>
+        <span class="n">riemann</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_riemann_rectangles</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">x_range</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="n">dx</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">vg</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">riemann</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">Write</span><span class="p">(</span><span class="n">riemann</span><span class="p">))</span>
+        <span class="n">dx</span> <span class="o">=</span> <span class="n">ValueTracker</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">riemann</span><span class="o">.</span><span class="n">add_updater</span><span class="p">(</span>
+            <span class="k">lambda</span> <span class="n">m</span><span class="p">:</span> <span class="n">m</span><span class="o">.</span><span class="n">become</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">get_riemann_rectangles</span><span class="p">(</span>
+                <span class="n">graph</span><span class="p">,</span> <span class="n">x_range</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span> <span class="n">dx</span><span class="o">=</span><span class="n">dx</span><span class="o">.</span><span class="n">get_value</span><span class="p">()))</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">dx</span><span class="o">.</span><span class="n">animate</span><span class="o">.</span><span class="n">set_value</span><span class="p">(</span><span class="mf">0.1</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+        <span class="n">riemann</span><span class="o">.</span><span class="n">clear_updaters</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeOut</span><span class="p">(</span><span class="n">vg</span><span class="p">))</span>
+        <span class="n">parsed</span><span class="o">.</span><span class="n">finish</span><span class="p">()</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject.updater">
+<span class="sig-name descname"><span class="pre">updater</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/svg_animations/html_parsed_vmobject.html#HTMLParsedVMobject.updater"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject.updater" title="Link to this definition">¶</a></dt>
+<dd><p>Export the vmobject to an SVG frame and append the JS update.</p>
+<p>Called once per rendered frame through the scene updater registered
+in <code class="docutils literal notranslate"><span class="pre">__init__</span></code>: serializes <code class="docutils literal notranslate"><span class="pre">self.vmobject</span></code> via <code class="docutils literal notranslate"><span class="pre">to_svg()</span></code>,
+converts the resulting path attributes into JavaScript DOM update
+statements and appends them to <code class="docutils literal notranslate"><span class="pre">self.js_updates</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dt</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Elapsed time since the previous frame, in seconds.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject.update_html">
+<span class="sig-name descname"><span class="pre">update_html</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/svg_animations/html_parsed_vmobject.html#HTMLParsedVMobject.update_html"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject.update_html" title="Link to this definition">¶</a></dt>
+<dd><p>Rewrite the HTML page with the current frame and time.</p>
+<p>Called on every scene update; embeds the current SVG frame and
+renderer time into the HTML/JS output.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject.finish">
+<span class="sig-name descname"><span class="pre">finish</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/svg_animations/html_parsed_vmobject.html#HTMLParsedVMobject.finish"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject.finish" title="Link to this definition">¶</a></dt>
+<dd><p>Stop the updater and write the final HTML and JS files.</p>
+<p>Removes the scene updater and flushes the accumulated
+JavaScript updates to <code class="docutils literal notranslate"><span class="pre">&lt;scene_name&gt;.js</span></code> and the final page to
+<code class="docutils literal notranslate"><span class="pre">&lt;scene_name&gt;.html</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject.start_interactive">
+<span class="sig-name descname"><span class="pre">start_interactive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value_trackers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">linspaces</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">animate_this</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/svg_animations/html_parsed_vmobject.html#HTMLParsedVMobject.start_interactive"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject.start_interactive" title="Link to this definition">¶</a></dt>
+<dd><p>Precompute the interactive JavaScript state for value combinations.</p>
+<p>Iterates over the cartesian product of <code class="docutils literal notranslate"><span class="pre">linspaces</span></code>, sets each
+combination on <code class="docutils literal notranslate"><span class="pre">value_trackers</span></code>, exports the vmobject once per
+combination and records the resulting JavaScript DOM updates, so
+the generated HTML page can switch between the states interactively.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value_trackers</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.value_tracker.ValueTracker.html#manim.mobject.value_tracker.ValueTracker" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ValueTracker</span></code></a>]</span>) – Value trackers, swept through every combination of
+<code class="docutils literal notranslate"><span class="pre">linspaces</span></code>.</p></li>
+<li><p><strong>linspaces</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>]</span>) – Arrays of values to sweep, one per entry of <code class="docutils literal notranslate"><span class="pre">value_trackers</span></code>.
+Their cartesian product is enumerated.</p></li>
+<li><p><strong>animate_this</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – If <code class="docutils literal notranslate"><span class="pre">False</span></code>, stop the per-frame updater before sweeping and
+record the current scene time as <code class="docutils literal notranslate"><span class="pre">self.last_t</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper autosummary longtable docutils container">
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="html_parsed_vmobject.HTMLParsedVMobject.html#manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject" title="manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HTMLParsedVMobject</span></code></a></p></td>
+<td><p>Wrap a <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a> and stream its rendered SVG into an HTML page.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="constants">
+<h2>Constants<a class="headerlink" href="#constants" title="Link to this heading">¶</a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.svg_animations.html_parsed_vmobject.</span></span><span class="sig-name descname"><span class="pre">HTML_STRUCTURE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'&lt;!DOCTYPE</span> <span class="pre">html&gt;\n&lt;html</span> <span class="pre">lang=&quot;en&quot;&gt;\n&lt;head&gt;\n</span>&#160;&#160;&#160; <span class="pre">&lt;meta</span> <span class="pre">charset=&quot;UTF-8&quot;&gt;\n</span>&#160;&#160;&#160; <span class="pre">&lt;meta</span> <span class="pre">http-equiv=&quot;X-UA-Compatible&quot;</span> <span class="pre">content=&quot;IE=edge&quot;&gt;\n</span>&#160;&#160;&#160; <span class="pre">&lt;meta</span> <span class="pre">name=&quot;viewport&quot;</span> <span class="pre">content=&quot;width=device-width,</span> <span class="pre">initial-scale=1.0&quot;&gt;\n</span>&#160;&#160;&#160; <span class="pre">&lt;title&gt;%s&lt;/title&gt;\n&lt;/head&gt;\n&lt;body&gt;\n</span>&#160;&#160;&#160; <span class="pre">&lt;svg</span> <span class="pre">id=&quot;%s&quot;</span> <span class="pre">width=&quot;%s&quot;</span> <span class="pre">viewBox=&quot;0</span> <span class="pre">0</span> <span class="pre">%d</span> <span class="pre">%d&quot;</span> <span class="pre">style=&quot;background-color:%s;&quot;&gt;&lt;/svg&gt;\n</span>&#160;&#160;&#160; <span class="pre">%s\n</span>&#160;&#160;&#160; <span class="pre">&lt;script</span> <span class="pre">src=&quot;%s&quot;&gt;&lt;/script&gt;\n&lt;/body&gt;\n&lt;/html&gt;'</span></span><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dd><p>HTML page template used to render an interactive SVG scene.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.svg_animations.html_parsed_vmobject.</span></span><span class="sig-name descname"><span class="pre">BASIC_HTML_STRUCTURE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'&lt;div&gt;\n</span>&#160;&#160;&#160; <span class="pre">&lt;svg</span> <span class="pre">id=&quot;%s&quot;</span> <span class="pre">width=&quot;%s&quot;</span> <span class="pre">viewBox=&quot;0</span> <span class="pre">0</span> <span class="pre">%d</span> <span class="pre">%d&quot;</span> <span class="pre">style=&quot;background-color:%s;&quot;&gt;&lt;/svg&gt;\n&lt;/div&gt;'</span></span><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
+<dd><p>Minimal HTML/SVG template without the surrounding page.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="id2">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.svg_animations.html_parsed_vmobject.</span></span><span class="sig-name descname"><span class="pre">JAVASCRIPT_STRUCTURE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'var</span> <span class="pre">rendered</span> <span class="pre">=</span> <span class="pre">false;\nvar</span> <span class="pre">ready</span> <span class="pre">=</span> <span class="pre">true;\nvar</span> <span class="pre">timeouts</span> <span class="pre">=</span> <span class="pre">[];\nvar</span> <span class="pre">%s</span> <span class="pre">=</span> <span class="pre">document.getElementById</span><span class="pre">(&quot;%s&quot;);\nfunction</span> <span class="pre">render%s()</span> <span class="pre">{\n</span>&#160;&#160;&#160; <span class="pre">if</span> <span class="pre">(!ready)</span> <span class="pre">{\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">for</span> <span class="pre">(var</span> <span class="pre">i=0;</span> <span class="pre">i&lt;</span><span class="pre">timeouts.length</span><span class="pre">;</span> <span class="pre">i++)</span> <span class="pre">{\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">clear</span><span class="pre">Timeout</span><span class="pre">(timeouts[i]);\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">}\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">while(</span><span class="pre">timeouts.length</span> <span class="pre">&gt;</span> <span class="pre">0)</span> <span class="pre">{\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">timeouts.pop</span><span class="pre">();\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">}\n</span>&#160;&#160;&#160; <span class="pre">}\n</span>&#160;&#160;&#160; <span class="pre">ready</span> <span class="pre">=</span> <span class="pre">false;\n</span>&#160;&#160;&#160; <span class="pre">rendered</span> <span class="pre">=</span> <span class="pre">false;\n%s\n</span>&#160;&#160;&#160; <span class="pre">set</span><span class="pre">Timeout</span><span class="pre">(function()</span> <span class="pre">{\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">ready</span> <span class="pre">=</span> <span class="pre">true;\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">rendered</span> <span class="pre">=</span> <span class="pre">true;\n</span>&#160;&#160;&#160; <span class="pre">},</span> <span class="pre">%f)\n}'</span></span><a class="headerlink" href="#id2" title="Link to this definition">¶</a></dt>
+<dd><p>JavaScript template that renders an SVG scene.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="id3">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.svg_animations.html_parsed_vmobject.</span></span><span class="sig-name descname"><span class="pre">JAVASCRIPT_UPDATE_STRUCTURE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'</span>&#160;&#160;&#160; <span class="pre">timeouts.push</span><span class="pre">(set</span><span class="pre">Timeout</span><span class="pre">(function()</span> <span class="pre">{\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">%</span><span class="pre">s.replaceChildren</span><span class="pre">();\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">%s\n</span>&#160;&#160;&#160; <span class="pre">},</span> <span class="pre">%f))'</span></span><a class="headerlink" href="#id3" title="Link to this definition">¶</a></dt>
+<dd><p>JavaScript scaffolding used for incremental SVG updates.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="id4">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.svg_animations.html_parsed_vmobject.</span></span><span class="sig-name descname"><span class="pre">JAVASCRIPT_INTERACTIVE_STRUCTURE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'var</span> <span class="pre">combsDict</span> <span class="pre">=</span> <span class="pre">{%s};\nvar</span> <span class="pre">comb</span> <span class="pre">=</span> <span class="pre">[%s];\nfunction</span> <span class="pre">update(i,</span> <span class="pre">val)</span> <span class="pre">{\nif</span> <span class="pre">(!rendered)</span> <span class="pre">{\n</span>&#160;&#160;&#160; <span class="pre">return\n}\nvar</span> <span class="pre">keys</span> <span class="pre">=</span> <span class="pre">Object.keys</span><span class="pre">(combsDict);\nvar</span> <span class="pre">ithElements</span> <span class="pre">=</span> <span class="pre">[];\nfor</span> <span class="pre">(let</span> <span class="pre">arr</span> <span class="pre">of</span> <span class="pre">keys)</span> <span class="pre">{\n</span>&#160;&#160;&#160; <span class="pre">if</span> <span class="pre">(</span><span class="pre">Array.isArray</span><span class="pre">(arr[i]))</span> <span class="pre">{</span>&#160;&#160; <span class="pre">\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">ithElements.push</span><span class="pre">(arr[i]);\n</span>&#160;&#160;&#160; <span class="pre">}\n</span>&#160;&#160;&#160; <span class="pre">else</span> <span class="pre">{\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">ithElements.push</span><span class="pre">(arr);\n</span>&#160;&#160;&#160; <span class="pre">}\n}\nvar</span> <span class="pre">x</span> <span class="pre">=</span> <span class="pre">val;\nvar</span> <span class="pre">closest</span> <span class="pre">=</span> <span class="pre">ithElements.sort</span><span class="pre">(</span> <span class="pre">(a,</span> <span class="pre">b)</span> <span class="pre">=&gt;</span> <span class="pre">Math.abs</span><span class="pre">(x</span> <span class="pre">-</span> <span class="pre">a)</span> <span class="pre">-</span> <span class="pre">Math.abs</span><span class="pre">(x</span> <span class="pre">-</span> <span class="pre">b))[0];\ncomb[i]</span> <span class="pre">=</span> <span class="pre">closest;\ncombsDict[comb]();\n}\n'</span></span><a class="headerlink" href="#id4" title="Link to this definition">¶</a></dt>
 <dd><p>JavaScript template for interactive SVG scenes.</p>
 </dd></dl>
 
@@ -1596,13 +1790,26 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">html_parsed_vmobject</a><ul>
-<li><a class="reference internal" href="#classes">Classes</a></li>
-<li><a class="reference internal" href="#constants">Constants</a><ul>
 <li><a class="reference internal" href="#manim_extensions.svg_animations.html_parsed_vmobject.HTML_STRUCTURE"><code class="docutils literal notranslate"><span class="pre">HTML_STRUCTURE</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.svg_animations.html_parsed_vmobject.BASIC_HTML_STRUCTURE"><code class="docutils literal notranslate"><span class="pre">BASIC_HTML_STRUCTURE</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.svg_animations.html_parsed_vmobject.JAVASCRIPT_STRUCTURE"><code class="docutils literal notranslate"><span class="pre">JAVASCRIPT_STRUCTURE</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.svg_animations.html_parsed_vmobject.JAVASCRIPT_UPDATE_STRUCTURE"><code class="docutils literal notranslate"><span class="pre">JAVASCRIPT_UPDATE_STRUCTURE</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.svg_animations.html_parsed_vmobject.JAVASCRIPT_INTERACTIVE_STRUCTURE"><code class="docutils literal notranslate"><span class="pre">JAVASCRIPT_INTERACTIVE_STRUCTURE</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.svg_animations.html_parsed_vmobject._ensure_to_svg_plugin"><code class="docutils literal notranslate"><span class="pre">_ensure_to_svg_plugin()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject"><code class="docutils literal notranslate"><span class="pre">HTMLParsedVMobject</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject.updater"><code class="docutils literal notranslate"><span class="pre">HTMLParsedVMobject.updater()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject.update_html"><code class="docutils literal notranslate"><span class="pre">HTMLParsedVMobject.update_html()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject.finish"><code class="docutils literal notranslate"><span class="pre">HTMLParsedVMobject.finish()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.svg_animations.html_parsed_vmobject.HTMLParsedVMobject.start_interactive"><code class="docutils literal notranslate"><span class="pre">HTMLParsedVMobject.start_interactive()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#constants">Constants</a><ul>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">HTML_STRUCTURE</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">BASIC_HTML_STRUCTURE</span></code></a></li>
+<li><a class="reference internal" href="#id2"><code class="docutils literal notranslate"><span class="pre">JAVASCRIPT_STRUCTURE</span></code></a></li>
+<li><a class="reference internal" href="#id3"><code class="docutils literal notranslate"><span class="pre">JAVASCRIPT_UPDATE_STRUCTURE</span></code></a></li>
+<li><a class="reference internal" href="#id4"><code class="docutils literal notranslate"><span class="pre">JAVASCRIPT_INTERACTIVE_STRUCTURE</span></code></a></li>
 </ul>
 </li>
 </ul>

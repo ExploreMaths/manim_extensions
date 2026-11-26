@@ -5,7 +5,7 @@
 helpers
 =======
 
-.. module:: manim_extensions.meshes.helpers
+.. automodule:: manim_extensions.meshes.helpers
 
 Functions
 ---------

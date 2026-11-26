@@ -5,7 +5,7 @@
 backdrop
 ========
 
-.. module:: manim_extensions.radar.backdrop
+.. automodule:: manim_extensions.radar.backdrop
 
 Classes
 -------

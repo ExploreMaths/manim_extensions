@@ -4,7 +4,7 @@
 constants
 =========
 
-.. module:: manim_extensions.sequence_diagram.constants
+.. automodule:: manim_extensions.sequence_diagram.constants
 
 .. autoall:: manim_extensions.sequence_diagram.constants
    :types: data

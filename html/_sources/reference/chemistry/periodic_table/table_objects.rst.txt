@@ -4,7 +4,7 @@
 table_objects
 =============
 
-.. module:: manim_extensions.chemistry.periodic_table.table_objects
+.. automodule:: manim_extensions.chemistry.periodic_table.table_objects
 
 Classes
 -------

@@ -1491,6 +1491,113 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.pymunk.constraints.VDampedRotarySpring">
 <span id="vdampedrotaryspring"></span><h1>VDampedRotarySpring<a class="headerlink" href="#module-manim_extensions.pymunk.constraints.VDampedRotarySpring" title="Link to this heading">¶</a></h1>
+<p>Damped rotary spring constraint for Pymunk.</p>
+<p>This module provides the <a class="reference internal" href="VDampedRotarySpring.VDampedRotarySpring.html#manim_extensions.pymunk.constraints.VDampedRotarySpring.VDampedRotarySpring" title="manim_extensions.pymunk.constraints.VDampedRotarySpring.VDampedRotarySpring"><code class="xref py py-class docutils literal notranslate"><span class="pre">VDampedRotarySpring</span></code></a> class for creating damped rotary spring constraints.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.pymunk.constraints.VDampedRotarySpring.VDampedRotarySpring">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.pymunk.constraints.VDampedRotarySpring.</span></span><span class="sig-name descname"><span class="pre">VDampedRotarySpring</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a_mob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_mob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rest_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stiffness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">damping</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arc_indicator_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Arc</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arc_indicator_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'radius':</span> <span class="pre">0.1,</span> <span class="pre">'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.RED"><span class="pre">RED</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">4}</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connect_line_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connect_line_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.YELLOW"><span class="pre">YELLOW</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">2}</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/constraints/VDampedRotarySpring.html#VDampedRotarySpring"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.pymunk.constraints.VDampedRotarySpring.VDampedRotarySpring" title="Link to this definition">¶</a></dt>
+<dd><p>A rotational spring connection is created between the two rigid bodies.
+When the actual relative angle deviates from the target angle,
+the spring torque pulls it back; the damping torque dampens the oscillation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a_mob</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The first Mobject to be connected. Typically acts as the pivot point or one of the bodies under physical influence.</p></li>
+<li><p><strong>b_mob</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The second Mobject to be connected. It is linked to <code class="docutils literal notranslate"><span class="pre">a_mob</span></code> via a physical constraint such as a spring or hinge.</p></li>
+<li><p><strong>rest_angle</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The equilibrium angle (in radians). The target angle between the two objects when the system is at rest and no external forces are applied.</p></li>
+<li><p><strong>stiffness</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The spring constant (elasticity). A higher value increases the restorative force toward the <code class="docutils literal notranslate"><span class="pre">rest_angle</span></code>, making the spring feel stiffer.</p></li>
+<li><p><strong>damping</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – The damping coefficient. Used to simulate energy dissipation (like friction or air resistance). Higher values cause oscillations to decay faster.</p></li>
+<li><p><strong>arc_indicator_class</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#type" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.Arc.html#manim.mobject.geometry.arc.Arc" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Arc</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – The class used to visualize the angle . If set to <code class="docutils literal notranslate"><span class="pre">None</span></code>, no angular arc will be rendered.</p></li>
+<li><p><strong>arc_indicator_config</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – A dictionary defining the visual style of the arc indicator, including <code class="docutils literal notranslate"><span class="pre">radius</span></code>, <code class="docutils literal notranslate"><span class="pre">color</span></code>, and <code class="docutils literal notranslate"><span class="pre">stroke_width</span></code>.</p></li>
+<li><p><strong>connect_line_class</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#type" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – The class used to draw a connecting line between the two objects (e.g., <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a>). for no visible connection.</p></li>
+<li><p><strong>connect_line_config</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – A dictionary defining the visual style of the connecting line, such as <code class="docutils literal notranslate"><span class="pre">color</span></code> and <code class="docutils literal notranslate"><span class="pre">stroke_width</span></code>.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent <a class="reference internal" href="constraint.VConstraint.html#manim_extensions.pymunk.constraints.constraint.VConstraint" title="manim_extensions.pymunk.constraints.constraint.VConstraint"><code class="xref py py-class docutils literal notranslate"><span class="pre">VConstraint</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="vdampedrotaryspringscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: VDampedRotarySpringScene <a class="headerlink" href="#vdampedrotaryspringscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./VDampedRotarySpringScene-a7540e8e.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.pymunk</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">VDampedRotarySpringScene</span><span class="p">(</span><span class="n">SpaceScene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># the spinning squares are pulled back to rest_angle=PI/4 and</span>
+        <span class="c1"># their oscillation is damped (watch the arc indicators)</span>
+        <span class="n">floor</span> <span class="o">=</span> <span class="n">Line</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mf">6.5</span><span class="p">,</span> <span class="n">RIGHT</span> <span class="o">*</span> <span class="mf">6.5</span><span class="p">,</span> <span class="n">stroke_width</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">)</span>
+        <span class="n">floor</span><span class="o">.</span><span class="n">to_edge</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">square_1</span> <span class="o">=</span> <span class="n">Square</span><span class="p">()</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">floor</span><span class="p">,</span> <span class="n">UP</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">square_2</span> <span class="o">=</span> <span class="n">Square</span><span class="p">()</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">square_1</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span> <span class="o">+</span> <span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">4</span><span class="p">)</span>
+        <span class="n">spring</span> <span class="o">=</span> <span class="n">VDampedRotarySpring</span><span class="p">(</span>
+            <span class="n">square_1</span><span class="p">,</span>
+            <span class="n">square_2</span><span class="p">,</span>
+            <span class="n">rest_angle</span><span class="o">=</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span><span class="p">,</span>
+            <span class="n">stiffness</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+            <span class="n">damping</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">floor</span><span class="p">),</span> <span class="n">FadeIn</span><span class="p">(</span><span class="n">square_1</span><span class="p">),</span> <span class="n">FadeIn</span><span class="p">(</span><span class="n">square_2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_static_body</span><span class="p">(</span><span class="n">floor</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_dynamic_body</span><span class="p">(</span><span class="n">square_1</span><span class="p">,</span> <span class="n">square_2</span><span class="p">,</span> <span class="n">angular_velocity</span><span class="o">=</span><span class="n">PI</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_constraints</span><span class="p">(</span><span class="n">spring</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">Group</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">mobjects</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.07</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.pymunk.constraints.VDampedRotarySpring.VDampedRotarySpring.__check_data">
+<span class="sig-name descname"><span class="pre">__check_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#manim_extensions.pymunk.constraints.VDampedRotarySpring.VDampedRotarySpring.__check_data" title="Link to this definition">¶</a></dt>
+<dd><p>Verify the validity of constraint parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If a mobject is missing or both mobjects share the same
+    location.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.pymunk.constraints.VDampedRotarySpring.VDampedRotarySpring.install">
+<span class="sig-name descname"><span class="pre">install</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">space</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/constraints/VDampedRotarySpring.html#VDampedRotarySpring.install"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.pymunk.constraints.VDampedRotarySpring.VDampedRotarySpring.install" title="Link to this definition">¶</a></dt>
+<dd><p>Initialization of physics and visualization components.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>space</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://www.pymunk.org/en/latest/pymunk.html#pymunk.Space" title="(in Pymunk)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Space</span></code></a></span>) – The Pymunk space to add the constraint to.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.pymunk.constraints.VDampedRotarySpring.VDampedRotarySpring.mob_updater">
+<span class="sig-name descname"><span class="pre">mob_updater</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/constraints/VDampedRotarySpring.html#VDampedRotarySpring.mob_updater"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.pymunk.constraints.VDampedRotarySpring.VDampedRotarySpring.mob_updater" title="Link to this definition">¶</a></dt>
+<dd><p>Visual control updater.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mob</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The constraint mobject being updated.</p></li>
+<li><p><strong>dt</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Time step since the last frame, in seconds.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1670,13 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">VDampedRotarySpring</a><ul>
+<li><a class="reference internal" href="#manim_extensions.pymunk.constraints.VDampedRotarySpring.VDampedRotarySpring"><code class="docutils literal notranslate"><span class="pre">VDampedRotarySpring</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.pymunk.constraints.VDampedRotarySpring.VDampedRotarySpring.__check_data"><code class="docutils literal notranslate"><span class="pre">VDampedRotarySpring.__check_data()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.pymunk.constraints.VDampedRotarySpring.VDampedRotarySpring.install"><code class="docutils literal notranslate"><span class="pre">VDampedRotarySpring.install()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.pymunk.constraints.VDampedRotarySpring.VDampedRotarySpring.mob_updater"><code class="docutils literal notranslate"><span class="pre">VDampedRotarySpring.mob_updater()</span></code></a></li>
+
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

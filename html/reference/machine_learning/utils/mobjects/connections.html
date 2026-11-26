@@ -1491,6 +1491,87 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.machine_learning.utils.mobjects.connections">
 <span id="connections"></span><h1>connections<a class="headerlink" href="#module-manim_extensions.machine_learning.utils.mobjects.connections" title="Link to this heading">¶</a></h1>
+<p>Network connection visualization utilities.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.connections.NetworkConnection">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.utils.mobjects.connections.</span></span><span class="sig-name descname"><span class="pre">NetworkConnection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start_mobject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_mobject</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arc_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'straight'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">buffer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">arc_distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stroke_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../../constants/colors.html#manim.utils.color.manim_colors.WHITE"><span class="pre">WHITE</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">active_color</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../../constants/colors.html#manim.utils.color.manim_colors.ORANGE"><span class="pre">ORANGE</span></a></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/connections.html#NetworkConnection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.connections.NetworkConnection" title="Link to this definition">¶</a></dt>
+<dd><p>This class allows for creating connections
+between locations in a network.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start_mobject</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – Mobject where the start of the connection is from.</p></li>
+<li><p><strong>end_mobject</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – Mobject where the end of the connection goes to.</p></li>
+<li><p><strong>arc_direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Direction that the connection arcs; one of “straight”, “up”, “down”,
+“left”, “right”.</p></li>
+<li><p><strong>buffer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Amount of space between the connection and the mobjects at the ends.</p></li>
+<li><p><strong>arc_distance</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Distance from start and end mobject that the arc bends.</p></li>
+<li><p><strong>stroke_width</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Stroke width of the connection.</p></li>
+<li><p><strong>color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color of the connection.</p></li>
+<li><p><strong>active_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color of active animations for this mobject.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Attributes</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.connections.NetworkConnection.direction_vector_map">
+<span class="sig-name descname"><span class="pre">direction_vector_map</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3D" title="(in Manim)"><span class="pre">Vector3D</span></a><span class="p"><span class="pre">]</span></span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">{'up':</span> <a class="reference internal" href="../../../../constants/directions.html#manim.constants.UP"><span class="pre">UP</span></a><span class="pre">,</span> <span class="pre">'down':</span> <a class="reference internal" href="../../../../constants/directions.html#manim.constants.DOWN"><span class="pre">DOWN</span></a><span class="pre">,</span> <span class="pre">'left':</span> <a class="reference internal" href="../../../../constants/directions.html#manim.constants.LEFT"><span class="pre">LEFT</span></a><span class="pre">,</span> <span class="pre">'right':</span> <a class="reference internal" href="../../../../constants/directions.html#manim.constants.RIGHT"><span class="pre">RIGHT</span></a><span class="pre">}</span></span></span><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.connections.NetworkConnection.direction_vector_map" title="Link to this definition">¶</a></dt>
+<dd><p>Maps direction names such as <code class="docutils literal notranslate"><span class="pre">&quot;up&quot;</span></code> to unit vectors.</p>
+</dd></dl>
+
+<p class="rubric">Examples</p>
+<div id="networkconnectionscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: NetworkConnectionScene <a class="headerlink" href="#networkconnectionscene">¶</a></p><img alt="../../../../_images/NetworkConnectionScene-d4a89165.png" class="align-center" src="../../../../_images/NetworkConnectionScene-d4a89165.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.utils.mobjects.connections</span><span class="w"> </span><span class="kn">import</span> <span class="n">NetworkConnection</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">NetworkConnectionScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+        <span class="n">end</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+        <span class="n">connection</span> <span class="o">=</span> <span class="n">NetworkConnection</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">)</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span>
+        <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.connections.NetworkConnection.make_mobjects">
+<span class="sig-name descname"><span class="pre">make_mobjects</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/connections.html#NetworkConnection.make_mobjects"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.connections.NetworkConnection.make_mobjects" title="Link to this definition">¶</a></dt>
+<dd><p>Build the arrow or arc that connects the two mobjects.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.mobjects.connections.NetworkConnection._override_passing_flash">
+<span class="sig-name descname"><span class="pre">_override_passing_flash</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/mobjects/connections.html#NetworkConnection._override_passing_flash"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.mobjects.connections.NetworkConnection._override_passing_flash" title="Link to this definition">¶</a></dt>
+<dd><p>Show a passing flash along the connection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Duration of the flash.</p></li>
+<li><p><strong>time_width</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Width of the visible flash segment.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The passing flash animation along the appropriate arrow.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1644,12 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">connections</a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.connections.NetworkConnection"><code class="docutils literal notranslate"><span class="pre">NetworkConnection</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.connections.NetworkConnection.direction_vector_map"><code class="docutils literal notranslate"><span class="pre">NetworkConnection.direction_vector_map</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.connections.NetworkConnection.make_mobjects"><code class="docutils literal notranslate"><span class="pre">NetworkConnection.make_mobjects()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.mobjects.connections.NetworkConnection._override_passing_flash"><code class="docutils literal notranslate"><span class="pre">NetworkConnection._override_passing_flash()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

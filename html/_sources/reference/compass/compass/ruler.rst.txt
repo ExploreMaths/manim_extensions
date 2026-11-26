@@ -5,7 +5,7 @@
 ruler
 =====
 
-.. module:: manim_extensions.compass.compass.ruler
+.. automodule:: manim_extensions.compass.compass.ruler
 
 Classes
 -------

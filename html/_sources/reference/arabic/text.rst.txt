@@ -4,7 +4,7 @@
 text
 ====
 
-.. module:: manim_extensions.arabic.text
+.. automodule:: manim_extensions.arabic.text
 
 Arabic-capable text mobjects and the Tex template behind them. These live in
 the :mod:`~manim_extensions.arabic.text` submodule.

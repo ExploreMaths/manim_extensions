@@ -5,7 +5,7 @@
 GearBox
 =======
 
-.. module:: manim_extensions.gearbox
+.. automodule:: manim_extensions.gearbox
 
 .. vendored-status:: GarryBGoode/manim-GearBox
 

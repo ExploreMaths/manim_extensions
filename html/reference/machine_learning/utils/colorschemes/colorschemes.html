@@ -1491,6 +1491,67 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.machine_learning.utils.colorschemes.colorschemes">
 <span id="colorschemes"></span><h1>colorschemes<a class="headerlink" href="#module-manim_extensions.machine_learning.utils.colorschemes.colorschemes" title="Link to this heading">¶</a></h1>
+<p>Color schemes for neural network visualization.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.colorschemes.colorschemes.ColorScheme">
+<span class="property"><span class="pre">dataclass</span> </span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.utils.colorschemes.colorschemes.</span></span><span class="sig-name descname"><span class="pre">ColorScheme</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">primary_color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">secondary_color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active_color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">text_color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">background_color</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/utils/colorschemes/colorschemes.html#ColorScheme"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.utils.colorschemes.colorschemes.ColorScheme" title="Link to this definition">¶</a></dt>
+<dd><p>Color palette used by the machine learning visualizations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>primary_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Main color of the visualization (e.g. neurons and edges).</p></li>
+<li><p><strong>secondary_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Secondary color (e.g. axes and supporting elements).</p></li>
+<li><p><strong>active_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color used to highlight active elements during animations.</p></li>
+<li><p><strong>text_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Color of titles and labels.</p></li>
+<li><p><strong>background_color</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.utils.color.core.ManimColor.html#manim.utils.color.core.ManimColor" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimColor</span></code></a></span>) – Scene background color; applied to <code class="docutils literal notranslate"><span class="pre">manim.config</span></code> when the
+scheme is activated.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="colorschemeoverview" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ColorSchemeOverview <a class="headerlink" href="#colorschemeoverview">¶</a></p><img alt="../../../../_images/ColorSchemeOverview-571fe37c.png" class="align-center" src="../../../../_images/ColorSchemeOverview-571fe37c.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.utils.colorschemes.colorschemes</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColorScheme</span>
+
+<span class="n">ColorSchemeTarget</span> <span class="o">=</span> <span class="n">ColorScheme</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ColorSchemeOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">ColorSchemeTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
+        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'ColorScheme'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.machine_learning.utils.colorschemes.colorschemes'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'Color palette used by the machine learning visualizations'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.utils.colorschemes.colorschemes</span><span class="w"> </span><span class="kn">import</span> <span class="n">ColorScheme</span>
+
+<span class="n">scheme</span> <span class="o">=</span> <span class="n">ColorScheme</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.colorschemes.colorschemes.dark_mode">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.utils.colorschemes.colorschemes.</span></span><span class="sig-name descname"><span class="pre">dark_mode</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="colorschemes.ColorScheme.html#manim_extensions.machine_learning.utils.colorschemes.colorschemes.ColorScheme"><span class="pre">ColorScheme</span></a><span class="pre">(primary_color=</span><span class="pre">ManimColor</span><span class="pre">('#58C4DD'),</span> <span class="pre">secondary_color=</span><span class="pre">ManimColor</span><span class="pre">('#FFFFFF'),</span> <span class="pre">active_color=</span><span class="pre">ManimColor</span><span class="pre">('#FF862F'),</span> <span class="pre">text_color=</span><span class="pre">ManimColor</span><span class="pre">('#FFFFFF'),</span> <span class="pre">background_color=</span><span class="pre">ManimColor</span><span class="pre">('#000000'))</span></span><a class="headerlink" href="#manim_extensions.machine_learning.utils.colorschemes.colorschemes.dark_mode" title="Link to this definition">¶</a></dt>
+<dd><p>Colour scheme with light elements on a black background.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.colorschemes.colorschemes.light_mode">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.utils.colorschemes.colorschemes.</span></span><span class="sig-name descname"><span class="pre">light_mode</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="colorschemes.ColorScheme.html#manim_extensions.machine_learning.utils.colorschemes.colorschemes.ColorScheme"><span class="pre">ColorScheme</span></a><span class="pre">(primary_color=</span><span class="pre">ManimColor</span><span class="pre">('#58C4DD'),</span> <span class="pre">secondary_color=</span><span class="pre">ManimColor</span><span class="pre">('#000000'),</span> <span class="pre">active_color=</span><span class="pre">ManimColor</span><span class="pre">('#FF862F'),</span> <span class="pre">text_color=</span><span class="pre">ManimColor</span><span class="pre">('#000000'),</span> <span class="pre">background_color=</span><span class="pre">ManimColor</span><span class="pre">('#FFFFFF'))</span></span><a class="headerlink" href="#manim_extensions.machine_learning.utils.colorschemes.colorschemes.light_mode" title="Link to this definition">¶</a></dt>
+<dd><p>Colour scheme with dark elements on a white background.</p>
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1506,14 +1567,14 @@
 <section id="constants">
 <h2>Constants<a class="headerlink" href="#constants" title="Link to this heading">¶</a></h2>
 <dl class="py data">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.colorschemes.colorschemes.dark_mode">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.utils.colorschemes.colorschemes.</span></span><span class="sig-name descname"><span class="pre">dark_mode</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="colorschemes.ColorScheme.html#manim_extensions.machine_learning.utils.colorschemes.colorschemes.ColorScheme"><span class="pre">ColorScheme</span></a><span class="pre">(primary_color=</span><span class="pre">ManimColor</span><span class="pre">('#58C4DD'),</span> <span class="pre">secondary_color=</span><span class="pre">ManimColor</span><span class="pre">('#FFFFFF'),</span> <span class="pre">active_color=</span><span class="pre">ManimColor</span><span class="pre">('#FF862F'),</span> <span class="pre">text_color=</span><span class="pre">ManimColor</span><span class="pre">('#FFFFFF'),</span> <span class="pre">background_color=</span><span class="pre">ManimColor</span><span class="pre">('#000000'))</span></span><a class="headerlink" href="#manim_extensions.machine_learning.utils.colorschemes.colorschemes.dark_mode" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.utils.colorschemes.colorschemes.</span></span><span class="sig-name descname"><span class="pre">dark_mode</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="colorschemes.ColorScheme.html#manim_extensions.machine_learning.utils.colorschemes.colorschemes.ColorScheme"><span class="pre">ColorScheme</span></a><span class="pre">(primary_color=</span><span class="pre">ManimColor</span><span class="pre">('#58C4DD'),</span> <span class="pre">secondary_color=</span><span class="pre">ManimColor</span><span class="pre">('#FFFFFF'),</span> <span class="pre">active_color=</span><span class="pre">ManimColor</span><span class="pre">('#FF862F'),</span> <span class="pre">text_color=</span><span class="pre">ManimColor</span><span class="pre">('#FFFFFF'),</span> <span class="pre">background_color=</span><span class="pre">ManimColor</span><span class="pre">('#000000'))</span></span><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
 <dd><p>Colour scheme with light elements on a black background.</p>
 </dd></dl>
 
 <dl class="py data">
-<dt class="sig sig-object py" id="manim_extensions.machine_learning.utils.colorschemes.colorschemes.light_mode">
-<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.utils.colorschemes.colorschemes.</span></span><span class="sig-name descname"><span class="pre">light_mode</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="colorschemes.ColorScheme.html#manim_extensions.machine_learning.utils.colorschemes.colorschemes.ColorScheme"><span class="pre">ColorScheme</span></a><span class="pre">(primary_color=</span><span class="pre">ManimColor</span><span class="pre">('#58C4DD'),</span> <span class="pre">secondary_color=</span><span class="pre">ManimColor</span><span class="pre">('#000000'),</span> <span class="pre">active_color=</span><span class="pre">ManimColor</span><span class="pre">('#FF862F'),</span> <span class="pre">text_color=</span><span class="pre">ManimColor</span><span class="pre">('#000000'),</span> <span class="pre">background_color=</span><span class="pre">ManimColor</span><span class="pre">('#FFFFFF'))</span></span><a class="headerlink" href="#manim_extensions.machine_learning.utils.colorschemes.colorschemes.light_mode" title="Link to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="id1">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.utils.colorschemes.colorschemes.</span></span><span class="sig-name descname"><span class="pre">light_mode</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><a class="reference internal" href="colorschemes.ColorScheme.html#manim_extensions.machine_learning.utils.colorschemes.colorschemes.ColorScheme"><span class="pre">ColorScheme</span></a><span class="pre">(primary_color=</span><span class="pre">ManimColor</span><span class="pre">('#58C4DD'),</span> <span class="pre">secondary_color=</span><span class="pre">ManimColor</span><span class="pre">('#000000'),</span> <span class="pre">active_color=</span><span class="pre">ManimColor</span><span class="pre">('#FF862F'),</span> <span class="pre">text_color=</span><span class="pre">ManimColor</span><span class="pre">('#000000'),</span> <span class="pre">background_color=</span><span class="pre">ManimColor</span><span class="pre">('#FFFFFF'))</span></span><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
 <dd><p>Colour scheme with dark elements on a white background.</p>
 </dd></dl>
 
@@ -1578,10 +1639,14 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">colorschemes</a><ul>
-<li><a class="reference internal" href="#classes">Classes</a></li>
-<li><a class="reference internal" href="#constants">Constants</a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.utils.colorschemes.colorschemes.ColorScheme"><code class="docutils literal notranslate"><span class="pre">ColorScheme</span></code></a>
+</li>
 <li><a class="reference internal" href="#manim_extensions.machine_learning.utils.colorschemes.colorschemes.dark_mode"><code class="docutils literal notranslate"><span class="pre">dark_mode</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.machine_learning.utils.colorschemes.colorschemes.light_mode"><code class="docutils literal notranslate"><span class="pre">light_mode</span></code></a></li>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#constants">Constants</a><ul>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">dark_mode</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">light_mode</span></code></a></li>
 </ul>
 </li>
 </ul>

@@ -4,7 +4,7 @@
 diffusion
 =========
 
-.. module:: manim_extensions.machine_learning.diffusion
+.. automodule:: manim_extensions.machine_learning.diffusion
 
 Usage
 -----

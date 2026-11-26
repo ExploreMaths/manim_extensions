@@ -4,7 +4,7 @@
 row
 ===
 
-.. module:: manim_extensions.table.row
+.. automodule:: manim_extensions.table.row
 
 Classes
 -------

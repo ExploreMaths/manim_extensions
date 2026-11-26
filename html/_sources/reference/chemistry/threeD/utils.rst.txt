@@ -4,7 +4,7 @@
 utils
 =====
 
-.. module:: manim_extensions.chemistry.threeD.utils
+.. automodule:: manim_extensions.chemistry.threeD.utils
 
 Classes
 -------

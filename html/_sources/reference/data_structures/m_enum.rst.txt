@@ -5,7 +5,7 @@
 m_enum
 ======
 
-.. module:: manim_extensions.data_structures.m_enum
+.. automodule:: manim_extensions.data_structures.m_enum
 
 Classes
 -------

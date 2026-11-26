@@ -4,7 +4,7 @@
 SVG Animations
 ==============
 
-.. module:: manim_extensions.svg_animations
+.. automodule:: manim_extensions.svg_animations
 
 .. vendored-status:: MathItYT/manim-svg-animations
 

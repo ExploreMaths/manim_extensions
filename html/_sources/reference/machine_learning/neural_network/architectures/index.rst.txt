@@ -4,7 +4,7 @@
 architectures
 =============
 
-.. module:: manim_extensions.machine_learning.neural_network.architectures
+.. automodule:: manim_extensions.machine_learning.neural_network.architectures
 
 Usage
 -----

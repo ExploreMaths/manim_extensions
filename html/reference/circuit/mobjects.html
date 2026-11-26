@@ -1491,6 +1491,488 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.circuit.mobjects">
 <span id="mobjects"></span><h1>mobjects<a class="headerlink" href="#module-manim_extensions.circuit.mobjects" title="Link to this heading">¶</a></h1>
+<p><a class="reference internal" href="utils.Circuit.html#manim_extensions.circuit.utils.Circuit" title="manim_extensions.circuit.utils.Circuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">Circuit</span></code></a> mobjects for Manim.</p>
+<p>This module provides circuit component visualizations.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.circuit.mobjects.VoltageSource">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.circuit.mobjects.</span></span><span class="sig-name descname"><span class="pre">VoltageSource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../constants/directions.html#manim.constants.LEFT"><span class="pre">LEFT</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">dependent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/circuit/mobjects.html#VoltageSource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.circuit.mobjects.VoltageSource" title="Link to this definition">¶</a></dt>
+<dd><p>Voltage source symbol for circuit diagrams.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Voltage value displayed next to the source.</p></li>
+<li><p><strong>label</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to display the value label.</p></li>
+<li><p><strong>direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3DLike" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3DLike</span></code></a></span>) – Direction in which the label is placed.</p></li>
+<li><p><strong>dependent</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether the source is dependent.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent <a class="reference internal" href="utils.Source.html#manim_extensions.circuit.utils.Source" title="manim_extensions.circuit.utils.Source"><code class="xref py py-class docutils literal notranslate"><span class="pre">Source</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="voltagesourcescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: VoltageSourceScene <a class="headerlink" href="#voltagesourcescene">¶</a></p><img alt="../../_images/VoltageSourceScene-25d15a1b.png" class="align-center" src="../../_images/VoltageSourceScene-25d15a1b.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.circuit.mobjects</span><span class="w"> </span><span class="kn">import</span> <span class="n">Resistor</span><span class="p">,</span> <span class="n">VoltageSource</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.circuit.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">Circuit</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">VoltageSourceScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">circuit</span> <span class="o">=</span> <span class="n">Circuit</span><span class="p">()</span>
+        <span class="n">source</span> <span class="o">=</span> <span class="n">VoltageSource</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">resistor</span> <span class="o">=</span> <span class="n">Resistor</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">"4.7k"</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">circuit</span><span class="o">.</span><span class="n">add_components</span><span class="p">(</span><span class="n">source</span><span class="p">,</span> <span class="n">resistor</span><span class="p">)</span>
+        <span class="n">circuit</span><span class="o">.</span><span class="n">add_wire</span><span class="p">(</span>
+            <span class="n">source</span><span class="o">.</span><span class="n">get_terminals</span><span class="p">(</span><span class="s2">"positive"</span><span class="p">),</span>
+            <span class="n">resistor</span><span class="o">.</span><span class="n">get_terminals</span><span class="p">(</span><span class="s2">"left"</span><span class="p">),</span>
+            <span class="n">invert</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">circuit</span><span class="o">.</span><span class="n">add_wire</span><span class="p">(</span>
+            <span class="n">source</span><span class="o">.</span><span class="n">get_terminals</span><span class="p">(</span><span class="s2">"negative"</span><span class="p">),</span>
+            <span class="n">resistor</span><span class="o">.</span><span class="n">get_terminals</span><span class="p">(</span><span class="s2">"right"</span><span class="p">),</span>
+            <span class="n">invert</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">circuit</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.circuit.mobjects.CurrentSource">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.circuit.mobjects.</span></span><span class="sig-name descname"><span class="pre">CurrentSource</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../constants/directions.html#manim.constants.LEFT"><span class="pre">LEFT</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">dependent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/circuit/mobjects.html#CurrentSource"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.circuit.mobjects.CurrentSource" title="Link to this definition">¶</a></dt>
+<dd><p>Current source symbol for circuit diagrams.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Current value displayed next to the source.</p></li>
+<li><p><strong>label</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to display the value label.</p></li>
+<li><p><strong>direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3DLike" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3DLike</span></code></a></span>) – Direction in which the label is placed.</p></li>
+<li><p><strong>dependent</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether the source is dependent.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent <a class="reference internal" href="utils.Source.html#manim_extensions.circuit.utils.Source" title="manim_extensions.circuit.utils.Source"><code class="xref py py-class docutils literal notranslate"><span class="pre">Source</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="currentsourcescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: CurrentSourceScene <a class="headerlink" href="#currentsourcescene">¶</a></p><img alt="../../_images/CurrentSourceScene-035a41e8.png" class="align-center" src="../../_images/CurrentSourceScene-035a41e8.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.circuit.mobjects</span><span class="w"> </span><span class="kn">import</span> <span class="n">CurrentSource</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CurrentSourceScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">independent</span> <span class="o">=</span> <span class="n">CurrentSource</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">dependent</span> <span class="o">=</span> <span class="n">CurrentSource</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="s2">"2i_x"</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span>
+            <span class="n">independent</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mi">2</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">independent</span><span class="p">,</span> <span class="n">dependent</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.circuit.mobjects.Inductor">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.circuit.mobjects.</span></span><span class="sig-name descname"><span class="pre">Inductor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../constants/directions.html#manim.constants.DOWN"><span class="pre">DOWN</span></a></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/circuit/mobjects.html#Inductor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.circuit.mobjects.Inductor" title="Link to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="mobjects.Inductor.html#manim_extensions.circuit.mobjects.Inductor" title="manim_extensions.circuit.mobjects.Inductor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Inductor</span></code></a> component used in circuit visualisations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Text label displayed next to the inductor (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;10mH&quot;</span></code>).</p></li>
+<li><p><strong>direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3DLike" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3DLike</span></code></a></span>) – Direction in which the label is placed.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="inductorscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: InductorScene <a class="headerlink" href="#inductorscene">¶</a></p><img alt="../../_images/InductorScene-05772e81.png" class="align-center" src="../../_images/InductorScene-05772e81.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.circuit.mobjects</span><span class="w"> </span><span class="kn">import</span> <span class="n">Inductor</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">InductorScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># a labelled inductor with the label placed on top</span>
+        <span class="n">labelled</span> <span class="o">=</span> <span class="n">Inductor</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">"0.3"</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">UP</span><span class="p">)</span>
+        <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">labelled</span><span class="o">.</span><span class="n">get_anchors</span><span class="p">()</span>
+        <span class="n">plain</span> <span class="o">=</span> <span class="n">Inductor</span><span class="p">()</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">labelled</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span>
+            <span class="n">labelled</span><span class="p">,</span>
+            <span class="n">plain</span><span class="p">,</span>
+            <span class="n">Dot</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">),</span>
+            <span class="n">Dot</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"start"</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.15</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"end"</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="n">DOWN</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.15</span><span class="p">),</span>
+        <span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.circuit.mobjects.Inductor.get_anchors">
+<span class="sig-name descname"><span class="pre">get_anchors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/circuit/mobjects.html#Inductor.get_anchors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.circuit.mobjects.Inductor.get_anchors" title="Link to this definition">¶</a></dt>
+<dd><p>Return the start and end anchor points of the inductor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">[start,</span> <span class="pre">end]</span></code> of the main body.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.circuit.mobjects.Inductor.get_terminals">
+<span class="sig-name descname"><span class="pre">get_terminals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/circuit/mobjects.html#Inductor.get_terminals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.circuit.mobjects.Inductor.get_terminals" title="Link to this definition">¶</a></dt>
+<dd><p>Return the position of the left or right terminal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code></a>[<span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'left'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'right'</span></span></code></span>]</span>) – <code class="docutils literal notranslate"><span class="pre">&quot;left&quot;</span></code> Or <code class="docutils literal notranslate"><span class="pre">&quot;right&quot;</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The terminal point.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.circuit.mobjects.Inductor.center">
+<span class="sig-name descname"><span class="pre">center</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/circuit/mobjects.html#Inductor.center"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.circuit.mobjects.Inductor.center" title="Link to this definition">¶</a></dt>
+<dd><p>Shift the inductor so that its main body is centred at the origin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="mobjects.Inductor.html#manim_extensions.circuit.mobjects.Inductor" title="manim_extensions.circuit.mobjects.Inductor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Inductor</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The modified self.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.circuit.mobjects.Inductor.rotate">
+<span class="sig-name descname"><span class="pre">rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/circuit/mobjects.html#Inductor.rotate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.circuit.mobjects.Inductor.rotate" title="Link to this definition">¶</a></dt>
+<dd><p>Rotate the inductor about the centre of its main body.</p>
+<p>The label is rotated by the opposite angle to keep it upright.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>angle</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Rotation angle in radians.</p></li>
+<li><p><strong>*args</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional positional arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject.rotate" title="(in Manim)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">rotate()</span></code></a>.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject.rotate" title="(in Manim)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">rotate()</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="mobjects.Inductor.html#manim_extensions.circuit.mobjects.Inductor" title="manim_extensions.circuit.mobjects.Inductor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Inductor</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The modified self.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.circuit.mobjects.Resistor">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.circuit.mobjects.</span></span><span class="sig-name descname"><span class="pre">Resistor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../constants/directions.html#manim.constants.DOWN"><span class="pre">DOWN</span></a></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/circuit/mobjects.html#Resistor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.circuit.mobjects.Resistor" title="Link to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="mobjects.Resistor.html#manim_extensions.circuit.mobjects.Resistor" title="manim_extensions.circuit.mobjects.Resistor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Resistor</span></code></a> component shown as a zig-zag path.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Text label displayed next to the resistor.</p></li>
+<li><p><strong>direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3DLike" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3DLike</span></code></a></span>) – Direction in which the label is placed.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="resistorscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ResistorScene <a class="headerlink" href="#resistorscene">¶</a></p><img alt="../../_images/ResistorScene-b346f758.png" class="align-center" src="../../_images/ResistorScene-b346f758.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.circuit.mobjects</span><span class="w"> </span><span class="kn">import</span> <span class="n">Resistor</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ResistorScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">upright</span> <span class="o">=</span> <span class="n">Resistor</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">"4.7k"</span><span class="p">)</span>
+        <span class="n">rotated</span> <span class="o">=</span> <span class="n">Resistor</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">"4.7k"</span><span class="p">)</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">PI</span> <span class="o">/</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span>
+            <span class="n">upright</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">1.5</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">upright</span><span class="p">,</span> <span class="n">rotated</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.circuit.mobjects.Resistor.get_anchors">
+<span class="sig-name descname"><span class="pre">get_anchors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/circuit/mobjects.html#Resistor.get_anchors"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.circuit.mobjects.Resistor.get_anchors" title="Link to this definition">¶</a></dt>
+<dd><p>Return the start and end anchor points of the resistor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">[start,</span> <span class="pre">end]</span></code> of the main body.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.circuit.mobjects.Resistor.get_terminals">
+<span class="sig-name descname"><span class="pre">get_terminals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/circuit/mobjects.html#Resistor.get_terminals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.circuit.mobjects.Resistor.get_terminals" title="Link to this definition">¶</a></dt>
+<dd><p>Return the position of the left or right terminal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code></a>[<span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'left'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'right'</span></span></code></span>]</span>) – <code class="docutils literal notranslate"><span class="pre">&quot;left&quot;</span></code> Or <code class="docutils literal notranslate"><span class="pre">&quot;right&quot;</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The terminal point.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.circuit.mobjects.Resistor.center">
+<span class="sig-name descname"><span class="pre">center</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/circuit/mobjects.html#Resistor.center"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.circuit.mobjects.Resistor.center" title="Link to this definition">¶</a></dt>
+<dd><p>Shift the resistor so that its main body is centred at the origin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="mobjects.Resistor.html#manim_extensions.circuit.mobjects.Resistor" title="manim_extensions.circuit.mobjects.Resistor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Resistor</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The modified self.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.circuit.mobjects.Resistor.rotate">
+<span class="sig-name descname"><span class="pre">rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/circuit/mobjects.html#Resistor.rotate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.circuit.mobjects.Resistor.rotate" title="Link to this definition">¶</a></dt>
+<dd><p>Rotate the resistor about the centre of its main body.</p>
+<p>The label is rotated by the opposite angle to keep it upright.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>angle</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Rotation angle in radians.</p></li>
+<li><p><strong>*args</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional positional arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject.rotate" title="(in Manim)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">rotate()</span></code></a>.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject.rotate" title="(in Manim)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">rotate()</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="mobjects.Resistor.html#manim_extensions.circuit.mobjects.Resistor" title="manim_extensions.circuit.mobjects.Resistor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Resistor</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The modified self.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.circuit.mobjects.Capacitor">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.circuit.mobjects.</span></span><span class="sig-name descname"><span class="pre">Capacitor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../constants/directions.html#manim.constants.DOWN"><span class="pre">DOWN</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">polarized</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/circuit/mobjects.html#Capacitor"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.circuit.mobjects.Capacitor" title="Link to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="mobjects.Capacitor.html#manim_extensions.circuit.mobjects.Capacitor" title="manim_extensions.circuit.mobjects.Capacitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Capacitor</span></code></a> component for circuit diagrams.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>label</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Text label displayed next to the capacitor.</p></li>
+<li><p><strong>direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Vector3DLike" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Vector3DLike</span></code></a></span>) – Direction in which the label is placed.</p></li>
+<li><p><strong>polarized</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether the capacitor is polarized (shows an arc symbol).</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="capacitorscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: CapacitorScene <a class="headerlink" href="#capacitorscene">¶</a></p><img alt="../../_images/CapacitorScene-9bf536a6.png" class="align-center" src="../../_images/CapacitorScene-9bf536a6.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.circuit.mobjects</span><span class="w"> </span><span class="kn">import</span> <span class="n">Capacitor</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CapacitorScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">plain</span> <span class="o">=</span> <span class="n">Capacitor</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">"100n"</span><span class="p">)</span>
+        <span class="n">polarized</span> <span class="o">=</span> <span class="n">Capacitor</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s2">"100n"</span><span class="p">,</span> <span class="n">polarized</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span>
+            <span class="n">plain</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">1.5</span>
+        <span class="p">)</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="n">plain</span><span class="p">,</span> <span class="n">polarized</span><span class="p">)</span>
+        <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.circuit.mobjects.Capacitor.get_terminals">
+<span class="sig-name descname"><span class="pre">get_terminals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/circuit/mobjects.html#Capacitor.get_terminals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.circuit.mobjects.Capacitor.get_terminals" title="Link to this definition">¶</a></dt>
+<dd><p>Return the position of the left or right terminal plate.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code></a>[<span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'left'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'right'</span></span></code></span>]</span>) – <code class="docutils literal notranslate"><span class="pre">&quot;left&quot;</span></code> Or <code class="docutils literal notranslate"><span class="pre">&quot;right&quot;</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The terminal midpoint.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.circuit.mobjects.Capacitor.center">
+<span class="sig-name descname"><span class="pre">center</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/circuit/mobjects.html#Capacitor.center"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.circuit.mobjects.Capacitor.center" title="Link to this definition">¶</a></dt>
+<dd><p>Shift the capacitor so that its main body is centred at the origin.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="mobjects.Capacitor.html#manim_extensions.circuit.mobjects.Capacitor" title="manim_extensions.circuit.mobjects.Capacitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Capacitor</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The mobject itself (allows method chaining).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.circuit.mobjects.Capacitor.rotate">
+<span class="sig-name descname"><span class="pre">rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/circuit/mobjects.html#Capacitor.rotate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.circuit.mobjects.Capacitor.rotate" title="Link to this definition">¶</a></dt>
+<dd><p>Rotate the capacitor about the centre of its main body.</p>
+<p>The label is rotated by the opposite angle to keep it upright.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>angle</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Rotation angle in radians.</p></li>
+<li><p><strong>*args</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional positional arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject.rotate" title="(in Manim)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">rotate()</span></code></a>.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject.rotate" title="(in Manim)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">rotate()</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="mobjects.Capacitor.html#manim_extensions.circuit.mobjects.Capacitor" title="manim_extensions.circuit.mobjects.Capacitor"><code class="xref py py-class docutils literal notranslate"><span class="pre">Capacitor</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The modified self.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.circuit.mobjects.Ground">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.circuit.mobjects.</span></span><span class="sig-name descname"><span class="pre">Ground</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ground_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ground'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/circuit/mobjects.html#Ground"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.circuit.mobjects.Ground" title="Link to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="mobjects.Ground.html#manim_extensions.circuit.mobjects.Ground" title="manim_extensions.circuit.mobjects.Ground"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ground</span></code></a> symbol used in circuit diagrams.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ground_type</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Literal" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Literal</span></code></a>[<span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'ground'</span></span></code></span>, <span class="highlight sphinx_autodoc_typehints-value"><code class="docutils literal notranslate"><span class="s1"><span class="pre">'earth'</span></span></code></span>]</span>) – Type of ground symbol (<code class="docutils literal notranslate"><span class="pre">&quot;ground&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;earth&quot;</span></code>).</p></li>
+<li><p><strong>label</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Optional label for the ground (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;D&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;A&quot;</span></code>).</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="groundscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: GroundScene <a class="headerlink" href="#groundscene">¶</a></p><img alt="../../_images/GroundScene-2469e9aa.png" class="align-center" src="../../_images/GroundScene-2469e9aa.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.circuit.mobjects</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ground</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">GroundScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">digital</span> <span class="o">=</span> <span class="n">Ground</span><span class="p">(</span><span class="n">ground_type</span><span class="o">=</span><span class="s2">"ground"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"D"</span><span class="p">)</span>
+        <span class="n">analog</span> <span class="o">=</span> <span class="n">Ground</span><span class="p">(</span><span class="n">ground_type</span><span class="o">=</span><span class="s2">"ground"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"A"</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span>
+            <span class="n">digital</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">1.5</span>
+        <span class="p">)</span>
+        <span class="n">earth</span> <span class="o">=</span> <span class="n">Ground</span><span class="p">(</span><span class="n">ground_type</span><span class="o">=</span><span class="s2">"earth"</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span><span class="n">analog</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+        <span class="n">terminals</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="n">digital</span><span class="o">.</span><span class="n">get_terminals</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">digital</span><span class="p">,</span> <span class="n">analog</span><span class="p">,</span> <span class="n">earth</span><span class="p">,</span> <span class="n">terminals</span><span class="p">)</span>
+        <span class="n">VGroup</span><span class="p">(</span><span class="n">digital</span><span class="p">,</span> <span class="n">analog</span><span class="p">,</span> <span class="n">earth</span><span class="p">,</span> <span class="n">terminals</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.circuit.mobjects.Ground.get_terminals">
+<span class="sig-name descname"><span class="pre">get_terminals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/circuit/mobjects.html#Ground.get_terminals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.circuit.mobjects.Ground.get_terminals" title="Link to this definition">¶</a></dt>
+<dd><p>Return the top connection point of the ground symbol.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>*args</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Ignored; present for interface compatibility.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The terminal point on the top horizontal line.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.circuit.mobjects.Opamp">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.circuit.mobjects.</span></span><span class="sig-name descname"><span class="pre">Opamp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">bias_supply</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/circuit/mobjects.html#Opamp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.circuit.mobjects.Opamp" title="Link to this definition">¶</a></dt>
+<dd><p>Operational amplifier symbol for electrical diagram animations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>bias_supply</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Bias supply configuration (e.g. <code class="docutils literal notranslate"><span class="pre">&quot;both&quot;</span></code>).</p></li>
+<li><p><strong>label</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">bool</span></code></a></span>) – Whether to display the op-amp label.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="opampscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: OpampScene <a class="headerlink" href="#opampscene">¶</a></p><img alt="../../_images/OpampScene-51e08865.png" class="align-center" src="../../_images/OpampScene-51e08865.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.circuit.mobjects</span><span class="w"> </span><span class="kn">import</span> <span class="n">Opamp</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">OpampScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">positive</span> <span class="o">=</span> <span class="n">Opamp</span><span class="p">(</span><span class="n">bias_supply</span><span class="o">=</span><span class="s2">"positive"</span><span class="p">)</span>
+        <span class="n">negative</span> <span class="o">=</span> <span class="n">Opamp</span><span class="p">(</span><span class="n">bias_supply</span><span class="o">=</span><span class="s2">"negative"</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span>
+            <span class="n">positive</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">2.5</span>
+        <span class="p">)</span>
+        <span class="n">both</span> <span class="o">=</span> <span class="n">Opamp</span><span class="p">(</span><span class="n">bias_supply</span><span class="o">=</span><span class="s2">"both"</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">next_to</span><span class="p">(</span>
+            <span class="n">negative</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">2.5</span>
+        <span class="p">)</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="n">positive</span><span class="p">,</span> <span class="n">negative</span><span class="p">,</span> <span class="n">both</span><span class="p">)</span>
+        <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">(</span>
+            <span class="s2">"positive_input"</span><span class="p">,</span>
+            <span class="s2">"negative_input"</span><span class="p">,</span>
+            <span class="s2">"output"</span><span class="p">,</span>
+            <span class="s2">"positive_bias"</span><span class="p">,</span>
+            <span class="s2">"negative_bias"</span><span class="p">,</span>
+        <span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Dot</span><span class="p">(</span><span class="n">both</span><span class="o">.</span><span class="n">get_terminals</span><span class="p">(</span><span class="n">name</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="n">PURE_YELLOW</span><span class="p">))</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.circuit.mobjects.Opamp.get_terminals">
+<span class="sig-name descname"><span class="pre">get_terminals</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/circuit/mobjects.html#Opamp.get_terminals"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.circuit.mobjects.Opamp.get_terminals" title="Link to this definition">¶</a></dt>
+<dd><p>Return the position of a named terminal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>val</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – One of <code class="docutils literal notranslate"><span class="pre">&quot;positive_input&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;negative_input&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;positive_bias&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;negative_bias&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;output&quot;</span></code>.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The terminal point.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1581,6 +2063,36 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">mobjects</a><ul>
+<li><a class="reference internal" href="#manim_extensions.circuit.mobjects.VoltageSource"><code class="docutils literal notranslate"><span class="pre">VoltageSource</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.circuit.mobjects.CurrentSource"><code class="docutils literal notranslate"><span class="pre">CurrentSource</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.circuit.mobjects.Inductor"><code class="docutils literal notranslate"><span class="pre">Inductor</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.circuit.mobjects.Inductor.get_anchors"><code class="docutils literal notranslate"><span class="pre">Inductor.get_anchors()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.circuit.mobjects.Inductor.get_terminals"><code class="docutils literal notranslate"><span class="pre">Inductor.get_terminals()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.circuit.mobjects.Inductor.center"><code class="docutils literal notranslate"><span class="pre">Inductor.center()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.circuit.mobjects.Inductor.rotate"><code class="docutils literal notranslate"><span class="pre">Inductor.rotate()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.circuit.mobjects.Resistor"><code class="docutils literal notranslate"><span class="pre">Resistor</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.circuit.mobjects.Resistor.get_anchors"><code class="docutils literal notranslate"><span class="pre">Resistor.get_anchors()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.circuit.mobjects.Resistor.get_terminals"><code class="docutils literal notranslate"><span class="pre">Resistor.get_terminals()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.circuit.mobjects.Resistor.center"><code class="docutils literal notranslate"><span class="pre">Resistor.center()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.circuit.mobjects.Resistor.rotate"><code class="docutils literal notranslate"><span class="pre">Resistor.rotate()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.circuit.mobjects.Capacitor"><code class="docutils literal notranslate"><span class="pre">Capacitor</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.circuit.mobjects.Capacitor.get_terminals"><code class="docutils literal notranslate"><span class="pre">Capacitor.get_terminals()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.circuit.mobjects.Capacitor.center"><code class="docutils literal notranslate"><span class="pre">Capacitor.center()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.circuit.mobjects.Capacitor.rotate"><code class="docutils literal notranslate"><span class="pre">Capacitor.rotate()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.circuit.mobjects.Ground"><code class="docutils literal notranslate"><span class="pre">Ground</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.circuit.mobjects.Ground.get_terminals"><code class="docutils literal notranslate"><span class="pre">Ground.get_terminals()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.circuit.mobjects.Opamp"><code class="docutils literal notranslate"><span class="pre">Opamp</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.circuit.mobjects.Opamp.get_terminals"><code class="docutils literal notranslate"><span class="pre">Opamp.get_terminals()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

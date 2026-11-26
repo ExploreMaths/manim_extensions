@@ -5,7 +5,7 @@
 cube_utils
 ==========
 
-.. module:: manim_extensions.rubikscube.cube_utils
+.. automodule:: manim_extensions.rubikscube.cube_utils
 
 Functions
 ---------

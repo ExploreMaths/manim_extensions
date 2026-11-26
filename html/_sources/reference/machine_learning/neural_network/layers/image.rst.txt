@@ -4,7 +4,7 @@
 image
 =====
 
-.. module:: manim_extensions.machine_learning.neural_network.layers.image
+.. automodule:: manim_extensions.machine_learning.neural_network.layers.image
 
 Classes
 -------

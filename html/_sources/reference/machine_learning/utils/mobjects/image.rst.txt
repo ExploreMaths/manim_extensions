@@ -4,7 +4,7 @@
 image
 =====
 
-.. module:: manim_extensions.machine_learning.utils.mobjects.image
+.. automodule:: manim_extensions.machine_learning.utils.mobjects.image
 
 Classes
 -------

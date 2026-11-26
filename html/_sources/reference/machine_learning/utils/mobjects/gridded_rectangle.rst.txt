@@ -4,7 +4,7 @@
 gridded_rectangle
 =================
 
-.. module:: manim_extensions.machine_learning.utils.mobjects.gridded_rectangle
+.. automodule:: manim_extensions.machine_learning.utils.mobjects.gridded_rectangle
 
 Classes
 -------

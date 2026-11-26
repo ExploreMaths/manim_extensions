@@ -1491,8 +1491,13 @@
         <article role="main" id="furo-main-content">
           <style>div.nbinput.container div.prompt,div.nboutput.container div.prompt{width:8ch}div.nbcell-files.container{padding-left:8ch}</style><section id="module-manim_extensions.utils.deprecation">
 <span id="deprecation"></span><h1>deprecation<a class="headerlink" href="#module-manim_extensions.utils.deprecation" title="Link to this heading">¶</a></h1>
-<section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<p>Patched <a class="reference internal" href="#id1" title="manim_extensions.utils.deprecation.deprecated"><code class="xref py py-func docutils literal notranslate"><span class="pre">deprecated()</span></code></a> decorator.</p>
+<p>Drop-in replacement for <a class="reference external" href="https://typing-extensions.readthedocs.io/en/latest/index.html#typing_extensions.deprecated" title="(in typing_extensions)"><code class="xref py py-func docutils literal notranslate"><span class="pre">deprecated()</span></code></a> that accepts a
+message written in <strong>RST</strong>. The RST markup is preserved on the decorated
+object’s <code class="docutils literal notranslate"><span class="pre">__deprecated__</span></code> attribute (used by the Sphinx
+<code class="docutils literal notranslate"><span class="pre">deprecated_warning</span></code> extension to render a styled admonition), while the
+runtime <code class="docutils literal notranslate"><span class="pre">DeprecationWarning</span></code> strips the inline markup so it stays
+readable on the console.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.utils.deprecation._strip_rst">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.utils.deprecation.</span></span><span class="sig-name descname"><span class="pre">_strip_rst</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/utils/deprecation.html#_strip_rst"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.utils.deprecation._strip_rst" title="Link to this definition">¶</a></dt>
@@ -1549,6 +1554,74 @@ stripped from the runtime warning.</p></li>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>Out[1]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>still works
+</pre></div>
+</div>
+</div>
+</div>
+</dd></dl>
+
+<section id="functions">
+<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="id0">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.utils.deprecation.</span></span><span class="sig-name descname"><span class="pre">_strip_rst</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/utils/deprecation.html#_strip_rst"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id0" title="Link to this definition">¶</a></dt>
+<dd><p>Remove RST inline markup from a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>text</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Text that may contain RST roles or literal markers.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The text with markup removed and the inner content preserved.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="id1">
+<span class="sig-prename descclassname"><span class="pre">manim_extensions.utils.deprecation.</span></span><span class="sig-name descname"><span class="pre">deprecated</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">category</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">DeprecationWarning</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stacklevel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/utils/deprecation.html#deprecated"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#id1" title="Link to this definition">¶</a></dt>
+<dd><p>Mark <code class="docutils literal notranslate"><span class="pre">obj</span></code> as deprecated.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>msg</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span>) – Deprecation message. May contain RST inline markup (<code class="docutils literal notranslate"><span class="pre">:func:</span></code>
+roles, double-backtick code, …) which is kept for the docs but
+stripped from the runtime warning.</p></li>
+<li><p><strong>category</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#type" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#Warning" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Warning</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Warning category forwarded to
+<a class="reference external" href="https://typing-extensions.readthedocs.io/en/latest/index.html#typing_extensions.deprecated" title="(in typing_extensions)"><code class="xref py py-func docutils literal notranslate"><span class="pre">deprecated()</span></code></a>.</p></li>
+<li><p><strong>stacklevel</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">int</span></code></a></span>) – Stack level forwarded to <a class="reference external" href="https://typing-extensions.readthedocs.io/en/latest/index.html#typing_extensions.deprecated" title="(in typing_extensions)"><code class="xref py py-func docutils literal notranslate"><span class="pre">deprecated()</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code></a>[[<code class="docutils literal notranslate"><span class="pre">T</span></code>], <code class="docutils literal notranslate"><span class="pre">T</span></code>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The decorated callable.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>In [2]:
+</pre></div>
+</div>
+<div class="input_area highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.utils.deprecation</span><span class="w"> </span><span class="kn">import</span> <span class="n">deprecated</span>
+
+<span class="nd">@deprecated</span><span class="p">(</span><span class="s2">"``old`` is deprecated; use ``new`` instead."</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">old</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"still works"</span><span class="p">)</span>
+
+<span class="n">old</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>Out[2]:
 </pre></div>
 </div>
 <div class="output_area docutils container">
@@ -1618,9 +1691,11 @@ stripped from the runtime warning.</p></li>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">deprecation</a><ul>
-<li><a class="reference internal" href="#functions">Functions</a><ul>
 <li><a class="reference internal" href="#manim_extensions.utils.deprecation._strip_rst"><code class="docutils literal notranslate"><span class="pre">_strip_rst()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.utils.deprecation.deprecated"><code class="docutils literal notranslate"><span class="pre">deprecated()</span></code></a></li>
+<li><a class="reference internal" href="#functions">Functions</a><ul>
+<li><a class="reference internal" href="#id0"><code class="docutils literal notranslate"><span class="pre">_strip_rst()</span></code></a></li>
+<li><a class="reference internal" href="#id1"><code class="docutils literal notranslate"><span class="pre">deprecated()</span></code></a></li>
 </ul>
 </li>
 </ul>

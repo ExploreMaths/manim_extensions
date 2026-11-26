@@ -5,7 +5,7 @@
 compass
 =======
 
-.. module:: manim_extensions.compass.compass
+.. automodule:: manim_extensions.compass.compass
 
 Classes
 -------

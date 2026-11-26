@@ -4,7 +4,7 @@
 paired_query
 ============
 
-.. module:: manim_extensions.machine_learning.neural_network.layers.paired_query
+.. automodule:: manim_extensions.machine_learning.neural_network.layers.paired_query
 
 Classes
 -------

@@ -1506,7 +1506,7 @@
 
 
 <div class="viewcode-block" id="EmbeddingToFeedForward">
-<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/embedding_to_feed_forward.EmbeddingToFeedForward.html#manim_extensions.machine_learning.neural_network.layers.embedding_to_feed_forward.EmbeddingToFeedForward">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/index.html#manim_extensions.machine_learning.neural_network.layers.embedding_to_feed_forward.EmbeddingToFeedForward">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">EmbeddingToFeedForward</span><span class="p">(</span><span class="n">ConnectiveLayer</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Connective layer between an embedding layer and a feed-forward layer.</span>
 
@@ -1565,7 +1565,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">dot_radius</span> <span class="o">=</span> <span class="n">dot_radius</span>
 
 <div class="viewcode-block" id="EmbeddingToFeedForward.construct_layer">
-<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/embedding_to_feed_forward.EmbeddingToFeedForward.html#manim_extensions.machine_learning.neural_network.layers.embedding_to_feed_forward.EmbeddingToFeedForward.construct_layer">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/index.html#manim_extensions.machine_learning.neural_network.layers.embedding_to_feed_forward.EmbeddingToFeedForward.construct_layer">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">construct_layer</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span>
         <span class="n">input_layer</span><span class="p">:</span> <span class="n">NeuralNetworkLayer</span><span class="p">,</span>
@@ -1588,7 +1588,7 @@
 
 
 <div class="viewcode-block" id="EmbeddingToFeedForward.make_forward_pass_animation">
-<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/embedding_to_feed_forward.EmbeddingToFeedForward.html#manim_extensions.machine_learning.neural_network.layers.embedding_to_feed_forward.EmbeddingToFeedForward.make_forward_pass_animation">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/index.html#manim_extensions.machine_learning.neural_network.layers.embedding_to_feed_forward.EmbeddingToFeedForward.make_forward_pass_animation">[docs]</a>
     <span class="k">def</span><span class="w"> </span><span class="nf">make_forward_pass_animation</span><span class="p">(</span>
         <span class="bp">self</span><span class="p">,</span> <span class="n">layer_args</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span> <span class="n">run_time</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Succession</span><span class="p">:</span>
@@ -1638,7 +1638,7 @@
 
 
 <div class="viewcode-block" id="EmbeddingToFeedForward._create_override">
-<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/embedding_to_feed_forward.EmbeddingToFeedForward.html#manim_extensions.machine_learning.neural_network.layers.embedding_to_feed_forward.EmbeddingToFeedForward._create_override">[docs]</a>
+<a class="viewcode-back" href="../../../../../reference/machine_learning/neural_network/layers/index.html#manim_extensions.machine_learning.neural_network.layers.embedding_to_feed_forward.EmbeddingToFeedForward._create_override">[docs]</a>
     <span class="nd">@override_animation</span><span class="p">(</span><span class="n">Create</span><span class="p">)</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">_create_override</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Animation</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">"""Return a zero-duration wait for an invisible layer.</span>

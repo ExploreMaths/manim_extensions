@@ -4,7 +4,7 @@
 manim_chemistry_molecule
 ========================
 
-.. module:: manim_extensions.chemistry.manim_chemistry_molecule
+.. automodule:: manim_extensions.chemistry.manim_chemistry_molecule
 
 The original ``MC*`` API, kept for backwards compatibility.
 

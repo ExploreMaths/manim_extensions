@@ -5,7 +5,7 @@
 xml_parser
 ==========
 
-.. module:: manim_extensions.automata.mobjects.automata_dependencies.xml_parser
+.. automodule:: manim_extensions.automata.mobjects.automata_dependencies.xml_parser
 
 Functions
 ---------

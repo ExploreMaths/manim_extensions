@@ -1491,6 +1491,123 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.pymunk.constraints.VPinJoint">
 <span id="vpinjoint"></span><h1>VPinJoint<a class="headerlink" href="#module-manim_extensions.pymunk.constraints.VPinJoint" title="Link to this heading">¶</a></h1>
+<p>Pin joint constraint for Pymunk.</p>
+<p>This module provides the <a class="reference internal" href="VPinJoint.VPinJoint.html#manim_extensions.pymunk.constraints.VPinJoint.VPinJoint" title="manim_extensions.pymunk.constraints.VPinJoint.VPinJoint"><code class="xref py py-class docutils literal notranslate"><span class="pre">VPinJoint</span></code></a> class for creating pin joint constraints in physics simulations.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.pymunk.constraints.VPinJoint.VPinJoint">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.pymunk.constraints.VPinJoint.</span></span><span class="sig-name descname"><span class="pre">VPinJoint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a_mob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b_mob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchor_a_local</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/directions.html#manim.constants.ORIGIN"><span class="pre">ORIGIN</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">anchor_b_local</span></span><span class="o"><span class="pre">=</span></span><a class="default_value reference internal" href="../../../constants/directions.html#manim.constants.ORIGIN"><span class="pre">ORIGIN</span></a></em>, <em class="sig-param"><span class="n"><span class="pre">distance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchor_a_appearance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Dot(color=</span><a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.RED"><span class="pre">RED</span></a><span class="pre">)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchor_b_appearance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Dot(color=</span><a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.RED"><span class="pre">RED</span></a><span class="pre">)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connect_line_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">connect_line_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{'color':</span> <a class="reference internal" href="../../../constants/colors.html#manim.utils.color.manim_colors.YELLOW"><span class="pre">YELLOW</span></a><span class="pre">,</span> <span class="pre">'stroke_width':</span> <span class="pre">2}</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/constraints/VPinJoint.html#VPinJoint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.pymunk.constraints.VPinJoint.VPinJoint" title="Link to this definition">¶</a></dt>
+<dd><p>A pin joint keeps a fixed distance between two anchor points on two rigid bodies.
+It acts like a solid, weightless rod connecting two points, allowing them
+to rotate freely around the anchors while maintaining the specified <code class="docutils literal notranslate"><span class="pre">distance</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a_mob</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The first Mobject to be connected.</p></li>
+<li><p><strong>b_mob</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The second Mobject to be connected.</p></li>
+<li><p><strong>anchor_a_local</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – The local anchor point on <code class="docutils literal notranslate"><span class="pre">a_mob</span></code> where the pin is attached,
+relative to the <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a>’s center.</p></li>
+<li><p><strong>anchor_b_local</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a> | <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>, <a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a>]</span>) – The local anchor point on <code class="docutils literal notranslate"><span class="pre">b_mob</span></code> where the pin is attached,
+relative to the <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a>’s center.</p></li>
+<li><p><strong>distance</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – The fixed distance to maintain between the two anchors. If <code class="docutils literal notranslate"><span class="pre">None</span></code>,
+it is automatically calculated as the initial distance between anchors.</p></li>
+<li><p><strong>anchor_a_appearance</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a></span>) – The <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a> used to visually represent the anchor point on <code class="docutils literal notranslate"><span class="pre">a_mob</span></code>
+(e.g., a red <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.Dot.html#manim.mobject.geometry.arc.Dot" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a>).</p></li>
+<li><p><strong>anchor_b_appearance</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VMobject.html#manim.mobject.types.vectorized_mobject.VMobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VMobject</span></code></a></span>) – The <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a> used to visually represent the anchor point on <code class="docutils literal notranslate"><span class="pre">b_mob</span></code>
+(e.g., a red <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.arc.Dot.html#manim.mobject.geometry.arc.Dot" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Dot</span></code></a>).</p></li>
+<li><p><strong>connect_line_class</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#type" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – The class used to draw the connecting rod (e.g., <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a>).
+for no visible connection.</p></li>
+<li><p><strong>connect_line_config</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – A dictionary defining the visual style of the connecting line,
+such as <code class="docutils literal notranslate"><span class="pre">color</span></code> and <code class="docutils literal notranslate"><span class="pre">stroke_width</span></code>.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent <a class="reference internal" href="constraint.VConstraint.html#manim_extensions.pymunk.constraints.constraint.VConstraint" title="manim_extensions.pymunk.constraints.constraint.VConstraint"><code class="xref py py-class docutils literal notranslate"><span class="pre">VConstraint</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="vpinjointscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: VPinJointScene <a class="headerlink" href="#vpinjointscene">¶</a></p><video
+    class="manim-video"
+    controls
+    loop
+    autoplay
+    src="./VPinJointScene-fae36751.mp4">
+</video><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.pymunk</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">VPinJointScene</span><span class="p">(</span><span class="n">SpaceScene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># a pin joint acts like a rigid rod between two anchors</span>
+        <span class="n">static_dot</span> <span class="o">=</span> <span class="n">Dot</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">square</span> <span class="o">=</span> <span class="n">Square</span><span class="p">()</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">static_dot</span><span class="p">)</span>
+        <span class="n">square2</span> <span class="o">=</span> <span class="n">Square</span><span class="p">()</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">static_dot</span><span class="o">.</span><span class="n">get_center</span><span class="p">()</span> <span class="o">+</span> <span class="n">UP</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">VPinJoint</span><span class="p">(</span><span class="n">static_dot</span><span class="p">,</span> <span class="n">square</span><span class="p">),</span>
+            <span class="n">VPinJoint</span><span class="p">(</span>
+                <span class="n">square</span><span class="p">,</span>
+                <span class="n">square2</span><span class="p">,</span>
+                <span class="n">anchor_a_local</span><span class="o">=</span><span class="n">square</span><span class="o">.</span><span class="n">get_corner</span><span class="p">(</span><span class="n">UR</span><span class="p">)</span> <span class="o">-</span> <span class="n">square</span><span class="o">.</span><span class="n">get_center</span><span class="p">(),</span>
+                <span class="n">distance</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                <span class="n">connect_line_class</span><span class="o">=</span><span class="n">Line</span><span class="p">,</span>
+            <span class="p">),</span>
+        <span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="n">FadeIn</span><span class="p">(</span><span class="n">static_dot</span><span class="p">),</span> <span class="n">FadeIn</span><span class="p">(</span><span class="n">square</span><span class="p">),</span> <span class="n">FadeIn</span><span class="p">(</span><span class="n">square2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_static_body</span><span class="p">(</span><span class="n">static_dot</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_dynamic_body</span><span class="p">(</span><span class="n">square</span><span class="p">,</span> <span class="n">square2</span><span class="p">,</span> <span class="n">angular_velocity</span><span class="o">=</span><span class="n">PI</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_shapes_filter</span><span class="p">(</span><span class="n">static_dot</span><span class="p">,</span> <span class="n">square</span><span class="p">,</span> <span class="n">square2</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add_constraints</span><span class="p">(</span><span class="o">*</span><span class="n">constraints</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.pymunk.constraints.VPinJoint.VPinJoint.__check_data">
+<span class="sig-name descname"><span class="pre">__check_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#manim_extensions.pymunk.constraints.VPinJoint.VPinJoint.__check_data" title="Link to this definition">¶</a></dt>
+<dd><p>Verify the validity of constraint parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/builtins/exceptions.html#ValueError" title="(in Python v3.15)"><strong>ValueError</strong></a> – If a mobject is missing or both mobjects share the same
+    location.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.pymunk.constraints.VPinJoint.VPinJoint.install">
+<span class="sig-name descname"><span class="pre">install</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">space</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/constraints/VPinJoint.html#VPinJoint.install"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.pymunk.constraints.VPinJoint.VPinJoint.install" title="Link to this definition">¶</a></dt>
+<dd><p>Create the Pymunk PinJoint constraint, initialize visual anchor
+markers and connecting line, add the constraint to the space, and
+register the per-frame updater.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>space</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://www.pymunk.org/en/latest/pymunk.html#pymunk.Space" title="(in Pymunk)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Space</span></code></a></span>) – The Pymunk space to add the constraint to.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.pymunk.constraints.VPinJoint.VPinJoint.mob_updater">
+<span class="sig-name descname"><span class="pre">mob_updater</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mob</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/pymunk/constraints/VPinJoint.html#VPinJoint.mob_updater"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.pymunk.constraints.VPinJoint.VPinJoint.mob_updater" title="Link to this definition">¶</a></dt>
+<dd><p>Visual control updater.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mob</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.mobject.Mobject.html#manim.mobject.mobject.Mobject" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mobject</span></code></a></span>) – The constraint mobject being updated.</p></li>
+<li><p><strong>dt</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Time step since the last frame, in seconds.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1680,16 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">VPinJoint</a><ul>
+<li><a class="reference internal" href="#manim_extensions.pymunk.constraints.VPinJoint.VPinJoint"><code class="docutils literal notranslate"><span class="pre">VPinJoint</span></code></a><ul>
+
+<li><a class="reference internal" href="#manim_extensions.pymunk.constraints.VPinJoint.VPinJoint.__check_data"><code class="docutils literal notranslate"><span class="pre">VPinJoint.__check_data()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.pymunk.constraints.VPinJoint.VPinJoint.install"><code class="docutils literal notranslate"><span class="pre">VPinJoint.install()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.pymunk.constraints.VPinJoint.VPinJoint.mob_updater"><code class="docutils literal notranslate"><span class="pre">VPinJoint.mob_updater()</span></code></a></li>
+
+
+
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

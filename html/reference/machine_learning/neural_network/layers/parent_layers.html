@@ -1491,6 +1491,399 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.machine_learning.neural_network.layers.parent_layers">
 <span id="parent-layers"></span><h1>parent_layers<a class="headerlink" href="#module-manim_extensions.machine_learning.neural_network.layers.parent_layers" title="Link to this heading">¶</a></h1>
+<p>Parent layer classes for neural network visualizations.</p>
+<p>This module provides abstract base classes for neural network layer visualizations.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.layers.parent_layers.</span></span><span class="sig-name descname"><span class="pre">NeuralNetworkLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/parent_layers.html#NeuralNetworkLayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer" title="Link to this definition">¶</a></dt>
+<dd><p>Abstract Neural Network Layer class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Text of the layer title; unused in the base implementation.</p></li>
+<li><p><strong>args</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Positional arguments forwarded to the parent class.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent class; a <code class="docutils literal notranslate"><span class="pre">&quot;title&quot;</span></code> entry adds a title above
+the layer.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="neuralnetworklayerscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: NeuralNetworkLayerScene <a class="headerlink" href="#neuralnetworklayerscene">¶</a></p><img alt="../../../../_images/NeuralNetworkLayerScene-d3319e4b.png" class="align-center" src="../../../../_images/NeuralNetworkLayerScene-d3319e4b.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.feed_forward</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeedForwardLayer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.parent_layers</span><span class="w"> </span><span class="kn">import</span> <span class="n">NeuralNetworkLayer</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">NeuralNetworkLayerScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># NeuralNetworkLayer is abstract; FeedForwardLayer is a</span>
+        <span class="c1"># concrete subclass.</span>
+        <span class="n">layer</span> <span class="o">=</span> <span class="n">FeedForwardLayer</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">layer</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">NeuralNetworkLayer</span><span class="p">)</span>
+        <span class="n">layer</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer.construct_layer">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">construct_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_layer</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/parent_layers.html#NeuralNetworkLayer.construct_layer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer.construct_layer" title="Link to this definition">¶</a></dt>
+<dd><p>Constructs the layer at network construction time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="parent_layers.NeuralNetworkLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer" title="manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetworkLayer</span></code></a></span>) – Preceding layer.</p></li>
+<li><p><strong>output_layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="parent_layers.NeuralNetworkLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer" title="manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetworkLayer</span></code></a></span>) – Following layer.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent class; a <code class="docutils literal notranslate"><span class="pre">&quot;debug_mode&quot;</span></code> entry draws a
+surrounding rectangle around the layer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer.make_forward_pass_animation">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">make_forward_pass_animation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/parent_layers.html#NeuralNetworkLayer.make_forward_pass_animation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer.make_forward_pass_animation" title="Link to this definition">¶</a></dt>
+<dd><p>Makes the forward pass animation for the layer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the layer’s forward pass animation.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The forward pass animation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer._create_override">
+<span class="sig-name descname"><span class="pre">_create_override</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/parent_layers.html#NeuralNetworkLayer._create_override"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer._create_override" title="Link to this definition">¶</a></dt>
+<dd><p>Return a zero-duration wait for a layer without geometry.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>An animation that does nothing.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/parent_layers.html#NeuralNetworkLayer.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return the class name of the layer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The class name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.parent_layers.VGroupNeuralNetworkLayer">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.layers.parent_layers.</span></span><span class="sig-name descname"><span class="pre">VGroupNeuralNetworkLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/parent_layers.html#VGroupNeuralNetworkLayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.VGroupNeuralNetworkLayer" title="Link to this definition">¶</a></dt>
+<dd><p>Neural network layer variant based on <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>args</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Positional arguments forwarded to <a class="reference internal" href="parent_layers.NeuralNetworkLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer" title="manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetworkLayer</span></code></a>.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to <a class="reference internal" href="parent_layers.NeuralNetworkLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer" title="manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetworkLayer</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="vgroupneuralnetworklayerscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: VGroupNeuralNetworkLayerScene <a class="headerlink" href="#vgroupneuralnetworklayerscene">¶</a></p><img alt="../../../../_images/VGroupNeuralNetworkLayerScene-76a5cac4.png" class="align-center" src="../../../../_images/VGroupNeuralNetworkLayerScene-76a5cac4.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.feed_forward</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeedForwardLayer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.parent_layers</span><span class="w"> </span><span class="kn">import</span> <span class="n">VGroupNeuralNetworkLayer</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">VGroupNeuralNetworkLayerScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># VGroupNeuralNetworkLayer is abstract; FeedForwardLayer is a</span>
+        <span class="c1"># concrete subclass.</span>
+        <span class="n">layer</span> <span class="o">=</span> <span class="n">FeedForwardLayer</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">layer</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">VGroupNeuralNetworkLayer</span><span class="p">)</span>
+        <span class="n">layer</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">layer</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.parent_layers.VGroupNeuralNetworkLayer.make_forward_pass_animation">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">make_forward_pass_animation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/parent_layers.html#VGroupNeuralNetworkLayer.make_forward_pass_animation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.VGroupNeuralNetworkLayer.make_forward_pass_animation" title="Link to this definition">¶</a></dt>
+<dd><p>Makes the forward pass animation for the layer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the layer’s forward pass animation.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The forward pass animation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.parent_layers.VGroupNeuralNetworkLayer._create_override">
+<span class="sig-name descname"><span class="pre">_create_override</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/parent_layers.html#VGroupNeuralNetworkLayer._create_override"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.VGroupNeuralNetworkLayer._create_override" title="Link to this definition">¶</a></dt>
+<dd><p>Delegate creation to the parent layer implementation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The parent layer’s creation animation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.parent_layers.ThreeDLayer">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.layers.parent_layers.</span></span><span class="sig-name descname"><span class="pre">ThreeDLayer</span></span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/parent_layers.html#ThreeDLayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.ThreeDLayer" title="Link to this definition">¶</a></dt>
+<dd><p>Abstract class for 3D layers.</p>
+<p class="rubric">Examples</p>
+<div id="threedlayeroverview" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ThreeDLayerOverview <a class="headerlink" href="#threedlayeroverview">¶</a></p><img alt="../../../../_images/ThreeDLayerOverview-0e279e92.png" class="align-center" src="../../../../_images/ThreeDLayerOverview-0e279e92.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.parent_layers</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreeDLayer</span>
+
+<span class="n">ThreeDLayerTarget</span> <span class="o">=</span> <span class="n">ThreeDLayer</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ThreeDLayerOverview</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">public</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">ThreeDLayerTarget</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">n</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">"_"</span><span class="p">)]</span>
+        <span class="n">card</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'ThreeDLayer'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">36</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'module: manim_extensions.machine_learning.neural_network.layers.parent_layers'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">GREY</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s1">'Abstract class for 3D layers'</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">22</span><span class="p">),</span>
+            <span class="n">Text</span><span class="p">(</span><span class="s2">"API: "</span> <span class="o">+</span> <span class="s2">", "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">public</span><span class="p">[:</span><span class="mi">6</span><span class="p">]),</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">),</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">arrange</span><span class="p">(</span><span class="n">DOWN</span><span class="p">,</span> <span class="n">aligned_edge</span><span class="o">=</span><span class="n">LEFT</span><span class="p">,</span> <span class="n">buff</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+        <span class="n">card</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mf">11.5</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="n">frame</span> <span class="o">=</span> <span class="n">RoundedRectangle</span><span class="p">(</span>
+            <span class="n">width</span><span class="o">=</span><span class="mf">12.1</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">card</span><span class="o">.</span><span class="n">height</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">corner_radius</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE_D</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">card</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.convolutional_2d</span><span class="w"> </span><span class="kn">import</span> <span class="n">Convolutional2DLayer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.parent_layers</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreeDLayer</span>
+
+<span class="n">layer</span> <span class="o">=</span> <span class="n">Convolutional2DLayer</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="n">ThreeDLayer</span><span class="p">)</span>
+<span class="n">layer</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.layers.parent_layers.</span></span><span class="sig-name descname"><span class="pre">ConnectiveLayer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_layer</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/parent_layers.html#ConnectiveLayer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer" title="Link to this definition">¶</a></dt>
+<dd><p>Forward pass animation for a given pair of layers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="parent_layers.NeuralNetworkLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer" title="manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetworkLayer</span></code></a></span>) – The layer the forward pass animation starts from.</p></li>
+<li><p><strong>output_layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="parent_layers.NeuralNetworkLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer" title="manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetworkLayer</span></code></a></span>) – The layer the forward pass animation ends at.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the parent layer classes.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="connectivelayerscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: ConnectiveLayerScene <a class="headerlink" href="#connectivelayerscene">¶</a></p><img alt="../../../../_images/ConnectiveLayerScene-e8795de0.png" class="align-center" src="../../../../_images/ConnectiveLayerScene-e8795de0.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.feed_forward</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeedForwardLayer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeedForwardToFeedForward</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.parent_layers</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConnectiveLayer</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ConnectiveLayerScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># ConnectiveLayer is abstract; FeedForwardToFeedForward is a</span>
+        <span class="c1"># concrete subclass.</span>
+        <span class="n">input_layer</span> <span class="o">=</span> <span class="n">FeedForwardLayer</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">output_layer</span> <span class="o">=</span> <span class="n">FeedForwardLayer</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">input_layer</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">output_layer</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">connection</span> <span class="o">=</span> <span class="n">FeedForwardToFeedForward</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">)</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">connection</span><span class="p">,</span> <span class="n">ConnectiveLayer</span><span class="p">)</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span>
+        <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer.make_forward_pass_animation">
+<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">make_forward_pass_animation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/parent_layers.html#ConnectiveLayer.make_forward_pass_animation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer.make_forward_pass_animation" title="Link to this definition">¶</a></dt>
+<dd><p>Makes the forward pass animation between the connected layers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_time</strong> – Run time of the forward pass animation.</p></li>
+<li><p><strong>layer_args</strong> – Additional arguments passed to the connected layers when making
+their forward pass animations.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the layer’s forward pass animation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The forward pass animation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer._create_override">
+<span class="sig-name descname"><span class="pre">_create_override</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/parent_layers.html#ConnectiveLayer._create_override"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer._create_override" title="Link to this definition">¶</a></dt>
+<dd><p>Delegate creation to the parent layer implementation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The parent layer’s creation animation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer.__repr__">
+<span class="sig-name descname"><span class="pre">__repr__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/parent_layers.html#ConnectiveLayer.__repr__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer.__repr__" title="Link to this definition">¶</a></dt>
+<dd><p>Return the layer class name together with its connected layers.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A representation including the input and output layer classes.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.parent_layers.BlankConnective">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.machine_learning.neural_network.layers.parent_layers.</span></span><span class="sig-name descname"><span class="pre">BlankConnective</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_layer</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/parent_layers.html#BlankConnective"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.BlankConnective" title="Link to this definition">¶</a></dt>
+<dd><p>Connective layer to be used when the given pair of layers is undefined.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="parent_layers.NeuralNetworkLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer" title="manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetworkLayer</span></code></a></span>) – The layer the connection starts from.</p></li>
+<li><p><strong>output_layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="parent_layers.NeuralNetworkLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer" title="manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetworkLayer</span></code></a></span>) – The layer the connection ends at.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to <a class="reference internal" href="parent_layers.ConnectiveLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer" title="manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConnectiveLayer</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="blankconnectivescene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: BlankConnectiveScene <a class="headerlink" href="#blankconnectivescene">¶</a></p><img alt="../../../../_images/BlankConnectiveScene-1055cc62.png" class="align-center" src="../../../../_images/BlankConnectiveScene-1055cc62.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.feed_forward</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeedForwardLayer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.feed_forward_to_feed_forward</span><span class="w"> </span><span class="kn">import</span> <span class="n">FeedForwardToFeedForward</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.machine_learning.neural_network.layers.parent_layers</span><span class="w"> </span><span class="kn">import</span> <span class="n">BlankConnective</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">BlankConnectiveScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># BlankConnective is abstract (construct_layer is not</span>
+        <span class="c1"># implemented); NeuralNetwork uses it for layer pairs without</span>
+        <span class="c1"># a specific connective. FeedForwardToFeedForward shows what</span>
+        <span class="c1"># a concrete connective looks like.</span>
+        <span class="n">input_layer</span> <span class="o">=</span> <span class="n">FeedForwardLayer</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">output_layer</span> <span class="o">=</span> <span class="n">FeedForwardLayer</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">RIGHT</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">input_layer</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">output_layer</span><span class="o">.</span><span class="n">construct_layer</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">connection</span> <span class="o">=</span> <span class="n">FeedForwardToFeedForward</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">)</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">Group</span><span class="p">(</span><span class="n">input_layer</span><span class="p">,</span> <span class="n">output_layer</span><span class="p">,</span> <span class="n">connection</span><span class="p">)</span>
+        <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.parent_layers.BlankConnective.make_forward_pass_animation">
+<span class="sig-name descname"><span class="pre">make_forward_pass_animation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">run_time</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/parent_layers.html#BlankConnective.make_forward_pass_animation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.BlankConnective.make_forward_pass_animation" title="Link to this definition">¶</a></dt>
+<dd><p>Makes an empty forward pass animation for the blank connection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>run_time</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Run time of the forward pass animation.</p></li>
+<li><p><strong>layer_args</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]</span>) – Additional arguments passed to the connected layers when making
+their forward pass animations.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Forwarded to the layer’s forward pass animation.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The forward pass animation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.parent_layers.BlankConnective.construct_layer">
+<span class="sig-name descname"><span class="pre">construct_layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_layer</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_layer</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/parent_layers.html#BlankConnective.construct_layer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.BlankConnective.construct_layer" title="Link to this definition">¶</a></dt>
+<dd><p>Construct nothing: a blank connective has no geometry of its own.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input_layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="parent_layers.NeuralNetworkLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer" title="manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetworkLayer</span></code></a></span>) – Preceding layer.</p></li>
+<li><p><strong>output_layer</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="parent_layers.NeuralNetworkLayer.html#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer" title="manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer"><code class="xref py py-class docutils literal notranslate"><span class="pre">NeuralNetworkLayer</span></code></a></span>) – Following layer.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Ignored.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.machine_learning.neural_network.layers.parent_layers.BlankConnective._create_override">
+<span class="sig-name descname"><span class="pre">_create_override</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../../../_modules/manim_extensions/machine_learning/neural_network/layers/parent_layers.html#BlankConnective._create_override"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.BlankConnective._create_override" title="Link to this definition">¶</a></dt>
+<dd><p>Delegate creation to the parent layer implementation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.animation.animation.Animation.html#manim.animation.animation.Animation" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Animation</span></code></a></span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The parent layer’s creation animation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1575,6 +1968,35 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">parent_layers</a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer"><code class="docutils literal notranslate"><span class="pre">NeuralNetworkLayer</span></code></a><ul>
+
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer.construct_layer"><code class="docutils literal notranslate"><span class="pre">NeuralNetworkLayer.construct_layer()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer.make_forward_pass_animation"><code class="docutils literal notranslate"><span class="pre">NeuralNetworkLayer.make_forward_pass_animation()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer._create_override"><code class="docutils literal notranslate"><span class="pre">NeuralNetworkLayer._create_override()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.NeuralNetworkLayer.__repr__"><code class="docutils literal notranslate"><span class="pre">NeuralNetworkLayer.__repr__()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.VGroupNeuralNetworkLayer"><code class="docutils literal notranslate"><span class="pre">VGroupNeuralNetworkLayer</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.VGroupNeuralNetworkLayer.make_forward_pass_animation"><code class="docutils literal notranslate"><span class="pre">VGroupNeuralNetworkLayer.make_forward_pass_animation()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.VGroupNeuralNetworkLayer._create_override"><code class="docutils literal notranslate"><span class="pre">VGroupNeuralNetworkLayer._create_override()</span></code></a></li>
+
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.ThreeDLayer"><code class="docutils literal notranslate"><span class="pre">ThreeDLayer</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer"><code class="docutils literal notranslate"><span class="pre">ConnectiveLayer</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer.make_forward_pass_animation"><code class="docutils literal notranslate"><span class="pre">ConnectiveLayer.make_forward_pass_animation()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer._create_override"><code class="docutils literal notranslate"><span class="pre">ConnectiveLayer._create_override()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.ConnectiveLayer.__repr__"><code class="docutils literal notranslate"><span class="pre">ConnectiveLayer.__repr__()</span></code></a></li>
+
+</ul>
+</li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.BlankConnective"><code class="docutils literal notranslate"><span class="pre">BlankConnective</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.BlankConnective.make_forward_pass_animation"><code class="docutils literal notranslate"><span class="pre">BlankConnective.make_forward_pass_animation()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.BlankConnective.construct_layer"><code class="docutils literal notranslate"><span class="pre">BlankConnective.construct_layer()</span></code></a></li>
+
+<li><a class="reference internal" href="#manim_extensions.machine_learning.neural_network.layers.parent_layers.BlankConnective._create_override"><code class="docutils literal notranslate"><span class="pre">BlankConnective._create_override()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

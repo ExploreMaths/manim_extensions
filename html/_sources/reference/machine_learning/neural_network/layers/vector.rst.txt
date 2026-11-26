@@ -4,7 +4,7 @@
 vector
 ======
 
-.. module:: manim_extensions.machine_learning.neural_network.layers.vector
+.. automodule:: manim_extensions.machine_learning.neural_network.layers.vector
 
 Classes
 -------

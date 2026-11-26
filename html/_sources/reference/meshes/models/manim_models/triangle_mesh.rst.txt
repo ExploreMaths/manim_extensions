@@ -5,7 +5,7 @@
 triangle_mesh
 =============
 
-.. module:: manim_extensions.meshes.models.manim_models.triangle_mesh
+.. automodule:: manim_extensions.meshes.models.manim_models.triangle_mesh
 
 Classes
 -------

@@ -1491,6 +1491,197 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.chemistry.molecule.molecule">
 <span id="molecule"></span><h1>molecule<a class="headerlink" href="#module-manim_extensions.chemistry.molecule.molecule" title="Link to this heading">¶</a></h1>
+<p><a class="reference internal" href="molecule.Molecule.html#manim_extensions.chemistry.molecule.molecule.Molecule" title="manim_extensions.chemistry.molecule.molecule.Molecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Molecule</span></code></a> proxy class for Manim chemistry.</p>
+<p>This module provides the <a class="reference internal" href="molecule.Molecule.html#manim_extensions.chemistry.molecule.molecule.Molecule" title="manim_extensions.chemistry.molecule.molecule.Molecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">Molecule</span></code></a> class as a unified interface for different molecule types.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.molecule.molecule.Molecule">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.chemistry.molecule.molecule.</span></span><span class="sig-name descname"><span class="pre">Molecule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">molecule_class</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GraphMolecule</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/molecule/molecule.html#Molecule"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.molecule.molecule.Molecule" title="Link to this definition">¶</a></dt>
+<dd><p>Works as a proxy between different types of molecules with the same methods.</p>
+<p>Supported types of molecules are:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule" title="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">GraphMolecule</span></code></a></p></li>
+<li><p><a class="reference internal" href="../twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject" title="manim_extensions.chemistry.twoD.molecule.MMoleculeObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">MMoleculeObject</span></code></a></p></li>
+<li><p><a class="reference internal" href="../threeD/threedmolecule.ThreeDMolecule.html#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule" title="manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreeDMolecule</span></code></a></p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>molecule_class</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#type" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">type</span></code></a>[<a class="reference internal" href="../twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule" title="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">GraphMolecule</span></code></a>]</span>) – The molecule class to proxy to, such as <a class="reference internal" href="../twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule" title="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">GraphMolecule</span></code></a>,
+<a class="reference internal" href="../twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject" title="manim_extensions.chemistry.twoD.molecule.MMoleculeObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">MMoleculeObject</span></code></a> or <a class="reference internal" href="../threeD/threedmolecule.ThreeDMolecule.html#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule" title="manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreeDMolecule</span></code></a>.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="graphmoleculefrommolecule" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: GraphMoleculeFromMolecule <a class="headerlink" href="#graphmoleculefrommolecule">¶</a></p><img alt="../../../_images/GraphMoleculeFromMolecule-e896a867.png" class="align-center" src="../../../_images/GraphMoleculeFromMolecule-e896a867.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry</span><span class="w"> </span><span class="kn">import</span> <span class="n">GraphMolecule</span><span class="p">,</span> <span class="n">Molecule</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">GraphMoleculeFromMolecule</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">molecule</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span><span class="n">GraphMolecule</span><span class="p">)</span><span class="o">.</span><span class="n">molecule_from_string</span><span class="p">(</span>
+            <span class="n">Path</span><span class="p">(</span><span class="s2">"acetone_2d.mol"</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">(),</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"mol"</span>
+        <span class="p">)</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="sa">f</span><span class="s2">"type: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span><span class="o">.</span><span class="n">to_edge</span><span class="p">(</span><span class="n">UP</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="manim-example-files">
+<div class="manim-file-row">
+  <span class="manim-file-badge" style="background:#2b8a3e">mol</span>
+  <span class="manim-file-meta">
+    <span class="manim-file-name">acetone_2d.mol</span>
+    <span class="manim-file-size">345 B</span>
+  </span>
+  <span class="manim-file-actions">
+    <a class="manim-file-action" href="https://github.com/ExploreMaths/manim_extensions/raw/main/examples/molecule_files/mol_files/acetone_2d.mol" title="Download this file" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v9.2"/><path d="M8.4 10.4 12 14l3.6-3.6"/><path d="M5.2 16.4v1.8c0 .9.8 1.7 1.7 1.7h10.2c.9 0 1.7-.8 1.7-1.7v-1.8"/></svg></a>
+  </span>
+</div>
+</div></div><div id="mmoleculeobjectfrommolecule" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: MMoleculeObjectFromMolecule <a class="headerlink" href="#mmoleculeobjectfrommolecule">¶</a></p><img alt="../../../_images/MMoleculeObjectFromMolecule-9fd66a5d.png" class="align-center" src="../../../_images/MMoleculeObjectFromMolecule-9fd66a5d.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry</span><span class="w"> </span><span class="kn">import</span> <span class="n">MMoleculeObject</span><span class="p">,</span> <span class="n">Molecule</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MMoleculeObjectFromMolecule</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">molecule</span> <span class="o">=</span> <span class="n">Molecule</span><span class="p">(</span><span class="n">MMoleculeObject</span><span class="p">)</span><span class="o">.</span><span class="n">molecule_from_string</span><span class="p">(</span>
+            <span class="n">Path</span><span class="p">(</span><span class="s2">"acetone_2d.mol"</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">(),</span> <span class="nb">format</span><span class="o">=</span><span class="s2">"mol"</span>
+        <span class="p">)</span>
+        <span class="n">label</span> <span class="o">=</span> <span class="n">Text</span><span class="p">(</span><span class="sa">f</span><span class="s2">"type: </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span><span class="o">.</span><span class="n">to_edge</span><span class="p">(</span><span class="n">UP</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">molecule</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="manim-example-files">
+<div class="manim-file-row">
+  <span class="manim-file-badge" style="background:#2b8a3e">mol</span>
+  <span class="manim-file-meta">
+    <span class="manim-file-name">acetone_2d.mol</span>
+    <span class="manim-file-size">345 B</span>
+  </span>
+  <span class="manim-file-actions">
+    <a class="manim-file-action" href="https://github.com/ExploreMaths/manim_extensions/raw/main/examples/molecule_files/mol_files/acetone_2d.mol" title="Download this file" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v9.2"/><path d="M8.4 10.4 12 14l3.6-3.6"/><path d="M5.2 16.4v1.8c0 .9.8 1.7 1.7 1.7h10.2c.9 0 1.7-.8 1.7-1.7v-1.8"/></svg></a>
+  </span>
+</div>
+</div></div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.molecule.molecule.Molecule.molecule_from_file">
+<span class="sig-name descname"><span class="pre">molecule_from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/molecule/molecule.html#Molecule.molecule_from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.molecule.molecule.Molecule.molecule_from_file" title="Link to this definition">¶</a></dt>
+<dd><p>Delegate to the wrapped molecule class to construct a molecule from a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to
+<a class="reference internal" href="abstract_molecule.AbstractMolecule.html#manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule.molecule_from_file" title="manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule.molecule_from_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">molecule_from_file()</span></code></a>
+of the wrapped molecule class.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule" title="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">GraphMolecule</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The molecule loaded from the file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.molecule.molecule.Molecule.multiple_molecules_from_file">
+<span class="sig-name descname"><span class="pre">multiple_molecules_from_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/molecule/molecule.html#Molecule.multiple_molecules_from_file"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.molecule.molecule.Molecule.multiple_molecules_from_file" title="Link to this definition">¶</a></dt>
+<dd><p>Delegate to the wrapped molecule class to construct multiple molecules from a file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to
+<a class="reference internal" href="abstract_molecule.AbstractMolecule.html#manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule.multiple_molecules_from_file" title="manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule.multiple_molecules_from_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">multiple_molecules_from_file()</span></code></a>
+of the wrapped molecule class.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The group of molecules loaded from the file.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.molecule.molecule.Molecule.molecule_from_string">
+<span class="sig-name descname"><span class="pre">molecule_from_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/molecule/molecule.html#Molecule.molecule_from_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.molecule.molecule.Molecule.molecule_from_string" title="Link to this definition">¶</a></dt>
+<dd><p>Delegate to the wrapped molecule class to construct a molecule from a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to
+<a class="reference internal" href="abstract_molecule.AbstractMolecule.html#manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule.molecule_from_string" title="manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule.molecule_from_string"><code class="xref py py-meth docutils literal notranslate"><span class="pre">molecule_from_string()</span></code></a>
+of the wrapped molecule class.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule" title="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">GraphMolecule</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The molecule parsed from the string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.molecule.molecule.Molecule.multiple_molecules_from_string">
+<span class="sig-name descname"><span class="pre">multiple_molecules_from_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/molecule/molecule.html#Molecule.multiple_molecules_from_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.molecule.molecule.Molecule.multiple_molecules_from_string" title="Link to this definition">¶</a></dt>
+<dd><p>Delegate to the wrapped molecule class to construct multiple molecules from a string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to
+<a class="reference internal" href="abstract_molecule.AbstractMolecule.html#manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule.multiple_molecules_from_string" title="manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule.multiple_molecules_from_string"><code class="xref py py-meth docutils literal notranslate"><span class="pre">multiple_molecules_from_string()</span></code></a>
+of the wrapped molecule class.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.types.vectorized_mobject.VGroup.html#manim.mobject.types.vectorized_mobject.VGroup" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">VGroup</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The group of molecules parsed from the string.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.molecule.molecule.Molecule.molecule_from_pubchem">
+<span class="sig-name descname"><span class="pre">molecule_from_pubchem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/molecule/molecule.html#Molecule.molecule_from_pubchem"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.molecule.molecule.Molecule.molecule_from_pubchem" title="Link to this definition">¶</a></dt>
+<dd><p>Delegate to the wrapped molecule class to fetch a molecule from PubChem.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to
+<a class="reference internal" href="abstract_molecule.AbstractMolecule.html#manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule.molecule_from_pubchem" title="manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule.molecule_from_pubchem"><code class="xref py py-meth docutils literal notranslate"><span class="pre">molecule_from_pubchem()</span></code></a>
+of the wrapped molecule class.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="../twoD/graph_molecule.GraphMolecule.html#manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule" title="manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">GraphMolecule</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The molecule fetched from PubChem.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.chemistry.molecule.molecule.Molecule.mc_molecule_to_atoms_and_bonds">
+<span class="sig-name descname"><span class="pre">mc_molecule_to_atoms_and_bonds</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/chemistry/molecule/molecule.html#Molecule.mc_molecule_to_atoms_and_bonds"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.chemistry.molecule.molecule.Molecule.mc_molecule_to_atoms_and_bonds" title="Link to this definition">¶</a></dt>
+<dd><p>Delegate to the wrapped molecule class to convert an <a class="reference internal" href="../manim_chemistry_molecule/mc_molecule.MCMolecule.html#manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule" title="manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">MCMolecule</span></code></a> to atoms and bonds.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to
+<a class="reference internal" href="abstract_molecule.AbstractMolecule.html#manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule.mc_molecule_to_atoms_and_bonds" title="manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule.mc_molecule_to_atoms_and_bonds"><code class="xref py py-meth docutils literal notranslate"><span class="pre">mc_molecule_to_atoms_and_bonds()</span></code></a>
+of the wrapped molecule class.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></a>[<a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>], <a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#dict" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a>]]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The parsed atoms and bonds.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1754,15 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">molecule</a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.molecule.molecule.Molecule"><code class="docutils literal notranslate"><span class="pre">Molecule</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.chemistry.molecule.molecule.Molecule.molecule_from_file"><code class="docutils literal notranslate"><span class="pre">Molecule.molecule_from_file()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.molecule.molecule.Molecule.multiple_molecules_from_file"><code class="docutils literal notranslate"><span class="pre">Molecule.multiple_molecules_from_file()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.molecule.molecule.Molecule.molecule_from_string"><code class="docutils literal notranslate"><span class="pre">Molecule.molecule_from_string()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.molecule.molecule.Molecule.multiple_molecules_from_string"><code class="docutils literal notranslate"><span class="pre">Molecule.multiple_molecules_from_string()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.molecule.molecule.Molecule.molecule_from_pubchem"><code class="docutils literal notranslate"><span class="pre">Molecule.molecule_from_pubchem()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.chemistry.molecule.molecule.Molecule.mc_molecule_to_atoms_and_bonds"><code class="docutils literal notranslate"><span class="pre">Molecule.mc_molecule_to_atoms_and_bonds()</span></code></a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

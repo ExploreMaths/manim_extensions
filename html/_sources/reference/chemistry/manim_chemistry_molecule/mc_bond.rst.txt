@@ -4,7 +4,7 @@
 mc_bond
 =======
 
-.. module:: manim_extensions.chemistry.manim_chemistry_molecule.mc_bond
+.. automodule:: manim_extensions.chemistry.manim_chemistry_molecule.mc_bond
 
 Classes
 -------

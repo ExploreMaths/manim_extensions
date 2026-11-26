@@ -4,7 +4,7 @@
 SpaceScene
 ==========
 
-.. module:: manim_extensions.pymunk.space.SpaceScene
+.. automodule:: manim_extensions.pymunk.space.SpaceScene
 
 Classes
 -------

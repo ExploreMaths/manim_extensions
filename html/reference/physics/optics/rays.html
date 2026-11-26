@@ -1491,6 +1491,105 @@
         <article role="main" id="furo-main-content">
           <section id="module-manim_extensions.physics.optics.rays">
 <span id="rays"></span><h1>rays<a class="headerlink" href="#module-manim_extensions.physics.optics.rays" title="Link to this heading">¶</a></h1>
+<p>Utilities for the rays module.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="manim_extensions.physics.optics.rays.Ray">
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.physics.optics.rays.</span></span><span class="sig-name descname"><span class="pre">Ray</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">start</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">direction</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">init_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">propagate</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/optics/rays.html#Ray"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.optics.rays.Ray" title="Link to this definition">¶</a></dt>
+<dd><p>A light ray that can be refracted through lenses.</p>
+<p>A <a class="reference internal" href="rays.Ray.html#manim_extensions.physics.optics.rays.Ray" title="manim_extensions.physics.optics.rays.Ray"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ray</span></code></a> extends <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a> with
+refraction logic based on Snell’s law.  When a list of <a class="reference internal" href="lenses.Lens.html#manim_extensions.physics.optics.lenses.Lens" title="manim_extensions.physics.optics.lenses.Lens"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lens</span></code></a>
+objects is passed to the constructor or <a class="reference internal" href="rays.Ray.html#manim_extensions.physics.optics.rays.Ray.propagate" title="manim_extensions.physics.optics.rays.Ray.propagate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">propagate()</span></code></a>, the ray
+automatically bends as it passes through each lens surface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>start</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Starting point of the ray.</p></li>
+<li><p><strong>direction</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a></span>) – Direction vector of the ray.</p></li>
+<li><p><strong>init_length</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Initial length of the ray.</p></li>
+<li><p><strong>propagate</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference internal" href="lenses.Lens.html#manim_extensions.physics.optics.lenses.Lens" title="manim_extensions.physics.optics.lenses.Lens"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lens</span></code></a>] | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span>) – Lenses to propagate the ray through immediately upon construction.</p></li>
+<li><p><strong>**kwargs</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span>) – Additional keyword arguments forwarded to <a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.mobject.geometry.line.Line.html#manim.mobject.geometry.line.Line" title="(in Manim)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Line</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div id="rayscene" class="admonition admonition-manim-example">
+
+<p class="admonition-title">Example: RayScene <a class="headerlink" href="#rayscene">¶</a></p><img alt="../../../_images/RayScene-d96c7b67.png" class="align-center" src="../../../_images/RayScene-d96c7b67.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.physics.optics.lenses</span><span class="w"> </span><span class="kn">import</span> <span class="n">Lens</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.physics.optics.rays</span><span class="w"> </span><span class="kn">import</span> <span class="n">Ray</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">RayScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">lens_style</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"fill_opacity"</span><span class="p">:</span> <span class="mf">0.5</span><span class="p">,</span> <span class="s2">"color"</span><span class="p">:</span> <span class="n">BLUE</span><span class="p">}</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">Lens</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">lens_style</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">LEFT</span><span class="p">)</span>
+        <span class="n">a2</span> <span class="o">=</span> <span class="n">Lens</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">lens_style</span><span class="p">)</span><span class="o">.</span><span class="n">shift</span><span class="p">(</span><span class="n">RIGHT</span><span class="p">)</span>
+        <span class="n">rays</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="n">Ray</span><span class="p">(</span><span class="n">LEFT</span> <span class="o">*</span> <span class="mi">5</span> <span class="o">+</span> <span class="n">UP</span> <span class="o">*</span> <span class="n">i</span><span class="p">,</span> <span class="n">RIGHT</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span> <span class="n">a2</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">RED</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="p">]</span>
+        <span class="n">content</span> <span class="o">=</span> <span class="n">VGroup</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="o">*</span><span class="n">rays</span><span class="p">)</span>
+        <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">content</span><span class="o">.</span><span class="n">height</span> <span class="o">&gt;</span> <span class="mi">7</span><span class="p">:</span>
+            <span class="n">content</span><span class="o">.</span><span class="n">scale_to_fit_height</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+        <span class="n">content</span><span class="o">.</span><span class="n">move_to</span><span class="p">(</span><span class="n">ORIGIN</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">content</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.optics.rays.Ray.propagate">
+<span class="sig-name descname"><span class="pre">propagate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">lenses</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/optics/rays.html#Ray.propagate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.optics.rays.Ray.propagate" title="Link to this definition">¶</a></dt>
+<dd><p>Let the ray propagate through the list
+of lenses passed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>lenses</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="lenses.Lens.html#manim_extensions.physics.optics.lenses.Lens" title="manim_extensions.physics.optics.lenses.Lens"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lens</span></code></a></span>) – All the lenses for the ray to propagate through.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The resulting value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.optics.rays.Ray._sort_lens">
+<span class="sig-name descname"><span class="pre">_sort_lens</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lenses</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/optics/rays.html#Ray._sort_lens"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.optics.rays.Ray._sort_lens" title="Link to this definition">¶</a></dt>
+<dd><p>Sort lenses by distance from the ray’s start to the intersection point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>lenses</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference internal" href="lenses.Lens.html#manim_extensions.physics.optics.lenses.Lens" title="manim_extensions.physics.optics.lenses.Lens"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lens</span></code></a>]</span>) – Lenses to sort.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference internal" href="lenses.Lens.html#manim_extensions.physics.optics.lenses.Lens" title="manim_extensions.physics.optics.lenses.Lens"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lens</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Lenses ordered by increasing distance from the ray start.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="manim_extensions.physics.optics.rays.Ray._sort_intersections">
+<span class="sig-name descname"><span class="pre">_sort_intersections</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">intersections</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/physics/optics/rays.html#Ray._sort_intersections"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.physics.optics.rays.Ray._sort_intersections" title="Link to this definition">¶</a></dt>
+<dd><p>Sort intersection points by distance from the ray’s current end point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>intersections</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>]</span>) – Intersection coordinates to sort.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></a>[<a class="reference external" href="https://docs.manim.community/en/stable/reference/manim.typing.html#manim.typing.Point3D" title="(in Manim)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Point3D</span></code></a>]</span></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Intersections ordered by increasing distance from the ray end.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
 <section id="classes">
 <h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
 <div class="table-wrapper autosummary longtable docutils container">
@@ -1563,6 +1662,15 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">rays</a><ul>
+<li><a class="reference internal" href="#manim_extensions.physics.optics.rays.Ray"><code class="docutils literal notranslate"><span class="pre">Ray</span></code></a><ul>
+<li><a class="reference internal" href="#manim_extensions.physics.optics.rays.Ray.propagate"><code class="docutils literal notranslate"><span class="pre">Ray.propagate()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.physics.optics.rays.Ray._sort_lens"><code class="docutils literal notranslate"><span class="pre">Ray._sort_lens()</span></code></a></li>
+<li><a class="reference internal" href="#manim_extensions.physics.optics.rays.Ray._sort_intersections"><code class="docutils literal notranslate"><span class="pre">Ray._sort_intersections()</span></code></a></li>
+
+
+
+</ul>
+</li>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>

@@ -5,7 +5,7 @@
 pencil
 ======
 
-.. module:: manim_extensions.compass.compass.pencil
+.. automodule:: manim_extensions.compass.compass.pencil
 
 Classes
 -------
