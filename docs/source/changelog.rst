@@ -236,7 +236,6 @@ Changed (33)
   repository can therefore vendor ``workflow/`` and ``scripts/`` and run the
   checks against its own package and documentation tree without installing a
   separate distribution.
-
 * The whole package, vendored modules included, now passes
   ``mypy --strict``: the baseline of **3,875 errors across 198 of 295 files**
   is down to **0 errors in 295 files**.  ``follow_imports = "silent"`` and the
@@ -552,7 +551,6 @@ Fixed (51)
 * Fixed :class:`~manim_extensions.physics.rigid_mechanics.pendulum.MultiPendulum`
   joints being added to a non-existent ``space`` attribute, so
   ``start_swinging`` no longer fails with ``AttributeError``.
-
 * Reorganised the reference manual package by package: :mod:`~manim_extensions.chemistry`,
   :mod:`~manim_extensions.automata`, :mod:`~manim_extensions.algorithm`, :mod:`~manim_extensions.data_structures`, :mod:`~manim_extensions.economics`,
   :mod:`~manim_extensions.pymunk`, :mod:`~manim_extensions.mindmap`, :mod:`~manim_extensions.machine_learning`, :mod:`~manim_extensions.table`, and the rest
@@ -611,7 +609,6 @@ Fixed (51)
   preserved.
 * Rewrote ``CODE_OF_CONDUCT`` as the project's own code and removed
   duplicate chemistry overview pages plus stray rendered images.
-
 * Consumed the shared ``ExploreMaths/setup-manim-env@v1`` action across
   workflows.
 * Extended the Validate workflow with type-annotation, return-annotation,
