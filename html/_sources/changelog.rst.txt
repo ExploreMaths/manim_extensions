@@ -10,6 +10,28 @@ v1.0.7 :bdg-primary-line:`In Development`
 Added
 ~~~~~
 
+* ``workflow/validate_deprecations.py`` and the ``validate-deprecations``
+  static check reject deprecated APIs across the package, tests, scripts,
+  workflow tools and Sphinx extensions. Deprecations are discovered from
+  runtime metadata rather than a hard-coded name list: PEP 585-deprecated
+  aliases such as ``typing.List``, ``typing.Dict`` and ``typing.Callable``
+  are recognised from their origin and parameter count; deprecated
+  standard-library symbols are recognised from ``__deprecated__``,
+  ``_Deprecated*`` wrappers and import-time ``DeprecationWarning`` messages;
+  and project APIs are recognised from the package's ``@deprecated``
+  decorators. ``Optional`` and ``Union`` remain legal, while new code prefers
+  ``X | None`` and ``X | Y``.
+* ``.. manim::`` accepts ``:renderer: opengl``. The media-render workflow
+  runs Manim under ``xvfb-run``, and the OpenGL media cache key is
+  renderer-specific, so OpenGL examples coexist with Cairo examples without
+  colliding in the docs cache.
+  :class:`~manim_extensions.chemistry.threeD.utils.OpenGLSphere` gains a
+  rendered 3-D preview as the first OpenGL example in the pipeline.
+* ``validate-example-coverage`` requires every public function returning a
+  visual mobject, animation, scene, or collection of them to document an
+  ``Examples`` section with a ``.. manim::`` block. Methods may use the
+  example in their class. All existing visual functions now satisfy the rule,
+  so the check runs in the ``static`` group without a baseline file.
 * ``validate-types`` runs ``mypy`` in strict mode over the whole package,
   including every vendored module.
 * ``workflow/validate_english_text.py`` replaces the docstring-only CJK
@@ -56,6 +78,16 @@ Added
 Fixed
 ~~~~~
 
+* The :class:`~manim_extensions.animations.FadeInRandom` example now fades in
+  a ``Text`` object instead of a formula, so the per-glyph random order is
+  visible in the rendered clip.
+* Python standard-library type links, including ``None``, now use the
+  inherited text colour in parameter descriptions.  ``None`` no longer keeps
+  a blue link colour while ``str`` and the other builtins stay plain.
+* The QR-code logger reference page now renders the module description
+  instead of an empty page.  The QR-code and Nerd Font docstrings link to the
+  bundled Icon Gallery, and Python docstrings no longer use Sphinx
+  ``:doc:`` roles that editors cannot resolve.
 * Image layers and grayscale image mobjects convert floating-point pixel
   arrays to ``uint8`` before handing them to Manim, so examples built from
   ``np.zeros`` no longer fail under Pillow with
@@ -139,6 +171,40 @@ Fixed
 Changed
 ~~~~~~~
 
+* The QR code factory is now the :class:`~manim_extensions.qr_codes.qr.QRCode`
+  mobject class.  The refactored version no longer exposes a separate
+  ``qr_code`` function or compatibility alias.  Each instance is a
+  :class:`~manim.mobject.types.vectorized_mobject.VGroup` that directly
+  contains the finder-pattern group, the data-module group and the optional
+  centre icon.  The parameter list and defaults are unchanged; extra keyword
+  arguments are now forwarded to the underlying ``VGroup`` instead of being
+  ignored.  The doc examples now instantiate the class.
+* Nine visual helper factories are now mobject or animation classes:
+  :class:`~manim_extensions.algorithm.utils.debug.ParagraphLineIndices`
+  (:class:`~manim.mobject.types.vectorized_mobject.VGroup`),
+  :class:`~manim_extensions.chemistry.future_classes.future_classes.DuplicatedAlongLine`,
+  :class:`~manim_extensions.chemistry.future_classes.future_classes.ScatteredCopies`
+  and :class:`~manim_extensions.chemistry.future_classes.future_classes.ConcatenatedMobjects`
+  (also :class:`~manim.mobject.types.vectorized_mobject.VGroup`),
+  :class:`~manim_extensions.machine_learning.diffusion.mcmc.SampleDistributionImage`
+  and :class:`~manim_extensions.machine_learning.utils.mobjects.plotting.MatplotlibFigureImage`
+  (:class:`~manim.mobject.types.image_mobject.ImageMobject`),
+  :class:`~manim_extensions.machine_learning.neural_network.animations.dropout.PostDropoutAnimation`
+  (:class:`~manim.animation.composition.AnimationGroup`),
+  :class:`~manim_extensions.meshes.delaunay.delaunay_criterion.CircumCircle`
+  (:class:`~manim.mobject.geometry.arc.Circle`) and
+  :class:`~manim_extensions.compass.utils.geometry_method.ArcFromCenter`
+  (:class:`~manim.mobject.geometry.arc.Arc`).  The old function names are not
+  kept as compatibility aliases.
+  :class:`~manim_extensions.meshes.delaunay.delaunay_criterion.CircumCircle`
+  keeps its default ``stroke_width=2``, and
+  :class:`~manim_extensions.compass.utils.geometry_method.ArcFromCenter`
+  keeps ``PURE_YELLOW`` as its
+  default colour.
+* The deterministic finite automaton class is now
+  :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimDeterministicFiniteAutomaton`.
+  The previous ``ManimdeterministicFiniteAutomaton`` spelling was an upstream
+  typo and is no longer exported; no compatibility alias is provided.
 * The six three-dimensional surface factories
   (``gaussian_surface_scene`` and the other ``*_surface_scene`` helpers)
   are removed.  Each surface scene is now configured directly:
@@ -159,6 +225,9 @@ Changed
   publishes rendered examples to ``rtd-cache``, builds the HTML and pushes it
   to ``rtd-html``, and Read the Docs only copies that output. The contributor
   guide describes the split and the updated validation jobs.
+* The Docs cache workflow no longer sets a shorter timeout for the example
+  render job; it uses GitHub's default 360-minute job limit, so a cold rebuild
+  can repopulate a stale media cache.
 * The docs build no longer auto-links inline code just because its text
   exactly matches a project class name. Plain code spans stay plain; an
   explicit ``:class:`` role is required when a link is intended, so names
@@ -645,8 +714,8 @@ Removed
 Fixed
 ~~~~~
 
-* Fixed ``qr_codes/__init__.py`` importing a nonexistent ``QRCode``
-  class and the root ``__init__.py`` importing a nonexistent ``ml``
+* Fixed ``qr_codes/__init__.py`` importing a class that did not exist
+  and the root ``__init__.py`` importing a nonexistent ``ml``
   module — both broke ``import manim_extensions``.
 * Fixed Manim's utils namespace shadowing the package's own utils
   submodules.
@@ -823,7 +892,7 @@ Fixed
 * Fixed Sphinx "Title underline too short" warnings in
   ``docs/source/reference/automata/mobjects.rst`` by extending underlines
   for :class:`~manim_extensions.automata.mobjects.manim_transition.ManimTransition`,
-  :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimdeterministicFiniteAutomaton`,
+  :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimDeterministicFiniteAutomaton`,
   and :class:`~manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton.ManimNondeterministicFiniteAutomaton`
   headings.
 

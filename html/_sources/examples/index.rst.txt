@@ -611,12 +611,12 @@ straight to the demo you need.
 
 .. manim:: Automata
    :save_last_frame:
-   :ref_classes: ManimdeterministicFiniteAutomaton
+   :ref_classes: ManimDeterministicFiniteAutomaton
    :section:
    :no_title:
 
    from manim import *
-   from manim_extensions.automata import ManimdeterministicFiniteAutomaton
+   from manim_extensions.automata import ManimDeterministicFiniteAutomaton
 
    class Automata(Scene):
        def construct(self):
@@ -637,7 +637,7 @@ straight to the demo you need.
                    }
                }
            }
-           dfa = ManimdeterministicFiniteAutomaton(json_template=dfa_json)
+           dfa = ManimDeterministicFiniteAutomaton(json_template=dfa_json)
            self.add(dfa)
 
 The next example shows dimensions, hatching, and path tools from the vendored

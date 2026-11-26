@@ -14,15 +14,15 @@ Geometry helpers for arcs, distances, and angle orientation.
 
 .. manim:: ArcAndDistance
    :save_last_frame:
-   :ref_classes: get_arc get_distance
+   :ref_classes: ArcFromCenter get_distance
 
    from manim import *
-   from manim_extensions.compass import get_arc, get_distance
+   from manim_extensions.compass import ArcFromCenter, get_distance
 
    class ArcAndDistance(Scene):
        def construct(self):
            center = LEFT * 2
-           arc = get_arc(center, ORIGIN, PI / 2)
+           arc = ArcFromCenter(center, ORIGIN, PI / 2)
            line = DashedLine(center, RIGHT * 2)
            distance = get_distance(center, RIGHT * 2)
            label = MathTex(f"{distance:.1f}").next_to(line, DOWN)

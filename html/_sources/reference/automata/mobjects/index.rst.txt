@@ -14,16 +14,16 @@ Build a deterministic finite automaton from a JFLAP XML file and add it to a sce
 
 .. manim:: DFAScene
    :save_last_frame:
-   :ref_classes: ManimdeterministicFiniteAutomaton
+   :ref_classes: ManimDeterministicFiniteAutomaton
 
    from manim import *
    from manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton import (
-       ManimdeterministicFiniteAutomaton,
+       ManimDeterministicFiniteAutomaton,
    )
 
    class DFAScene(Scene):
        def construct(self):
-           dfa = ManimdeterministicFiniteAutomaton()
+           dfa = ManimDeterministicFiniteAutomaton()
            dfa.scale_to_fit_width(9)
            self.add(dfa)
 

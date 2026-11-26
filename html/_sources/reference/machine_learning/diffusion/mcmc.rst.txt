@@ -14,6 +14,7 @@ Classes
 
    ~MCMCAxes
    ~MultidimensionalGaussianPosterior
+   ~SampleDistributionImage
 
 Functions
 ---------
@@ -27,3 +28,4 @@ Functions
 
    mcmc.MCMCAxes
    mcmc.MultidimensionalGaussianPosterior
+   mcmc.SampleDistributionImage

@@ -61,13 +61,28 @@ pure imports, data records, parser calls, namespace maps, decorators and
 other non-visual API surfaces. A short fragment inside a longer walkthrough
 may also stay a code block when it continues the scene defined by the
 preceding example; the walkthrough as a whole must still open with a
-renderable example. Examples that require a non-default renderer unavailable
-in the docs pipeline (for example the OpenGL-only orbital and 3-D molecule
-scenes) stay code blocks and say why in the prose.
+renderable example. Examples that need the OpenGL renderer are supported:
+add ``:renderer: opengl`` to the ``.. manim::`` block. The media-render
+workflow runs Manim inside ``xvfb-run``, so OpenGL examples render without a
+physical display; a local build that renders an uncached OpenGL example also
+needs an X server (``xvfb-run`` on Linux). Only examples that cannot be
+rendered by either pipeline stay code blocks, and the prose must say why.
 
 The ``.. manim::`` directive renders a live example in the docs. Every example **MUST** start with an explicit ``from manim import *``; the directive does not inject imports, and ``validate_manim_directives.py`` fails the build when the line is missing.
 
-The same checker enforces the ``:save_last_frame:`` usage rules:
+``:renderer:`` accepts ``cairo`` (the default) and ``opengl``. Use OpenGL
+only when the mobjects or scene require it, and keep the example renderable
+with ``:save_last_frame:`` where possible so the docs cache carries a still
+image instead of a video.
+
+Every public function whose return annotation is visual — a mobject,
+animation, scene, or a collection of them — **MUST** have an ``Examples``
+section with at least one ``.. manim::`` directive. A method may rely on the
+example in its enclosing class, since that example normally exercises the
+method. ``validate-example-coverage`` enforces this rule in the ``static``
+group; new visual functions cannot land without a rendered example.
+
+The manim-directive checker also enforces the ``:save_last_frame:`` usage rules:
 
 .. list-table::
    :header-rows: 1
@@ -283,6 +298,8 @@ API Documentation Coverage
 --------------------------
 
 Every **public** name (class, function, constant) exported by the package must appear in the documentation under ``docs/source/reference/``. This is enforced by ``validate_api_coverage.py``.
+
+Every public class and function must have a docstring. Every public module-level constant and all-uppercase class constant must carry a ``#:`` description immediately above its assignment. These rules are enforced by ``validate_docstrings.py`` and ``validate_constant_docstrings.py``.
 
 The docs use a custom ``.. autoall::`` directive that automatically expands into autodoc directives for all public names of a module. When adding a new public module or name, make sure it is reachable from an ``autoall`` block (or an explicit ``autoclass`` / ``autofunction`` / ``autodata``).
 

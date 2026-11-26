@@ -6,8 +6,19 @@ plotting
 
 .. module:: manim_extensions.machine_learning.utils.mobjects.plotting
 
-Functions
----------
+Classes
+-------
+
+.. autosummary::
+   :nosignatures:
+
+   ~MatplotlibFigureImage
 
 .. autoall:: manim_extensions.machine_learning.utils.mobjects.plotting
-   :types: function
+   :types: class
+
+.. toctree::
+   :hidden:
+   :maxdepth: 1
+
+   plotting.MatplotlibFigureImage

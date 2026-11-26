@@ -47,17 +47,17 @@ and play the generated step animations returned by
 :meth:`~manim_extensions.automata.mobjects.manim_automaton.ManimAutomaton.play_string`:
 
 .. manim:: AutomatonStringAcceptance
-   :ref_classes: ManimAutomaton ManimdeterministicFiniteAutomaton ManimAnimations
+   :ref_classes: ManimAutomaton ManimDeterministicFiniteAutomaton ManimAnimations
 
    from manim import *
    from manim_extensions.automata import (
        ManimAnimations,
-       ManimdeterministicFiniteAutomaton,
+       ManimDeterministicFiniteAutomaton,
    )
 
    class AutomatonStringAcceptance(Scene):
        def construct(self):
-           dfa = ManimdeterministicFiniteAutomaton()
+           dfa = ManimDeterministicFiniteAutomaton()
            self.add(dfa)
            dfa.manim_automata_input = dfa.construct_automaton_input("11")
            dfa.set_default_position_of_input_string()
