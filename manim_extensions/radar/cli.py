@@ -73,7 +73,9 @@ def build_parser() -> argparse.ArgumentParser:
         prog="manim-radar", description="Animated radar charts for Manim."
     )
     parser.add_argument(
-        "--version", action="version", version=f"manim-radar (Manim Extensions) {__version__}"
+        "--version",
+        action="version",
+        version=f"manim-radar (Manim Extensions) {__version__}",
     )
     sub = parser.add_subparsers(dest="command")
 
