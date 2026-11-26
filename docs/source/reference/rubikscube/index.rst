@@ -25,6 +25,24 @@ registers a ``manim-rubikscube`` command (equivalent to
 ``python -m manim_extensions.rubikscube``) that prints the bundled
 version.
 
+Command-line entry point
+------------------------
+
+The command is deliberately small: it reports the installed version and
+returns, which makes it suitable for checking that the console entry
+point was installed correctly.
+
+.. nbcell::
+   :language: console
+   :prompt-in: "$"
+
+   manim-rubikscube
+
+It does not render a cube and does not accept ``manim`` quality flags.
+Build a scene with :class:`~manim_extensions.rubikscube.cube.RubiksCube`
+and render it through the normal ``manim`` command instead; the examples
+below show the scene-side workflow.
+
 Features
 --------
 
