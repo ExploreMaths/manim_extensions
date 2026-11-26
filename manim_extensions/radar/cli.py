@@ -17,7 +17,6 @@ from typing import Optional
 
 import argparse
 import os
-import subprocess
 import sys
 import textwrap
 
@@ -57,8 +56,17 @@ class MyRadar(Scene):
         RadarReel(chart, SNAPSHOTS, hold=0.6, backdrop=True).play_on(self)
 '''
 
-#: Command that plays the bundled legacy radar demo reel.
-DEMO_COMMAND = "manim -qh examples/legacy_v2.py RadarV2Scene"
+#: Command that plays the packaged legacy radar demo reel.
+DEMO_COMMAND = "manim-radar demo --render"
+
+#: Map the ``manim`` style quality flags accepted by ``demo -q`` to config names.
+QUALITY_NAMES = {
+    "-ql": "low_quality",
+    "-qm": "medium_quality",
+    "-qh": "high_quality",
+    "-qk": "production_quality",
+    "-qp": "fourk_quality",
+}
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -154,20 +162,24 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         return 0
 
     if args.command == "demo":
-        here = os.path.dirname(os.path.abspath(__file__))
-        demo_file = os.path.join(
-            os.path.dirname(os.path.dirname(here)), "examples", "legacy_v2.py"
-        )
-        if not os.path.exists(demo_file):
-            print("the bundled demo file is not available in this installation;")
-            print("grab it from the source distribution or the repository:")
-            print("  https://github.com/FTZ-OPUS/manim-radar")
-            return 1
-        print(f"demo scene:  {demo_file}")
+        from .legacy import RadarV2Scene
+
+        print("demo scene:  manim_extensions.radar.legacy.RadarV2Scene")
         if args.render:
-            cmd = ["manim", args.quality, demo_file, "RadarV2Scene"]
-            print("running:", " ".join(cmd))
-            return subprocess.call(cmd)
+            quality = QUALITY_NAMES.get(args.quality)
+            if quality is None:
+                print(
+                    "unknown quality flag; choose one of "
+                    + ", ".join(sorted(QUALITY_NAMES)),
+                    file=sys.stderr,
+                )
+                return 1
+            from manim import tempconfig
+
+            print(f"rendering RadarV2Scene at {quality}")
+            with tempconfig({"quality": quality, "preview": False}):
+                RadarV2Scene().render()
+            return 0
         print(f"render it with:  {DEMO_COMMAND}")
         return 0
 

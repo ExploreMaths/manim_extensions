@@ -1052,6 +1052,7 @@
  "manim_extensions.radar.chart.Series",
  "manim_extensions.radar.chart.TAU",
  "manim_extensions.radar.cli.DEMO_COMMAND",
+ "manim_extensions.radar.cli.QUALITY_NAMES",
  "manim_extensions.radar.cli.TEMPLATE",
  "manim_extensions.radar.cli.build_parser",
  "manim_extensions.radar.cli.main",

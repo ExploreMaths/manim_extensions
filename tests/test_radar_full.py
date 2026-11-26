@@ -939,23 +939,23 @@ def test_cli_commands(tmp_path, capsys, monkeypatch):
     assert "class MyRadar" in out.read_text(encoding="utf-8")
     assert cli.main(["template", str(out)]) == 1
     assert cli.main(["template", str(out), "--force"]) == 0
-    assert cli.main(["demo"]) == 1
+    assert cli.main(["demo"]) == 0
+    assert "legacy.RadarV2Scene" in capsys.readouterr().out
     assert cli.main([]) == 0
-    # demo --render where the file is absent returns 1 before calling manim
-    assert cli.main(["demo", "--render"]) == 1
     with pytest.raises(SystemExit):
         cli.main(["--version"])
     parser = cli.build_parser()
     assert parser.prog == "manim-radar"
-    # render branch with an existing fake demo file
-    here = tmp_path / "pkg" / "radar"
-    demo = tmp_path / "examples"
-    demo.mkdir(parents=True)
-    (demo / "legacy_v2.py").write_text("# demo", encoding="utf-8")
-    monkeypatch.setattr(cli.os.path, "abspath", lambda p: str(here / "cli.py"))
-    assert cli.main(["demo"]) == 0
-    monkeypatch.setattr(cli.subprocess, "call", lambda cmd: 1)
-    assert cli.main(["demo", "--render"]) == 1
+    # the packaged scene render is exercised without launching a real Manim run
+    called = []
+    monkeypatch.setattr(
+        legacy.RadarV2Scene,
+        "render",
+        lambda self, *args, **kwargs: called.append(True),
+    )
+    assert cli.main(["demo", "--render"]) == 0
+    assert called
+    assert cli.main(["demo", "--render", "--quality=bad"]) == 1
 
 
 # ------------------------------------------------------------------ legacy

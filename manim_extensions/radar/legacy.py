@@ -173,7 +173,7 @@ class RadarV1Scene(Scene):
 class RadarV2Scene(Scene):
     """The **2.0** generation: rainbow outline, glow, sweep, shockwaves.
 
-    ``manim -qh examples/legacy_v2.py RadarV2Scene``
+    ``manim-radar demo --render``
 
     Examples
     --------
