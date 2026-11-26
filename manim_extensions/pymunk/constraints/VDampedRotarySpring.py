@@ -60,6 +60,7 @@ class VDampedRotarySpring(VConstraint):
            def construct(self):
                # the spinning squares are pulled back to rest_angle=PI/4 and
                # their oscillation is damped (watch the arc indicators)
+               self.vspace.space.gravity = (0, 0)
                floor = Line(LEFT * 6.5, RIGHT * 6.5, stroke_width=8, color=GREY)
                floor.to_edge(DOWN, buff=0.5)
                square_1 = Square().next_to(floor, UP, buff=1)
@@ -75,9 +76,7 @@ class VDampedRotarySpring(VConstraint):
                self.add_static_body(floor)
                self.add_dynamic_body(square_1, square_2, angular_velocity=PI * 2)
                self.add_constraints(spring)
-               self.wait(5)
-               Group(*self.mobjects).scale(0.07).move_to(ORIGIN)
-               self.wait()
+               self.wait(6)
     """
 
     def __init__(

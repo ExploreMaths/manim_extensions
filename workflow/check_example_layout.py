@@ -120,6 +120,58 @@ def stage_assets(assets, workdir: Path) -> None:
             shutil.copy2(asset.path, target)
 
 
+def measure_pool(pool, camera):
+    """Return the union bounding box of ``pool`` and frame-relative metrics."""
+    import numpy as np
+
+    # The OpenGL camera exposes frame geometry through get_width()/
+    # get_height() and frame_center instead of the Cairo frame_* properties.
+    frame_w = (
+        camera.frame_width if hasattr(camera, "frame_width") else camera.get_width()
+    )
+    frame_h = (
+        camera.frame_height if hasattr(camera, "frame_height") else camera.get_height()
+    )
+    # MovingCameraScene moves camera.frame; measure overflow against
+    # the frame's actual position, not the origin.
+    cam_frame = getattr(camera, "frame", None)
+    if cam_frame is not None:
+        fc = cam_frame.get_center()
+    else:
+        fc = np.array(camera.frame_center)
+
+    mins = np.array([np.inf, np.inf, np.inf])
+    maxs = np.array([-np.inf, -np.inf, -np.inf])
+    counted = 0
+    for mob in pool:
+        try:
+            pts = mob.get_all_points()
+        except Exception:
+            continue
+        if len(pts) == 0:
+            continue
+        mins = np.minimum(mins, pts.min(axis=0))
+        maxs = np.maximum(maxs, pts.max(axis=0))
+        counted += 1
+    if counted == 0:
+        return None
+
+    width = float(maxs[0] - mins[0])
+    height = float(maxs[1] - mins[1])
+    return {
+        "width": width,
+        "height": height,
+        "frame_width": float(frame_w),
+        "frame_height": float(frame_h),
+        "overflow_x": max(
+            0.0, fc[0] - frame_w / 2 - mins[0], maxs[0] - fc[0] - frame_w / 2
+        ),
+        "overflow_y": max(
+            0.0, fc[1] - frame_h / 2 - mins[1], maxs[1] - fc[1] - frame_h / 2
+        ),
+    }
+
+
 def probe_block(task):
     """Construct one example and measure its content bounding box."""
     class_name, code, source, assets, renderer = task
@@ -150,6 +202,25 @@ def probe_block(task):
                     scene = scene_class(skip_animations=True)
                 except TypeError:
                     scene = scene_class()
+
+                # ``skip_animations`` collapses a wait into a single time step
+                # of the full duration.  That is fine for static layout, but
+                # physics updaters integrated with dt=4 leap far outside the
+                # frame, which the real 60 fps render never does.  Substep the
+                # updater interval instead of re-running the whole animation.
+                original_update_mobjects = scene.update_mobjects
+
+                def subdivided_update_mobjects(dt):
+                    has_updaters = any(
+                        getattr(mob, "updaters", None) for mob in scene.mobjects
+                    )
+                    if not has_updaters or dt <= 1 / 60:
+                        return original_update_mobjects(dt)
+                    steps = max(1, round(dt * 60))
+                    for _ in range(steps):
+                        original_update_mobjects(dt / steps)
+
+                scene.update_mobjects = subdivided_update_mobjects
 
                 # skip_animations short-circuits play() before it adds the
                 # animated mobjects to the scene, so collect everything that
@@ -183,63 +254,16 @@ def probe_block(task):
                 for mob in collected:
                     if mob not in pool:
                         pool.append(mob)
+                # Measure while the renderer context is still alive.  OpenGL
+                # mobjects can lose their points once the context is torn down,
+                # which previously made every OpenGL example look empty.
+                measurement = measure_pool(pool, scene.camera)
         finally:
             os.chdir(previous)
 
-        camera = scene.camera
-        # The OpenGL camera exposes frame geometry through get_width()/
-        # get_height() and frame_center instead of the Cairo frame_* properties.
-        frame_w = (
-            camera.frame_width if hasattr(camera, "frame_width") else camera.get_width()
-        )
-        frame_h = (
-            camera.frame_height
-            if hasattr(camera, "frame_height")
-            else camera.get_height()
-        )
-        # MovingCameraScene moves camera.frame; measure overflow against
-        # the frame's actual position, not the origin.
-        cam_frame = getattr(camera, "frame", None)
-        if cam_frame is not None:
-            fc = cam_frame.get_center()
-        else:
-            fc = np.array(camera.frame_center)
-
-        mins = np.array([np.inf, np.inf, np.inf])
-        maxs = np.array([-np.inf, -np.inf, -np.inf])
-        counted = 0
-        for mob in pool:
-            try:
-                pts = mob.get_all_points()
-            except Exception:
-                continue
-            if len(pts) == 0:
-                continue
-            mins = np.minimum(mins, pts.min(axis=0))
-            maxs = np.maximum(maxs, pts.max(axis=0))
-            counted += 1
-        if counted == 0:
+        if measurement is None:
             return (class_name, source, None, "no mobjects in scene")
-
-        width = float(maxs[0] - mins[0])
-        height = float(maxs[1] - mins[1])
-        return (
-            class_name,
-            source,
-            {
-                "width": width,
-                "height": height,
-                "frame_width": frame_w,
-                "frame_height": frame_h,
-                "overflow_x": max(
-                    0.0, fc[0] - frame_w / 2 - mins[0], maxs[0] - fc[0] - frame_w / 2
-                ),
-                "overflow_y": max(
-                    0.0, fc[1] - frame_h / 2 - mins[1], maxs[1] - fc[1] - frame_h / 2
-                ),
-            },
-            "",
-        )
+        return (class_name, source, measurement, "")
     except Exception:
         return (class_name, source, None, traceback.format_exc(limit=3))
 

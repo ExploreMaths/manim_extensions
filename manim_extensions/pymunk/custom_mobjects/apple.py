@@ -34,7 +34,7 @@ class Apple(VMobject):
                    Apple(color=GREEN, fill_color=GREEN, fill_opacity=0.6),
                    Apple(color=YELLOW, fill_color=YELLOW, fill_opacity=0.6),
                )
-               apples.arrange(RIGHT, buff=0.6).scale(0.8)
+               apples.arrange(RIGHT, buff=0.6).scale(1.4)
                self.add(apples)
     """
 

@@ -90,9 +90,7 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
                    hit_point = results[0][2]
                    self.play(Create(Line(start_pt, end_pt, color=RED)))
                    self.add(Dot(hit_point, color=YELLOW, radius=0.1))
-               self.wait(3)
-               Group(*self.mobjects).scale(0.16).move_to(ORIGIN)
-               self.wait()
+               self.wait(4)
     """
 
     def __init__(

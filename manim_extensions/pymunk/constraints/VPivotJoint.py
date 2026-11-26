@@ -81,9 +81,7 @@ class VPivotJoint(VConstraint):
                self.add_dynamic_body(square, square2, angular_velocity=PI * 2)
                self.add_shapes_filter(pivot, square, square2, group=2)
                self.add_constraints(*constraints)
-               self.wait(5)
-               Group(*self.mobjects).scale(0.9).move_to(ORIGIN)
-               self.wait()
+               self.wait(6)
     """
 
     def __init__(

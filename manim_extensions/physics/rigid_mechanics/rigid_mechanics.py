@@ -145,17 +145,16 @@ class Space(Mobject, metaclass=ConvertToOpenGL):
            GRAVITY = (0, -5)
            def construct(self):
                ground = Line(LEFT * 7, RIGHT * 7).shift(DOWN * 3)
+               ceiling = Line(LEFT * 7, RIGHT * 7).shift(UP * 3)
                ball = Circle(radius=0.4, stroke_color=BLUE,
                              fill_color=BLUE, fill_opacity=1)
                ball.shift(ground.get_center() + UP * 4)
-               self.play(FadeIn(ground), FadeIn(ball))
-               self.make_static_body(ground)
+               self.play(FadeIn(ground), FadeIn(ceiling), FadeIn(ball))
+               self.make_static_body(ground, ceiling)
                self.make_rigid_body(ball)
                self.wait(2)
                self.space.space.gravity = (0, 5)
-               self.wait(3)
-               Group(*self.mobjects).scale(0.2).move_to(ORIGIN)
-               self.wait()
+               self.wait(4)
     """
 
     def __init__(

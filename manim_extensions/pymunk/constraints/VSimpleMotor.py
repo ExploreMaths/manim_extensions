@@ -56,18 +56,20 @@ class VSimpleMotor(VConstraint):
 
        class VSimpleMotorScene(SpaceScene):
            def construct(self):
-               # the motor keeps the wheel spinning at a constant rate
+               # The pivot joint pins the wheel in place; the motor alone only
+               # enforces angular velocity and the wheel would fall freely.
                pivot = Dot(ORIGIN)
                wheel = Square().move_to(pivot)
-               motor = VSimpleMotor(pivot, wheel, rate=4, max_torque=500)
+               constraints = [
+                   VSimpleMotor(pivot, wheel, rate=4, max_torque=500),
+                   VPivotJoint(pivot, wheel),
+               ]
                self.play(FadeIn(pivot), FadeIn(wheel))
                self.add_static_body(pivot)
                self.add_dynamic_body(wheel)
                self.add_shapes_filter(pivot, wheel, group=2)
-               self.add_constraints(motor)
-               self.wait(4)
-               Group(*self.mobjects).scale(0.12).move_to(ORIGIN)
-               self.wait()
+               self.add_constraints(*constraints)
+               self.wait(5)
     """
 
     def __init__(
