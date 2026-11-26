@@ -91,8 +91,13 @@ ENVIRONMENT_PROBE_ERRORS = (
 )
 
 
+_WORKER_ROOT: Path | None = None
+
+
 def _worker_init(workdir):
     """Import manim once per worker and silence it."""
+    global _WORKER_ROOT
+    _WORKER_ROOT = Path(workdir)
     import logging
 
     from manim import config
@@ -111,68 +116,69 @@ def probe_block(task):
         from manim import tempconfig
 
         namespace = {"__file__": "<doc example>", "__name__": "__manim_docgen__"}
-        with tempfile.TemporaryDirectory() as workdir:
-            for asset in assets:
-                target = Path(workdir) / Path(asset).name
-                if not target.exists():
-                    try:
-                        target.symlink_to(asset)
-                    except OSError:
-                        shutil.copy2(asset, target)
-            previous = Path.cwd()
-            os.chdir(workdir)
-            try:
-                with tempconfig(
-                    {
-                        "disable_caching": True,
-                        "media_dir": str(Path(workdir) / "media"),
-                        "frame_rate": 1,
-                        "pixel_height": 480,
-                        "pixel_width": 854,
-                        "renderer": renderer,
-                    }
-                ):
-                    exec(code, namespace)
-                    scene_class = namespace[class_name]
-                    try:
-                        scene = scene_class(skip_animations=True)
-                    except TypeError:
-                        scene = scene_class()
+        root = _WORKER_ROOT or Path(tempfile.mkdtemp())
+        workdir = Path(tempfile.mkdtemp(dir=root))
+        for asset in assets:
+            target = workdir / Path(asset).name
+            if not target.exists():
+                try:
+                    target.symlink_to(asset)
+                except OSError:
+                    shutil.copy2(asset, target)
+        previous = Path.cwd()
+        os.chdir(workdir)
+        try:
+            with tempconfig(
+                {
+                    "disable_caching": True,
+                    "media_dir": str(workdir / "media"),
+                    "frame_rate": 1,
+                    "pixel_height": 480,
+                    "pixel_width": 854,
+                    "renderer": renderer,
+                }
+            ):
+                exec(code, namespace)
+                scene_class = namespace[class_name]
+                try:
+                    scene = scene_class(skip_animations=True)
+                except TypeError:
+                    scene = scene_class()
 
-                    # skip_animations short-circuits play() before it adds the
-                    # animated mobjects to the scene, so collect everything that
-                    # is added or played explicitly.
-                    collected = []
-                    orig_add, orig_play = scene.add, scene.play
+                # skip_animations short-circuits play() before it adds the
+                # animated mobjects to the scene, so collect everything that
+                # is added or played explicitly.
+                collected = []
+                orig_add, orig_play = scene.add, scene.play
 
-                    def tracking_add(*mobs, **kwargs):
-                        collected.extend(mobs)
-                        return orig_add(*mobs, **kwargs)
+                def tracking_add(*mobs, **kwargs):
+                    collected.extend(mobs)
+                    return orig_add(*mobs, **kwargs)
 
-                    def tracking_play(*anims, **kwargs):
-                        def collect(anim, out):
-                            mobs = getattr(anim, "mobjects", None)
-                            if mobs:
-                                out.extend(mobs)
-                            for sub in getattr(anim, "animations", None) or ():
-                                collect(sub, out)
+                def tracking_play(*anims, **kwargs):
+                    def collect(anim, out):
+                        mobs = getattr(anim, "mobjects", None)
+                        if mobs:
+                            out.extend(mobs)
+                        for sub in getattr(anim, "animations", None) or ():
+                            collect(sub, out)
 
-                        for anim in anims:
-                            collect(anim, collected)
-                        return orig_play(*anims, **kwargs)
+                    for anim in anims:
+                        collect(anim, collected)
+                    return orig_play(*anims, **kwargs)
 
-                    scene.add, scene.play = tracking_add, tracking_play
-                    # construct() is called directly (not via render()), so run the
-                    # scene's setup() manually to mirror a real render -- scenes such
-                    # as CompassScene set up their mobjects there.
-                    scene.setup()
-                    scene.construct()
-                    pool = list(scene.mobjects)
-                    for mob in collected:
-                        if mob not in pool:
-                            pool.append(mob)
-            finally:
-                os.chdir(previous)
+                scene.add, scene.play = tracking_add, tracking_play
+                # construct() is called directly (not via render()), so run the
+                # scene's setup() manually to mirror a real render -- scenes such
+                # as CompassScene set up their mobjects there.
+                scene.setup()
+                scene.construct()
+                pool = list(scene.mobjects)
+                for mob in collected:
+                    if mob not in pool:
+                        pool.append(mob)
+        finally:
+            os.chdir(previous)
 
         camera = scene.camera
         # The OpenGL camera exposes frame geometry through get_width()/
