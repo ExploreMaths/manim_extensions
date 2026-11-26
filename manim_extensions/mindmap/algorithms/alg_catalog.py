@@ -77,16 +77,25 @@ class CatalogNode:
                self.add(boxes)
     """
 
+    #: Payload carried by this catalog node.
     data: object | None = None
+    #: Measured width of the catalog node.
     width: float = 0.0
+    #: Measured height of the catalog node.
     height: float = 0.0
+    #: Child nodes in layout order.
     children: "list[CatalogNode]" = field(default_factory=list)
 
     # Layout results
+    #: Left coordinate within the catalog layout.
     left: float = 0.0
+    #: Top coordinate within the catalog layout.
     top: float = 0.0
+    #: Depth layer assigned to the node.
     layer_index: int = 0
+    #: Parent node, or None for the root.
     parent: "CatalogNode | None" = None
+    #: Width reserved for the child subtree.
     children_area_width: float = 0.0
 
     @classmethod

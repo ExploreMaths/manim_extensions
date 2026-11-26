@@ -170,10 +170,15 @@ class GenericElement:
         print(C.symbol, C.name, C.atomic_number)
     """
 
+    #: Chemical symbol.
     symbol: str
+    #: Element name.
     name: str
+    #: Atomic number.
     atomic_number: int
+    #: Relative atomic mass.
     mass: float
+    #: CPK colour used for the element.
     cpk_color: str
 
 

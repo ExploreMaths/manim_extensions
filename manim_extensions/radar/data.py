@@ -77,6 +77,7 @@ class RadarData:
     hold: Optional[float] = None
     transition: Optional[str] = None
     note: Optional[str] = None
+    #: Arbitrary metadata carried with the snapshot.
     meta: dict[Any, Any] = field(default_factory=dict)
 
     def __post_init__(self) -> None:

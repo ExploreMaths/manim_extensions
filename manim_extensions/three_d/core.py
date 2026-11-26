@@ -311,27 +311,45 @@ class GaussianSurface:
            style = GaussianSurface(height=1.4, rings=True, orbit=True, pace='fast')
     """
 
+    #: Surface function; None selects the built-in shape.
     func: Optional[Callable[..., float]] = None  # z=f(x,y); None = built-in Gaussian
+    #: LaTeX label for the surface function.
     func_tex: Optional[str] = (
         None  # corner formula; None = custom function without a displayed formula
     )
+    #: Parameter domain covered by the surface.
     domain: tuple[float, float] = (-2.6, 2.6)  # x/y domain
+    #: Mesh resolution along each parametric direction.
     resolution: tuple[int, int] = (40, 40)  # surface mesh density
+    #: Colour ramp used for the surface.
     colors: str | Sequence[tuple[str, float]] = (
         "rainbow"  # RAMPS theme name or [(hex, 0-1), ...]
     )
+    #: Vertical scale applied to the normalised shape.
     height: float = 1.0  # peak auto-normalised to this height
+    #: Whether to draw the coordinate axes.
     axes: bool = True
+    #: Whether to draw contour rings.
     rings: bool = True  # floor contours (radial approximation)
+    #: Whether to add the 360-degree camera orbit.
     orbit: bool = True  # 360° orbit
+    #: Whether to show the underside of the surface.
     flip: bool = True  # flip to show the underside
+    #: Whether to add the geometric callout label.
     annotate: bool = True  # peak label
+    #: Optional captions aligned with the animation slots.
     captions: Optional[Sequence[str]] = None  # captions aligned by slot; omit for none
+    #: Optional content duration in seconds; None uses the pace preset.
     duration: Optional[float] = None  # content budget in seconds; None = use pace
+    #: Animation pace preset: fast, normal, or full.
     pace: str = "full"  # fast=10 / normal=24 / full=45
+    #: Background colour of the scene.
     background: str = "#050810"
+    #: Camera elevation angle in degrees.
     camera_phi: float = 72.0
+    #: Camera azimuth angle in degrees.
     camera_theta: float = -55.0
+    #: Camera zoom factor.
     zoom: float = 0.95
 
     def resolve(self) -> tuple[SurfaceFunction, Optional[str]]:
@@ -368,21 +386,37 @@ class SaddleSurface:
            style = SaddleSurface(height=1.5, annotate=True, pace='fast')
     """
 
+    #: Parameter domain covered by the surface.
     domain: tuple[float, float] = (-2.2, 2.2)
+    #: Mesh resolution along each parametric direction.
     resolution: tuple[int, int] = (44, 44)
+    #: Colour ramp used for the surface.
     colors: str | Sequence[tuple[str, float]] = "rainbow"
+    #: Vertical scale applied to the normalised shape.
     height: float = 1.2  # normalise: ridge = +H, valley = -H (symmetric)
+    #: Whether to draw the coordinate axes.
     axes: bool = True
+    #: Whether to draw contour rings.
     rings: bool = True  # hyperbola-family contours + asymptotes (floor)
+    #: Whether to add the 360-degree camera orbit.
     orbit: bool = True
+    #: Whether to show the underside of the surface.
     flip: bool = True
+    #: Whether to add the geometric callout label.
     annotate: bool = True  # saddle label (projected HUD label)
+    #: Optional captions aligned with the animation slots.
     captions: Optional[Sequence[str]] = None
+    #: Optional content duration in seconds; None uses the pace preset.
     duration: Optional[float] = None
+    #: Animation pace preset: fast, normal, or full.
     pace: str = "full"
+    #: Background colour of the scene.
     background: str = "#050810"
+    #: Camera elevation angle in degrees.
     camera_phi: float = 70.0
+    #: Camera azimuth angle in degrees.
     camera_theta: float = -50.0
+    #: Camera zoom factor.
     zoom: float = 0.95
 
 
@@ -402,21 +436,37 @@ class ParaboloidSurface:
            style = ParaboloidSurface(height=1.5, annotate=True, pace='fast')
     """
 
+    #: Parameter domain covered by the surface.
     domain: tuple[float, float] = (-2.2, 2.2)
+    #: Mesh resolution along each parametric direction.
     resolution: tuple[int, int] = (44, 44)
+    #: Colour ramp used for the surface.
     colors: str | Sequence[tuple[str, float]] = "rainbow"
+    #: Vertical scale applied to the normalised shape.
     height: float = 1.2  # normalise: rim = H, bottom = 0
+    #: Whether to draw the coordinate axes.
     axes: bool = True
+    #: Whether to draw contour rings.
     rings: bool = True  # surface-attached concentric contours (follow the flip)
+    #: Whether to add the 360-degree camera orbit.
     orbit: bool = True
+    #: Whether to show the underside of the surface.
     flip: bool = True
+    #: Whether to add the geometric callout label.
     annotate: bool = True  # top label (projected HUD label)
+    #: Optional captions aligned with the animation slots.
     captions: Optional[Sequence[str]] = None
+    #: Optional content duration in seconds; None uses the pace preset.
     duration: Optional[float] = None
+    #: Animation pace preset: fast, normal, or full.
     pace: str = "full"
+    #: Background colour of the scene.
     background: str = "#050810"
+    #: Camera elevation angle in degrees.
     camera_phi: float = 70.0
+    #: Camera azimuth angle in degrees.
     camera_theta: float = -50.0
+    #: Camera zoom factor.
     zoom: float = 0.95
 
 
@@ -436,20 +486,35 @@ class EllipsoidSurface:
            style = EllipsoidSurface(pace='fast')
     """
 
+    #: Semi-axis lengths (a, b, c) of the ellipsoid.
     semi_axes: tuple[float, float, float] = (2.4, 1.6, 1.2)  # (a, b, c) semi-axes
+    #: Mesh resolution along each parametric direction.
     resolution: tuple[int, int] = (44, 56)  # latitude/longitude mesh density
+    #: Colour ramp used for the surface.
     colors: str | Sequence[tuple[str, float]] = "rainbow"
+    #: Whether to draw the coordinate axes.
     axes: bool = True
+    #: Whether to draw contour rings.
     rings: bool = True  # surface-attached horizontal ellipses (follow the flip)
+    #: Whether to add the 360-degree camera orbit.
     orbit: bool = True
+    #: Whether to show the underside of the surface.
     flip: bool = True  # closed-surface flip = rotate to the back
+    #: Whether to add the geometric callout label.
     annotate: bool = True  # top vertex label (3D label)
+    #: Optional captions aligned with the animation slots.
     captions: Optional[Sequence[str]] = None
+    #: Optional content duration in seconds; None uses the pace preset.
     duration: Optional[float] = None
+    #: Animation pace preset: fast, normal, or full.
     pace: str = "full"
+    #: Background colour of the scene.
     background: str = "#050810"
+    #: Camera elevation angle in degrees.
     camera_phi: float = 70.0
+    #: Camera azimuth angle in degrees.
     camera_theta: float = -50.0
+    #: Camera zoom factor.
     zoom: float = 0.95
 
 
@@ -469,21 +534,37 @@ class TorusSurface:
            style = TorusSurface(pace='fast')
     """
 
+    #: Major radius of the torus.
     major_radius: float = 2.0  # torus radius R (tube-centre circle)
+    #: Minor radius of the torus tube.
     minor_radius: float = 0.5  # tube radius r
+    #: Mesh resolution along each parametric direction.
     resolution: tuple[int, int] = (56, 24)  # (major θ, tube φ) mesh density
+    #: Colour ramp used for the surface.
     colors: str | Sequence[tuple[str, float]] = "rainbow"
+    #: Whether to draw the coordinate axes.
     axes: bool = True
+    #: Whether to draw contour rings.
     rings: bool = True  # surface-attached paired horizontal rings (follow the flip)
+    #: Whether to add the 360-degree camera orbit.
     orbit: bool = True
+    #: Whether to show the underside of the surface.
     flip: bool = True
+    #: Whether to add the geometric callout label.
     annotate: bool = True  # highest-point label (3D label + antenna)
+    #: Optional captions aligned with the animation slots.
     captions: Optional[Sequence[str]] = None
+    #: Optional content duration in seconds; None uses the pace preset.
     duration: Optional[float] = None
+    #: Animation pace preset: fast, normal, or full.
     pace: str = "full"
+    #: Background colour of the scene.
     background: str = "#050810"
+    #: Camera elevation angle in degrees.
     camera_phi: float = 70.0
+    #: Camera azimuth angle in degrees.
     camera_theta: float = -50.0
+    #: Camera zoom factor.
     zoom: float = 0.95
 
 
@@ -503,23 +584,39 @@ class HyperboloidOneSheet:
            style = HyperboloidOneSheet(pace='fast')
     """
 
+    #: Waist radius of the hyperboloid.
     waist_radius: float = 1.0  # waist radius a (= b)
+    #: Vertical half-extent of the hyperboloid.
     z_extent: float = 1.5  # upper/lower truncation ±h
+    #: Mesh resolution along each parametric direction.
     resolution: tuple[int, int] = (36, 48)  # (z, circumferential) mesh density
+    #: Colour ramp used for the surface.
     colors: str | Sequence[tuple[str, float]] = "rainbow"
+    #: Whether to draw the coordinate axes.
     axes: bool = True
+    #: Whether to draw contour rings.
     rings: bool = (
         True  # surface-attached horizontal circle family (including the waist; follows the flip)
     )
+    #: Whether to add the 360-degree camera orbit.
     orbit: bool = True
+    #: Whether to show the underside of the surface.
     flip: bool = True
+    #: Whether to add the geometric callout label.
     annotate: bool = True  # waist front label (HUD label, no dashed line)
+    #: Optional captions aligned with the animation slots.
     captions: Optional[Sequence[str]] = None
+    #: Optional content duration in seconds; None uses the pace preset.
     duration: Optional[float] = None
+    #: Animation pace preset: fast, normal, or full.
     pace: str = "full"
+    #: Background colour of the scene.
     background: str = "#050810"
+    #: Camera elevation angle in degrees.
     camera_phi: float = 70.0
+    #: Camera azimuth angle in degrees.
     camera_theta: float = -50.0
+    #: Camera zoom factor.
     zoom: float = 0.95
 
 
@@ -1158,6 +1255,7 @@ class GaussianSurfaceScene(GraphSurfaceScene):
                super().construct()
     """
 
+    #: Configuration dataclass used for mapping-style keyword arguments.
     config_cls = GaussianSurface
 
     def _geometry(self, cfg: SurfaceConfig) -> GeometrySpec:
@@ -1300,6 +1398,7 @@ class SaddleSurfaceScene(GraphSurfaceScene):
                super().construct()
     """
 
+    #: Configuration dataclass used for mapping-style keyword arguments.
     config_cls = SaddleSurface
 
     def _geometry(self, cfg: SurfaceConfig) -> GeometrySpec:
@@ -1452,6 +1551,7 @@ class ParaboloidSurfaceScene(GraphSurfaceScene):
                super().construct()
     """
 
+    #: Configuration dataclass used for mapping-style keyword arguments.
     config_cls = ParaboloidSurface
 
     def _geometry(self, cfg: SurfaceConfig) -> GeometrySpec:
@@ -1570,6 +1670,7 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
     #: Whether this surface scene uses a flat parameterisation.
     uses_flat = False
 
+    #: Configuration dataclass used for mapping-style keyword arguments.
     config_cls = EllipsoidSurface
 
     def _geometry(self, cfg: SurfaceConfig) -> GeometrySpec:
@@ -1765,6 +1866,7 @@ class TorusSurfaceScene(GraphSurfaceScene):
     #: Whether this surface scene uses a flat parameterisation.
     uses_flat = False
 
+    #: Configuration dataclass used for mapping-style keyword arguments.
     config_cls = TorusSurface
 
     def _geometry(self, cfg: SurfaceConfig) -> GeometrySpec:
@@ -1961,6 +2063,7 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
     #: Whether this surface scene uses a flat parameterisation.
     uses_flat = False
 
+    #: Configuration dataclass used for mapping-style keyword arguments.
     config_cls = HyperboloidOneSheet
 
     def _geometry(self, cfg: SurfaceConfig) -> GeometrySpec:

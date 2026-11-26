@@ -51,51 +51,81 @@ class RadarConfig:
     clockwise: bool = True
 
     # ---- grid ------------------------------------------------------------
+    #: Stroke width of the grid rings.
     ring_width: float = 1.5
+    #: Stroke width of the outermost grid ring.
     ring_width_outer: float = 2.4
+    #: Opacity of the grid rings.
     ring_opacity: float = 0.50
+    #: Opacity of the outermost grid ring.
     ring_opacity_outer: float = 0.95
+    #: Stroke width of the radial spokes.
     spoke_width: float = 1.9
+    #: Opacity of the radial spokes.
     spoke_opacity: float = 0.72
+    #: Whether to add a soft glow behind the grid.
     grid_glow: bool = True
+    #: Stroke width of the grid glow.
     grid_glow_width: float = 8.0
+    #: Opacity of the grid glow.
     grid_glow_opacity: float = 0.10
     #: Draw small scale numbers (2/4/6/8…) along one spoke
     show_level_labels: bool = True
+    #: Index of the spoke that carries the scale labels.
     level_label_axis: int = 0
+    #: Font size of the scale labels.
     level_label_size: int = 17
+    #: Radial offset of the scale labels.
     level_label_offset: float = 0.26
 
     # ---- data polygon ----------------------------------------------------
+    #: Fill opacity of the data polygon.
     fill_opacity: float = 0.45
+    #: Whether to tint the polygon interior.
     inner_tint: bool = True
+    #: Scale factor of the inner tint layer.
     inner_tint_scale: float = 0.55
+    #: Opacity of the inner tint layer.
     inner_tint_opacity: float = 0.10
+    #: Blend ratio between the tint and the base fill.
     inner_tint_mix: float = 0.45
+    #: Stroke width of the data polygon.
     line_width: float = 4.5
     #: 0 = none, 1 = one soft glow, 2 = glow + wide halo
     glow_layers: int = 2
+    #: Stroke width of the polygon glow.
     glow_width: float = 15.0
+    #: Opacity of the polygon glow.
     glow_opacity: float = 0.22
+    #: Stroke width of the wide polygon halo.
     halo_width: float = 30.0
+    #: Opacity of the wide polygon halo.
     halo_opacity: float = 0.08
     #: Colour the 6 edges with a gradient between the two axis colours
     rainbow_edges: bool = True
+    #: Number of segments used to colour each polygon edge.
     edge_segments: int = 3
+    #: Whether to mark each data vertex with a dot.
     vertex_dots: bool = True
+    #: Radius of the vertex dots.
     dot_radius: float = 0.155
 
     # ---- axis labels & numbers -------------------------------------------
+    #: Whether to draw the axis names.
     show_axis_names: bool = True
     #: Distance of the axis names from the centre, as a multiple of ``radius``
     label_offset: float = 1.10
+    #: Font family used for the axis names.
     name_font: Optional[str] = None
+    #: Font weight used for the axis names.
     name_weight: str = "BOLD"
     #: Colour axis names with their axis colour (False -> near-white)
     colored_axis_names: bool = True
     #: "roll" (odometer tween) | "swap" (snap to integers) | "off"
     numbers: str = "roll"
+    #: Font family used for the axis numbers.
     number_font: Optional[str] = None
+    #: Font size of the axis numbers.
     number_size: int = 28
     #: Place the numbers right after the axis name (True) or inside the chart
     numbers_next_to_name: bool = True
@@ -103,6 +133,7 @@ class RadarConfig:
     number_offset: float = 0.62
     #: Horizontal gap between an axis name and its number
     number_gap: float = 0.18
+    #: Format string applied to each axis number.
     number_format: str = "{:g}"
     #: Appended when a value exceeds the full scale (e.g. ``10`` -> ``10+``)
     overflow_suffix: str = "+"
@@ -111,16 +142,23 @@ class RadarConfig:
     roll_height: float = 0.44
 
     # ---- decorations -----------------------------------------------------
+    #: Whether to animate the radar sweep.
     sweep: bool = True
+    #: Seconds per full sweep rotation.
     sweep_period: float = 5.5
+    #: Angular width of the sweep trail in degrees.
     sweep_angle: float = 36.0
+    #: Opacity of the sweep trail.
     sweep_opacity: float = 0.055
+    #: Stroke width of the sweep edge.
     sweep_edge_width: float = 1.6
 
     # ---- transitions -----------------------------------------------------
     #: Add a shockwave ring on every morph
     shockwave: bool = True
+    #: Duration of the shockwave pulse in seconds.
     shock_duration: float = 0.40
+    #: Maximum radius of the shockwave pulse.
     shock_radius: float = 5.0
     #: Fraction of the morph spent "dipping" before values roll up
     dip_ratio: float = 0.24
@@ -128,6 +166,7 @@ class RadarConfig:
     morph_run_time: float = 1.3
     #: How far values dip below their target (in value units)
     dip_drop: float = 1.0
+    #: Lowest value used by the dip animation.
     dip_floor: float = 2.0
     #: Quantise values to integers while rolling (classic snap-in look)
     stepped: bool = False
@@ -135,14 +174,21 @@ class RadarConfig:
     stagger: float = 0.12
     #: Emphasise the dataset with an extra orange/cyan double outline
     rim: bool = False
+    #: Radial offset of the outer rim.
     rim_offset_outer: float = 0.030
+    #: Radial offset of the inner rim.
     rim_offset_inner: float = 0.040
+    #: Stroke width of the outer rim.
     rim_width_outer: float = 4.5
+    #: Stroke width of the inner rim.
     rim_width_inner: float = 2.8
+    #: Seconds per rim pulse cycle.
     rim_pulse: float = 3.0
 
     # ---- chroma glitch (used by transition="glitch") ---------------------
+    #: Horizontal displacement of the glitch slices.
     glitch_offset: float = 0.06
+    #: Width of each glitch slice.
     glitch_bar_width: float = 20.0
 
     # ---- burst (used by transition="burst" / OverflowRadarChart) ---------
@@ -156,9 +202,11 @@ class RadarConfig:
     overflow_dash: bool = True
     #: Width of the dashed segments (and of the gaps), as radius multiples
     overflow_dash_on: float = 0.085
+    #: Gap between the overflow marker dashes.
     overflow_dash_off: float = 0.055
     #: Glowing "breach" where a spike pierces the outer ring
     overflow_breach_glow: bool = True
+    #: Radius of the glow shown when a value breaches the scale.
     breach_glow_radius: float = 0.16
     #: Spike must exceed the full scale by this fraction before the overflow
     #: decorations (track / breach / big number) kick in — keeps transient
@@ -197,8 +245,11 @@ class RadarConfig:
     focus_dim: float = 0.22
 
     # ---- title & nameplate ----------------------------------------------
+    #: Optional chart title; None hides the title.
     title: Optional[str] = None
+    #: Font family used for the chart title.
     title_font: Optional[str] = None
+    #: Font size of the chart title.
     title_size: int = 30
     #: Vertical position of the header, as a multiple of ``radius``
     title_offset: float = 1.30
@@ -206,6 +257,7 @@ class RadarConfig:
     show_dataset_name: bool = True
     #: Vertical position of the nameplate, as a multiple of ``radius``
     name_offset: float = 1.28
+    #: Font size of the dataset nameplate.
     name_size: int = 34
     #: Extra gap between nameplate and header when both are shown
     name_gap: float = 0.55

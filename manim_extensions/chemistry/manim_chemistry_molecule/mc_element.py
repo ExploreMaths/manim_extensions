@@ -44,13 +44,21 @@ class MCElement:
                self.wait()
     """
 
+    #: Chemical symbol.
     symbol: str | None = None
+    #: Element name.
     name: str | None = None
+    #: Atomic number.
     atomic_number: int | None = None
+    #: Relative atomic mass.
     mass: float | None = None
+    #: Primary display colour.
     color: str | None = None
+    #: CPK colour used for the element.
     cpk_color: str | None = None
+    #: Jmol colour used for the element.
     jmol_color: str | None = None
+    #: PubChem colour used for the element.
     pubchem_color: str | None = None
 
 

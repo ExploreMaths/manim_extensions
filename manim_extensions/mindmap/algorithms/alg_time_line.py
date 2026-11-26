@@ -69,14 +69,21 @@ class TimelineNode:
                self.add(boxes)
     """
 
+    #: Payload carried by this layout node.
     node: object | None = None
+    #: Measured width of the timeline node.
     width: float = 0.0
+    #: Measured height of the timeline node.
     height: float = 0.0
+    #: Child nodes in layout order.
     children: "list[TimelineNode]" = field(default_factory=list)
+    #: Direction in which the node's subtree is placed.
     side_dir: LayoutDirection | None = None
 
     # Layout result coordinates
+    #: Horizontal layout coordinate.
     x: float = 0.0
+    #: Vertical layout coordinate.
     y: float = 0.0
 
     # Internal runtime attributes (do not set manually)

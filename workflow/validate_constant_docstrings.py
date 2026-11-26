@@ -34,6 +34,7 @@ Usage:
 
 import argparse
 import ast
+import re
 import importlib
 import pkgutil
 import sys
@@ -225,7 +226,10 @@ def _is_class_constant(name: str, node: ast.stmt, cls: ast.ClassDef) -> bool:
         if isinstance(annotation, ast.Attribute) and annotation.attr == "ClassVar":
             return True
         if _is_instance_data_class(cls):
-            return False
+            # A public dataclass/NamedTuple field is user-facing instance data:
+            # it is rendered as documentation just like a class constant, but
+            # autodoc cannot describe it without its own ``#:`` block.
+            return True
         return isinstance(
             node.value,
             (ast.Constant, ast.UnaryOp, ast.List, ast.Tuple, ast.Dict, ast.Set),
@@ -235,6 +239,40 @@ def _is_class_constant(name: str, node: ast.stmt, cls: ast.ClassDef) -> bool:
             node.value,
             (ast.Constant, ast.UnaryOp, ast.List, ast.Tuple, ast.Dict, ast.Set),
         )
+    return False
+
+
+def class_docstring_documents(cls: ast.ClassDef, name: str) -> bool:
+    """Return whether the class docstring lists *name* as a public attribute.
+
+    Dataclass fields are often documented in a numpydoc ``Parameters`` or
+    ``Attributes`` section.  That prose is what autodoc displays, so a field
+    with such an entry does not need a duplicate ``#:`` block.
+    """
+    doc = ast.get_docstring(cls) or ""
+    lines = doc.splitlines()
+    in_section = False
+    underline_next = False
+    for index, line in enumerate(lines):
+        stripped = line.strip()
+        if underline_next:
+            underline_next = False
+            if set(stripped) == {"-"} and len(stripped) >= 3:
+                continue
+            in_section = False
+        if stripped in {"Parameters", "Attributes", "Other Parameters"}:
+            in_section = True
+            underline_next = True
+            continue
+        if (
+            in_section
+            and stripped
+            and re.match(rf"{re.escape(name)}\s*(?::|$)", stripped)
+        ):
+            return True
+        if in_section and stripped and set(stripped) == {"-"} and len(stripped) >= 3:
+            # An underlined header ends the previous section.
+            in_section = False
     return False
 
 
@@ -268,9 +306,14 @@ def check_class_constants(tree: ast.Module, lines: list[str]) -> list[tuple[int,
                     continue
                 if not _is_class_constant(name, node, cls):
                     continue
-                documented = preceding_hashdoc(
-                    lines, node.lineno
-                ) or trailing_docstring(cls.body, node)
+                documented = (
+                    preceding_hashdoc(lines, node.lineno)
+                    or trailing_docstring(cls.body, node)
+                    or (
+                        _is_instance_data_class(cls)
+                        and class_docstring_documents(cls, name)
+                    )
+                )
                 if not documented:
                     missing.append((node.lineno, f"{cls.name}.{name}"))
                 elif preceding_hashdoc(lines, node.lineno) and not hashdoc_starts_upper(

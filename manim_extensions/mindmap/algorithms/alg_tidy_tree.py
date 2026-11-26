@@ -50,40 +50,58 @@ class WrappedTree:
     """
 
     # Reference to the original node
+    #: Payload carried by this layout node.
     node: object | None = None
     # Basic attributes
+    #: Horizontal layout coordinate.
     x: float = 0.0
+    #: Vertical layout coordinate.
     y: float = 0.0
+    #: Measured width of the wrapped tree.
     width: float = 0.0
+    #: Measured height of the wrapped tree.
     height: float = 0.0
+    #: Depth level of the node.
     level: int = 0  # node depth
     # Children
+    #: Child nodes in layout order.
     children: "list[WrappedTree]" = field(default_factory=list)
+    #: Index among sibling nodes.
     child_number: int = 0
 
     # === Core layout attributes ===
+    #: Preliminary horizontal position before sibling shifts.
     prelim: float = (
         0.0  # preliminary position of the node relative to its parent, before overlap correction
     )
+    #: Accumulated offset applied to the whole subtree.
     mod: float = 0.0  # extra shift to apply to the whole subtree rooted at this node
+    #: Spacing share distributed over later sibling subtrees.
     shift: float = 0.0  # spacing share to distribute over subsequent sibling subtrees
+    #: Running shift accumulated while threading contours.
     change: float = (
         0.0  # one-time correction at the end of a distribution chain to eliminate accumulated error
     )
 
     # === Subtree contour tracking for overlap detection ===
+    #: Leftmost contour extreme of the subtree.
     extreme_left: "WrappedTree | None" = None  # leftmost extreme node
+    #: Rightmost contour extreme of the subtree.
     extreme_right: "WrappedTree | None" = None  # rightmost extreme node
+    #: Accumulated modifier at the left contour extreme.
     mod_sum_extreme_left: float = (
         0.0  # sum of mod values along the path from leftmost extreme to root
     )
+    #: Accumulated modifier at the right contour extreme.
     mod_sum_extreme_right: float = (
         0.0  # sum of mod values along the path from rightmost extreme to root
     )
 
     # Threads for contour traversal: when two subtrees have different heights,
     # the shorter subtree links to a neighbouring subtree's contour when exhausted
+    #: Thread pointer to the next node on the left contour.
     thread_left: "WrappedTree | None" = None
+    #: Thread pointer to the next node on the right contour.
     thread_right: "WrappedTree | None" = None
 
     @classmethod
@@ -165,8 +183,11 @@ class IYLNode:
                self.add(entries, arrows, caption)
     """
 
+    #: Low end of the subtree's right contour.
     low: float  # low end of the subtree's right contour in the orthogonal direction
+    #: Index of the subtree among its siblings.
     index: int  # index of the subtree among its siblings
+    #: Next subtree on the contour.
     nxt: "IYLNode | None" = (
         None  # next node in the list (with a strictly larger low value)
     )
