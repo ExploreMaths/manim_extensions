@@ -1499,7 +1499,7 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="module-manim_extensions.radar.cli">
+          <style>div.nbinput.container div.prompt,div.nboutput.container div.prompt{width:4ch}div.nbcell-files.container{padding-left:4ch}</style><section id="module-manim_extensions.radar.cli">
 <span id="cli"></span><h1>cli<a class="headerlink" href="#module-manim_extensions.radar.cli" title="Link to this heading">¶</a></h1>
 <p>Command line helper: <code class="docutils literal notranslate"><span class="pre">manim-radar</span></code>.</p>
 <p>manim-radar –version
@@ -1507,8 +1507,365 @@ manim-radar themes                 # list colour themes
 manim-radar styles                 # list style presets
 manim-radar template my_chart.py   # write a starter scene
 manim-radar demo –render          # render the bundled demo reel.</p>
+<p><code class="docutils literal notranslate"><span class="pre">manim-radar</span></code> is the installed console entry point for the radar
+subpackage. It is meant for the small jobs that happen before a scene
+exists: inspecting the available themes and styles, writing a starter
+scene, and locating or rendering the bundled demo. Once a scene file has
+been generated, the normal <code class="docutils literal notranslate"><span class="pre">manim</span></code> command takes over.</p>
+<p>The command is registered by the package installation, so it is available
+from any directory:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>manim_extensions
+<span class="gp">$ </span>manim-radar<span class="w"> </span>--version
+</pre></div>
+</div>
+<section id="command-overview">
+<h2>Command overview<a class="headerlink" href="#command-overview" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 34.0%" />
+<col style="width: 66.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>What it does</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">manim-radar</span></code></p></td>
+<td><p>Print the short usage summary.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">manim-radar</span> <span class="pre">--version</span></code></p></td>
+<td><p>Print the installed <code class="docutils literal notranslate"><span class="pre">manim_extensions</span></code> version.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">manim-radar</span> <span class="pre">themes</span></code></p></td>
+<td><p>List the colour themes understood by <a class="reference internal" href="chart.RadarChart.html#manim_extensions.radar.chart.RadarChart" title="manim_extensions.radar.chart.RadarChart"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarChart</span></code></a>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">manim-radar</span> <span class="pre">styles</span></code></p></td>
+<td><p>List the style presets and their geometry.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">manim-radar</span> <span class="pre">template</span> <span class="pre">OUTPUT</span></code></p></td>
+<td><p>Write a complete starter scene to <code class="docutils literal notranslate"><span class="pre">OUTPUT</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">manim-radar</span> <span class="pre">demo</span></code></p></td>
+<td><p>Print the bundled demo scene and the command that renders it.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">manim-radar</span> <span class="pre">demo</span> <span class="pre">--render</span></code></p></td>
+<td><p>Render the bundled <a class="reference internal" href="legacy.RadarV2Scene.html#manim_extensions.radar.legacy.RadarV2Scene" title="manim_extensions.radar.legacy.RadarV2Scene"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarV2Scene</span></code></a> with Manim.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="quick-start">
+<h2>Quick start<a class="headerlink" href="#quick-start" title="Link to this heading">¶</a></h2>
+<p>Check the installed version, then list the two configuration surfaces:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>"$"
+</pre></div>
+</div>
+<div class="input_area highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">manim-radar --version</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>manim-radar (Manim Extensions) 1.0.7
+</pre></div>
+</div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>"$"
+</pre></div>
+</div>
+<div class="input_area highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">manim-radar themes</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  midnight  bg=#070B16  grid=#8B9BB8
+  aurora    bg=#04121A  grid=#7FB2AE
+  ember     bg=#140806  grid=#D8A48F
+  violet    bg=#0B0716  grid=#A79BC8
+  paper     bg=#F7F5F0  grid=#5B6472
+</pre></div>
+</div>
+</div>
+</div>
+<p>The theme list is intentionally short because each entry is a complete
+background-and-grid palette:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>midnight  bg=#070B16  grid=#8B9BB8
+aurora    bg=#04121A  grid=#7FB2AE
+ember     bg=#140806  grid=#D8A48F
+violet    bg=#0B0716  grid=#A79BC8
+paper     bg=#F7F5F0  grid=#5B6472
+</pre></div>
+</div>
+<p>Styles control the geometry rather than the colours. <code class="docutils literal notranslate"><span class="pre">manim-radar</span> <span class="pre">styles</span></code>
+prints the radius, the number of levels, and the optional decorations for
+each preset:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>"$"
+</pre></div>
+</div>
+<div class="input_area highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">manim-radar styles</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>  neo       r=2.9  levels=5  rainbow outline, vertex dots, sweep beam
+  classic   r=3.2  levels=5  snap-in numbers
+  minimal   r=2.5  levels=4  vertex dots
+</pre></div>
+</div>
+</div>
+</div>
+<p>The three presets are:</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 18.0%" />
+<col style="width: 18.0%" />
+<col style="width: 44.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Style</p></th>
+<th class="head"><p>Radius</p></th>
+<th class="head"><p>Levels</p></th>
+<th class="head"><p>Decorations</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">neo</span></code></p></td>
+<td><p>2.9</p></td>
+<td><p>5</p></td>
+<td><p>rainbow outline, vertex dots, sweep beam</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">classic</span></code></p></td>
+<td><p>3.2</p></td>
+<td><p>5</p></td>
+<td><p>snap-in numbers</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">minimal</span></code></p></td>
+<td><p>2.5</p></td>
+<td><p>4</p></td>
+<td><p>vertex dots</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="create-a-starter-scene">
+<h2>Create a starter scene<a class="headerlink" href="#create-a-starter-scene" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">template</span></code> writes a self-contained scene rather than printing code to
+the terminal. Pass the output path first; the default is <code class="docutils literal notranslate"><span class="pre">my_radar.py</span></code>.
+The generated scene uses three snapshots, six axes, and
+<a class="reference internal" href="reel.RadarReel.html#manim_extensions.radar.reel.RadarReel" title="manim_extensions.radar.reel.RadarReel"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarReel</span></code></a>, so it can be rendered
+immediately:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>manim-radar<span class="w"> </span>template<span class="w"> </span>my_chart.py<span class="w"> </span>--style<span class="w"> </span>classic<span class="w"> </span>--theme<span class="w"> </span>paper
+</pre></div>
+</div>
+<p>It prints the file that was written and the exact Manim command to render
+it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wrote</span> <span class="n">my_chart</span><span class="o">.</span><span class="n">py</span>
+<span class="n">render</span> <span class="n">it</span> <span class="k">with</span><span class="p">:</span>  <span class="n">manim</span> <span class="o">-</span><span class="n">qh</span> <span class="n">my_chart</span><span class="o">.</span><span class="n">py</span> <span class="n">MyRadar</span>
+</pre></div>
+</div>
+<p>The important part of the generated file looks like this:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.radar</span><span class="w"> </span><span class="kn">import</span> <span class="n">RadarChart</span><span class="p">,</span> <span class="n">RadarData</span><span class="p">,</span> <span class="n">RadarReel</span><span class="p">,</span> <span class="n">set_scene_background</span>
+
+<span class="n">AXES</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"Speed"</span><span class="p">,</span> <span class="s2">"Power"</span><span class="p">,</span> <span class="s2">"Range"</span><span class="p">,</span> <span class="s2">"Comfort"</span><span class="p">,</span> <span class="s2">"Price"</span><span class="p">,</span> <span class="s2">"Safety"</span><span class="p">]</span>
+<span class="n">SNAPSHOTS</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="n">RadarData</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="n">AXES</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">"Model A"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#17B8BA"</span><span class="p">),</span>
+    <span class="n">RadarData</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="n">AXES</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">"Model B"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#E868C8"</span><span class="p">),</span>
+    <span class="n">RadarData</span><span class="p">(</span><span class="n">axes</span><span class="o">=</span><span class="n">AXES</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="p">[</span><span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="n">name</span><span class="o">=</span><span class="s2">"Model C"</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">"#FFD166"</span><span class="p">),</span>
+<span class="p">]</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MyRadar</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">set_scene_background</span><span class="p">(</span><span class="s2">"paper"</span><span class="p">)</span>
+        <span class="n">chart</span> <span class="o">=</span> <span class="n">RadarChart</span><span class="p">(</span>
+            <span class="n">SNAPSHOTS</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">style</span><span class="o">=</span><span class="s2">"classic"</span><span class="p">,</span>
+            <span class="n">theme</span><span class="o">=</span><span class="s2">"paper"</span><span class="p">,</span>
+            <span class="n">title</span><span class="o">=</span><span class="s2">"Six axes"</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="n">RadarReel</span><span class="p">(</span><span class="n">chart</span><span class="p">,</span> <span class="n">SNAPSHOTS</span><span class="p">,</span> <span class="n">hold</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">backdrop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">play_on</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The template accepts these options:</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 24.0%" />
+<col style="width: 20.0%" />
+<col style="width: 56.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">OUTPUT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">my_radar.py</span></code></p></td>
+<td><p>File to create. The parent directory must already exist.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--style</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">neo</span></code></p></td>
+<td><p>One of <code class="docutils literal notranslate"><span class="pre">neo</span></code>, <code class="docutils literal notranslate"><span class="pre">classic</span></code> or <code class="docutils literal notranslate"><span class="pre">minimal</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--theme</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">midnight</span></code></p></td>
+<td><p>One of the themes printed by <code class="docutils literal notranslate"><span class="pre">manim-radar</span> <span class="pre">themes</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--force</span></code></p></td>
+<td><p>off</p></td>
+<td><p>Overwrite an existing file instead of refusing.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">template</span></code> deliberately refuses to overwrite an existing file. This
+protects a scene that has already been edited, and makes the command safe
+to run in a directory that already contains <code class="docutils literal notranslate"><span class="pre">my_radar.py</span></code>. Pass
+<code class="docutils literal notranslate"><span class="pre">--force</span></code> when replacing the file is intended.</p>
+</section>
+<section id="render-the-generated-scene">
+<h2>Render the generated scene<a class="headerlink" href="#render-the-generated-scene" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">template</span></code> does not render anything; it prints the command to use. For
+a quick preview:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>manim<span class="w"> </span>-ql<span class="w"> </span>my_chart.py<span class="w"> </span>MyRadar
+</pre></div>
+</div>
+<p>For a final-quality render, raise the quality flag:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>manim<span class="w"> </span>-qh<span class="w"> </span>my_chart.py<span class="w"> </span>MyRadar
+</pre></div>
+</div>
+<p>The class name must match the scene class in the file. <code class="docutils literal notranslate"><span class="pre">template</span></code> names
+it <code class="docutils literal notranslate"><span class="pre">MyRadar</span></code>; renaming the class means renaming the argument as well.</p>
+</section>
+<section id="bundled-demo">
+<h2>Bundled demo<a class="headerlink" href="#bundled-demo" title="Link to this heading">¶</a></h2>
+<p>The subpackage ships the older <a class="reference internal" href="legacy.RadarV2Scene.html#manim_extensions.radar.legacy.RadarV2Scene" title="manim_extensions.radar.legacy.RadarV2Scene"><code class="xref py py-class docutils literal notranslate"><span class="pre">RadarV2Scene</span></code></a> demo. Without
+<code class="docutils literal notranslate"><span class="pre">--render</span></code> the command only reports where the scene lives and how to
+render it:</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>"$"
+</pre></div>
+</div>
+<div class="input_area highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">manim-radar demo</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>demo scene:  manim_extensions.radar.legacy.RadarV2Scene
+render it with:  manim-radar demo --render
+</pre></div>
+</div>
+</div>
+</div>
+<p>Add <code class="docutils literal notranslate"><span class="pre">--render</span></code> to render it immediately. The default is low quality,
+which is suitable for checking that the camera and backdrop work:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>manim-radar<span class="w"> </span>demo<span class="w"> </span>--render
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">-q</span></code> / <code class="docutils literal notranslate"><span class="pre">--quality</span></code> selects the Manim quality preset:</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 24.0%" />
+<col style="width: 34.0%" />
+<col style="width: 42.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Flag</p></th>
+<th class="head"><p>Manim quality</p></th>
+<th class="head"><p>Use it for</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-ql</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">low_quality</span></code></p></td>
+<td><p>Fast smoke tests (the default).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-qm</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">medium_quality</span></code></p></td>
+<td><p>A quick preview with readable labels.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-qh</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">high_quality</span></code></p></td>
+<td><p>A normal presentation render.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-qk</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">production_quality</span></code></p></td>
+<td><p>Archive-quality output.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-qp</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">fourk_quality</span></code></p></td>
+<td><p>4K output; the slowest option.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For example:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>manim-radar<span class="w"> </span>demo<span class="w"> </span>--render<span class="w"> </span>-qh
+</pre></div>
+</div>
+<p>The demo command renders through <code class="docutils literal notranslate"><span class="pre">tempconfig</span></code>, so it does not write a
+Manim config file and does not change the quality of later commands.</p>
+</section>
+<section id="error-handling">
+<h2>Error handling<a class="headerlink" href="#error-handling" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">manim-radar</span></code> uses explicit exit codes so it can be called from a
+script:</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 48.0%" />
+<col style="width: 52.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Situation</p></th>
+<th class="head"><p>Result</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">template</span></code> target exists without <code class="docutils literal notranslate"><span class="pre">--force</span></code></p></td>
+<td><p>Prints a refusal to stderr and returns exit status 1.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Unknown <code class="docutils literal notranslate"><span class="pre">--quality</span></code> flag</p></td>
+<td><p>Prints the accepted flags to stderr and returns exit status 1.</p></td>
+</tr>
+<tr class="row-even"><td><p>Unknown subcommand or malformed option</p></td>
+<td><p>argparse prints usage and returns exit code 2.</p></td>
+</tr>
+<tr class="row-odd"><td><p>No subcommand</p></td>
+<td><p>Prints the short usage summary and returns exit code 0.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="api-reference">
+<h2>API reference<a class="headerlink" href="#api-reference" title="Link to this heading">¶</a></h2>
 <section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h2>
+<h3>Functions<a class="headerlink" href="#functions" title="Link to this heading">¶</a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="manim_extensions.radar.cli.build_parser">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.radar.cli.</span></span><span class="sig-name descname"><span class="pre">build_parser</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/manim_extensions/radar/cli.html#build_parser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.radar.cli.build_parser" title="Link to this definition">¶</a></dt>
@@ -1542,7 +1899,7 @@ manim-radar demo –render          # render the bundled demo reel.</p>
 
 </section>
 <section id="constants">
-<h2>Constants<a class="headerlink" href="#constants" title="Link to this heading">¶</a></h2>
+<h3>Constants<a class="headerlink" href="#constants" title="Link to this heading">¶</a></h3>
 <dl class="py data">
 <dt class="sig sig-object py" id="manim_extensions.radar.cli.TEMPLATE">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.radar.cli.</span></span><span class="sig-name descname"><span class="pre">TEMPLATE</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'#</span> <span class="pre">-*-</span> <span class="pre">coding:</span> <span class="pre">utf-8</span> <span class="pre">-*-\n&quot;&quot;&quot;Starter</span> <span class="pre">scene</span> <span class="pre">generated</span> <span class="pre">by</span> <span class="pre">``manim-radar</span> <span class="pre">template``.&quot;&quot;&quot;\n\nfrom</span> <span class="pre">manim</span> <span class="pre">import</span> <span class="pre">*\nfrom</span> <a class="reference internal" href="index.html#module-manim_extensions.radar"><span class="pre">manim_extensions.radar</span></a> <span class="pre">import</span> <span class="pre">DeepSpace,</span> <span class="pre">RadarChart,</span> <span class="pre">RadarData,</span> <span class="pre">RadarReel,</span> <span class="pre">set_scene_background\n\nAXES</span> <span class="pre">=</span> <span class="pre">[&quot;Speed&quot;,</span> <span class="pre">&quot;Power&quot;,</span> <span class="pre">&quot;Range&quot;,</span> <span class="pre">&quot;Comfort&quot;,</span> <span class="pre">&quot;Price&quot;,</span> <span class="pre">&quot;Safety&quot;]\n\nSNAPSHOTS</span> <span class="pre">=</span> <span class="pre">[\n</span>&#160;&#160;&#160; <a class="reference internal" href="data.RadarData.html#manim_extensions.radar.data.RadarData"><span class="pre">RadarData</span></a><span class="pre">(axes=AXES,</span> <span class="pre">values=[8,</span> <span class="pre">6,</span> <span class="pre">7,</span> <span class="pre">9,</span> <span class="pre">5,</span> <span class="pre">8],</span> <span class="pre">name=&quot;Model</span> <span class="pre">A&quot;,</span> <span class="pre">color=&quot;#17B8BA&quot;),\n</span>&#160;&#160;&#160; <a class="reference internal" href="data.RadarData.html#manim_extensions.radar.data.RadarData"><span class="pre">RadarData</span></a><span class="pre">(axes=AXES,</span> <span class="pre">values=[6,</span> <span class="pre">9,</span> <span class="pre">5,</span> <span class="pre">7,</span> <span class="pre">8,</span> <span class="pre">9],</span> <span class="pre">name=&quot;Model</span> <span class="pre">B&quot;,</span> <span class="pre">color=&quot;#E868C8&quot;),\n</span>&#160;&#160;&#160; <a class="reference internal" href="data.RadarData.html#manim_extensions.radar.data.RadarData"><span class="pre">RadarData</span></a><span class="pre">(axes=AXES,</span> <span class="pre">values=[9,</span> <span class="pre">9,</span> <span class="pre">8,</span> <span class="pre">9,</span> <span class="pre">9,</span> <span class="pre">9],</span> <span class="pre">name=&quot;Model</span> <span class="pre">C&quot;,</span> <span class="pre">color=&quot;#FFD166&quot;),\n]\n\n\nclass</span> <span class="pre">MyRadar</span><span class="pre">(Scene):\n</span>&#160;&#160;&#160; <span class="pre">def</span> <span class="pre">construct(self):\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">set_scene_background(&quot;{theme}&quot;)\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">chart</span> <span class="pre">=</span> <a class="reference internal" href="chart.RadarChart.html#manim_extensions.radar.chart.RadarChart"><span class="pre">RadarChart</span></a><span class="pre">(\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">SNAPSHOTS[0],\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">style=&quot;{style}&quot;,\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">theme=&quot;{theme}&quot;,\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">title=&quot;Six</span> <span class="pre">axes&quot;,\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">)\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">#</span> <span class="pre">One</span> <span class="pre">command</span> <span class="pre">plays</span> <span class="pre">the</span> <span class="pre">whole</span> <span class="pre">sequence</span> <span class="pre">(switch</span> <span class="pre">snapshots,</span> <span class="pre">hold,</span> <span class="pre">fade</span> <span class="pre">out).\n</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160; <a class="reference internal" href="reel.RadarReel.html#manim_extensions.radar.reel.RadarReel"><span class="pre">RadarReel</span></a><span class="pre">(chart,</span> <span class="pre">SNAPSHOTS,</span> <span class="pre">hold=0.6,</span> <span class="pre">backdrop=True).play_on(self)\n'</span></span><a class="headerlink" href="#manim_extensions.radar.cli.TEMPLATE" title="Link to this definition">¶</a></dt>
@@ -1561,6 +1918,7 @@ manim-radar demo –render          # render the bundled demo reel.</p>
 <dd><p>Map the <code class="docutils literal notranslate"><span class="pre">manim</span></code> style quality flags accepted by <code class="docutils literal notranslate"><span class="pre">demo</span> <span class="pre">-q</span></code> to config names.</p>
 </dd></dl>
 
+</section>
 </section>
 </section>
 
@@ -1620,6 +1978,13 @@ manim-radar demo –render          # render the bundled demo reel.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">cli</a><ul>
+<li><a class="reference internal" href="#command-overview">Command overview</a></li>
+<li><a class="reference internal" href="#quick-start">Quick start</a></li>
+<li><a class="reference internal" href="#create-a-starter-scene">Create a starter scene</a></li>
+<li><a class="reference internal" href="#render-the-generated-scene">Render the generated scene</a></li>
+<li><a class="reference internal" href="#bundled-demo">Bundled demo</a></li>
+<li><a class="reference internal" href="#error-handling">Error handling</a></li>
+<li><a class="reference internal" href="#api-reference">API reference</a><ul>
 <li><a class="reference internal" href="#functions">Functions</a><ul>
 <li><a class="reference internal" href="#manim_extensions.radar.cli.build_parser"><code class="docutils literal notranslate"><span class="pre">build_parser()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.radar.cli.main"><code class="docutils literal notranslate"><span class="pre">main()</span></code></a></li>
@@ -1629,6 +1994,8 @@ manim-radar demo –render          # render the bundled demo reel.</p>
 <li><a class="reference internal" href="#manim_extensions.radar.cli.TEMPLATE"><code class="docutils literal notranslate"><span class="pre">TEMPLATE</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.radar.cli.DEMO_COMMAND"><code class="docutils literal notranslate"><span class="pre">DEMO_COMMAND</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.radar.cli.QUALITY_NAMES"><code class="docutils literal notranslate"><span class="pre">QUALITY_NAMES</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

@@ -1499,7 +1499,7 @@
           </label>
         </div>
         <article role="main" id="furo-main-content">
-          <section id="module-manim_extensions.rubikscube">
+          <style>div.nbinput.container div.prompt,div.nboutput.container div.prompt{width:4ch}div.nbcell-files.container{padding-left:4ch}</style><section id="module-manim_extensions.rubikscube">
 <span id="rubik-s-cube"></span><h1>Rubik’s Cube<a class="headerlink" href="#module-manim_extensions.rubikscube" title="Link to this heading">¶</a></h1>
 <p>Rubik’s Cube helpers and scene objects.</p>
 <p>The module exposes the main cube model and related animation utilities for
@@ -1509,7 +1509,7 @@ visualising cube states in Manim scenes.</p>
 <ul class="simple">
 <li><p>Vendored copy: synced at <code class="docutils literal notranslate"><span class="pre">e117d42eb4b7484957440a4c9d67ab183bb06e0a</span></code>.</p></li>
 <li><p>Currently vendored upstream commit: <a class="literal reference external" href="https://github.com/WampyCakes/manim-rubikscube/commit/e117d42eb4b7484957440a4c9d67ab183bb06e0a">e117d42</a> (2023-06-26).</p></li>
-<li><p>Upstream data cached on 2026-11-26 23:01 (UTC+8).</p></li>
+<li><p>Upstream data cached on 2026-11-27 07:21 (UTC+8).</p></li>
 <li><p>Latest upstream release: <code class="docutils literal notranslate"><span class="pre">v0.1.0</span></code> (2021-05-26).</p></li>
 <li><p>The vendored copy is up to date with upstream.</p></li>
 </ul>
@@ -1525,6 +1525,33 @@ explanations inside scene code.</p>
 registers a <code class="docutils literal notranslate"><span class="pre">manim-rubikscube</span></code> command (equivalent to
 <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">manim_extensions.rubikscube</span></code>) that prints the bundled
 version.</p>
+<section id="command-line-entry-point">
+<h2>Command-line entry point<a class="headerlink" href="#command-line-entry-point" title="Link to this heading">¶</a></h2>
+<p>The command is deliberately small: it reports the installed version and
+returns, which makes it suitable for checking that the console entry
+point was installed correctly.</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>"$"
+</pre></div>
+</div>
+<div class="input_area highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">manim-rubikscube</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>manim-rubikscube (Manim Extensions) v1.0.7
+</pre></div>
+</div>
+</div>
+</div>
+<p>It does not render a cube and does not accept <code class="docutils literal notranslate"><span class="pre">manim</span></code> quality flags.
+Build a scene with <a class="reference internal" href="cube.RubiksCube.html#manim_extensions.rubikscube.cube.RubiksCube" title="manim_extensions.rubikscube.cube.RubiksCube"><code class="xref py py-class docutils literal notranslate"><span class="pre">RubiksCube</span></code></a>
+and render it through the normal <code class="docutils literal notranslate"><span class="pre">manim</span></code> command instead; the examples
+below show the scene-side workflow.</p>
+</section>
 <section id="features">
 <h2>Features<a class="headerlink" href="#features" title="Link to this heading">¶</a></h2>
 <ul class="simple">
@@ -2132,6 +2159,7 @@ for the full spec, examples, and documentation.</p>
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">Rubik’s Cube</a><ul>
+<li><a class="reference internal" href="#command-line-entry-point">Command-line entry point</a></li>
 <li><a class="reference internal" href="#features">Features</a></li>
 <li><a class="reference internal" href="#creating-a-rubikscube">Creating a RubiksCube</a></li>
 <li><a class="reference internal" href="#changing-the-colors-of-a-rubikscube">Changing the colors of a RubiksCube</a></li>

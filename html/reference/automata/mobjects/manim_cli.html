@@ -1503,9 +1503,164 @@
 <span id="manim-cli"></span><h1>manim_cli<a class="headerlink" href="#module-manim_extensions.automata.mobjects.manim_cli" title="Link to this heading">¶</a></h1>
 <p>CLI utilities for automata.</p>
 <p>This module provides the <a class="reference internal" href="manim_cli.ManimAutomataCLI.html#manim_extensions.automata.mobjects.manim_cli.ManimAutomataCLI" title="manim_extensions.automata.mobjects.manim_cli.ManimAutomataCLI"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimAutomataCLI</span></code></a> class for interactive command-line interface.</p>
-<p>Interactive command-line helper for building automata.</p>
+<p><a class="reference internal" href="manim_cli.ManimAutomataCLI.html#manim_extensions.automata.mobjects.manim_cli.ManimAutomataCLI" title="manim_extensions.automata.mobjects.manim_cli.ManimAutomataCLI"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimAutomataCLI</span></code></a> is an interactive helper embedded in the automata
+constructors, not a standalone <code class="docutils literal notranslate"><span class="pre">manim-*</span></code> shell command. It is activated
+by passing <code class="docutils literal notranslate"><span class="pre">cli=True</span></code> to a finite automaton and is used to choose a
+single accepting path through a non-deterministic automaton. The chosen
+path can then be exported and replayed without prompting again.</p>
+<section id="how-it-is-activated">
+<h2>How it is activated<a class="headerlink" href="#how-it-is-activated" title="Link to this heading">¶</a></h2>
+<p>Pass <code class="docutils literal notranslate"><span class="pre">cli=True</span></code> when constructing the automaton, then call
+<code class="docutils literal notranslate"><span class="pre">play_string</span></code> from a scene as usual. The constructor prints the banner
+and asks which builder to use; the path questions appear while
+<code class="docutils literal notranslate"><span class="pre">play_string</span></code> reads the input:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimNondeterministicFiniteAutomaton</span>
+
+<span class="c1"># inside Scene.construct</span>
+<span class="n">machine</span> <span class="o">=</span> <span class="n">ManimNondeterministicFiniteAutomaton</span><span class="p">(</span><span class="n">cli</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">machine</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">machine</span><span class="o">.</span><span class="n">play_string</span><span class="p">(</span><span class="s2">"01"</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="o">*</span><span class="n">step</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The first menu is deliberately short because the finite-automaton
+constructors currently expose one builder:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0: Non-deterministic Automaton Path Builder
+Choice: 0
+</pre></div>
+</div>
+<p>Choosing <code class="docutils literal notranslate"><span class="pre">0</span></code> sets <code class="docutils literal notranslate"><span class="pre">machine.nda_builder</span> <span class="pre">=</span> <span class="pre">True</span></code>. From that point on,
+whenever the automaton has more than one outgoing transition for the
+current token, the CLI prints the possible next states and asks for one:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>0: q0 --&gt; q1
+Choice: 0
+</pre></div>
+</div>
+<p>The number is the zero-based index of the transition shown by
+<code class="docutils literal notranslate"><span class="pre">generate_next_state_options</span></code>. Selecting it restricts the run to that
+branch, so the animation follows one path instead of showing every
+non-deterministic branch at once.</p>
+</section>
+<section id="using-the-cli-in-a-scene">
+<h2>Using the CLI in a scene<a class="headerlink" href="#using-the-cli-in-a-scene" title="Link to this heading">¶</a></h2>
+<p>A complete scene follows the same pattern as the non-interactive
+automaton examples; the only difference is the <code class="docutils literal notranslate"><span class="pre">cli=True</span></code> flag and the
+terminal prompts during <code class="docutils literal notranslate"><span class="pre">play_string</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.automata</span><span class="w"> </span><span class="kn">import</span> <span class="n">ManimNondeterministicFiniteAutomaton</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">GuidedAutomatonPath</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">machine</span> <span class="o">=</span> <span class="n">ManimNondeterministicFiniteAutomaton</span><span class="p">(</span><span class="n">cli</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">machine</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="n">machine</span><span class="o">.</span><span class="n">play_string</span><span class="p">(</span><span class="s2">"01"</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="o">*</span><span class="n">step</span><span class="p">,</span> <span class="n">run_time</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The prompts are read from standard input, so the scene must be rendered
+from an interactive terminal. Rendering through a non-interactive
+subprocess without piped choices will block at the first <code class="docutils literal notranslate"><span class="pre">Choice:</span></code>
+prompt.</p>
+<p>The default non-deterministic template used by
+<a class="reference internal" href="manim_non_deterministic_finite_state_automaton.ManimNondeterministicFiniteAutomaton.html#manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton.ManimNondeterministicFiniteAutomaton" title="manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton.ManimNondeterministicFiniteAutomaton"><code class="xref py py-class docutils literal notranslate"><span class="pre">ManimNondeterministicFiniteAutomaton</span></code></a> already contains an epsilon
+transition and several competing branches, which makes it a useful
+starting point for trying the path builder. Pass <code class="docutils literal notranslate"><span class="pre">json_template</span></code> or
+<code class="docutils literal notranslate"><span class="pre">xml_file</span></code> to load a different automaton.</p>
+</section>
+<section id="recording-and-replaying-a-path">
+<h2>Recording and replaying a path<a class="headerlink" href="#recording-and-replaying-a-path" title="Link to this heading">¶</a></h2>
+<p>When <code class="docutils literal notranslate"><span class="pre">nda_builder</span></code> is active, each chosen transition is appended to
+<code class="docutils literal notranslate"><span class="pre">machine.recorded_path</span></code> as a <code class="docutils literal notranslate"><span class="pre">(from_state,</span> <span class="pre">to_state)</span></code> pair. At the end
+of <code class="docutils literal notranslate"><span class="pre">run_input_through_automaton</span></code> the path is written to
+<code class="docutils literal notranslate"><span class="pre">recorded_path.txt</span></code> as JSON:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[["q0", "q1"], ["q1", "q2"]]
+</pre></div>
+</div>
+<p>The relevant methods are:</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 42.0%" />
+<col style="width: 58.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">export_recorded_path_to_file()</span></code></p></td>
+<td><p>Write <code class="docutils literal notranslate"><span class="pre">recorded_path</span></code> to <code class="docutils literal notranslate"><span class="pre">recorded_path.txt</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">load_recorded_path_from_file(file_name)</span></code></p></td>
+<td><p>Load a JSON path list, or return <code class="docutils literal notranslate"><span class="pre">None</span></code> for invalid content.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">run_input_through_automaton(input,</span> <span class="pre">path_file)</span></code></p></td>
+<td><p>Replay a recorded path instead of prompting for choices.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">play_string(input)</span></code></p></td>
+<td><p>Build the input mobject, run the automaton, and return animations.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The two-step replay form is useful when the same path should be animated
+again without a terminal:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">automaton_input</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">construct_automaton_input</span><span class="p">(</span><span class="s2">"01"</span><span class="p">)</span>
+<span class="n">history</span> <span class="o">=</span> <span class="n">machine</span><span class="o">.</span><span class="n">run_input_through_automaton</span><span class="p">(</span>
+    <span class="n">automaton_input</span><span class="p">,</span> <span class="s2">"recorded_path.txt"</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">run_input_through_automaton</span></code> returns the run history; use
+<code class="docutils literal notranslate"><span class="pre">generate_history_animations(history)</span></code> if the history needs to be
+converted into Manim animations manually.</p>
+</section>
+<section id="menu-helpers">
+<h2>Menu helpers<a class="headerlink" href="#menu-helpers" title="Link to this heading">¶</a></h2>
+<p>The class exposes the prompt helpers separately so custom launchers can
+reuse them without duplicating the input handling:</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 44.0%" />
+<col style="width: 56.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Helper</p></th>
+<th class="head"><p>Behaviour</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">display_options(options)</span></code></p></td>
+<td><p>Print numbered strings and return the chosen index.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">display_dictionary_options(options)</span></code></p></td>
+<td><p>Print one entry per mapping key and return the chosen key.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">display_nda_options()</span></code></p></td>
+<td><p>Show the single NDA path-builder choice and store it in
+<code class="docutils literal notranslate"><span class="pre">nda_option</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">creation_menu()</span></code></p></td>
+<td><p>Ask for an automaton type and a schema file path; intended for custom
+launchers, not called by the built-in finite-automaton constructors.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">display_options</span></code> and <code class="docutils literal notranslate"><span class="pre">display_dictionary_options</span></code> both read a single
+integer with <code class="docutils literal notranslate"><span class="pre">input()</span></code>. They do not validate the range; an out-of-range
+choice raises <code class="docutils literal notranslate"><span class="pre">IndexError</span></code> or <code class="docutils literal notranslate"><span class="pre">KeyError</span></code> when the caller indexes the
+result.</p>
+</section>
+<section id="api-reference">
+<h2>API reference<a class="headerlink" href="#api-reference" title="Link to this heading">¶</a></h2>
 <section id="classes">
-<h2>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h2>
+<h3>Classes<a class="headerlink" href="#classes" title="Link to this heading">¶</a></h3>
 <div class="table-wrapper autosummary longtable docutils container">
 <table class="autosummary longtable docutils align-default">
 <tbody>
@@ -1517,7 +1672,7 @@
 </div>
 </section>
 <section id="constants">
-<h2>Constants<a class="headerlink" href="#constants" title="Link to this heading">¶</a></h2>
+<h3>Constants<a class="headerlink" href="#constants" title="Link to this heading">¶</a></h3>
 <dl class="py data">
 <dt class="sig sig-object py" id="manim_extensions.automata.mobjects.manim_cli.cli_logo">
 <span class="sig-prename descclassname"><span class="pre">manim_extensions.automata.mobjects.manim_cli.</span></span><span class="sig-name descname"><span class="pre">cli_logo</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">'\n</span>&#160; <span class="pre">__</span>&#160; <span class="pre">__</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">_</span>&#160;&#160; <span class="pre">_</span> <span class="pre">_____</span> <span class="pre">__</span>&#160; <span class="pre">__</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">_</span>&#160;&#160;&#160; <span class="pre">_</span> <span class="pre">_______</span> <span class="pre">____</span>&#160; <span class="pre">__</span>&#160; <span class="pre">__</span>&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">_______</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">_____</span> <span class="pre">_</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">_____\n</span> <span class="pre">|</span>&#160; <span class="pre">\\/</span>&#160; <span class="pre">|</span>&#160;&#160; <span class="pre">/\\</span>&#160;&#160; <span class="pre">|</span> <span class="pre">\\</span> <span class="pre">|</span> <span class="pre">|_</span>&#160;&#160; <span class="pre">_|</span>&#160; <span class="pre">\\/</span>&#160; <span class="pre">|</span>&#160;&#160;&#160;&#160; <span class="pre">/\\</span>&#160; <span class="pre">|</span> <span class="pre">|</span>&#160; <span class="pre">|</span> <span class="pre">|__</span>&#160;&#160; <span class="pre">__/</span> <span class="pre">__</span> <span class="pre">\\|</span>&#160; <span class="pre">\\/</span>&#160; <span class="pre">|</span>&#160;&#160; <span class="pre">/\\|__</span>&#160;&#160; <span class="pre">__|/\\</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">/</span> <span class="pre">____|</span> <span class="pre">|</span>&#160;&#160;&#160; <span class="pre">|_</span>&#160;&#160; <span class="pre">_|\n</span> <span class="pre">|</span> <span class="pre">\\</span>&#160; <span class="pre">/</span> <span class="pre">|</span>&#160; <span class="pre">/</span>&#160; <span class="pre">\\</span>&#160; <span class="pre">|</span>&#160; <span class="pre">\\|</span> <span class="pre">|</span> <span class="pre">|</span> <span class="pre">|</span> <span class="pre">|</span> <span class="pre">\\</span>&#160; <span class="pre">/</span> <span class="pre">|</span>&#160;&#160;&#160; <span class="pre">/</span>&#160; <span class="pre">\\</span> <span class="pre">|</span> <span class="pre">|</span>&#160; <span class="pre">|</span> <span class="pre">|</span>&#160; <span class="pre">|</span> <span class="pre">|</span> <span class="pre">|</span> <span class="pre">|</span>&#160; <span class="pre">|</span> <span class="pre">|</span> <span class="pre">\\</span>&#160; <span class="pre">/</span> <span class="pre">|</span>&#160; <span class="pre">/</span>&#160; <span class="pre">\\</span>&#160; <span class="pre">|</span> <span class="pre">|</span>&#160; <span class="pre">/</span>&#160; <span class="pre">\\</span>&#160;&#160;&#160; <span class="pre">|</span> <span class="pre">|</span>&#160;&#160;&#160; <span class="pre">|</span> <span class="pre">|</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">|</span> <span class="pre">|\n</span> <span class="pre">|</span> <span class="pre">|\\/|</span> <span class="pre">|</span> <span class="pre">/</span> <span class="pre">/\\</span> <span class="pre">\\</span> <span class="pre">|</span> <span class="pre">.</span> <span class="pre">`</span> <span class="pre">|</span> <span class="pre">|</span> <span class="pre">|</span> <span class="pre">|</span> <span class="pre">|\\/|</span> <span class="pre">|</span>&#160;&#160; <span class="pre">/</span> <span class="pre">/\\</span> <span class="pre">\\|</span> <span class="pre">|</span>&#160; <span class="pre">|</span> <span class="pre">|</span>&#160; <span class="pre">|</span> <span class="pre">|</span> <span class="pre">|</span> <span class="pre">|</span>&#160; <span class="pre">|</span> <span class="pre">|</span> <span class="pre">|\\/|</span> <span class="pre">|</span> <span class="pre">/</span> <span class="pre">/\\</span> <span class="pre">\\</span> <span class="pre">|</span> <span class="pre">|</span> <span class="pre">/</span> <span class="pre">/\\</span> <span class="pre">\\</span>&#160;&#160; <span class="pre">|</span> <span class="pre">|</span>&#160;&#160;&#160; <span class="pre">|</span> <span class="pre">|</span>&#160;&#160;&#160;&#160;&#160; <span class="pre">|</span> <span class="pre">|\n</span> <span class="pre">|</span> <span class="pre">|</span>&#160; <span class="pre">|</span> <span class="pre">|/</span> <span class="pre">____</span> <span class="pre">\\|</span> <span class="pre">|\\</span>&#160; <span class="pre">|_|</span> <span class="pre">|_|</span> <span class="pre">|</span>&#160; <span class="pre">|</span> <span class="pre">|</span>&#160; <span class="pre">/</span> <span class="pre">____</span> <span class="pre">\\</span> <span class="pre">|__|</span> <span class="pre">|</span>&#160; <span class="pre">|</span> <span class="pre">|</span> <span class="pre">|</span> <span class="pre">|__|</span> <span class="pre">|</span> <span class="pre">|</span>&#160; <span class="pre">|</span> <span class="pre">|/</span> <span class="pre">____</span> <span class="pre">\\|</span> <span class="pre">|/</span> <span class="pre">____</span> <span class="pre">\\</span>&#160; <span class="pre">|</span> <span class="pre">|____|</span> <span class="pre">|____</span> <span class="pre">_|</span> <span class="pre">|_\n</span> <span class="pre">|_|</span>&#160; <span class="pre">|_/_/</span>&#160;&#160;&#160; <span class="pre">\\_\\_|</span> <span class="pre">\\_|_____|_|</span>&#160; <span class="pre">|_|</span> <span class="pre">/_/</span>&#160;&#160;&#160; <span class="pre">\\_\\____/</span>&#160;&#160; <span class="pre">|_|</span>&#160; <span class="pre">\\____/|_|</span>&#160; <span class="pre">|_/_/</span>&#160;&#160;&#160; <span class="pre">\\_\\_/_/</span>&#160;&#160;&#160; <span class="pre">\\_\\</span>&#160; <span class="pre">\\_____|______|_____|\n\n'</span></span><a class="headerlink" href="#manim_extensions.automata.mobjects.manim_cli.cli_logo" title="Link to this definition">¶</a></dt>
@@ -1526,6 +1681,7 @@
 
 <div class="toctree-wrapper compound">
 </div>
+</section>
 </section>
 </section>
 
@@ -1585,9 +1741,16 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">manim_cli</a><ul>
+<li><a class="reference internal" href="#how-it-is-activated">How it is activated</a></li>
+<li><a class="reference internal" href="#using-the-cli-in-a-scene">Using the CLI in a scene</a></li>
+<li><a class="reference internal" href="#recording-and-replaying-a-path">Recording and replaying a path</a></li>
+<li><a class="reference internal" href="#menu-helpers">Menu helpers</a></li>
+<li><a class="reference internal" href="#api-reference">API reference</a><ul>
 <li><a class="reference internal" href="#classes">Classes</a></li>
 <li><a class="reference internal" href="#constants">Constants</a><ul>
 <li><a class="reference internal" href="#manim_extensions.automata.mobjects.manim_cli.cli_logo"><code class="docutils literal notranslate"><span class="pre">cli_logo</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

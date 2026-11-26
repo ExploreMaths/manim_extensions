@@ -1534,15 +1534,94 @@ Commands:
 </div>
 </div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">pubchem-molecule</span></code> accepts a molecule identifier in four forms —
+<p>The command group currently exposes one subcommand,
+<code class="docutils literal notranslate"><span class="pre">pubchem-molecule</span></code>. It accepts a molecule identifier in four forms —
 <code class="docutils literal notranslate"><span class="pre">--cid</span></code> (PubChem compound ID), <code class="docutils literal notranslate"><span class="pre">--name</span></code>, <code class="docutils literal notranslate"><span class="pre">--smiles</span></code> or <code class="docutils literal notranslate"><span class="pre">--inchi</span></code> —
-each of which may be given multiple times to fetch several molecules in a
-single request. <code class="docutils literal notranslate"><span class="pre">--format</span></code> selects the output file format (<code class="docutils literal notranslate"><span class="pre">sdf</span></code> by
-default, also <code class="docutils literal notranslate"><span class="pre">asnt</span></code>, <code class="docutils literal notranslate"><span class="pre">json</span></code> or <code class="docutils literal notranslate"><span class="pre">xml</span></code>), <code class="docutils literal notranslate"><span class="pre">--three_d</span></code> requests
-three-dimensional coordinates, and <code class="docutils literal notranslate"><span class="pre">--output_folder</span></code> chooses where the
-files are written.</p>
+and writes one file per molecule to a local folder.</p>
+<section id="command-overview">
+<h2>Command overview<a class="headerlink" href="#command-overview" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 32.0%" />
+<col style="width: 68.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>What it does</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">manim-chemistry</span> <span class="pre">--help</span></code></p></td>
+<td><p>List the command group and its subcommands.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">manim-chemistry</span> <span class="pre">pubchem-molecule</span> <span class="pre">--help</span></code></p></td>
+<td><p>Show every option, alias, and default.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">manim-chemistry</span> <span class="pre">pubchem-molecule</span> <span class="pre">--name</span> <span class="pre">acetone</span></code></p></td>
+<td><p>Download acetone and write <code class="docutils literal notranslate"><span class="pre">acetone.sdf</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">manim-chemistry</span> <span class="pre">pubchem-molecule</span> <span class="pre">--name</span> <span class="pre">acetone</span> <span class="pre">--format</span> <span class="pre">json</span></code></p></td>
+<td><p>Download the same molecule as <code class="docutils literal notranslate"><span class="pre">acetone.json</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">manim-chemistry</span> <span class="pre">pubchem-molecule</span> <span class="pre">--name</span> <span class="pre">acetone</span> <span class="pre">--output_folder</span> <span class="pre">molecules</span></code></p></td>
+<td><p>Write into an existing or newly created <code class="docutils literal notranslate"><span class="pre">molecules</span></code> folder.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="options">
+<h2>Options<a class="headerlink" href="#options" title="Link to this heading">¶</a></h2>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 26.0%" />
+<col style="width: 14.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Option</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Purpose</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-f</span></code> / <code class="docutils literal notranslate"><span class="pre">--format</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sdf</span></code></p></td>
+<td><p>Output format: <code class="docutils literal notranslate"><span class="pre">sdf</span></code>, <code class="docutils literal notranslate"><span class="pre">asnt</span></code>, <code class="docutils literal notranslate"><span class="pre">json</span></code> or <code class="docutils literal notranslate"><span class="pre">xml</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-c</span></code> / <code class="docutils literal notranslate"><span class="pre">--cid</span></code></p></td>
+<td><p>none</p></td>
+<td><p>PubChem compound ID. Repeatable.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-n</span></code> / <code class="docutils literal notranslate"><span class="pre">--name</span></code></p></td>
+<td><p>none</p></td>
+<td><p>Compound name. Repeatable.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-s</span></code> / <code class="docutils literal notranslate"><span class="pre">--smiles</span></code></p></td>
+<td><p>none</p></td>
+<td><p>SMILES string. Repeatable; quote strings containing spaces.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-i</span></code> / <code class="docutils literal notranslate"><span class="pre">--inchi</span></code></p></td>
+<td><p>none</p></td>
+<td><p>Full InChI or InChIKey. Repeatable; quote the full InChI.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-td</span></code> / <code class="docutils literal notranslate"><span class="pre">--three_d</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p></td>
+<td><p>Request 3-D coordinates. This option takes a boolean value.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-o</span></code> / <code class="docutils literal notranslate"><span class="pre">--output_folder</span></code></p></td>
+<td><p>current directory</p></td>
+<td><p>Destination folder; created if it does not exist.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
 <section id="download-by-name">
 <h2>Download by name<a class="headerlink" href="#download-by-name" title="Link to this heading">¶</a></h2>
+<p>The simplest invocation passes a compound name:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>"$"
 </pre></div>
@@ -1563,11 +1642,14 @@ Finished
 </div>
 </div>
 </div>
+<p>The command prints the identifier it is about to fetch, asks PubChem for
+the record, then reports each file as it is written. With the defaults,
+the result is <code class="docutils literal notranslate"><span class="pre">./acetone.sdf</span></code>.</p>
 </section>
-<section id="several-identifiers-at-once">
-<h2>Several identifiers at once<a class="headerlink" href="#several-identifiers-at-once" title="Link to this heading">¶</a></h2>
-<p>Every identifier option accepts multiple values, and the identifiers may
-even be mixed (names, CIDs, SMILES and InChI in one call):</p>
+<section id="several-molecules-of-the-same-kind">
+<h2>Several molecules of the same kind<a class="headerlink" href="#several-molecules-of-the-same-kind" title="Link to this heading">¶</a></h2>
+<p>Every identifier option is repeatable. Repeating the same option downloads
+several molecules in one invocation and writes one file per value:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>"$"
 </pre></div>
@@ -1589,14 +1671,24 @@ Finished
 </div>
 </div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Use one identifier family per invocation. The command does not merge
+different families: if both <code class="docutils literal notranslate"><span class="pre">--cid</span></code> and <code class="docutils literal notranslate"><span class="pre">--name</span></code> are supplied,
+<code class="docutils literal notranslate"><span class="pre">--cid</span></code> wins; after that the precedence is <code class="docutils literal notranslate"><span class="pre">--name</span></code>, then
+<code class="docutils literal notranslate"><span class="pre">--smiles</span></code>, then <code class="docutils literal notranslate"><span class="pre">--inchi</span></code>. To download a mix of CIDs and names,
+either run the command once per family or resolve the names to CIDs
+first.</p>
+</div>
 </section>
 <section id="choosing-the-identifier-type">
 <h2>Choosing the identifier type<a class="headerlink" href="#choosing-the-identifier-type" title="Link to this heading">¶</a></h2>
+<p>A PubChem CID is the most stable identifier:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>"$"
 </pre></div>
 </div>
-<div class="input_area highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">manim-chemistry pubchem-molecule --cid 7028</span>
+<div class="input_area highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">manim-chemistry pubchem-molecule --cid 180</span>
 </pre></div>
 </div>
 </div>
@@ -1604,14 +1696,15 @@ Finished
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Retrieving molecule data for ('7028',).
-Retrieved molecule data for ('7028',). Saving file(s) to . folder.
-File ./7028.sdf is ready!!
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Retrieving molecule data for ('180',).
+Retrieved molecule data for ('180',). Saving file(s) to . folder.
+File ./180.sdf is ready!!
 Finished
 </pre></div>
 </div>
 </div>
 </div>
+<p>SMILES is convenient when the structure is already known:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>"$"
 </pre></div>
@@ -1632,6 +1725,7 @@ Finished
 </div>
 </div>
 </div>
+<p>A full InChI contains slashes, so quote it in the shell:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>"$"
 </pre></div>
@@ -1652,8 +1746,7 @@ Finished
 </div>
 </div>
 </div>
-<p>An InChIKey works as well, and the <code class="docutils literal notranslate"><span class="pre">/</span></code> characters of a full InChI are
-turned into <code class="docutils literal notranslate"><span class="pre">_</span></code> in the output file name:</p>
+<p>An InChIKey is accepted through the same <code class="docutils literal notranslate"><span class="pre">--inchi</span></code> option:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>"$"
 </pre></div>
@@ -1677,10 +1770,9 @@ Finished
 </section>
 <section id="output-formats">
 <h2>Output formats<a class="headerlink" href="#output-formats" title="Link to this heading">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">--format</span></code> changes the file type written for every downloaded molecule;
-the files can then be fed straight back into
-<a class="reference internal" href="twoD/molecule.MMoleculeObject.html#manim_extensions.chemistry.twoD.molecule.MMoleculeObject" title="manim_extensions.chemistry.twoD.molecule.MMoleculeObject"><code class="xref py py-class docutils literal notranslate"><span class="pre">MMoleculeObject</span></code></a>.molecule_from_file()
-or GraphMolecule.molecule_from_file():</p>
+<p><code class="docutils literal notranslate"><span class="pre">--format</span></code> changes the file type written for every downloaded molecule.
+The extension is part of the output name, so downstream readers can pick
+the parser from the suffix:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>"$"
 </pre></div>
@@ -1701,13 +1793,51 @@ Finished
 </div>
 </div>
 </div>
-<p>Available formats are <code class="docutils literal notranslate"><span class="pre">sdf</span></code> (default), <code class="docutils literal notranslate"><span class="pre">asnt</span></code>, <code class="docutils literal notranslate"><span class="pre">json</span></code> and <code class="docutils literal notranslate"><span class="pre">xml</span></code>.</p>
+<div class="table-wrapper colwidths-given docutils container">
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16.0%" />
+<col style="width: 56.0%" />
+<col style="width: 28.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Format</p></th>
+<th class="head"><p>File content</p></th>
+<th class="head"><p>Reader</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sdf</span></code></p></td>
+<td><p>Structure-Data File; the default.</p></td>
+<td><p><a class="reference internal" href="utils/parsers/sdf_parser.SDFParser.html#manim_extensions.chemistry.utils.parsers.sdf_parser.SDFParser" title="manim_extensions.chemistry.utils.parsers.sdf_parser.SDFParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">SDFParser</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">asnt</span></code></p></td>
+<td><p>Abstract Syntax Notation text.</p></td>
+<td><p><a class="reference internal" href="utils/parsers/asnt_parser.ASNTParser.html#manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser" title="manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">ASNTParser</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">json</span></code></p></td>
+<td><p>JSON representation.</p></td>
+<td><p><a class="reference internal" href="utils/parsers/json_parser.JSONParser.html#manim_extensions.chemistry.utils.parsers.json_parser.JSONParser" title="manim_extensions.chemistry.utils.parsers.json_parser.JSONParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">JSONParser</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">xml</span></code></p></td>
+<td><p>XML representation.</p></td>
+<td><p><a class="reference internal" href="utils/parsers/xml_parser.XMLParser.html#manim_extensions.chemistry.utils.parsers.xml_parser.XMLParser" title="manim_extensions.chemistry.utils.parsers.xml_parser.XMLParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">XMLParser</span></code></a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>All four suffixes are understood by
+<a class="reference internal" href="molecule/abstract_molecule.AbstractMolecule.html#manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule.molecule_from_file" title="manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule.molecule_from_file"><code class="xref py py-meth docutils literal notranslate"><span class="pre">molecule_from_file()</span></code></a>,
+which selects the parser from the file extension. The four values above are
+the supported set; Click does not reject other strings, so unsupported
+values fail inside the PubChem client rather than at option parsing.</p>
 </section>
 <section id="three-dimensional-data">
 <h2>Three-dimensional data<a class="headerlink" href="#three-dimensional-data" title="Link to this heading">¶</a></h2>
-<p>By default the downloaded structures are 2-D; pass <code class="docutils literal notranslate"><span class="pre">--three_d</span></code> to ask
-PubChem for three-dimensional coordinates (e.g. for
-<a class="reference internal" href="threeD/threedmolecule.ThreeDMolecule.html#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule" title="manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreeDMolecule</span></code></a>):</p>
+<p>By default the downloaded structures are 2-D. Set <code class="docutils literal notranslate"><span class="pre">--three_d</span></code> to <code class="docutils literal notranslate"><span class="pre">True</span></code>
+to ask PubChem for three-dimensional coordinates, which is what
+<a class="reference internal" href="threeD/threedmolecule.ThreeDMolecule.html#manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule" title="manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule"><code class="xref py py-class docutils literal notranslate"><span class="pre">ThreeDMolecule</span></code></a>
+expects:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>"$"
 </pre></div>
@@ -1728,9 +1858,13 @@ Finished
 </div>
 </div>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">--three_d</span></code> is a value-taking boolean option, not a bare flag: pass
+<code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>. The output format is unchanged; the difference is
+the coordinate set inside the file.</p>
 </section>
-<section id="choosing-a-destination-folder">
-<h2>Choosing a destination folder<a class="headerlink" href="#choosing-a-destination-folder" title="Link to this heading">¶</a></h2>
+<section id="choosing-a-destination-folder-and-file-names">
+<h2>Choosing a destination folder and file names<a class="headerlink" href="#choosing-a-destination-folder-and-file-names" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">--output_folder</span></code> accepts a path and creates the directory when needed:</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>"$"
 </pre></div>
@@ -1751,6 +1885,41 @@ Finished
 </div>
 </div>
 </div>
+<p>The output name is the identifier plus the format extension. Characters
+that cannot safely appear in a file name are replaced with <code class="docutils literal notranslate"><span class="pre">_</span></code>. For
+example, the slashes in a full InChI become underscores in the <code class="docutils literal notranslate"><span class="pre">.sdf</span></code>
+file name. If the same identifier is downloaded twice with the same
+format, the existing file is overwritten.</p>
+</section>
+<section id="using-the-downloaded-files-in-python">
+<h2>Using the downloaded files in Python<a class="headerlink" href="#using-the-downloaded-files-in-python" title="Link to this heading">¶</a></h2>
+<p>The files are ordinary chemistry files and can be loaded by the molecule
+classes:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry</span><span class="w"> </span><span class="kn">import</span> <span class="n">MMoleculeObject</span>
+
+<span class="n">molecule</span> <span class="o">=</span> <span class="n">MMoleculeObject</span><span class="o">.</span><span class="n">molecule_from_file</span><span class="p">(</span><span class="s2">"molecules/acetone.sdf"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For a 3-D download, use the 3-D molecule class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThreeDMolecule</span>
+
+<span class="n">molecule</span> <span class="o">=</span> <span class="n">ThreeDMolecule</span><span class="o">.</span><span class="n">molecule_from_file</span><span class="p">(</span><span class="s2">"molecules/acetone.sdf"</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The graph-based representation accepts the same files:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.chemistry</span><span class="w"> </span><span class="kn">import</span> <span class="n">GraphMolecule</span>
+
+<span class="n">molecule</span> <span class="o">=</span> <span class="n">GraphMolecule</span><span class="o">.</span><span class="n">molecule_from_file</span><span class="p">(</span><span class="s2">"molecules/acetone.sdf"</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="error-handling">
+<h2>Error handling<a class="headerlink" href="#error-handling" title="Link to this heading">¶</a></h2>
+<p>At least one identifier is required. If none of <code class="docutils literal notranslate"><span class="pre">--cid</span></code>, <code class="docutils literal notranslate"><span class="pre">--name</span></code>,
+<code class="docutils literal notranslate"><span class="pre">--smiles</span></code> or <code class="docutils literal notranslate"><span class="pre">--inchi</span></code> is supplied, the command prints the empty
+identifier and raises an exception before downloading anything. Invalid
+PubChem identifiers and network failures surface as exceptions from the
+PubChem client; the command does not silently create empty files.</p>
 </section>
 <section id="api-reference">
 <h2>API reference<a class="headerlink" href="#api-reference" title="Link to this heading">¶</a></h2>
@@ -1898,12 +2067,16 @@ Finished
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">cli</a><ul>
+<li><a class="reference internal" href="#command-overview">Command overview</a></li>
+<li><a class="reference internal" href="#options">Options</a></li>
 <li><a class="reference internal" href="#download-by-name">Download by name</a></li>
-<li><a class="reference internal" href="#several-identifiers-at-once">Several identifiers at once</a></li>
+<li><a class="reference internal" href="#several-molecules-of-the-same-kind">Several molecules of the same kind</a></li>
 <li><a class="reference internal" href="#choosing-the-identifier-type">Choosing the identifier type</a></li>
 <li><a class="reference internal" href="#output-formats">Output formats</a></li>
 <li><a class="reference internal" href="#three-dimensional-data">Three-dimensional data</a></li>
-<li><a class="reference internal" href="#choosing-a-destination-folder">Choosing a destination folder</a></li>
+<li><a class="reference internal" href="#choosing-a-destination-folder-and-file-names">Choosing a destination folder and file names</a></li>
+<li><a class="reference internal" href="#using-the-downloaded-files-in-python">Using the downloaded files in Python</a></li>
+<li><a class="reference internal" href="#error-handling">Error handling</a></li>
 <li><a class="reference internal" href="#api-reference">API reference</a><ul>
 <li><a class="reference internal" href="#manim_extensions.chemistry.cli.cli"><code class="docutils literal notranslate"><span class="pre">cli()</span></code></a></li>
 <li><a class="reference internal" href="#manim_extensions.chemistry.cli.pubchem_molecule"><code class="docutils literal notranslate"><span class="pre">pubchem_molecule()</span></code></a></li>
