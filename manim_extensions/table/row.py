@@ -4,7 +4,6 @@
 """:class:`~manim_extensions.table.row.Row` class for Manim tables.
 
 This module provides the :class:`~manim_extensions.table.row.Row` class for table visualizations.
-
 """
 
 from collections.abc import Iterator
@@ -15,8 +14,7 @@ from .cell import Cell
 
 
 class Row(VGroup):
-    """
-    A row of cells in a table.
+    """A row of cells in a table.
 
     Parameters
     ----------
@@ -109,31 +107,31 @@ class Row(VGroup):
 
     @overload  # type: ignore[override]
     def __getitem__(self, index: int) -> Cell:
-        """Return the cell at the given index.
+        """Return a cell or a slice of cells.
 
         Parameters
         ----------
         index
-            The cell index.
+            The cell index or slice.
 
         Returns
         -------
-            The selected cell.
+            The selected cell or list of cells.
         """
         ...
 
     @overload
     def __getitem__(self, index: slice) -> list[Cell]:
-        """Return the cells selected by the slice.
+        """Return a cell or a slice of cells.
 
         Parameters
         ----------
         index
-            The cell slice.
+            The cell index or slice.
 
         Returns
         -------
-            The selected cells.
+            The selected cell or list of cells.
         """
         ...
 

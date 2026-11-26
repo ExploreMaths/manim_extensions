@@ -5,7 +5,6 @@
 """:class:`~manim_extensions.compass.compass.pencil.Pencil` class for Manim.
 
 This module provides pencil visualization for geometry.
-
 """
 
 from pathlib import Path
@@ -53,8 +52,7 @@ class Pencil(SVGMobject):
         self._nib = self.submobjects[3]
 
     def get_nib(self) -> Point3D:
-        """
-        Return the coordinates of the pencil nib.
+        """Return the coordinates of the pencil nib.
 
         Returns
         -------

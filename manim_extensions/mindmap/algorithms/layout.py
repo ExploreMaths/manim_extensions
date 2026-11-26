@@ -5,7 +5,6 @@
 """:class:`~manim_extensions.mindmap.algorithms.layout.Layout` base class for mindmap algorithms.
 
 This module provides base class for layout algorithms.
-
 """
 
 __all__ = ["Layout"]

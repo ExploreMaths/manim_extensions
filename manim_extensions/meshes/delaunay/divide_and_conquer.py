@@ -2,9 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""
-functions to create delaunay meshes by divide and conquer.
-"""
+"""functions to create delaunay meshes by divide and conquer."""
 
 from collections.abc import Sequence
 from typing import Any
@@ -76,6 +74,9 @@ def get_counter_clockwise_angle(a: Vector2D, b: Vector2D) -> float:
 class DivideAndConquer:
     """Visualise the divide-and-conquer algorithm for Delaunay triangulation.
 
+    .. doc-example-covers: split_points
+
+
     The class operates on a :class:`~manim_extensions.meshes.models.manim_models.triangle_mesh.TriangleManim2DMesh` that has already
     been added to a scene and contains only vertices (no faces yet).  It
     animates the recursive splitting, triangulation of base cases, and
@@ -116,7 +117,6 @@ class DivideAndConquer:
                dc = DivideAndConquer(self, tm)
                dc.divide_and_conquer_recursive(speed=0.5)
                self.wait()
-    .. doc-example-covers: split_points
     """
 
     def __init__(self, scene: Scene, triangle_mesh: TriangleManim2DMesh) -> None:
@@ -205,7 +205,6 @@ class DivideAndConquer:
         ------
         ValueError
             If ``vert_indices`` contains more than three entries.
-
         """
 
         if len(vert_indices) > 3:
@@ -609,7 +608,6 @@ class DivideAndConquer:
         ------
         ValueError
             If the mesh already contains faces (must be empty).
-
         """
 
         if len(self.triangle_mesh.mesh.faces) != 0:

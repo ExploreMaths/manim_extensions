@@ -5,7 +5,6 @@
 """:class:`~manim_extensions.mindmap.algorithms.layout.Layout` factory for mindmap algorithms.
 
 This module provides factory for creating layout algorithms.
-
 """
 
 __all__ = [

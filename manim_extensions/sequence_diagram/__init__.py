@@ -6,7 +6,6 @@
 
 This module exports the actors, actions, and objects used for sequence-diagram
 style visualisations in Manim.
-
 """
 
 from .seq_action import *

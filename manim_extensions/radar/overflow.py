@@ -28,6 +28,9 @@ __all__ = ["OverflowRadarChart"]
 class OverflowRadarChart(RadarChart):
     """A radar chart whose data may break through the outer ring.
 
+    .. doc-example-covers: burst_in, morph_to
+
+
     The outer ring sits at the full scale; any value above it escapes as a
     filled spike. Everything from :class:`~manim_extensions.radar.overflow.OverflowRadarChart.RadarChart` works here too
     (``reveal`` / ``morph_to`` / ``disappear``), but morphs default to the
@@ -103,7 +106,6 @@ class OverflowRadarChart(RadarChart):
                self.add(chart)
                self.play(chart.burst_in())
                self.play(chart.morph_to([7, 9, 17, 6, 8, 5]))
-    .. doc-example-covers: burst_in, morph_to
     """
 
     def __init__(

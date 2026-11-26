@@ -5,7 +5,6 @@
 """:class:`~manim_extensions.compass.compass.pencil.Pencil` animations for Manim.
 
 This module provides animations for pencil manipulations.
-
 """
 
 from typing import Any

@@ -4,7 +4,6 @@
 """Solow growth model diagram for Manim.
 
 This module provides the Solow growth model diagram.
-
 """
 
 from collections.abc import Callable
@@ -39,6 +38,9 @@ from .base import EconDiagram
 
 class SolowDiagram(EconDiagram):
     r"""Solow growth model diagram.
+
+    .. doc-example-covers: decrease_savings, increase_depreciation, increase_savings, population_growth, shift_breakeven, shift_savings
+
 
     Production function: :math:`y = k^{\alpha}`
     Savings/investment: :math:`sf(k) = s \cdot k^{\alpha}`
@@ -89,7 +91,6 @@ class SolowDiagram(EconDiagram):
                    self.wait(0.5)
                self.play(diagram.show_shares())
                self.wait()
-    .. doc-example-covers: decrease_savings, increase_depreciation, increase_savings, population_growth, shift_breakeven, shift_savings
     """
 
     _shares_group: VGroup | None = None

@@ -5,7 +5,6 @@
 
 This package bundles small utility functions and reusable Manim mobjects for
 common geometry, animation, and visualisation tasks.
-
 """
 
 from importlib.metadata import version, PackageNotFoundError

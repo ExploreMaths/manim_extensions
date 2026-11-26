@@ -5,7 +5,6 @@
 """Slide joint constraint for Pymunk.
 
 This module provides the :class:`~manim_extensions.pymunk.constraints.VSlideJoint.VSlideJoint` class for creating slide joint constraints.
-
 """
 
 from __future__ import annotations
@@ -82,7 +81,6 @@ class VSlideJoint(VConstraint):
                self.add_constraints(*constraints)
                self.wait(6)
                Group(*self.mobjects).scale(0.85).move_to(ORIGIN)
-
     """
 
     def __init__(

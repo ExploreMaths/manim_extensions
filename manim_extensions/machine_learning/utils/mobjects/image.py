@@ -55,6 +55,9 @@ def _as_uint8_image(numpy_image: PixelArray) -> PixelArray:
 class GrayscaleImageMobject(Group):
     """Mobject for creating images in Manim from numpy arrays.
 
+    .. doc-example-covers: create, from_path
+
+
     Parameters
     ----------
     numpy_image
@@ -75,7 +78,6 @@ class GrayscaleImageMobject(Group):
            def construct(self):
                gradient = np.linspace(0, 255, 256).reshape(16, 16).astype(np.uint8)
                self.add(GrayscaleImageMobject(gradient))
-    .. doc-example-covers: create, from_path
     """
 
     def __init__(self, numpy_image: PixelArray, height: float = 2.3) -> None:
@@ -135,17 +137,17 @@ class GrayscaleImageMobject(Group):
     ) -> Any:
         """Scales the image mobject.
 
-
-
+        Parameters
+        ----------
         scale_factor
             Factor by which to scale the image mobject.
         **kwargs
             Additional keyword arguments for scaling.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         # super().scale(scale_factor)
         # height = self.height
@@ -158,15 +160,15 @@ class GrayscaleImageMobject(Group):
     def set_opacity(self, opacity: float) -> Any:
         """Set the opacity.
 
-
-
+        Parameters
+        ----------
         opacity
             Opacity to apply to the image mobject.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         self.image_mobject.set_opacity(opacity)
 

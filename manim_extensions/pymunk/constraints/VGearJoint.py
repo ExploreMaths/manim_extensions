@@ -5,7 +5,6 @@
 """:class:`~manim_extensions.pymunk.custom_mobjects.gear.Gear` joint constraint for Pymunk.
 
 This module provides the :class:`~manim_extensions.pymunk.constraints.VGearJoint.VGearJoint` class for creating gear joint constraints.
-
 """
 
 from __future__ import annotations
@@ -79,7 +78,6 @@ class VGearJoint(VConstraint):
                self.add_shapes_filter(pivot_1, pivot_2, gear_1, gear_2, group=2)
                self.add_constraints(*constraints)
                self.wait(5)
-
     """
 
     def __init__(

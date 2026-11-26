@@ -6,7 +6,6 @@
 """Non-deterministic finite state automaton visualization.
 
 This module provides the ManimNonDeterministicFiniteAutomaton class for visualizing NFAs.
-
 """
 
 from typing import Any, cast

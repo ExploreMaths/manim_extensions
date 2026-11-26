@@ -9,7 +9,6 @@ The module currently provides
 strokes constant while the camera zooms.  Using this scene adds a
 ``fixed_stroke_width`` parameter to stroke-bearing mobjects so that they can opt
 out of that compensation.
-
 """
 
 from collections.abc import Callable
@@ -27,6 +26,9 @@ __all__ = ["ConstantStrokeWidthScene"]
 
 class ConstantStrokeWidthScene(MovingCameraScene):
     """A scene whose strokes keep a constant on-screen width while zooming.
+
+    .. doc-example-covers: add
+
 
     Zooming the camera in multiplies the on-screen thickness of every stroke
     by the zoom factor, whichever renderer is used.  This scene compensates for
@@ -80,7 +82,6 @@ class ConstantStrokeWidthScene(MovingCameraScene):
                self.play(self.camera.frame.animate.scale(1 / 3), run_time=2)
                self.wait(0.5)
                self.play(self.camera.frame.animate.scale(3), run_time=2)
-    .. doc-example-covers: add
     """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:

@@ -4,7 +4,6 @@
 """Abstract molecule base class for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.molecule.abstract_molecule.AbstractMolecule` class as a template for all molecule implementations.
-
 """
 
 from typing import Any, Literal, cast
@@ -22,6 +21,9 @@ from manim.typing import Vector3D
 class AbstractMolecule:
     """Abstract molecule class used as a template to create
     all the other molecule classes.
+
+    .. doc-example-covers: multiple_molecules_from_file, multiple_molecules_from_string
+
 
     Parameters
     ----------
@@ -64,7 +66,6 @@ class AbstractMolecule:
         assert isinstance(molecule, AbstractMolecule)
         molecule.scale(1.5)
         molecule.get_connected_atoms_v_group(1, 2)
-    .. doc-example-covers: multiple_molecules_from_file, multiple_molecules_from_string
     """
 
     group_class: Any = VGroup
@@ -81,8 +82,7 @@ class AbstractMolecule:
         *args: Any,
         **kwargs: Any,
     ) -> "AbstractMolecule":
-        """
-        Reads a string and returns a single molecule from the parsed data.
+        """Reads a string and returns a single molecule from the parsed data.
 
 
         Parameters
@@ -125,8 +125,7 @@ class AbstractMolecule:
         *args: Any,
         **kwargs: Any,
     ) -> OpenGLGroup | VGroup:
-        """
-        Reads a file and returns a collection of molecules from that file as a OpenGLGroup or :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+        """Reads a file and returns a collection of molecules from that file as a OpenGLGroup or :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
         Parameters
         ----------
@@ -179,8 +178,7 @@ class AbstractMolecule:
         *args: Any,
         **kwargs: Any,
     ) -> "AbstractMolecule":
-        """
-        Reads a string and returns a single molecule from the parsed data.
+        """Reads a string and returns a single molecule from the parsed data.
 
 
         Parameters
@@ -228,8 +226,7 @@ class AbstractMolecule:
         *args: Any,
         **kwargs: Any,
     ) -> OpenGLGroup:
-        """
-        Reads a file and returns a collection of molecules from that file as a OpenGLGroup.
+        """Reads a file and returns a collection of molecules from that file as a OpenGLGroup.
 
         Parameters
         ----------
@@ -287,8 +284,7 @@ class AbstractMolecule:
         *args: Any,
         **kwargs: Any,
     ) -> "AbstractMolecule":
-        """
-        Generates a :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule` from an identifier using PubChem API.
+        """Generates a :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule` from an identifier using PubChem API.
 
         Parameters
         ----------
@@ -329,8 +325,7 @@ class AbstractMolecule:
     def mc_molecule_to_atoms_and_bonds(
         cls, mc_molecule: MCMolecule
     ) -> tuple[dict[Any, Any], dict[Any, Any]]:
-        """
-        Transforms the structure of a mc_molecule to a (vertices, edges) tuple.
+        """Transforms the structure of a mc_molecule to a (vertices, edges) tuple.
 
         The tuple has the following structure:
 

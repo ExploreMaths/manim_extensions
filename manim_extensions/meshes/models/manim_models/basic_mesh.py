@@ -64,6 +64,9 @@ from manim.typing import (
 class ManimMesh(Group, metaclass=ConvertToOpenGL):
     """another :class:`~manim_extensions.meshes.models.data_models.mesh.Mesh` implementation, a bit faster + looks better.
 
+    .. doc-example-covers: add_face, get_edge, get_face, get_vertex, remove_face, setup_edges, setup_faces, setup_vertices
+
+
     inspired by manim class
     :class:`~manim.mobject.three_d.three_dimensions.Surface`
 
@@ -126,7 +129,6 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
                # rotate the whole mesh; mesh data and mobjects stay in sync
                self.play(Rotate(quad_pyramid, PI / 3, about_point=ORIGIN))
                self.wait()
-    .. doc-example-covers: add_face, get_edge, get_face, get_vertex, remove_face, setup_edges, setup_faces, setup_vertices
     """
 
     # pylint:disable=abstract-method
@@ -394,17 +396,17 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
     def add_vertices(self, new_vertices: Vertices, scene: Scene) -> Any:
         """fade in some additional vertices.
 
-
-
+        Parameters
+        ----------
         new_vertices
             New vertices processed by this operation.
         scene
             The scene in which the action is performed.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         self.mesh.add_vertices(new_vertices)
         # fade out current ones, fade in all after add
@@ -426,8 +428,8 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             New position for the vertex (2-D or 3-D coordinates).
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
         # update mesh
@@ -458,8 +460,8 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             A pair of vertex indices defining the edge to update.
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
         e = self.get_edge(self.mesh.get_edge_index(edge))
@@ -507,15 +509,15 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         Multiple vectors of the same dimensionality are summed to produce
         the final translation.
 
-
-
+        Parameters
+        ----------
         vectors
             One or more displacement vectors to apply.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         total_shift = np.sum([np.asarray(v, dtype=float) for v in vectors], axis=0)
         # update vertices of self.mesh
@@ -526,17 +528,17 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
     def scale(self, scale_factor: float, **kwargs: Any) -> Any:
         """Scale the mesh (data and Manim objects) about its bounding-box centre.
 
-
-
+        Parameters
+        ----------
         scale_factor
             The uniform scale factor to apply.
         **kwargs
             Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.scale`.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         about_point = self._mesh_center()
         self.mesh.scale_mesh(scale_factor, about_point)
@@ -563,7 +565,6 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         ------
         LookupError
             If ``dim`` is greater than or equal to ``self.mesh.dim``.
-
         """
         if dim >= self.mesh.dim:
             raise LookupError("dim must lower than ManimMesh.mesh.dim!")
@@ -585,8 +586,8 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         For 2-D meshes the rotation is always about the z-axis; for 3-D
         meshes an arbitrary ``axis`` can be specified.
 
-
-
+        Parameters
+        ----------
         angle
             Rotation angle in radians.
         axis
@@ -598,8 +599,8 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         **kwargs
             Accepted for signature compatibility with the supertype.
 
-
-
+        Parameters
+        ----------
         angle
             Rotation angle in radians.
         axis
@@ -610,9 +611,9 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             Forwarded to the parent :meth:`~manim.mobject.mobject.Mobject.rotate`.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         axis_array: Vector3D = np.asarray(axis, dtype=float)
         if self.mesh.dim == 4:
@@ -652,8 +653,8 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         The underlying data mesh is updated first; the resulting Manim
         mobject is then flipped with the same arguments.
 
-
-
+        Parameters
+        ----------
         axis
             Axis orthogonal to the mirror plane.
         about_point
@@ -663,9 +664,9 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             Accepted for signature compatibility with
             :meth:`~manim.mobject.mobject.Mobject.flip`; unused here.
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         axis_array: Vector3D = np.asarray(axis, dtype=float)
         if self.mesh.dim == 4 and axis_array.shape[0] == 4:
@@ -691,8 +692,8 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
     ) -> Any:
         """Animate a single vertex and update all adjacent faces/edges.
 
-
-
+        Parameters
+        ----------
         scene
             The scene in which the animation is played.
         vertex_idx
@@ -703,9 +704,9 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             May include ``shift_vertex_runtime`` (animation duration in seconds).
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         start = self.mesh.vertices[vertex_idx].copy()
         tracker = ValueTracker(0)
@@ -731,8 +732,8 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
     def shift_vertices(self, scene: Scene, shift: Vector3D, **kwargs: Any) -> Any:
         """Animate all vertices simultaneously with per-vertex offsets.
 
-
-
+        Parameters
+        ----------
         scene
             The scene in which the animation is played.
         shift
@@ -742,9 +743,9 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             May include ``shift_vertices_runtime`` (animation duration in seconds).
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         start = copy.deepcopy(self.mesh.vertices)
         tracker = ValueTracker(0)
@@ -793,7 +794,6 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         ------
         InvalidShapeException
             If ``new_positions`` does not have the same length as the vertex list.
-
         """
         if len(new_positions) != len(self.mesh.vertices):
             raise InvalidShapeException(
@@ -827,7 +827,6 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         ------
         InvalidMeshDimensionsException
             If ``pos`` has the wrong dimensionality.
-
         """
         # expect pos and curr_pos / mesh.dim to have the same dimensions
         if self.mesh.dim != len(pos):
@@ -849,8 +848,8 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
         Uses :meth:`~manim_extensions.meshes.models.data_models.mesh.Mesh.snap_to_grid` to compute the target positions and
         then animates the transition via :meth:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.move_vertices_to`.
 
-
-
+        Parameters
+        ----------
         scene
             The scene in which the animation is played.
         grid_sizes
@@ -863,9 +862,9 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
             Forwarded to :meth:`~manim_extensions.meshes.models.manim_models.basic_mesh.ManimMesh.move_vertices_to`.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         # to be able to show the movement, the update needs to be calculated on a dummy mesh first
         new_verts = self.mesh.snap_to_grid(
@@ -877,6 +876,9 @@ class ManimMesh(Group, metaclass=ConvertToOpenGL):
 
 class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
     """'2D' mesh implementation.
+
+    .. doc-example-covers: setup_vertices
+
 
     printing Vertices in Manim is currently not supported for 2D vertices. Therefore, while printing the appropriate
     3D-vertices are used. Everything else should accept plain 2D values. Therefore, this :class:`~manim_extensions.meshes.models.manim_models.basic_mesh.Manim2DMesh` class should
@@ -931,7 +933,6 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
                self.wait()
                content = Group(*self.mobjects)
                content.scale_to_fit_height(5).move_to(ORIGIN)
-    .. doc-example-covers: setup_vertices
     """
 
     # pylint:disable=abstract-method

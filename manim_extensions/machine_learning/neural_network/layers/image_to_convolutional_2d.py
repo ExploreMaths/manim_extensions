@@ -221,7 +221,8 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
             Returns
             -------
-                The image mobject scaled to the target feature-map size."""
+                The image mobject scaled to the target feature-map size.
+            """
             max_width_height = max(image_mobject.width, image_mobject.height)
             scale_factor = (
                 cast(Any, target_feature_map).untransformed_width / max_width_height
@@ -255,17 +256,17 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     def scale(self, scale_factor: float, **kwargs: Any) -> Any:
         """Scale the layer by forwarding to the parent class.
 
-
-
+        Parameters
+        ----------
         scale_factor
             Factor by which the layer is scaled.
         **kwargs
             Forwarded to :meth:`~manim.mobject.mobject.Mobject.scale`.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         super().scale(scale_factor, **kwargs)
 

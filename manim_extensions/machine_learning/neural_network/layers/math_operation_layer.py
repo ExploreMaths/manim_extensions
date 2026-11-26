@@ -29,6 +29,9 @@ from manim.typing import Point3D
 class MathOperationLayer(VGroupNeuralNetworkLayer):
     """Handles rendering a layer for a neural network.
 
+    .. doc-example-covers: make_forward_pass_animation
+
+
     Parameters
     ----------
     operation_type
@@ -83,7 +86,6 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
                self.play(Create(nn))
                # Animate the forward pass
                self.play(nn.make_forward_pass_animation())
-    .. doc-example-covers: make_forward_pass_animation
     """
 
     #: Arithmetic operators accepted by this layer.
@@ -119,8 +121,8 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
     ) -> Any:
         """Creates the neural network layer.
 
-
-
+        Parameters
+        ----------
         input_layer
             The layer preceding this layer in the network.
         output_layer
@@ -129,9 +131,9 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             Forwarded to the parent layer classes.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         # Draw the operation
         self.operation_text = Text(self.operation_type, font_size=self.font_size)
@@ -209,7 +211,8 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-            The center point of the surrounding shape."""
+            The center point of the surrounding shape.
+        """
         return self.surrounding_circle.get_center()
 
     def get_left(self) -> Point3D:
@@ -217,7 +220,8 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-            The leftmost point of the surrounding shape."""
+            The leftmost point of the surrounding shape.
+        """
         return self.surrounding_circle.get_left()
 
     def get_right(self) -> Point3D:
@@ -225,7 +229,8 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-            The rightmost point of the surrounding shape."""
+            The rightmost point of the surrounding shape.
+        """
         return self.surrounding_circle.get_right()
 
     def move_to(
@@ -236,8 +241,8 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
     ) -> Any:
         """Moves the center of the layer to the given mobject or point.
 
-
-
+        Parameters
+        ----------
         mobject_or_point
             The mobject or point whose center the layer is moved to.
         aligned_edge
@@ -248,9 +253,9 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             implementation.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         layer_center = self.surrounding_circle.get_center()
         if isinstance(mobject_or_point, Mobject):

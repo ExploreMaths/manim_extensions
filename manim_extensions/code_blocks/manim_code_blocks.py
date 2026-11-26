@@ -236,8 +236,10 @@ class ProgrammingLanguage(abstract):
 
 
 class CodeBlock(VGroup):
-    """
-    A block of code. By default code blocks are rendered as :class:`~manim.mobject.text.text_mobject.MarkupText` objects with `BackgroundRectangles` behind them. Furthermore, a title with the name and color of the language is rendered above the code block on the left-hand side. Syntax highlighting is done using `TextMates` by extracting `.tmLanguage.json` files from `microsoft/vscode`. See https://github.com/microsoft/vscode/tree/main/extensions.
+    """A block of code. By default code blocks are rendered as :class:`~manim.mobject.text.text_mobject.MarkupText` objects with `BackgroundRectangles` behind them. Furthermore, a title with the name and color of the language is rendered above the code block on the left-hand side. Syntax highlighting is done using `TextMates` by extracting `.tmLanguage.json` files from `microsoft/vscode`. See https://github.com/microsoft/vscode/tree/main/extensions.
+
+    .. doc-example-covers: uncreate
+
 
     Parameters
     ----------
@@ -266,7 +268,6 @@ class CodeBlock(VGroup):
                block = CodeBlock('print("Hello World!")')
                block.scale(2.5)
                self.add(block)
-    .. doc-example-covers: uncreate
     """
 
     code: MarkupText
@@ -384,8 +385,7 @@ class CodeBlock(VGroup):
         self.code_background = background_rect
 
     def create(self, **kwargs: Any) -> tuple[Any, ...]:
-        r"""
-        Return a tuple of animations for creating the code block. Use such as:\n
+        r"""Return a tuple of animations for creating the code block. Use such as:\n
         ```
         python = CodeBlock('print("Hello World!")', language = Python)
         self.play(*python.create())
@@ -416,8 +416,7 @@ class CodeBlock(VGroup):
         )
 
     def uncreate(self, **kwargs: Any) -> tuple[Animation, ...]:
-        """
-        Return a tuple of animations for uncreating the code block. Use such as:
+        """Return a tuple of animations for uncreating the code block. Use such as:
         ```
         python = CodeBlock('print("Hello World!")', language = Python)
         self.play(*python.uncreate())

@@ -130,8 +130,8 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
             The time step since the last update.
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
         self.time += dt
@@ -309,8 +309,8 @@ class StandingWave(ParametricFunction):
             The time step since the last update.
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
         self.time += dt

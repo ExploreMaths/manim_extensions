@@ -7,7 +7,6 @@
 
 This module exposes a 3D-styled cube model that is useful for puzzles,
 visual demonstrations, and algorithm walkthroughs.
-
 """
 
 from typing import Any, Literal, cast
@@ -229,15 +228,15 @@ class RubiksCube(VMobject):
     def set_state(self, positions: list[Any]) -> Any:
         """Apply a colour state to each cube face.
 
-
-
+        Parameters
+        ----------
         positions
             A sequence of face letters specifying the cube state.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         colors = {
             "U": self.colors[0],
@@ -286,8 +285,8 @@ class RubiksCube(VMobject):
     def transform_cubie(self, position: int, offset: list[Any], tile: Cubie) -> Any:
         """Apply translation offsets to a cubie based on its position.
 
-
-
+        Parameters
+        ----------
         position
             The cubie position along the cube axis.
         offset
@@ -296,9 +295,9 @@ class RubiksCube(VMobject):
             The cubie to transform.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         offsets_nr = len(offset)
         for i in range(offsets_nr):
@@ -362,15 +361,15 @@ class RubiksCube(VMobject):
     def adjust_indices(self, cubies: np.ndarray) -> Any:
         """Rebuild the cube index mapping from a set of cubies.
 
-
-
+        Parameters
+        ----------
         cubies
             The cubies whose positions should be reindexed.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         for c in cubies.flatten():
             loc = self.indices[c.get_rounded_center()]

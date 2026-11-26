@@ -6,7 +6,6 @@
 """XML parser for automata definition files.
 
 This module provides functions for parsing XML format automaton definition files.
-
 """
 
 from typing import cast

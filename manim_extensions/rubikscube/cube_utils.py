@@ -6,7 +6,6 @@
 """Utility functions for Rubik's Cube.
 
 This module provides utility functions for Rubik's Cube operations.
-
 """
 
 from __future__ import annotations

@@ -5,7 +5,6 @@
 """:class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` class for automata visualizations.
 
 This module provides transition visualization for automata.
-
 """
 
 from __future__ import annotations
@@ -40,6 +39,9 @@ from manim.typing import Point3D
 
 class ManimTransition(Transition, VGroup):
     """A visual transition arrow for automata diagrams.
+
+    .. doc-example-covers: animate_transition
+
 
     The object combines a Manim arrow with labels representing the read symbols
     of a finite-state transition.
@@ -82,7 +84,6 @@ class ManimTransition(Transition, VGroup):
                self.play(animations.animate_highlight_transition(transition))
                self.play(animations.animate_transition_to_default_color(transition))
                self.play(transition.animate_transition(True))
-    .. doc-example-covers: animate_transition
     """
 
     def __init__(
@@ -183,17 +184,17 @@ class ManimTransition(Transition, VGroup):
     def create_reflexive_arrow(self, point1: Point3D, point2: Point3D) -> Any:
         """Create a curved reflexive arrow from the source state back to itself.
 
-
-
+        Parameters
+        ----------
         point1
             Start point on the state circle.
         point2
             End point on the state circle.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         self.arrow = CurvedArrow(point2, point1, angle=1.5 * PI)
 
@@ -209,8 +210,7 @@ class ManimTransition(Transition, VGroup):
     def calculate_direction_of_arrow_label(
         self, normal_vector_choice: int = 1
     ) -> list[float]:
-        """
-        Return the normal direction used to offset the transition label.
+        """Return the normal direction used to offset the transition label.
 
         Parameters
         ----------
@@ -244,15 +244,15 @@ class ManimTransition(Transition, VGroup):
     def position_text(self, buffer: float) -> Any:
         """Place each read-symbol label next to the transition arrow.
 
-
-
+        Parameters
+        ----------
         buffer
             Padding distance used to separate multiple labels stacked around the arrow.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         # Obtain coordinates for the centre of the line
         x1 = None
@@ -289,15 +289,14 @@ class ManimTransition(Transition, VGroup):
             read_symbol.set_y(text_coordinates[1])
 
     def convert_straight_arrow_to_curved_arrow(self) -> Any:
-        """
-        Converts a straight arrow transition to a curved arrow transition.
+        """Converts a straight arrow transition to a curved arrow transition.
         This method is primarily used when there are two opposing transitions
         between two states.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         # remove existing manim arrow
         self.remove(self.arrow)
@@ -314,15 +313,15 @@ class ManimTransition(Transition, VGroup):
         # create a straight line and use the points locations to create curved arrow
         """Construct a curved arrow and position its read-symbol labels.
 
-
-
+        Parameters
+        ----------
         buffer
             Extra offset applied to stacked labels near the arc.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         temp_arrow = Arrow(self.transition_from, self.transition_to)
         from_point = temp_arrow.start

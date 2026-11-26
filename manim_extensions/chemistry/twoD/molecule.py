@@ -4,7 +4,6 @@
 """2D molecule representation for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.twoD.molecule.MMoleculeObject` class for rendering molecules in 2D.
-
 """
 
 from __future__ import annotations
@@ -51,6 +50,9 @@ _logger = logging.getLogger(__name__)
 
 class MMoleculeObject(VGroup, AbstractMolecule):
     r"""Represents a molecule in a similar fashion as it is done in academia.
+
+    .. doc-example-covers: get_bonds
+
 
     Parameters
     ----------
@@ -107,8 +109,6 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                self.add(mmolecule)
                mmolecule.add_atom_numbering()
                self.add(mmolecule[-1])
-
-    .. doc-example-covers: get_bonds
     """
 
     def __init__(
@@ -149,7 +149,8 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Returns
         -------
-            A tuple of the results."""
+            A tuple of the results.
+        """
         atoms = VDict()
         atoms_by_index = {}
         for index, atom in self.atoms_dict.items():
@@ -311,7 +312,8 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Returns
         -------
-            The object itself, for method chaining."""
+            The object itself, for method chaining.
+        """
         numbering = VGroup()
         for atom in self.atoms:
             if not self.explicit_hydrogens:
@@ -339,7 +341,8 @@ class MMoleculeObject(VGroup, AbstractMolecule):
 
         Returns
         -------
-            The object itself, for method chaining."""
+            The object itself, for method chaining.
+        """
         numbering = VGroup()
         for bond in self.bonds:
             if (
@@ -736,8 +739,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
     def mc_molecule_to_atoms_and_bonds(
         cls, mc_molecule: MCMolecule
     ) -> tuple[dict[Any, Any], dict[Any, Any]]:
-        """
-        Transforms the structure of a mc_molecule to a (vertices, edges) tuple.
+        """Transforms the structure of a mc_molecule to a (vertices, edges) tuple.
 
         The tuple has the following structure:
 
@@ -1097,7 +1099,8 @@ class NamedMolecule(VGroup):
 
         Returns
         -------
-            The object itself, for method chaining."""
+            The object itself, for method chaining.
+        """
         self.molecule = self.molecule.add_bond_numbering()
         self.molecule[-1].move_to(self.molecule[1].get_center())
 
@@ -1108,7 +1111,8 @@ class NamedMolecule(VGroup):
 
         Returns
         -------
-            The object itself, for method chaining."""
+            The object itself, for method chaining.
+        """
         # Atom numbering is not working correctly.
         self.molecule = self.molecule.add_atom_numbering()
         self.molecule[-1].move_to(self.molecule[0].get_center())

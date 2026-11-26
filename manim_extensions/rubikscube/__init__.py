@@ -6,7 +6,6 @@
 
 The module exposes the main cube model and related animation utilities for
 visualising cube states in Manim scenes.
-
 """
 
 from __future__ import annotations

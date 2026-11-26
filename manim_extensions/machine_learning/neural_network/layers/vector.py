@@ -18,6 +18,9 @@ from .parent_layers import NeuralNetworkLayer, VGroupNeuralNetworkLayer
 class VectorLayer(VGroupNeuralNetworkLayer):
     """Shows a vector.
 
+    .. doc-example-covers: make_forward_pass_animation, make_vector
+
+
     Parameters
     ----------
     num_values
@@ -56,7 +59,6 @@ class VectorLayer(VGroupNeuralNetworkLayer):
                self.play(Create(nn))
                # Animate the forward pass
                self.play(nn.make_forward_pass_animation())
-    .. doc-example-covers: make_forward_pass_animation, make_vector
     """
 
     def __init__(
@@ -77,8 +79,8 @@ class VectorLayer(VGroupNeuralNetworkLayer):
     ) -> Any:
         """Build the vector label and add it to the layer.
 
-
-
+        Parameters
+        ----------
         input_layer
             The layer preceding this layer in the network.
         output_layer
@@ -87,9 +89,9 @@ class VectorLayer(VGroupNeuralNetworkLayer):
             Forwarded to the parent layer classes.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         super().construct_layer(input_layer, output_layer, **kwargs)
         # Make the vector

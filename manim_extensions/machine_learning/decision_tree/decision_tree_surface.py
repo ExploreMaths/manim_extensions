@@ -208,17 +208,17 @@ def compute_decision_areas(
 def plot_areas(rectangles: MatrixMN) -> Any:
     """Plot decision area rectangles on the current matplotlib axes.
 
-
-
+    Parameters
+    ----------
     rectangles
         Array of decision-area rectangles as returned by
         :func:`~manim_extensions.machine_learning.decision_tree.decision_tree_surface.compute_decision_areas`;
         each row is ``[left, right, bottom, top, class_index]``.
 
 
-
-
-        The resulting value.
+    Returns
+    -------
+            The resulting value.
     """
     plt = require("ml", "matplotlib.pyplot")
     for rect in rectangles:
@@ -330,6 +330,9 @@ def merge_overlapping_polygons(
 class IrisDatasetPlot(VGroup):
     """Plot of the first two features of the Iris dataset.
 
+    .. doc-example-covers: create_animation
+
+
     Parameters
     ----------
     iris
@@ -350,7 +353,6 @@ class IrisDatasetPlot(VGroup):
                # VGroup.__init__ is not called by the constructor, so add
                # the composed plot groups directly.
                self.add(plot.all_group)
-    .. doc-example-covers: create_animation
     """
 
     def __init__(self, iris: Bunch) -> None:
@@ -533,6 +535,9 @@ class IrisDatasetPlot(VGroup):
 class DecisionTreeSurface(VGroup):
     """Colored decision surface of a fitted decision tree.
 
+    .. doc-example-covers: create_override, make_split_to_animation_map, uncreate_override
+
+
     Parameters
     ----------
     tree_clf
@@ -567,7 +572,6 @@ class DecisionTreeSurface(VGroup):
                # VGroup.__init__ is not called by the constructor, so add
                # the computed surface rectangles directly.
                self.add(axes, *surface.surface_rectangles)
-    .. doc-example-covers: create_override, make_split_to_animation_map, uncreate_override
     """
 
     def __init__(
@@ -589,7 +593,8 @@ class DecisionTreeSurface(VGroup):
 
         Returns
         -------
-            A list of the results."""
+            A list of the results.
+        """
         # compute data bounds
         left = np.amin(self.data[:, 0]) - 0.2
         right = np.amax(self.data[:, 0]) + 0.2

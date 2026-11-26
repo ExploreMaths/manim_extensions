@@ -4,7 +4,6 @@
 """Parser classes for chemical file formats.
 
 This module provides parser classes for reading various chemical file formats.
-
 """
 
 from .mol_parser import MolParser as MolParser

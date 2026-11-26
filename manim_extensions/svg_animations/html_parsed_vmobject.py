@@ -7,7 +7,6 @@
 
 This module provides functionality to parse SVG files and create
 animated Manim objects from them.
-
 """
 
 from typing import Any, cast
@@ -216,15 +215,15 @@ class HTMLParsedVMobject:
         converts the resulting path attributes into JavaScript DOM update
         statements and appends them to ``self.js_updates``.
 
-
-
+        Parameters
+        ----------
         dt
             Elapsed time since the previous frame, in seconds.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         if self.continue_updating is False:
             return
@@ -292,9 +291,9 @@ class HTMLParsedVMobject:
         renderer time into the HTML/JS output.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         camera = cast(Camera, self.scene.camera)
         bg_color = color_to_int_rgba(camera.background_color, camera.background_opacity)
@@ -329,9 +328,9 @@ class HTMLParsedVMobject:
         ``<scene_name>.html``.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         self.scene.remove_updater(self.updater)
         self.js_updates.removesuffix("\n")
@@ -364,8 +363,8 @@ class HTMLParsedVMobject:
         combination and records the resulting JavaScript DOM updates, so
         the generated HTML page can switch between the states interactively.
 
-
-
+        Parameters
+        ----------
         value_trackers
             Value trackers, swept through every combination of
             ``linspaces``.
@@ -378,9 +377,9 @@ class HTMLParsedVMobject:
 
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         svg2paths = require("svg", "svgpathtools").svg2paths
         if animate_this is False:

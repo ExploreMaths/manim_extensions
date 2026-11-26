@@ -4,7 +4,6 @@
 """Chemical formula representation for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.twoD.chemical_formula.ChemicalFormula` class for rendering chemical formulas.
-
 """
 
 from typing import Any, cast
@@ -26,8 +25,7 @@ from manim import (
 
 
 class ChemicalFormula(MarkupText):
-    """
-    Mostly useful for simple compounds like binary salts or oxoanions.
+    """Mostly useful for simple compounds like binary salts or oxoanions.
 
     Parameters
     ----------
@@ -170,6 +168,9 @@ class ChemicalFormula(MarkupText):
 class NamedFormula(VGroup):
     """A chemical formula together with its name.
 
+    .. doc-example-covers: make_name
+
+
     Parameters
     ----------
     metal_name
@@ -211,7 +212,6 @@ class NamedFormula(VGroup):
            def construct(self):
                self.add(NamedFormula("Sodio", "Cloro", "NaCl",
                                      metal_color=BLUE, non_metal_color=GREEN))
-    .. doc-example-covers: make_name
     """
 
     def __init__(
@@ -253,8 +253,7 @@ class NamedFormula(VGroup):
         self.add(name_mob)
 
     def make_name(self) -> MarkupText:
-        """
-        Not all languages use the same naming structure.
+        """Not all languages use the same naming structure.
         For example, in english NaCl is Sodium (Na) Chloride (Cl)
         while in spanish it is Cloruro (Cl) Sódico (Na). Reimplement it
         as you need.
@@ -286,8 +285,7 @@ class NamedFormula(VGroup):
 
 
 class ComplexFormula(MarkupText):
-    """
-    Allows the creation of more complex molecular formulas
+    """Allows the creation of more complex molecular formulas
     using a dictionary. The key is the string to be written
     and the value is a color.
 
@@ -377,8 +375,7 @@ class ComplexFormula(MarkupText):
 
 
 class NamedComplexFormula(VGroup):
-    """
-    Complex formula build with two dicts.
+    """Complex formula build with two dicts.
 
     Parameters
     ----------
@@ -436,7 +433,8 @@ class NamedComplexFormula(VGroup):
 
         Returns
         -------
-            The resulting string."""
+            The resulting string.
+        """
         markup = ""
         for name, color in self.name_dict.items():
             markup += f"<span fgcolor='{color}'>{name} </span>"

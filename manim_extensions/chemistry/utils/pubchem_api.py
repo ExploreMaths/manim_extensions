@@ -5,7 +5,6 @@
 """PubChem API manager for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.utils.pubchem_api.PubchemAPIManager` class for fetching molecular data from PubChem.
-
 """
 
 from __future__ import annotations
@@ -142,7 +141,8 @@ class PubchemAPIManager:
 
         Returns
         -------
-            The PubChem record fetched by compound ID, as a string."""
+            The PubChem record fetched by compound ID, as a string.
+        """
         requests = require("chemistry", "requests")
         request_url = f"{PubchemAPIManager.BASE_URL}/cid/{self.cid}/{self.format}"
         if self.three_d:
@@ -156,7 +156,8 @@ class PubchemAPIManager:
 
         Returns
         -------
-            The PubChem record fetched by common name, as a string."""
+            The PubChem record fetched by common name, as a string.
+        """
         requests = require("chemistry", "requests")
         request_url = f"{PubchemAPIManager.BASE_URL}/name/{self.name}/{self.format}"
         if self.three_d:
@@ -170,7 +171,8 @@ class PubchemAPIManager:
 
         Returns
         -------
-            The PubChem record fetched from a SMILES string."""
+            The PubChem record fetched from a SMILES string.
+        """
         requests = require("chemistry", "requests")
         request_url = f"{PubchemAPIManager.BASE_URL}/smiles/{self.smiles}/{self.format}"
         if self.three_d:
@@ -189,7 +191,8 @@ class PubchemAPIManager:
         Raises
         ------
         Exception
-            If the compound cannot be found or the PubChem API fails."""
+            If the compound cannot be found or the PubChem API fails.
+        """
         requests = require("chemistry", "requests")
         identifier = self.inchi
         if cast(Any, identifier).startswith("InChI="):

@@ -28,6 +28,9 @@ from ...utils.mobjects.image import GrayscaleImageMobject, LabeledColorImage
 class TripletLayer(NeuralNetworkLayer):
     """Shows triplet images.
 
+    .. doc-example-covers: make_assets, make_forward_pass_animation
+
+
     Parameters
     ----------
     anchor
@@ -68,7 +71,6 @@ class TripletLayer(NeuralNetworkLayer):
                nn = NeuralNetwork([triplet, FeedForwardLayer(4)])
                nn.move_to(ORIGIN)
                self.play(Create(nn))
-    .. doc-example-covers: make_assets, make_forward_pass_animation
     """
 
     def __init__(
@@ -98,8 +100,8 @@ class TripletLayer(NeuralNetworkLayer):
     ) -> Any:
         """Build the triplet assets and add them to the layer.
 
-
-
+        Parameters
+        ----------
         input_layer
             The layer preceding this layer in the network.
         output_layer
@@ -108,9 +110,9 @@ class TripletLayer(NeuralNetworkLayer):
             Forwarded to the parent layer classes.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         # Make the assets
         self.assets = self.make_assets()
@@ -166,12 +168,12 @@ class TripletLayer(NeuralNetworkLayer):
         return triplet_layer
 
     def make_assets(self) -> Group:
-        """
-        Constructs the assets needed for a triplet layer.
+        """Constructs the assets needed for a triplet layer.
 
         Returns
         -------
-            A :class:`~manim.mobject.mobject.Group` instance representing the result."""
+            A :class:`~manim.mobject.mobject.Group` instance representing the result.
+        """
         # Handle anchor
         anchor_group = LabeledColorImage(
             cast(Any, self.anchor),

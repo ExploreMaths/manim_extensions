@@ -34,6 +34,9 @@ from manim.typing import Point2D, Point3D, MatrixMN
 class EmbeddingLayer(VGroupNeuralNetworkLayer):
     """:class:`~manim_extensions.machine_learning.neural_network.neural_network.NeuralNetwork` embedding object that can show probability distributions.
 
+    .. doc-example-covers: construct_gaussian_point_cloud, make_forward_pass_animation
+
+
     Parameters
     ----------
     point_radius
@@ -81,7 +84,6 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
                self.play(Create(nn))
                # Animate the forward pass
                self.play(nn.make_forward_pass_animation())
-    .. doc-example-covers: construct_gaussian_point_cloud, make_forward_pass_animation
     """
 
     def __init__(
@@ -110,8 +112,8 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
     ) -> Any:
         """Build the axes, point cloud, and latent distribution for the embedding.
 
-
-
+        Parameters
+        ----------
         input_layer
             The layer preceding this layer in the network.
         output_layer
@@ -120,9 +122,9 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
             Forwarded to the parent layer classes.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         self.axes = Axes(
             tips=False,
@@ -189,7 +191,8 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-            A point sampled from the current latent distribution."""
+            A point sampled from the current latent distribution.
+        """
         mean = self.latent_distribution.mean
         cov = self.latent_distribution.cov
         point = np.random.multivariate_normal(mean, cov)
@@ -203,7 +206,8 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
 
         Returns
         -------
-            The mean location of the latent distribution in the axes frame."""
+            The mean location of the latent distribution in the axes frame.
+        """
         return self.axes.coords_to_point(self.latent_distribution.mean)
 
     def construct_gaussian_point_cloud(

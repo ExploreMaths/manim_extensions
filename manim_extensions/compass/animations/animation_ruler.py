@@ -5,7 +5,6 @@
 """:class:`~manim_extensions.compass.compass.ruler.Ruler` animations for Manim.
 
 This module provides animations for ruler manipulations.
-
 """
 
 from typing import Any

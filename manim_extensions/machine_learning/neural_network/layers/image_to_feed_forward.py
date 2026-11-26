@@ -26,6 +26,9 @@ from .parent_layers import ConnectiveLayer, NeuralNetworkLayer
 class ImageToFeedForward(ConnectiveLayer):
     """Connective layer between an image layer and a feed-forward layer.
 
+    .. doc-example-covers: make_forward_pass_animation
+
+
     Parameters
     ----------
     input_layer
@@ -62,7 +65,6 @@ class ImageToFeedForward(ConnectiveLayer):
                content = Group(first, second, connection)
                content.scale_to_fit_height(5.5).move_to(ORIGIN)
                self.add(content)
-    .. doc-example-covers: make_forward_pass_animation
     """
 
     input_class = ImageLayer

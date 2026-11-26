@@ -2,9 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""
-A place for all decorators.
-"""
+"""A place for all decorators."""
 
 from collections.abc import Callable
 from typing import Any, ParamSpec, TypeVar, cast

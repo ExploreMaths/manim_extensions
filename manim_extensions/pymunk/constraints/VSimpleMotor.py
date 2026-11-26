@@ -5,7 +5,6 @@
 """Simple motor constraint for Pymunk.
 
 This module provides the :class:`~manim_extensions.pymunk.constraints.VSimpleMotor.VSimpleMotor` class for creating simple motor constraints.
-
 """
 
 from __future__ import annotations
@@ -68,7 +67,6 @@ class VSimpleMotor(VConstraint):
                self.add_constraints(motor)
                self.wait(4)
                Group(*self.mobjects).scale(0.12).move_to(ORIGIN)
-
     """
 
     def __init__(

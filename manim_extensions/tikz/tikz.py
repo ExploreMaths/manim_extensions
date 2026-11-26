@@ -5,7 +5,6 @@
 """TikZ integration for Manim.
 
 This module provides TikZ markup to SVG conversion for Manim animations.
-
 """
 
 from typing import Any

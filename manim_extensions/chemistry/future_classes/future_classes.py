@@ -4,7 +4,6 @@
 """Future classes for Manim chemistry.
 
 This module contains experimental classes that may be implemented in the future.
-
 """
 
 import numpy as np
@@ -114,6 +113,9 @@ class Electron(VMobject):
 class Element(VGroup):
     """A chemical element with a labeled central atom surrounded by electrons and holes.
 
+    .. doc-example-covers: arrange_particles, get_electrons, get_holes, get_particles, get_subelectron_holes, make_subelectron_holes
+
+
     Parameters
     ----------
     element
@@ -148,7 +150,6 @@ class Element(VGroup):
        class ElementScene(Scene):
            def construct(self):
                self.add(Element(element="Si", n_electrons=4, n_holes=4))
-    .. doc-example-covers: arrange_particles, get_electrons, get_holes, get_particles, get_subelectron_holes, make_subelectron_holes
     """
 
     def __init__(
@@ -190,7 +191,8 @@ class Element(VGroup):
 
         Returns
         -------
-            The labeled dot representing the central atom at the element radius."""
+            The labeled dot representing the central atom at the element radius.
+        """
         label = Text(self.element_label)
         base_radius = 0.4 + max(label.width, label.height) / 2
 
@@ -249,7 +251,8 @@ class Element(VGroup):
 
         Returns
         -------
-            The group containing the distributed electrons and holes."""
+            The group containing the distributed electrons and holes.
+        """
         if len(self.particles) == 0:
             return self.particles
         self.add(self.particles.shift((0, 0, 0)))
@@ -281,7 +284,8 @@ class Element(VGroup):
 
         Returns
         -------
-            The group of subelectron holes."""
+            The group of subelectron holes.
+        """
         return self.subelectron_holes_group
 
 
@@ -337,6 +341,9 @@ class ElementFrame(VGroup):
 class NPNTransistor(VGroup):
     """An NPN transistor diagram with n and p regions, electrons and holes.
 
+    .. doc-example-covers: make_particles
+
+
     Parameters
     ----------
     regions_opacity
@@ -355,7 +362,6 @@ class NPNTransistor(VGroup):
        class NPNTransistorScene(Scene):
            def construct(self):
                self.add(NPNTransistor())
-    .. doc-example-covers: make_particles
     """
 
     def __init__(self, regions_opacity: float = 0.8, **kwargs: Any) -> None:
@@ -423,6 +429,9 @@ class NPNTransistor(VGroup):
 class BatterySchema(VGroup):
     """A battery schema attached to a mobject.
 
+    .. doc-example-covers: corner_schema, horizontal_schema, select_schema
+
+
     Parameters
     ----------
     mob
@@ -446,7 +455,6 @@ class BatterySchema(VGroup):
        class BatterySchemaScene(Scene):
            def construct(self):
                self.add(BatterySchema())
-    .. doc-example-covers: corner_schema, horizontal_schema, select_schema
     """
 
     # TODO: This is not working as intended, rebuild this.
@@ -473,7 +481,8 @@ class BatterySchema(VGroup):
 
         Returns
         -------
-            The start and end positions of the schema for the configured layout."""
+            The start and end positions of the schema for the configured layout.
+        """
         options_dict = {
             "horizontal": [self.mob.get_left(), self.mob.get_right()],
             "corner": [self.mob.get_left(), self.mob.get_top()],
@@ -606,7 +615,8 @@ class BatterySchema(VGroup):
 
         Returns
         -------
-            The object itself, for method chaining."""
+            The object itself, for method chaining.
+        """
         terminals = VGroup(self.plus_terminal, self.minus_terminal)
 
         # patched: the positional about_point argument is gone in current manim.
@@ -617,6 +627,9 @@ class BatterySchema(VGroup):
 
 class MOSFETTransistor(VGroup):
     """A MOSFET transistor diagram with optional holes and battery.
+
+    .. doc-example-covers: add_battery, add_battery_sides, add_battery_terminals, add_holes, make_main_board, make_n_region
+
 
     Parameters
     ----------
@@ -638,7 +651,6 @@ class MOSFETTransistor(VGroup):
        class MOSFETTransistorScene(Scene):
            def construct(self):
                self.add(MOSFETTransistor())
-    .. doc-example-covers: add_battery, add_battery_sides, add_battery_terminals, add_holes, make_main_board, make_n_region
     """
 
     def __init__(
@@ -673,7 +685,8 @@ class MOSFETTransistor(VGroup):
 
         Returns
         -------
-            The main red rectangular board of the MOSFET transistor."""
+            The main red rectangular board of the MOSFET transistor.
+        """
         return Rectangle(fill_opacity=0.8).set_color(RED).scale(2)
 
     def make_n_region(self, side: Vector3D = LEFT) -> Rectangle:
@@ -809,7 +822,8 @@ class BatterySide(VMobject):
 
         Returns
         -------
-            The same instance, allowing calls to be chained."""
+            The same instance, allowing calls to be chained.
+        """
         terminal_points = self.terminal.get_center()
         anchor_points = self.anchor.get_top() + np.array((0, -0.2, 0))
         intermediate_point = np.array((anchor_points[0], terminal_points[1], 0))
@@ -825,17 +839,17 @@ class BatterySide(VMobject):
 def arrange_in_1d_boundary(mobs: VGroup, boundary: list[Any] = [LEFT, RIGHT]) -> Any:
     """Evenly distribute mobjects along a 1D line between two boundary points.
 
-
-
+    Parameters
+    ----------
     mobs
         Mobjects to distribute along the line.
     boundary
         Boundary points of the line.
 
 
-
-
-        The resulting value.
+    Returns
+    -------
+            The resulting value.
     """
     divisions = len(mobs)
     positions = np.linspace(boundary[0], boundary[1], divisions)

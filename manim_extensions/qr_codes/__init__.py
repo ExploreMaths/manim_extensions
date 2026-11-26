@@ -4,7 +4,6 @@
 """QR Code generation for Manim.
 
 This module provides QR code generation functionality for Manim animations.
-
 """
 
 from .qr import QRCode

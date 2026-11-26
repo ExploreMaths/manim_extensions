@@ -5,7 +5,6 @@
 """Damped spring constraint for Pymunk.
 
 This module provides the :class:`~manim_extensions.pymunk.constraints.VDampedSpring.VDampedSpring` class for creating damped spring constraints.
-
 """
 
 from __future__ import annotations
@@ -92,7 +91,6 @@ class VDampedSpring(VConstraint):
                self.add_dynamic_body(box)
                self.add_constraints(spring)
                self.wait(6)
-
     """
 
     def __init__(

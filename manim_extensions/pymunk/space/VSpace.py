@@ -5,7 +5,6 @@
 """Virtual space for Pymunk physics.
 
 This module provides the :class:`~manim_extensions.pymunk.space.VSpace.VSpace` class for managing Pymunk physical simulations.
-
 """
 
 from __future__ import annotations
@@ -93,7 +92,6 @@ class VSpace(Mobject, metaclass=ConvertToOpenGL):
                    self.add(Dot(hit_point, color=YELLOW, radius=0.1))
                self.wait(3)
                Group(*self.mobjects).scale(0.16).move_to(ORIGIN)
-
     """
 
     def __init__(

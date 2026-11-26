@@ -74,6 +74,9 @@ def get_rotated_shift_vectors(
 class Filters(VGroup):
     """Group for showing a collection of filters connecting two layers.
 
+    .. doc-example-covers: make_connective_lines, make_input_feature_map_rectangles, make_output_feature_map_rectangles
+
+
     Parameters
     ----------
     input_layer
@@ -113,7 +116,6 @@ class Filters(VGroup):
                content = Group(input_layer, output_layer, Filters(input_layer, output_layer))
                content.scale_to_fit_width(12).move_to(ORIGIN)
                self.add(content)
-    .. doc-example-covers: make_connective_lines, make_input_feature_map_rectangles, make_output_feature_map_rectangles
     """
 
     def __init__(
@@ -352,8 +354,7 @@ class Filters(VGroup):
 
     @override_animation(Create)
     def _create_override(self, **kwargs: Any) -> Animation:
-        """
-        NOTE This create override animation
+        """NOTE This create override animation
         is a workaround to make sure that the filter
         does not show up in the scene before the create animation.
 
@@ -378,7 +379,8 @@ class Filters(VGroup):
 
             Returns
             -------
-                The mobject with its filter rectangles and connective lines added."""
+                The mobject with its filter rectangles and connective lines added.
+            """
             object.add(self.input_rectangles)
             object.add(self.connective_lines)
             object.add(self.output_rectangles)
@@ -737,17 +739,17 @@ class Convolutional2DToConvolutional2D(ConnectiveLayer, ThreeDLayer):
     def scale(self, scale_factor: float, **kwargs: Any) -> Any:
         """Scale the layer and adjust cell_width proportionally.
 
-
-
+        Parameters
+        ----------
         scale_factor
             Factor by which the layer is scaled.
         **kwargs
             Forwarded to :meth:`~manim.mobject.mobject.Mobject.scale`.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         self.cell_width *= scale_factor
         super().scale(scale_factor, **kwargs)

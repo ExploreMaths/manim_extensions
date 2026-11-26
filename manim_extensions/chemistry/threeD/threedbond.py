@@ -4,7 +4,6 @@
 """3D bond representation for Manim chemistry.
 
 This module provides 3D bond classes for rendering chemical bonds in three dimensions.
-
 """
 
 from typing import Any, cast
@@ -207,15 +206,15 @@ class ThreeDCylinder(OpenGLSurface):
     def set_direction(self, direction: Vector3D) -> Any:
         """Align the cylinder to point along the given direction vector.
 
-
-
+        Parameters
+        ----------
         direction
             Direction the cylinder is aligned to.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         self.direction = direction
         self._rotate_to_direction()
@@ -300,8 +299,8 @@ class ThreeDLine(ThreeDCylinder):
         If either ``start`` or ``end`` are :class:`~manim.mobject.mobject.Mobject`,
         this gives their centers.
 
-
-
+        Parameters
+        ----------
         start
             Starting point or :class:`~manim.mobject.mobject.Mobject`.
         end
@@ -311,9 +310,9 @@ class ThreeDLine(ThreeDCylinder):
             :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder`.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         rough_start = self.pointify(start)
         rough_end = self.pointify(end)
@@ -360,8 +359,7 @@ class ThreeDLine(ThreeDCylinder):
         return cast(Point3D, np.array(mob_or_point))
 
     def get_start(self) -> Point3D:
-        """
-        Return the starting point of the bond.
+        """Return the starting point of the bond.
 
         Returns
         -------
@@ -370,8 +368,7 @@ class ThreeDLine(ThreeDCylinder):
         return self.start
 
     def get_end(self) -> Point3D:
-        """
-        Return the ending point of the bond.
+        """Return the ending point of the bond.
 
         Returns
         -------
@@ -494,6 +491,9 @@ class ThreeDBond(OpenGLGroup):
     """Used to create a tridimensional bond.
     Uses an origin atom and a target atom to be drawn.
 
+    .. doc-example-covers: add_double_bond, add_single_bond, add_triple_bond
+
+
     Parameters
     ----------
     from_atom
@@ -542,7 +542,6 @@ class ThreeDBond(OpenGLGroup):
         carbon = ThreeDAtom(get_element("C"), coords=np.array([0.0, 0.0, 0.0]))
         oxygen = ThreeDAtom(get_element("O"), coords=np.array([1.2, 0.0, 0.0]))
         bond = ThreeDBond(from_atom=carbon, to_atom=oxygen, bond_type=2)
-    .. doc-example-covers: add_double_bond, add_single_bond, add_triple_bond
     """
 
     def __str__(self) -> str:
@@ -600,7 +599,8 @@ class ThreeDBond(OpenGLGroup):
 
         Returns
         -------
-            A OpenGLGroup instance representing the result."""
+            A OpenGLGroup instance representing the result.
+        """
         bond = OpenGLGroup()
         midpoint = (self.to_atom.coords + self.from_atom.coords) / 2
 
@@ -624,7 +624,8 @@ class ThreeDBond(OpenGLGroup):
 
         Returns
         -------
-            A OpenGLGroup instance representing the result."""
+            A OpenGLGroup instance representing the result.
+        """
         bond = OpenGLGroup()
         base_bond = self.add_single_bond()
 
@@ -649,7 +650,8 @@ class ThreeDBond(OpenGLGroup):
 
         Returns
         -------
-            A OpenGLGroup instance representing the result."""
+            A OpenGLGroup instance representing the result.
+        """
         bond = OpenGLGroup()
         base_bond = self.add_single_bond()
         perp_unit = self.get_perpendicular_unit_vector(

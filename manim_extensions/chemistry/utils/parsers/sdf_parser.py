@@ -4,7 +4,6 @@
 """SDF format parser for chemical files.
 
 This module provides the :class:`~manim_extensions.chemistry.utils.parsers.sdf_parser.SDFParser` class for parsing SDF format chemical files.
-
 """
 
 from typing import cast
@@ -66,8 +65,7 @@ class SDFParser(MolParser):
 
     @staticmethod
     def read_file(filename: FilePath) -> list[list[str]]:
-        """
-        sdf files might contain multiple molecules, so we return a list of list
+        """sdf files might contain multiple molecules, so we return a list of list
         of string when reading a file.
 
         Parameters

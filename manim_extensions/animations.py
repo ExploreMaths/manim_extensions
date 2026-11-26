@@ -98,15 +98,15 @@ class TypeWriter(Animation):
         This method is called internally by Manim during the animation.  It
         reveals characters one by one as ``alpha`` goes from ``0`` to ``1``.
 
-
-
+        Parameters
+        ----------
         alpha
             Animation progress from ``0`` to ``1``.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         current_index = int(alpha * self.char_count)
         for i, char in enumerate(self.mobject.submobjects):
@@ -632,15 +632,15 @@ class PassingRectangle(Animation):
     def interpolate_mobject(self, alpha: float) -> Any:
         """Slide and resize the sweep rectangle based on ``alpha``.
 
-
-
+        Parameters
+        ----------
         alpha
             Animation progress from ``0`` to ``1``.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         a_left = rush_into(alpha)
         a_right = 1 - rush_into(1 - alpha)
@@ -660,6 +660,9 @@ class PassingRectangle(Animation):
 
 class LaggedCreation(Animation):
     """Create a mobject with a custom start/end partial-reveal lag.
+
+    .. doc-example-covers: interpolate_submobject
+
 
     .. note::
 
@@ -691,7 +694,6 @@ class LaggedCreation(Animation):
                square = Square(2.2, color=GREEN).shift(RIGHT * 2)
                self.play(LaggedCreation(circle), LaggedCreation(square))
                self.wait()
-    .. doc-example-covers: interpolate_submobject
     """
 
     def __init__(

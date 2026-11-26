@@ -5,7 +5,6 @@
 """Input representation for automata visualization.
 
 This module provides the :class:`~manim_extensions.automata.mobjects.manim_automaton_input.ManimAutomataInput` class for representing input strings in automata.
-
 """
 
 from typing import Any, cast
@@ -17,6 +16,9 @@ import itertools
 
 class ManimAutomataInput(VGroup):
     """Graphical representation of an input string used in automata animations.
+
+    .. doc-example-covers: highlight_token
+
 
     Parameters
     ----------
@@ -51,7 +53,6 @@ class ManimAutomataInput(VGroup):
                for token in inp.tokens:
                    self.play(animations.animate_highlight_input_token(token))
                    self.play(animations.animate_input_token_spent(token))
-    .. doc-example-covers: highlight_token
     """
 
     def __init__(

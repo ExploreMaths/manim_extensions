@@ -156,6 +156,9 @@ class NodeSolt:
 class Node(VMobject):
     """A visual node used in algorithm animations.
 
+    .. doc-example-covers: get_box
+
+
     The node is rendered as a box with an optional value label and can be used as
     a building block for arrays, trees, graphs, and queue-like visualisations.
 
@@ -200,7 +203,6 @@ class Node(VMobject):
                    square_node, circle_node, small_node, empty_node
                ).arrange(RIGHT, buff=0.8)
                self.add(group)
-    .. doc-example-covers: get_box
     """
 
     def __init__(
@@ -329,8 +331,7 @@ class Node(VMobject):
         return self
 
     def get_fill_color(self) -> ManimColor:
-        """
-        Return the fill color of the node box.
+        """Return the fill color of the node box.
 
         Returns
         -------
@@ -339,8 +340,7 @@ class Node(VMobject):
         return cast(ManimColor, self.box.get_fill_color())
 
     def get_fill_opacity(self) -> ManimFloat:
-        """
-        Return the fill opacity of the node box.
+        """Return the fill opacity of the node box.
 
         Returns
         -------

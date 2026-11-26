@@ -6,7 +6,6 @@
 
 The classes in this module generate charge objects and electric-field vector
 fields suitable for teaching and demonstration scenes in Manim.
-
 """
 
 from __future__ import annotations

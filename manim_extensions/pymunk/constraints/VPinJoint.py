@@ -5,7 +5,6 @@
 """Pin joint constraint for Pymunk.
 
 This module provides the :class:`~manim_extensions.pymunk.constraints.VPinJoint.VPinJoint` class for creating pin joint constraints in physics simulations.
-
 """
 
 from __future__ import annotations
@@ -87,7 +86,6 @@ class VPinJoint(VConstraint):
                self.add_shapes_filter(static_dot, square, square2, group=2)
                self.add_constraints(*constraints)
                self.wait(3)
-
     """
 
     def __init__(

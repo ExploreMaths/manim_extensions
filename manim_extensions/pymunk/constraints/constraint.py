@@ -6,7 +6,6 @@
 """Base constraint class for Pymunk.
 
 This module provides the :class:`~manim_extensions.pymunk.constraints.constraint.VConstraint` base class for Pymunk constraint visualizations.
-
 """
 
 from __future__ import annotations

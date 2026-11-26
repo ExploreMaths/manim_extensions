@@ -5,7 +5,6 @@
 """JSON format parser for chemical files.
 
 This module provides the :class:`~manim_extensions.chemistry.utils.parsers.json_parser.JSONParser` class for parsing JSON format chemical files.
-
 """
 
 # unlinked-class-ok: Element
@@ -190,8 +189,7 @@ class JSONParser(BaseParser):
 
     @staticmethod
     def read_file(filename: FilePath) -> str:
-        """
-        Reads the file and converts it to a string.
+        """Reads the file and converts it to a string.
 
         Parameters
         ----------

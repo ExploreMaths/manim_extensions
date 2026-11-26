@@ -4,7 +4,6 @@
 """2D bond representation for Manim chemistry.
 
 This module provides bond classes for representing chemical bonds in 2D.
-
 """
 
 from typing import Any, Literal, cast
@@ -105,8 +104,7 @@ class BaseMBondObject(VGroup):
         self,
         subtype: Literal["complete", "skeleton", "over_bond"] | None,
     ) -> str | bool:
-        """
-        Defines the subtype based on atoms' representations.
+        """Defines the subtype based on atoms' representations.
 
         Input options:
 
@@ -166,7 +164,8 @@ class BaseMBondObject(VGroup):
 
         Returns
         -------
-            A tuple of the results."""
+            A tuple of the results.
+        """
         return self.from_atom, self.to_atom
 
     def atom_is_in_bond(self, atom: MAtomObject) -> bool | None:
@@ -252,116 +251,109 @@ class BaseMBondObject(VGroup):
         return perp_vector / np.linalg.norm(perp_vector)
 
     def no_subtype(self) -> Any:
-        """
-        Provide the geometry used when no bond subtype is selected.
+        """Provide the geometry used when no bond subtype is selected.
 
         Bond subclasses override this hook and return their concrete mobject.
 
-
-
+        Parameters
+        ----------
         direction
             Direction from the from-atom to the to-atom; derived from the
             atoms when omitted.
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         pass
 
     def shorter_subtype(self) -> Any:
-        """
-        Provide the geometry used when the bond is drawn shorter on both ends.
+        """Provide the geometry used when the bond is drawn shorter on both ends.
 
         Bond subclasses override this hook and return their concrete mobject.
 
-
-
+        Parameters
+        ----------
         direction
             Direction from the from-atom to the to-atom; derived from the
             atoms when omitted.
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         pass
 
     def shorter_from_subtype(self, direction: Point3D | None = None) -> Any:
-        """
-        Provide the geometry used when the bond is shortened at the from-atom end.
+        """Provide the geometry used when the bond is shortened at the from-atom end.
 
         Bond subclasses override this hook and return their concrete mobject.
 
-
-
+        Parameters
+        ----------
         direction
             Direction from the from-atom to the to-atom; derived from the
             atoms when omitted.
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         pass
 
     def shorter_to_subtype(self, direction: Point3D | None = None) -> Any:
-        """
-        Provide the geometry used when the bond is shortened at the to-atom end.
+        """Provide the geometry used when the bond is shortened at the to-atom end.
 
         Bond subclasses override this hook and return their concrete mobject.
 
-
-
+        Parameters
+        ----------
         direction
             Direction from the from-atom to the to-atom; derived from the
             atoms when omitted.
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         pass
 
     def longer_subtype(self) -> Any:
-        """
-        Provide the geometry used when the bond is drawn longer.
+        """Provide the geometry used when the bond is drawn longer.
 
         Bond subclasses override this hook and return their concrete mobject.
 
-
-
+        Parameters
+        ----------
         direction
             Direction from the from-atom to the to-atom; derived from the
             atoms when omitted.
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         pass
 
     def create_line(self) -> Any:
-        """
-        Assemble the bond's line components for the selected subtype.
+        """Assemble the bond's line components for the selected subtype.
 
         Bond subclasses override this hook and return their concrete mobject.
 
-
-
+        Parameters
+        ----------
         direction
             Direction from the from-atom to the to-atom; derived from the
             atoms when omitted.
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         pass
 
     def get_vector(self) -> Vector3D:
-        """
-        All bonds should contain at least a :class:`~manim.mobject.geometry.line.Line`. This line can return the corresponding vector.
+        """All bonds should contain at least a :class:`~manim.mobject.geometry.line.Line`. This line can return the corresponding vector.
 
         Returns
         -------
@@ -382,6 +374,9 @@ class BaseMBondObject(VGroup):
 class SimpleBond(BaseMBondObject):
     """A single-line chemical bond between two atoms.
 
+    .. doc-example-covers: create_line, longer_subtype, no_subtype, shorter_from_subtype, shorter_subtype, shorter_to_subtype
+
+
     Examples
     --------
     .. manim:: SimpleBondScene
@@ -399,7 +394,6 @@ class SimpleBond(BaseMBondObject):
                content = VGroup(carbon, oxygen, SimpleBond(carbon, oxygen))
                content.scale_to_fit_width(6).move_to(ORIGIN)
                self.add(content)
-    .. doc-example-covers: create_line, longer_subtype, no_subtype, shorter_from_subtype, shorter_subtype, shorter_to_subtype
     """
 
     def no_subtype(self) -> Line:
@@ -472,7 +466,8 @@ class SimpleBond(BaseMBondObject):
 
         Returns
         -------
-            The bond line based on the configured subtype."""
+            The bond line based on the configured subtype.
+        """
         direction = self.from_atom.coords - self.to_atom.coords
 
         if not self.subtype:
@@ -491,6 +486,9 @@ class SimpleBond(BaseMBondObject):
 
 class DoubleBond(BaseMBondObject):
     """A double bond between two atoms.
+
+    .. doc-example-covers: create_line, no_subtype, shorter_from_subtype, shorter_subtype, shorter_to_subtype
+
 
     Parameters
     ----------
@@ -524,7 +522,6 @@ class DoubleBond(BaseMBondObject):
                content = VGroup(carbon, oxygen, DoubleBond(carbon, oxygen))
                content.scale_to_fit_width(6).move_to(ORIGIN)
                self.add(content)
-    .. doc-example-covers: create_line, no_subtype, shorter_from_subtype, shorter_subtype, shorter_to_subtype
     """
 
     def __init__(
@@ -678,8 +675,7 @@ class DoubleBond(BaseMBondObject):
         return VGroup(base_line, double_line)
 
     def get_vector(self) -> Vector3D:
-        """
-        This contains a VGroup with two lines, we just get the vector from one of them.
+        """This contains a VGroup with two lines, we just get the vector from one of them.
 
         Returns
         -------
@@ -697,8 +693,7 @@ class DoubleBond(BaseMBondObject):
             raise exception
 
     def get_surroundings(self) -> tuple[bool, bool]:
-        """
-        Checks the number of bonds of C atoms.
+        """Checks the number of bonds of C atoms.
 
         Returns False if the C has a structure like central C in acetone:
 
@@ -712,7 +707,8 @@ class DoubleBond(BaseMBondObject):
 
         Returns
         -------
-            A tuple of the results."""
+            A tuple of the results.
+        """
         from_surroundings, to_surroundings = (False, False)
         if self.from_atom.bond_to:
             from_surroundings = (
@@ -734,7 +730,8 @@ class DoubleBond(BaseMBondObject):
 
         Returns
         -------
-            The double bond VGroup based on the configured subtype."""
+            The double bond VGroup based on the configured subtype.
+        """
         from_surroundings, to_surroundings = self.get_surroundings()
         direction = self.from_atom.coords - self.to_atom.coords
 
@@ -761,6 +758,9 @@ class DoubleBond(BaseMBondObject):
 
 class TripleBond(BaseMBondObject):
     """A triple bond between two atoms.
+
+    .. doc-example-covers: create_line, no_subtype, shorter_from_subtype, shorter_subtype, shorter_to_subtype
+
 
     Parameters
     ----------
@@ -794,7 +794,6 @@ class TripleBond(BaseMBondObject):
                content = VGroup(carbon, oxygen, TripleBond(carbon, oxygen))
                content.scale_to_fit_width(6).move_to(ORIGIN)
                self.add(content)
-    .. doc-example-covers: create_line, no_subtype, shorter_from_subtype, shorter_subtype, shorter_to_subtype
     """
 
     def __init__(
@@ -911,17 +910,17 @@ class TripleBond(BaseMBondObject):
     ) -> Any:
         """Add two offset parallel lines to form a triple bond from a base line.
 
-
-
+        Parameters
+        ----------
         bond
             Bond the lines are added to.
         base_line
             Base line the parallel lines are copied from.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         if bond is None or base_line is None:
             return VGroup()
@@ -942,7 +941,8 @@ class TripleBond(BaseMBondObject):
 
         Returns
         -------
-            The triple bond VGroup based on the configured subtype."""
+            The triple bond VGroup based on the configured subtype.
+        """
         direction = self.from_atom.coords - self.to_atom.coords
 
         if not self.subtype:
@@ -958,8 +958,7 @@ class TripleBond(BaseMBondObject):
             return subtypes.get(cast(str, self.subtype)) or VMobject()
 
     def get_vector(self) -> Vector3D:
-        """
-        This contains a VGroup with two lines, we just get the vector from one of them.
+        """This contains a VGroup with two lines, we just get the vector from one of them.
 
         Returns
         -------
@@ -980,6 +979,9 @@ class TripleBond(BaseMBondObject):
 class PlainCramBond(BaseMBondObject):
     """A filled triangular wedge bond representing stereochemistry (coming out of the page).
 
+    .. doc-example-covers: create_line, no_subtype
+
+
     Examples
     --------
     .. manim:: PlainCramBondScene
@@ -997,7 +999,6 @@ class PlainCramBond(BaseMBondObject):
                content = VGroup(carbon, oxygen, PlainCramBond(carbon, oxygen))
                content.scale_to_fit_width(6).move_to(ORIGIN)
                self.add(content)
-    .. doc-example-covers: create_line, no_subtype
     """
 
     def no_subtype(self) -> Polygram | VGroup:
@@ -1118,7 +1119,8 @@ class PlainCramBond(BaseMBondObject):
 
         Returns
         -------
-            The plain cram bond polygon based on the configured subtype."""
+            The plain cram bond polygon based on the configured subtype.
+        """
         if not self.subtype:
             return self.no_subtype()
 
@@ -1155,6 +1157,9 @@ class PlainCramBond(BaseMBondObject):
 class DashedCramBond(BaseMBondObject):
     """A dashed wedge bond representing stereochemistry (going into the page).
 
+    .. doc-example-covers: add_dashed_cram_bond, create_line, longer_subtype, no_subtype, shorter_from_subtype, shorter_subtype, shorter_to_subtype
+
+
     Examples
     --------
     .. manim:: DashedCramBondScene
@@ -1172,7 +1177,6 @@ class DashedCramBond(BaseMBondObject):
                content = VGroup(carbon, oxygen, DashedCramBond(carbon, oxygen))
                content.scale_to_fit_width(6).move_to(ORIGIN)
                self.add(content)
-    .. doc-example-covers: add_dashed_cram_bond, create_line, longer_subtype, no_subtype, shorter_from_subtype, shorter_subtype, shorter_to_subtype
     """
 
     def add_dashed_cram_bond(self, base_line: Mobject, direction: Point3D) -> VGroup:
@@ -1298,7 +1302,8 @@ class DashedCramBond(BaseMBondObject):
 
         Returns
         -------
-            The dashed cram bond VGroup based on the configured subtype."""
+            The dashed cram bond VGroup based on the configured subtype.
+        """
         if not self.subtype:
             return self.no_subtype()
 
@@ -1313,8 +1318,7 @@ class DashedCramBond(BaseMBondObject):
             return subtypes.get(cast(str, self.subtype)) or VMobject()
 
     def get_vector(self) -> Vector3D:
-        """
-        This contains a VGroup with two lines, we just get the vector from one of them.
+        """This contains a VGroup with two lines, we just get the vector from one of them.
 
         Returns
         -------

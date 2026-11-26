@@ -4,7 +4,6 @@
 """Custom Pymunk mobjects.
 
 This module provides custom Manim mobjects for Pymunk physics simulations.
-
 """
 
 __all__ = ["VSpring", "Apple", "Gear"]

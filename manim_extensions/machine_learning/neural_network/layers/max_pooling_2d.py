@@ -30,6 +30,9 @@ from ... import config
 class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     """Max pooling layer for :class:`~manim_extensions.machine_learning.neural_network.layers.convolutional_2d.Convolutional2DLayer`.
 
+    .. doc-example-covers: make_forward_pass_animation
+
+
     .. note::
 
        This is for a Convolutional2DLayer even though
@@ -91,7 +94,6 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
                forward_pass = nn.make_forward_pass_animation()
                self.play(ChangeSpeed(forward_pass, speedinfo={}), run_time=10)
                self.wait(1)
-    .. doc-example-covers: make_forward_pass_animation
     """
 
     def __init__(
@@ -125,8 +127,8 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     ) -> Any:
         """Build the output feature maps and apply 3D rotation to the layer.
 
-
-
+        Parameters
+        ----------
         input_layer
             The layer preceding this layer in the network.
         output_layer
@@ -135,9 +137,9 @@ class MaxPooling2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             Forwarded to the parent layer classes.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         # Make the output feature maps
         input_layer_any = cast(Any, input_layer)

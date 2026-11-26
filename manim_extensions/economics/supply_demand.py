@@ -4,7 +4,6 @@
 """Supply and demand diagram for Manim.
 
 This module provides the supply and demand diagram.
-
 """
 
 from collections.abc import Callable

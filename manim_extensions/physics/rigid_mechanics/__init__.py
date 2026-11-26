@@ -5,7 +5,6 @@
 """Rigid mechanics visualizations for Manim.
 
 This module provides rigid body mechanics visualizations including pendulums.
-
 """
 
 from . import pendulum

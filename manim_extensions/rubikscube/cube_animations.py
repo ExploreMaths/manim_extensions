@@ -5,7 +5,6 @@
 """Rubik's Cube animations for Manim.
 
 This module provides animations for Rubik's Cube manipulations.
-
 """
 
 from typing import Any, cast
@@ -80,15 +79,15 @@ class CubeMove(Animation):
     def interpolate_mobject(self, alpha: float) -> Any:
         """Interpolate the cube rotation at progress ``alpha``.
 
-
-
+        Parameters
+        ----------
         alpha
             Animation progress between ``0`` and ``1``.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         self.mobject.become(self.starting_mobject)
 

@@ -18,6 +18,9 @@ from manim.typing import Point3D
 class Cubie(VGroup):
     """One small cube element composing a larger Rubik's Cube.
 
+    .. doc-example-covers: get_face
+
+
     Each cubie carries the six face tiles used to represent the cube state and
     owns its own 3D orientation within the parent :class:`~manim_extensions.rubikscube.cube.RubiksCube`.
 
@@ -51,7 +54,6 @@ class Cubie(VGroup):
                self.play(Indicate(corner))
                self.play(Indicate(corner.get_face("U")))
                self.wait()
-    .. doc-example-covers: get_face
     """
 
     def __init__(self, x: int, y: int, z: int, dim: int, colors: list[Any]) -> None:

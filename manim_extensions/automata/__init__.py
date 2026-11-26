@@ -6,7 +6,6 @@
 
 This package exposes animated finite-state and pushdown automaton mobjects for
 building teaching and algorithm visualisations in Manim.
-
 """
 
 from .mobjects.manim_automaton import *

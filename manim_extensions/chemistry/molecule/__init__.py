@@ -4,7 +4,6 @@
 """:class:`~manim_extensions.chemistry.molecule.molecule.Molecule` module for chemistry.
 
 This module provides molecule classes for visualizing chemical structures.
-
 """
 
 from .abstract_molecule import AbstractMolecule as AbstractMolecule  # noqa F841

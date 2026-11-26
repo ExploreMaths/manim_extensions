@@ -6,7 +6,6 @@
 """Scene classes for Manim ML visualizations.
 
 This module provides custom scene classes for machine learning visualizations.
-
 """
 
 from typing import Any
@@ -15,8 +14,7 @@ from manim import ThreeDScene
 
 
 class ManimML3DScene(ThreeDScene):
-    """
-    This is a wrapper class for the Manim ThreeDScene.
+    """This is a wrapper class for the Manim ThreeDScene.
 
     .. note::
 
@@ -54,8 +52,8 @@ class ManimML3DScene(ThreeDScene):
     def play(self, *args: Any, **kwargs: Any) -> Any:
         """Override :meth:`~manim.scene.scene.Scene.play` for ML scenes.
 
-
-
+        Parameters
+        ----------
         args
             Positional arguments forwarded to
             :meth:`~manim.scene.scene.Scene.play`.
@@ -63,8 +61,8 @@ class ManimML3DScene(ThreeDScene):
             Forwarded to :meth:`~manim.scene.scene.Scene.play`.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         super().play(*args, **kwargs)

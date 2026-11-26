@@ -5,7 +5,6 @@
 """XML format parser for chemical files.
 
 This module provides the :class:`~manim_extensions.chemistry.utils.parsers.xml_parser.XMLParser` class for parsing XML format chemical files.
-
 """
 
 from typing import Any, cast
@@ -80,8 +79,7 @@ class XMLParser(BaseParser):
 
     @staticmethod
     def data_parser(data: str) -> MoleculeData:
-        """
-        Parses the atoms and bonds data and returns a tuple of dictionaries with each data.
+        """Parses the atoms and bonds data and returns a tuple of dictionaries with each data.
         Currently only PubChem xml files are supported.
 
         The atom data follows the structure:

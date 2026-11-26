@@ -3,9 +3,7 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants
 
-"""
-custom type hints for all the models.
-"""
+"""custom type hints for all the models."""
 
 # python imports
 

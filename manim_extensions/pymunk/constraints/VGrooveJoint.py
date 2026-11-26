@@ -6,7 +6,6 @@
 """Groove joint constraint for Pymunk.
 
 This module provides the :class:`~manim_extensions.pymunk.constraints.VGrooveJoint.VGrooveJoint` class for creating groove joint constraints.
-
 """
 
 from __future__ import annotations
@@ -81,7 +80,6 @@ class VGrooveJoint(VConstraint):
                self.add_shapes_filter(rail, slider, group=2)
                self.add_constraints(groove)
                self.wait(4)
-
     """
 
     def __init__(

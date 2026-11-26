@@ -28,6 +28,9 @@ from manim.typing import PixelArray, Point3D
 class ImageLayer(NeuralNetworkLayer):
     """Single Image Layer for Neural Network.
 
+    .. doc-example-covers: make_forward_pass_animation
+
+
     Parameters
     ----------
     numpy_image
@@ -80,7 +83,6 @@ class ImageLayer(NeuralNetworkLayer):
                forward_pass = nn.make_forward_pass_animation()
                self.play(ChangeSpeed(forward_pass, speedinfo={}), run_time=10)
                self.wait(1)
-    .. doc-example-covers: make_forward_pass_animation
     """
 
     def __init__(
@@ -103,8 +105,8 @@ class ImageLayer(NeuralNetworkLayer):
     ) -> Any:
         """Construct layer method.
 
-
-
+        Parameters
+        ----------
         input_layer :
             Input layer.
         output_layer :
@@ -113,9 +115,9 @@ class ImageLayer(NeuralNetworkLayer):
             Forwarded to the parent layer classes.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         if len(np.shape(self.numpy_image)) == 2:
             # Assumed Grayscale
@@ -206,14 +208,15 @@ class ImageLayer(NeuralNetworkLayer):
 
         Returns
         -------
-            The rightmost point of the surrounding shape."""
+            The rightmost point of the surrounding shape.
+        """
         return cast(Point3D, self.image_mobject.get_right())
 
     def scale(self, scale_factor: float, **kwargs: Any) -> Any:
         """Scales the image mobject.
 
-
-
+        Parameters
+        ----------
         scale_factor
             Factor by which the image mobject is scaled.
         **kwargs
@@ -221,9 +224,9 @@ class ImageLayer(NeuralNetworkLayer):
             :meth:`~manim.mobject.mobject.Mobject.scale`.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         self.image_mobject.scale(scale_factor)
 
@@ -233,7 +236,8 @@ class ImageLayer(NeuralNetworkLayer):
 
         Returns
         -------
-            The width of the image mobject."""
+            The width of the image mobject.
+        """
         return float(self.image_mobject.width)
 
     @property  # type: ignore[misc]
@@ -242,5 +246,6 @@ class ImageLayer(NeuralNetworkLayer):
 
         Returns
         -------
-            The height of the image mobject."""
+            The height of the image mobject.
+        """
         return float(self.image_mobject.height)

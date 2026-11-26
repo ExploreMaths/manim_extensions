@@ -2,8 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""
-Code for making a dropout animation for the
+"""Code for making a dropout animation for the
 feed forward layers of a neural network.
 """
 
@@ -395,8 +394,7 @@ def make_neural_network_dropout_animation(
     first_layer_stable: bool = False,
     seed: int | None = None,
 ) -> Succession:
-    """
-    Makes a dropout animation for a given neural network.
+    """Makes a dropout animation for a given neural network.
 
     NOTE Does dropout only on feed forward layers.
 

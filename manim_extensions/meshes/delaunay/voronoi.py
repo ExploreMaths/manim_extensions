@@ -2,9 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""
-functions to display voronoi diagram and create delaunay meshes as its dual.
-"""
+"""functions to display voronoi diagram and create delaunay meshes as its dual."""
 
 from typing import Any
 
@@ -24,6 +22,9 @@ from ..models.manim_models.triangle_mesh import (
 class VoronoiDelaunay:
     """Class providing methods to visualize the voronoi diagram of a 2D point set and its dual
     delaunay triangulation.
+
+    .. doc-example-covers: create_voronoi, get_circum_circle
+
 
     Parameters
     ----------
@@ -61,7 +62,6 @@ class VoronoiDelaunay:
                circle = vd.get_circum_circle(0)
                self.play(Create(circle))
                self.wait()
-    .. doc-example-covers: create_voronoi, get_circum_circle
     """
 
     def __init__(self, scene: Scene, triangle_mesh: TriangleManim2DMesh) -> None:
@@ -185,15 +185,15 @@ class VoronoiDelaunay:
         The triangle is formed by the three mesh vertices whose Voronoi
         regions meet at the specified Voronoi vertex.
 
-
-
+        Parameters
+        ----------
         voronoi_vertex_index
             Index of the Voronoi vertex whose dual triangle is created.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
 
         triangle_indices = set()

@@ -5,7 +5,6 @@
 """Mindmap main classes for Manim.
 
 This module provides main mindmap classes for visualizations.
-
 """
 
 from collections.abc import Sequence

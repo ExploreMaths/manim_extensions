@@ -5,7 +5,6 @@
 """:class:`~manim_extensions.circuit.utils.Circuit` mobjects for Manim.
 
 This module provides circuit component visualizations.
-
 """
 
 from typing import Any, Literal

@@ -75,15 +75,15 @@ class TreeNode:
     def add_child(self, child: "TreeNode") -> Any:
         """Add a child node and establish the parent-child relationship.
 
-
-
+        Parameters
+        ----------
         child
             The child node to add.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         self.children.append(child)
         child.parent = self
@@ -134,8 +134,7 @@ def split_integer(n: int) -> tuple[int, int]:
 
 
 def sync_copy_bfs(src: TreeNode, dst: object) -> Any:
-    """
-    Synchronously traverse two trees and copy data from src to dst.
+    """Synchronously traverse two trees and copy data from src to dst.
 
     Parameters
     ----------
@@ -154,7 +153,6 @@ def sync_copy_bfs(src: TreeNode, dst: object) -> Any:
     ValueError
         Raised when the two trees have mismatched structures: one node is
         missing, or two corresponding nodes have different child counts.
-
     """
     queue = deque([(src, dst)])
 
@@ -289,7 +287,8 @@ class StandardLayout(Layout):
 
         Returns
         -------
-            The root node of the completed layout."""
+            The root node of the completed layout.
+        """
         self._split()
         self.left = cast(
             TreeNode,
@@ -327,8 +326,8 @@ class StandardLayout(Layout):
             Vertical offset.
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
         node.x += x

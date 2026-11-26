@@ -31,6 +31,9 @@ from manim.typing import PixelArray
 class VariationalAutoencoder(Group):
     """Variational Autoencoder Manim Visualization.
 
+    .. doc-example-covers: make_image_forward_pass, make_triplet_forward_pass
+
+
     Parameters
     ----------
     encoder_nodes_per_layer
@@ -61,7 +64,6 @@ class VariationalAutoencoder(Group):
                vae = VariationalAutoencoder()
                vae.move_to(ORIGIN)
                self.add(vae.scale(2))
-    .. doc-example-covers: make_image_forward_pass, make_triplet_forward_pass
     """
 
     def __init__(

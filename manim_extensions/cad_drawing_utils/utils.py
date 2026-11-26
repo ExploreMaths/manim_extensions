@@ -42,8 +42,7 @@ def angle_between_vectors_signed(v1: Vector3D, v2: Vector3D) -> float:
 
 
 class BezierHandlebars(VDict):
-    """
-    Creates circles (dots) and lines on the points of another mobject.
+    """Creates circles (dots) and lines on the points of another mobject.
     Used for visualizing bezier control points and handles, helps debugging.
 
     Parameters

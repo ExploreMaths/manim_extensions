@@ -798,6 +798,12 @@ def check_terminal_punctuation(doc, qualname, lineno, violations):
     i = 0
     while i < len(lines):
         line = lines[i]
+        if re.match(r"^\s*\.\. (?!\w[\w-]*::)", line):
+            # RST comments such as ``.. doc-example-covers: ...`` are not
+            # prose; skipping them avoids judging the comment as the last
+            # content line when the docstring ends in a code block.
+            i += 1
+            continue
         if directive_re.match(line):
             dind = len(line) - len(line.lstrip())
             i += 1

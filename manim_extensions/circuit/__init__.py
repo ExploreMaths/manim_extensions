@@ -6,7 +6,6 @@
 
 This package exposes helper mobjects and utilities for circuit-style diagrams
 in Manim scenes.
-
 """
 
 from .mobjects import *

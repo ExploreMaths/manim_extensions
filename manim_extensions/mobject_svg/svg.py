@@ -141,8 +141,8 @@ def _set_cairo_context_color(
         The mobject that provides the gradient start and end points.
 
 
-        Returns
-        -------
+    Returns
+    -------
             The resulting value.
     """
     if len(rgbas) == 1:
@@ -175,8 +175,8 @@ def _apply_stroke(
         Stroke with the background stroke instead of the foreground one.
 
 
-        Returns
-        -------
+    Returns
+    -------
             The resulting value.
     """
     from manim import config
@@ -211,8 +211,8 @@ def _apply_fill(ctx: cairo.Context[Any], vmobject: VMobject) -> Any:
         The vmobject whose fill rgbas are applied.
 
 
-        Returns
-        -------
+    Returns
+    -------
             The resulting value.
     """
     _set_cairo_context_color(
@@ -248,8 +248,8 @@ def _create_svg_from_vmobject_internal(
         The cairo context that receives the drawing.
 
 
-        Returns
-        -------
+    Returns
+    -------
             The resulting value.
     """
     # Drop non-finite points before building the path.

@@ -237,6 +237,9 @@ class Series:
 class RadarChart(VGroup):
     """An animated radar (spider) chart that morphs into other radar charts.
 
+    .. doc-example-covers: attach_backdrop, disappear, glitch_in, morph_to, reveal, shockwave, trace_web
+
+
     The chart is a plain Manim mobject, so ``shift`` / ``move_to`` / ``scale`` /
     ``rotate`` behave as usual: every piece of geometry is recomputed in the
     chart's own coordinate frame on each frame.
@@ -328,7 +331,6 @@ class RadarChart(VGroup):
 
     The chart repaints every frame, so all of the calls above can be chained
     before the next animation.
-    .. doc-example-covers: attach_backdrop, disappear, glitch_in, morph_to, reveal, shockwave, trace_web
     """
 
     def __init__(

@@ -2,9 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""
-some basic helpers for our models.
-"""
+"""some basic helpers for our models."""
 
 # python imports
 

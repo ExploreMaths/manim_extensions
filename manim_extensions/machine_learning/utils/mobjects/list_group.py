@@ -13,6 +13,9 @@ from manim import Mobject
 class ListGroup(Mobject):
     """Indexable Group with traditional list operations.
 
+    .. doc-example-covers: get, remove, remove_at_index, remove_at_indices
+
+
     Parameters
     ----------
     layers
@@ -30,7 +33,6 @@ class ListGroup(Mobject):
            def construct(self):
                self.add(ListGroup(Circle(radius=0.3), Square(side_length=0.6),
                                   Triangle()).scale(3))
-    .. doc-example-covers: get, remove, remove_at_index, remove_at_indices
     """
 
     def __init__(self, *layers: Mobject) -> None:
@@ -61,17 +63,17 @@ class ListGroup(Mobject):
     ) -> Any:
         """Inserts item at index.
 
-
-
+        Parameters
+        ----------
         index
             Index at which to insert the item.
         item
             Item to insert into the group.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         self.items.insert(index, item)
         self.submobjects = self.items
@@ -158,15 +160,15 @@ class ListGroup(Mobject):
     ) -> Any:  # intentionally shadows Mobject.add with list semantics
         """Adds to end.
 
-
-
+        Parameters
+        ----------
         item
             Item to append to the end of the group.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         self.items.append(item)
         self.submobjects = self.items
@@ -176,24 +178,23 @@ class ListGroup(Mobject):
     ) -> Any:  # intentionally shadows Mobject.replace with list semantics
         """Replaces item at index.
 
-
-
+        Parameters
+        ----------
         index
             Index of the item to replace.
         item
             Item to store at the given index.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         self.items[index] = item
         self.submobjects = self.items
 
     def index_of(self, item: Mobject) -> int:
-        """
-        Return the index of an item, or ``-1`` when it is absent.
+        """Return the index of an item, or ``-1`` when it is absent.
 
         Parameters
         ----------
@@ -223,17 +224,17 @@ class ListGroup(Mobject):
     ) -> Any:
         """Sets z index of all values in :class:`~manim_extensions.machine_learning.utils.mobjects.list_group.ListGroup`.
 
-
-
+        Parameters
+        ----------
         z_index_value
             Z-index to apply to all items in the group.
         family
             Whether to also set the z-index of submobjects.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         for item in self.items:
             item.set_z_index(z_index_value, family=True)

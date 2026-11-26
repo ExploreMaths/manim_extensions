@@ -4,7 +4,6 @@
 """3D atom representation for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.threeD.threedatom.ThreeDAtom` class for rendering atoms in 3D.
-
 """
 
 from typing import Any, cast

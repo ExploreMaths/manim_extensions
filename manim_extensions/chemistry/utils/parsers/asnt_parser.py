@@ -5,7 +5,6 @@
 """ASNT format parser for chemical files.
 
 This module provides the :class:`~manim_extensions.chemistry.utils.parsers.asnt_parser.ASNTParser` class for parsing ASNT format chemical files.
-
 """
 
 from typing import Any

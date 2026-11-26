@@ -5,7 +5,6 @@
 
 This module provides access to Font Awesome icons (brand, regular, and solid styles).
 It includes 2000+ SVG icons that can be used in Manim animations.
-
 """
 
 from .manim_fontawesome import *

@@ -5,7 +5,6 @@
 """:class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` class for automata visualizations.
 
 This module provides state visualization for automata.
-
 """
 
 from typing import Any
@@ -110,15 +109,15 @@ class ManimState(State, VGroup):
     def update_subscript(self, number: int | str) -> Any:
         """Replace the state's subscript label with a new number or string.
 
-
-
+        Parameters
+        ----------
         number
             New subscript content.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         self.remove(self.subscript)
         self.subscript = Tex(str(number), font_size=50)

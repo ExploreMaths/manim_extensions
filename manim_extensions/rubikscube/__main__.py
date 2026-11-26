@@ -5,7 +5,6 @@
 """Main module for Rubik's Cube extension.
 
 This module provides the entry point for the Rubik's Cube extension.
-
 """
 
 from typing import Any

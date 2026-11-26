@@ -5,7 +5,6 @@
 """:class:`~manim_extensions.gearbox.gear_mobjects.gear_mobject.Gear` mobject for Manim.
 
 This module provides gear and rack visualizations.
-
 """
 
 from __future__ import annotations
@@ -58,8 +57,7 @@ def involute_func(
     rad_offs: float = 0,
     tan_offs: float = 0,
 ) -> Point3D | Point3D_Array:
-    """
-    Returns the x-y-z values of the involute function.
+    """Returns the x-y-z values of the involute function.
 
     Parameters
     ----------
@@ -230,8 +228,7 @@ def involute_deriv_func(
 
 
 def involute_height_func(k: float | VectorND, r: float, **kwargs: Any) -> float:
-    """
-    Returns the radial height of the involute compared to the base circle.
+    """Returns the radial height of the involute compared to the base circle.
 
     Parameters
     ----------
@@ -274,8 +271,7 @@ def involute_height_func(k: float | VectorND, r: float, **kwargs: Any) -> float:
 
 
 def involute_point_gen(t: VectorND, r: float, **kwargs: Any) -> Point3D_Array:
-    """
-    Returns a list of points to be for cubic bezier approximation of the involute curve.
+    """Returns a list of points to be for cubic bezier approximation of the involute curve.
     Output is compatible with :class:`~manim.mobject.mobject.Mobject`.points.
     Input t is a list where the involute shall be evaluated, it can be unevenly spaced.
     Anchors are added automatically.
@@ -859,7 +855,6 @@ class Gear(VMobject):
                    )
                    # both gears rotate by exactly one tooth pitch, so the
                    # first and last frames match and the animation loops seamlessly
-
         """
 
         # -- Rack branch -----------------------------------------------------------

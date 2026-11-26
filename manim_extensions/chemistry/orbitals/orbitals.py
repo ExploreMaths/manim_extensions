@@ -4,7 +4,6 @@
 """Atomic orbital visualization for Manim chemistry.
 
 This module provides classes for rendering atomic orbitals in 3D.
-
 """
 
 from typing import Any, cast

@@ -5,7 +5,6 @@
 """QR code generation for Manim.
 
 This module provides QR code generation functionality with customization options.
-
 """
 
 from typing import Any, Literal

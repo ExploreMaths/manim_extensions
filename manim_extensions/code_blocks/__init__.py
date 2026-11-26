@@ -7,7 +7,6 @@
 
 This package bundles the ``manim-code-blocks-redux`` module so that code
 blocks can be rendered directly inside a Manim scene.
-
 """
 
 from __future__ import annotations

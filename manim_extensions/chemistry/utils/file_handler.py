@@ -5,7 +5,6 @@
 """File handling for chemistry module.
 
 This module provides file parsing utilities for chemistry file formats.
-
 """
 
 from typing import Any, Literal, cast
@@ -135,8 +134,7 @@ class FileHandler:
         return cast(str, os.path.splitext(file_path)[1][1:])
 
     def parsed_atoms_bonds_data(self) -> ParsedData:
-        """
-        Return the parsed atom and bond dictionaries.
+        """Return the parsed atom and bond dictionaries.
 
         Returns
         -------

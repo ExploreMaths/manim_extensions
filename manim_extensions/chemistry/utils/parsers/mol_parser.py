@@ -4,7 +4,6 @@
 """MOL format parser for chemical files.
 
 This module provides the :class:`~manim_extensions.chemistry.utils.parsers.mol_parser.MolParser` class for parsing MOL format chemical files.
-
 """
 
 from typing import Any, cast

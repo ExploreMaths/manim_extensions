@@ -4,7 +4,6 @@
 """3D molecule representation for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.threeD.threedmolecule.ThreeDMolecule` class for rendering molecules in 3D.
-
 """
 
 from typing import Any, cast
@@ -22,6 +21,9 @@ from ..molecule import AbstractMolecule
 
 class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
     """Draws a 3D :class:`~manim_extensions.chemistry.molecule.molecule.Molecule`.
+
+    .. doc-example-covers: get_atoms_from_csv, get_bonds
+
 
     Requires using opengl renderer.
 
@@ -125,7 +127,6 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
                self.wait()
                self.play(Write(molecule))
                self.wait()
-    .. doc-example-covers: get_atoms_from_csv, get_bonds
     """
 
     group_class: Any = OpenGLGroup
@@ -162,7 +163,8 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
 
         Returns
         -------
-            A OpenGLGroup instance representing the result."""
+            A OpenGLGroup instance representing the result.
+        """
         elements_data_dict = {}
         for atom in self.atoms_dict.values():
             elements_data_dict[atom.get("element").symbol] = atom.get("element")
@@ -186,7 +188,8 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
 
         Returns
         -------
-            A OpenGLGroup instance representing the result."""
+            A OpenGLGroup instance representing the result.
+        """
         bonds = OpenGLGroup()
         for index, bonds_list in self.bonds_dict.items():
             from_atom = self.atoms[index - 1]
@@ -207,8 +210,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
     def mc_molecule_to_atoms_and_bonds(
         mc_molecule: MCMolecule,
     ) -> tuple[dict[Any, Any], dict[Any, Any]]:
-        """
-        Transforms the structure of a mc_molecule to an (atoms, bonds) tuple.
+        """Transforms the structure of a mc_molecule to an (atoms, bonds) tuple.
 
         The tuple has the following structure:
 

@@ -3,9 +3,7 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import matplotlib/seaborn (ml extra)
 
-"""
-Tool for animating Markov Chain Monte Carlo simulations in 2D.
-"""
+"""Tool for animating Markov Chain Monte Carlo simulations in 2D."""
 
 from collections.abc import Sequence
 from collections.abc import Callable
@@ -49,8 +47,7 @@ from manim.typing import Point2D, Point2D_Array, VectorND, MatrixMN
 
 
 def gaussian_proposal(x: VectorND, sigma: float = 0.3) -> tuple[VectorND, float]:
-    """
-    Gaussian proposal distribution.
+    """Gaussian proposal distribution.
 
     Draw new parameters from Gaussian distribution with
     mean at current position and standard deviation sigma.
@@ -319,6 +316,9 @@ class SampleDistributionImage(ImageMobject):
 class MCMCAxes(Group):
     """Container object for visualizing MCMC on a 2D axis.
 
+    .. doc-example-covers: make_transition_animation, show_ground_truth_gaussian, visualize_gaussian_proposal_about_point
+
+
     Parameters
     ----------
     dot_color
@@ -403,7 +403,6 @@ class MCMCAxes(Group):
                    )
                )
                self.wait(1)
-    .. doc-example-covers: make_transition_animation, show_ground_truth_gaussian, visualize_gaussian_proposal_about_point
     """
 
     def __init__(
@@ -581,8 +580,7 @@ class MCMCAxes(Group):
         true_samples: Point2D_Array | None = None,
         sampling_kwargs: dict[Any, Any] = {},
     ) -> Succession:
-        """
-        Makes an animation for visualizing a 2D markov chain using
+        """Makes an animation for visualizing a 2D markov chain using
         metropolis hastings samplings.
 
         Parameters

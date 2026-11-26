@@ -5,7 +5,6 @@
 """Damped rotary spring constraint for Pymunk.
 
 This module provides the :class:`~manim_extensions.pymunk.constraints.VDampedRotarySpring.VDampedRotarySpring` class for creating damped rotary spring constraints.
-
 """
 
 from __future__ import annotations
@@ -78,7 +77,6 @@ class VDampedRotarySpring(VConstraint):
                self.add_constraints(spring)
                self.wait(5)
                Group(*self.mobjects).scale(0.07).move_to(ORIGIN)
-
     """
 
     def __init__(

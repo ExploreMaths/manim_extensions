@@ -5,7 +5,6 @@
 """:class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` representation for automata.
 
 This module provides the :class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` class for representing state transitions in automata.
-
 """
 
 from __future__ import annotations

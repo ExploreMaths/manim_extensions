@@ -4,7 +4,6 @@
 """Animation utilities for 2D chemistry molecules.
 
 This module provides the :class:`~manim_extensions.chemistry.twoD.animations.GMAnimationBuilder` class for building molecule animations.
-
 """
 
 from typing import Any, cast
@@ -16,6 +15,9 @@ from .graph_molecule import GraphMolecule
 
 class GMAnimationBuilder:
     r"""Builds animations for a :class:`~manim_extensions.chemistry.twoD.graph_molecule.GraphMolecule`.
+
+    .. doc-example-covers: rotate_atoms_about_bond
+
 
     Parameters
     ----------
@@ -57,7 +59,6 @@ class GMAnimationBuilder:
                    )
                )
                self.wait()
-    .. doc-example-covers: rotate_atoms_about_bond
     """
 
     def __init__(

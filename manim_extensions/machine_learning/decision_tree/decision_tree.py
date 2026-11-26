@@ -3,8 +3,7 @@
 # SPDX-License-Identifier: MIT
 # patched: implement text leaf nodes and the tree expansion animations
 
-"""
-Module for visualizing decision trees in Manim.
+"""Module for visualizing decision trees in Manim.
 It parses a decision tree classifier from sklearn.
 """
 
@@ -133,8 +132,8 @@ class LeafNode(Group):
             Index of the represented class.
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
         if self.class_names is None:
@@ -156,8 +155,8 @@ class LeafNode(Group):
             Index of the represented class.
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
         # Get image
@@ -215,6 +214,9 @@ class SplitNode(VGroup):
 class DecisionTreeDiagram(Group):
     """Decision Tree Diagram Class for Manim.
 
+    .. doc-example-covers: create_decision_tree, make_expand_tree_animation
+
+
     Parameters
     ----------
     sklearn_tree
@@ -269,7 +271,6 @@ class DecisionTreeDiagram(Group):
                    diagram.scale_to_fit_height(6)
                diagram.move_to(ORIGIN)
                self.add(diagram)
-    .. doc-example-covers: create_decision_tree, make_expand_tree_animation
     """
 
     def __init__(

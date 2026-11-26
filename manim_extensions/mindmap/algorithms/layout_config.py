@@ -5,7 +5,6 @@
 """:class:`~manim_extensions.mindmap.algorithms.layout.Layout` configuration for mindmap algorithms.
 
 This module provides configuration classes for layout algorithms.
-
 """
 
 from collections.abc import Sequence
@@ -216,11 +215,13 @@ class LayoutConfig:
 
     @property
     def catalog(self) -> dict[Any, Any]:
-        """Return the catalog layout settings as a dictionary.
+        """Update the catalog layout settings from a dictionary.
 
-        Returns
-        -------
-            A dictionary of the results."""
+        Parameters
+        ----------
+        catalog
+            Dictionary with ``node_spacing`` and ``level_spacing`` keys.
+        """
         return {
             "node_spacing": self.node_spacing,
             "level_spacing": self.level_spacing,
@@ -246,11 +247,20 @@ class LayoutConfig:
 
     @property
     def mindmap(self) -> dict[Any, Any]:
-        """Return the mind map layout settings as a dictionary.
+        """Update the mind map layout settings from a dictionary.
 
-        Returns
-        -------
-            A dictionary of the results."""
+        Parameters
+        ----------
+        mindmap
+            Dictionary with ``direction``, ``node_spacing``, and
+            ``level_spacing`` keys.
+
+        Raises
+        ------
+        ValueError
+            Raised when ``direction`` is not one of UP, DOWN,
+            LEFT, RIGHT.
+        """
         return {
             "direction": self.layout_direction,
             "node_spacing": self.node_spacing,
@@ -290,11 +300,19 @@ class LayoutConfig:
 
     @property
     def timeline(self) -> dict[Any, Any]:
-        """Return the timeline layout settings as a dictionary.
+        """Update the timeline layout settings from a dictionary.
 
-        Returns
-        -------
-            A dictionary of the results."""
+        Parameters
+        ----------
+        timeline
+            Dictionary with ``node_spacing``, ``level_spacing``, and
+            ``sides`` keys.
+
+        Raises
+        ------
+        ValueError
+            Raised when a side is not one of UP, DOWN.
+        """
         return {
             "node_spacing": self.node_spacing,
             "level_spacing": self.level_spacing,

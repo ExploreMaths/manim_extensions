@@ -5,7 +5,6 @@
 """Rotary limit joint constraint for Pymunk.
 
 This module provides the :class:`~manim_extensions.pymunk.constraints.VRotaryLimitJoint.VRotaryLimitJoint` class for creating rotary limit joint constraints.
-
 """
 
 from __future__ import annotations
@@ -71,7 +70,6 @@ class VRotaryLimitJoint(VConstraint):
                self.add_shapes_filter(pivot, arm, group=2)
                self.add_constraints(*constraints)
                self.wait(5)
-
     """
 
     def __init__(

@@ -5,7 +5,6 @@
 """Utility functions for chemistry file parsing.
 
 This module provides utility functions for parsing chemical molecule data.
-
 """
 
 from typing import Any, Literal, cast

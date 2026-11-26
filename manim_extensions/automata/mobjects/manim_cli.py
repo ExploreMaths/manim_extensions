@@ -6,7 +6,6 @@
 """CLI utilities for automata.
 
 This module provides the :class:`~manim_extensions.automata.mobjects.manim_cli.ManimAutomataCLI` class for interactive command-line interface.
-
 """
 
 from typing import Any

@@ -109,6 +109,9 @@ class UpdateIndices(Protocol):
 class MArrayElement(VGroup):
     """A class that represents an array element.
 
+    .. doc-example-covers: animate_mob_index, animate_mob_label, animate_mob_square, animate_mob_value, fetch_mob, fetch_mob_index, fetch_mob_label, fetch_mob_square, fetch_mob_value, update_mob_index, update_mob_label, update_mob_value
+
+
     Parameters
     ----------
     scene
@@ -191,8 +194,6 @@ class MArrayElement(VGroup):
                content = VGroup(first, second)
                content.scale_to_fit_width(6).move_to(ORIGIN)
                self.add(content)
-
-    .. doc-example-covers: animate_mob_index, animate_mob_label, animate_mob_square, animate_mob_value, fetch_mob, fetch_mob_index, fetch_mob_label, fetch_mob_square, fetch_mob_value, update_mob_index, update_mob_label, update_mob_value
     """
 
     def __init_props(
@@ -617,6 +618,9 @@ class MArrayElement(VGroup):
 class MArray(VGroup):
     r"""A class that represents an array.
 
+    .. doc-example-covers: animate_elem_index, animate_elem_square, animate_elem_value, append_elem, fetch_mob_arr_label, update_elem_index, update_elem_value, update_mob_arr_label
+
+
     Parameters
     ----------
     scene
@@ -736,8 +740,6 @@ class MArray(VGroup):
                    index=2, removal_anim=ShowPassingFlash, update_anim=Write
                )
                self.wait(0.5)
-
-    .. doc-example-covers: animate_elem_index, animate_elem_square, animate_elem_value, append_elem, fetch_mob_arr_label, update_elem_index, update_elem_value, update_mob_arr_label
     """
 
     __mob_arr: list[MArrayElement]
@@ -1654,6 +1656,9 @@ class MArray(VGroup):
 class MArrayPointer(VGroup):
     r"""A class that represents a pointer.
 
+    .. doc-example-covers: animate_mob_arrow, animate_mob_label, fetch_mob_arrow, fetch_mob_label, update_mob_label
+
+
     Parameters
     ----------
     scene
@@ -1735,8 +1740,6 @@ class MArrayPointer(VGroup):
                self.wait(0.5)
                ptr.attach_to_elem(0)
                self.wait(0.5)
-
-    .. doc-example-covers: animate_mob_arrow, animate_mob_label, fetch_mob_arrow, fetch_mob_label, update_mob_label
     """
 
     __pointer_pos: MArrayDirection
@@ -2188,6 +2191,9 @@ class MArrayPointer(VGroup):
 class MArraySlidingWindow(VGroup):
     r"""A class that represents a sliding window.
 
+    .. doc-example-covers: animate_mob_label, animate_mob_window, fetch_mob_label, fetch_mob_window, update_mob_label
+
+
     Parameters
     ----------
     scene
@@ -2265,8 +2271,6 @@ class MArraySlidingWindow(VGroup):
                self.wait(0.5)
                # un-create the window so the animation loops seamlessly
                self.play(Uncreate(window))
-
-    .. doc-example-covers: animate_mob_label, animate_mob_window, fetch_mob_label, fetch_mob_window, update_mob_label
     """
 
     class DirEntry(TypedDict):

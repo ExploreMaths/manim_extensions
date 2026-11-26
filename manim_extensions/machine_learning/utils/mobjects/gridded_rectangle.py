@@ -24,6 +24,9 @@ from manim.typing import Point3D, Vector3D
 class GriddedRectangle(VGroup):
     """Rectangle object with grid lines.
 
+    .. doc-example-covers: make_grid_lines
+
+
     Parameters
     ----------
     color
@@ -68,7 +71,6 @@ class GriddedRectangle(VGroup):
        class GriddedRectangleScene(Scene):
            def construct(self):
                self.add(GriddedRectangle(show_grid_lines=True))
-    .. doc-example-covers: make_grid_lines
     """
 
     def __init__(
@@ -231,8 +233,7 @@ class GriddedRectangle(VGroup):
         return grid_lines
 
     def get_center(self) -> Point3D:
-        """
-        Return the center point of the rectangle.
+        """Return the center point of the rectangle.
 
         Returns
         -------
@@ -241,8 +242,7 @@ class GriddedRectangle(VGroup):
         return self.rectangle.get_center()
 
     def get_normal_vector(self) -> Vector3D:
-        """
-        Return the out-of-plane normal vector of the rectangle.
+        """Return the out-of-plane normal vector of the rectangle.
 
         Returns
         -------
@@ -261,15 +261,15 @@ class GriddedRectangle(VGroup):
     ) -> Any:
         """Sets the color of the gridded rectangle.
 
-
-
+        Parameters
+        ----------
         color
             Color to apply to the rectangle border and fill.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         self.color = color
         self.rectangle.set_color(color)

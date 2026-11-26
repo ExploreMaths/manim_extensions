@@ -13,6 +13,9 @@ import random
 class BohrAtom(VGroup):
     """Creates a Bohr like diagram.
 
+    .. doc-example-covers: arrange_electrons, electrons_group, get_electrons, get_nuclei, get_orbitals, nuclei_groups, orbitals_group
+
+
     Parameters
     ----------
     e
@@ -49,7 +52,6 @@ class BohrAtom(VGroup):
                self.add(atom.get_orbitals())
                self.add(atom.get_nuclei())
                self.add(atom.get_electrons())
-    .. doc-example-covers: arrange_electrons, electrons_group, get_electrons, get_nuclei, get_orbitals, nuclei_groups, orbitals_group
     """
 
     def __init__(
@@ -90,7 +92,8 @@ class BohrAtom(VGroup):
 
         Returns
         -------
-            The number of orbital levels needed to hold all electrons."""
+            The number of orbital levels needed to hold all electrons.
+        """
         TOTAL_ELECTRONS_PER_LEVEL = {
             # Electrons that fit in total: Level
             2: 1,
@@ -206,7 +209,8 @@ class BohrAtom(VGroup):
 
         Returns
         -------
-            The orbitals VGroup (first child of the atom group)."""
+            The orbitals VGroup (first child of the atom group).
+        """
         return cast(VGroup, self[0])
 
     def get_electrons(self) -> VGroup:
@@ -214,7 +218,8 @@ class BohrAtom(VGroup):
 
         Returns
         -------
-            The electrons VGroup (second child of the atom group)."""
+            The electrons VGroup (second child of the atom group).
+        """
         return cast(VGroup, self[1])
 
     def get_nuclei(self) -> VGroup:
@@ -222,5 +227,6 @@ class BohrAtom(VGroup):
 
         Returns
         -------
-            The nuclei VGroup (third child of the atom group)."""
+            The nuclei VGroup (third child of the atom group).
+        """
         return cast(VGroup, self[2])

@@ -17,6 +17,9 @@ from manim.typing import Point2D, VectorND, MatrixMN
 class GaussianDistribution(VGroup):
     """Object for drawing a Gaussian distribution.
 
+    .. doc-example-covers: construct_gaussian_distribution, construct_simple_gaussian_ellipse
+
+
     Parameters
     ----------
     axes
@@ -59,7 +62,6 @@ class GaussianDistribution(VGroup):
                    cov=np.array([[1.2, 0.6], [0.6, 0.8]]),
                )
                self.add(axes, gaussian)
-    .. doc-example-covers: construct_gaussian_distribution, construct_simple_gaussian_ellipse
     """
 
     def __init__(
@@ -120,9 +122,7 @@ class GaussianDistribution(VGroup):
         def eigsorted(
             cov: MatrixMN,
         ) -> tuple[VectorND, MatrixMN]:
-            """
-            Eigenvalues and eigenvectors of the covariance matrix.
-            """
+            """Eigenvalues and eigenvectors of the covariance matrix."""
             vals, vecs = np.linalg.eigh(cov)
             order = vals.argsort()[::-1]
             return vals[order], vecs[:, order]

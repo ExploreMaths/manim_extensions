@@ -6,7 +6,6 @@
 """Constants for sequence diagrams.
 
 This module provides constants used in sequence diagrams.
-
 """
 
 from manim import DOWN

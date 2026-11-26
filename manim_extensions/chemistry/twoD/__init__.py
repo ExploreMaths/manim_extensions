@@ -4,7 +4,6 @@
 """2D chemistry visualizations for Manim.
 
 This module provides 2D chemistry molecule visualizations.
-
 """
 
 from .animations import GMAnimationBuilder  # noqa F841

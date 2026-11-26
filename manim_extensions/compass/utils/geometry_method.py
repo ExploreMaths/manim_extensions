@@ -5,7 +5,6 @@
 """Geometry methods for compass.
 
 This module provides geometry utility functions for compass operations.
-
 """
 
 from typing import Any
@@ -102,8 +101,7 @@ def is_counter_clockwise(
     vector_start: Vector3D,
     vector_end: Vector3D,
 ) -> bool:
-    """
-    Return whether ``vector_end`` is counter-clockwise from ``vector_start``.
+    """Return whether ``vector_end`` is counter-clockwise from ``vector_start``.
 
     Parameters
     ----------

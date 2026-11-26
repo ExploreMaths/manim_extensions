@@ -4,7 +4,6 @@
 """Weighted line class for Manim.
 
 This module provides the :class:`~manim_extensions.weighted_line.weighted_line.WeightedLine` class for displaying weighted edges in network graphs.
-
 """
 
 from typing import Any
@@ -96,7 +95,6 @@ class WeightedLine(Line):
                          edge_type=WeightedLine,
                          edge_config={(u, v): G.get_edge_data(u, v) for u, v in G.edges})
                self.add(g)
-
     """
 
     def __init__(
@@ -134,8 +132,7 @@ class WeightedLine(Line):
             self._add_weight()
 
     def _add_weight(self) -> Any:
-        """
-        Clears any current weight and then displays the weight is not none.
+        """Clears any current weight and then displays the weight is not none.
 
         Use weight_config dict to send options to the :class:`~manim.mobject.text.text_mobject.Text` object.
 
@@ -143,8 +140,8 @@ class WeightedLine(Line):
 
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
 

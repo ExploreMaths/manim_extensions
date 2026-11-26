@@ -55,6 +55,9 @@ from .. import config
 class NeuralNetwork(Group):
     """Neural Network Visualization Container Class.
 
+    .. doc-example-covers: make_forward_pass_animation
+
+
     Parameters
     ----------
     input_layers
@@ -110,7 +113,6 @@ class NeuralNetwork(Group):
                # Animate the forward pass
                forward_pass = nn.make_forward_pass_animation()
                self.play(forward_pass)
-    .. doc-example-covers: make_forward_pass_animation
     """
 
     def __init__(
@@ -201,8 +203,8 @@ class NeuralNetwork(Group):
     ) -> Any:
         """Add connection from start layer to end layer.
 
-
-
+        Parameters
+        ----------
         start_mobject_or_name
             The layer the connection starts from, or its name in the network.
         end_mobject_or_name
@@ -215,9 +217,9 @@ class NeuralNetwork(Group):
             Direction the connection arc bends.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         assert connection_style in ["default"]
         if connection_style == "default":
@@ -242,8 +244,8 @@ class NeuralNetwork(Group):
         """Constructs each of the input layers in context
         of their adjacent layers..
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
         prev_layer = None
@@ -285,7 +287,6 @@ class NeuralNetwork(Group):
         ------
         Exception
             If an unsupported layout mode is requested.
-
         """
         # Default: Linear layout
         for layer_index in range(1, len(self.input_layers)):
@@ -641,8 +642,8 @@ class NeuralNetwork(Group):
     def set_z_index(self, z_index_value: float, family: bool = False) -> Any:
         """Overridden set_z_index.
 
-
-
+        Parameters
+        ----------
         z_index_value
             The z-index to set on each layer.
         family
@@ -650,9 +651,9 @@ class NeuralNetwork(Group):
             sub-neural networks from inheriting the parent z-index.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         # Setting family=False stops sub-neural networks from inheriting parent z_index
         for layer in self.all_layers:
@@ -665,17 +666,17 @@ class NeuralNetwork(Group):
         Scales every layer and re-places the layers and connective layers
         with scaled spacing, keeping the network centered.
 
-
-
+        Parameters
+        ----------
         scale_factor
             The scaling factor.
         **kwargs
             Additional keyword arguments forwarded to each layer's ``scale``.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         prior_center = self.get_center()
 

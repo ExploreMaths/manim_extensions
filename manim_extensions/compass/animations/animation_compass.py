@@ -5,7 +5,6 @@
 """Compass animations for Manim.
 
 This module provides animations for compass manipulations.
-
 """
 
 from typing import Any

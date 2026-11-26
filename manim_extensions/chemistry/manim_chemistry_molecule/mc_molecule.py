@@ -4,7 +4,6 @@
 """Manim chemistry molecule representation.
 
 This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule` class for representing molecules.
-
 """
 
 from typing import Any, Literal, cast
@@ -86,8 +85,7 @@ class MCMolecule:
         atoms_dict: dict[Any, Any],
         elements_data_dict: dict[Any, Any] | None,
     ) -> Any:
-        """
-        Uses the atoms dict returned by a parser to add the atoms to the molecule.
+        """Uses the atoms dict returned by a parser to add the atoms to the molecule.
 
         Parameters
         ----------
@@ -106,7 +104,6 @@ class MCMolecule:
         ------
         Exception
             Raised when ``atoms_dict`` is not a dict of atom data dicts.
-
         """
 
         if self.atoms and not isinstance(self.atoms, list):
@@ -126,8 +123,7 @@ class MCMolecule:
             self.atoms_by_index[atom_index] = mc_atom
 
     def add_bonds_from_bonds_dict(self, bonds_dict: dict[Any, Any]) -> Any:
-        """
-        Uses the bonds dict returned by a parser to add the bonds to the molecule.
+        """Uses the bonds dict returned by a parser to add the bonds to the molecule.
 
         Parameters
         ----------
@@ -143,7 +139,6 @@ class MCMolecule:
         ------
         Exception
             Raised when ``bonds_dict`` is not a dict of bond data dicts.
-
         """
 
         if self.bonds and not isinstance(self.bonds, list):
@@ -160,8 +155,7 @@ class MCMolecule:
             )
 
     def add_connections_between_atoms(self) -> Any:
-        r"""
-        Uses the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`\ s to add connections between :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`\ s.
+        r"""Uses the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`\ s to add connections between :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`\ s.
 
 
         Returns
@@ -172,7 +166,6 @@ class MCMolecule:
         ------
         Exception
             Raised when the bonds list is not a list of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`\ s.
-
         """
 
         if self.bonds and not isinstance(self.bonds, list):
@@ -192,8 +185,7 @@ class MCMolecule:
         ignore_all_hydrogens: bool = False,
         elements_data_dict: dict[Any, Any] | None = None,
     ) -> "MCMolecule":
-        r"""
-        Given data with the format provided by a parser, constructs a :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`,
+        r"""Given data with the format provided by a parser, constructs a :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`,
         the corresponding :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`\ s and :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`\ s and stablishes the connections between
         :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`\ s and bonds.
 
@@ -239,8 +231,7 @@ class MCMolecule:
         ignore_all_hydrogens: bool = False,
         elements_data_dict: dict[Any, Any] | None = None,
     ) -> "MCMolecule":
-        """
-        Returns an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule` given a file path.
+        """Returns an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule` given a file path.
 
         Parameters
         ----------
@@ -280,8 +271,7 @@ class MCMolecule:
         ignore_all_hydrogens: bool = False,
         elements_data_dict: dict[Any, Any] | None = None,
     ) -> list[Any]:
-        r"""
-        Similar to ``construct_from_file`` but returning a list of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`\ s.
+        r"""Similar to ``construct_from_file`` but returning a list of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`\ s.
 
         Parameters
         ----------
@@ -326,8 +316,7 @@ class MCMolecule:
         ignore_all_hydrogens: bool = False,
         elements_data_dict: dict[Any, Any] | None = None,
     ) -> "MCMolecule":
-        """
-        Reads a string and returns a molecule.
+        """Reads a string and returns a molecule.
 
         Supported formats are:
 
@@ -388,8 +377,7 @@ class MCMolecule:
         ignore_all_hydrogens: bool = False,
         elements_data_dict: dict[Any, Any] | None = None,
     ) -> list[Any]:
-        r"""
-        Similar to ``construct_from_string`` but returning a list of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`\ s.
+        r"""Similar to ``construct_from_string`` but returning a list of :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_molecule.MCMolecule`\ s.
 
         Parameters
         ----------
@@ -463,15 +451,15 @@ class MCMolecule:
     def remove_hydrogens(self, atoms_to_be_removed: list[Any]) -> Any:
         """Remove specified atoms and their associated bonds, then reindex.
 
-
-
+        Parameters
+        ----------
         atoms_to_be_removed
             Indices of the atoms to remove.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         if not atoms_to_be_removed:
             return

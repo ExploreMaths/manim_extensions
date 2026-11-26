@@ -739,11 +739,16 @@ class CADArrowHead(CurveWarp):
 
     @property
     def reversed_arrow(self) -> bool:
-        """Whether the arrow points backwards.
+        """Set whether the arrow points backwards.
+
+        Parameters
+        ----------
+        rev
+            New reversed state.
 
         Returns
         -------
-            The current reversed state.
+            The arrow is flipped when the state changes.
         """
         return self.__reversed_arrow
 

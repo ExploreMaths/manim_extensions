@@ -37,6 +37,9 @@ from manim.typing import VectorND
 class FeedForwardToFeedForward(ConnectiveLayer):
     """Layer for connecting FeedForward layer to :class:`~manim_extensions.machine_learning.neural_network.layers.feed_forward.FeedForwardLayer`.
 
+    .. doc-example-covers: construct_edges, make_forward_pass_animation, modify_edge_stroke_widths
+
+
     Parameters
     ----------
     input_layer
@@ -79,7 +82,6 @@ class FeedForwardToFeedForward(ConnectiveLayer):
                content = Group(first, second, connection)
                content.scale_to_fit_height(5.5).move_to(ORIGIN)
                self.add(content)
-    .. doc-example-covers: construct_edges, make_forward_pass_animation, modify_edge_stroke_widths
     """
 
     input_class = FeedForwardLayer
@@ -112,8 +114,8 @@ class FeedForwardToFeedForward(ConnectiveLayer):
     ) -> Any:
         """Build the fully-connected edges between input and output layers.
 
-
-
+        Parameters
+        ----------
         input_layer
             The layer preceding this connective layer in the network.
         output_layer
@@ -122,9 +124,9 @@ class FeedForwardToFeedForward(ConnectiveLayer):
             Forwarded to the parent layer classes.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         self.edges = self.construct_edges()
         self.add(self.edges)
@@ -135,7 +137,8 @@ class FeedForwardToFeedForward(ConnectiveLayer):
 
         Returns
         -------
-            A list of the results."""
+            A list of the results.
+        """
         # Go through each node in the two layers and make a connecting line
         input_layer = cast(FeedForwardLayer, self.input_layer)
         output_layer = cast(FeedForwardLayer, self.output_layer)
@@ -257,7 +260,6 @@ class FeedForwardToFeedForward(ConnectiveLayer):
         ------
         ValueError
             If neither ``colors`` nor ``magnitudes`` is provided.
-
         """
         if colors is not None:
             assert len(colors) == len(self.edges)

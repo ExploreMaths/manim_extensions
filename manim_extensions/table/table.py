@@ -2,9 +2,7 @@
 # SPDX-License-Identifier: MIT
 # patched: document module-level constants
 
-"""
-:class:`~manim_extensions.table.table.Table` - The main database table component.
-"""
+""":class:`~manim_extensions.table.table.Table` - The main database table component."""
 
 from typing import Any, cast, overload
 
@@ -23,8 +21,10 @@ TableAnimation = Animation | _AnimationBuilder
 
 
 class Table(VGroup):
-    """
-    A database table visualization for Manim Community Edition (manim CE).
+    """A database table visualization for Manim Community Edition (manim CE).
+
+    .. doc-example-covers: add_column, add_row, delete_column, delete_row, get_column, get_column_by_name, set_column_background_color, set_column_border_color, set_column_font_color, set_header_background_color, set_header_font_color
+
 
     The table can be created in two ways:
 
@@ -169,7 +169,6 @@ class Table(VGroup):
                table.get_cell(3, 2).set_font_color(RED)
                table.get_cell(3, 2).set_background_color(RED, opacity=0.2)
                self.add(table)
-    .. doc-example-covers: add_column, add_row, delete_column, delete_row, get_column, get_column_by_name, set_column_background_color, set_column_border_color, set_column_font_color, set_header_background_color, set_header_font_color
     """
 
     def __init__(
@@ -247,8 +246,7 @@ class Table(VGroup):
             self.add(row)
 
     def calculate_column_widths(self) -> list[float]:
-        """
-        Calculate the width of each column based on the longest text content.
+        """Calculate the width of each column based on the longest text content.
 
         Returns
         -------
@@ -277,8 +275,7 @@ class Table(VGroup):
     # -------------------------------------------------------------------------
 
     def get_cell(self, row: int, col: int) -> Cell:
-        """
-        Get a specific cell by row and column index.
+        """Get a specific cell by row and column index.
         Row 0 is the header row.
 
         Parameters
@@ -297,8 +294,7 @@ class Table(VGroup):
         return self.rows[row - 1][col]
 
     def get_row(self, index: int) -> Row:
-        """
-        Get a row by index. Index 0 returns the header row.
+        """Get a row by index. Index 0 returns the header row.
 
         Parameters
         ----------
@@ -314,8 +310,7 @@ class Table(VGroup):
         return self.rows[index - 1]
 
     def get_column(self, index: int) -> VGroup:
-        """
-        Get all cells in a column as a :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
+        """Get all cells in a column as a :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
         Includes the header cell.
 
         Parameters
@@ -333,8 +328,7 @@ class Table(VGroup):
         return VGroup(*cells)
 
     def get_column_by_name(self, name: str) -> VGroup:
-        """
-        Get a column by its header name.
+        """Get a column by its header name.
 
         Parameters
         ----------
@@ -376,31 +370,31 @@ class Table(VGroup):
 
     @overload  # type: ignore[override]
     def __getitem__(self, index: int) -> Row:
-        """Return the data row at the given index.
+        """Return a data row or a slice of rows.
 
         Parameters
         ----------
         index
-            Row index.
+            Row index or slice, excluding the header.
 
         Returns
         -------
-            The selected row.
+            The selected row or list of rows.
         """
         ...
 
     @overload
     def __getitem__(self, index: slice) -> list[Row]:
-        """Return the data rows selected by the slice.
+        """Return a data row or a slice of rows.
 
         Parameters
         ----------
         index
-            Row slice.
+            Row index or slice, excluding the header.
 
         Returns
         -------
-            The selected rows.
+            The selected row or list of rows.
         """
         ...
 
@@ -425,8 +419,7 @@ class Table(VGroup):
     def set_column_font_color(
         self, col: int, color: ParsableManimColor, include_header: bool = False
     ) -> "Table":
-        """
-        Set the font color for all cells in a column.
+        """Set the font color for all cells in a column.
 
         Parameters
         ----------
@@ -454,8 +447,7 @@ class Table(VGroup):
         opacity: float = 0.5,
         include_header: bool = False,
     ) -> "Table":
-        """
-        Set the background color for all cells in a column.
+        """Set the background color for all cells in a column.
 
         Parameters
         ----------
@@ -481,8 +473,7 @@ class Table(VGroup):
     def set_column_border_color(
         self, col: int, color: ParsableManimColor, include_header: bool = True
     ) -> "Table":
-        """
-        Set the border color for all cells in a column.
+        """Set the border color for all cells in a column.
 
         Parameters
         ----------
@@ -506,8 +497,7 @@ class Table(VGroup):
     def set_header_background_color(
         self, color: ParsableManimColor, opacity: float = 0.5
     ) -> "Table":
-        """
-        Set the background color for all header cells.
+        """Set the background color for all header cells.
 
         Parameters
         ----------
@@ -525,8 +515,7 @@ class Table(VGroup):
         return self
 
     def set_header_font_color(self, color: ParsableManimColor) -> "Table":
-        """
-        Set the font color for all header cells.
+        """Set the font color for all header cells.
 
         Parameters
         ----------
@@ -546,8 +535,7 @@ class Table(VGroup):
     # -------------------------------------------------------------------------
 
     def add_row(self, values: list[str]) -> tuple[Row, list[TableAnimation]]:
-        """
-        Add a new row to the bottom of the table.
+        """Add a new row to the bottom of the table.
 
         Parameters
         ----------
@@ -689,8 +677,7 @@ class Table(VGroup):
         return new_row, all_animations
 
     def delete_row(self, index: int) -> tuple[Row, list[TableAnimation]]:
-        """
-        Delete a row from the table.
+        """Delete a row from the table.
 
         Parameters
         ----------
@@ -822,8 +809,7 @@ class Table(VGroup):
     def add_column(
         self, header: str, values: list[str], index: int | None = None
     ) -> tuple[VGroup, list[TableAnimation], list[TableAnimation]]:
-        """
-        Add a new column to the table.
+        """Add a new column to the table.
 
         Parameters
         ----------
@@ -944,8 +930,7 @@ class Table(VGroup):
         return new_column_group, shift_animations, appear_animations
 
     def delete_column(self, index: int) -> tuple[VGroup, list[TableAnimation]]:
-        """
-        Delete a column from the table.
+        """Delete a column from the table.
 
         Parameters
         ----------

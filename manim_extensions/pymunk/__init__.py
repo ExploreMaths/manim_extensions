@@ -5,7 +5,6 @@
 
 This module provides physics simulation capabilities using Pymunk,
 including rigid body dynamics, constraints, and custom mobjects.
-
 """
 
 __version__ = "1.2.0"

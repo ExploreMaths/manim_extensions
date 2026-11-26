@@ -5,7 +5,6 @@
 """Mindmap node classes for Manim.
 
 This module provides node classes for mindmap visualizations.
-
 """
 
 from __future__ import annotations
@@ -156,8 +155,7 @@ class NodeStyle:
             self.text_num = 1
 
     def get_node_style(self, level: int) -> dict[Any, Any]:
-        """
-        Return the box style configured for a hierarchy level.
+        """Return the box style configured for a hierarchy level.
 
         Parameters
         ----------
@@ -255,6 +253,9 @@ def bfs_walker(root: Node) -> Generator["Node", None, None]:
 class Node:
     r"""Tree-node class.
 
+    .. doc-example-covers: get_children_mobjects, get_connector, get_descendants_mobjects, get_node_and_line_without_updater
+
+
     Parameters
     ----------
     vmobject
@@ -292,7 +293,6 @@ class Node:
                          child.vmobject, child.surr_rect,
                          leaf.vmobject, leaf.surr_rect)
                Group(*self.mobjects).scale(1.3).move_to(ORIGIN)
-    .. doc-example-covers: get_children_mobjects, get_connector, get_descendants_mobjects, get_node_and_line_without_updater
     """
 
     def __init__(
@@ -324,15 +324,15 @@ class Node:
     def scale(self, scale_factor: float) -> Any:
         """Scale the node around its current center.
 
-
-
+        Parameters
+        ----------
         scale_factor
             Uniform scaling factor applied to the node dimensions.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         self.node_state = NodeState.SCALE
         self.scale_factor = scale_factor
@@ -342,15 +342,15 @@ class Node:
     def add_child(self, child: "Node") -> Any:
         """Attach a child node to the current node.
 
-
-
+        Parameters
+        ----------
         child
             Child node to insert beneath the current parent.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         if self.children:
             child.neighbor = self.children[-1]
@@ -375,7 +375,6 @@ class Node:
         ------
         ValueError
             Raised when ``child`` is not a child of the current node.
-
         """
         if child not in self.children:
             raise ValueError(f"Node {child} is not a child of {self}")
@@ -384,15 +383,15 @@ class Node:
     def alter_content(self, vmobject: VMobject) -> Any:
         """Replace the displayed content of the node.
 
-
-
+        Parameters
+        ----------
         vmobject
             New mobject used to render the node content.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         self.node_state = NodeState.ALTER
         self.alter_vmobject = vmobject
@@ -543,8 +542,8 @@ class Node:
     ) -> Any:
         """Set the connector line.
 
-
-
+        Parameters
+        ----------
         layout_type
             :class:`~manim_extensions.mindmap.algorithms.layout.Layout` type parameter for this operation.
         direction
@@ -553,9 +552,9 @@ class Node:
             Kwargs processed by this operation.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         if self.parent is not None and self.connector is None:
             self.connector_style = kwargs
@@ -574,8 +573,8 @@ class Node:
     ) -> Any:
         """Change the connector line.
 
-
-
+        Parameters
+        ----------
         change_dir
             Change dir parameter for this operation.
         change_layout
@@ -588,9 +587,9 @@ class Node:
             Additional keyword arguments used as the connector line style.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         current_style = getattr(self, "connector_style", None)
         if (
@@ -620,8 +619,7 @@ class Node:
         return node_mobj
 
     def get_children(self) -> "list[Node]":
-        """
-        Return the direct children of this node.
+        """Return the direct children of this node.
 
         Returns
         -------
@@ -630,13 +628,11 @@ class Node:
         return self.children
 
     def get_descendants(self) -> "list[Node]":
-        """
-        Return all descendants of this node in depth-first order.
+        """Return all descendants of this node in depth-first order.
 
         Returns
         -------
             All descendant nodes (children, grandchildren, ...).
-
         """
 
         def descendants_of_node(node: Node, descendants: list[Node] = []) -> list[Node]:
@@ -706,8 +702,7 @@ class Node:
         return descendants_mobjects_of_node(self)
 
     def get_root(self) -> "Node":
-        """
-        Return the root of the tree containing this node.
+        """Return the root of the tree containing this node.
 
         Returns
         -------

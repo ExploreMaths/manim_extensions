@@ -4,7 +4,6 @@
 """Manim chemistry atom representation.
 
 This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom` class for representing atoms in molecules.
-
 """
 
 from __future__ import annotations
@@ -89,8 +88,7 @@ class MCAtom:
         self.molecule_index = molecule_index
 
     def add_atoms(self, atoms: "MCAtom | list[MCAtom]") -> "list[MCAtom]":
-        r"""
-        Assigns bonded atoms to :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`.
+        r"""Assigns bonded atoms to :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`.
 
         Parameters
         ----------
@@ -234,8 +232,7 @@ class MCAtom:
         atom_data_dict: dict[Any, Any],
         elements_data_dict: dict[Any, Any] | None,
     ) -> "MCAtom":
-        """
-        Given an atom data dict from a parser, returns an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`.
+        """Given an atom data dict from a parser, returns an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_atom.MCAtom`.
 
         Parameters
         ----------

@@ -121,8 +121,8 @@ class MultiPendulum(VGroup):
             The physics scene to which the joint is added.
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
         pymunk = require("physics", "pymunk")
@@ -148,8 +148,8 @@ class MultiPendulum(VGroup):
             Index of the first pin; the rod connects ``pins[i]`` to ``pins[i+1]``.
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
         try:

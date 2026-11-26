@@ -4,7 +4,6 @@
 """Pymunk constraint classes.
 
 This module provides constraint classes for Pymunk physics simulations.
-
 """
 
 __all__ = [

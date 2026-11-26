@@ -4,7 +4,6 @@
 """CLI module for chemistry.
 
 This module provides command-line interface for downloading molecules from PubChem.
-
 """
 
 from typing import Any, Literal
@@ -50,8 +49,7 @@ def pubchem_molecule(
     three_d: bool,
     output_folder: str,
 ) -> Any:
-    r"""
-    Download molecule from pubchem.
+    r"""Download molecule from pubchem.
 
     Supports downloading multiple files from a single request.
 
@@ -103,7 +101,6 @@ def pubchem_molecule(
        :prompt-in: "$"
 
        manim-chemistry pubchem-molecule --format sdf -n acetone -n morphine
-
     """
 
     identifier = cid or name or smiles or inchi

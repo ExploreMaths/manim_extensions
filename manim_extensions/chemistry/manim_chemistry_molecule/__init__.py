@@ -4,7 +4,6 @@
 """Manim chemistry molecule classes.
 
 This module provides core molecule classes for the chemistry extension.
-
 """
 
 from .mc_element import *  # noqa F841

@@ -5,7 +5,6 @@
 """Ratchet joint constraint for Pymunk.
 
 This module provides the :class:`~manim_extensions.pymunk.constraints.VRatchetJoint.VRatchetJoint` class for creating ratchet joint constraints.
-
 """
 
 from __future__ import annotations
@@ -80,7 +79,6 @@ class VRatchetJoint(VConstraint):
                self.add_shapes_filter(pivot_1, pivot_2, wheel_1, wheel_2, group=2)
                self.add_constraints(*constraints)
                self.wait(5)
-
     """
 
     def __init__(

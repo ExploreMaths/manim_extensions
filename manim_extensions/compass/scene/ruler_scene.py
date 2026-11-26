@@ -30,6 +30,9 @@ from ..compass import Pencil, Ruler
 class SingleRulerScene(MovingCameraScene):
     """A scene that provides a ruler and a pencil for drawing lines.
 
+    .. doc-example-covers: draw_line_with_pencil
+
+
     Examples
     --------
     .. manim:: SingleRulerSceneUsage
@@ -42,7 +45,6 @@ class SingleRulerScene(MovingCameraScene):
            def construct(self):
                self.draw_line_with_pencil(LEFT, 3 * UR)
                self.put_ruler_back()
-    .. doc-example-covers: draw_line_with_pencil
     """
 
     def setup(self) -> Any:
@@ -106,8 +108,8 @@ class SingleRulerScene(MovingCameraScene):
     ) -> Any:
         """Restore the ruler to its saved state and move the pencil back.
 
-
-
+        Parameters
+        ----------
         added_anims
             Extra animations to play alongside the restoration, if any.
         run_time
@@ -116,9 +118,9 @@ class SingleRulerScene(MovingCameraScene):
             Additional keyword arguments passed to the play.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         anims = [
             Restore(self.ruler),

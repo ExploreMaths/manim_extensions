@@ -4,7 +4,6 @@
 """Base classes for economic diagrams.
 
 This module provides the base classes for economic diagram visualizations.
-
 """
 
 from collections.abc import Callable, Sequence
@@ -76,6 +75,9 @@ def find_intersection(
 class EconDiagram(VGroup):
     """Base class for economics diagrams built on manim Axes.
 
+    .. doc-example-covers: add_vertical_line, get_shift_animation, mark_equilibrium
+
+
     Parameters
     ----------
     x_label
@@ -105,7 +107,6 @@ class EconDiagram(VGroup):
            def construct(self):
                diagram = EconDiagram()
                self.add(diagram)
-    .. doc-example-covers: add_vertical_line, get_shift_animation, mark_equilibrium
     """
 
     def __init__(

@@ -6,7 +6,6 @@
 """Parent layer classes for neural network visualizations.
 
 This module provides abstract base classes for neural network layer visualizations.
-
 """
 
 from __future__ import annotations
@@ -29,6 +28,9 @@ from abc import ABC, abstractmethod
 
 class NeuralNetworkLayer(ABC, Group):
     """Abstract Neural Network Layer class.
+
+    .. doc-example-covers: make_forward_pass_animation
+
 
     Parameters
     ----------
@@ -58,7 +60,6 @@ class NeuralNetworkLayer(ABC, Group):
                assert isinstance(layer, NeuralNetworkLayer)
                layer.scale_to_fit_height(6).move_to(ORIGIN)
                self.add(layer)
-    .. doc-example-covers: make_forward_pass_animation
     """
 
     def __init__(self, text: str | None = None, *args: Any, **kwargs: Any) -> None:
@@ -83,8 +84,8 @@ class NeuralNetworkLayer(ABC, Group):
     ) -> Any:
         """Constructs the layer at network construction time.
 
-
-
+        Parameters
+        ----------
         input_layer
             Preceding layer.
         output_layer
@@ -94,9 +95,9 @@ class NeuralNetworkLayer(ABC, Group):
             surrounding rectangle around the layer.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         if "debug_mode" in kwargs and kwargs["debug_mode"]:
             self.add(SurroundingRectangle(self))
@@ -141,6 +142,9 @@ class NeuralNetworkLayer(ABC, Group):
 class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
     """Neural network layer variant based on :class:`~manim.mobject.types.vectorized_mobject.VGroup`.
 
+    .. doc-example-covers: make_forward_pass_animation
+
+
     Parameters
     ----------
     args
@@ -166,7 +170,6 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
                assert isinstance(layer, VGroupNeuralNetworkLayer)
                layer.scale_to_fit_height(6).move_to(ORIGIN)
                self.add(layer)
-    .. doc-example-covers: make_forward_pass_animation
     """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
@@ -244,6 +247,9 @@ class ThreeDLayer(ABC):
 class ConnectiveLayer(VGroupNeuralNetworkLayer):
     """Forward pass animation for a given pair of layers.
 
+    .. doc-example-covers: make_forward_pass_animation
+
+
     Parameters
     ----------
     input_layer
@@ -276,7 +282,6 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
                content = Group(input_layer, output_layer, connection)
                content.scale_to_fit_height(6).move_to(ORIGIN)
                self.add(content)
-    .. doc-example-covers: make_forward_pass_animation
     """
 
     @abstractmethod
@@ -341,6 +346,9 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
 class BlankConnective(ConnectiveLayer):
     """Connective layer to be used when the given pair of layers is undefined.
 
+    .. doc-example-covers: make_forward_pass_animation
+
+
     Parameters
     ----------
     input_layer
@@ -374,7 +382,6 @@ class BlankConnective(ConnectiveLayer):
                content = Group(input_layer, output_layer, connection)
                content.scale_to_fit_height(6).move_to(ORIGIN)
                self.add(content)
-    .. doc-example-covers: make_forward_pass_animation
     """
 
     def __init__(
@@ -414,8 +421,8 @@ class BlankConnective(ConnectiveLayer):
     ) -> Any:
         """Construct nothing: a blank connective has no geometry of its own.
 
-
-
+        Parameters
+        ----------
         input_layer
             Preceding layer.
         output_layer
@@ -424,9 +431,9 @@ class BlankConnective(ConnectiveLayer):
             Ignored.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         return None
 

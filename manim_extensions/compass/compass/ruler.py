@@ -5,7 +5,6 @@
 """:class:`~manim_extensions.compass.compass.ruler.Ruler` class for Manim.
 
 This module provides ruler visualization for geometry.
-
 """
 
 from typing import Any
@@ -110,8 +109,7 @@ class Ruler(VGroup):
         return Line(e, s).get_unit_vector()
 
     def get_start_and_end(self) -> tuple[Point3D, Point3D]:
-        """
-        Return the start and end points of the ruler length axis.
+        """Return the start and end points of the ruler length axis.
 
         Returns
         -------
@@ -121,8 +119,7 @@ class Ruler(VGroup):
         return S, E
 
     def get_middle_point(self) -> Point3D:
-        """
-        Return the midpoint between the ruler start and end points.
+        """Return the midpoint between the ruler start and end points.
 
         Returns
         -------
@@ -142,9 +139,7 @@ class Ruler(VGroup):
         return float(np.linalg.norm(E - S))
 
     def set_ruler(self, start: Point3D = LEFT, end: Point3D = RIGHT) -> "Ruler":
-        """
-
-        Place the ruler so that one of its edges aligns with start and end.
+        """Place the ruler so that one of its edges aligns with start and end.
 
         Parameters
         ----------
@@ -171,7 +166,6 @@ class Ruler(VGroup):
                    self.add(Dot(start, color=RED), Dot(end, color=RED))
                    ruler = Ruler().set_ruler(start, end)
                    self.add(ruler)
-
         """
         direction = end - start
         current_pos = self.get_middle_point()

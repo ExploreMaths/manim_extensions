@@ -15,6 +15,9 @@ from .m_array import MArrayElement, MobProps
 class MVariable(MArrayElement):
     r"""A class that represents a variable.
 
+    .. doc-example-covers: update_index, update_label, update_value
+
+
     Parameters
     ----------
     scene
@@ -67,8 +70,6 @@ class MVariable(MArrayElement):
                var.scale_to_fit_width(6).move_to(ORIGIN)
                # fade the variable back out so the animation loops seamlessly
                self.play(FadeOut(var))
-
-    .. doc-example-covers: update_index, update_label, update_value
     """
 
     def __init__(

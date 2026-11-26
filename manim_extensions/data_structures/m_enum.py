@@ -26,7 +26,7 @@ class MArrayElementComp(Enum):
                card = VGroup(
                    Text('MArrayElementComp', font_size=36),
                    Text('module: manim_extensions.data_structures.m_enum', font_size=18, color=GREY),
-                   Text('Refers to individual component manim.mobject.mobject.Mobject\\ s of manim_extensions.data_structures.m_array.MArrayElement', font_size=22),
+                   Text('Refers to individual component manim.mobject.mobject.Mobject\ s of manim_extensions.data_structures.m_array.MArrayElement', font_size=22),
                    Text("API: " + ", ".join(public[:6]), font_size=18, color=BLUE),
                ).arrange(DOWN, aligned_edge=LEFT, buff=0.25)
                card.scale_to_fit_width(11.5).move_to(ORIGIN)

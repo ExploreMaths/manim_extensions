@@ -23,7 +23,6 @@ the specific functions of the space.
    *   A low frame rate might cause some objects to pass static objects as
        they don't register collisions finely enough. Trying to increase the
        config frame rate might solve the problem.
-
 """
 
 from __future__ import annotations
@@ -372,8 +371,8 @@ def _step(space: Mobject, dt: float = 1 / 60) -> Any:
         Time step size in seconds.
 
 
-        Returns
-        -------
+    Returns
+    -------
             The resulting value.
     """
     cast(Any, space).space.step(dt)
@@ -388,8 +387,8 @@ def _simulate(b: Mobject) -> Any:
         The physics body whose state is synchronised to its mobject.
 
 
-        Returns
-        -------
+    Returns
+    -------
             The resulting value.
     """
     x, y = cast(Any, b.body).position
@@ -401,15 +400,15 @@ def _simulate(b: Mobject) -> Any:
 def get_shape(mob: VMobject) -> Any:
     """Obtains the shape of the body from the mobject.
 
-
-
+    Parameters
+    ----------
     mob
         The mobject to manipulate.
 
 
-
-
-        The resulting value.
+    Returns
+    -------
+            The resulting value.
     """
     pymunk = require("physics", "pymunk")
     if isinstance(mob, Circle):
@@ -436,15 +435,15 @@ def get_angle(mob: VMobject) -> Any:
     """Obtains the angle of the body from the mobject.
     Used internally for updaters.
 
-
-
+    Parameters
+    ----------
     mob
         The mobject to manipulate.
 
 
-
-
-        The resulting value.
+    Returns
+    -------
+            The resulting value.
     """
     if issubclass(type(mob), Polygon):
         vec1 = mob.get_vertices()[0] - mob.get_vertices()[1]

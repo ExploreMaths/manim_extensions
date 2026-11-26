@@ -2,9 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""
-Transformations for manipulating a neural network object.
-"""
+"""Transformations for manipulating a neural network object."""
 
 from __future__ import annotations
 from typing import Any, TYPE_CHECKING, cast
@@ -26,8 +24,10 @@ if TYPE_CHECKING:
 
 
 class RemoveLayer(AnimationGroup):
-    """
-    Animation for removing a layer from a neural network.
+    """Animation for removing a layer from a neural network.
+
+    .. doc-example-covers: make_move_animation, make_remove_animation, make_remove_connective_layers_animation
+
 
     .. note::
 
@@ -68,7 +68,6 @@ class RemoveLayer(AnimationGroup):
                # RemoveLayer because it contains empty sub-animations, so
                # this example only constructs the animation.
                RemoveLayer(nn.all_layers[2], nn)
-    .. doc-example-covers: make_move_animation, make_remove_animation, make_remove_connective_layers_animation
     """
 
     def __init__(
@@ -230,8 +229,7 @@ class RemoveLayer(AnimationGroup):
         self.anim_count = 0
 
         def create_new_connective(neural_network: NeuralNetwork) -> Any:
-            """
-            Creates new connective layer.
+            """Creates new connective layer.
 
             This is a closure that creates a new connective layer and animates it.
             """
@@ -259,6 +257,9 @@ class RemoveLayer(AnimationGroup):
 
 class InsertLayer(AnimationGroup):
     """Animation for inserting layer at given index.
+
+    .. doc-example-covers: make_create_connective_layers_animation, make_move_layers_animation, remove_connective_layer_animation
+
 
     Parameters
     ----------
@@ -290,7 +291,6 @@ class InsertLayer(AnimationGroup):
                new_layer.construct_layer(None, None)
                self.play(InsertLayer(new_layer, 2, nn))
                self.wait()
-    .. doc-example-covers: make_create_connective_layers_animation, make_move_layers_animation, remove_connective_layer_animation
     """
 
     def __init__(
@@ -334,7 +334,8 @@ class InsertLayer(AnimationGroup):
 
         Returns
         -------
-            A tuple of the results."""
+            A tuple of the results.
+        """
         # Make the layers
         before_connective = None
         after_connective = None
@@ -357,7 +358,8 @@ class InsertLayer(AnimationGroup):
 
         Returns
         -------
-            A tuple of the results."""
+            A tuple of the results.
+        """
         # Check if connective layer before exists
         if len(self.layers_before) > 0:
             removed_connective = self.layers_before[-1]

@@ -5,7 +5,6 @@
 """Mindmap base classes for Manim.
 
 This module provides base classes for mindmap visualizations.
-
 """
 
 from collections.abc import Generator
@@ -169,6 +168,9 @@ def generate_tree(
 class AbstractMap(Group):
     """Abstract base class for mind maps, timelines, etc.
 
+    .. doc-example-covers: bfs_walker, custom_walker, dfs_walker, get_all_mindmap, get_children, get_connector, get_descendants, get_node, get_node_component, get_submindmap
+
+
     Parameters
     ----------
     layout_method
@@ -200,7 +202,6 @@ class AbstractMap(Group):
                mind_map = SimpleMap(TidyTreeLayout(root, **config))
                mind_map.scale_to_fit_width(10)
                self.add(mind_map)
-    .. doc-example-covers: bfs_walker, custom_walker, dfs_walker, get_all_mindmap, get_children, get_connector, get_descendants, get_node, get_node_component, get_submindmap
     """
 
     node_style: NodeStyle
@@ -223,8 +224,8 @@ class AbstractMap(Group):
             The root of the subtree to position.
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
         pos = np.array([node.x, node.y, 0])
@@ -245,7 +246,6 @@ class AbstractMap(Group):
         ------
         NotImplementedError
             Always, because subclasses must implement this method.
-
         """
         raise NotImplementedError
 
@@ -265,8 +265,7 @@ class AbstractMap(Group):
         return self.node_data_dict.get(ID, None)
 
     def get_node(self, ID: Any) -> Group | None:
-        """
-        Return the VMobject and surrounding rectangle for a node ID.
+        """Return the VMobject and surrounding rectangle for a node ID.
 
         Parameters
         ----------
@@ -284,8 +283,7 @@ class AbstractMap(Group):
         return None
 
     def get_text(self, ID: Any) -> str | None:
-        """
-        Return the narration text for a node ID.
+        """Return the narration text for a node ID.
 
         Parameters
         ----------
@@ -303,8 +301,7 @@ class AbstractMap(Group):
         return None
 
     def get_connector(self, ID: Any) -> Line | None:
-        """
-        Return the connector line for a node ID.
+        """Return the connector line for a node ID.
 
         Parameters
         ----------
@@ -452,8 +449,7 @@ class AbstractMap(Group):
         return mondmap
 
     def get_descendants(self, ID: Any) -> Group:
-        """
-        Return all descendants of the node with the given ID.
+        """Return all descendants of the node with the given ID.
 
         Parameters
         ----------

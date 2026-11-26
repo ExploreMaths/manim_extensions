@@ -4,7 +4,6 @@
 """AD-AS diagram for Manim.
 
 This module provides the Aggregate Demand-Aggregate Supply diagram.
-
 """
 
 from collections.abc import Callable
@@ -19,6 +18,9 @@ _LR_RUN_TIME = 2
 
 class ADASDiagram(EconDiagram):
     r"""Aggregate Demand — Aggregate Supply diagram.
+
+    .. doc-example-covers: long_run_adjust, shift_ad, shift_lras, shift_sras
+
 
     AD is derived from the quantity theory of money: :math:`MV = PY`, so
     :math:`P = MV/Y`.
@@ -81,7 +83,6 @@ class ADASDiagram(EconDiagram):
                for anim in diagram.positive_demand_shock(m=30, show_arrows=True):
                    self.play(anim)
                    self.wait(0.5)
-    .. doc-example-covers: long_run_adjust, shift_ad, shift_lras, shift_sras
     """
 
     def __init__(
@@ -373,8 +374,8 @@ class ADASDiagram(EconDiagram):
             Whether the adjustment draws guide arrows.
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
         clear = self.clear_arrows()

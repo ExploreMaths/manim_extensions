@@ -102,30 +102,30 @@ class FiniteStateAutomaton:
     def process_xml(self, xml_file: str) -> Any:
         """Construct the automaton from an XML file.
 
-
-
+        Parameters
+        ----------
         xml_file
             Path to the XML file describing the automaton.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         self.construct_from_json(parse_xml_file(xml_file))
 
     def construct_from_json(self, json_dictionary: dict[Any, Any]) -> Any:
         """Construct the automaton from a JSON-like dictionary.
 
-
-
+        Parameters
+        ----------
         json_dictionary
             Structured automaton data containing the state and transition lists.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         states = json_dictionary["structure"]["automaton"]["state"]
         transitions = json_dictionary["structure"]["automaton"]["transition"]
@@ -136,15 +136,15 @@ class FiniteStateAutomaton:
     def construct_states(self, states: list[dict[str, object]]) -> Any:
         """Construct state objects from a list of state dictionaries.
 
-
-
+        Parameters
+        ----------
         states
             :class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` definitions from JSON or XML parsing.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         for state_data in states:
             initial = "initial" in state_data
@@ -156,15 +156,15 @@ class FiniteStateAutomaton:
     def construct_transitions(self, transitions: list[dict[str, object]]) -> Any:
         """Construct transition objects from a list of transition dictionaries.
 
-
-
+        Parameters
+        ----------
         transitions
             :class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` definitions from JSON or XML parsing.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         for trans_data in transitions:
             from_id = int(cast(Any, trans_data["from"]))

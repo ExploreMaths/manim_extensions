@@ -4,7 +4,6 @@
 """Base parser class for chemical file formats.
 
 This module provides the :class:`~manim_extensions.chemistry.utils.parsers.base_parser.BaseParser` abstract class for parsing chemical files.
-
 """
 
 # unlinked-class-ok: Molecule
@@ -91,8 +90,7 @@ class BaseParser(ABC):
     @staticmethod
     @abstractmethod
     def read_file(filename: FilePath) -> Any:
-        """
-        Reads the file and converts it to a string.
+        """Reads the file and converts it to a string.
 
         Parameters
         ----------
@@ -135,8 +133,7 @@ class BaseParser(ABC):
         ...
 
     def parse_file_data(self) -> ParsedData:
-        """
-        Receives the file data as a string and uses the string_parser.
+        """Receives the file data as a string and uses the string_parser.
 
         Returns
         -------
@@ -146,8 +143,7 @@ class BaseParser(ABC):
 
     @property
     def molecule_data(self) -> ParsedData:
-        """
-        Molecule data: the parsed atoms data and bonds data.
+        """Molecule data: the parsed atoms data and bonds data.
 
         Returns
         -------

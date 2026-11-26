@@ -5,7 +5,6 @@
 """Periodic table visualization objects for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.periodic_table.table_objects.MElementObject` class for rendering periodic table elements.
-
 """
 
 from typing import Any, cast
@@ -35,6 +34,9 @@ from ...utils.deps import require
 
 class MElementObject(VGroup):
     """A visual representation of a single periodic table element.
+
+    .. doc-example-covers: create_frame_base, create_frame_with_text, max_height_ratio
+
 
     Parameters
     ----------
@@ -86,7 +88,6 @@ class MElementObject(VGroup):
                )
                carbon.scale(2.5)
                self.add(carbon)
-    .. doc-example-covers: create_frame_base, create_frame_with_text, max_height_ratio
     """
 
     def __init__(
@@ -157,7 +158,8 @@ class MElementObject(VGroup):
 
         Returns
         -------
-            The gradient-filled rectangle forming the element tile background."""
+            The gradient-filled rectangle forming the element tile background.
+        """
         frame_rectangle = (
             Rectangle(
                 height=2.8,
@@ -253,6 +255,9 @@ class MElementObject(VGroup):
 class PeriodicTable(VGroup):
     """Draws a periodic table using the data using a configuration from a csv file.
 
+    .. doc-example-covers: add_elements
+
+
     Parameters
     ----------
     data_file
@@ -287,8 +292,6 @@ class PeriodicTable(VGroup):
                table = PeriodicTable(data_file="element_data.csv")
                table.scale(1.3)
                self.add(table)
-
-    .. doc-example-covers: add_elements
     """
 
     # TODO Change to english database
@@ -327,7 +330,8 @@ class PeriodicTable(VGroup):
 
         Returns
         -------
-            A dictionary of the results."""
+            A dictionary of the results.
+        """
         # TODO: Think of a better way of doing this. However, it works and looks good
         positions = {
             1: [0, 0, 0],

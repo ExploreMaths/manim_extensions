@@ -5,7 +5,6 @@
 """Electromagnetism visualizations for Manim.
 
 This module provides electromagnetism visualizations including electric and magnetic fields.
-
 """
 
 from .electrostatics import Charge, ElectricField

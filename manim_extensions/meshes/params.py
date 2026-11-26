@@ -3,9 +3,7 @@
 # SPDX-License-Identifier: MIT
 # patched: lazy-import moderngl (meshes extra)
 
-"""
-Parameters can get out of hand for the meshes, store defaults and casting in separate functions.
-"""
+"""Parameters can get out of hand for the meshes, store defaults and casting in separate functions."""
 
 from typing import cast
 

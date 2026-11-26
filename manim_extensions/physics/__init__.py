@@ -6,7 +6,6 @@
 
 This package contains tools for optics, electromagnetism, rigid mechanics, and
 wave visualisations, all designed to be used directly in scene code.
-
 """
 
 from .electromagnetism.electrostatics import *

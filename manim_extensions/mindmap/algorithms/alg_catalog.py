@@ -2,8 +2,7 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""
-Catalog / organisation-chart layout algorithm - Python implementation.
+"""Catalog / organisation-chart layout algorithm - Python implementation.
 
 Layout characteristics:
 
@@ -212,8 +211,8 @@ class CatalogLayout(Layout):
             Amount added to each node coordinate.
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
         for node in nodes:
@@ -234,8 +233,8 @@ class CatalogLayout(Layout):
             Mapping of attribute names to offset values.
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
         for node in nodes:
@@ -268,8 +267,8 @@ class CatalogLayout(Layout):
             Position of the node within its parent children list.
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
         if pre_cb:
@@ -349,8 +348,8 @@ class CatalogLayout(Layout):
             The horizontal offset to apply.
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
         if node.parent is None:
@@ -376,8 +375,8 @@ class CatalogLayout(Layout):
             The vertical offset to apply.
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
         if node.parent and not node.parent.layer_index == 0:  # parent is not the root
@@ -394,12 +393,11 @@ class CatalogLayout(Layout):
     # Core layout steps
     # ------------------------------------------------------------------
     def _compute_base_value(self) -> Any:
-        """
-        Step 1: create nodes, set the root position, and set the initial top of second-level nodes.
+        """Step 1: create nodes, set the root position, and set the initial top of second-level nodes.
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
 
@@ -448,15 +446,14 @@ class CatalogLayout(Layout):
         self._walk(self.root, pre_cb=pre_cb, post_cb=post_cb)
 
     def _compute_left_top_value(self) -> Any:
-        """
-        Step 2: compute left and top of child nodes.
+        """Step 2: compute left and top of child nodes.
 
         - Children of the root are arranged horizontally
         - Children of non-root nodes are arranged vertically.
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
 
@@ -496,16 +493,15 @@ class CatalogLayout(Layout):
         self._walk(self.root, pre_cb=pre_cb)
 
     def _adjust_left_top_value(self) -> Any:
-        """
-        Step 3: adjust positions (handle subtree width/height offsets).
+        """Step 3: adjust positions (handle subtree width/height offsets).
 
         - Pre-order: for second-level nodes, if their subtree width exceeds their own width, shift following siblings
         - Pre-order: for non-root nodes with children, adjust vertical offset
         - Post-order: for the root, shift all children horizontally to centre the whole subtree.
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
 

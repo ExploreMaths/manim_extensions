@@ -5,7 +5,6 @@
 """Manim chemistry bond representation.
 
 This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond` class for representing chemical bonds in molecules.
-
 """
 
 from __future__ import annotations
@@ -107,45 +106,45 @@ class MCBond:
     def assign_from_atom(self, from_atom: MCAtom) -> Any:
         """Set the atom the bond originates from.
 
-
-
+        Parameters
+        ----------
         from_atom
             Atom the bond starts from.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         self.from_atom = from_atom
 
     def assign_to_atom(self, to_atom: MCAtom) -> Any:
         """Set the atom the bond points to.
 
-
-
+        Parameters
+        ----------
         to_atom
             Atom the bond ends at.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         self.to_atom = to_atom
 
     def assign_stereo(self, stereo: int | None) -> Any:
         """Set the stereochemistry type of the bond.
 
-
-
+        Parameters
+        ----------
         stereo
             Stereo type of the bond.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         self.stereo = stereo
 
@@ -153,8 +152,7 @@ class MCBond:
     def construct_from_bond_dict(
         bond_index: int, bond_data_dict: dict[Any, Any], molecule: MCMolecule
     ) -> "MCBond":
-        r"""
-        Given a bond data dict from a parser, returns an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`.
+        r"""Given a bond data dict from a parser, returns an :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_bond.MCBond`.
 
         Parameters
         ----------

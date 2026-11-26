@@ -28,8 +28,7 @@ from manim.typing import Vector3D
 
 
 class NetworkConnection(VGroup):
-    """
-    This class allows for creating connections
+    """This class allows for creating connections
     between locations in a network.
 
     Parameters

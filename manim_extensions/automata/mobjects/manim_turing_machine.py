@@ -5,7 +5,6 @@
 """Turing machine visualization.
 
 This module provides the :class:`~manim_extensions.automata.mobjects.manim_turing_machine.ManimTuringMachine` class for visualizing Turing machines.
-
 """
 
 from manim import Triangle, VGroup

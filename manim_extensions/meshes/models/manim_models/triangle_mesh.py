@@ -103,7 +103,6 @@ class TriangleManim2DMesh(Manim2DMesh, metaclass=ConvertToOpenGL):
         ValueError
             If either face is not a triangle or the faces do not share
             exactly one edge.
-
         """
         face_arr_1 = self.mesh.faces[face_idx_1]
         face_arr_2 = self.mesh.faces[face_idx_2]

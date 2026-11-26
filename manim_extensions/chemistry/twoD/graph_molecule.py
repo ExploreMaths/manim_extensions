@@ -4,7 +4,6 @@
 """Graph-based molecule representation for Manim chemistry.
 
 This module provides graph-based molecule visualization classes.
-
 """
 
 from typing import Any, Hashable, cast
@@ -143,7 +142,8 @@ class DoubleLine(ArcBetweenPoints):
 
         Returns
         -------
-            The direction vector of the bond."""
+            The direction vector of the bond.
+        """
         return self._get_unit_vector()
 
     def set_points_by_ends(
@@ -216,6 +216,9 @@ class TripleLine(DoubleLine):
 
 class GraphMolecule(Graph, AbstractMolecule):
     r"""Represents a molecule like a :class:`~manim.mobject.graph.Graph` from Manim.
+
+    .. doc-example-covers: get_atoms_vgroup_from_index, get_bonds_vgroup_from_index, get_connected_atoms_and_bonds, get_connected_atoms_and_bonds_group_from_index, get_connected_atoms_v_group, make_labels, select_bond_from_edge, select_bond_type
+
 
     Parameters
     ----------
@@ -305,7 +308,6 @@ class GraphMolecule(Graph, AbstractMolecule):
                self.play(Write(molecule))
                self.play(Rotate(molecule, PI / 2, axis=RIGHT))
                self.wait()
-    .. doc-example-covers: get_atoms_vgroup_from_index, get_bonds_vgroup_from_index, get_connected_atoms_and_bonds, get_connected_atoms_and_bonds_group_from_index, get_connected_atoms_v_group, make_labels, select_bond_from_edge, select_bond_type
     """
 
     #: Bond order to line mobject mapping used when parsing molecules.
@@ -511,8 +513,7 @@ class GraphMolecule(Graph, AbstractMolecule):
         visited_atoms: set[Any],
         connected_atoms: list[Any],
     ) -> list[Any]:
-        """
-        Recursive depht-first search to find connected atoms.
+        """Recursive depht-first search to find connected atoms.
 
         .. warning::
 
@@ -551,8 +552,7 @@ class GraphMolecule(Graph, AbstractMolecule):
     def get_connected_atoms(
         self, from_atom_index: int, to_atom_index: int
     ) -> list[Any]:
-        """
-        Given two atoms index, returns the connected atoms to the second atom
+        """Given two atoms index, returns the connected atoms to the second atom
         after the bond between the first atom and the second one.
 
         Parameters
@@ -636,8 +636,7 @@ class GraphMolecule(Graph, AbstractMolecule):
     def get_bonds_from_atoms_indices(
         self, connected_atoms: list[Any], excluded_atom: int = 0
     ) -> list[Any]:
-        """
-        Given a list of atoms, returns the bonds related to those atoms.
+        """Given a list of atoms, returns the bonds related to those atoms.
 
         Parameters
         ----------
@@ -722,8 +721,7 @@ class GraphMolecule(Graph, AbstractMolecule):
         )
 
     def find_atom_position_by_index(self, atom_index: int) -> Point3D:
-        """
-        Returns the position of a single atom given its index.
+        """Returns the position of a single atom given its index.
 
         Parameters
         ----------
@@ -936,8 +934,7 @@ class GraphMolecule(Graph, AbstractMolecule):
     def mc_molecule_to_atoms_and_bonds(
         cls, mc_molecule: MCMolecule
     ) -> tuple[dict[Any, Any], dict[Any, Any]]:
-        """
-        Transforms the structure of a mc_molecule to a (vertices, edges) tuple.
+        """Transforms the structure of a mc_molecule to a (vertices, edges) tuple.
 
         The tuple has the following structure:
 

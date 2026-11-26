@@ -5,7 +5,6 @@
 """:class:`~manim_extensions.physics.rigid_mechanics.rigid_mechanics.Space` scene for Pymunk physics.
 
 This module provides the :class:`~manim_extensions.pymunk.space.SpaceScene.SpaceScene` class for creating physics simulations with Pymunk.
-
 """
 
 from __future__ import annotations
@@ -632,7 +631,6 @@ class SpaceScene(ZoomedScene):
             The force vector (fx, fy, fz) to apply.
         point
             The world-space point where the force is applied.
-
         """
         for mob in mobs:
             self.vspace.apply_force_at_world_point(mob, force, point)
@@ -677,7 +675,6 @@ class SpaceScene(ZoomedScene):
             The impulse vector (ix, iy, iz) to apply.
         point
             The world-space point where the impulse is applied.
-
         """
         for mob in mobs:
             self.vspace.apply_impulse_at_world_point(mob, impulse, point)

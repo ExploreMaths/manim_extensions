@@ -4,7 +4,6 @@
 """:class:`~manim_extensions.table.cell.Cell` class for Manim tables.
 
 This module provides the :class:`~manim_extensions.table.cell.Cell` class for table visualizations.
-
 """
 
 from typing import Any
@@ -21,8 +20,10 @@ import numpy as np
 
 
 class Cell(VGroup):
-    """
-    A single cell in a table, containing text and optional border lines.
+    """A single cell in a table, containing text and optional border lines.
+
+    .. doc-example-covers: create_border, set_value
+
 
     Parameters
     ----------
@@ -56,7 +57,6 @@ class Cell(VGroup):
                cell.set_background_color(BLUE, opacity=0.2)
                cell.scale(2.6)
                self.add(cell)
-    .. doc-example-covers: create_border, set_value
     """
 
     def __init__(
@@ -149,8 +149,7 @@ class Cell(VGroup):
         return self.value
 
     def set_value(self, new_value: str) -> Text:
-        """
-        Change the text value of this cell.
+        """Change the text value of this cell.
 
         The new text keeps the font size (and the bold weight for
         header cells) of the old text and is placed where the old text
@@ -199,8 +198,7 @@ class Cell(VGroup):
         return self.text
 
     def get_resized_copy(self, new_width: float) -> "Cell":
-        """
-        Create a copy of this cell with a new width.
+        """Create a copy of this cell with a new width.
         The copy is positioned at the same center as this cell.
         Preserves font color, background color, border color, and current scale.
         Useful for animating width changes with :class:`~manim.animation.transform.Transform`.
@@ -247,19 +245,18 @@ class Cell(VGroup):
         return new_cell
 
     def resize_width(self, new_width: float) -> Any:
-        """
-        Resize this cell to a new width (instant, no animation).
+        """Resize this cell to a new width (instant, no animation).
         Updates border lines in place.
 
-
-
+        Parameters
+        ----------
         new_width
             The new width.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         self.cell_width = new_width
 
@@ -282,8 +279,7 @@ class Cell(VGroup):
             self.add(self.border)
 
     def set_font_color(self, color: ParsableManimColor) -> "Cell":
-        """
-        Set the font/text color of this cell.
+        """Set the font/text color of this cell.
 
         Parameters
         ----------
@@ -299,8 +295,7 @@ class Cell(VGroup):
         return self
 
     def set_border_color(self, color: ParsableManimColor) -> "Cell":
-        """
-        Set the border line color of this cell.
+        """Set the border line color of this cell.
 
         Parameters
         ----------
@@ -320,8 +315,7 @@ class Cell(VGroup):
     def set_background_color(
         self, color: ParsableManimColor, opacity: float = 0.5
     ) -> "Cell":
-        """
-        Set a background fill color for this cell.
+        """Set a background fill color for this cell.
         Creates a filled rectangle behind the text.
 
         Parameters

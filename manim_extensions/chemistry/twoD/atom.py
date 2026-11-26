@@ -4,7 +4,6 @@
 """2D atom representation for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.twoD.atom.MAtomObject` class for representing atoms in 2D chemical structures.
-
 """
 
 from typing import Any, cast, Literal
@@ -18,6 +17,9 @@ from manim.typing import Point3D
 
 class MAtomObject(VGroup):
     """A 2D visual representation of an atom in a chemical molecule.
+
+    .. doc-example-covers: add_atom
+
 
     Parameters
     ----------
@@ -68,7 +70,6 @@ class MAtomObject(VGroup):
        class MAtomObjectScene(Scene):
            def construct(self):
                self.add(MAtomObject(element="O").scale(7))
-    .. doc-example-covers: add_atom
     """
 
     def __str__(self) -> str:
@@ -132,8 +133,7 @@ class MAtomObject(VGroup):
         self,
         representation_type: Literal["complete", "skeleton", "over_bond"] | None,
     ) -> str:
-        """
-        Determine the atom label representation from the requested type.
+        """Determine the atom label representation from the requested type.
 
         Input options:
 
@@ -176,12 +176,12 @@ class MAtomObject(VGroup):
         return representation_type
 
     def add_atom(self) -> MarkupText | None:
-        """
-        Adds an atom depending on the representation.
+        """Adds an atom depending on the representation.
 
         Returns
         -------
-            The created atom label, or ``None`` when the representation has no label."""
+            The created atom label, or ``None`` when the representation has no label.
+        """
         if self.representation != "skeleton":
             return MarkupText(self.element).scale(0.8)
         return None
@@ -191,7 +191,8 @@ class MAtomObject(VGroup):
 
         Returns
         -------
-            Whether the operation succeeded."""
+            Whether the operation succeeded.
+        """
         minimum_bonds = {"O": 2, "S": 2, "N": 3, "P": 3}
         minimum_bond = minimum_bonds.get(self.element)
         if self.bond_to and minimum_bond:
@@ -254,23 +255,23 @@ class MAtomObject(VGroup):
 
         Returns
         -------
-            The copy of this atom with explicit hydrogens enabled."""
+            The copy of this atom with explicit hydrogens enabled.
+        """
         self.explicit_hydrogens = True
 
         return self.make_copy()
 
     def set_atom_color(self, color: ManimColor) -> Any:
-        """
-        TODO: Add the color depending on cpk convention
+        """TODO: Add the color depending on cpk convention
 
-
-
+        Parameters
+        ----------
         color
             New color of the atom.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         pass

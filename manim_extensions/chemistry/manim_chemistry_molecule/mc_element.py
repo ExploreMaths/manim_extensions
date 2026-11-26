@@ -5,7 +5,6 @@
 """Manim chemistry element representation.
 
 This module provides the :class:`~manim_extensions.chemistry.manim_chemistry_molecule.mc_element.MCElement` dataclass for representing chemical elements.
-
 """
 
 from dataclasses import dataclass

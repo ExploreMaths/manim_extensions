@@ -37,6 +37,9 @@ if TYPE_CHECKING:
 class DecisionTreeEmbedding(VGroup):
     """Two-dimensional embedding of a dataset plus the decision areas of a fitted tree.
 
+    .. doc-example-covers: create_override, make_split_to_animation_map, uncreate_override
+
+
     The data points are drawn on a pair of axes and the feature space is
     painted with the classification areas produced by the tree, so a split
     can be read together with the region it carves out.
@@ -83,7 +86,6 @@ class DecisionTreeEmbedding(VGroup):
                tree_clf.fit(points, iris.target)
                embedding = DecisionTreeEmbedding(tree_clf, points, iris.target)
                self.add(embedding)
-    .. doc-example-covers: create_override, make_split_to_animation_map, uncreate_override
     """
 
     def __init__(

@@ -164,13 +164,17 @@ class FeatureMap(VGroup):
 
         Returns
         -------
-            A mapping from corner names to their dots."""
+            A mapping from corner names to their dots.
+        """
         # Sort points through clockwise rotation of a vector in the xy plane
         return self.exterior_rectangle.get_corners_dict()
 
 
 class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     """Handles rendering a convolutional layer for a nn.
+
+    .. doc-example-covers: construct_feature_maps, make_forward_pass_animation
+
 
     Parameters
     ----------
@@ -242,7 +246,6 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
                forward_pass = nn.make_forward_pass_animation()
                self.play(ChangeSpeed(forward_pass, speedinfo={}), run_time=10)
                self.wait(1)
-    .. doc-example-covers: construct_feature_maps, make_forward_pass_animation
     """
 
     def __init__(
@@ -311,8 +314,8 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     ) -> Any:
         """Build the feature maps and apply the 3D rotation to the layer.
 
-
-
+        Parameters
+        ----------
         input_layer
             The layer preceding this layer in the network.
         output_layer
@@ -321,9 +324,9 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             Forwarded to the parent layer classes.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         # Make the feature maps
         self.feature_maps = self.construct_feature_maps()
@@ -452,17 +455,17 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     def scale(self, scale_factor: float, **kwargs: Any) -> Any:
         """Scale the layer and adjust cell_width proportionally.
 
-
-
+        Parameters
+        ----------
         scale_factor
             Factor by which the layer is scaled.
         **kwargs
             Forwarded to :meth:`~manim.mobject.mobject.Mobject.scale`.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         self.cell_width *= scale_factor
         super().scale(scale_factor, **kwargs)
@@ -475,7 +478,8 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-            The center point of the surrounding shape."""
+            The center point of the surrounding shape.
+        """
         return self.feature_maps.get_center()
 
     def get_width(self) -> float:
@@ -483,7 +487,8 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-            The width of the surrounding shape."""
+            The width of the surrounding shape.
+        """
         return self.feature_maps.length_over_dim(0)
 
     def get_height(self) -> float:
@@ -491,7 +496,8 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
 
         Returns
         -------
-            The height of the surrounding shape."""
+            The height of the surrounding shape.
+        """
         return self.feature_maps.length_over_dim(1)
 
     def move_to(
@@ -502,8 +508,8 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     ) -> "Convolutional2DLayer":
         """Moves the center of the layer to the given mobject or point.
 
-
-
+        Parameters
+        ----------
         point_or_mobject
             The mobject or point whose center the layer is moved to.
         aligned_edge
@@ -514,9 +520,9 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             :meth:`~manim.mobject.mobject.Mobject.move_to`.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         layer_center = self.feature_maps.get_center()
         if isinstance(point_or_mobject, Mobject):

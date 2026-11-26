@@ -9,7 +9,6 @@
 This module provides small reusable building blocks for common educational and
 visualisation scenes, including labels, braces, dots, and LaTeX-wrapped
 objects.
-
 """
 
 from __future__ import annotations
@@ -115,7 +114,6 @@ class ChineseMathTex(MathTex):
                    tex_to_color_map={"base": BLUE, "height": YELLOW},
                ).scale(2)
                self.add(formula)
-
     """
 
     def __init__(
@@ -247,8 +245,7 @@ class LabelDot(VGroup):
         self.dot_pos = dot_pos
 
     def get_center(self) -> Point3D:
-        """
-        Return the center of the underlying dot.
+        """Return the center of the underlying dot.
 
         Returns
         -------
@@ -257,8 +254,7 @@ class LabelDot(VGroup):
         return self.dot.get_center()
 
     def get_boundary_point(self, direction: Vector3DLike) -> Point3D:
-        """
-        Return a point on the dot boundary in the given direction.
+        """Return a point on the dot boundary in the given direction.
 
         Parameters
         ----------
@@ -786,6 +782,9 @@ class PerpendicularSign(VGroup):
 class FileTree(Code):
     """An ASCII file tree generated from a nested dictionary.
 
+    .. doc-example-covers: highlight
+
+
     Directories are automatically suffixed with ``/``.  Highlighting is
     performed by dynamically slicing each line based on physical coordinates,
     compatible with Manim 0.19.1 (spaces have no submobjects).
@@ -831,7 +830,6 @@ class FileTree(Code):
                self.play(tree.highlight(1, YELLOW))
                self.play(tree.highlight(4, RED))
                self.wait(0.5)
-    .. doc-example-covers: highlight
     """
 
     def __init__(
@@ -1019,6 +1017,9 @@ class VideoMobject(ImageMobject):
     """An :class:`~manim.mobject.types.image_mobject.ImageMobject` that plays a video
     file via OpenCV.
 
+    .. doc-example-covers: pause, play, reset, resume, seek, stop
+
+
     The video can be looped, rate-changed, and controlled with ``play``,
     ``pause``, ``stop``, ``seek``, and ``reset``.
 
@@ -1056,7 +1057,6 @@ class VideoMobject(ImageMobject):
                vid = VideoMobject("3Blue1Brown.mp4")
                self.add(vid)
                vid.play(self)
-    .. doc-example-covers: pause, play, reset, resume, seek, stop
     """
 
     def __init__(
@@ -1109,8 +1109,8 @@ class VideoMobject(ImageMobject):
             Elapsed time (in seconds) since the last frame.
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
         cv2 = require("video", "cv2")
@@ -1378,6 +1378,9 @@ class ColorText(Text):
 class Trail(VGroup):
     r"""A :class:`~manim.mobject.types.vectorized_mobject.VGroup` tracing a fading trail behind a mobject.
 
+    .. doc-example-covers: create_path
+
+
     Wraps ``mob``; once :meth:`~manim_extensions.mobjects.Trail.start_trace` is called, line segments are appended following
     the mobject's centre and older segments fade out according to `rate_func`.
 
@@ -1420,7 +1423,6 @@ class Trail(VGroup):
                trail.stop_trace()
                self.play(dot.animate.shift(RIGHT * 1.5))
                VGroup(trail, dot).scale(8.0).move_to(ORIGIN)
-    .. doc-example-covers: create_path
     """
 
     def __init__(
@@ -1446,15 +1448,15 @@ class Trail(VGroup):
     def get_path_xyz(self, err: float = 1e-4) -> Any:
         """Record the latest centre position if the mobject has moved.
 
-
-
+        Parameters
+        ----------
         err
             Minimum displacement required to record a new point.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         pos_new = self[0].get_center()
         pos_old = self.pos_old
@@ -1491,16 +1493,16 @@ class Trail(VGroup):
     def update_path(self, trail: VGroup) -> Any:
         """Updater: replace ``trail`` by the freshly created path.
 
-
-
+        Parameters
+        ----------
         trail
             The trail mobject to update (typically a :class:`~manim_extensions.mobjects.Trail` instance
             with a custom shape).
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         trail.become(self.create_path())
 

@@ -120,15 +120,15 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
     def construct_transitions(self, transitions: list[dict[str, object]]) -> Any:
         r"""Build pushdown-automaton transitions from XML or JSON definitions.
 
-
-
+        Parameters
+        ----------
         transitions
             :class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition`\ s processed by this operation.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         # counts the number of transitions between two states
         transition_counter: dict[tuple[Any, Any], list[PushDownAutomatonRule]] = {}
@@ -171,8 +171,8 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
     ) -> Any:
         """Create and attach a pushdown transition between two states.
 
-
-
+        Parameters
+        ----------
         transition_from
             Source state of the transition.
         transition_to
@@ -182,9 +182,9 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
             associated with this transition.
 
 
-
-
-            The resulting value.
+        Returns
+        -------
+                The resulting value.
         """
         new_transition = ManimPushDownAutomatonTransition(
             transition_from,

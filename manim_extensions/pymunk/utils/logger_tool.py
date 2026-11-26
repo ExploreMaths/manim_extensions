@@ -101,7 +101,8 @@ class SingletonLogger:
 
         Returns
         -------
-            The singleton Python logging.Logger instance configured."""
+            The singleton Python logging.Logger instance configured.
+        """
         return self.logger
 
 

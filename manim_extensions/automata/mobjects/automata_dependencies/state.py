@@ -127,8 +127,7 @@ class State:
         return None
 
     def get_transitions(self) -> list[Transition]:
-        """
-        Return all transitions that leave this state.
+        """Return all transitions that leave this state.
 
         Returns
         -------

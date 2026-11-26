@@ -5,7 +5,6 @@
 """Sequence diagram object for Manim.
 
 This module provides object class for sequence diagrams.
-
 """
 
 from manim import ORIGIN, Rectangle, Text, VGroup, WHITE
@@ -13,6 +12,9 @@ from manim import ORIGIN, Rectangle, Text, VGroup, WHITE
 
 class SeqObject(VGroup):
     """Named object shown inside a sequence diagram.
+
+    .. doc-example-covers: create_obj_label
+
 
     Parameters
     ----------
@@ -41,7 +43,6 @@ class SeqObject(VGroup):
                self.wait()
                content = Group(*self.mobjects)
                content.scale_to_fit_height(5).move_to(ORIGIN)
-    .. doc-example-covers: create_obj_label
     """
 
     def __init__(self, name: str, font_size: float = 18) -> None:

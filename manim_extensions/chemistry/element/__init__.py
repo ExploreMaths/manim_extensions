@@ -4,7 +4,6 @@
 """Chemical element representations for Manim.
 
 This module provides chemical element visualizations.
-
 """
 
 from .element import *  # noqa F841

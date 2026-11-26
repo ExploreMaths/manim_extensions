@@ -4,7 +4,6 @@
 """:class:`~manim_extensions.chemistry.molecule.molecule.Molecule` proxy class for Manim chemistry.
 
 This module provides the :class:`~manim_extensions.chemistry.molecule.molecule.Molecule` class as a unified interface for different molecule types.
-
 """
 
 from typing import Any, cast
@@ -16,6 +15,9 @@ from manim import VGroup
 
 class Molecule:
     r"""Works as a proxy between different types of molecules with the same methods.
+
+    .. doc-example-covers: multiple_molecules_from_file, multiple_molecules_from_string
+
 
     Supported types of molecules are:
 
@@ -64,7 +66,6 @@ class Molecule:
                label = Text(f"type: {type(molecule).__name__}").to_edge(UP)
                self.add(molecule)
                self.add(label)
-    .. doc-example-covers: multiple_molecules_from_file, multiple_molecules_from_string
     """
 
     def __init__(self, molecule_class: type[GraphMolecule] = GraphMolecule) -> None:

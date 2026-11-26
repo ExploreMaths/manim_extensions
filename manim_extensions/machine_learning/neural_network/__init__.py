@@ -5,7 +5,6 @@
 """Neural network visualizations for Manim.
 
 This module provides neural network layer visualizations and architectures.
-
 """
 
 from .neural_network import NeuralNetwork

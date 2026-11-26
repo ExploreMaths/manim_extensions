@@ -5,7 +5,6 @@
 """Pivot joint constraint for Pymunk.
 
 This module provides the :class:`~manim_extensions.pymunk.constraints.VPivotJoint.VPivotJoint` class for creating pivot joint constraints in physics simulations.
-
 """
 
 from __future__ import annotations
@@ -84,7 +83,6 @@ class VPivotJoint(VConstraint):
                self.add_constraints(*constraints)
                self.wait(5)
                Group(*self.mobjects).scale(0.9).move_to(ORIGIN)
-
     """
 
     def __init__(

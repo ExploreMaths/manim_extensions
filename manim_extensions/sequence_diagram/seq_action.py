@@ -5,7 +5,6 @@
 """Sequence diagram action for Manim.
 
 This module provides action classes for sequence diagrams.
-
 """
 
 from collections.abc import Sequence
@@ -40,6 +39,9 @@ from .seq_object import SeqObject
 
 class SeqAction(AnimationGroup):
     """Animation helper for sequence-diagram interactions between actors.
+
+    .. doc-example-covers: introduce_actors, subject_gives_gift_to_target
+
 
     Examples
     --------
@@ -127,7 +129,6 @@ class SeqAction(AnimationGroup):
                content = Group(*self.mobjects)
                content.scale_to_fit_height(6).move_to(ORIGIN)
                self.play(self.camera.frame.animate.move_to(ORIGIN))
-    .. doc-example-covers: introduce_actors, subject_gives_gift_to_target
     """
 
     @classmethod

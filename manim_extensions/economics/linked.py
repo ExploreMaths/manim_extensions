@@ -4,7 +4,6 @@
 """Linked IS-LM and AD-AS diagrams for Manim.
 
 This module provides linked IS-LM and AD-AS diagrams for policy analysis.
-
 """
 
 from typing import Any
@@ -16,6 +15,9 @@ from .is_lm import ISLMDiagram
 
 class LinkedISLMADAS(VGroup):
     """Side-by-side IS-LM and AD-AS diagrams with linked policy shifts.
+
+    .. doc-example-covers: adverse_supply_shock, positive_supply_shock
+
 
     A policy change (monetary or fiscal) shifts curves in both diagrams
     simultaneously:
@@ -57,7 +59,6 @@ class LinkedISLMADAS(VGroup):
                for anim in linked.monetary_expansion(ms=5, m=30):
                    self.play(anim)
                    self.wait(0.5)
-    .. doc-example-covers: adverse_supply_shock, positive_supply_shock
     """
 
     def __init__(

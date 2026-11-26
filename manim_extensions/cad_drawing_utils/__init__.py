@@ -7,7 +7,6 @@
 
 This package exposes dimension, hatch, path, corner and Bezier helpers for
 CAD-style diagrams in Manim scenes.
-
 """
 
 from __future__ import annotations

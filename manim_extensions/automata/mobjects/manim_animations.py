@@ -5,7 +5,6 @@
 """Animation utilities for automata visualization.
 
 This module provides the :class:`~manim_extensions.automata.mobjects.manim_animations.ManimAnimations` class for animating automata visualizations.
-
 """
 
 from typing import Any, cast
@@ -25,6 +24,9 @@ from manim import (
 
 class ManimAnimations:
     """Default animation strategy for automata visualisation.
+
+    .. doc-example-covers: animate_dead_branch_state, animate_display_input, animate_highlight_input_token, animate_highlight_state, animate_highlight_transition, animate_input_token_spent, animate_state_to_default_color, animate_transform_to_new_subscript_object, animate_transition_to_default_color
+
 
     This class encapsulates all individual animations used during automaton
     simulation: highlighting states and transitions, marking tokens as
@@ -52,7 +54,6 @@ class ManimAnimations:
                self.play(animations.animate_input_token_spent(token))
                self.play(animations.animate_dead_branch_state(state))
                self.play(animations.animate_state_to_default_color(state))
-    .. doc-example-covers: animate_dead_branch_state, animate_display_input, animate_highlight_input_token, animate_highlight_state, animate_highlight_transition, animate_input_token_spent, animate_state_to_default_color, animate_transform_to_new_subscript_object, animate_transition_to_default_color
     """
 
     def __init__(self) -> None:

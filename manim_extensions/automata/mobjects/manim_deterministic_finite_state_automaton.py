@@ -5,7 +5,6 @@
 """Deterministic finite state automaton visualization.
 
 This module provides the :class:`~manim_extensions.automata.mobjects.manim_deterministic_finite_state_automaton.ManimDeterministicFiniteAutomaton` class for visualizing DFAs.
-
 """
 
 from typing import Any, cast

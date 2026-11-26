@@ -27,6 +27,9 @@ from ...utils.mobjects.image import GrayscaleImageMobject, LabeledColorImage
 class PairedQueryLayer(NeuralNetworkLayer):
     """A layer showing a positive and a negative query example side by side.
 
+    .. doc-example-covers: make_assets, make_forward_pass_animation
+
+
     The pair is framed and labelled as one input row; spacing, stroke width
     and font size are configurable so the layer can align with neighbouring
     network layers.
@@ -85,7 +88,6 @@ class PairedQueryLayer(NeuralNetworkLayer):
                self.play(Create(nn))
                # Animate the forward pass
                self.play(nn.make_forward_pass_animation())
-    .. doc-example-covers: make_assets, make_forward_pass_animation
     """
 
     def __init__(
@@ -169,12 +171,12 @@ class PairedQueryLayer(NeuralNetworkLayer):
         return query_layer
 
     def make_assets(self) -> Group:
-        """
-        Constructs the assets needed for a query layer.
+        """Constructs the assets needed for a query layer.
 
         Returns
         -------
-            A :class:`~manim.mobject.mobject.Group` instance representing the result."""
+            A :class:`~manim.mobject.mobject.Group` instance representing the result.
+        """
         # Handle positive
         positive_group = LabeledColorImage(
             cast(Any, self.positive),

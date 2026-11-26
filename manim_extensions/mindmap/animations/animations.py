@@ -5,7 +5,6 @@
 """Mindmap animations for Manim.
 
 This module provides animations for mindmap visualizations.
-
 """
 
 from typing import Any, cast
@@ -465,8 +464,7 @@ def animate_of_node(
 
 
 def is_layout_change(root: Node, layout_type: LayoutType) -> bool:
-    """
-    Check whether the layout algorithm has changed.
+    """Check whether the layout algorithm has changed.
 
     Parameters
     ----------
@@ -486,8 +484,7 @@ def is_layout_change(root: Node, layout_type: LayoutType) -> bool:
 
 
 def is_direction_change(root: Node, direction: Vector3D = RIGHT) -> bool:
-    """
-    Check whether the layout direction has changed.
+    """Check whether the layout direction has changed.
 
     Parameters
     ----------
@@ -595,6 +592,9 @@ def animate_of_layout(
 class AbstractLayoutAnimation(AnimationGroup):
     r"""Abstract base class for layout animations: collect node states and generate the full layout animation.
 
+    .. doc-example-covers: collect_animations
+
+
     Parameters
     ----------
         scene
@@ -633,7 +633,6 @@ class AbstractLayoutAnimation(AnimationGroup):
                self.play(CreateTreeAnimation(self, root))
                self.wait()
                Group(*self.mobjects).scale(1.3).move_to(ORIGIN)
-    .. doc-example-covers: collect_animations
     """
 
     def __init__(
@@ -731,8 +730,7 @@ class AbstractLayoutAnimation(AnimationGroup):
         raise NotImplementedError
 
     def get_common_root(self, nodes: list[Node]) -> Node | None:
-        r"""
-        Return the common root shared by the supplied nodes.
+        r"""Return the common root shared by the supplied nodes.
 
         Parameters
         ----------
@@ -754,6 +752,9 @@ class AbstractLayoutAnimation(AnimationGroup):
 
 class LayoutAnimation(AbstractLayoutAnimation):
     r"""General layout animation: apply a layout to the whole tree and play all change animations.
+
+    .. doc-example-covers: collect_animations
+
 
     Parameters
     ----------
@@ -805,7 +806,6 @@ class LayoutAnimation(AbstractLayoutAnimation):
                content.scale_to_fit_height(7).move_to(ORIGIN)
                if content.width > 12:
                    content.scale_to_fit_width(12).move_to(ORIGIN)
-    .. doc-example-covers: collect_animations
     """
 
     def __init__(
@@ -846,6 +846,9 @@ class LayoutAnimation(AbstractLayoutAnimation):
 class RemoveNode(LayoutAnimation):
     r"""Remove the tree or subtree rooted at nodes; nodes may be a single node or a list of nodes.
 
+    .. doc-example-covers: collect_animations
+
+
     Parameters
     ----------
     scene
@@ -878,7 +881,6 @@ class RemoveNode(LayoutAnimation):
                self.play(InsertNode(self, {root: [a1, a2]}))
                self.play(RemoveNode(self, [a1]))
                self.wait()
-    .. doc-example-covers: collect_animations
     """
 
     def __init__(
@@ -951,6 +953,9 @@ class RemoveNode(LayoutAnimation):
 class InsertNode(LayoutAnimation):
     r"""Insert one or more child nodes into the mind map.
 
+    .. doc-example-covers: collect_animations
+
+
     Parameters
     ----------
         father_children
@@ -982,7 +987,6 @@ class InsertNode(LayoutAnimation):
                b1 = Node(MathTex(r"\text{B}_1", font_size=36))
                self.play(InsertNode(self, {a1: [b1]}))
                self.wait()
-    .. doc-example-covers: collect_animations
     """
 
     def __init__(

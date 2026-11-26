@@ -96,7 +96,6 @@ class MagneticField(ArrowVectorField):
                self.set_camera_orientation(PI / 3, PI / 4)
                self.add(wire)
                self.add(mag_field)
-
     """
 
     def __init__(self, *wires: Wire, **kwargs: Any) -> None:

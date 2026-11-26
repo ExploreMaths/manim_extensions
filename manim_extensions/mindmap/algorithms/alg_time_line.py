@@ -128,8 +128,8 @@ def walk(
     If before_callback returns ``True``, traversal of that node's children is
     skipped.
 
-
-
+    Parameters
+    ----------
     node
         The current node to visit.
     parent
@@ -148,9 +148,9 @@ def walk(
         The index of ``node`` within its parent's children list.
 
 
-
-
-        The resulting value.
+    Returns
+    -------
+            The resulting value.
     """
     # Pre-order callback
     if before_callback:
@@ -462,8 +462,8 @@ class TimeLineLayout(Layout):
             The root node whose children are examined.
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
         children_list = node.children
@@ -495,8 +495,8 @@ class TimeLineLayout(Layout):
             The vertical offset to apply to younger siblings.
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
         if node._parent and not node._parent._is_root:
@@ -640,8 +640,8 @@ class TimeLineLayout(Layout):
             The offset to add to the current value.
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
         for item in children:
@@ -663,8 +663,8 @@ class TimeLineLayout(Layout):
             The root of the (sub)tree whose coordinates should be applied.
 
 
-            Returns
-            -------
+        Returns
+        -------
                 The resulting value.
         """
         if node.node:

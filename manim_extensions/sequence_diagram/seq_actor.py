@@ -5,7 +5,6 @@
 """Sequence diagram actor for Manim.
 
 This module provides actor class for sequence diagrams.
-
 """
 
 from __future__ import annotations
@@ -33,6 +32,9 @@ from .constants import HALF_DOWN
 class SeqActor(VGroup):
     """Single actor in a sequence diagram with a time line.
 
+    .. doc-example-covers: time_elapse
+
+
     Parameters
     ----------
         name
@@ -56,7 +58,6 @@ class SeqActor(VGroup):
                _, bob_time = bob.time_elapse(1)
                self.play(alice_time, bob_time)
                self.wait()
-    .. doc-example-covers: time_elapse
     """
 
     #: Registry of actors created during the current scene build.
@@ -86,8 +87,7 @@ class SeqActor(VGroup):
 
     @classmethod
     def get_deepest_actor(cls) -> "SeqActor | None":
-        """
-        Return the actor with the greatest time depth, or ``None`` when no actor exists.
+        """Return the actor with the greatest time depth, or ``None`` when no actor exists.
 
         Returns
         -------

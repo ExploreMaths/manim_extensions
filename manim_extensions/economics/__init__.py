@@ -5,7 +5,6 @@
 
 This module provides economic diagram visualizations including
 supply-demand, AD-AS, IS-LM models, and more.
-
 """
 
 from .ad_as import ADASDiagram

@@ -4,7 +4,6 @@
 """IS-LM diagram for Manim.
 
 This module provides the IS-LM model diagram.
-
 """
 
 from collections.abc import Callable
@@ -16,6 +15,9 @@ from .base import EconDiagram
 
 class ISLMDiagram(EconDiagram):
     """IS-LM model diagram.
+
+    .. doc-example-covers: shift_is, shift_lm
+
 
     IS curve (goods market equilibrium):
 
@@ -67,7 +69,6 @@ class ISLMDiagram(EconDiagram):
                for anim in diagram.monetary_expansion(ms=5, show_arrows=True):
                    self.play(anim)
                    self.wait(0.5)
-    .. doc-example-covers: shift_is, shift_lm
     """
 
     def __init__(

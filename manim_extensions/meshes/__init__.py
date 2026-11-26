@@ -6,7 +6,6 @@
 
 This package contains mesh generation and related helper structures used in
 visual educational scenes.
-
 """
 
 # unlinked-class-ok: Mesh

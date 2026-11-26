@@ -20,18 +20,41 @@ from types import ModuleType
 
 @overload
 def require(extra: str, name: str, /) -> ModuleType:
-    """Import a single optional dependency, raising a helpful error naming the extra.
+    """Import optional dependencies, raising a helpful error naming the extra.
 
     Parameters
     ----------
     extra
-        Name of the ``[project.optional-dependencies]`` extra.
-    name
-        Name of the optional package to import.
+        Name of the ``[project.optional-dependencies]`` extra that provides
+        the packages (e.g. ``"physics"``).
+    name1
+        First optional package to import, when importing several at once.
+    name2
+        Second optional package to import, when importing several at once.
+    *names
+        Names of any further optional packages to import (e.g. ``"pymunk"``).
 
     Returns
     -------
-        The imported module.
+        The imported module when a single name is given, otherwise a tuple
+        with the imported modules in the order of ``names``.
+
+    Raises
+    ------
+    ImportError
+        If one of the packages is not installed.  The error message names
+        the missing package and the ``pip install`` extra that provides it.
+
+    Examples
+    --------
+    .. nbcell::
+
+       from manim_extensions.utils.deps import require
+
+       try:
+           require("physics", "not_installed_package")
+       except ImportError as error:
+           print(error)
     """
     ...
 
@@ -40,22 +63,41 @@ def require(extra: str, name: str, /) -> ModuleType:
 def require(
     extra: str, name1: str, name2: str, /, *names: str
 ) -> tuple[ModuleType, ...]:
-    """Import several optional dependencies, raising a helpful error naming the extra.
+    """Import optional dependencies, raising a helpful error naming the extra.
 
     Parameters
     ----------
     extra
-        Name of the ``[project.optional-dependencies]`` extra.
+        Name of the ``[project.optional-dependencies]`` extra that provides
+        the packages (e.g. ``"physics"``).
     name1
-        First optional package to import.
+        First optional package to import, when importing several at once.
     name2
-        Second optional package to import.
+        Second optional package to import, when importing several at once.
     *names
-        Names of any further optional packages to import.
+        Names of any further optional packages to import (e.g. ``"pymunk"``).
 
     Returns
     -------
-        The imported modules in the order of ``names``.
+        The imported module when a single name is given, otherwise a tuple
+        with the imported modules in the order of ``names``.
+
+    Raises
+    ------
+    ImportError
+        If one of the packages is not installed.  The error message names
+        the missing package and the ``pip install`` extra that provides it.
+
+    Examples
+    --------
+    .. nbcell::
+
+       from manim_extensions.utils.deps import require
+
+       try:
+           require("physics", "not_installed_package")
+       except ImportError as error:
+           print(error)
     """
     ...
 

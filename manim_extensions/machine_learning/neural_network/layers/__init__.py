@@ -6,7 +6,6 @@
 """Neural network layers for Manim ML.
 
 This module provides various neural network layer classes for visualizations.
-
 """
 
 from .convolutional_2d_to_feed_forward import Convolutional2DToFeedForward

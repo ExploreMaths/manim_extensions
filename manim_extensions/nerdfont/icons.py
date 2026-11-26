@@ -61,8 +61,8 @@ def _install_font_linux() -> Any:
     remains sufficient on Windows/macOS and older pango).
 
 
-        Returns
-        -------
+    Returns
+    -------
             The resulting value.
     """
     global _font_installed
@@ -93,8 +93,7 @@ _install_font_linux()
 
 
 class NerdFontIcon(Text):
-    """
-    A Nerd Font icon mobject rendered with the Symbols Nerd Font Mono font.
+    """A Nerd Font icon mobject rendered with the Symbols Nerd Font Mono font.
 
     See the `Icon Gallery
     <https://manim-extensions.readthedocs.io/en/latest/reference/nerdfont/icon_gallery.html>`_
