@@ -1106,6 +1106,7 @@ class Rack(VMobject):
                    run_time=2,
                    rate_func=linear,
                )
+               self.wait()
     """
 
     def __init__(

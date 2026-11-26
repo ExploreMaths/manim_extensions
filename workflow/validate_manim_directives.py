@@ -1,20 +1,25 @@
 # SPDX-FileCopyrightText: 2026 ExploreMaths
 # SPDX-License-Identifier: MIT
 
-"""Validate `:save_last_frame:` usage in manim directive blocks.
+"""Validate `:save_last_frame:` and final-hold rules in manim directive blocks.
 
 Rules:
     - Static scenes (no self.play / self.animate)  -> MUST have :save_last_frame:
     - Animated scenes (has self.play / self.animate) -> MUST NOT have :save_last_frame:
     - Static scenes with :save_last_frame: should NOT use self.wait() (redundant)
     - Static scenes without :save_last_frame: MUST have it added
+    - Non-looping animated scenes MUST end with ``self.wait()`` (one second)
+    - Seamless-loop scenes are exempt; mark them with a
+      ``# loops seamlessly`` comment, or use ``:save_as_gif:``
 
 Usage:
     python validate_manim_directives.py
 """
 
+import ast
 import re
 import sys
+import textwrap
 from pathlib import Path
 
 from _context import DOCS, ROOT, SRC
@@ -33,6 +38,13 @@ ANIMATION_PATTERNS = [
 
 WAIT_PATTERN = re.compile(r"\bself\.wait\s*\(")
 
+MIN_FINAL_WAIT = 1.0
+
+LOOP_MARKER_RE = re.compile(
+    r"(?:loops?\s+seamlessly|seamless(?:ly)?\s+loop|first\s+and\s+last\s+frames?\s+match)",
+    re.IGNORECASE,
+)
+
 SKIP_FILES = {
     "manim_directive.py",
 }
@@ -47,6 +59,104 @@ def has_animation(code: str) -> bool:
 
 def has_wait(code: str) -> bool:
     return bool(WAIT_PATTERN.search(code))
+
+
+def has_loop_marker(code: str) -> bool:
+    """Return whether the example is explicitly marked as a seamless loop."""
+    return bool(LOOP_MARKER_RE.search(code))
+
+
+def final_construct_statement(code: str, class_name: str):
+    """Return the last statement of the scene's ``construct`` method."""
+    try:
+        tree = ast.parse(textwrap.dedent(code))
+    except SyntaxError:
+        return None
+    cls = next(
+        (
+            node
+            for node in ast.walk(tree)
+            if isinstance(node, ast.ClassDef) and node.name == class_name
+        ),
+        None,
+    )
+    if cls is None:
+        return None
+    construct = next(
+        (
+            node
+            for node in cls.body
+            if isinstance(node, ast.FunctionDef) and node.name == "construct"
+        ),
+        None,
+    )
+    if construct is None or not construct.body:
+        return None
+    return construct.body[-1]
+
+
+def delegated_construct(statement) -> bool:
+    """Return whether the scene delegates its body to a parent scene."""
+    if not isinstance(statement, ast.Expr) or not isinstance(statement.value, ast.Call):
+        return False
+    func = statement.value.func
+    return (
+        isinstance(func, ast.Attribute)
+        and func.attr == "construct"
+        and isinstance(func.value, ast.Call)
+        and isinstance(func.value.func, ast.Name)
+        and func.value.func.id == "super"
+    )
+
+
+def wait_seconds(statement) -> float | None:
+    """Return the duration of a trailing ``self.wait(...)`` call, if any."""
+    if not isinstance(statement, ast.Expr) or not isinstance(statement.value, ast.Call):
+        return None
+    func = statement.value.func
+    if not isinstance(func, ast.Attribute) or func.attr != "wait":
+        return None
+    if not isinstance(func.value, ast.Name) or func.value.id != "self":
+        return None
+    if not statement.value.args:
+        return 1.0
+    try:
+        return float(ast.literal_eval(statement.value.args[0]))
+    except (ValueError, TypeError):
+        return None
+
+
+def check_final_wait(block) -> list[dict]:
+    """Require a one-second hold at the end of a non-looping animation."""
+    if block["has_save_as_gif"] or has_loop_marker(block["code"]):
+        return []
+    statement = final_construct_statement(block["code"], block["class_name"])
+    if statement is None or delegated_construct(statement):
+        return []
+    seconds = wait_seconds(statement)
+    if seconds is not None and seconds >= MIN_FINAL_WAIT:
+        return []
+    if seconds is None:
+        message = (
+            "Non-looping animated examples must end with `self.wait()` or longer; "
+            "mark a seamless loop with a `# loops seamlessly` comment or use `:save_as_gif:`"
+        )
+        issue_type = "ANIMATED_MISSING_FINAL_WAIT"
+    else:
+        message = (
+            f"Final `self.wait({seconds:g})` is shorter than {MIN_FINAL_WAIT:g}s; "
+            "non-looping animated examples need at least one second"
+        )
+        issue_type = "ANIMATED_SHORT_FINAL_WAIT"
+    return [
+        {
+            "type": issue_type,
+            "line": block["start_line"],
+            "class_name": block["class_name"],
+            "message": message,
+            "code_preview": block["code"][:200],
+        }
+    ]
 
 
 CODE_DIRECTIVE_RE = re.compile(r"^(\s*)\.\.\s*(code-block|sourcecode|code)::")
@@ -97,16 +207,21 @@ def extract_manim_blocks(file_path: Path):
         if m:
             class_name = m.group(1)
             has_save_last_frame = False
+            has_save_as_gif = False
             j = i + 1
             while j < len(lines) and (
                 re.match(r"\s*:[\w_]+:", lines[j]) or lines[j].strip() == ""
             ):
-                opt_match = re.match(r"\s*:(save_last_frame):", lines[j])
+                opt_match = re.match(r"\s*:(save_last_frame|save_as_gif):", lines[j])
                 if opt_match:
-                    has_save_last_frame = True
+                    if opt_match.group(1) == "save_last_frame":
+                        has_save_last_frame = True
+                    elif opt_match.group(1) == "save_as_gif":
+                        has_save_as_gif = True
                 j += 1
 
             code_lines = []
+            code_start_line = j + 1
             while j < len(lines):
                 current = lines[j]
                 if re.match(r"\s*\.\.\s+manim::", current):
@@ -127,8 +242,10 @@ def extract_manim_blocks(file_path: Path):
                 {
                     "class_name": class_name,
                     "has_save_last_frame": has_save_last_frame,
+                    "has_save_as_gif": has_save_as_gif,
                     "code": code,
                     "start_line": i + 1,
+                    "code_start_line": code_start_line,
                 }
             )
             i = j
@@ -199,6 +316,9 @@ def check_file(file_path: Path):
                     "code_preview": block["code"][:200],
                 }
             )
+
+        if animated and not block["has_save_last_frame"]:
+            issues.extend(check_final_wait(block))
 
     return issues
 

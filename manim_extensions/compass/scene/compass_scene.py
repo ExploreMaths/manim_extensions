@@ -74,6 +74,7 @@ class CompassScene(MovingCameraScene):
                # draw an arc centred at A through B, then put the compass aside
                self.draw_arc(niddle_point=A, pen_point=B, angle=PI / 2)
                self.put_compass_aside(4 * LEFT)
+               self.wait()
     """
 
     def setup(self) -> Any:

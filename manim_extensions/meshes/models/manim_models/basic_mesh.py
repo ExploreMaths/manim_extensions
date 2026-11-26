@@ -933,6 +933,7 @@ class Manim2DMesh(ManimMesh, metaclass=ConvertToOpenGL):
                self.wait()
                content = Group(*self.mobjects)
                content.scale_to_fit_height(5).move_to(ORIGIN)
+               self.wait()
     """
 
     # pylint:disable=abstract-method

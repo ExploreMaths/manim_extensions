@@ -216,6 +216,7 @@ class Circuit(VMobject):
                # Automatic node detection
                for node, color in zip(circuit.node_list, [BLUE, RED, ORANGE, YELLOW]):
                    self.play(node.animate.set_color(color), run_time=0.5)
+               self.wait()
     """
 
     def __init__(self, **kwargs: Any) -> None:

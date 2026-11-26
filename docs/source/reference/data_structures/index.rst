@@ -64,6 +64,7 @@ triggered on an array play automatically through that scene; pass
                arr.animate_elem_value(0).rotate(PI / 2).set_fill(RED),
                arr.animate_elem_index(0).rotate(PI / 2),
            )
+           self.wait()
 
 Configuring the array
 ^^^^^^^^^^^^^^^^^^^^^
@@ -244,6 +245,7 @@ Two-pointer technique for a pair sum in a sorted array:
            arr.shift(UP + LEFT * 2)
            self.add(arr)
            self.is_pair_sum(arr, 7, 17)
+           self.wait()
 
 Sliding-window technique for the maximum sum of ``k`` consecutive elements:
 
@@ -279,6 +281,7 @@ Sliding-window technique for the maximum sum of ``k`` consecutive elements:
            arr.shift(UP * 1.5 + LEFT * 4)
            self.add(arr)
            self.max_k_sum(arr, 4)
+           self.wait()
 
 See the `upstream documentation <https://manim-data-structures.readthedocs.io/en/latest/>`_,
 the `animating-arrays guide <https://manim-data-structures.readthedocs.io/en/latest/guides/arrays.html>`_,

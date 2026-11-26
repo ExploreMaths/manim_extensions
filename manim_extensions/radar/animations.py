@@ -210,6 +210,7 @@ class Shockwave(Animation):
                chart.scale_to_fit_height(3.5).move_to(ORIGIN)
                self.add(chart)
                self.play(chart.shockwave(color="#E868C8", radius_end=3.2))
+               self.wait()
     """
 
     def __init__(
@@ -335,6 +336,7 @@ class RadarMorph(Animation):
                chart.scale_to_fit_height(5.0).move_to(ORIGIN)
                self.add(chart)
                self.play(RadarMorph(chart, [7, 8, 6, 5, 9]))
+               self.wait()
     """
 
     def __init__(
@@ -759,6 +761,7 @@ class RadarReveal(Animation):
                chart = RadarChart(axes=["A", "B", "C", "D"], values=[2, 5, 3, 4])
                chart.scale_to_fit_height(5.0).move_to(ORIGIN)
                self.play(RadarReveal(chart))
+               self.wait()
     """
 
     def __init__(
@@ -878,6 +881,7 @@ class RadarBurstIn(Animation):
                chart = RadarChart(axes=["A", "B", "C", "D"], values=[2, 5, 3, 4])
                chart.scale_to_fit_height(5.0).move_to(ORIGIN)
                self.play(RadarBurstIn(chart))
+               self.wait()
     """
 
     def __init__(
@@ -991,6 +995,7 @@ class RadarFade(Animation):
                chart.scale_to_fit_height(5.0).move_to(ORIGIN)
                self.add(chart)
                self.play(RadarFade(chart, to=0.0))
+               self.wait()
     """
 
     def __init__(
@@ -1065,6 +1070,7 @@ class GlitchFlash(Animation):
                chart.scale_to_fit_height(5.0).move_to(ORIGIN)
                self.add(chart)
                self.play(GlitchFlash(chart))
+               self.wait()
     """
 
     def __init__(

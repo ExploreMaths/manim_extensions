@@ -83,6 +83,7 @@ class ADASDiagram(EconDiagram):
                for anim in diagram.positive_demand_shock(m=30, show_arrows=True):
                    self.play(anim)
                    self.wait(0.5)
+               self.wait()
     """
 
     def __init__(

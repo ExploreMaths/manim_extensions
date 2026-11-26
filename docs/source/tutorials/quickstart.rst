@@ -105,6 +105,7 @@ Animations
            text = Text("Hello Extensions").shift(DOWN * 2)
            text.scale(1.6)
            self.play(TypeWriter(text, interval=0.1))
+           self.wait()
 
 Bundled plugins
 ---------------
@@ -139,6 +140,7 @@ For example, a gear pair can be created with:
            gear1.shift(-gear1.rp * 1.5 * RIGHT)
            gear2.mesh_to(gear1)
            self.add(gear1, gear2)
+           # loops seamlessly
            self.play(
                Rotate(gear1, gear1.pitch_angle, rate_func=linear),
                Rotate(gear2, -gear2.pitch_angle, rate_func=linear),

@@ -192,6 +192,7 @@ class RadarV2Scene(Scene):
                    title="Six-Axis Capability · Radar Atlas",
                )
                self.play(Create(chart))
+               self.wait()
     """
 
     #: 2.0 chart style preset.

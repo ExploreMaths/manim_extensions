@@ -78,6 +78,7 @@ on every frame.
            self.add_constraints(*constraints)
            self.wait(3)
            Group(*self.mobjects).scale(0.8).move_to(ORIGIN)
+           self.wait()
 
 .. important::
 

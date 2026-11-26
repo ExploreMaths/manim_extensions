@@ -83,6 +83,7 @@ class VPivotJoint(VConstraint):
                self.add_constraints(*constraints)
                self.wait(5)
                Group(*self.mobjects).scale(0.9).move_to(ORIGIN)
+               self.wait()
     """
 
     def __init__(

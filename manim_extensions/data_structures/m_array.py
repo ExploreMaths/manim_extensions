@@ -739,7 +739,7 @@ class MArray(VGroup):
                arr.remove_elem(
                    index=2, removal_anim=ShowPassingFlash, update_anim=Write
                )
-               self.wait(0.5)
+               self.wait()
     """
 
     __mob_arr: list[MArrayElement]
@@ -1739,7 +1739,7 @@ class MArrayPointer(VGroup):
                ptr.update_mob_label("mid")
                self.wait(0.5)
                ptr.attach_to_elem(0)
-               self.wait(0.5)
+               self.wait()
     """
 
     __pointer_pos: MArrayDirection

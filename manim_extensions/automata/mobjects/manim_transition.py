@@ -84,6 +84,7 @@ class ManimTransition(Transition, VGroup):
                self.play(animations.animate_highlight_transition(transition))
                self.play(animations.animate_transition_to_default_color(transition))
                self.play(transition.animate_transition(True))
+               self.wait()
     """
 
     def __init__(
@@ -458,6 +459,7 @@ class ManimPushDownAutomatonTransition(ManimTransition):
                animations = ManimAnimations()
                self.play(animations.animate_highlight_transition(transition))
                self.play(animations.animate_transition_to_default_color(transition))
+               self.wait()
     """
 
     def __init__(

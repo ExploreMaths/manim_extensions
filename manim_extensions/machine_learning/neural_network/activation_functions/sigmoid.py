@@ -39,6 +39,7 @@ class SigmoidFunction(ActivationFunction):
                sigmoid.move_to(ORIGIN)
                self.add(sigmoid)
                self.play(sigmoid.make_evaluate_animation())
+               self.wait()
     """
 
     def __init__(

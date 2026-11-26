@@ -510,6 +510,7 @@ class FadeOutRandom(LaggedStart):
            def construct(self):
                mob = Text("Now you see me", weight=BOLD).scale(1.56)
                self.play(FadeIn(mob))
+               # loops seamlessly
                self.play(FadeOutRandom(mob))
     """
 

@@ -226,6 +226,7 @@ straight to the demo you need.
            trail = Trail(dot, trail_color=BLUE, nums=30).start_trace()
            self.add(trail)
            self.play(Rotating(dot, about_point=ORIGIN, rate_func=linear), run_time=3)
+           self.wait()
 
 .. manim:: ChineseMathTexOverview
    :save_last_frame:
@@ -291,6 +292,7 @@ straight to the demo you need.
            self.play(LaggedCreation(box, lag_ratio=0.2))
            self.wait(1)
            Group(*self.mobjects).scale(2.5).move_to(ORIGIN)
+           self.wait()
 
 .. manim:: Algorithm
    :save_last_frame:
@@ -519,6 +521,7 @@ straight to the demo you need.
 
            content = Group(*self.mobjects)
            content.scale_to_fit_height(6).move_to(ORIGIN)
+           self.wait()
 
 .. manim:: TikzScene
    :save_last_frame:

@@ -36,6 +36,7 @@ Create a physics space and run it inside a scene.
            )
            self.wait(2)
            Group(*self.mobjects).scale(0.4).move_to(ORIGIN)
+           self.wait()
 
 Modules
 -------

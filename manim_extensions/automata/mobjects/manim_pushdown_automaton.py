@@ -96,6 +96,7 @@ class ManimPushDownAutomaton(ManimNondeterministicFiniteAutomaton):
                self.play(Transform(label, stack_label().move_to(label)))
                pda.pop()
                self.play(Transform(label, stack_label().move_to(label)))
+               self.wait()
     """
 
     stack: list[Any]

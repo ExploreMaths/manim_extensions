@@ -29,6 +29,7 @@ Draw a Bohr atom with a chosen number of protons, neutrons, and electrons.
        def construct(self):
            atom = BohrAtom(e=14, p=14, n=10)
            self.play(FadeIn(atom))
+           self.wait()
 
 Modules
 -------

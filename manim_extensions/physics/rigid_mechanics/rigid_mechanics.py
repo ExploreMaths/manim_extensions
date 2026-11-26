@@ -155,6 +155,7 @@ class Space(Mobject, metaclass=ConvertToOpenGL):
                self.space.space.gravity = (0, 5)
                self.wait(3)
                Group(*self.mobjects).scale(0.2).move_to(ORIGIN)
+               self.wait()
     """
 
     def __init__(

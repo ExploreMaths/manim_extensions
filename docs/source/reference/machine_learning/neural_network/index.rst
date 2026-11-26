@@ -36,6 +36,7 @@ Compose a network from layer objects and run a forward pass.
            network.scale_to_fit_height(6).move_to(ORIGIN)
            self.add(network)
            self.play(network.make_forward_pass_animation(run_time=1.0))
+           self.wait()
 
 Modules
 -------

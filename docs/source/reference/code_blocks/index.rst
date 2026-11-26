@@ -49,6 +49,7 @@ Render a Python code block:
        def construct(self):
            block = CodeBlock('print("hello")', language=Python).scale(2.0)
            self.play(*block.create())
+           self.wait()
 
 Classes
 -------

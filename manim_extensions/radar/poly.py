@@ -558,6 +558,7 @@ class PolyRadarChart(VGroup):
                        )
                        self.add(chart)
                        self.play(chart.spin_to(axis_index=0, run_time=1.0))
+                       self.wait()
             """
 
             def __init__(self, poly: PolyRadarChart, delta: float, **kw: Any) -> None:
@@ -635,6 +636,7 @@ class PolyMorph(Animation):
                )
                self.add(chart)
                self.play(PolyMorph(chart, [9, 7, 8, 6, 5, 9, 4, 8, 6, 7, 5, 9]))
+               self.wait()
     """
 
     def __init__(

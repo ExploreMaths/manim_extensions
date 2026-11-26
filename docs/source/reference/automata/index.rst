@@ -72,6 +72,7 @@ and play the generated step animations returned by
                result, color=GREEN if result == "ACCEPTED" else RED
            ).next_to(dfa.manim_automata_input, UP)
            self.play(FadeIn(verdict))
+           self.wait()
 
 Custom animations
 ^^^^^^^^^^^^^^^^^

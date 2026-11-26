@@ -71,6 +71,7 @@ class TripletLayer(NeuralNetworkLayer):
                nn = NeuralNetwork([triplet, FeedForwardLayer(4)])
                nn.move_to(ORIGIN)
                self.play(Create(nn))
+               self.wait()
     """
 
     def __init__(

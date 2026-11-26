@@ -64,6 +64,7 @@ class SeqAction(AnimationGroup):
                self.wait()
                content = Group(*self.mobjects)
                content.scale_to_fit_height(5).move_to(ORIGIN)
+               self.wait()
 
     .. manim:: SeqActionCamera
 
@@ -129,6 +130,7 @@ class SeqAction(AnimationGroup):
                content = Group(*self.mobjects)
                content.scale_to_fit_height(6).move_to(ORIGIN)
                self.play(self.camera.frame.animate.move_to(ORIGIN))
+               self.wait()
     """
 
     @classmethod

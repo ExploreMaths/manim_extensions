@@ -113,6 +113,7 @@ class NeuralNetwork(Group):
                # Animate the forward pass
                forward_pass = nn.make_forward_pass_animation()
                self.play(forward_pass)
+               self.wait()
     """
 
     def __init__(

@@ -290,6 +290,7 @@ class GraphMolecule(Graph, AbstractMolecule):
                self.wait()
                content = Group(*self.mobjects)
                content.scale_to_fit_height(4.5).move_to(ORIGIN)
+               self.wait()
 
     .. manim:: GraphMoleculeFromStringThreeD
        :files: acetone_2d.mol

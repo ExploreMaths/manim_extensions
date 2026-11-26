@@ -54,6 +54,7 @@ class ManimAnimations:
                self.play(animations.animate_input_token_spent(token))
                self.play(animations.animate_dead_branch_state(state))
                self.play(animations.animate_state_to_default_color(state))
+               self.wait()
     """
 
     def __init__(self) -> None:

@@ -131,6 +131,7 @@ Build a mesh from a template and add it to a scene.
        def construct(self):
            mesh = ManimMesh(create_pyramid())
            self.play(FadeIn(mesh))
+           self.wait()
 
 Modules
 -------

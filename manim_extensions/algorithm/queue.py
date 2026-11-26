@@ -63,7 +63,7 @@ class Queue(VMobject):
                self.play(Queue.Enqueue(q, Node("4").next_to(q, RIGHT, buff=1.5)))
                self.wait(0.5)
                self.play(Queue.Dequeue(q))
-               self.wait(0.5)
+               self.wait()
     """
 
     def __init__(
@@ -133,7 +133,7 @@ class Queue(VMobject):
                    self.add(q)
                    self.play(Queue.Enqueue(q, Node("2").next_to(q, RIGHT, buff=1.5)))
                    self.play(Queue.Enqueue(q, Node("3").next_to(q, RIGHT, buff=1.5)))
-                   self.wait(0.5)
+                   self.wait()
         """
 
         def __init__(self, queue: Queue, item: Node, **kwargs: Any) -> None:
@@ -183,7 +183,7 @@ class Queue(VMobject):
                    q = Queue(capacity=4, init_data=[10, 20, 30], total_width=8)
                    self.add(q)
                    self.play(Queue.Dequeue(q, target_pos=DOWN * 2.5 + LEFT * 2))
-                   self.wait(0.5)
+                   self.wait()
         """
 
         def __init__(

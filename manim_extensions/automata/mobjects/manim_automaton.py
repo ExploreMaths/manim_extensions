@@ -121,6 +121,7 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
                    result, color=GREEN if result == "ACCEPTED" else RED
                ).next_to(dfa.manim_automata_input, UP)
                self.play(FadeIn(verdict))
+               self.wait()
     """
 
     def __init__(

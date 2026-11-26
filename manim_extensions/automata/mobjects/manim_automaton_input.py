@@ -53,6 +53,7 @@ class ManimAutomataInput(VGroup):
                for token in inp.tokens:
                    self.play(animations.animate_highlight_input_token(token))
                    self.play(animations.animate_input_token_spent(token))
+               self.wait()
     """
 
     def __init__(
@@ -132,6 +133,7 @@ class Token(MathTex):
                content.scale_to_fit_height(2.5).move_to(ORIGIN)
                self.add(content)
                self.play(FadeToColor(tokens[1], PURE_YELLOW))
+               self.wait()
     """
 
     id_iter = itertools.count()

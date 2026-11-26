@@ -64,6 +64,7 @@ class SpaceScene(ZoomedScene):
                )
                self.wait(5)
                Group(*self.mobjects).scale(0.08).move_to(ORIGIN)
+               self.wait()
     """
 
     def __init__(

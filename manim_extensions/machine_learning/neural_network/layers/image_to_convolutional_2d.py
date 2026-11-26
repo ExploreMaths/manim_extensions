@@ -75,6 +75,7 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
                nn.move_to(ORIGIN)
                self.add(nn)
                self.play(nn.make_forward_pass_animation(), run_time=4)
+               self.wait()
     """
 
     input_class = ImageLayer

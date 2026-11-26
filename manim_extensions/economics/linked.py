@@ -59,6 +59,7 @@ class LinkedISLMADAS(VGroup):
                for anim in linked.monetary_expansion(ms=5, m=30):
                    self.play(anim)
                    self.wait(0.5)
+               self.wait()
     """
 
     def __init__(

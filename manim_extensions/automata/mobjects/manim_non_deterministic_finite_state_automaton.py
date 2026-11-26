@@ -89,6 +89,7 @@ class ManimNondeterministicFiniteAutomaton(ManimAutomaton):
                # Play all the animations generated from play_string()
                for sequence in nda.play_string(automaton_input):
                    self.play(*sequence, run_time=0.5)
+               self.wait()
     """
 
     #: Whether this automaton was produced by the NDA builder.

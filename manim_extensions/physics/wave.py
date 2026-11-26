@@ -68,6 +68,7 @@ class RadialWave(Surface, metaclass=ConvertToOpenGL):
                wave.start_wave()
                self.wait()
                wave.stop_wave()
+               self.wait()
     """
 
     def __init__(
@@ -196,6 +197,7 @@ class LinearWave(RadialWave):
                wave.start_wave()
                self.wait()
                wave.stop_wave()
+               self.wait()
     """
 
     def __init__(

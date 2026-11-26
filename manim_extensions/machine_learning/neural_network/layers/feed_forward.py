@@ -99,6 +99,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
                self.add(nn)
                # Animate the forward pass
                self.play(nn.make_forward_pass_animation())
+               self.wait()
     """
 
     def __init__(

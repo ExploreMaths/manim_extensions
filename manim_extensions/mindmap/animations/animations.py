@@ -229,6 +229,7 @@ def animate_of_display(
                content.scale_to_fit_width(12).move_to(ORIGIN)
                if content.height > 7:
                    content.scale_to_fit_height(7).move_to(ORIGIN)
+               self.wait()
     """
     anims = [
         cast(Any, node.vmobject).animate.move_to(pos),
@@ -303,6 +304,7 @@ def animate_of_scale(
                self.wait()
                content = Group(*self.mobjects)
                content.scale_to_fit_height(5).move_to(ORIGIN)
+               self.wait()
     """
     anims = [
         cast(Any, node.vmobject).animate.scale(node.scale_factor).move_to(pos),
@@ -378,6 +380,7 @@ def animate_of_alter(
                self.wait()
                content = Group(*self.mobjects)
                content.scale_to_fit_width(10).move_to(ORIGIN)
+               self.wait()
     """
     anims = [
         cast(Any, node.vmobject).animate.become(node.alter_vmobject.move_to(pos)),
@@ -633,6 +636,7 @@ class AbstractLayoutAnimation(AnimationGroup):
                self.play(CreateTreeAnimation(self, root))
                self.wait()
                Group(*self.mobjects).scale(1.3).move_to(ORIGIN)
+               self.wait()
     """
 
     def __init__(
@@ -806,6 +810,7 @@ class LayoutAnimation(AbstractLayoutAnimation):
                content.scale_to_fit_height(7).move_to(ORIGIN)
                if content.width > 12:
                    content.scale_to_fit_width(12).move_to(ORIGIN)
+               self.wait()
     """
 
     def __init__(
@@ -1084,6 +1089,7 @@ class ScaleNode(LayoutAnimation):
                content.scale_to_fit_width(12).move_to(ORIGIN)
                if content.height > 7:
                    content.scale_to_fit_height(7).move_to(ORIGIN)
+               self.wait()
     """
 
     def __init__(
@@ -1144,6 +1150,7 @@ class AlterNode(LayoutAnimation):
                self.play(AlterNode(self, {a1: MathTex(r"\text{A}_1 \to \text{Altered}", font_size=36)}))
                self.wait()
                Group(*self.mobjects).scale(2.2).move_to(ORIGIN)
+               self.wait()
     """
 
     def __init__(

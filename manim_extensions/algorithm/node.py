@@ -445,7 +445,7 @@ class Node(VMobject):
                    self.add(nodes)
                    self.play(Node.Select(nodes[1]))
                    self.play(Node.Select(nodes[2], nodes[3], color=PURE_YELLOW, opacity=0.6))
-                   self.wait(0.5)
+                   self.wait()
         """
 
         def __init__(
@@ -494,7 +494,7 @@ class Node(VMobject):
                    self.play(Node.Select(a, b))
                    self.play(Node.Unselect(a))
                    self.play(Node.Unselect(b))
-                   self.wait(0.5)
+                   self.wait()
         """
 
         def __init__(self, *nodes: list[Node], **kwargs: Any) -> None:
@@ -535,7 +535,7 @@ class Node(VMobject):
                    self.add(node)
                    for i in range(1, 4):
                        self.play(Node.UpdateValue(node, str(i)))
-                   self.wait(0.5)
+                   self.wait()
         """
 
         def __init__(self, node: Node, value: NodeValue, **kwargs: Any) -> None:
@@ -576,7 +576,7 @@ class Node(VMobject):
                    b = Node("2").next_to(a, RIGHT)
                    self.add(a, b)
                    self.play(Node.MoveAndOverWrite(a, b, select_color=PURE_YELLOW))
-                   self.wait(0.5)
+                   self.wait()
         """
 
         def __init__(
@@ -636,7 +636,7 @@ class Node(VMobject):
                    self.add(a, b)
                    self.play(Node.CopyAndOverWrite(a, b))
                    self.play(Node.Select(a))
-                   self.wait(0.5)
+                   self.wait()
         """
 
         def __init__(
@@ -691,7 +691,7 @@ class Node(VMobject):
                    self.add(a, b)
                    self.play(Node.SwapAndOverWrite(a, b))
                    self.play(Node.SwapAndOverWrite(a, b))
-                   self.wait(0.5)
+                   self.wait()
         """
 
         def __init__(

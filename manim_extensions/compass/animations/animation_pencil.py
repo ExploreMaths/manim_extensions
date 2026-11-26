@@ -87,6 +87,7 @@ class MovePencilTipTo(ApplyMethod):
                self.wait()
                content = VGroup(pencil, target)
                content.scale_to_fit_height(5).move_to(ORIGIN)
+               self.wait()
     """
 
     def __init__(

@@ -69,6 +69,7 @@ class ISLMDiagram(EconDiagram):
                for anim in diagram.monetary_expansion(ms=5, show_arrows=True):
                    self.play(anim)
                    self.wait(0.5)
+               self.wait()
     """
 
     def __init__(

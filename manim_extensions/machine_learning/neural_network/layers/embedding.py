@@ -84,6 +84,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
                self.play(Create(nn))
                # Animate the forward pass
                self.play(nn.make_forward_pass_animation())
+               self.wait()
     """
 
     def __init__(

@@ -77,6 +77,7 @@ class VDampedRotarySpring(VConstraint):
                self.add_constraints(spring)
                self.wait(5)
                Group(*self.mobjects).scale(0.07).move_to(ORIGIN)
+               self.wait()
     """
 
     def __init__(

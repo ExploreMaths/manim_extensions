@@ -229,6 +229,7 @@ class Pendulum(MultiPendulum):
                for pendulum in pendulums:
                    self.make_rigid_body(*pendulum.bobs)
                    pendulum.start_swinging()
+               self.wait()
     """
 
     def __init__(

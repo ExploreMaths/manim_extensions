@@ -86,6 +86,7 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
                self.play(Create(nn))
                # Animate the forward pass
                self.play(nn.make_forward_pass_animation())
+               self.wait()
     """
 
     #: Arithmetic operators accepted by this layer.

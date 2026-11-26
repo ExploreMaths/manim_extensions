@@ -54,6 +54,7 @@ Create a table from a list of rows; the first row is treated as the header.
 
            # Animate it
            self.play(Write(table))
+           self.wait()
 
 Add or remove rows and columns with animations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

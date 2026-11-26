@@ -829,7 +829,7 @@ class FileTree(Code):
                self.add(tree)
                self.play(tree.highlight(1, YELLOW))
                self.play(tree.highlight(4, RED))
-               self.wait(0.5)
+               self.wait()
     """
 
     def __init__(
@@ -1057,6 +1057,7 @@ class VideoMobject(ImageMobject):
                vid = VideoMobject("3Blue1Brown.mp4")
                self.add(vid)
                vid.play(self)
+               self.wait()
     """
 
     def __init__(
@@ -1423,6 +1424,7 @@ class Trail(VGroup):
                trail.stop_trace()
                self.play(dot.animate.shift(RIGHT * 1.5))
                VGroup(trail, dot).scale(8.0).move_to(ORIGIN)
+               self.wait()
     """
 
     def __init__(

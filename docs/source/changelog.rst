@@ -10,6 +10,11 @@ v1.0.7 :bdg-primary-line:`In Development`
 Added
 ~~~~~
 
+* ``validate-manim-directives`` now rejects an animated ``.. manim::``
+  example that does not end with ``self.wait()`` or longer. Seamless loops
+  stay exempt: mark the code with ``# loops seamlessly`` or use
+  ``:save_as_gif:``. All existing examples were updated, including the
+  gear rotations and fade-out loops.
 * ``workflow/validate_deprecations.py`` and the ``validate-deprecations``
   static check reject deprecated APIs across the package, tests, scripts,
   workflow tools and Sphinx extensions. Deprecations are discovered from

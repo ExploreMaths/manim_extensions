@@ -180,6 +180,7 @@ class HTMLParsedVMobject:
                riemann.clear_updaters()
                self.play(FadeOut(vg))
                parsed.finish()
+               self.wait()
     """
 
     def __init__(

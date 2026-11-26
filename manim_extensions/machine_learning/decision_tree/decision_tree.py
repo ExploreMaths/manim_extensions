@@ -665,6 +665,7 @@ class DecisionTreeContainer:
                clf = DecisionTreeClassifier(max_depth=2).fit(points, classes)
                container = DecisionTreeContainer(clf.tree_, points, classes)
                self.play(container.make_unfold_tree_animation())
+               self.wait()
     """
 
     def __init__(

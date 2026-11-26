@@ -99,6 +99,7 @@ ManimML pieces together automatically:
            forward_pass = nn.make_forward_pass_animation()
            # Play animation
            self.play(forward_pass)
+           self.wait()
 
 Feed-forward networks
 ^^^^^^^^^^^^^^^^^^^^^
@@ -129,6 +130,7 @@ animate the forward pass with
            nn.move_to(ORIGIN)
            self.add(nn)
            self.play(nn.make_forward_pass_animation())
+           self.wait()
 
 Convolutional networks
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -166,6 +168,7 @@ the default stride is 1:
            nn.move_to(ORIGIN)
            self.add(nn)
            self.play(nn.make_forward_pass_animation())
+           self.wait()
 
 Feeding an image
 ^^^^^^^^^^^^^^^^
@@ -243,6 +246,7 @@ maps:
            nn.move_to(ORIGIN)
            self.wait(1)
            self.play(nn.make_forward_pass_animation())
+           self.wait()
 
 Activation functions
 ^^^^^^^^^^^^^^^^^^^^
@@ -276,6 +280,7 @@ Pass ``activation_function`` to a layer (for example ``"ReLU"`` or
            nn.move_to(ORIGIN)
            self.add(nn)
            self.play(nn.make_forward_pass_animation())
+           self.wait()
 
 Dropout
 ^^^^^^^

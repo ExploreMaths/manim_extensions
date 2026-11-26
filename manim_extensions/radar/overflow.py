@@ -106,6 +106,7 @@ class OverflowRadarChart(RadarChart):
                self.add(chart)
                self.play(chart.burst_in())
                self.play(chart.morph_to([7, 9, 17, 6, 8, 5]))
+               self.wait()
     """
 
     def __init__(

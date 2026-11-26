@@ -81,6 +81,7 @@ class ConstantStrokeWidthScene(MovingCameraScene):
                self.add(line1, line2)
                self.play(self.camera.frame.animate.scale(1 / 3), run_time=2)
                self.wait(0.5)
+               # loops seamlessly
                self.play(self.camera.frame.animate.scale(3), run_time=2)
     """
 

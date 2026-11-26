@@ -47,6 +47,7 @@ class CameraRig:
                self.add(chart)
                rig = CameraRig(self)
                self.play(rig.push_in(chart, factor=1.25))
+               # loops seamlessly
                self.play(rig.pull_out())
     """
 
