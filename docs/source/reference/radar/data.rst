@@ -5,7 +5,7 @@
 data
 ====
 
-.. module:: manim_extensions.radar.data
+.. automodule:: manim_extensions.radar.data
 
 Classes
 -------

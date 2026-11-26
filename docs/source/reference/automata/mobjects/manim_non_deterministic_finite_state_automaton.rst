@@ -5,7 +5,7 @@
 manim_non_deterministic_finite_state_automaton
 ==============================================
 
-.. module:: manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton
+.. automodule:: manim_extensions.automata.mobjects.manim_non_deterministic_finite_state_automaton
 
 Classes
 -------

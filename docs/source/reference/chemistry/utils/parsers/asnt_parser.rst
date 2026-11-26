@@ -4,7 +4,7 @@
 asnt_parser
 ===========
 
-.. module:: manim_extensions.chemistry.utils.parsers.asnt_parser
+.. automodule:: manim_extensions.chemistry.utils.parsers.asnt_parser
 
 Classes
 -------

@@ -5,7 +5,7 @@
 Compass
 =======
 
-.. module:: manim_extensions.compass
+.. automodule:: manim_extensions.compass
 
 .. vendored-status:: jj-math/manim-compass
 

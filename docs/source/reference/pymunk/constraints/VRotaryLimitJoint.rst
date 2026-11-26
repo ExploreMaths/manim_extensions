@@ -4,7 +4,7 @@
 VRotaryLimitJoint
 =================
 
-.. module:: manim_extensions.pymunk.constraints.VRotaryLimitJoint
+.. automodule:: manim_extensions.pymunk.constraints.VRotaryLimitJoint
 
 Classes
 -------

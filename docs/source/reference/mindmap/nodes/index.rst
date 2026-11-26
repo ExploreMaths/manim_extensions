@@ -5,7 +5,7 @@
 nodes
 =====
 
-.. module:: manim_extensions.mindmap.nodes
+.. automodule:: manim_extensions.mindmap.nodes
 
 Usage
 -----

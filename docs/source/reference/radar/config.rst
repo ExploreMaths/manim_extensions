@@ -5,7 +5,7 @@
 config
 ======
 
-.. module:: manim_extensions.radar.config
+.. automodule:: manim_extensions.radar.config
 
 Classes
 -------

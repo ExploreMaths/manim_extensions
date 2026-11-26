@@ -4,7 +4,7 @@
 sigmoid
 =======
 
-.. module:: manim_extensions.machine_learning.neural_network.activation_functions.sigmoid
+.. automodule:: manim_extensions.machine_learning.neural_network.activation_functions.sigmoid
 
 Classes
 -------

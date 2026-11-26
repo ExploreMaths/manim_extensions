@@ -4,7 +4,7 @@
 VPinJoint
 =========
 
-.. module:: manim_extensions.pymunk.constraints.VPinJoint
+.. automodule:: manim_extensions.pymunk.constraints.VPinJoint
 
 Classes
 -------

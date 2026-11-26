@@ -5,7 +5,7 @@
 numpy_helper
 ============
 
-.. module:: manim_extensions.algorithm.utils.numpy_helper
+.. automodule:: manim_extensions.algorithm.utils.numpy_helper
 
 Classes
 -------

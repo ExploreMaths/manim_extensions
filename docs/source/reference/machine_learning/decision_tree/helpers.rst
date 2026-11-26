@@ -4,7 +4,7 @@
 helpers
 =======
 
-.. module:: manim_extensions.machine_learning.decision_tree.helpers
+.. automodule:: manim_extensions.machine_learning.decision_tree.helpers
 
 Classes
 -------

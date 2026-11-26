@@ -4,7 +4,7 @@
 is_lm
 =====
 
-.. module:: manim_extensions.economics.is_lm
+.. automodule:: manim_extensions.economics.is_lm
 
 Classes
 -------

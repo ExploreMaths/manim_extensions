@@ -5,7 +5,7 @@
 electromagnetism
 ================
 
-.. module:: manim_extensions.physics.electromagnetism
+.. automodule:: manim_extensions.physics.electromagnetism
 
 Usage
 -----

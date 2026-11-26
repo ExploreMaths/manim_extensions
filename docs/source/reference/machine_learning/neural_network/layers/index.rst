@@ -4,7 +4,7 @@
 layers
 ======
 
-.. module:: manim_extensions.machine_learning.neural_network.layers
+.. automodule:: manim_extensions.machine_learning.neural_network.layers
 
 Usage
 -----

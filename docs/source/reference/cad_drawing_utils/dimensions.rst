@@ -5,7 +5,7 @@
 dimensions
 ==========
 
-.. module:: manim_extensions.cad_drawing_utils.dimensions
+.. automodule:: manim_extensions.cad_drawing_utils.dimensions
 
 Classes
 -------

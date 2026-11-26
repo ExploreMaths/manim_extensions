@@ -4,7 +4,7 @@
 VGrooveJoint
 ============
 
-.. module:: manim_extensions.pymunk.constraints.VGrooveJoint
+.. automodule:: manim_extensions.pymunk.constraints.VGrooveJoint
 
 Classes
 -------

@@ -5,7 +5,7 @@
 manim_cli
 =========
 
-.. module:: manim_extensions.automata.mobjects.manim_cli
+.. automodule:: manim_extensions.automata.mobjects.manim_cli
 
 Interactive command-line helper for building automata.
 

@@ -5,7 +5,7 @@
 manim_pushdown_automaton
 ========================
 
-.. module:: manim_extensions.automata.mobjects.manim_pushdown_automaton
+.. automodule:: manim_extensions.automata.mobjects.manim_pushdown_automaton
 
 Classes
 -------

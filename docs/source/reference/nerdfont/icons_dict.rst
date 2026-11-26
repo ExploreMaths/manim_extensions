@@ -4,7 +4,7 @@
 icons_dict
 ==========
 
-.. module:: manim_extensions.nerdfont.icons_dict
+.. automodule:: manim_extensions.nerdfont.icons_dict
 
 Constants
 ---------

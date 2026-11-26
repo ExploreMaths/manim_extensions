@@ -5,7 +5,7 @@
 alg_time_line
 =============
 
-.. module:: manim_extensions.mindmap.algorithms.alg_time_line
+.. automodule:: manim_extensions.mindmap.algorithms.alg_time_line
 
 Classes
 -------

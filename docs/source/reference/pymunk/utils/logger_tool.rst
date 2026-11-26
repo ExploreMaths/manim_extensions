@@ -4,7 +4,7 @@
 logger_tool
 ===========
 
-.. module:: manim_extensions.pymunk.utils.logger_tool
+.. automodule:: manim_extensions.pymunk.utils.logger_tool
 
 Constants
 ---------

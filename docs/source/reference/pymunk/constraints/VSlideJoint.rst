@@ -4,7 +4,7 @@
 VSlideJoint
 ===========
 
-.. module:: manim_extensions.pymunk.constraints.VSlideJoint
+.. automodule:: manim_extensions.pymunk.constraints.VSlideJoint
 
 Classes
 -------

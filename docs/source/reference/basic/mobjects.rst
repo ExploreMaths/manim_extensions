@@ -5,7 +5,7 @@
 Mobjects
 ========
 
-.. module:: manim_extensions.mobjects
+.. automodule:: manim_extensions.mobjects
 
 This module provides custom :class:`~manim.mobject.mobject.Mobject` subclasses
 that extend Manim's built-in primitives with additional convenience features

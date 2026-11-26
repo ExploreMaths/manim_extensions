@@ -5,7 +5,7 @@
 scene
 =====
 
-.. module:: manim_extensions.compass.scene
+.. automodule:: manim_extensions.compass.scene
 
 Usage
 -----

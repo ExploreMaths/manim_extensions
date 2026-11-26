@@ -5,7 +5,7 @@
 mobjects
 ========
 
-.. module:: manim_extensions.automata.mobjects
+.. automodule:: manim_extensions.automata.mobjects
 
 Usage
 -----

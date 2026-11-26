@@ -4,7 +4,7 @@
 VRatchetJoint
 =============
 
-.. module:: manim_extensions.pymunk.constraints.VRatchetJoint
+.. automodule:: manim_extensions.pymunk.constraints.VRatchetJoint
 
 Classes
 -------

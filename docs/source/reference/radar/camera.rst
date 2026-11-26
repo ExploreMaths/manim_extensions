@@ -5,7 +5,7 @@
 camera
 ======
 
-.. module:: manim_extensions.radar.camera
+.. automodule:: manim_extensions.radar.camera
 
 Classes
 -------

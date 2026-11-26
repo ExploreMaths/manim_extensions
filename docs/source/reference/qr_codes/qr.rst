@@ -4,7 +4,7 @@
 qr
 ==
 
-.. module:: manim_extensions.qr_codes.qr
+.. automodule:: manim_extensions.qr_codes.qr
 
 .. autoall:: manim_extensions.qr_codes.qr
    :types: class

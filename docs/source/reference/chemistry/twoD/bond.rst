@@ -4,7 +4,7 @@
 bond
 ====
 
-.. module:: manim_extensions.chemistry.twoD.bond
+.. automodule:: manim_extensions.chemistry.twoD.bond
 
 Classes
 -------

@@ -4,7 +4,7 @@
 activation_function
 ===================
 
-.. module:: manim_extensions.machine_learning.neural_network.activation_functions.activation_function
+.. automodule:: manim_extensions.machine_learning.neural_network.activation_functions.activation_function
 
 Classes
 -------

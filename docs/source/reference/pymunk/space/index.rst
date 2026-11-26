@@ -4,7 +4,7 @@
 space
 =====
 
-.. module:: manim_extensions.pymunk.space
+.. automodule:: manim_extensions.pymunk.space
 
 Usage
 -----

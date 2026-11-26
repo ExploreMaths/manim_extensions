@@ -4,7 +4,7 @@
 icons
 =====
 
-.. module:: manim_extensions.nerdfont.icons
+.. automodule:: manim_extensions.nerdfont.icons
 
 Classes
 -------

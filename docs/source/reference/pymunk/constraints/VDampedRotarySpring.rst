@@ -4,7 +4,7 @@
 VDampedRotarySpring
 ===================
 
-.. module:: manim_extensions.pymunk.constraints.VDampedRotarySpring
+.. automodule:: manim_extensions.pymunk.constraints.VDampedRotarySpring
 
 Classes
 -------

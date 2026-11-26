@@ -4,7 +4,7 @@
 scene
 =====
 
-.. module:: manim_extensions.machine_learning.scene
+.. automodule:: manim_extensions.machine_learning.scene
 
 A :class:`~manim.scene.three_d_scene.ThreeDScene` subclass tuned for
 machine-learning visualizations.

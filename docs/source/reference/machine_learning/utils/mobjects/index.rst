@@ -4,7 +4,7 @@
 mobjects
 ========
 
-.. module:: manim_extensions.machine_learning.utils.mobjects
+.. automodule:: manim_extensions.machine_learning.utils.mobjects
 
 Usage
 -----

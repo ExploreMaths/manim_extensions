@@ -5,7 +5,7 @@
 cli
 ===
 
-.. module:: manim_extensions.radar.cli
+.. automodule:: manim_extensions.radar.cli
 
 Functions
 ---------

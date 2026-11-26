@@ -4,7 +4,7 @@
 Table
 =====
 
-.. module:: manim_extensions.table
+.. automodule:: manim_extensions.table
 
 .. vendored-status:: philippe2803/manim-table
 

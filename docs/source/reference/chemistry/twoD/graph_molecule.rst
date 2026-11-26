@@ -4,7 +4,7 @@
 graph_molecule
 ==============
 
-.. module:: manim_extensions.chemistry.twoD.graph_molecule
+.. automodule:: manim_extensions.chemistry.twoD.graph_molecule
 
 Classes
 -------

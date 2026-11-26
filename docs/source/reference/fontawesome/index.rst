@@ -4,7 +4,7 @@
 Font Awesome
 ============
 
-.. module:: manim_extensions.fontawesome
+.. automodule:: manim_extensions.fontawesome
 
 .. vendored-status:: naveen521kk/manim-fontawesome
 

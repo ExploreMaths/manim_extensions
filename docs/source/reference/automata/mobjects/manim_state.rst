@@ -5,7 +5,7 @@
 manim_state
 ===========
 
-.. module:: manim_extensions.automata.mobjects.manim_state
+.. automodule:: manim_extensions.automata.mobjects.manim_state
 
 Classes
 -------

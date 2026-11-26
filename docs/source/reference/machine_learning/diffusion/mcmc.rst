@@ -4,7 +4,7 @@
 mcmc
 ====
 
-.. module:: manim_extensions.machine_learning.diffusion.mcmc
+.. automodule:: manim_extensions.machine_learning.diffusion.mcmc
 
 Classes
 -------

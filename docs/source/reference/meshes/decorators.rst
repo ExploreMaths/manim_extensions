@@ -5,7 +5,7 @@
 decorators
 ==========
 
-.. module:: manim_extensions.meshes.decorators
+.. automodule:: manim_extensions.meshes.decorators
 
 Functions
 ---------

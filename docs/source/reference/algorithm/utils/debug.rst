@@ -5,7 +5,7 @@
 debug
 =====
 
-.. module:: manim_extensions.algorithm.utils.debug
+.. automodule:: manim_extensions.algorithm.utils.debug
 
 Classes
 -------

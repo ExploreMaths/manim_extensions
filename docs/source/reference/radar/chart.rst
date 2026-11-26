@@ -5,7 +5,7 @@
 chart
 =====
 
-.. module:: manim_extensions.radar.chart
+.. automodule:: manim_extensions.radar.chart
 
 Classes
 -------

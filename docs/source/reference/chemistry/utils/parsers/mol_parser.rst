@@ -4,7 +4,7 @@
 mol_parser
 ==========
 
-.. module:: manim_extensions.chemistry.utils.parsers.mol_parser
+.. automodule:: manim_extensions.chemistry.utils.parsers.mol_parser
 
 Classes
 -------

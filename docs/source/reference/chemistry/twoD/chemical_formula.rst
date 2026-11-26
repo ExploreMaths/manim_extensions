@@ -4,7 +4,7 @@
 chemical_formula
 ================
 
-.. module:: manim_extensions.chemistry.twoD.chemical_formula
+.. automodule:: manim_extensions.chemistry.twoD.chemical_formula
 
 Classes
 -------

@@ -5,7 +5,7 @@
 manim_automaton_input
 =====================
 
-.. module:: manim_extensions.automata.mobjects.manim_automaton_input
+.. automodule:: manim_extensions.automata.mobjects.manim_automaton_input
 
 Classes
 -------

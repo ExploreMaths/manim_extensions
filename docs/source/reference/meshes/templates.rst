@@ -5,7 +5,7 @@
 templates
 =========
 
-.. module:: manim_extensions.meshes.templates
+.. automodule:: manim_extensions.meshes.templates
 
 Functions
 ---------

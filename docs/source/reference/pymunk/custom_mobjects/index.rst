@@ -4,7 +4,7 @@
 custom_mobjects
 ===============
 
-.. module:: manim_extensions.pymunk.custom_mobjects
+.. automodule:: manim_extensions.pymunk.custom_mobjects
 
 Usage
 -----

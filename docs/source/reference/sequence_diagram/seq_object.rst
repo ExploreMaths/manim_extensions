@@ -5,7 +5,7 @@
 seq_object
 ==========
 
-.. module:: manim_extensions.sequence_diagram.seq_object
+.. automodule:: manim_extensions.sequence_diagram.seq_object
 
 Classes
 -------

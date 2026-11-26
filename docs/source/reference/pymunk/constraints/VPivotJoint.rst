@@ -4,7 +4,7 @@
 VPivotJoint
 ===========
 
-.. module:: manim_extensions.pymunk.constraints.VPivotJoint
+.. automodule:: manim_extensions.pymunk.constraints.VPivotJoint
 
 Classes
 -------

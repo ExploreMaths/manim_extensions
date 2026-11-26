@@ -4,7 +4,7 @@
 file_handler
 ============
 
-.. module:: manim_extensions.chemistry.utils.file_handler
+.. automodule:: manim_extensions.chemistry.utils.file_handler
 
 Classes
 -------

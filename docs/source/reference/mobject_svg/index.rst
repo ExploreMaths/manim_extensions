@@ -5,7 +5,7 @@
 Mobject SVG
 ===========
 
-.. module:: manim_extensions.mobject_svg
+.. automodule:: manim_extensions.mobject_svg
 
 .. vendored-status:: naveen521kk/manim-mobject-svg
 

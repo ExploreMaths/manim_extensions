@@ -5,7 +5,7 @@
 gear_mobjects
 =============
 
-.. module:: manim_extensions.gearbox.gear_mobjects
+.. automodule:: manim_extensions.gearbox.gear_mobjects
 
 Usage
 -----

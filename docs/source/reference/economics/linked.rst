@@ -4,7 +4,7 @@
 linked
 ======
 
-.. module:: manim_extensions.economics.linked
+.. automodule:: manim_extensions.economics.linked
 
 Classes
 -------

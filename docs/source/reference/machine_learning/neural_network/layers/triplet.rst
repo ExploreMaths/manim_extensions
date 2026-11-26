@@ -4,7 +4,7 @@
 triplet
 =======
 
-.. module:: manim_extensions.machine_learning.neural_network.layers.triplet
+.. automodule:: manim_extensions.machine_learning.neural_network.layers.triplet
 
 Classes
 -------

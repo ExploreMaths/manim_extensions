@@ -4,7 +4,7 @@
 Scenes
 ======
 
-.. module:: manim_extensions.scenes
+.. automodule:: manim_extensions.scenes
 
 This module provides scene classes that extend Manim's built-in
 :class:`~manim.scene.scene.Scene` with additional behaviour.

@@ -4,7 +4,7 @@
 Economics
 =========
 
-.. module:: manim_extensions.economics
+.. automodule:: manim_extensions.economics
 
 .. vendored-status:: ddzhang04/manim_ec
 

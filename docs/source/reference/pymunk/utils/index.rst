@@ -4,7 +4,7 @@
 utils
 =====
 
-.. module:: manim_extensions.pymunk.utils
+.. automodule:: manim_extensions.pymunk.utils
 
 Usage
 -----

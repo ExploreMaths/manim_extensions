@@ -4,7 +4,7 @@
 constraint
 ==========
 
-.. module:: manim_extensions.pymunk.constraints.constraint
+.. automodule:: manim_extensions.pymunk.constraints.constraint
 
 Classes
 -------

@@ -5,7 +5,7 @@
 Automata
 ========
 
-.. module:: manim_extensions.automata
+.. automodule:: manim_extensions.automata
 
 .. vendored-status:: SeanNelsonIO/manim-automata
 

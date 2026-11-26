@@ -4,7 +4,7 @@
 decision_tree
 =============
 
-.. module:: manim_extensions.machine_learning.decision_tree.decision_tree
+.. automodule:: manim_extensions.machine_learning.decision_tree.decision_tree
 
 Classes
 -------

@@ -4,7 +4,7 @@
 QR Codes
 ========
 
-.. module:: manim_extensions.qr_codes
+.. automodule:: manim_extensions.qr_codes
 
 .. vendored-status:: Alexander-Nasuta/manim-qr-codes
 

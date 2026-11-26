@@ -5,7 +5,7 @@
 divide_and_conquer
 ==================
 
-.. module:: manim_extensions.meshes.delaunay.divide_and_conquer
+.. automodule:: manim_extensions.meshes.delaunay.divide_and_conquer
 
 Classes
 -------

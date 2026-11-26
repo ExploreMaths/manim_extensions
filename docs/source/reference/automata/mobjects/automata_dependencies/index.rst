@@ -5,7 +5,7 @@
 automata_dependencies
 =====================
 
-.. module:: manim_extensions.automata.mobjects.automata_dependencies
+.. automodule:: manim_extensions.automata.mobjects.automata_dependencies
 
 Usage
 -----

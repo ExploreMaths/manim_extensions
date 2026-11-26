@@ -4,7 +4,7 @@
 parent_layers
 =============
 
-.. module:: manim_extensions.machine_learning.neural_network.layers.parent_layers
+.. automodule:: manim_extensions.machine_learning.neural_network.layers.parent_layers
 
 Classes
 -------

@@ -4,7 +4,7 @@
 cell
 ====
 
-.. module:: manim_extensions.table.cell
+.. automodule:: manim_extensions.table.cell
 
 Classes
 -------

@@ -5,7 +5,7 @@
 m_array
 =======
 
-.. module:: manim_extensions.data_structures.m_array
+.. automodule:: manim_extensions.data_structures.m_array
 
 Indexed array visualization: elements, pointers, and sliding windows.
 

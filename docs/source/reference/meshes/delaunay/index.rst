@@ -5,7 +5,7 @@
 delaunay
 ========
 
-.. module:: manim_extensions.meshes.delaunay
+.. automodule:: manim_extensions.meshes.delaunay
 
 Usage
 -----

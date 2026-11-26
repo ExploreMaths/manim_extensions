@@ -5,7 +5,7 @@
 theme
 =====
 
-.. module:: manim_extensions.radar.theme
+.. automodule:: manim_extensions.radar.theme
 
 Classes
 -------

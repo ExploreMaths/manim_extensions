@@ -4,7 +4,7 @@
 VSpace
 ======
 
-.. module:: manim_extensions.pymunk.space.VSpace
+.. automodule:: manim_extensions.pymunk.space.VSpace
 
 Classes
 -------

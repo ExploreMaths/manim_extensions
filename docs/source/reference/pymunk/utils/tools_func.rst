@@ -4,7 +4,7 @@
 tools_func
 ==========
 
-.. module:: manim_extensions.pymunk.utils.tools_func
+.. automodule:: manim_extensions.pymunk.utils.tools_func
 
 Functions
 ---------

@@ -5,7 +5,7 @@
 utils
 =====
 
-.. module:: manim_extensions.cad_drawing_utils.utils
+.. automodule:: manim_extensions.cad_drawing_utils.utils
 
 Classes
 -------

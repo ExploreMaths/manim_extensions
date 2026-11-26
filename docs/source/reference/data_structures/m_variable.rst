@@ -5,7 +5,7 @@
 m_variable
 ==========
 
-.. module:: manim_extensions.data_structures.m_variable
+.. automodule:: manim_extensions.data_structures.m_variable
 
 Variable mobjects that display a changing value.
 

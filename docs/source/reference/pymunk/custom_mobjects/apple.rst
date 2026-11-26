@@ -4,7 +4,7 @@
 apple
 =====
 
-.. module:: manim_extensions.pymunk.custom_mobjects.apple
+.. automodule:: manim_extensions.pymunk.custom_mobjects.apple
 
 Classes
 -------

@@ -4,7 +4,7 @@
 animations
 ==========
 
-.. module:: manim_extensions.chemistry.twoD.animations
+.. automodule:: manim_extensions.chemistry.twoD.animations
 
 Classes
 -------

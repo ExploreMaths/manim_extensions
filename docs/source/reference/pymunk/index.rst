@@ -4,7 +4,7 @@
 Pymunk
 ======
 
-.. module:: manim_extensions.pymunk
+.. automodule:: manim_extensions.pymunk
 
 .. vendored-status:: HHP999/manim_pymunk
 

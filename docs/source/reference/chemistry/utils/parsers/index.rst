@@ -4,7 +4,7 @@
 parsers
 =======
 
-.. module:: manim_extensions.chemistry.utils.parsers
+.. automodule:: manim_extensions.chemistry.utils.parsers
 
 Usage
 -----

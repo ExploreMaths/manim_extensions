@@ -5,7 +5,7 @@
 animations
 ==========
 
-.. module:: manim_extensions.mindmap.animations.animations
+.. automodule:: manim_extensions.mindmap.animations.animations
 
 Classes
 -------

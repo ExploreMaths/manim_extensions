@@ -5,7 +5,7 @@
 Data Structures
 ===============
 
-.. module:: manim_extensions.data_structures
+.. automodule:: manim_extensions.data_structures
 
 .. vendored-status:: drageelr/manim-data-structures
 

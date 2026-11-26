@@ -4,7 +4,7 @@
 twoD
 ====
 
-.. module:: manim_extensions.chemistry.twoD
+.. automodule:: manim_extensions.chemistry.twoD
 
 Usage
 -----

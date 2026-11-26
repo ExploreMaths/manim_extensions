@@ -4,7 +4,7 @@
 weighted_line
 =============
 
-.. module:: manim_extensions.weighted_line.weighted_line
+.. automodule:: manim_extensions.weighted_line.weighted_line
 
 Classes
 -------

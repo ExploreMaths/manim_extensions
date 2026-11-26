@@ -5,7 +5,7 @@
 animation_pencil
 ================
 
-.. module:: manim_extensions.compass.animations.animation_pencil
+.. automodule:: manim_extensions.compass.animations.animation_pencil
 
 Classes
 -------

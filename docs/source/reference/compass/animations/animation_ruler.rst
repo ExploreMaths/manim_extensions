@@ -5,7 +5,7 @@
 animation_ruler
 ===============
 
-.. module:: manim_extensions.compass.animations.animation_ruler
+.. automodule:: manim_extensions.compass.animations.animation_ruler
 
 Classes
 -------

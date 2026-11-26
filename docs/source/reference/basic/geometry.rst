@@ -5,7 +5,7 @@
 Geometry
 ========
 
-.. module:: manim_extensions.geometry
+.. automodule:: manim_extensions.geometry
 
 This module contains geometric calculation functions that operate directly on
 Manim mobjects without creating any on-screen mobjects themselves.

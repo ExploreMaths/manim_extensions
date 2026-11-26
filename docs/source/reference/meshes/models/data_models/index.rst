@@ -5,7 +5,7 @@
 data_models
 ===========
 
-.. module:: manim_extensions.meshes.models.data_models
+.. automodule:: manim_extensions.meshes.models.data_models
 
 Usage
 -----

@@ -5,7 +5,7 @@
 alg_tidy_tree
 =============
 
-.. module:: manim_extensions.mindmap.algorithms.alg_tidy_tree
+.. automodule:: manim_extensions.mindmap.algorithms.alg_tidy_tree
 
 Classes
 -------

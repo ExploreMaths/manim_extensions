@@ -5,7 +5,7 @@
 template
 ========
 
-.. module:: manim_extensions.tikz.template
+.. automodule:: manim_extensions.tikz.template
 
 Classes
 -------

@@ -4,7 +4,7 @@
 supply_demand
 =============
 
-.. module:: manim_extensions.economics.supply_demand
+.. automodule:: manim_extensions.economics.supply_demand
 
 Classes
 -------

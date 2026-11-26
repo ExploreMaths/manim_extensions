@@ -5,7 +5,7 @@
 MindMap
 =======
 
-.. module:: manim_extensions.mindmap
+.. automodule:: manim_extensions.mindmap
 
 .. unlinked-class-ok-file Layout
 

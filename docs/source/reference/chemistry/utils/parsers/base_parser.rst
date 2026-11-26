@@ -4,7 +4,7 @@
 base_parser
 ===========
 
-.. module:: manim_extensions.chemistry.utils.parsers.base_parser
+.. automodule:: manim_extensions.chemistry.utils.parsers.base_parser
 
 Classes
 -------

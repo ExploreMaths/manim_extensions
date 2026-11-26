@@ -5,7 +5,7 @@
 electrostatics
 ==============
 
-.. module:: manim_extensions.physics.electromagnetism.electrostatics
+.. automodule:: manim_extensions.physics.electromagnetism.electrostatics
 
 Classes
 -------

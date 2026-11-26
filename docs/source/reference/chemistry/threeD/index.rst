@@ -4,7 +4,7 @@
 threeD
 ======
 
-.. module:: manim_extensions.chemistry.threeD
+.. automodule:: manim_extensions.chemistry.threeD
 
 Usage
 -----

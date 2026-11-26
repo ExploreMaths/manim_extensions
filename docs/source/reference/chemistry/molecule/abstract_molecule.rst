@@ -4,7 +4,7 @@
 abstract_molecule
 =================
 
-.. module:: manim_extensions.chemistry.molecule.abstract_molecule
+.. automodule:: manim_extensions.chemistry.molecule.abstract_molecule
 
 Classes
 -------

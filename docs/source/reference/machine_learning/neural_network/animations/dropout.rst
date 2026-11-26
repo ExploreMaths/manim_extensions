@@ -4,7 +4,7 @@
 dropout
 =======
 
-.. module:: manim_extensions.machine_learning.neural_network.animations.dropout
+.. automodule:: manim_extensions.machine_learning.neural_network.animations.dropout
 
 Classes
 -------

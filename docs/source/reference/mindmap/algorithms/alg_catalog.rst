@@ -5,7 +5,7 @@
 alg_catalog
 ===========
 
-.. module:: manim_extensions.mindmap.algorithms.alg_catalog
+.. automodule:: manim_extensions.mindmap.algorithms.alg_catalog
 
 Classes
 -------

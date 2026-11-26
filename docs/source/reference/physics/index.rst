@@ -5,7 +5,7 @@
 Physics
 =======
 
-.. module:: manim_extensions.physics
+.. automodule:: manim_extensions.physics
 
 .. vendored-status:: Matheart/manim-physics
 

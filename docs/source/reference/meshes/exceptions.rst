@@ -5,7 +5,7 @@
 exceptions
 ==========
 
-.. module:: manim_extensions.meshes.exceptions
+.. automodule:: manim_extensions.meshes.exceptions
 
 Classes
 -------

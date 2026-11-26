@@ -5,7 +5,7 @@
 rigid_mechanics
 ===============
 
-.. module:: manim_extensions.physics.rigid_mechanics
+.. automodule:: manim_extensions.physics.rigid_mechanics
 
 Classes
 -------

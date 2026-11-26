@@ -5,7 +5,7 @@
 algorithms
 ==========
 
-.. module:: manim_extensions.mindmap.algorithms
+.. automodule:: manim_extensions.mindmap.algorithms
 
 Usage
 -----

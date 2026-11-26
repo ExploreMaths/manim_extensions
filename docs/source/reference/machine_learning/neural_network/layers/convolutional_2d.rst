@@ -4,7 +4,7 @@
 convolutional_2d
 ================
 
-.. module:: manim_extensions.machine_learning.neural_network.layers.convolutional_2d
+.. automodule:: manim_extensions.machine_learning.neural_network.layers.convolutional_2d
 
 Classes
 -------

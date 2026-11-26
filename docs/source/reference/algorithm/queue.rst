@@ -5,7 +5,7 @@
 queue
 =====
 
-.. module:: manim_extensions.algorithm.queue
+.. automodule:: manim_extensions.algorithm.queue
 
 :class:`~manim_extensions.algorithm.queue.Queue` animation helpers and visual containers.
 

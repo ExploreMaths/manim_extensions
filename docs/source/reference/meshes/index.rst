@@ -5,7 +5,7 @@
 Meshes
 ======
 
-.. module:: manim_extensions.meshes
+.. automodule:: manim_extensions.meshes
 
 .. vendored-status:: bmmtstb/manim-meshes
 

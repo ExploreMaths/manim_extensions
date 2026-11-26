@@ -4,7 +4,7 @@
 threedbond
 ==========
 
-.. module:: manim_extensions.chemistry.threeD.threedbond
+.. automodule:: manim_extensions.chemistry.threeD.threedbond
 
 Classes
 -------

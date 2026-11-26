@@ -5,7 +5,7 @@
 alg_standard
 ============
 
-.. module:: manim_extensions.mindmap.algorithms.alg_standard
+.. automodule:: manim_extensions.mindmap.algorithms.alg_standard
 
 Classes
 -------

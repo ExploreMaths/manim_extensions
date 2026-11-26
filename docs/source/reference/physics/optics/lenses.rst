@@ -5,7 +5,7 @@
 lenses
 ======
 
-.. module:: manim_extensions.physics.optics.lenses
+.. automodule:: manim_extensions.physics.optics.lenses
 
 Classes
 -------

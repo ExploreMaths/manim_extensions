@@ -5,7 +5,7 @@
 delaunay_criterion
 ==================
 
-.. module:: manim_extensions.meshes.delaunay.delaunay_criterion
+.. automodule:: manim_extensions.meshes.delaunay.delaunay_criterion
 
 Classes
 -------

@@ -4,7 +4,7 @@
 connections
 ===========
 
-.. module:: manim_extensions.machine_learning.utils.mobjects.connections
+.. automodule:: manim_extensions.machine_learning.utils.mobjects.connections
 
 Classes
 -------

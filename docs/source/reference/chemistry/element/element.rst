@@ -4,7 +4,7 @@
 element
 =======
 
-.. module:: manim_extensions.chemistry.element.element
+.. automodule:: manim_extensions.chemistry.element.element
 
 Classes
 -------

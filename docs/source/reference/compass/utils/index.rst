@@ -5,7 +5,7 @@
 utils
 =====
 
-.. module:: manim_extensions.compass.utils
+.. automodule:: manim_extensions.compass.utils
 
 Usage
 -----

@@ -4,7 +4,7 @@
 decision_tree_embedding
 =======================
 
-.. module:: manim_extensions.machine_learning.decision_tree.decision_tree_embedding
+.. automodule:: manim_extensions.machine_learning.decision_tree.decision_tree_embedding
 
 Classes
 -------

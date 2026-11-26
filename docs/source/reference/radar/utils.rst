@@ -5,7 +5,7 @@
 utils
 =====
 
-.. module:: manim_extensions.radar.utils
+.. automodule:: manim_extensions.radar.utils
 
 Functions
 ---------

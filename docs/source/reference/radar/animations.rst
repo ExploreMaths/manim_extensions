@@ -5,7 +5,7 @@
 animations
 ==========
 
-.. module:: manim_extensions.radar.animations
+.. automodule:: manim_extensions.radar.animations
 
 Classes
 -------

@@ -4,7 +4,7 @@
 relu
 ====
 
-.. module:: manim_extensions.machine_learning.neural_network.activation_functions.relu
+.. automodule:: manim_extensions.machine_learning.neural_network.activation_functions.relu
 
 Classes
 -------
