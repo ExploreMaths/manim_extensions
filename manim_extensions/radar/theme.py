@@ -39,6 +39,7 @@ class RadarTheme:
                self.add(chart)
     """
 
+    #: Human-readable theme name
     name: str = "custom"
     #: Flat background colour used by :class:`~manim_extensions.radar.backdrop.DeepSpace`
     background: str = "#070B16"
@@ -78,8 +79,9 @@ class RadarTheme:
     title_gradient: Sequence[str] = ("#9FB2CC", "#EAF2FF")
     #: Gradient used for the dataset nameplate
     name_gradient: Sequence[str] = ("#FFD166", "#F59E62")
-    #: Double outline colours (``rim`` emphasis)
+    #: Colour of the outer rim stroke
     rim_outer: str = "#FF9C3C"
+    #: Colour of the inner rim stroke
     rim_inner: str = "#3CC8FF"
     #: Accent colours for the occasional coloured star
     star_accents: Sequence[str] = (
