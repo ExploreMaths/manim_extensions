@@ -60,7 +60,7 @@ sys.path.insert(0, str(SRC.parent))
 
 # Same exclusions as the docs build: doc-build tooling and testing helpers
 # are never autodoc'd, so their example blocks never render in the docs.
-SKIP_PARTS = {"__pycache__", "docbuild", "testing", "custom_mobjects"}
+SKIP_PARTS = {"__pycache__", "docbuild", "testing"}
 
 MANIM_DIRECTIVE_RE = re.compile(r"\s*\.\.\s+manim::\s*(\S+)")
 OPTION_RE = re.compile(r"(\s*):([\w_]+):")

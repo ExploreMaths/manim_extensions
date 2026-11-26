@@ -20,14 +20,14 @@ class Apple(VMobject):
 
     Examples
     --------
-    .. manim:: Apple
+    .. manim:: AppleScene
        :save_last_frame:
 
        import numpy as np
        from manim import *
        from manim_extensions.pymunk import *
 
-       class Apple(Scene):
+       class AppleScene(Scene):
            def construct(self):
                apples = VGroup(
                    Apple(color=RED, fill_color=RED, fill_opacity=0.6),
