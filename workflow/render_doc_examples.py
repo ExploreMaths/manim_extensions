@@ -387,7 +387,12 @@ def _ensure_nerdfont_installed() -> None:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", required=True, help="cache output directory")
-    parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument(
+        "--workers",
+        type=int,
+        default=1,
+        help="number of render workers (default: 1, serial)",
+    )
     parser.add_argument(
         "--quality",
         choices=["low", "medium", "high", "fourk"],
