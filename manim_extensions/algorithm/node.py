@@ -200,6 +200,7 @@ class Node(VMobject):
                    square_node, circle_node, small_node, empty_node
                ).arrange(RIGHT, buff=0.8)
                self.add(group)
+    .. doc-example-covers: get_box
     """
 
     def __init__(

@@ -463,15 +463,15 @@ class MCMolecule:
     def remove_hydrogens(self, atoms_to_be_removed: list[Any]) -> Any:
         """Remove specified atoms and their associated bonds, then reindex.
 
-        Parameters
-        ----------
+
+
         atoms_to_be_removed
             Indices of the atoms to remove.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         if not atoms_to_be_removed:
             return

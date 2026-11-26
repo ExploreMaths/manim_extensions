@@ -59,6 +59,7 @@ class GaussianDistribution(VGroup):
                    cov=np.array([[1.2, 0.6], [0.6, 0.8]]),
                )
                self.add(axes, gaussian)
+    .. doc-example-covers: construct_gaussian_distribution, construct_simple_gaussian_ellipse
     """
 
     def __init__(

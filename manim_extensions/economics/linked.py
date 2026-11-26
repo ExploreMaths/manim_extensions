@@ -57,6 +57,7 @@ class LinkedISLMADAS(VGroup):
                for anim in linked.monetary_expansion(ms=5, m=30):
                    self.play(anim)
                    self.wait(0.5)
+    .. doc-example-covers: adverse_supply_shock, positive_supply_shock
     """
 
     def __init__(

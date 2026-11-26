@@ -269,6 +269,7 @@ class DecisionTreeDiagram(Group):
                    diagram.scale_to_fit_height(6)
                diagram.move_to(ORIGIN)
                self.add(diagram)
+    .. doc-example-covers: create_decision_tree, make_expand_tree_animation
     """
 
     def __init__(

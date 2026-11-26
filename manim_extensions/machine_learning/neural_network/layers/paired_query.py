@@ -85,6 +85,7 @@ class PairedQueryLayer(NeuralNetworkLayer):
                self.play(Create(nn))
                # Animate the forward pass
                self.play(nn.make_forward_pass_animation())
+    .. doc-example-covers: make_assets, make_forward_pass_animation
     """
 
     def __init__(

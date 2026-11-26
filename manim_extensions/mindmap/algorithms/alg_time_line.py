@@ -128,8 +128,8 @@ def walk(
     If before_callback returns ``True``, traversal of that node's children is
     skipped.
 
-    Parameters
-    ----------
+
+
     node
         The current node to visit.
     parent
@@ -148,9 +148,9 @@ def walk(
         The index of ``node`` within its parent's children list.
 
 
-        Returns
-        -------
-            The resulting value.
+
+
+        The resulting value.
     """
     # Pre-order callback
     if before_callback:

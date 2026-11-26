@@ -266,6 +266,7 @@ class CodeBlock(VGroup):
                block = CodeBlock('print("Hello World!")')
                block.scale(2.5)
                self.add(block)
+    .. doc-example-covers: uncreate
     """
 
     code: MarkupText

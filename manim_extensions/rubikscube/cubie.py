@@ -51,6 +51,7 @@ class Cubie(VGroup):
                self.play(Indicate(corner))
                self.play(Indicate(corner.get_face("U")))
                self.wait()
+    .. doc-example-covers: get_face
     """
 
     def __init__(self, x: int, y: int, z: int, dim: int, colors: list[Any]) -> None:

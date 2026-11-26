@@ -172,15 +172,15 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
     def add_manim_state(self, manim_state: ManimState) -> Any:
         """Add an existing :class:`~manim_extensions.automata.mobjects.manim_state.ManimState` mobject to the automaton's VGroup.
 
-        Parameters
-        ----------
+
+
         manim_state
             The state mobject to add.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         # maybe need validation
         # adds an already existing manim_state to automaton
@@ -189,8 +189,8 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
     def construct_state(self, state: dict[str, Any], scaling: float = 10) -> Any:
         """Create a :class:`~manim_extensions.automata.mobjects.manim_state.ManimState` from a state dict and append it to self.states.
 
-        Parameters
-        ----------
+
+
         state
             :class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` definition with ``"@name"``, ``"x"``, ``"y"``, ``"@id"``
             and optional ``"initial"``/``"final"`` flags.
@@ -198,9 +198,9 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             Coordinate scaling factor.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         initial = False
         final = False
@@ -231,15 +231,15 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
     def construct_states(self, states: list[dict[str, Any]]) -> Any:
         """Build all :class:`~manim_extensions.automata.mobjects.manim_state.ManimState` objects from a list of state dicts with auto-scaling.
 
-        Parameters
-        ----------
+
+
         states
             :class:`~manim_extensions.automata.mobjects.automata_dependencies.state.State` definitions from JSON or XML parsing.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         for state in states:
             if "initial" in state.keys():
@@ -277,15 +277,15 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
     def construct_transitions(self, transitions: list[dict[str, Any]]) -> Any:
         """Build :class:`~manim_extensions.automata.mobjects.manim_transition.ManimTransition` objects from transition dicts, grouping read symbols by state pair.
 
-        Parameters
-        ----------
+
+
         transitions
             :class:`~manim_extensions.automata.mobjects.automata_dependencies.transition.Transition` definitions from JSON or XML parsing.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         # counts the number of transitions between two states
         transition_counter: dict[tuple[str, str], list[str]] = {}
@@ -329,8 +329,8 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
     ) -> Any:
         """Create a single :class:`~manim_extensions.automata.mobjects.manim_transition.ManimTransition` between two states and register it.
 
-        Parameters
-        ----------
+
+
         transition_from
             The source state of the transition.
         transition_to
@@ -339,9 +339,9 @@ class ManimAutomaton(FiniteStateAutomaton, VGroup, abc.ABC):
             The symbols that trigger this transition.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         new_transition = ManimTransition(
             transition_from,

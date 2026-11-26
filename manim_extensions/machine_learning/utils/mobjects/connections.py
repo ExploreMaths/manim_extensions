@@ -70,6 +70,7 @@ class NetworkConnection(VGroup):
                self.add(content)
     """
 
+    #: Maps direction names such as ``"up"`` to unit vectors.
     direction_vector_map: dict[str, Vector3D] = {
         "up": UP,
         "down": DOWN,

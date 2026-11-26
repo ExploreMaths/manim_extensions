@@ -80,6 +80,7 @@ class ConstantStrokeWidthScene(MovingCameraScene):
                self.play(self.camera.frame.animate.scale(1 / 3), run_time=2)
                self.wait(0.5)
                self.play(self.camera.frame.animate.scale(3), run_time=2)
+    .. doc-example-covers: add
     """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:

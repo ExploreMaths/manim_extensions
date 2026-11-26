@@ -152,16 +152,16 @@ class ActivationFunction(ABC, VGroup):
         Abstract method: concrete subclasses implement the actual
         activation function.
 
-        Parameters
-        ----------
+
+
         x_val
             Input value at which to evaluate the function. If ``None``,
             a random value within ``x_range`` is used instead.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         if x_val == None:
             x_val = random.uniform(self.x_range[0], self.x_range[1])

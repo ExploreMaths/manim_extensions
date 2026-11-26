@@ -211,6 +211,7 @@ class NamedFormula(VGroup):
            def construct(self):
                self.add(NamedFormula("Sodio", "Cloro", "NaCl",
                                      metal_color=BLUE, non_metal_color=GREEN))
+    .. doc-example-covers: make_name
     """
 
     def __init__(

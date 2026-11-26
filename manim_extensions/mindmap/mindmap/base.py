@@ -200,6 +200,7 @@ class AbstractMap(Group):
                mind_map = SimpleMap(TidyTreeLayout(root, **config))
                mind_map.scale_to_fit_width(10)
                self.add(mind_map)
+    .. doc-example-covers: bfs_walker, custom_walker, dfs_walker, get_all_mindmap, get_children, get_connector, get_descendants, get_node, get_node_component, get_submindmap
     """
 
     node_style: NodeStyle

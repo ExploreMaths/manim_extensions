@@ -148,6 +148,7 @@ class Element(VGroup):
        class ElementScene(Scene):
            def construct(self):
                self.add(Element(element="Si", n_electrons=4, n_holes=4))
+    .. doc-example-covers: arrange_particles, get_electrons, get_holes, get_particles, get_subelectron_holes, make_subelectron_holes
     """
 
     def __init__(
@@ -354,6 +355,7 @@ class NPNTransistor(VGroup):
        class NPNTransistorScene(Scene):
            def construct(self):
                self.add(NPNTransistor())
+    .. doc-example-covers: make_particles
     """
 
     def __init__(self, regions_opacity: float = 0.8, **kwargs: Any) -> None:
@@ -444,6 +446,7 @@ class BatterySchema(VGroup):
        class BatterySchemaScene(Scene):
            def construct(self):
                self.add(BatterySchema())
+    .. doc-example-covers: corner_schema, horizontal_schema, select_schema
     """
 
     # TODO: This is not working as intended, rebuild this.
@@ -635,6 +638,7 @@ class MOSFETTransistor(VGroup):
        class MOSFETTransistorScene(Scene):
            def construct(self):
                self.add(MOSFETTransistor())
+    .. doc-example-covers: add_battery, add_battery_sides, add_battery_terminals, add_holes, make_main_board, make_n_region
     """
 
     def __init__(
@@ -821,17 +825,17 @@ class BatterySide(VMobject):
 def arrange_in_1d_boundary(mobs: VGroup, boundary: list[Any] = [LEFT, RIGHT]) -> Any:
     """Evenly distribute mobjects along a 1D line between two boundary points.
 
-    Parameters
-    ----------
+
+
     mobs
         Mobjects to distribute along the line.
     boundary
         Boundary points of the line.
 
 
-        Returns
-        -------
-            The resulting value.
+
+
+        The resulting value.
     """
     divisions = len(mobs)
     positions = np.linspace(boundary[0], boundary[1], divisions)

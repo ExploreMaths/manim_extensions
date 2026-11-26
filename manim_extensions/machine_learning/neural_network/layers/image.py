@@ -80,6 +80,7 @@ class ImageLayer(NeuralNetworkLayer):
                forward_pass = nn.make_forward_pass_animation()
                self.play(ChangeSpeed(forward_pass, speedinfo={}), run_time=10)
                self.wait(1)
+    .. doc-example-covers: make_forward_pass_animation
     """
 
     def __init__(
@@ -102,8 +103,8 @@ class ImageLayer(NeuralNetworkLayer):
     ) -> Any:
         """Construct layer method.
 
-        Parameters
-        ----------
+
+
         input_layer :
             Input layer.
         output_layer :
@@ -112,9 +113,9 @@ class ImageLayer(NeuralNetworkLayer):
             Forwarded to the parent layer classes.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         if len(np.shape(self.numpy_image)) == 2:
             # Assumed Grayscale
@@ -211,8 +212,8 @@ class ImageLayer(NeuralNetworkLayer):
     def scale(self, scale_factor: float, **kwargs: Any) -> Any:
         """Scales the image mobject.
 
-        Parameters
-        ----------
+
+
         scale_factor
             Factor by which the image mobject is scaled.
         **kwargs
@@ -220,9 +221,9 @@ class ImageLayer(NeuralNetworkLayer):
             :meth:`~manim.mobject.mobject.Mobject.scale`.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         self.image_mobject.scale(scale_factor)
 

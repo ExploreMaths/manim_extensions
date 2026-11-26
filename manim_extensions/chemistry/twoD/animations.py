@@ -57,6 +57,7 @@ class GMAnimationBuilder:
                    )
                )
                self.wait()
+    .. doc-example-covers: rotate_atoms_about_bond
     """
 
     def __init__(

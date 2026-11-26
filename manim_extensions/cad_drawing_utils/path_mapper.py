@@ -525,6 +525,7 @@ class DashedLineMobject(VDict):
                circle = Circle(radius=2)
                dashed = DashedLineMobject(circle, num_dashes=24, dashed_ratio=0.6)
                self.add(dashed)
+    .. doc-example-covers: generate_dash_mobjects
     """
 
     def __init__(

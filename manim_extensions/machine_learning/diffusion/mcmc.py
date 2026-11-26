@@ -403,6 +403,7 @@ class MCMCAxes(Group):
                    )
                )
                self.wait(1)
+    .. doc-example-covers: make_transition_animation, show_ground_truth_gaussian, visualize_gaussian_proposal_about_point
     """
 
     def __init__(

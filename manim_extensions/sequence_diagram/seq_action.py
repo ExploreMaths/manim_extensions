@@ -127,6 +127,7 @@ class SeqAction(AnimationGroup):
                content = Group(*self.mobjects)
                content.scale_to_fit_height(6).move_to(ORIGIN)
                self.play(self.camera.frame.animate.move_to(ORIGIN))
+    .. doc-example-covers: introduce_actors, subject_gives_gift_to_target
     """
 
     @classmethod

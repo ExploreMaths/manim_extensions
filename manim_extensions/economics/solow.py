@@ -89,6 +89,7 @@ class SolowDiagram(EconDiagram):
                    self.wait(0.5)
                self.play(diagram.show_shares())
                self.wait()
+    .. doc-example-covers: decrease_savings, increase_depreciation, increase_savings, population_growth, shift_breakeven, shift_savings
     """
 
     _shares_group: VGroup | None = None

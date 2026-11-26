@@ -51,6 +51,7 @@ class ManimAutomataInput(VGroup):
                for token in inp.tokens:
                    self.play(animations.animate_highlight_input_token(token))
                    self.play(animations.animate_input_token_spent(token))
+    .. doc-example-covers: highlight_token
     """
 
     def __init__(

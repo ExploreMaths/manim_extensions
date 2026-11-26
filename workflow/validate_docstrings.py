@@ -215,6 +215,61 @@ def has_duplicate_docstring(lines):
     return len(docstring_positions) > 1
 
 
+def check_init_param_docs(filepath):
+    """Return constructors whose parameters are absent from the class docstring.
+
+    ``__init__`` is allowed to omit its own docstring only because the
+    class docstring is the public constructor documentation.  That
+    contract is not self-enforcing: this check verifies every explicit
+    constructor parameter appears as a ``Parameters`` entry in the class
+    docstring.
+    """
+    import ast
+
+    try:
+        source = filepath.read_text(encoding="utf-8")
+        tree = ast.parse(source)
+    except (OSError, SyntaxError):
+        return []
+
+    hits = []
+    for node in ast.walk(tree):
+        if not isinstance(node, ast.ClassDef):
+            continue
+        init = next(
+            (
+                item
+                for item in node.body
+                if isinstance(item, (ast.FunctionDef, ast.AsyncFunctionDef))
+                and item.name == "__init__"
+            ),
+            None,
+        )
+        if init is None:
+            continue
+        params = [
+            arg.arg
+            for arg in (*init.args.posonlyargs, *init.args.args, *init.args.kwonlyargs)
+            if arg.arg not in {"self", "cls"}
+        ]
+        if not params:
+            continue
+        doc = ast.get_docstring(node) or ""
+        missing = []
+        for name in params:
+            documented = any(
+                line.strip() == name or line.strip().startswith(name + " :")
+                for line in doc.splitlines()
+            )
+            if not documented:
+                missing.append(name)
+        if missing:
+            hits.append(
+                (init.lineno, f"{node.name}.__init__ parameters: {', '.join(missing)}")
+            )
+    return hits
+
+
 def check_function_docstrings(filepath):
     """Check if all functions and classes have docstrings.
 
@@ -514,6 +569,8 @@ def main():
             missing_funcs = check_function_docstrings(py_file)
             for line_no, name, node_type in missing_funcs:
                 func_errors.append((py_file, line_no, name, node_type))
+            for line_no, name in check_init_param_docs(py_file):
+                func_errors.append((py_file, line_no, name, "constructor"))
             for line_no, name in check_init_docstrings(py_file):
                 init_errors.append((py_file, line_no, name))
             for line_no, name in check_raw_docstrings(py_file):
@@ -527,6 +584,9 @@ def main():
         missing_funcs = check_function_docstrings(py_file)
         for line_no, name, node_type in missing_funcs:
             func_errors.append((py_file, line_no, name, node_type))
+
+        for line_no, name in check_init_param_docs(py_file):
+            func_errors.append((py_file, line_no, name, "constructor"))
 
         for line_no, _indent in check_args_format(py_file):
             args_errors.append((py_file, line_no))

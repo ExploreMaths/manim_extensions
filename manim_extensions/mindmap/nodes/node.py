@@ -292,6 +292,7 @@ class Node:
                          child.vmobject, child.surr_rect,
                          leaf.vmobject, leaf.surr_rect)
                Group(*self.mobjects).scale(1.3).move_to(ORIGIN)
+    .. doc-example-covers: get_children_mobjects, get_connector, get_descendants_mobjects, get_node_and_line_without_updater
     """
 
     def __init__(
@@ -323,15 +324,15 @@ class Node:
     def scale(self, scale_factor: float) -> Any:
         """Scale the node around its current center.
 
-        Parameters
-        ----------
+
+
         scale_factor
             Uniform scaling factor applied to the node dimensions.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         self.node_state = NodeState.SCALE
         self.scale_factor = scale_factor
@@ -341,15 +342,15 @@ class Node:
     def add_child(self, child: "Node") -> Any:
         """Attach a child node to the current node.
 
-        Parameters
-        ----------
+
+
         child
             Child node to insert beneath the current parent.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         if self.children:
             child.neighbor = self.children[-1]
@@ -383,15 +384,15 @@ class Node:
     def alter_content(self, vmobject: VMobject) -> Any:
         """Replace the displayed content of the node.
 
-        Parameters
-        ----------
+
+
         vmobject
             New mobject used to render the node content.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         self.node_state = NodeState.ALTER
         self.alter_vmobject = vmobject
@@ -542,8 +543,8 @@ class Node:
     ) -> Any:
         """Set the connector line.
 
-        Parameters
-        ----------
+
+
         layout_type
             :class:`~manim_extensions.mindmap.algorithms.layout.Layout` type parameter for this operation.
         direction
@@ -552,9 +553,9 @@ class Node:
             Kwargs processed by this operation.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         if self.parent is not None and self.connector is None:
             self.connector_style = kwargs
@@ -573,8 +574,8 @@ class Node:
     ) -> Any:
         """Change the connector line.
 
-        Parameters
-        ----------
+
+
         change_dir
             Change dir parameter for this operation.
         change_layout
@@ -587,9 +588,9 @@ class Node:
             Additional keyword arguments used as the connector line style.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         current_style = getattr(self, "connector_style", None)
         if (

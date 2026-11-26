@@ -62,6 +62,7 @@ class ImageToFeedForward(ConnectiveLayer):
                content = Group(first, second, connection)
                content.scale_to_fit_height(5.5).move_to(ORIGIN)
                self.add(content)
+    .. doc-example-covers: make_forward_pass_animation
     """
 
     input_class = ImageLayer

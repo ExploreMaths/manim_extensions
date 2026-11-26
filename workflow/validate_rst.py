@@ -141,7 +141,6 @@ SKIP_PHRASES = (
     "No role entry",
     'Error in "include" directive',
     '"include" directive',
-    "Unexpected section title",
     "Inline strong start-string",
     "Inline emphasis start-string",
     # Sphinx ``raw`` directive supports :file:; plain docutils
@@ -368,10 +367,7 @@ def check_indentation(lines: list[str]) -> list[tuple[int, str]]:
 
         if is_option:
             option_parent = stack[-1][0]
-            if (
-                stack[-1][4] in MANIM_LIKE_DIRECTIVES
-                and indent != option_parent + expected_delta
-            ):
+            if indent != option_parent + NORMAL_DELTA:
                 hits.append(
                     (
                         i,
@@ -510,7 +506,9 @@ def _docutils_settings():
     return settings
 
 
-def check_docutils(text: str) -> list[tuple[int, str]]:
+def check_docutils(
+    text: str, *, suppress_private_section_titles: bool = False
+) -> list[tuple[int, str]]:
     """Parse ``text`` with docutils and return real (non-Sphinx) issues.
 
     Parameters
@@ -539,6 +537,10 @@ def check_docutils(text: str) -> list[tuple[int, str]]:
         text_ = msg.astext()
         if any(phrase in text_ for phrase in SKIP_PHRASES):
             continue
+        # ``Unexpected section title`` is only noise for private objects
+        # that autodoc never renders. Public docstrings must fix it.
+        if suppress_private_section_titles and "Unexpected section title" in text_:
+            continue
         # ``:skip-indent:`` is a validator-only option; docutils flags
         # it as an unknown option, but Sphinx ignores unknown options.
         if "skip-indent" in text_:
@@ -556,7 +558,34 @@ def iter_rst_files() -> list[Path]:
     return sorted(p for p in DOCS.rglob("*.rst") if not SKIP_DIR_PARTS & set(p.parts))
 
 
-def extract_docstrings(source: str) -> list[tuple[int, list[tuple[int, str]]]]:
+def _iter_docstring_nodes(
+    node: ast.AST, public: bool = True
+) -> list[tuple[ast.AST, bool]]:
+    """Return ``(node, is_public)`` for every docstring-bearing node."""
+    if isinstance(node, (ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)):
+        public = public and not node.name.startswith("_")
+    out: list[tuple[ast.AST, bool]] = []
+    if (
+        isinstance(
+            node, (ast.Module, ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)
+        )
+        and node.body
+        and isinstance(node.body[0], ast.Expr)
+    ):
+        value = node.body[0].value
+        if isinstance(value, ast.Constant) and isinstance(
+            getattr(value, "value", None), str
+        ):
+            out.append((node, public))
+    for child in ast.iter_child_nodes(node):
+        if isinstance(child, (ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef)):
+            out.extend(_iter_docstring_nodes(child, public))
+    return out
+
+
+def extract_docstrings(
+    source: str,
+) -> list[tuple[int, list[tuple[int, str]], bool]]:
     """Extract docstrings from ``source`` with original line numbers.
 
     Parameters
@@ -566,10 +595,11 @@ def extract_docstrings(source: str) -> list[tuple[int, list[tuple[int, str]]]]:
 
     Returns
     -------
-    list of (start_line, lines)
-        For each docstring, its 1-based start line and a list of
+    list of (start_line, lines, is_public)
+        For each docstring, its 1-based start line, a list of
         ``(source_line_no, dedented_text)`` pairs spanning the docstring
-        body (quote characters removed).
+        body (quote characters removed), and whether autodoc renders the
+        owning object (public classes/functions/module).
     """
     try:
         tree = ast.parse(source)
@@ -577,26 +607,21 @@ def extract_docstrings(source: str) -> list[tuple[int, list[tuple[int, str]]]]:
         return []
 
     src_lines = source.splitlines()
-    results: list[tuple[int, list[tuple[int, str]]]] = []
+    results: list[tuple[int, list[tuple[int, str]], bool]] = []
 
-    for node in ast.walk(tree):
-        if not isinstance(
-            node, (ast.Module, ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)
-        ):
-            continue
-        if not (node.body and isinstance(node.body[0], ast.Expr)):
-            continue
+    for node, public in _iter_docstring_nodes(tree):
         val = node.body[0].value
-        if not isinstance(val, ast.Constant):
-            continue
-        doc_value = getattr(val, "value", None)
-        if not isinstance(doc_value, str):
-            continue
-
         start = val.lineno
         end = val.end_lineno
         raw = list(src_lines[start - 1 : end])
 
+        # The docstring's own indentation must not become RST indentation.
+        # Capture the leading whitespace before stripping the quote, then
+        # remove that same prefix from every following line so
+        # ``textwrap.dedent`` can see the real relative indentation.
+        prefix = ""
+        if raw:
+            prefix = raw[0][: len(raw[0]) - len(raw[0].lstrip())]
         # Strip the opening quote prefix from the first line.
         if raw:
             m = QUOTE_PREFIX_RE.match(raw[0])
@@ -604,6 +629,11 @@ def extract_docstrings(source: str) -> list[tuple[int, list[tuple[int, str]]]]:
                 raw[0] = raw[0][m.end() :]
             else:
                 raw[0] = ""
+            if prefix:
+                raw[1:] = [
+                    line[len(prefix) :] if line.startswith(prefix) else line
+                    for line in raw[1:]
+                ]
         # Strip the closing quote suffix from the last line.
         if len(raw) > 1:
             m = QUOTE_SUFFIX_RE.search(raw[-1])
@@ -620,7 +650,7 @@ def extract_docstrings(source: str) -> list[tuple[int, list[tuple[int, str]]]]:
         dedented = textwrap.dedent("\n".join(raw))
         ded_lines = dedented.split("\n")
         pairs = [(start + i, ded_lines[i]) for i in range(len(ded_lines))]
-        results.append((start, pairs))
+        results.append((start, pairs, public))
 
     return results
 
@@ -662,7 +692,7 @@ def check_py_file(path: Path) -> list[tuple[str, int, str]]:
     rel = str(path.relative_to(ROOT))
     issues: list[tuple[str, int, str]] = []
 
-    for _start, pairs in extract_docstrings(source):
+    for _start, pairs, is_public in extract_docstrings(source):
         line_map = [ln for ln, _ in pairs]
         texts = [t for _, t in pairs]
         for idx, msg in check_abutting(texts):
@@ -670,7 +700,9 @@ def check_py_file(path: Path) -> list[tuple[str, int, str]]:
         for idx, msg in check_indentation(texts):
             issues.append((rel, line_map[idx], f"indentation: {msg}"))
         joined = "\n".join(texts)
-        for offset, msg in check_docutils(joined):
+        for offset, msg in check_docutils(
+            joined, suppress_private_section_titles=not is_public
+        ):
             # docutils line numbers are 1-based offsets into the docstring.
             src_line = (
                 line_map[offset - 1] if 1 <= offset <= len(line_map) else line_map[0]

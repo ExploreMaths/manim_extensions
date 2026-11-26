@@ -58,6 +58,7 @@ class NeuralNetworkLayer(ABC, Group):
                assert isinstance(layer, NeuralNetworkLayer)
                layer.scale_to_fit_height(6).move_to(ORIGIN)
                self.add(layer)
+    .. doc-example-covers: make_forward_pass_animation
     """
 
     def __init__(self, text: str | None = None, *args: Any, **kwargs: Any) -> None:
@@ -82,8 +83,8 @@ class NeuralNetworkLayer(ABC, Group):
     ) -> Any:
         """Constructs the layer at network construction time.
 
-        Parameters
-        ----------
+
+
         input_layer
             Preceding layer.
         output_layer
@@ -93,9 +94,9 @@ class NeuralNetworkLayer(ABC, Group):
             surrounding rectangle around the layer.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         if "debug_mode" in kwargs and kwargs["debug_mode"]:
             self.add(SurroundingRectangle(self))
@@ -165,6 +166,7 @@ class VGroupNeuralNetworkLayer(NeuralNetworkLayer):
                assert isinstance(layer, VGroupNeuralNetworkLayer)
                layer.scale_to_fit_height(6).move_to(ORIGIN)
                self.add(layer)
+    .. doc-example-covers: make_forward_pass_animation
     """
 
     def __init__(self, *args: Any, **kwargs: Any) -> None:
@@ -274,6 +276,7 @@ class ConnectiveLayer(VGroupNeuralNetworkLayer):
                content = Group(input_layer, output_layer, connection)
                content.scale_to_fit_height(6).move_to(ORIGIN)
                self.add(content)
+    .. doc-example-covers: make_forward_pass_animation
     """
 
     @abstractmethod
@@ -371,6 +374,7 @@ class BlankConnective(ConnectiveLayer):
                content = Group(input_layer, output_layer, connection)
                content.scale_to_fit_height(6).move_to(ORIGIN)
                self.add(content)
+    .. doc-example-covers: make_forward_pass_animation
     """
 
     def __init__(
@@ -410,8 +414,8 @@ class BlankConnective(ConnectiveLayer):
     ) -> Any:
         """Construct nothing: a blank connective has no geometry of its own.
 
-        Parameters
-        ----------
+
+
         input_layer
             Preceding layer.
         output_layer
@@ -420,9 +424,9 @@ class BlankConnective(ConnectiveLayer):
             Ignored.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         return None
 

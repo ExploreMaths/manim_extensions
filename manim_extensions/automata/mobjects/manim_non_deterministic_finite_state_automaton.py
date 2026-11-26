@@ -92,6 +92,7 @@ class ManimNondeterministicFiniteAutomaton(ManimAutomaton):
                    self.play(*sequence, run_time=0.5)
     """
 
+    #: Whether this automaton was produced by the NDA builder.
     nda_builder = False
 
     def __init__(

@@ -68,6 +68,7 @@ class TripletLayer(NeuralNetworkLayer):
                nn = NeuralNetwork([triplet, FeedForwardLayer(4)])
                nn.move_to(ORIGIN)
                self.play(Create(nn))
+    .. doc-example-covers: make_assets, make_forward_pass_animation
     """
 
     def __init__(
@@ -97,8 +98,8 @@ class TripletLayer(NeuralNetworkLayer):
     ) -> Any:
         """Build the triplet assets and add them to the layer.
 
-        Parameters
-        ----------
+
+
         input_layer
             The layer preceding this layer in the network.
         output_layer
@@ -107,9 +108,9 @@ class TripletLayer(NeuralNetworkLayer):
             Forwarded to the parent layer classes.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         # Make the assets
         self.assets = self.make_assets()

@@ -82,6 +82,7 @@ class ManimTransition(Transition, VGroup):
                self.play(animations.animate_highlight_transition(transition))
                self.play(animations.animate_transition_to_default_color(transition))
                self.play(transition.animate_transition(True))
+    .. doc-example-covers: animate_transition
     """
 
     def __init__(
@@ -182,17 +183,17 @@ class ManimTransition(Transition, VGroup):
     def create_reflexive_arrow(self, point1: Point3D, point2: Point3D) -> Any:
         """Create a curved reflexive arrow from the source state back to itself.
 
-        Parameters
-        ----------
+
+
         point1
             Start point on the state circle.
         point2
             End point on the state circle.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         self.arrow = CurvedArrow(point2, point1, angle=1.5 * PI)
 
@@ -243,15 +244,15 @@ class ManimTransition(Transition, VGroup):
     def position_text(self, buffer: float) -> Any:
         """Place each read-symbol label next to the transition arrow.
 
-        Parameters
-        ----------
+
+
         buffer
             Padding distance used to separate multiple labels stacked around the arrow.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         # Obtain coordinates for the centre of the line
         x1 = None
@@ -294,9 +295,9 @@ class ManimTransition(Transition, VGroup):
         between two states.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         # remove existing manim arrow
         self.remove(self.arrow)
@@ -313,15 +314,15 @@ class ManimTransition(Transition, VGroup):
         # create a straight line and use the points locations to create curved arrow
         """Construct a curved arrow and position its read-symbol labels.
 
-        Parameters
-        ----------
+
+
         buffer
             Extra offset applied to stacked labels near the arc.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         temp_arrow = Arrow(self.transition_from, self.transition_to)
         from_point = temp_arrow.start

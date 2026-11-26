@@ -77,17 +77,17 @@ class SkipManimNode(nodes.Admonition, nodes.Element):
 def visit(self, node: list[Any], name: str = "") -> Any:
     """Visit a :class:`~manim_extensions.machine_learning.utils.testing.doc_directive.SkipManimNode`, adding a placeholder title if missing, then render as admonition.
 
-    Parameters
-    ----------
+
+
     node
         The :class:`~manim_extensions.machine_learning.utils.testing.doc_directive.SkipManimNode` to visit.
     name
         Name of the admonition.
 
 
-        Returns
-        -------
-            The resulting value.
+
+
+        The resulting value.
     """
     self.visit_admonition(node, name)
     if not isinstance(node[0], nodes.title):
@@ -97,15 +97,15 @@ def visit(self, node: list[Any], name: str = "") -> Any:
 def depart(self, node: SkipManimNode) -> Any:
     """Depart from a :class:`~manim_extensions.machine_learning.utils.testing.doc_directive.SkipManimNode` by closing the admonition rendering.
 
-    Parameters
-    ----------
+
+
     node
         The :class:`~manim_extensions.machine_learning.utils.testing.doc_directive.SkipManimNode` to depart from.
 
 
-        Returns
-        -------
-            The resulting value.
+
+
+        The resulting value.
     """
     self.depart_admonition(node)
 

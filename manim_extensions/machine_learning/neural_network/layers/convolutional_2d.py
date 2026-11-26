@@ -242,6 +242,7 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
                forward_pass = nn.make_forward_pass_animation()
                self.play(ChangeSpeed(forward_pass, speedinfo={}), run_time=10)
                self.wait(1)
+    .. doc-example-covers: construct_feature_maps, make_forward_pass_animation
     """
 
     def __init__(
@@ -310,8 +311,8 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     ) -> Any:
         """Build the feature maps and apply the 3D rotation to the layer.
 
-        Parameters
-        ----------
+
+
         input_layer
             The layer preceding this layer in the network.
         output_layer
@@ -320,9 +321,9 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             Forwarded to the parent layer classes.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         # Make the feature maps
         self.feature_maps = self.construct_feature_maps()
@@ -451,17 +452,17 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     def scale(self, scale_factor: float, **kwargs: Any) -> Any:
         """Scale the layer and adjust cell_width proportionally.
 
-        Parameters
-        ----------
+
+
         scale_factor
             Factor by which the layer is scaled.
         **kwargs
             Forwarded to :meth:`~manim.mobject.mobject.Mobject.scale`.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         self.cell_width *= scale_factor
         super().scale(scale_factor, **kwargs)
@@ -501,8 +502,8 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     ) -> "Convolutional2DLayer":
         """Moves the center of the layer to the given mobject or point.
 
-        Parameters
-        ----------
+
+
         point_or_mobject
             The mobject or point whose center the layer is moved to.
         aligned_edge
@@ -513,9 +514,9 @@ class Convolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
             :meth:`~manim.mobject.mobject.Mobject.move_to`.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         layer_center = self.feature_maps.get_center()
         if isinstance(point_or_mobject, Mobject):

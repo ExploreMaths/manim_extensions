@@ -56,8 +56,10 @@ class SeqActor(VGroup):
                _, bob_time = bob.time_elapse(1)
                self.play(alice_time, bob_time)
                self.wait()
+    .. doc-example-covers: time_elapse
     """
 
+    #: Registry of actors created during the current scene build.
     all_actors: "list[SeqActor]" = []
 
     def __init__(

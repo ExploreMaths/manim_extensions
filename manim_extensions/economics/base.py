@@ -105,6 +105,7 @@ class EconDiagram(VGroup):
            def construct(self):
                diagram = EconDiagram()
                self.add(diagram)
+    .. doc-example-covers: add_vertical_line, get_shift_animation, mark_equilibrium
     """
 
     def __init__(

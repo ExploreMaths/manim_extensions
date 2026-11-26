@@ -83,8 +83,10 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
                self.play(Create(nn))
                # Animate the forward pass
                self.play(nn.make_forward_pass_animation())
+    .. doc-example-covers: make_forward_pass_animation
     """
 
+    #: Arithmetic operators accepted by this layer.
     valid_operations = ["+", "-", "*", "/"]
 
     def __init__(
@@ -117,8 +119,8 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
     ) -> Any:
         """Creates the neural network layer.
 
-        Parameters
-        ----------
+
+
         input_layer
             The layer preceding this layer in the network.
         output_layer
@@ -127,9 +129,9 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             Forwarded to the parent layer classes.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         # Draw the operation
         self.operation_text = Text(self.operation_type, font_size=self.font_size)
@@ -234,8 +236,8 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
     ) -> Any:
         """Moves the center of the layer to the given mobject or point.
 
-        Parameters
-        ----------
+
+
         mobject_or_point
             The mobject or point whose center the layer is moved to.
         aligned_edge
@@ -246,9 +248,9 @@ class MathOperationLayer(VGroupNeuralNetworkLayer):
             implementation.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         layer_center = self.surrounding_circle.get_center()
         if isinstance(mobject_or_point, Mobject):

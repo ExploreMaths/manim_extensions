@@ -86,10 +86,12 @@ class FastManimMesh(OpenGLMobject):
         fast_mesh = FastManimMesh(mesh)
     """
 
+    #: Vertex attribute names, dtypes and component counts for the shader.
     shader_dtype = [
         ("point", np.float32, (3,)),
         ("color", np.float32, (4,)),
     ]
+    #: Shader resource folder shipped with the package.
     shader_folder = "mesh"
 
     def __init__(

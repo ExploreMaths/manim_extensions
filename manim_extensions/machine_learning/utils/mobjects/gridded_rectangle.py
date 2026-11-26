@@ -68,6 +68,7 @@ class GriddedRectangle(VGroup):
        class GriddedRectangleScene(Scene):
            def construct(self):
                self.add(GriddedRectangle(show_grid_lines=True))
+    .. doc-example-covers: make_grid_lines
     """
 
     def __init__(
@@ -260,15 +261,15 @@ class GriddedRectangle(VGroup):
     ) -> Any:
         """Sets the color of the gridded rectangle.
 
-        Parameters
-        ----------
+
+
         color
             Color to apply to the rectangle border and fill.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         self.color = color
         self.rectangle.set_color(color)

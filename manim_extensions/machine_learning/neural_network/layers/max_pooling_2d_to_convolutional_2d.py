@@ -92,8 +92,8 @@ class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
     ) -> Any:
         """Constructs the MaxPooling to Convolution3D layer.
 
-        Parameters
-        ----------
+
+
         input_layer
             Input layer.
         output_layer
@@ -102,8 +102,8 @@ class MaxPooling2DToConvolutional2D(Convolutional2DToConvolutional2D):
             Forwarded to the parent layer classes.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         super().construct_layer(input_layer, output_layer, **kwargs)

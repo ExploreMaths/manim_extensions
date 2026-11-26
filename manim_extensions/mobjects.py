@@ -831,6 +831,7 @@ class FileTree(Code):
                self.play(tree.highlight(1, YELLOW))
                self.play(tree.highlight(4, RED))
                self.wait(0.5)
+    .. doc-example-covers: highlight
     """
 
     def __init__(
@@ -1055,6 +1056,7 @@ class VideoMobject(ImageMobject):
                vid = VideoMobject("3Blue1Brown.mp4")
                self.add(vid)
                vid.play(self)
+    .. doc-example-covers: pause, play, reset, resume, seek, stop
     """
 
     def __init__(
@@ -1418,6 +1420,7 @@ class Trail(VGroup):
                trail.stop_trace()
                self.play(dot.animate.shift(RIGHT * 1.5))
                VGroup(trail, dot).scale(8.0).move_to(ORIGIN)
+    .. doc-example-covers: create_path
     """
 
     def __init__(
@@ -1443,15 +1446,15 @@ class Trail(VGroup):
     def get_path_xyz(self, err: float = 1e-4) -> Any:
         """Record the latest centre position if the mobject has moved.
 
-        Parameters
-        ----------
+
+
         err
             Minimum displacement required to record a new point.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         pos_new = self[0].get_center()
         pos_old = self.pos_old
@@ -1488,16 +1491,16 @@ class Trail(VGroup):
     def update_path(self, trail: VGroup) -> Any:
         """Updater: replace ``trail`` by the freshly created path.
 
-        Parameters
-        ----------
+
+
         trail
             The trail mobject to update (typically a :class:`~manim_extensions.mobjects.Trail` instance
             with a custom shape).
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         trail.become(self.create_path())
 

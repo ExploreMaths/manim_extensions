@@ -401,15 +401,15 @@ def _simulate(b: Mobject) -> Any:
 def get_shape(mob: VMobject) -> Any:
     """Obtains the shape of the body from the mobject.
 
-    Parameters
-    ----------
+
+
     mob
         The mobject to manipulate.
 
 
-        Returns
-        -------
-            The resulting value.
+
+
+        The resulting value.
     """
     pymunk = require("physics", "pymunk")
     if isinstance(mob, Circle):
@@ -436,15 +436,15 @@ def get_angle(mob: VMobject) -> Any:
     """Obtains the angle of the body from the mobject.
     Used internally for updaters.
 
-    Parameters
-    ----------
+
+
     mob
         The mobject to manipulate.
 
 
-        Returns
-        -------
-            The resulting value.
+
+
+        The resulting value.
     """
     if issubclass(type(mob), Polygon):
         vec1 = mob.get_vertices()[0] - mob.get_vertices()[1]

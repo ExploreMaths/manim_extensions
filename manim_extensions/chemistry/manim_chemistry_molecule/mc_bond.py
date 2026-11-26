@@ -107,45 +107,45 @@ class MCBond:
     def assign_from_atom(self, from_atom: MCAtom) -> Any:
         """Set the atom the bond originates from.
 
-        Parameters
-        ----------
+
+
         from_atom
             Atom the bond starts from.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         self.from_atom = from_atom
 
     def assign_to_atom(self, to_atom: MCAtom) -> Any:
         """Set the atom the bond points to.
 
-        Parameters
-        ----------
+
+
         to_atom
             Atom the bond ends at.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         self.to_atom = to_atom
 
     def assign_stereo(self, stereo: int | None) -> Any:
         """Set the stereochemistry type of the bond.
 
-        Parameters
-        ----------
+
+
         stereo
             Stereo type of the bond.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         self.stereo = stereo
 

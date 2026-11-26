@@ -633,6 +633,7 @@ class AbstractLayoutAnimation(AnimationGroup):
                self.play(CreateTreeAnimation(self, root))
                self.wait()
                Group(*self.mobjects).scale(1.3).move_to(ORIGIN)
+    .. doc-example-covers: collect_animations
     """
 
     def __init__(
@@ -804,6 +805,7 @@ class LayoutAnimation(AbstractLayoutAnimation):
                content.scale_to_fit_height(7).move_to(ORIGIN)
                if content.width > 12:
                    content.scale_to_fit_width(12).move_to(ORIGIN)
+    .. doc-example-covers: collect_animations
     """
 
     def __init__(
@@ -876,6 +878,7 @@ class RemoveNode(LayoutAnimation):
                self.play(InsertNode(self, {root: [a1, a2]}))
                self.play(RemoveNode(self, [a1]))
                self.wait()
+    .. doc-example-covers: collect_animations
     """
 
     def __init__(
@@ -979,6 +982,7 @@ class InsertNode(LayoutAnimation):
                b1 = Node(MathTex(r"\text{B}_1", font_size=36))
                self.play(InsertNode(self, {a1: [b1]}))
                self.wait()
+    .. doc-example-covers: collect_animations
     """
 
     def __init__(

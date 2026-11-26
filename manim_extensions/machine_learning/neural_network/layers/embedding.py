@@ -81,6 +81,7 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
                self.play(Create(nn))
                # Animate the forward pass
                self.play(nn.make_forward_pass_animation())
+    .. doc-example-covers: construct_gaussian_point_cloud, make_forward_pass_animation
     """
 
     def __init__(
@@ -109,8 +110,8 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
     ) -> Any:
         """Build the axes, point cloud, and latent distribution for the embedding.
 
-        Parameters
-        ----------
+
+
         input_layer
             The layer preceding this layer in the network.
         output_layer
@@ -119,9 +120,9 @@ class EmbeddingLayer(VGroupNeuralNetworkLayer):
             Forwarded to the parent layer classes.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         self.axes = Axes(
             tips=False,

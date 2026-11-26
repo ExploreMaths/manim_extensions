@@ -61,6 +61,7 @@ class VoronoiDelaunay:
                circle = vd.get_circum_circle(0)
                self.play(Create(circle))
                self.wait()
+    .. doc-example-covers: create_voronoi, get_circum_circle
     """
 
     def __init__(self, scene: Scene, triangle_mesh: TriangleManim2DMesh) -> None:
@@ -184,15 +185,15 @@ class VoronoiDelaunay:
         The triangle is formed by the three mesh vertices whose Voronoi
         regions meet at the specified Voronoi vertex.
 
-        Parameters
-        ----------
+
+
         voronoi_vertex_index
             Index of the Voronoi vertex whose dual triangle is created.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
 
         triangle_indices = set()

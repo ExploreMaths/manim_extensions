@@ -83,6 +83,7 @@ class DecisionTreeEmbedding(VGroup):
                tree_clf.fit(points, iris.target)
                embedding = DecisionTreeEmbedding(tree_clf, points, iris.target)
                self.add(embedding)
+    .. doc-example-covers: create_override, make_split_to_animation_map, uncreate_override
     """
 
     def __init__(

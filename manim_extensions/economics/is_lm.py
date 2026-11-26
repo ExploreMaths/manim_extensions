@@ -67,6 +67,7 @@ class ISLMDiagram(EconDiagram):
                for anim in diagram.monetary_expansion(ms=5, show_arrows=True):
                    self.play(anim)
                    self.wait(0.5)
+    .. doc-example-covers: shift_is, shift_lm
     """
 
     def __init__(

@@ -49,6 +49,7 @@ class BohrAtom(VGroup):
                self.add(atom.get_orbitals())
                self.add(atom.get_nuclei())
                self.add(atom.get_electrons())
+    .. doc-example-covers: arrange_electrons, electrons_group, get_electrons, get_nuclei, get_orbitals, nuclei_groups, orbitals_group
     """
 
     def __init__(

@@ -108,6 +108,7 @@ class MMoleculeObject(VGroup, AbstractMolecule):
                mmolecule.add_atom_numbering()
                self.add(mmolecule[-1])
 
+    .. doc-example-covers: get_bonds
     """
 
     def __init__(

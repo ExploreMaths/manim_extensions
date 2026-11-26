@@ -328,6 +328,7 @@ class RadarChart(VGroup):
 
     The chart repaints every frame, so all of the calls above can be chained
     before the next animation.
+    .. doc-example-covers: attach_backdrop, disappear, glitch_in, morph_to, reveal, shockwave, trace_web
     """
 
     def __init__(

@@ -257,15 +257,15 @@ class BaseMBondObject(VGroup):
 
         Bond subclasses override this hook and return their concrete mobject.
 
-        Parameters
-        ----------
+
+
         direction
             Direction from the from-atom to the to-atom; derived from the
             atoms when omitted.
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         pass
 
@@ -275,15 +275,15 @@ class BaseMBondObject(VGroup):
 
         Bond subclasses override this hook and return their concrete mobject.
 
-        Parameters
-        ----------
+
+
         direction
             Direction from the from-atom to the to-atom; derived from the
             atoms when omitted.
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         pass
 
@@ -293,15 +293,15 @@ class BaseMBondObject(VGroup):
 
         Bond subclasses override this hook and return their concrete mobject.
 
-        Parameters
-        ----------
+
+
         direction
             Direction from the from-atom to the to-atom; derived from the
             atoms when omitted.
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         pass
 
@@ -311,15 +311,15 @@ class BaseMBondObject(VGroup):
 
         Bond subclasses override this hook and return their concrete mobject.
 
-        Parameters
-        ----------
+
+
         direction
             Direction from the from-atom to the to-atom; derived from the
             atoms when omitted.
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         pass
 
@@ -329,15 +329,15 @@ class BaseMBondObject(VGroup):
 
         Bond subclasses override this hook and return their concrete mobject.
 
-        Parameters
-        ----------
+
+
         direction
             Direction from the from-atom to the to-atom; derived from the
             atoms when omitted.
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         pass
 
@@ -347,15 +347,15 @@ class BaseMBondObject(VGroup):
 
         Bond subclasses override this hook and return their concrete mobject.
 
-        Parameters
-        ----------
+
+
         direction
             Direction from the from-atom to the to-atom; derived from the
             atoms when omitted.
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         pass
 
@@ -399,6 +399,7 @@ class SimpleBond(BaseMBondObject):
                content = VGroup(carbon, oxygen, SimpleBond(carbon, oxygen))
                content.scale_to_fit_width(6).move_to(ORIGIN)
                self.add(content)
+    .. doc-example-covers: create_line, longer_subtype, no_subtype, shorter_from_subtype, shorter_subtype, shorter_to_subtype
     """
 
     def no_subtype(self) -> Line:
@@ -523,6 +524,7 @@ class DoubleBond(BaseMBondObject):
                content = VGroup(carbon, oxygen, DoubleBond(carbon, oxygen))
                content.scale_to_fit_width(6).move_to(ORIGIN)
                self.add(content)
+    .. doc-example-covers: create_line, no_subtype, shorter_from_subtype, shorter_subtype, shorter_to_subtype
     """
 
     def __init__(
@@ -792,6 +794,7 @@ class TripleBond(BaseMBondObject):
                content = VGroup(carbon, oxygen, TripleBond(carbon, oxygen))
                content.scale_to_fit_width(6).move_to(ORIGIN)
                self.add(content)
+    .. doc-example-covers: create_line, no_subtype, shorter_from_subtype, shorter_subtype, shorter_to_subtype
     """
 
     def __init__(
@@ -908,17 +911,17 @@ class TripleBond(BaseMBondObject):
     ) -> Any:
         """Add two offset parallel lines to form a triple bond from a base line.
 
-        Parameters
-        ----------
+
+
         bond
             Bond the lines are added to.
         base_line
             Base line the parallel lines are copied from.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         if bond is None or base_line is None:
             return VGroup()
@@ -994,6 +997,7 @@ class PlainCramBond(BaseMBondObject):
                content = VGroup(carbon, oxygen, PlainCramBond(carbon, oxygen))
                content.scale_to_fit_width(6).move_to(ORIGIN)
                self.add(content)
+    .. doc-example-covers: create_line, no_subtype
     """
 
     def no_subtype(self) -> Polygram | VGroup:
@@ -1168,6 +1172,7 @@ class DashedCramBond(BaseMBondObject):
                content = VGroup(carbon, oxygen, DashedCramBond(carbon, oxygen))
                content.scale_to_fit_width(6).move_to(ORIGIN)
                self.add(content)
+    .. doc-example-covers: add_dashed_cram_bond, create_line, longer_subtype, no_subtype, shorter_from_subtype, shorter_subtype, shorter_to_subtype
     """
 
     def add_dashed_cram_bond(self, base_line: Mobject, direction: Point3D) -> VGroup:

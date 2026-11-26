@@ -81,6 +81,7 @@ class ADASDiagram(EconDiagram):
                for anim in diagram.positive_demand_shock(m=30, show_arrows=True):
                    self.play(anim)
                    self.wait(0.5)
+    .. doc-example-covers: long_run_adjust, shift_ad, shift_lras, shift_sras
     """
 
     def __init__(

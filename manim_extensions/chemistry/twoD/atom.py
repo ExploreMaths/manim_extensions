@@ -68,6 +68,7 @@ class MAtomObject(VGroup):
        class MAtomObjectScene(Scene):
            def construct(self):
                self.add(MAtomObject(element="O").scale(7))
+    .. doc-example-covers: add_atom
     """
 
     def __str__(self) -> str:
@@ -262,14 +263,14 @@ class MAtomObject(VGroup):
         """
         TODO: Add the color depending on cpk convention
 
-        Parameters
-        ----------
+
+
         color
             New color of the atom.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         pass

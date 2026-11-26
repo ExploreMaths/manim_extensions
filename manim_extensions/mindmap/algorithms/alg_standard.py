@@ -75,15 +75,15 @@ class TreeNode:
     def add_child(self, child: "TreeNode") -> Any:
         """Add a child node and establish the parent-child relationship.
 
-        Parameters
-        ----------
+
+
         child
             The child node to add.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         self.children.append(child)
         child.parent = self

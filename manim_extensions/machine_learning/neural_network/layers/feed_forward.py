@@ -96,6 +96,7 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
                self.add(nn)
                # Animate the forward pass
                self.play(nn.make_forward_pass_animation())
+    .. doc-example-covers: make_forward_pass_animation
     """
 
     def __init__(
@@ -140,8 +141,8 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
     ) -> Any:
         """Creates the neural network layer.
 
-        Parameters
-        ----------
+
+
         input_layer
             The layer preceding this layer in the network.
         output_layer
@@ -150,9 +151,9 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             Forwarded to the parent layer classes.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         # Add Nodes
         for node_number in range(self.num_nodes):
@@ -352,8 +353,8 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
     ) -> Any:
         """Moves the center of the layer to the given mobject or point.
 
-        Parameters
-        ----------
+
+
         mobject_or_point
             The mobject or point whose center the layer is moved to.
         aligned_edge
@@ -364,9 +365,9 @@ class FeedForwardLayer(VGroupNeuralNetworkLayer):
             implementation.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         layer_center = self.surrounding_rectangle.get_center()
         if isinstance(mobject_or_point, Mobject):

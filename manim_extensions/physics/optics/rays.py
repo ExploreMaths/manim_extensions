@@ -87,15 +87,15 @@ class Ray(Line):
         """Let the ray propagate through the list
         of lenses passed.
 
-        Parameters
-        ----------
+
+
         lenses
             All the lenses for the ray to propagate through.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         sorted_lens = self._sort_lens(lenses)
         for lens in sorted_lens:

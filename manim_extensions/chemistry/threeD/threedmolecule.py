@@ -125,6 +125,7 @@ class ThreeDMolecule(OpenGLGroup, AbstractMolecule):
                self.wait()
                self.play(Write(molecule))
                self.wait()
+    .. doc-example-covers: get_atoms_from_csv, get_bonds
     """
 
     group_class: Any = OpenGLGroup

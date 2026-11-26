@@ -56,6 +56,7 @@ class Cell(VGroup):
                cell.set_background_color(BLUE, opacity=0.2)
                cell.scale(2.6)
                self.add(cell)
+    .. doc-example-covers: create_border, set_value
     """
 
     def __init__(
@@ -250,15 +251,15 @@ class Cell(VGroup):
         Resize this cell to a new width (instant, no animation).
         Updates border lines in place.
 
-        Parameters
-        ----------
+
+
         new_width
             The new width.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         self.cell_width = new_width
 

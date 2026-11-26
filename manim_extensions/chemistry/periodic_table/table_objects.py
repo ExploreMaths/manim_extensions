@@ -86,6 +86,7 @@ class MElementObject(VGroup):
                )
                carbon.scale(2.5)
                self.add(carbon)
+    .. doc-example-covers: create_frame_base, create_frame_with_text, max_height_ratio
     """
 
     def __init__(
@@ -287,6 +288,7 @@ class PeriodicTable(VGroup):
                table.scale(1.3)
                self.add(table)
 
+    .. doc-example-covers: add_elements
     """
 
     # TODO Change to english database

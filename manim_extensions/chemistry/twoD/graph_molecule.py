@@ -305,6 +305,7 @@ class GraphMolecule(Graph, AbstractMolecule):
                self.play(Write(molecule))
                self.play(Rotate(molecule, PI / 2, axis=RIGHT))
                self.wait()
+    .. doc-example-covers: get_atoms_vgroup_from_index, get_bonds_vgroup_from_index, get_connected_atoms_and_bonds, get_connected_atoms_and_bonds_group_from_index, get_connected_atoms_v_group, make_labels, select_bond_from_edge, select_bond_type
     """
 
     #: Bond order to line mobject mapping used when parsing molecules.

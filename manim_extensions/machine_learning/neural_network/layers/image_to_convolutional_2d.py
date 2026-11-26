@@ -255,17 +255,17 @@ class ImageToConvolutional2DLayer(VGroupNeuralNetworkLayer, ThreeDLayer):
     def scale(self, scale_factor: float, **kwargs: Any) -> Any:
         """Scale the layer by forwarding to the parent class.
 
-        Parameters
-        ----------
+
+
         scale_factor
             Factor by which the layer is scaled.
         **kwargs
             Forwarded to :meth:`~manim.mobject.mobject.Mobject.scale`.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         super().scale(scale_factor, **kwargs)
 

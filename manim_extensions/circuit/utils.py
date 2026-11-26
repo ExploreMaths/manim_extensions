@@ -278,15 +278,15 @@ class Circuit(VMobject):
     def add_components(self, *args: Mobject) -> Any:
         """Append circuit components to the circuit definition.
 
-        Parameters
-        ----------
+
+
         *args
             Components to add to the circuit.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         for component in args:
             self.component_list.add(cast(Any, component))
@@ -467,15 +467,15 @@ class Node(VMobject):
     def add_dot(self, dot_coord: Point3DLike) -> Any:
         """Add a junction dot at the provided coordinate.
 
-        Parameters
-        ----------
+
+
         dot_coord
             Position of the dot to place on the node.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         self.junction_dots.add(Dot(dot_coord))
 
@@ -484,15 +484,15 @@ class Node(VMobject):
     def add_wire(self, wire_param: list[Point3DLike]) -> Any:
         """Append a wire path to the node's internal connectivity list.
 
-        Parameters
-        ----------
+
+
         wire_param
             Sequence of points describing a wire path.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         if len(self.coords) == 0:
             self.coords.append(wire_param)
@@ -532,17 +532,17 @@ class Node(VMobject):
     def merge(self, node: "Node", wire: list[Point3DLike] | bool = False) -> Any:
         """Merge this node with another node and optionally attach a wire.
 
-        Parameters
-        ----------
+
+
         node
             Other node to merge into this one.
         wire
             Optional wire path to add before or during the merge.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         if wire is not False:
             self.add_wire(cast(Any, wire))

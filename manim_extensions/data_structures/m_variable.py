@@ -68,6 +68,7 @@ class MVariable(MArrayElement):
                # fade the variable back out so the animation loops seamlessly
                self.play(FadeOut(var))
 
+    .. doc-example-covers: update_index, update_label, update_value
     """
 
     def __init__(

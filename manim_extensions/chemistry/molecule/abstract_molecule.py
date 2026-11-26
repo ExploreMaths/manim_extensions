@@ -64,6 +64,7 @@ class AbstractMolecule:
         assert isinstance(molecule, AbstractMolecule)
         molecule.scale(1.5)
         molecule.get_connected_atoms_v_group(1, 2)
+    .. doc-example-covers: multiple_molecules_from_file, multiple_molecules_from_string
     """
 
     group_class: Any = VGroup

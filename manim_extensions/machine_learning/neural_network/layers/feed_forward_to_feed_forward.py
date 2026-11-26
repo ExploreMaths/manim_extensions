@@ -79,6 +79,7 @@ class FeedForwardToFeedForward(ConnectiveLayer):
                content = Group(first, second, connection)
                content.scale_to_fit_height(5.5).move_to(ORIGIN)
                self.add(content)
+    .. doc-example-covers: construct_edges, make_forward_pass_animation, modify_edge_stroke_widths
     """
 
     input_class = FeedForwardLayer
@@ -111,8 +112,8 @@ class FeedForwardToFeedForward(ConnectiveLayer):
     ) -> Any:
         """Build the fully-connected edges between input and output layers.
 
-        Parameters
-        ----------
+
+
         input_layer
             The layer preceding this connective layer in the network.
         output_layer
@@ -121,9 +122,9 @@ class FeedForwardToFeedForward(ConnectiveLayer):
             Forwarded to the parent layer classes.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         self.edges = self.construct_edges()
         self.add(self.edges)

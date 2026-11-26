@@ -11,10 +11,11 @@ description, the same way a docstring documents a class or function.  A
 bare string-literal statement trailing the assignment is also accepted as
 the constant description.
 
-Class-scope constants are checked too: every public all-uppercase class
-assignment needs its own ``#:`` description.  Instance attributes and
-configuration fields whose names are not all-uppercase remain documented by
-the class docstring instead.
+Class-scope constants are checked too.  A public class assignment is a
+constant when it is all-uppercase, annotated as ``ClassVar``, or an annotated
+literal default on a non-dataclass class (for example ``style = "classic"``).
+Dataclass / NamedTuple fields are instance data and stay documented by the
+class docstring.  Every such constant needs its own ``#:`` description.
 
 Exempt names:
 
@@ -167,8 +168,53 @@ def check_module(module: types.ModuleType) -> list[tuple[int, str]]:
     return missing
 
 
+def _decorator_name(node: ast.AST) -> str:
+    """Return the bare name of a decorator, including ``@x(...)`` calls."""
+    if isinstance(node, ast.Name):
+        return node.id
+    if isinstance(node, ast.Attribute):
+        return node.attr
+    if isinstance(node, ast.Call):
+        return _decorator_name(node.func)
+    return ""
+
+
+def _is_instance_data_class(cls: ast.ClassDef) -> bool:
+    """Return whether *cls* declares fields through a runtime data decorator."""
+    return any(
+        _decorator_name(d) in {"dataclass", "define", "attrs", "NamedTuple"}
+        for d in cls.decorator_list
+    )
+
+
+def _is_class_constant(name: str, node: ast.stmt, cls: ast.ClassDef) -> bool:
+    """Return whether a class assignment is a shared constant, not instance data."""
+    if name.isupper():
+        return True
+    if isinstance(node, ast.AnnAssign):
+        annotation = node.annotation
+        while isinstance(annotation, ast.Subscript):
+            annotation = annotation.value
+        if isinstance(annotation, ast.Name) and annotation.id == "ClassVar":
+            return True
+        if isinstance(annotation, ast.Attribute) and annotation.attr == "ClassVar":
+            return True
+        if _is_instance_data_class(cls):
+            return False
+        return isinstance(
+            node.value,
+            (ast.Constant, ast.UnaryOp, ast.List, ast.Tuple, ast.Dict, ast.Set),
+        )
+    if isinstance(node, ast.Assign):
+        return isinstance(
+            node.value,
+            (ast.Constant, ast.UnaryOp, ast.List, ast.Tuple, ast.Dict, ast.Set),
+        )
+    return False
+
+
 def check_class_constants(tree: ast.Module, lines: list[str]) -> list[tuple[int, str]]:
-    """Return ``(line, name)`` for public uppercase class constants missing docs."""
+    """Return ``(line, name)`` for public class constants missing docs."""
     missing: list[tuple[int, str]] = []
     for cls in (node for node in ast.walk(tree) if isinstance(node, ast.ClassDef)):
         for node in cls.body:
@@ -180,7 +226,7 @@ def check_class_constants(tree: ast.Module, lines: list[str]) -> list[tuple[int,
             else:
                 continue
             for name in targets:
-                if name.startswith("_") or not name.isupper():
+                if name.startswith("_") or not _is_class_constant(name, node, cls):
                     continue
                 documented = preceding_hashdoc(
                     lines, node.lineno

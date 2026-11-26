@@ -163,6 +163,7 @@ class RubiksCube(VMobject):
     # Each coordinate starts at 0 and goes to (Dimensions - 1)
 
     cubies: np.ndarray
+    #: Maps cubie coordinates to vertex indices in the generated mesh.
     indices: dict[tuple[float, float, float], np.ndarray] = {}
 
     # Colors are in the order Up, Right, Front, Down, Left, Back
@@ -228,15 +229,15 @@ class RubiksCube(VMobject):
     def set_state(self, positions: list[Any]) -> Any:
         """Apply a colour state to each cube face.
 
-        Parameters
-        ----------
+
+
         positions
             A sequence of face letters specifying the cube state.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         colors = {
             "U": self.colors[0],
@@ -285,8 +286,8 @@ class RubiksCube(VMobject):
     def transform_cubie(self, position: int, offset: list[Any], tile: Cubie) -> Any:
         """Apply translation offsets to a cubie based on its position.
 
-        Parameters
-        ----------
+
+
         position
             The cubie position along the cube axis.
         offset
@@ -295,9 +296,9 @@ class RubiksCube(VMobject):
             The cubie to transform.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         offsets_nr = len(offset)
         for i in range(offsets_nr):
@@ -361,15 +362,15 @@ class RubiksCube(VMobject):
     def adjust_indices(self, cubies: np.ndarray) -> Any:
         """Rebuild the cube index mapping from a set of cubies.
 
-        Parameters
-        ----------
+
+
         cubies
             The cubies whose positions should be reindexed.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         for c in cubies.flatten():
             loc = self.indices[c.get_rounded_center()]

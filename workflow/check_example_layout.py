@@ -14,9 +14,11 @@ camera frame:
   dimensions (it renders as an unusably tiny figure).
 
 Every doc example is probed. Examples whose code renders nested scenes are
-skipped entirely; probe errors (an example that cannot run headlessly) are
-reported as warnings and do not fail the check — renderability itself is
-enforced by the docs media pipeline.
+skipped entirely. A probe error is a failure: the docs pipeline renders the
+same code, so an example that cannot even construct headlessly must not pass
+silently. The only exceptions are the explicitly listed environment errors
+below, each with the reason it is an environment limitation rather than an
+example defect.
 
 Usage:
     python workflow/check_example_layout.py [--workers N]
@@ -26,7 +28,10 @@ from __future__ import annotations
 
 import argparse
 import multiprocessing
+import os
+import shutil
 import sys
+import tempfile
 import traceback
 from pathlib import Path
 
@@ -67,6 +72,24 @@ MIN_COVER_FRACTION = 0.25
 MIN_TINY_FRACTION = 0.10
 MIN_TINY_OTHER_FRACTION = 0.60
 
+# Probe failures that describe the local runner, not the example.  Every
+# entry names the exact exception signature and why the CI runner differs;
+# anything not listed here fails the check.
+ENVIRONMENT_PROBE_ERRORS = (
+    (
+        "RuntimeError: latex failed but did not produce a log file.",
+        "requires a working TeX distribution; the CI manim environment installs one",
+    ),
+    (
+        "ValueError: Your installation does not support converting .dvi files to SVG.",
+        "requires dvisvgm >= 2.4; the CI manim environment installs it",
+    ),
+    (
+        "ImportError: This feature requires 'kociemba'.",
+        "the rubikscube extra is not installed in the local probe; CI installs every extra",
+    ),
+)
+
 
 def _worker_init(workdir):
     """Import manim once per worker and silence it."""
@@ -82,66 +105,93 @@ def _worker_init(workdir):
 
 def probe_block(task):
     """Construct one example and measure its content bounding box."""
-    class_name, code, source = task
+    class_name, code, source, assets, renderer = task
     try:
         import numpy as np
         from manim import tempconfig
 
         namespace = {"__file__": "<doc example>", "__name__": "__manim_docgen__"}
-        with tempconfig(
-            {
-                "disable_caching": True,
-                "frame_rate": 1,
-                "pixel_height": 480,
-                "pixel_width": 854,
-            }
-        ):
-            exec(code, namespace)
-            scene_class = namespace[class_name]
+        with tempfile.TemporaryDirectory() as workdir:
+            for asset in assets:
+                target = Path(workdir) / Path(asset).name
+                if not target.exists():
+                    try:
+                        target.symlink_to(asset)
+                    except OSError:
+                        shutil.copy2(asset, target)
+            previous = Path.cwd()
+            os.chdir(workdir)
             try:
-                scene = scene_class(skip_animations=True)
-            except TypeError:
-                scene = scene_class()
+                with tempconfig(
+                    {
+                        "disable_caching": True,
+                        "media_dir": str(Path(workdir) / "media"),
+                        "frame_rate": 1,
+                        "pixel_height": 480,
+                        "pixel_width": 854,
+                        "renderer": renderer,
+                    }
+                ):
+                    exec(code, namespace)
+                    scene_class = namespace[class_name]
+                    try:
+                        scene = scene_class(skip_animations=True)
+                    except TypeError:
+                        scene = scene_class()
 
-            # skip_animations short-circuits play() before it adds the
-            # animated mobjects to the scene, so collect everything that
-            # is added or played explicitly.
-            collected = []
-            orig_add, orig_play = scene.add, scene.play
+                    # skip_animations short-circuits play() before it adds the
+                    # animated mobjects to the scene, so collect everything that
+                    # is added or played explicitly.
+                    collected = []
+                    orig_add, orig_play = scene.add, scene.play
 
-            def tracking_add(*mobs, **kwargs):
-                collected.extend(mobs)
-                return orig_add(*mobs, **kwargs)
+                    def tracking_add(*mobs, **kwargs):
+                        collected.extend(mobs)
+                        return orig_add(*mobs, **kwargs)
 
-            def tracking_play(*anims, **kwargs):
-                def collect(anim, out):
-                    mobs = getattr(anim, "mobjects", None)
-                    if mobs:
-                        out.extend(mobs)
-                    for sub in getattr(anim, "animations", None) or ():
-                        collect(sub, out)
+                    def tracking_play(*anims, **kwargs):
+                        def collect(anim, out):
+                            mobs = getattr(anim, "mobjects", None)
+                            if mobs:
+                                out.extend(mobs)
+                            for sub in getattr(anim, "animations", None) or ():
+                                collect(sub, out)
 
-                for anim in anims:
-                    collect(anim, collected)
-                return orig_play(*anims, **kwargs)
+                        for anim in anims:
+                            collect(anim, collected)
+                        return orig_play(*anims, **kwargs)
 
-            scene.add, scene.play = tracking_add, tracking_play
-            # construct() is called directly (not via render()), so run the
-            # scene's setup() manually to mirror a real render -- scenes such
-            # as CompassScene set up their mobjects there.
-            scene.setup()
-            scene.construct()
-            pool = list(scene.mobjects)
-            for mob in collected:
-                if mob not in pool:
-                    pool.append(mob)
+                    scene.add, scene.play = tracking_add, tracking_play
+                    # construct() is called directly (not via render()), so run the
+                    # scene's setup() manually to mirror a real render -- scenes such
+                    # as CompassScene set up their mobjects there.
+                    scene.setup()
+                    scene.construct()
+                    pool = list(scene.mobjects)
+                    for mob in collected:
+                        if mob not in pool:
+                            pool.append(mob)
+            finally:
+                os.chdir(previous)
 
-        frame_h = scene.camera.frame_height
-        frame_w = scene.camera.frame_width
+        camera = scene.camera
+        # The OpenGL camera exposes frame geometry through get_width()/
+        # get_height() and frame_center instead of the Cairo frame_* properties.
+        frame_w = (
+            camera.frame_width if hasattr(camera, "frame_width") else camera.get_width()
+        )
+        frame_h = (
+            camera.frame_height
+            if hasattr(camera, "frame_height")
+            else camera.get_height()
+        )
         # MovingCameraScene moves camera.frame; measure overflow against
         # the frame's actual position, not the origin.
-        cam_frame = getattr(scene.camera, "frame", None)
-        fc = cam_frame.get_center() if cam_frame is not None else np.zeros(3)
+        cam_frame = getattr(camera, "frame", None)
+        if cam_frame is not None:
+            fc = cam_frame.get_center()
+        else:
+            fc = np.array(camera.frame_center)
 
         mins = np.array([np.inf, np.inf, np.inf])
         maxs = np.array([-np.inf, -np.inf, -np.inf])
@@ -199,10 +249,24 @@ def classify(class_name: str, m: dict) -> str | None:
     return None
 
 
+def environment_reason(error: str) -> str | None:
+    """Return the documented environment reason for a probe failure, if any."""
+    for signature, reason in ENVIRONMENT_PROBE_ERRORS:
+        if signature in error:
+            return reason
+    return None
+
+
 def main() -> int:
     """Main check function."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument(
+        "--timeout",
+        type=int,
+        default=300,
+        help="Per-example construction timeout in seconds (default: 300)",
+    )
     args = parser.parse_args()
 
     import render_doc_examples as rde
@@ -211,7 +275,13 @@ def main() -> int:
     skipped = []
     for f in rde.iter_source_files():
         for block in rde.extract_blocks(f):
-            task = (block["class_name"], block["code"], block["source"])
+            task = (
+                block["class_name"],
+                block["code"],
+                block["source"],
+                block["assets"],
+                block["renderer"],
+            )
             # Blocks that render nested scenes inside construct() cannot be
             # probed headlessly; their layout is covered by the regular
             # media pipeline instead.
@@ -237,9 +307,16 @@ def main() -> int:
                 (t[0], t[2], r) for t, r in zip(blocks, async_results)
             ]:
                 try:
-                    results.append(ar.get(timeout=120))
+                    results.append(ar.get(timeout=args.timeout))
                 except Exception:
-                    results.append((class_name, source, None, "probe timed out (120s)"))
+                    results.append(
+                        (
+                            class_name,
+                            source,
+                            None,
+                            f"probe timed out ({args.timeout}s)",
+                        )
+                    )
         finally:
             pool.terminate()
             pool.join()
@@ -253,7 +330,16 @@ def main() -> int:
         if kind:
             flagged.append((kind, class_name, source, m))
 
-    remaining_errors = errors
+    environment_errors = [
+        (class_name, source, err, environment_reason(err))
+        for class_name, source, err in errors
+        if environment_reason(err) is not None
+    ]
+    probe_failures = [
+        (class_name, source, err)
+        for class_name, source, err in errors
+        if environment_reason(err) is None
+    ]
 
     for kind, class_name, source, m in sorted(flagged):
         cover_w = m["width"] / m["frame_width"]
@@ -268,15 +354,30 @@ def main() -> int:
         # Surface each failure as a GitHub annotation so it is visible
         # without downloading the job log.
         print(f"::error file={source},title=Layout {kind}::" f"{class_name}: {detail}")
-    for class_name, source, err in remaining_errors:
+    for class_name, source, err, reason in environment_errors:
         first = err.strip().splitlines()[-1] if err.strip() else "?"
-        print(f"  WARN probe error (not counted) {class_name} ({source}): " f"{first}")
+        print(
+            f"  ENV probe error (allowed) {class_name} ({source}): "
+            f"{first} [{reason}]"
+        )
+    for class_name, source, err in probe_failures:
+        first = err.strip().splitlines()[-1] if err.strip() else "?"
+        print(f"  PROBE ERROR {class_name} ({source}): {first}")
+        print(
+            f"::error file={source},title=Doc example probe::" f"{class_name}: {first}"
+        )
 
-    total = len(flagged)
+    total = len(flagged) + len(probe_failures)
     if total:
-        print(f"\nTotal: {total} layout issue(s)")
+        print(
+            f"\nTotal: {total} layout/probe issue(s) "
+            f"({len(environment_errors)} environment error(s) allowed)"
+        )
         return 1
-    print("All doc examples are in frame and at a reasonable scale.")
+    print(
+        "All doc examples are in frame and at a reasonable scale. "
+        f"({len(environment_errors)} environment error(s) allowed)"
+    )
     return 0
 
 

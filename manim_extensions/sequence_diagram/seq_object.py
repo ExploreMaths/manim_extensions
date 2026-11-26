@@ -41,6 +41,7 @@ class SeqObject(VGroup):
                self.wait()
                content = Group(*self.mobjects)
                content.scale_to_fit_height(5).move_to(ORIGIN)
+    .. doc-example-covers: create_obj_label
     """
 
     def __init__(self, name: str, font_size: float = 18) -> None:

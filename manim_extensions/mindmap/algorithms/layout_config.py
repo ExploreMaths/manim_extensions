@@ -48,9 +48,13 @@ class LayoutDirection(Enum):
                self.add(panels)
     """
 
+    #: Lay out branches from left to right.
     LeftToRight = "left to right"
+    #: Lay out branches from right to left.
     RightToLeft = "right to left"
+    #: Lay out branches from top to bottom.
     TopToBottom = "top to bottom"
+    #: Lay out branches from bottom to top.
     BottomToTop = "bottom to top"
 
 
@@ -93,9 +97,13 @@ class LayoutType(Enum):
                    self.add(label)
     """
 
+    #: Tidy-tree layout used for mind maps.
     MindMap = "tidytree"
+    #: Timeline layout used for chronological maps.
     TimeLine = "timeline"
+    #: Standard hierarchical layout.
     Standard = "standard"
+    #: Catalogue layout for grouped entries.
     Catalog = "catalog"
 
 

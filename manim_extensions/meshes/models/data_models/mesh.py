@@ -1070,17 +1070,17 @@ class Mesh:
     def scale_mesh(self, scaling: float, about_point: Point3D | None = None) -> Any:
         """Scale all vertices by a uniform factor.
 
-        Parameters
-        ----------
+
+
         scaling
             Scale factor applied to every vertex.
         about_point
             If given, the scaling is performed around this point.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         if about_point is not None:
             self._vertices -= about_point
@@ -1094,8 +1094,8 @@ class Mesh:
     ) -> Any:
         """Stretch all vertices along a single dimension.
 
-        Parameters
-        ----------
+
+
         factor
             Stretch factor.
         dim
@@ -1104,9 +1104,9 @@ class Mesh:
             If given, the stretch is performed around this point.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         if about_point is not None:
             self._vertices -= about_point
@@ -1488,15 +1488,15 @@ class Mesh:
     def remove_duplicate_vertices(self, precision: int = 10) -> Any:
         """Remove duplicate vertices and update all face references.
 
-        Parameters
-        ----------
+
+
         precision
             Decimal places used when comparing vertices; i.e. equality up to ``1e-10``.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         old_vertices = deepcopy(self._vertices)
         # get unique vertices, indices, and the inverse references
@@ -1526,9 +1526,9 @@ class Mesh:
         at the exact same positions.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         to_delete = []
         for i_face, face in enumerate(self._faces):
@@ -1552,9 +1552,9 @@ class Mesh:
         regardless of their order.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         to_delete = []
         for i_part, part in enumerate(self._parts):
@@ -1570,16 +1570,16 @@ class Mesh:
     def remove_duplicates(self, precision: int = 10) -> Any:
         """Remove all duplicate vertices, faces and parts.
 
-        Parameters
-        ----------
+
+
         precision
             Decimal places passed to :meth:`~manim_extensions.meshes.models.data_models.mesh.Mesh.remove_duplicate_vertices`
             .
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         self.remove_duplicate_vertices(precision=precision)
         self.remove_duplicate_faces()

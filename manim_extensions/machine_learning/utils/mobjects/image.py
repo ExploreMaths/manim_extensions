@@ -75,6 +75,7 @@ class GrayscaleImageMobject(Group):
            def construct(self):
                gradient = np.linspace(0, 255, 256).reshape(16, 16).astype(np.uint8)
                self.add(GrayscaleImageMobject(gradient))
+    .. doc-example-covers: create, from_path
     """
 
     def __init__(self, numpy_image: PixelArray, height: float = 2.3) -> None:
@@ -134,17 +135,17 @@ class GrayscaleImageMobject(Group):
     ) -> Any:
         """Scales the image mobject.
 
-        Parameters
-        ----------
+
+
         scale_factor
             Factor by which to scale the image mobject.
         **kwargs
             Additional keyword arguments for scaling.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         # super().scale(scale_factor)
         # height = self.height
@@ -157,15 +158,15 @@ class GrayscaleImageMobject(Group):
     def set_opacity(self, opacity: float) -> Any:
         """Set the opacity.
 
-        Parameters
-        ----------
+
+
         opacity
             Opacity to apply to the image mobject.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         self.image_mobject.set_opacity(opacity)
 

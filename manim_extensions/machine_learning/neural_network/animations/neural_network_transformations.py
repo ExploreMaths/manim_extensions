@@ -68,6 +68,7 @@ class RemoveLayer(AnimationGroup):
                # RemoveLayer because it contains empty sub-animations, so
                # this example only constructs the animation.
                RemoveLayer(nn.all_layers[2], nn)
+    .. doc-example-covers: make_move_animation, make_remove_animation, make_remove_connective_layers_animation
     """
 
     def __init__(
@@ -289,6 +290,7 @@ class InsertLayer(AnimationGroup):
                new_layer.construct_layer(None, None)
                self.play(InsertLayer(new_layer, 2, nn))
                self.wait()
+    .. doc-example-covers: make_create_connective_layers_animation, make_move_layers_animation, remove_connective_layer_animation
     """
 
     def __init__(

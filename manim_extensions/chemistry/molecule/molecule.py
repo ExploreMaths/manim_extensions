@@ -64,6 +64,7 @@ class Molecule:
                label = Text(f"type: {type(molecule).__name__}").to_edge(UP)
                self.add(molecule)
                self.add(label)
+    .. doc-example-covers: multiple_molecules_from_file, multiple_molecules_from_string
     """
 
     def __init__(self, molecule_class: type[GraphMolecule] = GraphMolecule) -> None:

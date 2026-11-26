@@ -54,8 +54,8 @@ class ManimML3DScene(ThreeDScene):
     def play(self, *args: Any, **kwargs: Any) -> Any:
         """Override :meth:`~manim.scene.scene.Scene.play` for ML scenes.
 
-        Parameters
-        ----------
+
+
         args
             Positional arguments forwarded to
             :meth:`~manim.scene.scene.Scene.play`.
@@ -63,8 +63,8 @@ class ManimML3DScene(ThreeDScene):
             Forwarded to :meth:`~manim.scene.scene.Scene.play`.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         super().play(*args, **kwargs)

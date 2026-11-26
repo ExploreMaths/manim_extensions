@@ -6,8 +6,10 @@
 A public function whose return annotation mentions a Manim mobject, animation,
 scene, or a group of those is part of the visual API.  Such a function must
 document an ``Examples`` section containing at least one ``.. manim::``
-directive.  Methods may rely on the same coverage in their enclosing class
-docstring, because a class-level example normally exercises its methods.
+directive.  A method may instead be named explicitly in its class docstring
+with ``.. doc-example-covers: method_a, method_b`` when the class-level
+example exercises it.  There is no implicit fallback: a class example alone
+covers no method until that declaration names it.
 
 Usage:
     python workflow/validate_example_coverage.py
@@ -51,6 +53,20 @@ def has_rendered_example(node: ast.AST) -> bool:
     return "Examples" in docstring and ".. manim::" in docstring
 
 
+COVERAGE_RE = re.compile(r"^\.\. doc-example-covers:\s*(.+)$", re.MULTILINE)
+
+
+def declared_coverage(node: ast.ClassDef) -> set[str]:
+    """Return the method names the class example explicitly covers."""
+    docstring = ast.get_docstring(node) or ""
+    declared: set[str] = set()
+    for match in COVERAGE_RE.finditer(docstring):
+        declared.update(
+            name.strip() for name in match.group(1).split(",") if name.strip()
+        )
+    return declared
+
+
 def scan(path: Path) -> list[str]:
     """Return missing-example violations in one Python file."""
     tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
@@ -69,17 +85,37 @@ def scan(path: Path) -> list[str]:
                 )
         elif isinstance(node, ast.ClassDef):
             class_example = has_rendered_example(node)
-            for method in node.body:
-                if not isinstance(method, (ast.FunctionDef, ast.AsyncFunctionDef)):
-                    continue
+            declared = declared_coverage(node)
+            if declared and not class_example:
+                violations.append(
+                    f"{path.relative_to(ROOT)}:{node.lineno}: "
+                    f"`{node.name}` declares doc-example coverage but has no "
+                    "class-level Examples + .. manim::"
+                )
+            methods = {
+                method.name: method
+                for method in node.body
+                if isinstance(method, (ast.FunctionDef, ast.AsyncFunctionDef))
+            }
+            unknown = declared.difference(methods)
+            for name in sorted(unknown):
+                violations.append(
+                    f"{path.relative_to(ROOT)}:{node.lineno}: "
+                    f"`{node.name}` declares unknown method `{name}` in "
+                    "doc-example-covers"
+                )
+            for method in methods.values():
                 if not is_public(method.name) or not is_visual(method):
                     continue
-                if has_rendered_example(method) or class_example:
+                if has_rendered_example(method):
+                    continue
+                if class_example and method.name in declared:
                     continue
                 violations.append(
                     f"{path.relative_to(ROOT)}:{method.lineno}: "
                     f"`{node.name}.{method.name}` returns a visual and needs "
-                    "Examples + .. manim:: on the method or its class"
+                    "Examples + .. manim:: on the method, or an explicit "
+                    "`.. doc-example-covers:` entry in the class docstring"
                 )
 
     return violations
@@ -110,8 +146,9 @@ def main() -> int:
 
     if violations:
         print(
-            "Every public visual function needs an Examples section with a "
-            ".. manim:: directive, on the function or its class.",
+            "Every public visual function needs its own Examples section with "
+            "a .. manim:: directive, or an explicit doc-example-covers entry "
+            "in the enclosing class docstring.",
             file=sys.stderr,
         )
         for violation in violations:

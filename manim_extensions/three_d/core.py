@@ -583,8 +583,11 @@ class GraphSurfaceScene(ThreeDScene):
                super().construct()
     """
 
+    #: Render style forwarded to the surface configuration.
     style: SurfaceConfig | None = None
+    #: Configuration class used to normalise ``config`` mappings.
     config_cls: SurfaceConfigClass | None = None
+    #: Whether this surface scene uses a flat parameterisation.
     uses_flat = True
 
     def __init__(
@@ -1564,6 +1567,7 @@ class EllipsoidSurfaceScene(GraphSurfaceScene):
                super().construct()
     """
 
+    #: Whether this surface scene uses a flat parameterisation.
     uses_flat = False
 
     config_cls = EllipsoidSurface
@@ -1758,6 +1762,7 @@ class TorusSurfaceScene(GraphSurfaceScene):
                super().construct()
     """
 
+    #: Whether this surface scene uses a flat parameterisation.
     uses_flat = False
 
     config_cls = TorusSurface
@@ -1953,6 +1958,7 @@ class HyperboloidOneSheetScene(GraphSurfaceScene):
                super().construct()
     """
 
+    #: Whether this surface scene uses a flat parameterisation.
     uses_flat = False
 
     config_cls = HyperboloidOneSheet

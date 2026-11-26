@@ -207,15 +207,15 @@ class ThreeDCylinder(OpenGLSurface):
     def set_direction(self, direction: Vector3D) -> Any:
         """Align the cylinder to point along the given direction vector.
 
-        Parameters
-        ----------
+
+
         direction
             Direction the cylinder is aligned to.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         self.direction = direction
         self._rotate_to_direction()
@@ -300,8 +300,8 @@ class ThreeDLine(ThreeDCylinder):
         If either ``start`` or ``end`` are :class:`~manim.mobject.mobject.Mobject`,
         this gives their centers.
 
-        Parameters
-        ----------
+
+
         start
             Starting point or :class:`~manim.mobject.mobject.Mobject`.
         end
@@ -311,9 +311,9 @@ class ThreeDLine(ThreeDCylinder):
             :class:`~manim_extensions.chemistry.threeD.threedbond.ThreeDCylinder`.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         rough_start = self.pointify(start)
         rough_end = self.pointify(end)
@@ -542,6 +542,7 @@ class ThreeDBond(OpenGLGroup):
         carbon = ThreeDAtom(get_element("C"), coords=np.array([0.0, 0.0, 0.0]))
         oxygen = ThreeDAtom(get_element("O"), coords=np.array([1.2, 0.0, 0.0]))
         bond = ThreeDBond(from_atom=carbon, to_atom=oxygen, bond_type=2)
+    .. doc-example-covers: add_double_bond, add_single_bond, add_triple_bond
     """
 
     def __str__(self) -> str:

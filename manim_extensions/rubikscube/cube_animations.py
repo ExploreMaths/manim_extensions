@@ -80,15 +80,15 @@ class CubeMove(Animation):
     def interpolate_mobject(self, alpha: float) -> Any:
         """Interpolate the cube rotation at progress ``alpha``.
 
-        Parameters
-        ----------
+
+
         alpha
             Animation progress between ``0`` and ``1``.
 
 
-            Returns
-            -------
-                The resulting value.
+
+
+            The resulting value.
         """
         self.mobject.become(self.starting_mobject)
 

@@ -239,6 +239,7 @@ class PolyRadarChart(VGroup):
                    [3, 5, 7, 4, 6, 8, 5, 9, 4, 6, 7, 5],
                )
                self.add(chart)
+    .. doc-example-covers: spin_to
     """
 
     def __init__(
@@ -529,18 +530,18 @@ class PolyRadarChart(VGroup):
         class Spin(Animation):
             """Rotate a poly chart by a fixed angular delta.
 
-                    Parameters
-                    ----------
-                    poly
-                        Chart to rotate.
-                    delta
-                        Rotation in radians.
-                    kw
-                        Further keyword arguments forwarded to
-                        :class:`~manim.animation.animation.Animation`.
 
-            Examples
-            --------
+
+            poly
+                Chart to rotate.
+            delta
+                Rotation in radians.
+            kw
+                Further keyword arguments forwarded to
+                :class:`~manim.animation.animation.Animation`.
+
+
+
             .. manim:: SpinScene
 
                from manim import *

@@ -169,6 +169,7 @@ class Table(VGroup):
                table.get_cell(3, 2).set_font_color(RED)
                table.get_cell(3, 2).set_background_color(RED, opacity=0.2)
                self.add(table)
+    .. doc-example-covers: add_column, add_row, delete_column, delete_row, get_column, get_column_by_name, set_column_background_color, set_column_border_color, set_column_font_color, set_header_background_color, set_header_font_color
     """
 
     def __init__(

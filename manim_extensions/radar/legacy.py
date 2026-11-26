@@ -138,8 +138,12 @@ class RadarV1Scene(Scene):
                super().construct()
     """
 
+    #: 1.0 chart style preset.
     style = "classic"
+    #: 1.0 chart theme preset.
+    #: 2.0 chart theme preset.
     theme = "midnight"
+    #: Optional chart title; ``None`` keeps the generated nameplate text.
     title: Optional[str] = None
 
     def construct(self) -> None:
@@ -184,8 +188,12 @@ class RadarV2Scene(Scene):
                self.play(Create(chart))
     """
 
+    #: 2.0 chart style preset.
     style = "neo"
+    #: 1.0 chart theme preset.
+    #: 2.0 chart theme preset.
     theme = "midnight"
+    #: Default title shown above the 2.0 chart.
     title: Optional[str] = "六维能力 · 雷达图鉴"
 
     def construct(self) -> None:
