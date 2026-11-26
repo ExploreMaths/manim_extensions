@@ -19,3 +19,9 @@ Classes
    :maxdepth: 1
 
    base_parser.BaseParser
+
+Type Aliases
+------------
+
+.. autoall:: manim_extensions.chemistry.utils.parsers.base_parser
+   :types: typealias

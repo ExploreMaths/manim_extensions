@@ -18,6 +18,7 @@ Classes
    ~LayoutAnimation
    ~RemoveNode
    ~ScaleNode
+   ~AbstractLayoutAnimation
 
 .. toctree::
    :hidden:
@@ -28,9 +29,7 @@ Classes
    animations.LayoutAnimation
    animations.RemoveNode
    animations.ScaleNode
-
-.. autoclass:: manim_extensions.mindmap.animations.animations.AbstractLayoutAnimation
-   :show-inheritance:
+   animations.AbstractLayoutAnimation
 
 Functions
 =========

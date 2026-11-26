@@ -14,15 +14,14 @@ Classes
    :nosignatures:
 
    ~TimeLineLayout
+   ~TimelineNode
 
 .. toctree::
    :hidden:
    :maxdepth: 1
 
    alg_time_line.TimeLineLayout
-
-.. autoclass:: manim_extensions.mindmap.algorithms.alg_time_line.TimelineNode
-   :show-inheritance:
+   alg_time_line.TimelineNode
 
 Functions
 =========

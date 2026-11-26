@@ -14,17 +14,16 @@ Classes
    :nosignatures:
 
    ~TidyTreeLayout
+   ~IYLNode
+   ~WrappedTree
 
 .. toctree::
    :hidden:
    :maxdepth: 1
 
    alg_tidy_tree.TidyTreeLayout
-
-.. autoclass:: manim_extensions.mindmap.algorithms.alg_tidy_tree.IYLNode
-   :show-inheritance:
-.. autoclass:: manim_extensions.mindmap.algorithms.alg_tidy_tree.WrappedTree
-   :show-inheritance:
+   alg_tidy_tree.IYLNode
+   alg_tidy_tree.WrappedTree
 
 Functions
 =========

@@ -15,9 +15,7 @@ Classes
 
    ~Space
    ~SpaceScene
-
-.. autoclass:: manim_extensions.physics.rigid_mechanics.rigid_mechanics.PhysicsAttributes
-   :show-inheritance:
+   ~PhysicsAttributes
 
 Functions
 ---------
@@ -31,3 +29,4 @@ Functions
 
    rigid_mechanics.Space
    rigid_mechanics.SpaceScene
+   rigid_mechanics.PhysicsAttributes

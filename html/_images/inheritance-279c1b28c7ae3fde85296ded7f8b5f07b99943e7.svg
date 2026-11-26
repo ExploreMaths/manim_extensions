@@ -136,7 +136,7 @@
 
 <ns0:g id="node6" class="node">
 <ns0:title>AbstractLayoutAnimation</ns0:title>
-<ns0:g id="a_node6"><ns0:a ns1:href="../reference/mindmap/animations/animations.html#manim_extensions.mindmap.animations.animations.AbstractLayoutAnimation" ns1:title="Abstract base class for layout animations: collect node states and generate the full layout animation." target="_top">
+<ns0:g id="a_node6"><ns0:a ns1:href="../reference/mindmap/animations/animations.AbstractLayoutAnimation.html#manim_extensions.mindmap.animations.animations.AbstractLayoutAnimation" ns1:title="Abstract base class for layout animations: collect node states and generate the full layout animation." target="_top">
 <ns0:polygon fill="#ccf2ed" stroke="black" stroke-width="0" points="295.9,-2305.95 164.95,-2305.95 164.95,-2286 295.9,-2286 295.9,-2305.95" />
 <ns0:text xml:space="preserve" text-anchor="middle" x="230.43" y="-2292.85" font-family="Vera Sans, DejaVu Sans, Liberation Sans, Arial, Helvetica, sans" font-size="10.00" fill="#00bfa5">AbstractLayoutAnimation</ns0:text>
 </ns0:a>

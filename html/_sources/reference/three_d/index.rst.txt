@@ -55,21 +55,14 @@ Modules
 
    ~core
 
-Type Aliases
-------------
+.. toctree::
+   :hidden:
+   :maxdepth: 1
 
-.. autoall:: manim_extensions.three_d
-   :recursive:
-   :types: typealias
+   core
 
 Constants
 ---------
 
 .. autoall:: manim_extensions.three_d
    :types: data
-
-.. toctree::
-   :hidden:
-   :maxdepth: 1
-
-   core

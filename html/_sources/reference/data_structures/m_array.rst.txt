@@ -24,6 +24,7 @@ Classes
    ~MArrayElement
    ~MArrayPointer
    ~MArraySlidingWindow
+   ~UpdateIndices
 
 .. toctree::
    :hidden:
@@ -33,6 +34,10 @@ Classes
    m_array.MArrayElement
    m_array.MArrayPointer
    m_array.MArraySlidingWindow
+   m_array.UpdateIndices
 
-.. autoclass:: manim_extensions.data_structures.m_array.UpdateIndices
-   :show-inheritance:
+Type Aliases
+------------
+
+.. autoall:: manim_extensions.data_structures.m_array
+   :types: typealias

@@ -73,19 +73,6 @@ Modules
    ~theme
    ~utils
 
-Type Aliases
-------------
-
-.. autoall:: manim_extensions.radar
-   :recursive:
-   :types: typealias
-
-Constants
----------
-
-.. autoall:: manim_extensions.radar
-   :types: data
-
 .. toctree::
    :hidden:
    :maxdepth: 1
@@ -104,3 +91,9 @@ Constants
    reel
    theme
    utils
+
+Constants
+---------
+
+.. autoall:: manim_extensions.radar
+   :types: data

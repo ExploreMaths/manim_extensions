@@ -69,13 +69,6 @@ Modules
    ~queue
    ~utils
 
-Type Aliases
-------------
-
-.. autoall:: manim_extensions.algorithm
-   :recursive:
-   :types: typealias
-
 .. toctree::
    :hidden:
    :maxdepth: 1

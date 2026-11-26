@@ -3,7 +3,7 @@
   <head><meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="index" title="Index" href="../../../genindex.html"><link rel="search" title="Search" href="../../../search.html"><link rel="next" title="StandardLayout" href="alg_standard.StandardLayout.html"><link rel="prev" title="CatalogLayout" href="alg_catalog.CatalogLayout.html">
+<link rel="index" title="Index" href="../../../genindex.html"><link rel="search" title="Search" href="../../../search.html"><link rel="next" title="StandardLayout" href="alg_standard.StandardLayout.html"><link rel="prev" title="CatalogNode" href="alg_catalog.CatalogNode.html">
         <link rel="prefetch" href="../../../_static/logo.svg" as="image">
         <link rel="prefetch" href="../../../_static/logo-dark.svg" as="image">
 
@@ -670,6 +670,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../data_structures/m_array.MArrayElement.html">MArrayElement</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../data_structures/m_array.MArrayPointer.html">MArrayPointer</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../data_structures/m_array.MArraySlidingWindow.html">MArraySlidingWindow</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../data_structures/m_array.UpdateIndices.html">UpdateIndices</a></li>
 </ul>
 </li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../../data_structures/m_enum.html">m_enum</a><input aria-label="Toggle navigation of m_enum" class="toctree-checkbox" id="toctree-checkbox-96" name="toctree-checkbox-96" role="switch" type="checkbox"/><label for="toctree-checkbox-96"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
@@ -1025,26 +1026,32 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../meshes/params.html">params</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../meshes/templates.html">templates</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../meshes/types.html">types</a></li>
 </ul>
 </li>
 <li class="toctree-l2 current has-children"><a class="reference internal" href="../index.html">MindMap</a><input aria-label="Toggle navigation of MindMap" checked="" class="toctree-checkbox" id="toctree-checkbox-180" name="toctree-checkbox-180" role="switch" type="checkbox"/><label for="toctree-checkbox-180"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
 <li class="toctree-l3 current has-children"><a class="reference internal" href="index.html">algorithms</a><input aria-label="Toggle navigation of algorithms" checked="" class="toctree-checkbox" id="toctree-checkbox-181" name="toctree-checkbox-181" role="switch" type="checkbox"/><label for="toctree-checkbox-181"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
 <li class="toctree-l4 has-children"><a class="reference internal" href="alg_catalog.html">alg_catalog</a><input aria-label="Toggle navigation of alg_catalog" class="toctree-checkbox" id="toctree-checkbox-182" name="toctree-checkbox-182" role="switch" type="checkbox"/><label for="toctree-checkbox-182"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
 <li class="toctree-l5"><a class="reference internal" href="alg_catalog.CatalogLayout.html">CatalogLayout</a></li>
+<li class="toctree-l5"><a class="reference internal" href="alg_catalog.CatalogNode.html">CatalogNode</a></li>
 </ul>
 </li>
 <li class="toctree-l4 current has-children current-page"><a class="current reference internal" href="#">alg_standard</a><input aria-label="Toggle navigation of alg_standard" checked="" class="toctree-checkbox" id="toctree-checkbox-183" name="toctree-checkbox-183" role="switch" type="checkbox"/><label for="toctree-checkbox-183"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
 <li class="toctree-l5"><a class="reference internal" href="alg_standard.StandardLayout.html">StandardLayout</a></li>
+<li class="toctree-l5"><a class="reference internal" href="alg_standard.TreeNode.html">TreeNode</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="#functions">Functions</a></li>
 <li class="toctree-l4 has-children"><a class="reference internal" href="alg_tidy_tree.html">alg_tidy_tree</a><input aria-label="Toggle navigation of alg_tidy_tree" class="toctree-checkbox" id="toctree-checkbox-184" name="toctree-checkbox-184" role="switch" type="checkbox"/><label for="toctree-checkbox-184"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
 <li class="toctree-l5"><a class="reference internal" href="alg_tidy_tree.TidyTreeLayout.html">TidyTreeLayout</a></li>
+<li class="toctree-l5"><a class="reference internal" href="alg_tidy_tree.IYLNode.html">IYLNode</a></li>
+<li class="toctree-l5"><a class="reference internal" href="alg_tidy_tree.WrappedTree.html">WrappedTree</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="alg_tidy_tree.html#functions">Functions</a></li>
 <li class="toctree-l4 has-children"><a class="reference internal" href="alg_time_line.html">alg_time_line</a><input aria-label="Toggle navigation of alg_time_line" class="toctree-checkbox" id="toctree-checkbox-185" name="toctree-checkbox-185" role="switch" type="checkbox"/><label for="toctree-checkbox-185"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
 <li class="toctree-l5"><a class="reference internal" href="alg_time_line.TimeLineLayout.html">TimeLineLayout</a></li>
+<li class="toctree-l5"><a class="reference internal" href="alg_time_line.TimelineNode.html">TimelineNode</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="alg_time_line.html#functions">Functions</a></li>
@@ -1071,6 +1078,7 @@
 <li class="toctree-l5"><a class="reference internal" href="../animations/animations.LayoutAnimation.html">LayoutAnimation</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../animations/animations.RemoveNode.html">RemoveNode</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../animations/animations.ScaleNode.html">ScaleNode</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../animations/animations.AbstractLayoutAnimation.html">AbstractLayoutAnimation</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="../animations/animations.html#functions">Functions</a></li>
@@ -1150,6 +1158,7 @@
 <li class="toctree-l4 has-children"><a class="reference internal" href="../../physics/rigid_mechanics/rigid_mechanics.html">rigid_mechanics</a><input aria-label="Toggle navigation of rigid_mechanics" class="toctree-checkbox" id="toctree-checkbox-208" name="toctree-checkbox-208" role="switch" type="checkbox"/><label for="toctree-checkbox-208"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
 <li class="toctree-l5"><a class="reference internal" href="../../physics/rigid_mechanics/rigid_mechanics.Space.html">Space</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../../physics/rigid_mechanics/rigid_mechanics.SpaceScene.html">SpaceScene</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../physics/rigid_mechanics/rigid_mechanics.PhysicsAttributes.html">PhysicsAttributes</a></li>
 </ul>
 </li>
 </ul>
@@ -1273,6 +1282,7 @@
 </li>
 <li class="toctree-l3 has-children"><a class="reference internal" href="../../radar/chart.html">chart</a><input aria-label="Toggle navigation of chart" class="toctree-checkbox" id="toctree-checkbox-237" name="toctree-checkbox-237" role="switch" type="checkbox"/><label for="toctree-checkbox-237"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../radar/chart.RadarChart.html">RadarChart</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../radar/chart.Series.html">Series</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../radar/chart.html#constants">Constants</a></li>
@@ -1500,99 +1510,14 @@
 <tr class="row-odd"><td><p><a class="reference internal" href="alg_standard.StandardLayout.html#manim_extensions.mindmap.algorithms.alg_standard.StandardLayout" title="manim_extensions.mindmap.algorithms.alg_standard.StandardLayout"><code class="xref py py-obj docutils literal notranslate"><span class="pre">StandardLayout</span></code></a></p></td>
 <td><p>Two-sided mind-map layout algorithm: split children into left/right (or top/bottom) sides.</p></td>
 </tr>
+<tr class="row-even"><td><p><a class="reference internal" href="alg_standard.TreeNode.html#manim_extensions.mindmap.algorithms.alg_standard.TreeNode" title="manim_extensions.mindmap.algorithms.alg_standard.TreeNode"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TreeNode</span></code></a></p></td>
+<td><p>Internal tree-node wrapper used by <a class="reference internal" href="alg_standard.StandardLayout.html#manim_extensions.mindmap.algorithms.alg_standard.StandardLayout" title="manim_extensions.mindmap.algorithms.alg_standard.StandardLayout"><code class="xref py py-class docutils literal notranslate"><span class="pre">StandardLayout</span></code></a>.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="toctree-wrapper compound">
 </div>
-<dl class="py class">
-<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_standard.TreeNode">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">manim_extensions.mindmap.algorithms.alg_standard.</span></span><span class="sig-name descname"><span class="pre">TreeNode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/alg_standard.html#TreeNode"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_standard.TreeNode" title="Link to this definition">¶</a></dt>
-<dd><p>Internal tree-node wrapper used by <a class="reference internal" href="alg_standard.StandardLayout.html#manim_extensions.mindmap.algorithms.alg_standard.StandardLayout" title="manim_extensions.mindmap.algorithms.alg_standard.StandardLayout"><code class="xref py py-class docutils literal notranslate"><span class="pre">StandardLayout</span></code></a>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>height</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Height of the tree node.</p></li>
-<li><p><strong>width</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">float</span></code></a></span>) – Width of the tree node.</p></li>
-</ul>
-</dd>
-</dl>
-<p class="rubric">Attributes</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_standard.TreeNode.x">
-<span class="sig-name descname"><span class="pre">x</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_standard.TreeNode.x" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_standard.TreeNode.y">
-<span class="sig-name descname"><span class="pre">y</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><span class="pre">float</span></a></span><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_standard.TreeNode.y" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_standard.TreeNode.level">
-<span class="sig-name descname"><span class="pre">level</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#int" title="(in Python v3.15)"><span class="pre">int</span></a></span><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_standard.TreeNode.level" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_standard.TreeNode.is_flip">
-<span class="sig-name descname"><span class="pre">is_flip</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#bool" title="(in Python v3.15)"><span class="pre">bool</span></a></span><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_standard.TreeNode.is_flip" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_standard.TreeNode.children">
-<span class="sig-name descname"><span class="pre">children</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#list" title="(in Python v3.15)"><span class="pre">list</span></a><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_standard.TreeNode" title="manim_extensions.mindmap.algorithms.alg_standard.TreeNode"><span class="pre">TreeNode</span></a><span class="p"><span class="pre">]</span></span></span><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_standard.TreeNode.children" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_standard.TreeNode.parent">
-<span class="sig-name descname"><span class="pre">parent</span></span><span class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_standard.TreeNode" title="manim_extensions.mindmap.algorithms.alg_standard.TreeNode"><span class="pre">TreeNode</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><span class="pre">None</span></a></span><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_standard.TreeNode.parent" title="Link to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<p class="rubric">Examples</p>
-<div id="treenodescene" class="admonition admonition-manim-example">
-
-<p class="admonition-title">Example: TreeNodeScene <a class="headerlink" href="#treenodescene">¶</a></p><img alt="../../../_images/TreeNodeScene-3f671675.png" class="align-center" src="../../../_images/TreeNodeScene-3f671675.png" />
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">manim</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap.algorithms.alg_standard</span><span class="w"> </span><span class="kn">import</span> <span class="n">TreeNode</span><span class="p">,</span> <span class="n">StandardLayout</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">manim_extensions.mindmap.algorithms.layout_config</span><span class="w"> </span><span class="kn">import</span> <span class="n">LayoutDirection</span>
-
-<span class="k">class</span><span class="w"> </span><span class="nc">TreeNodeScene</span><span class="p">(</span><span class="n">Scene</span><span class="p">):</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">construct</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">root</span> <span class="o">=</span> <span class="n">TreeNode</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">1.8</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-            <span class="n">root</span><span class="o">.</span><span class="n">add_child</span><span class="p">(</span><span class="n">TreeNode</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">1.4</span><span class="p">))</span>
-        <span class="n">root</span> <span class="o">=</span> <span class="n">StandardLayout</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="n">LayoutDirection</span><span class="o">.</span><span class="n">LeftToRight</span><span class="p">)</span><span class="o">.</span><span class="n">layout</span><span class="p">()</span>
-        <span class="n">boxes</span> <span class="o">=</span> <span class="n">Group</span><span class="p">()</span>
-        <span class="k">def</span><span class="w"> </span><span class="nf">draw</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
-            <span class="n">box</span> <span class="o">=</span> <span class="n">Rectangle</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="n">node</span><span class="o">.</span><span class="n">height</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">node</span><span class="o">.</span><span class="n">width</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">BLUE</span><span class="p">)</span>
-            <span class="n">box</span><span class="o">.</span><span class="n">move_to</span><span class="p">([</span><span class="n">node</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
-            <span class="n">boxes</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">box</span><span class="p">)</span>
-            <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">children</span><span class="p">:</span>
-                <span class="n">draw</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
-        <span class="n">draw</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
-        <span class="n">boxes</span><span class="o">.</span><span class="n">scale_to_fit_width</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">boxes</span><span class="p">)</span>
-</pre></div>
-</div>
-</div><dl class="py method">
-<dt class="sig sig-object py" id="manim_extensions.mindmap.algorithms.alg_standard.TreeNode.add_child">
-<span class="sig-name descname"><span class="pre">add_child</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">child</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../../_modules/manim_extensions/mindmap/algorithms/alg_standard.html#TreeNode.add_child"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#manim_extensions.mindmap.algorithms.alg_standard.TreeNode.add_child" title="Link to this definition">¶</a></dt>
-<dd><p>Add a child node and establish the parent-child relationship.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>child</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_standard.TreeNode" title="manim_extensions.mindmap.algorithms.alg_standard.TreeNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">TreeNode</span></code></a></span>) – The child node to add.</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.15)"><code class="xref py py-data docutils literal notranslate"><span class="pre">Any</span></code></a></span></p>
-</dd>
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>The resulting value.</p>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
 </section>
 </section>
 <section id="functions">
@@ -1607,7 +1532,7 @@
 <code class="docutils literal notranslate"><span class="pre">children</span></code> attributes).</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_standard.TreeNode" title="manim_extensions.mindmap.algorithms.alg_standard.TreeNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">TreeNode</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="alg_standard.TreeNode.html#manim_extensions.mindmap.algorithms.alg_standard.TreeNode" title="manim_extensions.mindmap.algorithms.alg_standard.TreeNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">TreeNode</span></code></a> | <span class="highlight sphinx_autodoc_typehints-value"><a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="xref py py-obj docutils literal notranslate"><span class="kc"><span class="pre">None</span></span></code></a></span></span></p>
 </dd>
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>The root of the copied tree, or <code class="docutils literal notranslate"><span class="pre">None</span></code> if <code class="docutils literal notranslate"><span class="pre">node</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
@@ -1639,7 +1564,7 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>src</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_standard.TreeNode" title="manim_extensions.mindmap.algorithms.alg_standard.TreeNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">TreeNode</span></code></a></span>) – Source tree (data provider).</p></li>
+<li><p><strong>src</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="alg_standard.TreeNode.html#manim_extensions.mindmap.algorithms.alg_standard.TreeNode" title="manim_extensions.mindmap.algorithms.alg_standard.TreeNode"><code class="xref py py-class docutils literal notranslate"><span class="pre">TreeNode</span></code></a></span>) – Source tree (data provider).</p></li>
 <li><p><strong>dst</strong> (<span class="sphinx_autodoc_typehints-type"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#object" title="(in Python v3.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></span>) – Destination tree (data receiver).</p></li>
 </ul>
 </dd>
@@ -1672,14 +1597,14 @@
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="alg_catalog.CatalogLayout.html">
+          <a class="prev-page" href="alg_catalog.CatalogNode.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">CatalogLayout</div>
+                <div class="title">CatalogNode</div>
                 
               </div>
             </a>
@@ -1714,19 +1639,7 @@
           <div class="toc-tree">
             <ul>
 <li><a class="reference internal" href="#">alg_standard</a><ul>
-<li><a class="reference internal" href="#classes">Classes</a><ul>
-<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_standard.TreeNode"><code class="docutils literal notranslate"><span class="pre">TreeNode</span></code></a><ul>
-<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_standard.TreeNode.x"><code class="docutils literal notranslate"><span class="pre">TreeNode.x</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_standard.TreeNode.y"><code class="docutils literal notranslate"><span class="pre">TreeNode.y</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_standard.TreeNode.level"><code class="docutils literal notranslate"><span class="pre">TreeNode.level</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_standard.TreeNode.is_flip"><code class="docutils literal notranslate"><span class="pre">TreeNode.is_flip</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_standard.TreeNode.children"><code class="docutils literal notranslate"><span class="pre">TreeNode.children</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_standard.TreeNode.parent"><code class="docutils literal notranslate"><span class="pre">TreeNode.parent</span></code></a></li>
-<li><a class="reference internal" href="#manim_extensions.mindmap.algorithms.alg_standard.TreeNode.add_child"><code class="docutils literal notranslate"><span class="pre">TreeNode.add_child()</span></code></a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li><a class="reference internal" href="#classes">Classes</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#functions">Functions</a><ul>

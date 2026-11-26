@@ -146,13 +146,7 @@ Modules
    ~models
    ~params
    ~templates
-
-Type Aliases
-------------
-
-.. autoall:: manim_extensions.meshes
-   :recursive:
-   :types: typealias
+   ~types
 
 .. toctree::
    :hidden:
@@ -165,3 +159,4 @@ Type Aliases
    models/index
    params
    templates
+   types

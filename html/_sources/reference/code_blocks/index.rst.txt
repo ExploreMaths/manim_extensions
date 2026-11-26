@@ -57,12 +57,6 @@ Classes
 .. autoall:: manim_extensions.code_blocks
    :types: class
 
-Constants
----------
-
-.. autoall:: manim_extensions.code_blocks
-   :types: data
-
 Modules
 -------
 
@@ -76,3 +70,9 @@ Modules
    :maxdepth: 1
 
    manim_code_blocks
+
+Constants
+---------
+
+.. autoall:: manim_extensions.code_blocks
+   :types: data
