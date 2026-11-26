@@ -161,10 +161,9 @@ class DoubleLine(ArcBetweenPoints):
             Additional keyword arguments passed to
             :meth:`~manim.mobject.geometry.line.Line.put_start_and_end_on`.
 
-
-            Returns
-            -------
-                The resulting value.
+        Returns
+        -------
+            The arcs now span from ``start`` to ``end``.
         """
         self.put_start_and_end_on(start=start, end=end)
 
@@ -356,13 +355,6 @@ class GraphMolecule(Graph, AbstractMolecule):
             Pairs of vertex indices that should be connected.
         edge_type
             Mobject class used to build each bond.
-        _
-            Unused parameter kept for the graph interface.
-
-
-            Returns
-            -------
-                The resulting value.
         """
         self.edges = {}
 

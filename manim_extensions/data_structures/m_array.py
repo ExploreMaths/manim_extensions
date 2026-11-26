@@ -989,9 +989,9 @@ class MArray(VGroup):
 
         Returns
         -------
-            Contains :class:`~manim.animation.animation.Animation` played for removal and shifting of element(s).
-        :class:`~collections.abc.Callable`\[[:class:`~bool`], :class:`~list`\[:class:`~manim.animation.animation.Animation`]]
-            Method that updates the indices of element(s) after the removed element and returns a list of update :class:`~manim.animation.animation.Animation`\ (s).
+            The first item is the :class:`~manim.animation.animation.Animation` played for removal and
+            shifting of element(s).  The second updates the indices of the
+            remaining elements and returns a list of update animations.
 
         Raises
         ------
@@ -1617,9 +1617,9 @@ class MArray(VGroup):
 
         Returns
         -------
-            Contains :class:`~manim.animation.animation.Animation` played for removal and shifting of element(s).
-        :class:`~collections.abc.Callable`\[[:class:`~bool`], :class:`~list`\[:class:`~manim.animation.animation.Animation`]]
-            Method that updates the indices of element(s) after the removed element and returns a list of update :class:`~manim.animation.animation.Animation`\ (s).
+            The first item is the :class:`~manim.animation.animation.Animation` played for removal and
+            shifting of element(s).  The second updates the indices of the
+            remaining elements and returns a list of update animations.
 
         Raises
         ------

@@ -253,9 +253,9 @@ class SpaceScene(Scene):
             objects to be added to the simulation space.
 
 
-            Returns
-            -------
-                The resulting value.
+        Returns
+        -------
+            The resulting value.
         """
         if body.body != self.space.space.static_body:
             self.space.space.add(body.body)
@@ -276,15 +276,17 @@ class SpaceScene(Scene):
         mobs
             The mobs to be made rigid.
         elasticity
+            Elasticity of the mobjects.
         density
+            Density of the mobjects.
         friction
-            The attributes of the mobjects in regards to
+            Friction of the mobjects in regards to
             interacting with other rigid and static objects.
 
 
-            Returns
-            -------
-                The resulting value.
+        Returns
+        -------
+            The resulting value.
         """
         pymunk = require("physics", "pymunk")
         for mob in mobs:
@@ -319,14 +321,15 @@ class SpaceScene(Scene):
         mobs
             The mobs to be made static.
         elasticity
+            Elasticity of the mobjects.
         friction
-            The attributes of the mobjects in regards to
+            Friction of the mobjects in regards to
             interacting with rigid objects.
 
 
-            Returns
-            -------
-                The resulting value.
+        Returns
+        -------
+            The resulting value.
         """
         for mob in mobs:
             if isinstance(mob, (VGroup, Group)):
@@ -347,9 +350,9 @@ class SpaceScene(Scene):
             Mobs processed by this operation.
 
 
-            Returns
-            -------
-                The resulting value.
+        Returns
+        -------
+            The resulting value.
         """
         for mob in mobs:
             if isinstance(mob, (VGroup, Group)):
